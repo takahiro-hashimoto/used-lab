@@ -1074,6 +1074,15 @@ ul {
   margin-top: var(--space-sm);
 }
 
+.lead-box__list {
+  list-style: disc;
+  padding-left: 1.5em;
+  margin: var(--space-sm) 0;
+  font-size: var(--font-size-base);
+  line-height: 2;
+  color: var(--color-text-secondary);
+}
+
 .section-lead .lead-link {
   margin-top: var(--space-md);
   color: var(--color-text-secondary);
@@ -1387,6 +1396,20 @@ ul {
   font-size: var(--font-size-sm);
 }
 
+.price-placeholder {
+  padding: var(--space-3xl) var(--space-xl);
+  text-align: center;
+}
+
+.price-placeholder__text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-md);
+}
+
 /* price-chart-legend: uses .m-legend base */
 .m-legend__item--max::before {
   background: var(--color-negative);
@@ -1527,7 +1550,10 @@ ul {
 }
 
 .compare-select {
-  padding: 6px var(--space-md);
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 10px var(--space-md);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
   font-size: var(--font-size-sm);
@@ -1536,6 +1562,7 @@ ul {
   color: var(--color-text);
   background: var(--color-bg);
   cursor: pointer;
+  text-align: center;
   appearance: auto;
 }
 
@@ -1592,8 +1619,9 @@ ul {
 
 .compare-table__header-cell {
   vertical-align: top;
+  text-align: center;
   border-bottom: 1px solid var(--color-border-light);
-  padding: var(--space-lg) var(--space-lg) var(--space-lg) !important;
+  padding: var(--space-lg) var(--space-md) var(--space-lg) !important;
 }
 
 .compare-table__action-row td {
@@ -2551,12 +2579,6 @@ ul {
   margin: 0;
 }
 
-.evolution-item__note {
-  font-size: var(--font-size-sm);
-  font-weight: 400;
-  color: var(--color-text-secondary);
-}
-
 .evolution-item__col {
   background: var(--color-bg-subtle);
   border-radius: var(--radius-md);
@@ -2583,15 +2605,27 @@ ul {
   list-style: disc;
 }
 
-.evolution-item__models {
+.evolution-item__model-links {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-sm);
-  margin-top: var(--space-md);
+  gap: 0 var(--space-sm);
+  margin-bottom: var(--space-xs);
+  font-size: var(--font-size-sm);
 }
 
-.evolution-item__models .m-badge {
-  font-size: var(--font-size-sm);
+.evolution-item__model-link {
+  color: var(--color-primary);
+}
+
+.evolution-item__title a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px dashed var(--color-primary);
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.evolution-item__title a:hover {
+  color: var(--color-primary);
 }
 
 /* ---------- Glossary Grid ---------- */

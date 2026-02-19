@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 
-import { getBoolDisplay, TextCell } from '@/app/components/spec-table-utils'
+import { getBoolDisplay, formatDate } from '@/app/components/spec-table-utils'
 import type { ProductShopLink } from '@/lib/types'
 
 type SpecModel = {
@@ -12,21 +12,25 @@ type SpecModel = {
   image: string | null
   date: string | null
   cpu: string | null
-  ram: string | null
-  weight: string | null
-  strage: string | null
   size: string | null
-  port: string | null
+  strage: string | null
+  material: string | null
   battery: string | null
-  display: string | null
-  resolution: string | null
-  sim: string | null
-  certification: string | null
-  image_sensor: string | null
-  night_mode: boolean
-  apple_proraw: boolean
-  magsafe: boolean
-  dynamic_island: boolean
+  water_resistance: string | null
+  always_on_display: boolean
+  fast_charge: boolean
+  blood_oxygen: boolean
+  cardiogram: boolean
+  accident_detection: boolean
+  fall_detection: boolean
+  skin_temperature: boolean
+  japanese_input: boolean
+  double_tap: boolean
+  sleep_tracking: boolean
+  altimeter: boolean
+  blood_pressure: boolean
+  sleep_score: boolean
+  max_brightness: string | null
 }
 
 type Props = {
@@ -41,11 +45,7 @@ type CompareCategory = {
 
 function buildCategories(): CompareCategory[] {
   const text = (getter: (m: SpecModel) => string | null) => ({
-    get: (m: SpecModel) => {
-      const val = getter(m)
-      if (!val) return '-'
-      return <TextCell value={val} />
-    },
+    get: (m: SpecModel) => getter(m) || '-',
   })
   const bool = (getter: (m: SpecModel) => boolean) => ({
     get: (m: SpecModel) => getBoolDisplay(getter(m)),
@@ -53,57 +53,42 @@ function buildCategories(): CompareCategory[] {
 
   return [
     {
-      title: 'サイズ・重量',
+      title: '基本仕様',
       rows: [
         { label: 'サイズ', ...text((m) => m.size) },
-        { label: '重量', ...text((m) => m.weight) },
-      ],
-    },
-    {
-      title: 'ボディ',
-      rows: [
+        { label: '発売日', get: (m: SpecModel) => formatDate(m.date) },
         { label: 'CPU', ...text((m) => m.cpu) },
-        { label: 'RAM', ...text((m) => m.ram) },
-        { label: 'ストレージ容量', ...text((m) => m.strage) },
-        { label: 'バッテリー容量', ...text((m) => m.battery) },
+        { label: '素材', ...text((m) => m.material) },
+        { label: '容量', ...text((m) => m.strage) },
+        { label: '輝度', ...text((m) => m.max_brightness) },
+        { label: '耐水性能', ...text((m) => m.water_resistance) },
+        { label: 'バッテリー', ...text((m) => m.battery) },
       ],
     },
     {
-      title: 'ディスプレイ',
+      title: '搭載機能',
       rows: [
-        { label: 'ディスプレイ', ...text((m) => m.display) },
-        { label: '解像度', ...text((m) => m.resolution) },
-      ],
-    },
-    {
-      title: 'カメラ',
-      rows: [
-        { label: 'リアカメラ', ...text((m) => m.image_sensor) },
-        { label: 'ナイトモード', ...bool((m) => m.night_mode) },
-        { label: 'ProRAW', ...bool((m) => m.apple_proraw) },
-      ],
-    },
-    {
-      title: '機能',
-      rows: [
-        { label: 'MagSafe', ...bool((m) => m.magsafe) },
-        { label: 'Dynamic Island', ...bool((m) => m.dynamic_island) },
-      ],
-    },
-    {
-      title: '接続',
-      rows: [
-        { label: '端子', ...text((m) => m.port) },
-        { label: 'SIM', ...text((m) => m.sim) },
-        { label: '認証', ...text((m) => m.certification) },
+        { label: '常時点灯ディスプレイ', ...bool((m) => m.always_on_display) },
+        { label: '急速充電', ...bool((m) => m.fast_charge) },
+        { label: '血中酸素濃度', ...bool((m) => m.blood_oxygen) },
+        { label: '心電図', ...bool((m) => m.cardiogram) },
+        { label: '血圧', ...bool((m) => m.blood_pressure) },
+        { label: '事故検出機能', ...bool((m) => m.accident_detection) },
+        { label: '転倒検出機能', ...bool((m) => m.fall_detection) },
+        { label: '皮膚温測定機能', ...bool((m) => m.skin_temperature) },
+        { label: 'ダブルタップ', ...bool((m) => m.double_tap) },
+        { label: '日本語入力', ...bool((m) => m.japanese_input) },
+        { label: '睡眠トラッキング', ...bool((m) => m.sleep_tracking) },
+        { label: '睡眠スコア', ...bool((m) => m.sleep_score) },
+        { label: '高度計', ...bool((m) => m.altimeter) },
       ],
     },
   ]
 }
 
 export default function DualCompare({ models, shopLinks }: Props) {
-  const defaultA = models.length > 4 ? models[4].id : models[0]?.id || 0
-  const defaultB = models.length > 5 ? models[5].id : models[1]?.id || 0
+  const defaultA = models.length > 8 ? models[8].id : models[0]?.id || 0
+  const defaultB = models.length > 9 ? models[9].id : models[1]?.id || 0
 
   const [idA, setIdA] = useState(defaultA)
   const [idB, setIdB] = useState(defaultB)
@@ -123,23 +108,23 @@ export default function DualCompare({ models, shopLinks }: Props) {
     <section className="l-section" id="compare" aria-labelledby="heading-compare">
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg" id="heading-compare">
-          気になる2機種のiPhoneの違いを比較
+          気になる2機種のApple Watchの違いを比較
         </h2>
         <p className="m-section-desc">
-          気になる2機種のiPhoneを簡単に比較できるツールです。<br />
+          気になる2機種のApple Watchを簡単に比較できるツールです。<br />
           今持っている機種と購入を検討中の機種を比較したい方はぜひチェックしてみてください。
         </p>
 
         <div className="m-card m-card--shadow compare-card">
           <table className="compare-table">
-            <caption className="visually-hidden">2機種のiPhoneスペック比較</caption>
+            <caption className="visually-hidden">2機種のApple Watchスペック比較</caption>
             <colgroup>
               <col className="compare-table__col-label" />
               <col />
               <col />
             </colgroup>
 
-            {/* ヘッダー：モデル選択 + 画像 */}
+            {/* ヘッダー：モデル選択 */}
             <thead>
               <tr>
                 <th></th>
@@ -152,15 +137,15 @@ export default function DualCompare({ models, shopLinks }: Props) {
                     onChange={(e) => setIdA(Number(e.target.value))}
                   >
                     {models.map((m) => (
-                      <option key={m.id} value={m.id}>{m.model}</option>
+                      <option key={m.id} value={m.id}>{m.model}（{m.cpu}）</option>
                     ))}
                   </select>
-                  <a href={`/iphone/${modelA.slug}`} className="compare-model-link">
+                  <a href={`/watch/${modelA.slug}`} className="compare-model-link">
                     このモデルの詳細を見る &rsaquo;
                   </a>
                   {modelA.image && (
                     <img
-                      src={`/images/iphone/${modelA.image}`}
+                      src={`/images/watch/${modelA.image}`}
                       alt={modelA.model}
                       width={120}
                       height={120}
@@ -177,15 +162,15 @@ export default function DualCompare({ models, shopLinks }: Props) {
                     onChange={(e) => setIdB(Number(e.target.value))}
                   >
                     {models.map((m) => (
-                      <option key={m.id} value={m.id}>{m.model}</option>
+                      <option key={m.id} value={m.id}>{m.model}（{m.cpu}）</option>
                     ))}
                   </select>
-                  <a href={`/iphone/${modelB.slug}`} className="compare-model-link">
+                  <a href={`/watch/${modelB.slug}`} className="compare-model-link">
                     このモデルの詳細を見る &rsaquo;
                   </a>
                   {modelB.image && (
                     <img
-                      src={`/images/iphone/${modelB.image}`}
+                      src={`/images/watch/${modelB.image}`}
                       alt={modelB.model}
                       width={120}
                       height={120}

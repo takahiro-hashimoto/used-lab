@@ -7,32 +7,30 @@ import type { ProductShopLink } from '@/lib/types'
 type SpecModel = {
   id: number
   model: string
+  shortname: string | null
   slug: string
   image: string | null
   date: string | null
   cpu: string | null
   ram: string | null
-  weight: string | null
   strage: string | null
   size: string | null
+  weight: string | null
+  display: string | null
+  resolution: string | null
+  luminance: string | null
   port: string | null
-  battery: string | null
-  image_sensor: string | null
-  apple_intelligence: boolean
+  hdmi: boolean
+  slot: boolean
   magsafe: boolean
-  dynamic_island: boolean
+  camera: string | null
+  speaker: string | null
   promotion: boolean
-  accident_detection: boolean
-  action_button: boolean
-  camera_control: boolean
-  lidar: boolean
-  night_mode: boolean
-  portrait_mode: boolean
-  cinematic_mode: boolean
-  action_mode: boolean
-  macro_mode: boolean
-  apple_proraw: boolean
-  apple_prores: boolean
+  fan: boolean
+  center_frame: boolean
+  apple_intelligence: boolean
+  battery: string | null
+  color: string | null
 }
 
 type Props = {
@@ -41,69 +39,25 @@ type Props = {
 }
 
 type SortOrder = 'old' | 'new'
-type FilterType = 'all' | 'promax' | 'pro' | 'plus' | 'standard' | 'se' | 'mini'
-type FeatureFilter = 'size-sm' | 'size-lg' | 'usbc' | 'camera-control' | 'magsafe'
+type FilterType = 'all' | 'air' | 'pro'
 
 function getModelCategory(model: string): string {
   const lower = model.toLowerCase()
-  if (lower.includes('pro max')) return 'promax'
   if (lower.includes('pro')) return 'pro'
-  if (lower.includes('plus')) return 'plus'
-  if (lower.includes('se') || lower.includes('16e')) return 'se'
-  if (lower.includes('mini')) return 'mini'
-  return 'standard'
-}
-
-function parseSizeInch(size: string | null): number {
-  if (!size) return 0
-  const match = size.match(/([\d.]+)/)
-  return match ? parseFloat(match[1]) : 0
+  return 'air'
 }
 
 export default function SpecTable({ models, shopLinks }: Props) {
   const [sortOrder, setSortOrder] = useState<SortOrder>('old')
   const [modelFilter, setModelFilter] = useState<FilterType>('all')
-  const [featureFilters, setFeatureFilters] = useState<Set<FeatureFilter>>(new Set())
-
-  const toggleFeature = (f: FeatureFilter) => {
-    setFeatureFilters((prev) => {
-      const next = new Set(prev)
-      if (next.has(f)) next.delete(f)
-      else next.add(f)
-      return next
-    })
-  }
 
   const filteredModels = useMemo(() => {
     let result = [...models]
 
-    // 機種別フィルタ
     if (modelFilter !== 'all') {
       result = result.filter((m) => getModelCategory(m.model) === modelFilter)
     }
 
-    // サイズ・機能フィルタ
-    for (const f of featureFilters) {
-      switch (f) {
-        case 'size-sm':
-          result = result.filter((m) => { const s = parseSizeInch(m.size); return s >= 6.1 && s <= 6.3 })
-          break
-        case 'size-lg':
-          result = result.filter((m) => { const s = parseSizeInch(m.size); return s >= 6.7 && s <= 6.9 })
-          break
-        case 'usbc':
-          result = result.filter((m) => m.port?.toLowerCase().includes('usb'))
-          break
-        case 'camera-control':
-          result = result.filter((m) => m.camera_control)
-          break
-        case 'magsafe':
-          result = result.filter((m) => m.magsafe)
-          break
-      }
-    }
-
-    // 並び替え
     result.sort((a, b) => {
       const da = parseDate(a.date).getTime()
       const db = parseDate(b.date).getTime()
@@ -111,7 +65,7 @@ export default function SpecTable({ models, shopLinks }: Props) {
     })
 
     return result
-  }, [models, sortOrder, modelFilter, featureFilters])
+  }, [models, sortOrder, modelFilter])
 
   const getShopLink = (productId: number, shopId: number) =>
     shopLinks.find((l) => l.product_id === productId && l.shop_id === shopId)
@@ -123,10 +77,10 @@ export default function SpecTable({ models, shopLinks }: Props) {
         <>
           {m.image && (
             <img
-              src={`/images/iphone/${m.image}`}
+              src={`/images/macbook/${m.image}`}
               alt={m.model}
               width={50}
-              height={65}
+              height={50}
               loading="lazy"
               className="spec-compare-table__cell-img"
             />
@@ -136,38 +90,34 @@ export default function SpecTable({ models, shopLinks }: Props) {
       ),
     },
     { label: '発売日', render: (m) => formatDate(m.date) },
-    { label: 'CPU', render: (m) => m.cpu ? <TextCell value={m.cpu} /> : '-' },
-    { label: 'RAM', render: (m) => m.ram || '-' },
     { label: '重量', render: (m) => m.weight || '-' },
-    { label: 'ストレージ', render: (m) => m.strage ? <TextCell value={m.strage} /> : '-' },
-    { label: 'コネクター', render: (m) => m.port ? <TextCell value={m.port} /> : '-' },
-    { label: 'バッテリー容量', render: (m) => m.battery || '-' },
-    { label: '外カメラ', render: (m) => m.image_sensor ? <TextCell value={m.image_sensor} /> : '-' },
-    { label: 'Apple Intelligence', render: (m) => <BoolCell value={m.apple_intelligence} /> },
-    { label: 'MagSafe', render: (m) => <BoolCell value={m.magsafe} /> },
-    { label: 'Dynamic Island', render: (m) => <BoolCell value={m.dynamic_island} /> },
+    { label: 'チップ', render: (m) => m.cpu || '-' },
+    { label: 'メモリ', render: (m) => m.ram || '-' },
+    { label: 'ストレージ', render: (m) => m.strage || '-' },
+    { label: 'ディスプレイ', render: (m) => m.display ? <TextCell value={m.display} /> : '-' },
+    { label: '解像度', render: (m) => m.resolution || '-' },
+    { label: '輝度', render: (m) => m.luminance || '-' },
     { label: 'ProMotion', render: (m) => <BoolCell value={m.promotion} /> },
-    { label: '事故衝突検知', render: (m) => <BoolCell value={m.accident_detection} /> },
-    { label: 'アクションボタン', render: (m) => <BoolCell value={m.action_button} /> },
-    { label: 'カメラコントロール', render: (m) => <BoolCell value={m.camera_control} /> },
-    { label: 'LiDARスキャン', render: (m) => <BoolCell value={m.lidar} /> },
-    { label: 'ナイト', render: (m) => <BoolCell value={m.night_mode} /> },
-    { label: 'ポートレート', render: (m) => <BoolCell value={m.portrait_mode} /> },
-    { label: 'シネマティック', render: (m) => <BoolCell value={m.cinematic_mode} /> },
-    { label: 'アクション', render: (m) => <BoolCell value={m.action_mode} /> },
-    { label: 'マクロ撮影', render: (m) => <BoolCell value={m.macro_mode} /> },
-    { label: 'Apple ProRAW', render: (m) => <BoolCell value={m.apple_proraw} /> },
-    { label: 'Apple ProRes', render: (m) => <BoolCell value={m.apple_prores} /> },
+    { label: 'バッテリー', render: (m) => m.battery || '-' },
+    { label: 'インターフェース', render: (m) => m.port ? <TextCell value={m.port} /> : '-' },
+    { label: 'HDMI', render: (m) => <BoolCell value={m.hdmi} /> },
+    { label: 'SDカードスロット', render: (m) => <BoolCell value={m.slot} /> },
+    { label: 'MagSafe', render: (m) => <BoolCell value={m.magsafe} /> },
+    { label: 'カメラ', render: (m) => m.camera || '-' },
+    { label: 'スピーカー', render: (m) => m.speaker || '-' },
+    { label: 'センターフレーム', render: (m) => <BoolCell value={m.center_frame} /> },
+    { label: '冷却ファン', render: (m) => <BoolCell value={m.fan} /> },
+    { label: 'Apple Intelligence', render: (m) => <BoolCell value={m.apple_intelligence} /> },
   ]
 
   return (
     <section className="l-section l-section--bg-subtle" id="spec-table" aria-labelledby="heading-spec-table">
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg" id="heading-spec-table">
-          歴代iPhoneのスペック比較表一覧
+          歴代MacBookスペック比較表
         </h2>
         <p className="m-section-desc">
-          歴代iPhoneの主要スペックを一覧で比較できます。
+          歴代MacBookの主要スペックを一覧で比較できます。
         </p>
 
         {/* フィルターUI */}
@@ -190,41 +140,17 @@ export default function SpecTable({ models, shopLinks }: Props) {
             </div>
           </div>
           <div className="spec-filter__row">
-            <span className="spec-filter__label">機種別絞り込み</span>
+            <span className="spec-filter__label">絞り込み</span>
             <div className="spec-filter__tags">
               {([
                 ['all', 'すべて'],
-                ['promax', 'Pro Max'],
+                ['air', 'Air'],
                 ['pro', 'Pro'],
-                ['plus', 'Plus'],
-                ['standard', '無印'],
-                ['se', 'SE'],
-                ['mini', 'mini'],
               ] as [FilterType, string][]).map(([key, label]) => (
                 <button
                   key={key}
                   className={`spec-filter__tag${modelFilter === key ? ' is-active' : ''}`}
                   onClick={() => setModelFilter(key)}
-                >
-                  {label}
-                </button>
-              ))}
-            </div>
-          </div>
-          <div className="spec-filter__row">
-            <span className="spec-filter__label">機能別</span>
-            <div className="spec-filter__tags">
-              {([
-                ['size-sm', '6.1~6.3型'],
-                ['size-lg', '6.7~6.9型'],
-                ['usbc', 'USB-C'],
-                ['camera-control', 'カメラコントロール'],
-                ['magsafe', 'MagSafe'],
-              ] as [FeatureFilter, string][]).map(([key, label]) => (
-                <button
-                  key={key}
-                  className={`spec-filter__tag${featureFilters.has(key) ? ' is-active' : ''}`}
-                  onClick={() => toggleFeature(key)}
                 >
                   {label}
                 </button>
@@ -240,12 +166,12 @@ export default function SpecTable({ models, shopLinks }: Props) {
           <div className="m-card m-card--shadow m-table-card">
             <div className="m-table-scroll">
               <table className="m-table spec-compare-table">
-                <caption className="visually-hidden">歴代iPhoneスペック比較表</caption>
+                <caption className="visually-hidden">歴代MacBookスペック比較表</caption>
                 <thead>
                   <tr>
                     <th scope="col" className="spec-compare-table__sticky"></th>
                     {filteredModels.map((m) => (
-                      <th key={m.id} scope="col">{m.model}</th>
+                      <th key={m.id} scope="col">{m.shortname || m.model}</th>
                     ))}
                   </tr>
                 </thead>

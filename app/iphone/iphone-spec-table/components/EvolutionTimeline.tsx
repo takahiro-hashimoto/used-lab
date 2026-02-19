@@ -1,13 +1,19 @@
+import Link from 'next/link'
+
+type ModelLink = {
+  name: string
+  slug: string
+}
+
 const FLAGSHIP_TIMELINE = [
   {
     date: '2024年9月',
     title: 'iPhone 16 シリーズ',
-    note: '※16e除く',
     filled: true,
-    allModels: ['iPhone 16', 'iPhone 16 Plus', 'iPhone 16 Pro', 'iPhone 16 Pro Max'],
     columns: [
       {
         category: '全モデル共通',
+        models: [] as ModelLink[],
         items: [
           '「カメラコントロール」ボタンを搭載',
           'Apple Intelligenceに対応',
@@ -22,10 +28,18 @@ const FLAGSHIP_TIMELINE = [
       },
       {
         category: '無印モデルのみ',
+        models: [
+          { name: 'iPhone 16', slug: 'iphone16' },
+          { name: 'iPhone 16 Plus', slug: 'iphone16plus' },
+        ],
         items: ['A18チップ搭載', 'USB転送速度はUSB 2仕様（低速）'],
       },
       {
         category: 'Proモデルのみ',
+        models: [
+          { name: 'iPhone 16 Pro', slug: 'iphone16pro' },
+          { name: 'iPhone 16 Pro Max', slug: 'iphone16promax' },
+        ],
         items: [
           '画面サイズが拡大しベゼルが最薄化',
           'A18 Proチップ搭載',
@@ -42,10 +56,10 @@ const FLAGSHIP_TIMELINE = [
     date: '2023年9月',
     title: 'iPhone 15 シリーズ',
     filled: false,
-    allModels: ['iPhone 15', 'iPhone 15 Plus', 'iPhone 15 Pro', 'iPhone 15 Pro Max'],
     columns: [
       {
         category: '全モデル共通',
+        models: [] as ModelLink[],
         items: [
           'USB-Cコネクタに変更（Lightning廃止）',
           'Dynamic Islandを採用',
@@ -60,10 +74,18 @@ const FLAGSHIP_TIMELINE = [
       },
       {
         category: '無印モデルのみ',
+        models: [
+          { name: 'iPhone 15', slug: 'iphone15' },
+          { name: 'iPhone 15 Plus', slug: 'iphone15plus' },
+        ],
         items: ['A16 Bionicチップ搭載', 'USB転送速度はUSB 2仕様（低速）'],
       },
       {
         category: 'Proモデルのみ',
+        models: [
+          { name: 'iPhone 15 Pro', slug: 'iphone15pro' },
+          { name: 'iPhone 15 Pro Max', slug: 'iphone15promax' },
+        ],
         items: [
           'A17 Proチップ搭載',
           'チタニウム素材採用で軽量化',
@@ -80,10 +102,10 @@ const FLAGSHIP_TIMELINE = [
     date: '2022年9月',
     title: 'iPhone 14 シリーズ',
     filled: true,
-    allModels: ['iPhone 14', 'iPhone 14 Plus', 'iPhone 14 Pro', 'iPhone 14 Pro Max'],
     columns: [
       {
         category: '全モデル共通',
+        models: [] as ModelLink[],
         items: [
           '衝突事故検出機能',
           '強力な手ぶれ補正（アクションモード）',
@@ -95,10 +117,18 @@ const FLAGSHIP_TIMELINE = [
       },
       {
         category: '無印モデルのみ',
+        models: [
+          { name: 'iPhone 14', slug: 'iphone14' },
+          { name: 'iPhone 14 Plus', slug: 'iphone14plus' },
+        ],
         items: ['A15 Bionic（5コアGPU）搭載', 'カメラセンサーが大型化'],
       },
       {
         category: 'Proモデルのみ',
+        models: [
+          { name: 'iPhone 14 Pro', slug: 'iphone14pro' },
+          { name: 'iPhone 14 Pro Max', slug: 'iphone14promax' },
+        ],
         items: [
           'Dynamic Islandを初搭載',
           'A16 Bionicチップ搭載',
@@ -113,10 +143,10 @@ const FLAGSHIP_TIMELINE = [
     date: '2021年9月',
     title: 'iPhone 13 シリーズ',
     filled: false,
-    allModels: ['iPhone 13 mini', 'iPhone 13', 'iPhone 13 Pro', 'iPhone 13 Pro Max'],
     columns: [
       {
         category: '全モデル共通',
+        models: [] as ModelLink[],
         items: [
           'シネマティックモードを搭載',
           'フォトグラフスタイル対応',
@@ -128,10 +158,18 @@ const FLAGSHIP_TIMELINE = [
       },
       {
         category: '無印モデルのみ',
+        models: [
+          { name: 'iPhone 13 mini', slug: 'iphone13mini' },
+          { name: 'iPhone 13', slug: 'iphone13' },
+        ],
         items: ['A15 Bionic（4コアGPU）搭載', 'デュアルカメラがセンサー大型化'],
       },
       {
         category: 'Proモデルのみ',
+        models: [
+          { name: 'iPhone 13 Pro', slug: 'iphone13pro' },
+          { name: 'iPhone 13 Pro Max', slug: 'iphone13promax' },
+        ],
         items: [
           'A15 Bionic（5コアGPU）搭載',
           'ProMotion（120Hzリフレッシュレート）に対応',
@@ -146,10 +184,10 @@ const FLAGSHIP_TIMELINE = [
     date: '2020年10月',
     title: 'iPhone 12 シリーズ',
     filled: true,
-    allModels: ['iPhone 12 mini', 'iPhone 12', 'iPhone 12 Pro', 'iPhone 12 Pro Max'],
     columns: [
       {
         category: '全モデル共通',
+        models: [] as ModelLink[],
         items: [
           '5G通信に初対応',
           'MagSafeアクセサリに対応',
@@ -162,10 +200,18 @@ const FLAGSHIP_TIMELINE = [
       },
       {
         category: '無印モデルのみ',
+        models: [
+          { name: 'iPhone 12 mini', slug: 'iphone12mini' },
+          { name: 'iPhone 12', slug: 'iphone12' },
+        ],
         items: ['A14 Bionicチップ搭載', 'miniサイズ（5.4インチ）が新登場'],
       },
       {
         category: 'Proモデルのみ',
+        models: [
+          { name: 'iPhone 12 Pro', slug: 'iphone12pro' },
+          { name: 'iPhone 12 Pro Max', slug: 'iphone12promax' },
+        ],
         items: [
           'A14 Bionicチップ搭載',
           'LiDARスキャナ搭載',
@@ -179,10 +225,10 @@ const FLAGSHIP_TIMELINE = [
     date: '2019年9月',
     title: 'iPhone 11 シリーズ',
     filled: true,
-    allModels: ['iPhone 11', 'iPhone 11 Pro', 'iPhone 11 Pro Max'],
     columns: [
       {
         category: '全モデル共通',
+        models: [] as ModelLink[],
         items: [
           '超広角カメラを初搭載',
           'ナイトモードに初対応',
@@ -194,10 +240,17 @@ const FLAGSHIP_TIMELINE = [
       },
       {
         category: '無印モデルのみ',
+        models: [
+          { name: 'iPhone 11', slug: 'iphone11' },
+        ],
         items: ['A13 Bionicチップ搭載', 'Liquid Retina HDディスプレイ'],
       },
       {
         category: 'Proモデルのみ',
+        models: [
+          { name: 'iPhone 11 Pro', slug: 'iphone11pro' },
+          { name: 'iPhone 11 Pro Max', slug: 'iphone11promax' },
+        ],
         items: [
           'A13 Bionicチップ搭載',
           'トリプルカメラ（広角+超広角+望遠）',
@@ -213,6 +266,7 @@ const SE_TIMELINE = [
   {
     date: '2025年2月',
     title: 'iPhone 16e',
+    slug: 'iphone16e',
     filled: true,
     items: [
       'A18チップ搭載',
@@ -231,6 +285,7 @@ const SE_TIMELINE = [
   {
     date: '2022年3月',
     title: 'iPhone SE 第3世代',
+    slug: 'iphonese3',
     filled: false,
     items: [
       'A15 Bionic搭載（iPhone 13シリーズと同チップ）',
@@ -244,6 +299,7 @@ const SE_TIMELINE = [
   {
     date: '2020年4月',
     title: 'iPhone SE 第2世代',
+    slug: 'iphonese2',
     filled: true,
     items: [
       'A13 Bionic搭載（iPhone 11シリーズと同じチップで処理性能が大幅向上）',
@@ -283,27 +339,28 @@ export default function EvolutionTimeline() {
               <div className="evolution-item__content">
                 <span className="evolution-item__date">{item.date}</span>
                 <div className="evolution-item__header">
-                  <h4 className="evolution-item__title">
-                    {item.title}
-                    {item.note && <span className="evolution-item__note"> {item.note}</span>}
-                  </h4>
+                  <h4 className="evolution-item__title">{item.title}</h4>
                 </div>
                 <div className="evolution-item__body">
                   <div className="l-grid l-grid--3col l-grid--gap-lg evolution-item__details">
                     {item.columns.map((col) => (
                       <div key={col.category} className="evolution-item__col">
                         <p className="evolution-item__category">{col.category}</p>
+                        {col.models.length > 0 && (
+                          <div className="evolution-item__model-links">
+                            {col.models.map((m) => (
+                              <Link key={m.slug} href={`/iphone/${m.slug}`} className="evolution-item__model-link">
+                                {m.name}
+                              </Link>
+                            ))}
+                          </div>
+                        )}
                         <ul className="evolution-item__list">
                           {col.items.map((li, i) => (
                             <li key={i}>{li}</li>
                           ))}
                         </ul>
                       </div>
-                    ))}
-                  </div>
-                  <div className="evolution-item__models">
-                    {item.allModels.map((name) => (
-                      <span key={name} className="m-badge m-badge--primary">{name}</span>
                     ))}
                   </div>
                 </div>
@@ -323,7 +380,9 @@ export default function EvolutionTimeline() {
               <div className="evolution-item__content">
                 <span className="evolution-item__date">{item.date}</span>
                 <div className="evolution-item__header">
-                  <h4 className="evolution-item__title">{item.title}</h4>
+                  <h4 className="evolution-item__title">
+                    <Link href={`/iphone/${item.slug}`}>{item.title}</Link>
+                  </h4>
                 </div>
                 <div className="evolution-item__body">
                   <div className="l-grid l-grid--2col l-grid--gap-lg">

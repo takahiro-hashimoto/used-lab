@@ -17,6 +17,7 @@ import PurchaseVerdict from './components/PurchaseVerdict'
 import ShopGrid from './components/ShopGrid'
 import LifespanSection from './components/LifespanSection'
 import PriceChartSection from '@/app/components/PriceChartSection'
+import PriceTrendPlaceholder from '@/app/components/PriceTrendPlaceholder'
 import AdvanceFeatures from './components/AdvanceFeatures'
 import CompareSection from '@/app/components/CompareSection'
 import CompareSelector from './components/CompareSelector'
@@ -93,7 +94,7 @@ export default async function IPadDetailPage({ params }: PageProps) {
         <ShopGrid shops={shops} shopLinks={shopLinks} model={model} />
         <LifespanSection model={model} />
 
-        {priceLogs.length > 0 && (
+        {priceLogs.length > 0 ? (
           <PriceChartSection
             dailyData={dailyData}
             modelName={model.model}
@@ -101,6 +102,8 @@ export default async function IPadDetailPage({ params }: PageProps) {
             latestDate={latestDate}
             storageNote={storageNote}
           />
+        ) : (
+          <PriceTrendPlaceholder modelName={model.model} />
         )}
 
         <AdvanceFeatures model={model} />

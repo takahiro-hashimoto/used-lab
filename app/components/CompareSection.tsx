@@ -11,6 +11,8 @@ type Props<T extends BaseModel> = {
   shopLinks: ProductShopLink[]
   /** 表示名（デフォルトは model.model） */
   displayName?: string
+  /** セクション背景クラス */
+  bgSubtle?: boolean
   /** CompareSelector コンポーネント */
   children: (props: {
     currentModel: T
@@ -21,7 +23,7 @@ type Props<T extends BaseModel> = {
 }
 
 export default function CompareSection<T extends BaseModel>({
-  model, allModels, shopLinks, displayName, children,
+  model, allModels, shopLinks, displayName, bgSubtle = false, children,
 }: Props<T>) {
   const name = displayName || model.model || ''
   const otherModels = allModels.filter((m) => m.id !== model.id)
@@ -32,7 +34,7 @@ export default function CompareSection<T extends BaseModel>({
   const iosysLink = shopLinks.find((link) => link.shop_id === 1)
 
   return (
-    <section className="l-section" id="compare" aria-labelledby="heading-compare">
+    <section className={`l-section${bgSubtle ? ' l-section--bg-subtle' : ''}`} id="compare" aria-labelledby="heading-compare">
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg" id="heading-compare">
           {name}とその他機種のスペック比較

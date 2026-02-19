@@ -18,6 +18,7 @@ import ShopGrid from './components/ShopGrid'
 import LifespanSection from './components/LifespanSection'
 import BasicSpecs from './components/BasicSpecs'
 import PriceChartSection from '@/app/components/PriceChartSection'
+import PriceTrendPlaceholder from '@/app/components/PriceTrendPlaceholder'
 import AdvanceFeatures from './components/AdvanceFeatures'
 import CompareSection from '@/app/components/CompareSection'
 import CompareSelector from './components/CompareSelector'
@@ -94,18 +95,21 @@ export default async function WatchDetailPage({ params }: PageProps) {
         <LifespanSection model={model} />
         <BasicSpecs model={model} />
 
-        {priceLogs.length > 0 && (
+        {priceLogs.length > 0 ? (
           <PriceChartSection
             dailyData={dailyData}
             modelName={model.model}
             latestMinMaxPairs={latestMinMaxPairs}
             latestDate={latestDate}
             storageNote={storageNote}
+            bgSubtle
           />
+        ) : (
+          <PriceTrendPlaceholder modelName={model.model} bgSubtle />
         )}
 
         <AdvanceFeatures model={model} />
-        <CompareSection model={model} allModels={allModels} shopLinks={shopLinks}>
+        <CompareSection model={model} allModels={allModels} shopLinks={shopLinks} bgSubtle>
           {(props) => <CompareSelector {...props} />}
         </CompareSection>
         <Accessories model={model} />

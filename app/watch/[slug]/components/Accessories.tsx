@@ -11,7 +11,7 @@ export default function Accessories({ model }: Props) {
   if (!hasCase && !hasFilm) return null
 
   return (
-    <section className="l-section l-section--bg-subtle" id="accessories" aria-labelledby="heading-accessories">
+    <section className="l-section" id="accessories" aria-labelledby="heading-accessories">
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg" id="heading-accessories">
           {model.model}のおすすめアクセサリー

@@ -11,28 +11,25 @@ type SpecModel = {
   image: string | null
   date: string | null
   cpu: string | null
-  ram: string | null
-  weight: string | null
-  strage: string | null
   size: string | null
-  port: string | null
+  strage: string | null
+  material: string | null
   battery: string | null
-  image_sensor: string | null
-  apple_intelligence: boolean
-  magsafe: boolean
-  dynamic_island: boolean
-  promotion: boolean
+  water_resistance: string | null
+  always_on_display: boolean
+  fast_charge: boolean
+  blood_oxygen: boolean
+  cardiogram: boolean
   accident_detection: boolean
-  action_button: boolean
-  camera_control: boolean
-  lidar: boolean
-  night_mode: boolean
-  portrait_mode: boolean
-  cinematic_mode: boolean
-  action_mode: boolean
-  macro_mode: boolean
-  apple_proraw: boolean
-  apple_prores: boolean
+  fall_detection: boolean
+  skin_temperature: boolean
+  japanese_input: boolean
+  double_tap: boolean
+  sleep_tracking: boolean
+  altimeter: boolean
+  blood_pressure: boolean
+  sleep_score: boolean
+  max_brightness: string | null
 }
 
 type Props = {
@@ -41,37 +38,25 @@ type Props = {
 }
 
 type SortOrder = 'old' | 'new'
-type FilterType = 'all' | 'promax' | 'pro' | 'plus' | 'standard' | 'se' | 'mini'
-type FeatureFilter = 'size-sm' | 'size-lg' | 'usbc' | 'camera-control' | 'magsafe'
+type FilterType = 'all' | 'series' | 'se' | 'ultra'
+type FeatureFilter = 'always_on' | 'fast_charge'
 
 function getModelCategory(model: string): string {
   const lower = model.toLowerCase()
-  if (lower.includes('pro max')) return 'promax'
-  if (lower.includes('pro')) return 'pro'
-  if (lower.includes('plus')) return 'plus'
-  if (lower.includes('se') || lower.includes('16e')) return 'se'
-  if (lower.includes('mini')) return 'mini'
-  return 'standard'
-}
-
-function parseSizeInch(size: string | null): number {
-  if (!size) return 0
-  const match = size.match(/([\d.]+)/)
-  return match ? parseFloat(match[1]) : 0
+  if (lower.includes('ultra')) return 'ultra'
+  if (lower.includes('se')) return 'se'
+  return 'series'
 }
 
 export default function SpecTable({ models, shopLinks }: Props) {
   const [sortOrder, setSortOrder] = useState<SortOrder>('old')
   const [modelFilter, setModelFilter] = useState<FilterType>('all')
-  const [featureFilters, setFeatureFilters] = useState<Set<FeatureFilter>>(new Set())
+  const [featureFilters, setFeatureFilters] = useState<FeatureFilter[]>([])
 
   const toggleFeature = (f: FeatureFilter) => {
-    setFeatureFilters((prev) => {
-      const next = new Set(prev)
-      if (next.has(f)) next.delete(f)
-      else next.add(f)
-      return next
-    })
+    setFeatureFilters((prev) =>
+      prev.includes(f) ? prev.filter((v) => v !== f) : [...prev, f]
+    )
   }
 
   const filteredModels = useMemo(() => {
@@ -82,25 +67,12 @@ export default function SpecTable({ models, shopLinks }: Props) {
       result = result.filter((m) => getModelCategory(m.model) === modelFilter)
     }
 
-    // サイズ・機能フィルタ
-    for (const f of featureFilters) {
-      switch (f) {
-        case 'size-sm':
-          result = result.filter((m) => { const s = parseSizeInch(m.size); return s >= 6.1 && s <= 6.3 })
-          break
-        case 'size-lg':
-          result = result.filter((m) => { const s = parseSizeInch(m.size); return s >= 6.7 && s <= 6.9 })
-          break
-        case 'usbc':
-          result = result.filter((m) => m.port?.toLowerCase().includes('usb'))
-          break
-        case 'camera-control':
-          result = result.filter((m) => m.camera_control)
-          break
-        case 'magsafe':
-          result = result.filter((m) => m.magsafe)
-          break
-      }
+    // 機能フィルタ
+    if (featureFilters.includes('always_on')) {
+      result = result.filter((m) => m.always_on_display)
+    }
+    if (featureFilters.includes('fast_charge')) {
+      result = result.filter((m) => m.fast_charge)
     }
 
     // 並び替え
@@ -123,10 +95,10 @@ export default function SpecTable({ models, shopLinks }: Props) {
         <>
           {m.image && (
             <img
-              src={`/images/iphone/${m.image}`}
+              src={`/images/watch/${m.image}`}
               alt={m.model}
               width={50}
-              height={65}
+              height={50}
               loading="lazy"
               className="spec-compare-table__cell-img"
             />
@@ -136,38 +108,35 @@ export default function SpecTable({ models, shopLinks }: Props) {
       ),
     },
     { label: '発売日', render: (m) => formatDate(m.date) },
-    { label: 'CPU', render: (m) => m.cpu ? <TextCell value={m.cpu} /> : '-' },
-    { label: 'RAM', render: (m) => m.ram || '-' },
-    { label: '重量', render: (m) => m.weight || '-' },
-    { label: 'ストレージ', render: (m) => m.strage ? <TextCell value={m.strage} /> : '-' },
-    { label: 'コネクター', render: (m) => m.port ? <TextCell value={m.port} /> : '-' },
-    { label: 'バッテリー容量', render: (m) => m.battery || '-' },
-    { label: '外カメラ', render: (m) => m.image_sensor ? <TextCell value={m.image_sensor} /> : '-' },
-    { label: 'Apple Intelligence', render: (m) => <BoolCell value={m.apple_intelligence} /> },
-    { label: 'MagSafe', render: (m) => <BoolCell value={m.magsafe} /> },
-    { label: 'Dynamic Island', render: (m) => <BoolCell value={m.dynamic_island} /> },
-    { label: 'ProMotion', render: (m) => <BoolCell value={m.promotion} /> },
-    { label: '事故衝突検知', render: (m) => <BoolCell value={m.accident_detection} /> },
-    { label: 'アクションボタン', render: (m) => <BoolCell value={m.action_button} /> },
-    { label: 'カメラコントロール', render: (m) => <BoolCell value={m.camera_control} /> },
-    { label: 'LiDARスキャン', render: (m) => <BoolCell value={m.lidar} /> },
-    { label: 'ナイト', render: (m) => <BoolCell value={m.night_mode} /> },
-    { label: 'ポートレート', render: (m) => <BoolCell value={m.portrait_mode} /> },
-    { label: 'シネマティック', render: (m) => <BoolCell value={m.cinematic_mode} /> },
-    { label: 'アクション', render: (m) => <BoolCell value={m.action_mode} /> },
-    { label: 'マクロ撮影', render: (m) => <BoolCell value={m.macro_mode} /> },
-    { label: 'Apple ProRAW', render: (m) => <BoolCell value={m.apple_proraw} /> },
-    { label: 'Apple ProRes', render: (m) => <BoolCell value={m.apple_prores} /> },
+    { label: 'チップ', render: (m) => m.cpu || '-' },
+    { label: 'ストレージ', render: (m) => m.strage || '-' },
+    { label: 'ケース素材', render: (m) => m.material ? <TextCell value={m.material} /> : '-' },
+    { label: 'バッテリー', render: (m) => m.battery || '-' },
+    { label: '耐水性能', render: (m) => m.water_resistance || '-' },
+    { label: '最大輝度', render: (m) => m.max_brightness || '-' },
+    { label: '常時表示', render: (m) => <BoolCell value={m.always_on_display} /> },
+    { label: '急速充電', render: (m) => <BoolCell value={m.fast_charge} /> },
+    { label: '血中酸素', render: (m) => <BoolCell value={m.blood_oxygen} /> },
+    { label: '心電図', render: (m) => <BoolCell value={m.cardiogram} /> },
+    { label: '血圧', render: (m) => <BoolCell value={m.blood_pressure} /> },
+    { label: '皮膚温センサー', render: (m) => <BoolCell value={m.skin_temperature} /> },
+    { label: '衝突事故検出', render: (m) => <BoolCell value={m.accident_detection} /> },
+    { label: '転倒検出', render: (m) => <BoolCell value={m.fall_detection} /> },
+    { label: '睡眠トラッキング', render: (m) => <BoolCell value={m.sleep_tracking} /> },
+    { label: '睡眠スコア', render: (m) => <BoolCell value={m.sleep_score} /> },
+    { label: 'ダブルタップ', render: (m) => <BoolCell value={m.double_tap} /> },
+    { label: '日本語入力', render: (m) => <BoolCell value={m.japanese_input} /> },
+    { label: '高度計', render: (m) => <BoolCell value={m.altimeter} /> },
   ]
 
   return (
     <section className="l-section l-section--bg-subtle" id="spec-table" aria-labelledby="heading-spec-table">
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg" id="heading-spec-table">
-          歴代iPhoneのスペック比較表一覧
+          歴代Apple Watchスペック比較表
         </h2>
         <p className="m-section-desc">
-          歴代iPhoneの主要スペックを一覧で比較できます。
+          歴代Apple Watchの主要スペックを一覧で比較できます。
         </p>
 
         {/* フィルターUI */}
@@ -190,16 +159,13 @@ export default function SpecTable({ models, shopLinks }: Props) {
             </div>
           </div>
           <div className="spec-filter__row">
-            <span className="spec-filter__label">機種別絞り込み</span>
+            <span className="spec-filter__label">絞り込み</span>
             <div className="spec-filter__tags">
               {([
                 ['all', 'すべて'],
-                ['promax', 'Pro Max'],
-                ['pro', 'Pro'],
-                ['plus', 'Plus'],
-                ['standard', '無印'],
+                ['series', 'ノーマル'],
                 ['se', 'SE'],
-                ['mini', 'mini'],
+                ['ultra', 'Ultra'],
               ] as [FilterType, string][]).map(([key, label]) => (
                 <button
                   key={key}
@@ -209,26 +175,18 @@ export default function SpecTable({ models, shopLinks }: Props) {
                   {label}
                 </button>
               ))}
-            </div>
-          </div>
-          <div className="spec-filter__row">
-            <span className="spec-filter__label">機能別</span>
-            <div className="spec-filter__tags">
-              {([
-                ['size-sm', '6.1~6.3型'],
-                ['size-lg', '6.7~6.9型'],
-                ['usbc', 'USB-C'],
-                ['camera-control', 'カメラコントロール'],
-                ['magsafe', 'MagSafe'],
-              ] as [FeatureFilter, string][]).map(([key, label]) => (
-                <button
-                  key={key}
-                  className={`spec-filter__tag${featureFilters.has(key) ? ' is-active' : ''}`}
-                  onClick={() => toggleFeature(key)}
-                >
-                  {label}
-                </button>
-              ))}
+              <button
+                className={`spec-filter__tag${featureFilters.includes('always_on') ? ' is-active' : ''}`}
+                onClick={() => toggleFeature('always_on')}
+              >
+                常時点灯あり
+              </button>
+              <button
+                className={`spec-filter__tag${featureFilters.includes('fast_charge') ? ' is-active' : ''}`}
+                onClick={() => toggleFeature('fast_charge')}
+              >
+                急速充電あり
+              </button>
             </div>
           </div>
         </div>
@@ -240,7 +198,7 @@ export default function SpecTable({ models, shopLinks }: Props) {
           <div className="m-card m-card--shadow m-table-card">
             <div className="m-table-scroll">
               <table className="m-table spec-compare-table">
-                <caption className="visually-hidden">歴代iPhoneスペック比較表</caption>
+                <caption className="visually-hidden">歴代Apple Watchスペック比較表</caption>
                 <thead>
                   <tr>
                     <th scope="col" className="spec-compare-table__sticky"></th>

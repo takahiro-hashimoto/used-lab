@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 
-import { getBoolDisplay, TextCell } from '@/app/components/spec-table-utils'
+import { getBoolDisplay, TextCell, formatDate } from '@/app/components/spec-table-utils'
 import type { ProductShopLink } from '@/lib/types'
 
 type SpecModel = {
@@ -19,14 +19,23 @@ type SpecModel = {
   port: string | null
   battery: string | null
   display: string | null
+  display_type: string | null
   resolution: string | null
   sim: string | null
   certification: string | null
-  image_sensor: string | null
-  night_mode: boolean
-  apple_proraw: boolean
-  magsafe: boolean
-  dynamic_island: boolean
+  front_camera: string | null
+  in_camera: string | null
+  apple_intelligence: boolean
+  promotion: boolean
+  center_frame: boolean
+  lidar: boolean
+  pencil: string | null
+  keyboard: string | null
+  speaker: string | null
+  color: string | null
+  score_single: number | null
+  score_multi: number | null
+  score_metal: number | null
 }
 
 type Props = {
@@ -37,6 +46,11 @@ type Props = {
 type CompareCategory = {
   title: string
   rows: { label: string; get: (m: SpecModel) => React.ReactNode }[]
+}
+
+function formatScore(val: number | null): string {
+  if (val == null) return '-'
+  return val.toLocaleString()
 }
 
 function buildCategories(): CompareCategory[] {
@@ -50,6 +64,9 @@ function buildCategories(): CompareCategory[] {
   const bool = (getter: (m: SpecModel) => boolean) => ({
     get: (m: SpecModel) => getBoolDisplay(getter(m)),
   })
+  const score = (getter: (m: SpecModel) => number | null) => ({
+    get: (m: SpecModel) => formatScore(getter(m)),
+  })
 
   return [
     {
@@ -62,40 +79,49 @@ function buildCategories(): CompareCategory[] {
     {
       title: 'ボディ',
       rows: [
-        { label: 'CPU', ...text((m) => m.cpu) },
-        { label: 'RAM', ...text((m) => m.ram) },
-        { label: 'ストレージ容量', ...text((m) => m.strage) },
+        { label: 'カラー', ...text((m) => m.color) },
+        { label: 'ストレージ', ...text((m) => m.strage) },
         { label: 'バッテリー容量', ...text((m) => m.battery) },
+        { label: '充電端子', ...text((m) => m.port) },
+        { label: 'スピーカー', ...text((m) => m.speaker) },
+      ],
+    },
+    {
+      title: 'CPU・ベンチマークスコア',
+      rows: [
+        { label: 'CPU', ...text((m) => m.cpu) },
+        { label: 'GeekBench シングル', ...score((m) => m.score_single) },
+        { label: 'GeekBench マルチ', ...score((m) => m.score_multi) },
+        { label: 'GeekBench Metal', ...score((m) => m.score_metal) },
+        { label: 'メモリ', ...text((m) => m.ram) },
       ],
     },
     {
       title: 'ディスプレイ',
       rows: [
-        { label: 'ディスプレイ', ...text((m) => m.display) },
-        { label: '解像度', ...text((m) => m.resolution) },
+        { label: '画面サイズ', ...text((m) => m.display) },
+        { label: '画像解像度', ...text((m) => m.resolution) },
+        { label: 'ProMotion', ...bool((m) => m.promotion) },
       ],
     },
     {
       title: 'カメラ',
       rows: [
-        { label: 'リアカメラ', ...text((m) => m.image_sensor) },
-        { label: 'ナイトモード', ...bool((m) => m.night_mode) },
-        { label: 'ProRAW', ...bool((m) => m.apple_proraw) },
+        { label: 'フロントカメラ', ...text((m) => m.front_camera) },
+        { label: 'インカメラ', ...text((m) => m.in_camera) },
+        { label: 'センターフレーム', ...bool((m) => m.center_frame) },
+        { label: 'LiDARスキャナー', ...bool((m) => m.lidar) },
       ],
     },
     {
-      title: '機能',
+      title: 'その他',
       rows: [
-        { label: 'MagSafe', ...bool((m) => m.magsafe) },
-        { label: 'Dynamic Island', ...bool((m) => m.dynamic_island) },
-      ],
-    },
-    {
-      title: '接続',
-      rows: [
-        { label: '端子', ...text((m) => m.port) },
+        { label: '発売日', get: (m: SpecModel) => formatDate(m.date) },
+        { label: '認証機能', ...text((m) => m.certification) },
+        { label: 'Apple Intelligence', ...bool((m) => m.apple_intelligence) },
         { label: 'SIM', ...text((m) => m.sim) },
-        { label: '認証', ...text((m) => m.certification) },
+        { label: 'Apple Pencil', ...text((m) => m.pencil) },
+        { label: '外付けキーボード', ...text((m) => m.keyboard) },
       ],
     },
   ]
@@ -123,16 +149,16 @@ export default function DualCompare({ models, shopLinks }: Props) {
     <section className="l-section" id="compare" aria-labelledby="heading-compare">
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg" id="heading-compare">
-          気になる2機種のiPhoneの違いを比較
+          気になる2機種のiPadの違いを比較
         </h2>
         <p className="m-section-desc">
-          気になる2機種のiPhoneを簡単に比較できるツールです。<br />
+          気になる2機種のiPadを簡単に比較できるツールです。<br />
           今持っている機種と購入を検討中の機種を比較したい方はぜひチェックしてみてください。
         </p>
 
         <div className="m-card m-card--shadow compare-card">
           <table className="compare-table">
-            <caption className="visually-hidden">2機種のiPhoneスペック比較</caption>
+            <caption className="visually-hidden">2機種のiPadスペック比較</caption>
             <colgroup>
               <col className="compare-table__col-label" />
               <col />
@@ -152,15 +178,15 @@ export default function DualCompare({ models, shopLinks }: Props) {
                     onChange={(e) => setIdA(Number(e.target.value))}
                   >
                     {models.map((m) => (
-                      <option key={m.id} value={m.id}>{m.model}</option>
+                      <option key={m.id} value={m.id}>{m.model}（{m.cpu}）</option>
                     ))}
                   </select>
-                  <a href={`/iphone/${modelA.slug}`} className="compare-model-link">
+                  <a href={`/ipad/${modelA.slug}`} className="compare-model-link">
                     このモデルの詳細を見る &rsaquo;
                   </a>
                   {modelA.image && (
                     <img
-                      src={`/images/iphone/${modelA.image}`}
+                      src={`/images/ipad/${modelA.image}`}
                       alt={modelA.model}
                       width={120}
                       height={120}
@@ -177,15 +203,15 @@ export default function DualCompare({ models, shopLinks }: Props) {
                     onChange={(e) => setIdB(Number(e.target.value))}
                   >
                     {models.map((m) => (
-                      <option key={m.id} value={m.id}>{m.model}</option>
+                      <option key={m.id} value={m.id}>{m.model}（{m.cpu}）</option>
                     ))}
                   </select>
-                  <a href={`/iphone/${modelB.slug}`} className="compare-model-link">
+                  <a href={`/ipad/${modelB.slug}`} className="compare-model-link">
                     このモデルの詳細を見る &rsaquo;
                   </a>
                   {modelB.image && (
                     <img
-                      src={`/images/iphone/${modelB.image}`}
+                      src={`/images/ipad/${modelB.image}`}
                       alt={modelB.model}
                       width={120}
                       height={120}

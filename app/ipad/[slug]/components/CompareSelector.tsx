@@ -1,7 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-import Link from 'next/link'
+
+
 import Image from 'next/image'
 import type { IPadModel } from '@/lib/types'
 
@@ -76,12 +77,13 @@ function buildCompareRows(current: IPadModel, compare: IPadModel): CompareRow[] 
 function CellValue({ value }: { value: string }) {
   if (value === '◯') return <span className="m-rating__icon m-rating__icon--good" aria-label="対応">&#9675;</span>
   if (value === '×') return <span className="m-spec-row__cross" aria-label="非対応">&times;</span>
-  if (value.includes('\n')) {
-    return <>{value.split('\n').map((line, i) => (
+  const normalized = value.replace(/<br\s*\/?>/g, '\n')
+  if (normalized.includes('\n')) {
+    return <>{normalized.split('\n').map((line, i) => (
       <span key={i}>{i > 0 && <br />}{line}</span>
     ))}</>
   }
-  return <>{value}</>
+  return <>{normalized}</>
 }
 
 export default function CompareSelector({ currentModel, allModels, initialCompareId, iosysUrl }: Props) {
@@ -132,9 +134,9 @@ export default function CompareSelector({ currentModel, allModels, initialCompar
                     <option key={m.id} value={m.id}>{m.model}</option>
                   ))}
               </select>
-              <Link href={`/ipad/${compareModel.slug}`} className="compare-model-link">
+              <a href={`/ipad/${compareModel.slug}`} className="compare-model-link">
                 このモデルの詳細を見る &rsaquo;
-              </Link>
+              </a>
               {compareModel.image && (
                 <Image
                   src={`/images/ipad/${compareModel.image}`}
@@ -185,9 +187,9 @@ export default function CompareSelector({ currentModel, allModels, initialCompar
               )}
             </td>
             <td>
-              <Link href={`/ipad/${compareModel.slug}`} className="m-btn m-btn--primary m-btn--block">
+              <a href={`/ipad/${compareModel.slug}`} className="m-btn m-btn--primary m-btn--block">
                 {compareModel.model}の詳細 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
-              </Link>
+              </a>
             </td>
           </tr>
         </tfoot>

@@ -46,13 +46,13 @@ export default function BenchmarkSection({ models }: Props) {
     <section className="l-section l-section--bg-subtle" id="benchmark" aria-labelledby="heading-benchmark">
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg" id="heading-benchmark">
-          歴代iPhoneのチップ性能・処理速度を比較（ベンチマークスコア）
+          歴代iPadのチップ性能・処理速度を比較（ベンチマークスコア）
         </h2>
         <p className="m-section-desc">
-          歴代iPhoneのチップ性能の違いを可視化するために2種類のベンチマークスコア（<a href="#geekbench">GeekBench</a>、<a href="#antutu">Antutu</a>）を用意しました。
+          歴代iPadのチップ性能の違いを可視化するために2種類のベンチマークスコア（<a href="#geekbench">GeekBench</a>、<a href="#antutu">Antutu</a>）を用意しました。
         </p>
         <p className="m-section-desc">
-          iPhoneを買い替えたらどれくらい処理速度が上がるのか確認するのにご活用ください。
+          iPadを買い替えたらどれくらい処理速度が上がるのか確認するのにご活用ください。
         </p>
 
         {/* Geekbench */}
@@ -84,7 +84,7 @@ export default function BenchmarkSection({ models }: Props) {
             {/* テーブル */}
             <div className="m-card m-card--shadow m-table-card">
               <table className="m-table">
-                <caption className="visually-hidden">iPhoneモデル別 Geekbench 6 ベンチマークスコア比較</caption>
+                <caption className="visually-hidden">iPadモデル別 Geekbench 6 ベンチマークスコア比較</caption>
                 <thead>
                   <tr>
                     <th scope="col">モデル</th>
@@ -141,7 +141,7 @@ export default function BenchmarkSection({ models }: Props) {
             {/* テーブル */}
             <div className="m-card m-card--shadow m-table-card">
               <table className="m-table">
-                <caption className="visually-hidden">iPhoneモデル別 Antutu Benchmark v10 スコア比較</caption>
+                <caption className="visually-hidden">iPadモデル別 Antutu Benchmark v10 スコア比較</caption>
                 <thead>
                   <tr>
                     <th scope="col">モデル</th>
@@ -153,7 +153,7 @@ export default function BenchmarkSection({ models }: Props) {
                   </tr>
                 </thead>
                 <tbody>
-                  {antutuModels.map((m, i) => {
+                  {antutuModels.map((m) => {
                     const total = (m.antutu_cpu || 0) + (m.antutu_gpu || 0) + (m.antutu_mem || 0) + (m.antutu_ux || 0)
                     return (
                       <tr key={m.id}>

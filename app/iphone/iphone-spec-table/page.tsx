@@ -6,7 +6,29 @@ import SpecTable from './components/SpecTable'
 import DualCompare from './components/DualCompare'
 import BenchmarkSection from './components/BenchmarkSection'
 import EvolutionTimeline from './components/EvolutionTimeline'
-import GlossarySection from './components/GlossarySection'
+import GlossarySection from '@/app/components/GlossarySection'
+
+const GLOSSARY_ITEMS = [
+  { title: 'CPU', desc: 'iPhoneの頭脳にあたるチップで、全体的な処理速度や電力効率に大きく影響。A16やA17 Proなどの世代ごとに性能が進化。' },
+  { title: 'RAM', desc: 'アプリの同時使用やゲーム、動画編集などの処理性能に関わるメモリ容量。数値が大きいほど動作がスムーズ。' },
+  { title: 'バッテリー容量', desc: 'mAh（ミリアンペアアワー）で表される電池の容量。容量が大きいほど長時間の使用が可能だが、省電力設計とのバランスも重要。' },
+  { title: 'USB-C対応', desc: 'iPhone 15以降で採用。MacやiPadとケーブル共有ができ、外部ストレージやディスプレイとの接続、他デバイスへの給電も可能。' },
+  { title: 'MagSafe対応', desc: '背面の磁力でアクセサリを固定。ワイヤレス充電やカードケースの装着が簡単でズレにくい。' },
+  { title: 'Dynamic Island対応', desc: '画面上部に通話や音楽再生、タイマーなどを表示。アプリを切り替えず操作や確認が可能。' },
+  { title: '衝突事故検出', desc: '車の衝突など大きな衝撃を検知し、反応がない場合は自動で緊急通報。' },
+  { title: 'ProMotion', desc: '最大120Hzの高リフレッシュレートに対応。スクロールや操作が滑らかになるのが特徴。' },
+  { title: 'Apple Intelligence', desc: '要約、画像生成、自然言語操作などを実現するAI機能。デバイス上で処理し、プライバシーにも配慮。' },
+  { title: 'アクションボタン', desc: '本体側面の物理ボタンに好みの機能を割り当て可能。カメラ起動やショートカット実行に対応。' },
+  { title: 'カメラコントロール', desc: 'ボタン操作で即カメラを起動し、シャッター操作が可能。素早く撮影できる。' },
+  { title: 'アクションモード', desc: '動きの多いシーンでも手ブレを抑え、滑らかな映像を記録。アウトドア撮影に最適。' },
+  { title: 'シネマティックモード', desc: '背景をぼかし被写体にフォーカス。映画のような映像が撮影可能。フォーカスの変更も後から対応。' },
+  { title: 'マクロモード', desc: '被写体に数センチまで近づいて撮影。小さな物の質感やディテールを高精細に記録。' },
+  { title: 'ポートレートモード', desc: '背景をぼかし、人物を強調した写真を撮影。ライティング効果などの演出も可能。' },
+  { title: 'ナイトモード', desc: '暗所でも明るく鮮明な写真を自動調整で撮影。長時間露光と手ブレ補正に対応。' },
+  { title: 'LiDARスキャナ', desc: 'レーザーで距離を測定し、空間の3Dマッピングを実現。AR体験や暗所でのピント合わせにも有効。' },
+  { title: 'Apple ProRAW', desc: '多くの情報を保持したRAW形式で撮影可能。高精度な編集に対応し、プロ仕様の仕上がりに。' },
+  { title: 'Apple ProRes', desc: '高画質な映像を記録できるフォーマット。豊かな階調と高い編集耐性が特徴。' },
+]
 import ShareBox from '@/app/components/ShareBox'
 
 export const metadata: Metadata = {
@@ -184,37 +206,56 @@ export default async function IPhoneSpecTablePage() {
         <section className="l-section l-section--sm section-lead" aria-label="記事の導入">
           <div className="l-container">
             <div className="lead-box">
-              <p>2019年以降に発売された<strong>歴代iPhoneのスペック比較表一覧</strong>です。</p>
-              <p>iPhoneの機能がどのようにアップデートされてきたのか確認するのにご活用ください。</p>
+              <p>毎年新モデルが登場するiPhoneシリーズ。機種変更を検討中の方にはこんな悩みも多いのではないでしょうか。</p>
+              <ul className="lead-box__list">
+                <li>最新機種はオーバースペックな気がする…</li>
+                <li>自分の用途に合った型落ちiPhoneを探したい!</li>
+              </ul>
+              <p>本記事では<strong>歴代iPhoneの主要スペックを一覧表で比較</strong>し、進化ポイントをわかりやすくまとめました。新たなiPhoneを購入する際の参考にしてみてください！</p>
+              <p className="lead-link">
+                <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
+                もっと全体像から知りたい方は「<Link href="/iphone">中古iPhone購入ガイド</Link>」をご覧ください。
+              </p>
             </div>
           </div>
         </section>
 
         {/* 目次 */}
-        <nav className="l-section l-section--sm l-section--no-pt" aria-label="目次">
+        <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
-            <div className="l-grid l-grid--3col l-grid--gap-lg">
-              <a href="#spec-table" className="toc-item">
-                <span>歴代iPhoneのスペック比較表一覧</span>{' '}
-                <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
-              </a>
-              <a href="#compare" className="toc-item">
-                <span>気になる2機種スペックを比較</span>{' '}
-                <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
-              </a>
-              <a href="#benchmark" className="toc-item">
-                <span>チップ性能・処理速度を比較</span>{' '}
-                <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
-              </a>
-              <a href="#evolution" className="toc-item">
-                <span>歴代iPhoneの主な進化点</span>{' '}
-                <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
-              </a>
-              <a href="#glossary" className="toc-item">
-                <span>iPhone各機能の用語解説</span>{' '}
-                <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
-              </a>
-            </div>
+            <h2 className="m-section-heading m-section-heading--md">タップできる目次</h2>
+            <ol className="l-grid l-grid--3col toc-list">
+              <li>
+                <a href="#spec-table" className="toc-item">
+                  歴代iPhoneのスペック比較表一覧{' '}
+                  <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                </a>
+              </li>
+              <li>
+                <a href="#compare" className="toc-item">
+                  気になる2機種スペックを比較{' '}
+                  <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                </a>
+              </li>
+              <li>
+                <a href="#benchmark" className="toc-item">
+                  チップ性能・処理速度を比較{' '}
+                  <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                </a>
+              </li>
+              <li>
+                <a href="#evolution" className="toc-item">
+                  歴代iPhoneの主な進化点{' '}
+                  <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                </a>
+              </li>
+              <li>
+                <a href="#glossary" className="toc-item">
+                  iPhone各機能の用語解説{' '}
+                  <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                </a>
+              </li>
+            </ol>
           </div>
         </nav>
 
@@ -223,7 +264,7 @@ export default async function IPhoneSpecTablePage() {
         <DualCompare models={serializedModels} shopLinks={serializedLinks} />
         <BenchmarkSection models={serializedModels} />
         <EvolutionTimeline />
-        <GlossarySection />
+        <GlossarySection productName="iPhone" items={GLOSSARY_ITEMS} />
         <ShareBox url="https://used-lab.com/iphone/iphone-spec-table/" text="歴代iPhoneスペック比較表！気になる機種の性能差や違いがわかる" />
       </article>
     </main>
