@@ -1,60 +1,25 @@
 import type { IPhoneModel, IPhonePriceLog } from '../types'
+import {
+  getReleaseYear,
+  getReleaseMonth,
+  formatReleaseDate,
+  formatPrice,
+  filterLast3Months as filterLast3MonthsGeneric,
+  calculateRepairLifespan,
+  calculateOSLifespan as calculateOSLifespanGeneric,
+  aggregateDailyPrices as aggregateDailyPricesGeneric,
+  calculatePriceRange as calculatePriceRangeGeneric,
+} from './shared-helpers'
 
-/**
- * リリース日(YYYY/M/DD)から年を取得
- */
-function getReleaseYear(date: string | null): number {
-  if (!date) return 0
-  const year = parseInt(date.split('/')[0], 10)
-  return isNaN(year) ? 0 : year
-}
+// Re-export shared functions that have the same signature
+export { calculateRepairLifespan } from './shared-helpers'
+export { formatReleaseDate, formatPrice } from './shared-helpers'
 
 /**
  * OS寿命計算（リリース年+7年）
  */
-export function calculateOSLifespan(date: string | null): {
-  releaseYear: number
-  osEndYear: number
-  remainingYears: number
-  isSupported: boolean
-} {
-  const releaseYear = getReleaseYear(date)
-  if (releaseYear === 0) {
-    return { releaseYear: 0, osEndYear: 0, remainingYears: 0, isSupported: false }
-  }
-  const osEndYear = releaseYear + 7
-  const currentYear = new Date().getFullYear()
-  const remainingYears = osEndYear - currentYear
-  return {
-    releaseYear,
-    osEndYear,
-    remainingYears: Math.max(0, remainingYears),
-    isSupported: remainingYears > 0,
-  }
-}
-
-/**
- * 修理寿命計算（リリース年+9年）
- */
-export function calculateRepairLifespan(date: string | null): {
-  releaseYear: number
-  repairEndYear: number
-  remainingYears: number
-  isSupported: boolean
-} {
-  const releaseYear = getReleaseYear(date)
-  if (releaseYear === 0) {
-    return { releaseYear: 0, repairEndYear: 0, remainingYears: 0, isSupported: false }
-  }
-  const repairEndYear = releaseYear + 9
-  const currentYear = new Date().getFullYear()
-  const remainingYears = repairEndYear - currentYear
-  return {
-    releaseYear,
-    repairEndYear,
-    remainingYears: Math.max(0, remainingYears),
-    isSupported: remainingYears > 0,
-  }
+export function calculateOSLifespan(date: string | null) {
+  return calculateOSLifespanGeneric(date, 7)
 }
 
 /**
@@ -64,55 +29,18 @@ export function calculateRepairLifespan(date: string | null): {
  *
  * 同一日に複数ストレージのログがある場合は全ストレージを統合して平均を算出
  */
-export function aggregateDailyPrices(logs: IPhonePriceLog[]): {
-  labels: string[]
-  avgMin: (number | null)[]
-  avgMax: (number | null)[]
-} {
-  // 日付ごとにグループ化
-  const dayMap = new Map<string, { mins: number[]; maxes: number[] }>()
-
-  for (const log of logs) {
-    const day = log.logged_at.substring(0, 10) // YYYY-MM-DD
-    if (!dayMap.has(day)) {
-      dayMap.set(day, { mins: [], maxes: [] })
-    }
-    const bucket = dayMap.get(day)!
-
-    const minPrices = [log.iosys_min, log.geo_min, log.janpara_min].filter((v): v is number => v != null && v > 0)
-    const maxPrices = [log.iosys_max, log.geo_max, log.janpara_max].filter((v): v is number => v != null && v > 0)
-
-    if (minPrices.length > 0) {
-      const dayAvgMin = Math.round(minPrices.reduce((a, b) => a + b, 0) / minPrices.length / 100) * 100
-      bucket.mins.push(dayAvgMin)
-    }
-    if (maxPrices.length > 0) {
-      const dayAvgMax = Math.round(maxPrices.reduce((a, b) => a + b, 0) / maxPrices.length / 100) * 100
-      bucket.maxes.push(dayAvgMax)
-    }
-  }
-
-  const sortedDays = [...dayMap.keys()].sort()
-  // 直近90日分
-  const recentDays = sortedDays.slice(-90)
-  const avg = (arr: number[]) => arr.length > 0 ? Math.round(arr.reduce((a, b) => a + b, 0) / arr.length / 100) * 100 : null
-
-  return {
-    labels: recentDays,
-    avgMin: recentDays.map(d => avg(dayMap.get(d)!.mins)),
-    avgMax: recentDays.map(d => avg(dayMap.get(d)!.maxes)),
-  }
+export function aggregateDailyPrices(logs: IPhonePriceLog[]) {
+  return aggregateDailyPricesGeneric(logs, (log) => ({
+    mins: [log.iosys_min, log.geo_min, log.janpara_min],
+    maxes: [log.iosys_max, log.geo_max, log.janpara_max],
+  }))
 }
 
 /**
  * 直近3ヶ月分のログを抽出
  */
 export function filterLast3Months(logs: IPhonePriceLog[]): IPhonePriceLog[] {
-  if (logs.length === 0) return []
-  const now = new Date()
-  const threeMonthsAgo = new Date(now.getFullYear(), now.getMonth() - 3, now.getDate())
-  const cutoff = threeMonthsAgo.toISOString().substring(0, 10) // YYYY-MM-DD
-  return logs.filter(l => l.logged_at >= cutoff)
+  return filterLast3MonthsGeneric(logs)
 }
 
 /**
@@ -123,24 +51,12 @@ export function calculatePriceRange(log: IPhonePriceLog | null): {
   maxPrice: number | null
   shops: { name: string; min: number | null; max: number | null }[]
 } {
-  if (!log) {
-    return { minPrice: null, maxPrice: null, shops: [] }
-  }
-
-  const shops = [
+  if (!log) return { minPrice: null, maxPrice: null, shops: [] }
+  return calculatePriceRangeGeneric([
     { name: 'イオシス', min: log.iosys_min, max: log.iosys_max },
     { name: 'ゲオ', min: log.geo_min, max: log.geo_max },
     { name: 'じゃんぱら', min: log.janpara_min, max: log.janpara_max },
-  ]
-
-  const allMins = shops.map(s => s.min).filter((v): v is number => v != null)
-  const allMaxes = shops.map(s => s.max).filter((v): v is number => v != null)
-
-  return {
-    minPrice: allMins.length > 0 ? Math.min(...allMins) : null,
-    maxPrice: allMaxes.length > 0 ? Math.max(...allMaxes) : null,
-    shops,
-  }
+  ])
 }
 
 /**
@@ -451,33 +367,6 @@ export function getVerdict(
     descriptions,
     suitability,
   }
-}
-
-/** リリース月を取得 */
-function getReleaseMonth(date: string | null): number {
-  if (!date) return 1
-  const parts = date.split('/')
-  if (parts.length >= 2) {
-    const m = parseInt(parts[1], 10)
-    return isNaN(m) ? 1 : m
-  }
-  return 1
-}
-
-/** リリース日を "YYYY年M月" にフォーマット */
-export function formatReleaseDate(date: string | null): string {
-  if (!date) return ''
-  const parts = date.split('/')
-  if (parts.length >= 2) return `${parts[0]}年${parts[1]}月`
-  return date
-}
-
-/**
- * 価格を円表記にフォーマット
- */
-export function formatPrice(price: number | null): string {
-  if (price == null) return '-'
-  return `¥${price.toLocaleString()}`
 }
 
 /**

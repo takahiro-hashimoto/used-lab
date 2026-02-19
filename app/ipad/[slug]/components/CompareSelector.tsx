@@ -3,11 +3,11 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import type { IPhoneModel } from '@/lib/types'
+import type { IPadModel } from '@/lib/types'
 
 type Props = {
-  currentModel: IPhoneModel
-  allModels: IPhoneModel[]
+  currentModel: IPadModel
+  allModels: IPadModel[]
   initialCompareId: number
   iosysUrl?: string
 }
@@ -19,25 +19,17 @@ type CompareRow = {
   compare: string
 }
 
-function getFeatureValue(model: IPhoneModel, key: string): string {
-  const val = model[key as keyof IPhoneModel]
+function getFeatureValue(model: IPadModel, key: string): string {
+  const val = model[key as keyof IPadModel]
   if (val === true || val === '◯') return '◯'
   if (val === false || val === '×') return '×'
   if (val == null) return '-'
   return String(val).replace(/<br\s*\/?>/g, '\n')
 }
 
-function getAntutuTotal(m: IPhoneModel): string {
+function getAntutuTotal(m: IPadModel): string {
   const t = (m.antutu_cpu || 0) + (m.antutu_gpu || 0) + (m.antutu_mem || 0) + (m.antutu_ux || 0)
   return t > 0 ? t.toLocaleString() : '-'
-}
-
-function getBatteryLife(m: IPhoneModel): string {
-  const parts: string[] = []
-  if (m.video) parts.push(`ビデオ再生：${m.video}`)
-  if (m.streaming) parts.push(`ストリーミング：${m.streaming}`)
-  if (m.audio) parts.push(`音楽再生：${m.audio}`)
-  return parts.length > 0 ? parts.join('\n') : '-'
 }
 
 function formatReleaseDate(date: string | null): string {
@@ -48,46 +40,36 @@ function formatReleaseDate(date: string | null): string {
   return date
 }
 
-function buildCompareRows(current: IPhoneModel, compare: IPhoneModel): CompareRow[] {
+function buildCompareRows(current: IPadModel, compare: IPadModel): CompareRow[] {
   return [
     // サイズ・重量
     { section: 'サイズ・重量', label: 'サイズ', current: current.size || '-', compare: compare.size || '-' },
     { section: 'サイズ・重量', label: '重量', current: current.weight || '-', compare: compare.weight || '-' },
     // ボディ
+    { section: 'ボディ', label: 'バッテリー容量', current: current.battery || '-', compare: compare.battery || '-' },
+    { section: 'ボディ', label: 'ストレージ容量', current: current.strage?.replace(/ \/ /g, '\n') || '-', compare: compare.strage?.replace(/ \/ /g, '\n') || '-' },
+    { section: 'ボディ', label: 'Apple Intelligence', current: getFeatureValue(current, 'apple_intelligence'), compare: getFeatureValue(compare, 'apple_intelligence') },
     { section: 'ボディ', label: 'CPU', current: current.cpu || '-', compare: compare.cpu || '-' },
     { section: 'ボディ', label: 'RAM', current: current.ram || '-', compare: compare.ram || '-' },
-    { section: 'ボディ', label: 'カラー', current: current.color?.replace(/ \/ /g, '\n') || '-', compare: compare.color?.replace(/ \/ /g, '\n') || '-' },
-    { section: 'ボディ', label: 'ストレージ容量', current: current.strage?.replace(/ \/ /g, '\n') || '-', compare: compare.strage?.replace(/ \/ /g, '\n') || '-' },
-    { section: 'ボディ', label: 'バッテリー容量', current: current.battery || '-', compare: compare.battery || '-' },
-    { section: 'ボディ', label: 'バッテリー持ち', current: getBatteryLife(current), compare: getBatteryLife(compare) },
-    { section: 'ボディ', label: '充電端子', current: current.port || '-', compare: compare.port || '-' },
-    { section: 'ボディ', label: 'Apple Intelligence', current: getFeatureValue(current, 'apple_intelligence'), compare: getFeatureValue(compare, 'apple_intelligence') },
-    { section: 'ボディ', label: 'MagSafe充電', current: getFeatureValue(current, 'magsafe'), compare: getFeatureValue(compare, 'magsafe') },
-    { section: 'ボディ', label: 'アクションボタン', current: getFeatureValue(current, 'action_button'), compare: getFeatureValue(compare, 'action_button') },
-    { section: 'ボディ', label: 'カメラコントロール', current: getFeatureValue(current, 'camera_control'), compare: getFeatureValue(compare, 'camera_control') },
     // ディスプレイ
     { section: 'ディスプレイ', label: '画面サイズ', current: current.display || '-', compare: compare.display || '-' },
     { section: 'ディスプレイ', label: '画像解像度', current: current.resolution || '-', compare: compare.resolution || '-' },
+    { section: 'ディスプレイ', label: 'ディスプレイ種類', current: current.display_type || '-', compare: compare.display_type || '-' },
     { section: 'ディスプレイ', label: 'ProMotion', current: getFeatureValue(current, 'promotion'), compare: getFeatureValue(compare, 'promotion') },
-    { section: 'ディスプレイ', label: 'Dynamic Island', current: getFeatureValue(current, 'dynamic_island'), compare: getFeatureValue(compare, 'dynamic_island') },
     // カメラ
-    { section: 'カメラ', label: 'フロントカメラ', current: current.front_camera || '-', compare: compare.front_camera || '-' },
-    { section: 'カメラ', label: 'インカメラ', current: current.in_camera || '-', compare: compare.in_camera || '-' },
-    { section: 'カメラ', label: 'センサーサイズ', current: current.image_sensor || '-', compare: compare.image_sensor || '-' },
-    { section: 'カメラ', label: 'フォトグラフスタイル', current: getFeatureValue(current, 'photography_style'), compare: getFeatureValue(compare, 'photography_style') },
-    { section: 'カメラ', label: 'ナイトモード', current: getFeatureValue(current, 'night_mode'), compare: getFeatureValue(compare, 'night_mode') },
-    { section: 'カメラ', label: 'ポートレートモード', current: getFeatureValue(current, 'portrait_mode'), compare: getFeatureValue(compare, 'portrait_mode') },
-    { section: 'カメラ', label: 'アクションモード', current: getFeatureValue(current, 'action_mode'), compare: getFeatureValue(compare, 'action_mode') },
-    { section: 'カメラ', label: 'シネマティックモード', current: getFeatureValue(current, 'cinematic_mode'), compare: getFeatureValue(compare, 'cinematic_mode') },
-    { section: 'カメラ', label: 'マクロ撮影', current: getFeatureValue(current, 'macro_mode'), compare: getFeatureValue(compare, 'macro_mode') },
+    { section: 'カメラ', label: '外向きカメラ', current: current.front_camera || '-', compare: compare.front_camera || '-' },
+    { section: 'カメラ', label: '内向きカメラ', current: current.in_camera || '-', compare: compare.in_camera || '-' },
+    { section: 'カメラ', label: 'センターフレーム', current: getFeatureValue(current, 'center_frame'), compare: getFeatureValue(compare, 'center_frame') },
     { section: 'カメラ', label: 'LiDARスキャナー', current: getFeatureValue(current, 'lidar'), compare: getFeatureValue(compare, 'lidar') },
-    { section: 'カメラ', label: 'Apple ProRAW', current: getFeatureValue(current, 'apple_proraw'), compare: getFeatureValue(compare, 'apple_proraw') },
-    { section: 'カメラ', label: 'Apple ProRes', current: getFeatureValue(current, 'apple_prores'), compare: getFeatureValue(compare, 'apple_prores') },
+    // 入力・アクセサリ
+    { section: '入力・アクセサリ', label: 'Apple Pencil', current: current.pencil || '-', compare: compare.pencil || '-' },
+    { section: '入力・アクセサリ', label: 'キーボード', current: current.keyboard || '-', compare: compare.keyboard || '-' },
+    { section: '入力・アクセサリ', label: 'スピーカー', current: current.speaker || '-', compare: compare.speaker || '-' },
     // その他
     { section: 'その他', label: '発売日', current: formatReleaseDate(current.date), compare: formatReleaseDate(compare.date) },
+    { section: 'その他', label: '充電端子', current: current.port || '-', compare: compare.port || '-' },
     { section: 'その他', label: '認証機能', current: current.certification || '-', compare: compare.certification || '-' },
     { section: 'その他', label: 'SIM', current: current.sim || '-', compare: compare.sim || '-' },
-    { section: 'その他', label: '事故衝突検知', current: getFeatureValue(current, 'accident_detection'), compare: getFeatureValue(compare, 'accident_detection') },
   ]
 }
 
@@ -120,7 +102,6 @@ export default function CompareSelector({ currentModel, allModels, initialCompar
           <col />
         </colgroup>
 
-        {/* ヘッダー：モデル選択 + 画像 */}
         <thead>
           <tr>
             <th></th>
@@ -129,7 +110,7 @@ export default function CompareSelector({ currentModel, allModels, initialCompar
               <span className="compare-model-note">このモデルを表示中</span>
               {currentModel.image && (
                 <Image
-                  src={`/images/iphone/${currentModel.image}`}
+                  src={`/images/ipad/${currentModel.image}`}
                   alt={currentModel.model}
                   width={120}
                   height={120}
@@ -151,12 +132,12 @@ export default function CompareSelector({ currentModel, allModels, initialCompar
                     <option key={m.id} value={m.id}>{m.model}</option>
                   ))}
               </select>
-              <Link href={`/iphone/${compareModel.slug}`} className="compare-model-link">
+              <Link href={`/ipad/${compareModel.slug}`} className="compare-model-link">
                 このモデルの詳細を見る &rsaquo;
               </Link>
               {compareModel.image && (
                 <Image
-                  src={`/images/iphone/${compareModel.image}`}
+                  src={`/images/ipad/${compareModel.image}`}
                   alt={compareModel.model}
                   width={120}
                   height={120}
@@ -167,7 +148,6 @@ export default function CompareSelector({ currentModel, allModels, initialCompar
           </tr>
         </thead>
 
-        {/* カテゴリ別比較 */}
         {sections.map((section) => {
           const sectionRows = rows.filter((r) => r.section === section)
           return (
@@ -190,7 +170,6 @@ export default function CompareSelector({ currentModel, allModels, initialCompar
           )
         })}
 
-        {/* フッター：アクションボタン */}
         <tfoot>
           <tr className="compare-table__action-row">
             <th></th>
@@ -206,7 +185,7 @@ export default function CompareSelector({ currentModel, allModels, initialCompar
               )}
             </td>
             <td>
-              <Link href={`/iphone/${compareModel.slug}`} className="m-btn m-btn--primary m-btn--block">
+              <Link href={`/ipad/${compareModel.slug}`} className="m-btn m-btn--primary m-btn--block">
                 {compareModel.model}の詳細 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
               </Link>
             </td>

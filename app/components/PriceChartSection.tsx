@@ -1,16 +1,6 @@
 'use client'
 
-import PriceChart from './PriceChart'
-
-type LatestLog = {
-  storage: string | null
-  iosys_min: number | null
-  iosys_max: number | null
-  geo_min: number | null
-  geo_max: number | null
-  janpara_min: number | null
-  janpara_max: number | null
-}
+import PriceChart from '@/app/components/PriceChart'
 
 type DailyDataType = {
   labels: string[]
@@ -21,8 +11,15 @@ type DailyDataType = {
 type Props = {
   dailyData: DailyDataType
   modelName: string
-  latestLogs: LatestLog[]
+  /** LatestLog の min/max を数値配列で渡す（calculateAvgPriceRange 用） */
+  latestMinMaxPairs: { mins: number[]; maxes: number[] }[]
   latestDate: string | null
+  /** 集計対象の補足テキスト（例: ストレージ容量） */
+  storageNote?: string
+  /** 注釈のショップ説明テキスト */
+  shopDescription?: string
+  /** セクション背景クラス */
+  bgSubtle?: boolean
 }
 
 function formatPrice(price: number | null): string {
@@ -30,12 +27,12 @@ function formatPrice(price: number | null): string {
   return `¥${price.toLocaleString()}`
 }
 
-function calculateAvgPriceRange(logs: LatestLog[]): { min: number | null; max: number | null } {
+function calculateAvgPriceRange(pairs: { mins: number[]; maxes: number[] }[]): { min: number | null; max: number | null } {
   const allMins: number[] = []
   const allMaxes: number[] = []
-  for (const log of logs) {
-    const mins = [log.iosys_min, log.geo_min, log.janpara_min].filter((v): v is number => v != null && v > 0)
-    const maxes = [log.iosys_max, log.geo_max, log.janpara_max].filter((v): v is number => v != null && v > 0)
+  for (const pair of pairs) {
+    const mins = pair.mins.filter(v => v > 0)
+    const maxes = pair.maxes.filter(v => v > 0)
     if (mins.length > 0) allMins.push(Math.round(mins.reduce((a, b) => a + b, 0) / mins.length / 100) * 100)
     if (maxes.length > 0) allMaxes.push(Math.round(maxes.reduce((a, b) => a + b, 0) / maxes.length / 100) * 100)
   }
@@ -141,14 +138,18 @@ function calculateDailyTableData(dailyData: DailyDataType): DailyRow[] {
   return rows
 }
 
-export default function PriceChartSection({ dailyData, modelName, latestLogs, latestDate }: Props) {
-  const range = calculateAvgPriceRange(latestLogs)
+export default function PriceChartSection({
+  dailyData, modelName, latestMinMaxPairs, latestDate, storageNote, shopDescription, bgSubtle = false,
+}: Props) {
+  const range = calculateAvgPriceRange(latestMinMaxPairs)
   const trendChanges = calculateTrendChanges(dailyData)
   const monthlySummary = calculateMonthlySummary(dailyData)
   const dailyRows = calculateDailyTableData(dailyData)
 
+  const defaultShopDesc = '各ECサイトの販売価格を定期的に集計したものです。実際の購入価格は在庫状況やタイミングにより変動する場合があります。'
+
   return (
-    <section className="l-section" id="price-trend" aria-labelledby="heading-price-trend">
+    <section className={`l-section${bgSubtle ? ' l-section--bg-subtle' : ''}`} id="price-trend" aria-labelledby="heading-price-trend">
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg" id="heading-price-trend">
           中古{modelName}の価格推移
@@ -158,7 +159,6 @@ export default function PriceChartSection({ dailyData, modelName, latestLogs, la
         </p>
 
         <div className="m-card m-card--shadow">
-          {/* 価格サマリー */}
           {range.min != null && (
             <div className="price-summary">
               <div>
@@ -166,9 +166,16 @@ export default function PriceChartSection({ dailyData, modelName, latestLogs, la
                 <p className="price-current-value">
                   &yen;{range.min?.toLocaleString()} 〜 &yen;{range.max?.toLocaleString()}
                 </p>
-                <p className="price-current-note">
-                  集計対象：{modelName} {latestLogs[0]?.storage || ''}
-                </p>
+                {storageNote && (
+                  <p className="price-current-note">
+                    集計対象：{modelName} {storageNote}
+                  </p>
+                )}
+                {!storageNote && (
+                  <p className="price-current-note">
+                    集計対象：{modelName}
+                  </p>
+                )}
               </div>
               {trendChanges.length > 0 && (
                 <dl className="price-trends">
@@ -192,7 +199,6 @@ export default function PriceChartSection({ dailyData, modelName, latestLogs, la
             </div>
           )}
 
-          {/* チャートエリア */}
           <figure className="price-chart" aria-label={`中古${modelName}の価格推移チャート`}>
             <div style={{ height: 300 }}>
               <PriceChart
@@ -208,18 +214,15 @@ export default function PriceChartSection({ dailyData, modelName, latestLogs, la
             </figcaption>
           </figure>
 
-          {/* 注釈 */}
           <p className="price-info-note">
             <i className="fa-solid fa-circle-info" aria-hidden="true"></i>
-            <span>掲載価格は各ECサイトの販売価格を定期的に集計したものです。実際の購入価格は在庫状況やタイミングにより変動する場合があります。</span>
+            <span>掲載価格は{shopDescription || defaultShopDesc}</span>
           </p>
         </div>
 
-        {/* 価格詳細 */}
         <div className="m-card m-card--shadow price-details-card">
           <h3 className="price-details-card-heading">{modelName}の価格推移 詳細</h3>
 
-          {/* 月別平均価格 */}
           {monthlySummary.length > 0 && (
             <>
               <h4 className="price-details-heading">月別平均価格</h4>
@@ -237,7 +240,6 @@ export default function PriceChartSection({ dailyData, modelName, latestLogs, la
             </>
           )}
 
-          {/* 日別価格データ */}
           {dailyRows.length > 0 && (
             <>
               <h4 className="price-details-heading">日別価格データ</h4>

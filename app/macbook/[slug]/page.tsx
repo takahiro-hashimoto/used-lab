@@ -1,27 +1,28 @@
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import {
-  getIPhoneModelBySlug,
-  getAllIPhoneSlugs,
-  getAllIPhoneModels,
+  getMacBookModelBySlug,
+  getAllMacBookSlugs,
+  getAllMacBookModels,
   getShops,
   getProductShopLinks,
-  getPriceLogsByModelId,
-  getLatestPriceLog,
+  getMacBookPriceLogsByModelId,
+  getLatestMacBookPriceLog,
 } from '@/lib/queries'
-import { aggregateDailyPrices, filterLast3Months } from '@/lib/utils/iphone-helpers'
+import { aggregateDailyPrices, filterLast3Months } from '@/lib/utils/macbook-helpers'
 import HeroSection from './components/HeroSection'
 import LeadText from './components/LeadText'
 import TableOfContents from './components/TableOfContents'
 import PurchaseVerdict from './components/PurchaseVerdict'
 import ShopGrid from './components/ShopGrid'
 import LifespanSection from './components/LifespanSection'
+import BasicSpecs from './components/BasicSpecs'
 import PriceChartSection from '@/app/components/PriceChartSection'
 import AdvanceFeatures from './components/AdvanceFeatures'
 import CompareSection from '@/app/components/CompareSection'
 import CompareSelector from './components/CompareSelector'
 import BenchmarkGeekbench from './components/BenchmarkGeekbench'
-import BenchmarkAntutu from './components/BenchmarkAntutu'
+import Accessories from './components/Accessories'
 import RecommendBanner from './components/RecommendBanner'
 import FaqSection from './components/FaqSection'
 import ShareBox from '@/app/components/ShareBox'
@@ -31,13 +32,13 @@ type PageProps = {
 }
 
 export async function generateStaticParams() {
-  const slugs = await getAllIPhoneSlugs()
+  const slugs = await getAllMacBookSlugs()
   return slugs.map((slug) => ({ slug }))
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params
-  const model = await getIPhoneModelBySlug(slug)
+  const model = await getMacBookModelBySlug(slug)
   if (!model) return {}
   return {
     title: `中古${model.model}は今買うべき？製品寿命、基本スペック、ベンチマークスコア、中古相場から解説 | ユーズドラボ`,
@@ -45,33 +46,30 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 }
 
-export default async function IPhoneDetailPage({ params }: PageProps) {
+export default async function MacBookDetailPage({ params }: PageProps) {
   const { slug } = await params
-  const model = await getIPhoneModelBySlug(slug)
+  const model = await getMacBookModelBySlug(slug)
   if (!model) notFound()
 
   // 並列データ取得
   const [shops, shopLinks, priceLogs, latestPrice, allModels] = await Promise.all([
     getShops(),
-    getProductShopLinks('iphone', model.id),
-    getPriceLogsByModelId(model.id),
-    getLatestPriceLog(model.id),
-    getAllIPhoneModels(),
+    getProductShopLinks('macbook', model.id),
+    getMacBookPriceLogsByModelId(model.id),
+    getLatestMacBookPriceLog(model.id),
+    getAllMacBookModels(),
   ])
 
   // PriceChartSection用のデータをサーバーサイドで事前計算
   const recentLogs = filterLast3Months(priceLogs)
   const dailyData = aggregateDailyPrices(recentLogs)
   const latestDate = priceLogs.length > 0 ? priceLogs[priceLogs.length - 1].logged_at : null
-  const latestLogEntries = latestDate
-    ? priceLogs.filter((l) => l.logged_at === latestDate)
-    : []
+  const latestLogEntries = latestDate ? priceLogs.filter((l) => l.logged_at === latestDate) : []
   const latestMinMaxPairs = latestLogEntries.map((l) => ({
     mins: [l.iosys_min, l.geo_min, l.janpara_min].filter((v): v is number => v != null),
     maxes: [l.iosys_max, l.geo_max, l.janpara_max].filter((v): v is number => v != null),
   }))
   const storageNote = latestLogEntries[0]?.storage || ''
-
 
   return (
     <main>
@@ -82,6 +80,7 @@ export default async function IPhoneDetailPage({ params }: PageProps) {
         <PurchaseVerdict model={model} latestPrice={latestPrice} />
         <ShopGrid shops={shops} shopLinks={shopLinks} model={model} />
         <LifespanSection model={model} />
+        <BasicSpecs model={model} />
 
         {priceLogs.length > 0 && (
           <PriceChartSection
@@ -98,10 +97,10 @@ export default async function IPhoneDetailPage({ params }: PageProps) {
           {(props) => <CompareSelector {...props} />}
         </CompareSection>
         <BenchmarkGeekbench model={model} allModels={allModels} />
-        <BenchmarkAntutu model={model} allModels={allModels} />
+        <Accessories model={model} />
         <RecommendBanner />
         <FaqSection model={model} latestPrice={latestPrice} shopLinks={shopLinks} />
-        <ShareBox url={`https://used-lab.com/iphone/${model.slug}/`} text={`中古${model.model}は今買うべき？製品寿命、基本スペック、ベンチマークスコア、中古相場から解説`} bgSubtle />
+        <ShareBox url={`https://used-lab.com/macbook/${model.slug}/`} text={`中古${model.model}は今買うべき？製品寿命、基本スペック、ベンチマークスコア、中古相場から解説`} bgSubtle />
       </article>
     </main>
   )

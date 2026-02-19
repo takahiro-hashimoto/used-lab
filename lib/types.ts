@@ -1,13 +1,51 @@
-export interface IPhoneModel {
+export interface AdvanceData {
+  all_models?: {
+    description: string
+    features: string[]
+  }
+  standard_only?: {
+    description: string
+    features: string[]
+  }
+  pro_only?: {
+    description: string
+    features: string[]
+  }
+}
+
+/** 全製品共通のベースモデル */
+export interface BaseProductModel {
   id: number
   model: string
   slug: string
   show: number
   image: string | null
   date: string | null
+  cpu: string | null
+  battery: string | null
+  point: string | null
+  advance: AdvanceData | null
+  official: string | null
+}
+
+/** 標準3店舗(イオシス・ゲオ・じゃんぱら)の価格ログ */
+export interface BasePriceLog {
+  id: number
+  logged_at: string
+  model_id: number
+  model_name: string | null
+  storage: string | null
+  iosys_min: number | null
+  iosys_max: number | null
+  geo_min: number | null
+  geo_max: number | null
+  janpara_min: number | null
+  janpara_max: number | null
+}
+
+export interface IPhoneModel extends BaseProductModel {
   strage: string | null
   color: string | null
-  cpu: string | null
   score_single: number | null
   score_multi: number | null
   score_metal: number | null
@@ -21,7 +59,6 @@ export interface IPhoneModel {
   weight: string | null
   display: string | null
   resolution: string | null
-  battery: string | null
   video: string | null
   streaming: string | null
   audio: string | null
@@ -47,27 +84,9 @@ export interface IPhoneModel {
   action_button: boolean
   camera_control: boolean
   centerframe: boolean
-  point: string | null
-  advance: AdvanceData | null
-  official: string | null
   accessory_case: string | null
   accessory_film: string | null
   price: Record<string, unknown> | null
-}
-
-export interface AdvanceData {
-  all_models?: {
-    description: string
-    features: string[]
-  }
-  standard_only?: {
-    description: string
-    features: string[]
-  }
-  pro_only?: {
-    description: string
-    features: string[]
-  }
 }
 
 // 新shopsテーブル用（shop_key付き）
@@ -99,18 +118,7 @@ export interface ProductShopLink {
   url: string
 }
 
-export interface IPhonePriceLog {
-  id: number
-  logged_at: string
-  model_id: number
-  model_name: string | null
-  storage: string | null
-  iosys_min: number | null
-  iosys_max: number | null
-  geo_min: number | null
-  geo_max: number | null
-  janpara_min: number | null
-  janpara_max: number | null
+export interface IPhonePriceLog extends BasePriceLog {
   iosys_min_text: string | null
   iosys_max_text: string | null
   geo_min_text: string | null
@@ -135,6 +143,153 @@ export const SHOP_KEY_TO_ID: Record<string, number> = {
   rakuma: 12,
   mmoba: 13,
   daione: 15,
+}
+
+export interface IPadModel extends BaseProductModel {
+  strage: string | null
+  color: string | null
+  score_single: number | null
+  score_multi: number | null
+  score_metal: number | null
+  antutu_cpu: number | null
+  antutu_gpu: number | null
+  antutu_mem: number | null
+  antutu_ux: number | null
+  ram: string | null
+  apple_intelligence: boolean
+  size: string | null
+  weight: string | null
+  display: string | null
+  resolution: string | null
+  port: string | null
+  certification: string | null
+  sim: string | null
+  front_camera: string | null
+  in_camera: string | null
+  center_frame: boolean
+  promotion: boolean
+  lidar: boolean
+  speaker: string | null
+  pencil: string | null
+  keyboard: string | null
+  display_type: string | null
+  accessory_case: string | null
+  accessory_film: string | null
+}
+
+export interface IPadPriceLog extends BasePriceLog {
+  iosys_min_text: string | null
+  iosys_max_text: string | null
+  geo_min_text: string | null
+  geo_max_text: string | null
+  janpara_min_text: string | null
+  janpara_max_text: string | null
+}
+
+export interface WatchModel extends BaseProductModel {
+  size: string | null
+  strage: string | null
+  material: string | null
+  water_resistance: string | null
+  always_on_display: boolean
+  fast_charge: boolean
+  blood_oxygen: boolean
+  cardiogram: boolean
+  accident_detection: boolean
+  fall_detection: boolean
+  skin_temperature: boolean
+  japanese_input: boolean
+  double_tap: boolean
+  sleep_tracking: boolean
+  altimeter: boolean
+  blood_pressure: boolean
+  sleep_score: boolean
+  max_brightness: string | null
+  accessory_case: string | null
+  accessory_film: string | null
+}
+
+export interface WatchPriceLog extends BasePriceLog {
+  iosys_min_text: string | null
+  iosys_max_text: string | null
+  geo_min_text: string | null
+  geo_max_text: string | null
+  janpara_min_text: string | null
+  janpara_max_text: string | null
+}
+
+export interface MacBookModel extends BaseProductModel {
+  shortname: string | null
+  strage: string | null
+  color: string | null
+  apple_intelligence: boolean
+  score_single: number | null
+  score_multi: number | null
+  score_metal: number | null
+  ram: string | null
+  size: string | null
+  weight: string | null
+  display: string | null
+  resolution: string | null
+  luminance: string | null
+  port: string | null
+  hdmi: boolean
+  slot: boolean
+  magsafe: boolean
+  camera: string | null
+  speaker: string | null
+  promotion: boolean
+  fan: boolean
+  center_frame: boolean
+  accessory_case: string | null
+  accessory_film: string | null
+}
+
+export interface MacBookPriceLog extends BasePriceLog {
+  iosys_min_text: string | null
+  iosys_max_text: string | null
+  geo_min_text: string | null
+  geo_max_text: string | null
+  janpara_min_text: string | null
+  janpara_max_text: string | null
+}
+
+export interface AirPodsModel {
+  id: number
+  name: string
+  slug: string
+  model: string | null
+  show: number
+  image: string | null
+  date: string | null
+  type: string | null
+  chip: string | null
+  battery_earphone: string | null
+  battery_case: string | null
+  port: string | null
+  fit: string | null
+  control: string | null
+  spatial_audio: boolean
+  magsafe: boolean
+  qi_charge: boolean
+  waterproof: string | null
+  anc: boolean
+  adaptive_audio: boolean
+  point: string | null
+  official: string | null
+}
+
+export interface AirPodsPriceLog {
+  id: number
+  logged_at: string
+  model_id: number
+  model_name: string | null
+  iosys_min: number | null
+  iosys_max: number | null
+  janpara_min: number | null
+  janpara_max: number | null
+  eearphone_min: number | null
+  eearphone_max: number | null
 }
 
 // IPhoneShop（後方互換用）

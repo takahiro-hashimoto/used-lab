@@ -1,15 +1,15 @@
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import {
-  getIPhoneModelBySlug,
-  getAllIPhoneSlugs,
-  getAllIPhoneModels,
+  getIPadModelBySlug,
+  getAllIPadSlugs,
+  getAllIPadModels,
   getShops,
   getProductShopLinks,
-  getPriceLogsByModelId,
-  getLatestPriceLog,
+  getIPadPriceLogsByModelId,
+  getLatestIPadPriceLog,
 } from '@/lib/queries'
-import { aggregateDailyPrices, filterLast3Months } from '@/lib/utils/iphone-helpers'
+import { aggregateDailyPrices, filterLast3Months } from '@/lib/utils/ipad-helpers'
 import HeroSection from './components/HeroSection'
 import LeadText from './components/LeadText'
 import TableOfContents from './components/TableOfContents'
@@ -31,13 +31,13 @@ type PageProps = {
 }
 
 export async function generateStaticParams() {
-  const slugs = await getAllIPhoneSlugs()
+  const slugs = await getAllIPadSlugs()
   return slugs.map((slug) => ({ slug }))
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params
-  const model = await getIPhoneModelBySlug(slug)
+  const model = await getIPadModelBySlug(slug)
   if (!model) return {}
   return {
     title: `中古${model.model}は今買うべき？製品寿命、基本スペック、ベンチマークスコア、中古相場から解説 | ユーズドラボ`,
@@ -45,33 +45,30 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 }
 
-export default async function IPhoneDetailPage({ params }: PageProps) {
+export default async function IPadDetailPage({ params }: PageProps) {
   const { slug } = await params
-  const model = await getIPhoneModelBySlug(slug)
+  const model = await getIPadModelBySlug(slug)
   if (!model) notFound()
 
   // 並列データ取得
   const [shops, shopLinks, priceLogs, latestPrice, allModels] = await Promise.all([
     getShops(),
-    getProductShopLinks('iphone', model.id),
-    getPriceLogsByModelId(model.id),
-    getLatestPriceLog(model.id),
-    getAllIPhoneModels(),
+    getProductShopLinks('ipad', model.id),
+    getIPadPriceLogsByModelId(model.id),
+    getLatestIPadPriceLog(model.id),
+    getAllIPadModels(),
   ])
 
   // PriceChartSection用のデータをサーバーサイドで事前計算
   const recentLogs = filterLast3Months(priceLogs)
   const dailyData = aggregateDailyPrices(recentLogs)
   const latestDate = priceLogs.length > 0 ? priceLogs[priceLogs.length - 1].logged_at : null
-  const latestLogEntries = latestDate
-    ? priceLogs.filter((l) => l.logged_at === latestDate)
-    : []
+  const latestLogEntries = latestDate ? priceLogs.filter((l) => l.logged_at === latestDate) : []
   const latestMinMaxPairs = latestLogEntries.map((l) => ({
     mins: [l.iosys_min, l.geo_min, l.janpara_min].filter((v): v is number => v != null),
     maxes: [l.iosys_max, l.geo_max, l.janpara_max].filter((v): v is number => v != null),
   }))
   const storageNote = latestLogEntries[0]?.storage || ''
-
 
   return (
     <main>
@@ -101,7 +98,7 @@ export default async function IPhoneDetailPage({ params }: PageProps) {
         <BenchmarkAntutu model={model} allModels={allModels} />
         <RecommendBanner />
         <FaqSection model={model} latestPrice={latestPrice} shopLinks={shopLinks} />
-        <ShareBox url={`https://used-lab.com/iphone/${model.slug}/`} text={`中古${model.model}は今買うべき？製品寿命、基本スペック、ベンチマークスコア、中古相場から解説`} bgSubtle />
+        <ShareBox url={`https://used-lab.com/ipad/${model.slug}/`} text={`中古${model.model}は今買うべき？製品寿命、基本スペック、ベンチマークスコア、中古相場から解説`} bgSubtle />
       </article>
     </main>
   )
