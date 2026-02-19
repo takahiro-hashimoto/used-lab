@@ -40,9 +40,22 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { slug } = await params
   const model = await getMacBookModelBySlug(slug)
   if (!model) return {}
+  const title = `中古${model.model}は今買うべき？製品寿命、基本スペック、ベンチマークスコア、中古相場から解説 | ユーズドラボ`
+  const description = `${model.model}の中古価格相場、ベンチマークスコア、スペック比較、おすすめショップ情報を徹底解説。`
   return {
-    title: `中古${model.model}は今買うべき？製品寿命、基本スペック、ベンチマークスコア、中古相場から解説 | ユーズドラボ`,
-    description: `${model.model}の中古価格相場、ベンチマークスコア、スペック比較、おすすめショップ情報を徹底解説。`,
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      url: `/macbook/${slug}/`,
+      images: model.image ? [{ url: `/images/macbook/${model.image}`, width: 480, height: 320, alt: `${model.model} の外観イメージ` }] : [],
+    },
+    twitter: {
+      title,
+      description,
+      images: model.image ? [`/images/macbook/${model.image}`] : [],
+    },
   }
 }
 

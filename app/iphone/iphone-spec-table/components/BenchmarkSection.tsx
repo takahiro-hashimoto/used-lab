@@ -81,15 +81,15 @@ export default function BenchmarkSection({ models }: Props) {
             {/* 用語解説カード */}
             <div className="l-grid l-grid--3col l-grid--gap-lg" style={{ marginBottom: 'var(--space-xl, 24px)' }}>
               <div className="m-card m-card--shadow" style={{ padding: 'var(--space-lg, 20px)' }}>
-                <h4 className="glossary-item-title">シングルスコア</h4>
+                <p className="glossary-item-title">シングルスコア</p>
                 <p className="glossary-item-desc">1つのCPUコアの処理性能を示す指標でアプリの起動やWeb閲覧など日常的な操作に影響する</p>
               </div>
               <div className="m-card m-card--shadow" style={{ padding: 'var(--space-lg, 20px)' }}>
-                <h4 className="glossary-item-title">マルチスコア</h4>
+                <p className="glossary-item-title">マルチスコア</p>
                 <p className="glossary-item-desc">複数のCPUコアを同時に使ったときの処理能力でゲームや動画編集などの重たい作業に効果を発揮する</p>
               </div>
               <div className="m-card m-card--shadow" style={{ padding: 'var(--space-lg, 20px)' }}>
-                <h4 className="glossary-item-title">メタルスコア</h4>
+                <p className="glossary-item-title">メタルスコア</p>
                 <p className="glossary-item-desc">GPUのグラフィック性能を示す指標で、3DゲームやAR、映像の描画処理に関わる</p>
               </div>
             </div>
@@ -134,19 +134,19 @@ export default function BenchmarkSection({ models }: Props) {
             {/* 用語解説カード */}
             <div className="l-grid l-grid--4col l-grid--gap-lg" style={{ marginBottom: 'var(--space-xl, 24px)' }}>
               <div className="m-card m-card--shadow" style={{ padding: 'var(--space-lg, 20px)' }}>
-                <h4 className="glossary-item-title">CPU</h4>
+                <p className="glossary-item-title">CPU</p>
                 <p className="glossary-item-desc">デバイスの演算処理能力。アプリの起動や動作速度、OSの基本操作の速さに直結します。</p>
               </div>
               <div className="m-card m-card--shadow" style={{ padding: 'var(--space-lg, 20px)' }}>
-                <h4 className="glossary-item-title">GPU</h4>
+                <p className="glossary-item-title">GPU</p>
                 <p className="glossary-item-desc">3Dグラフィックスの描画性能。主に高負荷な3Dゲームや動画編集の処理速度に影響します。</p>
               </div>
               <div className="m-card m-card--shadow" style={{ padding: 'var(--space-lg, 20px)' }}>
-                <h4 className="glossary-item-title">MEM</h4>
+                <p className="glossary-item-title">MEM</p>
                 <p className="glossary-item-desc">RAMとストレージのデータ読み書き速度。アプリの切り替えやロード時間、ファイル転送速度に影響します。</p>
               </div>
               <div className="m-card m-card--shadow" style={{ padding: 'var(--space-lg, 20px)' }}>
-                <h4 className="glossary-item-title">UX</h4>
+                <p className="glossary-item-title">UX</p>
                 <p className="glossary-item-desc">アプリのレスポンス速度や並行処理能力など、日常操作の総合的な快適性を評価する指標です。</p>
               </div>
             </div>

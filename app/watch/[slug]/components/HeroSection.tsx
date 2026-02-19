@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import type { WatchModel, WatchPriceLog } from '@/lib/types'
 
 type Props = {
@@ -7,6 +8,17 @@ type Props = {
 }
 
 export default function HeroSection({ model }: Props) {
+  const productJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: `中古 ${model.model}`,
+    description: `${model.model}の中古価格相場、スペック比較、おすすめショップ情報。`,
+    brand: { '@type': 'Brand', name: 'Apple' },
+    category: 'スマートウォッチ',
+    ...(model.image && { image: `https://used-lab.com/images/watch/${model.image}` }),
+    url: `https://used-lab.com/watch/${model.slug}/`,
+  }
+
   const breadcrumbJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -33,6 +45,10 @@ export default function HeroSection({ model }: Props) {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
@@ -89,13 +105,13 @@ export default function HeroSection({ model }: Props) {
           <div className="hero-visual">
             <figure className="hero-media">
               {model.image && (
-                <img
+                <Image
                   src={`/images/watch/${model.image}`}
                   alt={`${model.model} の外観イメージ`}
                   className="hero-media__img"
-                  width="360"
-                  height="360"
-                  loading="eager"
+                  width={360}
+                  height={360}
+                  priority
                 />
               )}
             </figure>

@@ -55,9 +55,6 @@ export default function LifespanSection({ model }: Props) {
         </div>
 
         <aside className="glossary-box m-card" aria-label="用語解説">
-          <h3 className="glossary-header">
-            <i className="fa-solid fa-circle-info" aria-hidden="true"></i> 用語解説
-          </h3>
           <dl className="glossary-list">
             <div className="glossary-item">
               <dt className="glossary-item-title">watchOSのサポート期間</dt>

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import Image from 'next/image'
 import { getAllIPhoneModels, getAllProductShopLinksByType } from '@/lib/queries'
 import SpecTable from './components/SpecTable'
 import DualCompare from './components/DualCompare'
@@ -12,6 +13,17 @@ export const metadata: Metadata = {
   title: '歴代iPhoneスペック比較表！気になる機種の性能差や違いがわかる | ユーズドラボ',
   description:
     '2019年以降に発売された歴代iPhoneのスペック比較表一覧です。iPhoneの機能がどのようにアップデートされてきたのか確認するのにご活用ください。',
+  openGraph: {
+    title: '歴代iPhoneスペック比較表！気になる機種の性能差や違いがわかる | ユーズドラボ',
+    description: '2019年以降に発売された歴代iPhoneのスペック比較表一覧です。iPhoneの機能がどのようにアップデートされてきたのか確認するのにご活用ください。',
+    url: '/iphone/iphone-spec-table/',
+    images: [{ url: '/images/iphone/iphone16pro.jpg', width: 360, height: 360, alt: '歴代iPhoneスペック比較表のイメージ' }],
+  },
+  twitter: {
+    title: '歴代iPhoneスペック比較表！気になる機種の性能差や違いがわかる | ユーズドラボ',
+    description: '2019年以降に発売された歴代iPhoneのスペック比較表一覧です。',
+    images: ['/images/iphone/iphone16pro.jpg'],
+  },
 }
 
 export default async function IPhoneSpecTablePage() {
@@ -155,13 +167,13 @@ export default async function IPhoneSpecTablePage() {
             </div>
             <div className="hero-visual">
               <figure className="hero-media">
-                <img
-                  src="/images/iphone/iphone16pro.png"
+                <Image
+                  src="/images/iphone/iphone16pro.jpg"
                   alt="歴代iPhoneスペック比較表のイメージ"
                   className="hero-media__img"
-                  width="360"
-                  height="360"
-                  loading="eager"
+                  width={360}
+                  height={360}
+                  priority
                 />
               </figure>
             </div>

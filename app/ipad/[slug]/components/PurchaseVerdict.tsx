@@ -45,7 +45,7 @@ export default function PurchaseVerdict({ model, latestPrice }: Props) {
         <div className="m-card conclusion-card">
           {/* ヘッダー：見出し＋ラベル */}
           <div className={`conclusion-header conclusion-header--${v.rank}`}>
-            <h3 className="conclusion-headline">{v.verdictMain}</h3>
+            <p className="conclusion-headline">{v.verdictMain}</p>
             <span className="m-badge m-badge--translucent">
               <i className="fa-solid fa-star" aria-hidden="true"></i> {v.statusLabel}
             </span>

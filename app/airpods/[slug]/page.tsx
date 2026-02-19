@@ -37,9 +37,23 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { slug } = await params
   const model = await getAirPodsModelBySlug(slug)
   if (!model) return {}
+  const displayName = model.model ? `${model.name}（${model.model}）` : model.name
+  const title = `中古${displayName}は今買うべき？サポート期間、基本スペック、中古相場から解説 | ユーズドラボ`
+  const description = `${displayName}の中古価格相場、スペック比較、おすすめショップ情報を徹底解説。`
   return {
-    title: `中古${model.name}（${model.model}）は今買うべき？サポート期間、基本スペック、中古相場から解説 | ユーズドラボ`,
-    description: `${model.name}（${model.model}）の中古価格相場、スペック比較、おすすめショップ情報を徹底解説。`,
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      url: `/airpods/${slug}/`,
+      images: model.image ? [{ url: `/images/airpods/${model.image}`, width: 360, height: 360, alt: `${displayName} の外観イメージ` }] : [],
+    },
+    twitter: {
+      title,
+      description,
+      images: model.image ? [`/images/airpods/${model.image}`] : [],
+    },
   }
 }
 

@@ -92,7 +92,7 @@ export default function GlossarySection() {
         <div className="l-grid l-grid--3col l-grid--gap-lg glossary-grid">
           {GLOSSARY_ITEMS.map((item) => (
             <div key={item.title} className="m-card m-card--shadow glossary-grid__item">
-              <h3 className="glossary-grid__title">{item.title}</h3>
+              <p className="glossary-grid__title">{item.title}</p>
               <p className="glossary-grid__desc">{item.desc}</p>
             </div>
           ))}
