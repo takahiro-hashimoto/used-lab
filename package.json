@@ -6,7 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "fetch-prices": "tsx scripts/fetch-prices.ts",
+    "fetch-prices:iphone": "tsx scripts/fetch-prices.ts iphone",
+    "fetch-prices:ipad": "tsx scripts/fetch-prices.ts ipad",
+    "fetch-prices:watch": "tsx scripts/fetch-prices.ts watch",
+    "fetch-prices:airpods": "tsx scripts/fetch-prices.ts airpods"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.95.3",
@@ -20,8 +25,10 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "dotenv": "^17.3.1",
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
+    "tsx": "^4.21.0",
     "typescript": "^5"
   }
 }
