@@ -3,6 +3,43 @@
  * 全製品タイプで共有する汎用ユーティリティ
  */
 
+import type { Shop, ProductShopLink, FallbackShop } from '@/lib/types'
+
+/**
+ * shops テーブルからフォールバック用ショップリンクを生成
+ * product_shop_links にデータが無い場合に使用される
+ */
+export function buildFallbackShops(
+  shops: Shop[],
+  shopIds: number[],
+  urlField: keyof Shop,
+): FallbackShop[] {
+  return shopIds
+    .map((shopId) => {
+      const shop = shops.find((s) => s.id === shopId)
+      const url = shop?.[urlField]
+      if (!shop || typeof url !== 'string' || !url) return null
+      return { shop_id: shop.id, url, shopName: shop.shop }
+    })
+    .filter((item): item is FallbackShop => item != null)
+}
+
+/**
+ * product_shop_links → displayLinks を生成
+ * filteredLinks があればそちらを優先、なければ fallbackShops を使用
+ */
+export function buildDisplayLinks(
+  shopLinks: ProductShopLink[],
+  fallbackShops: FallbackShop[],
+  shopNames: Record<number, string>,
+): FallbackShop[] {
+  const filteredLinks = shopLinks.filter((l) => shopNames[l.shop_id])
+  if (filteredLinks.length > 0) {
+    return filteredLinks.map((l) => ({ shop_id: l.shop_id, url: l.url, shopName: shopNames[l.shop_id] }))
+  }
+  return fallbackShops.filter((s) => shopNames[s.shop_id])
+}
+
 /** リリース日(YYYY/M/DD)から年を取得 */
 export function getReleaseYear(date: string | null): number {
   if (!date) return 0

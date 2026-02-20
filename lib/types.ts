@@ -87,6 +87,7 @@ export interface IPhoneModel extends BaseProductModel {
   accessory_case: string | null
   accessory_film: string | null
   price: Record<string, unknown> | null
+  last_ios: string | null
 }
 
 // 新shopsテーブル用（shop_key付き）
@@ -108,6 +109,10 @@ export interface Shop {
   postage: string | null
   license: string | null
   url: string | null
+  ipad_url: string | null
+  watch_url: string | null
+  macbook_url: string | null
+  airpods_url: string | null
   point: string | null
 }
 
@@ -116,6 +121,12 @@ export interface ProductShopLink {
   product_id: number
   shop_id: number
   url: string
+}
+
+export interface FallbackShop {
+  shop_id: number
+  url: string
+  shopName: string
 }
 
 export interface IPhonePriceLog extends BasePriceLog {
@@ -142,7 +153,9 @@ export const SHOP_KEY_TO_ID: Record<string, number> = {
   mercari: 11,
   rakuma: 12,
   mmoba: 13,
+  carrier: 14,
   daione: 15,
+  eearphone: 16,
 }
 
 export interface IPadModel extends BaseProductModel {
@@ -175,6 +188,7 @@ export interface IPadModel extends BaseProductModel {
   display_type: string | null
   accessory_case: string | null
   accessory_film: string | null
+  last_ipados: string | null
 }
 
 export interface IPadPriceLog extends BasePriceLog {
@@ -207,6 +221,7 @@ export interface WatchModel extends BaseProductModel {
   max_brightness: string | null
   accessory_case: string | null
   accessory_film: string | null
+  last_watchos: string | null
 }
 
 export interface WatchPriceLog extends BasePriceLog {
@@ -243,6 +258,7 @@ export interface MacBookModel extends BaseProductModel {
   center_frame: boolean
   accessory_case: string | null
   accessory_film: string | null
+  last_macos: string | null
 }
 
 export interface MacBookPriceLog extends BasePriceLog {
