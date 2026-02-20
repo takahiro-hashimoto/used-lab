@@ -9,7 +9,7 @@ import {
   getAirPodsPriceLogsByModelId,
   getLatestAirPodsPriceLog,
 } from '@/lib/queries'
-import { aggregateDailyPrices, filterLast3Months } from '@/lib/utils/airpods-helpers'
+import { aggregateDailyPrices } from '@/lib/utils/airpods-helpers'
 import HeroSection from './components/HeroSection'
 import LeadText from './components/LeadText'
 import TableOfContents from './components/TableOfContents'
@@ -72,8 +72,8 @@ export default async function AirPodsDetailPage({ params }: PageProps) {
   ])
 
   // PriceChartSection用のデータをサーバーサイドで事前計算
-  const recentLogs = filterLast3Months(priceLogs)
-  const dailyData = aggregateDailyPrices(recentLogs)
+  // aggregateDailyPrices内で直近90日に絞られるため、filterLast3Monthsは不要
+  const dailyData = aggregateDailyPrices(priceLogs)
   const latestDate = priceLogs.length > 0 ? priceLogs[priceLogs.length - 1].logged_at : null
   const latestLogEntries = latestDate ? priceLogs.filter((l) => l.logged_at === latestDate) : []
   const latestMinMaxPairs = latestLogEntries.map((l) => ({
