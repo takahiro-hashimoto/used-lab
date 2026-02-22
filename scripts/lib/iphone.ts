@@ -152,7 +152,15 @@ export async function fetchIphonePrices(): Promise<void> {
       prices[shop.key] = result
     }
 
-    // Supabase に INSERT
+    // 当日の既存データを削除（最新を優先）
+    const today = new Date().toISOString().split('T')[0]
+    await supabase
+      .from('iphone_price_logs')
+      .delete()
+      .eq('model_id', model.id)
+      .gte('logged_at', `${today}T00:00:00Z`)
+      .lte('logged_at', `${today}T23:59:59Z`)
+
     const { error: insertError } = await supabase.from('iphone_price_logs').insert({
       logged_at: new Date().toISOString(),
       model_id: model.id,
