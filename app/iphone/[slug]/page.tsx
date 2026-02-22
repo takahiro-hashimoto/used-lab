@@ -22,7 +22,7 @@ import CompareSection from '@/app/components/CompareSection'
 import CompareSelector from './components/CompareSelector'
 import BenchmarkGeekbench from './components/BenchmarkGeekbench'
 import BenchmarkAntutu from './components/BenchmarkAntutu'
-import RecommendBanner from './components/RecommendBanner'
+import RecommendBanner from '@/app/components/iphone/RecommendBanner'
 import FaqSection from './components/FaqSection'
 import ShareBox from '@/app/components/ShareBox'
 

@@ -3,7 +3,7 @@
  * 全製品タイプで共有する汎用ユーティリティ
  */
 
-import type { Shop, ProductShopLink, FallbackShop } from '@/lib/types'
+import type { Shop, ProductShopLink, FallbackShop, BasePriceLog } from '@/lib/types'
 
 /**
  * shops テーブルからフォールバック用ショップリンクを生成
@@ -70,6 +70,22 @@ export function formatReleaseDate(date: string | null): string {
 export function formatPrice(price: number | null): string {
   if (price == null) return '-'
   return `¥${price.toLocaleString()}`
+}
+
+/** ショップ比較テーブル用: null を '-' に変換 */
+export function getSymbol(value: string | null): string {
+  if (!value) return '-'
+  return value
+}
+
+/** 3ショップ（イオシス・ゲオ・じゃんぱら）の最安値を取得 */
+export function getMinPrice(price: BasePriceLog | null): string {
+  if (!price) return '-'
+  const mins = [price.iosys_min, price.geo_min, price.janpara_min].filter(
+    (v): v is number => v != null && v > 0
+  )
+  if (mins.length === 0) return '-'
+  return formatPrice(Math.min(...mins))
 }
 
 /** 直近3ヶ月分のログを抽出（任意のPriceLog型に対応） */

@@ -17,35 +17,6 @@ export const GUIDE_PRICE_SLUGS = [
   '16e-se',
 ]
 
-// ---------- ショップ比較テーブル ----------
-export const GUIDE_SHOP_TABLE_KEYS = [
-  'iosys',
-  'apple',
-  'mmoba',
-  'carrier',
-  'nicosma',
-  'geo',
-  'recore',
-  'prodig',
-  'janpara',
-  'amazon',
-  'rakuten',
-  'yahoo',
-] as const
-
-export type GuideShopRow = {
-  shopKey: string
-  price: string
-  stock: string
-  support: string
-  extension: string
-  extensionLink?: string
-  block: string
-  photo: string
-  battery: string
-  postage: string
-}
-
 // ---------- スペック比較リンク ----------
 export const GUIDE_SPEC_LINKS = [
   { href: '/iphone/iphone-spec-table/', icon: 'fa-table-cells', title: '歴代iPhoneスペック比較表', desc: 'CPU、ディスプレイ、重量、端子など、歴代iPhoneの全スペックを網羅した一覧表。' },
@@ -129,3 +100,18 @@ export const GUIDE_MODEL_LINKS = {
     { slug: 'se2', name: 'iPhone SE 第2世代', meta: '2020年4月発売 / A13 Bionic' },
   ],
 }
+
+// ---------- ショップ比較カードセクション ----------
+import { buildVendorCards } from '@/lib/data/guide-shared'
+
+export const GUIDE_VENDOR_CARDS = buildVendorCards(
+  {
+    'イオシス': 'https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Fsmartphone%2Fiphone',
+    'にこスマ': 'https://px.a8.net/svt/ejp?a8mat=3NCKMH+63P0JM+4O7U+BW0YB&a8ejpredirect=https%3A%2F%2Fwww.nicosuma.com%2Fiphone',
+    'ゲオ': 'https://px.a8.net/svt/ejp?a8mat=3TB2U4+C4ESQQ+4J34+BW0YB&a8ejpredirect=https%3A%2F%2Fec.geo-online.co.jp%2Fshop%2Fc%2Fc1001%2F',
+    'リコレ': 'https://click.linksynergy.com/deeplink?id=N*L98MVOv3Q&mid=43860&murl=https%3A%2F%2Fused.sofmap.com%2Fr%2Fcategory%2Fiphone%2Fiphone_linklist',
+    'じゃんぱら': 'https://www.janpara.co.jp/',
+    'Amazon整備済み品': 'https://amzn.to/4ePUzhA',
+  },
+  '中古iPhoneを探す',
+)

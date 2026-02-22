@@ -11,6 +11,13 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   images: {
     formats: ['image/avif', 'image/webp'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'used-lab.jp',
+        pathname: '/wp-content/uploads/**',
+      },
+    ],
   },
   async headers() {
     return [

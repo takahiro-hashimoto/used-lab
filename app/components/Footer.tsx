@@ -3,19 +3,13 @@ import Link from 'next/link'
 export default function Footer() {
   return (
     <footer className="site-footer">
-      <div className="footer-wave" aria-hidden="true">
-        <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
-          <path d="M0,60 C360,120 1080,0 1440,60 L1440,120 L0,120 Z" fill="currentColor"/>
-        </svg>
-      </div>
-
       <div className="footer-main">
         <div className="footer-inner l-container">
           <div className="footer-brand">
             <Link href="/" className="m-logo">
               <span className="m-logo__text">ユーズドラボ</span>
             </Link>
-            <p className="footer-tagline">中古デバイスの「ちょうどいい」を見つけるメディア</p>
+            <p className="footer-tagline">中古Apple製品の「ちょうどいい」を見つけるメディア。豊富なデータで最適な商品がわかる。</p>
             <div className="footer-social">
               <a href="#" aria-label="X (Twitter)" rel="noopener noreferrer">
                 <i className="fa-brands fa-x-twitter" aria-hidden="true"></i>
@@ -33,10 +27,11 @@ export default function Footer() {
             <div className="footer-col">
               <h3 className="footer-heading">カテゴリ</h3>
               <ul>
-                <li><Link href="/iphone">iPhone</Link></li>
-                <li><Link href="/ipad">iPad</Link></li>
-                <li><Link href="/mac">Mac</Link></li>
-                <li><Link href="/apple-watch">Apple Watch</Link></li>
+                <li><Link href="/iphone">中古iPhone</Link></li>
+                <li><Link href="/ipad">中古iPad</Link></li>
+                <li><Link href="/macbook">中古Mac</Link></li>
+                <li><Link href="/watch">中古Apple Watch</Link></li>
+                <li><Link href="/airpods">中古AirPods</Link></li>
               </ul>
             </div>
             <div className="footer-col">
@@ -53,7 +48,9 @@ export default function Footer() {
               <ul>
                 <li><Link href="/about">ユーズドラボについて</Link></li>
                 <li><Link href="/contact">お問い合わせ</Link></li>
-                <li><Link href="/privacy">プライバシーポリシー</Link></li>
+                <li><Link href="/guidelines/">コンテンツ制作ポリシー</Link></li>
+                <li><Link href="/privacy-policy/">プライバシーポリシー</Link></li>
+                <li><Link href="/sitemap-page/">サイトマップ</Link></li>
               </ul>
             </div>
           </nav>
@@ -63,10 +60,6 @@ export default function Footer() {
       <div className="footer-bottom">
         <div className="footer-inner l-container">
           <p className="copyright">&copy; {new Date().getFullYear()} ユーズドラボ All Rights Reserved.</p>
-          <nav className="footer-bottom-nav" aria-label="法的情報">
-            <Link href="/privacy">プライバシーポリシー</Link>
-            <Link href="/terms">利用規約</Link>
-          </nav>
         </div>
       </div>
     </footer>

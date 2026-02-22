@@ -308,6 +308,49 @@ export interface AirPodsPriceLog {
   eearphone_max: number | null
 }
 
+// MVNO料金プラン
+export interface MvnoPlan {
+  id: number
+  provider_slug: string
+  plan_name: string
+  data_capacity_gb: number | null
+  is_unlimited: boolean
+  monthly_price: number
+  discounted_price: number | null
+  discount_conditions: string | null
+  call_included: string | null
+  note: string | null
+  is_recommended: boolean
+  display_order: number
+  created_at: string
+  updated_at: string
+}
+
+export interface MvnoProvider {
+  id: number
+  provider_name: string
+  provider_slug: string
+  official_url: string
+  certified_program_name: string | null
+  available_iphones: string | null
+  used_device_note: string | null
+  network_carriers: string | null
+  sim_types: string | null
+  min_monthly_fee: number | null
+  min_monthly_fee_note: string | null
+  warranty_days: number | null
+  battery_guarantee_percent: number | null
+  set_discount_available: boolean
+  set_discount_note: string | null
+  store_support: boolean
+  online_only: boolean
+  is_published: boolean
+  display_order: number
+  last_verified_at: string | null
+  created_at: string
+  updated_at: string
+}
+
 // IPhoneShop（後方互換用）
 export interface IPhoneShop {
   id: number

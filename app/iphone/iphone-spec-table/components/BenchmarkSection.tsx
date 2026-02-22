@@ -49,10 +49,10 @@ export default function BenchmarkSection({ models }: Props) {
           歴代iPhoneのチップ性能・処理速度を比較（ベンチマークスコア）
         </h2>
         <p className="m-section-desc">
-          歴代iPhoneのチップ性能の違いを可視化するために2種類のベンチマークスコア（<a href="#geekbench">GeekBench</a>、<a href="#antutu">Antutu</a>）を用意しました。
+          チップ性能の違いを可視化するために2種類のベンチマークスコア一覧表を用意。
         </p>
         <p className="m-section-desc">
-          iPhoneを買い替えたらどれくらい処理速度が上がるのか確認するのにご活用ください。
+          iPhoneの買い替えでどれくらい処理速度が上がるのかご確認ください。
         </p>
 
         {/* Geekbench */}

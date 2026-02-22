@@ -42,11 +42,11 @@ const CSV_TO_SUPABASE_ID: Record<number, number> = {
 }
 
 // CSVの日付(MM/dd)を TIMESTAMPTZ に変換
-// 12月 → 2024年、1月〜 → 2025年
+// 12月 → 2025年、1月〜 → 2026年
 function parseDate(mmdd: string): string {
   const [mm, dd] = mmdd.split('/')
   const month = parseInt(mm, 10)
-  const year = month >= 12 ? 2024 : 2025
+  const year = month >= 12 ? 2025 : 2026
   return `${year}-${mm.padStart(2, '0')}-${dd.padStart(2, '0')}T00:00:00+09:00`
 }
 

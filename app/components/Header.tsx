@@ -7,8 +7,8 @@ import { useState } from 'react'
 const NAV_ITEMS = [
   { href: '/iphone', label: '中古iPhone' },
   { href: '/ipad', label: '中古iPad' },
-  { href: '/apple-watch', label: '中古Apple Watch' },
-  { href: '/mac', label: '中古MacBook' },
+  { href: '/watch', label: '中古Apple Watch' },
+  { href: '/macbook', label: '中古MacBook' },
   { href: '/airpods', label: '中古AirPods' },
   { href: '/contact', label: 'お問い合わせ' },
   { href: '/about', label: '運営者情報' },

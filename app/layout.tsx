@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import SmoothScroll from "./components/SmoothScroll";
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -58,6 +59,7 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(searchActionJsonLd) }}
         />
+        <SmoothScroll />
         <Header />
         {children}
         <Footer />

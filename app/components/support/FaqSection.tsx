@@ -7,11 +7,12 @@ type Props = {
   title: string
   description: string
   items: FaqItem[]
+  bgSubtle?: boolean
 }
 
 export type { FaqItem }
 
-export default function FaqSection({ title, description, items }: Props) {
+export default function FaqSection({ title, description, items, bgSubtle }: Props) {
   const faqJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
@@ -26,7 +27,7 @@ export default function FaqSection({ title, description, items }: Props) {
   }
 
   return (
-    <section className="l-section" id="faq" aria-labelledby="heading-faq">
+    <section className={`l-section${bgSubtle ? ' l-section--bg-subtle' : ''}`} id="faq" aria-labelledby="heading-faq">
       <div className="l-container">
         <script
           type="application/ld+json"

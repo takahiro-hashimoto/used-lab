@@ -188,7 +188,7 @@ export default async function IPhoneShopPage() {
         {/* 目次 */}
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
-            <h2 className="m-section-heading m-section-heading--md">タップできる目次</h2>
+            <p className="m-section-heading m-section-heading--md">タップできる目次</p>
             <ol className="l-grid l-grid--3col toc-list">
               <li>
                 <a href="#shops" className="toc-item">
@@ -236,7 +236,7 @@ export default async function IPhoneShopPage() {
           <FaqSection />
         </div>
 
-        <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
+        <ShareBox url={PAGE_URL} text={PAGE_TITLE} bgSubtle />
       </article>
     </main>
   )

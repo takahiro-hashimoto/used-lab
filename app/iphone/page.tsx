@@ -2,19 +2,18 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import {
   getAllIPhoneModels,
-  getShops,
   getLatestPriceLog,
   getAllProductShopLinksByType,
 } from '@/lib/queries'
-import type { IPhoneModel, IPhonePriceLog, Shop } from '@/lib/types'
-import { formatPrice } from '@/lib/utils/shared-helpers'
+import type { IPhoneModel, IPhonePriceLog } from '@/lib/types'
+import { formatPrice, getMinPrice } from '@/lib/utils/shared-helpers'
 import {
   GUIDE_DATE_LABEL,
   GUIDE_PRICE_SLUGS,
-  GUIDE_SHOP_TABLE_KEYS,
   GUIDE_SPEC_LINKS,
   GUIDE_FAQ_ITEMS,
   GUIDE_MODEL_LINKS,
+  GUIDE_VENDOR_CARDS,
 } from '@/lib/data/iphone-guide'
 import {
   RECOMMEND_SLUGS,
@@ -23,6 +22,8 @@ import {
 } from '@/lib/data/iphone-recommend'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import ShareBox from '@/app/components/ShareBox'
+import VendorCardGrid from '@/app/components/VendorCardGrid'
+import GuideModelLinks from '@/app/components/GuideModelLinks'
 
 const PAGE_TITLE = `中古iPhone完全購入ガイド | 選び方・相場・おすすめモデルまとめ【${GUIDE_DATE_LABEL}版】`
 const PAGE_DESCRIPTION = `${GUIDE_DATE_LABEL}版・中古iPhoneの完全購入ガイド。選び方のポイント、モデル別の相場、おすすめ機種をまとめて解説。失敗しない中古iPhone選びをサポートします。`
@@ -44,16 +45,9 @@ export const metadata: Metadata = {
   },
 }
 
-/** ショップ比較テーブル用のシンボルマッピング */
-function getSymbol(value: string | null): string {
-  if (!value) return '-'
-  return value
-}
-
 export default async function IPhoneGuidePage() {
-  const [allModels, shops, allShopLinks] = await Promise.all([
+  const [allModels, allShopLinks] = await Promise.all([
     getAllIPhoneModels(),
-    getShops(),
     getAllProductShopLinksByType('iphone'),
   ])
 
@@ -74,11 +68,6 @@ export default async function IPhoneGuidePage() {
   const recommendPrices = await Promise.all(
     recommendModels.map((m) => getLatestPriceLog(m.id))
   )
-
-  // ショップ比較テーブル用
-  const shopRows = GUIDE_SHOP_TABLE_KEYS
-    .map((key) => shops.find((s) => s.shop_key === key))
-    .filter((s): s is Shop => s != null)
 
   const today = new Date()
   const dateStr = today.toISOString().split('T')[0]
@@ -114,16 +103,6 @@ export default async function IPhoneGuidePage() {
       name: item.question,
       acceptedAnswer: { '@type': 'Answer', text: item.answer },
     })),
-  }
-
-  /** モデルの最小価格を取得 */
-  function getMinPrice(price: IPhonePriceLog | null): string {
-    if (!price) return '-'
-    const mins = [price.iosys_min, price.geo_min, price.janpara_min].filter(
-      (v): v is number => v != null && v > 0
-    )
-    if (mins.length === 0) return '-'
-    return formatPrice(Math.min(...mins))
   }
 
   /** モデルのストレージラベル */
@@ -440,47 +419,7 @@ export default async function IPhoneGuidePage() {
               <p className="m-section-desc">中古iPhone販売店の比較情報。保証内容、価格、在庫の豊富さなど、</p>
               <p className="m-section-desc">各ショップの特徴を一覧表で整理しました。</p>
 
-              <div className="m-card m-card--shadow m-table-card">
-                <div className="m-table-scroll">
-                  <table className="m-table">
-                    <caption className="visually-hidden">中古iPhoneショップ比較一覧</caption>
-                    <thead>
-                      <tr>
-                        <th scope="col">ショップ名</th>
-                        <th scope="col">価格の安さ</th>
-                        <th scope="col">在庫の豊富さ</th>
-                        <th scope="col">保証期間</th>
-                        <th scope="col">独自保証</th>
-                        <th scope="col">赤ロム保証</th>
-                        <th scope="col">実物写真</th>
-                        <th scope="col">バッテリー<br />最大容量</th>
-                        <th scope="col">配送料</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {shopRows.map((shop) => (
-                        <tr key={shop.id}>
-                          <th scope="row">{shop.shop}</th>
-                          <td>{getSymbol(shop.price)}</td>
-                          <td>{getSymbol(shop.stock)}</td>
-                          <td>{getSymbol(shop.support)}</td>
-                          <td>
-                            {shop.extension_link ? (
-                              <Link href={shop.extension_link}>{getSymbol(shop.extension_name || shop.extension)}</Link>
-                            ) : (
-                              getSymbol(shop.extension)
-                            )}
-                          </td>
-                          <td>{getSymbol(shop.block)}</td>
-                          <td>{getSymbol(shop.photo)}</td>
-                          <td>{getSymbol(shop.battery)}</td>
-                          <td>{getSymbol(shop.postage)}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
+              <VendorCardGrid cards={GUIDE_VENDOR_CARDS} />
 
               <p className="guide-section-note guide-section-note--mt">各ショップの詳細やサービス内容の違いは以下の記事で解説しています。</p>
               <div className="guide-section-cta">
@@ -492,8 +431,40 @@ export default async function IPhoneGuidePage() {
             </div>
           </section>
 
+          {/* ========== 格安SIM セット購入バナー ========== */}
+          <section className="l-section" id="mvno-banner" aria-labelledby="heading-mvno-banner">
+            <div className="l-container">
+              <h2 className="m-section-heading m-section-heading--lg" id="heading-mvno-banner">格安SIMとセットでお得に購入</h2>
+              <p className="m-section-desc">
+                中古iPhoneと通信回線をまとめて契約できる格安SIM業者を徹底比較。<br />
+                端末選びから回線契約まで一度に済ませたい方におすすめです。
+              </p>
+
+              <Link href="/iphone/mvno/" className="special-banner-card">
+                <img
+                  src="/images/content/sim.webp"
+                  alt="中古iPhoneの購入と通信契約がセットでできる格安SIM業者まとめ"
+                  className="special-banner-card__image"
+                  width={200}
+                  height={150}
+                  loading="lazy"
+                />
+                <div className="special-banner-card__body">
+                  <p className="special-banner-card__subtitle">回線契約と端末購入を一度に！</p>
+                  <h3 className="special-banner-card__title">中古iPhoneの購入と通信契約がセットでできる格安SIM業者まとめ</h3>
+                  <p className="special-banner-card__desc">
+                    楽天モバイル・UQモバイル・ワイモバイルなど、中古iPhoneと通信回線をセットで契約できる事業者を比較。あなたに最適な業者が見つかる診断機能付き。
+                  </p>
+                </div>
+                <span className="special-banner-card__cta">
+                  セット対応業者を見る <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                </span>
+              </Link>
+            </div>
+          </section>
+
           {/* ========== スペック比較ガイド ========== */}
-          <section className="l-section" id="spec-compare" aria-labelledby="heading-spec-compare">
+          <section className="l-section l-section--bg-subtle" id="spec-compare" aria-labelledby="heading-spec-compare">
             <div className="l-container">
               <h2 className="m-section-heading m-section-heading--lg" id="heading-spec-compare">中古iPhoneのデータ・スペック比較ガイド</h2>
               <p className="m-section-desc">カメラ性能、バッテリー寿命、サポート期間など、機種選びに役立つ詳細なスペック比較記事をまとめました。</p>
@@ -514,45 +485,21 @@ export default async function IPhoneGuidePage() {
               </div>
 
               {/* 歴代iPhone 個別記事リンク集 */}
-              <div className="guide-model-links">
-                <h3 className="guide-model-links__heading">歴代iPhone 個別記事別リンク集</h3>
-                <p className="guide-model-links__desc">各モデルの詳細スペック、中古相場、購入時の注意点を個別にまとめています。</p>
-
-                <h4 className="guide-model-links__category">Proモデル</h4>
-                <div className="l-grid l-grid--3col l-grid--gap-lg guide-model-grid">
-                  {GUIDE_MODEL_LINKS.pro.map((item) => (
-                    <Link key={item.slug} href={`/iphone/${item.slug}/`} className="guide-model-item m-card">
-                      <span className="guide-model-item__name">{item.name}</span>
-                      <span className="guide-model-item__meta">{item.meta}</span>
-                    </Link>
-                  ))}
-                </div>
-
-                <h4 className="guide-model-links__category">無印モデル</h4>
-                <div className="l-grid l-grid--3col l-grid--gap-lg guide-model-grid">
-                  {GUIDE_MODEL_LINKS.standard.map((item) => (
-                    <Link key={item.slug} href={`/iphone/${item.slug}/`} className="guide-model-item m-card">
-                      <span className="guide-model-item__name">{item.name}</span>
-                      <span className="guide-model-item__meta">{item.meta}</span>
-                    </Link>
-                  ))}
-                </div>
-
-                <h4 className="guide-model-links__category">その他（SEなど）</h4>
-                <div className="l-grid l-grid--3col l-grid--gap-lg guide-model-grid">
-                  {GUIDE_MODEL_LINKS.other.map((item) => (
-                    <Link key={item.slug} href={`/iphone/${item.slug}/`} className="guide-model-item m-card">
-                      <span className="guide-model-item__name">{item.name}</span>
-                      <span className="guide-model-item__meta">{item.meta}</span>
-                    </Link>
-                  ))}
-                </div>
-              </div>
+              <GuideModelLinks
+                basePath="/iphone"
+                heading="歴代iPhone 個別記事別リンク集"
+                description="各モデルの詳細スペック、中古相場、購入時の注意点を個別にまとめています。"
+                categories={[
+                  { label: 'Proモデル', items: GUIDE_MODEL_LINKS.pro },
+                  { label: '無印モデル', items: GUIDE_MODEL_LINKS.standard },
+                  { label: 'その他（SEなど）', items: GUIDE_MODEL_LINKS.other },
+                ]}
+              />
             </div>
           </section>
 
           {/* ========== よくある質問 ========== */}
-          <section className="l-section l-section--bg-subtle" id="faq" aria-labelledby="heading-faq">
+          <section className="l-section" id="faq" aria-labelledby="heading-faq">
             <div className="l-container">
               <h2 className="m-section-heading m-section-heading--lg" id="heading-faq">中古iPhoneに関するよくある質問</h2>
               <p className="m-section-desc">中古iPhoneの購入を検討している方からよく寄せられる質問をまとめました。</p>

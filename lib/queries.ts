@@ -3,6 +3,8 @@ import type {
   IPhoneModel, IPadModel, WatchModel, MacBookModel, AirPodsModel,
   Shop, ProductShopLink,
   IPhonePriceLog, IPadPriceLog, WatchPriceLog, MacBookPriceLog, AirPodsPriceLog,
+  MvnoPlan,
+  MvnoProvider,
 } from './types'
 
 // ============================================================
@@ -127,6 +129,60 @@ export const getAllAirPodsModels = airPodsModels.getAll
 export const getAllAirPodsSlugs = airPodsModels.getAllSlugs
 export const getAirPodsPriceLogsByModelId = airPodsPriceLogs.getByModelId
 export const getLatestAirPodsPriceLog = airPodsPriceLogs.getLatest
+
+// ============================================================
+// 共通クエリ（製品横断）
+// ============================================================
+
+// ============================================================
+// MVNO プラン
+// ============================================================
+
+/** 全プラン取得 */
+export async function getMvnoPlans(): Promise<MvnoPlan[]> {
+  const { data, error } = await supabase
+    .from('mvno_plans')
+    .select('*')
+    .order('provider_slug', { ascending: true })
+    .order('display_order', { ascending: true })
+  if (error || !data) return []
+  return data as MvnoPlan[]
+}
+
+/** 事業者スラッグでプラン取得 */
+export async function getMvnoPlansByProvider(providerSlug: string): Promise<MvnoPlan[]> {
+  const { data, error } = await supabase
+    .from('mvno_plans')
+    .select('*')
+    .eq('provider_slug', providerSlug)
+    .order('display_order', { ascending: true })
+  if (error || !data) return []
+  return data as MvnoPlan[]
+}
+
+/** provider_slug の一覧を取得（重複なし） */
+export async function getMvnoProviderSlugs(): Promise<string[]> {
+  const { data, error } = await supabase
+    .from('mvno_plans')
+    .select('provider_slug')
+  if (error || !data) return []
+  return [...new Set(data.map((d) => d.provider_slug))]
+}
+
+// ============================================================
+// MVNO 事業者（mvno_providers テーブル）
+// ============================================================
+
+/** 公開中の事業者を表示順で取得 */
+export async function getMvnoProviders(): Promise<MvnoProvider[]> {
+  const { data, error } = await supabase
+    .from('mvno_providers')
+    .select('*')
+    .eq('is_published', true)
+    .order('display_order', { ascending: true })
+  if (error || !data) return []
+  return data as MvnoProvider[]
+}
 
 // ============================================================
 // 共通クエリ（製品横断）
