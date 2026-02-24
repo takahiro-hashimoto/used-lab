@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import {
   getAllIPhoneModels,
@@ -87,12 +88,13 @@ export default async function HomePage() {
           </div>
           <div className="hero-visual">
             <figure className="hero-media">
-              <img
+              <Image
                 src="/images/content/logo-used-lab.webp"
                 alt="ユーズドラボ"
                 className="hero-media__img"
                 width={360}
                 height={360}
+                priority
               />
             </figure>
           </div>
@@ -184,7 +186,7 @@ export default async function HomePage() {
             {RECENT_ARTICLES.map((article) => (
               <Link key={article.href} href={article.href} className="top-new-article m-card m-card--shadow">
                 <figure className="top-new-article__thumb">
-                  <img src={article.image} alt="" width={300} height={170} loading="lazy" />
+                  <Image src={article.image} alt="" width={300} height={170} loading="lazy" />
                 </figure>
                 <div className="top-new-article__body">
                   <span className="top-new-article__meta">
@@ -209,7 +211,7 @@ export default async function HomePage() {
           <div className="about-profile m-card m-card--shadow m-card--padded">
             <div className="about-profile-inner">
               <div className="about-profile-avatar">
-                <img
+                <Image
                   src="/images/content/my-icon.webp"
                   alt="タカヒロ"
                   className="about-profile-img"

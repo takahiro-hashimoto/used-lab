@@ -1170,11 +1170,9 @@ ul {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: url(/images/content/hero-bg.png);
-  background-repeat: no-repeat;
-  background-position: 50%;
-  background-size: initial;
-  opacity: 0.05;
+  background-image: radial-gradient(circle, currentColor 1px, transparent 1px);
+  background-size: 24px 24px;
+  opacity: 0.04;
   pointer-events: none;
 }
 

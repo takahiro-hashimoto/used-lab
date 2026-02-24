@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function ComparisonBasics() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-xl)', marginTop: 'var(--space-2xl)' }}>
@@ -14,11 +16,11 @@ export default function ComparisonBasics() {
         </div>
         <div className="popular-card-img-grid">
           <figure>
-            <img src="/images/content/use-macbook.jpg" alt="MacBookのファイル管理方法" loading="lazy" />
+            <Image src="/images/content/use-macbook.jpg" alt="MacBookのファイル管理方法" width={400} height={300} loading="lazy" />
             <figcaption>MacBookのファイル管理方法</figcaption>
           </figure>
           <figure>
-            <img src="/images/content/ipad-pro-use.jpg" alt="iPadのファイル管理方法" loading="lazy" />
+            <Image src="/images/content/ipad-pro-use.jpg" alt="iPadのファイル管理方法" width={400} height={300} loading="lazy" />
             <figcaption>iPadのファイル管理方法</figcaption>
           </figure>
         </div>
@@ -37,11 +39,11 @@ export default function ComparisonBasics() {
         </div>
         <div className="popular-card-img-grid">
           <figure>
-            <img src="/images/content/use-macbook.jpg" alt="MacBookで複数アプリを立ち上げ・行き来する様子" loading="lazy" />
+            <Image src="/images/content/use-macbook.jpg" alt="MacBookで複数アプリを立ち上げ・行き来する様子" width={400} height={300} loading="lazy" />
             <figcaption>MacBookで複数アプリを立ち上げ・行き来する様子</figcaption>
           </figure>
           <figure>
-            <img src="/images/content/ipad-split-view.jpg" alt="iPadのSplit Viewで複数のアプリを同時に立ち上げる様子" loading="lazy" />
+            <Image src="/images/content/ipad-split-view.jpg" alt="iPadのSplit Viewで複数のアプリを同時に立ち上げる様子" width={400} height={300} loading="lazy" />
             <figcaption>iPadのSplit Viewで複数のアプリを同時に立ち上げる様子</figcaption>
           </figure>
         </div>
@@ -71,22 +73,22 @@ export default function ComparisonBasics() {
                 <tr>
                   <th>イメージ</th>
                   <td>
-                    <img src="/images/macbook/mba-13-2020.jpg" alt="MacBook Air 13.3インチ" width={80} height={80} style={{ objectFit: 'contain' }} />
+                    <Image src="/images/macbook/mba-13-2020.jpg" alt="MacBook Air 13.3インチ" width={80} height={80} style={{ objectFit: 'contain' }} />
                   </td>
                   <td>
-                    <img src="/images/macbook/mba-13-2024.jpg" alt="MacBook Air 13.6インチ" width={80} height={80} style={{ objectFit: 'contain' }} />
+                    <Image src="/images/macbook/mba-13-2024.jpg" alt="MacBook Air 13.6インチ" width={80} height={80} style={{ objectFit: 'contain' }} />
                   </td>
                   <td>
-                    <img src="/images/macbook/mba-15-2024.jpg" alt="MacBook Air 15.3インチ" width={80} height={80} style={{ objectFit: 'contain' }} />
+                    <Image src="/images/macbook/mba-15-2024.jpg" alt="MacBook Air 15.3インチ" width={80} height={80} style={{ objectFit: 'contain' }} />
                   </td>
                   <td>
-                    <img src="/images/macbook/mbp-13-2022.jpg" alt="MacBook Pro 13.6インチ" width={80} height={80} style={{ objectFit: 'contain' }} />
+                    <Image src="/images/macbook/mbp-13-2022.jpg" alt="MacBook Pro 13.6インチ" width={80} height={80} style={{ objectFit: 'contain' }} />
                   </td>
                   <td>
-                    <img src="/images/macbook/mbp-14-2024-nov.jpg" alt="MacBook Pro 14.2インチ" width={80} height={80} style={{ objectFit: 'contain' }} />
+                    <Image src="/images/macbook/mbp-14-2024-nov.jpg" alt="MacBook Pro 14.2インチ" width={80} height={80} style={{ objectFit: 'contain' }} />
                   </td>
                   <td>
-                    <img src="/images/macbook/mbp-16-2024-nov.jpg" alt="MacBook Pro 16.2インチ" width={80} height={80} style={{ objectFit: 'contain' }} />
+                    <Image src="/images/macbook/mbp-16-2024-nov.jpg" alt="MacBook Pro 16.2インチ" width={80} height={80} style={{ objectFit: 'contain' }} />
                   </td>
                 </tr>
                 <tr>
@@ -137,22 +139,22 @@ export default function ComparisonBasics() {
                 <tr>
                   <th>イメージ</th>
                   <td>
-                    <img src="/images/ipad/ipad-pro-12-6.jpg" alt="iPad Pro 12.9インチ" width={80} height={80} style={{ objectFit: 'contain' }} />
+                    <Image src="/images/ipad/ipad-pro-12-6.jpg" alt="iPad Pro 12.9インチ" width={80} height={80} style={{ objectFit: 'contain' }} />
                   </td>
                   <td>
-                    <img src="/images/ipad/ipad-pro-11-6.jpg" alt="iPad Pro 11インチ" width={80} height={80} style={{ objectFit: 'contain' }} />
+                    <Image src="/images/ipad/ipad-pro-11-6.jpg" alt="iPad Pro 11インチ" width={80} height={80} style={{ objectFit: 'contain' }} />
                   </td>
                   <td>
-                    <img src="/images/ipad/ipad-air-7-11.jpg" alt="iPad Air" width={80} height={80} style={{ objectFit: 'contain' }} />
+                    <Image src="/images/ipad/ipad-air-7-11.jpg" alt="iPad Air" width={80} height={80} style={{ objectFit: 'contain' }} />
                   </td>
                   <td>
-                    <img src="/images/ipad/ipad-mini-7.jpg" alt="iPad mini" width={80} height={80} style={{ objectFit: 'contain' }} />
+                    <Image src="/images/ipad/ipad-mini-7.jpg" alt="iPad mini" width={80} height={80} style={{ objectFit: 'contain' }} />
                   </td>
                   <td>
-                    <img src="/images/ipad/ipad-10.jpg" alt="無印 iPad 10.9インチ" width={80} height={80} style={{ objectFit: 'contain' }} />
+                    <Image src="/images/ipad/ipad-10.jpg" alt="無印 iPad 10.9インチ" width={80} height={80} style={{ objectFit: 'contain' }} />
                   </td>
                   <td>
-                    <img src="/images/ipad/ipad-9.jpg" alt="無印 iPad 10.2インチ" width={80} height={80} style={{ objectFit: 'contain' }} />
+                    <Image src="/images/ipad/ipad-9.jpg" alt="無印 iPad 10.2インチ" width={80} height={80} style={{ objectFit: 'contain' }} />
                   </td>
                 </tr>
                 <tr>
