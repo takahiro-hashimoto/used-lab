@@ -23,6 +23,10 @@ export const GUIDE_SPEC_LINKS = [
   { href: '/watch/used-watch-support/', icon: 'fa-shield-halved', title: 'watchOSサポート期間一覧表', desc: '各モデルのサポート終了予測を解説。「いつまで使えるか」の目安がわかります。' },
   { href: '/watch/watch-price-info/', icon: 'fa-chart-line', title: 'Apple Watch中古相場・価格推移グラフ', desc: 'イオシス・ゲオ・じゃんぱらの価格推移を毎日更新。値下がり傾向がひと目でわかります。' },
   { href: '/watch/used-watch-attention/', icon: 'fa-triangle-exclamation', title: '中古Apple Watchの注意点と選び方', desc: '購入前に確認すべきポイントや失敗しないためのチェックリストをまとめています。' },
+  { href: '/watch/how-to-use-apple-watch/', icon: 'fa-list-check', title: 'Apple Watchのできること25選', desc: '基本機能・健康管理・決済・Apple製品連携など、便利な機能や使い方を初心者向けに解説。' },
+  { href: '/watch/gps-cellular-compare/', icon: 'fa-satellite-dish', title: 'GPSモデルとセルラーモデルの違い', desc: '単体でできること・ランニングコスト・素材の違いなど5つの観点で比較し、どちらを選ぶべきか解説。' },
+  { href: '/watch/apple-watch-always-lit/', icon: 'fa-sun', title: '常時点灯ディスプレイは必要？', desc: '常時表示のメリット・デメリット、バッテリーへの影響、対応モデル一覧をまとめています。' },
+  { href: '/watch/apple-watch-buy/', icon: 'fa-tags', title: 'Apple Watchを安く買うには？購入先7つを比較', desc: 'Apple認定整備済製品・中古ショップ・ECモール・家電量販店など7つの購入先を価格・保証で比較。' },
 ] as const
 
 // ---------- FAQ ----------

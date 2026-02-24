@@ -1,4 +1,4 @@
-import type { IPadModel, IPadPriceLog } from '../types'
+import type { IPadModel, IPadPriceLog, IPadAccessory, IPadAccessoryCompatibility } from '../types'
 import {
   getReleaseYear,
   getReleaseMonth,
@@ -55,6 +55,87 @@ export function calculatePriceRange(log: IPadPriceLog | null): {
   ])
 }
 
+// --- アクセサリヘルパー ---
+
+/** Pencil の短縮ラベルを取得 */
+function getPencilShortLabel(name: string): string {
+  if (name.includes('第1世代')) return '第1世代'
+  if (name.includes('第2世代')) return '第2世代'
+  if (name.includes('USB-C')) return 'USB-C'
+  if (name.includes('Pro')) return 'Pro'
+  return name
+}
+
+/** アクセサリ配列から pencil テキストを復元 */
+export function getPencilTextFromAccessories(accessories: IPadAccessory[]): string | null {
+  const pencils = accessories
+    .filter((a) => a.type === 'pencil')
+    .sort((a, b) => a.display_order - b.display_order)
+  if (pencils.length === 0) return null
+  return pencils.map((p) => getPencilShortLabel(p.name)).join('/')
+}
+
+/** アクセサリ配列から keyboard テキストを復元 */
+export function getKeyboardTextFromAccessories(accessories: IPadAccessory[]): string | null {
+  const keyboards = accessories
+    .filter((a) => a.type === 'keyboard')
+    .sort((a, b) => a.display_order - b.display_order)
+  if (keyboards.length === 0) return null
+  return keyboards.map((k) => k.name).join(' / ')
+}
+
+/** アクセサリ配列に特定の Pencil タイプが含まれるか判定 */
+export function hasAccessoryPencilType(
+  accessories: IPadAccessory[],
+  type: 'gen1' | 'gen2' | 'usbc' | 'pro',
+): boolean {
+  return accessories.some((a) => {
+    if (a.type !== 'pencil') return false
+    const name = a.name.toLowerCase()
+    switch (type) {
+      case 'gen1': return name.includes('第1世代')
+      case 'gen2': return name.includes('第2世代')
+      case 'usbc': return name.includes('usb-c')
+      case 'pro': return name.includes('pro')
+      default: return false
+    }
+  })
+}
+
+/** アクセサリ配列から Pencil の評価マークを算出 */
+export function getPencilMarkFromAccessories(accessories: IPadAccessory[]): '◎' | '◯' | '△' | '×' {
+  const pencils = accessories.filter((a) => a.type === 'pencil')
+  if (pencils.length === 0) return '×'
+  if (hasAccessoryPencilType(accessories, 'pro') || hasAccessoryPencilType(accessories, 'gen2')) return '◎'
+  if (hasAccessoryPencilType(accessories, 'usbc')) return '◯'
+  if (hasAccessoryPencilType(accessories, 'gen1')) return '△'
+  return '◯'
+}
+
+/** 全対応関係から特定 iPad のアクセサリを取得するルックアップを構築 */
+export function buildAccessoryLookup(
+  allAccessories: IPadAccessory[],
+  allCompatibility: IPadAccessoryCompatibility[],
+): Map<number, IPadAccessory[]> {
+  const accessoryMap = new Map(allAccessories.map((a) => [a.id, a]))
+  const lookup = new Map<number, IPadAccessory[]>()
+
+  for (const c of allCompatibility) {
+    const accessory = accessoryMap.get(c.accessory_id)
+    if (!accessory) continue
+    const list = lookup.get(c.ipad_model_id) || []
+    list.push(accessory)
+    lookup.set(c.ipad_model_id, list)
+  }
+
+  // display_order でソート
+  for (const [key, list] of lookup) {
+    lookup.set(key, list.sort((a, b) => a.display_order - b.display_order))
+  }
+
+  return lookup
+}
+
 // --- 購入判定ロジック（iPad版：PHP版から移植） ---
 
 /** 最新iPad基準値（iPad Pro 13 M5） */
@@ -86,7 +167,7 @@ export interface SuitabilityItem {
 /**
  * Apple Pencil互換性判定
  */
-function getPencilMark(pencil: string | null): '◎' | '◯' | '△' | '×' {
+function getPencilMark(pencil: string | null | undefined): '◎' | '◯' | '△' | '×' {
   if (!pencil || pencil === '×') return '×'
   const lower = pencil.toLowerCase()
   if (lower.includes('pro') || lower.includes('第2世代')) return '◎'
@@ -136,7 +217,7 @@ export function getVerdict(
     verdictMain = '今が買い時！'
     statusLabel = 'コスパ黄金期'
     rank = 'best'
-  } else if (remainingYears >= 1.5) {
+  } else if (remainingYears >= 2) {
     verdictMain = '悪くない選択'
     statusLabel = '実力派ミドル'
     rank = 'good'

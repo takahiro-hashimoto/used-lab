@@ -35,15 +35,6 @@ export default function Footer() {
               </ul>
             </div>
             <div className="footer-col">
-              <h3 className="footer-heading">人気記事</h3>
-              <ul>
-                <li><Link href="/iphone/se3">iPhone SE 中古ガイド</Link></li>
-                <li><Link href="/iphone/15pro">iPhone 15 Pro</Link></li>
-                <li><Link href="/iphone/14">iPhone 14</Link></li>
-                <li><Link href="/iphone/13">iPhone 13</Link></li>
-              </ul>
-            </div>
-            <div className="footer-col">
               <h3 className="footer-heading">サイト情報</h3>
               <ul>
                 <li><Link href="/about">ユーズドラボについて</Link></li>

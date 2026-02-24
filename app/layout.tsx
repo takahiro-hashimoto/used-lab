@@ -1,8 +1,20 @@
 import type { Metadata, Viewport } from "next";
+import { Inter, Noto_Sans_JP } from "next/font/google";
 import "./globals.css";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import SmoothScroll from "./components/SmoothScroll";
+
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+  variable: "--font-inter",
+});
+
+const notoSansJP = Noto_Sans_JP({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+  variable: "--font-noto-sans-jp",
+});
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -27,42 +39,23 @@ export const metadata: Metadata = {
   },
 };
 
-const organizationJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'Organization',
-  name: 'ユーズドラボ',
-  url: 'https://used-lab.com',
-  logo: 'https://used-lab.com/images/logo.png',
-  description: '中古Apple製品の価格比較・スペック情報サイト',
-}
-
-const searchActionJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'WebSite',
-  name: 'ユーズドラボ',
-  url: 'https://used-lab.com',
-}
-
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ja">
+    <html lang="ja" className={`${inter.variable} ${notoSansJP.variable}`}>
+      <head>
+        <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossOrigin="anonymous" />
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+          crossOrigin="anonymous"
+        />
+      </head>
       <body>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(searchActionJsonLd) }}
-        />
-        <SmoothScroll />
-        <Header />
         {children}
-        <Footer />
       </body>
     </html>
   );

@@ -119,7 +119,7 @@ export function getVerdict(
     verdictMain = '今が買い時！'
     statusLabel = 'コスパ黄金期'
     rank = 'best'
-  } else if (remainingYears >= 1.5) {
+  } else if (remainingYears >= 2) {
     verdictMain = '悪くない選択'
     statusLabel = '実力派ミドル'
     rank = 'good'

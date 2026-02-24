@@ -19,7 +19,7 @@ export default function BudgetGrid<K extends string>({
         <button
           key={opt.key}
           type="button"
-          className={`ifd-budget-card${selected === opt.key ? ' is-active' : ''}`}
+          className={`ifd-budget-card m-selectable-card m-selectable-card--vertical${selected === opt.key ? ' is-active' : ''}`}
           onClick={() => onSelect(opt.key)}
           aria-pressed={selected === opt.key}
         >

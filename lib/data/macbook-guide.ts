@@ -13,6 +13,9 @@ export const GUIDE_SPEC_LINKS = [
   { href: '/macbook/used-macbook-support/', icon: 'fa-shield-halved', title: 'macOSサポート期間一覧表', desc: '各モデルのサポート終了予測を解説。「いつまで使えるか」の目安がわかります。' },
   { href: '/macbook/used-macbook-attention/', icon: 'fa-triangle-exclamation', title: '中古MacBookの注意点と選び方', desc: '購入前に確認すべきポイントや失敗しないためのチェックリストをまとめています。' },
   { href: '/macbook/macbook-shop/', icon: 'fa-store', title: '中古MacBookを安心して購入できるECサイト', desc: '各ショップの保証内容・価格帯・特徴を比較。安心して購入できるお店を紹介。' },
+  { href: '/macbook/ipad-macbook-compare/', icon: 'fa-laptop', title: 'MacBookとiPadどっちを買う？', desc: '作業効率・携帯性・価格・用途別に両者の違いをわかりやすく比較。あなたにぴったりな1台が見つかります。' },
+  { href: '/macbook/windows-mac-compare/', icon: 'fa-desktop', title: 'MacとWindowsどっちがいい？', desc: '操作性・対応ソフト・コスト・用途別のおすすめポイントを初心者向けにやさしく解説。' },
+  { href: '/macbook/macbook-buy/', icon: 'fa-tags', title: 'MacBookを安く買うには？購入先7つを比較', desc: 'Apple認定整備済製品・中古ショップ・ECモール・家電量販店など7つの購入先を価格・保証で比較。' },
 ] as const
 
 // ---------- FAQ ----------

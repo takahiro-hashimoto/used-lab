@@ -36,8 +36,8 @@ export default function InsuranceSection({
                 </a>
               </figure>
             </div>
-            <div className="caution-check-card__text">
-              <ul className="insurance-features">
+            <div className="caution-check-card__text m-rich-text">
+              <ul className="insurance-features m-check-list">
                 <li>
                   <i className="fa-solid fa-check" aria-hidden="true"></i> 月額700円で最大3台まで補償
                 </li>

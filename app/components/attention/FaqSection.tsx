@@ -18,7 +18,7 @@ export default function FaqSection({ productName, faqItems }: Props) {
           {faqItems.map((item, i) => (
             <div key={i} className="m-card faq-item">
               <h3 className="faq-question">{item.question}</h3>
-              <div className="faq-answer">{item.answer}</div>
+              <div className="faq-answer m-rich-text m-rich-text--muted">{item.answer}</div>
             </div>
           ))}
         </div>

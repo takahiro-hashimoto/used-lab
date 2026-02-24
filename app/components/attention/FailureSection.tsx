@@ -20,7 +20,7 @@ export default function FailureSection({ productName, guidePath, failurePatterns
           {failurePatterns.map((item, i) => (
             <div key={i} className="m-card m-card--shadow m-card--padded post-check-item">
               <h3 className="post-check-item__heading">{item.heading}</h3>
-              <div className="caution-check-card__text">{item.text}</div>
+              <div className="caution-check-card__text m-rich-text">{item.text}</div>
             </div>
           ))}
         </div>

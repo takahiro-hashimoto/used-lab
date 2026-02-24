@@ -44,6 +44,35 @@ export function TextCell({ value }: { value: string }) {
 }
 
 /* -------------------------------------------------- */
+/*  ポート表示（カッコ部分を改行＋小さく表示）           */
+/*  "USB-C（Thunderbolt対応）" →  USB-C  \n  (小さく)   */
+/* -------------------------------------------------- */
+
+export function PortCell({ value }: { value: string }) {
+  const match = value.match(/^(.+?)\s*([（(].+[）)])$/)
+  if (!match) return <TextCell value={value} />
+  return (
+    <>
+      {match[1]}
+      <br />
+      <small className="spec-compare-table__sub">{match[2]}</small>
+    </>
+  )
+}
+
+/* -------------------------------------------------- */
+/*  ストレージ範囲フォーマット                          */
+/*  "128GB / 256GB / 512GB / 1TB" → "128GB ~ 1TB"     */
+/* -------------------------------------------------- */
+
+export function formatStorageRange(strage: string | null): string {
+  if (!strage) return '-'
+  const parts = strage.split(/\s*[\/,]\s*/).map((s) => s.trim()).filter(Boolean)
+  if (parts.length <= 1) return strage
+  return `${parts[0]} ~ ${parts[parts.length - 1]}`
+}
+
+/* -------------------------------------------------- */
 /*  ベンチマーク バー                                   */
 /* -------------------------------------------------- */
 

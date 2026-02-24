@@ -6,6 +6,7 @@ import {
   getAllMacBookSlugs,
   getAllAirPodsSlugs,
 } from '@/lib/queries'
+import { getAllStaticRoutes } from '@/lib/routes'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://used-lab.com'
@@ -19,60 +20,31 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     getAllAirPodsSlugs(),
   ])
 
-  // 静的ページ
-  const staticPages: MetadataRoute.Sitemap = [
-    { url: baseUrl, lastModified: new Date(), changeFrequency: 'weekly', priority: 1.0 },
-    { url: `${baseUrl}/iphone/iphone-spec-table/`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
-    { url: `${baseUrl}/sitemap-page/`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.3 },
-    { url: `${baseUrl}/contact/`, lastModified: new Date(), changeFrequency: 'yearly', priority: 0.3 },
-    { url: `${baseUrl}/about/`, lastModified: new Date(), changeFrequency: 'yearly', priority: 0.3 },
-    { url: `${baseUrl}/guidelines/`, lastModified: new Date(), changeFrequency: 'yearly', priority: 0.3 },
-    { url: `${baseUrl}/privacy-policy/`, lastModified: new Date(), changeFrequency: 'yearly', priority: 0.3 },
-    { url: `${baseUrl}/watch/how-to-use-apple-watch/`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
+  // 静的ページ（lib/routes.ts から一元取得）
+  const staticPages: MetadataRoute.Sitemap = getAllStaticRoutes().map((route) => ({
+    url: route.path === '/' ? baseUrl : `${baseUrl}${route.path}`,
+    lastModified: new Date(),
+    changeFrequency: route.changeFrequency,
+    priority: route.priority,
+  }))
+
+  // 動的ページ（製品詳細）
+  const dynamicSlugs: { prefix: string; slugs: string[] }[] = [
+    { prefix: '/iphone', slugs: iPhoneSlugs },
+    { prefix: '/ipad', slugs: iPadSlugs },
+    { prefix: '/watch', slugs: watchSlugs },
+    { prefix: '/macbook', slugs: macBookSlugs },
+    { prefix: '/airpods', slugs: airPodsSlugs },
   ]
 
-  // 動的ページ生成
-  const iPhonePages: MetadataRoute.Sitemap = iPhoneSlugs.map((slug) => ({
-    url: `${baseUrl}/iphone/${slug}/`,
-    lastModified: new Date(),
-    changeFrequency: 'weekly',
-    priority: 0.8,
-  }))
+  const dynamicPages: MetadataRoute.Sitemap = dynamicSlugs.flatMap(({ prefix, slugs }) =>
+    slugs.map((slug) => ({
+      url: `${baseUrl}${prefix}/${slug}/`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly' as const,
+      priority: 0.8,
+    })),
+  )
 
-  const iPadPages: MetadataRoute.Sitemap = iPadSlugs.map((slug) => ({
-    url: `${baseUrl}/ipad/${slug}/`,
-    lastModified: new Date(),
-    changeFrequency: 'weekly',
-    priority: 0.8,
-  }))
-
-  const watchPages: MetadataRoute.Sitemap = watchSlugs.map((slug) => ({
-    url: `${baseUrl}/watch/${slug}/`,
-    lastModified: new Date(),
-    changeFrequency: 'weekly',
-    priority: 0.8,
-  }))
-
-  const macBookPages: MetadataRoute.Sitemap = macBookSlugs.map((slug) => ({
-    url: `${baseUrl}/macbook/${slug}/`,
-    lastModified: new Date(),
-    changeFrequency: 'weekly',
-    priority: 0.8,
-  }))
-
-  const airPodsPages: MetadataRoute.Sitemap = airPodsSlugs.map((slug) => ({
-    url: `${baseUrl}/airpods/${slug}/`,
-    lastModified: new Date(),
-    changeFrequency: 'weekly',
-    priority: 0.8,
-  }))
-
-  return [
-    ...staticPages,
-    ...iPhonePages,
-    ...iPadPages,
-    ...watchPages,
-    ...macBookPages,
-    ...airPodsPages,
-  ]
+  return [...staticPages, ...dynamicPages]
 }

@@ -43,7 +43,7 @@ export default function FaqSection({ title, description, items, bgSubtle }: Prop
           {items.map((item) => (
             <div key={item.question} className="m-card faq-item">
               <h3 className="faq-question">{item.question}</h3>
-              <div className="faq-answer">
+              <div className="faq-answer m-rich-text m-rich-text--muted">
                 <p>{item.answer}</p>
               </div>
             </div>

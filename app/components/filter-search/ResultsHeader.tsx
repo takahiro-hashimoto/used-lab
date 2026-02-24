@@ -17,7 +17,7 @@ export default function ResultsHeader({ count, activeFilterCount, onReset }: Pro
           <strong>{count}</strong>件の機種が見つかりました
         </span>
         {activeFilterCount > 0 && (
-          <button type="button" className="ifd-reset-btn" onClick={onReset}>
+          <button type="button" className="ifd-reset-btn m-outline-btn m-outline-btn--pill" onClick={onReset}>
             <i className="fa-solid fa-rotate-left" aria-hidden="true"></i> 条件をリセット
           </button>
         )}

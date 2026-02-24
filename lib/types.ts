@@ -183,12 +183,33 @@ export interface IPadModel extends BaseProductModel {
   promotion: boolean
   lidar: boolean
   speaker: string | null
-  pencil: string | null
-  keyboard: string | null
+  pencil?: string | null   // ipad_accessoriesテーブルから導出（DBカラム廃止済み）
+  keyboard?: string | null // ipad_accessoriesテーブルから導出（DBカラム廃止済み）
   display_type: string | null
   accessory_case: string | null
   accessory_film: string | null
   last_ipados: string | null
+}
+
+/** iPad アクセサリマスタ */
+export interface IPadAccessory {
+  id: number
+  name: string
+  type: 'pencil' | 'keyboard'
+  image: string | null
+  model_number: string | null
+  release_date: string | null
+  iosys_url: string | null
+  amazon_url: string | null
+  mercari_url: string | null
+  display_order: number
+}
+
+/** iPad アクセサリ対応関係 */
+export interface IPadAccessoryCompatibility {
+  id: number
+  ipad_model_id: number
+  accessory_id: number
 }
 
 export interface IPadPriceLog extends BasePriceLog {
@@ -387,4 +408,13 @@ export const SHOP_KEY_MAP: Record<string, number> = {
   link_mercari: 11,
   link_rakuma: 12,
   link_mmoba: 13,
+}
+
+/** レビュー記事リンク（iPad / iPhone 共通） */
+export interface ProductReview {
+  id: number
+  model_slug: string
+  url: string
+  site_name: string
+  title: string
 }

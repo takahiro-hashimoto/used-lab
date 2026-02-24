@@ -10,7 +10,7 @@ type Props = {
   /** URL prefix: e.g. '/iphone', '/ipad', '/watch', '/macbook' */
   basePath: string
   heading: string
-  description: string
+  description?: string
   categories: { label: string; items: ModelItem[] }[]
 }
 
@@ -18,7 +18,7 @@ export default function GuideModelLinks({ basePath, heading, description, catego
   return (
     <div className="guide-model-links">
       <h3 className="guide-model-links__heading">{heading}</h3>
-      <p className="guide-model-links__desc">{description}</p>
+      {description && <p className="guide-model-links__desc">{description}</p>}
 
       {categories.map((cat) => (
         <div key={cat.label}>

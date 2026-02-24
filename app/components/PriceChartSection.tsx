@@ -1,5 +1,3 @@
-'use client'
-
 import PriceChart from '@/app/components/PriceChart'
 
 type DailyDataType = {
@@ -163,7 +161,7 @@ export default function PriceChartSection({
             <div className="price-summary">
               <div>
                 <p className="price-current-label">現在の相場（税込）</p>
-                <p className="price-current-value">
+                <p className="price-current-value m-price-display m-price-display--lg">
                   &yen;{range.min?.toLocaleString()} 〜 &yen;{range.max?.toLocaleString()}
                 </p>
                 {storageNote && (

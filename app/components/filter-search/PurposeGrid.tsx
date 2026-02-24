@@ -19,11 +19,11 @@ export default function PurposeGrid<K extends string>({
         <button
           key={opt.key}
           type="button"
-          className={`ifd-purpose-card${selected.has(opt.key) ? ' is-active' : ''}`}
+          className={`ifd-purpose-card m-selectable-card${selected.has(opt.key) ? ' is-active' : ''}`}
           onClick={() => onToggle(opt.key)}
           aria-pressed={selected.has(opt.key)}
         >
-          <div className="ifd-purpose-card__icon">
+          <div className="ifd-purpose-card__icon m-icon-box m-icon-box--44">
             <i className={`fa-solid ${opt.icon}`} aria-hidden="true"></i>
           </div>
           <div className="ifd-purpose-card__body">

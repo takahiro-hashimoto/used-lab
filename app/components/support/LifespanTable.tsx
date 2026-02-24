@@ -17,6 +17,7 @@ type LifespanEntryWithHref = {
   releaseDate: string
   osEnd: string
   repairEnd: string
+  osEnded?: boolean
 }
 
 /** 対象機種列を持つ（iPhone / iPad で使用） */
@@ -26,6 +27,7 @@ type LifespanEntryWithModels = {
   models: ModelLink[]
   osEnd: string
   repairEnd: string
+  osEnded?: boolean
 }
 
 type LifespanEntry = LifespanEntryWithHref | LifespanEntryWithModels
@@ -130,9 +132,15 @@ export default function LifespanTable({
                       </td>
                     )}
                     <td>
-                      <strong>{entry.osEnd}</strong>
-                      <br />
-                      <small>頃まで</small>
+                      {entry.osEnded ? (
+                        <strong>終了済み</strong>
+                      ) : (
+                        <>
+                          <strong>{entry.osEnd}</strong>
+                          <br />
+                          <small>頃まで</small>
+                        </>
+                      )}
                     </td>
                     <td>
                       <strong>{entry.repairEnd}</strong>
