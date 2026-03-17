@@ -333,7 +333,7 @@ export default function GuidelinesPage() {
             当サイトのコンテンツ制作フローをご紹介します。
           </p>
 
-          <div style={{ maxWidth: 720, margin: 'var(--space-xl) auto 0' }}>
+          <div className="m-card m-card--shadow m-card--padded" style={{ maxWidth: 720, margin: 'var(--space-xl) auto 0' }}>
             <div className="m-timeline">
               {WORKFLOW_STEPS.map((step, index) => (
                 <div key={index} className="m-timeline__item">

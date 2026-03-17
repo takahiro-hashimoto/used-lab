@@ -10,6 +10,7 @@ import type { MacBookModel, MacBookPriceLog } from '@/lib/types'
 import { buildFallbackShops } from '@/lib/utils/shared-helpers'
 import {
   RECOMMEND_DATE_LABEL,
+  RECOMMEND_YEAR,
   RECOMMEND_SLUGS,
   RECOMMEND_COUNT,
   RECOMMEND_COUNT_LABEL,
@@ -19,12 +20,12 @@ import {
 } from '@/lib/data/macbook-recommend'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import ShareBox from '@/app/components/ShareBox'
-import ConclusionSection from './components/ConclusionSection'
-import CriteriaSection from './components/CriteriaSection'
+import ConclusionSection from '@/app/components/ConclusionSection'
+import CriteriaSection from '@/app/components/CriteriaSection'
 import RecommendDetailSection from './components/RecommendDetailSection'
 import CompareTableSection from './components/CompareTableSection'
-import ChecklistSection from './components/ChecklistSection'
-import ShopSection from './components/ShopSection'
+import ChecklistSection from '@/app/components/ChecklistSection'
+import ShopSection from '@/app/components/ShopSection'
 import MacBookFaqSection from './components/MacBookFaqSection'
 
 const PAGE_TITLE = `中古MacBookおすすめ${RECOMMEND_COUNT}機種を解説。狙い目の型落ちモデルはどれ？【${RECOMMEND_DATE_LABEL}版】`
@@ -106,10 +107,12 @@ export default async function MacBookRecommendPage() {
   }
 
   // ConclusionSection用データ
-  const conclusionItems = recommendModels.map((model, i) => ({
-    model,
-    latestPrice: latestPrices[i],
-    label: RECOMMEND_META[model.slug]?.label || '',
+  const conclusionItems = recommendModels.map((model) => ({
+    id: model.id,
+    slug: model.slug,
+    displayName: model.shortname || model.model,
+    image: model.image,
+    date: model.date,
     desc: RECOMMEND_META[model.slug]?.desc || '',
   }))
 
@@ -280,12 +283,89 @@ export default async function MacBookRecommendPage() {
 
         {/* セクション */}
         <div itemProp="articleBody">
-          <ConclusionSection items={conclusionItems} />
-          <CriteriaSection />
+          <ConclusionSection
+            items={conclusionItems}
+            heading={<>【結論】{RECOMMEND_YEAR}年現在のおすすめ中古MacBook{RECOMMEND_COUNT}機種</>}
+            descriptions={[
+              <>迷っているなら、まずはこの{RECOMMEND_COUNT}機種から選べば大きな失敗はありません。</>,
+              <>{RECOMMEND_YEAR}年時点で「macOSサポートが十分に残っている」「中古価格と性能のバランスが良い」モデルだけに絞っています。</>,
+            ]}
+            gridCols="4col"
+            imagePath="macbook"
+            placeholderText="MacBook"
+          />
+          <CriteriaSection
+            recommendCount={RECOMMEND_COUNT}
+            recommendCountLabel={RECOMMEND_COUNT_LABEL}
+            descriptions={[
+              '中古MacBookを選ぶなら、「長く使えるか」「快適に動くか」「価格に見合っているか」の3つが重要。',
+              <>この基準を満たし、用途別に最適なモデルを{RECOMMEND_COUNT}つに絞り込みました。</>,
+            ]}
+            cards={[
+              {
+                iconClass: 'fa-solid fa-shield-halved',
+                iconColor: 'blue',
+                title: 'macOSサポートが十分に残っている',
+                desc: <>サポートが切れるとセキュリティリスクが高まり、アプリも使えなくなります。<strong>2029年以降までサポートされる機種</strong>だけを選んでいます。</>,
+              },
+              {
+                iconClass: 'fa-solid fa-bolt',
+                iconColor: 'green',
+                title: '日常利用でストレスを感じにくい性能',
+                desc: 'Web閲覧・オフィス作業・動画視聴で「遅い」「カクつく」と感じにくい性能を基準にしています。M2チップ以上のAppleシリコン搭載モデルに絞って選定しています。',
+              },
+              {
+                iconClass: 'fa-solid fa-coins',
+                iconColor: 'red',
+                title: '中古価格と性能のバランスが良い',
+                desc: '「残りのサポート期間」と「実際の中古相場」から、1年あたりのコストを計算しています。年単価が最も安くなる機種を優先的に選んでいます。',
+              },
+            ]}
+          />
           <RecommendDetailSection items={detailItems} />
           <CompareTableSection items={compareItems} />
-          <ChecklistSection />
-          <ShopSection items={shopItems} />
+          <ChecklistSection
+            productName="MacBook"
+            items={[
+              {
+                iconClass: 'fa-solid fa-battery-three-quarters',
+                title: 'バッテリーの充放電回数を確認',
+                desc: 'MacBookのバッテリーは約1,000回の充放電サイクルが目安です。充放電回数が多いほどバッテリーの劣化が進んでおり、駆動時間が短くなります。購入前に「システム情報」から確認できるか、ショップに問い合わせましょう。',
+              },
+              {
+                iconClass: 'fa-solid fa-hard-drive',
+                title: 'ストレージ容量を確認する',
+                desc: 'MacBookはストレージの後から増設ができません。Web閲覧・事務作業メインなら256GBでも十分ですが、写真や動画編集をする場合は512GB以上を選びましょう。容量不足はクラウドや外付けSSDで補う手もあります。',
+              },
+              {
+                iconClass: 'fa-solid fa-shield-halved',
+                title: 'ショップ保証の有無を確認',
+                desc: <>初期不良やバッテリー異常に対応する<strong>保証期間</strong>をチェック。イオシスなら3ヶ月保証、じゃんぱらなら1ヶ月保証など、ショップによって異なります。保証がないフリマアプリでの購入はリスクが高いため、初心者にはおすすめしません。</>,
+              },
+              {
+                iconClass: 'fa-solid fa-laptop',
+                title: 'macOSサポート期間を確認する',
+                desc: <>発売から約7年でサポート終了するのが過去の傾向です。サポートが切れるとセキュリティリスクが高まるため、<strong>発売が古すぎる機種</strong>は避けましょう。各モデルの詳しいサポート期限は下記の記事で確認できます。</>,
+              },
+            ]}
+            memoLinks={[
+              { href: '/macbook/used-macbook-attention/', label: '中古MacBook購入時の注意点まとめ' },
+              { href: '/macbook/used-macbook-support/', label: 'macOSのサポート期間一覧' },
+            ]}
+          />
+          <ShopSection
+            items={shopItems}
+            productName="MacBook"
+            description="信頼性の高い中古ショップを厳選し、保証期間や配送料の有無などをまとめました。"
+            specRows={[
+              { label: '価格', field: 'price' },
+              { label: '保証期間', field: 'support' },
+              { label: '赤ロム保証', field: 'block' },
+              { label: 'バッテリー保証', field: 'battery' },
+              { label: '実物写真', field: 'photo' },
+              { label: '配送料', field: 'postage' },
+            ]}
+          />
           <MacBookFaqSection />
         </div>
 

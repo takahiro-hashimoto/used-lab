@@ -5,7 +5,7 @@
 import { getSupabase } from './supabase-client'
 import { RAKUTEN_SHOPS } from './config'
 import { searchMultiKeywordAndMatch } from './rakuten-api'
-import { extractMinSize, type PriceResult } from './utils'
+import { extractMinSize, getTodayJST, getNowISOJST, type PriceResult } from './utils'
 
 /** SE系はショップによって表記が異なるため、複数のキーワードを返す */
 function buildWatchSearchKeywords(modelName: string, minSize: string | null): string[] {
@@ -164,17 +164,17 @@ export async function fetchWatchPrices(): Promise<void> {
       prices[shop.key] = result
     }
 
-    // 当日の既存データを削除（最新を優先）
-    const today = new Date().toISOString().split('T')[0]
+    // 当日(JST)の既存データを削除（最新を優先）
+    const todayJST = getTodayJST()
     await supabase
       .from('watch_price_logs')
       .delete()
       .eq('model_id', model.id)
-      .gte('logged_at', `${today}T00:00:00Z`)
-      .lte('logged_at', `${today}T23:59:59Z`)
+      .gte('logged_at', `${todayJST}T00:00:00+09:00`)
+      .lte('logged_at', `${todayJST}T23:59:59+09:00`)
 
     const { error: insertError } = await supabase.from('watch_price_logs').insert({
-      logged_at: new Date().toISOString(),
+      logged_at: getNowISOJST(),
       model_id: model.id,
       model_name: modelName,
       storage: minSize || null,

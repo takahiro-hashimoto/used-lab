@@ -1,9 +1,6 @@
 'use client'
 
-import { useState } from 'react'
-
-
-import Image from 'next/image'
+import CompareSelectorBase from '@/app/components/CompareSelector'
 import type { AirPodsModel } from '@/lib/types'
 
 type Props = {
@@ -54,18 +51,6 @@ function buildCompareRows(current: AirPodsModel, compare: AirPodsModel): Compare
   ]
 }
 
-function CellValue({ value }: { value: string }) {
-  if (value === '◯') return <span className="m-rating__icon m-rating__icon--good" aria-label="対応">&#9675;</span>
-  if (value === '×') return <span className="m-spec-row__cross" aria-label="非対応">&times;</span>
-  const normalized = value.replace(/<br\s*\/?>/g, '\n')
-  if (normalized.includes('\n')) {
-    return <>{normalized.split('\n').map((line, i) => (
-      <span key={i}>{i > 0 && <br />}{line}</span>
-    ))}</>
-  }
-  return <>{normalized}</>
-}
-
 function getDisplayName(model: AirPodsModel): string {
   return model.model ? `${model.name}（${model.model}）` : model.name
 }
@@ -75,113 +60,21 @@ function getShortName(model: AirPodsModel): string {
 }
 
 export default function CompareSelector({ currentModel, allModels, initialCompareId, iosysUrl }: Props) {
-  const [compareId, setCompareId] = useState(initialCompareId)
-  const compareModel = allModels.find((m) => m.id === compareId) || allModels[0]
-  const rows = buildCompareRows(currentModel, compareModel)
-  const sections = [...new Set(rows.map((r) => r.section))]
-
   return (
-    <div className="m-card m-card--shadow compare-card">
-      <table className="compare-table">
-        <caption className="visually-hidden">
-          {getDisplayName(currentModel)} と {getDisplayName(compareModel)} のスペック比較
-        </caption>
-        <colgroup>
-          <col className="compare-table__col-label" />
-          <col />
-          <col />
-        </colgroup>
-
-        <thead>
-          <tr>
-            <th></th>
-            <td className="compare-table__header-cell">
-              <strong className="compare-model-name">{getShortName(currentModel)}</strong>
-              <span className="compare-model-note">このモデルを表示中</span>
-              {currentModel.image && (
-                <Image
-                  src={`/images/airpods/${currentModel.image}`}
-                  alt={getDisplayName(currentModel)}
-                  width={160}
-                  height={100}
-                  className="compare-model-img"
-                />
-              )}
-            </td>
-            <td className="compare-table__header-cell">
-              <label htmlFor="compare-model-select" className="visually-hidden">比較するモデルを選択</label>
-              <select
-                className="compare-select"
-                id="compare-model-select"
-                value={compareId}
-                onChange={(e) => setCompareId(Number(e.target.value))}
-              >
-                {allModels
-                  .filter((m) => m.id !== currentModel.id)
-                  .map((m) => (
-                    <option key={m.id} value={m.id}>{getShortName(m)}</option>
-                  ))}
-              </select>
-              <a href={`/airpods/${compareModel.slug}`} className="compare-model-link">
-                このモデルの詳細を見る &rsaquo;
-              </a>
-              {compareModel.image && (
-                <Image
-                  src={`/images/airpods/${compareModel.image}`}
-                  alt={getDisplayName(compareModel)}
-                  width={160}
-                  height={100}
-                  className="compare-model-img"
-                />
-              )}
-            </td>
-          </tr>
-        </thead>
-
-        {sections.map((section) => {
-          const sectionRows = rows.filter((r) => r.section === section)
-          return (
-            <tbody key={section}>
-              <tr>
-                <th colSpan={3} className="compare-category-cell">
-                  <span className="compare-category">
-                    <i className="fa-solid fa-circle-check" aria-hidden="true"></i> {section}
-                  </span>
-                </th>
-              </tr>
-              {sectionRows.map((row) => (
-                <tr key={row.label}>
-                  <th scope="row">{row.label}</th>
-                  <td><CellValue value={row.current} /></td>
-                  <td><CellValue value={row.compare} /></td>
-                </tr>
-              ))}
-            </tbody>
-          )
-        })}
-
-        <tfoot>
-          <tr className="compare-table__action-row">
-            <th></th>
-            <td>
-              {iosysUrl ? (
-                <a href={iosysUrl} target="_blank" rel="noopener noreferrer nofollow" className="m-btn m-btn--primary m-btn--block">
-                  {getShortName(currentModel)}の購入先 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
-                </a>
-              ) : (
-                <a href="#shops" className="m-btn m-btn--primary m-btn--block">
-                  {getShortName(currentModel)}の購入先 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
-                </a>
-              )}
-            </td>
-            <td>
-              <a href={`/airpods/${compareModel.slug}`} className="m-btn m-btn--primary m-btn--block">
-                {getShortName(compareModel)}の詳細 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
-              </a>
-            </td>
-          </tr>
-        </tfoot>
-      </table>
-    </div>
+    <CompareSelectorBase
+      currentModel={currentModel}
+      allModels={allModels}
+      initialCompareId={initialCompareId}
+      iosysUrl={iosysUrl}
+      imagePath="airpods"
+      detailPath="airpods"
+      imageWidth={160}
+      imageHeight={100}
+      getCurrentName={() => getShortName(currentModel)}
+      getCompareName={(m) => getShortName(m)}
+      getOptionLabel={(m) => getShortName(m)}
+      getCaption={(c, cmp) => `${getDisplayName(c)} と ${getDisplayName(cmp)} のスペック比較`}
+      buildRows={(c, cmp) => buildCompareRows(c, cmp)}
+    />
   )
 }

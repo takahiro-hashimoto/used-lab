@@ -25,7 +25,7 @@ export default function Footer() {
 
           <nav className="footer-links" aria-label="フッターナビゲーション">
             <div className="footer-col">
-              <h3 className="footer-heading">カテゴリ</h3>
+              <p className="footer-heading">カテゴリ</p>
               <ul>
                 <li><Link href="/iphone">中古iPhone</Link></li>
                 <li><Link href="/ipad">中古iPad</Link></li>
@@ -35,7 +35,7 @@ export default function Footer() {
               </ul>
             </div>
             <div className="footer-col">
-              <h3 className="footer-heading">サイト情報</h3>
+              <p className="footer-heading">サイト情報</p>
               <ul>
                 <li><Link href="/about">ユーズドラボについて</Link></li>
                 <li><Link href="/contact">お問い合わせ</Link></li>

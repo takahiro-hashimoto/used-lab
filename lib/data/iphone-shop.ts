@@ -2,7 +2,8 @@
 // 中古iPhoneどこで買う？ページ — 一元管理データ
 // ============================================================
 
-export const SHOP_PAGE_YEAR = '2026'
+const now = new Date()
+export const SHOP_PAGE_YEAR = `${now.getFullYear()}`
 export const SHOP_PAGE_DATE_LABEL = `${SHOP_PAGE_YEAR}年版`
 
 // ---------- ショップ詳細データ ----------

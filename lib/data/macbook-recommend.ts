@@ -4,8 +4,9 @@
 // ============================================================
 
 // ---------- 更新年月 ----------
-export const RECOMMEND_YEAR = '2026'
-export const RECOMMEND_MONTH = '2'
+const now = new Date()
+export const RECOMMEND_YEAR = `${now.getFullYear()}`
+export const RECOMMEND_MONTH = `${now.getMonth() + 1}`
 export const RECOMMEND_DATE_LABEL = `${RECOMMEND_YEAR}年${RECOMMEND_MONTH}月`
 
 // ---------- おすすめ機種のslug一覧 ----------
@@ -35,7 +36,7 @@ export type RecommendMeta = {
 
 export const RECOMMEND_META: Record<string, RecommendMeta> = {
   'mba-13-2022': {
-    label: 'コスパ重視で入門したい方向け',
+    label: 'コスパ重視',
     desc: 'M2チップ＋MagSafe搭載のコスパ最強モデル',
     subtitle: '中古Mac入門の最適解。軽量・薄型・高コスパ',
     description: [
@@ -58,7 +59,7 @@ export const RECOMMEND_META: Record<string, RecommendMeta> = {
     targetUser: 'コスパ重視<br>初めての中古Mac',
   },
   'mba-13-2024': {
-    label: '最新規格で長く使いたい方向け',
+    label: '長期利用向け',
     desc: 'M3チップ＋Thunderbolt 4で長期利用に最適',
     subtitle: '最新規格に対応した、長く使える13インチの決定版',
     description: [
@@ -81,7 +82,7 @@ export const RECOMMEND_META: Record<string, RecommendMeta> = {
     targetUser: '長期利用<br>最新規格重視',
   },
   'mba-15-2024': {
-    label: '大画面で快適に作業したい方向け',
+    label: '大画面モデル',
     desc: 'M3チップ＋15.3インチの大画面Airモデル',
     subtitle: '広い画面で快適作業。Airの軽さはそのまま',
     description: [
@@ -104,7 +105,7 @@ export const RECOMMEND_META: Record<string, RecommendMeta> = {
     targetUser: '大画面<br>据え置きメイン',
   },
   'mbp-14-2023-nov': {
-    label: 'クリエイティブ作業に使いたい方向け',
+    label: 'クリエイター向け',
     desc: 'M3チップ＋ProMotion搭載のクリエイター向けモデル',
     subtitle: '動画編集もプログラミングもこなす本格派',
     description: [

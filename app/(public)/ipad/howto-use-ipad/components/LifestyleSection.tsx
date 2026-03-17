@@ -12,7 +12,7 @@ export default function LifestyleSection() {
         <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-xl)' }}>
 
           {/* 5. ウェブブラウザで調べ物をする */}
-          <div className="m-card m-card--shadow m-card--padded popular-card">
+          <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
             <img
               src="/images/content/ipad-split-view.jpg"
               alt="Split Viewで調べ物をする様子"
@@ -47,7 +47,7 @@ export default function LifestyleSection() {
           </div>
 
           {/* 6. カーナビ・地図として活用する */}
-          <div className="m-card m-card--shadow m-card--padded popular-card">
+          <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
             <img
               src="/images/content/ipad-car-navi-02.jpg"
               alt="iPad miniをカーナビ化する様子"
@@ -81,7 +81,7 @@ export default function LifestyleSection() {
           </div>
 
           {/* 7. 料理レシピを見る */}
-          <div className="m-card m-card--shadow m-card--padded popular-card">
+          <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
             <img
               src="/images/content/ipad-11-pro-m4-15.jpg"
               alt="クックパッドでレシピを調べる様子"
@@ -112,7 +112,7 @@ export default function LifestyleSection() {
           </div>
 
           {/* 8. 新聞を読む */}
-          <div className="m-card m-card--shadow m-card--padded popular-card">
+          <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
             <img
               src="/images/content/ipad-11-pro-m4-16.jpg"
               alt="iPadで朝日新聞を読む様子"
@@ -163,7 +163,7 @@ export default function LifestyleSection() {
           </div>
 
           {/* 9. スケジュールを管理する */}
-          <div className="m-card m-card--shadow m-card--padded popular-card">
+          <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
             <img
               src="/images/content/ipad-schedule.jpg"
               alt="iPadでスケジュール管理する様子"
@@ -205,7 +205,7 @@ export default function LifestyleSection() {
           </div>
 
           {/* 10. テレビ電話をする */}
-          <div className="m-card m-card--shadow m-card--padded popular-card">
+          <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
             <img
               src="/images/content/centerflame.webp"
               alt="iPadでテレビ電話をする様子"
@@ -246,7 +246,7 @@ export default function LifestyleSection() {
           </div>
 
           {/* 11. 置き時計として使う */}
-          <div className="m-card m-card--shadow m-card--padded popular-card">
+          <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
             <img
               src="/images/content/ipad-md-clock.jpg"
               alt="iPadを置き時計として使用する様子"
@@ -281,7 +281,7 @@ export default function LifestyleSection() {
           </div>
 
           {/* 12. フォトフレームとして使用する */}
-          <div className="m-card m-card--shadow m-card--padded popular-card">
+          <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
             <img
               src="/images/content/ipad-photo-frame.jpg"
               alt="iPadをフォトフレームとして使用する様子"

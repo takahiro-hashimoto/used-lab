@@ -206,7 +206,7 @@ export default async function WatchFilterSearchPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/watch/watch-ultra2.jpg"
+                  src="/images/content/simulator.jpg"
                   alt="Apple Watch機種診断シミュレーターのイメージ"
                   className="hero-media__img"
                   width={360}
@@ -233,27 +233,33 @@ export default async function WatchFilterSearchPage() {
         {/* イントロカード */}
         <section className="l-section l-section--no-pt" aria-label="診断の特徴">
           <div className="l-container">
-            <div className="l-grid l-grid--3col">
-              <div className="m-card m-card--shadow m-card--padded ifd-intro-card">
-                <div className="ifd-intro-card__icon">
-                  <i className="fa-solid fa-bolt" aria-hidden="true"></i>
+            <div className="l-grid l-grid--3col l-grid--gap-lg">
+              <div className="m-card m-card--shadow criteria-card">
+                <div className="criteria-card__head">
+                  <span className="m-icon-box m-icon-box--lg criteria-card__icon criteria-card__icon--blue">
+                    <i className="fa-solid fa-bolt" aria-hidden="true"></i>
+                  </span>
+                  <h3 className="criteria-card__title">かんたん30秒診断</h3>
                 </div>
-                <p className="ifd-intro-card__title">かんたん30秒診断</p>
-                <p className="ifd-intro-card__text">質問に答えるだけで、あなたに最適なApple Watchを自動でシミュレーション。難しい知識は不要です。</p>
+                <p className="criteria-card__desc">質問に答えるだけで、あなたに最適なApple Watchを自動でシミュレーション。難しい知識は不要です。</p>
               </div>
-              <div className="m-card m-card--shadow m-card--padded ifd-intro-card">
-                <div className="ifd-intro-card__icon">
-                  <i className="fa-solid fa-yen-sign" aria-hidden="true"></i>
+              <div className="m-card m-card--shadow criteria-card">
+                <div className="criteria-card__head">
+                  <span className="m-icon-box m-icon-box--lg criteria-card__icon criteria-card__icon--green">
+                    <i className="fa-solid fa-yen-sign" aria-hidden="true"></i>
+                  </span>
+                  <h3 className="criteria-card__title">リアルタイム価格表示</h3>
                 </div>
-                <p className="ifd-intro-card__title">リアルタイム価格表示</p>
-                <p className="ifd-intro-card__text">イオシス・ゲオ・じゃんぱらの中古価格を毎日更新。最安値がすぐにわかります。</p>
+                <p className="criteria-card__desc">イオシス・ゲオ・じゃんぱらの中古価格を毎日更新。最安値がすぐにわかります。</p>
               </div>
-              <div className="m-card m-card--shadow m-card--padded ifd-intro-card">
-                <div className="ifd-intro-card__icon">
-                  <i className="fa-solid fa-check-double" aria-hidden="true"></i>
+              <div className="m-card m-card--shadow criteria-card">
+                <div className="criteria-card__head">
+                  <span className="m-icon-box m-icon-box--lg criteria-card__icon criteria-card__icon--red">
+                    <i className="fa-solid fa-check-double" aria-hidden="true"></i>
+                  </span>
+                  <h3 className="criteria-card__title">全{totalModels}機種を網羅</h3>
                 </div>
-                <p className="ifd-intro-card__title">全{totalModels}機種を網羅</p>
-                <p className="ifd-intro-card__text">Apple Watch SE〜Ultra 3まで、現在中古市場で流通する全モデルを比較・診断できます。</p>
+                <p className="criteria-card__desc">Apple Watch SE〜Ultra 3まで、現在中古市場で流通する全モデルを比較・診断できます。</p>
               </div>
             </div>
           </div>

@@ -25,16 +25,7 @@ export default function DemeritSection() {
         <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-xl)' }}>
 
           {/* 1. 電池持ちが悪くなる */}
-          <div className="m-card m-card--shadow m-card--padded popular-card">
-            <img
-              src="/images/content/always-lit-battery-drain.jpg"
-              alt="Apple Watchのバッテリー残量が減っている様子"
-              className="popular-card-img"
-              width={240}
-              height={160}
-              loading="lazy"
-            />
-            <div className="popular-card-body">
+          <div className="m-card m-card--shadow m-card--padded">
               <h3 className="popular-card-title">電池持ちが悪くなる</h3>
               <p className="popular-card-desc">
                 Apple Watchをディスプレイ常時点灯ありで使用すると、<strong>体感できるレベルでバッテリーの減りが早くなります。</strong>
@@ -106,20 +97,10 @@ export default function DemeritSection() {
               <p className="popular-card-desc">
                 そう考えると、バッテリーの減りはそこまで気にしなくても良いかも知れません。
               </p>
-            </div>
           </div>
 
           {/* 2. 映画を見に行ったときにシアターモード切り替えが必須 */}
-          <div className="m-card m-card--shadow m-card--padded popular-card">
-            <img
-              src="/images/content/always-lit-theater-mode.jpg"
-              alt="Apple Watchのシアターモード設定画面"
-              className="popular-card-img"
-              width={240}
-              height={160}
-              loading="lazy"
-            />
-            <div className="popular-card-body">
+          <div className="m-card m-card--shadow m-card--padded">
               <h3 className="popular-card-title">映画を見に行ったときにシアターモード切り替えが必須</h3>
               <p className="popular-card-desc">
                 常時点灯ありのApple Watchを身に着けて映画館に行った際は、<strong>シアターモードへの切り替えが必要</strong>です。
@@ -130,7 +111,6 @@ export default function DemeritSection() {
               <p className="popular-card-desc">
                 5秒ぐらいの設定なので大きなデメリットではありませんが、念のためデメリットの一つとしてあげておきます。
               </p>
-            </div>
           </div>
 
         </div>

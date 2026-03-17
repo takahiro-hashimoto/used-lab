@@ -4,8 +4,9 @@
 // ============================================================
 
 // ---------- 更新年月 ----------
-export const RECOMMEND_YEAR = '2026'
-export const RECOMMEND_MONTH = '2'
+const now = new Date()
+export const RECOMMEND_YEAR = `${now.getFullYear()}`
+export const RECOMMEND_MONTH = `${now.getMonth() + 1}`
 export const RECOMMEND_DATE_LABEL = `${RECOMMEND_YEAR}年${RECOMMEND_MONTH}月`
 
 // ---------- おすすめ機種のslug一覧 ----------
@@ -34,7 +35,7 @@ export type RecommendMeta = {
 
 export const RECOMMEND_META: Record<string, RecommendMeta> = {
   'mtjv3ja': {
-    label: '音質もノイキャンも妥協したくない方向け',
+    label: 'ノイキャン重視',
     desc: 'H2チップ＋USB-C搭載の最強カナル型モデル',
     subtitle: '中古AirPodsの大本命。音質・ノイキャン・装着感すべてが最高水準',
     description: [
@@ -57,7 +58,7 @@ export const RECOMMEND_META: Record<string, RecommendMeta> = {
     targetUser: '音質重視<br>ノイキャン最優先',
   },
   'mxp93ja': {
-    label: 'オープン型でノイキャンも欲しい方向け',
+    label: 'オープン型',
     desc: 'H2チップ＋ANC搭載の最新オープン型モデル',
     subtitle: '耳を塞がず、でもノイキャンも使える新時代のAirPods',
     description: [
@@ -80,7 +81,7 @@ export const RECOMMEND_META: Record<string, RecommendMeta> = {
     targetUser: 'オープン型<br>ANC付きで快適',
   },
   'mxp63ja': {
-    label: 'コスパ重視で入門したい方向け',
+    label: 'コスパ重視',
     desc: 'H2チップ搭載のコスパ重視スタンダードモデル',
     subtitle: 'AirPodsデビューに最適な、必要十分のスタンダードモデル',
     description: [

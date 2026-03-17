@@ -2,7 +2,8 @@
 // 格安SIM×中古iPhone ページ — 一元管理データ
 // ============================================================
 
-export const MVNO_PAGE_YEAR = '2026'
+const now = new Date()
+export const MVNO_PAGE_YEAR = `${now.getFullYear()}`
 export const MVNO_PAGE_DATE_LABEL = `${MVNO_PAGE_YEAR}年版`
 
 // ---------- 事業者メタデータ ----------

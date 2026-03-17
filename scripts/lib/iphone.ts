@@ -5,7 +5,7 @@
 import { getSupabase } from './supabase-client'
 import { RAKUTEN_SHOPS, GENRE_SMARTPHONE } from './config'
 import { searchAndMatch } from './rakuten-api'
-import { extractMinCapacity, type PriceResult } from './utils'
+import { extractMinCapacity, getTodayJST, getNowISOJST, type PriceResult } from './utils'
 
 // NGキーワードマッピング
 const IPHONE_NG_KEYWORD_MAP: Record<string, string> = {
@@ -152,17 +152,17 @@ export async function fetchIphonePrices(): Promise<void> {
       prices[shop.key] = result
     }
 
-    // 当日の既存データを削除（最新を優先）
-    const today = new Date().toISOString().split('T')[0]
+    // 当日(JST)の既存データを削除（最新を優先）
+    const todayJST = getTodayJST()
     await supabase
       .from('iphone_price_logs')
       .delete()
       .eq('model_id', model.id)
-      .gte('logged_at', `${today}T00:00:00Z`)
-      .lte('logged_at', `${today}T23:59:59Z`)
+      .gte('logged_at', `${todayJST}T00:00:00+09:00`)
+      .lte('logged_at', `${todayJST}T23:59:59+09:00`)
 
     const { error: insertError } = await supabase.from('iphone_price_logs').insert({
-      logged_at: new Date().toISOString(),
+      logged_at: getNowISOJST(),
       model_id: model.id,
       model_name: modelName,
       storage: minCapacity || null,

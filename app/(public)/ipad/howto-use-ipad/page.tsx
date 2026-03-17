@@ -20,12 +20,12 @@ export const metadata: Metadata = {
     title: `${PAGE_TITLE} | ユーズドラボ`,
     description: PAGE_DESCRIPTION,
     url: '/ipad/howto-use-ipad/',
-    images: [{ url: '/images/ipad/ipad-air-6.jpg', width: 360, height: 360, alt: PAGE_TITLE }],
+    images: [{ url: '/images/content/ipad-lightroom.jpg', width: 360, height: 360, alt: PAGE_TITLE }],
   },
   twitter: {
     title: `${PAGE_TITLE} | ユーズドラボ`,
     description: PAGE_DESCRIPTION,
-    images: ['/images/ipad/ipad-air-6.jpg'],
+    images: ['/images/content/ipad-lightroom.jpg'],
   },
 }
 
@@ -158,7 +158,7 @@ export default function HowtoUseIpadPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/ipad/ipad-air-6.jpg"
+                  src="/images/content/ipad-lightroom.jpg"
                   alt="iPadの便利な使い道イメージ"
                   className="hero-media__img"
                   width={360}

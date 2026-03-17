@@ -199,7 +199,7 @@ export default function HowToUseAppleWatchPage() {
             <h2 className="m-section-heading m-section-heading--lg" id="heading-matome">
               Apple Watchがあればできること25選 まとめ
             </h2>
-            <div className="lead-box">
+            <div className="m-card m-card--shadow m-card--padded content-prose">
               <p>
                 Apple Watchを身につけていることで実現できる25個の機能を厳選してご紹介してきました。
               </p>
@@ -215,16 +215,12 @@ export default function HowToUseAppleWatchPage() {
               <p>
                 ぜひ、Apple Watchをあなたの生活に取り入れるかどうかの最適な判断材料としてご活用ください。
               </p>
-              <p className="lead-link">
-                <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                Apple Watchの選び方・おすすめモデルは「<a href="/watch">中古Apple Watch完全ガイド</a>」をご覧ください。
-              </p>
             </div>
           </div>
         </section>
 
         {/* シェアボックス */}
-        <ShareBox url={PAGE_URL} text={PAGE_TITLE} bgSubtle />
+        <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
       </article>
     </main>
   )

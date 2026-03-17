@@ -84,7 +84,7 @@ export const PRODUCT_CATEGORIES: CategoryDef[] = [
       { path: '/iphone/filter-search/', label: 'iPhone機種診断シミュレーター｜自分に合うおすすめ中古スマホがすぐわかる【2026年版】' },
       { path: '/iphone/battery-compare/', label: '歴代iPhoneのバッテリー容量比較ランキング！電池持ちがいい機種はどれ？' },
       { path: '/iphone/iphone-camera/', label: 'iPhoneのカメラ性能の違いは何？歴代モデルの機能を比較' },
-      { path: '/iphone/mvno/', label: (p) => `中古iPhoneの購入と通信契約がセットでできる格安SIM業者まとめ【${p.mvnoDate}】` },
+      { path: '/iphone/mvno/', label: (p) => `中古iPhoneの購入と通信契約が一緒にできる格安SIM業者まとめ【${p.mvnoDate}】` },
     ],
   },
   {

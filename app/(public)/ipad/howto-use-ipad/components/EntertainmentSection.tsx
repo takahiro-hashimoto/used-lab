@@ -13,7 +13,7 @@ export default function EntertainmentSection() {
         <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-xl)' }}>
 
           {/* 1. 大画面で動画鑑賞を楽しむ */}
-          <div className="m-card m-card--shadow m-card--padded popular-card">
+          <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
             <img
               src="/images/content/magextand-m-use-low-table.jpg"
               alt="iPadで動画鑑賞する様子"
@@ -49,7 +49,7 @@ export default function EntertainmentSection() {
           </div>
 
           {/* 2. 電子書籍を読む */}
-          <div className="m-card m-card--shadow m-card--padded popular-card">
+          <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
             <img
               src="/images/content/ipad-mini-6-reading.jpg"
               alt="iPadで電子書籍を読む様子"
@@ -84,7 +84,7 @@ export default function EntertainmentSection() {
           </div>
 
           {/* 3. ゲームを楽しむ */}
-          <div className="m-card m-card--shadow m-card--padded popular-card">
+          <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
             <img
               src="/images/content/ipad-gaming.jpg"
               alt="iPadでゲームを楽しむ様子"
@@ -119,7 +119,7 @@ export default function EntertainmentSection() {
           </div>
 
           {/* 4. 地上波テレビを視聴する */}
-          <div className="m-card m-card--shadow m-card--padded popular-card">
+          <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
             <img
               src="/images/content/nasne-use-ipad-1.jpg"
               alt="iPad + nasneで地上波テレビを見る様子"

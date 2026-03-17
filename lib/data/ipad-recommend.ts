@@ -4,8 +4,9 @@
 // ============================================================
 
 // ---------- 更新年月 ----------
-export const RECOMMEND_YEAR = '2026'
-export const RECOMMEND_MONTH = '2'
+const now = new Date()
+export const RECOMMEND_YEAR = `${now.getFullYear()}`
+export const RECOMMEND_MONTH = `${now.getMonth() + 1}`
 export const RECOMMEND_DATE_LABEL = `${RECOMMEND_YEAR}年${RECOMMEND_MONTH}月`
 
 // ---------- おすすめ機種のslug一覧 ----------
@@ -36,7 +37,7 @@ export type RecommendMeta = {
 
 export const RECOMMEND_META: Record<string, RecommendMeta> = {
   'normal-10': {
-    label: 'コスパ重視の方向け',
+    label: 'コスパ重視',
     desc: 'はじめてのiPadに最適な1台',
     subtitle: '万能エントリーモデル',
     description: [
@@ -60,7 +61,7 @@ export const RECOMMEND_META: Record<string, RecommendMeta> = {
     targetUser: 'コスパ重視<br>はじめてのiPad',
   },
   'mini-6': {
-    label: '持ち運びやすさ重視の方向け',
+    label: '携帯性重視',
     desc: '片手で持てるコンパクトiPad',
     subtitle: 'ポケットサイズの万能機',
     description: [
@@ -84,7 +85,7 @@ export const RECOMMEND_META: Record<string, RecommendMeta> = {
     targetUser: '携帯性重視<br>電子書籍・ゲーム',
   },
   'air-5': {
-    label: '性能と価格のバランス重視の方向け',
+    label: 'バランス型',
     desc: 'M1チップ搭載の万能モデル',
     subtitle: 'クリエイティブもこなせる優等生',
     description: [
@@ -108,7 +109,7 @@ export const RECOMMEND_META: Record<string, RecommendMeta> = {
     targetUser: 'バランス重視<br>クリエイティブ用途',
   },
   'pro11-3': {
-    label: 'プロ性能を求める方向け',
+    label: 'プロ向け',
     desc: 'M1チップ＋ProMotionの万能Pro',
     subtitle: '型落ちProを最安で手に入れる',
     description: [
@@ -132,7 +133,7 @@ export const RECOMMEND_META: Record<string, RecommendMeta> = {
     targetUser: 'プロ性能<br>クリエイター向け',
   },
   'pro12-6': {
-    label: '大画面でプロ作業をしたい方向け',
+    label: '大画面Pro',
     desc: 'M2チップ＋12.9インチの大画面Pro',
     subtitle: '大画面Proの最高コスパ',
     description: [

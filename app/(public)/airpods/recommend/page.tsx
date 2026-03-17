@@ -10,6 +10,7 @@ import type { AirPodsModel, AirPodsPriceLog } from '@/lib/types'
 import { buildFallbackShops } from '@/lib/utils/shared-helpers'
 import {
   RECOMMEND_DATE_LABEL,
+  RECOMMEND_YEAR,
   RECOMMEND_SLUGS,
   RECOMMEND_COUNT,
   RECOMMEND_COUNT_LABEL,
@@ -19,12 +20,12 @@ import {
 } from '@/lib/data/airpods-recommend'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import ShareBox from '@/app/components/ShareBox'
-import ConclusionSection from './components/ConclusionSection'
-import CriteriaSection from './components/CriteriaSection'
+import ConclusionSection from '@/app/components/ConclusionSection'
+import CriteriaSection from '@/app/components/CriteriaSection'
 import RecommendDetailSection from './components/RecommendDetailSection'
 import CompareTableSection from './components/CompareTableSection'
-import ChecklistSection from './components/ChecklistSection'
-import ShopSection from './components/ShopSection'
+import ChecklistSection from '@/app/components/ChecklistSection'
+import ShopSection from '@/app/components/ShopSection'
 import AirPodsFaqSection from './components/AirPodsFaqSection'
 
 const PAGE_TITLE = `中古AirPodsおすすめ${RECOMMEND_COUNT}機種を解説。狙い目の型落ちモデルはどれ？【${RECOMMEND_DATE_LABEL}版】`
@@ -106,10 +107,12 @@ export default async function AirPodsRecommendPage() {
   }
 
   // ConclusionSection用データ
-  const conclusionItems = recommendModels.map((model, i) => ({
-    model,
-    latestPrice: latestPrices[i],
-    label: RECOMMEND_META[model.slug]?.label || '',
+  const conclusionItems = recommendModels.map((model) => ({
+    id: model.id,
+    slug: model.slug,
+    displayName: model.name,
+    image: model.image,
+    date: model.date,
     desc: RECOMMEND_META[model.slug]?.desc || '',
   }))
 
@@ -280,12 +283,89 @@ export default async function AirPodsRecommendPage() {
 
         {/* セクション */}
         <div itemProp="articleBody">
-          <ConclusionSection items={conclusionItems} />
-          <CriteriaSection />
+          <ConclusionSection
+            items={conclusionItems}
+            heading={<>【結論】{RECOMMEND_YEAR}年現在のおすすめ中古AirPods{RECOMMEND_COUNT}機種</>}
+            descriptions={[
+              <>迷っているなら、まずはこの{RECOMMEND_COUNT}機種から選べば大きな失敗はありません。</>,
+              <>{RECOMMEND_YEAR}年時点で「サポートが十分に残っている」「中古価格と機能のバランスが良い」モデルだけに絞っています。</>,
+            ]}
+            gridCols="3col"
+            imagePath="airpods"
+            placeholderText="AirPods"
+          />
+          <CriteriaSection
+            recommendCount={RECOMMEND_COUNT}
+            recommendCountLabel={RECOMMEND_COUNT_LABEL}
+            descriptions={[
+              '中古AirPodsを選ぶなら、「長く使えるか」「必要な機能があるか」「価格に見合っているか」の3つが重要。',
+              <>この基準を満たし、用途別に最適なモデルを{RECOMMEND_COUNT}つに絞り込みました。</>,
+            ]}
+            cards={[
+              {
+                iconClass: 'fa-solid fa-shield-halved',
+                iconColor: 'blue',
+                title: 'ファームウェアサポートが十分に残っている',
+                desc: <>サポートが切れると新機能の追加やセキュリティ修正が受けられなくなります。<strong>2029年以降までサポートされる機種</strong>だけを選んでいます。</>,
+              },
+              {
+                iconClass: 'fa-solid fa-bolt',
+                iconColor: 'green',
+                title: '用途に合った機能を搭載している',
+                desc: 'ノイズキャンセリング・空間オーディオ・防水性能・USB-C対応など、使い方に合った機能があるモデルを選定しています。',
+              },
+              {
+                iconClass: 'fa-solid fa-coins',
+                iconColor: 'red',
+                title: '中古価格と機能のバランスが良い',
+                desc: '「残りのサポート期間」と「実際の中古相場」から、コストパフォーマンスを評価しています。機能の割に価格がこなれたモデルを優先的に選んでいます。',
+              },
+            ]}
+          />
           <RecommendDetailSection items={detailItems} />
           <CompareTableSection items={compareItems} />
-          <ChecklistSection />
-          <ShopSection items={shopItems} />
+          <ChecklistSection
+            productName="AirPods"
+            items={[
+              {
+                iconClass: 'fa-solid fa-battery-three-quarters',
+                title: 'バッテリーの劣化状態を確認',
+                desc: 'AirPodsはバッテリー交換が難しい製品です。中古品では使用年数に応じてバッテリーが劣化しており、新品時より再生時間が短くなっている場合があります。商品説明やショップに確認して、極端に駆動時間が短くないか確認しましょう。',
+              },
+              {
+                iconClass: 'fa-solid fa-box-open',
+                title: '充電ケースの状態を確認',
+                desc: 'イヤホン本体だけでなく、充電ケースのバッテリーも劣化します。ケースが膨張していないか、充電端子に損傷がないか、蓋の開閉がスムーズかなどを確認しましょう。ケースだけの交換はAppleでも対応可能ですが、費用がかかります。',
+              },
+              {
+                iconClass: 'fa-solid fa-shield-halved',
+                title: 'ショップ保証の有無を確認',
+                desc: <>初期不良やペアリング不良に対応する<strong>保証期間</strong>をチェック。イオシスなら3ヶ月保証など、ショップによって異なります。保証がないフリマアプリでの購入はリスクが高いため、初心者にはおすすめしません。</>,
+              },
+              {
+                iconClass: 'fa-solid fa-plug',
+                title: '充電端子を確認する（Lightning / USB-C）',
+                desc: <>AirPodsは世代によって充電端子がLightningまたはUSB-Cと異なります。iPhone 15以降やMacBookとケーブルを統一したい場合は<strong>USB-C対応モデル</strong>を選びましょう。今回おすすめしている{' '}3機種はすべてUSB-C対応です。</>,
+              },
+            ]}
+            memoLinks={[
+              { href: '/airpods/used-airpods-attention/', label: '中古AirPods購入時の注意点まとめ' },
+              { href: '/airpods/used-airpods-support/', label: 'サポート期間一覧' },
+            ]}
+          />
+          <ShopSection
+            items={shopItems}
+            productName="AirPods"
+            description="信頼性の高い中古ショップを厳選し、保証期間や配送料の有無などをまとめました。"
+            specRows={[
+              { label: '価格', field: 'price' },
+              { label: '保証期間', field: 'support' },
+              { label: '赤ロム保証', field: 'block' },
+              { label: 'バッテリー保証', field: 'battery' },
+              { label: '実物写真', field: 'photo' },
+              { label: '配送料', field: 'postage' },
+            ]}
+          />
           <AirPodsFaqSection />
         </div>
 

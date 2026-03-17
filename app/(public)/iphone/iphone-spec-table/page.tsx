@@ -88,14 +88,21 @@ export default async function IPhoneSpecTablePage() {
     ram: m.ram,
     weight: m.weight,
     strage: m.strage,
+    color: m.color,
     size: m.size,
     port: m.port,
     battery: m.battery,
+    video: m.video,
+    streaming: m.streaming,
+    audio: m.audio,
     display: m.display,
     resolution: m.resolution,
     sim: m.sim,
     certification: m.certification,
+    front_camera: m.front_camera,
     image_sensor: m.image_sensor,
+    in_camera: m.in_camera,
+    photography_style: m.photography_style,
     apple_intelligence: m.apple_intelligence,
     magsafe: m.magsafe,
     dynamic_island: m.dynamic_island,
@@ -191,7 +198,7 @@ export default async function IPhoneSpecTablePage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/iphone/iphone16pro.jpg"
+                  src="/images/content/iphone-compare.jpg"
                   alt="歴代iPhoneスペック比較表のイメージ"
                   className="hero-media__img"
                   width={360}

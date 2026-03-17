@@ -14,12 +14,12 @@ export const metadata: Metadata = {
     title: '歴代iPhoneのバッテリー容量比較ランキング！電池持ちがいい機種はどれ？ | ユーズドラボ',
     description: '歴代iPhoneのバッテリー容量を比較しランキング形式で紹介。電池持ちのいいiPhoneがひと目でわかります。',
     url: '/iphone/battery-compare/',
-    images: [{ url: '/images/iphone/iphone16pro.jpg', width: 360, height: 360, alt: '歴代iPhoneバッテリー容量比較のイメージ' }],
+    images: [{ url: '/images/content/iphone-battery.jpg', width: 360, height: 360, alt: '歴代iPhoneバッテリー容量比較のイメージ' }],
   },
   twitter: {
     title: '歴代iPhoneのバッテリー容量比較ランキング！電池持ちがいい機種はどれ？ | ユーズドラボ',
     description: '歴代iPhoneのバッテリー容量を比較しランキング形式で紹介。',
-    images: ['/images/iphone/iphone16pro.jpg'],
+    images: ['/images/content/iphone-battery.jpg'],
   },
 }
 
@@ -172,7 +172,7 @@ export default async function IPhoneBatteryComparePage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/iphone/iphone16pro.jpg"
+                  src="/images/content/iphone-battery.jpg"
                   alt="歴代iPhoneバッテリー容量比較のイメージ"
                   className="hero-media__img"
                   width={360}

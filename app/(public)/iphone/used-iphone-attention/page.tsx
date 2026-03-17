@@ -22,12 +22,12 @@ export const metadata: Metadata = {
     title: `${PAGE_TITLE} | ユーズドラボ`,
     description: PAGE_DESCRIPTION,
     url: '/iphone/used-iphone-attention/',
-    images: [{ url: '/images/iphone/iphone16pro.jpg', width: 360, height: 360, alt: PAGE_TITLE }],
+    images: [{ url: '/images/content/used-iphone-ios-support.jpg', width: 360, height: 360, alt: PAGE_TITLE }],
   },
   twitter: {
     title: `${PAGE_TITLE} | ユーズドラボ`,
     description: PAGE_DESCRIPTION,
-    images: ['/images/iphone/iphone16pro.jpg'],
+    images: ['/images/content/used-iphone-ios-support.jpg'],
   },
 }
 
@@ -168,7 +168,7 @@ export default function UsedIphoneAttentionPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/iphone/iphone16pro.jpg"
+                  src="/images/content/used-iphone-ios-support.jpg"
                   alt="中古iPhone購入時の注意点イメージ"
                   className="hero-media__img"
                   width={360}
@@ -246,10 +246,39 @@ export default function UsedIphoneAttentionPage() {
           <PostCheckSection heading="購入後すぐやるべきチェック" productName="iPhone" checkItems={postCheckItems} />
           <FailureSection productName="iPhone" guidePath="/iphone" failurePatterns={failurePatterns} />
           <InsuranceSection {...insuranceData} />
-          <FaqSection productName="iPhone" faqItems={faqItems} />
+
+          {/* まとめ */}
+          <section className="l-section" id="matome" aria-labelledby="heading-matome">
+            <div className="l-container">
+              <h2 className="m-section-heading m-section-heading--lg" id="heading-matome">
+                中古iPhoneを買う際の注意点 まとめ
+              </h2>
+              <p className="m-section-desc">
+                中古iPhoneは注意点を知らないと危険ですが、見るべきポイントは限られています。
+              </p>
+              <p className="m-section-desc">
+                この記事で解説した内容を押さえておけば、大きな失敗は避けられます。
+              </p>
+
+              <div className="m-card m-card--shadow m-card--padded" style={{ maxWidth: 720, margin: 'var(--space-xl) auto 0' }}>
+                <h3 className="summary-card__title">
+                  <i className="fa-solid fa-circle-check" aria-hidden="true" style={{ color: 'var(--color-primary)' }}></i>
+                  {' '}購入前に確認すべき4つのポイント
+                </h3>
+                <ol className="summary-card__list">
+                  <li><strong>ネットワーク制限</strong>が「△」の端末は避けましょう。IMEIで事前に確認できます。</li>
+                  <li><strong>バッテリー最大容量</strong>が80%未満の端末は避けましょう。設定アプリから確認できます。</li>
+                  <li><strong>iOSサポート</strong>の残りが2年未満の端末は避けましょう。発売から約7年が目安です。</li>
+                  <li><strong>SIMロック</strong>が解除できない端末は避けましょう。設定アプリから確認できます。</li>
+                </ol>
+              </div>
+            </div>
+          </section>
+
+          <FaqSection productName="iPhone" faqItems={faqItems} bgSubtle />
         </div>
 
-        <ShareBox url={PAGE_URL} text={PAGE_TITLE} bgSubtle />
+        <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
       </article>
     </main>
   )

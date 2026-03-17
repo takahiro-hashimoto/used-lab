@@ -145,10 +145,8 @@ export default async function IPadGuidePage() {
             <div className="hero-content">
               <h1 className="hero-title" itemProp="headline">
                 中古iPad完全購入ガイド
-              </h1>
-              <p className="hero-description" itemProp="description">
                 選び方・相場・おすすめモデルまとめ【{GUIDE_DATE_LABEL}版】
-              </p>
+              </h1>
               <div className="hero-actions">
                 <a href="#recommended" className="m-btn m-btn--hero-primary">
                   <i className="fa-regular fa-star" aria-hidden="true"></i>
@@ -222,19 +220,24 @@ export default async function IPadGuidePage() {
               <h2 className="m-section-heading m-section-heading--lg" id="heading-filter-tool">条件に合うiPadを絞り込む</h2>
               <p className="m-section-desc">予算・画面サイズ・Apple Pencil対応・用途など、ご自身の条件を選ぶことで候補を絞り込めます。</p>
 
-              <div className="guide-tool-card m-card m-card--shadow">
-                <div className="guide-tool-card__inner">
-                  <div className="guide-tool-card__icon">
-                    <i className="fa-solid fa-tablet-screen-button" aria-hidden="true"></i>
-                  </div>
-                  <div className="guide-tool-card__body">
-                    <h3 className="guide-tool-card__title">iPad機種絞り込みツール</h3>
-                    <p className="guide-tool-card__desc">イラストを描きたい、動画を大画面で楽しみたいなどの希望や予算金額などにチェックを打つだけで、あなたにぴったり合うiPadをシミュレーションすることができます。</p>
-                  </div>
-                  <div className="guide-tool-card__action">
+              <div className="m-card m-card--shadow popular-card">
+                <figure className="popular-card-figure">
+                  <img
+                    src="/images/content/simulator.jpg"
+                    alt="iPad機種絞り込みツール"
+                    className="popular-card-img"
+                    width={400}
+                    height={500}
+                    loading="lazy"
+                  />
+                </figure>
+                <div className="popular-card-body">
+                  <p className="popular-card-subtitle">条件にチェックを打つだけ！</p>
+                  <p className="popular-card-title">iPad機種絞り込みツール</p>
+                  <p className="popular-card-desc">イラストを描きたい、動画を大画面で楽しみたいなどの希望や予算金額などにチェックを打つだけで、あなたにぴったり合うiPadをシミュレーションすることができます。</p>
+                  <div>
                     <Link href="/ipad/ipad-filter-search/" className="m-btn m-btn--primary">
-                      <span>機種診断スタート</span>
-                      <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                      機種診断スタート <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
                     </Link>
                   </div>
                 </div>
@@ -370,15 +373,14 @@ export default async function IPadGuidePage() {
                         </figure>
                         <div className="guide-recommend__body">
                           <div className="guide-recommend__header">
-                            <span className="guide-recommend__tag">{meta?.label || ''}</span>
                             <h3 className="guide-recommend__name">{model.model}</h3>
+                            <span className="guide-recommend__tag">{meta?.label || ''}</span>
                           </div>
                           <ul className="guide-recommend__specs">
                             <li>{model.date ? `${model.date.split('/')[0]}年発売` : ''}</li>
                             <li>{model.cpu || ''}</li>
                             <li>{model.display ? model.display.split(' ')[0] : ''}</li>
                           </ul>
-                          <p className="guide-recommend__catch">{meta?.subtitle || ''}</p>
                           <p className="guide-recommend__desc">{meta?.desc || ''}</p>
                         </div>
                         <div className="guide-recommend__aside">
@@ -442,15 +444,12 @@ export default async function IPadGuidePage() {
 
               <div className="l-grid l-grid--2col l-grid--gap-lg guide-spec-links">
                 {GUIDE_SPEC_LINKS.map((link) => (
-                  <Link key={link.href} href={link.href} className="m-card m-card--shadow related-link-card">
-                    <span className="related-link-card__icon">
-                      <i className={`fa-solid ${link.icon}`} aria-hidden="true"></i>
-                    </span>
-                    <h3 className="related-link-card__title">{link.title}</h3>
-                    <p className="related-link-card__desc">{link.desc}</p>
-                    <span className="related-link-card__arrow">
-                      <i className="fa-solid fa-chevron-right" aria-hidden="true"></i>
-                    </span>
+                  <Link key={link.href} href={link.href} className="m-card m-card--shadow related-link-card m-card--hoverable">
+                    <img src={link.image} alt={link.title} className="related-link-card__img" width={400} height={300} loading="lazy" />
+                    <div className="related-link-card__body">
+                      <h3 className="related-link-card__title">{link.title}</h3>
+                      <p className="related-link-card__desc">{link.desc}</p>
+                    </div>
                   </Link>
                 ))}
               </div>

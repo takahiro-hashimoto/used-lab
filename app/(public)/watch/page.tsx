@@ -146,10 +146,8 @@ export default async function WatchGuidePage() {
             <div className="hero-content">
               <h1 className="hero-title" itemProp="headline">
                 中古Apple Watch完全購入ガイド
-              </h1>
-              <p className="hero-description" itemProp="description">
                 選び方・相場・おすすめモデルまとめ【{GUIDE_DATE_LABEL}版】
-              </p>
+              </h1>
               <div className="hero-actions">
                 <a href="#recommended" className="m-btn m-btn--hero-primary">
                   <i className="fa-regular fa-star" aria-hidden="true"></i>
@@ -193,7 +191,7 @@ export default async function WatchGuidePage() {
               </p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                結論から知りたい方は「<Link href="/watch/recommend/">【{GUIDE_DATE_LABEL.replace('月', '')}年版】おすすめの中古Apple Watchを{RECOMMEND_COUNT_LABEL}厳選</Link>」をご覧ください。
+                結論から知りたい方は「<Link href="/watch/recommend/">【{GUIDE_DATE_LABEL}版】おすすめの中古Apple Watchを{RECOMMEND_COUNT_LABEL}厳選</Link>」をご覧ください。
               </p>
             </div>
           </div>
@@ -223,19 +221,24 @@ export default async function WatchGuidePage() {
               <h2 className="m-section-heading m-section-heading--lg" id="heading-filter-tool">条件に合うApple Watchを絞り込む</h2>
               <p className="m-section-desc">予算・ケースサイズ・健康センサー・バッテリー持ちなど、ご自身の条件を選ぶことで候補を絞り込めます。</p>
 
-              <div className="guide-tool-card m-card m-card--shadow">
-                <div className="guide-tool-card__inner">
-                  <div className="guide-tool-card__icon m-icon-box m-icon-box--xl">
-                    <i className="fa-solid fa-clock" aria-hidden="true"></i>
-                  </div>
-                  <div className="guide-tool-card__body">
-                    <h3 className="guide-tool-card__title">Apple Watch機種絞り込みツール</h3>
-                    <p className="guide-tool-card__desc">健康管理をしっかりしたい、バッテリーが長持ちしてほしいなどの希望や予算にチェックを打つだけで、あなたにぴったり合うApple Watchをシミュレーションすることができます。</p>
-                  </div>
-                  <div className="guide-tool-card__action">
+              <div className="m-card m-card--shadow popular-card">
+                <figure className="popular-card-figure">
+                  <img
+                    src="/images/content/simulator.jpg"
+                    alt="Apple Watch機種絞り込みツール"
+                    className="popular-card-img"
+                    width={400}
+                    height={500}
+                    loading="lazy"
+                  />
+                </figure>
+                <div className="popular-card-body">
+                  <p className="popular-card-subtitle">条件にチェックを打つだけ！</p>
+                  <p className="popular-card-title">Apple Watch機種絞り込みツール</p>
+                  <p className="popular-card-desc">健康管理をしっかりしたい、バッテリーが長持ちしてほしいなどの希望や予算にチェックを打つだけで、あなたにぴったり合うApple Watchをシミュレーションすることができます。</p>
+                  <div>
                     <Link href="/watch/watch-filter-search/" className="m-btn m-btn--primary">
-                      <span>機種診断スタート</span>
-                      <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                      機種診断スタート <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
                     </Link>
                   </div>
                 </div>
@@ -369,15 +372,14 @@ export default async function WatchGuidePage() {
                         </figure>
                         <div className="guide-recommend__body">
                           <div className="guide-recommend__header">
-                            <span className="guide-recommend__tag">{meta?.label || ''}</span>
                             <h3 className="guide-recommend__name">{model.model}</h3>
+                            <span className="guide-recommend__tag">{meta?.label || ''}</span>
                           </div>
                           <ul className="guide-recommend__specs">
                             <li>{model.date ? `${model.date.split('/')[0]}年発売` : ''}</li>
                             <li>{model.cpu || ''}</li>
                             <li>{model.size || ''}</li>
                           </ul>
-                          <p className="guide-recommend__catch">{meta?.subtitle || ''}</p>
                           <p className="guide-recommend__desc">{meta?.desc || ''}</p>
                         </div>
                         <div className="guide-recommend__aside">
@@ -442,14 +444,11 @@ export default async function WatchGuidePage() {
               <div className="l-grid l-grid--2col l-grid--gap-lg guide-spec-links">
                 {GUIDE_SPEC_LINKS.map((link) => (
                   <Link key={link.href} href={link.href} className="m-card m-card--shadow related-link-card m-card--hoverable">
-                    <span className="related-link-card__icon m-icon-box m-icon-box--sm">
-                      <i className={`fa-solid ${link.icon}`} aria-hidden="true"></i>
-                    </span>
-                    <h3 className="related-link-card__title">{link.title}</h3>
-                    <p className="related-link-card__desc">{link.desc}</p>
-                    <span className="related-link-card__arrow">
-                      <i className="fa-solid fa-chevron-right" aria-hidden="true"></i>
-                    </span>
+                    <img src={link.image} alt={link.title} className="related-link-card__img" width={400} height={300} loading="lazy" />
+                    <div className="related-link-card__body">
+                      <h3 className="related-link-card__title">{link.title}</h3>
+                      <p className="related-link-card__desc">{link.desc}</p>
+                    </div>
                   </Link>
                 ))}
               </div>

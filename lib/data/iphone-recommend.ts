@@ -4,8 +4,9 @@
 // ============================================================
 
 // ---------- 更新年月 ----------
-export const RECOMMEND_YEAR = '2026'
-export const RECOMMEND_MONTH = '2'
+const now = new Date()
+export const RECOMMEND_YEAR = `${now.getFullYear()}`
+export const RECOMMEND_MONTH = `${now.getMonth() + 1}`
 export const RECOMMEND_DATE_LABEL = `${RECOMMEND_YEAR}年${RECOMMEND_MONTH}月`
 
 // ---------- おすすめ機種のslug一覧 ----------
@@ -36,7 +37,7 @@ export type RecommendMeta = {
 
 export const RECOMMEND_META: Record<string, RecommendMeta> = {
   se3: {
-    label: 'コスパ重視の方向け',
+    label: 'コスパ重視',
     desc: 'とにかく安く、長く使えるモデル',
     subtitle: 'サクサク動く 最安iPhone',
     description: [
@@ -60,8 +61,8 @@ export const RECOMMEND_META: Record<string, RecommendMeta> = {
     targetUser: 'コスパ重視<br>初めての中古iPhone',
   },
   '14pro': {
-    label: 'カメラ性能を重視する人向け',
-    desc: 'カメラ性能を重視する人向け',
+    label: 'カメラ重視',
+    desc: '4800万画素トリプルカメラ・ProRAW対応の本格派モデル',
     subtitle: 'プロ級カメラを手頃な価格で',
     description: [
       'カメラにこだわりたいなら、iPhone14 Proが最適です。4800万画素のメインカメラに加え、超広角・望遠のトリプルカメラシステムを搭載。ProRAWやProRes動画撮影にも対応しており、写真・動画どちらも本格的な撮影が可能です。',
@@ -84,8 +85,8 @@ export const RECOMMEND_META: Record<string, RecommendMeta> = {
     targetUser: 'カメラ性能<br>高性能重視',
   },
   '13mini': {
-    label: '片手操作できる貴重な小型モデル',
-    desc: '片手操作できる貴重な小型モデル',
+    label: '小型・軽量',
+    desc: '5.4インチ・140gの超軽量ボディで片手操作が快適',
     subtitle: '最後の小型iPhone',
     description: [
       '片手で快適に操作できるiPhoneを求めるなら、iPhone13 miniが唯一の選択肢です。Appleが5.4インチサイズのminiシリーズを廃止したため、新品では手に入らない貴重なモデルです。',
@@ -108,8 +109,8 @@ export const RECOMMEND_META: Record<string, RecommendMeta> = {
     targetUser: '小型<br>片手操作重視',
   },
   '15normal': {
-    label: 'USB-Cで周辺機器を統一したい人向け',
-    desc: 'USB-Cで周辺機器を統一したい人向け',
+    label: 'USB-C対応',
+    desc: 'iPhone初のUSB-C採用。2030年頃までサポート見込みで長く使える',
     subtitle: 'USB-C時代の定番モデル',
     description: [
       'ケーブルをUSB-Cに統一したいなら、iPhone15が最適です。iPhoneシリーズで初めてUSB-Cを採用したモデルで、MacBookやiPadと同じケーブルで充電できます。',
@@ -132,8 +133,8 @@ export const RECOMMEND_META: Record<string, RecommendMeta> = {
     targetUser: 'USB-C<br>最新規格重視',
   },
   '14plus': {
-    label: '大画面で動画やSNSを楽しみたい人向け',
-    desc: '大画面で動画やSNSを楽しみたい人向け',
+    label: '大画面モデル',
+    desc: '6.7インチ大画面と最大26時間バッテリーで1日中安心',
     subtitle: '大画面＆長時間バッテリー',
     description: [
       '大きな画面で動画やSNSを楽しみたいなら、iPhone14 Plusが最適です。6.7インチの大画面ディスプレイは、動画視聴やゲーム、電子書籍の閲覧に最適。文字サイズも大きく表示でき、老眼が気になる方にもおすすめです。',

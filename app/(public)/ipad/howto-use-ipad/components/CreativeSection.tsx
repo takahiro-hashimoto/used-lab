@@ -13,7 +13,7 @@ export default function CreativeSection() {
         <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-xl)' }}>
 
           {/* 19. 動画編集をする */}
-          <div className="m-card m-card--shadow m-card--padded popular-card">
+          <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
             <img
               src="/images/content/ipad-video-editing.jpg"
               alt="iPadで動画編集する様子"
@@ -47,7 +47,7 @@ export default function CreativeSection() {
           </div>
 
           {/* 20. 写真編集する */}
-          <div className="m-card m-card--shadow m-card--padded popular-card">
+          <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
             <img
               src="/images/content/ipad-use-image-white-4.jpg"
               alt="iPadでLightroomを操作する様子"
@@ -78,7 +78,7 @@ export default function CreativeSection() {
           </div>
 
           {/* 21. イラストを書く */}
-          <div className="m-card m-card--shadow m-card--padded popular-card">
+          <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
             <img
               src="/images/content/how-to-use-ipad-min-sketch.jpg"
               alt="Apple Pencilでイラストを書く様子"
@@ -116,7 +116,7 @@ export default function CreativeSection() {
           </div>
 
           {/* 22. モデリングをする */}
-          <div className="m-card m-card--shadow m-card--padded popular-card">
+          <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
             <img
               src="/images/content/G8qw3UXbQAACat7.jpg"
               alt="iPadでモデリングする様子"
@@ -158,7 +158,7 @@ export default function CreativeSection() {
           </div>
 
           {/* 23(番外). カメラでテザー撮影する */}
-          <div className="m-card m-card--shadow m-card--padded popular-card">
+          <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
             <img
               src="/images/content/shooting-camera.jpg"
               alt="カメラでテザー撮影する様子"

@@ -5,8 +5,16 @@ type ShopItem = {
   url: string
 }
 
+type SpecRowDef = {
+  label: string
+  field: 'price' | 'support' | 'block' | 'battery' | 'photo' | 'postage'
+}
+
 type Props = {
   items: ShopItem[]
+  productName: string
+  description: string
+  specRows: SpecRowDef[]
 }
 
 function PriceIcon({ value }: { value: string | null }) {
@@ -32,17 +40,17 @@ function SpecValue({ value }: { value: string | null }) {
 
 const RECOMMENDED_SHOP_ID = 1
 
-export default function ShopSection({ items }: Props) {
+export default function ShopSection({ items, productName, description, specRows }: Props) {
   if (items.length === 0) return null
 
   return (
     <section className="l-section" id="shops" aria-labelledby="heading-shops">
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg" id="heading-shops">
-          中古iPhoneを安く買えるおすすめショップ
+          中古{productName}を安く買えるおすすめショップ
         </h2>
         <p className="m-section-desc">
-          信頼性の高い中古ショップを厳選し、保証期間や赤ロム保証の有無などをまとめました。
+          {description}
         </p>
         <p className="m-section-desc">
           気になるECサイトにアクセスして在庫数や価格をチェックしましょう。
@@ -66,30 +74,16 @@ export default function ShopSection({ items }: Props) {
                   )}
                 </div>
                 <dl className="m-vendor-card__specs">
-                  <div className="m-spec-row">
-                    <dt>価格</dt>
-                    <dd><PriceIcon value={shop.price} /></dd>
-                  </div>
-                  <div className="m-spec-row">
-                    <dt>保証期間</dt>
-                    <dd><SpecValue value={shop.support} /></dd>
-                  </div>
-                  <div className="m-spec-row">
-                    <dt>赤ロム保証</dt>
-                    <dd><SpecValue value={shop.block} /></dd>
-                  </div>
-                  <div className="m-spec-row">
-                    <dt>バッテリー保証</dt>
-                    <dd><SpecValue value={shop.battery} /></dd>
-                  </div>
-                  <div className="m-spec-row">
-                    <dt>実物写真</dt>
-                    <dd><SpecValue value={shop.photo} /></dd>
-                  </div>
-                  <div className="m-spec-row">
-                    <dt>配送料</dt>
-                    <dd><SpecValue value={shop.postage} /></dd>
-                  </div>
+                  {specRows.map((row) => (
+                    <div className="m-spec-row" key={row.field}>
+                      <dt>{row.label}</dt>
+                      <dd>
+                        {row.field === 'price'
+                          ? <PriceIcon value={shop[row.field]} />
+                          : <SpecValue value={shop[row.field]} />}
+                      </dd>
+                    </div>
+                  ))}
                 </dl>
                 <a
                   href={url}
@@ -97,7 +91,7 @@ export default function ShopSection({ items }: Props) {
                   rel="nofollow noopener noreferrer"
                   target="_blank"
                 >
-                  中古iPhoneを探す{' '}
+                  中古{productName}を探す{' '}
                   <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
                 </a>
               </article>

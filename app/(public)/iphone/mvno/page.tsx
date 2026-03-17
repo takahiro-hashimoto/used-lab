@@ -11,7 +11,7 @@ import ShareBox from '@/app/components/ShareBox'
 import MvnoDiagnosis from './components/MvnoDiagnosis'
 import type { DiagnosisProvider } from './components/MvnoDiagnosis'
 
-const PAGE_TITLE = `中古iPhoneの購入と通信契約がセットでできる格安SIM業者まとめ【${MVNO_PAGE_DATE_LABEL}】`
+const PAGE_TITLE = `中古iPhoneの購入と通信契約が一緒にできる格安SIM業者まとめ【${MVNO_PAGE_DATE_LABEL}】`
 const PAGE_DESCRIPTION = `中古iPhoneとセットで通信契約できる格安SIM・MVNOを徹底比較。楽天モバイル、UQモバイル、ワイモバイル、IIJmio、mineoなど主要7社の料金プランと端末販売の有無をまとめました【${MVNO_PAGE_DATE_LABEL}】`
 const PAGE_URL = 'https://used-lab.com/iphone/mvno/'
 

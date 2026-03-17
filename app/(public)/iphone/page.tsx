@@ -146,10 +146,8 @@ export default async function IPhoneGuidePage() {
             <div className="hero-content">
               <h1 className="hero-title" itemProp="headline">
                 中古iPhone完全購入ガイド
-              </h1>
-              <p className="hero-description" itemProp="description">
                 選び方・相場・おすすめモデルまとめ【{GUIDE_DATE_LABEL}版】
-              </p>
+              </h1>
               <div className="hero-actions">
                 <a href="#recommended" className="m-btn m-btn--hero-primary">
                   <i className="fa-regular fa-star" aria-hidden="true"></i>
@@ -193,7 +191,7 @@ export default async function IPhoneGuidePage() {
               </p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                結論から知りたい方は「<Link href="/iphone/recommend/">【{GUIDE_DATE_LABEL.replace('月', '')}年版】おすすめの中古iPhoneを5機種厳選</Link>」をご覧ください。
+                結論から知りたい方は「<Link href="/iphone/recommend/">【{GUIDE_DATE_LABEL}版】おすすめの中古iPhoneを5機種厳選</Link>」をご覧ください。
               </p>
             </div>
           </div>
@@ -223,19 +221,24 @@ export default async function IPhoneGuidePage() {
               <h2 className="m-section-heading m-section-heading--lg" id="heading-filter-tool">条件に合うiPhoneを絞り込む</h2>
               <p className="m-section-desc">予算・サイズ・認証方式・充電端子など、ご自身の条件を選ぶことで候補を絞り込めます。</p>
 
-              <div className="guide-tool-card m-card m-card--shadow">
-                <div className="guide-tool-card__inner">
-                  <div className="guide-tool-card__icon m-icon-box m-icon-box--xl">
-                    <i className="fa-solid fa-mobile-screen-button" aria-hidden="true"></i>
-                  </div>
-                  <div className="guide-tool-card__body">
-                    <h3 className="guide-tool-card__title">iPhone機種絞り込みツール</h3>
-                    <p className="guide-tool-card__desc">ゲームを快適にプレイしたい、ケーブルを統一したいなどの希望や・予算金額などにチェックを打つだけであなたにぴったり合うiPhoneをシミュレーションすることができます。</p>
-                  </div>
-                  <div className="guide-tool-card__action">
+              <div className="m-card m-card--shadow popular-card">
+                <figure className="popular-card-figure">
+                  <img
+                    src="/images/content/simulator.jpg"
+                    alt="iPhone機種絞り込みツール"
+                    className="popular-card-img"
+                    width={400}
+                    height={500}
+                    loading="lazy"
+                  />
+                </figure>
+                <div className="popular-card-body">
+                  <p className="popular-card-subtitle">条件にチェックを打つだけ！</p>
+                  <p className="popular-card-title">iPhone機種絞り込みツール</p>
+                  <p className="popular-card-desc">ゲームを快適にプレイしたい、ケーブルを統一したいなどの希望や・予算金額などにチェックを打つだけであなたにぴったり合うiPhoneをシミュレーションすることができます。</p>
+                  <div>
                     <Link href="/iphone/filter-search/" className="m-btn m-btn--primary">
-                      <span>機種診断スタート</span>
-                      <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                      機種診断スタート <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
                     </Link>
                   </div>
                 </div>
@@ -369,15 +372,14 @@ export default async function IPhoneGuidePage() {
                         </figure>
                         <div className="guide-recommend__body">
                           <div className="guide-recommend__header">
-                            <span className="guide-recommend__tag">{meta?.label || ''}</span>
                             <h3 className="guide-recommend__name">{model.model}</h3>
+                            <span className="guide-recommend__tag">{meta?.label || ''}</span>
                           </div>
                           <ul className="guide-recommend__specs">
                             <li>{model.date ? `${model.date.split('/')[0]}年発売` : ''}</li>
                             <li>{model.cpu || ''}</li>
                             <li>{model.display ? model.display.split(' ')[0] : ''}</li>
                           </ul>
-                          <p className="guide-recommend__catch">{meta?.subtitle || ''}</p>
                           <p className="guide-recommend__desc">{meta?.desc || ''}</p>
                         </div>
                         <div className="guide-recommend__aside">
@@ -442,26 +444,30 @@ export default async function IPhoneGuidePage() {
                 端末選びから回線契約まで一度に済ませたい方におすすめです。
               </p>
 
-              <Link href="/iphone/mvno/" className="special-banner-card">
-                <img
-                  src="/images/content/sim.webp"
-                  alt="中古iPhoneの購入と通信契約がセットでできる格安SIM業者まとめ"
-                  className="special-banner-card__image"
-                  width={200}
-                  height={150}
-                  loading="lazy"
-                />
-                <div className="special-banner-card__body">
-                  <p className="special-banner-card__subtitle">回線契約と端末購入を一度に！</p>
-                  <h3 className="special-banner-card__title">中古iPhoneの購入と通信契約がセットでできる格安SIM業者まとめ</h3>
-                  <p className="special-banner-card__desc">
+              <div className="m-card m-card--shadow popular-card">
+                <figure className="popular-card-figure">
+                  <img
+                    src="/images/content/sim.webp"
+                    alt="中古iPhoneの購入と通信契約が一緒にできる格安SIM業者まとめ"
+                    className="popular-card-img"
+                    width={400}
+                    height={500}
+                    loading="lazy"
+                  />
+                </figure>
+                <div className="popular-card-body">
+                  <p className="popular-card-subtitle">回線契約と端末購入を一度に！</p>
+                  <p className="popular-card-title">中古iPhoneの購入と通信契約が一緒にできる格安SIM業者まとめ</p>
+                  <p className="popular-card-desc">
                     楽天モバイル・UQモバイル・ワイモバイルなど、中古iPhoneと通信回線をセットで契約できる事業者を比較。あなたに最適な業者が見つかる診断機能付き。
                   </p>
+                  <div>
+                    <Link href="/iphone/mvno/" className="m-btn m-btn--primary">
+                      セット対応業者を見る <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                    </Link>
+                  </div>
                 </div>
-                <span className="special-banner-card__cta">
-                  セット対応業者を見る <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
-                </span>
-              </Link>
+              </div>
             </div>
           </section>
 
@@ -474,14 +480,11 @@ export default async function IPhoneGuidePage() {
               <div className="l-grid l-grid--2col l-grid--gap-lg guide-spec-links">
                 {GUIDE_SPEC_LINKS.map((link) => (
                   <Link key={link.href} href={link.href} className="m-card m-card--shadow related-link-card m-card--hoverable">
-                    <span className="related-link-card__icon m-icon-box m-icon-box--sm">
-                      <i className={`fa-solid ${link.icon}`} aria-hidden="true"></i>
-                    </span>
-                    <h3 className="related-link-card__title">{link.title}</h3>
-                    <p className="related-link-card__desc">{link.desc}</p>
-                    <span className="related-link-card__arrow">
-                      <i className="fa-solid fa-chevron-right" aria-hidden="true"></i>
-                    </span>
+                    <img src={link.image} alt={link.title} className="related-link-card__img" width={400} height={300} loading="lazy" />
+                    <div className="related-link-card__body">
+                      <h3 className="related-link-card__title">{link.title}</h3>
+                      <p className="related-link-card__desc">{link.desc}</p>
+                    </div>
                   </Link>
                 ))}
               </div>

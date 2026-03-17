@@ -4,8 +4,9 @@
 // ============================================================
 
 // ---------- 更新年月 ----------
-export const RECOMMEND_YEAR = '2026'
-export const RECOMMEND_MONTH = '2'
+const now = new Date()
+export const RECOMMEND_YEAR = `${now.getFullYear()}`
+export const RECOMMEND_MONTH = `${now.getMonth() + 1}`
 export const RECOMMEND_DATE_LABEL = `${RECOMMEND_YEAR}年${RECOMMEND_MONTH}月`
 
 // ---------- おすすめ機種のslug一覧 ----------
@@ -34,7 +35,7 @@ export type RecommendMeta = {
 
 export const RECOMMEND_META: Record<string, RecommendMeta> = {
   'series9': {
-    label: '万能モデルを求める方向け',
+    label: '万能モデル',
     desc: 'S9チップ＋ダブルタップ搭載の高機能モデル',
     subtitle: '機能もデザインも妥協しない万能モデル',
     description: [
@@ -57,7 +58,7 @@ export const RECOMMEND_META: Record<string, RecommendMeta> = {
     targetUser: '万能モデル<br>ダブルタップ対応',
   },
   'se3-2': {
-    label: 'コスパ重視の入門機を探している方向け',
+    label: 'コスパ重視',
     desc: 'S10チップ＋常時表示搭載の最新エントリーモデル',
     subtitle: '最新チップ搭載で入門機の概念を超えた一台',
     description: [
@@ -80,7 +81,7 @@ export const RECOMMEND_META: Record<string, RecommendMeta> = {
     targetUser: 'コスパ重視<br>最新チップで快適',
   },
   'ultra2': {
-    label: 'アウトドアやタフな使い方をしたい方向け',
+    label: 'タフネス',
     desc: 'S9チップ＋最大54時間バッテリーのタフネスモデル',
     subtitle: '圧倒的なバッテリーと耐久性を備えた最強モデル',
     description: [

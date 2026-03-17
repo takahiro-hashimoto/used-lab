@@ -123,10 +123,8 @@ export default async function MacBookGuidePage() {
             <div className="hero-content">
               <h1 className="hero-title" itemProp="headline">
                 中古MacBook完全購入ガイド
-              </h1>
-              <p className="hero-description" itemProp="description">
                 選び方・相場・おすすめモデルまとめ【{GUIDE_DATE_LABEL}版】
-              </p>
+              </h1>
               <div className="hero-actions">
                 <a href="#recommended" className="m-btn m-btn--hero-primary">
                   <i className="fa-regular fa-star" aria-hidden="true"></i>
@@ -170,7 +168,7 @@ export default async function MacBookGuidePage() {
               </p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                結論から知りたい方は「<Link href="/macbook/recommend/">【{GUIDE_DATE_LABEL.replace('月', '')}年版】おすすめの中古MacBookを{RECOMMEND_COUNT_LABEL}厳選</Link>」をご覧ください。
+                結論から知りたい方は「<Link href="/macbook/recommend/">【{GUIDE_DATE_LABEL}版】おすすめの中古MacBookを{RECOMMEND_COUNT_LABEL}厳選</Link>」をご覧ください。
               </p>
             </div>
           </div>
@@ -275,15 +273,14 @@ export default async function MacBookGuidePage() {
                         </figure>
                         <div className="guide-recommend__body">
                           <div className="guide-recommend__header">
-                            <span className="guide-recommend__tag">{meta?.label || ''}</span>
                             <h3 className="guide-recommend__name">{model.model}</h3>
+                            <span className="guide-recommend__tag">{meta?.label || ''}</span>
                           </div>
                           <ul className="guide-recommend__specs">
                             <li>{model.date ? `${model.date.split('/')[0]}年発売` : ''}</li>
                             <li>{model.cpu || ''}</li>
                             <li>{model.size || ''}</li>
                           </ul>
-                          <p className="guide-recommend__catch">{meta?.subtitle || ''}</p>
                           <p className="guide-recommend__desc">{meta?.desc || ''}</p>
                         </div>
                         <div className="guide-recommend__aside">
@@ -346,14 +343,11 @@ export default async function MacBookGuidePage() {
               <div className="l-grid l-grid--2col l-grid--gap-lg guide-spec-links">
                 {GUIDE_SPEC_LINKS.map((link) => (
                   <Link key={link.href} href={link.href} className="m-card m-card--shadow related-link-card m-card--hoverable">
-                    <span className="related-link-card__icon m-icon-box m-icon-box--sm">
-                      <i className={`fa-solid ${link.icon}`} aria-hidden="true"></i>
-                    </span>
-                    <h3 className="related-link-card__title">{link.title}</h3>
-                    <p className="related-link-card__desc">{link.desc}</p>
-                    <span className="related-link-card__arrow">
-                      <i className="fa-solid fa-chevron-right" aria-hidden="true"></i>
-                    </span>
+                    <img src={link.image} alt={link.title} className="related-link-card__img" width={400} height={300} loading="lazy" />
+                    <div className="related-link-card__body">
+                      <h3 className="related-link-card__title">{link.title}</h3>
+                      <p className="related-link-card__desc">{link.desc}</p>
+                    </div>
                   </Link>
                 ))}
               </div>

@@ -3,11 +3,12 @@ import type { FaqItem } from './types'
 interface Props {
   productName: string
   faqItems: FaqItem[]
+  bgSubtle?: boolean
 }
 
-export default function FaqSection({ productName, faqItems }: Props) {
+export default function FaqSection({ productName, faqItems, bgSubtle = false }: Props) {
   return (
-    <section className="l-section" id="faq" aria-labelledby="heading-faq">
+    <section className={`l-section${bgSubtle ? ' l-section--bg-subtle' : ''}`} id="faq" aria-labelledby="heading-faq">
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg" id="heading-faq">
           よくある質問

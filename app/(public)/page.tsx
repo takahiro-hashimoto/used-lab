@@ -141,7 +141,7 @@ export default async function HomePage() {
           <div className="l-grid l-grid--3col l-grid--gap-lg">
             <div className="m-card m-card--shadow criteria-card">
               <div className="criteria-card__head">
-                <span className="criteria-card__icon criteria-card__icon--blue">
+                <span className="m-icon-box m-icon-box--lg criteria-card__icon criteria-card__icon--blue">
                   <i className="fa-solid fa-chart-line" aria-hidden="true"></i>
                 </span>
                 <h3 className="criteria-card__title">毎日更新の価格データ</h3>
@@ -152,7 +152,7 @@ export default async function HomePage() {
             </div>
             <div className="m-card m-card--shadow criteria-card">
               <div className="criteria-card__head">
-                <span className="criteria-card__icon criteria-card__icon--green">
+                <span className="m-icon-box m-icon-box--lg criteria-card__icon criteria-card__icon--green">
                   <i className="fa-solid fa-table-cells" aria-hidden="true"></i>
                 </span>
                 <h3 className="criteria-card__title">全モデル網羅のスペック比較</h3>
@@ -163,7 +163,7 @@ export default async function HomePage() {
             </div>
             <div className="m-card m-card--shadow criteria-card">
               <div className="criteria-card__head">
-                <span className="criteria-card__icon criteria-card__icon--red">
+                <span className="m-icon-box m-icon-box--lg criteria-card__icon criteria-card__icon--red">
                   <i className="fa-solid fa-star" aria-hidden="true"></i>
                 </span>
                 <h3 className="criteria-card__title">目的別のおすすめガイド</h3>
@@ -194,7 +194,6 @@ export default async function HomePage() {
                     <span className="top-new-article__category">{article.category}</span>
                   </span>
                   <h3 className="top-new-article__title">{article.title}</h3>
-                  <p className="top-new-article__desc">{article.desc}</p>
                 </div>
               </Link>
             ))}

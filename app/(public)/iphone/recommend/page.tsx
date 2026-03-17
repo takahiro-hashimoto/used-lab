@@ -10,6 +10,7 @@ import type { IPhoneModel, IPhonePriceLog } from '@/lib/types'
 import { buildFallbackShops } from '@/lib/utils/shared-helpers'
 import {
   RECOMMEND_DATE_LABEL,
+  RECOMMEND_YEAR,
   RECOMMEND_SLUGS,
   RECOMMEND_COUNT,
   RECOMMEND_COUNT_LABEL,
@@ -19,12 +20,12 @@ import {
 } from '@/lib/data/iphone-recommend'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import ShareBox from '@/app/components/ShareBox'
-import ConclusionSection from './components/ConclusionSection'
-import CriteriaSection from './components/CriteriaSection'
+import ConclusionSection from '@/app/components/ConclusionSection'
+import CriteriaSection from '@/app/components/CriteriaSection'
 import RecommendDetailSection from './components/RecommendDetailSection'
 import CompareTableSection from './components/CompareTableSection'
-import ChecklistSection from './components/ChecklistSection'
-import ShopSection from './components/ShopSection'
+import ChecklistSection from '@/app/components/ChecklistSection'
+import ShopSection from '@/app/components/ShopSection'
 import IPhoneFaqSection from './components/IPhoneFaqSection'
 
 const PAGE_TITLE = `中古iPhoneおすすめ機種${RECOMMEND_COUNT}選｜目的別に狙い目モデルを解説【${RECOMMEND_DATE_LABEL}版】`
@@ -106,10 +107,12 @@ export default async function IPhoneTopPage() {
   }
 
   // ConclusionSection用データ
-  const conclusionItems = recommendModels.map((model, i) => ({
-    model,
-    latestPrice: latestPrices[i],
-    label: RECOMMEND_META[model.slug]?.label || '',
+  const conclusionItems = recommendModels.map((model) => ({
+    id: model.id,
+    slug: model.slug,
+    displayName: model.model,
+    image: model.image,
+    date: model.date,
     desc: RECOMMEND_META[model.slug]?.desc || '',
   }))
 
@@ -280,12 +283,89 @@ export default async function IPhoneTopPage() {
 
         {/* セクション */}
         <div itemProp="articleBody">
-          <ConclusionSection items={conclusionItems} />
-          <CriteriaSection />
+          <ConclusionSection
+            items={conclusionItems}
+            heading={<>【結論】{RECOMMEND_YEAR}年現在のおすすめ中古iPhone{RECOMMEND_COUNT}機種</>}
+            descriptions={[
+              <>迷っているなら、まずはこの{RECOMMEND_COUNT}機種から選べば大きな失敗はありません。</>,
+              <>{RECOMMEND_YEAR}年時点で「iOSサポートが十分に残っている」「中古価格と性能のバランスが良い」モデルだけに絞っています。</>,
+            ]}
+            gridCols="5col"
+            imagePath="iphone"
+            placeholderText="iPhone"
+          />
+          <CriteriaSection
+            recommendCount={RECOMMEND_COUNT}
+            recommendCountLabel={RECOMMEND_COUNT_LABEL}
+            descriptions={[
+              '中古iPhoneを選ぶなら、「長く使えるか」「快適に動くか」「価格に見合っているか」の3つが重要。',
+              <>この基準を満たし、用途別に最適なモデルを{RECOMMEND_COUNT}つに絞り込みました。</>,
+            ]}
+            cards={[
+              {
+                iconClass: 'fa-solid fa-shield-halved',
+                iconColor: 'blue',
+                title: 'iOSサポートが十分に残っている',
+                desc: <>サポートが切れるとセキュリティリスクが高まり、アプリも使えなくなります。<strong>2030年以降までサポートされる機種</strong>だけを選んでいます。</>,
+              },
+              {
+                iconClass: 'fa-solid fa-bolt',
+                iconColor: 'green',
+                title: '日常利用でストレスを感じにくい性能',
+                desc: '普段使い（SNS・Web・動画）で「遅い」「カクつく」と感じにくい性能を基準にしています。体感差が出にくい世代以降のモデルに絞って選定しています。',
+              },
+              {
+                iconClass: 'fa-solid fa-coins',
+                iconColor: 'red',
+                title: '中古価格と性能のバランスが良い',
+                desc: '「残りのサポート期間」と「実際の中古相場」から、1年あたりのコストを計算しています。年単価が最も安くなる機種を優先的に選んでいます。',
+              },
+            ]}
+          />
           <RecommendDetailSection items={detailItems} />
           <CompareTableSection items={compareItems} />
-          <ChecklistSection />
-          <ShopSection items={shopItems} />
+          <ChecklistSection
+            productName="iPhone"
+            items={[
+              {
+                iconClass: 'fa-solid fa-battery-three-quarters',
+                title: 'バッテリー最大容量は80%以上が必須',
+                desc: '中古iPhoneではバッテリーの劣化具合が使い心地に直結します。最大容量80%未満の場合、価格が安くても購入後に交換が必要になるケースが多く、割高になることも。',
+              },
+              {
+                iconClass: 'fa-solid fa-signal',
+                title: 'ネットワーク利用制限は「○」を選ぶ',
+                desc: <>「○」判定は分割払い完済済みの証。「△」は前の持ち主が分割払い中で、将来的に赤ロム（通信不可）になるリスクがあります。なお、<strong>SIMフリー版（Apple Store購入品）</strong>は元々判定対象外なので安心です。</>,
+              },
+              {
+                iconClass: 'fa-solid fa-shield-halved',
+                title: 'ショップ保証の有無を確認',
+                desc: <>初期不良や赤ロム化に対応する<strong>保証期間</strong>をチェック。イオシスなら3~6ヶ月、にこスマなら1年保証など、ショップによって異なります。保証がないフリマアプリでの購入はリスクが高いため、初心者にはおすすめしません。</>,
+              },
+              {
+                iconClass: 'fa-solid fa-mobile-screen',
+                title: 'iOSサポート期間を確認する',
+                desc: <>発売から約7年でサポート終了するのが過去の傾向です。サポートが切れるとセキュリティリスクが高まるため、<strong>発売が古すぎる機種</strong>は避けましょう。各モデルの詳しいサポート期限は下記の記事で確認できます。</>,
+              },
+            ]}
+            memoLinks={[
+              { href: '/iphone/used-iphone-attention/', label: '中古iPhone購入時の注意点まとめ' },
+              { href: '/iphone/used-iphone-support/', label: 'iOSのサポート期間一覧' },
+            ]}
+          />
+          <ShopSection
+            items={shopItems}
+            productName="iPhone"
+            description="信頼性の高い中古ショップを厳選し、保証期間や赤ロム保証の有無などをまとめました。"
+            specRows={[
+              { label: '価格', field: 'price' },
+              { label: '保証期間', field: 'support' },
+              { label: '赤ロム保証', field: 'block' },
+              { label: 'バッテリー保証', field: 'battery' },
+              { label: '実物写真', field: 'photo' },
+              { label: '配送料', field: 'postage' },
+            ]}
+          />
           <IPhoneFaqSection />
         </div>
 

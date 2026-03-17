@@ -2,6 +2,24 @@
 // 共通ユーティリティ
 // ============================================
 
+/** JST (Asia/Tokyo) の今日の日付を "YYYY-MM-DD" 形式で返す */
+export function getTodayJST(): string {
+  return new Date().toLocaleDateString('sv-SE', { timeZone: 'Asia/Tokyo' })
+}
+
+/** JST (Asia/Tokyo) の現在時刻を ISO 8601 風文字列で返す（タイムゾーンは+09:00） */
+export function getNowISOJST(): string {
+  const now = new Date()
+  const jst = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Tokyo' }))
+  const y = jst.getFullYear()
+  const m = String(jst.getMonth() + 1).padStart(2, '0')
+  const d = String(jst.getDate()).padStart(2, '0')
+  const h = String(jst.getHours()).padStart(2, '0')
+  const mi = String(jst.getMinutes()).padStart(2, '0')
+  const s = String(jst.getSeconds()).padStart(2, '0')
+  return `${y}-${m}-${d}T${h}:${mi}:${s}+09:00`
+}
+
 /** レートリミット対策の sleep */
 export function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms))
