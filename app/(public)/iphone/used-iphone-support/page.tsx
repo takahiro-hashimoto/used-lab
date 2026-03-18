@@ -108,7 +108,7 @@ export default async function UsedIphoneSupportPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/iphone/iphone16pro.jpg"
+                  src="/images/content/iphone-image-02.jpg"
                   alt="iPhoneの寿命・サポート期間イメージ"
                   className="hero-media__img"
                   width={360}

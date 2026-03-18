@@ -116,7 +116,7 @@ export default function AppleWatchBuyPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <img
-                  src="https://used-lab.jp/wp-content/uploads/2025/07/how-to-buy-cheap-apple-watch-image-1024x576.jpg"
+                  src="/images/content/watch-image-06.jpg"
                   alt="Apple Watchを安く買う方法のイメージ"
                   className="hero-media__img"
                   width={360}

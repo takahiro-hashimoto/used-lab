@@ -109,9 +109,6 @@ export default function AppleWatchAlwaysLitPage() {
               <h1 className="hero-title" itemProp="headline">
                 Apple Watchの常時点灯はいらない？<br className="sp-only" />使ってみてわかったメリット・デメリットまとめ
               </h1>
-              <p className="hero-description" itemProp="description">
-                常時表示ディスプレイのメリット・デメリットからバッテリーへの影響、オフにする方法まで徹底解説
-              </p>
               <div className="hero-actions">
                 <a href="#merit-demerit" className="m-btn m-btn--hero-primary">
                   <i className="fa-solid fa-scale-balanced" aria-hidden="true"></i>
@@ -133,7 +130,7 @@ export default function AppleWatchAlwaysLitPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/watch/apple-watch-image.jpg"
+                  src="/images/content/watch-image-03.jpg"
                   alt="Apple Watchの常時点灯ディスプレイのイメージ"
                   className="hero-media__img"
                   width={360}

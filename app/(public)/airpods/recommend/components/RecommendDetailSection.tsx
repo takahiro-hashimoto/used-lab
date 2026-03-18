@@ -3,6 +3,8 @@ import type { AirPodsModel, AirPodsPriceLog, ProductShopLink, FallbackShop } fro
 import { formatPrice, formatReleaseDate, buildDisplayLinks } from '@/lib/utils/shared-helpers'
 import { calculatePriceRange, calculateFirmwareLifespan } from '@/lib/utils/airpods-helpers'
 import { RECOMMEND_DATE_LABEL, RECOMMEND_COUNT_LABEL } from '@/lib/data/airpods-recommend'
+import SpecToggle from '@/app/components/SpecToggle'
+import { BoolValue, SpecRows, SpecCategory } from '@/app/components/spec-helpers'
 
 type RecommendItem = {
   model: AirPodsModel
@@ -203,6 +205,37 @@ export default function RecommendDetailSection({ items }: Props) {
                   </div>
                 </div>
               )}
+
+              <SpecToggle>
+                <table className="recommend-card__specs-table">
+                  <tbody>
+                    <SpecCategory title="基本スペック" />
+                    <SpecRows items={[
+                      { label: '装着タイプ', value: model.type },
+                      { label: 'チップ', value: model.chip },
+                      { label: '充電端子', value: model.port },
+                      { label: '装着感', value: model.fit },
+                      { label: '操作方法', value: model.control },
+                      { label: 'バッテリー（イヤホン）', value: model.battery_earphone },
+                      { label: 'バッテリー（ケース）', value: model.battery_case },
+                      { label: '耐水性能', value: model.waterproof },
+                    ]} />
+                    <SpecCategory title="機能" />
+                    <SpecRows items={[
+                      { label: 'ノイズキャンセリング', value: <BoolValue value={model.anc} /> },
+                      { label: 'アダプティブオーディオ', value: <BoolValue value={model.adaptive_audio} /> },
+                      { label: '空間オーディオ', value: <BoolValue value={model.spatial_audio} /> },
+                      { label: 'MagSafe充電', value: <BoolValue value={model.magsafe} /> },
+                      { label: 'Qi充電', value: <BoolValue value={model.qi_charge} /> },
+                    ]} />
+                    <SpecCategory title="その他" />
+                    <SpecRows items={[
+                      { label: '発売日', value: releaseDate },
+                      { label: '公式サイト', value: model.official ? <a href={model.official} target="_blank" rel="noopener noreferrer">{model.name}の技術仕様</a> : null },
+                    ]} />
+                  </tbody>
+                </table>
+              </SpecToggle>
             </div>
           )
         })}

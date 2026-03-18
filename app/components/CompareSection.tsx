@@ -19,6 +19,7 @@ type Props<T extends BaseModel> = {
     allModels: T[]
     initialCompareId: number
     iosysUrl?: string
+    shopLinks: ProductShopLink[]
   }) => React.ReactNode
 }
 
@@ -31,7 +32,7 @@ export default function CompareSection<T extends BaseModel>({
 
   if (!defaultCompare) return null
 
-  const iosysLink = shopLinks.find((link) => link.shop_id === 1)
+  const iosysLink = shopLinks.find((link) => link.product_id === model.id && link.shop_id === 1)
 
   return (
     <section className={`l-section${bgSubtle ? ' l-section--bg-subtle' : ''}`} id="compare" aria-labelledby="heading-compare">
@@ -48,6 +49,7 @@ export default function CompareSection<T extends BaseModel>({
           allModels,
           initialCompareId: defaultCompare.id,
           iosysUrl: iosysLink?.url,
+          shopLinks,
         })}
       </div>
     </section>

@@ -1,13 +1,14 @@
 'use client'
 
 import CompareSelectorBase from '@/app/components/CompareSelector'
-import type { AirPodsModel } from '@/lib/types'
+import type { AirPodsModel, ProductShopLink } from '@/lib/types'
 
 type Props = {
   currentModel: AirPodsModel
   allModels: AirPodsModel[]
   initialCompareId: number
   iosysUrl?: string
+  shopLinks?: ProductShopLink[]
 }
 
 type CompareRow = {
@@ -59,12 +60,13 @@ function getShortName(model: AirPodsModel): string {
   return model.name
 }
 
-export default function CompareSelector({ currentModel, allModels, initialCompareId, iosysUrl }: Props) {
+export default function CompareSelector({ currentModel, allModels, initialCompareId, iosysUrl, shopLinks = [] }: Props) {
   return (
     <CompareSelectorBase
       currentModel={currentModel}
       allModels={allModels}
       initialCompareId={initialCompareId}
+      shopLinks={shopLinks}
       iosysUrl={iosysUrl}
       imagePath="airpods"
       detailPath="airpods"

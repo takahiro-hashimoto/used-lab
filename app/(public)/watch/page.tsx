@@ -169,7 +169,7 @@ export default async function WatchGuidePage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <img
-                  src="/images/watch/watch-9.jpg"
+                  src="/images/content/apple-watch-image.jpg"
                   alt="中古Apple Watch購入ガイドのイメージ"
                   className="hero-media__img"
                   width={360}

@@ -168,7 +168,7 @@ export default function UsedWatchAttentionPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/watch/watch-10.jpg"
+                  src="/images/content/watch-image-04.jpg"
                   alt="中古Apple Watch購入時の注意点イメージ"
                   className="hero-media__img"
                   width={360}

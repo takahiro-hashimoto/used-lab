@@ -169,7 +169,7 @@ export default async function IPhoneGuidePage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <img
-                  src="https://placehold.co/360x360/1a1a2e/ffffff?text=iPhone+Guide"
+                  src="/images/content/iphone-image.jpeg"
                   alt="中古iPhone購入ガイドのイメージ"
                   className="hero-media__img"
                   width={360}

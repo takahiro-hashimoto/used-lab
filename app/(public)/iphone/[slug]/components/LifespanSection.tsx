@@ -34,7 +34,7 @@ export default function LifespanSection({ model }: Props) {
               )}
             </p>
             <p className="m-stat-card__note">
-              最新のiOS機能が使える目安。発売から7年ほどが経過するとサポート終了になる傾向がある。
+              最新のiOS機能が使える目安。<br />発売から7年ほどが経過するとサポート終了になる傾向がある。
             </p>
           </div>
           <div className="m-card m-stat-card m-stat-card--lg lifespan-card">

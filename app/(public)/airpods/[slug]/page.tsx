@@ -5,7 +5,7 @@ import {
   getAllAirPodsSlugs,
   getAllAirPodsModels,
   getShops,
-  getProductShopLinks,
+  getAllProductShopLinksByType,
   getAirPodsPriceLogsByModelId,
   getLatestAirPodsPriceLog,
 } from '@/lib/queries'
@@ -65,7 +65,7 @@ export default async function AirPodsDetailPage({ params }: PageProps) {
   // 並列データ取得
   const [shops, shopLinks, priceLogs, latestPrice, allModels] = await Promise.all([
     getShops(),
-    getProductShopLinks('airpods', model.id),
+    getAllProductShopLinksByType('airpods'),
     getAirPodsPriceLogsByModelId(model.id),
     getLatestAirPodsPriceLog(model.id),
     getAllAirPodsModels(),
@@ -81,6 +81,7 @@ export default async function AirPodsDetailPage({ params }: PageProps) {
     maxes: [l.iosys_max, l.janpara_max, l.eearphone_max].filter((v): v is number => v != null),
   }))
   const displayName = model.model ? `${model.name}（${model.model}）` : model.name
+  const modelShopLinks = shopLinks.filter((l) => l.product_id === model.id)
 
   return (
     <main>
@@ -89,7 +90,7 @@ export default async function AirPodsDetailPage({ params }: PageProps) {
         <LeadText model={model} />
         <TableOfContents />
         <PurchaseVerdict model={model} />
-        <ShopGrid shops={shops} shopLinks={shopLinks} model={model} />
+        <ShopGrid shops={shops} shopLinks={modelShopLinks} model={model} />
         <LifespanSection model={model} />
         <BasicSpecs model={model} />
 
@@ -108,7 +109,7 @@ export default async function AirPodsDetailPage({ params }: PageProps) {
           {(props) => <CompareSelector {...props} />}
         </CompareSection>
         <RecommendBanner />
-        <FaqSection model={model} latestPrice={latestPrice} shopLinks={shopLinks} />
+        <FaqSection model={model} latestPrice={latestPrice} shopLinks={modelShopLinks} />
         <ShareBox url={`https://used-lab.com/airpods/${model.slug}/`} text={`中古${model.name}（${model.model}）は今買うべき？サポート期間、基本スペック、中古相場から解説`} bgSubtle />
       </article>
     </main>

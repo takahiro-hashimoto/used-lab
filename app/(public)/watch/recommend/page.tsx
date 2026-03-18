@@ -212,7 +212,7 @@ export default async function WatchRecommendPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/watch/watch-9.jpg"
+                  src="/images/content/watch-image-08.jpg"
                   alt={`中古Apple Watchおすすめ${RECOMMEND_COUNT}選のイメージ`}
                   className="hero-media__img"
                   width={360}

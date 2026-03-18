@@ -108,7 +108,7 @@ export default async function UsedWatchSupportPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/watch/watch-ultra3.jpg"
+                  src="/images/content/watch-image.jpg"
                   alt="Apple Watchの寿命・サポート期間イメージ"
                   className="hero-media__img"
                   width={360}

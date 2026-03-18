@@ -1,13 +1,14 @@
 'use client'
 
 import CompareSelectorBase from '@/app/components/CompareSelector'
-import type { WatchModel } from '@/lib/types'
+import type { WatchModel, ProductShopLink } from '@/lib/types'
 
 type Props = {
   currentModel: WatchModel
   allModels: WatchModel[]
   initialCompareId: number
   iosysUrl?: string
+  shopLinks?: ProductShopLink[]
 }
 
 type CompareRow = {
@@ -32,6 +33,7 @@ function formatReleaseDate(date: string | null): string {
 function buildCompareRows(current: WatchModel, compare: WatchModel): CompareRow[] {
   return [
     // 基本仕様
+    { section: '基本仕様', label: '発売日', current: formatReleaseDate(current.date), compare: formatReleaseDate(compare.date) },
     { section: '基本仕様', label: 'ケースサイズ', current: current.size || '-', compare: compare.size || '-' },
     { section: '基本仕様', label: 'チップセット', current: current.cpu || '-', compare: compare.cpu || '-' },
     { section: '基本仕様', label: 'ストレージ', current: current.strage || '-', compare: compare.strage || '-' },
@@ -54,17 +56,16 @@ function buildCompareRows(current: WatchModel, compare: WatchModel): CompareRow[
     { section: '健康・安全機能', label: '高度計', current: getBoolValue(current.altimeter), compare: getBoolValue(compare.altimeter) },
     { section: '健康・安全機能', label: '血圧', current: getBoolValue(current.blood_pressure), compare: getBoolValue(compare.blood_pressure) },
     { section: '健康・安全機能', label: '睡眠スコア', current: getBoolValue(current.sleep_score), compare: getBoolValue(compare.sleep_score) },
-    // その他
-    { section: 'その他', label: '発売日', current: formatReleaseDate(current.date), compare: formatReleaseDate(compare.date) },
   ]
 }
 
-export default function CompareSelector({ currentModel, allModels, initialCompareId, iosysUrl }: Props) {
+export default function CompareSelector({ currentModel, allModels, initialCompareId, iosysUrl, shopLinks = [] }: Props) {
   return (
     <CompareSelectorBase
       currentModel={currentModel}
       allModels={allModels}
       initialCompareId={initialCompareId}
+      shopLinks={shopLinks}
       iosysUrl={iosysUrl}
       imagePath="watch"
       detailPath="watch"

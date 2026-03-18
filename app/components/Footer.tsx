@@ -11,15 +11,16 @@ export default function Footer() {
             </Link>
             <p className="footer-tagline">中古Apple製品の「ちょうどいい」を見つけるメディア。豊富なデータで最適な商品がわかる。</p>
             <div className="footer-social">
-              <a href="#" aria-label="X (Twitter)" rel="noopener noreferrer">
+              <a href="http://twitter.com/takahiro_mono" aria-label="X (Twitter)" rel="noopener noreferrer">
                 <i className="fa-brands fa-x-twitter" aria-hidden="true"></i>
               </a>
-              <a href="#" aria-label="YouTube" rel="noopener noreferrer">
-                <i className="fa-brands fa-youtube" aria-hidden="true"></i>
-              </a>
-              <a href="#" aria-label="Instagram" rel="noopener noreferrer">
+              <a href="https://www.instagram.com/takahiro_mono" aria-label="Instagram" rel="noopener noreferrer">
                 <i className="fa-brands fa-instagram" aria-hidden="true"></i>
               </a>
+              <a href="https://www.youtube.com/@takahiro_mono" aria-label="YouTube" rel="noopener noreferrer">
+                <i className="fa-brands fa-youtube" aria-hidden="true"></i>
+              </a>
+
             </div>
           </div>
 

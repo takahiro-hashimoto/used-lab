@@ -5,7 +5,7 @@ import {
   getAllMacBookSlugs,
   getAllMacBookModels,
   getShops,
-  getProductShopLinks,
+  getAllProductShopLinksByType,
   getMacBookPriceLogsByModelId,
   getLatestMacBookPriceLog,
 } from '@/lib/queries'
@@ -67,7 +67,7 @@ export default async function MacBookDetailPage({ params }: PageProps) {
   // 並列データ取得
   const [shops, shopLinks, priceLogs, latestPrice, allModels] = await Promise.all([
     getShops(),
-    getProductShopLinks('macbook', model.id),
+    getAllProductShopLinksByType('macbook'),
     getMacBookPriceLogsByModelId(model.id),
     getLatestMacBookPriceLog(model.id),
     getAllMacBookModels(),
@@ -83,6 +83,7 @@ export default async function MacBookDetailPage({ params }: PageProps) {
     maxes: [l.iosys_max, l.geo_max, l.janpara_max].filter((v): v is number => v != null),
   }))
   const storageNote = latestLogEntries[0]?.storage || ''
+  const modelShopLinks = shopLinks.filter((l) => l.product_id === model.id)
 
   return (
     <main>
@@ -91,7 +92,7 @@ export default async function MacBookDetailPage({ params }: PageProps) {
         <LeadText model={model} />
         <TableOfContents />
         <PurchaseVerdict model={model} latestPrice={latestPrice} />
-        <ShopGrid shops={shops} shopLinks={shopLinks} model={model} />
+        <ShopGrid shops={shops} shopLinks={modelShopLinks} model={model} />
         <LifespanSection model={model} />
         <BasicSpecs model={model} />
 
@@ -112,7 +113,7 @@ export default async function MacBookDetailPage({ params }: PageProps) {
         <BenchmarkGeekbench model={model} allModels={allModels} />
         <Accessories model={model} />
         <RecommendBanner />
-        <FaqSection model={model} latestPrice={latestPrice} shopLinks={shopLinks} />
+        <FaqSection model={model} latestPrice={latestPrice} shopLinks={modelShopLinks} />
         <ShareBox url={`https://used-lab.com/macbook/${model.slug}/`} text={`中古${model.model}は今買うべき？製品寿命、基本スペック、ベンチマークスコア、中古相場から解説`} bgSubtle />
       </article>
     </main>

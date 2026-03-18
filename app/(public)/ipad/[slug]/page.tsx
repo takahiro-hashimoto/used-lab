@@ -5,7 +5,7 @@ import {
   getAllIPadSlugs,
   getAllIPadModels,
   getShops,
-  getProductShopLinks,
+  getAllProductShopLinksByType,
   getIPadPriceLogsByModelId,
   getLatestIPadPriceLog,
   getAllIPadAccessories,
@@ -72,7 +72,7 @@ export default async function IPadDetailPage({ params }: PageProps) {
   // 並列データ取得
   const [shops, shopLinks, priceLogs, latestPrice, allModels, allAccessories, allCompatibility, reviews] = await Promise.all([
     getShops(),
-    getProductShopLinks('ipad', model.id),
+    getAllProductShopLinksByType('ipad'),
     getIPadPriceLogsByModelId(model.id),
     getLatestIPadPriceLog(model.id),
     getAllIPadModels(),
@@ -104,6 +104,7 @@ export default async function IPadDetailPage({ params }: PageProps) {
     maxes: [l.iosys_max, l.geo_max, l.janpara_max].filter((v): v is number => v != null),
   }))
   const storageNote = latestLogEntries[0]?.storage || ''
+  const modelShopLinks = shopLinks.filter((l) => l.product_id === model.id)
 
   return (
     <main>
@@ -112,7 +113,7 @@ export default async function IPadDetailPage({ params }: PageProps) {
         <LeadText model={enrichedModel} />
         <TableOfContents />
         <PurchaseVerdict model={enrichedModel} latestPrice={latestPrice} />
-        <ShopGrid shops={shops} shopLinks={shopLinks} model={enrichedModel} />
+        <ShopGrid shops={shops} shopLinks={modelShopLinks} model={enrichedModel} />
         <LifespanSection model={enrichedModel} />
 
         {priceLogs.length > 0 ? (
@@ -136,7 +137,7 @@ export default async function IPadDetailPage({ params }: PageProps) {
         <AccessorySection model={enrichedModel} accessories={accessoryLookup.get(model.id) || []} />
         <ReviewSection modelName={enrichedModel.model} reviews={reviews} />
         <RecommendBanner />
-        <FaqSection model={enrichedModel} latestPrice={latestPrice} shopLinks={shopLinks} />
+        <FaqSection model={enrichedModel} latestPrice={latestPrice} shopLinks={modelShopLinks} />
         <ShareBox url={`https://used-lab.com/ipad/${enrichedModel.slug}/`} text={`中古${enrichedModel.model}は今買うべき？製品寿命、基本スペック、ベンチマークスコア、中古相場から解説`} bgSubtle />
       </article>
     </main>

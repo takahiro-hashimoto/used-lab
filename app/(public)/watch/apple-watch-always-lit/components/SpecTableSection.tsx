@@ -1,12 +1,14 @@
 'use client'
 
 import { useState, useMemo } from 'react'
+import { BoolCell } from '@/app/components/spec-table-utils'
 
 type Series = 'normal' | 'se' | 'ultra'
 
 interface WatchModel {
   name: string
   slug: string
+  image: string | null
   series: Series
   size: string
   releaseDate: string
@@ -30,20 +32,20 @@ interface WatchModel {
 }
 
 const models: WatchModel[] = [
-  { name: 'Apple Watch SE', slug: 'se', series: 'se', size: '40mm / 44mm', releaseDate: '2020年9月', releaseDateSort: 202009, cpu: 'S5 SiP', material: 'アルミニウム', storage: '32GB', battery: '最大18時間', brightness: '1,000ニト', waterResist: '50m', alwaysOn: false, fastCharge: false, bloodOxygen: false, ecg: false, crashDetect: false, fallDetect: true, skinTemp: false, doubleTap: false, jpInput: false, sleepApnea: false },
-  { name: 'Apple Watch SE2', slug: 'se2-2', series: 'se', size: '40mm / 44mm', releaseDate: '2022年9月', releaseDateSort: 202209, cpu: 'S8 SiP', material: 'アルミニウム', storage: '32GB', battery: '最大18時間', brightness: '1,000ニト', waterResist: '50m', alwaysOn: false, fastCharge: false, bloodOxygen: false, ecg: false, crashDetect: true, fallDetect: true, skinTemp: true, doubleTap: false, jpInput: false, sleepApnea: false },
-  { name: 'Apple Watch SE3', slug: 'se3-2', series: 'se', size: '40mm / 44mm', releaseDate: '2025年9月', releaseDateSort: 202509, cpu: 'S10 SiP', material: 'アルミニウム', storage: '64GB', battery: '最大18時間', brightness: '1,000ニト', waterResist: '50m', alwaysOn: true, fastCharge: true, bloodOxygen: false, ecg: false, crashDetect: true, fallDetect: true, skinTemp: true, doubleTap: true, jpInput: false, sleepApnea: true },
-  { name: 'Apple Watch 4', slug: 'series4', series: 'normal', size: '40mm / 44mm', releaseDate: '2018年9月', releaseDateSort: 201809, cpu: 'S4 SiP', material: 'アルミニウム\nステンレス', storage: '32GB', battery: '最大18時間', brightness: '1,000ニト', waterResist: '50m', alwaysOn: false, fastCharge: false, bloodOxygen: false, ecg: false, crashDetect: false, fallDetect: true, skinTemp: false, doubleTap: false, jpInput: false, sleepApnea: false },
-  { name: 'Apple Watch 5', slug: 'series5', series: 'normal', size: '40mm / 44mm', releaseDate: '2019年9月', releaseDateSort: 201909, cpu: 'S5 SiP', material: 'アルミニウム\nステンレス\nチタニウム', storage: '32GB', battery: '最大18時間', brightness: '1,000ニト', waterResist: '50m', alwaysOn: true, fastCharge: false, bloodOxygen: false, ecg: true, crashDetect: false, fallDetect: true, skinTemp: false, doubleTap: false, jpInput: false, sleepApnea: false },
-  { name: 'Apple Watch 6', slug: 'series6', series: 'normal', size: '40mm / 44mm', releaseDate: '2020年9月', releaseDateSort: 202009, cpu: 'S6 SiP', material: 'アルミニウム\nステンレス\nチタニウム', storage: '32GB', battery: '最大18時間', brightness: '1,000ニト', waterResist: '50m', alwaysOn: true, fastCharge: false, bloodOxygen: true, ecg: true, crashDetect: false, fallDetect: true, skinTemp: false, doubleTap: false, jpInput: false, sleepApnea: false },
-  { name: 'Apple Watch 7', slug: 'series7', series: 'normal', size: '41mm / 45mm', releaseDate: '2021年10月', releaseDateSort: 202110, cpu: 'S7 SiP', material: 'アルミニウム\nステンレス\nチタニウム', storage: '32GB', battery: '最大18時間', brightness: '1,000ニト', waterResist: '50m', alwaysOn: true, fastCharge: true, bloodOxygen: true, ecg: true, crashDetect: false, fallDetect: true, skinTemp: false, doubleTap: false, jpInput: true, sleepApnea: false },
-  { name: 'Apple Watch 8', slug: 'series8', series: 'normal', size: '41mm / 45mm', releaseDate: '2022年9月', releaseDateSort: 202209, cpu: 'S8 SiP', material: 'アルミニウム\nステンレス', storage: '32GB', battery: '最大18時間', brightness: '1,000ニト', waterResist: '50m', alwaysOn: true, fastCharge: true, bloodOxygen: true, ecg: true, crashDetect: true, fallDetect: true, skinTemp: true, doubleTap: false, jpInput: true, sleepApnea: false },
-  { name: 'Apple Watch 9', slug: 'series9', series: 'normal', size: '41mm / 45mm', releaseDate: '2023年9月', releaseDateSort: 202309, cpu: 'S9 SiP', material: 'アルミニウム\nステンレス', storage: '64GB', battery: '最大18時間', brightness: '2,000ニト', waterResist: '50m', alwaysOn: true, fastCharge: true, bloodOxygen: true, ecg: true, crashDetect: true, fallDetect: true, skinTemp: true, doubleTap: true, jpInput: true, sleepApnea: true },
-  { name: 'Apple Watch 10', slug: 'series10', series: 'normal', size: '42mm / 46mm', releaseDate: '2024年9月', releaseDateSort: 202409, cpu: 'S10 SiP', material: 'アルミニウム\nチタニウム', storage: '64GB', battery: '最大18時間', brightness: '2,000ニト', waterResist: '50m', alwaysOn: true, fastCharge: true, bloodOxygen: true, ecg: true, crashDetect: true, fallDetect: true, skinTemp: true, doubleTap: true, jpInput: true, sleepApnea: true },
-  { name: 'Apple Watch 11', slug: 'series11', series: 'normal', size: '42mm / 46mm', releaseDate: '2025年9月', releaseDateSort: 202509, cpu: 'S10 SiP', material: 'アルミニウム\nチタニウム', storage: '64GB', battery: '最大24時間', brightness: '2,000ニト', waterResist: '50m', alwaysOn: true, fastCharge: true, bloodOxygen: true, ecg: true, crashDetect: true, fallDetect: true, skinTemp: true, doubleTap: true, jpInput: true, sleepApnea: true },
-  { name: 'Apple Watch Ultra', slug: 'ultra', series: 'ultra', size: '49mm', releaseDate: '2022年9月', releaseDateSort: 202209, cpu: 'S8 SiP', material: 'チタニウム', storage: '32GB', battery: '最大36時間', brightness: '2,000ニト', waterResist: '100m', alwaysOn: true, fastCharge: true, bloodOxygen: true, ecg: true, crashDetect: true, fallDetect: true, skinTemp: true, doubleTap: false, jpInput: true, sleepApnea: false },
-  { name: 'Apple Watch Ultra2', slug: 'ultra2', series: 'ultra', size: '49mm', releaseDate: '2023年9月', releaseDateSort: 202309, cpu: 'S9 SiP', material: 'チタニウム', storage: '64GB', battery: '最大54時間', brightness: '3,000ニト', waterResist: '100m', alwaysOn: true, fastCharge: true, bloodOxygen: true, ecg: true, crashDetect: true, fallDetect: true, skinTemp: true, doubleTap: true, jpInput: true, sleepApnea: true },
-  { name: 'Apple Watch Ultra3', slug: 'ultra3', series: 'ultra', size: '49mm', releaseDate: '2025年9月', releaseDateSort: 202509, cpu: 'S10 SiP', material: 'チタニウム', storage: '64GB', battery: '最大72時間', brightness: '3,000ニト', waterResist: '100m', alwaysOn: true, fastCharge: true, bloodOxygen: true, ecg: true, crashDetect: true, fallDetect: true, skinTemp: true, doubleTap: true, jpInput: true, sleepApnea: true },
+  { name: 'Apple Watch SE', slug: 'se', image: 'watch-se.jpg', series: 'se', size: '40mm / 44mm', releaseDate: '2020年9月', releaseDateSort: 202009, cpu: 'S5 SiP', material: 'アルミニウム', storage: '32GB', battery: '最大18時間', brightness: '1,000ニト', waterResist: '50m', alwaysOn: false, fastCharge: false, bloodOxygen: false, ecg: false, crashDetect: false, fallDetect: true, skinTemp: false, doubleTap: false, jpInput: false, sleepApnea: false },
+  { name: 'Apple Watch SE2', slug: 'se2-2', image: 'watch-se2.jpg', series: 'se', size: '40mm / 44mm', releaseDate: '2022年9月', releaseDateSort: 202209, cpu: 'S8 SiP', material: 'アルミニウム', storage: '32GB', battery: '最大18時間', brightness: '1,000ニト', waterResist: '50m', alwaysOn: false, fastCharge: false, bloodOxygen: false, ecg: false, crashDetect: true, fallDetect: true, skinTemp: true, doubleTap: false, jpInput: false, sleepApnea: false },
+  { name: 'Apple Watch SE3', slug: 'se3-2', image: 'watch-se3.jpg', series: 'se', size: '40mm / 44mm', releaseDate: '2025年9月', releaseDateSort: 202509, cpu: 'S10 SiP', material: 'アルミニウム', storage: '64GB', battery: '最大18時間', brightness: '1,000ニト', waterResist: '50m', alwaysOn: true, fastCharge: true, bloodOxygen: false, ecg: false, crashDetect: true, fallDetect: true, skinTemp: true, doubleTap: true, jpInput: false, sleepApnea: true },
+  { name: 'Apple Watch 4', slug: 'series4', image: 'watch-4.jpg', series: 'normal', size: '40mm / 44mm', releaseDate: '2018年9月', releaseDateSort: 201809, cpu: 'S4 SiP', material: 'アルミニウム\nステンレス', storage: '32GB', battery: '最大18時間', brightness: '1,000ニト', waterResist: '50m', alwaysOn: false, fastCharge: false, bloodOxygen: false, ecg: false, crashDetect: false, fallDetect: true, skinTemp: false, doubleTap: false, jpInput: false, sleepApnea: false },
+  { name: 'Apple Watch 5', slug: 'series5', image: 'watch-5.jpg', series: 'normal', size: '40mm / 44mm', releaseDate: '2019年9月', releaseDateSort: 201909, cpu: 'S5 SiP', material: 'アルミニウム\nステンレス\nチタニウム', storage: '32GB', battery: '最大18時間', brightness: '1,000ニト', waterResist: '50m', alwaysOn: true, fastCharge: false, bloodOxygen: false, ecg: true, crashDetect: false, fallDetect: true, skinTemp: false, doubleTap: false, jpInput: false, sleepApnea: false },
+  { name: 'Apple Watch 6', slug: 'series6', image: 'watch-6.jpg', series: 'normal', size: '40mm / 44mm', releaseDate: '2020年9月', releaseDateSort: 202009, cpu: 'S6 SiP', material: 'アルミニウム\nステンレス\nチタニウム', storage: '32GB', battery: '最大18時間', brightness: '1,000ニト', waterResist: '50m', alwaysOn: true, fastCharge: false, bloodOxygen: true, ecg: true, crashDetect: false, fallDetect: true, skinTemp: false, doubleTap: false, jpInput: false, sleepApnea: false },
+  { name: 'Apple Watch 7', slug: 'series7', image: 'watch-7.jpg', series: 'normal', size: '41mm / 45mm', releaseDate: '2021年10月', releaseDateSort: 202110, cpu: 'S7 SiP', material: 'アルミニウム\nステンレス\nチタニウム', storage: '32GB', battery: '最大18時間', brightness: '1,000ニト', waterResist: '50m', alwaysOn: true, fastCharge: true, bloodOxygen: true, ecg: true, crashDetect: false, fallDetect: true, skinTemp: false, doubleTap: false, jpInput: true, sleepApnea: false },
+  { name: 'Apple Watch 8', slug: 'series8', image: 'watch-8.jpg', series: 'normal', size: '41mm / 45mm', releaseDate: '2022年9月', releaseDateSort: 202209, cpu: 'S8 SiP', material: 'アルミニウム\nステンレス', storage: '32GB', battery: '最大18時間', brightness: '1,000ニト', waterResist: '50m', alwaysOn: true, fastCharge: true, bloodOxygen: true, ecg: true, crashDetect: true, fallDetect: true, skinTemp: true, doubleTap: false, jpInput: true, sleepApnea: false },
+  { name: 'Apple Watch 9', slug: 'series9', image: 'watch-9.jpg', series: 'normal', size: '41mm / 45mm', releaseDate: '2023年9月', releaseDateSort: 202309, cpu: 'S9 SiP', material: 'アルミニウム\nステンレス', storage: '64GB', battery: '最大18時間', brightness: '2,000ニト', waterResist: '50m', alwaysOn: true, fastCharge: true, bloodOxygen: true, ecg: true, crashDetect: true, fallDetect: true, skinTemp: true, doubleTap: true, jpInput: true, sleepApnea: true },
+  { name: 'Apple Watch 10', slug: 'series10', image: 'watch-10.jpg', series: 'normal', size: '42mm / 46mm', releaseDate: '2024年9月', releaseDateSort: 202409, cpu: 'S10 SiP', material: 'アルミニウム\nチタニウム', storage: '64GB', battery: '最大18時間', brightness: '2,000ニト', waterResist: '50m', alwaysOn: true, fastCharge: true, bloodOxygen: true, ecg: true, crashDetect: true, fallDetect: true, skinTemp: true, doubleTap: true, jpInput: true, sleepApnea: true },
+  { name: 'Apple Watch 11', slug: 'series11', image: 'watch-11.jpg', series: 'normal', size: '42mm / 46mm', releaseDate: '2025年9月', releaseDateSort: 202509, cpu: 'S10 SiP', material: 'アルミニウム\nチタニウム', storage: '64GB', battery: '最大24時間', brightness: '2,000ニト', waterResist: '50m', alwaysOn: true, fastCharge: true, bloodOxygen: true, ecg: true, crashDetect: true, fallDetect: true, skinTemp: true, doubleTap: true, jpInput: true, sleepApnea: true },
+  { name: 'Apple Watch Ultra', slug: 'ultra', image: 'watch-ultra.jpg', series: 'ultra', size: '49mm', releaseDate: '2022年9月', releaseDateSort: 202209, cpu: 'S8 SiP', material: 'チタニウム', storage: '32GB', battery: '最大36時間', brightness: '2,000ニト', waterResist: '100m', alwaysOn: true, fastCharge: true, bloodOxygen: true, ecg: true, crashDetect: true, fallDetect: true, skinTemp: true, doubleTap: false, jpInput: true, sleepApnea: false },
+  { name: 'Apple Watch Ultra2', slug: 'ultra2', image: 'watch-ultra2.jpg', series: 'ultra', size: '49mm', releaseDate: '2023年9月', releaseDateSort: 202309, cpu: 'S9 SiP', material: 'チタニウム', storage: '64GB', battery: '最大54時間', brightness: '3,000ニト', waterResist: '100m', alwaysOn: true, fastCharge: true, bloodOxygen: true, ecg: true, crashDetect: true, fallDetect: true, skinTemp: true, doubleTap: true, jpInput: true, sleepApnea: true },
+  { name: 'Apple Watch Ultra3', slug: 'ultra3', image: 'watch-ultra3.jpg', series: 'ultra', size: '49mm', releaseDate: '2025年9月', releaseDateSort: 202509, cpu: 'S10 SiP', material: 'チタニウム', storage: '64GB', battery: '最大72時間', brightness: '3,000ニト', waterResist: '100m', alwaysOn: true, fastCharge: true, bloodOxygen: true, ecg: true, crashDetect: true, fallDetect: true, skinTemp: true, doubleTap: true, jpInput: true, sleepApnea: true },
 ]
 
 const specRows: { label: string; key: keyof WatchModel; type: 'text' | 'bool' }[] = [
@@ -159,7 +161,7 @@ export default function SpecTableSection() {
                   {filtered.map(m => (
                     <td key={`img-${m.slug}`}>
                       <img
-                        src={`/images/watch/${m.slug}.png`}
+                        src={m.image ? `/images/watch/${m.image}` : `https://placehold.co/60x60/f5f5f7/1d1d1f?text=${encodeURIComponent(m.name)}`}
                         alt={`${m.name}の商品画像`}
                         width={60}
                         height={60}
@@ -177,11 +179,7 @@ export default function SpecTableSection() {
                       return (
                         <td key={m.slug} style={{ whiteSpace: 'pre-line' }}>
                           {row.type === 'bool' ? (
-                            val ? (
-                              <span style={{ color: 'var(--color-primary)', fontWeight: 700 }}>◯</span>
-                            ) : (
-                              <span style={{ color: 'var(--color-text-tertiary)' }}>×</span>
-                            )
+                            <BoolCell value={!!val} />
                           ) : (
                             String(val)
                           )}
@@ -190,20 +188,21 @@ export default function SpecTableSection() {
                     })}
                   </tr>
                 ))}
-                {/* ショップリンク */}
-                <tr>
+                {/* イオシスリンク行 */}
+                <tr className="spec-compare-table__action-row">
                   <th scope="row">イオシス</th>
                   {filtered.map(m => (
                     <td key={`iosys-${m.slug}`}>
-                      <a href={`https://iosys.co.jp/items?keyword=Apple+Watch+${encodeURIComponent(m.name.replace('Apple Watch ', ''))}`} target="_blank" rel="noopener noreferrer nofollow">中古価格を見る</a>
+                      <a href={`https://iosys.co.jp/items?keyword=Apple+Watch+${encodeURIComponent(m.name.replace('Apple Watch ', ''))}`} className="m-btn m-btn--primary m-btn--sm" target="_blank" rel="noopener noreferrer nofollow">中古価格を見る</a>
                     </td>
                   ))}
                 </tr>
-                <tr>
+                {/* Amazonリンク行 */}
+                <tr className="spec-compare-table__action-row">
                   <th scope="row">Amazon</th>
                   {filtered.map(m => (
                     <td key={`amz-${m.slug}`}>
-                      <a href={`https://www.amazon.co.jp/s?k=Apple+Watch+${encodeURIComponent(m.name.replace('Apple Watch ', ''))}`} target="_blank" rel="noopener noreferrer nofollow">中古価格を見る</a>
+                      <a href={`https://www.amazon.co.jp/s?k=Apple+Watch+${encodeURIComponent(m.name.replace('Apple Watch ', ''))}`} className="m-btn m-btn--amazon m-btn--sm" target="_blank" rel="noopener noreferrer nofollow">中古価格を見る</a>
                     </td>
                   ))}
                 </tr>

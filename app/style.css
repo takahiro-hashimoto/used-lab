@@ -512,8 +512,9 @@ ul {
 
 .m-spec-row__cross {
   color: var(--color-negative);
-  font-size: var(--font-size-xl);
+  font-size: var(--font-size-sm);
   font-weight: 700;
+  line-height: 1;
 }
 
 .m-spec-row__free {
@@ -613,11 +614,12 @@ ul {
 }
 
 .m-table tbody td img {
-  display: block;
-  margin: 0 auto;
-  max-height: 60px;
-  width: auto;
   object-fit: contain;
+  width: auto;
+  max-height: 60px;
+  margin: 0 auto;
+  display: block;
+  padding: 4px;
 }
 
 .m-table tbody td small {
@@ -1160,12 +1162,12 @@ ul {
 
 /* ---------- hero ---------- */
 .hero {
-  position: relative;
-  display: flex;
-  align-items: center;
-  padding: var(--space-2xl);
-  overflow: hidden;
+  padding: var(--space-xl);
   background: linear-gradient(135deg, var(--color-hero-start) 0%, var(--color-hero-mid) 40%, var(--color-hero-end) 100%);
+  align-items: center;
+  display: flex;
+  position: relative;
+  overflow: hidden;
 }
 
 .hero::before {
@@ -1183,6 +1185,8 @@ ul {
   inset: 0;
   overflow: hidden;
   pointer-events: none;
+  background: url('/images/content/header-wave.png') center / cover no-repeat;
+  opacity: 0.1;
 }
 
 .hero-shape {
@@ -1285,6 +1289,11 @@ ul {
   object-fit: contain;
 }
 
+.hero-media__img--padded {
+  padding: 20px;
+  background: #fff;
+}
+
 /* ---------- visually-hidden ---------- */
 .visually-hidden {
   position: absolute;
@@ -1338,7 +1347,7 @@ ul {
 }
 
 .hero-wrapper > .hero {
-  padding-top: calc(var(--space-xl) + 2rem);
+  /* padding-top: calc(var(--space-xl) + 2rem); */
 }
 
 /* ---------- breadcrumb ---------- */
@@ -1915,8 +1924,8 @@ ul {
 .compare-model-img {
   margin: var(--space-md) auto 0;
   object-fit: contain;
-  width: 60px;
-  height: 60px;
+  width: 100px;
+  height: 100px;
   display: block;
 }
 
@@ -1930,15 +1939,10 @@ ul {
 
 .compare-table th,
 .compare-table td {
-  padding: var(--space-md);
+  padding: var(--space-sm) var(--space-md);
   vertical-align: middle;
   text-align: center;
   line-height: 1.6;
-}
-
-.compare-table tbody tr:last-child th,
-.compare-table tbody tr:last-child td {
-  padding-bottom: var(--space-md);
 }
 
 .compare-table th {
@@ -1952,6 +1956,11 @@ ul {
   color: var(--color-text);
 }
 
+.compare-table .m-spec-row__cross,
+.compare-table .m-rating__icon {
+  font-size: var(--font-size-lg);
+}
+
 .compare-table__col-label {
   width: 30%;
 }
@@ -1960,7 +1969,7 @@ ul {
   vertical-align: top;
   text-align: center;
   border-bottom: 1px solid var(--color-border-light);
-  padding: var(--space-lg) var(--space-md);
+  padding: var(--space-md) !important;
 }
 
 .compare-table__action-row td {
@@ -1970,6 +1979,18 @@ ul {
 /* Category heading inside table */
 .compare-category-cell {
   padding: 0 !important;
+}
+
+/* category見出し直後の行 */
+.compare-table tbody tr:nth-child(2) th,
+.compare-table tbody tr:nth-child(2) td {
+  padding-top: var(--space-md);
+}
+
+/* 各tbodyの最後の行（=次のcategory直前） */
+.compare-table tbody tr:last-child th,
+.compare-table tbody tr:last-child td {
+  padding-bottom: var(--space-md);
 }
 
 .compare-category {
@@ -2534,11 +2555,11 @@ ul {
 .recommend-card__price-range {
   text-align: center;
   padding: var(--space-xs) 0;
+  color: var(--color-primary);
 }
 
 .recommend-card__price-range strong {
   font-size: clamp(1.5rem, 3vw, 2rem);
-  color: var(--color-primary);
 }
 
 .recommend-card__price-note {
@@ -2657,50 +2678,23 @@ ul {
 }
 
 .recommend-card__shop-btns .m-btn {
-  font-size: var(--font-size-sm);
-  justify-content: center;
+  font-size: var(--font-size-md);
   text-align: center;
+  justify-content: center;
 }
 
 .recommend-card__full-specs {
-  position: relative;
   padding: 0 var(--space-xl) var(--space-xl);
 }
 
 .recommend-card__specs-content {
-  position: relative;
-  padding: var(--space-lg) var(--space-lg) 0;
+  padding: var(--space-lg);
   background: var(--color-bg-subtle);
   border-radius: var(--radius-md);
-  max-height: 140px;
-  overflow: hidden;
-  transition: max-height 0.6s ease-out;
-}
-
-.recommend-card__specs-content::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 100px;
-  background: linear-gradient(to bottom, rgba(245, 245, 245, 0), rgba(245, 245, 245, 1));
-  pointer-events: none;
-  transition: opacity 0.4s ease;
-}
-
-.recommend-card__full-specs.is-open .recommend-card__specs-content {
-  max-height: 2000px;
-  padding-bottom: var(--space-lg);
-}
-
-.recommend-card__full-specs.is-open .recommend-card__specs-content::after {
-  opacity: 0;
+  margin-top: var(--space-md);
 }
 
 .recommend-card__specs-toggle {
-  position: relative;
-  z-index: 2;
   font-size: var(--font-size-sm);
   font-weight: 600;
   color: var(--color-text-secondary);
@@ -2714,7 +2708,7 @@ ul {
   width: fit-content;
   padding: var(--space-xs) var(--space-lg);
   background: #fff;
-  margin: -20px auto 0;
+  margin: 0 auto;
 }
 
 .recommend-card__specs-table {
@@ -3105,7 +3099,7 @@ ul {
 
 .spec-compare-table tbody td,
 .spec-compare-table tbody th {
-  padding: var(--space-xs) var(--space-sm);
+  padding: var(--space-sm);
 }
 
 .spec-compare-table tbody td {
@@ -3120,9 +3114,15 @@ ul {
   background: var(--color-bg-subtle, #f5f5f7);
 }
 
-.spec-compare-table__action-row td {
-  padding-top: var(--space-md);
-  padding-bottom: var(--space-md);
+.spec-compare-table tbody .spec-compare-table__action-row td {
+  padding-top: var(--space-sm);
+  padding-bottom: var(--space-sm);
+}
+
+.spec-compare-table__action-row .m-btn {
+  padding: 4px 10px;
+  font-size: var(--font-size-xxs, 10px);
+  white-space: nowrap;
 }
 
 .spec-compare-table__sticky {
@@ -3400,7 +3400,8 @@ ul {
 
 .m-spec-row__circle {
   color: var(--color-primary);
-  font-size: var(--font-size-xl);
+  font-size: var(--font-size-sm);
+  line-height: 1;
 }
 
 /* ---------- Related Link Card ---------- */
@@ -4501,6 +4502,10 @@ body.is-menu-open {
     --header-height: 56px;
   }
 
+  .hero-bg {
+    display: none;
+  }
+
   .spec-filter__row {
     flex-direction: column;
     align-items: flex-start;
@@ -4578,7 +4583,6 @@ body.is-menu-open {
   .recommend-card__specs-table th,
   .recommend-card__specs-table td {
     display: block;
-    width: 100%;
     padding: var(--space-xs) var(--space-md);
     font-size: var(--font-size-xs);
   }
@@ -4589,17 +4593,33 @@ body.is-menu-open {
   }
 
   .recommend-card__specs-table tr {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     border-bottom: 1px solid var(--color-border-light);
   }
 
-  .recommend-card__specs-table tr:has(.compare-category) {
+  .recommend-card__specs-table tr th:nth-child(1),
+  .recommend-card__specs-table tr td:nth-child(2) {
+    grid-column: 1;
+  }
+
+  .recommend-card__specs-table tr th:nth-child(3),
+  .recommend-card__specs-table tr td:nth-child(4) {
+    grid-column: 2;
+  }
+
+  .recommend-card__specs-table tr th:nth-child(1) { grid-row: 1; }
+  .recommend-card__specs-table tr td:nth-child(2) { grid-row: 2; }
+  .recommend-card__specs-table tr th:nth-child(3) { grid-row: 3; }
+  .recommend-card__specs-table tr td:nth-child(4) { grid-row: 4; }
+
+  .recommend-card__specs-table tr:has(.compare-category-cell) {
+    display: table-row;
     border-bottom: none;
   }
 
-  .recommend-card__specs-table .compare-category {
-    width: 100%;
+  .recommend-card__specs-table .compare-category-cell {
+    display: table-cell;
   }
 
   .recommend-card__specs-content {
@@ -4759,10 +4779,94 @@ body.is-menu-open {
     padding: var(--space-sm) var(--space-md);
   }
 
+  /* --- compare-table SP: カード型レイアウト --- */
+  .compare-table,
+  .compare-table thead,
+  .compare-table tbody,
+  .compare-table tfoot,
+  .compare-table tr,
   .compare-table th,
   .compare-table td {
-    padding: var(--space-sm);
-    font-size: var(--font-size-xs);
+    display: block;
+  }
+
+  .compare-table colgroup {
+    display: none;
+  }
+
+  /* ヘッダー: セレクト＋モデル情報を横並び */
+  .compare-table thead tr {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .compare-table thead th {
+    display: none;
+  }
+
+  .compare-table__header-cell {
+    padding: var(--space-md) var(--space-sm);
+    border-bottom: 1px solid var(--color-border-light);
+  }
+
+  .compare-model-img {
+    width: 100px;
+    height: 100px;
+  }
+
+  /* カテゴリ見出し */
+  .compare-category-cell {
+    padding: 0 !important;
+  }
+
+  /* データ行: ラベル上、値2つ横並び下 */
+  .compare-table tbody tr:not(:first-child) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-bottom: none;
+    padding: 0;
+  }
+
+  .compare-table tbody tr:not(:first-child) th {
+    grid-column: 1 / -1;
+    text-align: center;
+    font-weight: 700;
+    font-size: var(--font-size-sm);
+    padding: var(--space-xs) var(--space-md);
+    background: var(--color-bg-muted);
+    border-bottom: 1px solid var(--color-border-light);
+  }
+
+  .compare-table tbody tr:not(:first-child) td {
+    text-align: center;
+    font-size: var(--font-size-sm);
+    padding: var(--space-sm) var(--space-md);
+    border-bottom: 1px solid var(--color-border-light);
+  }
+
+  /* nth-child padding リセット */
+  .compare-table tbody tr:nth-child(2) th,
+  .compare-table tbody tr:nth-child(2) td,
+  .compare-table tbody tr:last-child th,
+  .compare-table tbody tr:last-child td {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  /* アクション行 */
+  .compare-table tfoot tr {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-sm);
+    padding: var(--space-md);
+  }
+
+  .compare-table tfoot th {
+    display: none;
+  }
+
+  .compare-table__action-row td {
+    padding: 0 !important;
   }
 
   .m-table-card {

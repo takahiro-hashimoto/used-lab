@@ -15,7 +15,7 @@ export default function RecommendBanner() {
         <div className="m-card m-card--shadow popular-card">
           <figure className="popular-card-figure">
             <Image
-              src="/images/content/watch-setting.webp"
+              src="/images/content/watch-image-08.jpg"
               alt="中古Apple Watchおすすめ5選のイメージ画像"
               className="popular-card-img"
               width={400}

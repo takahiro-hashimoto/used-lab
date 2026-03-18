@@ -170,7 +170,7 @@ export default async function WatchSpecTablePage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/watch/watch-11.jpg"
+                  src="/images/content/watch-image-02.jpg"
                   alt="歴代Apple Watchスペック比較表のイメージ"
                   className="hero-media__img"
                   width={360}

@@ -1,13 +1,14 @@
 'use client'
 
 import CompareSelectorBase from '@/app/components/CompareSelector'
-import type { IPhoneModel } from '@/lib/types'
+import type { IPhoneModel, ProductShopLink } from '@/lib/types'
 
 type Props = {
   currentModel: IPhoneModel
   allModels: IPhoneModel[]
   initialCompareId: number
   iosysUrl?: string
+  shopLinks?: ProductShopLink[]
 }
 
 type CompareRow = {
@@ -89,13 +90,14 @@ function buildCompareRows(current: IPhoneModel, compare: IPhoneModel): CompareRo
   ]
 }
 
-export default function CompareSelector({ currentModel, allModels, initialCompareId, iosysUrl }: Props) {
+export default function CompareSelector({ currentModel, allModels, initialCompareId, iosysUrl, shopLinks = [] }: Props) {
   return (
     <CompareSelectorBase
       currentModel={currentModel}
       allModels={allModels}
       initialCompareId={initialCompareId}
       iosysUrl={iosysUrl}
+      shopLinks={shopLinks}
       imagePath="iphone"
       detailPath="iphone"
       imageWidth={120}

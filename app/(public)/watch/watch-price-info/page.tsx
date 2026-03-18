@@ -109,12 +109,12 @@ export async function generateMetadata(): Promise<Metadata> {
       title,
       description,
       url: '/watch/watch-price-info/',
-      images: [{ url: '/images/watch/watch-10.jpg', width: 360, height: 360, alt: title }],
+      images: [{ url: '/images/content/graph-image.jpg', width: 360, height: 360, alt: title }],
     },
     twitter: {
       title,
       description,
-      images: ['/images/watch/watch-10.jpg'],
+      images: ['/images/content/graph-image.jpg'],
     },
   }
 }
@@ -344,7 +344,7 @@ export default async function WatchPriceInfoPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <img
-                  src="/images/watch/watch-10.jpg"
+                  src="/images/content/graph-image.jpg"
                   alt="中古Apple Watch価格相場"
                   className="hero-media__img"
                   width={360}

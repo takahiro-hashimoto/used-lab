@@ -3,6 +3,8 @@ import type { IPadModel, IPadPriceLog, ProductShopLink, FallbackShop } from '@/l
 import { formatPrice, formatReleaseDate, buildDisplayLinks } from '@/lib/utils/shared-helpers'
 import { calculatePriceRange, calculateOSLifespan } from '@/lib/utils/ipad-helpers'
 import { RECOMMEND_DATE_LABEL, RECOMMEND_COUNT_LABEL } from '@/lib/data/ipad-recommend'
+import SpecToggle from '@/app/components/SpecToggle'
+import { BoolValue, SpecRows, SpecCategory } from '@/app/components/spec-helpers'
 
 type RecommendItem = {
   model: IPadModel
@@ -207,6 +209,61 @@ export default function RecommendDetailSection({ items }: Props) {
                   </div>
                 </div>
               )}
+
+              <SpecToggle>
+                <table className="recommend-card__specs-table">
+                  <tbody>
+                    <SpecCategory title="サイズ・重量" />
+                    <SpecRows items={[
+                      { label: 'サイズ', value: model.size },
+                      { label: '重量', value: model.weight },
+                    ]} />
+                    <SpecCategory title="ボディ" />
+                    <SpecRows items={[
+                      { label: 'カラー', value: model.color },
+                      { label: 'ストレージ', value: model.strage },
+                      { label: '充電端子', value: model.port },
+                      { label: '認証機能', value: model.certification },
+                      { label: 'SIM', value: model.sim },
+                    ]} />
+                    <SpecCategory title="ディスプレイ" />
+                    <SpecRows items={[
+                      { label: '画面サイズ', value: model.display },
+                      { label: '画像解像度', value: model.resolution },
+                      { label: 'ディスプレイタイプ', value: model.display_type },
+                      { label: 'ProMotion', value: <BoolValue value={model.promotion} /> },
+                    ]} />
+                    <SpecCategory title="CPU・ベンチマークスコア" />
+                    <SpecRows items={[
+                      { label: 'CPU', value: model.cpu },
+                      { label: 'RAM', value: model.ram },
+                      { label: 'GeekBench シングル', value: model.score_single?.toLocaleString() ?? null },
+                      { label: 'GeekBench マルチ', value: model.score_multi?.toLocaleString() ?? null },
+                      { label: 'GeekBench Metal', value: model.score_metal?.toLocaleString() ?? null },
+                      { label: 'Antutu CPU', value: model.antutu_cpu?.toLocaleString() ?? null },
+                      { label: 'Antutu GPU', value: model.antutu_gpu?.toLocaleString() ?? null },
+                      { label: 'Antutu MEM', value: model.antutu_mem?.toLocaleString() ?? null },
+                      { label: 'Antutu UX', value: model.antutu_ux?.toLocaleString() ?? null },
+                    ]} />
+                    <SpecCategory title="カメラ" />
+                    <SpecRows items={[
+                      { label: 'フロントカメラ', value: model.front_camera },
+                      { label: 'インカメラ', value: model.in_camera },
+                      { label: 'LiDAR', value: <BoolValue value={model.lidar} /> },
+                      { label: 'センターフレーム', value: <BoolValue value={model.center_frame} /> },
+                    ]} />
+                    <SpecCategory title="その他" />
+                    <SpecRows items={[
+                      { label: '発売日', value: releaseDate },
+                      { label: 'Apple Intelligence', value: <BoolValue value={model.apple_intelligence} /> },
+                      { label: 'スピーカー', value: model.speaker },
+                      { label: 'Apple Pencil', value: model.pencil },
+                      { label: 'キーボード', value: model.keyboard },
+                      { label: '公式サイト', value: model.official ? <a href={model.official} target="_blank" rel="noopener noreferrer">{model.model}の技術仕様</a> : null },
+                    ]} />
+                  </tbody>
+                </table>
+              </SpecToggle>
             </div>
           )
         })}

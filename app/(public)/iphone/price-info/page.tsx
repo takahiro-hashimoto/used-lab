@@ -123,12 +123,12 @@ export async function generateMetadata(): Promise<Metadata> {
       title,
       description,
       url: '/iphone/price-info/',
-      images: [{ url: '/images/iphone/iphone16pro.jpg', width: 360, height: 360, alt: title }],
+      images: [{ url: '/images/content/graph-image.jpg', width: 360, height: 360, alt: title }],
     },
     twitter: {
       title,
       description,
-      images: ['/images/iphone/iphone16pro.jpg'],
+      images: ['/images/content/graph-image.jpg'],
     },
   }
 }
@@ -365,7 +365,7 @@ export default async function IPhonePriceInfoPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <img
-                  src="/images/iphone/iphone16pro.jpg"
+                  src="/images/content/graph-image.jpg"
                   alt="中古iPhone価格相場"
                   className="hero-media__img"
                   width={360}

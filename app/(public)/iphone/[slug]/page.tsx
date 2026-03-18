@@ -5,7 +5,7 @@ import {
   getAllIPhoneSlugs,
   getAllIPhoneModels,
   getShops,
-  getProductShopLinks,
+  getAllProductShopLinksByType,
   getPriceLogsByModelId,
   getLatestPriceLog,
   getIPhoneReviewsBySlug,
@@ -68,7 +68,7 @@ export default async function IPhoneDetailPage({ params }: PageProps) {
   // 並列データ取得
   const [shops, shopLinks, priceLogs, latestPrice, allModels, reviews] = await Promise.all([
     getShops(),
-    getProductShopLinks('iphone', model.id),
+    getAllProductShopLinksByType('iphone'),
     getPriceLogsByModelId(model.id),
     getLatestPriceLog(model.id),
     getAllIPhoneModels(),
@@ -87,6 +87,7 @@ export default async function IPhoneDetailPage({ params }: PageProps) {
     maxes: [l.iosys_max, l.geo_max, l.janpara_max].filter((v): v is number => v != null),
   }))
   const storageNote = latestLogEntries[0]?.storage || ''
+  const modelShopLinks = shopLinks.filter((l) => l.product_id === model.id)
 
 
   return (
@@ -96,7 +97,7 @@ export default async function IPhoneDetailPage({ params }: PageProps) {
         <LeadText model={model} />
         <TableOfContents />
         <PurchaseVerdict model={model} latestPrice={latestPrice} />
-        <ShopGrid shops={shops} shopLinks={shopLinks} model={model} />
+        <ShopGrid shops={shops} shopLinks={modelShopLinks} model={model} />
         <LifespanSection model={model} />
 
         {priceLogs.length > 0 && (
@@ -117,7 +118,7 @@ export default async function IPhoneDetailPage({ params }: PageProps) {
         <BenchmarkAntutu model={model} allModels={allModels} />
         <ReviewSection modelName={model.model} reviews={reviews} />
         <RecommendBanner />
-        <FaqSection model={model} latestPrice={latestPrice} shopLinks={shopLinks} />
+        <FaqSection model={model} latestPrice={latestPrice} shopLinks={modelShopLinks} />
         <ShareBox url={`https://used-lab.com/iphone/${model.slug}/`} text={`中古${model.model}は今買うべき？製品寿命、基本スペック、ベンチマークスコア、中古相場から解説`} bgSubtle />
       </article>
     </main>

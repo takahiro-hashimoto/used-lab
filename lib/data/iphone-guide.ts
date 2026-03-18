@@ -20,8 +20,8 @@ export const GUIDE_PRICE_SLUGS = [
 // ---------- スペック比較リンク ----------
 export const GUIDE_SPEC_LINKS = [
   { href: '/iphone/iphone-spec-table/', icon: 'fa-table-cells', title: '歴代iPhoneスペック比較表', desc: 'CPU、ディスプレイ、重量、端子など、歴代iPhoneの全スペックを網羅した一覧表。', image: '/images/content/iphone-compare.jpg' },
-  { href: '/iphone/used-iphone-support/', icon: 'fa-shield-halved', title: 'iOSサポート期間一覧表', desc: '各モデルのサポート終了予測を解説。「いつまで使えるか」の目安がわかります。', image: '/images/iphone/iphone16pro.jpg' },
-  { href: '/iphone/iphone-camera/', icon: 'fa-camera', title: 'iPhoneカメラ性能比較表', desc: 'レンズ構成、撮影機能を徹底比較。シネマティックモード、ナイトモード対応状況も掲載。', image: '/images/content/iphone-camera.jpg' },
+  { href: '/iphone/used-iphone-support/', icon: 'fa-shield-halved', title: 'iOSサポート期間一覧表', desc: '各モデルのサポート終了予測を解説。「いつまで使えるか」の目安がわかります。', image: '/images/content/iphone-image-02.jpg' },
+  { href: '/iphone/iphone-camera/', icon: 'fa-camera', title: 'iPhoneカメラ性能比較表', desc: '歴代iPhoneのカメラ性能の違いや搭載されている撮影モードをを徹底解説。', image: '/images/content/iphone-camera.jpg' },
   { href: '/iphone/battery-compare/', icon: 'fa-battery-full', title: 'バッテリー性能比較ランキング', desc: '動画再生時間、音楽再生時間、バッテリー容量(mAh)を一覧表で比較できます。', image: '/images/content/iphone-battery.jpg' },
 ] as const
 

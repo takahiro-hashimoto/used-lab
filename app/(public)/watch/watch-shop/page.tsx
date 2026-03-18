@@ -156,7 +156,7 @@ export default async function WatchShopPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <img
-                  src="https://placehold.co/360x360/1a1a2e/ffffff?text=Where+to+Buy"
+                  src="/images/content/watch-image-07.jpg"
                   alt="中古Apple Watchの購入先イメージ"
                   className="hero-media__img"
                   width={360}

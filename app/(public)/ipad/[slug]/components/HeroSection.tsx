@@ -109,7 +109,7 @@ export default function HeroSection({ model }: Props) {
                 <Image
                   src={`/images/ipad/${model.image}`}
                   alt={`${model.model} の外観イメージ`}
-                  className="hero-media__img"
+                  className="hero-media__img hero-media__img--padded"
                   width={360}
                   height={360}
                   priority

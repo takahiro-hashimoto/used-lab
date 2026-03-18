@@ -10,11 +10,14 @@ type CompareRow = {
   compare: string
 }
 
+type ShopLink = { product_id: number; shop_id: number; url: string }
+
 type Props = {
   currentModel: { id: number; slug: string; image: string | null }
   allModels: { id: number; slug: string; image: string | null }[]
   initialCompareId: number
   iosysUrl?: string
+  shopLinks?: ShopLink[]
   imagePath: string
   detailPath: string
   imageWidth?: number
@@ -43,6 +46,7 @@ export default function CompareSelector({
   allModels,
   initialCompareId,
   iosysUrl,
+  shopLinks = [],
   imagePath,
   detailPath,
   imageWidth = 120,
@@ -60,6 +64,7 @@ export default function CompareSelector({
 
   const currentName = getCurrentName()
   const compareName = getCompareName(compareModel)
+  const compareIosysUrl = shopLinks.find((l) => l.product_id === compareModel.id && l.shop_id === 1)?.url
 
   return (
     <div className="m-card m-card--shadow compare-card">
@@ -156,9 +161,15 @@ export default function CompareSelector({
               )}
             </td>
             <td>
-              <a href={`/${detailPath}/${compareModel.slug}`} className="m-btn m-btn--primary m-btn--block">
-                {compareName}の詳細 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
-              </a>
+              {compareIosysUrl ? (
+                <a href={compareIosysUrl} target="_blank" rel="noopener noreferrer nofollow" className="m-btn m-btn--primary m-btn--block">
+                  {compareName}の購入先 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                </a>
+              ) : (
+                <a href={`/${detailPath}/${compareModel.slug}`} className="m-btn m-btn--primary m-btn--block">
+                  {compareName}の詳細 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                </a>
+              )}
             </td>
           </tr>
         </tfoot>

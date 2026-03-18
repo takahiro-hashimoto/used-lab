@@ -127,7 +127,7 @@ export default function GpsCellularComparePage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/content/apple-watch-image.jpg"
+                  src="/images/content/watch-image-09.jpg"
                   alt="Apple Watch GPSモデルとセルラーモデルの比較"
                   className="hero-media__img"
                   width={360}

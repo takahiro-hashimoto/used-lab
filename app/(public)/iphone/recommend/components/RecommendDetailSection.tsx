@@ -3,6 +3,8 @@ import type { IPhoneModel, IPhonePriceLog, ProductShopLink, FallbackShop } from 
 import { formatPrice, formatReleaseDate, buildDisplayLinks } from '@/lib/utils/shared-helpers'
 import { calculatePriceRange, calculateOSLifespan, calculateAnnualCost } from '@/lib/utils/iphone-helpers'
 import { RECOMMEND_DATE_LABEL, RECOMMEND_COUNT_LABEL } from '@/lib/data/iphone-recommend'
+import SpecToggle from '@/app/components/SpecToggle'
+import { BoolValue, SpecRows, SpecCategory } from '@/app/components/spec-helpers'
 
 type RecommendItem = {
   model: IPhoneModel
@@ -207,6 +209,76 @@ export default function RecommendDetailSection({ items }: Props) {
                   </div>
                 </div>
               )}
+
+              <SpecToggle>
+                <table className="recommend-card__specs-table">
+                  <tbody>
+                    <SpecCategory title="サイズ・重量" />
+                    <SpecRows items={[
+                      { label: 'サイズ', value: model.size },
+                      { label: '重量', value: model.weight },
+                    ]} />
+
+                    <SpecCategory title="ボディ" />
+                    <SpecRows items={[
+                      { label: 'カラー', value: model.color },
+                      { label: 'ストレージ', value: model.strage },
+                      { label: 'バッテリー', value: model.battery },
+                      { label: '充電端子', value: model.port },
+                      { label: 'MagSafe充電', value: <BoolValue value={model.magsafe} /> },
+                      { label: 'アクションボタン', value: <BoolValue value={model.action_button} /> },
+                      { label: 'カメラコントロール', value: <BoolValue value={model.camera_control} /> },
+                      { label: '認証機能', value: model.certification },
+                      { label: 'SIM', value: model.sim },
+                      { label: '事故衝突検知', value: <BoolValue value={model.accident_detection} /> },
+                    ]} />
+
+                    <SpecCategory title="ディスプレイ" />
+                    <SpecRows items={[
+                      { label: '画面サイズ', value: model.display },
+                      { label: '画像解像度', value: model.resolution },
+                      { label: 'ProMotion', value: <BoolValue value={model.promotion} /> },
+                      { label: 'Dynamic Island', value: <BoolValue value={model.dynamic_island} /> },
+                    ]} />
+
+                    <SpecCategory title="CPU・ベンチマークスコア" />
+                    <SpecRows items={[
+                      { label: 'CPU', value: model.cpu },
+                      { label: 'RAM', value: model.ram },
+                      { label: 'GeekBench シングル', value: model.score_single?.toLocaleString() ?? null },
+                      { label: 'GeekBench マルチ', value: model.score_multi?.toLocaleString() ?? null },
+                      { label: 'GeekBench Metal', value: model.score_metal?.toLocaleString() ?? null },
+                      { label: 'Antutu CPU', value: model.antutu_cpu?.toLocaleString() ?? null },
+                      { label: 'Antutu GPU', value: model.antutu_gpu?.toLocaleString() ?? null },
+                      { label: 'Antutu MEM', value: model.antutu_mem?.toLocaleString() ?? null },
+                      { label: 'Antutu UX', value: model.antutu_ux?.toLocaleString() ?? null },
+                    ]} />
+
+                    <SpecCategory title="カメラ" />
+                    <SpecRows items={[
+                      { label: 'フロントカメラ', value: model.front_camera },
+                      { label: 'インカメラ', value: model.in_camera },
+                      { label: 'イメージセンサー', value: model.image_sensor },
+                      { label: 'LiDARスキャナー', value: <BoolValue value={model.lidar} /> },
+                      { label: 'ナイトモード', value: <BoolValue value={model.night_mode} /> },
+                      { label: 'シネマティックモード', value: <BoolValue value={model.cinematic_mode} /> },
+                      { label: 'マクロ撮影', value: <BoolValue value={model.macro_mode} /> },
+                      { label: 'ポートレイトモード', value: <BoolValue value={model.portrait_mode} /> },
+                      { label: 'アクションモード', value: <BoolValue value={model.action_mode} /> },
+                      { label: 'フォトグラフスタイル', value: <BoolValue value={model.photography_style} /> },
+                      { label: 'Apple ProRAW', value: <BoolValue value={model.apple_proraw} /> },
+                      { label: 'Apple ProRes', value: <BoolValue value={model.apple_prores} /> },
+                    ]} />
+
+                    <SpecCategory title="その他" />
+                    <SpecRows items={[
+                      { label: '発売日', value: releaseDate },
+                      { label: 'Apple Intelligence', value: <BoolValue value={model.apple_intelligence} /> },
+                      { label: '公式サイト', value: model.official ? <a href={model.official} target="_blank" rel="noopener noreferrer">{model.model}の技術仕様</a> : null },
+                    ]} />
+                  </tbody>
+                </table>
+              </SpecToggle>
             </div>
           )
         })}

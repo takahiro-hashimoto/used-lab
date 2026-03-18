@@ -1,13 +1,14 @@
 'use client'
 
 import CompareSelectorBase from '@/app/components/CompareSelector'
-import type { IPadModel } from '@/lib/types'
+import type { IPadModel, ProductShopLink } from '@/lib/types'
 
 type Props = {
   currentModel: IPadModel
   allModels: IPadModel[]
   initialCompareId: number
   iosysUrl?: string
+  shopLinks?: ProductShopLink[]
 }
 
 type CompareRow = {
@@ -30,6 +31,18 @@ function getAntutuTotal(m: IPadModel): string {
   return t > 0 ? t.toLocaleString() : '-'
 }
 
+function formatStorage(strage: string | null): string {
+  if (!strage) return '-'
+  const parts = strage.split(/\s*\/\s*/).map(s => s.trim()).filter(Boolean)
+  if (parts.length <= 1) return strage
+  return `${parts[0]} ~ ${parts[parts.length - 1]}`
+}
+
+function formatKeyboard(keyboard: string | null): string {
+  if (!keyboard) return '-'
+  return keyboard.replace(/\s*\/\s*/g, '\n')
+}
+
 function formatReleaseDate(date: string | null): string {
   if (!date) return '-'
   const parts = date.split('/')
@@ -45,7 +58,7 @@ function buildCompareRows(current: IPadModel, compare: IPadModel): CompareRow[] 
     { section: 'サイズ・重量', label: '重量', current: current.weight || '-', compare: compare.weight || '-' },
     // ボディ
     { section: 'ボディ', label: 'バッテリー容量', current: current.battery || '-', compare: compare.battery || '-' },
-    { section: 'ボディ', label: 'ストレージ容量', current: current.strage?.replace(/ \/ /g, '\n') || '-', compare: compare.strage?.replace(/ \/ /g, '\n') || '-' },
+    { section: 'ボディ', label: 'ストレージ容量', current: formatStorage(current.strage), compare: formatStorage(compare.strage) },
     { section: 'ボディ', label: 'Apple Intelligence', current: getFeatureValue(current, 'apple_intelligence'), compare: getFeatureValue(compare, 'apple_intelligence') },
     { section: 'ボディ', label: 'CPU', current: current.cpu || '-', compare: compare.cpu || '-' },
     { section: 'ボディ', label: 'RAM', current: current.ram || '-', compare: compare.ram || '-' },
@@ -61,7 +74,7 @@ function buildCompareRows(current: IPadModel, compare: IPadModel): CompareRow[] 
     { section: 'カメラ', label: 'LiDARスキャナー', current: getFeatureValue(current, 'lidar'), compare: getFeatureValue(compare, 'lidar') },
     // 入力・アクセサリ
     { section: '入力・アクセサリ', label: 'Apple Pencil', current: current.pencil || '-', compare: compare.pencil || '-' },
-    { section: '入力・アクセサリ', label: 'キーボード', current: current.keyboard || '-', compare: compare.keyboard || '-' },
+    { section: '入力・アクセサリ', label: 'キーボード', current: formatKeyboard(current.keyboard), compare: formatKeyboard(compare.keyboard) },
     { section: '入力・アクセサリ', label: 'スピーカー', current: current.speaker || '-', compare: compare.speaker || '-' },
     // その他
     { section: 'その他', label: '発売日', current: formatReleaseDate(current.date), compare: formatReleaseDate(compare.date) },
@@ -71,13 +84,14 @@ function buildCompareRows(current: IPadModel, compare: IPadModel): CompareRow[] 
   ]
 }
 
-export default function CompareSelector({ currentModel, allModels, initialCompareId, iosysUrl }: Props) {
+export default function CompareSelector({ currentModel, allModels, initialCompareId, iosysUrl, shopLinks = [] }: Props) {
   return (
     <CompareSelectorBase
       currentModel={currentModel}
       allModels={allModels}
       initialCompareId={initialCompareId}
       iosysUrl={iosysUrl}
+      shopLinks={shopLinks}
       imagePath="ipad"
       detailPath="ipad"
       imageWidth={120}
