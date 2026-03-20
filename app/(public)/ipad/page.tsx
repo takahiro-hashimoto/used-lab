@@ -168,7 +168,7 @@ export default async function IPadGuidePage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <img
-                  src="https://placehold.co/360x360/1a1a2e/ffffff?text=iPad+Guide"
+                  src="/images/content/ipad-image-01.jpg"
                   alt="中古iPad購入ガイドのイメージ"
                   className="hero-media__img"
                   width={360}

@@ -5,7 +5,7 @@ export default function WatchPopularSection() {
     <PopularSectionBase
       sectionTitle="目的別に人気の中古Apple Watch"
       sectionDescription="目的別におすすめの機種を厳選。今回の記事で購入するべき機種が判断できなかった方はぜひご覧ください。"
-      imageSrc="/images/content/watch-setting.webp"
+      imageSrc="/images/content/watch-image-08.jpg"
       imageAlt="中古Apple Watchおすすめ5選のイメージ画像"
       subtitle="目的別におすすめ機種を厳選！"
       cardTitle="中古Apple Watchおすすめ5選"

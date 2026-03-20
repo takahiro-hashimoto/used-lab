@@ -144,9 +144,6 @@ export default function UsedIphoneAttentionPage() {
               <h1 className="hero-title" itemProp="headline">
                 中古iPhoneはやめた方がいい？<br className="sp-only" />購入前に確認すべき注意点まとめ
               </h1>
-              <p className="hero-description" itemProp="description">
-                バッテリー劣化・赤ロム・アクティベーションロックなど、失敗しないためのチェックポイントを徹底解説【2026年版】
-              </p>
               <div className="hero-actions">
                 <a href="#checklist" className="m-btn m-btn--hero-primary">
                   <i className="fa-solid fa-list-check" aria-hidden="true"></i>
@@ -168,7 +165,7 @@ export default function UsedIphoneAttentionPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/content/used-iphone-ios-support.jpg"
+                  src="/images/content/check-list.jpg"
                   alt="中古iPhone購入時の注意点イメージ"
                   className="hero-media__img"
                   width={360}

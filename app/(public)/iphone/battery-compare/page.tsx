@@ -253,7 +253,7 @@ export default async function IPhoneBatteryComparePage() {
                 <div className="caution-check-card__visual">
                   <figure className="caution-check-card__image">
                     <Image
-                      src="/images/content/iphone-battery-limit.webp"
+                      src="/images/content/iphone-battery-limit.jpg"
                       alt="iPhoneのバッテリーの状態確認画面"
                       width={260}
                       height={260}

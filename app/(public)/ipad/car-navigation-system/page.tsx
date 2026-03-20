@@ -87,9 +87,6 @@ export default function CarNavigationSystemPage() {
               <h1 className="hero-title" itemProp="headline">
                 iPadをカーナビ化する<br className="sp-only" />メリットが凄い！<br className="sp-only" />地図が古くなる問題をすっきり解消
               </h1>
-              <p className="hero-description" itemProp="description">
-                常に最新の地図・渋滞情報・大画面・直感操作など、iPad miniのカーナビ化で感じたメリットと注意点を紹介
-              </p>
               <div className="hero-actions">
                 <a href="#merit" className="m-btn m-btn--hero-primary">
                   <i className="fa-solid fa-thumbs-up" aria-hidden="true"></i>
@@ -301,7 +298,7 @@ export default function CarNavigationSystemPage() {
               </div>
 
               <div className="l-grid l-grid--2col l-grid--gap-lg guide-spec-links" style={{ marginTop: 'var(--space-xl)' }}>
-                <a className="m-card m-card--shadow related-link-card" href="/ipad/ipad-spec-table/">
+                <a className="m-card m-card--shadow related-link-card related-link-card--icon" href="/ipad/ipad-spec-table/">
                   <span className="related-link-card__icon">
                     <i className="fa-solid fa-table-cells" aria-hidden="true"></i>
                   </span>
@@ -313,7 +310,7 @@ export default function CarNavigationSystemPage() {
                     <i className="fa-solid fa-chevron-right" aria-hidden="true"></i>
                   </span>
                 </a>
-                <a className="m-card m-card--shadow related-link-card" href="/ipad/wifi-cellular/">
+                <a className="m-card m-card--shadow related-link-card related-link-card--icon" href="/ipad/wifi-cellular/">
                   <span className="related-link-card__icon">
                     <i className="fa-solid fa-signal" aria-hidden="true"></i>
                   </span>

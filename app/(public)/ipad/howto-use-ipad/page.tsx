@@ -134,9 +134,6 @@ export default function HowtoUseIpadPage() {
               <h1 className="hero-title" itemProp="headline">
                 iPadがあればできること<br className="sp-only" />便利な使い道 22選<br className="sp-only" />【生活が変わる】
               </h1>
-              <p className="hero-description" itemProp="description">
-                動画・ノート・イラスト・読書・仕事効率化など、iPadで生活が変わる活用法を厳選紹介
-              </p>
               <div className="hero-actions">
                 <a href="#content" className="m-btn m-btn--hero-primary">
                   <i className="fa-solid fa-lightbulb" aria-hidden="true"></i>

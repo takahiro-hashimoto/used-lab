@@ -95,9 +95,6 @@ export default async function UsedMacbookSupportPage() {
               <h1 className="hero-title">
                 MacBookはいつまで使える？<br />各機種ごとの寿命や買い替えタイミング
               </h1>
-              <p className="hero-description">
-                macOSサポート期間、修理受付の目安、買い替えるべきタイミングを機種別に徹底解説
-              </p>
               <div className="hero-meta">
                 <i className="fa-regular fa-clock" aria-hidden="true"></i>
                 <span>
@@ -108,7 +105,7 @@ export default async function UsedMacbookSupportPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/macbook/mbp-14-2024-nov.jpg"
+                  src="/images/content/macbook-image-03.jpg"
                   alt="MacBookの寿命・サポート期間イメージ"
                   className="hero-media__img"
                   width={360}

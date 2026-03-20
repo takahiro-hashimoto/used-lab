@@ -9,6 +9,7 @@ import {
 } from '@/lib/queries'
 import { PRODUCT_CATEGORIES } from '@/lib/routes'
 import { RECENT_ARTICLES } from '@/lib/data/recent-articles'
+import NewArticleGrid from '@/app/components/NewArticleGrid'
 
 /** カテゴリアイコンマッピング */
 const CATEGORY_ICONS: Record<string, string> = {
@@ -59,44 +60,27 @@ export default async function HomePage() {
   return (
     <main>
       {/* ── Hero ── */}
-      <header className="hero">
-        <div className="hero-bg" aria-hidden="true">
-          <div className="hero-shape hero-shape-1"></div>
-          <div className="hero-shape hero-shape-2"></div>
-        </div>
-        <div className="hero-inner l-container">
-          <div className="hero-content">
-            <h1 className="hero-title">
-              中古Apple製品を賢く選ぶなら<br />ユーズドラボ
+      <header className="hero hero--top">
+        <Image
+          src="/images/content/pc-main.jpg"
+          alt=""
+          className="hero--top__bg"
+          fill
+          priority
+        />
+        <div className="hero--top__overlay" aria-hidden="true" />
+        <div className="hero-inner">
+          <div className="hero-content hero-content--center">
+            <p className="hero-title hero-title--top">
+              中古Apple製品を賢く選ぶ。
+            </p>
+            <h1 className="hero-subtitle--top">
+              中古Apple製品のおすすめ機種・安く買う方法を解説
             </h1>
-            <p className="hero-description">
-              iPhone・iPad・MacBook・Apple Watch・AirPodsの中古相場を毎日更新。
-            </p>
-            <p className="hero-description">
-              スペック比較・おすすめモデル・購入先情報をまとめて、あなたのベストな1台探しをサポートします。
-            </p>
-            <div className="hero-actions">
-              <a href="#categories" className="m-btn m-btn--hero-primary">
-                <i className="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
-                <span>製品を探す</span>
-              </a>
-              <a href="#features" className="m-btn m-btn--hero-outline">
-                <i className="fa-regular fa-circle-check" aria-hidden="true"></i>
-                <span>サイトの特徴</span>
-              </a>
+            <div className="hero-scroll" aria-hidden="true">
+              <i className="fa-solid fa-chevron-down"></i>
+              <span>Scroll</span>
             </div>
-          </div>
-          <div className="hero-visual">
-            <figure className="hero-media">
-              <Image
-                src="/images/content/logo-used-lab.webp"
-                alt="ユーズドラボ"
-                className="hero-media__img"
-                width={360}
-                height={360}
-                priority
-              />
-            </figure>
           </div>
         </div>
       </header>
@@ -182,22 +166,7 @@ export default async function HomePage() {
           <h2 className="m-section-heading m-section-heading--lg">新着記事</h2>
           <p className="m-section-desc">最近公開・更新した記事をピックアップ</p>
 
-          <div className="l-grid l-grid--2col" style={{ gap: 'var(--space-md)' }}>
-            {RECENT_ARTICLES.map((article) => (
-              <Link key={article.href} href={article.href} className="top-new-article m-card m-card--shadow">
-                <figure className="top-new-article__thumb">
-                  <Image src={article.image} alt="" width={300} height={170} loading="lazy" />
-                </figure>
-                <div className="top-new-article__body">
-                  <span className="top-new-article__meta">
-                    <span className="top-new-article__date">{article.date}</span>
-                    <span className="top-new-article__category">{article.category}</span>
-                  </span>
-                  <h3 className="top-new-article__title">{article.title}</h3>
-                </div>
-              </Link>
-            ))}
-          </div>
+          <NewArticleGrid articles={RECENT_ARTICLES} />
         </div>
       </section>
 
@@ -205,7 +174,7 @@ export default async function HomePage() {
       <section id="about" className="l-section">
         <div className="l-container">
           <h2 className="m-section-heading m-section-heading--lg">運営者情報</h2>
-          <p className="m-section-desc">ユーズドラボを運営しているタカヒロです</p>
+          <p className="m-section-desc">ユーズドラボの運営者情報を紹介</p>
 
           <div className="about-profile m-card m-card--shadow m-card--padded">
             <div className="about-profile-inner">
@@ -218,19 +187,41 @@ export default async function HomePage() {
                   height={120}
                   loading="lazy"
                 />
+                <p className="about-profile-name">タカヒロ</p>
               </div>
               <div className="about-profile-info">
-                <p className="about-profile-desc" style={{ fontWeight: 700, fontSize: 'var(--font-size-lg)', color: 'var(--color-text)' }}>タカヒロ</p>
                 <p className="about-profile-desc">
                   都内のIT企業でWebディレクターとして働く傍ら、メディア運営を行っています。本サイトのほか、「ガジェットブログ・デジスタ」「東京夜景ナビ」など、複数のWebメディアを運営中です。
                 </p>
                 <p className="about-profile-desc">
-                  当サイトでは、みなさまが失敗せず、賢く中古Apple製品を選べるような情報発信を心がけています。信頼できるショップの紹介や製品レビューなど、実用的なコンテンツを通じて、後悔しないガジェット選びをお手伝いできれば幸いです！
+                  当サイトでは、みなさまが失敗せず、賢く中古Apple製品を選べるような情報発信を心がけています。
                 </p>
-                <Link href="/about/" className="m-btn m-btn--primary m-btn--sm" style={{ marginTop: 'var(--space-md)' }}>
-                  <span>運営者情報をもっと見る</span>
-                  <i className="fa-solid fa-chevron-right" aria-hidden="true"></i>
-                </Link>
+                <p className="about-profile-desc">
+                  信頼できるショップの紹介や製品レビューなど、実用的なコンテンツを通じて、後悔しないガジェット選びをお手伝いできれば幸いです！
+                </p>
+                <div className="about-sns-links" style={{ marginTop: 'var(--space-md)' }}>
+                  <Link href="/about/" className="about-sns-link about-sns-link--primary">
+                    <i className="fa-solid fa-user" aria-hidden="true"></i>
+                    <span>運営者情報詳細</span>
+                  </Link>
+                  {[
+                    { href: 'https://twitter.com/takahiro_mono', label: 'Twitter', icon: 'fa-brands fa-x-twitter' },
+                    { href: 'https://www.instagram.com/takahiro_mono', label: 'Instagram', icon: 'fa-brands fa-instagram' },
+                    { href: 'https://www.youtube.com/@takahiro_mono', label: 'YouTube', icon: 'fa-brands fa-youtube' },
+                    { href: 'https://note.com/takahiro_mono', label: 'note', icon: 'fa-solid fa-pen-nib' },
+                    { href: '/contact/', label: 'お問い合わせ', icon: 'fa-solid fa-envelope' },
+                  ].map((sns) => (
+                    <a
+                      key={sns.href}
+                      href={sns.href}
+                      {...(sns.href.startsWith('/') ? {} : { target: '_blank', rel: 'noopener noreferrer' })}
+                      className="about-sns-link"
+                    >
+                      <i className={sns.icon} aria-hidden="true"></i>
+                      <span>{sns.label}</span>
+                    </a>
+                  ))}
+                </div>
               </div>
             </div>
           </div>

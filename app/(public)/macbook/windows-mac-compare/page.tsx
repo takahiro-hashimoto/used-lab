@@ -89,9 +89,6 @@ export default function WindowsMacComparePage() {
               <h1 className="hero-title" itemProp="headline">
                 MacとWindowsどっちがいい？<br className="sp-only" />両者の違いとおすすめを<br className="sp-only" />やさしく解説
               </h1>
-              <p className="hero-description" itemProp="description">
-                操作性・対応ソフト・コスパ・用途別に、MacとWindowsの違いを初心者にもわかりやすく徹底比較
-              </p>
               <div className="hero-actions">
                 <a href="#comparison" className="m-btn m-btn--hero-primary">
                   <i className="fa-solid fa-scale-balanced" aria-hidden="true"></i>

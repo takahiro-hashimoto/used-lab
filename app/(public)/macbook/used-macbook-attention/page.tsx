@@ -144,9 +144,6 @@ export default function UsedMacBookAttentionPage() {
               <h1 className="hero-title" itemProp="headline">
                 中古MacBookはやめた方がいい？<br className="sp-only" />購入前に確認すべき注意点まとめ
               </h1>
-              <p className="hero-description" itemProp="description">
-                macOSサポート切れ・バッテリー劣化・キーボード不具合など、失敗しないためのチェックポイントを徹底解説
-              </p>
               <div className="hero-actions">
                 <a href="#checklist" className="m-btn m-btn--hero-primary">
                   <i className="fa-solid fa-list-check" aria-hidden="true"></i>
@@ -168,7 +165,7 @@ export default function UsedMacBookAttentionPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/macbook/mbp-14-2024-nov.jpg"
+                  src="/images/content/check-list.jpg"
                   alt="中古MacBook購入時の注意点イメージ"
                   className="hero-media__img"
                   width={360}

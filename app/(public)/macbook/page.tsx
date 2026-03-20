@@ -146,7 +146,7 @@ export default async function MacBookGuidePage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <img
-                  src="/images/macbook/mba-13-2024.jpg"
+                  src="/images/content/macbook-image-01.jpg"
                   alt="中古MacBook購入ガイドのイメージ"
                   className="hero-media__img"
                   width={360}

@@ -23,6 +23,7 @@ const GLOSSARY_ITEMS = [
   { title: '高度計', desc: 'リアルタイムでの高度変化を記録できる高度計を内蔵しており、登山やハイキングなどのアクティビティで活用されている。' },
 ]
 import ShareBox from '@/app/components/ShareBox'
+import RecommendBanner from '@/app/(public)/watch/[slug]/components/RecommendBanner'
 
 export const metadata: Metadata = {
   title: '歴代Apple Watchスペック比較表！各世代の性能の違いがすぐわかる | ユーズドラボ',
@@ -239,7 +240,8 @@ export default async function WatchSpecTablePage() {
         <DualCompare models={serializedModels} shopLinks={serializedLinks} />
         <EvolutionTimeline />
         <GlossarySection productName="Apple Watch" items={GLOSSARY_ITEMS} />
-        <ShareBox url="https://used-lab.com/watch/watch-spec-table/" text="歴代Apple Watchスペック比較表！各世代の性能の違いがすぐわかる" />
+        <RecommendBanner bgSubtle={false} />
+        <ShareBox url="https://used-lab.com/watch/watch-spec-table/" text="歴代Apple Watchスペック比較表！各世代の性能の違いがすぐわかる" bgSubtle />
       </article>
     </main>
   )

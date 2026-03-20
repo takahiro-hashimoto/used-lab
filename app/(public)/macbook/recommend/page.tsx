@@ -212,7 +212,7 @@ export default async function MacBookRecommendPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/macbook/mba-13-2024.jpg"
+                  src="/images/content/macbook-image-04.jpg"
                   alt={`中古MacBookおすすめ${RECOMMEND_COUNT}選のイメージ`}
                   className="hero-media__img"
                   width={360}
@@ -238,6 +238,7 @@ export default async function MacBookRecommendPage() {
                 この記事では、今買っても後悔しない中古MacBook {RECOMMEND_COUNT}機種を厳選し、それぞれの特徴と向いている人を
                 詳しく解説します。
               </p>
+              <p className="lead-link"><i className="fa-solid fa-arrow-right" aria-hidden="true"></i> もっと全体像から知りたい方は「<a href="/macbook/">中古MacBook購入ガイド</a>」をご覧ください。</p>
             </div>
           </div>
         </section>

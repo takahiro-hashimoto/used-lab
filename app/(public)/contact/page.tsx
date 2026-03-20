@@ -38,7 +38,7 @@ export default function ContactPage() {
       <div className="hero-wrapper">
       <Breadcrumb items={[{ label: 'お問い合わせ' }]} />
 
-      <header className="hero">
+      <header className="hero hero--simple">
         <div className="hero-bg" aria-hidden="true">
           <div className="hero-shape hero-shape-1"></div>
           <div className="hero-shape hero-shape-2"></div>
@@ -46,9 +46,11 @@ export default function ContactPage() {
         <div className="hero-inner l-container">
           <div className="hero-content">
             <h1 className="hero-title">お問い合わせ</h1>
-            <p className="hero-description">
-              お仕事のご依頼等、ご意見はこちらのフォームからお送りください。
-            </p>
+            <p className="hero-description">{PAGE_DESCRIPTION}</p>
+            <div className="hero-meta">
+              <i className="fa-regular fa-clock" aria-hidden="true"></i>
+              <span>更新日: <time dateTime="2026-03-20">2026年3月20日</time></span>
+            </div>
           </div>
         </div>
       </header>

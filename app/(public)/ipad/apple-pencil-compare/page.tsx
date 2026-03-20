@@ -118,9 +118,6 @@ export default async function ApplePencilComparePage() {
               <h1 className="hero-title" itemProp="headline">
                 Apple Pencilの違いを比較！<br className="sp-only" />あなたにぴったりの<br className="sp-only" />アップルペンシルがわかる
               </h1>
-              <p className="hero-description" itemProp="description">
-                Pro・第2世代・USB-C・第1世代の機能差・対応iPad・価格を一覧比較して、あなたに最適な1本を見つけよう
-              </p>
               <div className="hero-actions">
                 <a href="#compare-table" className="m-btn m-btn--hero-primary">
                   <i className="fa-solid fa-table" aria-hidden="true"></i>
@@ -223,7 +220,7 @@ export default async function ApplePencilComparePage() {
                     width={400}
                     height={500}
                     className="popular-card-img"
-                    src="/images/content/ipad-setting.webp"
+                    src="/images/content/ipad-image-03.jpg"
                   />
                 </figure>
                 <div className="popular-card-body">

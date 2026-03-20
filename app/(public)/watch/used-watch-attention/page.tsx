@@ -9,6 +9,7 @@ import FailureSection from '@/app/components/attention/FailureSection'
 import InsuranceSection from '@/app/components/attention/InsuranceSection'
 import FaqSection from '@/app/components/attention/FaqSection'
 import { insuranceData, faqItems, postCheckItems, failurePatterns } from './components/data'
+import RecommendBanner from '@/app/(public)/watch/[slug]/components/RecommendBanner'
 
 const PAGE_TITLE = '中古Apple Watchはやめた方がいい？購入前に確認すべき注意点まとめ'
 const PAGE_DESCRIPTION =
@@ -144,9 +145,6 @@ export default function UsedWatchAttentionPage() {
               <h1 className="hero-title" itemProp="headline">
                 中古Apple Watchはやめた方がいい？<br className="sp-only" />購入前に確認すべき注意点まとめ
               </h1>
-              <p className="hero-description" itemProp="description">
-                watchOSサポート切れ・バッテリー劣化・ペアリング解除漏れなど、失敗しないためのチェックポイントを徹底解説
-              </p>
               <div className="hero-actions">
                 <a href="#checklist" className="m-btn m-btn--hero-primary">
                   <i className="fa-solid fa-list-check" aria-hidden="true"></i>
@@ -168,7 +166,7 @@ export default function UsedWatchAttentionPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/content/watch-image-04.jpg"
+                  src="/images/content/check-list.jpg"
                   alt="中古Apple Watch購入時の注意点イメージ"
                   className="hero-media__img"
                   width={360}
@@ -246,7 +244,8 @@ export default function UsedWatchAttentionPage() {
           <PostCheckSection heading="中古Apple Watchの購入後すぐやるべきチェック" productName="Apple Watch" checkItems={postCheckItems} />
           <FailureSection productName="Apple Watch" guidePath="/watch" failurePatterns={failurePatterns} />
           <InsuranceSection {...insuranceData} />
-          <FaqSection productName="Apple Watch" faqItems={faqItems} />
+          <RecommendBanner bgSubtle={false} />
+          <FaqSection productName="Apple Watch" faqItems={faqItems} bgSubtle />
         </div>
 
         <ShareBox url={PAGE_URL} text={PAGE_TITLE} bgSubtle />

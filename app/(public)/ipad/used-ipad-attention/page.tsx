@@ -158,9 +158,6 @@ export default async function UsedIpadAttentionPage() {
               <h1 className="hero-title" itemProp="headline">
                 中古iPadはやめた方がいい？<br className="sp-only" />購入前に確認すべき注意点まとめ
               </h1>
-              <p className="hero-description" itemProp="description">
-                バッテリー劣化・iPadOSサポート切れ・アクセサリ非対応など、失敗しないためのチェックポイントを徹底解説
-              </p>
               <div className="hero-actions">
                 <a href="#checklist" className="m-btn m-btn--hero-primary">
                   <i className="fa-solid fa-list-check" aria-hidden="true"></i>
@@ -182,7 +179,7 @@ export default async function UsedIpadAttentionPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/ipad/ipad-pro-13-2.jpg"
+                  src="/images/content/check-list.jpg"
                   alt="中古iPad購入時の注意点イメージ"
                   className="hero-media__img"
                   width={360}

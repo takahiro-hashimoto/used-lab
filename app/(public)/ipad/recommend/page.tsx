@@ -223,7 +223,7 @@ export default async function IPadRecommendPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/ipad/ipad-air-5.jpg"
+                  src="/images/content/ipad-image-03.jpg"
                   alt={`中古iPadおすすめ${RECOMMEND_COUNT}選のイメージ`}
                   className="hero-media__img"
                   width={360}
@@ -249,6 +249,7 @@ export default async function IPadRecommendPage() {
                 この記事では、今買っても後悔しない中古iPad {RECOMMEND_COUNT}機種を厳選し、それぞれの特徴と向いている人を
                 詳しく解説します。
               </p>
+              <p className="lead-link"><i className="fa-solid fa-arrow-right" aria-hidden="true"></i> 情報を網羅的に得たい方は「<a href="/ipad/">中古iPad購入完全ガイド</a>」も参考にしてみてください！</p>
             </div>
           </div>
         </section>

@@ -132,9 +132,6 @@ export default async function MacBookShopPage() {
               <h1 className="hero-title" itemProp="headline">
                 中古MacBookを買うならどこ？<br />ECサイト・ショップのおすすめを紹介
               </h1>
-              <p className="hero-description" itemProp="description">
-                信頼できるECサイト・ショップを保証・価格・品質の観点から徹底比較【{SHOP_PAGE_DATE_LABEL}】
-              </p>
               <div className="hero-actions">
                 <a href="#shops-detail" className="m-btn m-btn--hero-primary">
                   <i className="fa-regular fa-bookmark" aria-hidden="true"></i>
@@ -156,7 +153,7 @@ export default async function MacBookShopPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <img
-                  src="https://placehold.co/360x360/1a1a2e/ffffff?text=Where+to+Buy"
+                  src="/images/content/macbook-image-02.jpg"
                   alt="中古MacBookの購入先イメージ"
                   className="hero-media__img"
                   width={360}

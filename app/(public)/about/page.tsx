@@ -81,7 +81,7 @@ export default function AboutPage() {
       <div className="hero-wrapper">
       <Breadcrumb items={[{ label: '運営者情報' }]} />
 
-      <header className="hero">
+      <header className="hero hero--simple">
         <div className="hero-bg" aria-hidden="true">
           <div className="hero-shape hero-shape-1"></div>
           <div className="hero-shape hero-shape-2"></div>
@@ -89,10 +89,11 @@ export default function AboutPage() {
         <div className="hero-inner l-container">
           <div className="hero-content">
             <h1 className="hero-title">運営者情報</h1>
-            <p className="hero-description">
-              初めまして！ユーズドラボを運営しています、タカヒロです！<br />
-              このページでは僕自身のことやブログの歩みについて紹介していきます。
-            </p>
+            <p className="hero-description">ユーズドラボの運営者タカヒロのプロフィールや、サイト開設の経緯についてご紹介します。</p>
+            <div className="hero-meta">
+              <i className="fa-regular fa-clock" aria-hidden="true"></i>
+              <span>更新日: <time dateTime="2026-03-20">2026年3月20日</time></span>
+            </div>
           </div>
         </div>
       </header>

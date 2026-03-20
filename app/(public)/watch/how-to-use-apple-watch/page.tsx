@@ -6,6 +6,7 @@ import BasicSection from './components/BasicSection'
 import HealthSection from './components/HealthSection'
 import PaymentSection from './components/PaymentSection'
 import AppleEcoSection from './components/AppleEcoSection'
+import RecommendBanner from '@/app/(public)/watch/[slug]/components/RecommendBanner'
 
 const PAGE_TITLE = 'アップルウォッチのできること25選！便利な機能や使い方がわかる【初心者向け】'
 const PAGE_DESCRIPTION =
@@ -89,9 +90,6 @@ export default function HowToUseAppleWatchPage() {
               <h1 className="hero-title" itemProp="headline">
                 アップルウォッチの<br className="sp-only" />できること25選！<br className="sp-only" />【初心者向け】
               </h1>
-              <p className="hero-description" itemProp="description">
-                基本機能・健康管理・決済・Apple製品連携など、Apple Watchで生活が変わる活用法を厳選紹介
-              </p>
               <div className="hero-actions">
                 <a href="#content" className="m-btn m-btn--hero-primary">
                   <i className="fa-solid fa-lightbulb" aria-hidden="true"></i>
@@ -219,8 +217,10 @@ export default function HowToUseAppleWatchPage() {
           </div>
         </section>
 
+        <RecommendBanner bgSubtle={false} />
+
         {/* シェアボックス */}
-        <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
+        <ShareBox url={PAGE_URL} text={PAGE_TITLE} bgSubtle />
       </article>
     </main>
   )

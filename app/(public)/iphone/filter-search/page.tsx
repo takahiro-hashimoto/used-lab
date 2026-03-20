@@ -232,7 +232,7 @@ export default async function IPhoneFilterSearchPage() {
             <div className="lead-box">
               <p>「どのiPhoneを買えばいいかわからない…」そんな悩みを解決する<strong>iPhone機種診断ツール</strong>です。</p>
               <p>最新のiPhoneから型落ちの人気モデルまで、あなたの使用目的・予算・こだわり条件に合わせて最適な中古iPhoneを無料で診断。<strong>30機種のデータベース</strong>から、あなたにぴったりの1台を見つけましょう。</p>
-              <p className="lead-link"><i className="fa-solid fa-arrow-right" aria-hidden="true"></i> 情報を網羅的に得たい方は「<Link href="/airpods/">中古AirPods購入完全ガイド</Link>」も参考にしてみてください！</p>
+              <p className="lead-link"><i className="fa-solid fa-arrow-right" aria-hidden="true"></i> 情報を網羅的に得たい方は「<a href="/iphone/">中古iPhone購入完全ガイド</a>」も参考にしてみてください！</p>
             </div>
           </div>
         </section>

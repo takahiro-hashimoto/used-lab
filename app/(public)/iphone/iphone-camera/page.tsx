@@ -126,9 +126,6 @@ export default async function IPhoneCameraPage() {
               <h1 className="hero-title" itemProp="headline">
                 iPhoneのカメラ性能の違いは何？<br />歴代モデルの機能を比較
               </h1>
-              <p className="hero-description" itemProp="description">
-                画素数・レンズ構成・動画性能など、世代ごとの進化をわかりやすく解説
-              </p>
               <div className="hero-actions">
                 <a href="#camera-comparison" className="m-btn m-btn--hero-primary">
                   <i className="fa-regular fa-table" aria-hidden="true"></i>
@@ -276,7 +273,7 @@ export default async function IPhoneCameraPage() {
                   </dl>
                 }
                 samples={[
-                  { label: 'イメージセンサー', src: '/images/content/iphone-image.jpg', alt: 'iPhoneイメージセンサー 進化の変遷' },
+                  { label: 'イメージセンサー', src: '/images/content/iphone-camera-lens.jpeg', alt: 'iPhoneイメージセンサー 進化の変遷' },
                 ]}
               />
 

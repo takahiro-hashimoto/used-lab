@@ -279,7 +279,7 @@ export default function GuidelinesPage() {
       <div className="hero-wrapper">
       <Breadcrumb items={[{ label: 'コンテンツ制作・運営ポリシー' }]} />
 
-      <header className="hero">
+      <header className="hero hero--simple">
         <div className="hero-bg" aria-hidden="true">
           <div className="hero-shape hero-shape-1"></div>
           <div className="hero-shape hero-shape-2"></div>
@@ -287,9 +287,11 @@ export default function GuidelinesPage() {
         <div className="hero-inner l-container">
           <div className="hero-content">
             <h1 className="hero-title">コンテンツ制作・運営ポリシー</h1>
-            <p className="hero-description">
-              当サイトの制作方針・情報の信頼性への取り組みをまとめています
-            </p>
+            <p className="hero-description">ユーズドラボのコンテンツ制作フローや信頼性の担保についてご紹介します。</p>
+            <div className="hero-meta">
+              <i className="fa-regular fa-clock" aria-hidden="true"></i>
+              <span>更新日: <time dateTime="2026-03-20">2026年3月20日</time></span>
+            </div>
           </div>
         </div>
       </header>
@@ -303,21 +305,23 @@ export default function GuidelinesPage() {
           </h2>
           <p className="m-section-desc">運営者情報とサイトの概要をご紹介します。</p>
 
-          <div className="content-prose" style={{ maxWidth: 720, margin: 'var(--space-xl) auto 0' }}>
-            <p>
-              ユーズドラボは記事執筆から写真の撮影まで全て1人で行なっている個人メディアです。
-            </p>
-            <p>
-              2015年より更新している「<a href="https://digital-style.jp/" target="_blank" rel="noopener noreferrer">ガジェットレビューブログ・デジスタ</a>」の姉妹サイトとして2024年8月に開設しました。
-            </p>
-            <p>
-              ガジェットレビューブログの運営で得た知見を生かして「買い物の参考になる情報をわかりやすく発信すること」をモットーに中古Apple製品関連の情報を発信しています。
-            </p>
-            <div className="gl-about-link">
-              <Link href="/about/" className="about-media-link">
-                <i className="fa-solid fa-user" aria-hidden="true"></i>
-                <span>運営者情報 | ユーズドラボ</span>
-              </Link>
+          <div className="m-card m-card--shadow m-card--padded">
+            <div className="content-prose">
+              <p>
+                ユーズドラボは記事執筆から写真の撮影まで全て1人で行なっている個人メディアです。
+              </p>
+              <p>
+                2015年より更新している「<a href="https://digital-style.jp/" target="_blank" rel="noopener noreferrer">ガジェットレビューブログ・デジスタ</a>」の姉妹サイトとして2024年8月に開設しました。
+              </p>
+              <p>
+                ガジェットレビューブログの運営で得た知見を生かして「買い物の参考になる情報をわかりやすく発信すること」をモットーに中古Apple製品関連の情報を発信しています。
+              </p>
+              <div className="gl-about-link">
+                <Link href="/about/" className="about-media-link">
+                  <i className="fa-solid fa-user" aria-hidden="true"></i>
+                  <span>運営者情報 | ユーズドラボ</span>
+                </Link>
+              </div>
             </div>
           </div>
         </div>
@@ -333,7 +337,7 @@ export default function GuidelinesPage() {
             当サイトのコンテンツ制作フローをご紹介します。
           </p>
 
-          <div className="m-card m-card--shadow m-card--padded" style={{ maxWidth: 720, margin: 'var(--space-xl) auto 0' }}>
+          <div className="m-card m-card--shadow m-card--padded">
             <div className="m-timeline">
               {WORKFLOW_STEPS.map((step, index) => (
                 <div key={index} className="m-timeline__item">
@@ -357,19 +361,21 @@ export default function GuidelinesPage() {
           </h2>
           <p className="m-section-desc">掲載情報の正確性・鮮度を保つために従っている基準をまとめています。</p>
 
-          <div className="content-prose" style={{ maxWidth: 720, margin: 'var(--space-xl) auto 0' }}>
-            <p>
-              当サイトでは、掲載するすべての情報について正確性と信頼性を最優先としています。
-            </p>
-            <p>
-              製品仕様や価格、サービス内容などの情報は、必ず一次情報であるメーカー公式サイトや公的機関の発表資料を確認し、必要に応じて複数の信頼できる情報源と照合しています。
-            </p>
-            <p>
-              特にApple製品や中古iPhoneに関する記事では、総務省や経済産業省などの公的機関、通信キャリアの公式発表、Apple公式サポートページなどを参照し、誤解を招く恐れのある推測や不確定情報は掲載しません。
-            </p>
-            <p>
-              また、情報の鮮度を保つために定期的な更新を行い、読者が安心して参考にできるコンテンツ提供を心がけています。
-            </p>
+          <div className="m-card m-card--shadow m-card--padded">
+            <div className="content-prose">
+              <p>
+                当サイトでは、掲載するすべての情報について正確性と信頼性を最優先としています。
+              </p>
+              <p>
+                製品仕様や価格、サービス内容などの情報は、必ず一次情報であるメーカー公式サイトや公的機関の発表資料を確認し、必要に応じて複数の信頼できる情報源と照合しています。
+              </p>
+              <p>
+                特にApple製品や中古iPhoneに関する記事では、総務省や経済産業省などの公的機関、通信キャリアの公式発表、Apple公式サポートページなどを参照し、誤解を招く恐れのある推測や不確定情報は掲載しません。
+              </p>
+              <p>
+                また、情報の鮮度を保つために定期的な更新を行い、読者が安心して参考にできるコンテンツ提供を心がけています。
+              </p>
+            </div>
           </div>
         </div>
       </section>

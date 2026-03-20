@@ -95,9 +95,6 @@ export default async function UsedIpadSupportPage() {
               <h1 className="hero-title">
                 iPadはいつまで使える？<br />機種別のサポート期間目安まとめ
               </h1>
-              <p className="hero-description">
-                iPadOSサポート期間、修理受付の目安、買い替えるべきタイミングを機種別に徹底解説
-              </p>
               <div className="hero-meta">
                 <i className="fa-regular fa-clock" aria-hidden="true"></i>
                 <span>

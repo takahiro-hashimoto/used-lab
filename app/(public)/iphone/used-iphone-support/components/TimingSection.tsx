@@ -5,7 +5,7 @@ import type { TimingCard } from '@/app/components/support/TimingSection'
 const TIMING_CARDS: TimingCard[] = [
   {
     title: '①発売から7年が経過しそうになった時',
-    imgSrc: 'https://placehold.co/400x520/f5f5f7/1d1d1f?text=iPhone',
+    imgSrc: '/images/content/iphone-image-02.jpg',
     imgAlt: 'iPhoneのホーム画面',
     content: (
       <>
@@ -18,7 +18,7 @@ const TIMING_CARDS: TimingCard[] = [
   },
   {
     title: '②バッテリー最大容量が80%を下回った時',
-    imgSrc: 'https://placehold.co/400x520/f5f5f7/1d1d1f?text=Battery',
+    imgSrc: '/images/content/iphone-battery-limit.jpg',
     imgAlt: 'バッテリーの状態画面',
     content: (
       <>
@@ -34,7 +34,7 @@ const TIMING_CARDS: TimingCard[] = [
   },
   {
     title: '③性能面で不満を感じはじめた時',
-    imgSrc: 'https://placehold.co/400x520/f5f5f7/1d1d1f?text=Performance',
+    imgSrc: '/images/content/iphone-image-03.jpg',
     imgAlt: 'iPhoneの性能イメージ',
     content: (
       <>
@@ -57,7 +57,7 @@ const TIMING_CARDS: TimingCard[] = [
   },
   {
     title: '④端末代の支払を終えた時',
-    imgSrc: 'https://placehold.co/400x520/f5f5f7/1d1d1f?text=Payment',
+    imgSrc: '/images/content/used-iphone-ios-support.jpg',
     imgAlt: '端末代の支払いイメージ',
     content: (
       <>

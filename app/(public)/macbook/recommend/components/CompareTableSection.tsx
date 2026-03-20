@@ -157,7 +157,7 @@ export default function CompareTableSection({ items }: Props) {
 
         {/* 関連リンクカード */}
         <div className="l-grid l-grid--3col l-grid--gap-lg related-links">
-          <Link href="/macbook/macbook-spec-table/" className="m-card m-card--shadow related-link-card m-card--hoverable">
+          <Link href="/macbook/macbook-spec-table/" className="m-card m-card--shadow related-link-card related-link-card--icon m-card--hoverable">
             <span className="related-link-card__icon related-link-card__icon--blue m-icon-box m-icon-box--sm">
               <i className="fa-solid fa-table-cells" aria-hidden="true"></i>
             </span>
@@ -167,7 +167,7 @@ export default function CompareTableSection({ items }: Props) {
               <i className="fa-solid fa-chevron-right" aria-hidden="true"></i>
             </span>
           </Link>
-          <Link href="/macbook/used-macbook-support/" className="m-card m-card--shadow related-link-card m-card--hoverable">
+          <Link href="/macbook/used-macbook-support/" className="m-card m-card--shadow related-link-card related-link-card--icon m-card--hoverable">
             <span className="related-link-card__icon m-icon-box m-icon-box--sm">
               <i className="fa-solid fa-clock-rotate-left" aria-hidden="true"></i>
             </span>
@@ -177,7 +177,7 @@ export default function CompareTableSection({ items }: Props) {
               <i className="fa-solid fa-chevron-right" aria-hidden="true"></i>
             </span>
           </Link>
-          <Link href="/macbook/used-macbook-attention/" className="m-card m-card--shadow related-link-card m-card--hoverable">
+          <Link href="/macbook/used-macbook-attention/" className="m-card m-card--shadow related-link-card related-link-card--icon m-card--hoverable">
             <span className="related-link-card__icon m-icon-box m-icon-box--sm">
               <i className="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>
             </span>

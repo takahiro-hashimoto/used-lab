@@ -19,7 +19,7 @@ export const FAQ_ITEMS = [
 
 export default function AlwaysLitFaqSection() {
   return (
-    <section className="l-section" id="faq" aria-labelledby="heading-faq">
+    <section className="l-section l-section--bg-subtle" id="faq" aria-labelledby="heading-faq">
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg" id="heading-faq">
           アップルウォッチの常時点灯に関するよくある質問

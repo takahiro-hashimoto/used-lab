@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 const NAV_ITEMS = [
   { href: '/iphone', label: '中古iPhone' },
@@ -16,6 +16,11 @@ const NAV_ITEMS = [
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+  useEffect(() => {
+    document.body.style.overflow = isMenuOpen ? 'hidden' : ''
+    return () => { document.body.style.overflow = '' }
+  }, [isMenuOpen])
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
@@ -67,6 +72,13 @@ export default function Header() {
         aria-label="モバイルナビゲーション"
         hidden={!isMenuOpen}
       >
+        <button
+          className="mobile-menu__close"
+          onClick={() => setIsMenuOpen(false)}
+          aria-label="メニューを閉じる"
+        >
+          <i className="fa-solid fa-xmark" aria-hidden="true"></i>
+        </button>
         <ul className="mobile-nav-list">
           {NAV_ITEMS.map((item) => (
             <li key={item.href}>

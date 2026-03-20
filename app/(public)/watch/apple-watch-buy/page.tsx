@@ -3,6 +3,7 @@ import Breadcrumb from '@/app/components/Breadcrumb'
 import ShareBox from '@/app/components/ShareBox'
 import BuyMethodsSection from './components/BuyMethodsSection'
 import ConclusionSection from './components/ConclusionSection'
+import RecommendBanner from '@/app/(public)/watch/[slug]/components/RecommendBanner'
 
 const PAGE_TITLE = 'Apple Watchを安く買うには？おすすめの購入先7つを比較'
 const PAGE_DESCRIPTION =
@@ -89,12 +90,6 @@ export default function AppleWatchBuyPage() {
               <h1 className="hero-title" itemProp="headline">
                 Apple Watchを安く買うには？<br />おすすめの購入先7つを比較
               </h1>
-              <p className="hero-description" itemProp="description">
-                Apple公式・ECモール・中古ショップなど、Apple Watchを購入できるルートは多彩。
-              </p>
-              <p className="hero-description">
-                それぞれの価格・保証・ポイント還元を比較して、自分に合った買い方を見つけましょう。
-              </p>
               <div className="hero-actions">
                 <a href="#comparison" className="m-btn m-btn--hero-primary">
                   <i className="fa-regular fa-bookmark" aria-hidden="true"></i>
@@ -116,7 +111,7 @@ export default function AppleWatchBuyPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <img
-                  src="/images/content/watch-image-06.jpg"
+                  src="/images/content/cheap-buy.jpg"
                   alt="Apple Watchを安く買う方法のイメージ"
                   className="hero-media__img"
                   width={360}
@@ -203,6 +198,8 @@ export default function AppleWatchBuyPage() {
         <div itemProp="articleBody">
           <BuyMethodsSection />
         </div>
+
+        <RecommendBanner bgSubtle={false} />
 
         <ShareBox url={PAGE_URL} text={PAGE_TITLE} bgSubtle />
       </article>

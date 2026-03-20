@@ -4,7 +4,7 @@ import Breadcrumb from '@/app/components/Breadcrumb'
 
 const PAGE_TITLE = 'プライバシーポリシー・免責事項'
 const PAGE_DESCRIPTION =
-  'ユーズドラボにおけるプライバシーポリシー・免責事項についてご説明します。個人情報の取り扱い、Cookie、広告、著作権等について記載しています。'
+  'ユーズドラボにおけるプライバシーポリシー・免責事項についてご説明します。'
 
 export const metadata: Metadata = {
   title: `${PAGE_TITLE} | ユーズドラボ`,
@@ -40,7 +40,7 @@ export default function PrivacyPolicyPage() {
       <div className="hero-wrapper">
       <Breadcrumb items={[{ label: 'プライバシーポリシー・免責事項' }]} />
 
-      <header className="hero">
+      <header className="hero hero--simple">
         <div className="hero-bg" aria-hidden="true">
           <div className="hero-shape hero-shape-1"></div>
           <div className="hero-shape hero-shape-2"></div>
@@ -48,9 +48,11 @@ export default function PrivacyPolicyPage() {
         <div className="hero-inner l-container">
           <div className="hero-content">
             <h1 className="hero-title">プライバシーポリシー・免責事項</h1>
-            <p className="hero-description">
-              ユーズドラボのプライバシーポリシー・免責事項をご紹介します。
-            </p>
+            <p className="hero-description">{PAGE_DESCRIPTION}</p>
+            <div className="hero-meta">
+              <i className="fa-regular fa-clock" aria-hidden="true"></i>
+              <span>更新日: <time dateTime="2026-03-20">2026年3月20日</time></span>
+            </div>
           </div>
         </div>
       </header>

@@ -89,12 +89,6 @@ export default function IPadBuyPage() {
               <h1 className="hero-title" itemProp="headline">
                 iPadを安く買うには？<br />おすすめの購入先7つを比較
               </h1>
-              <p className="hero-description" itemProp="description">
-                Apple公式・ECモール・中古ショップなど、iPadを購入できるルートは多彩。
-              </p>
-              <p className="hero-description">
-                それぞれの価格・保証・ポイント還元を比較して、自分に合った買い方を見つけましょう。
-              </p>
               <div className="hero-actions">
                 <a href="#comparison" className="m-btn m-btn--hero-primary">
                   <i className="fa-regular fa-bookmark" aria-hidden="true"></i>
@@ -116,7 +110,7 @@ export default function IPadBuyPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <img
-                  src="https://placehold.co/360x360/1a1a2e/ffffff?text=Buy+Cheap"
+                  src="/images/content/cheap-buy.jpg"
                   alt="iPadを安く買う方法のイメージ"
                   className="hero-media__img"
                   width={360}

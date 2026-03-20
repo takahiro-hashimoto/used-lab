@@ -132,9 +132,6 @@ export default async function IPadShopPage() {
               <h1 className="hero-title" itemProp="headline">
                 中古iPadを買うならどこ？<br />ECサイト・ショップのおすすめを紹介
               </h1>
-              <p className="hero-description" itemProp="description">
-                信頼できるECサイト・ショップを保証・価格・品質の観点から徹底比較【{SHOP_PAGE_DATE_LABEL}】
-              </p>
               <div className="hero-actions">
                 <a href="#shops-detail" className="m-btn m-btn--hero-primary">
                   <i className="fa-regular fa-bookmark" aria-hidden="true"></i>

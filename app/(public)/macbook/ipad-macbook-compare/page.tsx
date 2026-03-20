@@ -90,9 +90,6 @@ export default function IpadMacbookComparePage() {
               <h1 className="hero-title" itemProp="headline">
                 MacBookとiPadどっちを<br className="sp-only" />買うのがおすすめ？<br className="sp-only" />両者の違いと使い勝手を比較
               </h1>
-              <p className="hero-description" itemProp="description">
-                作業効率・携帯性・価格・用途別に、MacBookとiPadの違いを初心者にもわかりやすく徹底比較
-              </p>
               <div className="hero-actions">
                 <a href="#recommend" className="m-btn m-btn--hero-primary">
                   <i className="fa-solid fa-user-check" aria-hidden="true"></i>
@@ -297,7 +294,7 @@ export default function IpadMacbookComparePage() {
 
               {/* 関連リンク */}
               <div className="l-grid l-grid--2col l-grid--gap-lg guide-spec-links" style={{ marginTop: 'var(--space-2xl)' }}>
-                <a className="m-card m-card--shadow related-link-card m-card--hoverable" href="/macbook">
+                <a className="m-card m-card--shadow related-link-card related-link-card--icon m-card--hoverable" href="/macbook">
                   <span className="related-link-card__icon m-icon-box m-icon-box--sm">
                     <i className="fa-solid fa-laptop" aria-hidden="true"></i>
                   </span>
@@ -309,7 +306,7 @@ export default function IpadMacbookComparePage() {
                     <i className="fa-solid fa-chevron-right" aria-hidden="true"></i>
                   </span>
                 </a>
-                <a className="m-card m-card--shadow related-link-card m-card--hoverable" href="/ipad">
+                <a className="m-card m-card--shadow related-link-card related-link-card--icon m-card--hoverable" href="/ipad">
                   <span className="related-link-card__icon m-icon-box m-icon-box--sm">
                     <i className="fa-solid fa-tablet-screen-button" aria-hidden="true"></i>
                   </span>

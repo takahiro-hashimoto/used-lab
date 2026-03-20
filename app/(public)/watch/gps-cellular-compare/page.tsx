@@ -5,6 +5,7 @@ import ShareBox from '@/app/components/ShareBox'
 import RecommendSection from './components/RecommendSection'
 import ComparisonDetails from './components/ComparisonDetails'
 import FaqSection, { FAQ_ITEMS } from './components/FaqSection'
+import RecommendBanner from '@/app/(public)/watch/[slug]/components/RecommendBanner'
 
 const PAGE_TITLE = 'Apple Watch セルラーモデルのできることを解説！GPSモデルとの違いがわかる'
 const PAGE_DESCRIPTION =
@@ -103,9 +104,6 @@ export default function GpsCellularComparePage() {
               <h1 className="hero-title" itemProp="headline">
                 Apple Watch セルラーモデルの<br className="sp-only" />できることを解説！<br className="sp-only" />GPSモデルとの違いがわかる
               </h1>
-              <p className="hero-description" itemProp="description">
-                GPSとセルラーの違い・ランニングコスト・素材の違いなど5つのポイントを結論ファーストで比較
-              </p>
               <div className="hero-actions">
                 <a href="#recommend" className="m-btn m-btn--hero-primary">
                   <i className="fa-solid fa-user-check" aria-hidden="true"></i>
@@ -219,6 +217,8 @@ export default function GpsCellularComparePage() {
             </div>
           </section>
 
+          <RecommendBanner />
+
           {/* h2: よくある質問 */}
           <FaqSection />
 
@@ -270,7 +270,7 @@ export default function GpsCellularComparePage() {
 
               {/* 関連リンク */}
               <div className="l-grid l-grid--2col l-grid--gap-lg guide-spec-links" style={{ marginTop: 'var(--space-2xl)' }}>
-                <a className="m-card m-card--shadow related-link-card m-card--hoverable" href="/watch">
+                <a className="m-card m-card--shadow related-link-card related-link-card--icon m-card--hoverable" href="/watch">
                   <span className="related-link-card__icon m-icon-box m-icon-box--sm">
                     <i className="fa-solid fa-clock" aria-hidden="true"></i>
                   </span>
@@ -282,7 +282,7 @@ export default function GpsCellularComparePage() {
                     <i className="fa-solid fa-chevron-right" aria-hidden="true"></i>
                   </span>
                 </a>
-                <a className="m-card m-card--shadow related-link-card m-card--hoverable" href="/watch/recommend">
+                <a className="m-card m-card--shadow related-link-card related-link-card--icon m-card--hoverable" href="/watch/recommend">
                   <span className="related-link-card__icon m-icon-box m-icon-box--sm">
                     <i className="fa-solid fa-star" aria-hidden="true"></i>
                   </span>

@@ -26,7 +26,6 @@ export default function TimingSection({ sectionTitle, sectionDescription, cards 
 
         {cards.map((card) => (
           <div key={card.title} className="m-card m-card--shadow m-card--padded">
-            <h3 className="m-sub-heading m-sub-heading--no-mt">{card.title}</h3>
             <div className="timing-card">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
@@ -37,7 +36,10 @@ export default function TimingSection({ sectionTitle, sectionDescription, cards 
                 height={520}
                 loading="lazy"
               />
-              <div className="timing-card__body">{card.content}</div>
+              <div className="timing-card__body">
+                <h3 className="m-sub-heading m-sub-heading--no-mt">{card.title}</h3>
+                {card.content}
+              </div>
             </div>
           </div>
         ))}

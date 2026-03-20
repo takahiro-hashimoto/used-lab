@@ -165,7 +165,7 @@ export default function CompareTableSection({ items }: Props) {
 
         {/* 関連リンクカード */}
         <div className="l-grid l-grid--3col l-grid--gap-lg related-links">
-          <Link href="/airpods/airpods-spec-table/" className="m-card m-card--shadow related-link-card">
+          <Link href="/airpods/airpods-spec-table/" className="m-card m-card--shadow related-link-card related-link-card--icon">
             <span className="related-link-card__icon related-link-card__icon--blue">
               <i className="fa-solid fa-table-cells" aria-hidden="true"></i>
             </span>
@@ -175,7 +175,7 @@ export default function CompareTableSection({ items }: Props) {
               <i className="fa-solid fa-chevron-right" aria-hidden="true"></i>
             </span>
           </Link>
-          <Link href="/airpods/used-airpods-support/" className="m-card m-card--shadow related-link-card">
+          <Link href="/airpods/used-airpods-support/" className="m-card m-card--shadow related-link-card related-link-card--icon">
             <span className="related-link-card__icon">
               <i className="fa-solid fa-clock-rotate-left" aria-hidden="true"></i>
             </span>
@@ -185,7 +185,7 @@ export default function CompareTableSection({ items }: Props) {
               <i className="fa-solid fa-chevron-right" aria-hidden="true"></i>
             </span>
           </Link>
-          <Link href="/airpods/used-airpods-attention/" className="m-card m-card--shadow related-link-card">
+          <Link href="/airpods/used-airpods-attention/" className="m-card m-card--shadow related-link-card related-link-card--icon">
             <span className="related-link-card__icon">
               <i className="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>
             </span>

@@ -8,6 +8,7 @@ import SettingSection from './components/SettingSection'
 import TipsSection from './components/TipsSection'
 import SpecTableSection from './components/SpecTableSection'
 import AlwaysLitFaqSection, { FAQ_ITEMS } from './components/AlwaysLitFaqSection'
+import RecommendBanner from '@/app/(public)/watch/[slug]/components/RecommendBanner'
 
 const PAGE_TITLE = 'Apple Watchの常時点灯はいらない？使ってみてわかったメリット・デメリットまとめ'
 const PAGE_DESCRIPTION =
@@ -213,6 +214,7 @@ export default function AppleWatchAlwaysLitPage() {
           <SettingSection />
           <TipsSection />
           <SpecTableSection />
+          <RecommendBanner bgSubtle={false} />
           <AlwaysLitFaqSection />
         </div>
 

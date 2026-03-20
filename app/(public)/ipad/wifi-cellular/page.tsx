@@ -85,9 +85,6 @@ export default function WifiCellularPage() {
               <h1 className="hero-title" itemProp="headline">
                 iPadはWi-Fiモデルと<br className="sp-only" />セルラーモデルどっちがおすすめ？<br className="sp-only" />両者の違い4つを比較
               </h1>
-              <p className="hero-description" itemProp="description">
-                通信方式・背面デザイン・GPS・テザリングなど、4つの違いを徹底比較して用途別のおすすめを解説
-              </p>
               <div className="hero-actions">
                 <a href="#content" className="m-btn m-btn--hero-primary">
                   <i className="fa-solid fa-arrows-left-right" aria-hidden="true"></i>
@@ -109,7 +106,7 @@ export default function WifiCellularPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/ipad/ipad-air-6.jpg"
+                  src="/images/content/ipad-image-02.jpg"
                   alt="iPadのWi-FiモデルとセルラーモデルのイメージA"
                   className="hero-media__img"
                   width={360}

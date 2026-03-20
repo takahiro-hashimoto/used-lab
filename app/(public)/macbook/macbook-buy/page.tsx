@@ -89,12 +89,6 @@ export default function MacBookBuyPage() {
               <h1 className="hero-title" itemProp="headline">
                 MacBookを安く買うには？<br />おすすめの購入先7つを比較
               </h1>
-              <p className="hero-description" itemProp="description">
-                Apple公式・ECモール・中古ショップなど、MacBookを購入できるルートは多彩。
-              </p>
-              <p className="hero-description">
-                それぞれの価格・保証・ポイント還元を比較して、自分に合った買い方を見つけましょう。
-              </p>
               <div className="hero-actions">
                 <a href="#comparison" className="m-btn m-btn--hero-primary">
                   <i className="fa-regular fa-bookmark" aria-hidden="true"></i>
@@ -116,7 +110,7 @@ export default function MacBookBuyPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <img
-                  src="https://used-lab.jp/wp-content/uploads/2025/07/how-to-buy-mac-heading-picturess-1024x576.jpg"
+                  src="/images/content/cheap-buy.jpg"
                   alt="MacBookを安く買う方法のイメージ"
                   className="hero-media__img"
                   width={360}

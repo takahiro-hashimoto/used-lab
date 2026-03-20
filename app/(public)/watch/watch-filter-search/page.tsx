@@ -6,6 +6,7 @@ import type { WatchPriceLog } from '@/lib/types'
 import { supabase } from '@/lib/supabase'
 import WatchFilterSearchApp from './components/WatchFilterSearchApp'
 import ShareBox from '@/app/components/ShareBox'
+import RecommendBanner from '@/app/(public)/watch/[slug]/components/RecommendBanner'
 
 export const metadata: Metadata = {
   title: 'Apple Watch機種診断シミュレーター｜自分に合うおすすめ中古アップルウォッチがすぐわかる【2026年版】 | ユーズドラボ',
@@ -295,7 +296,7 @@ export default async function WatchFilterSearchPage() {
             <div className="m-card m-card--shadow popular-card">
               <figure className="popular-card-figure">
                 <Image
-                  src="/images/watch/watch-ultra2.jpg"
+                  src="/images/content/watch-image-08.jpg"
                   alt="中古Apple Watchおすすめ5選のイメージ画像"
                   className="popular-card-img"
                   width={400}

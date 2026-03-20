@@ -164,9 +164,6 @@ export default async function MvnoPage() {
               <h1 className="hero-title" itemProp="headline">
                 中古iPhoneの購入と通信契約が<br />セットでできる格安SIM業者まとめ
               </h1>
-              <p className="hero-description" itemProp="description">
-                端末購入と回線契約をまとめてお得に。主要{MVNO_PROVIDERS.length}社の料金プラン・端末販売を徹底比較【{MVNO_PAGE_DATE_LABEL}】
-              </p>
               <div className="hero-actions">
                 <a href="#providers" className="m-btn m-btn--hero-primary">
                   <i className="fa-solid fa-sim-card" aria-hidden="true"></i>
@@ -213,7 +210,7 @@ export default async function MvnoPage() {
                 このページでは、<strong>中古iPhoneの端末販売がある格安SIM業者{mvnoProviders.length}社</strong>の料金プランと端末販売の特徴を比較しています。
                 それぞれの強みや注意点を把握して、あなたに最適な組み合わせを見つけてください。
               </p>
-              <p className="lead-link"><i className="fa-solid fa-arrow-right" aria-hidden="true"></i> 情報を網羅的に得たい方は「<a href="/airpods">中古AirPods購入完全ガイド</a>」も参考にしてみてください！</p>
+              <p className="lead-link"><i className="fa-solid fa-arrow-right" aria-hidden="true"></i> 情報を網羅的に得たい方は「<a href="/iphone/">中古iPhone購入完全ガイド</a>」も参考にしてみてください！</p>
             </div>
           </div>
         </section>
