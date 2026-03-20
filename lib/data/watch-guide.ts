@@ -21,10 +21,10 @@ export const GUIDE_PRICE_SLUGS = [
 export const GUIDE_SPEC_LINKS = [
   { href: '/watch/watch-spec-table/', icon: 'fa-table-cells', title: '歴代Apple Watchスペック比較表', desc: 'チップ、ケースサイズ、センサー、バッテリーなど、歴代Apple Watchの全スペックを一覧で比較。', image: '/images/content/watch-image-02.jpg' },
   { href: '/watch/used-watch-support/', icon: 'fa-shield-halved', title: 'watchOSサポート期間一覧表', desc: '各モデルのサポート終了予測を解説。「いつまで使えるか」の目安がわかります。', image: '/images/content/watch-image.jpg' },
-  { href: '/watch/how-to-use-apple-watch/', icon: 'fa-list-check', title: 'Apple Watchのできること25選', desc: '基本機能・健康管理・決済・Apple製品連携など、便利な機能や使い方を初心者向けに解説。', image: '/images/content/watch-image-05.jpg' },
   { href: '/watch/gps-cellular-compare/', icon: 'fa-satellite-dish', title: 'GPSモデルとセルラーモデルの違い', desc: '単体でできること・ランニングコスト・素材の違いなど5つの観点で比較し、どちらを選ぶべきか解説。', image: '/images/content/watch-image-09.jpg' },
+  { href: '/watch/how-to-use-apple-watch/', icon: 'fa-list-check', title: 'Apple Watchのできること25選', desc: '基本機能・健康管理・決済・Apple製品連携など、便利な機能や使い方を初心者向けに解説。', image: '/images/content/watch-image-05.jpg' },
   { href: '/watch/apple-watch-always-lit/', icon: 'fa-sun', title: '常時点灯ディスプレイは必要？', desc: '常時表示のメリット・デメリット、バッテリーへの影響、対応モデル一覧をまとめています。', image: '/images/content/watch-image-03.jpg' },
-  { href: '/watch/apple-watch-buy/', icon: 'fa-tags', title: 'Apple Watchを安く買う方法まとめ', desc: 'Apple認定整備済製品・中古ショップ・ECモール・家電量販店など7つの購入先を価格・保証で比較。', image: '/images/content/watch-image-06.jpg' },
+  { href: '/watch/apple-watch-buy/', icon: 'fa-tags', title: 'Apple Watchを安く買う方法まとめ', desc: 'Apple認定整備済製品・中古ショップ・ECモール・家電量販店など7つの購入先を価格・保証で比較。', image: '/images/content/cheap-buy.jpg' },
 ] as const
 
 // ---------- FAQ ----------

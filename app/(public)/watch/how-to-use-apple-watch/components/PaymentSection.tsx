@@ -13,7 +13,7 @@ export default function PaymentSection() {
         <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-xl)' }}>
 
           {/* 19. Suicaの改札を通る */}
-          <div className="m-card m-card--shadow m-card--padded popular-card">
+          <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
             <img
               src="/images/content/apple-watch-suica.jpg"
               alt="Apple WatchでSuicaを使う様子"
@@ -37,7 +37,7 @@ export default function PaymentSection() {
           </div>
 
           {/* 20. 電子決済をする */}
-          <div className="m-card m-card--shadow m-card--padded popular-card">
+          <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
             <img
               src="/images/content/apple-watch-payment.jpg"
               alt="Apple Watchで電子決済する様子"
@@ -74,7 +74,7 @@ export default function PaymentSection() {
           </div>
 
           {/* 21. PayPayや楽天ペイのQRコード決済を行う */}
-          <div className="m-card m-card--shadow m-card--padded popular-card">
+          <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
             <img
               src="/images/content/apple-watch-qr-payment.jpg"
               alt="Apple WatchでQRコード決済をする様子"

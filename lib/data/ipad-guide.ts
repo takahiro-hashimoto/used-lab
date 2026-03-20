@@ -19,14 +19,14 @@ export const GUIDE_PRICE_SLUGS = [
 
 // ---------- スペック比較リンク ----------
 export const GUIDE_SPEC_LINKS = [
-  { href: '/ipad/ipad-spec-table/', icon: 'fa-table-cells', title: '歴代iPadスペック比較表', desc: 'CPU、ディスプレイ、重量、端子など、歴代iPadの全スペックを網羅した一覧表。', image: '/images/ipad/ipad-pro-13-2.jpg' },
-  { href: '/ipad/used-ipad-support/', icon: 'fa-shield-halved', title: 'iPadOSサポート期間一覧表', desc: '各モデルのサポート終了予測を解説。「いつまで使えるか」の目安がわかります。', image: '/images/ipad/ipad-pro-13-2.jpg' },
-  { href: '/ipad/apple-pencil-compare/', icon: 'fa-pen-fancy', title: 'Apple Pencil対応比較表', desc: 'Apple Pencilの世代ごとの対応状況・機能の違いを一覧で比較できます。', image: '/images/ipad/ipad-pro-13-2.jpg' },
-  { href: '/ipad/wifi-cellular/', icon: 'fa-wifi', title: 'Wi-Fi vs Cellularモデル比較', desc: 'Wi-FiモデルとCellularモデルの違い、選び方のポイントを解説。', image: '/images/ipad/ipad-air-6.jpg' },
+  { href: '/ipad/ipad-spec-table/', icon: 'fa-table-cells', title: '歴代iPadスペック比較表', desc: 'CPU、ディスプレイ、重量、端子など、歴代iPadの全スペックを網羅した一覧表。', image: '/images/content/ipad-image-09.jpg' },
+  { href: '/ipad/used-ipad-support/', icon: 'fa-shield-halved', title: 'iPadOSサポート期間一覧表', desc: '各モデルのサポート終了予測を解説。「いつまで使えるか」の目安がわかります。', image: '/images/content/ipad-image-06.jpg' },
+  { href: '/ipad/apple-pencil-compare/', icon: 'fa-pen-fancy', title: 'Apple Pencil対応比較表', desc: 'Apple Pencilの世代ごとの対応状況・機能の違いを一覧で比較できます。', image: '/images/content/ipad-image-07.jpg' },
+  { href: '/ipad/wifi-cellular/', icon: 'fa-wifi', title: 'Wi-Fi vs Cellularモデル比較', desc: 'Wi-FiモデルとCellularモデルの違い、選び方のポイントを解説。', image: '/images/content/ipad-image-02.jpg' },
   { href: '/ipad/howto-use-ipad/', icon: 'fa-lightbulb', title: 'iPadの便利な使い道22選', desc: '動画視聴・ノート・イラスト・読書・仕事効率化など、iPadがあれば生活が変わる活用法を紹介。', image: '/images/content/ipad-lightroom.jpg' },
-  { href: '/macbook/ipad-macbook-compare/', icon: 'fa-laptop', title: 'iPad vs MacBook 徹底比較', desc: 'iPadとMacBookの違いを用途別に比較。どちらを選ぶべきか迷っている方に最適な1台が見つかります。', image: '/images/macbook/mba-13-2024.jpg' },
-  { href: '/ipad/car-navigation-system/', icon: 'fa-car', title: 'iPadをカーナビ化するメリット', desc: '常に最新の地図・渋滞情報・大画面・直感操作など、車載カーナビにはない利点をわかりやすく紹介。', image: '/images/content/ipad-car-navi-02.jpg' },
-  { href: '/ipad/ipad-buy/', icon: 'fa-tags', title: 'iPadを安く買うには？購入先7つを比較', desc: 'Apple認定整備済製品・中古ショップ・ECモール・フリマアプリなど7つの購入先を価格・保証で比較。', image: '/images/ipad/ipad-pro-13-2.jpg' },
+  { href: '/macbook/ipad-macbook-compare/', icon: 'fa-laptop', title: 'iPad vs MacBook 徹底比較', desc: 'iPadとMacBookの違いを用途別に比較。どちらを選ぶべきか迷っている方に最適な1台が見つかります。', image: '/images/content/macbook-ipad.jpg' },
+  { href: '/ipad/car-navigation-system/', icon: 'fa-car', title: 'iPadをカーナビ化するメリット', desc: '常に最新の地図・渋滞情報・大画面・直感操作など、車載カーナビにはない利点をわかりやすく紹介。', image: '/images/content/ipad-image-10.jpg' },
+  { href: '/ipad/ipad-buy/', icon: 'fa-tags', title: 'iPadを安く買う7つの方法', desc: 'Apple認定整備済製品・中古ショップ・ECモール・フリマアプリなど7つの購入先を価格・保証で比較。', image: '/images/content/cheap-buy.jpg' },
 ] as const
 
 // ---------- FAQ ----------

@@ -68,7 +68,7 @@ const DETAILS = [
   {
     id: 'detail-squeeze',
     title: 'スクイーズ',
-    image: '/images/content/apple-pencil-squeeze-gesture.jpg',
+    image: '/images/content/ipad-image-08.jpg',
     items: [
       { label: '', text: 'Apple Pencilをギュッと握り込むと、ペン先のすぐ近くにツールパレット（色やブラシの選択画面）がポップアップ表示される機能です。通常であれば画面の端にあるツールバーまで手を伸ばす必要がありますが、スクイーズを使えば今描いている場所のすぐそばでツールを変更できます。' },
       { label: '', text: '作業の流れを中断せずにペン先の種類や色を素早く変更できるため、イラスト制作やデザイン作業の効率が格段に向上します。' },

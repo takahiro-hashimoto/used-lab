@@ -173,7 +173,7 @@ export default async function MacBookSpecTablePage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/macbook/mba-13-2025.jpg"
+                  src="/images/content/macbook-image-05.jpg"
                   alt="歴代MacBookスペック比較表のイメージ"
                   className="hero-media__img"
                   width={360}

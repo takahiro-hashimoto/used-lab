@@ -108,7 +108,7 @@ export default function CarNavigationSystemPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/content/ipad-car-navi-02.jpg"
+                  src="/images/content/ipad-image-10.jpg"
                   alt="iPadをカーナビ化した様子"
                   className="hero-media__img"
                   width={360}

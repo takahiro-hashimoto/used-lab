@@ -333,7 +333,7 @@ export default async function AirPodsPriceInfoPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <img
-                  src="/images/airpods/mtjv3j:a.jpg"
+                  src="/images/content/airpods-image-03.jpg"
                   alt="中古AirPods価格相場"
                   className="hero-media__img"
                   width={360}

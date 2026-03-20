@@ -19,7 +19,7 @@ type Props = {
 
 export default function CompareTableSection({ items }: Props) {
   return (
-    <section className="l-section" id="compare" aria-labelledby="heading-compare">
+    <section className="l-section l-section--bg-subtle" id="compare" aria-labelledby="heading-compare">
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg" id="heading-compare">
           おすすめMacBook{RECOMMEND_COUNT_LABEL}のスペック比較表
@@ -106,9 +106,17 @@ export default function CompareTableSection({ items }: Props) {
                 {/* チップ */}
                 <tr>
                   <th scope="row">チップ</th>
-                  {items.map(({ model, chipLabel }) => (
-                    <td key={model.id}>{chipLabel}</td>
-                  ))}
+                  {items.map(({ model, chipLabel }) => {
+                    const parenIdx = chipLabel.indexOf('（')
+                    const main = parenIdx >= 0 ? chipLabel.slice(0, parenIdx) : chipLabel
+                    const sub = parenIdx >= 0 ? chipLabel.slice(parenIdx) : ''
+                    return (
+                      <td key={model.id}>
+                        {main}
+                        {sub && <><br /><small>{sub}</small></>}
+                      </td>
+                    )
+                  })}
                 </tr>
 
                 {/* バッテリー */}

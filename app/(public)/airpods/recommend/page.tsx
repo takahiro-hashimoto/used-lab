@@ -212,7 +212,7 @@ export default async function AirPodsRecommendPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/airpods/mtjv3j:a.jpg"
+                  src="/images/content/airpods-image-02.jpg"
                   alt={`中古AirPodsおすすめ${RECOMMEND_COUNT}選のイメージ`}
                   className="hero-media__img"
                   width={360}

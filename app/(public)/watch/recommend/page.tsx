@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import {
   getAllWatchModels,
+  getAllWatchModelsIncludingEnded,
   getShops,
   getAllProductShopLinksByType,
   getLatestWatchPriceLog,
@@ -27,6 +28,7 @@ import CompareTableSection from './components/CompareTableSection'
 import ChecklistSection from '@/app/components/ChecklistSection'
 import ShopSection from '@/app/components/ShopSection'
 import WatchFaqSection from './components/WatchFaqSection'
+import WatchValueZoneChart from './components/WatchValueZoneChart'
 
 const PAGE_TITLE = `中古Apple Watchのおすすめ${RECOMMEND_COUNT}機種を解説。狙い目の型落ちモデルはどれ？【${RECOMMEND_DATE_LABEL}版】`
 const PAGE_DESCRIPTION =
@@ -50,8 +52,9 @@ export const metadata: Metadata = {
 }
 
 export default async function WatchRecommendPage() {
-  const [allModels, shops, allShopLinks] = await Promise.all([
+  const [allModels, allModelsIncludingEnded, shops, allShopLinks] = await Promise.all([
     getAllWatchModels(),
+    getAllWatchModelsIncludingEnded(),
     getShops(),
     getAllProductShopLinksByType('watch'),
   ])
@@ -259,6 +262,11 @@ export default async function WatchRecommendPage() {
                 </a>
               </li>
               <li>
+                <a href="#value-zone" className="toc-item">
+                  お得ゾーンとは？ <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                </a>
+              </li>
+              <li>
                 <a href="#detail" className="toc-item">
                   おすすめ{RECOMMEND_COUNT_LABEL}の詳細 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
                 </a>
@@ -323,10 +331,12 @@ export default async function WatchRecommendPage() {
               },
             ]}
           />
+          <WatchValueZoneChart allModels={allModelsIncludingEnded} />
           <RecommendDetailSection items={detailItems} />
           <CompareTableSection items={compareItems} />
           <ChecklistSection
             productName="Apple Watch"
+            bgSubtle={false}
             items={[
               {
                 iconClass: 'fa-solid fa-battery-three-quarters',
@@ -357,6 +367,7 @@ export default async function WatchRecommendPage() {
           <ShopSection
             items={shopItems}
             productName="Apple Watch"
+            bgSubtle
             description="信頼性の高い中古ショップを厳選し、保証期間などをまとめました。"
             specRows={[
               { label: '価格', field: 'price' },

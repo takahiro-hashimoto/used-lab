@@ -300,7 +300,7 @@ export default async function IPadGuidePage() {
                   <div className="glossary-item">
                     <dt className="glossary-item-title">iPadOSのサポート期間（端末の寿命）</dt>
                     <dd className="glossary-item-desc">
-                      iPadのiPadOSサポート期間の目安は発売から6〜7年ほど。古すぎる機種は購入してすぐにサポート外になるリスクがあるので注意。
+                      iPadOSサポート期間の目安は発売から6〜7年ほど。古すぎる機種は購入してすぐにサポート外になるリスクがあるので注意。
                       <br />詳細：<Link href="/ipad/used-ipad-support/">中古iPadの寿命とサポート期間の目安</Link>
                     </dd>
                   </div>
@@ -314,7 +314,7 @@ export default async function IPadGuidePage() {
                   <div className="glossary-item">
                     <dt className="glossary-item-title">Apple Pencilの対応世代</dt>
                     <dd className="glossary-item-desc">
-                      Apple Pencilには複数の世代があり、対応するiPadモデルが異なります。手書きやイラスト用途で使う場合は、<strong>必ず対応状況を確認</strong>しましょう。
+                      Apple Pencilは世代ごとに対応モデルや機能が異なります。購入前に互換性とやりたいことが実現できるかを確認しましょう。
                       <br />詳細：<Link href="/ipad/apple-pencil-compare/">Apple Pencil対応比較表</Link>
                     </dd>
                   </div>

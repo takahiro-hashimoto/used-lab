@@ -196,30 +196,28 @@ export default function AboutPage() {
           </p>
 
           <div className="about-history m-card m-card--shadow m-card--padded">
-            <div className="about-history-inner">
-              <div className="about-history-image">
-                <Image
-                  src="/images/content/ipad-image.jpg"
-                  alt="Apple製品のイメージ"
-                  width={400}
-                  height={300}
-                  className="about-history-img"
-                />
-              </div>
-              <div className="about-history-text content-prose">
-                <p>
-                  2011年、大学生で手にしたiPhone 4s。その操作感に衝撃を受け、以来、毎年のように最新のiPhoneへ買い替えるのが恒例になりました。iPhone 12の頃までは、秋の新作発表を徹夜で視聴するほど夢中に。iPadやMacBookも加わり、気づけば日常のデバイスはApple製品一色でした。
-                </p>
-                <p>
-                  「便利な活用法や周辺機器を共有したい」との想いから、2015年にブログ「<a href="https://digital-style.jp/" target="_blank" rel="noopener noreferrer">デジスタ</a>」を開設。新モデルが出るたび、ワクワクしながらレビューを精力的に更新してきました。
-                </p>
-                <p>
-                  しかし近年、製品の完成度が高まり、最新機種でなくても十分やりたいことが実現できると実感。価格高騰もあり、用途に合った型落ちや中古を賢く選ぶことが最良の選択肢だと考えるようになりました。
-                </p>
-                <p>
-                  こうした背景から、2024年8月に本サイトを始動。読者の皆さまが納得してApple製品を選べるよう、分かりやすい情報発信に努めてまいります！
-                </p>
-              </div>
+            <div className="about-history-image">
+              <Image
+                src="/images/content/ipad-image.jpg"
+                alt="Apple製品のイメージ"
+                width={800}
+                height={400}
+                className="about-history-img"
+              />
+            </div>
+            <div className="about-history-text content-prose">
+              <p>
+                2011年、大学生で手にしたiPhone 4s。その操作感に衝撃を受け、以来、毎年のように最新のiPhoneへ買い替えるのが恒例になりました。iPhone 12の頃までは、秋の新作発表を徹夜で視聴するほど夢中に。iPadやMacBookも加わり、気づけば日常のデバイスはApple製品一色でした。
+              </p>
+              <p>
+                「便利な活用法や周辺機器を共有したい」との想いから、2015年にブログ「<a href="https://digital-style.jp/" target="_blank" rel="noopener noreferrer">デジスタ</a>」を開設。新モデルが出るたび、ワクワクしながらレビューを精力的に更新してきました。
+              </p>
+              <p>
+                しかし近年、製品の完成度が高まり、最新機種でなくても十分やりたいことが実現できると実感。価格高騰もあり、用途に合った型落ちや中古を賢く選ぶことが最良の選択肢だと考えるようになりました。
+              </p>
+              <p>
+                こうした背景から、2024年8月に本サイトを始動。読者の皆さまが納得してApple製品を選べるよう、分かりやすい情報発信に努めてまいります！
+              </p>
             </div>
           </div>
 

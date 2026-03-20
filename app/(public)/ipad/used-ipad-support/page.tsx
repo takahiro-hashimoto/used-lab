@@ -105,7 +105,7 @@ export default async function UsedIpadSupportPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/ipad/ipad-pro-13-2.jpg"
+                  src="/images/content/ipad-image-06.jpg"
                   alt="iPadの寿命・サポート期間イメージ"
                   className="hero-media__img"
                   width={360}

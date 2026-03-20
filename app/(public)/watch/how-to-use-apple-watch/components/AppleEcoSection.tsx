@@ -13,7 +13,7 @@ export default function AppleEcoSection() {
         <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-xl)' }}>
 
           {/* 22. 遠隔でiPhoneを鳴らして捜索（iPhoneを探す） */}
-          <div className="m-card m-card--shadow m-card--padded popular-card">
+          <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
             <img
               src="/images/content/apple-watch-find-iphone.jpg"
               alt="Apple WatchでiPhoneを探す"
@@ -37,7 +37,7 @@ export default function AppleEcoSection() {
           </div>
 
           {/* 23. 置き忘れ防止通知 */}
-          <div className="m-card m-card--shadow m-card--padded popular-card">
+          <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
             <img
               src="/images/content/apple-watch-airtag.jpg"
               alt="Apple WatchとAirTagの連携"
@@ -61,7 +61,7 @@ export default function AppleEcoSection() {
           </div>
 
           {/* 24. iPhoneのロック画面を解除する */}
-          <div className="m-card m-card--shadow m-card--padded popular-card">
+          <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
             <img
               src="/images/content/apple-watch-unlock-iphone.jpg"
               alt="Apple WatchでiPhoneのロックを解除する様子"
@@ -85,7 +85,7 @@ export default function AppleEcoSection() {
           </div>
 
           {/* 25. MacBookのロックを解除する */}
-          <div className="m-card m-card--shadow m-card--padded popular-card">
+          <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
             <img
               src="/images/content/apple-watch-unlock-macbook.jpg"
               alt="Apple WatchでMacBookのロックを解除する様子"

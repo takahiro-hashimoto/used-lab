@@ -139,7 +139,7 @@ export default async function ApplePencilComparePage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/ipad/ipad-pro-13-2.jpg"
+                  src="/images/content/ipad-image-07.jpg"
                   alt="Apple Pencilの比較イメージ"
                   className="hero-media__img"
                   width={360}

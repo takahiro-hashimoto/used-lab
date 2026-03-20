@@ -301,7 +301,7 @@ export default async function WatchGuidePage() {
                   <div className="glossary-item">
                     <dt className="glossary-item-title">watchOSのサポート期間（端末の寿命）</dt>
                     <dd className="glossary-item-desc">
-                      Apple WatchのwatchOSサポート期間の目安は発売から約5年。古すぎるモデルは購入してすぐにサポート外になるリスクがあるので注意。
+                      OSサポート期間の目安は発売から約5年。古すぎるモデルは購入してすぐにサポート外になるリスクがあるので注意。
                       <br />詳細：<Link href="/watch/used-watch-support/">中古Apple Watchの寿命とサポート期間の目安</Link>
                     </dd>
                   </div>

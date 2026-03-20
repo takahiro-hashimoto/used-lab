@@ -18,8 +18,8 @@ export const GUIDE_PRICE_SLUGS = [
 
 // ---------- 関連記事リンク ----------
 export const GUIDE_SPEC_LINKS = [
-  { href: '/airpods/price/', icon: 'fa-chart-line', title: 'AirPods中古価格推移', desc: '各モデルの中古価格推移をグラフで確認。買い時のタイミングがわかります。', image: '/images/airpods/mtjv3j:a.jpg' },
-  { href: '/airpods/recommend/', icon: 'fa-ranking-star', title: '中古AirPodsおすすめモデル', desc: '用途別おすすめモデルを厳選。ノイキャン重視・オープン型・コスパ重視の3機種を紹介。', image: '/images/airpods/mxp93j:a.jpg' },
+  { href: '/airpods/price/', icon: 'fa-chart-line', title: 'AirPods中古価格推移', desc: '各モデルの中古価格推移をグラフで確認。買い時のタイミングがわかります。', image: '/images/content/airpods-image-03.jpg' },
+  { href: '/airpods/recommend/', icon: 'fa-ranking-star', title: '中古AirPodsおすすめモデル', desc: '用途別おすすめモデルを厳選。ノイキャン重視・オープン型・コスパ重視の3機種を紹介。', image: '/images/content/airpods-image-02.jpg' },
 ] as const
 
 // ---------- FAQ ----------

@@ -12,7 +12,7 @@ export default function MeritSection() {
         <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-xl)' }}>
 
           {/* 1. 腕をあげなくても画面の確認ができる */}
-          <div className="m-card m-card--shadow m-card--padded popular-card">
+          <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
             <img
               src="/images/content/always-lit-glance-check.jpg"
               alt="Apple Watchを腕を上げずにちらっと確認する様子"
@@ -42,7 +42,7 @@ export default function MeritSection() {
           </div>
 
           {/* 2. ファッション性が高くなる */}
-          <div className="m-card m-card--shadow m-card--padded popular-card">
+          <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
             <img
               src="/images/content/always-lit-fashion-wrist.jpg"
               alt="Apple Watchをファッションとして身に着けている様子"
@@ -86,7 +86,7 @@ export default function MeritSection() {
           </div>
 
           {/* 3. 時計を見たときのエフェクトが心地よい */}
-          <div className="m-card m-card--shadow m-card--padded popular-card">
+          <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
             <img
               src="/images/content/always-lit-wrist-raise-effect.jpg"
               alt="Apple Watchの常時点灯で輝度が切り替わるエフェクト"

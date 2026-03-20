@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import {
   getAllIPhoneModels,
+  getAllIPhoneModelsIncludingEnded,
   getShops,
   getAllProductShopLinksByType,
   getLatestPriceLog,
@@ -27,6 +28,7 @@ import CompareTableSection from './components/CompareTableSection'
 import ChecklistSection from '@/app/components/ChecklistSection'
 import ShopSection from '@/app/components/ShopSection'
 import IPhoneFaqSection from './components/IPhoneFaqSection'
+import ValueZoneChart from './components/ValueZoneChart'
 
 const PAGE_TITLE = `中古iPhoneおすすめ機種${RECOMMEND_COUNT}選｜目的別に狙い目モデルを解説【${RECOMMEND_DATE_LABEL}版】`
 const PAGE_DESCRIPTION =
@@ -50,8 +52,9 @@ export const metadata: Metadata = {
 }
 
 export default async function IPhoneTopPage() {
-  const [allModels, shops, allShopLinks] = await Promise.all([
+  const [allModels, allModelsIncludingEnded, shops, allShopLinks] = await Promise.all([
     getAllIPhoneModels(),
+    getAllIPhoneModelsIncludingEnded(),
     getShops(),
     getAllProductShopLinksByType('iphone'),
   ])
@@ -65,6 +68,7 @@ export default async function IPhoneTopPage() {
   const latestPrices = await Promise.all(
     recommendModels.map((m) => getLatestPriceLog(m.id))
   )
+
 
   const today = new Date()
   const dateStr = today.toISOString().split('T')[0]
@@ -259,6 +263,11 @@ export default async function IPhoneTopPage() {
                 </a>
               </li>
               <li>
+                <a href="#value-zone" className="toc-item">
+                  お得ゾーンとは？ <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                </a>
+              </li>
+              <li>
                 <a href="#detail" className="toc-item">
                   おすすめ{RECOMMEND_COUNT_LABEL}の詳細 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
                 </a>
@@ -323,10 +332,12 @@ export default async function IPhoneTopPage() {
               },
             ]}
           />
+          <ValueZoneChart allModels={allModelsIncludingEnded} />
           <RecommendDetailSection items={detailItems} />
           <CompareTableSection items={compareItems} />
           <ChecklistSection
             productName="iPhone"
+            bgSubtle={false}
             items={[
               {
                 iconClass: 'fa-solid fa-battery-three-quarters',
@@ -357,6 +368,7 @@ export default async function IPhoneTopPage() {
           <ShopSection
             items={shopItems}
             productName="iPhone"
+            bgSubtle
             description="信頼性の高い中古ショップを厳選し、保証期間や赤ロム保証の有無などをまとめました。"
             specRows={[
               { label: '価格', field: 'price' },

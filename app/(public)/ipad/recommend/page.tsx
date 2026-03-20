@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import {
   getAllIPadModels,
+  getAllIPadModelsIncludingEnded,
   getShops,
   getAllProductShopLinksByType,
   getLatestIPadPriceLog,
@@ -30,6 +31,7 @@ import CompareTableSection from './components/CompareTableSection'
 import ChecklistSection from '@/app/components/ChecklistSection'
 import ShopSection from '@/app/components/ShopSection'
 import IPadFaqSection from './components/IPadFaqSection'
+import IPadValueZoneChart from './components/IPadValueZoneChart'
 
 const PAGE_TITLE = `中古iPadのおすすめ${RECOMMEND_COUNT}機種を解説。狙い目の型落ちモデルどれ？【${RECOMMEND_DATE_LABEL}版】`
 const PAGE_DESCRIPTION =
@@ -53,8 +55,9 @@ export const metadata: Metadata = {
 }
 
 export default async function IPadRecommendPage() {
-  const [allModels, shops, allShopLinks, allAccessories, allCompatibility] = await Promise.all([
+  const [allModels, allModelsIncludingEnded, shops, allShopLinks, allAccessories, allCompatibility] = await Promise.all([
     getAllIPadModels(),
+    getAllIPadModelsIncludingEnded(),
     getShops(),
     getAllProductShopLinksByType('ipad'),
     getAllIPadAccessories(),
@@ -270,6 +273,11 @@ export default async function IPadRecommendPage() {
                 </a>
               </li>
               <li>
+                <a href="#value-zone" className="toc-item">
+                  お得ゾーンとは？ <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                </a>
+              </li>
+              <li>
                 <a href="#detail" className="toc-item">
                   おすすめ{RECOMMEND_COUNT_LABEL}の詳細 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
                 </a>
@@ -334,10 +342,12 @@ export default async function IPadRecommendPage() {
               },
             ]}
           />
+          <IPadValueZoneChart allModels={allModelsIncludingEnded} />
           <RecommendDetailSection items={detailItems} />
           <CompareTableSection items={compareItems} />
           <ChecklistSection
             productName="iPad"
+            bgSubtle={false}
             items={[
               {
                 iconClass: 'fa-solid fa-battery-three-quarters',
@@ -368,6 +378,7 @@ export default async function IPadRecommendPage() {
           <ShopSection
             items={shopItems}
             productName="iPad"
+            bgSubtle
             description="信頼性の高い中古ショップを厳選し、保証期間や赤ロム保証の有無などをまとめました。"
             specRows={[
               { label: '価格', field: 'price' },

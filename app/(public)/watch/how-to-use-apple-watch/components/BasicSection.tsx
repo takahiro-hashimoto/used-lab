@@ -12,7 +12,7 @@ export default function BasicSection() {
         <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-xl)' }}>
 
           {/* 1. 文字盤のカスタマイズを楽しむ */}
-          <div className="m-card m-card--shadow m-card--padded popular-card">
+          <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
             <img
               src="/images/content/apple-watch-face.jpg"
               alt="Apple Watchの文字盤カスタマイズ"
@@ -43,7 +43,7 @@ export default function BasicSection() {
           </div>
 
           {/* 2. ベルト・ケースを交換する */}
-          <div className="m-card m-card--shadow m-card--padded popular-card">
+          <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
             <img
               src="/images/content/apple-watch-band.jpg"
               alt="Apple Watchのベルト交換"
@@ -67,7 +67,7 @@ export default function BasicSection() {
           </div>
 
           {/* 3. 経路案内で目的地へ向かう */}
-          <div className="m-card m-card--shadow m-card--padded popular-card">
+          <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
             <img
               src="/images/content/apple-watch-navigation.jpg"
               alt="Apple Watchで経路案内を使用する様子"
@@ -91,7 +91,7 @@ export default function BasicSection() {
           </div>
 
           {/* 4. 再生している音楽・動画のコントロールする */}
-          <div className="m-card m-card--shadow m-card--padded popular-card">
+          <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
             <img
               src="/images/content/apple-watch-music.jpg"
               alt="Apple Watchで音楽をコントロールする様子"
@@ -112,7 +112,7 @@ export default function BasicSection() {
           </div>
 
           {/* 5. iPhoneの通知を確認する */}
-          <div className="m-card m-card--shadow m-card--padded popular-card">
+          <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
             <img
               src="/images/content/apple-watch-notification.jpg"
               alt="Apple Watchで通知を確認する様子"
@@ -133,7 +133,7 @@ export default function BasicSection() {
           </div>
 
           {/* 6. LINEやショートメッセージの中身を確認する */}
-          <div className="m-card m-card--shadow m-card--padded popular-card">
+          <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
             <img
               src="/images/content/apple-watch-line.jpg"
               alt="Apple WatchでLINEを確認する様子"
@@ -157,7 +157,7 @@ export default function BasicSection() {
           </div>
 
           {/* 7. 振動アラームが使える */}
-          <div className="m-card m-card--shadow m-card--padded popular-card">
+          <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
             <img
               src="/images/content/apple-watch-alarm.jpg"
               alt="Apple Watchの振動アラーム"
@@ -181,7 +181,7 @@ export default function BasicSection() {
           </div>
 
           {/* 8. Siriでタイマーを起動する */}
-          <div className="m-card m-card--shadow m-card--padded popular-card">
+          <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
             <img
               src="/images/content/apple-watch-siri.jpg"
               alt="Apple WatchでSiriを使う様子"
@@ -205,7 +205,7 @@ export default function BasicSection() {
           </div>
 
           {/* 9. 電話に出る・かける */}
-          <div className="m-card m-card--shadow m-card--padded popular-card">
+          <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
             <img
               src="/images/content/apple-watch-call.jpg"
               alt="Apple Watchで電話する様子"
@@ -226,7 +226,7 @@ export default function BasicSection() {
           </div>
 
           {/* 10. iPhoneのカメラでリモート撮影する */}
-          <div className="m-card m-card--shadow m-card--padded popular-card">
+          <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
             <img
               src="/images/content/apple-watch-camera-remote.jpg"
               alt="Apple WatchでiPhoneカメラをリモート操作する様子"
@@ -250,7 +250,7 @@ export default function BasicSection() {
           </div>
 
           {/* 11. トランシーバーアプリで会話する */}
-          <div className="m-card m-card--shadow m-card--padded popular-card">
+          <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
             <img
               src="/images/content/apple-watch-walkie-talkie.jpg"
               alt="Apple Watchのトランシーバー機能"
@@ -284,7 +284,7 @@ export default function BasicSection() {
           </div>
 
           {/* 12. 懐中電灯・フラッシュライトとして使う */}
-          <div className="m-card m-card--shadow m-card--padded popular-card">
+          <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
             <img
               src="/images/content/apple-watch-flashlight.jpg"
               alt="Apple Watchの懐中電灯機能"

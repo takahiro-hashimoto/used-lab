@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import {
   getAllMacBookModels,
+  getAllMacBookModelsIncludingEnded,
   getShops,
   getAllProductShopLinksByType,
   getLatestMacBookPriceLog,
@@ -27,6 +28,7 @@ import CompareTableSection from './components/CompareTableSection'
 import ChecklistSection from '@/app/components/ChecklistSection'
 import ShopSection from '@/app/components/ShopSection'
 import MacBookFaqSection from './components/MacBookFaqSection'
+import MacBookValueZoneChart from './components/MacBookValueZoneChart'
 
 const PAGE_TITLE = `中古MacBookおすすめ${RECOMMEND_COUNT}機種を解説。狙い目の型落ちモデルはどれ？【${RECOMMEND_DATE_LABEL}版】`
 const PAGE_DESCRIPTION =
@@ -50,8 +52,9 @@ export const metadata: Metadata = {
 }
 
 export default async function MacBookRecommendPage() {
-  const [allModels, shops, allShopLinks] = await Promise.all([
+  const [allModels, allModelsIncludingEnded, shops, allShopLinks] = await Promise.all([
     getAllMacBookModels(),
+    getAllMacBookModelsIncludingEnded(),
     getShops(),
     getAllProductShopLinksByType('macbook'),
   ])
@@ -259,6 +262,11 @@ export default async function MacBookRecommendPage() {
                 </a>
               </li>
               <li>
+                <a href="#value-zone" className="toc-item">
+                  お得ゾーンとは？ <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                </a>
+              </li>
+              <li>
                 <a href="#detail" className="toc-item">
                   おすすめ{RECOMMEND_COUNT_LABEL}の詳細 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
                 </a>
@@ -323,10 +331,12 @@ export default async function MacBookRecommendPage() {
               },
             ]}
           />
+          <MacBookValueZoneChart allModels={allModelsIncludingEnded} />
           <RecommendDetailSection items={detailItems} />
           <CompareTableSection items={compareItems} />
           <ChecklistSection
             productName="MacBook"
+            bgSubtle={false}
             items={[
               {
                 iconClass: 'fa-solid fa-battery-three-quarters',
@@ -357,6 +367,7 @@ export default async function MacBookRecommendPage() {
           <ShopSection
             items={shopItems}
             productName="MacBook"
+            bgSubtle
             description="信頼性の高い中古ショップを厳選し、保証期間や配送料の有無などをまとめました。"
             specRows={[
               { label: '価格', field: 'price' },

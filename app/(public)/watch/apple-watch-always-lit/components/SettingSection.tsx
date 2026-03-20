@@ -13,7 +13,7 @@ export default function SettingSection() {
         <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-xl)' }}>
 
           {/* Apple Watchから設定を変える */}
-          <div className="m-card m-card--shadow m-card--padded popular-card">
+          <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
             <img
               src="/images/content/always-lit-setting-watch.jpg"
               alt="Apple Watch本体から常時点灯を設定する画面"
@@ -42,7 +42,7 @@ export default function SettingSection() {
           </div>
 
           {/* iPhoneから設定を変える */}
-          <div className="m-card m-card--shadow m-card--padded popular-card">
+          <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
             <img
               src="/images/content/always-lit-setting-iphone.jpg"
               alt="iPhoneからApple Watchの常時点灯を設定する画面"

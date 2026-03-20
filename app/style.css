@@ -582,6 +582,7 @@ ul {
   vertical-align: middle;
   font-size: var(--font-size-sm);
   white-space: nowrap;
+  line-height: 1.5;
 }
 
 .m-table tbody td {
@@ -3925,7 +3926,7 @@ ul {
 }
 
 .guide-section-cta {
-  max-width: 440px;
+  max-width: 420px;
   margin: 0 auto;
 }
 
@@ -3961,7 +3962,7 @@ ul {
 }
 
 .guide-recommend {
-  padding: var(--space-xl) var(--space-2xl);
+  padding: var(--space-xl) var(--space-xl);
 }
 
 .guide-recommend__inner {
@@ -4430,16 +4431,17 @@ body.is-menu-open {
 }
 
 .ios-matrix tbody th {
-  background: #fff;
-  font-weight: 600;
   text-align: left;
-  padding: 8px 12px;
   white-space: nowrap;
   border: 1px solid var(--color-border-light);
+  z-index: 1;
+  font-weight: 600;
+  font-size: var(--font-size-xs);
+  background: #fff;
+  padding: 8px 12px;
   position: sticky;
   left: 0;
-  z-index: 1;
-  font-size: var(--font-size-xs);
+  line-height: 1.3;
 }
 
 .ios-matrix tbody th small {
@@ -4732,7 +4734,20 @@ body.is-menu-open {
   }
 
   .hero-media__img {
-    max-width: 220px;
+    max-width: 180px;
+    margin-top: 18px;
+  }
+
+  .guide-section-note {
+    text-align: left;
+  }
+
+  .m-section-desc {
+    text-align: left;
+  }
+
+  .m-section-heading {
+    text-align: left;
   }
 
   .hero-badges {
@@ -4820,19 +4835,22 @@ body.is-menu-open {
 
 
   .guide-price-card {
-    grid-template-columns: 48px 1fr;
-    gap: var(--space-sm);
+    grid-template-columns: 48px 1fr auto;
+    gap: var(--space-xs) var(--space-sm);
     padding: var(--space-md);
+    align-items: center;
   }
 
   .guide-price-card__img {
     width: 48px;
     height: 48px;
+    grid-row: 1 / 3;
   }
 
   .guide-price-card__price {
-    grid-column: 2;
-    text-align: left;
+    grid-row: 1 / 3;
+    grid-column: 3;
+    text-align: right;
   }
 
   .guide-price-card__value {
@@ -4946,6 +4964,17 @@ body.is-menu-open {
   }
 
   .related-link-card {
+    flex-direction: column;
+    padding: 0;
+  }
+
+  .related-link-card__img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+  }
+
+  .related-link-card__body {
     padding: var(--space-md);
   }
 
@@ -6679,15 +6708,8 @@ body.is-menu-open {
 }
 
 /* History section */
-.about-history-inner {
-  display: flex;
-  gap: var(--space-xl);
-  align-items: center;
-}
-
 .about-history-image {
-  flex-shrink: 0;
-  width: 280px;
+  margin-bottom: var(--space-lg);
 }
 
 .about-history-img {
@@ -6695,10 +6717,7 @@ body.is-menu-open {
   height: auto;
   border-radius: var(--radius-lg);
   object-fit: cover;
-}
-
-.about-history-text {
-  flex: 1;
+  aspect-ratio: 16 / 9;
 }
 
 .about-history-text p {
@@ -6739,10 +6758,6 @@ body.is-menu-open {
 
   .about-sns-link {
     font-size: var(--font-size-xs);
-  }
-
-  .about-history-inner {
-    flex-direction: column;
   }
 
   .about-history-image {
@@ -7275,5 +7290,221 @@ body.is-menu-open {
   font-weight: 700;
   line-height: 1.5;
   margin-bottom: var(--space-xs);
+}
+
+/* ==========================================
+   Value Zone — Spectrum + 3-Column
+   ========================================== */
+.vz {
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+
+/* --- スペクトラムバー --- */
+.vz__bar {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  height: 48px;
+}
+
+.vz__bar-seg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-sm);
+  font-weight: 800;
+  white-space: nowrap;
+  letter-spacing: 0.05em;
+}
+
+.vz__bar-seg--danger {
+  background: var(--color-negative);
+  color: var(--color-text-inverse);
+}
+
+.vz__bar-seg--sweet {
+  background: linear-gradient(135deg, var(--color-hero-start), var(--color-hero-end));
+  color: var(--color-text-inverse);
+}
+
+.vz__bar-seg--premium {
+  background: var(--color-text-secondary);
+  color: var(--color-text-inverse);
+}
+
+/* --- 3カラム --- */
+.vz__cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.vz__col {
+  padding: var(--space-lg) var(--space-md);
+  min-width: 0;
+}
+
+.vz__col--danger {
+  background: #fdf0f1;
+}
+
+.vz__col--sweet {
+  background: var(--color-primary-light);
+}
+
+.vz__col--premium {
+  background: var(--color-bg-subtle);
+}
+
+.vz__col-title {
+  font-size: var(--font-size-base);
+  font-weight: 800;
+  line-height: 1.3;
+  margin-bottom: 4px;
+}
+
+.vz__col--danger .vz__col-title { color: var(--color-negative); }
+.vz__col--sweet .vz__col-title { color: var(--color-primary); }
+.vz__col--premium .vz__col-title { color: var(--color-text-secondary); }
+
+.vz__col-sub {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-md);
+  line-height: 1.5;
+}
+
+/* --- モデルカード --- */
+.vz__models {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.vz__model {
+  padding: 12px 14px;
+  border-radius: var(--radius-md);
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.vz__model:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.vz__model--danger {}
+
+.vz__model--sweet {}
+
+.vz__model--premium {}
+
+.vz__model-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+.vz__model-row:first-child {
+  margin-bottom: 4px;
+}
+
+.vz__model-name {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.vz__model-release {
+  font-size: var(--font-size-xs);
+  font-weight: 400;
+  color: var(--color-text-muted);
+  margin-left: 2px;
+}
+
+.vz__model-support {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.vz__model-support--danger {
+  background: #fdf0f1;
+  color: var(--color-negative);
+}
+
+.vz__model-support--sweet {
+  background: #e6f4ea;
+  color: var(--color-positive);
+}
+
+.vz__model-support--premium {
+  background: var(--color-bg-subtle);
+  color: var(--color-text-secondary);
+}
+
+/* 軸ラベル */
+.vz__axis {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px var(--space-md);
+  background: var(--color-bg-subtle);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--color-text-muted);
+}
+
+/* 注釈 */
+.value-zone-note {
+  margin-top: var(--space-md);
+  padding: var(--space-sm) var(--space-md);
+  background: var(--color-bg-subtle);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+.value-zone-note i {
+  margin-right: 4px;
+  color: var(--color-primary);
+}
+
+/* --- SP対応 --- */
+@media (max-width: 768px) {
+  .vz__bar {
+    height: 40px;
+  }
+
+  .vz__bar-seg {
+    font-size: 11px;
+  }
+
+  .vz__cols {
+    grid-template-columns: 1fr;
+  }
+
+  .vz__col {
+    padding: var(--space-md) var(--space-sm);
+  }
+
+  .vz__model-name {
+    font-size: var(--font-size-xs);
+  }
+
+  .vz__model-price {
+    font-size: var(--font-size-xs);
+  }
 }
 

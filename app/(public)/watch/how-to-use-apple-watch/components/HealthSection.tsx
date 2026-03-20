@@ -13,7 +13,7 @@ export default function HealthSection() {
         <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-xl)' }}>
 
           {/* 13. フィットネスアプリで1日の活動量をチェック */}
-          <div className="m-card m-card--shadow m-card--padded popular-card">
+          <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
             <img
               src="/images/content/apple-watch-fitness.jpg"
               alt="Apple Watchのアクティビティリング"
@@ -53,7 +53,7 @@ export default function HealthSection() {
           </div>
 
           {/* 14. ワークアウトで運動の記録を取る */}
-          <div className="m-card m-card--shadow m-card--padded popular-card">
+          <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
             <img
               src="/images/content/apple-watch-workout.jpg"
               alt="Apple Watchでワークアウトを記録する様子"
@@ -77,7 +77,7 @@ export default function HealthSection() {
           </div>
 
           {/* 15. 睡眠アプリで睡眠の質をチェック */}
-          <div className="m-card m-card--shadow m-card--padded popular-card">
+          <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
             <img
               src="/images/content/apple-watch-sleep.jpg"
               alt="Apple Watchの睡眠トラッキング"
@@ -101,7 +101,7 @@ export default function HealthSection() {
           </div>
 
           {/* 16. 転倒検出 & 緊急通報機能で万が一に備える */}
-          <div className="m-card m-card--shadow m-card--padded popular-card">
+          <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
             <img
               src="/images/content/apple-watch-fall-detection.jpg"
               alt="Apple Watchの転倒検出機能"
@@ -125,7 +125,7 @@ export default function HealthSection() {
           </div>
 
           {/* 17. 血中酸素濃度を測定する */}
-          <div className="m-card m-card--shadow m-card--padded popular-card">
+          <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
             <img
               src="/images/content/apple-watch-blood-oxygen.jpg"
               alt="Apple Watchの血中酸素濃度測定"
@@ -149,7 +149,7 @@ export default function HealthSection() {
           </div>
 
           {/* 18. 電気心拍センサーで心拍数をチェック */}
-          <div className="m-card m-card--shadow m-card--padded popular-card">
+          <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
             <img
               src="/images/content/apple-watch-heart-rate.jpg"
               alt="Apple Watchの心拍センサー"

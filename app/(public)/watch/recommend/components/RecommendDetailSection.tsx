@@ -31,7 +31,7 @@ const SHOP_NAMES: Record<number, string> = {
 
 export default function RecommendDetailSection({ items }: Props) {
   return (
-    <section className="l-section l-section--bg-subtle" id="detail" aria-labelledby="heading-detail">
+    <section className="l-section" id="detail" aria-labelledby="heading-detail">
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg" id="heading-detail">
           中古Apple Watchおすすめ{RECOMMEND_COUNT_LABEL}【{RECOMMEND_DATE_LABEL}最新】
