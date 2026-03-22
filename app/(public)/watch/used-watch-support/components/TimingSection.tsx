@@ -5,7 +5,7 @@ import type { TimingCard } from '@/app/components/support/TimingSection'
 const TIMING_CARDS: TimingCard[] = [
   {
     title: '①発売から5年が経過しそうになった時',
-    imgSrc: 'https://placehold.co/400x520/f5f5f7/1d1d1f?text=Watch',
+    imgSrc: '/images/content/watch-image-06.jpg',
     imgAlt: 'Apple Watchのイメージ',
     content: (
       <>
@@ -18,7 +18,7 @@ const TIMING_CARDS: TimingCard[] = [
   },
   {
     title: '②バッテリーの持ちが1日持たなくなった時',
-    imgSrc: 'https://placehold.co/400x520/f5f5f7/1d1d1f?text=Battery',
+    imgSrc: '/images/content/watch-charge.jpg',
     imgAlt: 'バッテリーの状態画面',
     content: (
       <>
@@ -30,7 +30,7 @@ const TIMING_CARDS: TimingCard[] = [
   },
   {
     title: '③欲しいヘルスケア機能が搭載された時',
-    imgSrc: 'https://placehold.co/400x520/f5f5f7/1d1d1f?text=Health',
+    imgSrc: '/images/content/watch-image-10.jpg',
     imgAlt: 'ヘルスケア機能のイメージ',
     content: (
       <>

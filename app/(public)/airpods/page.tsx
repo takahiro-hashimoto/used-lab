@@ -296,7 +296,7 @@ export default async function AirPodsGuidePage() {
                   <div className="glossary-item">
                     <dt className="glossary-item-title">外装・イヤーチップの状態</dt>
                     <dd className="glossary-item-desc">
-                      傷や汚れの程度は価格に影響します。カナル型（Pro）の場合はイヤーチップの劣化もチェック。交換用チップは別途購入可能です。
+                      傷や汚れの程度は価格に影響します。カナル型の場合はイヤーチップの劣化もチェック。交換用チップは別途購入可能です。
                     </dd>
                   </div>
                 </ol>

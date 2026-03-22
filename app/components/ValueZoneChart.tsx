@@ -1,13 +1,10 @@
-// スペクトラム型「お得ゾーン」インフォグラフィック — iPad版
+// スペクトラム型「お得ゾーン」インフォグラフィック（全製品共通）
 // サポート残年数でゾーンを全自動振り分け
 
-import type { IPadModel } from '@/lib/types'
+import type { ReactNode } from 'react'
+import type { BaseProductModel } from '@/lib/types'
 
-const SUPPORT_YEARS = 7
-
-const SWEET_MIN = 3
-const SWEET_MAX = 4
-
+// ---------- ゾーン表示情報（全製品共通） ----------
 const ZONE_META = {
   danger: {
     barLabel: '非推奨',
@@ -26,29 +23,30 @@ const ZONE_META = {
   },
 } as const
 
-// iPadシリーズ定義（representativeSlug: サポート残算出用）
-const ALL_SERIES = [
-  { label: 'iPad 第7世代', representativeSlug: 'normal-7' },
-  { label: 'iPad 第8世代', representativeSlug: 'normal-8' },
-  { label: 'iPad mini 第5世代', representativeSlug: 'mini-5' },
-  { label: 'iPad Air 第4世代', representativeSlug: 'air-4' },
-  { label: 'iPad 第9世代', representativeSlug: 'normal-9' },
-  { label: 'iPad mini 第6世代', representativeSlug: 'mini-6' },
-  { label: 'iPad 第10世代', representativeSlug: 'normal-10' },
-  { label: 'iPad Air 第5世代', representativeSlug: 'air-5' },
-  { label: 'iPad Pro 11" 第3世代', representativeSlug: 'pro11-3' },
-  { label: 'iPad Pro 12.9" 第5世代', representativeSlug: 'pro12-5' },
-  { label: 'iPad Pro 11" 第4世代', representativeSlug: 'pro11-4' },
-  { label: 'iPad Pro 12.9" 第6世代', representativeSlug: 'pro12-6' },
-  { label: 'iPad Air 第6世代', representativeSlug: 'air-6-11' },
-  { label: 'iPad mini 第7世代', representativeSlug: 'mini-7' },
-  { label: 'iPad 第11世代', representativeSlug: 'normal-11' },
-  { label: 'iPad Pro M4', representativeSlug: 'pro11-5' },
-]
+type ZoneId = 'danger' | 'sweet' | 'premium'
 
-function calcSupportRemaining(dateStr: string | null): number {
+export type SeriesDefinition = {
+  label: string
+  representativeSlug: string
+}
+
+type Props = {
+  productName: string
+  osName: string
+  supportYears: number
+  sweetMin: number
+  sweetMax: number
+  series: SeriesDefinition[]
+  allModels: BaseProductModel[]
+  /** モデルからラベルを生成する関数（デフォルト: label + （発売年）） */
+  buildLabel?: (seriesDef: SeriesDefinition, model: BaseProductModel, releaseYear: number) => ReactNode
+  /** 発売年をラベル外に表示するか（デフォルト: true） */
+  showReleaseYear?: boolean
+}
+
+function calcSupportRemaining(dateStr: string | null, supportYears: number): number {
   if (!dateStr) return 0
-  return Math.max(0, new Date(dateStr).getFullYear() + SUPPORT_YEARS - new Date().getFullYear())
+  return Math.max(0, new Date(dateStr).getFullYear() + supportYears - new Date().getFullYear())
 }
 
 function formatSupportLabel(remaining: number): string {
@@ -57,30 +55,38 @@ function formatSupportLabel(remaining: number): string {
   return `残り約${remaining}年`
 }
 
-function getZoneId(remaining: number): 'danger' | 'sweet' | 'premium' {
-  if (remaining >= SWEET_MIN && remaining <= SWEET_MAX) return 'sweet'
-  if (remaining > SWEET_MAX) return 'premium'
+function getZoneId(remaining: number, sweetMin: number, sweetMax: number): ZoneId {
+  if (remaining >= sweetMin && remaining <= sweetMax) return 'sweet'
+  if (remaining > sweetMax) return 'premium'
   return 'danger'
 }
 
-type Props = {
-  allModels: IPadModel[]
-}
-
-export default function IPadValueZoneChart({ allModels }: Props) {
+export default function ValueZoneChart({
+  productName,
+  osName,
+  supportYears,
+  sweetMin,
+  sweetMax,
+  series,
+  allModels,
+  buildLabel,
+  showReleaseYear = true,
+}: Props) {
   const slugMap = new Map(allModels.map((m) => [m.slug, m]))
 
-  const seriesWithZone = ALL_SERIES
+  const seriesWithZone = series
     .map((s) => {
       const model = slugMap.get(s.representativeSlug)
       if (!model?.date) return null
-      const remaining = calcSupportRemaining(model.date)
+      const remaining = calcSupportRemaining(model.date, supportYears)
+      const releaseYear = new Date(model.date).getFullYear()
       return {
-        label: s.label,
-        releaseYear: new Date(model.date).getFullYear(),
+        label: buildLabel ? buildLabel(s, model, releaseYear) : s.label,
+        releaseYear,
         remaining,
         supportLabel: formatSupportLabel(remaining),
-        zoneId: getZoneId(remaining),
+        zoneId: getZoneId(remaining, sweetMin, sweetMax),
+        showYear: !buildLabel,
       }
     })
     .filter((s) => s != null)
@@ -95,10 +101,10 @@ export default function IPadValueZoneChart({ allModels }: Props) {
     <section className="l-section l-section--bg-subtle" id="value-zone" aria-labelledby="heading-value-zone">
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg" id="heading-value-zone">
-          中古iPadの「お得ゾーン」とは？
+          中古{productName}の「お得ゾーン」とは？
         </h2>
         <p className="m-section-desc">
-          iPadOSサポートに余裕があり、かつ価格も落ちてきている機種が「お得ゾーン」。
+          {osName}サポートに余裕があり、かつ価格も落ちてきている機種が「お得ゾーン」。
         </p>
         <p className="m-section-desc">
           安すぎる旧モデルはサポート切れのリスクがあり、最新モデルはまだ割高。そのちょうど中間が狙い目です。
@@ -119,12 +125,14 @@ export default function IPadValueZoneChart({ allModels }: Props) {
                 <p className="vz__col-title">{z.title}</p>
                 <p className="vz__col-sub">{z.subtitle}</p>
                 <ul className="vz__models">
-                  {z.items.map((item) => (
-                    <li key={item.label} className={`vz__model vz__model--${z.id}`}>
+                  {z.items.map((item, i) => (
+                    <li key={i} className={`vz__model vz__model--${z.id}`}>
                       <div className="vz__model-row">
                         <span className="vz__model-name">
                           {item.label}
-                          <span className="vz__model-release">（{item.releaseYear}年）</span>
+                          {showReleaseYear && item.showYear && (
+                            <span className="vz__model-release">（{item.releaseYear}年）</span>
+                          )}
                         </span>
                       </div>
                       <div className="vz__model-row">

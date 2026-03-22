@@ -97,6 +97,64 @@ export function filterLast3Months<T extends { logged_at: string }>(logs: T[]): T
   return logs.filter(l => l.logged_at >= cutoff)
 }
 
+/** 年間コスト計算 */
+export function calculateAnnualCost(
+  avgPrice: number | null,
+  remainingOSYears: number
+): number | null {
+  if (!avgPrice || remainingOSYears <= 0 || avgPrice <= 0) return null
+  return Math.round(avgPrice / remainingOSYears)
+}
+
+// ---------- JSON-LD 生成 ----------
+
+export function buildBreadcrumbJsonLd(items: { name: string; item?: string }[]) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: items.map((entry, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: entry.name,
+      ...(entry.item ? { item: entry.item } : {}),
+    })),
+  }
+}
+
+export function buildArticleJsonLd(opts: {
+  headline: string
+  description: string
+  dateStr: string
+  url: string
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: opts.headline,
+    description: opts.description,
+    datePublished: opts.dateStr,
+    dateModified: opts.dateStr,
+    author: { '@type': 'Organization', name: 'ユーズドラボ', url: 'https://used-lab.com/' },
+    publisher: { '@type': 'Organization', name: 'ユーズドラボ' },
+    mainEntityOfPage: { '@type': 'WebPage', '@id': opts.url },
+  }
+}
+
+export function buildFaqJsonLd(items: { question: string; answer: string }[]) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: items.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.answer,
+      },
+    })),
+  }
+}
+
 /** 修理寿命計算（リリース年+9年） */
 export function calculateRepairLifespan(date: string | null): {
   releaseYear: number

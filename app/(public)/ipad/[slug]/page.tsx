@@ -31,6 +31,7 @@ import FaqSection from './components/FaqSection'
 import AccessorySection from './components/AccessorySection'
 import ReviewSection from '@/app/components/ReviewSection'
 import ShareBox from '@/app/components/ShareBox'
+import AdminEditLink from '@/app/components/AdminEditLink'
 
 type PageProps = {
   params: Promise<{ slug: string }>
@@ -108,6 +109,7 @@ export default async function IPadDetailPage({ params }: PageProps) {
 
   return (
     <main>
+      <AdminEditLink categoryKey="ipad" modelId={model.id} />
       <article>
         <HeroSection model={enrichedModel} latestPrice={latestPrice} />
         <LeadText model={enrichedModel} />

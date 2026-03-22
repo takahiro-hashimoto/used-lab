@@ -114,7 +114,7 @@ export default function CameraFeatureCard({ id, title, description, detail, supp
                       />
                     </div>
                   ) : (
-                    <img src={s.src} alt={s.alt} className="camera-feature-card__img" loading="lazy" />
+                    <img src={s.src} alt={s.alt} className="camera-feature-card__img u-pc-crop-16x9" loading="lazy" />
                   )}
                   {s.type !== 'tweet' && (
                     <figcaption className="camera-feature-card__caption">{s.label}</figcaption>
@@ -141,7 +141,7 @@ export default function CameraFeatureCard({ id, title, description, detail, supp
               <img
                 src={samples[activeTab].src}
                 alt={samples[activeTab].alt}
-                className="camera-feature-card__img"
+                className="camera-feature-card__img u-pc-crop-16x9"
                 loading="lazy"
               />
             )}

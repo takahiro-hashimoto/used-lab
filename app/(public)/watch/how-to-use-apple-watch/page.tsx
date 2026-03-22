@@ -111,7 +111,7 @@ export default function HowToUseAppleWatchPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/content/watch-image-05.jpg"
+                  src="/images/content/watch-image-11.jpg"
                   alt="Apple Watchのできることイメージ"
                   className="hero-media__img"
                   width={360}

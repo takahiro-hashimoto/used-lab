@@ -4,7 +4,7 @@ export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl
 
   // /admin/login はスキップ（認証不要）
-  if (pathname === '/admin/login') {
+  if (pathname === '/admin/login' || pathname === '/admin/login/') {
     return NextResponse.next()
   }
 

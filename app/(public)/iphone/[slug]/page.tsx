@@ -27,6 +27,7 @@ import RecommendBanner from '@/app/components/iphone/RecommendBanner'
 import FaqSection from './components/FaqSection'
 import ReviewSection from '@/app/components/ReviewSection'
 import ShareBox from '@/app/components/ShareBox'
+import AdminEditLink from '@/app/components/AdminEditLink'
 
 type PageProps = {
   params: Promise<{ slug: string }>
@@ -92,6 +93,7 @@ export default async function IPhoneDetailPage({ params }: PageProps) {
 
   return (
     <main>
+      <AdminEditLink categoryKey="iphone" modelId={model.id} />
       <article>
         <HeroSection model={model} latestPrice={latestPrice} />
         <LeadText model={model} />

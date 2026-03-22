@@ -15,6 +15,10 @@ export default function AuthenticatedAdminLayout({
             管理画面
           </Link>
           <nav className="admin-header__nav">
+            <Link href="/admin/news" className="admin-header__link">
+              <i className="fa-solid fa-bullhorn" aria-hidden="true" />
+              <span>新着情報</span>
+            </Link>
             {CATEGORIES.map((cat) => (
               <Link key={cat.key} href={`/admin/${cat.key}`} className="admin-header__link">
                 <i className={`fa-solid ${cat.icon}`} aria-hidden="true" />

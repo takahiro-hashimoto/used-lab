@@ -10,7 +10,7 @@ import {
   getAllIPadAccessoryCompatibility,
 } from '@/lib/queries'
 import type { IPadModel, IPadPriceLog } from '@/lib/types'
-import { buildFallbackShops } from '@/lib/utils/shared-helpers'
+import { buildFallbackShops, buildBreadcrumbJsonLd, buildArticleJsonLd, buildFaqJsonLd } from '@/lib/utils/shared-helpers'
 import { buildAccessoryLookup, getPencilTextFromAccessories, getKeyboardTextFromAccessories } from '@/lib/utils/ipad-helpers'
 import {
   RECOMMEND_DATE_LABEL,
@@ -31,7 +31,7 @@ import CompareTableSection from './components/CompareTableSection'
 import ChecklistSection from '@/app/components/ChecklistSection'
 import ShopSection from '@/app/components/ShopSection'
 import IPadFaqSection from './components/IPadFaqSection'
-import IPadValueZoneChart from './components/IPadValueZoneChart'
+import ValueZoneChart from '@/app/components/ValueZoneChart'
 
 const PAGE_TITLE = `中古iPadのおすすめ${RECOMMEND_COUNT}機種を解説。狙い目の型落ちモデルどれ？【${RECOMMEND_DATE_LABEL}版】`
 const PAGE_DESCRIPTION =
@@ -85,40 +85,13 @@ export default async function IPadRecommendPage() {
   const dateDisplay = today.toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' })
 
   // JSON-LD
-  const breadcrumbJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.com/' },
-      { '@type': 'ListItem', position: 2, name: '中古iPad完全ガイド', item: 'https://used-lab.com/ipad' },
-      { '@type': 'ListItem', position: 3, name: `中古iPadおすすめ${RECOMMEND_COUNT}選` },
-    ],
-  }
-
-  const articleJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
-    headline: PAGE_TITLE,
-    description: PAGE_DESCRIPTION,
-    datePublished: dateStr,
-    dateModified: dateStr,
-    author: { '@type': 'Organization', name: 'ユーズドラボ', url: 'https://used-lab.com/' },
-    publisher: { '@type': 'Organization', name: 'ユーズドラボ' },
-    mainEntityOfPage: { '@type': 'WebPage', '@id': PAGE_URL },
-  }
-
-  const faqJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: FAQ_JSONLD_ITEMS.map((item) => ({
-      '@type': 'Question',
-      name: item.question,
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: item.answer,
-      },
-    })),
-  }
+  const breadcrumbJsonLd = buildBreadcrumbJsonLd([
+    { name: '中古Apple製品を安く買う', item: 'https://used-lab.com/' },
+    { name: '中古iPad完全ガイド', item: 'https://used-lab.com/ipad' },
+    { name: `中古iPadおすすめ${RECOMMEND_COUNT}選` },
+  ])
+  const articleJsonLd = buildArticleJsonLd({ headline: PAGE_TITLE, description: PAGE_DESCRIPTION, dateStr, url: PAGE_URL })
+  const faqJsonLd = buildFaqJsonLd(FAQ_JSONLD_ITEMS)
 
   // ConclusionSection用データ
   const conclusionItems = recommendModels.map((model) => ({
@@ -342,7 +315,32 @@ export default async function IPadRecommendPage() {
               },
             ]}
           />
-          <IPadValueZoneChart allModels={allModelsIncludingEnded} />
+          <ValueZoneChart
+            productName="iPad"
+            osName="iPadOS"
+            supportYears={7}
+            sweetMin={3}
+            sweetMax={4}
+            series={[
+              { label: 'iPad 第7世代', representativeSlug: 'normal-7' },
+              { label: 'iPad 第8世代', representativeSlug: 'normal-8' },
+              { label: 'iPad mini 第5世代', representativeSlug: 'mini-5' },
+              { label: 'iPad Air 第4世代', representativeSlug: 'air-4' },
+              { label: 'iPad 第9世代', representativeSlug: 'normal-9' },
+              { label: 'iPad mini 第6世代', representativeSlug: 'mini-6' },
+              { label: 'iPad 第10世代', representativeSlug: 'normal-10' },
+              { label: 'iPad Air 第5世代', representativeSlug: 'air-5' },
+              { label: 'iPad Pro 11" 第3世代', representativeSlug: 'pro11-3' },
+              { label: 'iPad Pro 12.9" 第5世代', representativeSlug: 'pro12-5' },
+              { label: 'iPad Pro 11" 第4世代', representativeSlug: 'pro11-4' },
+              { label: 'iPad Pro 12.9" 第6世代', representativeSlug: 'pro12-6' },
+              { label: 'iPad Air 第6世代', representativeSlug: 'air-6-11' },
+              { label: 'iPad mini 第7世代', representativeSlug: 'mini-7' },
+              { label: 'iPad 第11世代', representativeSlug: 'normal-11' },
+              { label: 'iPad Pro M4', representativeSlug: 'pro11-5' },
+            ]}
+            allModels={allModelsIncludingEnded}
+          />
           <RecommendDetailSection items={detailItems} />
           <CompareTableSection items={compareItems} />
           <ChecklistSection

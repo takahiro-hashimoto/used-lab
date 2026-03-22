@@ -50,6 +50,11 @@ export default function Header() {
         </nav>
 
         <div className="header-actions">
+          {process.env.NODE_ENV === 'development' && (
+            <Link href="/admin" className="header-admin-link" title="管理画面">
+              <i className="fa-solid fa-gear" aria-hidden="true"></i>
+            </Link>
+          )}
           <button
             className={`menu-toggle${isMenuOpen ? ' is-active' : ''}`}
             onClick={toggleMenu}

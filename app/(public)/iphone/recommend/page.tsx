@@ -7,8 +7,8 @@ import {
   getAllProductShopLinksByType,
   getLatestPriceLog,
 } from '@/lib/queries'
-import type { IPhoneModel, IPhonePriceLog } from '@/lib/types'
-import { buildFallbackShops } from '@/lib/utils/shared-helpers'
+import type { IPhoneModel } from '@/lib/types'
+import { buildFallbackShops, buildBreadcrumbJsonLd, buildArticleJsonLd, buildFaqJsonLd } from '@/lib/utils/shared-helpers'
 import {
   RECOMMEND_DATE_LABEL,
   RECOMMEND_YEAR,
@@ -28,7 +28,7 @@ import CompareTableSection from './components/CompareTableSection'
 import ChecklistSection from '@/app/components/ChecklistSection'
 import ShopSection from '@/app/components/ShopSection'
 import IPhoneFaqSection from './components/IPhoneFaqSection'
-import ValueZoneChart from './components/ValueZoneChart'
+import ValueZoneChart from '@/app/components/ValueZoneChart'
 
 const PAGE_TITLE = `中古iPhoneおすすめ機種${RECOMMEND_COUNT}選｜目的別に狙い目モデルを解説【${RECOMMEND_DATE_LABEL}版】`
 const PAGE_DESCRIPTION =
@@ -75,40 +75,13 @@ export default async function IPhoneTopPage() {
   const dateDisplay = today.toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' })
 
   // JSON-LD
-  const breadcrumbJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.com/' },
-      { '@type': 'ListItem', position: 2, name: '中古iPhone完全ガイド', item: 'https://used-lab.com/iphone' },
-      { '@type': 'ListItem', position: 3, name: `中古iPhoneおすすめ${RECOMMEND_COUNT}選` },
-    ],
-  }
-
-  const articleJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
-    headline: PAGE_TITLE,
-    description: PAGE_DESCRIPTION,
-    datePublished: dateStr,
-    dateModified: dateStr,
-    author: { '@type': 'Organization', name: 'ユーズドラボ', url: 'https://used-lab.com/' },
-    publisher: { '@type': 'Organization', name: 'ユーズドラボ' },
-    mainEntityOfPage: { '@type': 'WebPage', '@id': PAGE_URL },
-  }
-
-  const faqJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: FAQ_JSONLD_ITEMS.map((item) => ({
-      '@type': 'Question',
-      name: item.question,
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: item.answer,
-      },
-    })),
-  }
+  const breadcrumbJsonLd = buildBreadcrumbJsonLd([
+    { name: '中古Apple製品を安く買う', item: 'https://used-lab.com/' },
+    { name: '中古iPhone完全ガイド', item: 'https://used-lab.com/iphone' },
+    { name: `中古iPhoneおすすめ${RECOMMEND_COUNT}選` },
+  ])
+  const articleJsonLd = buildArticleJsonLd({ headline: PAGE_TITLE, description: PAGE_DESCRIPTION, dateStr, url: PAGE_URL })
+  const faqJsonLd = buildFaqJsonLd(FAQ_JSONLD_ITEMS)
 
   // ConclusionSection用データ
   const conclusionItems = recommendModels.map((model) => ({
@@ -332,7 +305,25 @@ export default async function IPhoneTopPage() {
               },
             ]}
           />
-          <ValueZoneChart allModels={allModelsIncludingEnded} />
+          <ValueZoneChart
+            productName="iPhone"
+            osName="iOS"
+            supportYears={7}
+            sweetMin={3}
+            sweetMax={4}
+            series={[
+              { label: 'iPhone 11 シリーズ', representativeSlug: '11normal' },
+              { label: 'iPhone SE 第2世代', representativeSlug: 'se2' },
+              { label: 'iPhone 12 シリーズ', representativeSlug: '12normal' },
+              { label: 'iPhone 13 シリーズ', representativeSlug: '13mini' },
+              { label: 'iPhone SE 第3世代', representativeSlug: 'se3' },
+              { label: 'iPhone 14 シリーズ', representativeSlug: '14pro' },
+              { label: 'iPhone 15 シリーズ', representativeSlug: '15normal' },
+              { label: 'iPhone 16 シリーズ', representativeSlug: '16normal' },
+              { label: 'iPhone 16e', representativeSlug: '16e-se' },
+            ]}
+            allModels={allModelsIncludingEnded}
+          />
           <RecommendDetailSection items={detailItems} />
           <CompareTableSection items={compareItems} />
           <ChecklistSection

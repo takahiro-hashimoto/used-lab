@@ -93,7 +93,7 @@ export default function BasicSection() {
           {/* 4. 再生している音楽・動画のコントロールする */}
           <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
             <img
-              src="/images/content/apple-watch-music.jpg"
+              src="/images/content/used-lab-image-2.jpg"
               alt="Apple Watchで音楽をコントロールする様子"
               className="popular-card-img"
               width={240}
@@ -114,7 +114,7 @@ export default function BasicSection() {
           {/* 5. iPhoneの通知を確認する */}
           <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
             <img
-              src="/images/content/apple-watch-notification.jpg"
+              src="/images/content/used-lab-image-3.jpg"
               alt="Apple Watchで通知を確認する様子"
               className="popular-card-img"
               width={240}

@@ -305,6 +305,111 @@ export async function updateProductShopLinks(
   revalidatePath('/', 'layout')
 }
 
+// ============================================================
+// 新着情報（news）
+// ============================================================
+
+export type NewsItem = {
+  id: number
+  date: string
+  content: string
+  published: boolean
+  created_at: string
+}
+
+/** 新着情報を全件取得（管理画面用・降順） */
+export async function getNewsItems(): Promise<NewsItem[]> {
+  const { data, error } = await supabaseAdmin
+    .from('news')
+    .select('*')
+    .order('date', { ascending: false })
+
+  if (error) {
+    console.error('getNewsItems:', error.message)
+    return []
+  }
+  return (data || []) as NewsItem[]
+}
+
+/** 公開中の新着情報を取得（トップページ用） */
+export async function getPublishedNews(limit = 5): Promise<NewsItem[]> {
+  const { data, error } = await supabaseAdmin
+    .from('news')
+    .select('*')
+    .eq('published', true)
+    .order('date', { ascending: false })
+    .limit(limit)
+
+  if (error) {
+    console.error('getPublishedNews:', error.message)
+    return []
+  }
+  return (data || []) as NewsItem[]
+}
+
+/** 新着情報を追加 */
+export async function createNewsItem(formData: FormData) {
+  const date = (formData.get('date') as string)?.trim()
+  const content = (formData.get('content') as string)?.trim()
+  const published = formData.get('published') === 'on' || formData.get('published') === 'true'
+
+  if (!date || !content) {
+    return { error: '日付と内容は必須です' }
+  }
+
+  const { error } = await supabaseAdmin
+    .from('news')
+    .insert({ date, content, published })
+
+  if (error) {
+    console.error('createNewsItem:', error.message)
+    return { error: `保存に失敗しました: ${error.message}` }
+  }
+
+  revalidatePath('/', 'layout')
+  redirect('/admin/news')
+}
+
+/** 新着情報を更新 */
+export async function updateNewsItem(id: number, formData: FormData) {
+  const date = (formData.get('date') as string)?.trim()
+  const content = (formData.get('content') as string)?.trim()
+  const published = formData.get('published') === 'on' || formData.get('published') === 'true'
+
+  if (!date || !content) {
+    return { error: '日付と内容は必須です' }
+  }
+
+  const { error } = await supabaseAdmin
+    .from('news')
+    .update({ date, content, published })
+    .eq('id', id)
+
+  if (error) {
+    console.error('updateNewsItem:', error.message)
+    return { error: `更新に失敗しました: ${error.message}` }
+  }
+
+  revalidatePath('/', 'layout')
+  redirect('/admin/news')
+}
+
+/** 新着情報を削除 */
+export async function deleteNewsItem(id: number) {
+  const { error } = await supabaseAdmin
+    .from('news')
+    .delete()
+    .eq('id', id)
+
+  if (error) {
+    console.error('deleteNewsItem:', error.message)
+    return { error: `削除に失敗しました: ${error.message}` }
+  }
+
+  revalidatePath('/', 'layout')
+  redirect('/admin/news')
+}
+
 export async function getModelCount(categoryKey: string): Promise<number> {
   const config = getCategoryConfig(categoryKey)
   if (!config) return 0

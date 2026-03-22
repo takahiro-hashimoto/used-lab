@@ -117,17 +117,6 @@ export function getUserSuitability(model: IPhoneModel): {
 }
 
 /**
- * 年間コスト計算
- */
-export function calculateAnnualCost(
-  avgPrice: number,
-  remainingOSYears: number
-): number | null {
-  if (remainingOSYears <= 0 || avgPrice <= 0) return null
-  return Math.round(avgPrice / remainingOSYears)
-}
-
-/**
  * モデルデータからFAQ（JSON-LD用のプレーンテキスト）を自動生成
  */
 export function generateFaqsForJsonLd(

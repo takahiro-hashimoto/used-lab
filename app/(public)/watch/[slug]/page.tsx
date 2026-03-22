@@ -26,6 +26,7 @@ import Accessories from './components/Accessories'
 import RecommendBanner from './components/RecommendBanner'
 import FaqSection from './components/FaqSection'
 import ShareBox from '@/app/components/ShareBox'
+import AdminEditLink from '@/app/components/AdminEditLink'
 
 type PageProps = {
   params: Promise<{ slug: string }>
@@ -87,6 +88,7 @@ export default async function WatchDetailPage({ params }: PageProps) {
 
   return (
     <main>
+      <AdminEditLink categoryKey="watch" modelId={model.id} />
       <article>
         <HeroSection model={model} latestPrice={latestPrice} />
         <LeadText model={model} />

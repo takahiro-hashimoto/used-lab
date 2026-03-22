@@ -291,6 +291,9 @@ export default async function IPhoneCameraPage() {
                   title: 'カメラコントロール 対応機種一覧',
                   models: serializedModels.filter((m) => m.camera_control).map((m) => m.model),
                 }}
+                samples={[
+                  { label: 'カメラコントロールボタン', src: '/images/content/used-lab-image-5.jpg', alt: 'iPhoneのカメラコントロールボタン' },
+                ]}
               />
 
               <CameraFeatureCard

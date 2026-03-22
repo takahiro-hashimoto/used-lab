@@ -15,7 +15,7 @@ export default function HealthSection() {
           {/* 13. フィットネスアプリで1日の活動量をチェック */}
           <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
             <img
-              src="/images/content/apple-watch-fitness.jpg"
+              src="/images/content/used-lab-image.jpg"
               alt="Apple Watchのアクティビティリング"
               className="popular-card-img"
               width={240}

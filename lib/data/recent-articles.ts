@@ -21,7 +21,7 @@ export const RECENT_ARTICLES: RecentArticle[] = [
     date: '2026.02',
     category: 'MacBook',
     icon: 'fa-laptop',
-    image: 'https://used-lab.jp/wp-content/uploads/2025/07/how-to-buy-mac-heading-picturess-1024x576.jpg',
+    image: '/images/macbook/macbook-air-m2.jpg',
   },
   {
     href: '/watch/apple-watch-buy/',
@@ -30,7 +30,7 @@ export const RECENT_ARTICLES: RecentArticle[] = [
     date: '2026.02',
     category: 'Watch',
     icon: 'fa-clock',
-    image: 'https://used-lab.jp/wp-content/uploads/2025/07/how-to-buy-cheap-apple-watch-image-1024x576.jpg',
+    image: '/images/watch/apple-watch.jpg',
   },
   {
     href: '/ipad/ipad-buy/',
@@ -39,7 +39,7 @@ export const RECENT_ARTICLES: RecentArticle[] = [
     date: '2026.02',
     category: 'iPad',
     icon: 'fa-tablet-screen-button',
-    image: '/images/content/ipad-image.jpg',
+    image: '/images/ipad/ipad-air-m2.jpg',
   },
   {
     href: '/ipad/car-navigation-system/',
@@ -66,6 +66,6 @@ export const RECENT_ARTICLES: RecentArticle[] = [
     date: '2026.02',
     category: 'Watch',
     icon: 'fa-clock',
-    image: '/images/content/apple-watch-image.jpg',
+    image: '/images/watch/watch-always-lit.jpg',
   },
 ]

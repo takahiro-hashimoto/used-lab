@@ -8,8 +8,7 @@ import {
   getAllAirPodsModels,
 } from '@/lib/queries'
 import { PRODUCT_CATEGORIES } from '@/lib/routes'
-import { RECENT_ARTICLES } from '@/lib/data/recent-articles'
-import NewArticleGrid from '@/app/components/NewArticleGrid'
+import { getPublishedNews } from '@/app/admin/actions'
 
 /** カテゴリアイコンマッピング */
 const CATEGORY_ICONS: Record<string, string> = {
@@ -30,13 +29,14 @@ const CATEGORY_IMAGE_BASE: Record<string, string> = {
 }
 
 export default async function HomePage() {
-  // 全モデルを並列取得
-  const [iPhoneModels, iPadModels, macBookModels, watchModels, airPodsModels] = await Promise.all([
+  // 全モデル＋新着情報を並列取得
+  const [iPhoneModels, iPadModels, macBookModels, watchModels, airPodsModels, newsItems] = await Promise.all([
     getAllIPhoneModels(),
     getAllIPadModels(),
     getAllMacBookModels(),
     getAllWatchModels(),
     getAllAirPodsModels(),
+    getPublishedNews(5),
   ])
 
   // モデル数
@@ -160,50 +160,51 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ── 新着記事 ── */}
-      <section id="new-articles" className="l-section l-section--bg-subtle">
+      {/* ── 新着情報 + 運営者情報（2カラム） ── */}
+      <section className="l-section l-section--bg-subtle">
         <div className="l-container">
-          <h2 className="m-section-heading m-section-heading--lg">新着記事</h2>
-          <p className="m-section-desc">最近公開・更新した記事をピックアップ</p>
+          <div className="top-bottom-grid">
+            {/* 新着情報 */}
+            <div className="top-news-card m-card m-card--shadow m-card--padded">
+              <h2 className="top-card-heading">新着情報</h2>
+              {newsItems.length > 0 ? (
+                <dl className="news-list">
+                  {newsItems.map((item) => (
+                    <div key={item.id} className="news-list__item">
+                      <dt className="news-list__date">
+                        <time dateTime={item.date}>{item.date.replace(/-/g, '.')}</time>
+                      </dt>
+                      <dd className="news-list__content">{item.content}</dd>
+                    </div>
+                  ))}
+                </dl>
+              ) : (
+                <p className="news-list__empty">新着情報はありません</p>
+              )}
+            </div>
 
-          <NewArticleGrid articles={RECENT_ARTICLES} />
-        </div>
-      </section>
-
-      {/* ── 運営者情報 ── */}
-      <section id="about" className="l-section">
-        <div className="l-container">
-          <h2 className="m-section-heading m-section-heading--lg">運営者情報</h2>
-          <p className="m-section-desc">ユーズドラボの運営者情報を紹介</p>
-
-          <div className="about-profile m-card m-card--shadow m-card--padded">
-            <div className="about-profile-inner">
-              <div className="about-profile-avatar">
-                <Image
-                  src="/images/content/my-icon.webp"
-                  alt="タカヒロ"
-                  className="about-profile-img"
-                  width={120}
-                  height={120}
-                  loading="lazy"
-                />
-                <p className="about-profile-name">タカヒロ</p>
-              </div>
-              <div className="about-profile-info">
-                <p className="about-profile-desc">
-                  都内のIT企業でWebディレクターとして働く傍ら、メディア運営を行っています。本サイトのほか、「ガジェットブログ・デジスタ」「東京夜景ナビ」など、複数のWebメディアを運営中です。
+            {/* 運営者情報 */}
+            <div className="top-about-card m-card m-card--shadow m-card--padded">
+              <h2 className="top-card-heading">運営者情報</h2>
+              <div className="top-about-card__body">
+                <div className="top-about-card__avatar">
+                  <Image
+                    src="/images/content/my-icon.webp"
+                    alt="タカヒロ"
+                    className="about-profile-img"
+                    width={80}
+                    height={80}
+                    loading="lazy"
+                  />
+                  <p className="top-about-card__name">タカヒロ</p>
+                </div>
+                <p className="top-about-card__desc">
+                  都内のIT企業でWebディレクターとして働く傍ら、メディア運営を行っています。中古Apple製品選びに役立つ情報を発信しています。
                 </p>
-                <p className="about-profile-desc">
-                  当サイトでは、みなさまが失敗せず、賢く中古Apple製品を選べるような情報発信を心がけています。
-                </p>
-                <p className="about-profile-desc">
-                  信頼できるショップの紹介や製品レビューなど、実用的なコンテンツを通じて、後悔しないガジェット選びをお手伝いできれば幸いです！
-                </p>
-                <div className="about-sns-links" style={{ marginTop: 'var(--space-md)' }}>
-                  <Link href="/about/" className="about-sns-link about-sns-link--primary">
-                    <i className="fa-solid fa-user" aria-hidden="true"></i>
-                    <span>運営者情報詳細</span>
-                  </Link>
+                <Link href="/about/" className="top-about-card__text-link">
+                  運営者情報を見る <i className="fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </Link>
+                <div className="top-about-card__links">
                   {[
                     { href: 'https://twitter.com/takahiro_mono', label: 'Twitter', icon: 'fa-brands fa-x-twitter' },
                     { href: 'https://www.instagram.com/takahiro_mono', label: 'Instagram', icon: 'fa-brands fa-instagram' },
@@ -214,11 +215,13 @@ export default async function HomePage() {
                     <a
                       key={sns.href}
                       href={sns.href}
-                      {...(sns.href.startsWith('/') ? {} : { target: '_blank', rel: 'noopener noreferrer' })}
-                      className="about-sns-link"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="top-about-card__icon-link"
+                      aria-label={sns.label}
+                      title={sns.label}
                     >
                       <i className={sns.icon} aria-hidden="true"></i>
-                      <span>{sns.label}</span>
                     </a>
                   ))}
                 </div>

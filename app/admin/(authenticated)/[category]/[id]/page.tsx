@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { getCategoryByKey } from '../../../field-definitions'
 import {
@@ -41,13 +42,27 @@ export default async function AdminEditModelPage({ params }: PageProps) {
     return updateModel(category, numericId, formData)
   }
 
+  // 複製用: idを除いたデータをクエリパラメータに変換
+  const duplicateParams = new URLSearchParams()
+  const modelData = model as Record<string, unknown>
+  for (const field of config.fields) {
+    if (field.key === 'id') continue
+    const val = modelData[field.key]
+    if (val != null) {
+      duplicateParams.set(field.key, typeof val === 'object' ? JSON.stringify(val) : String(val))
+    }
+  }
+
   return (
     <>
       <div className="admin-page-header">
         <h1 className="admin-page-header__title">
           <i className={`fa-solid ${config.icon}`} aria-hidden="true" />{' '}
-          {String((model as Record<string, unknown>).model || (model as Record<string, unknown>).name || `ID: ${numericId}`)} を編集
+          {String(modelData.model || modelData.name || `ID: ${numericId}`)} を編集
         </h1>
+        <Link href={`/admin/${category}/new?${duplicateParams.toString()}`} className="admin-btn admin-btn--secondary">
+          <i className="fa-regular fa-copy" aria-hidden="true" /> このページを複製
+        </Link>
       </div>
       <AdminForm
         fields={config.fields}

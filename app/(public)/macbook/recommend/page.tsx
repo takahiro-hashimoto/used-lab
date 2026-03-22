@@ -8,7 +8,7 @@ import {
   getLatestMacBookPriceLog,
 } from '@/lib/queries'
 import type { MacBookModel, MacBookPriceLog } from '@/lib/types'
-import { buildFallbackShops } from '@/lib/utils/shared-helpers'
+import { buildFallbackShops, buildBreadcrumbJsonLd, buildArticleJsonLd, buildFaqJsonLd } from '@/lib/utils/shared-helpers'
 import {
   RECOMMEND_DATE_LABEL,
   RECOMMEND_YEAR,
@@ -28,7 +28,7 @@ import CompareTableSection from './components/CompareTableSection'
 import ChecklistSection from '@/app/components/ChecklistSection'
 import ShopSection from '@/app/components/ShopSection'
 import MacBookFaqSection from './components/MacBookFaqSection'
-import MacBookValueZoneChart from './components/MacBookValueZoneChart'
+import ValueZoneChart from '@/app/components/ValueZoneChart'
 
 const PAGE_TITLE = `中古MacBookおすすめ${RECOMMEND_COUNT}機種を解説。狙い目の型落ちモデルはどれ？【${RECOMMEND_DATE_LABEL}版】`
 const PAGE_DESCRIPTION =
@@ -74,40 +74,13 @@ export default async function MacBookRecommendPage() {
   const dateDisplay = today.toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' })
 
   // JSON-LD
-  const breadcrumbJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.com/' },
-      { '@type': 'ListItem', position: 2, name: '中古MacBook完全ガイド', item: 'https://used-lab.com/macbook' },
-      { '@type': 'ListItem', position: 3, name: `中古MacBookおすすめ${RECOMMEND_COUNT}選` },
-    ],
-  }
-
-  const articleJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
-    headline: PAGE_TITLE,
-    description: PAGE_DESCRIPTION,
-    datePublished: dateStr,
-    dateModified: dateStr,
-    author: { '@type': 'Organization', name: 'ユーズドラボ', url: 'https://used-lab.com/' },
-    publisher: { '@type': 'Organization', name: 'ユーズドラボ' },
-    mainEntityOfPage: { '@type': 'WebPage', '@id': PAGE_URL },
-  }
-
-  const faqJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: FAQ_JSONLD_ITEMS.map((item) => ({
-      '@type': 'Question',
-      name: item.question,
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: item.answer,
-      },
-    })),
-  }
+  const breadcrumbJsonLd = buildBreadcrumbJsonLd([
+    { name: '中古Apple製品を安く買う', item: 'https://used-lab.com/' },
+    { name: '中古MacBook完全ガイド', item: 'https://used-lab.com/macbook' },
+    { name: `中古MacBookおすすめ${RECOMMEND_COUNT}選` },
+  ])
+  const articleJsonLd = buildArticleJsonLd({ headline: PAGE_TITLE, description: PAGE_DESCRIPTION, dateStr, url: PAGE_URL })
+  const faqJsonLd = buildFaqJsonLd(FAQ_JSONLD_ITEMS)
 
   // ConclusionSection用データ
   const conclusionItems = recommendModels.map((model) => ({
@@ -331,7 +304,31 @@ export default async function MacBookRecommendPage() {
               },
             ]}
           />
-          <MacBookValueZoneChart allModels={allModelsIncludingEnded} />
+          <ValueZoneChart
+            productName="MacBook"
+            osName="macOS"
+            supportYears={7}
+            sweetMin={3}
+            sweetMax={4}
+            series={[
+              { label: 'MBA 13 {year}（{chip}）', representativeSlug: 'mba-13-2020' },
+              { label: 'MBP 14 / 16 {year}（{chip}）', representativeSlug: 'mbp-14-2021' },
+              { label: 'MBP 13 {year}（{chip}）', representativeSlug: 'mbp-13-2022' },
+              { label: 'MBA 13 {year}（{chip}）', representativeSlug: 'mba-13-2022' },
+              { label: 'MBA 15 {year}（{chip}）', representativeSlug: 'mba-15-2023' },
+              { label: 'MBP 14 / 16 {year}（{chip}）', representativeSlug: 'mbp-14-2023' },
+              { label: 'MBP 14 / 16 {year}（{chip}）', representativeSlug: 'mbp-14-2023-nov' },
+              { label: 'MBA 13 / 15 {year}（{chip}）', representativeSlug: 'mba-13-2024' },
+              { label: 'MBP 14 / 16 {year}（{chip}）', representativeSlug: 'mbp-14-2024-nov' },
+              { label: 'MBA 13 / 15 {year}（{chip}）', representativeSlug: 'mba-13-2025' },
+            ]}
+            allModels={allModelsIncludingEnded}
+            buildLabel={(s, model, year) => {
+              const match = model.cpu?.match(/M\d+(\s?(Pro|Max|Ultra))?/i)
+              const chip = match ? match[0] : model.cpu || '---'
+              return s.label.replace('{year}', String(year)).replace('{chip}', chip)
+            }}
+          />
           <RecommendDetailSection items={detailItems} />
           <CompareTableSection items={compareItems} />
           <ChecklistSection

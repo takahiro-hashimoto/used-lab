@@ -8,7 +8,7 @@ import {
   getLatestWatchPriceLog,
 } from '@/lib/queries'
 import type { WatchModel, WatchPriceLog } from '@/lib/types'
-import { buildFallbackShops } from '@/lib/utils/shared-helpers'
+import { buildFallbackShops, buildBreadcrumbJsonLd, buildArticleJsonLd, buildFaqJsonLd } from '@/lib/utils/shared-helpers'
 import {
   RECOMMEND_DATE_LABEL,
   RECOMMEND_YEAR,
@@ -28,7 +28,7 @@ import CompareTableSection from './components/CompareTableSection'
 import ChecklistSection from '@/app/components/ChecklistSection'
 import ShopSection from '@/app/components/ShopSection'
 import WatchFaqSection from './components/WatchFaqSection'
-import WatchValueZoneChart from './components/WatchValueZoneChart'
+import ValueZoneChart from '@/app/components/ValueZoneChart'
 
 const PAGE_TITLE = `中古Apple Watchのおすすめ${RECOMMEND_COUNT}機種を解説。狙い目の型落ちモデルはどれ？【${RECOMMEND_DATE_LABEL}版】`
 const PAGE_DESCRIPTION =
@@ -74,40 +74,13 @@ export default async function WatchRecommendPage() {
   const dateDisplay = today.toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' })
 
   // JSON-LD
-  const breadcrumbJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.com/' },
-      { '@type': 'ListItem', position: 2, name: '中古Apple Watch完全ガイド', item: 'https://used-lab.com/watch' },
-      { '@type': 'ListItem', position: 3, name: `中古Apple Watchおすすめ${RECOMMEND_COUNT}選` },
-    ],
-  }
-
-  const articleJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
-    headline: PAGE_TITLE,
-    description: PAGE_DESCRIPTION,
-    datePublished: dateStr,
-    dateModified: dateStr,
-    author: { '@type': 'Organization', name: 'ユーズドラボ', url: 'https://used-lab.com/' },
-    publisher: { '@type': 'Organization', name: 'ユーズドラボ' },
-    mainEntityOfPage: { '@type': 'WebPage', '@id': PAGE_URL },
-  }
-
-  const faqJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: FAQ_JSONLD_ITEMS.map((item) => ({
-      '@type': 'Question',
-      name: item.question,
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: item.answer,
-      },
-    })),
-  }
+  const breadcrumbJsonLd = buildBreadcrumbJsonLd([
+    { name: '中古Apple製品を安く買う', item: 'https://used-lab.com/' },
+    { name: '中古Apple Watch完全ガイド', item: 'https://used-lab.com/watch' },
+    { name: `中古Apple Watchおすすめ${RECOMMEND_COUNT}選` },
+  ])
+  const articleJsonLd = buildArticleJsonLd({ headline: PAGE_TITLE, description: PAGE_DESCRIPTION, dateStr, url: PAGE_URL })
+  const faqJsonLd = buildFaqJsonLd(FAQ_JSONLD_ITEMS)
 
   // ConclusionSection用データ
   const conclusionItems = recommendModels.map((model) => ({
@@ -331,7 +304,30 @@ export default async function WatchRecommendPage() {
               },
             ]}
           />
-          <WatchValueZoneChart allModels={allModelsIncludingEnded} />
+          <ValueZoneChart
+            productName="Apple Watch"
+            osName="watchOS"
+            supportYears={5}
+            sweetMin={2}
+            sweetMax={3}
+            series={[
+              { label: 'Apple Watch Series 4', representativeSlug: 'series4' },
+              { label: 'Apple Watch Series 5', representativeSlug: 'series5' },
+              { label: 'Apple Watch SE（第1世代）', representativeSlug: 'se' },
+              { label: 'Apple Watch Series 6', representativeSlug: 'series6' },
+              { label: 'Apple Watch Series 7', representativeSlug: 'series7' },
+              { label: 'Apple Watch SE（第2世代）', representativeSlug: 'se2-2' },
+              { label: 'Apple Watch Series 8', representativeSlug: 'series8' },
+              { label: 'Apple Watch Ultra', representativeSlug: 'ultra' },
+              { label: 'Apple Watch Series 9', representativeSlug: 'series9' },
+              { label: 'Apple Watch Ultra 2', representativeSlug: 'ultra2' },
+              { label: 'Apple Watch Series 10', representativeSlug: 'series10' },
+              { label: 'Apple Watch SE（第3世代）', representativeSlug: 'se3-2' },
+              { label: 'Apple Watch Ultra 3', representativeSlug: 'ultra3' },
+              { label: 'Apple Watch Series 11', representativeSlug: 'series11' },
+            ]}
+            allModels={allModelsIncludingEnded}
+          />
           <RecommendDetailSection items={detailItems} />
           <CompareTableSection items={compareItems} />
           <ChecklistSection
