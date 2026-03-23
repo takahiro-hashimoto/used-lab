@@ -1,6 +1,6 @@
 export default function SettingSection() {
   return (
-    <section className="l-section l-section--bg-subtle" id="setting" aria-labelledby="heading-setting">
+    <section className="l-section" id="setting" aria-labelledby="heading-setting">
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg" id="heading-setting">
           ディスプレイ常時点灯オフの設定方法

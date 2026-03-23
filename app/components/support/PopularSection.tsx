@@ -27,7 +27,7 @@ export default function PopularSection({
   const isExternal = imageSrc.startsWith('http')
 
   return (
-    <section className="l-section l-section--bg-subtle" id="popular" aria-labelledby="heading-popular">
+    <section className="l-section" id="popular" aria-labelledby="heading-popular">
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg" id="heading-popular">
           {sectionTitle}

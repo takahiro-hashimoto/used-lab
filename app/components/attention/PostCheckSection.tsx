@@ -8,7 +8,7 @@ interface Props {
 
 export default function PostCheckSection({ heading, productName, checkItems }: Props) {
   return (
-    <section className="l-section l-section--bg-subtle" id="post-check" aria-labelledby="heading-post-check">
+    <section className="l-section" id="post-check" aria-labelledby="heading-post-check">
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg" id="heading-post-check">
           {heading}

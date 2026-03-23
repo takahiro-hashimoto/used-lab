@@ -143,7 +143,7 @@ export default function CarNavigationSystemPage() {
         {/* 目次 */}
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
-            <p className="m-section-heading m-section-heading--md">タップできる目次</p>
+            <p className="toc-title">タップできる目次</p>
             <ol className="l-grid l-grid--3col toc-list">
               <li>
                 <a href="#conclusion" className="toc-item">
@@ -180,9 +180,9 @@ export default function CarNavigationSystemPage() {
         </nav>
 
         {/* 記事本文 */}
-        <div id="content" itemProp="articleBody">
+        <div className="l-sections" id="content" itemProp="articleBody">
           {/* h2: 結論 */}
-          <section className="l-section l-section--bg-subtle" id="conclusion" aria-labelledby="heading-conclusion">
+          <section className="l-section" id="conclusion" aria-labelledby="heading-conclusion">
             <div className="l-container">
               <h2 className="m-section-heading m-section-heading--lg" id="heading-conclusion">
                 結論：iPadカーナビ化はメリットが大きい
@@ -256,7 +256,7 @@ export default function CarNavigationSystemPage() {
           </section>
 
           {/* h2: メリット5つ */}
-          <section className="l-section l-section--bg-subtle" id="merit" aria-labelledby="heading-merit">
+          <section className="l-section" id="merit" aria-labelledby="heading-merit">
             <div className="l-container">
               <h2 className="m-section-heading m-section-heading--lg" id="heading-merit">
                 iPadをカーナビ化して感じたメリット5つ
@@ -282,7 +282,7 @@ export default function CarNavigationSystemPage() {
           </section>
 
           {/* h2: おすすめモデル */}
-          <section className="l-section l-section--bg-subtle" id="recommend-model" aria-labelledby="heading-recommend-model">
+          <section className="l-section" id="recommend-model" aria-labelledby="heading-recommend-model">
             <div className="l-container">
               <h2 className="m-section-heading m-section-heading--lg" id="heading-recommend-model">
                 iPadのカーナビ化におすすめのモデル
@@ -353,10 +353,9 @@ export default function CarNavigationSystemPage() {
               </div>
             </div>
           </section>
-        </div>
-
         {/* シェアボックス */}
-        <ShareBox url={PAGE_URL} text={PAGE_TITLE} bgSubtle />
+        <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
+        </div>
       </article>
     </main>
   )

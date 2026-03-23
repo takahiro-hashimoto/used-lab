@@ -181,7 +181,7 @@ export default async function IPhoneCameraPage() {
 
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
-            <p className="m-section-heading m-section-heading--md">タップできる目次</p>
+            <p className="toc-title">タップできる目次</p>
             <ol className="l-grid l-grid--2col toc-list">
               <li>
                 <a href="#camera-comparison" className="toc-item">
@@ -208,7 +208,7 @@ export default async function IPhoneCameraPage() {
         </nav>
 
         {/* セクション */}
-        <div itemProp="articleBody">
+        <div className="l-sections" itemProp="articleBody">
           <CameraComparisonTable models={serializedModels} shopLinks={serializedLinks} />
 
           {/* カメラ機能解説 */}
@@ -515,9 +515,7 @@ export default async function IPhoneCameraPage() {
 
             </div>
           </section>
-        </div>
-
-        <section className="l-section l-section--bg-subtle" id="popular" aria-labelledby="heading-popular">
+        <section className="l-section" id="popular" aria-labelledby="heading-popular">
           <div className="l-container">
             <h2 className="m-section-heading m-section-heading--lg" id="heading-popular">目的別に人気の中古iPhone</h2>
             <p className="m-section-desc">目的別におすすめの機種を厳選。今回の記事で購入するべき機種が判断できなかった方はぜひご覧ください。</p>
@@ -567,7 +565,8 @@ export default async function IPhoneCameraPage() {
           ]}
         />
 
-        <ShareBox url={PAGE_URL} text={PAGE_TITLE} bgSubtle />
+        <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
+        </div>
       </article>
     </main>
   )

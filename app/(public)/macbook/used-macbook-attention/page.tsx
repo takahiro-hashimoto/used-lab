@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import ShareBox from '@/app/components/ShareBox'
+import PopularMacBook from '@/app/components/PopularMacBook'
 import PreCheckSection from './components/PreCheckSection'
 import RouteSection from './components/RouteSection'
 import PostCheckSection from '@/app/components/attention/PostCheckSection'
@@ -200,7 +201,7 @@ export default function UsedMacBookAttentionPage() {
         {/* 目次 */}
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
-            <p className="m-section-heading m-section-heading--md">タップできる目次</p>
+            <p className="toc-title">タップできる目次</p>
             <ol className="l-grid l-grid--3col toc-list">
               <li>
                 <a href="#pre-check" className="toc-item">
@@ -237,16 +238,17 @@ export default function UsedMacBookAttentionPage() {
         </nav>
 
         {/* セクション */}
-        <div id="content" itemProp="articleBody">
+        <div className="l-sections" id="content" itemProp="articleBody">
           <PreCheckSection />
           <RouteSection />
           <PostCheckSection heading="中古MacBookの購入後すぐやるべきチェック" productName="MacBook" checkItems={postCheckItems} />
           <FailureSection productName="MacBook" guidePath="/macbook" failurePatterns={failurePatterns} />
           <InsuranceSection {...insuranceData} />
           <FaqSection productName="MacBook" faqItems={faqItems} />
-        </div>
+        <PopularMacBook />
 
-        <ShareBox url={PAGE_URL} text={PAGE_TITLE} bgSubtle />
+        <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
+        </div>
       </article>
     </main>
   )

@@ -19,7 +19,7 @@ type Props = {
 
 export default function CompareTableSection({ items }: Props) {
   return (
-    <section className="l-section l-section--bg-subtle" id="compare" aria-labelledby="heading-compare">
+    <section className="l-section" id="compare" aria-labelledby="heading-compare">
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg" id="heading-compare">
           おすすめMacBook{RECOMMEND_COUNT_LABEL}のスペック比較表

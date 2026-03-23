@@ -140,7 +140,7 @@ export default function WifiCellularPage() {
         {/* 目次（仮置き） */}
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
-            <p className="m-section-heading m-section-heading--md">タップできる目次</p>
+            <p className="toc-title">タップできる目次</p>
             <ol className="l-grid l-grid--2col toc-list">
               <li>
                 <a href="#conclusion" className="toc-item">
@@ -172,10 +172,10 @@ export default function WifiCellularPage() {
         </nav>
 
         {/* 本文 */}
-        <div id="content" itemProp="articleBody">
+        <div className="l-sections" id="content" itemProp="articleBody">
 
           {/* セクション: まとめ（結論） */}
-          <section className="l-section l-section--bg-subtle" id="conclusion" aria-labelledby="heading-conclusion">
+          <section className="l-section" id="conclusion" aria-labelledby="heading-conclusion">
             <div className="l-container">
               <h2 className="m-section-heading m-section-heading--lg" id="heading-conclusion">
                 結論：iPad セルラーモデルとWi-Fiモデルの違い
@@ -369,7 +369,7 @@ export default function WifiCellularPage() {
           </section>
 
           {/* セクション: それぞれどんな人におすすめ？ */}
-          <section className="l-section l-section--bg-subtle" id="recommendation" aria-labelledby="heading-recommendation">
+          <section className="l-section" id="recommendation" aria-labelledby="heading-recommendation">
             <div className="l-container">
               <h2 className="m-section-heading m-section-heading--lg" id="heading-recommendation">
                 それぞれどんな人におすすめ？
@@ -540,7 +540,7 @@ export default function WifiCellularPage() {
           </section>
 
           {/* 目的別に人気の中古iPad */}
-          <section className="l-section l-section--bg-subtle" id="popular" aria-labelledby="heading-popular">
+          <section className="l-section" id="popular" aria-labelledby="heading-popular">
             <div className="l-container">
               <h2 className="m-section-heading m-section-heading--lg" id="heading-popular">目的別に人気の中古iPad</h2>
               <p className="m-section-desc">目的別におすすめの機種を厳選。診断で迷った方はぜひご覧ください。</p>
@@ -601,8 +601,6 @@ export default function WifiCellularPage() {
             ]}
           />
 
-        </div>
-
         {/* 目的別に人気の中古iPad */}
         <section className="l-section" id="popular-bottom" aria-labelledby="heading-popular-bottom">
           <div className="l-container">
@@ -634,7 +632,8 @@ export default function WifiCellularPage() {
         </section>
 
         {/* シェアボックス */}
-        <ShareBox url={PAGE_URL} text={PAGE_TITLE} bgSubtle />
+        <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
+        </div>
       </article>
     </main>
   )

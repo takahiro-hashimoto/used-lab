@@ -2,7 +2,7 @@ import { WATCH_SHOP_FAQ_ITEMS } from '@/lib/data/watch-shop'
 
 export default function FaqSection() {
   return (
-    <section className="l-section l-section--bg-subtle" id="faq" aria-labelledby="heading-faq">
+    <section className="l-section" id="faq" aria-labelledby="heading-faq">
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg" id="heading-faq">
           よくある質問

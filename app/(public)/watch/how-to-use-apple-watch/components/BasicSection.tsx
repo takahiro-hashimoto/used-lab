@@ -1,6 +1,6 @@
 export default function BasicSection() {
   return (
-    <section className="l-section l-section--bg-subtle" id="basic" aria-labelledby="heading-basic">
+    <section className="l-section" id="basic" aria-labelledby="heading-basic">
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg" id="heading-basic">
           Apple Watchでできること【基本機能編】

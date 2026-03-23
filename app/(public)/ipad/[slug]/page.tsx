@@ -114,6 +114,7 @@ export default async function IPadDetailPage({ params }: PageProps) {
         <HeroSection model={enrichedModel} latestPrice={latestPrice} />
         <LeadText model={enrichedModel} />
         <TableOfContents />
+        <div className="l-sections">
         <PurchaseVerdict model={enrichedModel} latestPrice={latestPrice} />
         <ShopGrid shops={shops} shopLinks={modelShopLinks} model={enrichedModel} />
         <LifespanSection model={enrichedModel} />
@@ -140,7 +141,8 @@ export default async function IPadDetailPage({ params }: PageProps) {
         <ReviewSection modelName={enrichedModel.model} reviews={reviews} />
         <RecommendBanner />
         <FaqSection model={enrichedModel} latestPrice={latestPrice} shopLinks={modelShopLinks} />
-        <ShareBox url={`https://used-lab.com/ipad/${enrichedModel.slug}/`} text={`中古${enrichedModel.model}は今買うべき？製品寿命、基本スペック、ベンチマークスコア、中古相場から解説`} bgSubtle />
+        <ShareBox url={`https://used-lab.com/ipad/${enrichedModel.slug}/`} text={`中古${enrichedModel.model}は今買うべき？製品寿命、基本スペック、ベンチマークスコア、中古相場から解説`} />
+        </div>
       </article>
     </main>
   )

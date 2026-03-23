@@ -130,6 +130,8 @@ export function getVerdict(
     : null
 
   // --- 判定ステータス（MacBook: 18ヶ月閾値） ---
+  // ゾーン定義: お得ゾーン=残り3〜4年, 割高=残り>4年, 非推奨=残り<3年
+  // ValueZoneChart と整合させた閾値
   let verdictMain: string
   let statusLabel: string
   let rank: VerdictRank
@@ -142,7 +144,7 @@ export function getVerdict(
     verdictMain = '今が買い時！'
     statusLabel = 'コスパ黄金期'
     rank = 'best'
-  } else if (remainingYears >= 2) {
+  } else if (remainingYears >= 3) {
     verdictMain = '悪くない選択'
     statusLabel = '実力派ミドル'
     rank = 'good'

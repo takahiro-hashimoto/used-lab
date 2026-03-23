@@ -232,7 +232,7 @@ export default async function IPhoneSpecTablePage() {
         {/* 目次 */}
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
-            <p className="m-section-heading m-section-heading--md">タップできる目次</p>
+            <p className="toc-title">タップできる目次</p>
             <ol className="l-grid l-grid--3col toc-list">
               <li>
                 <a href="#spec-table" className="toc-item">
@@ -267,7 +267,7 @@ export default async function IPhoneSpecTablePage() {
             </ol>
           </div>
         </nav>
-
+        <div className="l-sections">
         {/* セクション */}
         <SpecTable models={serializedModels} shopLinks={serializedLinks} />
         <DualCompare models={serializedModels} shopLinks={serializedLinks} />
@@ -275,6 +275,7 @@ export default async function IPhoneSpecTablePage() {
         <EvolutionTimeline />
         <GlossarySection productName="iPhone" items={GLOSSARY_ITEMS} />
         <ShareBox url="https://used-lab.com/iphone/iphone-spec-table/" text="歴代iPhoneスペック比較表！気になる機種の性能差や違いがわかる" />
+        </div>
       </article>
     </main>
   )

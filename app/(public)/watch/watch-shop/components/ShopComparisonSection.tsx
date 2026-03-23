@@ -1,6 +1,6 @@
 export default function ShopComparisonSection() {
   return (
-    <section className="l-section l-section--bg-subtle" id="comparison" aria-labelledby="heading-comparison">
+    <section className="l-section" id="comparison" aria-labelledby="heading-comparison">
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg" id="heading-comparison">
           購入先ごとのメリット・デメリット比較

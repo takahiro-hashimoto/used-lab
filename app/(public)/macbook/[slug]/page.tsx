@@ -93,6 +93,7 @@ export default async function MacBookDetailPage({ params }: PageProps) {
         <HeroSection model={model} latestPrice={latestPrice} />
         <LeadText model={model} />
         <TableOfContents />
+        <div className="l-sections">
         <PurchaseVerdict model={model} latestPrice={latestPrice} />
         <ShopGrid shops={shops} shopLinks={modelShopLinks} model={model} />
         <LifespanSection model={model} />
@@ -116,7 +117,8 @@ export default async function MacBookDetailPage({ params }: PageProps) {
         <Accessories model={model} />
         <RecommendBanner />
         <FaqSection model={model} latestPrice={latestPrice} shopLinks={modelShopLinks} />
-        <ShareBox url={`https://used-lab.com/macbook/${model.slug}/`} text={`中古${model.model}は今買うべき？製品寿命、基本スペック、ベンチマークスコア、中古相場から解説`} bgSubtle />
+        <ShareBox url={`https://used-lab.com/macbook/${model.slug}/`} text={`中古${model.model}は今買うべき？製品寿命、基本スペック、ベンチマークスコア、中古相場から解説`} />
+        </div>
       </article>
     </main>
   )

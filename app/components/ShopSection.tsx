@@ -15,7 +15,6 @@ type Props = {
   productName: string
   description: string
   specRows: SpecRowDef[]
-  bgSubtle?: boolean
 }
 
 function PriceIcon({ value }: { value: string | null }) {
@@ -41,11 +40,11 @@ function SpecValue({ value }: { value: string | null }) {
 
 const RECOMMENDED_SHOP_ID = 1
 
-export default function ShopSection({ items, productName, description, specRows, bgSubtle = false }: Props) {
+export default function ShopSection({ items, productName, description, specRows }: Props) {
   if (items.length === 0) return null
 
   return (
-    <section className={`l-section${bgSubtle ? ' l-section--bg-subtle' : ''}`} id="shops" aria-labelledby="heading-shops">
+    <section className="l-section" id="shops" aria-labelledby="heading-shops">
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg" id="heading-shops">
           中古{productName}を安く買えるおすすめショップ

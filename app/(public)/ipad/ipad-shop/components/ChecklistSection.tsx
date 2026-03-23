@@ -1,6 +1,6 @@
 export default function ChecklistSection() {
   return (
-    <section className="l-section l-section--bg-subtle" id="checklist" aria-labelledby="heading-checklist">
+    <section className="l-section" id="checklist" aria-labelledby="heading-checklist">
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg" id="heading-checklist">
           中古iPad購入直前の最終チェックリスト

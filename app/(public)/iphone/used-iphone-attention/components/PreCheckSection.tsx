@@ -2,7 +2,7 @@ import Image from 'next/image'
 
 export default function PreCheckSection() {
   return (
-    <section className="l-section l-section--bg-subtle" id="pre-check" aria-labelledby="heading-pre-check">
+    <section className="l-section" id="pre-check" aria-labelledby="heading-pre-check">
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg" id="heading-pre-check">
           【最重要】中古iPhoneの購入前に必ず確認すべき注意点

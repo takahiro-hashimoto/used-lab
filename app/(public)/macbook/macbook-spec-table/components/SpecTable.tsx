@@ -115,7 +115,7 @@ export default function SpecTable({ models, shopLinks }: Props) {
   ]
 
   return (
-    <section className="l-section l-section--bg-subtle" id="spec-table" aria-labelledby="heading-spec-table">
+    <section className="l-section" id="spec-table" aria-labelledby="heading-spec-table">
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg" id="heading-spec-table">
           歴代MacBookスペック比較表

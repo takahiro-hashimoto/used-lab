@@ -30,12 +30,12 @@ export const metadata: Metadata = {
     title: `${PAGE_TITLE} | ユーズドラボ`,
     description: PAGE_DESCRIPTION,
     url: '/watch/watch-shop/',
-    images: [{ url: '/images/watch/watch-9.jpg', width: 360, height: 360, alt: PAGE_TITLE }],
+    images: [{ url: '/images/content/cheap-buy.jpg', width: 360, height: 360, alt: PAGE_TITLE }],
   },
   twitter: {
     title: `${PAGE_TITLE} | ユーズドラボ`,
     description: PAGE_DESCRIPTION,
-    images: ['/images/watch/watch-9.jpg'],
+    images: ['/images/content/cheap-buy.jpg'],
   },
 }
 
@@ -153,7 +153,7 @@ export default async function WatchShopPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <img
-                  src="/images/content/watch-image-07.jpg"
+                  src="/images/content/cheap-buy.jpg"
                   alt="中古Apple Watchの購入先イメージ"
                   className="hero-media__img"
                   width={360}
@@ -189,7 +189,7 @@ export default async function WatchShopPage() {
         {/* 目次 */}
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
-            <p className="m-section-heading m-section-heading--md">タップできる目次</p>
+            <p className="toc-title">タップできる目次</p>
             <ol className="l-grid l-grid--3col toc-list">
               <li>
                 <a href="#shops" className="toc-item">
@@ -226,7 +226,7 @@ export default async function WatchShopPage() {
         </nav>
 
         {/* セクション */}
-        <div itemProp="articleBody">
+        <div className="l-sections" itemProp="articleBody">
           <BuyingOptionsSection />
           <ShopComparisonSection />
           <RecommendByTypeSection />
@@ -236,9 +236,8 @@ export default async function WatchShopPage() {
           <PopularSection />
           <FaqSection />
           <ConclusionSection />
+        <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>
-
-        <ShareBox url={PAGE_URL} text={PAGE_TITLE} bgSubtle />
       </article>
     </main>
   )

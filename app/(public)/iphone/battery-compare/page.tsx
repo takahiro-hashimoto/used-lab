@@ -202,7 +202,7 @@ export default async function IPhoneBatteryComparePage() {
         {/* 目次 */}
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
-            <p className="m-section-heading m-section-heading--md">タップできる目次</p>
+            <p className="toc-title">タップできる目次</p>
             <ol className="l-grid l-grid--2col toc-list">
               <li>
                 <a href="#battery-ranking" className="toc-item">
@@ -231,7 +231,7 @@ export default async function IPhoneBatteryComparePage() {
             </ol>
           </div>
         </nav>
-
+        <div className="l-sections">
         {/* バッテリー容量 一覧表 */}
         <BatteryTable models={batteryModels} />
 
@@ -239,7 +239,7 @@ export default async function IPhoneBatteryComparePage() {
         <ChargingTable models={chargingModels} />
 
         {/* バッテリー劣化具合の確認方法 */}
-        <section className="l-section l-section--bg-subtle" id="battery-health" aria-labelledby="heading-battery-health">
+        <section className="l-section" id="battery-health" aria-labelledby="heading-battery-health">
           <div className="l-container">
             <h2 className="m-section-heading m-section-heading--lg" id="heading-battery-health">
               iPhoneのバッテリー劣化具合を確認する方法
@@ -337,7 +337,7 @@ export default async function IPhoneBatteryComparePage() {
         </section>
 
         {/* よくある質問 */}
-        <section className="l-section l-section--bg-subtle" id="faq" aria-labelledby="heading-faq">
+        <section className="l-section" id="faq" aria-labelledby="heading-faq">
           <div className="l-container">
             <h2 className="m-section-heading m-section-heading--lg" id="heading-faq">
               iPhoneのバッテリーに関するよくある質問
@@ -358,7 +358,7 @@ export default async function IPhoneBatteryComparePage() {
         </section>
 
         <ShareBox url="https://used-lab.com/iphone/battery-compare/" text="歴代iPhoneのバッテリー容量比較ランキング！電池持ちがいい機種はどれ？" />
-
+        </div>
       </article>
     </main>
   )

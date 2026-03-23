@@ -98,7 +98,7 @@ export default function AirPodsFaqSection() {
   ]
 
   return (
-    <section className="l-section l-section--bg-subtle" id="faq" aria-labelledby="heading-faq">
+    <section className="l-section" id="faq" aria-labelledby="heading-faq">
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg" id="heading-faq">
           中古AirPodsの購入に関するよくある質問

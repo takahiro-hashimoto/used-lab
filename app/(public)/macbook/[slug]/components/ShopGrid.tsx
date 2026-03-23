@@ -100,7 +100,7 @@ export default function ShopGrid({ shops, shopLinks, model }: Props) {
                   rel="nofollow noopener noreferrer"
                   target="_blank"
                 >
-                  {model.model}の中古価格{' '}
+                  {(model.shortname || model.model).replace(/MacBook Air/g, 'MBA').replace(/MacBook Pro/g, 'MBP')}の中古価格{' '}
                   <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
                 </a>
               </article>

@@ -99,6 +99,7 @@ export default function AboutPage() {
       </header>
       </div>
 
+      <div className="l-sections">
       {/* 運営者について */}
       <section className="l-section">
         <div className="l-container">
@@ -155,7 +156,7 @@ export default function AboutPage() {
       </section>
 
       {/* メディア掲載 */}
-      <section className="l-section l-section--bg-subtle">
+      <section className="l-section">
         <div className="l-container">
           <h2 className="m-section-heading m-section-heading--lg">
             <i className="fa-solid fa-newspaper" aria-hidden="true"></i>{' '}
@@ -223,6 +224,7 @@ export default function AboutPage() {
 
         </div>
       </section>
+      </div>
 
     </main>
   )

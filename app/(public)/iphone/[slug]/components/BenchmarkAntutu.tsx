@@ -74,11 +74,12 @@ export default function BenchmarkAntutu({ model, allModels }: Props) {
 
         {/* ベンチマーク比較テーブル */}
         <div className="m-card m-card--shadow m-table-card">
-          <table className="m-table">
+          <div className="m-table-scroll">
+          <table className="m-table bench-table">
             <caption className="visually-hidden">iPhoneモデル別 Antutu Benchmark v10 スコア比較</caption>
             <thead>
               <tr>
-                <th scope="col">モデル</th>
+                <th scope="col" className="bench-table__sticky">モデル</th>
                 <th scope="col">合計</th>
                 <th scope="col">CPU</th>
                 <th scope="col">GPU</th>
@@ -92,12 +93,12 @@ export default function BenchmarkAntutu({ model, allModels }: Props) {
                 const isCurrent = m.id === model.id
                 return (
                   <tr key={m.id} className={isCurrent ? 'm-table-highlight' : undefined}>
-                    <td>
+                    <th scope="row" className="bench-table__sticky">
                       {isCurrent && (
                         <span className="m-badge m-badge--primary m-table-this-badge">この機種</span>
                       )}
                       {' '}{m.model}
-                    </td>
+                    </th>
                     <td>
                       <span
                         className="bench-bar"
@@ -158,6 +159,7 @@ export default function BenchmarkAntutu({ model, allModels }: Props) {
               })}
             </tbody>
           </table>
+          </div>
         </div>
       </div>
     </section>

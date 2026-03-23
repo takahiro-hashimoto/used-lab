@@ -214,7 +214,7 @@ export default async function UsedIpadAttentionPage() {
         {/* 目次 */}
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
-            <p className="m-section-heading m-section-heading--md">タップできる目次</p>
+            <p className="toc-title">タップできる目次</p>
             <ol className="l-grid l-grid--3col toc-list">
               <li>
                 <a href="#pre-check" className="toc-item">
@@ -251,16 +251,15 @@ export default async function UsedIpadAttentionPage() {
         </nav>
 
         {/* セクション */}
-        <div id="content" itemProp="articleBody">
+        <div className="l-sections" id="content" itemProp="articleBody">
           <PreCheckSection models={enrichedModels} />
           <RouteSection />
           <PostCheckSection heading="中古iPadの購入後すぐやるべきチェック" productName="iPad" checkItems={postCheckItems} />
           <FailureSection productName="iPad" guidePath="/ipad" failurePatterns={failurePatterns} />
           <InsuranceSection {...insuranceData} />
           <FaqSection productName="iPad" faqItems={faqItems} />
+        <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>
-
-        <ShareBox url={PAGE_URL} text={PAGE_TITLE} bgSubtle />
       </article>
     </main>
   )

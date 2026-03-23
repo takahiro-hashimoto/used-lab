@@ -46,13 +46,18 @@ type Props = {
 
 function calcSupportRemaining(dateStr: string | null, supportYears: number): number {
   if (!dateStr) return 0
-  return Math.max(0, new Date(dateStr).getFullYear() + supportYears - new Date().getFullYear())
+  const release = new Date(dateStr)
+  const now = new Date()
+  const monthsPassed =
+    (now.getFullYear() - release.getFullYear()) * 12 + now.getMonth() - release.getMonth()
+  return Math.max(0, supportYears - monthsPassed / 12)
 }
 
 function formatSupportLabel(remaining: number): string {
   if (remaining <= 0) return 'サポート終了'
   if (remaining < 1) return '残り1年未満'
-  return `残り約${remaining}年`
+  const rounded = Math.round(remaining * 10) / 10
+  return `残り約${rounded}年`
 }
 
 function getZoneId(remaining: number, sweetMin: number, sweetMax: number): ZoneId {
@@ -98,7 +103,7 @@ export default function ValueZoneChart({
   }))
 
   return (
-    <section className="l-section l-section--bg-subtle" id="value-zone" aria-labelledby="heading-value-zone">
+    <section className="l-section" id="value-zone" aria-labelledby="heading-value-zone">
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg" id="heading-value-zone">
           中古{productName}の「お得ゾーン」とは？

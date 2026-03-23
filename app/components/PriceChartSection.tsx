@@ -16,8 +16,6 @@ type Props = {
   storageNote?: string
   /** 注釈のショップ説明テキスト */
   shopDescription?: string
-  /** セクション背景クラス */
-  bgSubtle?: boolean
 }
 
 function formatPrice(price: number | null): string {
@@ -137,7 +135,7 @@ function calculateDailyTableData(dailyData: DailyDataType): DailyRow[] {
 }
 
 export default function PriceChartSection({
-  dailyData, modelName, latestMinMaxPairs, latestDate, storageNote, shopDescription, bgSubtle = false,
+  dailyData, modelName, latestMinMaxPairs, latestDate, storageNote, shopDescription,
 }: Props) {
   const range = calculateAvgPriceRange(latestMinMaxPairs)
   const trendChanges = calculateTrendChanges(dailyData)
@@ -147,7 +145,7 @@ export default function PriceChartSection({
   const defaultShopDesc = '各ECサイトの販売価格を定期的に集計したものです。実際の購入価格は在庫状況やタイミングにより変動する場合があります。'
 
   return (
-    <section className={`l-section${bgSubtle ? ' l-section--bg-subtle' : ''}`} id="price-trend" aria-labelledby="heading-price-trend">
+    <section className="l-section" id="price-trend" aria-labelledby="heading-price-trend">
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg" id="heading-price-trend">
           中古{modelName}の価格推移

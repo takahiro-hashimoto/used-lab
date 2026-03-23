@@ -153,6 +153,15 @@ ul {
   background: var(--color-bg-subtle);
 }
 
+/* 自動交互背景: 奇数=グレー, 偶数=白 */
+.l-sections > :nth-child(odd) {
+  background-color: var(--color-bg-subtle);
+}
+
+.l-sections > :nth-child(even) {
+  background-color: transparent;
+}
+
 /* --- l-grid --- */
 .l-grid {
   gap: var(--space-md);
@@ -1241,7 +1250,7 @@ a.header-admin-link:hover {
 
 /* ---------- hero ---------- */
 .hero {
-  padding: var(--space-xl);
+  padding: var(--space-2xl) var(--space-xl) var(--space-2xl);
   background: linear-gradient(135deg, var(--color-hero-start) 0%, var(--color-hero-mid) 40%, var(--color-hero-end) 100%);
   align-items: center;
   display: flex;
@@ -1313,6 +1322,7 @@ a.header-admin-link:hover {
   font-size: clamp(0.85rem, 1.5vw, 1.1rem);
   color: rgba(255, 255, 255, 0.85);
   letter-spacing: 0.05em;
+  font-weight: normal;
 }
 
 .hero-scroll {
@@ -1415,7 +1425,7 @@ a.header-admin-link:hover {
 .hero-content {
   display: flex;
   flex-direction: column;
-  gap: var(--space-md);
+  gap: var(--space-sm);
 }
 
 .hero-title {
@@ -1464,7 +1474,7 @@ a.header-admin-link:hover {
 .hero-media__img {
   border-radius: var(--radius-xl);
   filter: drop-shadow(0 20px 60px rgba(0, 0, 0, 0.3));
-  max-width: 280px;
+  max-width: 240px;
   aspect-ratio: 1 / 1;
   object-fit: contain;
 }
@@ -1558,6 +1568,21 @@ a.header-admin-link:hover {
   margin: 0;
   font-size: var(--font-size-xs);
   color: var(--color-text-tertiary);
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .breadcrumb-list {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+    scrollbar-width: none;
+  }
+
+  .breadcrumb-list::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .breadcrumb-item a {
@@ -1640,6 +1665,13 @@ a.header-admin-link:hover {
 }
 
 /* ---------- section-toc ---------- */
+.toc-title {
+  text-align: center;
+  font-weight: 700;
+  font-size: var(--font-size-lg);
+  margin-bottom: var(--space-md);
+}
+
 .toc-list {
   list-style: none;
   padding: 0;
@@ -1676,6 +1708,18 @@ a.header-admin-link:hover {
 
 .toc-item:hover i {
   opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+  .toc-list {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  .toc-item {
+    justify-content: center;
+    padding: var(--space-sm);
+    font-size: var(--font-size-xs);
+  }
 }
 
 /* ---------- section-conclusion ---------- */
@@ -1727,7 +1771,7 @@ a.header-admin-link:hover {
 /* Vendor Card */
 .m-vendor-card {
   position: relative;
-  padding: var(--space-xl) var(--space-lg) var(--space-lg);
+  padding: var(--space-lg) var(--space-md) var(--space-md);
   display: flex;
   flex-direction: column;
 }
@@ -1949,6 +1993,12 @@ a.header-admin-link:hover {
 .price-details-card {
   margin-top: var(--space-xl);
   padding: var(--space-xl) var(--space-2xl);
+}
+
+@media (max-width: 768px) {
+  .price-details-card {
+    padding: var(--space-lg);
+  }
 }
 
 .price-details-card-heading {
@@ -2237,6 +2287,34 @@ a.header-admin-link:hover {
   height: 6px;
   border-radius: 3px;
   background: linear-gradient(to right, var(--bar-color) var(--bar-pct), var(--color-border-light) var(--bar-pct));
+}
+
+/* ---------- bench-table: SP横スクロール＋モデル名固定 ---------- */
+@media (max-width: 768px) {
+  .bench-table {
+    min-width: 600px;
+  }
+
+  .bench-table__sticky {
+    position: sticky;
+    left: 0;
+    z-index: 2;
+    background: var(--color-bg-subtle);
+    white-space: nowrap;
+    font-size: var(--font-size-xxs, 10px);
+    padding: var(--space-xs) var(--space-sm) !important;
+    width: 1%;
+  }
+
+  .bench-table thead th.bench-table__sticky {
+    z-index: 3;
+    background: var(--color-text);
+    color: #fff;
+  }
+
+  .m-table-highlight .bench-table__sticky {
+    background: var(--color-highlight-bg, #fffbeb);
+  }
 }
 
 /* ---------- section-popular ---------- */
@@ -2746,6 +2824,9 @@ a.header-admin-link:hover {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--space-sm) var(--space-xs);
+  background: var(--color-primary-light);
+  padding: var(--space-lg);
+  border-radius: var(--radius-md);
 }
 
 .recommend-card__price-card {
@@ -2852,11 +2933,11 @@ a.header-admin-link:hover {
 .recommend-card__info-title {
   font-size: var(--font-size-base);
   font-weight: 700;
-  color: var(--color-text);
+  color: var(--color-primary);
 }
 
 .recommend-card__spec-item {
-  display: block;
+  display: flex;
   gap: 8px;
   align-items: center;
   line-height: 1.3;
@@ -3531,8 +3612,8 @@ a.header-admin-link:hover {
 
 .battery-table__img-wrap {
   flex-shrink: 0;
-  width: 56px;
-  height: 56px;
+  width: 46px;
+  height: 46px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -3564,6 +3645,7 @@ a.header-admin-link:hover {
   font-size: var(--font-size-xs);
   color: var(--color-text-muted, #6b7280);
 }
+
 
 .battery-table__capacity {
   font-weight: 700;
@@ -3760,7 +3842,7 @@ a.header-admin-link:hover {
 }
 
 .related-link-card__img {
-  width: 120px;
+  width: 99px;
   height: auto;
   object-fit: cover;
   flex-shrink: 0;
@@ -4639,6 +4721,7 @@ body.is-menu-open {
   font-weight: 400;
   opacity: 0.7;
   font-size: 10px;
+  white-space: nowrap;
 }
 
 .ios-matrix tbody th {
@@ -4824,8 +4907,8 @@ body.is-menu-open {
   }
 
   .conclusion-header {
-    flex-direction: column;
-    align-items: flex-start;
+    flex-direction: row;
+    align-items: center;
     gap: var(--space-sm);
     margin: calc(var(--space-lg) * -1) calc(var(--space-lg) * -1) var(--space-lg);
     padding: var(--space-md) var(--space-lg);
@@ -5207,6 +5290,7 @@ body.is-menu-open {
 
   .compare-category {
     padding: var(--space-sm) var(--space-md);
+    display: none;
   }
 
   /* --- compare-table SP: カード型レイアウト --- */
@@ -5279,8 +5363,7 @@ body.is-menu-open {
   .compare-table tbody tr:nth-child(2) td,
   .compare-table tbody tr:last-child th,
   .compare-table tbody tr:last-child td {
-    padding-top: 0;
-    padding-bottom: 0;
+    padding: var(--space-sm) var(--space-md);
   }
 
   /* アクション行 */
@@ -7676,7 +7759,7 @@ body.is-menu-open {
   display: flex;
   justify-content: space-between;
   padding: 10px var(--space-md);
-  background: var(--color-bg-subtle);
+  background: #fff;
   font-size: 11px;
   font-weight: 500;
   color: var(--color-text-muted);

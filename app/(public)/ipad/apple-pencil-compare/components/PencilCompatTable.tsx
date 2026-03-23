@@ -89,7 +89,7 @@ export default function PencilCompatTable({ models, shopLinks }: Props) {
   ]
 
   return (
-    <section className="l-section l-section--bg-subtle" id="compare-table" aria-labelledby="heading-compat">
+    <section className="l-section" id="compare-table" aria-labelledby="heading-compat">
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg" id="heading-compat">
           各Apple Pencilの対応機種一覧表

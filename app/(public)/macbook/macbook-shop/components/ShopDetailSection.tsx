@@ -25,7 +25,7 @@ export default function ShopDetailSection({ items }: Props) {
   if (items.length === 0) return null
 
   return (
-    <section className="l-section l-section--bg-subtle" id="shops-detail" aria-labelledby="heading-shops-detail">
+    <section className="l-section" id="shops-detail" aria-labelledby="heading-shops-detail">
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg" id="heading-shops-detail">
           <i className="fa-solid fa-bullseye" aria-hidden="true"></i> 中古MacBookの主な購入先の詳細

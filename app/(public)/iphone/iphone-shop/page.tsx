@@ -29,12 +29,12 @@ export const metadata: Metadata = {
     title: `${PAGE_TITLE} | ユーズドラボ`,
     description: PAGE_DESCRIPTION,
     url: '/iphone/iphone-shop/',
-    images: [{ url: '/images/iphone/iphone16pro.jpg', width: 360, height: 360, alt: PAGE_TITLE }],
+    images: [{ url: '/images/content/cheap-buy.jpg', width: 360, height: 360, alt: PAGE_TITLE }],
   },
   twitter: {
     title: `${PAGE_TITLE} | ユーズドラボ`,
     description: PAGE_DESCRIPTION,
-    images: ['/images/iphone/iphone16pro.jpg'],
+    images: ['/images/content/cheap-buy.jpg'],
   },
 }
 
@@ -152,7 +152,7 @@ export default async function IPhoneShopPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <img
-                  src="https://placehold.co/360x360/1a1a2e/ffffff?text=Where+to+Buy"
+                  src="/images/content/cheap-buy.jpg"
                   alt="中古iPhoneの購入先イメージ"
                   className="hero-media__img"
                   width={360}
@@ -187,7 +187,7 @@ export default async function IPhoneShopPage() {
         {/* 目次 */}
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
-            <p className="m-section-heading m-section-heading--md">タップできる目次</p>
+            <p className="toc-title">タップできる目次</p>
             <ol className="l-grid l-grid--3col toc-list">
               <li>
                 <a href="#shops" className="toc-item">
@@ -224,7 +224,7 @@ export default async function IPhoneShopPage() {
         </nav>
 
         {/* セクション */}
-        <div itemProp="articleBody">
+        <div className="l-sections" itemProp="articleBody">
           <BuyingOptionsSection />
           <ShopComparisonSection />
           <RecommendByTypeSection />
@@ -233,9 +233,8 @@ export default async function IPhoneShopPage() {
           <ChecklistSection />
           <PopularSection />
           <FaqSection />
+        <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>
-
-        <ShareBox url={PAGE_URL} text={PAGE_TITLE} bgSubtle />
       </article>
     </main>
   )

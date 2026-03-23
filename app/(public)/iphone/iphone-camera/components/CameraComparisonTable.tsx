@@ -101,7 +101,7 @@ export default function CameraComparisonTable({ models, shopLinks }: Props) {
   ]
 
   return (
-    <section className="l-section l-section--bg-subtle" id="camera-comparison" aria-labelledby="heading-camera-comparison">
+    <section className="l-section" id="camera-comparison" aria-labelledby="heading-camera-comparison">
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg" id="heading-camera-comparison">
           歴代iPhoneのカメラ性能 比較表

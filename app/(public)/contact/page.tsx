@@ -56,6 +56,7 @@ export default function ContactPage() {
       </header>
       </div>
 
+      <div className="l-sections">
       <section className="l-section">
         <div className="l-container">
           <div className="contact-form-wrapper">
@@ -74,6 +75,7 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
+      </div>
     </main>
   )
 }

@@ -2,32 +2,54 @@ import ComparisonTable from './ComparisonTable'
 
 export default function SummarySection() {
   return (
-    <section className="l-section l-section--bg-subtle" id="summary" aria-labelledby="heading-summary">
-      <div className="l-container">
-        <h2 className="m-section-heading m-section-heading--lg" id="heading-summary">
-          MacとWindowsどっちがいい？まとめ
-        </h2>
-        <p className="m-section-desc">
-          パソコンを初めて選ぶ方やOSの乗り換えを検討している方に向けて、主な比較項目をおさらいします
-        </p>
-
-        <ComparisonTable />
-
-        <div className="m-card m-card--shadow m-card--padded" style={{ marginTop: 'var(--space-xl)' }}>
-          <p className="popular-card-desc">
-            ぜひ両者のメリット・デメリットを把握した上で、自分の用途にピッタリ合うパソコンを購入してください。
+    <>
+      <section className="l-section" id="summary" aria-labelledby="heading-summary">
+        <div className="l-container">
+          <h2 className="m-section-heading m-section-heading--lg" id="heading-summary">
+            MacとWindowsどっちがいい？まとめ
+          </h2>
+          <p className="m-section-desc">
+            パソコンを初めて選ぶ方やOSの乗り換えを検討している方に向けて、主な比較項目をおさらいします
           </p>
-          <p className="popular-card-desc" style={{ marginTop: 'var(--space-sm)' }}>
-            Macの購入を検討中の方は、中古のMacBookも選択肢に入れてみてはいかがでしょうか。中古でも状態のよい製品を選べばお得に高性能なMacを手に入れることができます。
+
+          <ComparisonTable />
+        </div>
+      </section>
+
+      <section className="l-section" id="popular" aria-labelledby="heading-popular">
+        <div className="l-container">
+          <h2 className="m-section-heading m-section-heading--lg" id="heading-popular">
+            目的別に人気の中古MacBook
+          </h2>
+          <p className="m-section-desc">
+            目的別におすすめの機種を厳選。購入すべき中古MacBookをさくっと知りたい方はぜひご覧ください。
           </p>
-          <div style={{ marginTop: 'var(--space-md)' }}>
-            <a href="/macbook" className="m-btn m-btn--primary">
-              <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
-              <span>中古MacBook完全購入ガイドを見る</span>
-            </a>
+          <div className="m-card m-card--shadow popular-card">
+            <figure className="popular-card-figure">
+              <img
+                alt="中古MacBookおすすめのイメージ画像"
+                className="popular-card-img"
+                width={400}
+                height={500}
+                loading="lazy"
+                src="/images/content/macbook-image-04.jpg"
+              />
+            </figure>
+            <div className="popular-card-body">
+              <p className="popular-card-subtitle">目的別におすすめ機種を厳選！</p>
+              <h3 className="popular-card-title">中古MacBookおすすめモデル</h3>
+              <p className="popular-card-desc">
+                コスパ重視、クリエイティブ向け、持ち運び重視など目的別に買うべきモデルを紹介。チップ性能やメモリ、バッテリー持ち、macOSサポート期間など購入前にチェックすべき項目も網羅しています。
+              </p>
+              <div>
+                <a href="/macbook/recommend/" className="m-btn m-btn--primary">
+                  おすすめモデルを見る <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   )
 }

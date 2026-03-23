@@ -364,7 +364,7 @@ export default async function AirPodsPriceInfoPage() {
         {/* 目次 */}
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
-            <p className="m-section-heading m-section-heading--md">タップできる目次</p>
+            <p className="toc-title">タップできる目次</p>
             <ol className="l-grid l-grid--3col toc-list">
               <li>
                 <a href="#pd-dashboard" className="toc-item">
@@ -401,7 +401,7 @@ export default async function AirPodsPriceInfoPage() {
         </nav>
 
         {/* セクション */}
-        <div itemProp="articleBody">
+        <div className="l-sections" itemProp="articleBody">
           <DashboardSection
             modelsData={modelsData}
             initialSelected={initialSelected}
@@ -423,9 +423,8 @@ export default async function AirPodsPriceInfoPage() {
           <RecommendBanner />
 
           <FaqSection />
+        <ShareBox url={PAGE_URL} text={`AirPodsの中古相場一覧 | 歴代${modelCount}機種の価格推移を独自集計`} />
         </div>
-
-        <ShareBox url={PAGE_URL} text={`AirPodsの中古相場一覧 | 歴代${modelCount}機種の価格推移を独自集計`} bgSubtle />
       </article>
     </main>
   )

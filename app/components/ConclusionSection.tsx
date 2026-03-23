@@ -21,7 +21,7 @@ type Props = {
 
 export default function ConclusionSection({ items, heading, descriptions, gridCols, imagePath, placeholderText }: Props) {
   return (
-    <section className="l-section l-section--bg-subtle" id="conclusion" aria-labelledby="heading-conclusion">
+    <section className="l-section" id="conclusion" aria-labelledby="heading-conclusion">
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg" id="heading-conclusion">
           {heading}

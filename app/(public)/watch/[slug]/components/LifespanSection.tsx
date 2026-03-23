@@ -12,7 +12,7 @@ export default function LifespanSection({ model }: Props) {
   if (osLife.releaseYear === 0) return null
 
   return (
-    <section className="l-section l-section--bg-subtle" id="lifespan" aria-labelledby="heading-lifespan">
+    <section className="l-section" id="lifespan" aria-labelledby="heading-lifespan">
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg" id="heading-lifespan">
           {model.model}はいつまで使える？製品寿命は？

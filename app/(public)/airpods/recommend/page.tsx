@@ -246,7 +246,7 @@ export default async function AirPodsRecommendPage() {
         {/* 目次 */}
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
-            <p className="m-section-heading m-section-heading--md">タップできる目次</p>
+            <p className="toc-title">タップできる目次</p>
             <ol className="l-grid l-grid--3col toc-list">
               <li>
                 <a href="#conclusion" className="toc-item">
@@ -283,7 +283,7 @@ export default async function AirPodsRecommendPage() {
         </nav>
 
         {/* セクション */}
-        <div itemProp="articleBody">
+        <div className="l-sections" itemProp="articleBody">
           <ConclusionSection
             items={conclusionItems}
             heading={<>【結論】{RECOMMEND_YEAR}年現在のおすすめ中古AirPods{RECOMMEND_COUNT}機種</>}
@@ -368,9 +368,8 @@ export default async function AirPodsRecommendPage() {
             ]}
           />
           <AirPodsFaqSection />
-        </div>
-
         <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
+        </div>
       </article>
     </main>
   )

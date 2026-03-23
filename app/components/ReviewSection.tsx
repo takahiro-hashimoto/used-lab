@@ -9,7 +9,7 @@ export default function ReviewSection({ modelName, reviews }: Props) {
   if (reviews.length === 0) return null
 
   return (
-    <section className="l-section l-section--bg-subtle" id="reviews" aria-labelledby="heading-reviews">
+    <section className="l-section" id="reviews" aria-labelledby="heading-reviews">
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg" id="heading-reviews">
           {modelName}のレビュー記事

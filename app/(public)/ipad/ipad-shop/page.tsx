@@ -30,12 +30,12 @@ export const metadata: Metadata = {
     title: `${PAGE_TITLE} | ユーズドラボ`,
     description: PAGE_DESCRIPTION,
     url: '/ipad/ipad-shop/',
-    images: [{ url: '/images/ipad/ipad-air-m2.jpg', width: 360, height: 360, alt: PAGE_TITLE }],
+    images: [{ url: '/images/content/cheap-buy.jpg', width: 360, height: 360, alt: PAGE_TITLE }],
   },
   twitter: {
     title: `${PAGE_TITLE} | ユーズドラボ`,
     description: PAGE_DESCRIPTION,
-    images: ['/images/ipad/ipad-air-m2.jpg'],
+    images: ['/images/content/cheap-buy.jpg'],
   },
 }
 
@@ -153,7 +153,7 @@ export default async function IPadShopPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <img
-                  src="https://placehold.co/360x360/1a1a2e/ffffff?text=Where+to+Buy"
+                  src="/images/content/cheap-buy.jpg"
                   alt="中古iPadの購入先イメージ"
                   className="hero-media__img"
                   width={360}
@@ -188,7 +188,7 @@ export default async function IPadShopPage() {
         {/* 目次 */}
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
-            <p className="m-section-heading m-section-heading--md">タップできる目次</p>
+            <p className="toc-title">タップできる目次</p>
             <ol className="l-grid l-grid--3col toc-list">
               <li>
                 <a href="#shops" className="toc-item">
@@ -225,7 +225,7 @@ export default async function IPadShopPage() {
         </nav>
 
         {/* セクション */}
-        <div itemProp="articleBody">
+        <div className="l-sections" itemProp="articleBody">
           <BuyingOptionsSection />
           <ShopComparisonSection />
           <RecommendByTypeSection />
@@ -235,9 +235,8 @@ export default async function IPadShopPage() {
           <PopularSection />
           <FaqSection />
           <ConclusionSection />
+        <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>
-
-        <ShareBox url={PAGE_URL} text={PAGE_TITLE} bgSubtle />
       </article>
     </main>
   )

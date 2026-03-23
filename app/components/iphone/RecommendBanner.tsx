@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 export default function RecommendBanner() {
   return (
-    <section className="l-section l-section--bg-subtle" id="popular" aria-labelledby="heading-popular">
+    <section className="l-section" id="popular" aria-labelledby="heading-popular">
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg" id="heading-popular">
           目的別に人気の中古iPhone

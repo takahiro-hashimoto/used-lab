@@ -93,6 +93,7 @@ export default async function WatchDetailPage({ params }: PageProps) {
         <HeroSection model={model} latestPrice={latestPrice} />
         <LeadText model={model} />
         <TableOfContents />
+        <div className="l-sections">
         <PurchaseVerdict model={model} latestPrice={latestPrice} />
         <ShopGrid shops={shops} shopLinks={modelShopLinks} model={model} />
         <LifespanSection model={model} />
@@ -105,20 +106,21 @@ export default async function WatchDetailPage({ params }: PageProps) {
             latestMinMaxPairs={latestMinMaxPairs}
             latestDate={latestDate}
             storageNote={storageNote}
-            bgSubtle
+           
           />
         ) : (
-          <PriceTrendPlaceholder modelName={model.model} bgSubtle />
+          <PriceTrendPlaceholder modelName={model.model} />
         )}
 
         <AdvanceFeatures model={model} />
-        <CompareSection model={model} allModels={allModels} shopLinks={shopLinks} bgSubtle>
+        <CompareSection model={model} allModels={allModels} shopLinks={shopLinks}>
           {(props) => <CompareSelector {...props} />}
         </CompareSection>
         <Accessories model={model} />
         <RecommendBanner />
         <FaqSection model={model} latestPrice={latestPrice} shopLinks={modelShopLinks} />
-        <ShareBox url={`https://used-lab.com/watch/${model.slug}/`} text={`中古${model.model}は今買うべき？製品寿命、基本スペック、中古相場から解説`} bgSubtle />
+        <ShareBox url={`https://used-lab.com/watch/${model.slug}/`} text={`中古${model.model}は今買うべき？製品寿命、基本スペック、中古相場から解説`} />
+        </div>
       </article>
     </main>
   )

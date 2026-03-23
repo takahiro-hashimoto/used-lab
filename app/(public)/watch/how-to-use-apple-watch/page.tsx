@@ -148,7 +148,7 @@ export default function HowToUseAppleWatchPage() {
         {/* 目次 */}
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
-            <p className="m-section-heading m-section-heading--md">タップできる目次</p>
+            <p className="toc-title">タップできる目次</p>
             <ol className="l-grid l-grid--3col toc-list">
               <li>
                 <a href="#basic" className="toc-item">
@@ -175,7 +175,7 @@ export default function HowToUseAppleWatchPage() {
         </nav>
 
         {/* 本文 */}
-        <div id="content" itemProp="articleBody">
+        <div className="l-sections" id="content" itemProp="articleBody">
 
           {/* セクション: 基本機能編 */}
           <BasicSection />
@@ -189,10 +189,8 @@ export default function HowToUseAppleWatchPage() {
           {/* セクション: Apple製品連携編 */}
           <AppleEcoSection />
 
-        </div>
-
         {/* まとめ */}
-        <section className="l-section l-section--bg-subtle" id="matome" aria-labelledby="heading-matome">
+        <section className="l-section" id="matome" aria-labelledby="heading-matome">
           <div className="l-container">
             <h2 className="m-section-heading m-section-heading--lg" id="heading-matome">
               Apple Watchがあればできること25選 まとめ
@@ -217,10 +215,11 @@ export default function HowToUseAppleWatchPage() {
           </div>
         </section>
 
-        <RecommendBanner bgSubtle={false} />
+        <RecommendBanner />
 
         {/* シェアボックス */}
-        <ShareBox url={PAGE_URL} text={PAGE_TITLE} bgSubtle />
+        <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
+        </div>
       </article>
     </main>
   )

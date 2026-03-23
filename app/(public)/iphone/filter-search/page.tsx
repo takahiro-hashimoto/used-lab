@@ -271,12 +271,12 @@ export default async function IPhoneFilterSearchPage() {
             </div>
           </div>
         </section>
-
+        <div className="l-sections">
         {/* 診断フィルター + 結果 */}
         <FilterSearchApp models={modelsData} shopLinks={shopLinksData} />
 
         {/* 診断ロジック説明 */}
-        <section className="l-section l-section--bg-subtle" aria-labelledby="heading-logic">
+        <section className="l-section" aria-labelledby="heading-logic">
           <div className="l-container">
             <h2 className="m-section-heading m-section-heading--lg" id="heading-logic">
               診断ロジックについて
@@ -327,7 +327,7 @@ export default async function IPhoneFilterSearchPage() {
         </section>
 
         {/* よくある質問 */}
-        <section className="l-section l-section--bg-subtle" id="faq" aria-labelledby="heading-faq">
+        <section className="l-section" id="faq" aria-labelledby="heading-faq">
           <div className="l-container">
             <h2 className="m-section-heading m-section-heading--lg" id="heading-faq">
               iPhone機種診断に関するよくある質問
@@ -348,7 +348,7 @@ export default async function IPhoneFilterSearchPage() {
         </section>
 
         <ShareBox url="https://used-lab.com/iphone/filter-search/" text="iPhone機種診断シミュレーター｜自分に合うおすすめ中古スマホがすぐわかる【2026年版】" />
-
+        </div>
       </article>
     </main>
   )

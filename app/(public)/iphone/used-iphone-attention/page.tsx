@@ -200,7 +200,7 @@ export default function UsedIphoneAttentionPage() {
         {/* 目次 */}
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
-            <p className="m-section-heading m-section-heading--md">タップできる目次</p>
+            <p className="toc-title">タップできる目次</p>
             <ol className="l-grid l-grid--3col toc-list">
               <li>
                 <a href="#pre-check" className="toc-item">
@@ -237,7 +237,7 @@ export default function UsedIphoneAttentionPage() {
         </nav>
 
         {/* セクション */}
-        <div id="content" itemProp="articleBody">
+        <div className="l-sections" id="content" itemProp="articleBody">
           <PreCheckSection />
           <RouteSection />
           <PostCheckSection heading="購入後すぐやるべきチェック" productName="iPhone" checkItems={postCheckItems} />
@@ -272,10 +272,9 @@ export default function UsedIphoneAttentionPage() {
             </div>
           </section>
 
-          <FaqSection productName="iPhone" faqItems={faqItems} bgSubtle />
-        </div>
-
+          <FaqSection productName="iPhone" faqItems={faqItems} />
         <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
+        </div>
       </article>
     </main>
   )

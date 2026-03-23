@@ -1,6 +1,6 @@
 export default function MeritSection() {
   return (
-    <section className="l-section l-section--bg-subtle" id="merit" aria-labelledby="heading-merit">
+    <section className="l-section" id="merit" aria-labelledby="heading-merit">
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg" id="heading-merit">
           ディスプレイ常時点灯のメリット

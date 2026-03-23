@@ -91,7 +91,7 @@ export default function AccessorySection({ model, accessories }: Props) {
   if (cards.length === 0) return null
 
   return (
-    <section className="l-section l-section--bg-subtle" id="accessories" aria-labelledby="heading-accessories">
+    <section className="l-section" id="accessories" aria-labelledby="heading-accessories">
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg" id="heading-accessories">
           {model.model}に対応するアクセサリー

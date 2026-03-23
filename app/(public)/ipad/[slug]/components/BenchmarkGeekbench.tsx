@@ -23,7 +23,7 @@ export default function BenchmarkGeekbench({ model, allModels }: Props) {
   const pct = (val: number, max: number) => max > 0 ? Math.round((val / max) * 100) : 0
 
   return (
-    <section className="l-section l-section--bg-subtle" id="geekbench" aria-labelledby="heading-geekbench">
+    <section className="l-section" id="geekbench" aria-labelledby="heading-geekbench">
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg" id="heading-geekbench">
           {model.model}のGeekbenchスコア

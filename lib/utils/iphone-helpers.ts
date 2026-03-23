@@ -276,23 +276,29 @@ export function getVerdict(
     : null
 
   // --- 判定ステータス ---
+  // ゾーン定義: お得ゾーン=残り3〜4年, 割高=残り>4年, 非推奨=残り<3年
+  // ValueZoneChart と整合させた閾値
   let verdictMain: string
   let statusLabel: string
   let rank: VerdictRank
 
   if (monthsPassed < 12) {
+    // 発売1年未満 → 割高ゾーンだが最新性能
     verdictMain = '最高性能を狙うなら今'
     statusLabel = '現役バリバリ'
     rank = 'best'
   } else if (remainingYears >= 3 && multiScore >= 3500) {
+    // お得ゾーン（残り3年以上）＋性能十分
     verdictMain = '今が買い時！'
     statusLabel = 'コスパ黄金期'
     rank = 'best'
-  } else if (remainingYears >= 2) {
+  } else if (remainingYears >= 3) {
+    // お得ゾーン（残り3年以上）だがスコア低め
     verdictMain = '悪くない選択'
     statusLabel = '実力派ミドル'
     rank = 'good'
   } else {
+    // 非推奨ゾーン（残り3年未満）
     verdictMain = '見送り推奨'
     statusLabel = '寿命間近'
     rank = 'wait'

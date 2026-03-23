@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import ShareBox from '@/app/components/ShareBox'
+import PopularMacBook from '@/app/components/PopularMacBook'
 import ComparisonBasics from './components/ComparisonBasics'
 import MacbookStrengths from './components/MacbookStrengths'
 import IpadStrengths from './components/IpadStrengths'
@@ -146,7 +147,7 @@ export default function IpadMacbookComparePage() {
         {/* 目次 */}
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
-            <p className="m-section-heading m-section-heading--md">タップできる目次</p>
+            <p className="toc-title">タップできる目次</p>
             <ol className="l-grid l-grid--3col toc-list">
               <li>
                 <a href="#recommend" className="toc-item">
@@ -183,9 +184,9 @@ export default function IpadMacbookComparePage() {
         </nav>
 
         {/* 記事本文 */}
-        <div id="content" itemProp="articleBody">
+        <div className="l-sections" id="content" itemProp="articleBody">
           {/* h2: 結論：MacとiPadそれぞれどんな方におすすめ？ */}
-          <section className="l-section l-section--bg-subtle" id="recommend" aria-labelledby="heading-recommend">
+          <section className="l-section" id="recommend" aria-labelledby="heading-recommend">
             <div className="l-container">
               <h2 className="m-section-heading m-section-heading--lg" id="heading-recommend">
                 結論：MacとiPadそれぞれどんな方におすすめ？
@@ -214,7 +215,7 @@ export default function IpadMacbookComparePage() {
           </section>
 
           {/* h2: MacBookが得意な作業 */}
-          <section className="l-section l-section--bg-subtle" id="macbook-strengths" aria-labelledby="heading-macbook-strengths">
+          <section className="l-section" id="macbook-strengths" aria-labelledby="heading-macbook-strengths">
             <div className="l-container">
               <h2 className="m-section-heading m-section-heading--lg" id="heading-macbook-strengths">
                 MacBookが得意な作業
@@ -240,7 +241,7 @@ export default function IpadMacbookComparePage() {
           </section>
 
           {/* h2: MacBook・iPadで差があまりない作業 */}
-          <section className="l-section l-section--bg-subtle" id="no-difference" aria-labelledby="heading-no-difference">
+          <section className="l-section" id="no-difference" aria-labelledby="heading-no-difference">
             <div className="l-container">
               <h2 className="m-section-heading m-section-heading--lg" id="heading-no-difference">
                 MacBook・iPadで差があまりない作業
@@ -321,10 +322,11 @@ export default function IpadMacbookComparePage() {
               </div>
             </div>
           </section>
-        </div>
+        <PopularMacBook />
 
         {/* シェアボックス */}
-        <ShareBox url={PAGE_URL} text={PAGE_TITLE} bgSubtle />
+        <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
+        </div>
       </article>
     </main>
   )

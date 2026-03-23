@@ -1,11 +1,13 @@
-export default function PopularSection() {
+export default function PopularMacBook() {
   return (
     <section className="l-section" id="popular" aria-labelledby="heading-popular">
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg" id="heading-popular">
           目的別に人気の中古MacBook
         </h2>
-        <p className="m-section-desc">目的別におすすめの機種を厳選。購入すべき中古MacBookをさくっと知りたい方はぜひご覧ください。</p>
+        <p className="m-section-desc">
+          目的別におすすめの機種を厳選。購入すべき中古MacBookをさくっと知りたい方はぜひご覧ください。
+        </p>
         <div className="m-card m-card--shadow popular-card">
           <figure className="popular-card-figure">
             <img

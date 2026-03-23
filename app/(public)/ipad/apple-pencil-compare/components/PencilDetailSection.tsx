@@ -87,7 +87,7 @@ const DETAILS = [
 
 export default function PencilDetailSection() {
   return (
-    <section className="l-section l-section--bg-subtle" id="pencil-detail" aria-labelledby="heading-pencil-detail">
+    <section className="l-section" id="pencil-detail" aria-labelledby="heading-pencil-detail">
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg" id="heading-pencil-detail">
           Apple Pencilの違い・機能解説

@@ -1,6 +1,6 @@
 export default function ConclusionSection() {
   return (
-    <section id="how-to" className="l-section l-section--bg-subtle">
+    <section id="how-to" className="l-section">
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg">
 結論：Apple Watchを安く買うおすすめの方法

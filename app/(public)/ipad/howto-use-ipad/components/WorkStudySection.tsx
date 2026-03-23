@@ -1,6 +1,6 @@
 export default function WorkStudySection() {
   return (
-    <section className="l-section l-section--bg-subtle" id="work" aria-labelledby="heading-work">
+    <section className="l-section" id="work" aria-labelledby="heading-work">
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg" id="heading-work">
           iPadがあればできること【仕事・勉強編】

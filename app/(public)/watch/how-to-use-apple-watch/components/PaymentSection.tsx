@@ -1,6 +1,6 @@
 export default function PaymentSection() {
   return (
-    <section className="l-section l-section--bg-subtle" id="payment" aria-labelledby="heading-payment">
+    <section className="l-section" id="payment" aria-labelledby="heading-payment">
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg" id="heading-payment">
           Apple Watchでできること【決済編】

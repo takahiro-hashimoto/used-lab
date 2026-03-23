@@ -203,7 +203,7 @@ export default async function AirPodsGuidePage() {
         {/* 目次 */}
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
-            <p className="m-section-heading m-section-heading--md">タップできる目次</p>
+            <p className="toc-title">タップできる目次</p>
             <ol className="l-grid l-grid--3col toc-list">
               <li><a href="#market-price" className="toc-item">最新相場 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#caution" className="toc-item">注意点 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
@@ -215,7 +215,7 @@ export default async function AirPodsGuidePage() {
           </div>
         </nav>
 
-        <div itemProp="articleBody">
+        <div className="l-sections" itemProp="articleBody">
 
           {/* ========== 中古AirPodsの最新相場 ========== */}
           <section className="l-section" id="market-price" aria-labelledby="heading-market-price">
@@ -261,7 +261,7 @@ export default async function AirPodsGuidePage() {
           </section>
 
           {/* ========== 中古AirPodsを選ぶ際の確認ポイント ========== */}
-          <section className="l-section l-section--bg-subtle" id="caution" aria-labelledby="heading-caution">
+          <section className="l-section" id="caution" aria-labelledby="heading-caution">
             <div className="l-container">
               <h2 className="m-section-heading m-section-heading--lg" id="heading-caution">中古AirPodsを選ぶ際の確認ポイント</h2>
               <p className="m-section-desc">中古AirPodsを購入する際に確認しておきたい5つのポイントをまとめました。</p>
@@ -373,7 +373,7 @@ export default async function AirPodsGuidePage() {
           </section>
 
           {/* ========== 購入先比較 ========== */}
-          <section className="l-section l-section--bg-subtle" id="where-to-buy" aria-labelledby="heading-where-to-buy">
+          <section className="l-section" id="where-to-buy" aria-labelledby="heading-where-to-buy">
             <div className="l-container">
               <h2 className="m-section-heading m-section-heading--lg" id="heading-where-to-buy">中古AirPodsはどこで買う？ショップ比較一覧</h2>
               <p className="m-section-desc">中古AirPods販売店の比較情報。保証内容、価格、在庫の豊富さなど、</p>
@@ -416,7 +416,7 @@ export default async function AirPodsGuidePage() {
           </section>
 
           {/* ========== よくある質問 ========== */}
-          <section className="l-section l-section--bg-subtle" id="faq" aria-labelledby="heading-faq">
+          <section className="l-section" id="faq" aria-labelledby="heading-faq">
             <div className="l-container">
               <h2 className="m-section-heading m-section-heading--lg" id="heading-faq">中古AirPodsに関するよくある質問</h2>
               <p className="m-section-desc">中古AirPodsの購入を検討している方からよく寄せられる質問をまとめました。</p>
@@ -433,9 +433,8 @@ export default async function AirPodsGuidePage() {
             </div>
           </section>
 
+        <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>
-
-        <ShareBox url={PAGE_URL} text={PAGE_TITLE} bgSubtle />
       </article>
     </main>
   )

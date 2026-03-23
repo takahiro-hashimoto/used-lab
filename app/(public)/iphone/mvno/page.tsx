@@ -218,7 +218,7 @@ export default async function MvnoPage() {
         {/* ===== 目次 ===== */}
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
-            <p className="m-section-heading m-section-heading--md">タップできる目次</p>
+            <p className="toc-title">タップできる目次</p>
             <ol className="l-grid l-grid--3col toc-list">
               <li>
                 <a href="#pitfall" className="toc-item">
@@ -258,9 +258,9 @@ export default async function MvnoPage() {
             </ol>
           </div>
         </nav>
-
+        <div className="l-sections">
         {/* ===== 中古スマホ+格安SIM セクション ===== */}
-        <section id="pitfall" className="l-section l-section--bg-subtle">
+        <section id="pitfall" className="l-section">
           <div className="l-container">
             <h2 className="m-section-heading m-section-heading--lg">
               中古スマホ+格安SIMで、賢く機種変更
@@ -397,7 +397,7 @@ export default async function MvnoPage() {
         </section>
 
         {/* ===== 格安SIM診断 セクション ===== */}
-        <section id="check" className="l-section l-section--bg-subtle">
+        <section id="check" className="l-section">
           <div className="l-container">
             <script
               type="application/ld+json"
@@ -539,7 +539,7 @@ export default async function MvnoPage() {
         )}
 
         {/* ===== 格安SIM業者 詳細セクション ===== */}
-        <section id="providers" className="l-section l-section--bg-subtle">
+        <section id="providers" className="l-section">
           <div className="l-container">
             <h2 className="m-section-heading m-section-heading--lg">
               中古スマホセット対応の格安SIM業者詳細
@@ -758,7 +758,7 @@ export default async function MvnoPage() {
         </section>
 
         {/* ===== 目的別に人気の中古iPhone ===== */}
-        <section id="popular" className="l-section l-section--bg-subtle" aria-labelledby="heading-popular">
+        <section id="popular" className="l-section" aria-labelledby="heading-popular">
           <div className="l-container">
             <h2 className="m-section-heading m-section-heading--lg" id="heading-popular">
               目的別に人気の中古iPhone
@@ -881,7 +881,8 @@ export default async function MvnoPage() {
         </section>
 
         {/* ===== シェアボックス ===== */}
-        <ShareBox url={PAGE_URL} text={PAGE_TITLE} bgSubtle />
+        <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
+        </div>
       </article>
     </main>
   )

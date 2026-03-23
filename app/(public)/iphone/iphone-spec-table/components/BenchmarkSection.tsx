@@ -43,7 +43,7 @@ export default function BenchmarkSection({ models }: Props) {
   const maxAntutuUx = Math.max(...antutuModels.map((m) => m.antutu_ux || 0))
 
   return (
-    <section className="l-section l-section--bg-subtle" id="benchmark" aria-labelledby="heading-benchmark">
+    <section className="l-section" id="benchmark" aria-labelledby="heading-benchmark">
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg" id="heading-benchmark">
           歴代iPhoneのチップ性能・処理速度を比較（ベンチマークスコア）
@@ -83,11 +83,12 @@ export default function BenchmarkSection({ models }: Props) {
 
             {/* テーブル */}
             <div className="m-card m-card--shadow m-table-card">
-              <table className="m-table">
+              <div className="m-table-scroll">
+              <table className="m-table bench-table">
                 <caption className="visually-hidden">iPhoneモデル別 Geekbench 6 ベンチマークスコア比較</caption>
                 <thead>
                   <tr>
-                    <th scope="col">モデル</th>
+                    <th scope="col" className="bench-table__sticky">モデル</th>
                     <th scope="col">シングルコア</th>
                     <th scope="col">マルチコア</th>
                     <th scope="col">Metal</th>
@@ -96,7 +97,7 @@ export default function BenchmarkSection({ models }: Props) {
                 <tbody>
                   {geekbenchModels.map((m) => (
                     <tr key={m.id}>
-                      <td style={{ whiteSpace: 'nowrap', fontSize: '0.85rem' }}>{m.model}</td>
+                      <th scope="row" className="bench-table__sticky">{m.model}</th>
                       <td><BenchBar value={m.score_single!} maxValue={maxSingle} color="#e74c6f" /></td>
                       <td><BenchBar value={m.score_multi!} maxValue={maxMulti} color="#f0a030" /></td>
                       <td><BenchBar value={m.score_metal!} maxValue={maxMetal} color="var(--color-primary, #2589d0)" /></td>
@@ -104,6 +105,7 @@ export default function BenchmarkSection({ models }: Props) {
                   ))}
                 </tbody>
               </table>
+              </div>
             </div>
           </div>
         )}
@@ -140,11 +142,12 @@ export default function BenchmarkSection({ models }: Props) {
 
             {/* テーブル */}
             <div className="m-card m-card--shadow m-table-card">
-              <table className="m-table">
+              <div className="m-table-scroll">
+              <table className="m-table bench-table">
                 <caption className="visually-hidden">iPhoneモデル別 Antutu Benchmark v10 スコア比較</caption>
                 <thead>
                   <tr>
-                    <th scope="col">モデル</th>
+                    <th scope="col" className="bench-table__sticky">モデル</th>
                     <th scope="col">合計</th>
                     <th scope="col">CPU</th>
                     <th scope="col">GPU</th>
@@ -157,7 +160,7 @@ export default function BenchmarkSection({ models }: Props) {
                     const total = (m.antutu_cpu || 0) + (m.antutu_gpu || 0) + (m.antutu_mem || 0) + (m.antutu_ux || 0)
                     return (
                       <tr key={m.id}>
-                        <td style={{ whiteSpace: 'nowrap', fontSize: '0.85rem' }}>{m.model}</td>
+                        <th scope="row" className="bench-table__sticky">{m.model}</th>
                         <td><BenchBar value={total} maxValue={maxAntutuTotal} color="var(--color-primary, #2589d0)" /></td>
                         <td><BenchBar value={m.antutu_cpu!} maxValue={maxAntutuCpu} color="#e74c6f" /></td>
                         <td><BenchBar value={m.antutu_gpu!} maxValue={maxAntutuGpu} color="#34a853" /></td>
@@ -168,6 +171,7 @@ export default function BenchmarkSection({ models }: Props) {
                   })}
                 </tbody>
               </table>
+              </div>
             </div>
           </div>
         )}

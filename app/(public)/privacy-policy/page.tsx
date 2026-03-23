@@ -58,8 +58,9 @@ export default function PrivacyPolicyPage() {
       </header>
       </div>
 
+      <div className="l-sections">
       {/* 本文 */}
-      <section className="l-section l-section--bg-subtle">
+      <section className="l-section">
         <div className="l-container">
           <div className="pp-body content-prose m-card m-card--shadow m-card--padded">
 
@@ -150,6 +151,7 @@ export default function PrivacyPolicyPage() {
           </div>
         </div>
       </section>
+      </div>
     </main>
   )
 }

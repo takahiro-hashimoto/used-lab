@@ -1,6 +1,6 @@
 export default function EntertainmentSection() {
   return (
-    <section className="l-section l-section--bg-subtle" id="entertainment" aria-labelledby="heading-entertainment">
+    <section className="l-section" id="entertainment" aria-labelledby="heading-entertainment">
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg" id="heading-entertainment">
           iPadがあればできること【エンタメ編】

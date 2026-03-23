@@ -390,7 +390,7 @@ export default function FilterSearchApp({ models, shopLinks }: Props) {
   return (
     <>
       {/* STEP 1: 用途選択 */}
-      <section className="l-section l-section--bg-subtle" id="ifd-step1" aria-labelledby="heading-step1">
+      <section className="l-section" id="ifd-step1" aria-labelledby="heading-step1">
         <div className="l-container">
           <div className="ifd-step-header">
             <span className="ifd-step-badge">STEP 1</span>
@@ -418,7 +418,7 @@ export default function FilterSearchApp({ models, shopLinks }: Props) {
       </section>
 
       {/* STEP 3: こだわり条件 */}
-      <section className="l-section l-section--bg-subtle" id="ifd-step3" aria-labelledby="heading-step3">
+      <section className="l-section" id="ifd-step3" aria-labelledby="heading-step3">
         <div className="l-container">
           <div className="ifd-step-header">
             <span className="ifd-step-badge">STEP 3</span>

@@ -85,8 +85,9 @@ export default async function HomePage() {
         </div>
       </header>
 
+      <div className="l-sections">
       {/* ── カテゴリナビ ── */}
-      <section id="categories" className="l-section l-section--bg-subtle">
+      <section id="categories" className="l-section">
         <div className="l-container">
           <h2 className="m-section-heading m-section-heading--lg">製品カテゴリから探す</h2>
           <p className="m-section-desc">気になる製品カテゴリを選んで、選び方・おすすめ機種・中古相場をチェック</p>
@@ -161,7 +162,7 @@ export default async function HomePage() {
       </section>
 
       {/* ── 新着情報 + 運営者情報（2カラム） ── */}
-      <section className="l-section l-section--bg-subtle">
+      <section className="l-section">
         <div className="l-container">
           <div className="top-bottom-grid">
             {/* 新着情報 */}
@@ -230,6 +231,7 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
+      </div>
     </main>
   )
 }

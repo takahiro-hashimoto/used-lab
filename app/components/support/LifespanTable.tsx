@@ -87,7 +87,7 @@ export default function LifespanTable({
   glossaryGroups,
 }: Props) {
   return (
-    <section className="l-section l-section--bg-subtle" id="lifespan-table" aria-labelledby="heading-lifespan-table">
+    <section className="l-section" id="lifespan-table" aria-labelledby="heading-lifespan-table">
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg" id="heading-lifespan-table">
           {sectionTitle}

@@ -136,7 +136,7 @@ export default async function UsedMacbookSupportPage() {
         {/* 目次 */}
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
-            <p className="m-section-heading m-section-heading--md">タップできる目次</p>
+            <p className="toc-title">タップできる目次</p>
             <ol className="l-grid l-grid--2col toc-list">
               <li>
                 <a href="#support-table" className="toc-item">
@@ -165,14 +165,15 @@ export default async function UsedMacbookSupportPage() {
             </ol>
           </div>
         </nav>
-
+        <div className="l-sections">
         {/* セクション */}
         <MacOsSupportMatrix models={allModelsWithEnded} />
         <LifespanTable models={allModelsWithEnded} />
         <TimingSection />
         <PopularSection />
         <FaqSection />
-        <ShareBox url={PAGE_URL} text={PAGE_TITLE} bgSubtle />
+        <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
+        </div>
       </article>
     </main>
   )

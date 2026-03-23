@@ -142,7 +142,7 @@ export default function DashboardSection({ modelsData, initialSelected, seriesGr
     .filter((m): m is ModelData => m != null)
 
   return (
-    <section className="l-section l-section--bg-subtle" id="pd-dashboard" aria-labelledby="pd-dashboard-title">
+    <section className="l-section" id="pd-dashboard" aria-labelledby="pd-dashboard-title">
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg" id="pd-dashboard-title">
           Apple Watchの中古相場と価格推移グラフ

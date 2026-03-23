@@ -205,7 +205,7 @@ export default async function WatchSpecTablePage() {
         {/* 目次 */}
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
-            <p className="m-section-heading m-section-heading--md">タップできる目次</p>
+            <p className="toc-title">タップできる目次</p>
             <ol className="l-grid l-grid--3col toc-list">
               <li>
                 <a href="#spec-table" className="toc-item">
@@ -234,14 +234,15 @@ export default async function WatchSpecTablePage() {
             </ol>
           </div>
         </nav>
-
+        <div className="l-sections">
         {/* セクション */}
         <SpecTable models={serializedModels} shopLinks={serializedLinks} />
         <DualCompare models={serializedModels} shopLinks={serializedLinks} />
         <EvolutionTimeline />
         <GlossarySection productName="Apple Watch" items={GLOSSARY_ITEMS} />
-        <RecommendBanner bgSubtle={false} />
-        <ShareBox url="https://used-lab.com/watch/watch-spec-table/" text="歴代Apple Watchスペック比較表！各世代の性能の違いがすぐわかる" bgSubtle />
+        <RecommendBanner />
+        <ShareBox url="https://used-lab.com/watch/watch-spec-table/" text="歴代Apple Watchスペック比較表！各世代の性能の違いがすぐわかる" />
+        </div>
       </article>
     </main>
   )

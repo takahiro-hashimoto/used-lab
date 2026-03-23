@@ -1,11 +1,10 @@
 type Props = {
   modelName: string
-  bgSubtle?: boolean
 }
 
-export default function PriceTrendPlaceholder({ modelName, bgSubtle = false }: Props) {
+export default function PriceTrendPlaceholder({ modelName }: Props) {
   return (
-    <section className={`l-section${bgSubtle ? ' l-section--bg-subtle' : ''}`} id="price-trend" aria-labelledby="heading-price-trend">
+    <section className="l-section" id="price-trend" aria-labelledby="heading-price-trend">
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg" id="heading-price-trend">
           中古{modelName}の価格推移

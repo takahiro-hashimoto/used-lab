@@ -297,6 +297,7 @@ export default function GuidelinesPage() {
       </header>
       </div>
 
+      <div className="l-sections">
       {/* ユーズドラボについて */}
       <section className="l-section">
         <div className="l-container">
@@ -328,7 +329,7 @@ export default function GuidelinesPage() {
       </section>
 
       {/* コンテンツ制作フロー */}
-      <section className="l-section l-section--bg-subtle">
+      <section className="l-section">
         <div className="l-container">
           <h2 className="m-section-heading m-section-heading--lg">
             コンテンツ制作フロー
@@ -381,7 +382,7 @@ export default function GuidelinesPage() {
       </section>
 
       {/* 記事作成の際の参考情報サイト */}
-      <section className="l-section l-section--bg-subtle">
+      <section className="l-section">
         <div className="l-container">
           <h2 className="m-section-heading m-section-heading--lg">
             記事作成の際の参考情報サイト
@@ -405,6 +406,7 @@ export default function GuidelinesPage() {
           </div>
         </div>
       </section>
+      </div>
     </main>
   )
 }

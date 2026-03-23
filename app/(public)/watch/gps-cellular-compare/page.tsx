@@ -160,7 +160,7 @@ export default function GpsCellularComparePage() {
         {/* 目次 */}
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
-            <p className="m-section-heading m-section-heading--md">タップできる目次</p>
+            <p className="toc-title">タップできる目次</p>
             <ol className="l-grid l-grid--2col toc-list">
               <li>
                 <a href="#recommend" className="toc-item">
@@ -187,9 +187,9 @@ export default function GpsCellularComparePage() {
         </nav>
 
         {/* 記事本文 */}
-        <div id="content" itemProp="articleBody">
+        <div className="l-sections" id="content" itemProp="articleBody">
           {/* h2: 結論 */}
-          <section className="l-section l-section--bg-subtle" id="recommend" aria-labelledby="heading-recommend">
+          <section className="l-section" id="recommend" aria-labelledby="heading-recommend">
             <div className="l-container">
               <h2 className="m-section-heading m-section-heading--lg" id="heading-recommend">
                 結論：GPSとセルラーどっちがおすすめ？
@@ -297,10 +297,9 @@ export default function GpsCellularComparePage() {
               </div>
             </div>
           </section>
-        </div>
-
         {/* シェアボックス */}
-        <ShareBox url={PAGE_URL} text={PAGE_TITLE} bgSubtle />
+        <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
+        </div>
       </article>
     </main>
   )

@@ -68,7 +68,7 @@ export default function BatteryTable({ models }: Props) {
   }, [models, sortOrder, modelFilter])
 
   return (
-    <section className="l-section l-section--bg-subtle" id="battery-ranking" aria-labelledby="heading-battery-ranking">
+    <section className="l-section" id="battery-ranking" aria-labelledby="heading-battery-ranking">
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg" id="heading-battery-ranking">
           歴代iPhoneのバッテリー容量 一覧表
@@ -137,6 +137,7 @@ export default function BatteryTable({ models }: Props) {
                     <th scope="col">ビデオ再生</th>
                     <th scope="col">ストリーミング</th>
                     <th scope="col">音声再生</th>
+                    <th scope="col">中古価格</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -163,6 +164,16 @@ export default function BatteryTable({ models }: Props) {
                       <td>{m.video || '-'}</td>
                       <td>{m.streaming || '-'}</td>
                       <td>{m.audio || '-'}</td>
+                      <td>
+                        <a
+                          href={`https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%3Fkeyword%3D${encodeURIComponent(m.model)}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="m-btn m-btn--primary m-btn--sm"
+                        >
+                          イオシスで探す
+                        </a>
+                      </td>
                     </tr>
                   ))}
                 </tbody>

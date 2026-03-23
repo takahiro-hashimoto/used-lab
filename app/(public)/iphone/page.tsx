@@ -200,7 +200,7 @@ export default async function IPhoneGuidePage() {
         {/* 目次 */}
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
-            <p className="m-section-heading m-section-heading--md">タップできる目次</p>
+            <p className="toc-title">タップできる目次</p>
             <ol className="l-grid l-grid--3col toc-list">
               <li><a href="#filter-tool" className="toc-item">診断ツール <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#market-price" className="toc-item">最新相場 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
@@ -213,10 +213,10 @@ export default async function IPhoneGuidePage() {
           </div>
         </nav>
 
-        <div itemProp="articleBody">
+        <div className="l-sections" itemProp="articleBody">
 
           {/* ========== 絞り込みツール ========== */}
-          <section className="l-section l-section--bg-subtle" id="filter-tool" aria-labelledby="heading-filter-tool">
+          <section className="l-section" id="filter-tool" aria-labelledby="heading-filter-tool">
             <div className="l-container">
               <h2 className="m-section-heading m-section-heading--lg" id="heading-filter-tool">条件に合うiPhoneを絞り込む</h2>
               <p className="m-section-desc">予算・サイズ・認証方式・充電端子など、ご自身の条件を選ぶことで候補を絞り込めます。</p>
@@ -290,7 +290,7 @@ export default async function IPhoneGuidePage() {
           </section>
 
           {/* ========== 中古iPhoneを選ぶ際の確認ポイント ========== */}
-          <section className="l-section l-section--bg-subtle" id="caution" aria-labelledby="heading-caution">
+          <section className="l-section" id="caution" aria-labelledby="heading-caution">
             <div className="l-container">
               <h2 className="m-section-heading m-section-heading--lg" id="heading-caution">中古iPhoneを選ぶ際の確認ポイント</h2>
               <p className="m-section-desc">中古iPhoneを購入する際に確認しておきたい6つのポイントをまとめました。</p>
@@ -417,7 +417,7 @@ export default async function IPhoneGuidePage() {
           </section>
 
           {/* ========== 購入先比較 ========== */}
-          <section className="l-section l-section--bg-subtle" id="where-to-buy" aria-labelledby="heading-where-to-buy">
+          <section className="l-section" id="where-to-buy" aria-labelledby="heading-where-to-buy">
             <div className="l-container">
               <h2 className="m-section-heading m-section-heading--lg" id="heading-where-to-buy">中古iPhoneはどこで買う？ショップ比較一覧</h2>
               <p className="m-section-desc">中古iPhone販売店の比較情報。保証内容、価格、在庫の豊富さなど、</p>
@@ -472,7 +472,7 @@ export default async function IPhoneGuidePage() {
           </section>
 
           {/* ========== スペック比較ガイド ========== */}
-          <section className="l-section l-section--bg-subtle" id="spec-compare" aria-labelledby="heading-spec-compare">
+          <section className="l-section" id="spec-compare" aria-labelledby="heading-spec-compare">
             <div className="l-container">
               <h2 className="m-section-heading m-section-heading--lg" id="heading-spec-compare">中古iPhoneのデータ・スペック比較ガイド</h2>
               <p className="m-section-desc">カメラ性能、バッテリー寿命、サポート期間など、機種選びに役立つ詳細なスペック比較記事をまとめました。</p>
@@ -561,9 +561,8 @@ export default async function IPhoneGuidePage() {
             </div>
           </section>
 
+        <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>
-
-        <ShareBox url={PAGE_URL} text={PAGE_TITLE} bgSubtle />
       </article>
     </main>
   )

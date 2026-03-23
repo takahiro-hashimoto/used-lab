@@ -23,7 +23,7 @@ export default function BenchmarkGeekbench({ model, allModels }: Props) {
   const pct = (val: number, max: number) => max > 0 ? Math.round((val / max) * 100) : 0
 
   return (
-    <section className="l-section l-section--bg-subtle" id="geekbench" aria-labelledby="heading-geekbench">
+    <section className="l-section" id="geekbench" aria-labelledby="heading-geekbench">
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg" id="heading-geekbench">
           {model.model}のGeekbenchスコア
@@ -57,11 +57,12 @@ export default function BenchmarkGeekbench({ model, allModels }: Props) {
 
         {/* ベンチマーク比較テーブル */}
         <div className="m-card m-card--shadow m-table-card">
-          <table className="m-table">
+          <div className="m-table-scroll">
+          <table className="m-table bench-table">
             <caption className="visually-hidden">iPhoneモデル別 Geekbench 6 ベンチマークスコア比較</caption>
             <thead>
               <tr>
-                <th scope="col">モデル</th>
+                <th scope="col" className="bench-table__sticky">モデル</th>
                 <th scope="col">シングルコア</th>
                 <th scope="col">マルチコア</th>
                 <th scope="col">Metal</th>
@@ -72,12 +73,12 @@ export default function BenchmarkGeekbench({ model, allModels }: Props) {
                 const isCurrent = m.id === model.id
                 return (
                   <tr key={m.id} className={isCurrent ? 'm-table-highlight' : undefined}>
-                    <td>
+                    <th scope="row" className="bench-table__sticky">
                       {isCurrent && (
                         <span className="m-badge m-badge--primary m-table-this-badge">この機種</span>
                       )}
                       {' '}{m.model}
-                    </td>
+                    </th>
                     <td>
                       <span
                         className="bench-bar"
@@ -116,6 +117,7 @@ export default function BenchmarkGeekbench({ model, allModels }: Props) {
               })}
             </tbody>
           </table>
+          </div>
         </div>
       </div>
     </section>

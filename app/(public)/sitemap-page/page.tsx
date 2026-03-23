@@ -132,9 +132,10 @@ export default async function SitemapPage() {
       </header>
       </div>
 
+      <div className="l-sections">
       {categories.map((cat, index) => {
         const models = modelsByCategory[cat.id] || []
-        const bgClass = index % 2 === 1 ? ' l-section--bg-subtle' : ''
+        const bgClass = index % 2 === 1 ? '' : ''
 
         return (
           <section key={cat.id} id={cat.id} className={`l-section${bgClass}`}>
@@ -172,6 +173,7 @@ export default async function SitemapPage() {
           </section>
         )
       })}
+      </div>
     </main>
   )
 }

@@ -24,6 +24,7 @@ const GLOSSARY_ITEMS = [
   { title: 'MagSafe', desc: '磁石でカチッと接続できる充電端子。ケーブルに足を引っかけても本体が落ちにくい。' },
 ]
 import ShareBox from '@/app/components/ShareBox'
+import PopularMacBook from '@/app/components/PopularMacBook'
 
 export const metadata: Metadata = {
   title: '歴代MacBookスペック比較表！Air・Proの性能差や違いがすぐわかる | ユーズドラボ',
@@ -207,7 +208,7 @@ export default async function MacBookSpecTablePage() {
         {/* 目次 */}
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
-            <p className="m-section-heading m-section-heading--md">タップできる目次</p>
+            <p className="toc-title">タップできる目次</p>
             <ol className="l-grid l-grid--3col toc-list">
               <li>
                 <a href="#spec-table" className="toc-item">
@@ -242,14 +243,16 @@ export default async function MacBookSpecTablePage() {
             </ol>
           </div>
         </nav>
-
+        <div className="l-sections">
         {/* セクション */}
         <SpecTable models={serializedModels} shopLinks={serializedLinks} />
         <DualCompare models={serializedModels} shopLinks={serializedLinks} />
         <BenchmarkSection models={serializedModels} />
         <EvolutionTimeline />
         <GlossarySection productName="MacBook" items={GLOSSARY_ITEMS} />
+        <PopularMacBook />
         <ShareBox url="https://used-lab.com/macbook/macbook-spec-table/" text="歴代MacBookスペック比較表！Air・Proの性能差や違いがすぐわかる" />
+        </div>
       </article>
     </main>
   )

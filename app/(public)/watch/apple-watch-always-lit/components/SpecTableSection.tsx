@@ -89,7 +89,7 @@ export default function SpecTableSection() {
   }, [sort, filter])
 
   return (
-    <section className="l-section l-section--bg-subtle" id="spec-table" aria-labelledby="heading-spec-table">
+    <section className="l-section" id="spec-table" aria-labelledby="heading-spec-table">
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg" id="heading-spec-table">
           ディスプレイ常時点灯を搭載しているモデル一覧

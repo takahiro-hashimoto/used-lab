@@ -5,10 +5,9 @@ import { useState } from 'react'
 type Props = {
   url: string
   text: string
-  bgSubtle?: boolean
 }
 
-export default function ShareBox({ url, text, bgSubtle = false }: Props) {
+export default function ShareBox({ url, text }: Props) {
   const [copied, setCopied] = useState(false)
 
   const handleCopy = async () => {
@@ -33,7 +32,7 @@ export default function ShareBox({ url, text, bgSubtle = false }: Props) {
   const hatenaUrl = `https://b.hatena.ne.jp/entry/s/${url.replace('https://', '')}`
 
   return (
-    <section className={`l-section l-section--sm${bgSubtle ? ' l-section--bg-subtle' : ''}`} aria-label="SNSシェア">
+    <section className="l-section l-section--sm" aria-label="SNSシェア">
       <div className="l-container">
         <div className="share-box">
           <p className="share-box__lead">

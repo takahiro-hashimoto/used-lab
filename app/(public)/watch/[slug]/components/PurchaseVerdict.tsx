@@ -33,7 +33,7 @@ export default function PurchaseVerdict({ model, latestPrice }: Props) {
   const v = getVerdict(model, latestPrice)
 
   return (
-    <section className="l-section l-section--bg-subtle" id="buy-now" aria-labelledby="heading-buy-now">
+    <section className="l-section" id="buy-now" aria-labelledby="heading-buy-now">
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg" id="heading-buy-now">
           中古{model.model}を今買うのはあり？

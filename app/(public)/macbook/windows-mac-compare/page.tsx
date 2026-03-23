@@ -145,7 +145,7 @@ export default function WindowsMacComparePage() {
         {/* 目次 */}
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
-            <p className="m-section-heading m-section-heading--md">タップできる目次</p>
+            <p className="toc-title">タップできる目次</p>
             <ol className="l-grid l-grid--3col toc-list">
               <li>
                 <a href="#comparison" className="toc-item">
@@ -222,9 +222,9 @@ export default function WindowsMacComparePage() {
         </nav>
 
         {/* 記事本文 */}
-        <div id="content" itemProp="articleBody">
+        <div className="l-sections" id="content" itemProp="articleBody">
           {/* h2: WindowsとMacのパソコンの違いを比較（比較表 + 11項目のh3カード） */}
-          <section className="l-section l-section--bg-subtle" id="comparison" aria-labelledby="heading-comparison">
+          <section className="l-section" id="comparison" aria-labelledby="heading-comparison">
             <div className="l-container">
               <h2 className="m-section-heading m-section-heading--lg" id="heading-comparison">
                 WindowsとMacのパソコンの違いを比較
@@ -242,10 +242,9 @@ export default function WindowsMacComparePage() {
 
           {/* h2: まとめセクション */}
           <SummarySection />
-        </div>
-
         {/* シェアボックス */}
-        <ShareBox url={PAGE_URL} text={PAGE_TITLE} bgSubtle />
+        <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
+        </div>
       </article>
     </main>
   )

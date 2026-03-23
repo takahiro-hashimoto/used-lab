@@ -98,6 +98,7 @@ export default async function IPhoneDetailPage({ params }: PageProps) {
         <HeroSection model={model} latestPrice={latestPrice} />
         <LeadText model={model} />
         <TableOfContents />
+        <div className="l-sections">
         <PurchaseVerdict model={model} latestPrice={latestPrice} />
         <ShopGrid shops={shops} shopLinks={modelShopLinks} model={model} />
         <LifespanSection model={model} />
@@ -121,7 +122,8 @@ export default async function IPhoneDetailPage({ params }: PageProps) {
         <ReviewSection modelName={model.model} reviews={reviews} />
         <RecommendBanner />
         <FaqSection model={model} latestPrice={latestPrice} shopLinks={modelShopLinks} />
-        <ShareBox url={`https://used-lab.com/iphone/${model.slug}/`} text={`中古${model.model}は今買うべき？製品寿命、基本スペック、ベンチマークスコア、中古相場から解説`} bgSubtle />
+        <ShareBox url={`https://used-lab.com/iphone/${model.slug}/`} text={`中古${model.model}は今買うべき？製品寿命、基本スペック、ベンチマークスコア、中古相場から解説`} />
+        </div>
       </article>
     </main>
   )

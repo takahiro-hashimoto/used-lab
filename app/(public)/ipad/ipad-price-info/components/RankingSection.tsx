@@ -13,7 +13,7 @@ export default function RankingSection({ items, modelCount, dateDisplay }: Props
   const third = items[2]
 
   return (
-    <section className="l-section l-section--bg-subtle" id="pd-ranking" aria-labelledby="pd-ranking-title" itemScope itemType="https://schema.org/ItemList">
+    <section className="l-section" id="pd-ranking" aria-labelledby="pd-ranking-title" itemScope itemType="https://schema.org/ItemList">
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg" id="pd-ranking-title" itemProp="name">
           価格の安い中古iPadランキングTOP10

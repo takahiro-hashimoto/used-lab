@@ -135,6 +135,7 @@ export default function ChargingTable({ models }: Props) {
                     <th scope="col">充電ポート</th>
                     <th scope="col">MagSafe</th>
                     <th scope="col">Qi充電</th>
+                    <th scope="col">中古価格</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -161,6 +162,16 @@ export default function ChargingTable({ models }: Props) {
                       <td>{m.port || '-'}</td>
                       <td><BoolCell value={m.magsafe} /></td>
                       <td><BoolCell value={hasQiCharging(m)} /></td>
+                      <td>
+                        <a
+                          href={`https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%3Fkeyword%3D${encodeURIComponent(m.model)}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="m-btn m-btn--primary m-btn--sm"
+                        >
+                          イオシスで探す
+                        </a>
+                      </td>
                     </tr>
                   ))}
                 </tbody>

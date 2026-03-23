@@ -37,7 +37,7 @@ function buildCompareRows(current: MacBookModel, compare: MacBookModel): Compare
     { section: '基本仕様', label: '発売日', current: formatReleaseDate(current.date), compare: formatReleaseDate(compare.date) },
     { section: '基本仕様', label: '重さ', current: current.weight || '-', compare: compare.weight || '-' },
     { section: '基本仕様', label: 'ストレージ', current: current.strage || '-', compare: compare.strage || '-' },
-    { section: '基本仕様', label: 'カラー', current: current.color || '-', compare: compare.color || '-' },
+    { section: '基本仕様', label: 'カラー', current: (current.color || '-').replace(/\s*\/\s*/g, '<br />'), compare: (compare.color || '-').replace(/\s*\/\s*/g, '<br />') },
     // 処理性能
     { section: '処理性能', label: 'CPU', current: current.cpu || '-', compare: compare.cpu || '-' },
     { section: '処理性能', label: 'メモリ', current: current.ram || '-', compare: compare.ram || '-' },

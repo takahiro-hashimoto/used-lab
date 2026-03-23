@@ -1,6 +1,6 @@
 export default function BuyMethodsSection() {
   return (
-    <section id="comparison" className="l-section l-section--bg-subtle">
+    <section id="comparison" className="l-section">
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg">
 Apple Watchを安く買う7つの方法

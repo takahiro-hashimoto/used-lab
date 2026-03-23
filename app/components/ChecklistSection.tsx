@@ -15,12 +15,11 @@ type Props = {
   productName: string
   items: ChecklistItem[]
   memoLinks: MemoLink[]
-  bgSubtle?: boolean
 }
 
-export default function ChecklistSection({ productName, items, memoLinks, bgSubtle = true }: Props) {
+export default function ChecklistSection({ productName, items, memoLinks }: Props) {
   return (
-    <section className={`l-section${bgSubtle ? ' l-section--bg-subtle' : ''}`} id="checklist" aria-labelledby="heading-checklist">
+    <section className="l-section" id="checklist" aria-labelledby="heading-checklist">
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg" id="heading-checklist">
           中古{productName}購入直前の最終チェックリスト

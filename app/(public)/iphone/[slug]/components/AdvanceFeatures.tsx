@@ -27,7 +27,7 @@ export default function AdvanceFeatures({ model }: Props) {
   if (uniqueFeatures.length === 0) return null
 
   return (
-    <section className="l-section l-section--bg-subtle" id="upgrade" aria-labelledby="heading-upgrade">
+    <section className="l-section" id="upgrade" aria-labelledby="heading-upgrade">
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg" id="heading-upgrade">
           {model.model}の進化したポイント

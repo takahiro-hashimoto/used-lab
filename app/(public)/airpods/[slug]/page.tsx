@@ -91,6 +91,7 @@ export default async function AirPodsDetailPage({ params }: PageProps) {
         <HeroSection model={model} />
         <LeadText model={model} />
         <TableOfContents />
+        <div className="l-sections">
         <PurchaseVerdict model={model} />
         <ShopGrid shops={shops} shopLinks={modelShopLinks} model={model} />
         <LifespanSection model={model} />
@@ -103,7 +104,7 @@ export default async function AirPodsDetailPage({ params }: PageProps) {
             latestMinMaxPairs={latestMinMaxPairs}
             latestDate={latestDate}
             shopDescription="イオシス・じゃんぱら・eイヤホンの販売価格を定期的に集計したものです。実際の購入価格は在庫状況やタイミングにより変動する場合があります。"
-            bgSubtle
+           
           />
         )}
 
@@ -112,7 +113,8 @@ export default async function AirPodsDetailPage({ params }: PageProps) {
         </CompareSection>
         <RecommendBanner />
         <FaqSection model={model} latestPrice={latestPrice} shopLinks={modelShopLinks} />
-        <ShareBox url={`https://used-lab.com/airpods/${model.slug}/`} text={`中古${model.name}（${model.model}）は今買うべき？サポート期間、基本スペック、中古相場から解説`} bgSubtle />
+        <ShareBox url={`https://used-lab.com/airpods/${model.slug}/`} text={`中古${model.name}（${model.model}）は今買うべき？サポート期間、基本スペック、中古相場から解説`} />
+        </div>
       </article>
     </main>
   )

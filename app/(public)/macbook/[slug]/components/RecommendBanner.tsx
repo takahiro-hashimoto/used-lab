@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 export default function RecommendBanner() {
   return (
-    <section className="l-section l-section--bg-subtle" id="popular" aria-labelledby="heading-popular">
+    <section className="l-section" id="popular" aria-labelledby="heading-popular">
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg" id="heading-popular">
           目的別に人気の中古MacBook
@@ -15,7 +15,7 @@ export default function RecommendBanner() {
         <div className="m-card m-card--shadow popular-card">
           <figure className="popular-card-figure">
             <Image
-              src="/images/content/macbook-desk.webp"
+              src="/images/content/macbook-image-04.jpg"
               alt="中古MacBookおすすめ5選のイメージ画像"
               className="popular-card-img"
               width={400}

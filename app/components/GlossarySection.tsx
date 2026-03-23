@@ -10,7 +10,7 @@ type Props = {
 
 export default function GlossarySection({ productName, items }: Props) {
   return (
-    <section className="l-section l-section--bg-subtle" id="glossary" aria-labelledby="heading-glossary">
+    <section className="l-section" id="glossary" aria-labelledby="heading-glossary">
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg" id="heading-glossary">
           {productName} 各機能の用語解説

@@ -7,7 +7,7 @@ export default function InsuranceSection({
   appleCareYears,
 }: InsuranceProps) {
   return (
-    <section className="l-section l-section--bg-subtle" id="insurance" aria-labelledby="heading-insurance">
+    <section className="l-section" id="insurance" aria-labelledby="heading-insurance">
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg" id="heading-insurance">
           中古{productName}でも入れる保険

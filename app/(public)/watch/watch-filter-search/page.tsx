@@ -265,12 +265,12 @@ export default async function WatchFilterSearchPage() {
             </div>
           </div>
         </section>
-
+        <div className="l-sections">
         {/* 診断フィルター + 結果 */}
         <WatchFilterSearchApp models={modelsData} shopLinks={shopLinksData} />
 
         {/* 診断ロジック説明 */}
-        <section className="l-section l-section--bg-subtle" aria-labelledby="heading-logic">
+        <section className="l-section" aria-labelledby="heading-logic">
           <div className="l-container">
             <h2 className="m-section-heading m-section-heading--lg" id="heading-logic">
               Apple Watch機種診断の算出ロジックと中古価格データについて
@@ -321,7 +321,7 @@ export default async function WatchFilterSearchPage() {
         </section>
 
         {/* よくある質問 */}
-        <section className="l-section l-section--bg-subtle" id="faq" aria-labelledby="heading-faq">
+        <section className="l-section" id="faq" aria-labelledby="heading-faq">
           <div className="l-container">
             <h2 className="m-section-heading m-section-heading--lg" id="heading-faq">
               Apple Watch機種診断に関するよくある質問
@@ -342,7 +342,7 @@ export default async function WatchFilterSearchPage() {
         </section>
 
         <ShareBox url="https://used-lab.com/watch/watch-filter-search/" text="Apple Watch機種診断シミュレーター｜自分に合うおすすめ中古アップルウォッチがすぐわかる【2026年版】" />
-
+        </div>
       </article>
     </main>
   )
