@@ -22,6 +22,7 @@ export const GUIDE_SPEC_LINKS = [
   { href: '/ipad/ipad-spec-table/', icon: 'fa-table-cells', title: '歴代iPadスペック比較表', desc: 'CPU、ディスプレイ、重量、端子など、歴代iPadの全スペックを網羅した一覧表。', image: '/images/content/ipad-image-09.jpg' },
   { href: '/ipad/used-ipad-support/', icon: 'fa-shield-halved', title: 'iPadOSサポート期間一覧表', desc: '各モデルのサポート終了予測を解説。「いつまで使えるか」の目安がわかります。', image: '/images/content/ipad-image-06.jpg' },
   { href: '/ipad/apple-pencil-compare/', icon: 'fa-pen-fancy', title: 'Apple Pencil対応比較表', desc: 'Apple Pencilの世代ごとの対応状況・機能の違いを一覧で比較できます。', image: '/images/content/ipad-image-07.jpg' },
+  { href: '/ipad/accessories-summary/', icon: 'fa-keyboard', title: 'Magic Keyboard 型番・対応一覧', desc: '歴代iPadに対応するMagic Keyboard・Smart Keyboardの型番と対応機種を一覧で紹介。', image: '/images/content/ipad-magic-keyboard.jpg' },
   { href: '/ipad/wifi-cellular/', icon: 'fa-wifi', title: 'Wi-Fi vs Cellularモデル比較', desc: 'Wi-FiモデルとCellularモデルの違い、選び方のポイントを解説。', image: '/images/content/ipad-image-02.jpg' },
   { href: '/ipad/howto-use-ipad/', icon: 'fa-lightbulb', title: 'iPadの便利な使い道22選', desc: '動画視聴・ノート・イラスト・読書・仕事効率化など、iPadがあればできることを紹介。', image: '/images/content/ipad-lightroom.jpg' },
   { href: '/macbook/ipad-macbook-compare/', icon: 'fa-laptop', title: 'iPad vs MacBook 徹底比較', desc: 'iPadとMacBookの違いを用途別に比較。どちらを選ぶべきか迷っている方必見の内容です。', image: '/images/content/macbook-ipad.jpg' },

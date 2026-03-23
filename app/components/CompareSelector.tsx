@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useMemo, useEffect, useRef } from 'react'
 import Image from 'next/image'
 
 type CompareRow = {
@@ -58,17 +58,35 @@ export default function CompareSelector({
   buildRows,
 }: Props) {
   const [compareId, setCompareId] = useState(initialCompareId)
-  const compareModel = allModels.find((m) => m.id === compareId) || allModels[0]
-  const rows = buildRows(currentModel, compareModel)
-  const sections = [...new Set(rows.map((r) => r.section))]
+  const compareModel = useMemo(() => allModels.find((m) => m.id === compareId) || allModels[0], [allModels, compareId])
+  const rows = useMemo(() => buildRows(currentModel, compareModel), [currentModel, compareModel, buildRows])
+  const sections = useMemo(() => [...new Set(rows.map((r) => r.section))], [rows])
 
   const currentName = getCurrentName()
   const compareName = getCompareName(compareModel)
   const compareIosysUrl = shopLinks.find((l) => l.product_id === compareModel.id && l.shop_id === 1)?.url
 
+  const sentinelRef = useRef<HTMLDivElement>(null)
+  const tableRef = useRef<HTMLTableElement>(null)
+
+  useEffect(() => {
+    const sentinel = sentinelRef.current
+    const table = tableRef.current
+    if (!sentinel || !table) return
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        table.classList.toggle('is-stuck', !entry.isIntersecting)
+      },
+      { threshold: 0 }
+    )
+    observer.observe(sentinel)
+    return () => observer.disconnect()
+  }, [])
+
   return (
     <div className="m-card m-card--shadow compare-card">
-      <table className="compare-table">
+      <div ref={sentinelRef} style={{ height: 1, marginBottom: -1 }} />
+      <table ref={tableRef} className="compare-table">
         <caption className="visually-hidden">
           {getCaption(currentModel, compareModel)}
         </caption>
@@ -82,8 +100,38 @@ export default function CompareSelector({
           <tr>
             <th></th>
             <td className="compare-table__header-cell">
-              <strong className="compare-model-name">{currentName}</strong>
-              <span className="compare-model-note">このモデルを表示中</span>
+              <div className="compare-header-info">
+                <strong className="compare-model-name">{currentName}</strong>
+                <span className="compare-model-note">このモデルを表示中</span>
+              </div>
+            </td>
+            <td className="compare-table__header-cell">
+              <div className="compare-header-info">
+                <label htmlFor="compare-model-select" className="visually-hidden">比較するモデルを選択</label>
+                <select
+                  className="compare-select"
+                  id="compare-model-select"
+                  value={compareId}
+                  onChange={(e) => setCompareId(Number(e.target.value))}
+                >
+                  {allModels
+                    .filter((m) => m.id !== currentModel.id)
+                    .map((m) => (
+                      <option key={m.id} value={m.id}>{getOptionLabel(m)}</option>
+                    ))}
+                </select>
+                <a href={`/${detailPath}/${compareModel.slug}`} className="compare-model-link">
+                  このモデルの詳細を見る &rsaquo;
+                </a>
+              </div>
+            </td>
+          </tr>
+        </thead>
+
+        <tbody className="compare-table__image-row">
+          <tr>
+            <th></th>
+            <td className="compare-table__image-cell">
               {currentModel.image && (
                 <Image
                   src={`/images/${imagePath}/${currentModel.image}`}
@@ -94,23 +142,7 @@ export default function CompareSelector({
                 />
               )}
             </td>
-            <td className="compare-table__header-cell">
-              <label htmlFor="compare-model-select" className="visually-hidden">比較するモデルを選択</label>
-              <select
-                className="compare-select"
-                id="compare-model-select"
-                value={compareId}
-                onChange={(e) => setCompareId(Number(e.target.value))}
-              >
-                {allModels
-                  .filter((m) => m.id !== currentModel.id)
-                  .map((m) => (
-                    <option key={m.id} value={m.id}>{getOptionLabel(m)}</option>
-                  ))}
-              </select>
-              <a href={`/${detailPath}/${compareModel.slug}`} className="compare-model-link">
-                このモデルの詳細を見る &rsaquo;
-              </a>
+            <td className="compare-table__image-cell">
               {compareModel.image && (
                 <Image
                   src={`/images/${imagePath}/${compareModel.image}`}
@@ -122,7 +154,7 @@ export default function CompareSelector({
               )}
             </td>
           </tr>
-        </thead>
+        </tbody>
 
         {sections.map((section) => {
           const sectionRows = rows.filter((r) => r.section === section)

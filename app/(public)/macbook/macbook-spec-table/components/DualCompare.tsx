@@ -30,6 +30,7 @@ type SpecModel = {
   fan: boolean
   center_frame: boolean
   apple_intelligence: boolean
+  external_display: string | null
   battery: string | null
   color: string | null
 }
@@ -55,7 +56,12 @@ function buildCategories(): CompareCategory<SpecModel>[] {
         { label: '発売日', get: (m: SpecModel) => formatDate(m.date) },
         { label: '重量', ...text((m) => m.weight) },
         { label: 'ストレージ', ...text((m) => m.strage) },
-        { label: 'カラー', ...text((m) => m.color) },
+        { label: 'カラー', get: (m: SpecModel) => {
+          if (!m.color) return '-'
+          const parts = m.color.split(/\s*\/\s*/)
+          if (parts.length <= 1) return m.color
+          return <>{parts.map((p, i) => <span key={i}>{i > 0 && <br />}{p}</span>)}</>
+        }},
       ],
     },
     {
@@ -72,6 +78,7 @@ function buildCategories(): CompareCategory<SpecModel>[] {
         { label: '解像度', ...text((m) => m.resolution) },
         { label: '輝度', ...text((m) => m.luminance) },
         { label: 'ProMotion', ...bool((m) => m.promotion) },
+        { label: '外部ディスプレイ', ...text((m) => m.external_display) },
       ],
     },
     {

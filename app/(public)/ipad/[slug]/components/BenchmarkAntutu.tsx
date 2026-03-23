@@ -1,3 +1,4 @@
+import StickyTableWrapper from '@/app/components/StickyTableWrapper'
 import type { IPadModel } from '@/lib/types'
 
 type Props = {
@@ -73,7 +74,7 @@ export default function BenchmarkAntutu({ model, allModels }: Props) {
         </dl>
 
         {/* ベンチマーク比較テーブル */}
-        <div className="m-card m-card--shadow m-table-card">
+        <StickyTableWrapper className="m-card m-card--shadow m-table-card">
           <table className="m-table">
             <caption className="visually-hidden">iPadモデル別 Antutu Benchmark v10 スコア比較</caption>
             <thead>
@@ -158,7 +159,7 @@ export default function BenchmarkAntutu({ model, allModels }: Props) {
               })}
             </tbody>
           </table>
-        </div>
+        </StickyTableWrapper>
       </div>
     </section>
   )

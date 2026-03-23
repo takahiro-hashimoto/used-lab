@@ -133,6 +133,11 @@ export default function BasicSpecs({ model }: Props) {
                 <td>外部ディスプレイとの直接接続</td>
               </tr>
               <tr>
+                <td><i className="fa-solid fa-desktop" aria-hidden="true"></i> 外部ディスプレイ</td>
+                <td>{model.external_display || '-'}</td>
+                <td>外部モニターの同時接続可能台数</td>
+              </tr>
+              <tr>
                 <td><i className="fa-solid fa-volume-high" aria-hidden="true"></i> オーディオ</td>
                 <td>{model.speaker || '-'}</td>
                 <td>搭載スピーカーの仕様</td>

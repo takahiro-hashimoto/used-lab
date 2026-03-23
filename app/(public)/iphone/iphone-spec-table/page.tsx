@@ -9,25 +9,25 @@ import EvolutionTimeline from './components/EvolutionTimeline'
 import GlossarySection from '@/app/components/GlossarySection'
 
 const GLOSSARY_ITEMS = [
-  { title: 'CPU', desc: 'iPhoneの頭脳にあたるチップで、全体的な処理速度や電力効率に大きく影響。A16やA17 Proなどの世代ごとに性能が進化。' },
-  { title: 'RAM', desc: 'アプリの同時使用やゲーム、動画編集などの処理性能に関わるメモリ容量。数値が大きいほど動作がスムーズ。' },
-  { title: 'バッテリー容量', desc: 'mAh（ミリアンペアアワー）で表される電池の容量。容量が大きいほど長時間の使用が可能だが、省電力設計とのバランスも重要。' },
-  { title: 'USB-C対応', desc: 'iPhone 15以降で採用。MacやiPadとケーブル共有ができ、外部ストレージやディスプレイとの接続、他デバイスへの給電も可能。' },
-  { title: 'MagSafe対応', desc: '背面の磁力でアクセサリを固定。ワイヤレス充電やカードケースの装着が簡単でズレにくい。' },
-  { title: 'Dynamic Island対応', desc: '画面上部に通話や音楽再生、タイマーなどを表示。アプリを切り替えず操作や確認が可能。' },
-  { title: '衝突事故検出', desc: '車の衝突など大きな衝撃を検知し、反応がない場合は自動で緊急通報。' },
-  { title: 'ProMotion', desc: '最大120Hzの高リフレッシュレートに対応。スクロールや操作が滑らかになるのが特徴。' },
-  { title: 'Apple Intelligence', desc: '要約、画像生成、自然言語操作などを実現するAI機能。デバイス上で処理し、プライバシーにも配慮。' },
-  { title: 'アクションボタン', desc: '本体側面の物理ボタンに好みの機能を割り当て可能。カメラ起動やショートカット実行に対応。' },
-  { title: 'カメラコントロール', desc: 'ボタン操作で即カメラを起動し、シャッター操作が可能。素早く撮影できる。' },
-  { title: 'アクションモード', desc: '動きの多いシーンでも手ブレを抑え、滑らかな映像を記録。アウトドア撮影に最適。' },
-  { title: 'シネマティックモード', desc: '背景をぼかし被写体にフォーカス。映画のような映像が撮影可能。フォーカスの変更も後から対応。' },
-  { title: 'マクロモード', desc: '被写体に数センチまで近づいて撮影。小さな物の質感やディテールを高精細に記録。' },
-  { title: 'ポートレートモード', desc: '背景をぼかし、人物を強調した写真を撮影。ライティング効果などの演出も可能。' },
-  { title: 'ナイトモード', desc: '暗所でも明るく鮮明な写真を自動調整で撮影。長時間露光と手ブレ補正に対応。' },
-  { title: 'LiDARスキャナ', desc: 'レーザーで距離を測定し、空間の3Dマッピングを実現。AR体験や暗所でのピント合わせにも有効。' },
-  { title: 'Apple ProRAW', desc: '多くの情報を保持したRAW形式で撮影可能。高精度な編集に対応し、プロ仕様の仕上がりに。' },
-  { title: 'Apple ProRes', desc: '高画質な映像を記録できるフォーマット。豊かな階調と高い編集耐性が特徴。' },
+  { title: 'CPU', icon: 'fa-solid fa-microchip', desc: 'iPhoneの頭脳にあたるチップで、全体的な処理速度や電力効率に大きく影響。A16やA17 Proなどの世代ごとに性能が進化。' },
+  { title: 'RAM', icon: 'fa-solid fa-memory', desc: 'アプリの同時使用やゲーム、動画編集などの処理性能に関わるメモリ容量。数値が大きいほど動作がスムーズ。' },
+  { title: 'バッテリー容量', icon: 'fa-solid fa-battery-full', desc: 'mAh（ミリアンペアアワー）で表される電池の容量。容量が大きいほど長時間の使用が可能だが、省電力設計とのバランスも重要。' },
+  { title: 'USB-C対応', icon: 'fa-solid fa-plug', desc: 'iPhone 15以降で採用。MacやiPadとケーブル共有ができ、外部ストレージやディスプレイとの接続、他デバイスへの給電も可能。' },
+  { title: 'MagSafe対応', icon: 'fa-solid fa-magnet', desc: '背面の磁力でアクセサリを固定。ワイヤレス充電やカードケースの装着が簡単でズレにくい。' },
+  { title: 'Dynamic Island対応', icon: 'fa-solid fa-circle-notch', desc: '画面上部に通話や音楽再生、タイマーなどを表示。アプリを切り替えず操作や確認が可能。' },
+  { title: '衝突事故検出', icon: 'fa-solid fa-car-burst', desc: '車の衝突など大きな衝撃を検知し、反応がない場合は自動で緊急通報。' },
+  { title: 'ProMotion', icon: 'fa-solid fa-gauge-high', desc: '最大120Hzの高リフレッシュレートに対応。スクロールや操作が滑らかになるのが特徴。' },
+  { title: 'Apple Intelligence', icon: 'fa-solid fa-wand-magic-sparkles', desc: '要約、画像生成、自然言語操作などを実現するAI機能。デバイス上で処理し、プライバシーにも配慮。' },
+  { title: 'アクションボタン', icon: 'fa-solid fa-sliders', desc: '本体側面の物理ボタンに好みの機能を割り当て可能。カメラ起動やショートカット実行に対応。' },
+  { title: 'カメラコントロール', icon: 'fa-solid fa-camera', desc: 'ボタン操作で即カメラを起動し、シャッター操作が可能。素早く撮影できる。' },
+  { title: 'アクションモード', icon: 'fa-solid fa-person-running', desc: '動きの多いシーンでも手ブレを抑え、滑らかな映像を記録。アウトドア撮影に最適。' },
+  { title: 'シネマティックモード', icon: 'fa-solid fa-film', desc: '背景をぼかし被写体にフォーカス。映画のような映像が撮影可能。フォーカスの変更も後から対応。' },
+  { title: 'マクロモード', icon: 'fa-solid fa-magnifying-glass', desc: '被写体に数センチまで近づいて撮影。小さな物の質感やディテールを高精細に記録。' },
+  { title: 'ポートレートモード', icon: 'fa-solid fa-user', desc: '背景をぼかし、人物を強調した写真を撮影。ライティング効果などの演出も可能。' },
+  { title: 'ナイトモード', icon: 'fa-solid fa-moon', desc: '暗所でも明るく鮮明な写真を自動調整で撮影。長時間露光と手ブレ補正に対応。' },
+  { title: 'LiDARスキャナ', icon: 'fa-solid fa-cube', desc: 'レーザーで距離を測定し、空間の3Dマッピングを実現。AR体験や暗所でのピント合わせにも有効。' },
+  { title: 'Apple ProRAW', icon: 'fa-solid fa-image', desc: '多くの情報を保持したRAW形式で撮影可能。高精度な編集に対応し、プロ仕様の仕上がりに。' },
+  { title: 'Apple ProRes', icon: 'fa-solid fa-video', desc: '高画質な映像を記録できるフォーマット。豊かな階調と高い編集耐性が特徴。' },
 ]
 import ShareBox from '@/app/components/ShareBox'
 
@@ -274,6 +274,23 @@ export default async function IPhoneSpecTablePage() {
         <BenchmarkSection models={serializedModels} />
         <EvolutionTimeline />
         <GlossarySection productName="iPhone" items={GLOSSARY_ITEMS} />
+        <section className="l-section" id="popular" aria-labelledby="heading-popular">
+          <div className="l-container">
+            <h2 className="m-section-heading m-section-heading--lg" id="heading-popular">目的別に人気の中古iPhone</h2>
+            <p className="m-section-desc">目的別におすすめの機種を厳選。今回の記事で購入するべき機種が判断できなかった方はぜひご覧ください。</p>
+            <div className="m-card m-card--shadow popular-card">
+              <figure className="popular-card-figure">
+                <Image alt="中古iPhoneおすすめ5選のイメージ画像" loading="lazy" width={400} height={500} className="popular-card-img" src="/images/content/iphone-setting.webp" />
+              </figure>
+              <div className="popular-card-body">
+                <p className="popular-card-subtitle">目的別におすすめ機種を厳選！</p>
+                <p className="popular-card-title">中古iPhoneおすすめ5選</p>
+                <p className="popular-card-desc">カメラ性能を重視する人向け、大画面で動画やSNSを楽しみたい人向けなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。</p>
+                <div><a className="m-btn m-btn--primary" href="/iphone/recommend/">おすすめ5機種を見る <i className="fa-solid fa-arrow-right" aria-hidden="true"></i></a></div>
+              </div>
+            </div>
+          </div>
+        </section>
         <ShareBox url="https://used-lab.com/iphone/iphone-spec-table/" text="歴代iPhoneスペック比較表！気になる機種の性能差や違いがわかる" />
         </div>
       </article>

@@ -19,7 +19,6 @@ export default function InsuranceSection({
 
         {/* モバイル保険カード */}
         <div className="m-card m-card--shadow m-card--padded caution-check-card insurance-card">
-          <h3 className="caution-check-card__heading">モバイル保険</h3>
           <div className="caution-check-card__body">
             <div className="caution-check-card__visual">
               <figure className="caution-check-card__image">
@@ -37,6 +36,7 @@ export default function InsuranceSection({
               </figure>
             </div>
             <div className="caution-check-card__text m-rich-text">
+              <h3 className="caution-check-card__heading">モバイル保険</h3>
               <ul className="insurance-features m-check-list">
                 <li>
                   <i className="fa-solid fa-check" aria-hidden="true"></i> 月額700円で最大3台まで補償
@@ -52,7 +52,7 @@ export default function InsuranceSection({
                 </li>
               </ul>
               <p>
-                Apple Care+と違い、<strong>期間の縛りがない</strong>のが最大のメリット。{productBenefit}
+                Apple Care+と違い、期間の縛りがないのが最大のメリット。{productBenefit}
               </p>
               <a href="https://px.a8.net/svt/ejp?a8mat=35U3VZ+7QMXFM+45VK+BW0YB&a8ejpredirect=https%3A%2F%2Fmobile-hoken.com%2Flp%2Ftakumi-wp%2F" className="m-btn m-btn--primary" rel="nofollow noopener" target="_blank">
                 モバイル保険の詳細を見る <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>

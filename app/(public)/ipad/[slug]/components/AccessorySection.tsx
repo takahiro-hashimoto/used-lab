@@ -97,7 +97,10 @@ export default function AccessorySection({ model, accessories }: Props) {
           {model.model}に対応するアクセサリー
         </h2>
         <p className="m-section-desc">
-          {model.model}で使えるアクセサリーをまとめました。ケース・フィルム・Apple Pencil・キーボードなど、用途に合わせてチェックしましょう。
+          {model.model}で使えるアクセサリーをまとめました。
+        </p>
+        <p className="m-section-desc">
+          ケース・フィルム・Apple Pencil・キーボードなど、用途に合わせてチェックしましょう。
         </p>
 
         <div className="l-grid l-grid--2col l-grid--gap-lg">
@@ -121,6 +124,21 @@ export default function AccessorySection({ model, accessories }: Props) {
               </a>
             </article>
           ))}
+        </div>
+
+        <div className="m-callout m-callout--tip" style={{ marginTop: 'var(--space-2xl)' }}>
+          <span className="m-callout__label">memo</span>
+          <p className="m-callout__text">
+            Apple Pencilやキーボードの対応機種・型番の詳細は、下記の比較ページもあわせてご確認ください。
+          </p>
+          <div className="m-callout__links">
+            <a href="/ipad/apple-pencil-compare/" className="m-callout__link">
+              <i className="fa-solid fa-pen-nib" aria-hidden="true"></i> Apple Pencil対応比較表
+            </a>
+            <a href="/ipad/accessories-summary/" className="m-callout__link">
+              <i className="fa-solid fa-keyboard" aria-hidden="true"></i> Magic Keyboard 型番・対応一覧
+            </a>
+          </div>
         </div>
       </div>
     </section>

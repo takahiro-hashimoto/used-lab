@@ -5,12 +5,19 @@ type BaseModel = {
   model: string | null
 }
 
+type SpecLink = {
+  href: string
+  label: string
+}
+
 type Props<T extends BaseModel> = {
   model: T
   allModels: T[]
   shopLinks: ProductShopLink[]
   /** 表示名（デフォルトは model.model） */
   displayName?: string
+  /** スペック比較記事へのリンク */
+  specLinks?: SpecLink[]
   /** CompareSelector コンポーネント */
   children: (props: {
     currentModel: T
@@ -22,7 +29,7 @@ type Props<T extends BaseModel> = {
 }
 
 export default function CompareSection<T extends BaseModel>({
-  model, allModels, shopLinks, displayName, children,
+  model, allModels, shopLinks, displayName, specLinks, children,
 }: Props<T>) {
   const name = displayName || model.model || ''
   const otherModels = allModels.filter((m) => m.id !== model.id)
@@ -49,6 +56,20 @@ export default function CompareSection<T extends BaseModel>({
           iosysUrl: iosysLink?.url,
           shopLinks,
         })}
+
+        {specLinks && specLinks.length > 0 && (
+          <div className="m-callout m-callout--tip" style={{ marginTop: 'var(--space-2xl)' }}>
+            <span className="m-callout__label">memo</span>
+            <p className="m-callout__text">
+              {specLinks.map((link, i) => (
+                <span key={link.href}>
+                  {i > 0 && ''}
+                  スペックを比較したい方は「<a href={link.href}>{link.label}</a>」もあわせてご覧ください。
+                </span>
+              ))}
+            </p>
+          </div>
+        )}
       </div>
     </section>
   )

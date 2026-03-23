@@ -111,6 +111,13 @@ export default function ShopGrid({ shops, shopLinks, model }: Props) {
             )
           })}
         </div>
+
+        <div className="m-callout m-callout--tip" style={{ marginTop: 'var(--space-2xl)' }}>
+          <span className="m-callout__label">memo</span>
+          <p className="m-callout__text">
+            購入先を比較したい方は「<a href="/iphone/iphone-shop/">中古iPhoneはどこで買う？おすすめECサイトまとめ</a>」もあわせてご覧ください。
+          </p>
+        </div>
       </div>
     </section>
   )

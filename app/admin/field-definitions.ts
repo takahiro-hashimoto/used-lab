@@ -159,6 +159,7 @@ const MACBOOK_FIELDS: FieldDef[] = [
   { key: 'display', label: 'ディスプレイ', type: 'text', group: 'ディスプレイ・筐体' },
   { key: 'resolution', label: '解像度', type: 'text', group: 'ディスプレイ・筐体' },
   { key: 'luminance', label: '輝度', type: 'text', group: 'ディスプレイ・筐体' },
+  { key: 'external_display', label: '外部ディスプレイ', type: 'text', group: 'ディスプレイ・筐体' },
   { key: 'port', label: 'ポート', type: 'text', group: 'ディスプレイ・筐体' },
   { key: 'camera', label: 'カメラ', type: 'text', group: 'ディスプレイ・筐体' },
   { key: 'speaker', label: 'スピーカー', type: 'text', group: 'ディスプレイ・筐体' },

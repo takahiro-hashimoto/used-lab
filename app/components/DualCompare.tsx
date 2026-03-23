@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import StickyTableWrapper from '@/app/components/StickyTableWrapper'
 import type { ProductShopLink } from '@/lib/types'
 
 type CompareCategory = {
@@ -59,7 +60,7 @@ export default function DualCompare({
           今持っている機種と購入を検討中の機種を比較したい方はぜひチェックしてみてください。
         </p>
 
-        <div className="m-card m-card--shadow compare-card">
+        <StickyTableWrapper className="m-card m-card--shadow compare-card">
           <table className="compare-table">
             <caption className="visually-hidden">2機種の{productName}スペック比較</caption>
             <colgroup>
@@ -86,15 +87,6 @@ export default function DualCompare({
                   <a href={`/${detailPath}/${modelA.slug}`} className="compare-model-link">
                     このモデルの詳細を見る &rsaquo;
                   </a>
-                  {modelA.image && (
-                    <img
-                      src={`/images/${imagePath}/${modelA.image}`}
-                      alt={modelA.model}
-                      width={120}
-                      height={120}
-                      className="compare-model-img"
-                    />
-                  )}
                 </td>
                 <td className="compare-table__header-cell">
                   <label htmlFor="compare-select-b" className="visually-hidden">2台目のモデルを選択</label>
@@ -111,6 +103,25 @@ export default function DualCompare({
                   <a href={`/${detailPath}/${modelB.slug}`} className="compare-model-link">
                     このモデルの詳細を見る &rsaquo;
                   </a>
+                </td>
+              </tr>
+            </thead>
+
+            <tbody className="compare-table__image-row">
+              <tr>
+                <th></th>
+                <td className="compare-table__image-cell">
+                  {modelA.image && (
+                    <img
+                      src={`/images/${imagePath}/${modelA.image}`}
+                      alt={modelA.model}
+                      width={120}
+                      height={120}
+                      className="compare-model-img"
+                    />
+                  )}
+                </td>
+                <td className="compare-table__image-cell">
                   {modelB.image && (
                     <img
                       src={`/images/${imagePath}/${modelB.image}`}
@@ -122,7 +133,7 @@ export default function DualCompare({
                   )}
                 </td>
               </tr>
-            </thead>
+            </tbody>
 
             {categories.map((cat) => (
               <tbody key={cat.title}>
@@ -163,7 +174,7 @@ export default function DualCompare({
               </tr>
             </tfoot>
           </table>
-        </div>
+        </StickyTableWrapper>
       </div>
     </section>
   )

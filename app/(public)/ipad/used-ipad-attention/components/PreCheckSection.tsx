@@ -1,48 +1,6 @@
 import Image from 'next/image'
-import type { IPadModel } from '@/lib/types'
 
-/** Apple Pencil世代ごとの充電方式 */
-const PENCIL_CHARGING: Record<string, string> = {
-  '第1世代': 'Lightning端子',
-  '第2世代': 'マグネット装着',
-  'USB-C': 'USB-C端子',
-  'Pro': 'マグネット装着',
-}
-
-/** Apple Pencil世代の表示順 */
-const PENCIL_ORDER = ['第1世代', '第2世代', 'USB-C', 'Pro']
-
-/**
- * DBのモデル一覧からApple Pencil対応表を自動生成
- */
-function buildPencilTable(models: IPadModel[]) {
-  const grouped: Record<string, string[]> = {}
-
-  for (const m of models) {
-    if (!m.pencil) continue
-    // 複数対応（「/」「,」「、」区切り）の場合を考慮
-    const pencils = m.pencil.split(/[/,、]/).map((p) => p.trim()).filter(Boolean)
-    for (const p of pencils) {
-      if (!grouped[p]) grouped[p] = []
-      grouped[p].push(m.model)
-    }
-  }
-
-  return PENCIL_ORDER
-    .filter((key) => grouped[key] && grouped[key].length > 0)
-    .map((key) => ({
-      pencil: key,
-      models: grouped[key],
-      charging: PENCIL_CHARGING[key] ?? '—',
-    }))
-}
-
-type Props = {
-  models: IPadModel[]
-}
-
-export default function PreCheckSection({ models }: Props) {
-  const pencilRows = buildPencilTable(models)
+export default function PreCheckSection() {
 
   return (
     <section className="l-section" id="pre-check" aria-labelledby="heading-pre-check">
@@ -70,10 +28,10 @@ export default function PreCheckSection({ models }: Props) {
             </div>
             <div className="caution-check-card__text m-rich-text">
               <p>
-                iPadはAppleによるiPadOSサポートが終了すると、新機能が使えなくなるだけでなく、<strong>セキュリティ面でもリスクが高まります</strong>。また、アプリが非対応になり使えなくなるケースもあります。
+                iPadはAppleによるiPadOSサポートが終了すると、新機能が使えなくなるだけでなく、セキュリティ面でもリスクが高まります。また、アプリが非対応になり使えなくなるケースもあります。
               </p>
               <p>
-                iPadはiPhoneよりもサポート期間が短い傾向にあります。特にiPad（無印）やiPad miniは発売から<strong>約5〜6年</strong>でサポートが終了するモデルもあるため、安さだけで選ぶと「あと1年しか使えない」ということも。
+                iPadはiPhoneよりもサポート期間が短い傾向にあります。特にiPad（無印）やiPad miniは発売から約5〜6年でサポートが終了するモデルもあるため、安さだけで選ぶと「あと1年しか使えない」ということも。
               </p>
               <p>
                 「今使える」と「今後も使える」は別です。安さより<strong>「あと何年使えるか」で判断</strong>しましょう。
@@ -103,10 +61,10 @@ export default function PreCheckSection({ models }: Props) {
             </div>
             <div className="caution-check-card__text m-rich-text">
               <p>
-                中古iPadのバッテリーは使用状況によって劣化度合いが大きく異なります。iPadはiPhoneと違い、<strong>「設定」画面からバッテリー最大容量を直接確認できません。</strong>ショップ側もバッテリー残量を掲載していないケースがほとんどです。
+                中古iPadのバッテリーは使用状況によって劣化度合いが大きく異なります。iPadはiPhoneと違い、「設定」画面からバッテリー最大容量を直接確認できません。ショップ側もバッテリー残量を掲載していないケースがほとんどです。
               </p>
               <p>
-                そのため、<strong>状態ランクが低く使い古された端末は避けるのが無難です。</strong>ランクA〜B程度の端末を選ぶことで、バッテリーの極端な劣化を回避しやすくなります。
+                そのため、状態ランクが低く使い古された端末は避けるのが無難です。ランクA〜B程度の端末を選ぶことで、バッテリーの極端な劣化を回避しやすくなります。
               </p>
               <p>
                 <strong>iPadのバッテリー交換費用はiPhoneより高額</strong>（Apple公式で16,800円〜）のため、劣化した端末を安く買っても結果的に割高になることがあります。
@@ -159,7 +117,7 @@ export default function PreCheckSection({ models }: Props) {
             </div>
             <div className="caution-check-card__text m-rich-text">
               <p>
-                中古のセルラーモデルiPadには、iPhoneと同様に<strong>ネットワーク利用制限（赤ロム）</strong>のリスクがあります。前の所有者の分割払いが滞納されると、ある日突然通信ができなくなります。
+                中古のセルラーモデルiPadには、iPhoneと同様にネットワーク利用制限（赤ロム）のリスクがあります。前の所有者の分割払いが滞納されると、ある日突然通信ができなくなります。
               </p>
               <p>
                 判定が「△」の端末は中古ショップでは安く買えますし、赤ロム保証があるショップもあります。ただし心配な場合は<strong>「◯」判定の端末を選びましょう。</strong>
@@ -188,35 +146,15 @@ export default function PreCheckSection({ models }: Props) {
             </div>
             <div className="caution-check-card__text m-rich-text">
               <p>
-                Apple Pencilやキーボードの<strong>対応状況はiPadのモデルごとに異なります</strong>。「Apple Pencilで絵を描きたい」「Magic Keyboardでノートパソコン代わりにしたい」という方は、購入前に必ず対応表を確認してください。
+                Apple Pencilやキーボードの対応状況はiPadのモデルごとに異なります。「Apple Pencilで絵を描きたい」「Magic Keyboardでノートパソコン代わりにしたい」という方は、購入前に必ず対応表を確認してください。
               </p>
               <p>
                 特にApple Pencilは世代によって<strong>充電方式・接続方式が全く違う</strong>ため、非対応のiPadを買ってしまうと使えません。
               </p>
-            </div>
-          </div>
-
-          <div className="caution-how-to">
-            <h4 className="caution-how-to__heading">Apple Pencil 対応表</h4>
-            <div className="price-table-wrap">
-              <table className="m-table">
-                <thead>
-                  <tr>
-                    <th scope="col">Apple Pencil</th>
-                    <th scope="col">対応iPad</th>
-                    <th scope="col">充電方式</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {pencilRows.map((row) => (
-                    <tr key={row.pencil}>
-                      <td>{row.pencil}</td>
-                      <td>{row.models.join('、')}</td>
-                      <td>{row.charging}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+              <p className="lead-link">
+                <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
+                <a href="/ipad/apple-pencil-compare">Apple Pencil対応モデル比較表</a>
+              </p>
             </div>
           </div>
         </div>

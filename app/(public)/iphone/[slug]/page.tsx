@@ -114,7 +114,7 @@ export default async function IPhoneDetailPage({ params }: PageProps) {
         )}
 
         <AdvanceFeatures model={model} />
-        <CompareSection model={model} allModels={allModels} shopLinks={shopLinks}>
+        <CompareSection model={model} allModels={allModels} shopLinks={shopLinks} specLinks={[{ href: '/iphone/iphone-spec-table/', label: '歴代iPhoneスペック比較表' }]}>
           {(props) => <CompareSelector {...props} />}
         </CompareSection>
         <BenchmarkGeekbench model={model} allModels={allModels} />

@@ -74,7 +74,12 @@ function buildCategories(): CompareCategory<SpecModel>[] {
     {
       title: 'ボディ',
       rows: [
-        { label: 'カラー', ...text((m) => m.color) },
+        { label: 'カラー', get: (m: SpecModel) => {
+          if (!m.color) return '-'
+          const parts = m.color.split(/\s*\/\s*/)
+          if (parts.length <= 1) return m.color
+          return <>{parts.map((p, i) => <span key={i}>{i > 0 && <br />}{p}</span>)}</>
+        }},
         { label: 'ストレージ', ...text((m) => m.strage) },
         { label: 'バッテリー容量', ...text((m) => m.battery) },
         { label: '充電端子', ...text((m) => m.port) },

@@ -141,7 +141,7 @@ export default function WifiCellularPage() {
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
             <p className="toc-title">タップできる目次</p>
-            <ol className="l-grid l-grid--2col toc-list">
+            <ol className="l-grid l-grid--3col toc-list">
               <li>
                 <a href="#conclusion" className="toc-item">
                   結論：違いのまとめ <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
@@ -197,18 +197,18 @@ export default function WifiCellularPage() {
                     <tbody>
                       <tr>
                         <th>モバイル通信</th>
-                        <td>×</td>
-                        <td>○</td>
+                        <td><span className="m-spec-row__cross">×</span></td>
+                        <td><span className="m-spec-row__circle">○</span></td>
                       </tr>
                       <tr>
                         <th>GPS機能</th>
-                        <td>×</td>
-                        <td>○</td>
+                        <td><span className="m-spec-row__cross">×</span></td>
+                        <td><span className="m-spec-row__circle">○</span></td>
                       </tr>
                       <tr>
                         <th>テザリング機能</th>
-                        <td>×</td>
-                        <td>○</td>
+                        <td><span className="m-spec-row__cross">×</span></td>
+                        <td><span className="m-spec-row__circle">○</span></td>
                       </tr>
                       <tr>
                         <th>デザイン</th>
@@ -334,6 +334,10 @@ export default function WifiCellularPage() {
                     </ul>
                     <p className="popular-card-desc">
                       ちなみにWi-FiモデルのiPadでもネット接続をすれば位置情報を取得することは可能です。ただし、Wi-Fiの電波強度を元に位置を推定する仕組みのため、GPS機能を搭載したセルラーモデルと比較すると精度がやや劣ります。特に屋外や移動中はズレが大きくなるので注意が必要です。
+                    </p>
+                    <p className="lead-link">
+                      <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
+                      <a href="/ipad/car-navigation-system">iPadをカーナビとして使う方法と注意点</a>
                     </p>
                   </div>
                 </div>
@@ -466,70 +470,70 @@ export default function WifiCellularPage() {
               <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-xl)' }}>
 
                 {/* 1. 楽天モバイル */}
-                <div className="m-card m-card--shadow popular-card">
-                  <figure className="popular-card-figure">
-                    <img
-                      src="https://hbb.afl.rakuten.co.jp/hsb/4ebf9dc9.4dc93727.1d6c2ffe.7ec2aeb6/?me_id=2101065&me_adv_id=2377896&t=pict"
-                      alt="楽天モバイルのイメージ"
-                      className="popular-card-img"
-                      width={400}
-                      height={500}
-                      loading="lazy"
-                    />
-                  </figure>
-                  <div className="popular-card-body">
-                    <p className="popular-card-subtitle">柔軟な料金体系が魅力</p>
-                    <h3 className="popular-card-title">楽天モバイル</h3>
-                    <p className="popular-card-desc">
-                      iPadのセルラーモデルのSIMをコスパ重視で選びたい方におすすめなのが楽天モバイルです。
-                    </p>
-                    <p className="popular-card-desc">
-                      楽天モバイルの特徴は、使った分だけ支払う段階制の料金プラン「Rakuten最強プラン」。月3GBまでなら月額1,078円（税込）、たっぷり使っても<strong>20GB超〜無制限で月額3,278円（税込）</strong>と非常にわかりやすく、iPadの利用頻度に応じて無駄なく通信コストを抑えられます。
-                    </p>
-                    <p className="popular-card-desc">
-                      さらに、楽天ポイントプログラム（SPU）も＋1倍になるため、楽天市場などの利用が多い方にはうれしいメリットも。
-                    </p>
-                    <p className="popular-card-desc">
-                      ただし、都市部以外ではパートナー回線に接続されるケースもあるため、お住まいや活動エリアが楽天回線エリア内か事前に確認しておくのがおすすめです。
-                    </p>
-                    <p className="popular-card-desc">
-                      とにかく「通信費を抑えたい」「月によって使う量が違う」という方には、柔軟性の高い楽天モバイルはiPadのセルラーモデル運用に非常に相性のよい選択肢といえます。
-                    </p>
-                    <div>
+                <div className="m-card m-card--shadow m-card--padded">
+                  <div className="caution-check-card__body">
+                    <div className="caution-check-card__visual">
+                      <figure className="caution-check-card__image">
+                        <a href="https://hb.afl.rakuten.co.jp/hsc/4ebf9dc9.4dc93727.1d6c2ffe.7ec2aeb6/?link_type=pict&rafst=rmn&ut=eyJwYWdlIjoic2hvcCIsInR5cGUiOiJwaWN0IiwiY29sIjoxLCJjYXQiOjEsImJhbiI6MjM3Nzg5NiwiYW1wIjpmYWxzZX0%3D" rel="nofollow sponsored noopener" target="_blank">
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img
+                            src="https://hbb.afl.rakuten.co.jp/hsb/4ebf9dc9.4dc93727.1d6c2ffe.7ec2aeb6/?me_id=2101065&me_adv_id=2377896&t=pict"
+                            alt="楽天モバイル"
+                            width={300}
+                            height={250}
+                            loading="lazy"
+                          />
+                        </a>
+                      </figure>
+                    </div>
+                    <div className="caution-check-card__text m-rich-text">
+                      <h3 className="caution-check-card__heading">楽天モバイル</h3>
+                      <ul className="m-check-list">
+                        <li><i className="fa-solid fa-check" aria-hidden="true"></i> 使った分だけ支払う段階制プラン</li>
+                        <li><i className="fa-solid fa-check" aria-hidden="true"></i> 月3GBまで1,078円（税込）</li>
+                        <li><i className="fa-solid fa-check" aria-hidden="true"></i> <strong>20GB超〜無制限で月額3,278円（税込）</strong></li>
+                        <li><i className="fa-solid fa-check" aria-hidden="true"></i> 楽天ポイント（SPU）＋1倍</li>
+                      </ul>
+                      <p>
+                        「通信費を抑えたい」「月によって使う量が違う」という方には、柔軟性の高い楽天モバイルがiPadのセルラーモデル運用に最適です。ただし、お住まいが楽天回線エリア内か事前に確認しておきましょう。
+                      </p>
                       <a href="https://hb.afl.rakuten.co.jp/hsc/4ebf9dc9.4dc93727.1d6c2ffe.7ec2aeb6/?link_type=pict&rafst=rmn&ut=eyJwYWdlIjoic2hvcCIsInR5cGUiOiJwaWN0IiwiY29sIjoxLCJjYXQiOjEsImJhbiI6MjM3Nzg5NiwiYW1wIjpmYWxzZX0%3D" className="m-btn m-btn--primary" target="_blank" rel="nofollow sponsored noopener">
-                        楽天モバイルをチェック <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                        楽天モバイルをチェック <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
                       </a>
                     </div>
                   </div>
                 </div>
 
                 {/* 2. ahamo */}
-                <div className="m-card m-card--shadow popular-card">
-                  <figure className="popular-card-figure">
-                    <img
-                      src="https://www28.a8.net/svt/bgt?aid=211010658886&wid=001&eno=01&mid=s00000022488001006000&mc=1"
-                      alt="ahamoのイメージ"
-                      className="popular-card-img"
-                      width={300}
-                      height={250}
-                      loading="lazy"
-                    />
-                  </figure>
-                  <div className="popular-card-body">
-                    <p className="popular-card-subtitle">大容量データを安心して使いたい方向け</p>
-                    <h3 className="popular-card-title">ahamo</h3>
-                    <p className="popular-card-desc">
-                      iPadのセルラーモデルをたっぷり使いたい方におすすめなのが、NTTドコモが提供するオンライン専用プラン「ahamo（アハモ）」です。
-                    </p>
-                    <p className="popular-card-desc">
-                      月額2,970円（税込）で20GBまで使える基本プランに加え、＋1,980円で「大盛りオプション」も追加可能。<strong>最大100GBまで使える</strong>ため、動画視聴やクラウド利用が多いiPadユーザーにも安心の大容量プランです。
-                    </p>
-                    <p className="popular-card-desc">
-                      また、ドコモの高品質な4G／5G回線が全国で利用でき、エリアの広さと安定性も魅力。店舗サポートはありませんが、オンラインで完結できる方にはぴったりの通信サービスです。
-                    </p>
-                    <div>
+                <div className="m-card m-card--shadow m-card--padded">
+                  <div className="caution-check-card__body">
+                    <div className="caution-check-card__visual">
+                      <figure className="caution-check-card__image">
+                        <a href="https://px.a8.net/svt/ejp?a8mat=3HMOV6+ENI2R6+4TIO+5ZMCH" rel="nofollow sponsored noopener" target="_blank">
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img
+                            src="https://www28.a8.net/svt/bgt?aid=211010658886&wid=001&eno=01&mid=s00000022488001006000&mc=1"
+                            alt="ahamo"
+                            width={300}
+                            height={250}
+                            loading="lazy"
+                          />
+                        </a>
+                      </figure>
+                    </div>
+                    <div className="caution-check-card__text m-rich-text">
+                      <h3 className="caution-check-card__heading">ahamo</h3>
+                      <ul className="m-check-list">
+                        <li><i className="fa-solid fa-check" aria-hidden="true"></i> 月額2,970円（税込）で20GB</li>
+                        <li><i className="fa-solid fa-check" aria-hidden="true"></i> <strong>大盛りオプションで最大100GB</strong></li>
+                        <li><i className="fa-solid fa-check" aria-hidden="true"></i> ドコモの高品質4G／5G回線</li>
+                        <li><i className="fa-solid fa-check" aria-hidden="true"></i> 全国で安定した通信エリア</li>
+                      </ul>
+                      <p>
+                        動画視聴やクラウド利用が多い方に最適。ドコモ回線のエリアの広さと安定性が魅力です。オンラインで完結できる方にぴったりの通信サービスです。
+                      </p>
                       <a href="https://px.a8.net/svt/ejp?a8mat=3HMOV6+ENI2R6+4TIO+5ZMCH" className="m-btn m-btn--primary" target="_blank" rel="nofollow sponsored noopener">
-                        ahamoをチェック <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                        ahamoをチェック <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
                       </a>
                     </div>
                   </div>

@@ -34,6 +34,7 @@ CREATE TABLE IF NOT EXISTS macbook_models (
   promotion         BOOLEAN NOT NULL DEFAULT FALSE,
   fan               BOOLEAN NOT NULL DEFAULT FALSE,
   center_frame      BOOLEAN NOT NULL DEFAULT FALSE,
+  external_display  TEXT,
   point             TEXT,
   advance           JSONB,
   official          TEXT,

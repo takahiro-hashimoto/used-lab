@@ -85,6 +85,7 @@ export const PRODUCT_CATEGORIES: CategoryDef[] = [
       { path: '/iphone/battery-compare/', label: '歴代iPhoneのバッテリー容量比較ランキング！電池持ちがいい機種はどれ？' },
       { path: '/iphone/iphone-camera/', label: 'iPhoneのカメラ性能の違いは何？歴代モデルの機能を比較' },
       { path: '/iphone/mvno/', label: (p) => `中古iPhoneの購入と通信契約が一緒にできる格安SIM業者まとめ【${p.mvnoDate}】` },
+      { path: '/iphone/network-limit/', label: 'ネットワーク制限△の中古iPhone・iPadを買うメリット・デメリットを解説' },
     ],
   },
   {
@@ -103,6 +104,7 @@ export const PRODUCT_CATEGORIES: CategoryDef[] = [
       { path: '/ipad/ipad-price-info/', label: (p) => `iPadの中古相場一覧 | 歴代${p.ipadModelCount}機種の価格推移を独自集計【${p.ipadPriceMonth}】` },
       { path: '/ipad/ipad-filter-search/', label: 'iPad機種診断シミュレーター｜自分に合うおすすめ中古iPadがすぐわかる【2026年版】' },
       { path: '/ipad/apple-pencil-compare/', label: 'Apple Pencilの違いを比較！あなたにぴったりのアップルペンシルがわかる' },
+      { path: '/ipad/accessories-summary/', label: '歴代iPadのMagic Keyboard 型番一覧｜対応キーボードがすぐわかる' },
       { path: '/ipad/wifi-cellular/', label: 'iPadはWi-Fiモデルとセルラーモデルどっちがおすすめ？両者の違い4つを比較' },
       { path: '/ipad/howto-use-ipad/', label: 'iPadがあればできること・便利な使い道 22選【生活が変わる】' },
       { path: '/ipad/car-navigation-system/', label: 'iPadをカーナビ化するメリットが凄い！地図が古くなる問題をすっきり解消' },
@@ -157,6 +159,7 @@ export const PRODUCT_CATEGORIES: CategoryDef[] = [
     pages: [
       { path: '/airpods/recommend/', label: (p) => `中古AirPodsおすすめ${p.airpodsRecCount}機種を解説。狙い目の型落ちモデルはどれ？【${p.airpodsRecDate}版】` },
       { path: '/airpods/price/', label: (p) => `AirPodsの中古相場一覧 | 歴代${p.airpodsModelCount}機種の価格推移を独自集計【${p.airpodsPriceMonth}】` },
+      { path: '/airpods/airpods-find/', label: 'AirPodsのケースやイヤホン片方を無くした時の探し方、代替品の購入先まとめ' },
     ],
   },
 ]

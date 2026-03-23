@@ -277,6 +277,7 @@ export interface MacBookModel extends BaseProductModel {
   promotion: boolean
   fan: boolean
   center_frame: boolean
+  external_display: string | null
   accessory_case: string | null
   accessory_film: string | null
   last_macos: string | null

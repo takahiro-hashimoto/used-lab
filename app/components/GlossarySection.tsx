@@ -1,6 +1,9 @@
+import type { ReactNode } from 'react'
+
 type GlossaryItem = {
   title: string
-  desc: string
+  desc: ReactNode
+  icon?: string
 }
 
 type Props = {
@@ -23,7 +26,10 @@ export default function GlossarySection({ productName, items }: Props) {
         <div className="l-grid l-grid--3col l-grid--gap-lg glossary-grid">
           {items.map((item) => (
             <div key={item.title} className="m-card m-card--shadow glossary-grid__item">
-              <p className="glossary-grid__title">{item.title}</p>
+              <p className="glossary-grid__title">
+                {item.icon && <i className={item.icon} aria-hidden="true"></i>}{' '}
+                {item.title}
+              </p>
               <p className="glossary-grid__desc">{item.desc}</p>
             </div>
           ))}

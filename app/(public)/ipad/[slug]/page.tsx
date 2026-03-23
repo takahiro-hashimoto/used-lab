@@ -132,7 +132,7 @@ export default async function IPadDetailPage({ params }: PageProps) {
         )}
 
         <AdvanceFeatures model={enrichedModel} />
-        <CompareSection model={enrichedModel} allModels={enrichedAllModels} shopLinks={shopLinks}>
+        <CompareSection model={enrichedModel} allModels={enrichedAllModels} shopLinks={shopLinks} specLinks={[{ href: '/ipad/ipad-spec-table/', label: '歴代iPadスペック比較表' }]}>
           {(props) => <CompareSelector {...props} />}
         </CompareSection>
         <BenchmarkGeekbench model={enrichedModel} allModels={enrichedAllModels} />

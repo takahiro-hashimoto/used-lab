@@ -9,19 +9,20 @@ import EvolutionTimeline from './components/EvolutionTimeline'
 import GlossarySection from '@/app/components/GlossarySection'
 
 const GLOSSARY_ITEMS = [
-  { title: 'CPU', desc: 'パソコンの頭脳。操作やアプリの動きをコントロール。シェフのように全体を指示する存在。' },
-  { title: 'GPU', desc: '映像やグラフィックを描くパーツ。動画やゲームの表示が滑らかになる。盛り付け担当のアシスタント的存在。' },
-  { title: 'メモリ', desc: '作業スペースの広さに例えられる。多いほどアプリを同時に快適に使える。' },
-  { title: 'ProMotion', desc: '最大120Hzでスクロールがなめらかに。動画やアニメーションもスムーズ。' },
-  { title: 'センターフレーム', desc: '通話中に顔を自動で中心にキープ。動いてもフレーム内に収まる。' },
-  { title: '輝度', desc: '画面の明るさ。数値が高いほど屋外でも見やすくなる。' },
-  { title: 'Retina Display', desc: 'ドットが見えないほど精細な画面。文字や写真がくっきり美しい。' },
-  { title: 'Liquid Retina Display', desc: '広色域・高コントラスト対応の高画質液晶。滑らかな表示が特長。' },
-  { title: 'Liquid Retina XDR Display', desc: '高輝度・HDR対応の最上位ディスプレイ。映像編集などにも最適。' },
-  { title: 'Touch ID', desc: '指紋認証でロック解除やApple Payが使える。ボタンに触れるだけでOK。' },
-  { title: 'Thunderbolt', desc: '高速通信や映像出力ができるUSB-C端子。1本で充電やデータ転送も可能。' },
-  { title: '冷却ファン', desc: 'パソコンの熱を外に逃がす装置。高負荷時でも性能を維持しやすく、静音性も進化している。Proモデルに搭載されている。' },
-  { title: 'MagSafe', desc: '磁石でカチッと接続できる充電端子。ケーブルに足を引っかけても本体が落ちにくい。' },
+  { title: 'CPU', icon: 'fa-solid fa-microchip', desc: 'パソコンの頭脳。操作やアプリの動きをコントロール。シェフのように全体を指示する存在。' },
+  { title: 'GPU', icon: 'fa-solid fa-palette', desc: '映像やグラフィックを描くパーツ。動画やゲームの表示が滑らかになる。盛り付け担当のアシスタント的存在。' },
+  { title: 'メモリ', icon: 'fa-solid fa-memory', desc: '作業スペースの広さに例えられる。多いほどアプリを同時に快適に使える。' },
+  { title: 'ProMotion', icon: 'fa-solid fa-gauge-high', desc: '最大120Hzでスクロールがなめらかに。動画やアニメーションもスムーズ。' },
+  { title: 'センターフレーム', icon: 'fa-solid fa-camera', desc: '通話中に顔を自動で中心にキープ。動いてもフレーム内に収まる。' },
+  { title: '輝度', icon: 'fa-solid fa-sun', desc: '画面の明るさ。数値が高いほど屋外でも見やすくなる。' },
+  { title: 'Retina Display', icon: 'fa-solid fa-display', desc: 'ドットが見えないほど精細な画面。文字や写真がくっきり美しい。' },
+  { title: 'Liquid Retina Display', icon: 'fa-solid fa-droplet', desc: '広色域・高コントラスト対応の高画質液晶。滑らかな表示が特長。' },
+  { title: 'Liquid Retina XDR Display', icon: 'fa-solid fa-star', desc: '高輝度・HDR対応の最上位ディスプレイ。映像編集などにも最適。' },
+  { title: 'Touch ID', icon: 'fa-solid fa-fingerprint', desc: '指紋認証でロック解除やApple Payが使える。ボタンに触れるだけでOK。' },
+  { title: 'Thunderbolt', icon: 'fa-solid fa-bolt', desc: '高速通信や映像出力ができるUSB-C端子。1本で充電やデータ転送も可能。' },
+  { title: '冷却ファン', icon: 'fa-solid fa-fan', desc: 'パソコンの熱を外に逃がす装置。高負荷時でも性能を維持しやすく、静音性も進化している。Proモデルに搭載されている。' },
+  { title: 'MagSafe', icon: 'fa-solid fa-magnet', desc: '磁石でカチッと接続できる充電端子。ケーブルに足を引っかけても本体が落ちにくい。' },
+  { title: '外部ディスプレイ接続台数', icon: 'fa-solid fa-desktop', desc: '同時に接続できる外部モニターの台数。M1/M2は最大1台、M3以降やPro/Maxチップでは2〜4台に対応。デュアルモニター環境を作りたい方はチップの対応台数を必ず確認。' },
 ]
 import ShareBox from '@/app/components/ShareBox'
 import PopularMacBook from '@/app/components/PopularMacBook'
@@ -96,6 +97,7 @@ export default async function MacBookSpecTablePage() {
     fan: m.fan,
     center_frame: m.center_frame,
     apple_intelligence: m.apple_intelligence,
+    external_display: m.external_display,
     battery: m.battery,
     color: m.color,
     score_single: m.score_single,

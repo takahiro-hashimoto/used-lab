@@ -8,6 +8,7 @@ import PostCheckSection from '@/app/components/attention/PostCheckSection'
 import FailureSection from '@/app/components/attention/FailureSection'
 import InsuranceSection from '@/app/components/attention/InsuranceSection'
 import FaqSection from '@/app/components/attention/FaqSection'
+import PopularSection from '@/app/components/support/PopularSection'
 import { insuranceData, faqItems, postCheckItems, failurePatterns } from './components/data'
 
 const PAGE_TITLE = '中古iPhoneはやめた方がいい？購入前に確認すべき注意点まとめ【2026年版】'
@@ -184,7 +185,7 @@ export default function UsedIphoneAttentionPage() {
             <div className="lead-box">
               <p>「安かったから買った中古iPhoneが、1ヶ月後に突然通信できなくなった」</p>
               <p>
-                これは実際によくある失敗パターンです。中古iPhoneは「<strong>状態の個体差</strong>」が最大のリスク。知らずに買うと、あとから回避できない問題が起きることがあります。
+                これは実際によくある失敗パターンです。中古iPhoneは「状態の個体差」が最大のリスク。知らずに買うと、あとから回避できない問題が起きることがあります。
               </p>
               <p>
                 そこで本記事では「<strong>買ってはいけない端末</strong>」を見抜くポイントをわかりやすく解説します。
@@ -241,7 +242,7 @@ export default function UsedIphoneAttentionPage() {
           <PreCheckSection />
           <RouteSection />
           <PostCheckSection heading="購入後すぐやるべきチェック" productName="iPhone" checkItems={postCheckItems} />
-          <FailureSection productName="iPhone" guidePath="/iphone" failurePatterns={failurePatterns} />
+          <FailureSection productName="iPhone" guidePath="/iphone" failurePatterns={failurePatterns} showMemo={false} />
           <InsuranceSection {...insuranceData} />
 
           {/* まとめ */}
@@ -272,6 +273,17 @@ export default function UsedIphoneAttentionPage() {
             </div>
           </section>
 
+          <PopularSection
+            sectionTitle="目的別に人気の中古iPhone"
+            sectionDescription="目的別におすすめの機種を厳選。診断で迷った方はぜひご覧ください。"
+            imageSrc="/images/content/iphone-setting.webp"
+            imageAlt="中古iPhoneおすすめ5選のイメージ画像"
+            subtitle="目的別におすすめ機種を厳選！"
+            cardTitle="中古iPhoneおすすめ5選"
+            cardDescription="カメラ重視、コスパ重視、ゲーム向けなど目的別に買うべきモデルを紹介。チップ性能やバッテリー、iOSサポート期間など購入前にチェックすべき項目も網羅しています。"
+            buttonText="おすすめ5機種を見る"
+            buttonHref="/iphone/recommend/"
+          />
           <FaqSection productName="iPhone" faqItems={faqItems} />
         <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>

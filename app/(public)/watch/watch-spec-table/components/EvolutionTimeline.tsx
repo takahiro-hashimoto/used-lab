@@ -202,31 +202,33 @@ export default function EvolutionTimeline() {
           Apple Watch Series の進化した点
         </h3>
 
-        <div className="evolution-timeline">
-          {SERIES_TIMELINE.map((item) => (
-            <div key={item.title} className="evolution-item">
-              <div className={`evolution-item__marker${item.filled ? ' evolution-item__marker--filled' : ''}`}></div>
-              <div className="evolution-item__content">
-                <span className="evolution-item__date">{item.date}</span>
-                <div className="evolution-item__header">
-                  <h4 className="evolution-item__title">
-                    <Link href={`/watch/${item.models[0].slug}`}>{item.title}</Link>
-                  </h4>
-                </div>
-                <div className="evolution-item__body">
-                  <div className="l-grid l-grid--2col l-grid--gap-lg">
-                    <div className="evolution-item__col">
-                      <ul className="evolution-item__list">
-                        {item.items.map((li, i) => (
-                          <li key={i}>{li}</li>
-                        ))}
-                      </ul>
+        <div className="m-card m-card--shadow" style={{ padding: 'var(--space-lg)' }}>
+          <div className="evolution-timeline">
+            {SERIES_TIMELINE.map((item) => (
+              <div key={item.title} className="evolution-item">
+                <div className={`evolution-item__marker${item.filled ? ' evolution-item__marker--filled' : ''}`}></div>
+                <div className="evolution-item__content">
+                  <span className="evolution-item__date">{item.date}</span>
+                  <div className="evolution-item__header">
+                    <h4 className="evolution-item__title">
+                      <Link href={`/watch/${item.models[0].slug}`}>{item.title}</Link>
+                    </h4>
+                  </div>
+                  <div className="evolution-item__body">
+                    <div className="l-grid l-grid--2col l-grid--gap-lg">
+                      <div className="evolution-item__col">
+                        <ul className="evolution-item__list">
+                          {item.items.map((li, i) => (
+                            <li key={i}>{li}</li>
+                          ))}
+                        </ul>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
 
         {/* SE */}
@@ -234,31 +236,33 @@ export default function EvolutionTimeline() {
           Apple Watch SE シリーズの進化した点
         </h3>
 
-        <div className="evolution-timeline">
-          {SE_TIMELINE.map((item) => (
-            <div key={item.title} className="evolution-item">
-              <div className={`evolution-item__marker${item.filled ? ' evolution-item__marker--filled' : ''}`}></div>
-              <div className="evolution-item__content">
-                <span className="evolution-item__date">{item.date}</span>
-                <div className="evolution-item__header">
-                  <h4 className="evolution-item__title">
-                    <Link href={`/watch/${item.models[0].slug}`}>{item.title}</Link>
-                  </h4>
-                </div>
-                <div className="evolution-item__body">
-                  <div className="l-grid l-grid--2col l-grid--gap-lg">
-                    <div className="evolution-item__col">
-                      <ul className="evolution-item__list">
-                        {item.items.map((li, i) => (
-                          <li key={i}>{li}</li>
-                        ))}
-                      </ul>
+        <div className="m-card m-card--shadow" style={{ padding: 'var(--space-lg)' }}>
+          <div className="evolution-timeline">
+            {SE_TIMELINE.map((item) => (
+              <div key={item.title} className="evolution-item">
+                <div className={`evolution-item__marker${item.filled ? ' evolution-item__marker--filled' : ''}`}></div>
+                <div className="evolution-item__content">
+                  <span className="evolution-item__date">{item.date}</span>
+                  <div className="evolution-item__header">
+                    <h4 className="evolution-item__title">
+                      <Link href={`/watch/${item.models[0].slug}`}>{item.title}</Link>
+                    </h4>
+                  </div>
+                  <div className="evolution-item__body">
+                    <div className="l-grid l-grid--2col l-grid--gap-lg">
+                      <div className="evolution-item__col">
+                        <ul className="evolution-item__list">
+                          {item.items.map((li, i) => (
+                            <li key={i}>{li}</li>
+                          ))}
+                        </ul>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
 
         {/* Ultra */}
@@ -266,31 +270,33 @@ export default function EvolutionTimeline() {
           Apple Watch Ultra シリーズの進化した点
         </h3>
 
-        <div className="evolution-timeline">
-          {ULTRA_TIMELINE.map((item) => (
-            <div key={item.title} className="evolution-item">
-              <div className={`evolution-item__marker${item.filled ? ' evolution-item__marker--filled' : ''}`}></div>
-              <div className="evolution-item__content">
-                <span className="evolution-item__date">{item.date}</span>
-                <div className="evolution-item__header">
-                  <h4 className="evolution-item__title">
-                    <Link href={`/watch/${item.models[0].slug}`}>{item.title}</Link>
-                  </h4>
-                </div>
-                <div className="evolution-item__body">
-                  <div className="l-grid l-grid--2col l-grid--gap-lg">
-                    <div className="evolution-item__col">
-                      <ul className="evolution-item__list">
-                        {item.items.map((li, i) => (
-                          <li key={i}>{li}</li>
-                        ))}
-                      </ul>
+        <div className="m-card m-card--shadow" style={{ padding: 'var(--space-lg)' }}>
+          <div className="evolution-timeline">
+            {ULTRA_TIMELINE.map((item) => (
+              <div key={item.title} className="evolution-item">
+                <div className={`evolution-item__marker${item.filled ? ' evolution-item__marker--filled' : ''}`}></div>
+                <div className="evolution-item__content">
+                  <span className="evolution-item__date">{item.date}</span>
+                  <div className="evolution-item__header">
+                    <h4 className="evolution-item__title">
+                      <Link href={`/watch/${item.models[0].slug}`}>{item.title}</Link>
+                    </h4>
+                  </div>
+                  <div className="evolution-item__body">
+                    <div className="l-grid l-grid--2col l-grid--gap-lg">
+                      <div className="evolution-item__col">
+                        <ul className="evolution-item__list">
+                          {item.items.map((li, i) => (
+                            <li key={i}>{li}</li>
+                          ))}
+                        </ul>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>

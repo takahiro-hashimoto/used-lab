@@ -110,7 +110,7 @@ export default async function MacBookDetailPage({ params }: PageProps) {
         )}
 
         <AdvanceFeatures model={model} />
-        <CompareSection model={model} allModels={allModels} shopLinks={shopLinks}>
+        <CompareSection model={model} allModels={allModels} shopLinks={shopLinks} specLinks={[{ href: '/macbook/macbook-spec-table/', label: '歴代MacBookスペック比較表' }]}>
           {(props) => <CompareSelector {...props} />}
         </CompareSection>
         <BenchmarkGeekbench model={model} allModels={allModels} />

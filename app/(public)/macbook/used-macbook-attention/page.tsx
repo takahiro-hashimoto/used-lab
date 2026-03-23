@@ -242,10 +242,10 @@ export default function UsedMacBookAttentionPage() {
           <PreCheckSection />
           <RouteSection />
           <PostCheckSection heading="中古MacBookの購入後すぐやるべきチェック" productName="MacBook" checkItems={postCheckItems} />
-          <FailureSection productName="MacBook" guidePath="/macbook" failurePatterns={failurePatterns} />
+          <FailureSection productName="MacBook" guidePath="/macbook" failurePatterns={failurePatterns} showMemo={false} />
           <InsuranceSection {...insuranceData} />
-          <FaqSection productName="MacBook" faqItems={faqItems} />
         <PopularMacBook />
+          <FaqSection productName="MacBook" faqItems={faqItems} />
 
         <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>

@@ -1,7 +1,5 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
-import { getAllIPadModels, getAllIPadAccessories, getAllIPadAccessoryCompatibility } from '@/lib/queries'
-import { buildAccessoryLookup, getPencilTextFromAccessories } from '@/lib/utils/ipad-helpers'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import ShareBox from '@/app/components/ShareBox'
 import PreCheckSection from './components/PreCheckSection'
@@ -10,6 +8,7 @@ import PostCheckSection from '@/app/components/attention/PostCheckSection'
 import FailureSection from '@/app/components/attention/FailureSection'
 import InsuranceSection from '@/app/components/attention/InsuranceSection'
 import FaqSection from '@/app/components/attention/FaqSection'
+import PopularSection from '@/app/components/support/PopularSection'
 import { insuranceData, faqItems, postCheckItems, failurePatterns } from './components/data'
 
 const PAGE_TITLE = '中古iPadはやめた方がいい？購入前に確認すべき注意点まとめ'
@@ -33,19 +32,7 @@ export const metadata: Metadata = {
   },
 }
 
-export default async function UsedIpadAttentionPage() {
-  const [allModels, allAccessories, allCompatibility] = await Promise.all([
-    getAllIPadModels(),
-    getAllIPadAccessories(),
-    getAllIPadAccessoryCompatibility(),
-  ])
-  const accessoryLookup = buildAccessoryLookup(allAccessories, allCompatibility)
-
-  // pencil テキストをアクセサリテーブルから導出してモデルに付与
-  const enrichedModels = allModels.map((m) => ({
-    ...m,
-    pencil: getPencilTextFromAccessories(accessoryLookup.get(m.id) || []),
-  }))
+export default function UsedIpadAttentionPage() {
   const today = new Date()
   const dateStr = today.toISOString().split('T')[0]
   const dateDisplay = today.toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' })
@@ -252,11 +239,22 @@ export default async function UsedIpadAttentionPage() {
 
         {/* セクション */}
         <div className="l-sections" id="content" itemProp="articleBody">
-          <PreCheckSection models={enrichedModels} />
+          <PreCheckSection />
           <RouteSection />
           <PostCheckSection heading="中古iPadの購入後すぐやるべきチェック" productName="iPad" checkItems={postCheckItems} />
-          <FailureSection productName="iPad" guidePath="/ipad" failurePatterns={failurePatterns} />
+          <FailureSection productName="iPad" guidePath="/ipad" failurePatterns={failurePatterns} showMemo={false} />
           <InsuranceSection {...insuranceData} />
+          <PopularSection
+            sectionTitle="目的別に人気の中古iPad"
+            sectionDescription="目的別におすすめの機種を厳選。診断で迷った方はぜひご覧ください。"
+            imageSrc="/images/content/ipad-image-03.jpg"
+            imageAlt="中古iPadおすすめ5選のイメージ画像"
+            subtitle="目的別におすすめ機種を厳選！"
+            cardTitle="中古iPadおすすめ5選"
+            cardDescription="イラスト制作に最適なモデル、動画視聴に大画面モデルなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。"
+            buttonText="おすすめ5機種を見る"
+            buttonHref="/ipad/recommend/"
+          />
           <FaqSection productName="iPad" faqItems={faqItems} />
         <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>

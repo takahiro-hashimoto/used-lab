@@ -10,17 +10,17 @@ import EvolutionTimeline from './components/EvolutionTimeline'
 import GlossarySection from '@/app/components/GlossarySection'
 
 const GLOSSARY_ITEMS = [
-  { title: 'CPU', desc: 'iPadの処理性能を決める中核チップ。AシリーズやMシリーズが搭載され、Mシリーズはパソコン並の高性能を誇る。' },
-  { title: 'メモリ', desc: 'アプリの同時使用や動作の快適さに影響する記憶領域。容量が多いほど、重たい作業もスムーズにこなせる。Proモデルはストレージ容量ごとにメモリが異なる。' },
-  { title: 'Apple Intelligence', desc: 'iPad上で動作するApple独自のAI機能。要約、画像生成、文書の書き直し、優先通知の抽出などに対応。オンデバイス処理によりプライバシーにも配慮。' },
-  { title: 'ProMotion', desc: '最大120Hzのリフレッシュレートに対応する表示技術。スクロールやアニメーションが滑らかに表示され、Apple Pencil使用時の描画遅延も大幅に軽減。' },
-  { title: 'センターフレーム', desc: '超広角カメラと機械学習を使い、FaceTimeやビデオ会議中に被写体を自動で追尾。動いても常に中央に映るよう画角を調整。' },
-  { title: 'LiDAR機能', desc: 'レーザー光で周囲の距離を高精度に測定するセンサー。AR体験の精度向上や暗所でのピント合わせの高速化に貢献。' },
-  { title: 'Retina Display', desc: 'ピクセル密度が高く、肉眼では個々のピクセルが判別できない高精細ディスプレイ。文字や画像がシャープに表示され、目に優しい。' },
-  { title: 'Liquid Retina Display', desc: 'Retina Displayの進化版。滑らかな表示と広色域対応を実現し、ベゼルの細いデザインに最適化。True Toneや広視野角も特長。' },
-  { title: 'Ultra Retina XDR Display', desc: '有機ELを採用した最新世代の高性能ディスプレイ。高輝度・高コントラスト・広色域に対応し、HDR映像やプロ向け制作にも対応。' },
-  { title: 'Apple Pencil', desc: 'iPad専用のスタイラスペン。手書きメモやイラスト制作、PDFへの注釈などに活用。第1〜第3世代があり、対応機種や充電方式が異なる。' },
-  { title: '外付けキーボード', desc: 'iPad専用のMagic KeyboardやSmart Keyboardなどが対応。タイピング作業や資料作成が快適になり、ラップトップのように使える。iPad miniシリーズ対応の外付けキーボードはない。' },
+  { title: 'CPU', icon: 'fa-solid fa-microchip', desc: 'iPadの処理性能を決める中核チップ。AシリーズやMシリーズが搭載され、Mシリーズはパソコン並の高性能を誇る。' },
+  { title: 'メモリ', icon: 'fa-solid fa-memory', desc: 'アプリの同時使用や動作の快適さに影響する記憶領域。容量が多いほど、重たい作業もスムーズにこなせる。Proモデルはストレージ容量ごとにメモリが異なる。' },
+  { title: 'Apple Intelligence', icon: 'fa-solid fa-wand-magic-sparkles', desc: 'iPad上で動作するApple独自のAI機能。要約、画像生成、文書の書き直し、優先通知の抽出などに対応。オンデバイス処理によりプライバシーにも配慮。' },
+  { title: 'ProMotion', icon: 'fa-solid fa-gauge-high', desc: '最大120Hzのリフレッシュレートに対応する表示技術。スクロールやアニメーションが滑らかに表示され、Apple Pencil使用時の描画遅延も大幅に軽減。' },
+  { title: 'センターフレーム', icon: 'fa-solid fa-camera', desc: '超広角カメラと機械学習を使い、FaceTimeやビデオ会議中に被写体を自動で追尾。動いても常に中央に映るよう画角を調整。' },
+  { title: 'LiDAR機能', icon: 'fa-solid fa-cube', desc: 'レーザー光で周囲の距離を高精度に測定するセンサー。AR体験の精度向上や暗所でのピント合わせの高速化に貢献。' },
+  { title: 'Retina Display', icon: 'fa-solid fa-display', desc: 'ピクセル密度が高く、肉眼では個々のピクセルが判別できない高精細ディスプレイ。文字や画像がシャープに表示され、目に優しい。' },
+  { title: 'Liquid Retina Display', icon: 'fa-solid fa-droplet', desc: 'Retina Displayの進化版。滑らかな表示と広色域対応を実現し、ベゼルの細いデザインに最適化。True Toneや広視野角も特長。' },
+  { title: 'Ultra Retina XDR Display', icon: 'fa-solid fa-star', desc: '有機ELを採用した最新世代の高性能ディスプレイ。高輝度・高コントラスト・広色域に対応し、HDR映像やプロ向け制作にも対応。' },
+  { title: 'Apple Pencil', icon: 'fa-solid fa-pen-nib', desc: <>iPad専用のスタイラスペン。手書きメモやイラスト制作、PDFへの注釈などに活用。第1〜第3世代があり、対応機種や充電方式が異なる。詳しくは「<Link href="/ipad/apple-pencil-compare/">Apple Pencilの違いを比較</Link>」を参照。</> },
+  { title: '外付けキーボード', icon: 'fa-solid fa-keyboard', desc: <>iPad専用のMagic KeyboardやSmart Keyboardなどが対応。タイピング作業や資料作成が快適になり、ラップトップのように使える。詳しくは「<Link href="/ipad/accessories-summary/#kb-16">iPadのMagic Keyboard 型番一覧</Link>」を参照。</> },
 ]
 import ShareBox from '@/app/components/ShareBox'
 

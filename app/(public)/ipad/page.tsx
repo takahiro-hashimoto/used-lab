@@ -331,6 +331,13 @@ export default async function IPadGuidePage() {
                     </dd>
                   </div>
                   <div className="glossary-item">
+                    <dt className="glossary-item-title">ネットワーク利用制限（Cellularモデル）</dt>
+                    <dd className="glossary-item-desc">
+                      Cellularモデルの中古iPadには、前の所有者の分割払い状況によって通信が制限される「赤ロム」のリスクがあります。赤ロム永久保証付きのショップを選べば安心です。
+                      <br />詳細：<Link href="/iphone/network-limit/">ネットワーク制限△のメリット・デメリットを解説</Link>
+                    </dd>
+                  </div>
+                  <div className="glossary-item">
                     <dt className="glossary-item-title">ショップの動作保証</dt>
                     <dd className="glossary-item-desc">
                       中古品はメーカー保証が切れていることが多いため、販売店独自の保証内容が安心材料になります。

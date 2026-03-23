@@ -8,7 +8,8 @@ import {
   getLatestPriceLog,
 } from '@/lib/queries'
 import type { IPhoneModel } from '@/lib/types'
-import { buildFallbackShops, buildBreadcrumbJsonLd, buildArticleJsonLd, buildFaqJsonLd } from '@/lib/utils/shared-helpers'
+import { buildFallbackShops, buildBreadcrumbJsonLd, buildArticleJsonLd, buildFaqJsonLd, formatPrice } from '@/lib/utils/shared-helpers'
+import { calculatePriceRange } from '@/lib/utils/iphone-helpers'
 import {
   RECOMMEND_DATE_LABEL,
   RECOMMEND_YEAR,
@@ -83,15 +84,21 @@ export default async function IPhoneTopPage() {
   const articleJsonLd = buildArticleJsonLd({ headline: PAGE_TITLE, description: PAGE_DESCRIPTION, dateStr, url: PAGE_URL })
   const faqJsonLd = buildFaqJsonLd(FAQ_JSONLD_ITEMS)
 
-  // ConclusionSection用データ
-  const conclusionItems = recommendModels.map((model) => ({
-    id: model.id,
-    slug: model.slug,
-    displayName: model.model,
-    image: model.image,
-    date: model.date,
-    desc: RECOMMEND_META[model.slug]?.desc || '',
-  }))
+  // ConclusionSection用データ（最安価格を動的に付与）
+  const conclusionItems = recommendModels.map((model, i) => {
+    const meta = RECOMMEND_META[model.slug]
+    const { minPrice } = calculatePriceRange(latestPrices[i])
+    const priceLabel = minPrice ? `${formatPrice(minPrice)}〜` : ''
+    const desc = priceLabel ? `${priceLabel}。${meta?.desc || ''}` : (meta?.desc || '')
+    return {
+      id: model.id,
+      slug: model.slug,
+      displayName: model.model,
+      image: model.image,
+      date: model.date,
+      desc,
+    }
+  })
 
   const fallbackShops = buildFallbackShops(shops, SHOP_SECTION_IDS, 'url')
 
@@ -208,12 +215,19 @@ export default async function IPhoneTopPage() {
             <div className="lead-box">
               <p>「中古iPhoneって、結局どれを選べばいいの？」</p>
               <p>
-                {RECOMMEND_DATE_LABEL}現在、型落ちモデルの選択肢は豊富ですが、iOSサポート期間・性能・価格のバランスを
+                {RECOMMEND_DATE_LABEL}現在、型落ちiPhoneの選択肢は豊富ですが、iOSサポート期間・性能・価格のバランスを
                 考えると、おすすめできる機種は意外と限られています。
               </p>
               <p>
-                この記事では、今買っても後悔しない中古iPhone {RECOMMEND_COUNT}機種を厳選し、それぞれの特徴と向いている人を
-                詳しく解説します。
+                この記事では、{(() => {
+                  const prices = latestPrices.map(lp => calculatePriceRange(lp).minPrice).filter((p): p is number => p != null)
+                  const min = Math.min(...prices)
+                  const max = Math.max(...prices)
+                  const minMan = Math.floor(min / 10000)
+                  const maxMan = Math.floor(max / 10000)
+                  return `${minMan}万円台〜${maxMan}万円台`
+                })()}の予算別に今買っても後悔しない中古iPhone {RECOMMEND_COUNT}機種を厳選。
+                それぞれの特徴と向いている人を詳しく解説します。Apple認定整備済製品との違いも紹介しているので、初めて中古iPhoneを買う方にもおすすめの内容です。
               </p>
               <p className="lead-link"><i className="fa-solid fa-arrow-right" aria-hidden="true"></i> 情報を網羅的に得たい方は「<a href="/iphone/">中古iPhone購入完全ガイド</a>」も参考にしてみてください！</p>
             </div>

@@ -330,6 +330,13 @@ export default async function WatchGuidePage() {
                     </dd>
                   </div>
                   <div className="glossary-item">
+                    <dt className="glossary-item-title">GPSモデルかセルラーモデルか</dt>
+                    <dd className="glossary-item-desc">
+                      GPSモデルはiPhoneが近くにある前提で動作し、セルラーモデルはApple Watch単体で通話やデータ通信が可能です。常にiPhoneを持ち歩くならGPSモデルで十分。セルラーは別途キャリア契約が必要です。
+                      <br />詳細：<Link href="/watch/gps-cellular-compare/">GPSモデルとセルラーモデルの違い</Link>
+                    </dd>
+                  </div>
+                  <div className="glossary-item">
                     <dt className="glossary-item-title">外装状態・ランク表記</dt>
                     <dd className="glossary-item-desc">
                       ケースやディスプレイの傷は価格に影響します。Apple Watchは日常的に腕に着けるため、傷がつきやすい製品です。自分が許容できる状態をあらかじめ決めておくと選びやすくなります。
@@ -519,6 +526,18 @@ export default async function WatchGuidePage() {
                   <h3 className="faq-question">Apple WatchはどのiPhoneと組み合わせて使えますか？</h3>
                   <div className="faq-answer">
                     <p>最新のwatchOSを利用するには、対応するiOS以降を搭載したiPhoneが必要です。古いiPhoneを使っている場合は、Apple Watchとの互換性を事前に確認しましょう。詳しくは「<Link href="/watch/used-watch-support/">watchOSサポート期間一覧表</Link>」をご覧ください。</p>
+                  </div>
+                </div>
+                <div className="m-card faq-item">
+                  <h3 className="faq-question">Apple認定整備済製品と中古Apple Watchの違いは？</h3>
+                  <div className="faq-answer">
+                    <p>Apple認定整備済製品はAppleが検品・部品交換・クリーニングを行い、バッテリーと外装が新品に交換済みで1年間のApple保証が付きます。ただし、Apple Watchの整備済製品は入荷が少なく選択肢が限られます。中古ショップなら旧モデルを含め機種が豊富で、価格も手頃です。</p>
+                  </div>
+                </div>
+                <div className="m-card faq-item">
+                  <h3 className="faq-question">おすすめしない中古Apple Watchはどれ？</h3>
+                  <div className="faq-answer">
+                    <p>Series 4以前のモデルはwatchOSサポートが終了しており、新しいアプリや機能が使えなくなっています。また、Series 3は動作が重く実用的ではありません。長く使いたいなら、Series 7以降またはSE 第2世代以降を選ぶのが安心です。</p>
                   </div>
                 </div>
               </div>

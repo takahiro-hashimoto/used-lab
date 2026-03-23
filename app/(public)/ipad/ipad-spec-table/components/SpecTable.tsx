@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useMemo } from 'react'
+import StickyTableWrapper from '@/app/components/StickyTableWrapper'
 import { parseDate, formatDate, BoolCell, TextCell, PortCell, formatStorageRange } from '@/app/components/spec-table-utils'
 import type { ProductShopLink } from '@/lib/types'
 
@@ -118,24 +119,7 @@ export default function SpecTable({ models, shopLinks }: Props) {
     shopLinks.find((l) => l.product_id === productId && l.shop_id === shopId)
 
   const SPEC_ROWS: { label: string; render: (m: SpecModel) => React.ReactNode }[] = [
-    {
-      label: 'サイズ',
-      render: (m) => (
-        <>
-          {m.image && (
-            <img
-              src={`/images/ipad/${m.image}`}
-              alt={m.model}
-              width={50}
-              height={65}
-              loading="lazy"
-              className="spec-compare-table__cell-img"
-            />
-          )}
-          {extractScreenInch(m.display) || '-'}
-        </>
-      ),
-    },
+    { label: 'サイズ', render: (m) => extractScreenInch(m.display) || '-' },
     { label: '発売日', render: (m) => formatDate(m.date) },
     { label: 'CPU', render: (m) => m.cpu ? <TextCell value={m.cpu} /> : '-' },
     { label: 'RAM', render: (m) => m.ram || '-' },
@@ -233,7 +217,7 @@ export default function SpecTable({ models, shopLinks }: Props) {
         {filteredModels.length === 0 ? (
           <p className="m-section-desc">該当するモデルがありません。フィルターを変更してください。</p>
         ) : (
-          <div className="m-card m-card--shadow m-table-card">
+          <StickyTableWrapper className="m-card m-card--shadow m-table-card">
             <div className="m-table-scroll">
               <table className="m-table spec-compare-table">
                 <caption className="visually-hidden">歴代iPadスペック比較表</caption>
@@ -246,6 +230,23 @@ export default function SpecTable({ models, shopLinks }: Props) {
                   </tr>
                 </thead>
                 <tbody>
+                  <tr>
+                    <th scope="row" className="spec-compare-table__sticky"></th>
+                    {filteredModels.map((m) => (
+                      <td key={m.id} style={{ textAlign: 'center', padding: 'var(--space-sm)' }}>
+                        {m.image && (
+                          <img
+                            src={`/images/ipad/${m.image}`}
+                            alt={m.model}
+                            width={50}
+                            height={65}
+                            loading="lazy"
+                            className="spec-compare-table__cell-img"
+                          />
+                        )}
+                      </td>
+                    ))}
+                  </tr>
                   {SPEC_ROWS.map((row) => (
                     <tr key={row.label}>
                       <th scope="row" className="spec-compare-table__sticky">{row.label}</th>
@@ -289,7 +290,7 @@ export default function SpecTable({ models, shopLinks }: Props) {
                 </tbody>
               </table>
             </div>
-          </div>
+          </StickyTableWrapper>
         )}
       </div>
     </section>

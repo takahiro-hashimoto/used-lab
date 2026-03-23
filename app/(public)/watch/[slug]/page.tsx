@@ -113,7 +113,7 @@ export default async function WatchDetailPage({ params }: PageProps) {
         )}
 
         <AdvanceFeatures model={model} />
-        <CompareSection model={model} allModels={allModels} shopLinks={shopLinks}>
+        <CompareSection model={model} allModels={allModels} shopLinks={shopLinks} specLinks={[{ href: '/watch/watch-spec-table/', label: '歴代Apple Watchスペック比較表' }]}>
           {(props) => <CompareSelector {...props} />}
         </CompareSection>
         <Accessories model={model} />

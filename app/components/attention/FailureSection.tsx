@@ -4,9 +4,10 @@ interface Props {
   productName: string
   guidePath: string
   failurePatterns: FailurePattern[]
+  showMemo?: boolean
 }
 
-export default function FailureSection({ productName, guidePath, failurePatterns }: Props) {
+export default function FailureSection({ productName, guidePath, failurePatterns, showMemo = true }: Props) {
   return (
     <section className="l-section" id="failure" aria-labelledby="heading-failure">
       <div className="l-container">
@@ -25,12 +26,14 @@ export default function FailureSection({ productName, guidePath, failurePatterns
           ))}
         </div>
 
-        <div className="m-callout m-callout--tip" style={{ marginTop: 'var(--space-2xl)' }}>
-          <span className="m-callout__label">memo</span>
-          <p className="m-callout__text">
-            どの機種を選べばいいか迷ったら「<a href={guidePath}>中古{productName}おすすめ機種</a>」をご覧ください。あなたに合ったコスパのよい機種が見つかります。
-          </p>
-        </div>
+        {showMemo && (
+          <div className="m-callout m-callout--tip" style={{ marginTop: 'var(--space-2xl)' }}>
+            <span className="m-callout__label">memo</span>
+            <p className="m-callout__text">
+              どの機種を選べばいいか迷ったら「<a href={guidePath}>中古{productName}おすすめ機種</a>」をご覧ください。あなたに合ったコスパのよい機種が見つかります。
+            </p>
+          </div>
+        )}
       </div>
     </section>
   )

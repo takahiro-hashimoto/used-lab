@@ -1,3 +1,4 @@
+import StickyTableWrapper from '@/app/components/StickyTableWrapper'
 import type { IPhoneModel } from '@/lib/types'
 
 type Props = {
@@ -56,7 +57,7 @@ export default function BenchmarkGeekbench({ model, allModels }: Props) {
         </dl>
 
         {/* ベンチマーク比較テーブル */}
-        <div className="m-card m-card--shadow m-table-card">
+        <StickyTableWrapper className="m-card m-card--shadow m-table-card">
           <div className="m-table-scroll">
           <table className="m-table bench-table">
             <caption className="visually-hidden">iPhoneモデル別 Geekbench 6 ベンチマークスコア比較</caption>
@@ -118,7 +119,7 @@ export default function BenchmarkGeekbench({ model, allModels }: Props) {
             </tbody>
           </table>
           </div>
-        </div>
+        </StickyTableWrapper>
       </div>
     </section>
   )

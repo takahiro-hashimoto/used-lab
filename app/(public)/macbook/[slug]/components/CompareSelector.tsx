@@ -46,6 +46,7 @@ function buildCompareRows(current: MacBookModel, compare: MacBookModel): Compare
     { section: 'ディスプレイ', label: '解像度', current: current.resolution || '-', compare: compare.resolution || '-' },
     { section: 'ディスプレイ', label: '輝度', current: current.luminance || '-', compare: compare.luminance || '-' },
     { section: 'ディスプレイ', label: 'ProMotion', current: getBoolValue(current.promotion), compare: getBoolValue(compare.promotion) },
+    { section: 'ディスプレイ', label: '外部ディスプレイ', current: current.external_display || '-', compare: compare.external_display || '-' },
     // その他
     { section: 'その他', label: 'バッテリー', current: current.battery || '-', compare: compare.battery || '-' },
     { section: 'その他', label: 'カメラ', current: current.camera || '-', compare: compare.camera || '-' },

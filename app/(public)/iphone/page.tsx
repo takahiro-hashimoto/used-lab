@@ -321,6 +321,10 @@ export default async function IPhoneGuidePage() {
                     <dt className="glossary-item-title">ネットワーク利用制限（赤ロム）</dt>
                     <dd className="glossary-item-desc">
                       支払い状況の問題で通信が制限される端末があります。利用制限の状態や、保証の有無は事前にチェックしましょう。
+                      <p className="lead-link" style={{ marginTop: 'var(--space-xs)' }}>
+                        <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
+                        <a href="/iphone/network-limit/">ネットワーク制限△のメリット・デメリットを解説</a>
+                      </p>
                     </dd>
                   </div>
                   <div className="glossary-item">

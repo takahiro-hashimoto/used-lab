@@ -28,7 +28,7 @@ export default function PreCheckSection() {
             <div className="caution-check-card__text m-rich-text">
               <p>
                 ネットワーク利用制限とは、前の所有者の支払い状況によって端末の通信機能が制限される仕組みです。制限がかかると、SIMカードを入れても通話・データ通信ができなくなります。
-                <strong>端末そのものが使えなくなるリスク</strong>があるため、最優先で確認してください。
+                端末そのものが使えなくなるリスクがあるため、最優先で確認してください。
               </p>
               <p>
                 「△」は「今使える」ではなく「将来止まる可能性がある状態」です。購入後に「×」になっても自己責任になるケースが多く、「△」は安いですが、それは「リスクを買っている」ということを理解しましょう。
@@ -42,7 +42,7 @@ export default function PreCheckSection() {
               <li className="caution-steps__item">
                 <span className="caution-steps__num">1</span>
                 <span>
-                  端末の「設定」→「一般」→「情報」から<strong>IMEI番号</strong>をメモする
+                  端末の「設定」→「一般」→「情報」からIMEI番号をメモする
                 </span>
               </li>
               <li className="caution-steps__item">
@@ -100,7 +100,7 @@ export default function PreCheckSection() {
             </div>
             <div className="caution-check-card__text m-rich-text">
               <p>
-                中古iPhoneのバッテリーは使用状況によって劣化度合いが大きく異なります。最大容量＝<strong>使用感と寿命を左右する最重要指標</strong>です。外装ランクが「美品」でもバッテリーが70%台ということもあります。
+                中古iPhoneのバッテリーは使用状況によって劣化度合いが大きく異なります。最大容量＝使用感と寿命を左右する最重要指標です。外装ランクが「美品」でもバッテリーが70%台ということもあります。
               </p>
               <p>
                 <strong>80%以上を目安に選びましょう。</strong>80%未満の場合は価格が安くても、購入後に交換費用がかかって割高になることがあります。
@@ -169,7 +169,7 @@ export default function PreCheckSection() {
             </div>
             <div className="caution-check-card__text m-rich-text">
               <p>
-                iPhoneはAppleによるiOSサポートが終了すると、新機能が使えなくなるだけでなく、<strong>セキュリティ面でもリスクが高まります</strong>。また、アプリが対応しなくなり使えなくなるケースもあります。
+                iPhoneはAppleによるiOSサポートが終了すると、新機能が使えなくなるだけでなく、セキュリティ面でもリスクが高まります。また、アプリが対応しなくなり使えなくなるケースもあります。
               </p>
               <p>
                 「今使える」と「今後も使える」は別です。安さより<strong>「あと何年使えるか」で判断</strong>しましょう。発売から約7年がサポート終了の目安です。
@@ -199,10 +199,10 @@ export default function PreCheckSection() {
             </div>
             <div className="caution-check-card__text m-rich-text">
               <p>
-                2021年10月以降に発売された端末は原則SIMフリーですが、それ以前の端末はキャリアのSIMロックがかかっている場合があります。<strong>SIMロック端末は購入したキャリアの回線しか使えません。</strong>
+                2021年10月以降に発売された端末は原則SIMフリーですが、それ以前の端末はキャリアのSIMロックがかかっている場合があります。SIMロック端末は購入したキャリアの回線しか使えません。
               </p>
               <p>
-                <strong>iPhone 13以前の端末はSIMロック残存の可能性あり。</strong>eSIMを使いたい場合は対応機種かどうかも確認が必要です。
+                iPhone 13以前の端末はSIMロック残存の可能性あり。eSIMを使いたい場合は対応機種かどうかも確認が必要です。
               </p>
             </div>
           </div>

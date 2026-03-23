@@ -9,7 +9,7 @@ import FailureSection from '@/app/components/attention/FailureSection'
 import InsuranceSection from '@/app/components/attention/InsuranceSection'
 import FaqSection from '@/app/components/attention/FaqSection'
 import { insuranceData, faqItems, postCheckItems, failurePatterns } from './components/data'
-import RecommendBanner from '@/app/(public)/watch/[slug]/components/RecommendBanner'
+import PopularSection from '@/app/components/support/PopularSection'
 
 const PAGE_TITLE = '中古Apple Watchはやめた方がいい？購入前に確認すべき注意点まとめ'
 const PAGE_DESCRIPTION =
@@ -242,9 +242,19 @@ export default function UsedWatchAttentionPage() {
           <PreCheckSection />
           <RouteSection />
           <PostCheckSection heading="中古Apple Watchの購入後すぐやるべきチェック" productName="Apple Watch" checkItems={postCheckItems} />
-          <FailureSection productName="Apple Watch" guidePath="/watch" failurePatterns={failurePatterns} />
+          <FailureSection productName="Apple Watch" guidePath="/watch" failurePatterns={failurePatterns} showMemo={false} />
           <InsuranceSection {...insuranceData} />
-          <RecommendBanner />
+          <PopularSection
+            sectionTitle="目的別に人気の中古Apple Watch"
+            sectionDescription="目的別におすすめの機種を厳選。診断で迷った方はぜひご覧ください。"
+            imageSrc="/images/content/watch-image-11.jpg"
+            imageAlt="中古Apple Watchおすすめのイメージ画像"
+            subtitle="目的別におすすめ機種を厳選！"
+            cardTitle="中古Apple Watchおすすめモデル"
+            cardDescription="健康管理重視、コスパ重視、スポーツ向けなど目的別に買うべきモデルを紹介。watchOSサポート期間やバッテリー持ちなど購入前にチェックすべき項目も網羅しています。"
+            buttonText="おすすめモデルを見る"
+            buttonHref="/watch/recommend/"
+          />
           <FaqSection productName="Apple Watch" faqItems={faqItems} />
         <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>

@@ -76,6 +76,13 @@ export default function LifespanSection({ model }: Props) {
             </div>
           </dl>
         </aside>
+
+        <div className="m-callout m-callout--tip" style={{ marginTop: 'var(--space-2xl)' }}>
+          <span className="m-callout__label">memo</span>
+          <p className="m-callout__text">
+            サポート期間を確認したい方は「<a href="/iphone/used-iphone-support/">iPhoneはいつまで使える？機種別の寿命一覧</a>」もあわせてご覧ください。
+          </p>
+        </div>
       </div>
     </section>
   )
