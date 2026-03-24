@@ -316,7 +316,7 @@ export default async function MacBookRecommendPage() {
             osName="macOS"
             supportYears={7}
             sweetMin={3}
-            sweetMax={4}
+            sweetMax={5}
             series={[
               { label: 'MBA 13 {year}（{chip}）', representativeSlug: 'mba-13-2020' },
               { label: 'MBP 14 / 16 {year}（{chip}）', representativeSlug: 'mbp-14-2021' },

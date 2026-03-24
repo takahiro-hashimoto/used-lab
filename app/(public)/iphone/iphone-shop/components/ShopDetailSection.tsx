@@ -49,9 +49,9 @@ export default function ShopDetailSection({ items }: Props) {
                   loading="lazy"
                 />
               </figure>
-              <div className="recommend-card__info">
-                <h4 className="recommend-card__info-title" style={{ color: 'var(--color-primary)' }}>{shop.shop}の特徴</h4>
-                <dl className="recommend-card__specs" style={{ background: 'var(--color-primary-light)', padding: 'var(--space-lg)', borderRadius: 'var(--radius-md)' }}>
+              <div className="recommend-card__info" style={{ background: 'var(--color-primary-light)', borderRadius: 'var(--radius-md)' }}>
+                <h4 className="recommend-card__info-title">{shop.shop}の特徴</h4>
+                <dl className="recommend-card__specs">
                   <div className="recommend-card__spec-item" style={{ display: 'flex' }}>
                     <dt>価格</dt>
                     <dd><SpecValue value={shop.price} /></dd>

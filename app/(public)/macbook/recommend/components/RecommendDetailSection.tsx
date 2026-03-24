@@ -81,8 +81,8 @@ export default function RecommendDetailSection({ items }: Props) {
                     />
                   )}
                 </figure>
-                <div className="recommend-card__info" style={{ background: 'var(--color-primary-light)', padding: 'var(--space-lg)', borderRadius: 'var(--radius-md)' }}>
-                  <h4 className="recommend-card__info-title" style={{ color: 'var(--color-primary)' }}>{model.model}の基本情報</h4>
+                <div className="recommend-card__info">
+                  <h4 className="recommend-card__info-title">{model.model}の基本情報</h4>
                   <dl className="recommend-card__specs">
                     {releaseDate && (
                       <div className="recommend-card__spec-item">

@@ -218,6 +218,12 @@ export default function CameraComparisonTable({ models, shopLinks }: Props) {
             </div>
           </div>
         )}
+        <div className="m-callout m-callout--tip" style={{ marginTop: 'var(--space-2xl)' }}>
+          <span className="m-callout__label">memo</span>
+          <p className="m-callout__text">
+            カメラ以外のスペックも比較したい方は「<a href="/iphone/iphone-spec-table/">歴代iPhoneスペック比較表</a>」、バッテリー持ちで選びたい方は「<a href="/iphone/battery-compare/">歴代iPhoneのバッテリー容量比較ランキング</a>」もあわせてご覧ください。
+          </p>
+        </div>
       </div>
     </section>
   )
