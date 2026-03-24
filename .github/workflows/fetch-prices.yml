@@ -16,6 +16,7 @@ on:
           - ipad
           - watch
           - airpods
+          - macbook
 
 jobs:
   fetch-prices:
