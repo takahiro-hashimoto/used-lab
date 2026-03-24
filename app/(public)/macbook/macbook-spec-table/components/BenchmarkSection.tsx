@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { BenchBar } from '@/app/components/spec-table-utils'
 
 type SpecModel = {
@@ -124,6 +125,12 @@ export default function BenchmarkSection({ models }: Props) {
             />
           </div>
         )}
+        <div className="m-callout m-callout--tip" style={{ marginTop: 'var(--space-2xl, 32px)' }}>
+          <span className="m-callout__label">memo</span>
+          <p className="m-callout__text">
+            チップ世代別の性能進化や用途別おすすめスコアの目安など、より詳しい解説は「<Link href="/macbook/benchmark/">歴代MacBookのベンチマーク比較ランキング</Link>」をご覧ください。
+          </p>
+        </div>
       </div>
     </section>
   )

@@ -167,7 +167,7 @@ export default async function StorageGuidePage() {
           <div className="hero-inner l-container">
             <div className="hero-content">
               <h1 className="hero-title">
-                中古iPadのストレージ容量はどれがいい？用途別おすすめ容量と容量別の価格差まとめ
+                中古iPadのストレージ容量はどれがいい？用途別おすすめ容量まとめ
               </h1>
               <div className="hero-actions">
                 <a href="#storage-quick" className="m-btn m-btn--hero-primary">

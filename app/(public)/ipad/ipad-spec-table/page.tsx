@@ -182,7 +182,7 @@ export default async function IPadSpecTablePage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/content/ipad-image-09.jpg"
+                  src="/images/content/ipad-image-11.jpg"
                   alt="歴代iPadスペック比較表のイメージ"
                   className="hero-media__img"
                   width={360}

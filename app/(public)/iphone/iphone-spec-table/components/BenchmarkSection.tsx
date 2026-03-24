@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { BenchBar } from '@/app/components/spec-table-utils'
 
 type SpecModel = {
@@ -175,6 +176,13 @@ export default function BenchmarkSection({ models }: Props) {
             </div>
           </div>
         )}
+
+        <div className="m-callout m-callout--tip" style={{ marginTop: 'var(--space-2xl)' }}>
+          <span className="m-callout__label">詳しく見る</span>
+          <p className="m-callout__text">
+            チップ世代別の性能比較や用途別おすすめスコアの目安は「<Link href="/iphone/benchmark/">歴代iPhoneベンチマーク比較ランキング</Link>」で詳しく解説しています。
+          </p>
+        </div>
       </div>
     </section>
   )

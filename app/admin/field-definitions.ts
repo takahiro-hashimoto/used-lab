@@ -149,9 +149,10 @@ const MACBOOK_FIELDS: FieldDef[] = [
   { key: 'strage', label: 'ストレージ', type: 'text', group: '基本情報' },
   { key: 'color', label: 'カラー', type: 'text', group: '基本情報' },
   // ベンチマーク
-  { key: 'score_single', label: 'Geekbench Single', type: 'number', group: 'ベンチマーク' },
-  { key: 'score_multi', label: 'Geekbench Multi', type: 'number', group: 'ベンチマーク' },
-  { key: 'score_metal', label: 'Geekbench Metal', type: 'number', group: 'ベンチマーク' },
+  { key: 'score_single', label: 'Geekbench Single（代表値）', type: 'number', group: 'ベンチマーク' },
+  { key: 'score_multi', label: 'Geekbench Multi（代表値）', type: 'number', group: 'ベンチマーク' },
+  { key: 'score_metal', label: 'Geekbench Metal（代表値）', type: 'number', group: 'ベンチマーク' },
+  { key: 'benchmarks', label: 'チップ別ベンチマーク (JSON)', type: 'json', placeholder: '{"M2 Pro":{"single":2656,"multi":14456,"metal":78225}}', group: 'ベンチマーク' },
   { key: 'ram', label: 'RAM', type: 'text', group: 'ベンチマーク' },
   // ディスプレイ・筐体
   { key: 'size', label: 'サイズ', type: 'text', group: 'ディスプレイ・筐体' },

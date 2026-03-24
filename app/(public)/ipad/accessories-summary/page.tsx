@@ -161,7 +161,7 @@ export default async function AccessoriesSummaryPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/content/ipad-magic-keyboard.jpg"
+                  src="/images/content/ipad-keyboard.jpg"
                   alt="iPadとMagic Keyboardのイメージ"
                   className="hero-media__img"
                   width={360}

@@ -2995,7 +2995,6 @@ a.header-admin-link:hover {
   gap: 2px;
   margin-top: var(--space-sm);
   padding-top: var(--space-sm);
-  border-top: 1px solid var(--color-border);
 }
 
 .listing-pick-card__price-label {
@@ -4690,9 +4689,13 @@ a.header-admin-link:hover {
 
 .caution-check-card__body {
   display: grid;
-  grid-template-columns: 280px 1fr;
+  grid-template-columns: 1fr;
   gap: var(--space-xl);
   align-items: start;
+}
+
+.caution-check-card__body:has(.caution-check-card__visual) {
+  grid-template-columns: 280px 1fr;
 }
 
 /* .caution-check-card__text → use .m-rich-text */
@@ -8342,4 +8345,359 @@ body.is-menu-open {
   background: #fef3c7;
   color: #92400e;
 }
+
+/* ============================================================
+   Benchmark Page
+   ============================================================ */
+
+/* Ranking table */
+.bench-ranking-table__rank-cell {
+  text-align: center;
+  width: 50px;
+}
+
+.bench-rank {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  font-size: 0.8rem;
+  font-weight: 700;
+  background: var(--color-bg-muted, #f5f5f5);
+  color: var(--color-text-secondary);
+}
+
+.bench-rank--1 {
+  background: linear-gradient(135deg, #ffd700, #f0c000);
+  color: #5c4600;
+}
+
+.bench-rank--2 {
+  background: linear-gradient(135deg, #e0e0e0, #c0c0c0);
+  color: #444;
+}
+
+.bench-rank--3 {
+  background: linear-gradient(135deg, #deb887, #cd853f);
+  color: #5a3a00;
+}
+
+.bench-ranking-table__model-cell {
+  min-width: 200px;
+}
+
+.bench-model-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.bench-model-link:hover .bench-model-name {
+  color: var(--color-primary);
+}
+
+.bench-model-img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.bench-model-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.bench-model-name {
+  font-size: 0.85rem;
+  font-weight: 600;
+  line-height: 1.3;
+  transition: color 0.15s;
+}
+
+.bench-model-chip {
+  font-size: 0.7rem;
+  color: var(--color-text-muted);
+}
+
+.bench-ranking-table__price-cell {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #dc2626;
+  white-space: nowrap;
+}
+
+/* Chip generation comparison */
+.chip-gen-table__chip {
+  white-space: nowrap;
+}
+
+.chip-gen-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.chip-gen-bar-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 140px;
+}
+
+.chip-gen-bar {
+  height: 20px;
+  border-radius: 4px;
+  min-width: 4px;
+  transition: width 0.3s ease;
+}
+
+.chip-gen-bar-value {
+  font-size: 0.8rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.chip-gen-table__improvement {
+  text-align: center;
+}
+
+.chip-gen-improvement__badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.chip-gen-improvement__badge--up {
+  background: #ecfdf5;
+  color: #059669;
+}
+
+.chip-gen-improvement__base {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}
+
+/* Chip subtype badges */
+.chip-sub-badge {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.chip-sub-badge--std {
+  background: #f0f9ff;
+  color: #0369a1;
+}
+
+.chip-sub-badge--pro {
+  background: #f5f3ff;
+  color: #7c3aed;
+}
+
+.chip-sub-badge--max {
+  background: #fef2f2;
+  color: #dc2626;
+}
+
+.m-table-note {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  margin-top: var(--space-sm);
+}
+
+/* Use case guide */
+.usecase-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-lg);
+}
+
+@media (max-width: 768px) {
+  .usecase-cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+.usecase-card__header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: var(--space-xs);
+}
+
+.usecase-card__header i {
+  font-size: 1.1rem;
+  color: var(--color-primary);
+}
+
+.usecase-card__title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.usecase-card__desc {
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-md);
+}
+
+.usecase-card__score-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin-bottom: 8px;
+}
+
+.usecase-card__scores {
+  display: flex;
+  gap: var(--space-md);
+}
+
+.usecase-card__score {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  line-height: 1.5;
+}
+
+.usecase-card__score dt {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}
+
+.usecase-card__score-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.usecase-card__score dd {
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+/* おすすめモデル (横並び: 左=ラベル+機種名 | 右=相場+価格+ボタン) */
+.usecase-card__recommend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-sm) var(--space-md);
+  margin-top: var(--space-md);
+  padding-top: var(--space-md);
+  border-top: 1px dashed var(--color-border);
+}
+
+.usecase-card__recommend .m-btn {
+  justify-content: center;
+  width: 100%;
+  margin-top: 4px;
+}
+
+.usecase-card__recommend-left {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.usecase-card__recommend-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+}
+
+.usecase-card__recommend-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  text-decoration: none;
+  line-height: 1.3;
+}
+
+.usecase-card__recommend-name:hover {
+  text-decoration: underline;
+}
+
+.usecase-card__recommend-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--space-xs);
+  flex-shrink: 0;
+  text-align: right;
+}
+
+.usecase-card__recommend-price-label {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+.usecase-card__recommend-price {
+  font-size: 1.2rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+@media (max-width: 768px) {
+  .bench-ranking-table__model-cell {
+    min-width: 160px;
+  }
+
+  .chip-gen-bar-wrapper {
+    min-width: 100px;
+  }
+}
+
+/* Recommend card image (iPad vs MacBook) */
+.recommend-card-img-wrap {
+  overflow: hidden;
+  border-radius: 8px;
+  margin-bottom: var(--space-md);
+  aspect-ratio: 16 / 9;
+}
+
+.recommend-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .recommend-card-img-wrap {
+    aspect-ratio: auto;
+  }
+
+  .recommend-card-img {
+    height: auto;
+  }
+}
+
 

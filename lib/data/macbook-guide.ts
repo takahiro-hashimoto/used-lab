@@ -25,6 +25,7 @@ export const GUIDE_SPEC_LINKS = [
   { href: '/macbook/macbook-shop/', icon: 'fa-store', title: '中古MacBookを買えるおすすめECサイト', desc: '各ショップの保証内容・価格帯・特徴を比較。安心して購入できるお店を紹介。', image: '/images/content/macbook-image-02.jpg' },
   { href: '/macbook/storage-guide/', icon: 'fa-hard-drive', title: 'ストレージ容量ガイド', desc: '用途別のおすすめ容量と歴代モデルの容量ラインナップ・中古価格を比較できます。', image: '/images/content/macbook-image-05.jpg' },
   { href: '/macbook/air-pro-compare/', icon: 'fa-scale-balanced', title: 'MacBook AirとProの違い比較', desc: '冷却方式・チップ性能・ディスプレイ・ポート・中古価格の5観点で違いを解説。', image: '/images/content/macbook-image-01.jpg' },
+  { href: '/macbook/benchmark/', icon: 'fa-ranking-star', title: '歴代MacBookベンチマーク比較', desc: 'Geekbench 6スコアで歴代MacBookの性能をランキング形式で比較。チップ世代別の進化や用途別おすすめも。', image: '/images/content/macbook-image-05.jpg' },
 ] as const
 
 // ---------- FAQ ----------

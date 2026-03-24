@@ -41,7 +41,7 @@ function parseBatteryMah(battery: string | null): number {
 }
 
 export default function BatteryTable({ models }: Props) {
-  const [sortOrder, setSortOrder] = useState<SortOrder>('new')
+  const [sortOrder, setSortOrder] = useState<SortOrder>('battery-desc')
   const [modelFilter, setModelFilter] = useState<FilterType>('all')
 
   const filteredModels = useMemo(() => {
@@ -99,7 +99,7 @@ export default function BatteryTable({ models }: Props) {
             </div>
           </div>
           <div className="spec-filter__row">
-            <span className="spec-filter__label">機種絞り込み</span>
+            <span className="spec-filter__label">モデル別絞り込み</span>
             <div className="spec-filter__tags">
               {([
                 ['all', 'すべて'],
@@ -132,6 +132,7 @@ export default function BatteryTable({ models }: Props) {
                 <caption className="visually-hidden">歴代iPhoneバッテリー容量比較表</caption>
                 <thead>
                   <tr>
+                    {sortOrder === 'battery-desc' && <th scope="col" className="bench-ranking-table__rank">順位</th>}
                     <th scope="col">モデル／発売時期</th>
                     <th scope="col">容量</th>
                     <th scope="col">ビデオ再生</th>
@@ -141,8 +142,13 @@ export default function BatteryTable({ models }: Props) {
                   </tr>
                 </thead>
                 <tbody>
-                  {filteredModels.map((m) => (
+                  {filteredModels.map((m, i) => (
                     <tr key={m.id}>
+                      {sortOrder === 'battery-desc' && (
+                        <td className="bench-ranking-table__rank-cell">
+                          <span className={`bench-rank${i < 3 ? ` bench-rank--${i + 1}` : ''}`}>{i + 1}</span>
+                        </td>
+                      )}
                       <td className="battery-table__model-cell">
                         <div className="battery-table__img-wrap">
                           {m.image && (

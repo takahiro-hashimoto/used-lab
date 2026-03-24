@@ -288,7 +288,7 @@ export default async function MacBookGuidePage() {
                   <div className="glossary-item">
                     <dt className="glossary-item-title">ストレージ容量の確認</dt>
                     <dd className="glossary-item-desc">
-                      MacBookはストレージの後から増設ができません。Web閲覧・事務作業なら256GB、写真や動画を扱うなら512GB以上を選びましょう。購入後に容量不足で後悔するケースが多いポイントです。
+                      MacBookはストレージの後から増設ができません。Web閲覧・事務作業なら256GB、写真や動画を扱うなら512GB以上を選びましょう。購入後に容量不足で後悔するケースが多いポイントです。詳しくは<Link href="/macbook/storage-guide/">ストレージ容量ガイド</Link>をご覧ください。
                     </dd>
                   </div>
                   <div className="glossary-item">
@@ -410,12 +410,6 @@ export default async function MacBookGuidePage() {
                 </Link>
               </div>
 
-              <div className="m-callout m-callout--tip" style={{ marginTop: 'var(--space-2xl)' }}>
-                <span className="m-callout__label">memo</span>
-                <p className="m-callout__text">
-                  中古以外にもApple認定整備済製品や家電量販店のセールなど、MacBookを安く買う方法はさまざまです。新品・中古を含めた全7つの購入先を「<Link href="/macbook/macbook-buy/">MacBookを安く買うには？おすすめの購入先7つを比較</Link>」で解説しています。
-                </p>
-              </div>
             </div>
           </section>
 

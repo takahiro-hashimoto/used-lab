@@ -281,6 +281,7 @@ export interface MacBookModel extends BaseProductModel {
   accessory_case: string | null
   accessory_film: string | null
   last_macos: string | null
+  benchmarks: Record<string, { single: number; multi: number; metal: number }> | null
 }
 
 export interface MacBookPriceLog {

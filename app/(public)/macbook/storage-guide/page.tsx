@@ -389,9 +389,21 @@ export default async function StorageGuidePage() {
 
             <div className="m-card m-card--shadow m-card--padded caution-check-card">
               <div className="caution-check-card__body">
+                <div className="caution-check-card__visual">
+                  <figure className="caution-check-card__image">
+                    <img
+                      src="/images/content/macbook-storage.jpg"
+                      alt="MacBookのストレージ使用量確認画面"
+                      width={280}
+                      height={200}
+                      loading="lazy"
+                    />
+                  </figure>
+                </div>
                 <div className="caution-check-card__text">
                   <p>Macの「システム設定」からストレージの使用状況を確認できます。</p>
                   <p>カテゴリ別（アプリ・書類・写真・システムなど）の使用量が表示されるため、<strong>何にどのくらい容量を使っているか</strong>を把握できます。</p>
+                  <p>新しいMacBookを購入する際にストレージ容量を決める際の判断材料にしましょう。</p>
                 </div>
               </div>
 

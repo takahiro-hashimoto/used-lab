@@ -19,12 +19,12 @@ export const metadata: Metadata = {
     title: '中古iPhoneのストレージ容量はどれがいい？用途別おすすめ容量と容量別の価格差まとめ | ユーズドラボ',
     description: '中古iPhoneのストレージ容量の選び方を解説。容量別の価格差も比較できます。',
     url: '/iphone/storage-guide/',
-    images: [{ url: '/images/content/iphone-setting.webp', width: 360, height: 360, alt: '中古iPhoneストレージ容量ガイドのイメージ' }],
+    images: [{ url: '/images/content/used-iphone-ios-support.jpg', width: 360, height: 360, alt: '中古iPhoneストレージ容量ガイドのイメージ' }],
   },
   twitter: {
     title: '中古iPhoneのストレージ容量はどれがいい？用途別おすすめ容量と容量別の価格差まとめ | ユーズドラボ',
     description: '中古iPhoneのストレージ容量の選び方を解説。容量別の価格差も比較できます。',
-    images: ['/images/content/iphone-setting.webp'],
+    images: ['/images/content/used-iphone-ios-support.jpg'],
   },
 }
 
@@ -179,7 +179,7 @@ export default async function StorageGuidePage() {
           <div className="hero-inner l-container">
             <div className="hero-content">
               <h1 className="hero-title">
-                中古iPhoneのストレージ容量はどれがいい？用途別おすすめ容量と容量別の価格差まとめ
+                中古iPhoneのストレージ容量はどれがいい？用途別おすすめ容量まとめ
               </h1>
               <div className="hero-actions">
                 <a href="#storage-quick" className="m-btn m-btn--hero-primary">
@@ -203,7 +203,7 @@ export default async function StorageGuidePage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/content/iphone-setting.webp"
+                  src="/images/content/used-iphone-ios-support.jpg"
                   alt="中古iPhoneストレージ容量ガイドのイメージ"
                   className="hero-media__img"
                   width={360}
@@ -433,6 +433,17 @@ export default async function StorageGuidePage() {
 
             <div className="m-card m-card--shadow m-card--padded caution-check-card">
               <div className="caution-check-card__body">
+                <div className="caution-check-card__visual">
+                  <figure className="caution-check-card__image">
+                    <img
+                      src="/images/content/iphone-storage.jpg"
+                      alt="iPhoneのストレージ使用量確認画面"
+                      width={280}
+                      height={200}
+                      loading="lazy"
+                    />
+                  </figure>
+                </div>
                 <div className="caution-check-card__text">
                   <p>iPhoneの「設定」からストレージの使用状況を確認できます。</p>
                   <p>アプリごとの容量も表示されるため、<strong>何にどのくらい容量を使っているか</strong>を把握できます。</p>
