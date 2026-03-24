@@ -76,21 +76,28 @@ export default async function MacBookRecommendPage() {
   // JSON-LD
   const breadcrumbJsonLd = buildBreadcrumbJsonLd([
     { name: '中古Apple製品を安く買う', item: 'https://used-lab.com/' },
-    { name: '中古MacBook完全ガイド', item: 'https://used-lab.com/macbook' },
+    { name: '中古MacBook完全購入ガイド', item: 'https://used-lab.com/macbook' },
     { name: `中古MacBookおすすめ${RECOMMEND_COUNT}選` },
   ])
   const articleJsonLd = buildArticleJsonLd({ headline: PAGE_TITLE, description: PAGE_DESCRIPTION, dateStr, url: PAGE_URL })
   const faqJsonLd = buildFaqJsonLd(FAQ_JSONLD_ITEMS)
 
-  // ConclusionSection用データ
-  const conclusionItems = recommendModels.map((model) => ({
-    id: model.id,
-    slug: model.slug,
-    displayName: model.shortname || model.model,
-    image: model.image,
-    date: model.date,
-    desc: RECOMMEND_META[model.slug]?.desc || '',
-  }))
+  // ConclusionSection用データ（最安価格を動的に付与）
+  const conclusionItems = recommendModels.map((model, i) => {
+    const price = latestPrices[i]
+    const minPrice = price?.min1_price
+    const storageLabel = model.strage?.match(/(\d+(?:GB|TB))/)?.[1] || ''
+    return {
+      id: model.id,
+      slug: model.slug,
+      displayName: model.shortname || model.model,
+      image: model.image,
+      date: model.date,
+      desc: RECOMMEND_META[model.slug]?.desc || '',
+      priceLabel: minPrice ? `¥${minPrice.toLocaleString()}〜` : undefined,
+      storageLabel: storageLabel || undefined,
+    }
+  })
 
   const fallbackShops = buildFallbackShops(shops, SHOP_SECTION_IDS, 'macbook_url')
 
@@ -154,7 +161,7 @@ export default async function MacBookRecommendPage() {
         {/* パンくず */}
         <Breadcrumb
           items={[
-            { label: '中古MacBook完全ガイド', href: '/macbook' },
+            { label: '中古MacBook完全購入ガイド', href: '/macbook' },
             { label: `中古MacBookおすすめ${RECOMMEND_COUNT}選` },
           ]}
         />

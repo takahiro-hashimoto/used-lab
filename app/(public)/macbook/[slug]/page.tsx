@@ -80,8 +80,8 @@ export default async function MacBookDetailPage({ params }: PageProps) {
   const latestDate = priceLogs.length > 0 ? priceLogs[priceLogs.length - 1].logged_at : null
   const latestLogEntries = latestDate ? priceLogs.filter((l) => l.logged_at === latestDate) : []
   const latestMinMaxPairs = latestLogEntries.map((l) => ({
-    mins: [l.iosys_min, l.geo_min, l.janpara_min].filter((v): v is number => v != null),
-    maxes: [l.iosys_max, l.geo_max, l.janpara_max].filter((v): v is number => v != null),
+    mins: [l.min1_price, l.min2_price, l.min3_price, l.min4_price, l.min5_price].filter((v): v is number => v != null),
+    maxes: [l.max1_price, l.max2_price, l.max3_price, l.max4_price, l.max5_price].filter((v): v is number => v != null),
   }))
   const storageNote = latestLogEntries[0]?.storage || ''
   const modelShopLinks = shopLinks.filter((l) => l.product_id === model.id)
@@ -106,6 +106,7 @@ export default async function MacBookDetailPage({ params }: PageProps) {
             latestMinMaxPairs={latestMinMaxPairs}
             latestDate={latestDate}
             storageNote={storageNote}
+            priceListLink={{ href: '/macbook/macbook-price-info/', label: 'MacBookの中古相場一覧' }}
           />
         )}
 

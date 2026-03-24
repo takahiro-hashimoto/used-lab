@@ -1,3 +1,5 @@
+import RatingMark from '@/app/components/RatingMark'
+
 export default function CheckpointSection() {
   return (
     <section className="l-section" id="checkpoint" aria-labelledby="heading-checkpoint">
@@ -62,10 +64,10 @@ export default function CheckpointSection() {
                 </tr>
               </thead>
               <tbody>
-                <tr><td>携帯性</td><td><span className="m-spec-row__circle">◯</span></td><td><span className="m-spec-row__cross">△</span></td></tr>
-                <tr><td>バッテリー持ち</td><td><span className="m-spec-row__cross">△</span></td><td><span className="m-spec-row__circle">◯</span></td></tr>
-                <tr><td>情報取得効率</td><td><span className="m-spec-row__cross">△</span></td><td><span className="m-spec-row__circle">◯</span></td></tr>
-                <tr><td>ストレージ容量</td><td><span className="m-spec-row__cross">△</span></td><td><span className="m-spec-row__circle">◯</span></td></tr>
+                <tr><td>携帯性</td><td><RatingMark mark="◯" size="sm" /></td><td><RatingMark mark="△" size="sm" /></td></tr>
+                <tr><td>バッテリー持ち</td><td><RatingMark mark="△" size="sm" /></td><td><RatingMark mark="◯" size="sm" /></td></tr>
+                <tr><td>情報取得効率</td><td><RatingMark mark="△" size="sm" /></td><td><RatingMark mark="◯" size="sm" /></td></tr>
+                <tr><td>ストレージ容量</td><td><RatingMark mark="△" size="sm" /></td><td><RatingMark mark="◯" size="sm" /></td></tr>
               </tbody>
             </table>
           </div>

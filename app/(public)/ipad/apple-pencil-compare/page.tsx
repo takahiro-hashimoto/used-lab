@@ -68,7 +68,7 @@ export default async function ApplePencilComparePage() {
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.com/' },
-      { '@type': 'ListItem', position: 2, name: '中古iPad完全ガイド', item: 'https://used-lab.com/ipad' },
+      { '@type': 'ListItem', position: 2, name: '中古iPad完全購入ガイド', item: 'https://used-lab.com/ipad' },
       { '@type': 'ListItem', position: 3, name: 'Apple Pencilの違いを比較' },
     ],
   }
@@ -102,7 +102,7 @@ export default async function ApplePencilComparePage() {
         {/* パンくず */}
         <Breadcrumb
           items={[
-            { label: '中古iPad完全ガイド', href: '/ipad' },
+            { label: '中古iPad完全購入ガイド', href: '/ipad' },
             { label: 'Apple Pencilの違いを比較' },
           ]}
         />
@@ -254,8 +254,32 @@ export default async function ApplePencilComparePage() {
                 answer: 'Apple Pencil 第2世代は以下の機能が搭載されていますが、Apple Pencil（第1世代）には非搭載です。ワイヤレス充電・ペアリング（iPadの側面にマグネットで吸着させるだけで、充電とペアリングを自動で行う機能）、ダブルタップ（ペンの側面を指でトントンと叩くだけで、ペンと消しゴムなどのツールをすばやく切り替える機能）、マグネットによる吸着保管（iPadの側面に磁力で固定して持ち運べる機能）。',
               },
               {
-                question: 'Apple Pencilのペン先（チップ）は交換できる？',
-                answer: 'はい、すべてのApple Pencilのペン先は交換可能です。Apple純正の替え芯のほか、サードパーティ製のペン先も販売されています。ペン先は使い続けると摩耗するため、書き心地が変わってきたら交換をおすすめします。',
+                question: 'Apple Pencilのペン先（チップ）は交換できる？寿命の目安は？',
+                answer: 'はい、すべてのApple Pencilのペン先は交換可能です。Apple純正の替え芯（4個入り・約3,000円前後）のほか、サードパーティ製のペン先も販売されています。ペン先の寿命は使用頻度によりますが、毎日使う方で半年〜1年、たまに使う方で1〜2年が交換の目安です。ペン先が摩耗すると書き心地が悪くなるだけでなく、iPadの画面を傷つけるリスクもあるため、先端がすり減ってきたら早めの交換をおすすめします。',
+              },
+              {
+                question: 'Apple Pencilのバッテリー寿命はどのくらい？',
+                answer: 'Apple Pencilのバッテリー寿命は一般的に3〜5年程度です。1回の充電で約12時間使用でき、15秒の急速充電で約30分間使えます。ただし、バッテリー残量0%のまま長期間放置すると「過放電」により充電できなくなることがあるため、定期的に充電することが重要です。Apple Pencilはバッテリー交換ができない構造のため、バッテリーの寿命＝製品の寿命となる点に注意してください。',
+              },
+              {
+                question: '中古のApple Pencilを買う際の注意点は？',
+                answer: '中古Apple Pencilを購入する際は、まずバッテリーの状態を確認することが最も重要です。過放電で充電不能になっている個体もあるため、「動作確認済み」と明記された商品を選びましょう。また、ペン先の摩耗具合、筆圧感知や傾き検知が正常に動作するか、ペアリングが問題なくできるかも確認ポイントです。フリマアプリより、保証付きの中古専門店での購入が安心です。',
+              },
+              {
+                question: 'Apple Pencilの代わりになるサードパーティ製スタイラスペンはある？',
+                answer: 'はい、iPad対応のサードパーティ製スタイラスペンは多数販売されており、傾き検知やパームリジェクション（手を画面に置いても誤反応しない機能）に対応した製品もあります。ただし、筆圧感知はApple Pencil独自の技術のため、互換ペンでは非対応です。イラスト制作など筆圧を活かした作業にはApple Pencilが必須ですが、メモ書きやPDF注釈が中心であれば互換ペンでも十分実用的です。',
+              },
+              {
+                question: 'Apple Pencilの書き心地や遅延（レイテンシー）に違いはある？',
+                answer: 'Apple Pencil Proと第2世代はどちらも非常に低遅延で、紙に書いているような自然な書き心地です。Apple Pencil（USB-C）は筆圧感知非対応のため、筆圧による線の太さ変化が出ない点で書き心地に差があります。第1世代も筆圧・傾き検知に対応していますが、Lightningコネクタでの充電が必要で取り回しに差があります。ProMotion対応iPad（120Hz）と組み合わせると、さらに滑らかな描画体験が得られます。',
+              },
+              {
+                question: 'Apple Pencilの価格はいくら？モデル別の定価を知りたい',
+                answer: 'Apple Pencilの定価はモデルにより異なります。Apple Pencil Pro：21,800円（税込）、Apple Pencil 第2世代：21,800円（税込）、Apple Pencil（USB-C）：13,800円（税込）、Apple Pencil 第1世代：16,800円（税込）です。USB-Cモデルが最も安く、筆圧感知が不要な方にとってはコストパフォーマンスに優れた選択肢です。中古市場ではさらにお得に購入できる場合があります。',
+              },
+              {
+                question: 'iPadにはApple Pencil以外にどんなアクセサリがある？',
+                answer: 'Apple PencilのほかにiPadの活用の幅を広げるアクセサリとして、Magic KeyboardやSmart Keyboard Folioなどの純正キーボードがあります。キーボードを使えばiPadをノートパソコンのように活用でき、文字入力や資料作成が格段に快適になります。各iPadに対応するキーボードの型番や互換性は「歴代iPadのMagic Keyboard 型番一覧（https://used-lab.com/ipad/accessories-summary/）」で確認できます。',
               },
             ]}
           />

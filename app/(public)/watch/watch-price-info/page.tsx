@@ -257,7 +257,7 @@ export default async function WatchPriceInfoPage() {
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.com/' },
-      { '@type': 'ListItem', position: 2, name: '中古Apple Watch完全ガイド', item: 'https://used-lab.com/watch/' },
+      { '@type': 'ListItem', position: 2, name: '中古Apple Watch完全購入ガイド', item: 'https://used-lab.com/watch/' },
       { '@type': 'ListItem', position: 3, name: 'Apple Watchの中古相場一覧' },
     ],
   }
@@ -311,7 +311,7 @@ export default async function WatchPriceInfoPage() {
         {/* パンくず */}
         <Breadcrumb
           items={[
-            { label: '中古Apple Watch完全ガイド', href: '/watch' },
+            { label: '中古Apple Watch完全購入ガイド', href: '/watch' },
             { label: 'Apple Watchの中古相場一覧' },
           ]}
         />

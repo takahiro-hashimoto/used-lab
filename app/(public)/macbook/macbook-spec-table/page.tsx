@@ -55,7 +55,7 @@ export default async function MacBookSpecTablePage() {
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.com/' },
-      { '@type': 'ListItem', position: 2, name: '中古MacBook完全ガイド', item: 'https://used-lab.com/macbook' },
+      { '@type': 'ListItem', position: 2, name: '中古MacBook完全購入ガイド', item: 'https://used-lab.com/macbook' },
       { '@type': 'ListItem', position: 3, name: '歴代MacBookスペック比較表' },
     ],
   }
@@ -136,7 +136,7 @@ export default async function MacBookSpecTablePage() {
                 </Link>
               </li>
               <li className="breadcrumb-item">
-                <Link href="/macbook">中古MacBook完全ガイド</Link>
+                <Link href="/macbook">中古MacBook完全購入ガイド</Link>
               </li>
               <li className="breadcrumb-item" aria-current="page">歴代MacBookスペック比較表</li>
             </ol>

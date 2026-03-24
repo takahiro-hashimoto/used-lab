@@ -4,6 +4,7 @@ import { BoolCell } from '@/app/components/spec-table-utils'
 
 type PencilSpec = {
   name: string
+  image: string
   pressureSensitivity: boolean
   tiltSensitivity: boolean
   squeeze: boolean
@@ -20,6 +21,7 @@ type PencilSpec = {
 const PENCILS: PencilSpec[] = [
   {
     name: 'Apple Pencil\nPro',
+    image: '/images/content/apple-pencil-pro.jpg',
     pressureSensitivity: true,
     tiltSensitivity: true,
     squeeze: true,
@@ -34,6 +36,7 @@ const PENCILS: PencilSpec[] = [
   },
   {
     name: 'Apple Pencil\n第2世代',
+    image: '/images/content/apple-pencil-gen2.jpg',
     pressureSensitivity: true,
     tiltSensitivity: true,
     squeeze: false,
@@ -48,6 +51,7 @@ const PENCILS: PencilSpec[] = [
   },
   {
     name: 'Apple Pencil\nUSB-C',
+    image: '/images/content/apple-pencil-usbc.jpg',
     pressureSensitivity: false,
     tiltSensitivity: true,
     squeeze: false,
@@ -62,6 +66,7 @@ const PENCILS: PencilSpec[] = [
   },
   {
     name: 'Apple Pencil\n第1世代',
+    image: '/images/content/apple-pencil.jpg',
     pressureSensitivity: true,
     tiltSensitivity: true,
     squeeze: false,
@@ -83,13 +88,11 @@ type SpecRow = {
 }
 
 const SPEC_ROWS: SpecRow[] = [
-  { label: '書き味・操作性', category: true, render: () => null },
   { label: '筆圧感知', render: (p) => <BoolCell value={p.pressureSensitivity} /> },
   { label: '傾き検知', render: (p) => <BoolCell value={p.tiltSensitivity} /> },
   { label: 'スクイーズ / 回転', render: (p) => <BoolCell value={p.squeeze} /> },
   { label: 'ダブルタップ', render: (p) => <BoolCell value={p.doubleTap} /> },
   { label: 'ホバー', render: (p) => <BoolCell value={p.hover} /> },
-  { label: '利便性・充電', category: true, render: () => null },
   { label: '「探す」アプリ', render: (p) => p.findMy ? '対応' : <span className="m-spec-row__dash" aria-label="非対応">ー</span> },
   { label: 'ペアリング・充電', render: (p) => p.pairing },
   { label: '磁石での固定', render: (p) => <BoolCell value={p.magnetic} /> },
@@ -126,6 +129,14 @@ export default function PencilSpecTable() {
                 </tr>
               </thead>
               <tbody>
+                <tr>
+                  <th scope="row" className="spec-compare-table__sticky">イメージ</th>
+                  {PENCILS.map((p) => (
+                    <td key={p.name}>
+                      <img src={p.image} alt={p.name.replace('\n', ' ')} className="spec-compare-table__cell-img" width={60} height={60} loading="lazy" />
+                    </td>
+                  ))}
+                </tr>
                 {SPEC_ROWS.map((row) =>
                   row.category ? (
                     <tr key={row.label} className="spec-compare-table__category-row">

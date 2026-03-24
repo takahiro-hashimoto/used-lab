@@ -16,11 +16,11 @@ export default function ComparisonBasics() {
         </div>
         <div className="popular-card-img-grid">
           <figure>
-            <Image src="/images/content/use-macbook.jpg" alt="MacBookのファイル管理方法" width={400} height={300} loading="lazy" />
+            <Image src="/images/content/macbook-folder-manegment.webp" alt="MacBookのファイル管理方法" width={400} height={300} loading="lazy" style={{ border: '1px solid #d5d5d8', borderRadius: 'var(--radius-md)' }} />
             <figcaption>MacBookのファイル管理方法</figcaption>
           </figure>
           <figure>
-            <Image src="/images/content/ipad-pro-use.jpg" alt="iPadのファイル管理方法" width={400} height={300} loading="lazy" />
+            <Image src="/images/content/ipad-folder-image.webp" alt="iPadのファイル管理方法" width={400} height={300} loading="lazy" style={{ border: '1px solid #d5d5d8', borderRadius: 'var(--radius-md)' }} />
             <figcaption>iPadのファイル管理方法</figcaption>
           </figure>
         </div>

@@ -30,6 +30,13 @@ export default function MacBookFaqSection() {
       title="MacBookの寿命に関するよくある質問"
       description="MacBookの寿命やサポートに関して、よく寄せられる質問をまとめました。"
       items={FAQ_ITEMS}
-    />
+    >
+      <div className="m-callout m-callout--muted" style={{ marginTop: 'var(--space-2xl)' }}>
+        <span className="m-callout__label">関連</span>
+        <p className="m-callout__text">
+          <a href="https://www.kaden-max.com/" target="_blank" rel="noreferrer noopener">リサイクルショップ「出張買取MAX」24時間電話受付！査定費・作業費・出張費無料</a>
+        </p>
+      </div>
+    </FaqSectionBase>
   )
 }

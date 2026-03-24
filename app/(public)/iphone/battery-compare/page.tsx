@@ -77,7 +77,7 @@ export default async function IPhoneBatteryComparePage() {
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.com/' },
-      { '@type': 'ListItem', position: 2, name: '中古iPhone完全ガイド', item: 'https://used-lab.com/iphone' },
+      { '@type': 'ListItem', position: 2, name: '中古iPhone完全購入ガイド', item: 'https://used-lab.com/iphone' },
       { '@type': 'ListItem', position: 3, name: '歴代iPhoneバッテリー容量比較' },
     ],
   }
@@ -132,7 +132,7 @@ export default async function IPhoneBatteryComparePage() {
                 </Link>
               </li>
               <li className="breadcrumb-item">
-                <Link href="/iphone">中古iPhone完全ガイド</Link>
+                <Link href="/iphone">中古iPhone完全購入ガイド</Link>
               </li>
               <li className="breadcrumb-item" aria-current="page">歴代iPhoneバッテリー容量比較</li>
             </ol>

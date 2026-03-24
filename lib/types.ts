@@ -283,13 +283,42 @@ export interface MacBookModel extends BaseProductModel {
   last_macos: string | null
 }
 
-export interface MacBookPriceLog extends BasePriceLog {
-  iosys_min_text: string | null
-  iosys_max_text: string | null
-  geo_min_text: string | null
-  geo_max_text: string | null
-  janpara_min_text: string | null
-  janpara_max_text: string | null
+export interface MacBookPriceLog {
+  id: number
+  logged_at: string
+  model_id: number
+  model_name: string | null
+  storage: string | null
+  min1_price: number | null
+  min1_item_name: string | null
+  min1_shop_name: string | null
+  min2_price: number | null
+  min2_item_name: string | null
+  min2_shop_name: string | null
+  min3_price: number | null
+  min3_item_name: string | null
+  min3_shop_name: string | null
+  min4_price: number | null
+  min4_item_name: string | null
+  min4_shop_name: string | null
+  min5_price: number | null
+  min5_item_name: string | null
+  min5_shop_name: string | null
+  max1_price: number | null
+  max1_item_name: string | null
+  max1_shop_name: string | null
+  max2_price: number | null
+  max2_item_name: string | null
+  max2_shop_name: string | null
+  max3_price: number | null
+  max3_item_name: string | null
+  max3_shop_name: string | null
+  max4_price: number | null
+  max4_item_name: string | null
+  max4_shop_name: string | null
+  max5_price: number | null
+  max5_item_name: string | null
+  max5_shop_name: string | null
 }
 
 export interface AirPodsModel {

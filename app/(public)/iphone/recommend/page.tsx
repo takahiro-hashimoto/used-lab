@@ -78,7 +78,7 @@ export default async function IPhoneTopPage() {
   // JSON-LD
   const breadcrumbJsonLd = buildBreadcrumbJsonLd([
     { name: '中古Apple製品を安く買う', item: 'https://used-lab.com/' },
-    { name: '中古iPhone完全ガイド', item: 'https://used-lab.com/iphone' },
+    { name: '中古iPhone完全購入ガイド', item: 'https://used-lab.com/iphone' },
     { name: `中古iPhoneおすすめ${RECOMMEND_COUNT}選` },
   ])
   const articleJsonLd = buildArticleJsonLd({ headline: PAGE_TITLE, description: PAGE_DESCRIPTION, dateStr, url: PAGE_URL })
@@ -162,7 +162,7 @@ export default async function IPhoneTopPage() {
         {/* パンくず */}
         <Breadcrumb
           items={[
-            { label: '中古iPhone完全ガイド', href: '/iphone' },
+            { label: '中古iPhone完全購入ガイド', href: '/iphone' },
             { label: `中古iPhoneおすすめ${RECOMMEND_COUNT}選` },
           ]}
         />

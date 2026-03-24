@@ -8,6 +8,8 @@ type ConclusionItem = {
   image: string | null
   date: string | null
   desc: string
+  priceLabel?: string
+  storageLabel?: string
 }
 
 type Props = {
@@ -67,6 +69,14 @@ export default function ConclusionSection({ items, heading, descriptions, gridCo
                     </p>
                   )}
                   <p className="listing-pick-card__desc">{item.desc}</p>
+                  {item.priceLabel && (
+                    <div className="listing-pick-card__price">
+                      {item.storageLabel && (
+                        <span className="listing-pick-card__price-label">中古相場（{item.storageLabel}）</span>
+                      )}
+                      <span className="listing-pick-card__price-value m-price-display m-price-display--sm m-price-display--primary">{item.priceLabel}</span>
+                    </div>
+                  )}
                 </div>
                 <a href={`#detail-${item.slug}`} className="m-btn m-btn--primary m-btn--block listing-pick-card__btn">
                   詳しく見る <i className="fa-solid fa-arrow-down" aria-hidden="true"></i>

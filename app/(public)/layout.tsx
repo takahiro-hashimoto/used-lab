@@ -1,6 +1,7 @@
 import Header from "@/app/components/Header";
 import Footer from "@/app/components/Footer";
 import SmoothScroll from "@/app/components/SmoothScroll";
+import AffiliateClickTracker from "@/app/components/AffiliateClickTracker";
 
 const organizationJsonLd = {
   '@context': 'https://schema.org',
@@ -34,6 +35,7 @@ export default function PublicLayout({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(searchActionJsonLd) }}
       />
       <SmoothScroll />
+      <AffiliateClickTracker />
       <Header />
       {children}
       <Footer />

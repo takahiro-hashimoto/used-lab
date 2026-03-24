@@ -32,7 +32,7 @@ export default function HeroSection({ model }: Props) {
       {
         '@type': 'ListItem',
         position: 2,
-        name: '中古iPad完全ガイド',
+        name: '中古iPad完全購入ガイド',
         item: 'https://used-lab.com/ipad',
       },
       {
@@ -66,7 +66,7 @@ export default function HeroSection({ model }: Props) {
                 </Link>
               </li>
               <li className="breadcrumb-item">
-                <Link href="/ipad">中古iPad完全ガイド</Link>
+                <Link href="/ipad">中古iPad完全購入ガイド</Link>
               </li>
               <li className="breadcrumb-item" aria-current="page">{model.model}</li>
             </ol>

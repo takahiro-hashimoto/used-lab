@@ -56,7 +56,7 @@ export default async function IPadSpecTablePage() {
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.com/' },
-      { '@type': 'ListItem', position: 2, name: '中古iPad完全ガイド', item: 'https://used-lab.com/ipad' },
+      { '@type': 'ListItem', position: 2, name: '中古iPad完全購入ガイド', item: 'https://used-lab.com/ipad' },
       { '@type': 'ListItem', position: 3, name: '歴代iPadスペック比較表' },
     ],
   }
@@ -142,7 +142,7 @@ export default async function IPadSpecTablePage() {
                 </Link>
               </li>
               <li className="breadcrumb-item">
-                <Link href="/ipad">中古iPad完全ガイド</Link>
+                <Link href="/ipad">中古iPad完全購入ガイド</Link>
               </li>
               <li className="breadcrumb-item" aria-current="page">歴代iPadスペック比較表</li>
             </ol>

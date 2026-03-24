@@ -23,12 +23,12 @@ export function calculateOSLifespan(date: string | null) {
 }
 
 /**
- * 日毎の価格集計（3社の最安値平均・最高値平均、直近90日）
+ * 日毎の価格集計（Top5の最安値・最高値から算出）
  */
 export function aggregateDailyPrices(logs: MacBookPriceLog[]) {
   return aggregateDailyPricesGeneric(logs, (log) => ({
-    mins: [log.iosys_min, log.geo_min, log.janpara_min],
-    maxes: [log.iosys_max, log.geo_max, log.janpara_max],
+    mins: [log.min1_price, log.min2_price, log.min3_price, log.min4_price, log.min5_price],
+    maxes: [log.max1_price, log.max2_price, log.max3_price, log.max4_price, log.max5_price],
   }))
 }
 
@@ -40,7 +40,7 @@ export function filterLast3Months(logs: MacBookPriceLog[]): MacBookPriceLog[] {
 }
 
 /**
- * 最新の価格レンジを取得
+ * 最新の価格レンジを取得（Top5形式）
  */
 export function calculatePriceRange(log: MacBookPriceLog | null): {
   minPrice: number | null
@@ -48,11 +48,17 @@ export function calculatePriceRange(log: MacBookPriceLog | null): {
   shops: { name: string; min: number | null; max: number | null }[]
 } {
   if (!log) return { minPrice: null, maxPrice: null, shops: [] }
-  return calculatePriceRangeGeneric([
-    { name: 'イオシス', min: log.iosys_min, max: log.iosys_max },
-    { name: 'ゲオ', min: log.geo_min, max: log.geo_max },
-    { name: 'じゃんぱら', min: log.janpara_min, max: log.janpara_max },
-  ])
+  const minPrices = [log.min1_price, log.min2_price, log.min3_price, log.min4_price, log.min5_price]
+    .filter((v): v is number => v != null && v > 0)
+  const maxPrices = [log.max1_price, log.max2_price, log.max3_price, log.max4_price, log.max5_price]
+    .filter((v): v is number => v != null && v > 0)
+  return {
+    minPrice: minPrices.length > 0 ? Math.min(...minPrices) : null,
+    maxPrice: maxPrices.length > 0 ? Math.max(...maxPrices) : null,
+    shops: [
+      { name: log.min1_shop_name || '楽天', min: log.min1_price, max: log.max1_price },
+    ],
+  }
 }
 
 // --- 購入判定ロジック（MacBook版：PHP版から移植） ---

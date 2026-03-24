@@ -79,7 +79,7 @@ export default async function WatchGuidePage() {
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.com/' },
-      { '@type': 'ListItem', position: 2, name: '中古Apple Watch完全ガイド' },
+      { '@type': 'ListItem', position: 2, name: '中古Apple Watch完全購入ガイド' },
     ],
   }
 
@@ -207,6 +207,7 @@ export default async function WatchGuidePage() {
               <li><a href="#caution" className="toc-item">注意点 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#recommended" className="toc-item">目的別 おすすめ機種 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#where-to-buy" className="toc-item">購入先比較 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
+              <li><a href="#usage" className="toc-item">できること・活用シーン <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#spec-compare" className="toc-item">スペック比較 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#faq" className="toc-item">よくある質問 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
             </ol>
@@ -442,6 +443,74 @@ export default async function WatchGuidePage() {
             </div>
           </section>
 
+          {/* ========== できること・活用シーン ========== */}
+          <section className="l-section" id="usage" aria-labelledby="heading-usage">
+            <div className="l-container">
+              <h2 className="m-section-heading m-section-heading--lg" id="heading-usage">Apple Watchのできること・活用シーン</h2>
+              <p className="m-section-desc">「Apple Watchって何ができるの？」という疑問をお持ちの方へ。</p>
+              <p className="m-section-desc">Apple Watchは通知や決済などの日常機能に加え、健康管理やApple製品との連携まで幅広く活躍するデバイスです。</p>
+
+              <div className="l-grid l-grid--2col l-grid--gap-lg" style={{ marginBottom: 'var(--space-xl)' }}>
+                <div className="m-card m-card--shadow m-card--padded">
+                  <h3 style={{ fontSize: 'var(--font-size-md)', fontWeight: 700, marginBottom: 'var(--space-sm)' }}>
+                    <i className="fa-solid fa-clock" aria-hidden="true" style={{ marginRight: 'var(--space-xs)', color: 'var(--color-primary)' }}></i>
+                    基本機能
+                  </h3>
+                  <ul style={{ paddingLeft: 'var(--space-lg)', listStyle: 'disc', lineHeight: 2, fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)' }}>
+                    <li>iPhoneの通知確認・LINEやメッセージの閲覧</li>
+                    <li>電話の発着信・Siriでのタイマー操作</li>
+                    <li>経路案内（徒歩ナビ）・振動アラーム</li>
+                    <li>文字盤カスタマイズ・バンド交換</li>
+                    <li>iPhoneカメラのリモート撮影</li>
+                  </ul>
+                </div>
+                <div className="m-card m-card--shadow m-card--padded">
+                  <h3 style={{ fontSize: 'var(--font-size-md)', fontWeight: 700, marginBottom: 'var(--space-sm)' }}>
+                    <i className="fa-solid fa-heart-pulse" aria-hidden="true" style={{ marginRight: 'var(--space-xs)', color: 'var(--color-primary)' }}></i>
+                    健康・フィットネス
+                  </h3>
+                  <ul style={{ paddingLeft: 'var(--space-lg)', listStyle: 'disc', lineHeight: 2, fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)' }}>
+                    <li>フィットネスアプリで1日の活動量を管理</li>
+                    <li>ワークアウト記録（ランニング・ウォーキング・水泳など）</li>
+                    <li>睡眠トラッキング・睡眠の質チェック</li>
+                    <li>心拍数モニタリング・心電図（ECG）</li>
+                    <li>血中酸素濃度（SpO2）測定・転倒検出</li>
+                  </ul>
+                </div>
+                <div className="m-card m-card--shadow m-card--padded">
+                  <h3 style={{ fontSize: 'var(--font-size-md)', fontWeight: 700, marginBottom: 'var(--space-sm)' }}>
+                    <i className="fa-solid fa-credit-card" aria-hidden="true" style={{ marginRight: 'var(--space-xs)', color: 'var(--color-primary)' }}></i>
+                    決済・電子マネー
+                  </h3>
+                  <ul style={{ paddingLeft: 'var(--space-lg)', listStyle: 'disc', lineHeight: 2, fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)' }}>
+                    <li>Suica・PASMOで改札をタッチ通過</li>
+                    <li>Apple Payでコンビニ・店舗の電子決済</li>
+                    <li>PayPay・楽天ペイなどQRコード決済</li>
+                  </ul>
+                </div>
+                <div className="m-card m-card--shadow m-card--padded">
+                  <h3 style={{ fontSize: 'var(--font-size-md)', fontWeight: 700, marginBottom: 'var(--space-sm)' }}>
+                    <i className="fa-brands fa-apple" aria-hidden="true" style={{ marginRight: 'var(--space-xs)', color: 'var(--color-primary)' }}></i>
+                    Apple製品連携
+                  </h3>
+                  <ul style={{ paddingLeft: 'var(--space-lg)', listStyle: 'disc', lineHeight: 2, fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)' }}>
+                    <li>「iPhoneを探す」で遠隔から音を鳴らす</li>
+                    <li>置き忘れ防止通知</li>
+                    <li>iPhone・MacBookのロック解除</li>
+                    <li>AirPodsの再生コントロール</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div className="m-callout m-callout--tip" style={{ marginTop: 'var(--space-2xl)' }}>
+                <span className="m-callout__label">memo</span>
+                <p className="m-callout__text">
+                  各機能の詳しい解説は「<Link href="/watch/how-to-use-apple-watch/">Apple Watchのできること25選</Link>」でまとめています。購入前に具体的な使用イメージを確認したい方はぜひご覧ください。
+                </p>
+              </div>
+            </div>
+          </section>
+
           {/* ========== スペック比較ガイド ========== */}
           <section className="l-section" id="spec-compare" aria-labelledby="heading-spec-compare">
             <div className="l-container">
@@ -538,6 +607,18 @@ export default async function WatchGuidePage() {
                   <h3 className="faq-question">おすすめしない中古Apple Watchはどれ？</h3>
                   <div className="faq-answer">
                     <p>Series 4以前のモデルはwatchOSサポートが終了しており、新しいアプリや機能が使えなくなっています。また、Series 3は動作が重く実用的ではありません。長く使いたいなら、Series 7以降またはSE 第2世代以降を選ぶのが安心です。</p>
+                  </div>
+                </div>
+                <div className="m-card faq-item">
+                  <h3 className="faq-question">Apple Watchのバンドは他のモデルでも使い回せますか？</h3>
+                  <div className="faq-answer">
+                    <p>Apple Watchのバンドは同じケースサイズ系統であれば世代をまたいで互換性があります。38mm/40mm/41mm系と42mm/44mm/45mm系でそれぞれ共通です。Ultra（49mm）は45mm系バンドも装着可能ですが、Ultra専用バンドは他モデルには使えません。中古で購入する場合はバンドが付属しないケースもあるため、別途購入が必要か事前に確認しましょう。</p>
+                  </div>
+                </div>
+                <div className="m-card faq-item">
+                  <h3 className="faq-question">Apple Watchのケース素材（アルミ・ステンレス・チタン）の違いは？</h3>
+                  <div className="faq-answer">
+                    <p>アルミニウムは軽量で価格が手頃なエントリー素材です。ステンレススチールはアルミより重厚感があり傷に強く、サファイアクリスタルガラスを搭載。チタニウムはUltraシリーズに採用されており、軽さと耐久性を両立しています。中古市場ではアルミモデルが最も流通量が多く、ステンレスやチタンは希少なぶん価格も高めです。</p>
                   </div>
                 </div>
               </div>

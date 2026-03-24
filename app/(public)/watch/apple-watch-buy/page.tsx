@@ -41,7 +41,7 @@ export default function AppleWatchBuyPage() {
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.com/' },
-      { '@type': 'ListItem', position: 2, name: '中古Apple Watch完全ガイド', item: 'https://used-lab.com/watch/' },
+      { '@type': 'ListItem', position: 2, name: '中古Apple Watch完全購入ガイド', item: 'https://used-lab.com/watch/' },
       { '@type': 'ListItem', position: 3, name: 'Apple Watchを安く買うには？' },
     ],
   }
@@ -74,7 +74,7 @@ export default function AppleWatchBuyPage() {
         {/* パンくず */}
         <Breadcrumb
           items={[
-            { label: '中古Apple Watch完全ガイド', href: '/watch' },
+            { label: '中古Apple Watch完全購入ガイド', href: '/watch' },
             { label: 'Apple Watchを安く買うには？' },
           ]}
         />
@@ -198,6 +198,17 @@ export default function AppleWatchBuyPage() {
         <div className="l-sections" itemProp="articleBody">
           <BuyMethodsSection />
         <RecommendBanner />
+
+        <section className="l-section" aria-label="関連リンク">
+          <div className="l-container">
+            <div className="m-callout m-callout--muted">
+              <span className="m-callout__label">関連</span>
+              <p className="m-callout__text">
+                <a href="https://selectra.jp/%E3%82%B9%E3%83%88%E3%83%AA%E3%83%BC%E3%83%9F%E3%83%B3%E3%82%B0/%E3%83%97%E3%83%AD%E3%83%90%E3%82%A4%E3%83%80%E3%83%BC/%E3%82%A2%E3%83%9E%E3%82%BE%E3%83%B3%E3%83%97%E3%83%A9%E3%82%A4%E3%83%A0/sale" target="_blank" rel="noreferrer noopener">Amazonセール最新情報｜セールはいつ？プライムデーなど年間スケジュールをチェック</a>
+              </p>
+            </div>
+          </div>
+        </section>
 
         <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>

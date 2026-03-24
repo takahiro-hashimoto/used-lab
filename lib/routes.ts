@@ -84,6 +84,7 @@ export const PRODUCT_CATEGORIES: CategoryDef[] = [
       { path: '/iphone/filter-search/', label: 'iPhone機種診断シミュレーター｜自分に合うおすすめ中古スマホがすぐわかる【2026年版】' },
       { path: '/iphone/battery-compare/', label: '歴代iPhoneのバッテリー容量比較ランキング！電池持ちがいい機種はどれ？' },
       { path: '/iphone/iphone-camera/', label: 'iPhoneのカメラ性能の違いは何？歴代モデルの機能を比較' },
+      { path: '/iphone/storage-guide/', label: '中古iPhoneのストレージ容量はどれがいい？用途別おすすめ容量と容量別の価格差まとめ' },
       { path: '/iphone/mvno/', label: (p) => `中古iPhoneの購入と通信契約が一緒にできる格安SIM業者まとめ【${p.mvnoDate}】` },
       { path: '/iphone/network-limit/', label: 'ネットワーク制限△の中古iPhone・iPadを買うメリット・デメリットを解説' },
     ],
@@ -109,6 +110,7 @@ export const PRODUCT_CATEGORIES: CategoryDef[] = [
       { path: '/ipad/howto-use-ipad/', label: 'iPadがあればできること・便利な使い道 22選【生活が変わる】' },
       { path: '/ipad/car-navigation-system/', label: 'iPadをカーナビ化するメリットが凄い！地図が古くなる問題をすっきり解消' },
       { path: '/ipad/ipad-buy/', label: 'iPadを安く買うには？おすすめの購入先7つを比較' },
+      { path: '/ipad/storage-guide/', label: '中古iPadのストレージ容量はどれがいい？用途別おすすめ容量と容量別の価格差まとめ' },
     ],
   },
   {
@@ -127,6 +129,9 @@ export const PRODUCT_CATEGORIES: CategoryDef[] = [
       { path: '/macbook/ipad-macbook-compare/', label: 'MacBookとiPadどっちを買うのがおすすめ？両者の違いと使い勝手を比較' },
       { path: '/macbook/windows-mac-compare/', label: 'MacとWindowsどっちがいい？両者の違いとどんな人におすすめかをやさしく解説' },
       { path: '/macbook/macbook-buy/', label: 'MacBookを安く買うには？おすすめの購入先7つを比較' },
+      { path: '/macbook/macbook-price-info/', label: 'MacBookの中古相場一覧｜歴代モデルの価格推移を独自集計' },
+      { path: '/macbook/storage-guide/', label: '中古MacBookのストレージ容量はどれがいい？用途別おすすめ容量まとめ' },
+      { path: '/macbook/air-pro-compare/', label: 'MacBook AirとProどっちがいい？違いと選び方をやさしく解説' },
     ],
   },
   {

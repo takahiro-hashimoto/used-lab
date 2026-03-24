@@ -2,6 +2,7 @@
 
 import { useState, useMemo, useEffect, useRef } from 'react'
 import Image from 'next/image'
+import RatingMark from '@/app/components/RatingMark'
 
 type CompareRow = {
   section: string
@@ -30,8 +31,8 @@ type Props = {
 }
 
 function CellValue({ value }: { value: string }) {
-  if (value === '◯') return <span className="m-rating__icon m-rating__icon--good" aria-label="対応">&#9675;</span>
-  if (value === '×') return <span className="m-spec-row__cross" aria-label="非対応">&times;</span>
+  if (value === '◯') return <RatingMark mark="◯" size="sm" />
+  if (value === '×') return <RatingMark mark="×" size="sm" />
   const normalized = value.replace(/<br\s*\/?>/g, '\n')
   if (normalized.includes('\n')) {
     return <>{normalized.split('\n').map((line, i) => (

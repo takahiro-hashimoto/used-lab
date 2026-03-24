@@ -49,15 +49,16 @@ export default function NewsForm({ action, initialData, submitLabel }: Props) {
           <label htmlFor="content" className="admin-form__label">
             内容 <span className="admin-form__required">*</span>
           </label>
-          <input
-            type="text"
+          <textarea
             id="content"
             name="content"
             defaultValue={initialData?.content || ''}
             required
-            placeholder="例: iPhone 16eの中古価格データを追加しました"
+            placeholder={'例: iPhone 16eの中古価格データを追加しました\n例: <a href="/iphone">中古iPhoneガイド</a>を更新しました'}
             className="admin-form__input"
+            rows={3}
           />
+          <p className="admin-form__hint">HTMLタグが使えます（例: {'<a href="/iphone">リンクテキスト</a>'}）</p>
         </div>
 
         <div className="admin-form__field">

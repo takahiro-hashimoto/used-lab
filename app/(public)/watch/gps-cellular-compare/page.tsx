@@ -39,7 +39,7 @@ export default function GpsCellularComparePage() {
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.com/' },
-      { '@type': 'ListItem', position: 2, name: '中古Apple Watch完全ガイド', item: 'https://used-lab.com/watch' },
+      { '@type': 'ListItem', position: 2, name: '中古Apple Watch完全購入ガイド', item: 'https://used-lab.com/watch' },
       { '@type': 'ListItem', position: 3, name: 'GPSモデルとセルラーモデルの違い' },
     ],
   }
@@ -88,7 +88,7 @@ export default function GpsCellularComparePage() {
         {/* パンくず */}
         <Breadcrumb
           items={[
-            { label: '中古Apple Watch完全ガイド', href: '/watch' },
+            { label: '中古Apple Watch完全購入ガイド', href: '/watch' },
             { label: 'GPSモデルとセルラーモデルの違い' },
           ]}
         />

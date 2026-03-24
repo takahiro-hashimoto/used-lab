@@ -126,6 +126,7 @@ export default async function IPadDetailPage({ params }: PageProps) {
             latestMinMaxPairs={latestMinMaxPairs}
             latestDate={latestDate}
             storageNote={storageNote}
+            priceListLink={{ href: '/ipad/ipad-price-info/', label: 'iPadの中古相場一覧・価格推移' }}
           />
         ) : (
           <PriceTrendPlaceholder modelName={enrichedModel.model} />

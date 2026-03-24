@@ -17,17 +17,7 @@ const SUIT_ICONS: Record<string, string> = {
   pencil: 'fa-solid fa-pen-nib',
 }
 
-function getRatingClass(mark: string): string {
-  if (mark === '◎') return 'm-rating__icon--excellent'
-  if (mark === '◯') return 'm-rating__icon--good'
-  return 'm-rating__icon--fair'
-}
-
-function getRatingEntity(mark: string): string {
-  if (mark === '◎') return '\u25CE' // ◎
-  if (mark === '◯') return '\u25CB' // ○
-  return '\u25B3' // △
-}
+import RatingMark from '@/app/components/RatingMark'
 
 export default function PurchaseVerdict({ model, latestPrice }: Props) {
   const v = getVerdict(model, latestPrice)
@@ -87,8 +77,8 @@ export default function PurchaseVerdict({ model, latestPrice }: Props) {
                   <i className={SUIT_ICONS[item.icon] || 'fa-solid fa-circle'} aria-hidden="true"></i>{' '}
                   {item.label}
                 </dt>
-                <dd className={`m-rating__icon ${getRatingClass(item.mark)}`}>
-                  {getRatingEntity(item.mark)}
+                <dd className="m-rating__icon">
+                  <RatingMark mark={item.mark} />
                 </dd>
               </div>
             ))}

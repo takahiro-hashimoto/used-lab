@@ -87,7 +87,7 @@ export default async function IPadRecommendPage() {
   // JSON-LD
   const breadcrumbJsonLd = buildBreadcrumbJsonLd([
     { name: '中古Apple製品を安く買う', item: 'https://used-lab.com/' },
-    { name: '中古iPad完全ガイド', item: 'https://used-lab.com/ipad' },
+    { name: '中古iPad完全購入ガイド', item: 'https://used-lab.com/ipad' },
     { name: `中古iPadおすすめ${RECOMMEND_COUNT}選` },
   ])
   const articleJsonLd = buildArticleJsonLd({ headline: PAGE_TITLE, description: PAGE_DESCRIPTION, dateStr, url: PAGE_URL })
@@ -171,7 +171,7 @@ export default async function IPadRecommendPage() {
         {/* パンくず */}
         <Breadcrumb
           items={[
-            { label: '中古iPad完全ガイド', href: '/ipad' },
+            { label: '中古iPad完全購入ガイド', href: '/ipad' },
             { label: `中古iPadおすすめ${RECOMMEND_COUNT}選` },
           ]}
         />

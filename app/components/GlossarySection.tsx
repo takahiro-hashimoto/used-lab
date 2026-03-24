@@ -9,9 +9,10 @@ type GlossaryItem = {
 type Props = {
   productName: string
   items: GlossaryItem[]
+  children?: ReactNode
 }
 
-export default function GlossarySection({ productName, items }: Props) {
+export default function GlossarySection({ productName, items, children }: Props) {
   return (
     <section className="l-section" id="glossary" aria-labelledby="heading-glossary">
       <div className="l-container">
@@ -34,6 +35,7 @@ export default function GlossarySection({ productName, items }: Props) {
             </div>
           ))}
         </div>
+        {children}
       </div>
     </section>
   )

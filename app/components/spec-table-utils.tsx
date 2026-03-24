@@ -21,16 +21,14 @@ export function formatDate(date: string | null): string {
 /*  セル表示コンポーネント                              */
 /* -------------------------------------------------- */
 
+import RatingMark from '@/app/components/RatingMark'
+
 export function BoolCell({ value }: { value: boolean }) {
-  if (value) {
-    return <span className="m-spec-row__circle" aria-label="あり">○</span>
-  }
-  return <span className="m-spec-row__cross" aria-label="なし">&times;</span>
+  return value ? <RatingMark mark="◯" size="sm" /> : <RatingMark mark="×" size="sm" />
 }
 
 export function getBoolDisplay(val: boolean): React.ReactNode {
-  if (val) return <span className="m-spec-row__circle" aria-label="あり">○</span>
-  return <span className="m-spec-row__cross" aria-label="なし">&times;</span>
+  return val ? <RatingMark mark="◯" size="sm" /> : <RatingMark mark="×" size="sm" />
 }
 
 export function TextCell({ value }: { value: string }) {

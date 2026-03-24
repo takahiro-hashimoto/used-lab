@@ -43,7 +43,7 @@ export default function UsedIpadAttentionPage() {
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.com/' },
-      { '@type': 'ListItem', position: 2, name: '中古iPad完全ガイド', item: 'https://used-lab.com/ipad' },
+      { '@type': 'ListItem', position: 2, name: '中古iPad完全購入ガイド', item: 'https://used-lab.com/ipad' },
       { '@type': 'ListItem', position: 3, name: '中古iPadの注意点' },
     ],
   }
@@ -129,7 +129,7 @@ export default function UsedIpadAttentionPage() {
         {/* パンくず */}
         <Breadcrumb
           items={[
-            { label: '中古iPad完全ガイド', href: '/ipad' },
+            { label: '中古iPad完全購入ガイド', href: '/ipad' },
             { label: '中古iPadの注意点' },
           ]}
         />
@@ -241,7 +241,7 @@ export default function UsedIpadAttentionPage() {
         <div className="l-sections" id="content" itemProp="articleBody">
           <PreCheckSection />
           <RouteSection />
-          <PostCheckSection heading="中古iPadの購入後すぐやるべきチェック" productName="iPad" checkItems={postCheckItems} />
+          <PostCheckSection heading="中古iPadの購入後すぐやるべき確認項目" productName="iPad" checkItems={postCheckItems} />
           <FailureSection productName="iPad" guidePath="/ipad" failurePatterns={failurePatterns} showMemo={false} />
           <InsuranceSection {...insuranceData} />
           <PopularSection

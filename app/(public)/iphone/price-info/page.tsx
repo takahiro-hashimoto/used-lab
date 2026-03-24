@@ -278,7 +278,7 @@ export default async function IPhonePriceInfoPage() {
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.com/' },
-      { '@type': 'ListItem', position: 2, name: '中古iPhone完全ガイド', item: 'https://used-lab.com/iphone/' },
+      { '@type': 'ListItem', position: 2, name: '中古iPhone完全購入ガイド', item: 'https://used-lab.com/iphone/' },
       { '@type': 'ListItem', position: 3, name: 'iPhoneの中古相場一覧' },
     ],
   }
@@ -332,7 +332,7 @@ export default async function IPhonePriceInfoPage() {
         {/* パンくず */}
         <Breadcrumb
           items={[
-            { label: '中古iPhone完全ガイド', href: '/iphone' },
+            { label: '中古iPhone完全購入ガイド', href: '/iphone' },
             { label: 'iPhoneの中古相場一覧' },
           ]}
         />

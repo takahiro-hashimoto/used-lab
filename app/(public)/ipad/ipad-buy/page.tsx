@@ -40,7 +40,7 @@ export default function IPadBuyPage() {
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.com/' },
-      { '@type': 'ListItem', position: 2, name: '中古iPad完全ガイド', item: 'https://used-lab.com/ipad/' },
+      { '@type': 'ListItem', position: 2, name: '中古iPad完全購入ガイド', item: 'https://used-lab.com/ipad/' },
       { '@type': 'ListItem', position: 3, name: 'iPadを安く買うには？' },
     ],
   }
@@ -73,7 +73,7 @@ export default function IPadBuyPage() {
         {/* パンくず */}
         <Breadcrumb
           items={[
-            { label: '中古iPad完全ガイド', href: '/ipad' },
+            { label: '中古iPad完全購入ガイド', href: '/ipad' },
             { label: 'iPadを安く買うには？' },
           ]}
         />

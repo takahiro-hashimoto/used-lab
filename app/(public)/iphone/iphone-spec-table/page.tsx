@@ -60,7 +60,7 @@ export default async function IPhoneSpecTablePage() {
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.com/' },
-      { '@type': 'ListItem', position: 2, name: '中古iPhone完全ガイド', item: 'https://used-lab.com/iphone' },
+      { '@type': 'ListItem', position: 2, name: '中古iPhone完全購入ガイド', item: 'https://used-lab.com/iphone' },
       { '@type': 'ListItem', position: 3, name: '歴代iPhoneスペック比較表' },
     ],
   }
@@ -136,7 +136,7 @@ export default async function IPhoneSpecTablePage() {
 
   return (
     <main>
-      <article>
+      <article itemScope itemType="https://schema.org/Article">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
@@ -158,7 +158,7 @@ export default async function IPhoneSpecTablePage() {
                 </Link>
               </li>
               <li className="breadcrumb-item">
-                <Link href="/iphone">中古iPhone完全ガイド</Link>
+                <Link href="/iphone">中古iPhone完全購入ガイド</Link>
               </li>
               <li className="breadcrumb-item" aria-current="page">歴代iPhoneスペック比較表</li>
             </ol>
@@ -173,7 +173,7 @@ export default async function IPhoneSpecTablePage() {
           </div>
           <div className="hero-inner l-container">
             <div className="hero-content">
-              <h1 className="hero-title">
+              <h1 className="hero-title" itemProp="headline">
                 歴代iPhoneスペック比較表！気になる機種の性能差や違いがわかる
               </h1>
               <div className="hero-actions">
@@ -189,9 +189,10 @@ export default async function IPhoneSpecTablePage() {
               <div className="hero-meta">
                 <i className="fa-regular fa-clock" aria-hidden="true"></i>
                 <span>
-                  更新日: <time dateTime={new Date().toISOString().split('T')[0]}>
+                  更新日: <time dateTime={new Date().toISOString().split('T')[0]} itemProp="dateModified">
                     {new Date().toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' })}
                   </time> | 当記事のリンクには広告が含まれています
+                  <meta itemProp="datePublished" content={new Date().toISOString().split('T')[0]} />
                 </span>
               </div>
             </div>
@@ -267,13 +268,20 @@ export default async function IPhoneSpecTablePage() {
             </ol>
           </div>
         </nav>
-        <div className="l-sections">
+        <div className="l-sections" itemProp="articleBody">
         {/* セクション */}
         <SpecTable models={serializedModels} shopLinks={serializedLinks} />
         <DualCompare models={serializedModels} shopLinks={serializedLinks} />
         <BenchmarkSection models={serializedModels} />
         <EvolutionTimeline />
-        <GlossarySection productName="iPhone" items={GLOSSARY_ITEMS} />
+        <GlossarySection productName="iPhone" items={GLOSSARY_ITEMS}>
+          <div className="m-callout m-callout--tip" style={{ marginTop: 'var(--space-2xl)' }}>
+            <span className="m-callout__label">memo</span>
+            <p className="m-callout__text">
+              カメラ性能が気になる方は「<a href="/iphone/iphone-camera/">iPhoneのカメラ性能の違いは何？歴代モデルの機能を比較</a>」、バッテリー持ちで選びたい方は「<a href="/iphone/battery-compare/">歴代iPhoneのバッテリー容量比較ランキング</a>」もあわせてご覧ください。
+            </p>
+          </div>
+        </GlossarySection>
         <section className="l-section" id="popular" aria-labelledby="heading-popular">
           <div className="l-container">
             <h2 className="m-section-heading m-section-heading--lg" id="heading-popular">目的別に人気の中古iPhone</h2>
@@ -288,6 +296,12 @@ export default async function IPhoneSpecTablePage() {
                 <p className="popular-card-desc">カメラ性能を重視する人向け、大画面で動画やSNSを楽しみたい人向けなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。</p>
                 <div><a className="m-btn m-btn--primary" href="/iphone/recommend/">おすすめ5機種を見る <i className="fa-solid fa-arrow-right" aria-hidden="true"></i></a></div>
               </div>
+            </div>
+            <div className="m-callout m-callout--muted" style={{ marginTop: 'var(--space-2xl)' }}>
+              <span className="m-callout__label">関連</span>
+              <p className="m-callout__text">
+                <a href="https://prodig.co.jp/blogs/column/iphone-history-model-selection" target="_blank" rel="noreferrer noopener">歴代iPhone徹底比較！歴史から学ぶ最適なモデル選びと賢い購入方法を解説</a>
+              </p>
             </div>
           </div>
         </section>

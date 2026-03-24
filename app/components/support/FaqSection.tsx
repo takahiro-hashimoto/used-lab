@@ -7,11 +7,12 @@ type Props = {
   title: string
   description: string
   items: FaqItem[]
+  children?: React.ReactNode
 }
 
 export type { FaqItem }
 
-export default function FaqSection({ title, description, items }: Props) {
+export default function FaqSection({ title, description, items, children }: Props) {
   const faqJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
@@ -48,6 +49,7 @@ export default function FaqSection({ title, description, items }: Props) {
             </div>
           ))}
         </div>
+        {children}
       </div>
     </section>
   )

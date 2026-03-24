@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
+import RatingMark from '@/app/components/RatingMark'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import ShareBox from '@/app/components/ShareBox'
 import FaqSection from '@/app/components/support/FaqSection'
@@ -36,7 +37,7 @@ export default function WifiCellularPage() {
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.com/' },
-      { '@type': 'ListItem', position: 2, name: '中古iPad完全ガイド', item: 'https://used-lab.com/ipad' },
+      { '@type': 'ListItem', position: 2, name: '中古iPad完全購入ガイド', item: 'https://used-lab.com/ipad' },
       { '@type': 'ListItem', position: 3, name: 'Wi-Fiモデルとセルラーモデルの比較' },
     ],
   }
@@ -69,7 +70,7 @@ export default function WifiCellularPage() {
         {/* パンくず */}
         <Breadcrumb
           items={[
-            { label: '中古iPad完全ガイド', href: '/ipad' },
+            { label: '中古iPad完全購入ガイド', href: '/ipad' },
             { label: 'Wi-Fiモデルとセルラーモデルの比較' },
           ]}
         />
@@ -197,18 +198,18 @@ export default function WifiCellularPage() {
                     <tbody>
                       <tr>
                         <th>モバイル通信</th>
-                        <td><span className="m-spec-row__cross">×</span></td>
-                        <td><span className="m-spec-row__circle">○</span></td>
+                        <td><RatingMark mark="×" size="sm" /></td>
+                        <td><RatingMark mark="◯" size="sm" /></td>
                       </tr>
                       <tr>
                         <th>GPS機能</th>
-                        <td><span className="m-spec-row__cross">×</span></td>
-                        <td><span className="m-spec-row__circle">○</span></td>
+                        <td><RatingMark mark="×" size="sm" /></td>
+                        <td><RatingMark mark="◯" size="sm" /></td>
                       </tr>
                       <tr>
                         <th>テザリング機能</th>
-                        <td><span className="m-spec-row__cross">×</span></td>
-                        <td><span className="m-spec-row__circle">○</span></td>
+                        <td><RatingMark mark="×" size="sm" /></td>
+                        <td><RatingMark mark="◯" size="sm" /></td>
                       </tr>
                       <tr>
                         <th>デザイン</th>

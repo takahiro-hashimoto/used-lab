@@ -78,7 +78,7 @@ export default async function IPadGuidePage() {
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.com/' },
-      { '@type': 'ListItem', position: 2, name: '中古iPad完全ガイド' },
+      { '@type': 'ListItem', position: 2, name: '中古iPad完全購入ガイド' },
     ],
   }
 
@@ -168,7 +168,7 @@ export default async function IPadGuidePage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <img
-                  src="/images/content/ipad-image-01.jpg"
+                  src="/images/content/ipad-all.jpg"
                   alt="中古iPad購入ガイドのイメージ"
                   className="hero-media__img"
                   width={360}
@@ -206,6 +206,7 @@ export default async function IPadGuidePage() {
               <li><a href="#caution" className="toc-item">注意点 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#recommended" className="toc-item">目的別 おすすめ機種 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#where-to-buy" className="toc-item">購入先比較 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
+              <li><a href="#usage" className="toc-item">使い道・活用シーン <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#spec-compare" className="toc-item">スペック比較 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#faq" className="toc-item">よくある質問 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
             </ol>
@@ -292,7 +293,7 @@ export default async function IPadGuidePage() {
           <section className="l-section" id="caution" aria-labelledby="heading-caution">
             <div className="l-container">
               <h2 className="m-section-heading m-section-heading--lg" id="heading-caution">中古iPadを選ぶ際の確認ポイント</h2>
-              <p className="m-section-desc">中古iPadを購入する際に確認しておきたい6つのポイントをまとめました。</p>
+              <p className="m-section-desc">中古iPadを購入する際に確認しておきたい8つのポイントをまとめました。</p>
               <p className="m-section-desc">特に初めて中古タブレットを買う方は、トラブルを避けるためにも一度確認しておくことをおすすめします。</p>
 
               <div className="glossary-box glossary-box--numbered m-card m-card--shadow">
@@ -316,6 +317,18 @@ export default async function IPadGuidePage() {
                     <dd className="glossary-item-desc">
                       Apple Pencilは世代ごとに対応モデルや機能が異なります。購入前に互換性とやりたいことが実現できるかを確認しましょう。
                       <br />詳細：<Link href="/ipad/apple-pencil-compare/">Apple Pencil対応比較表</Link>
+                    </dd>
+                  </div>
+                  <div className="glossary-item">
+                    <dt className="glossary-item-title">Face ID か Touch ID か</dt>
+                    <dd className="glossary-item-desc">
+                      iPad Pro（第3世代以降）はFace ID、それ以外のモデルはTouch ID（トップボタン式またはホームボタン式）を搭載しています。マスク着用時やApple Pencil操作中の使い勝手に差が出るため、自分の利用シーンに合った認証方式を選びましょう。
+                    </dd>
+                  </div>
+                  <div className="glossary-item">
+                    <dt className="glossary-item-title">USB-C か Lightning か</dt>
+                    <dd className="glossary-item-desc">
+                      iPad 第10世代以降・iPad Air 第4世代以降・iPad Pro 第3世代以降・iPad mini 第6世代以降はUSB-Cポートを搭載しています。それ以前のモデルはLightning端子です。USB-Cなら外部ストレージやモニターとの接続が容易で、充電器もiPhoneやMacBookと共用しやすくなります。
                     </dd>
                   </div>
                   <div className="glossary-item">
@@ -440,6 +453,81 @@ export default async function IPadGuidePage() {
                   <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
                 </Link>
               </div>
+
+              <div className="m-callout m-callout--tip" style={{ marginTop: 'var(--space-2xl)' }}>
+                <span className="m-callout__label">memo</span>
+                <p className="m-callout__text">
+                  中古以外にもApple認定整備済製品・Amazon・家電量販店のセールなど、iPadを安く買う方法はさまざまです。新品・中古を含めた全7つの購入先を「<Link href="/ipad/ipad-buy/">iPadを安く買うには？おすすめの購入先7つを比較</Link>」で解説しています。
+                </p>
+              </div>
+            </div>
+          </section>
+
+          {/* ========== iPadの使い道・活用シーン ========== */}
+          <section className="l-section" id="usage" aria-labelledby="heading-usage">
+            <div className="l-container">
+              <h2 className="m-section-heading m-section-heading--lg" id="heading-usage">iPadの使い道・活用シーン</h2>
+              <p className="m-section-desc">「iPadって結局何に使えるの？」という疑問をお持ちの方へ。</p>
+              <p className="m-section-desc">iPadは動画やゲームなどのエンタメはもちろん、勉強・仕事の効率化からイラスト制作まで幅広く活躍するデバイスです。</p>
+
+              <div className="l-grid l-grid--2col l-grid--gap-lg" style={{ marginBottom: 'var(--space-xl)' }}>
+                <div className="m-card m-card--shadow m-card--padded">
+                  <h3 style={{ fontSize: 'var(--font-size-md)', fontWeight: 700, marginBottom: 'var(--space-sm)' }}>
+                    <i className="fa-solid fa-film" aria-hidden="true" style={{ marginRight: 'var(--space-xs)', color: 'var(--color-primary)' }}></i>
+                    エンタメ
+                  </h3>
+                  <ul style={{ paddingLeft: 'var(--space-lg)', listStyle: 'disc', lineHeight: 2, fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)' }}>
+                    <li>大画面での動画視聴（Netflix・Amazon Prime Video・YouTube）</li>
+                    <li>電子書籍・マンガ（Kindle・楽天kobo）</li>
+                    <li>ゲーム（原神など高グラフィックタイトルに対応）</li>
+                    <li>音楽鑑賞（Apple Music・Spotify）</li>
+                  </ul>
+                </div>
+                <div className="m-card m-card--shadow m-card--padded">
+                  <h3 style={{ fontSize: 'var(--font-size-md)', fontWeight: 700, marginBottom: 'var(--space-sm)' }}>
+                    <i className="fa-solid fa-palette" aria-hidden="true" style={{ marginRight: 'var(--space-xs)', color: 'var(--color-primary)' }}></i>
+                    クリエイティブ
+                  </h3>
+                  <ul style={{ paddingLeft: 'var(--space-lg)', listStyle: 'disc', lineHeight: 2, fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)' }}>
+                    <li>Apple Pencilを使ったイラスト制作（Procreate・CLIP STUDIO PAINT）</li>
+                    <li>写真編集・RAW現像（Lightroom・Snapseed）</li>
+                    <li>動画編集（LumaFusion・iMovie）</li>
+                    <li>デザイン・バナー作成（Canva・Affinity Designer）</li>
+                  </ul>
+                </div>
+                <div className="m-card m-card--shadow m-card--padded">
+                  <h3 style={{ fontSize: 'var(--font-size-md)', fontWeight: 700, marginBottom: 'var(--space-sm)' }}>
+                    <i className="fa-solid fa-graduation-cap" aria-hidden="true" style={{ marginRight: 'var(--space-xs)', color: 'var(--color-primary)' }}></i>
+                    勉強・仕事
+                  </h3>
+                  <ul style={{ paddingLeft: 'var(--space-lg)', listStyle: 'disc', lineHeight: 2, fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)' }}>
+                    <li>手書きノート（GoodNotes・Notability）</li>
+                    <li>PDFへの書き込み・教科書のデジタル化</li>
+                    <li>Split Viewを使ったながら勉強・マルチタスク</li>
+                    <li>プレゼン資料作成・ペーパーレス化</li>
+                    <li>SidecarでMacのサブディスプレイとして活用</li>
+                  </ul>
+                </div>
+                <div className="m-card m-card--shadow m-card--padded">
+                  <h3 style={{ fontSize: 'var(--font-size-md)', fontWeight: 700, marginBottom: 'var(--space-sm)' }}>
+                    <i className="fa-solid fa-house" aria-hidden="true" style={{ marginRight: 'var(--space-xs)', color: 'var(--color-primary)' }}></i>
+                    暮らし・その他
+                  </h3>
+                  <ul style={{ paddingLeft: 'var(--space-lg)', listStyle: 'disc', lineHeight: 2, fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)' }}>
+                    <li><Link href="/ipad/car-navigation-system/" style={{ color: 'var(--color-primary)' }}>カーナビ代わり</Link>に大画面で地図表示</li>
+                    <li>レシピを見ながら料理</li>
+                    <li>スマートホームの操作パネル（HomeKit）</li>
+                    <li>子供の知育・学習用タブレット</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div className="m-callout m-callout--tip" style={{ marginTop: 'var(--space-2xl)' }}>
+                <span className="m-callout__label">memo</span>
+                <p className="m-callout__text">
+                  各活用シーンの詳しい解説やおすすめアプリは「<Link href="/ipad/howto-use-ipad/">iPadの便利な使い道22選</Link>」でまとめています。購入前に具体的な使用イメージを確認したい方はぜひご覧ください。
+                </p>
+              </div>
             </div>
           </section>
 
@@ -528,6 +616,30 @@ export default async function IPadGuidePage() {
                   <h3 className="faq-question">中古iPadのランク（A/B/C）の違いは何ですか？</h3>
                   <div className="faq-answer">
                     <p>一般的に、Aランクは傷がほぼない美品、Bランクは軽微な傷がある良品、Cランクは目立つ傷がある並品です。実用上はBランクでも問題なく使用でき、コストパフォーマンスが高いです。詳しくは「<Link href="/ipad/used-ipad-attention/">中古iPadの注意点と選び方</Link>」で解説しています。</p>
+                  </div>
+                </div>
+                <div className="m-card faq-item">
+                  <h3 className="faq-question">iPad ProとiPad Airはどっちがいい？</h3>
+                  <div className="faq-answer">
+                    <p>iPad Proは最大120Hzの ProMotionディスプレイ、LiDARスキャナ、Thunderbolt対応など、プロ向けの機能が充実しています。一方iPad Airは、M1/M2チップ搭載で十分高性能ながら価格が抑えめなのが魅力です。動画編集や3D制作などの高負荷作業にはPro、ノートやイラスト・写真編集などの日常用途ならAirがコスパに優れています。</p>
+                  </div>
+                </div>
+                <div className="m-card faq-item">
+                  <h3 className="faq-question">iPadのストレージ容量はどれを選ぶべき？</h3>
+                  <div className="faq-answer">
+                    <p>Web閲覧・動画視聴・ノートアプリがメインなら64GBでも運用可能です。写真やイラスト、アプリを多く入れるなら128GB以上、動画編集やゲームを本格的に楽しむなら256GB以上がおすすめです。iPadはMacBookと同様にストレージの後から増設ができないため、迷ったら1段階上の容量を選んでおくと後悔しにくくなります。</p>
+                  </div>
+                </div>
+                <div className="m-card faq-item">
+                  <h3 className="faq-question">メルカリやヤフオクで中古iPadを買っても大丈夫？</h3>
+                  <div className="faq-answer">
+                    <p>フリマアプリやオークションサイトは相場より安く手に入る可能性がある反面、アクティベーションロック解除漏れ・バッテリー劣化・赤ロム（ネットワーク利用制限）といったリスクがあり、個人間取引のため返品保証もありません。初めて中古iPadを購入する方は、動作確認済み・保証付きの<Link href="/ipad/ipad-shop/">中古専門店</Link>を利用するのが安心です。</p>
+                  </div>
+                </div>
+                <div className="m-card faq-item">
+                  <h3 className="faq-question">Apple認定整備済製品と中古iPadの違いは？</h3>
+                  <div className="faq-answer">
+                    <p>Apple認定整備済製品はAppleが検品・部品交換・クリーニングを行い、バッテリーと外装が新品に交換済みで1年間のApple保証が付きます。価格は新品の最大15%オフ程度です。一方、中古ショップのiPadは型落ちモデルも含め選択肢が豊富で、整備済製品よりさらに安く手に入ります。保証期間や外装状態に差があるため、予算と安心感のバランスで選ぶのがおすすめです。</p>
                   </div>
                 </div>
               </div>

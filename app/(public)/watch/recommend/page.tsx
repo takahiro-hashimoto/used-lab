@@ -76,7 +76,7 @@ export default async function WatchRecommendPage() {
   // JSON-LD
   const breadcrumbJsonLd = buildBreadcrumbJsonLd([
     { name: '中古Apple製品を安く買う', item: 'https://used-lab.com/' },
-    { name: '中古Apple Watch完全ガイド', item: 'https://used-lab.com/watch' },
+    { name: '中古Apple Watch完全購入ガイド', item: 'https://used-lab.com/watch' },
     { name: `中古Apple Watchおすすめ${RECOMMEND_COUNT}選` },
   ])
   const articleJsonLd = buildArticleJsonLd({ headline: PAGE_TITLE, description: PAGE_DESCRIPTION, dateStr, url: PAGE_URL })
@@ -154,7 +154,7 @@ export default async function WatchRecommendPage() {
         {/* パンくず */}
         <Breadcrumb
           items={[
-            { label: '中古Apple Watch完全ガイド', href: '/watch' },
+            { label: '中古Apple Watch完全購入ガイド', href: '/watch' },
             { label: `中古Apple Watchおすすめ${RECOMMEND_COUNT}選` },
           ]}
         />

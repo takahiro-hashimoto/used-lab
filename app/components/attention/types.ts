@@ -8,12 +8,14 @@ export interface FaqItem {
 
 /** 購入後チェック 1件分 */
 export interface CheckItem {
+  icon?: string
   heading: string
   text: ReactNode
 }
 
 /** 失敗パターン 1件分 */
 export interface FailurePattern {
+  icon?: string
   heading: string
   text: ReactNode
 }

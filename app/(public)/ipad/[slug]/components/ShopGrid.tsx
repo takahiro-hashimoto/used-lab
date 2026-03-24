@@ -6,24 +6,18 @@ type Props = {
   model: IPadModel
 }
 
+import RatingMark from '@/app/components/RatingMark'
+
 function PriceIcon({ value }: { value: string | null }) {
   if (!value) return <span>-</span>
-  if (value === '◎') return <span className="m-rating__icon m-rating__icon--excellent">&#9678;</span>
-  if (value === '◯' || value === '〇') return <span className="m-rating__icon m-rating__icon--good">&#9675;</span>
-  if (value === '△') return <span className="m-rating__icon m-rating__icon--fair">&#9651;</span>
+  if (['◎', '◯', '〇', '△'].includes(value)) return <RatingMark mark={value} size="sm" />
   return <span>{value}</span>
 }
 
 function SpecValue({ value }: { value: string | null }) {
-  if (!value || value === '×') {
-    return <span className="m-spec-row__cross" aria-label="なし">&times;</span>
-  }
-  if (value === '◯' || value === '〇' || value === '◎') {
-    return <span className="m-rating__icon m-rating__icon--good" aria-label="あり">&#9675;</span>
-  }
-  if (value === '無料') {
-    return <span className="m-spec-row__free">無料</span>
-  }
+  if (!value || value === '×') return <RatingMark mark="×" size="sm" />
+  if (['◎', '◯', '〇'].includes(value)) return <RatingMark mark={value} size="sm" />
+  if (value === '無料') return <span className="m-spec-row__free">無料</span>
   return <>{value}</>
 }
 

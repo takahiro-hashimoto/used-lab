@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
+import RatingMark from '@/app/components/RatingMark'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import ShareBox from '@/app/components/ShareBox'
 
@@ -34,7 +35,7 @@ export default function NetworkLimitPage() {
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.com/' },
-      { '@type': 'ListItem', position: 2, name: '中古iPhone完全ガイド', item: 'https://used-lab.com/iphone/' },
+      { '@type': 'ListItem', position: 2, name: '中古iPhone完全購入ガイド', item: 'https://used-lab.com/iphone/' },
       { '@type': 'ListItem', position: 3, name: 'ネットワーク制限△のメリット・デメリット' },
     ],
   }
@@ -116,7 +117,7 @@ export default function NetworkLimitPage() {
         <div className="hero-wrapper">
           <Breadcrumb
             items={[
-              { label: '中古iPhone完全ガイド', href: '/iphone' },
+              { label: '中古iPhone完全購入ガイド', href: '/iphone' },
               { label: 'ネットワーク制限△のメリット・デメリット' },
             ]}
           />
@@ -331,11 +332,11 @@ export default function NetworkLimitPage() {
                     <span className="m-tag">保証延長サービス</span>
                   </div>
                   <dl className="m-vendor-card__specs">
-                    <div className="m-spec-row"><dt>価格</dt><dd><span className="m-rating__icon m-rating__icon--excellent">◎</span></dd></div>
+                    <div className="m-spec-row"><dt>価格</dt><dd><RatingMark mark="◎" size="sm" /></dd></div>
                     <div className="m-spec-row"><dt>保証期間</dt><dd>3ヶ月</dd></div>
                     <div className="m-spec-row"><dt>赤ロム保証</dt><dd>永久保証</dd></div>
-                    <div className="m-spec-row"><dt>バッテリー保証</dt><dd><span className="m-spec-row__cross" aria-label="なし">×</span></dd></div>
-                    <div className="m-spec-row"><dt>実物写真</dt><dd><span className="m-spec-row__cross" aria-label="なし">×</span></dd></div>
+                    <div className="m-spec-row"><dt>バッテリー保証</dt><dd><RatingMark mark="×" size="sm" /></dd></div>
+                    <div className="m-spec-row"><dt>実物写真</dt><dd><RatingMark mark="×" size="sm" /></dd></div>
                     <div className="m-spec-row"><dt>配送料</dt><dd>640円</dd></div>
                   </dl>
                   <a href="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Fsmartphone%2Fiphone" className="m-btn m-btn--primary m-btn--block" rel="nofollow noopener noreferrer" target="_blank">中古iPhoneを探す <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
@@ -347,11 +348,11 @@ export default function NetworkLimitPage() {
                     <span className="m-tag">にこスマあんしん保険</span>
                   </div>
                   <dl className="m-vendor-card__specs">
-                    <div className="m-spec-row"><dt>価格</dt><dd><span className="m-rating__icon m-rating__icon--good" aria-label="あり">○</span></dd></div>
+                    <div className="m-spec-row"><dt>価格</dt><dd><RatingMark mark="◯" size="sm" /></dd></div>
                     <div className="m-spec-row"><dt>保証期間</dt><dd>1年間</dd></div>
                     <div className="m-spec-row"><dt>赤ロム保証</dt><dd>永久保証</dd></div>
-                    <div className="m-spec-row"><dt>バッテリー保証</dt><dd><span className="m-rating__icon m-rating__icon--good" aria-label="あり">○</span></dd></div>
-                    <div className="m-spec-row"><dt>実物写真</dt><dd><span className="m-rating__icon m-rating__icon--good" aria-label="あり">○</span></dd></div>
+                    <div className="m-spec-row"><dt>バッテリー保証</dt><dd><RatingMark mark="◯" size="sm" /></dd></div>
+                    <div className="m-spec-row"><dt>実物写真</dt><dd><RatingMark mark="◯" size="sm" /></dd></div>
                     <div className="m-spec-row"><dt>配送料</dt><dd><span className="m-spec-row__free">無料</span></dd></div>
                   </dl>
                   <a href="https://px.a8.net/svt/ejp?a8mat=3NCKMH+63P0JM+4O7U+BW0YB&a8ejpredirect=https%3A%2F%2Fwww.nicosuma.com%2Fiphone" className="m-btn m-btn--primary m-btn--block" rel="nofollow noopener noreferrer" target="_blank">中古iPhoneを探す <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
@@ -363,11 +364,11 @@ export default function NetworkLimitPage() {
                     <span className="m-tag">ゲオ中古モバイル保証</span>
                   </div>
                   <dl className="m-vendor-card__specs">
-                    <div className="m-spec-row"><dt>価格</dt><dd><span className="m-rating__icon m-rating__icon--good" aria-label="あり">○</span></dd></div>
+                    <div className="m-spec-row"><dt>価格</dt><dd><RatingMark mark="◯" size="sm" /></dd></div>
                     <div className="m-spec-row"><dt>保証期間</dt><dd>30日間</dd></div>
                     <div className="m-spec-row"><dt>赤ロム保証</dt><dd>永久保証</dd></div>
-                    <div className="m-spec-row"><dt>バッテリー保証</dt><dd><span className="m-rating__icon m-rating__icon--good" aria-label="あり">○</span></dd></div>
-                    <div className="m-spec-row"><dt>実物写真</dt><dd><span className="m-rating__icon m-rating__icon--good" aria-label="あり">○</span></dd></div>
+                    <div className="m-spec-row"><dt>バッテリー保証</dt><dd><RatingMark mark="◯" size="sm" /></dd></div>
+                    <div className="m-spec-row"><dt>実物写真</dt><dd><RatingMark mark="◯" size="sm" /></dd></div>
                     <div className="m-spec-row"><dt>配送料</dt><dd>550円</dd></div>
                   </dl>
                   <a href="https://px.a8.net/svt/ejp?a8mat=3TB2U4+C4ESQQ+4J34+BW0YB&a8ejpredirect=https%3A%2F%2Fec.geo-online.co.jp%2Fshop%2Fc%2Fc1001%2F" className="m-btn m-btn--primary m-btn--block" rel="nofollow noopener noreferrer" target="_blank">中古iPhoneを探す <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
@@ -379,11 +380,11 @@ export default function NetworkLimitPage() {
                     <span className="m-tag">ビック月額スマホ保証</span>
                   </div>
                   <dl className="m-vendor-card__specs">
-                    <div className="m-spec-row"><dt>価格</dt><dd><span className="m-rating__icon m-rating__icon--good" aria-label="あり">○</span></dd></div>
+                    <div className="m-spec-row"><dt>価格</dt><dd><RatingMark mark="◯" size="sm" /></dd></div>
                     <div className="m-spec-row"><dt>保証期間</dt><dd>30日間</dd></div>
                     <div className="m-spec-row"><dt>赤ロム保証</dt><dd>3年間</dd></div>
-                    <div className="m-spec-row"><dt>バッテリー保証</dt><dd><span className="m-rating__icon m-rating__icon--good" aria-label="あり">○</span></dd></div>
-                    <div className="m-spec-row"><dt>実物写真</dt><dd><span className="m-rating__icon m-rating__icon--good" aria-label="あり">○</span></dd></div>
+                    <div className="m-spec-row"><dt>バッテリー保証</dt><dd><RatingMark mark="◯" size="sm" /></dd></div>
+                    <div className="m-spec-row"><dt>実物写真</dt><dd><RatingMark mark="◯" size="sm" /></dd></div>
                     <div className="m-spec-row"><dt>配送料</dt><dd>550円</dd></div>
                   </dl>
                   <a href="https://click.linksynergy.com/deeplink?id=N*L98MVOv3Q&mid=43860&murl=https%3A%2F%2Fused.sofmap.com%2Fr%2Fcategory%2Fiphone%2Fiphone_linklist" className="m-btn m-btn--primary m-btn--block" rel="nofollow noopener noreferrer" target="_blank">中古iPhoneを探す <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
@@ -395,11 +396,11 @@ export default function NetworkLimitPage() {
                     <span className="m-tag">じゃんぱらあんしん保証</span>
                   </div>
                   <dl className="m-vendor-card__specs">
-                    <div className="m-spec-row"><dt>価格</dt><dd><span className="m-rating__icon m-rating__icon--good" aria-label="あり">○</span></dd></div>
+                    <div className="m-spec-row"><dt>価格</dt><dd><RatingMark mark="◯" size="sm" /></dd></div>
                     <div className="m-spec-row"><dt>保証期間</dt><dd>3ヶ月</dd></div>
                     <div className="m-spec-row"><dt>赤ロム保証</dt><dd>永久保証</dd></div>
-                    <div className="m-spec-row"><dt>バッテリー保証</dt><dd><span className="m-rating__icon m-rating__icon--good" aria-label="あり">○</span></dd></div>
-                    <div className="m-spec-row"><dt>実物写真</dt><dd><span className="m-rating__icon m-rating__icon--good" aria-label="あり">○</span></dd></div>
+                    <div className="m-spec-row"><dt>バッテリー保証</dt><dd><RatingMark mark="◯" size="sm" /></dd></div>
+                    <div className="m-spec-row"><dt>実物写真</dt><dd><RatingMark mark="◯" size="sm" /></dd></div>
                     <div className="m-spec-row"><dt>配送料</dt><dd>770円</dd></div>
                   </dl>
                   <a href="https://www.janpara.co.jp/" className="m-btn m-btn--primary m-btn--block" rel="nofollow noopener noreferrer" target="_blank">中古iPhoneを探す <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
@@ -410,11 +411,11 @@ export default function NetworkLimitPage() {
                     <h3 className="m-vendor-card__name">Amazon整備済み品</h3>
                   </div>
                   <dl className="m-vendor-card__specs">
-                    <div className="m-spec-row"><dt>価格</dt><dd><span className="m-rating__icon m-rating__icon--good" aria-label="あり">○</span></dd></div>
+                    <div className="m-spec-row"><dt>価格</dt><dd><RatingMark mark="◯" size="sm" /></dd></div>
                     <div className="m-spec-row"><dt>保証期間</dt><dd>3ヶ月</dd></div>
                     <div className="m-spec-row"><dt>赤ロム保証</dt><dd>出品者による</dd></div>
-                    <div className="m-spec-row"><dt>バッテリー保証</dt><dd><span className="m-spec-row__cross" aria-label="なし">×</span></dd></div>
-                    <div className="m-spec-row"><dt>実物写真</dt><dd><span className="m-spec-row__cross" aria-label="なし">×</span></dd></div>
+                    <div className="m-spec-row"><dt>バッテリー保証</dt><dd><RatingMark mark="×" size="sm" /></dd></div>
+                    <div className="m-spec-row"><dt>実物写真</dt><dd><RatingMark mark="×" size="sm" /></dd></div>
                     <div className="m-spec-row"><dt>配送料</dt><dd><span className="m-spec-row__free">無料</span></dd></div>
                   </dl>
                   <a href="https://amzn.to/4ePUzhA" className="m-btn m-btn--primary m-btn--block" rel="nofollow noopener noreferrer" target="_blank">中古iPhoneを探す <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>

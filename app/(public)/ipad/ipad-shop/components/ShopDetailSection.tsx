@@ -10,13 +10,13 @@ type Props = {
   items: ShopDetailItem[]
 }
 
+const markStyle = { fontSize: '1.25rem', lineHeight: 1 }
+
+import RatingMark from '@/app/components/RatingMark'
+
 function SpecValue({ value }: { value: string | null }) {
-  if (!value || value === '×') {
-    return <span className="text-negative">&times;</span>
-  }
-  if (value === '◎') return <span className="text-positive">&#9678;</span>
-  if (value === '◯' || value === '〇') return <span className="text-info">&#9675;</span>
-  if (value === '△') return <span className="text-caution">&#9651;</span>
+  if (!value || value === '×') return <RatingMark mark="×" size="md" />
+  if (['◎', '◯', '〇', '△'].includes(value)) return <RatingMark mark={value} size="md" />
   if (value === '無料') return <strong className="text-positive">無料</strong>
   return <>{value}</>
 }
@@ -52,35 +52,35 @@ export default function ShopDetailSection({ items }: Props) {
               <div className="recommend-card__info">
                 <h4 className="recommend-card__info-title" style={{ color: 'var(--color-primary)' }}>{shop.shop}の特徴</h4>
                 <dl className="recommend-card__specs" style={{ background: 'var(--color-primary-light)', padding: 'var(--space-lg)', borderRadius: 'var(--radius-md)' }}>
-                  <div className="recommend-card__spec-item">
+                  <div className="recommend-card__spec-item" style={{ display: 'flex' }}>
                     <dt>価格</dt>
                     <dd><SpecValue value={shop.price} /></dd>
                   </div>
-                  <div className="recommend-card__spec-item">
+                  <div className="recommend-card__spec-item" style={{ display: 'flex' }}>
                     <dt>在庫</dt>
                     <dd><SpecValue value={shop.stock} /></dd>
                   </div>
-                  <div className="recommend-card__spec-item">
+                  <div className="recommend-card__spec-item" style={{ display: 'flex' }}>
                     <dt>保証期間</dt>
                     <dd>{shop.support || '-'}</dd>
                   </div>
-                  <div className="recommend-card__spec-item">
+                  <div className="recommend-card__spec-item" style={{ display: 'flex' }}>
                     <dt>独自保証</dt>
                     <dd><SpecValue value={shop.extension} /></dd>
                   </div>
-                  <div className="recommend-card__spec-item">
+                  <div className="recommend-card__spec-item" style={{ display: 'flex' }}>
                     <dt>赤ロム保証</dt>
                     <dd>{shop.block || '-'}</dd>
                   </div>
-                  <div className="recommend-card__spec-item">
+                  <div className="recommend-card__spec-item" style={{ display: 'flex' }}>
                     <dt>実物写真</dt>
                     <dd><SpecValue value={shop.photo} /></dd>
                   </div>
-                  <div className="recommend-card__spec-item">
+                  <div className="recommend-card__spec-item" style={{ display: 'flex' }}>
                     <dt>バッテリー表示</dt>
                     <dd><SpecValue value={shop.battery} /></dd>
                   </div>
-                  <div className="recommend-card__spec-item">
+                  <div className="recommend-card__spec-item" style={{ display: 'flex' }}>
                     <dt>配送料</dt>
                     <dd><SpecValue value={shop.postage} /></dd>
                   </div>

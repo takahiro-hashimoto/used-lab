@@ -2,11 +2,13 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import {
   getAllMacBookModels,
+  getLatestMacBookPriceLog,
   getAllProductShopLinksByType,
 } from '@/lib/queries'
-import type { MacBookModel } from '@/lib/types'
+import type { MacBookModel, MacBookPriceLog } from '@/lib/types'
 import {
   GUIDE_DATE_LABEL,
+  GUIDE_PRICE_SLUGS,
   GUIDE_SPEC_LINKS,
   GUIDE_FAQ_ITEMS,
   GUIDE_MODEL_LINKS,
@@ -48,10 +50,23 @@ export default async function MacBookGuidePage() {
     getAllProductShopLinksByType('macbook'),
   ])
 
+  // 相場セクション用: 指定slugのモデル + 最新価格を並列取得
+  const priceModels = GUIDE_PRICE_SLUGS
+    .map((slug) => allModels.find((m) => m.slug === slug))
+    .filter((m): m is MacBookModel => m != null)
+
+  const latestPrices = await Promise.all(
+    priceModels.map((m) => getLatestMacBookPriceLog(m.id))
+  )
+
   // おすすめ機種セクション用
   const recommendModels = RECOMMEND_SLUGS
     .map((slug) => allModels.find((m) => m.slug === slug))
     .filter((m): m is MacBookModel => m != null)
+
+  const recommendPrices = await Promise.all(
+    recommendModels.map((m) => getLatestMacBookPriceLog(m.id))
+  )
 
   const today = new Date()
   const dateStr = today.toISOString().split('T')[0]
@@ -63,7 +78,7 @@ export default async function MacBookGuidePage() {
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.com/' },
-      { '@type': 'ListItem', position: 2, name: '中古MacBook完全ガイド' },
+      { '@type': 'ListItem', position: 2, name: '中古MacBook完全購入ガイド' },
     ],
   }
 
@@ -179,9 +194,11 @@ export default async function MacBookGuidePage() {
           <div className="l-container">
             <p className="toc-title">タップできる目次</p>
             <ol className="l-grid l-grid--3col toc-list">
+              <li><a href="#market-price" className="toc-item">最新相場 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#caution" className="toc-item">注意点 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#recommended" className="toc-item">目的別 おすすめ機種 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#where-to-buy" className="toc-item">購入先比較 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
+              <li><a href="#compare-devices" className="toc-item">他デバイスとの比較 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#spec-compare" className="toc-item">スペック比較 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#faq" className="toc-item">よくある質問 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
             </ol>
@@ -189,6 +206,56 @@ export default async function MacBookGuidePage() {
         </nav>
 
         <div className="l-sections" itemProp="articleBody">
+
+          {/* ========== 中古MacBookの最新相場 ========== */}
+          <section className="l-section" id="market-price" aria-labelledby="heading-market-price">
+            <div className="l-container">
+              <h2 className="m-section-heading m-section-heading--lg" id="heading-market-price">中古MacBookの最新相場【毎日更新】</h2>
+              <p className="m-section-desc">楽天市場の中古ショップから価格を毎日自動で更新。</p>
+              <p className="m-section-desc">各モデルの最小構成（最小メモリ・最小ストレージ）での最安値を基準にしています。</p>
+
+              <div className="guide-price-grid l-grid l-grid--2col l-grid--gap-lg">
+                {priceModels.map((model, i) => {
+                  const price = latestPrices[i]
+                  const minPrice = price?.min1_price
+                  const storageLabel = model.strage?.match(/(\d+(?:GB|TB))/)?.[1] || ''
+                  return (
+                    <div key={model.id} className="guide-price-card m-card m-card--shadow">
+                      <figure className="guide-price-card__img">
+                        <img
+                          src={model.image ? `/images/macbook/${model.image}` : `https://placehold.co/80x80/f5f5f7/1d1d1f?text=${encodeURIComponent(model.model)}`}
+                          alt={model.model}
+                          width={80}
+                          height={80}
+                          loading="lazy"
+                        />
+                      </figure>
+                      <div className="guide-price-card__info">
+                        <h3 className="guide-price-card__name">{model.model}</h3>
+                        <p className="guide-price-card__meta">
+                          {model.date ? `${model.date.split('/')[0]}年` : ''} / {model.cpu || ''}
+                        </p>
+                      </div>
+                      <div className="guide-price-card__price">
+                        <span className="guide-price-card__label">中古相場（{storageLabel}の場合）</span>
+                        <span className="guide-price-card__value m-price-display m-price-display--sm m-price-display--primary">
+                          {minPrice ? `¥${minPrice.toLocaleString()}` : '-'} 〜
+                        </span>
+                      </div>
+                    </div>
+                  )
+                })}
+              </div>
+
+              <p className="guide-section-note">Apple Silicon搭載MacBook全{allModels.length}機種の詳細な価格推移グラフ・相場データをご覧いただけます</p>
+              <div className="guide-section-cta">
+                <Link href="/macbook/macbook-price-info/" className="m-btn m-btn--primary m-btn--block">
+                  <span>MacBookの中古相場・価格推移グラフ</span>
+                  <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                </Link>
+              </div>
+            </div>
+          </section>
 
           {/* ========== 中古MacBookを選ぶ際の確認ポイント ========== */}
           <section className="l-section" id="caution" aria-labelledby="heading-caution">
@@ -285,6 +352,17 @@ export default async function MacBookGuidePage() {
                         </div>
                         <div className="guide-recommend__aside">
                           {(() => {
+                            const price = recommendPrices[i]
+                            const minPrice = price?.min1_price
+                            const storageLabel = model.strage?.match(/(\d+(?:GB|TB))/)?.[1] || ''
+                            return minPrice ? (
+                              <>
+                                <span className="guide-recommend__price-label">中古相場（{storageLabel}）</span>
+                                <span className="guide-recommend__price-value m-price-display m-price-display--md">¥{minPrice.toLocaleString()}〜</span>
+                              </>
+                            ) : null
+                          })()}
+                          {(() => {
                             const iosysLink = allShopLinks.find((l) => l.product_id === model.id && l.shop_id === 1)
                             return iosysLink ? (
                               <a href={iosysLink.url} className="m-btn m-btn--primary m-btn--sm" target="_blank" rel="noopener noreferrer nofollow">
@@ -329,6 +407,45 @@ export default async function MacBookGuidePage() {
                 <Link href="/macbook/macbook-shop/" className="m-btn m-btn--primary m-btn--block">
                   <span>中古MacBookを安心して購入できるECサイト</span>
                   <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                </Link>
+              </div>
+
+              <div className="m-callout m-callout--tip" style={{ marginTop: 'var(--space-2xl)' }}>
+                <span className="m-callout__label">memo</span>
+                <p className="m-callout__text">
+                  中古以外にもApple認定整備済製品や家電量販店のセールなど、MacBookを安く買う方法はさまざまです。新品・中古を含めた全7つの購入先を「<Link href="/macbook/macbook-buy/">MacBookを安く買うには？おすすめの購入先7つを比較</Link>」で解説しています。
+                </p>
+              </div>
+            </div>
+          </section>
+
+          {/* ========== 他のデバイスとの比較 ========== */}
+          <section className="l-section" id="compare-devices" aria-labelledby="heading-compare-devices">
+            <div className="l-container">
+              <h2 className="m-section-heading m-section-heading--lg" id="heading-compare-devices">MacBookと他デバイスの比較</h2>
+              <p className="m-section-desc">「iPadとどっちがいい？」「Windowsから乗り換えるべき？」といった疑問に答える比較記事をまとめました。</p>
+
+              <div className="l-grid l-grid--2col l-grid--gap-lg guide-spec-links">
+                <Link href="/macbook/air-pro-compare/" className="m-card m-card--shadow related-link-card m-card--hoverable">
+                  <img src="/images/content/macbook-image-01.jpg" alt="MacBook AirとProの比較" className="related-link-card__img" width={400} height={300} loading="lazy" />
+                  <div className="related-link-card__body">
+                    <h3 className="related-link-card__title">MacBook AirとProどっちがいい？</h3>
+                    <p className="related-link-card__desc">冷却方式・チップ性能・ディスプレイ・ポート・中古価格の5観点で違いを解説。用途別おすすめ早見表付き。</p>
+                  </div>
+                </Link>
+                <Link href="/macbook/ipad-macbook-compare/" className="m-card m-card--shadow related-link-card m-card--hoverable">
+                  <img src="/images/content/macbook-ipad.jpg" alt="MacBookとiPadの比較" className="related-link-card__img" width={400} height={300} loading="lazy" />
+                  <div className="related-link-card__body">
+                    <h3 className="related-link-card__title">MacBookとiPadどっちを買う？</h3>
+                    <p className="related-link-card__desc">作業効率・携帯性・価格・Apple Pencil対応など、用途別に両者の違いをわかりやすく比較。タブレットかノートPCか迷っている方に。</p>
+                  </div>
+                </Link>
+                <Link href="/macbook/windows-mac-compare/" className="m-card m-card--shadow related-link-card m-card--hoverable">
+                  <img src="/images/content/macbook-image-06.jpg" alt="MacとWindowsの比較" className="related-link-card__img" width={400} height={300} loading="lazy" />
+                  <div className="related-link-card__body">
+                    <h3 className="related-link-card__title">MacとWindowsどっちがいい？</h3>
+                    <p className="related-link-card__desc">操作性・対応ソフト・コスト・互換性など初心者にもわかりやすく解説。Windowsからの乗り換えを検討中の方にもおすすめ。</p>
+                  </div>
                 </Link>
               </div>
             </div>
@@ -394,7 +511,7 @@ export default async function MacBookGuidePage() {
                 <div className="m-card faq-item">
                   <h3 className="faq-question">MacBook AirとMacBook Proの違いは？</h3>
                   <div className="faq-answer">
-                    <p>MacBook Airはファンレスで軽量・静音、日常作業に最適です。MacBook Proはファン搭載で長時間の高負荷作業に強く、ProMotionディスプレイやHDMI・SDカードスロットなど接続端子が豊富です。「<Link href="/macbook/macbook-spec-table/">歴代MacBookスペック比較表</Link>」で詳しく比較できます。</p>
+                    <p>MacBook Airはファンレスで軽量・静音、日常作業に最適です。MacBook Proはファン搭載で長時間の高負荷作業に強く、ProMotionディスプレイやHDMI・SDカードスロットなど接続端子が豊富です。「<Link href="/macbook/air-pro-compare/">MacBook AirとProの違い比較</Link>」で詳しく解説しています。</p>
                   </div>
                 </div>
                 <div className="m-card faq-item">

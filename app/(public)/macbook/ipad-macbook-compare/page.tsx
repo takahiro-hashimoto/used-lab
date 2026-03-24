@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import ShareBox from '@/app/components/ShareBox'
 import PopularMacBook from '@/app/components/PopularMacBook'
+import FaqSection from './components/FaqSection'
 import ComparisonBasics from './components/ComparisonBasics'
 import MacbookStrengths from './components/MacbookStrengths'
 import IpadStrengths from './components/IpadStrengths'
@@ -41,7 +42,7 @@ export default function IpadMacbookComparePage() {
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.com/' },
-      { '@type': 'ListItem', position: 2, name: '中古MacBook完全ガイド', item: 'https://used-lab.com/macbook' },
+      { '@type': 'ListItem', position: 2, name: '中古MacBook完全購入ガイド', item: 'https://used-lab.com/macbook' },
       { '@type': 'ListItem', position: 3, name: 'MacBookとiPadの違い' },
     ],
   }
@@ -75,7 +76,7 @@ export default function IpadMacbookComparePage() {
         {/* パンくず */}
         <Breadcrumb
           items={[
-            { label: '中古MacBook完全ガイド', href: '/macbook' },
+            { label: '中古MacBook完全購入ガイド', href: '/macbook' },
             { label: 'MacBookとiPadの違い' },
           ]}
         />
@@ -179,6 +180,11 @@ export default function IpadMacbookComparePage() {
                   まとめ <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
                 </a>
               </li>
+              <li>
+                <a href="#faq" className="toc-item">
+                  よくある質問 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                </a>
+              </li>
             </ol>
           </div>
         </nav>
@@ -208,7 +214,10 @@ export default function IpadMacbookComparePage() {
                 MacBookとiPadの基本的な違い
               </h2>
               <p className="m-section-desc">
-                MacBookはmacOS、iPadはiPadOSとそれぞれ異なるOSを搭載しています。OSが異なることでファイル管理・マルチタスク・操作方法など、日常的な使い勝手にさまざまな違いが出てきます。
+                MacBookはmacOS、iPadはiPadOSとそれぞれ異なるOSを搭載しています。
+              </p>
+              <p className="m-section-desc">
+                ファイル管理・マルチタスク・操作方法など、日常的な使い勝手にさまざまな違いが出てきます。
               </p>
               <ComparisonBasics />
             </div>
@@ -322,6 +331,7 @@ export default function IpadMacbookComparePage() {
               </div>
             </div>
           </section>
+        <FaqSection />
         <PopularMacBook />
 
         {/* シェアボックス */}

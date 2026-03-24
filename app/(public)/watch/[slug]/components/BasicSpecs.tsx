@@ -12,11 +12,10 @@ type SpecItem = {
   icon: string
 }
 
+import RatingMark from '@/app/components/RatingMark'
+
 function BoolValue({ value }: { value: boolean }) {
-  if (value) {
-    return <span className="m-rating__icon m-rating__icon--good" aria-label="対応">&#9675;</span>
-  }
-  return <span className="m-spec-row__cross" aria-label="非対応">&times;</span>
+  return value ? <RatingMark mark="◯" size="sm" /> : <RatingMark mark="×" size="sm" />
 }
 
 export default function BasicSpecs({ model }: Props) {

@@ -10,15 +10,6 @@ import {
 import { PRODUCT_CATEGORIES } from '@/lib/routes'
 import { getPublishedNews } from '@/app/admin/actions'
 
-/** カテゴリアイコンマッピング */
-const CATEGORY_ICONS: Record<string, string> = {
-  iphone: 'fa-mobile-screen',
-  ipad: 'fa-tablet-screen-button',
-  macbook: 'fa-laptop',
-  watch: 'fa-clock',
-  airpods: 'fa-headphones',
-}
-
 /** カテゴリごとの画像ベースパス */
 const CATEGORY_IMAGE_BASE: Record<string, string> = {
   iphone: '/images/iphone/',
@@ -92,26 +83,28 @@ export default async function HomePage() {
           <h2 className="m-section-heading m-section-heading--lg">製品カテゴリから探す</h2>
           <p className="m-section-desc">気になる製品カテゴリを選んで、選び方・おすすめ機種・中古相場をチェック</p>
 
-          <div className="l-grid l-grid--5col" style={{ gap: 'var(--space-md)' }}>
+          <div className="l-grid l-grid--5col l-grid--gap-lg">
             {PRODUCT_CATEGORIES.map((cat) => (
-              <Link key={cat.id} href={`${cat.basePath}/`} className="top-category-card m-card m-card--shadow">
-                <figure className="top-category-card__img">
-                  <img
-                    src={categoryImages[cat.id] || `https://placehold.co/120x120/f5f5f7/1d1d1f?text=${encodeURIComponent(cat.label)}`}
-                    alt={cat.label}
-                    width={80}
-                    height={80}
+              <article key={cat.id} className="m-card m-card--shadow listing-pick-card">
+                <figure className="listing-pick-card__figure">
+                  <Image
+                    src={categoryImages[cat.id] || `https://placehold.co/200x200/f5f5f7/1d1d1f?text=${encodeURIComponent(cat.label)}`}
+                    alt={`中古${cat.label}の写真`}
+                    className="listing-pick-card__img"
+                    width={200}
+                    height={200}
                     loading="lazy"
                   />
                 </figure>
-                <h3 className="top-category-card__title">{cat.label}</h3>
-                <p className="top-category-card__desc">{cat.desc}</p>
-                <span className="top-category-card__count">{modelCounts[cat.id]}モデル掲載中</span>
-                <span className="top-category-card__cta m-btn m-btn--primary m-btn--sm">
-                  <span>詳しく見る</span>
-                  <i className="fa-solid fa-chevron-right" aria-hidden="true"></i>
-                </span>
-              </Link>
+                <div className="listing-pick-card__body">
+                  <h3 className="listing-pick-card__name">{cat.label}</h3>
+                  <p className="listing-pick-card__release">{modelCounts[cat.id]}モデル掲載中</p>
+                  <p className="listing-pick-card__desc">{cat.desc}</p>
+                </div>
+                <Link href={`${cat.basePath}/`} className="m-btn m-btn--primary m-btn--block listing-pick-card__btn">
+                  ガイドを見る <i className="fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </Link>
+              </article>
             ))}
           </div>
         </div>
@@ -175,7 +168,7 @@ export default async function HomePage() {
                       <dt className="news-list__date">
                         <time dateTime={item.date}>{item.date.replace(/-/g, '.')}</time>
                       </dt>
-                      <dd className="news-list__content">{item.content}</dd>
+                      <dd className="news-list__content" dangerouslySetInnerHTML={{ __html: item.content }} />
                     </div>
                   ))}
                 </dl>

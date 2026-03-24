@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from 'react'
 import { parseDate, formatDate } from '@/app/components/spec-table-utils'
+import RatingMark from '@/app/components/RatingMark'
 import type { ProductShopLink } from '@/lib/types'
 
 type PencilModel = {
@@ -198,9 +199,9 @@ export default function PencilCompatTable({ models, shopLinks }: Props) {
                       {filteredModels.map((m) => (
                         <td key={m.id}>
                           {hasPencil(m.pencil, pt.key) ? (
-                            <span className="m-spec-row__circle" aria-label="対応">●</span>
+                            <RatingMark mark="◯" size="sm" />
                           ) : (
-                            <span className="m-spec-row__dash" aria-label="非対応">ー</span>
+                            <RatingMark mark="×" size="sm" />
                           )}
                         </td>
                       ))}

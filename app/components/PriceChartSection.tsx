@@ -16,6 +16,8 @@ type Props = {
   storageNote?: string
   /** 注釈のショップ説明テキスト */
   shopDescription?: string
+  /** 中古相場一覧ページへのリンク */
+  priceListLink?: { href: string; label: string }
 }
 
 function formatPrice(price: number | null): string {
@@ -135,7 +137,7 @@ function calculateDailyTableData(dailyData: DailyDataType): DailyRow[] {
 }
 
 export default function PriceChartSection({
-  dailyData, modelName, latestMinMaxPairs, latestDate, storageNote, shopDescription,
+  dailyData, modelName, latestMinMaxPairs, latestDate, storageNote, shopDescription, priceListLink,
 }: Props) {
   const range = calculateAvgPriceRange(latestMinMaxPairs)
   const trendChanges = calculateTrendChanges(dailyData)
@@ -277,6 +279,15 @@ export default function PriceChartSection({
             </>
           )}
         </div>
+
+        {priceListLink && (
+          <div className="m-callout m-callout--tip" style={{ marginTop: 'var(--space-2xl)' }}>
+            <span className="m-callout__label">memo</span>
+            <p className="m-callout__text">
+              中古相場を比較したい方は「<a href={priceListLink.href}>{priceListLink.label}</a>」もあわせてご覧ください。
+            </p>
+          </div>
+        )}
       </div>
     </section>
   )

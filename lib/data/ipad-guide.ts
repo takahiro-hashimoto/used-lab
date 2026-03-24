@@ -24,10 +24,8 @@ export const GUIDE_SPEC_LINKS = [
   { href: '/ipad/apple-pencil-compare/', icon: 'fa-pen-fancy', title: 'Apple Pencil対応比較表', desc: 'Apple Pencilの世代ごとの対応状況・機能の違いを一覧で比較できます。', image: '/images/content/ipad-image-07.jpg' },
   { href: '/ipad/accessories-summary/', icon: 'fa-keyboard', title: 'Magic Keyboard 型番・対応一覧', desc: '歴代iPadに対応するMagic Keyboard・Smart Keyboardの型番と対応機種を一覧で紹介。', image: '/images/content/ipad-magic-keyboard.jpg' },
   { href: '/ipad/wifi-cellular/', icon: 'fa-wifi', title: 'Wi-Fi vs Cellularモデル比較', desc: 'Wi-FiモデルとCellularモデルの違い、選び方のポイントを解説。', image: '/images/content/ipad-image-02.jpg' },
-  { href: '/ipad/howto-use-ipad/', icon: 'fa-lightbulb', title: 'iPadの便利な使い道22選', desc: '動画視聴・ノート・イラスト・読書・仕事効率化など、iPadがあればできることを紹介。', image: '/images/content/ipad-lightroom.jpg' },
-  { href: '/macbook/ipad-macbook-compare/', icon: 'fa-laptop', title: 'iPad vs MacBook 徹底比較', desc: 'iPadとMacBookの違いを用途別に比較。どちらを選ぶべきか迷っている方必見の内容です。', image: '/images/content/macbook-ipad.jpg' },
-  { href: '/ipad/car-navigation-system/', icon: 'fa-car', title: 'iPadをカーナビ化するメリット', desc: '車載カーナビをiPadに変換するメリットや注意点をわかりやすく紹介。', image: '/images/content/ipad-image-10.jpg' },
-  { href: '/ipad/ipad-buy/', icon: 'fa-tags', title: 'iPadを安く買う7つの方法', desc: 'Apple認定整備済製品・中古ショップ・ECモールなど7つの購入先を価格・保証で比較。', image: '/images/content/cheap-buy.jpg' },
+  { href: '/macbook/ipad-macbook-compare/', icon: 'fa-laptop', title: 'iPad vs MacBook 徹底比較', desc: 'iPadとMacBookの違いを用途別に比較。どちらを選ぶべきか迷っている方必見。', image: '/images/content/macbook-ipad.jpg' },
+  { href: '/ipad/storage-guide/', icon: 'fa-hard-drive', title: 'ストレージ容量ガイド', desc: '用途別のおすすめ容量と、容量違いによる中古価格差を比較できます。', image: '/images/content/ipad-image-09.jpg' },
 ] as const
 
 // ---------- FAQ ----------
@@ -63,6 +61,22 @@ export const GUIDE_FAQ_ITEMS = [
   {
     question: '中古iPadのランク（A/B/C）の違いは何ですか？',
     answer: '一般的に、Aランクは傷がほぼない美品、Bランクは軽微な傷がある良品、Cランクは目立つ傷がある並品です。実用上はBランクでも問題なく使用でき、コストパフォーマンスが高いです。',
+  },
+  {
+    question: 'iPad ProとiPad Airはどっちがいい？',
+    answer: 'iPad Proは最大120HzのProMotionディスプレイ、LiDARスキャナ、Thunderbolt対応など、プロ向けの機能が充実しています。一方iPad Airは、M1/M2チップ搭載で十分高性能ながら価格が抑えめなのが魅力です。動画編集や3D制作などの高負荷作業にはPro、ノートやイラスト・写真編集などの日常用途ならAirがコスパに優れています。',
+  },
+  {
+    question: 'iPadのストレージ容量はどれを選ぶべき？',
+    answer: 'Web閲覧・動画視聴・ノートアプリがメインなら64GBでも運用可能です。写真やイラスト、アプリを多く入れるなら128GB以上、動画編集やゲームを本格的に楽しむなら256GB以上がおすすめです。iPadはストレージの後から増設ができないため、迷ったら1段階上の容量を選んでおくと後悔しにくくなります。',
+  },
+  {
+    question: 'メルカリやヤフオクで中古iPadを買っても大丈夫？',
+    answer: 'フリマアプリやオークションサイトは相場より安く手に入る可能性がある反面、アクティベーションロック解除漏れ・バッテリー劣化・赤ロム（ネットワーク利用制限）といったリスクがあり、個人間取引のため返品保証もありません。初めて中古iPadを購入する方は、動作確認済み・保証付きの中古専門店を利用するのが安心です。',
+  },
+  {
+    question: 'Apple認定整備済製品と中古iPadの違いは？',
+    answer: 'Apple認定整備済製品はAppleが検品・部品交換・クリーニングを行い、バッテリーと外装が新品に交換済みで1年間のApple保証が付きます。価格は新品の最大15%オフ程度です。一方、中古ショップのiPadは型落ちモデルも含め選択肢が豊富で、整備済製品よりさらに安く手に入ります。保証期間や外装状態に差があるため、予算と安心感のバランスで選ぶのがおすすめです。',
   },
 ]
 

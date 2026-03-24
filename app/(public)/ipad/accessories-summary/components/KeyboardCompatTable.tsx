@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from 'react'
 import { parseDate, formatDate } from '@/app/components/spec-table-utils'
+import RatingMark from '@/app/components/RatingMark'
 import type { IPadAccessory } from '@/lib/types'
 
 type KeyboardModel = {
@@ -151,9 +152,9 @@ export default function KeyboardCompatTable({ models, keyboardAccessories }: Pro
                       {filteredModels.map((m) => (
                         <td key={m.id}>
                           {hasKeyboard(m.keyboards, kb.id) ? (
-                            <span className="m-spec-row__circle" aria-label="対応">○</span>
+                            <RatingMark mark="◯" size="sm" />
                           ) : (
-                            <span className="m-spec-row__dash" aria-label="非対応">ー</span>
+                            <RatingMark mark="×" size="sm" />
                           )}
                         </td>
                       ))}

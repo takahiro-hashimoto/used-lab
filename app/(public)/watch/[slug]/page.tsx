@@ -106,7 +106,7 @@ export default async function WatchDetailPage({ params }: PageProps) {
             latestMinMaxPairs={latestMinMaxPairs}
             latestDate={latestDate}
             storageNote={storageNote}
-           
+            priceListLink={{ href: '/watch/watch-price-info/', label: 'Apple Watchの中古相場一覧・価格推移' }}
           />
         ) : (
           <PriceTrendPlaceholder modelName={model.model} />

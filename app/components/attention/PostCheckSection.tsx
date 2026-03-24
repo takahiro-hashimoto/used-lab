@@ -19,7 +19,10 @@ export default function PostCheckSection({ heading, productName, checkItems }: P
         <div className="l-grid l-grid--2col l-grid--gap-lg post-check-grid">
           {checkItems.map((item, i) => (
             <div key={i} className="m-card m-card--shadow m-card--padded post-check-item">
-              <h3 className="post-check-item__heading">{item.heading}</h3>
+              <h3 className="post-check-item__heading">
+                {item.icon && <i className={item.icon} aria-hidden="true" style={{ marginRight: '0.5rem', color: 'var(--color-primary)' }}></i>}
+                {item.heading}
+              </h3>
               <div className="caution-check-card__text m-rich-text">{item.text}</div>
             </div>
           ))}

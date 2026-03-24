@@ -43,7 +43,7 @@ export default function UsedMacBookAttentionPage() {
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.com/' },
-      { '@type': 'ListItem', position: 2, name: '中古MacBook完全ガイド', item: 'https://used-lab.com/macbook' },
+      { '@type': 'ListItem', position: 2, name: '中古MacBook完全購入ガイド', item: 'https://used-lab.com/macbook' },
       { '@type': 'ListItem', position: 3, name: '中古MacBookの注意点' },
     ],
   }
@@ -129,7 +129,7 @@ export default function UsedMacBookAttentionPage() {
         {/* パンくず */}
         <Breadcrumb
           items={[
-            { label: '中古MacBook完全ガイド', href: '/macbook' },
+            { label: '中古MacBook完全購入ガイド', href: '/macbook' },
             { label: '中古MacBookの注意点' },
           ]}
         />

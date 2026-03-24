@@ -16,8 +16,9 @@ import { fetchIphonePrices } from './lib/iphone'
 import { fetchIpadPrices } from './lib/ipad'
 import { fetchWatchPrices } from './lib/watch'
 import { fetchAirPodsPrices } from './lib/airpods'
+import { fetchMacbookPrices } from './lib/macbook'
 
-const TARGETS = ['iphone', 'ipad', 'watch', 'airpods'] as const
+const TARGETS = ['iphone', 'ipad', 'watch', 'airpods', 'macbook'] as const
 type Target = (typeof TARGETS)[number]
 
 async function main() {
@@ -54,6 +55,9 @@ async function main() {
         break
       case 'airpods':
         await fetchAirPodsPrices()
+        break
+      case 'macbook':
+        await fetchMacbookPrices()
         break
     }
   }

@@ -90,7 +90,7 @@ export default async function AccessoriesSummaryPage() {
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.com/' },
-      { '@type': 'ListItem', position: 2, name: '中古iPad完全ガイド', item: 'https://used-lab.com/ipad' },
+      { '@type': 'ListItem', position: 2, name: '中古iPad完全購入ガイド', item: 'https://used-lab.com/ipad' },
       { '@type': 'ListItem', position: 3, name: '歴代iPadのMagic Keyboard 型番一覧' },
     ],
   }
@@ -124,7 +124,7 @@ export default async function AccessoriesSummaryPage() {
         {/* パンくず */}
         <Breadcrumb
           items={[
-            { label: '中古iPad完全ガイド', href: '/ipad' },
+            { label: '中古iPad完全購入ガイド', href: '/ipad' },
             { label: '歴代iPadのMagic Keyboard 型番一覧' },
           ]}
         />
@@ -274,6 +274,10 @@ export default async function AccessoriesSummaryPage() {
               {
                 question: '中古のMagic Keyboardを購入する際の注意点は？',
                 answer: '中古のMagic Keyboard（マジックキーボード）を購入する際は、型番を確認して自分のiPadに対応しているかを必ずチェックしましょう。JIS配列かUS配列かも要確認です。また、キーの反応やトラックパッドの動作、充電端子の状態、本体の折り曲げ部分のヘタリなども確認ポイントです。信頼できる中古ショップでの購入をおすすめします。',
+              },
+              {
+                question: 'iPadにはキーボード以外にどんなアクセサリがある？',
+                answer: 'キーボードのほかに、Apple Pencilも代表的なiPadアクセサリです。Apple Pencilは手書きメモ、イラスト制作、PDFへの注釈など幅広い用途に活用できます。現在4つのモデルが販売されており、対応iPadや機能（筆圧感知・傾き検知など）がそれぞれ異なります。各モデルの違いや選び方は「Apple Pencilの違いを比較（https://used-lab.com/ipad/apple-pencil-compare/）」で詳しく解説しています。',
               },
             ]}
           />

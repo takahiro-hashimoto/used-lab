@@ -118,7 +118,7 @@ export default async function IPhoneFilterSearchPage() {
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.com/' },
-      { '@type': 'ListItem', position: 2, name: '中古iPhone完全ガイド', item: 'https://used-lab.com/iphone' },
+      { '@type': 'ListItem', position: 2, name: '中古iPhone完全購入ガイド', item: 'https://used-lab.com/iphone' },
       { '@type': 'ListItem', position: 3, name: 'iPhone機種診断シミュレーター' },
     ],
   }
@@ -173,7 +173,7 @@ export default async function IPhoneFilterSearchPage() {
                 </Link>
               </li>
               <li className="breadcrumb-item">
-                <Link href="/iphone">中古iPhone完全ガイド</Link>
+                <Link href="/iphone">中古iPhone完全購入ガイド</Link>
               </li>
               <li className="breadcrumb-item" aria-current="page">iPhone機種診断</li>
             </ol>

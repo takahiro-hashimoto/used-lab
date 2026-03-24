@@ -110,6 +110,7 @@ export default async function IPhoneDetailPage({ params }: PageProps) {
             latestMinMaxPairs={latestMinMaxPairs}
             latestDate={latestDate}
             storageNote={storageNote}
+            priceListLink={{ href: '/iphone/price-info/', label: 'iPhoneの中古相場一覧・価格推移' }}
           />
         )}
 

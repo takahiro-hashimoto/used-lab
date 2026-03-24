@@ -1,9 +1,11 @@
 import React from 'react'
 
+import RatingMark from '@/app/components/RatingMark'
+
 export function BoolValue({ value }: { value: boolean }) {
   return value
-    ? <span className="m-rating__icon m-rating__icon--good" aria-label="あり">&#9675;</span>
-    : <span className="m-spec-row__cross" aria-label="なし">&times;</span>
+    ? <RatingMark mark="◯" size="sm" />
+    : <RatingMark mark="×" size="sm" />
 }
 
 export type SpecItem = { label: string; value: React.ReactNode }

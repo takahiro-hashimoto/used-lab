@@ -12,19 +12,12 @@ type Props = {
   cards: VendorCardItem[]
 }
 
+import RatingMark from '@/app/components/RatingMark'
+
 function renderSpecValue(value: string) {
-  switch (value) {
-    case '◎':
-      return <span className="m-rating__icon m-rating__icon--excellent">◎</span>
-    case '○':
-      return <span className="m-rating__icon m-rating__icon--good" aria-label="あり">○</span>
-    case '×':
-      return <span className="m-spec-row__cross" aria-label="なし">×</span>
-    case '無料':
-      return <span className="m-spec-row__free">無料</span>
-    default:
-      return <>{value}</>
-  }
+  if (['◎', '◯', '○', '△', '×'].includes(value)) return <RatingMark mark={value} size="sm" />
+  if (value === '無料') return <span className="m-spec-row__free">無料</span>
+  return <>{value}</>
 }
 
 export default function VendorCardGrid({ cards }: Props) {
