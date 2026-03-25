@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
+import Image from 'next/image'
 
 export type SampleImage = {
   label: string
@@ -114,7 +115,7 @@ export default function CameraFeatureCard({ id, title, description, detail, supp
                       />
                     </div>
                   ) : (
-                    <img src={s.src} alt={s.alt} className="camera-feature-card__img u-pc-crop-16x9" loading="lazy" />
+                    <Image src={s.src} alt={s.alt} className="camera-feature-card__img u-pc-crop-16x9" loading="lazy" width={800} height={450} />
                   )}
                   {s.type !== 'tweet' && (
                     <figcaption className="camera-feature-card__caption">{s.label}</figcaption>
@@ -138,11 +139,13 @@ export default function CameraFeatureCard({ id, title, description, detail, supp
             ) : samples[activeTab].type === 'tweet' ? (
               <TweetEmbed key={samples[activeTab].src} tweetId={samples[activeTab].src} />
             ) : (
-              <img
+              <Image
                 src={samples[activeTab].src}
                 alt={samples[activeTab].alt}
                 className="camera-feature-card__img u-pc-crop-16x9"
                 loading="lazy"
+                width={800}
+                height={450}
               />
             )}
             {samples[activeTab].type !== 'tweet' && (

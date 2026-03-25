@@ -1,4 +1,4 @@
-import PriceChart from '@/app/components/PriceChart'
+import PriceChartLoader from '@/app/components/PriceChartLoader'
 
 type DailyDataType = {
   labels: string[]
@@ -199,7 +199,7 @@ export default function PriceChartSection({
 
           <figure className="price-chart" aria-label={`中古${modelName}の価格推移チャート`}>
             <div style={{ height: 300 }}>
-              <PriceChart
+              <PriceChartLoader
                 labels={dailyData.labels}
                 avgMin={dailyData.avgMin}
                 avgMax={dailyData.avgMax}

@@ -55,6 +55,7 @@ export default function RootLayout({
     <html lang="ja" className={`${inter.variable} ${notoSansJP.variable}`}>
       <head>
         <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossOrigin="anonymous" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossOrigin="anonymous" />
         {GA_ID && (
           <>
             <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} strategy="afterInteractive" />
@@ -66,19 +67,6 @@ export default function RootLayout({
       </head>
       <body>
         {children}
-        <Script
-          id="fontawesome-loader"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-              var link = document.createElement('link');
-              link.rel = 'stylesheet';
-              link.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css';
-              link.crossOrigin = 'anonymous';
-              document.head.appendChild(link);
-            `,
-          }}
-        />
       </body>
     </html>
   );

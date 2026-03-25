@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { BoolCell } from '@/app/components/spec-table-utils'
 
 type PencilSpec = {
@@ -133,7 +134,7 @@ export default function PencilSpecTable() {
                   <th scope="row" className="spec-compare-table__sticky">イメージ</th>
                   {PENCILS.map((p) => (
                     <td key={p.name}>
-                      <img src={p.image} alt={p.name.replace('\n', ' ')} className="spec-compare-table__cell-img" width={60} height={60} loading="lazy" />
+                      <Image src={p.image} alt={p.name.replace('\n', ' ')} className="spec-compare-table__cell-img" width={60} height={60} loading="lazy" />
                     </td>
                   ))}
                 </tr>

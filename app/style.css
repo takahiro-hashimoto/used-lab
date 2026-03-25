@@ -320,7 +320,6 @@ ul {
 .accessory-card__desc,
 .about-profile-desc,
 .about-media-desc,
-.pd-recommend-banner__desc,
 .related-link-card__desc {
   font-size: var(--font-size-sm);
   color: var(--color-text-secondary);
@@ -5893,62 +5892,6 @@ body.is-menu-open {
 /* --- Card Grid (Drop & Ranking shared) --- */
 
 /* --- Recommend banner --- */
-/* .pd-recommend-banner → add .m-card--hoverable */
-.pd-recommend-banner {
-  display: flex;
-  flex-direction: column;
-  text-decoration: none;
-  color: var(--color-text);
-  padding: var(--space-xl);
-}
-
-.pd-recommend-banner__left {
-  display: flex;
-  gap: var(--space-lg);
-  align-items: center;
-  margin-bottom: var(--space-lg);
-}
-
-.pd-recommend-banner__image {
-  flex-shrink: 0;
-}
-
-.pd-recommend-banner__image img {
-  border-radius: var(--radius-md);
-}
-
-.pd-recommend-banner__subtitle {
-  font-size: var(--font-size-sm);
-  color: var(--color-primary);
-  font-weight: 600;
-  margin: 0 0 var(--space-xs);
-}
-
-.pd-recommend-banner__title {
-  font-size: var(--font-size-xl);
-  font-weight: 800;
-  margin: 0 0 var(--space-sm);
-}
-
-.pd-recommend-banner__desc {
-  font-size: var(--font-size-sm);
-  color: var(--color-text-secondary);
-  line-height: 1.7;
-  margin: 0;
-}
-
-.pd-recommend-banner__button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-sm);
-  padding: 0.75rem;
-  background: var(--color-primary);
-  color: #fff;
-  font-weight: 700;
-  border-radius: var(--radius-md);
-  font-size: var(--font-size-base);
-}
 
 /* --- History accordion --- */
 .pd-history-model {
@@ -6114,10 +6057,6 @@ body.is-menu-open {
     height: 250px;
   }
 
-  .pd-recommend-banner__left {
-    flex-direction: column;
-    text-align: center;
-  }
 
   .pd-history-summary {
     display: grid;
@@ -7905,51 +7844,6 @@ body.is-menu-open {
 /* ============================================================
    Step List (手順リスト)
    ============================================================ */
-.step-list {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-md);
-}
-
-.step-item {
-  display: flex;
-  gap: var(--space-md);
-  align-items: flex-start;
-}
-
-.step-number {
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 2rem;
-  height: 2rem;
-  border-radius: 50%;
-  background: var(--color-primary);
-  color: #fff;
-  font-size: var(--font-size-sm);
-  font-weight: 700;
-  line-height: 1;
-}
-
-.step-title {
-  font-size: var(--font-size-base);
-  font-weight: 700;
-  color: var(--color-text);
-  margin: 0;
-}
-
-.step-desc {
-  font-size: var(--font-size-sm);
-  color: var(--color-text-secondary);
-  line-height: 1.8;
-  margin-top: var(--space-xs);
-}
-
-.step-desc a {
-  color: var(--color-primary);
-  text-decoration: underline;
-}
 
 /* =============================================
    Keyboard List Section

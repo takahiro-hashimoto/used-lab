@@ -1,3 +1,5 @@
+import Image from 'next/image'
+
 export default function ComparisonSections() {
   const imgStyle: React.CSSProperties = {
     width: '100%',
@@ -15,7 +17,7 @@ export default function ComparisonSections() {
       {/* ── 冷却方式と持続性能 ── */}
       <div id="cooling">
         <div className="m-card m-card--shadow m-card--padded">
-          <img src="/images/content/thumbnail/macbook-image-05.jpg" alt="冷却方式と持続性能" style={imgStyle} loading="lazy" />
+          <Image src="/images/content/thumbnail/macbook-image-05.jpg" alt="冷却方式と持続性能" style={imgStyle} loading="lazy" width={800} height={450} />
           <h3 className="popular-card-title">冷却方式と持続性能</h3>
           <p className="popular-card-desc" style={{ marginTop: 'var(--space-md)' }}>
             <strong>MacBook Airはファンレス設計</strong>のため、動作中も完全に無音です。Web閲覧や事務作業など日常的な用途では快適ですが、動画書き出しのような高負荷の処理を長時間続けると、チップの発熱を逃がしきれず処理速度が低下する（サーマルスロットリング）ことがあります。
@@ -35,7 +37,7 @@ export default function ComparisonSections() {
       {/* ── チップ性能の違い ── */}
       <div id="chip">
         <div className="m-card m-card--shadow m-card--padded">
-          <img src="/images/content/thumbnail/macbook-image-01.jpg" alt="チップ性能の違い" style={imgStyle} loading="lazy" />
+          <Image src="/images/content/thumbnail/macbook-image-01.jpg" alt="チップ性能の違い" style={imgStyle} loading="lazy" width={800} height={450} />
           <h3 className="popular-card-title">チップ性能の違い</h3>
           <p className="popular-card-desc" style={{ marginTop: 'var(--space-md)' }}>
             MacBook Airには各世代の<strong>無印チップ（M1、M2、M3、M4）</strong>が搭載されます。MacBook Proは無印チップに加えて<strong>Pro / Maxチップ</strong>を選択でき、CPU・GPUのコア数が多くメモリ帯域幅も広い上位構成が選べます。
@@ -80,7 +82,7 @@ export default function ComparisonSections() {
       {/* ── ディスプレイの違い ── */}
       <div id="display">
         <div className="m-card m-card--shadow m-card--padded">
-          <img src="/images/content/photo/use-macbook.jpg" alt="ディスプレイの違い" style={imgStyle} loading="lazy" />
+          <Image src="/images/content/photo/use-macbook.jpg" alt="ディスプレイの違い" style={imgStyle} loading="lazy" width={800} height={450} />
           <h3 className="popular-card-title">ディスプレイの違い</h3>
           <p className="popular-card-desc" style={{ marginTop: 'var(--space-md)' }}>
             MacBook Airは<strong>Liquid Retinaディスプレイ（60Hz）</strong>を搭載。十分に美しい画面ですが、リフレッシュレートは標準的な60Hzです。
@@ -125,7 +127,7 @@ export default function ComparisonSections() {
       {/* ── ポート・拡張性の違い ── */}
       <div id="port">
         <div className="m-card m-card--shadow m-card--padded">
-          <img src="/images/content/thumbnail/macbook-image-03.jpg" alt="ポート・拡張性の違い" style={imgStyle} loading="lazy" />
+          <Image src="/images/content/thumbnail/macbook-image-03.jpg" alt="ポート・拡張性の違い" style={imgStyle} loading="lazy" width={800} height={450} />
           <h3 className="popular-card-title">ポート・拡張性の違い</h3>
           <p className="popular-card-desc" style={{ marginTop: 'var(--space-md)' }}>
             MacBook Airは<strong>USB-Cポート×2 + MagSafe充電</strong>のシンプルな構成。外付けディスプレイやSDカード、有線LANなどを使いたい場合はUSBハブが必要です。
@@ -144,7 +146,7 @@ export default function ComparisonSections() {
       {/* ── 外部ディスプレイの違い ── */}
       <div id="external-display">
         <div className="m-card m-card--shadow m-card--padded">
-          <img src="/images/content/thumbnail/macbook-image-04.jpg" alt="外部ディスプレイの接続台数" style={imgStyle} loading="lazy" />
+          <Image src="/images/content/thumbnail/macbook-image-04.jpg" alt="外部ディスプレイの接続台数" style={imgStyle} loading="lazy" width={800} height={450} />
           <h3 className="popular-card-title">外部ディスプレイの接続台数</h3>
           <p className="popular-card-desc" style={{ marginTop: 'var(--space-md)' }}>
             MacBook Airは<strong>M1/M2モデルで最大1台</strong>、M3/M4モデルではクラムシェルモード（本体を閉じた状態）時に<strong>最大2台</strong>の外部ディスプレイに対応します。ただし、本体ディスプレイを開いた状態では1台までという制限があります。
@@ -199,7 +201,7 @@ export default function ComparisonSections() {
       {/* ── 重量とバッテリーの違い ── */}
       <div id="weight">
         <div className="m-card m-card--shadow m-card--padded">
-          <img src="/images/content/thumbnail/macbook-image-06.jpg" alt="重量とバッテリーの違い" style={imgStyle} loading="lazy" />
+          <Image src="/images/content/thumbnail/macbook-image-06.jpg" alt="重量とバッテリーの違い" style={imgStyle} loading="lazy" width={800} height={450} />
           <h3 className="popular-card-title">重量とバッテリーの違い</h3>
           <p className="popular-card-desc" style={{ marginTop: 'var(--space-md)' }}>
             MacBook Air 13インチは<strong>約1.24kg</strong>と非常に軽量で、カバンに入れても負担になりません。15インチでも約1.51kgと、持ち運びを重視する方にはAirが最適です。
