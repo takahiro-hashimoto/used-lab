@@ -17,7 +17,7 @@ export default function PreCheckSection() {
             <div className="caution-check-card__visual">
               <figure className="caution-check-card__image">
                 <Image
-                  src="/images/content/used-iphone-network-restriction.jpg"
+                  src="/images/content/photo/used-iphone-network-restriction.jpg"
                   alt="IMEI確認のイメージ"
                   width={220}
                   height={160}
@@ -90,7 +90,7 @@ export default function PreCheckSection() {
             <div className="caution-check-card__visual">
               <figure className="caution-check-card__image">
                 <Image
-                  src="/images/content/used-iphone-battery-check.jpg"
+                  src="/images/content/thumbnail/used-iphone-battery-check.jpg"
                   alt="バッテリー容量を確認する様子"
                   width={220}
                   height={160}
@@ -159,7 +159,7 @@ export default function PreCheckSection() {
             <div className="caution-check-card__visual">
               <figure className="caution-check-card__image">
                 <Image
-                  src="/images/content/used-iphone-ios-support.jpg"
+                  src="/images/content/thumbnail/used-iphone-ios-support.jpg"
                   alt="iOSサポートのイメージ画像"
                   width={220}
                   height={160}
@@ -189,7 +189,7 @@ export default function PreCheckSection() {
             <div className="caution-check-card__visual">
               <figure className="caution-check-card__image">
                 <Image
-                  src="/images/content/used-iphone-simlock.jpg"
+                  src="/images/content/thumbnail/used-iphone-simlock.jpg"
                   alt="SIMカードのイメージ画像"
                   width={220}
                   height={160}

@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import type { ModelData } from '../page'
 
 type Props = {
@@ -31,43 +30,41 @@ export default function RankingSection({ items, modelCount, dateDisplay }: Props
           と続きます。全{modelCount}機種を掲載中。
         </p>
 
-        <ol className="pd-card-grid">
+        <ol className="price-card-grid l-grid l-grid--2col l-grid--gap-lg">
           {items.map((model, rank) => (
             <li
               key={model.id}
-              className="pd-card m-card m-card--shadow"
+              className="price-card m-card m-card--shadow"
               itemProp="itemListElement"
               itemScope
               itemType="https://schema.org/ListItem"
             >
               <meta itemProp="position" content={String(rank + 1)} />
-              <div className="pd-card__left">
-                <div className="pd-card__thumb">
-                  {model.image && (
-                    <Image
-                      src={`/images/watch/${model.image}`}
-                      alt={model.name}
-                      width={60}
-                      height={60}
-                      className="pd-card__img"
-                    />
-                  )}
-                </div>
-                <div className="pd-card__info" itemProp="item" itemScope itemType="https://schema.org/Product">
-                  <p className="pd-card__name" itemProp="name">
-                    {model.iosysUrl ? (
-                      <a href={model.iosysUrl} className="pd-card__link" target="_blank" rel="noopener noreferrer">{model.name}</a>
-                    ) : model.name}
-                  </p>
-                  <p className="pd-card__meta">{model.year}年 / {model.chip}</p>
-                  <meta itemProp="brand" content="Apple" />
-                </div>
+              <figure className="price-card__img">
+                {model.image && (
+                  <img
+                    src={`/images/watch/${model.image}`}
+                    alt={model.name}
+                    width={80}
+                    height={80}
+                    loading="lazy"
+                  />
+                )}
+              </figure>
+              <div className="price-card__info" itemProp="item" itemScope itemType="https://schema.org/Product">
+                <h3 className="price-card__name" itemProp="name">
+                  {model.iosysUrl ? (
+                    <a href={model.iosysUrl} className="price-card__link" target="_blank" rel="noopener noreferrer">{model.name}</a>
+                  ) : model.name}
+                </h3>
+                <p className="price-card__meta">{model.year}年 / {model.chip}</p>
+                <meta itemProp="brand" content="Apple" />
               </div>
-              <div className="pd-card__right">
-                <p className="pd-card__price-label">中古相場（{model.storage}の場合）</p>
-                <p className="pd-card__price m-price-display m-price-display--md">
-                  &yen;{model.currentPrice.toLocaleString()} <span className="pd-card__tilde">〜</span>
-                </p>
+              <div className="price-card__price">
+                <span className="price-card__label">中古相場（{model.storage}）</span>
+                <span className="price-card__value m-price-display m-price-display--sm m-price-display--primary">
+                  &yen;{model.currentPrice.toLocaleString()} <span className="price-card__tilde">〜</span>
+                </span>
               </div>
             </li>
           ))}

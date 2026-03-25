@@ -23,22 +23,24 @@ import Breadcrumb from '@/app/components/Breadcrumb'
 import ShareBox from '@/app/components/ShareBox'
 import VendorCardGrid from '@/app/components/VendorCardGrid'
 import GuideModelLinks from '@/app/components/GuideModelLinks'
+import { getHeroImage } from '@/lib/data/hero-images'
 
 const PAGE_TITLE = `中古MacBook完全購入ガイド | 選び方・相場・おすすめモデルまとめ【${GUIDE_DATE_LABEL}版】`
 const PAGE_DESCRIPTION = `${GUIDE_DATE_LABEL}版・中古MacBookの完全購入ガイド。選び方のポイント、モデル別の相場、おすすめ機種をまとめて解説。失敗しない中古MacBook選びをサポートします。`
 const PAGE_URL = 'https://used-lab.com/macbook/'
 
 export const metadata: Metadata = {
-  title: `${PAGE_TITLE} | ユーズドラボ`,
+  title: PAGE_TITLE,
   description: PAGE_DESCRIPTION,
+  alternates: { canonical: '/macbook/' },
   openGraph: {
-    title: `${PAGE_TITLE} | ユーズドラボ`,
+    title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/macbook/',
     images: [{ url: '/images/macbook/mba-13-2024.jpg', width: 360, height: 360, alt: PAGE_TITLE }],
   },
   twitter: {
-    title: `${PAGE_TITLE} | ユーズドラボ`,
+    title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     images: ['/images/macbook/mba-13-2024.jpg'],
   },
@@ -161,7 +163,7 @@ export default async function MacBookGuidePage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <img
-                  src="/images/content/macbook-image-01.jpg"
+                  src="/images/content/thumbnail/macbook-image-01.jpg"
                   alt="中古MacBook購入ガイドのイメージ"
                   className="hero-media__img"
                   width={360}
@@ -214,14 +216,14 @@ export default async function MacBookGuidePage() {
               <p className="m-section-desc">楽天市場の中古ショップから価格を毎日自動で更新。</p>
               <p className="m-section-desc">各モデルの最小構成（最小メモリ・最小ストレージ）での最安値を基準にしています。</p>
 
-              <div className="guide-price-grid l-grid l-grid--2col l-grid--gap-lg">
+              <div className="price-card-grid l-grid l-grid--2col l-grid--gap-lg">
                 {priceModels.map((model, i) => {
                   const price = latestPrices[i]
                   const minPrice = price?.min1_price
                   const storageLabel = model.strage?.match(/(\d+(?:GB|TB))/)?.[1] || ''
                   return (
-                    <div key={model.id} className="guide-price-card m-card m-card--shadow">
-                      <figure className="guide-price-card__img">
+                    <div key={model.id} className="price-card m-card m-card--shadow">
+                      <figure className="price-card__img">
                         <img
                           src={model.image ? `/images/macbook/${model.image}` : `https://placehold.co/80x80/f5f5f7/1d1d1f?text=${encodeURIComponent(model.model)}`}
                           alt={model.model}
@@ -230,15 +232,15 @@ export default async function MacBookGuidePage() {
                           loading="lazy"
                         />
                       </figure>
-                      <div className="guide-price-card__info">
-                        <h3 className="guide-price-card__name">{model.model}</h3>
-                        <p className="guide-price-card__meta">
+                      <div className="price-card__info">
+                        <h3 className="price-card__name">{model.model.replace(/（\d{4}）/, '')}</h3>
+                        <p className="price-card__meta">
                           {model.date ? `${model.date.split('/')[0]}年` : ''} / {model.cpu || ''}
                         </p>
                       </div>
-                      <div className="guide-price-card__price">
-                        <span className="guide-price-card__label">中古相場（{storageLabel}の場合）</span>
-                        <span className="guide-price-card__value m-price-display m-price-display--sm m-price-display--primary">
+                      <div className="price-card__price">
+                        <span className="price-card__label">中古相場（{storageLabel}）</span>
+                        <span className="price-card__value m-price-display m-price-display--sm m-price-display--primary">
                           {minPrice ? `¥${minPrice.toLocaleString()}` : '-'} 〜
                         </span>
                       </div>
@@ -421,21 +423,21 @@ export default async function MacBookGuidePage() {
 
               <div className="l-grid l-grid--2col l-grid--gap-lg guide-spec-links">
                 <Link href="/macbook/air-pro-compare/" className="m-card m-card--shadow related-link-card m-card--hoverable">
-                  <img src="/images/content/macbook-image-01.jpg" alt="MacBook AirとProの比較" className="related-link-card__img" width={400} height={300} loading="lazy" />
+                  <img src={getHeroImage('/macbook/air-pro-compare/')} alt="MacBook AirとProの比較" className="related-link-card__img" width={400} height={300} loading="lazy" />
                   <div className="related-link-card__body">
                     <h3 className="related-link-card__title">MacBook AirとProどっちがいい？</h3>
                     <p className="related-link-card__desc">冷却方式・チップ性能・ディスプレイ・ポート・中古価格の5観点で違いを解説。用途別おすすめ早見表付き。</p>
                   </div>
                 </Link>
                 <Link href="/macbook/ipad-macbook-compare/" className="m-card m-card--shadow related-link-card m-card--hoverable">
-                  <img src="/images/content/macbook-ipad.jpg" alt="MacBookとiPadの比較" className="related-link-card__img" width={400} height={300} loading="lazy" />
+                  <img src={getHeroImage('/macbook/ipad-macbook-compare/')} alt="MacBookとiPadの比較" className="related-link-card__img" width={400} height={300} loading="lazy" />
                   <div className="related-link-card__body">
                     <h3 className="related-link-card__title">MacBookとiPadどっちを買う？</h3>
                     <p className="related-link-card__desc">作業効率・携帯性・価格・Apple Pencil対応など、用途別に両者の違いをわかりやすく比較。タブレットかノートPCか迷っている方に。</p>
                   </div>
                 </Link>
                 <Link href="/macbook/windows-mac-compare/" className="m-card m-card--shadow related-link-card m-card--hoverable">
-                  <img src="/images/content/macbook-image-06.jpg" alt="MacとWindowsの比較" className="related-link-card__img" width={400} height={300} loading="lazy" />
+                  <img src={getHeroImage('/macbook/windows-mac-compare/')} alt="MacとWindowsの比較" className="related-link-card__img" width={400} height={300} loading="lazy" />
                   <div className="related-link-card__body">
                     <h3 className="related-link-card__title">MacとWindowsどっちがいい？</h3>
                     <p className="related-link-card__desc">操作性・対応ソフト・コスト・互換性など初心者にもわかりやすく解説。Windowsからの乗り換えを検討中の方にもおすすめ。</p>
@@ -454,7 +456,7 @@ export default async function MacBookGuidePage() {
               <div className="l-grid l-grid--2col l-grid--gap-lg guide-spec-links">
                 {GUIDE_SPEC_LINKS.map((link) => (
                   <Link key={link.href} href={link.href} className="m-card m-card--shadow related-link-card m-card--hoverable">
-                    <img src={link.image} alt={link.title} className="related-link-card__img" width={400} height={300} loading="lazy" />
+                    <img src={getHeroImage(link.href)} alt={link.title} className="related-link-card__img" width={400} height={300} loading="lazy" />
                     <div className="related-link-card__body">
                       <h3 className="related-link-card__title">{link.title}</h3>
                       <p className="related-link-card__desc">{link.desc}</p>
@@ -541,7 +543,7 @@ export default async function MacBookGuidePage() {
                 <div className="m-card faq-item">
                   <h3 className="faq-question">ストレージ容量はどれくらい必要ですか？</h3>
                   <div className="faq-answer">
-                    <p>Web閲覧・事務作業メインなら256GBで十分です。写真や動画を扱うなら512GB以上がおすすめです。MacBookはストレージの後から増設ができないため、用途に合った容量を最初に選ぶことが重要です。</p>
+                    <p>Web閲覧・事務作業メインなら256GBで十分です。写真や動画を扱うなら512GB以上がおすすめです。MacBookはストレージの後から増設ができないため、用途に合った容量を最初に選ぶことが重要です。詳しくは「<Link href="/macbook/storage-guide/">ストレージ容量ガイド</Link>」をご覧ください。</p>
                   </div>
                 </div>
               </div>

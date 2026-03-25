@@ -4,7 +4,7 @@ export default function NoDifference() {
       {/* Webサイトの閲覧 */}
       <div id="web-browsing" className="m-card m-card--shadow m-card--padded popular-card">
         <img
-          src="/images/content/ipad-magic-keyboard-01.jpg"
+          src="/images/content/thumbnail/ipad-magic-keyboard-01.jpg"
           alt="Webサイトを閲覧する様子"
           className="popular-card-img"
           width={240}
@@ -25,7 +25,7 @@ export default function NoDifference() {
       {/* 動画の視聴 */}
       <div id="video-watching" className="m-card m-card--shadow m-card--padded popular-card">
         <img
-          src="/images/content/ipad-image-05.jpg"
+          src="/images/content/thumbnail/ipad-image-05.jpg"
           alt="動画を視聴する様子"
           className="popular-card-img"
           width={240}
@@ -46,7 +46,7 @@ export default function NoDifference() {
       {/* メールやレポートの作成 */}
       <div id="email-report" className="m-card m-card--shadow m-card--padded popular-card">
         <img
-          src="/images/content/ipad-magik-keyboard.jpg"
+          src="/images/content/thumbnail/ipad-magik-keyboard.jpg"
           alt="メールやレポートを作成する様子"
           className="popular-card-img"
           width={240}

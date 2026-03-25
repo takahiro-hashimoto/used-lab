@@ -13,16 +13,17 @@ const PAGE_DESCRIPTION =
 const PAGE_URL = 'https://used-lab.com/iphone/iphone-camera/'
 
 export const metadata: Metadata = {
-  title: `${PAGE_TITLE} | ユーズドラボ`,
+  title: PAGE_TITLE,
   description: PAGE_DESCRIPTION,
+  alternates: { canonical: '/iphone/iphone-camera/' },
   openGraph: {
-    title: `${PAGE_TITLE} | ユーズドラボ`,
+    title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/iphone/iphone-camera/',
     images: [{ url: '/images/iphone/iphone16pro.jpg', width: 360, height: 360, alt: PAGE_TITLE }],
   },
   twitter: {
-    title: `${PAGE_TITLE} | ユーズドラボ`,
+    title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     images: ['/images/iphone/iphone16pro.jpg'],
   },
@@ -147,7 +148,7 @@ export default async function IPhoneCameraPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/content/iphone-camera.jpg"
+                  src="/images/content/thumbnail/iphone-camera.jpg"
                   alt="iPhoneカメラ性能比較イメージ"
                   className="hero-media__img"
                   width={360}
@@ -246,9 +247,9 @@ export default async function IPhoneCameraPage() {
                   </dl>
                 }
                 samples={[
-                  { label: '超広角レンズ', src: '/images/content/iphone-lens-ultra-wide.jpg', alt: 'iPhoneの超広角レンズで撮影した風景写真' },
-                  { label: '広角レンズ', src: '/images/content/iphone-lens-wide.jpg', alt: 'iPhoneの広角レンズで撮影した風景写真' },
-                  { label: '望遠レンズ', src: '/images/content/iphone-lens-zoom.jpg', alt: 'iPhoneの望遠レンズで撮影した風景写真' },
+                  { label: '超広角レンズ', src: '/images/content/photo/iphone-lens-ultra-wide.jpg', alt: 'iPhoneの超広角レンズで撮影した風景写真' },
+                  { label: '広角レンズ', src: '/images/content/photo/iphone-lens-wide.jpg', alt: 'iPhoneの広角レンズで撮影した風景写真' },
+                  { label: '望遠レンズ', src: '/images/content/photo/iphone-lens-zoom.jpg', alt: 'iPhoneの望遠レンズで撮影した風景写真' },
                 ]}
                 samplesLayout="grid"
               />
@@ -273,7 +274,7 @@ export default async function IPhoneCameraPage() {
                   </dl>
                 }
                 samples={[
-                  { label: 'イメージセンサー', src: '/images/content/iphone-camera-lens.jpeg', alt: 'iPhoneイメージセンサー 進化の変遷' },
+                  { label: 'イメージセンサー', src: '/images/content/photo/iphone-camera-lens.jpeg', alt: 'iPhoneイメージセンサー 進化の変遷' },
                 ]}
               />
 
@@ -292,7 +293,7 @@ export default async function IPhoneCameraPage() {
                   models: serializedModels.filter((m) => m.camera_control).map((m) => m.model),
                 }}
                 samples={[
-                  { label: 'カメラコントロールボタン', src: '/images/content/used-lab-image-5.jpg', alt: 'iPhoneのカメラコントロールボタン' },
+                  { label: 'カメラコントロールボタン', src: '/images/content/photo/used-lab-image-5.jpg', alt: 'iPhoneのカメラコントロールボタン' },
                 ]}
               />
 
@@ -325,7 +326,7 @@ export default async function IPhoneCameraPage() {
                   models: serializedModels.filter((m) => m.photography_style).map((m) => m.model),
                 }}
                 samples={[
-                  { label: 'フォトグラフスタイル作例', src: '/images/content/iphone-photograh-style.jpg', alt: 'iPhoneのフォトグラフスタイル撮影画面の比較' },
+                  { label: 'フォトグラフスタイル作例', src: '/images/content/photo/iphone-photograh-style.jpg', alt: 'iPhoneのフォトグラフスタイル撮影画面の比較' },
                 ]}
               />
 
@@ -345,8 +346,8 @@ export default async function IPhoneCameraPage() {
                   models: serializedModels.filter((m) => m.night_mode).map((m) => m.model),
                 }}
                 samples={[
-                  { label: 'ナイトモード搭載', src: '/images/content/night-01.jpg', alt: 'ナイトモード搭載のiPhone14Proで撮影した写真' },
-                  { label: 'ナイトモード非搭載', src: '/images/content/night-02.webp', alt: 'ナイトモード非搭載のiPhoneSE3で撮影した写真' },
+                  { label: 'ナイトモード搭載', src: '/images/content/photo/night-01.jpg', alt: 'ナイトモード搭載のiPhone14Proで撮影した写真' },
+                  { label: 'ナイトモード非搭載', src: '/images/content/photo/night-02.webp', alt: 'ナイトモード非搭載のiPhoneSE3で撮影した写真' },
                 ]}
                 samplesLayout="grid"
               />
@@ -367,8 +368,8 @@ export default async function IPhoneCameraPage() {
                   models: serializedModels.filter((m) => m.macro_mode).map((m) => m.model),
                 }}
                 samples={[
-                  { label: 'マクロ撮影搭載', src: '/images/content/iphone-14-pro-macro-shot.webp', alt: 'マクロ撮影モード搭載のiPhone14Proで撮影した写真' },
-                  { label: 'マクロ撮影非搭載', src: '/images/content/iphone-se-3-macro-shot.webp', alt: 'マクロ撮影モード非搭載のiPhoneSE3で撮影した写真' },
+                  { label: 'マクロ撮影搭載', src: '/images/content/photo/iphone-14-pro-macro-shot.webp', alt: 'マクロ撮影モード搭載のiPhone14Proで撮影した写真' },
+                  { label: 'マクロ撮影非搭載', src: '/images/content/photo/iphone-se-3-macro-shot.webp', alt: 'マクロ撮影モード非搭載のiPhoneSE3で撮影した写真' },
                 ]}
                 samplesLayout="grid"
               />
@@ -426,7 +427,7 @@ export default async function IPhoneCameraPage() {
                   models: serializedModels.filter((m) => m.centerframe).map((m) => m.model),
                 }}
                 samples={[
-                  { label: 'センターフレームカメラ', src: '/images/content/centerflame.webp', alt: 'iPhone 17のセンターフレームフロントカメラの縦向き・横向き撮影比較' },
+                  { label: 'センターフレームカメラ', src: '/images/content/photo/centerflame.webp', alt: 'iPhone 17のセンターフレームフロントカメラの縦向き・横向き撮影比較' },
                 ]}
               />
 
@@ -478,8 +479,8 @@ export default async function IPhoneCameraPage() {
                   models: serializedModels.filter((m) => m.apple_proraw).map((m) => m.model),
                 }}
                 samples={[
-                  { label: '加工前', src: '/images/content/iPhone-apple-raw-before.jpg', alt: 'Apple ProRawで撮影した加工前の写真' },
-                  { label: '加工後', src: '/images/content/iPhone-apple-raw-after.jpg', alt: 'RAW現像アプリで加工した後の写真' },
+                  { label: '加工前', src: '/images/content/photo/iPhone-apple-raw-before.jpg', alt: 'Apple ProRawで撮影した加工前の写真' },
+                  { label: '加工後', src: '/images/content/photo/iPhone-apple-raw-after.jpg', alt: 'RAW現像アプリで加工した後の写真' },
                 ]}
                 samplesLayout="grid"
               />
@@ -527,7 +528,7 @@ export default async function IPhoneCameraPage() {
                   width={400}
                   height={500}
                   className="popular-card-img"
-                  src="/images/content/iphone-setting.webp"
+                  src="/images/content/thumbnail/iphone-setting.webp"
                 />
               </figure>
               <div className="popular-card-body">

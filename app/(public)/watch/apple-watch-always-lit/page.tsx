@@ -16,16 +16,17 @@ const PAGE_DESCRIPTION =
 const PAGE_URL = 'https://used-lab.com/watch/apple-watch-always-lit/'
 
 export const metadata: Metadata = {
-  title: `${PAGE_TITLE} | ユーズドラボ`,
+  title: PAGE_TITLE,
   description: PAGE_DESCRIPTION,
+  alternates: { canonical: '/watch/apple-watch-always-lit/' },
   openGraph: {
-    title: `${PAGE_TITLE} | ユーズドラボ`,
+    title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/watch/apple-watch-always-lit/',
     images: [{ url: '/images/watch/watch-always-lit.jpg', width: 360, height: 360, alt: PAGE_TITLE }],
   },
   twitter: {
-    title: `${PAGE_TITLE} | ユーズドラボ`,
+    title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     images: ['/images/watch/watch-always-lit.jpg'],
   },
@@ -131,7 +132,7 @@ export default function AppleWatchAlwaysLitPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/content/watch-image-03.jpg"
+                  src="/images/content/thumbnail/watch-image-03.jpg"
                   alt="Apple Watchの常時点灯ディスプレイのイメージ"
                   className="hero-media__img"
                   width={360}

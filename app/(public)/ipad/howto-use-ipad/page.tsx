@@ -14,18 +14,19 @@ const PAGE_DESCRIPTION =
 const PAGE_URL = 'https://used-lab.com/ipad/howto-use-ipad/'
 
 export const metadata: Metadata = {
-  title: `${PAGE_TITLE} | ユーズドラボ`,
+  title: PAGE_TITLE,
   description: PAGE_DESCRIPTION,
+  alternates: { canonical: '/ipad/howto-use-ipad/' },
   openGraph: {
-    title: `${PAGE_TITLE} | ユーズドラボ`,
+    title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/ipad/howto-use-ipad/',
-    images: [{ url: '/images/content/ipad-lightroom.jpg', width: 360, height: 360, alt: PAGE_TITLE }],
+    images: [{ url: '/images/content/thumbnail/ipad-lightroom.jpg', width: 360, height: 360, alt: PAGE_TITLE }],
   },
   twitter: {
-    title: `${PAGE_TITLE} | ユーズドラボ`,
+    title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
-    images: ['/images/content/ipad-lightroom.jpg'],
+    images: ['/images/content/thumbnail/ipad-lightroom.jpg'],
   },
 }
 
@@ -155,7 +156,7 @@ export default function HowtoUseIpadPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/content/ipad-lightroom.jpg"
+                  src="/images/content/thumbnail/ipad-lightroom.jpg"
                   alt="iPadの便利な使い道イメージ"
                   className="hero-media__img"
                   width={360}
@@ -251,7 +252,7 @@ export default function HowtoUseIpadPage() {
                     width={400}
                     height={500}
                     className="popular-card-img"
-                    src="/images/content/ipad-image-03.jpg"
+                    src="/images/content/thumbnail/ipad-image-03.jpg"
                   />
                 </figure>
                 <div className="popular-card-body">

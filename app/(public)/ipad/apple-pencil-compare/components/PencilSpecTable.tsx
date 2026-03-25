@@ -21,7 +21,7 @@ type PencilSpec = {
 const PENCILS: PencilSpec[] = [
   {
     name: 'Apple Pencil\nPro',
-    image: '/images/content/apple-pencil-pro.jpg',
+    image: '/images/content/thumbnail/apple-pencil-pro.jpg',
     pressureSensitivity: true,
     tiltSensitivity: true,
     squeeze: true,
@@ -36,7 +36,7 @@ const PENCILS: PencilSpec[] = [
   },
   {
     name: 'Apple Pencil\n第2世代',
-    image: '/images/content/apple-pencil-gen2.jpg',
+    image: '/images/content/thumbnail/apple-pencil-gen2.jpg',
     pressureSensitivity: true,
     tiltSensitivity: true,
     squeeze: false,
@@ -51,7 +51,7 @@ const PENCILS: PencilSpec[] = [
   },
   {
     name: 'Apple Pencil\nUSB-C',
-    image: '/images/content/apple-pencil-usbc.jpg',
+    image: '/images/content/thumbnail/apple-pencil-usbc.jpg',
     pressureSensitivity: false,
     tiltSensitivity: true,
     squeeze: false,
@@ -66,7 +66,7 @@ const PENCILS: PencilSpec[] = [
   },
   {
     name: 'Apple Pencil\n第1世代',
-    image: '/images/content/apple-pencil.jpg',
+    image: '/images/content/thumbnail/apple-pencil.jpg',
     pressureSensitivity: true,
     tiltSensitivity: true,
     squeeze: false,

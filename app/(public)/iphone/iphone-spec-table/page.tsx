@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
+import { getHeroImage } from '@/lib/data/hero-images'
 import { getAllIPhoneModels, getAllProductShopLinksByType } from '@/lib/queries'
 import SpecTable from './components/SpecTable'
 import DualCompare from './components/DualCompare'
@@ -32,17 +33,18 @@ const GLOSSARY_ITEMS = [
 import ShareBox from '@/app/components/ShareBox'
 
 export const metadata: Metadata = {
-  title: '歴代iPhoneスペック比較表！気になる機種の性能差や違いがわかる | ユーズドラボ',
+  title: '歴代iPhoneスペック比較表！気になる機種の性能差や違いがわかる',
   description:
     '2019年以降に発売された歴代iPhoneのスペック比較表一覧です。iPhoneの機能がどのようにアップデートされてきたのか確認するのにご活用ください。',
+  alternates: { canonical: '/iphone/iphone-spec-table/' },
   openGraph: {
-    title: '歴代iPhoneスペック比較表！気になる機種の性能差や違いがわかる | ユーズドラボ',
+    title: '歴代iPhoneスペック比較表！気になる機種の性能差や違いがわかる',
     description: '2019年以降に発売された歴代iPhoneのスペック比較表一覧です。iPhoneの機能がどのようにアップデートされてきたのか確認するのにご活用ください。',
     url: '/iphone/iphone-spec-table/',
     images: [{ url: '/images/iphone/iphone16pro.jpg', width: 360, height: 360, alt: '歴代iPhoneスペック比較表のイメージ' }],
   },
   twitter: {
-    title: '歴代iPhoneスペック比較表！気になる機種の性能差や違いがわかる | ユーズドラボ',
+    title: '歴代iPhoneスペック比較表！気になる機種の性能差や違いがわかる',
     description: '2019年以降に発売された歴代iPhoneのスペック比較表一覧です。',
     images: ['/images/iphone/iphone16pro.jpg'],
   },
@@ -199,7 +201,7 @@ export default async function IPhoneSpecTablePage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/content/iphone-compare.jpg"
+                  src="/images/content/thumbnail/iphone-compare.jpg"
                   alt="歴代iPhoneスペック比較表のイメージ"
                   className="hero-media__img"
                   width={360}
@@ -274,21 +276,52 @@ export default async function IPhoneSpecTablePage() {
         <DualCompare models={serializedModels} shopLinks={serializedLinks} />
         <BenchmarkSection models={serializedModels} />
         <EvolutionTimeline />
-        <GlossarySection productName="iPhone" items={GLOSSARY_ITEMS}>
-          <div className="m-callout m-callout--tip" style={{ marginTop: 'var(--space-2xl)' }}>
-            <span className="m-callout__label">memo</span>
-            <p className="m-callout__text">
-              カメラ性能が気になる方は「<a href="/iphone/iphone-camera/">iPhoneのカメラ性能の違いは何？歴代モデルの機能を比較</a>」、バッテリー持ちで選びたい方は「<a href="/iphone/battery-compare/">歴代iPhoneのバッテリー容量比較ランキング</a>」もあわせてご覧ください。
-            </p>
+        <GlossarySection productName="iPhone" items={GLOSSARY_ITEMS} />
+
+        {/* 関連記事 */}
+        <section className="l-section" id="related" aria-labelledby="heading-related">
+          <div className="l-container">
+            <h2 className="m-section-heading m-section-heading--lg" id="heading-related">iPhone選びのヒントになる関連記事</h2>
+            <p className="m-section-desc">スペック以外の観点からもiPhone選びをサポートする記事をまとめました。</p>
+            <div className="l-grid l-grid--2col l-grid--gap-lg">
+              <Link href="/iphone/iphone-camera/" className="m-card m-card--shadow related-link-card m-card--hoverable">
+                <Image src={getHeroImage('/iphone/iphone-camera/')} alt="iPhoneカメラ性能比較" className="related-link-card__img" width={400} height={300} loading="lazy" />
+                <div className="related-link-card__body">
+                  <h3 className="related-link-card__title">カメラ性能比較</h3>
+                  <p className="related-link-card__desc">歴代モデルのカメラ機能の違いがわかる</p>
+                </div>
+              </Link>
+              <Link href="/iphone/battery-compare/" className="m-card m-card--shadow related-link-card m-card--hoverable">
+                <Image src={getHeroImage('/iphone/battery-compare/')} alt="バッテリー容量比較" className="related-link-card__img" width={400} height={300} loading="lazy" />
+                <div className="related-link-card__body">
+                  <h3 className="related-link-card__title">バッテリー容量比較ランキング</h3>
+                  <p className="related-link-card__desc">電池持ちのいいiPhoneがひと目でわかる</p>
+                </div>
+              </Link>
+              <Link href="/iphone/benchmark/" className="m-card m-card--shadow related-link-card m-card--hoverable">
+                <Image src={getHeroImage('/iphone/benchmark/')} alt="ベンチマーク比較ランキング" className="related-link-card__img" width={400} height={300} loading="lazy" />
+                <div className="related-link-card__body">
+                  <h3 className="related-link-card__title">ベンチマーク比較ランキング</h3>
+                  <p className="related-link-card__desc">歴代iPhoneのチップ性能をスコアで比較</p>
+                </div>
+              </Link>
+              <Link href="/iphone/storage-guide/" className="m-card m-card--shadow related-link-card m-card--hoverable">
+                <Image src={getHeroImage('/iphone/storage-guide/')} alt="ストレージ容量ガイド" className="related-link-card__img" width={400} height={300} loading="lazy" />
+                <div className="related-link-card__body">
+                  <h3 className="related-link-card__title">ストレージ容量ガイド</h3>
+                  <p className="related-link-card__desc">用途別のおすすめ容量と中古価格を比較</p>
+                </div>
+              </Link>
+            </div>
           </div>
-        </GlossarySection>
+        </section>
         <section className="l-section" id="popular" aria-labelledby="heading-popular">
           <div className="l-container">
             <h2 className="m-section-heading m-section-heading--lg" id="heading-popular">目的別に人気の中古iPhone</h2>
             <p className="m-section-desc">目的別におすすめの機種を厳選。今回の記事で購入するべき機種が判断できなかった方はぜひご覧ください。</p>
             <div className="m-card m-card--shadow popular-card">
               <figure className="popular-card-figure">
-                <Image alt="中古iPhoneおすすめ5選のイメージ画像" loading="lazy" width={400} height={500} className="popular-card-img" src="/images/content/iphone-setting.webp" />
+                <Image alt="中古iPhoneおすすめ5選のイメージ画像" loading="lazy" width={400} height={500} className="popular-card-img" src="/images/content/thumbnail/iphone-setting.webp" />
               </figure>
               <div className="popular-card-body">
                 <p className="popular-card-subtitle">目的別におすすめ機種を厳選！</p>

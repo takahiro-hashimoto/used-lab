@@ -17,7 +17,7 @@ export default function RouteSection() {
             <div className="caution-check-card__visual">
               <figure className="caution-check-card__image">
                 <Image
-                  src="/images/content/used-iphone-freemarket.jpg"
+                  src="/images/content/thumbnail/used-iphone-freemarket.jpg"
                   alt="フリマアプリのイメージ画像"
                   width={220}
                   height={160}
@@ -44,7 +44,7 @@ export default function RouteSection() {
             <div className="caution-check-card__visual">
               <figure className="caution-check-card__image">
                 <Image
-                  src="/images/content/used-iphone-shop.jpg"
+                  src="/images/content/thumbnail/used-iphone-shop.jpg"
                   alt="中古ショップのイメージ画像"
                   width={220}
                   height={160}

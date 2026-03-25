@@ -11,15 +11,16 @@ const PAGE_DESCRIPTION =
 const PAGE_URL = 'https://used-lab.com/airpods/airpods-find/'
 
 export const metadata: Metadata = {
-  title: `${PAGE_TITLE} | ユーズドラボ`,
+  title: PAGE_TITLE,
   description: PAGE_DESCRIPTION,
+  alternates: { canonical: '/airpods/airpods-find/' },
   openGraph: {
-    title: `${PAGE_TITLE} | ユーズドラボ`,
+    title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/airpods/airpods-find/',
   },
   twitter: {
-    title: `${PAGE_TITLE} | ユーズドラボ`,
+    title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
   },
 }
@@ -67,7 +68,7 @@ export default function AirpodsFindPage() {
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.com/' },
-      { '@type': 'ListItem', position: 2, name: '中古AirPodsガイド', item: 'https://used-lab.com/airpods' },
+      { '@type': 'ListItem', position: 2, name: '中古AirPods完全購入ガイド', item: 'https://used-lab.com/airpods' },
       { '@type': 'ListItem', position: 3, name: 'AirPodsの紛失対処法' },
     ],
   }
@@ -99,7 +100,7 @@ export default function AirpodsFindPage() {
         <div className="hero-wrapper">
           <Breadcrumb
             items={[
-              { label: '中古AirPodsガイド', href: '/airpods' },
+              { label: '中古AirPods完全購入ガイド', href: '/airpods' },
               { label: 'AirPodsの紛失対処法' },
             ]}
           />
@@ -135,7 +136,7 @@ export default function AirpodsFindPage() {
               <div className="hero-visual">
                 <figure className="hero-media">
                   <img
-                    src="/images/content/airpods-image-03.jpg"
+                    src="/images/content/thumbnail/airpods-image-03.jpg"
                     alt="AirPodsの紛失対処法"
                     className="hero-media__img"
                     width={360}
@@ -157,7 +158,7 @@ export default function AirpodsFindPage() {
               </p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                中古AirPodsの選び方全般は「<a href="/airpods">中古AirPodsガイド</a>」をご覧ください。
+                中古AirPodsの選び方全般は「<a href="/airpods">中古AirPods完全購入ガイド</a>」をご覧ください。
               </p>
             </div>
           </div>
@@ -238,7 +239,7 @@ export default function AirpodsFindPage() {
                 AirPodsの紛失時の探し方と代替品の購入先を紹介しました。
               </p>
 
-              <div className="lead-box" style={{ marginTop: 'var(--space-2xl)' }}>
+              <div className="lead-box">
                 <p>
                   AirPodsを紛失してしまった場合、<strong>充電が切れる前に位置情報の当たりをつけたり、紛失モードに切り替える</strong>のが大事です。手元にAirPodsがないことに気がついたら、すぐに捜索を開始しましょう。
                 </p>
@@ -250,7 +251,7 @@ export default function AirpodsFindPage() {
                 </p>
                 <p className="lead-link">
                   <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                  中古AirPodsの購入を検討中の方は「<a href="/airpods">中古AirPodsガイド</a>」をご覧ください。
+                  中古AirPodsの購入を検討中の方は「<a href="/airpods">中古AirPods完全購入ガイド</a>」をご覧ください。
                 </p>
               </div>
             </div>

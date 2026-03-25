@@ -4,7 +4,7 @@ export default function ComparisonSections() {
       {/* OSの違い */}
       <div id="os" className="m-card m-card--shadow m-card--padded popular-card">
         <img
-          src="/images/content/use-macbook.jpg"
+          src="/images/content/photo/use-macbook.jpg"
           alt="MacBookを操作する様子"
           className="popular-card-img"
           width={240}
@@ -28,7 +28,7 @@ export default function ComparisonSections() {
       {/* シェアの違い */}
       <div id="share" className="m-card m-card--shadow m-card--padded popular-card">
         <img
-          src="/images/content/iphone-image.jpg"
+          src="/images/content/thumbnail/iphone-image.jpg"
           alt="WindowsとMacのシェア比較"
           className="popular-card-img"
           width={240}
@@ -49,7 +49,7 @@ export default function ComparisonSections() {
       {/* 製品数・価格帯の違い */}
       <div id="price" className="m-card m-card--shadow m-card--padded popular-card">
         <img
-          src="/images/content/ipad-mini-macbook.jpg"
+          src="/images/content/photo/ipad-mini-macbook.jpg"
           alt="MacBookとiPad"
           className="popular-card-img"
           width={240}
@@ -70,7 +70,7 @@ export default function ComparisonSections() {
       {/* カスタマイズ性・自由度の違い */}
       <div id="customize" className="m-card m-card--shadow m-card--padded popular-card">
         <img
-          src="/images/content/ipad-pro-use.jpg"
+          src="/images/content/photo/ipad-pro-use.jpg"
           alt="パソコンのカスタマイズ"
           className="popular-card-img"
           width={240}
@@ -91,7 +91,7 @@ export default function ComparisonSections() {
       {/* 対応ソフト・アプリの違い */}
       <div id="apps" className="m-card m-card--shadow m-card--padded popular-card">
         <img
-          src="/images/content/ipad-split-view.jpg"
+          src="/images/content/photo/ipad-split-view.jpg"
           alt="対応アプリの違い"
           className="popular-card-img"
           width={240}
@@ -128,7 +128,7 @@ export default function ComparisonSections() {
       {/* ゲームプレイについての違い */}
       <div id="game" className="m-card m-card--shadow m-card--padded popular-card">
         <img
-          src="/images/content/ipad-md-clock.jpg"
+          src="/images/content/photo/ipad-md-clock.jpg"
           alt="パソコンゲームのイメージ"
           className="popular-card-img"
           width={240}
@@ -157,7 +157,7 @@ export default function ComparisonSections() {
       {/* マウス・トラックパッドの操作性の違い */}
       <div id="operation" className="m-card m-card--shadow m-card--padded popular-card">
         <img
-          src="/images/content/magic-keyboarda.jpg"
+          src="/images/content/photo/magic-keyboarda.jpg"
           alt="Macのトラックパッド操作"
           className="popular-card-img"
           width={240}
@@ -178,7 +178,7 @@ export default function ComparisonSections() {
       {/* キーボードの違い */}
       <div id="keyboard" className="m-card m-card--shadow m-card--padded popular-card">
         <img
-          src="/images/content/use-macbook.jpg"
+          src="/images/content/photo/use-macbook.jpg"
           alt="キーボードの違い"
           className="popular-card-img"
           width={240}
@@ -218,7 +218,7 @@ export default function ComparisonSections() {
       {/* デザインの違い */}
       <div id="design" className="m-card m-card--shadow m-card--padded popular-card">
         <img
-          src="/images/content/ipad-11-pro-m4-15.jpg"
+          src="/images/content/photo/ipad-11-pro-m4-15.jpg"
           alt="Macのデザイン"
           className="popular-card-img"
           width={240}
@@ -239,7 +239,7 @@ export default function ComparisonSections() {
       {/* データ連携・共有 */}
       <div id="data" className="m-card m-card--shadow m-card--padded popular-card">
         <img
-          src="/images/content/apple-watch-image.jpg"
+          src="/images/content/thumbnail/apple-watch-image.jpg"
           alt="Macのデータ連携"
           className="popular-card-img"
           width={240}
@@ -260,7 +260,7 @@ export default function ComparisonSections() {
       {/* リセールバリューの違い */}
       <div id="resale" className="m-card m-card--shadow m-card--padded popular-card">
         <img
-          src="/images/content/ipad-image.jpg"
+          src="/images/content/photo/ipad-image.jpg"
           alt="Macのリセールバリュー"
           className="popular-card-img"
           width={240}

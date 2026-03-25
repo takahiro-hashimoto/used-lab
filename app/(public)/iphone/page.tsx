@@ -24,22 +24,24 @@ import Breadcrumb from '@/app/components/Breadcrumb'
 import ShareBox from '@/app/components/ShareBox'
 import VendorCardGrid from '@/app/components/VendorCardGrid'
 import GuideModelLinks from '@/app/components/GuideModelLinks'
+import { getHeroImage } from '@/lib/data/hero-images'
 
 const PAGE_TITLE = `中古iPhone完全購入ガイド | 選び方・相場・おすすめモデルまとめ【${GUIDE_DATE_LABEL}版】`
 const PAGE_DESCRIPTION = `${GUIDE_DATE_LABEL}版・中古iPhoneの完全購入ガイド。選び方のポイント、モデル別の相場、おすすめ機種をまとめて解説。失敗しない中古iPhone選びをサポートします。`
 const PAGE_URL = 'https://used-lab.com/iphone/'
 
 export const metadata: Metadata = {
-  title: `${PAGE_TITLE} | ユーズドラボ`,
+  title: PAGE_TITLE,
   description: PAGE_DESCRIPTION,
+  alternates: { canonical: '/iphone/' },
   openGraph: {
-    title: `${PAGE_TITLE} | ユーズドラボ`,
+    title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/iphone/',
     images: [{ url: '/images/iphone/iphone16pro.jpg', width: 360, height: 360, alt: PAGE_TITLE }],
   },
   twitter: {
-    title: `${PAGE_TITLE} | ユーズドラボ`,
+    title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     images: ['/images/iphone/iphone16pro.jpg'],
   },
@@ -169,7 +171,7 @@ export default async function IPhoneGuidePage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <img
-                  src="/images/content/iphone-image.jpeg"
+                  src="/images/content/thumbnail/iphone-image.jpeg"
                   alt="中古iPhone購入ガイドのイメージ"
                   className="hero-media__img"
                   width={360}
@@ -224,7 +226,7 @@ export default async function IPhoneGuidePage() {
               <div className="m-card m-card--shadow popular-card">
                 <figure className="popular-card-figure">
                   <img
-                    src="/images/content/simulator.jpg"
+                    src="/images/content/thumbnail/simulator.jpg"
                     alt="iPhone機種絞り込みツール"
                     className="popular-card-img"
                     width={400}
@@ -253,10 +255,10 @@ export default async function IPhoneGuidePage() {
               <p className="m-section-desc">イオシス・GEO・じゃんぱらの価格を毎日自動で更新。</p>
               <p className="m-section-desc">OSサポート期間・流通量・価格安定性の3点を基準に、「今買われやすい中古iPhone」を抽出しています。</p>
 
-              <div className="guide-price-grid l-grid l-grid--2col l-grid--gap-lg">
+              <div className="price-card-grid l-grid l-grid--2col l-grid--gap-lg">
                 {priceModels.map((model, i) => (
-                  <div key={model.id} className="guide-price-card m-card m-card--shadow">
-                    <figure className="guide-price-card__img">
+                  <div key={model.id} className="price-card m-card m-card--shadow">
+                    <figure className="price-card__img">
                       <img
                         src={model.image ? `/images/iphone/${model.image}` : `https://placehold.co/80x80/f5f5f7/1d1d1f?text=${encodeURIComponent(model.model)}`}
                         alt={model.model}
@@ -265,15 +267,15 @@ export default async function IPhoneGuidePage() {
                         loading="lazy"
                       />
                     </figure>
-                    <div className="guide-price-card__info">
-                      <h3 className="guide-price-card__name">{model.model}</h3>
-                      <p className="guide-price-card__meta">
+                    <div className="price-card__info">
+                      <h3 className="price-card__name">{model.model}</h3>
+                      <p className="price-card__meta">
                         {model.date ? `${model.date.split('/')[0]}年` : ''} / {model.cpu || ''}
                       </p>
                     </div>
-                    <div className="guide-price-card__price">
-                      <span className="guide-price-card__label">中古相場（{getStorageLabel(model)}）</span>
-                      <span className="guide-price-card__value m-price-display m-price-display--sm m-price-display--primary">{getMinPrice(latestPrices[i])} 〜</span>
+                    <div className="price-card__price">
+                      <span className="price-card__label">中古相場（{latestPrices[i]?.storage ? `${latestPrices[i].storage}` : getStorageLabel(model)}）</span>
+                      <span className="price-card__value m-price-display m-price-display--sm m-price-display--primary">{getMinPrice(latestPrices[i])} 〜</span>
                     </div>
                   </div>
                 ))}
@@ -387,7 +389,7 @@ export default async function IPhoneGuidePage() {
                           <p className="guide-recommend__desc">{meta?.desc || ''}</p>
                         </div>
                         <div className="guide-recommend__aside">
-                          <span className="guide-recommend__price-label">中古相場（{getStorageLabel(model)}）</span>
+                          <span className="guide-recommend__price-label">中古相場（{recommendPrices[i]?.storage ? `${recommendPrices[i].storage}` : getStorageLabel(model)}）</span>
                           <span className="guide-recommend__price-value m-price-display m-price-display--md">{getMinPrice(recommendPrices[i])}〜</span>
                           {(() => {
                             const iosysLink = allShopLinks.find((l) => l.product_id === model.id && l.shop_id === 1)
@@ -451,7 +453,7 @@ export default async function IPhoneGuidePage() {
               <div className="m-card m-card--shadow popular-card">
                 <figure className="popular-card-figure">
                   <img
-                    src="/images/content/sim.webp"
+                    src="/images/content/thumbnail/sim.webp"
                     alt="中古iPhoneの購入と通信契約が一緒にできる格安SIM業者まとめ"
                     className="popular-card-img"
                     width={400}
@@ -484,7 +486,7 @@ export default async function IPhoneGuidePage() {
               <div className="l-grid l-grid--2col l-grid--gap-lg guide-spec-links">
                 {GUIDE_SPEC_LINKS.map((link) => (
                   <Link key={link.href} href={link.href} className="m-card m-card--shadow related-link-card m-card--hoverable">
-                    <img src={link.image} alt={link.title} className="related-link-card__img" width={400} height={300} loading="lazy" />
+                    <img src={getHeroImage(link.href)} alt={link.title} className="related-link-card__img" width={400} height={300} loading="lazy" />
                     <div className="related-link-card__body">
                       <h3 className="related-link-card__title">{link.title}</h3>
                       <p className="related-link-card__desc">{link.desc}</p>
@@ -553,6 +555,12 @@ export default async function IPhoneGuidePage() {
                   <h3 className="faq-question">中古iPhoneのバッテリー状態は確認できますか？</h3>
                   <div className="faq-answer">
                     <p>はい、iPhoneの「設定」→「バッテリー」→「バッテリーの状態」から最大容量を確認できます。80%以上あれば実用上問題ありません。中古専門店では商品ページにバッテリー状態が記載されていることが多いです。各モデルのバッテリー容量は「<Link href="/iphone/battery-compare/">バッテリー性能比較ランキング</Link>」で確認できます。</p>
+                  </div>
+                </div>
+                <div className="m-card faq-item">
+                  <h3 className="faq-question">iPhoneのストレージ容量はどれを選ぶべき？</h3>
+                  <div className="faq-answer">
+                    <p>写真や動画をよく撮る方は128GB以上、アプリやゲームを多く入れる方は256GB以上がおすすめです。iPhoneはストレージの後から増設ができないため、迷ったら1段階上の容量を選んでおくと後悔しにくくなります。詳しくは「<Link href="/iphone/storage-guide/">ストレージ容量ガイド</Link>」をご覧ください。</p>
                   </div>
                 </div>
                 <div className="m-card faq-item">

@@ -1,9 +1,11 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
+import { getHeroImage } from '@/lib/data/hero-images'
 import {
   getAllIPadModels,
   getAllIPadPriceLogsByModelIds,
+  getAllProductShopLinksByType,
 } from '@/lib/queries'
 import type { IPadPriceLog } from '@/lib/types'
 import StorageTable, { type StorageModel } from './components/StorageTable'
@@ -12,19 +14,20 @@ import ShareBox from '@/app/components/ShareBox'
 export const revalidate = 86400
 
 export const metadata: Metadata = {
-  title: '中古iPadのストレージ容量はどれがいい？用途別おすすめ容量と容量別の価格差まとめ | ユーズドラボ',
+  title: '中古iPadのストレージ容量はどれがいい？用途別おすすめ容量まとめ',
   description:
-    '中古iPadを買うとき何GBを選ぶべきか、用途別の目安を解説。歴代モデルの容量ラインナップ一覧と、容量違いによる中古価格差も比較できます。',
+    '中古iPadを買うとき何GBを選ぶべきか、用途別の目安を解説。歴代モデルの容量ラインナップ一覧もまとめています。',
+  alternates: { canonical: '/ipad/storage-guide/' },
   openGraph: {
-    title: '中古iPadのストレージ容量はどれがいい？用途別おすすめ容量と容量別の価格差まとめ | ユーズドラボ',
-    description: '中古iPadのストレージ容量の選び方を解説。容量別の価格差も比較できます。',
+    title: '中古iPadのストレージ容量はどれがいい？用途別おすすめ容量まとめ',
+    description: '中古iPadのストレージ容量の選び方を用途別に解説。歴代モデルの容量ラインナップも一覧で確認できます。',
     url: '/ipad/storage-guide/',
-    images: [{ url: '/images/content/ipad-image-09.jpg', width: 360, height: 360, alt: '中古iPadストレージ容量ガイドのイメージ' }],
+    images: [{ url: '/images/content/thumbnail/ipad-image-09.jpg', width: 360, height: 360, alt: '中古iPadストレージ容量ガイドのイメージ' }],
   },
   twitter: {
-    title: '中古iPadのストレージ容量はどれがいい？用途別おすすめ容量と容量別の価格差まとめ | ユーズドラボ',
-    description: '中古iPadのストレージ容量の選び方を解説。容量別の価格差も比較できます。',
-    images: ['/images/content/ipad-image-09.jpg'],
+    title: '中古iPadのストレージ容量はどれがいい？用途別おすすめ容量まとめ',
+    description: '中古iPadのストレージ容量の選び方を用途別に解説。歴代モデルの容量ラインナップも一覧で確認できます。',
+    images: ['/images/content/thumbnail/ipad-image-09.jpg'],
   },
 }
 
@@ -66,7 +69,10 @@ function calcAvgMinPrice(log: IPadPriceLog): number | null {
 }
 
 export default async function StorageGuidePage() {
-  const allModels = await getAllIPadModels()
+  const [allModels, allShopLinks] = await Promise.all([
+    getAllIPadModels(),
+    getAllProductShopLinksByType('ipad'),
+  ])
 
   // StorageTable用データ: モデル情報 + PriceLogの最安価格を統合
   const priceLogsMap = await getAllIPadPriceLogsByModelIds(allModels.map((m) => m.id))
@@ -90,6 +96,8 @@ export default async function StorageGuidePage() {
       storageLabel = isNaN(num) ? latestLog.storage : num >= 1000 ? `${num / 1000}TB` : `${num}GB`
     }
 
+    const iosysLink = allShopLinks.find((l) => l.product_id === m.id && l.shop_id === 1)
+
     return {
       id: m.id,
       model: m.model,
@@ -99,6 +107,7 @@ export default async function StorageGuidePage() {
       strage: m.strage,
       storageLabel,
       avgMin,
+      iosysUrl: iosysLink?.url ?? null,
     }
   })
 
@@ -115,8 +124,8 @@ export default async function StorageGuidePage() {
   const articleJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Article',
-    headline: '中古iPadのストレージ容量はどれがいい？用途別おすすめ容量と容量別の価格差まとめ',
-    description: '中古iPadのストレージ容量の選び方を解説。容量別の価格差も比較できます。',
+    headline: '中古iPadのストレージ容量はどれがいい？用途別おすすめ容量まとめ',
+    description: '中古iPadのストレージ容量の選び方を用途別に解説。歴代モデルの容量ラインナップも一覧で確認できます。',
     datePublished: new Date().toISOString().split('T')[0],
     dateModified: new Date().toISOString().split('T')[0],
     author: { '@type': 'Organization', name: 'ユーズドラボ', url: 'https://used-lab.com/' },
@@ -191,7 +200,7 @@ export default async function StorageGuidePage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/content/ipad-image-09.jpg"
+                  src="/images/content/thumbnail/ipad-image-09.jpg"
                   alt="中古iPadストレージ容量ガイドのイメージ"
                   className="hero-media__img"
                   width={360}
@@ -209,7 +218,7 @@ export default async function StorageGuidePage() {
           <div className="l-container">
             <div className="lead-box">
               <p>中古iPadを選ぶとき、容量（ストレージ）選びで迷う方は多いのではないでしょうか。iPadはSDカードで容量を増やせないため、購入時の選択がそのまま使い勝手に直結します。</p>
-              <p>本記事では、<strong>用途別のおすすめ容量の目安、歴代iPadの容量ラインナップ、そして容量違いによる中古価格差</strong>をまとめました。「何GBにすればいいかわからない」という方はぜひ参考にしてみてください。</p>
+              <p>本記事では、<strong>用途別のおすすめ容量の目安と歴代iPadの容量ラインナップ</strong>をまとめました。「何GBにすればいいかわからない」という方はぜひ参考にしてみてください。</p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
                 情報を網羅的に得たい方は「<Link href="/ipad">中古iPad購入完全ガイド</Link>」も参考にしてみてください！
@@ -419,6 +428,17 @@ export default async function StorageGuidePage() {
 
             <div className="m-card m-card--shadow m-card--padded caution-check-card">
               <div className="caution-check-card__body">
+                <div className="caution-check-card__visual">
+                  <figure className="caution-check-card__image">
+                    <img
+                      src="/images/content/thumbnail/ipad-storage.jpg"
+                      alt="iPadのストレージ使用量確認画面"
+                      width={280}
+                      height={200}
+                      loading="lazy"
+                    />
+                  </figure>
+                </div>
                 <div className="caution-check-card__text">
                   <p>iPadの「設定」からストレージの使用状況を確認できます。</p>
                   <p>アプリごとの容量も表示されるため、<strong>何にどのくらい容量を使っているか</strong>を把握できます。</p>
@@ -469,7 +489,7 @@ export default async function StorageGuidePage() {
             <div className="m-card m-card--shadow popular-card">
               <figure className="popular-card-figure">
                 <Image
-                  src="/images/content/ipad-image-06.jpg"
+                  src="/images/content/thumbnail/ipad-image-06.jpg"
                   alt="中古iPadおすすめのイメージ画像"
                   className="popular-card-img"
                   width={400}
@@ -514,7 +534,44 @@ export default async function StorageGuidePage() {
           </div>
         </section>
 
-        <ShareBox url="https://used-lab.com/ipad/storage-guide/" text="中古iPadのストレージ容量はどれがいい？用途別おすすめ容量と容量別の価格差まとめ" />
+        <section className="l-section" id="related" aria-labelledby="heading-related-storage">
+          <div className="l-container">
+            <h2 className="m-section-heading m-section-heading--lg" id="heading-related-storage">iPad選びのヒントになる関連記事</h2>
+            <p className="m-section-desc">ストレージ以外の観点からもiPad選びをサポートする記事をまとめました。</p>
+            <div className="l-grid l-grid--2col l-grid--gap-lg">
+              <Link href="/ipad/ipad-spec-table/" className="m-card m-card--shadow related-link-card m-card--hoverable">
+                <Image src={getHeroImage('/ipad/ipad-spec-table/')} alt="iPadスペック比較表" className="related-link-card__img" width={400} height={300} loading="lazy" />
+                <div className="related-link-card__body">
+                  <h3 className="related-link-card__title">iPadスペック比較表</h3>
+                  <p className="related-link-card__desc">歴代iPadの全スペックを一覧で比較</p>
+                </div>
+              </Link>
+              <Link href="/ipad/apple-pencil-compare/" className="m-card m-card--shadow related-link-card m-card--hoverable">
+                <Image src={getHeroImage('/ipad/apple-pencil-compare/')} alt="Apple Pencil比較" className="related-link-card__img" width={400} height={300} loading="lazy" />
+                <div className="related-link-card__body">
+                  <h3 className="related-link-card__title">Apple Pencil比較</h3>
+                  <p className="related-link-card__desc">各モデルの違いと対応iPadがわかる</p>
+                </div>
+              </Link>
+              <Link href="/ipad/accessories-summary/" className="m-card m-card--shadow related-link-card m-card--hoverable">
+                <Image src={getHeroImage('/ipad/accessories-summary/')} alt="Magic Keyboard型番一覧" className="related-link-card__img" width={400} height={300} loading="lazy" />
+                <div className="related-link-card__body">
+                  <h3 className="related-link-card__title">Magic Keyboard 型番一覧</h3>
+                  <p className="related-link-card__desc">対応キーボードがすぐわかる</p>
+                </div>
+              </Link>
+              <Link href="/ipad/benchmark/" className="m-card m-card--shadow related-link-card m-card--hoverable">
+                <Image src={getHeroImage('/ipad/benchmark/')} alt="ベンチマーク比較ランキング" className="related-link-card__img" width={400} height={300} loading="lazy" />
+                <div className="related-link-card__body">
+                  <h3 className="related-link-card__title">ベンチマーク比較ランキング</h3>
+                  <p className="related-link-card__desc">歴代iPadのチップ性能をスコアで比較</p>
+                </div>
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        <ShareBox url="https://used-lab.com/ipad/storage-guide/" text="中古iPadのストレージ容量はどれがいい？用途別おすすめ容量まとめ" />
         </div>
       </article>
     </main>

@@ -4,7 +4,7 @@ export default function RecommendSection() {
       {/* GPSモデルがおすすめな人 */}
       <div id="recommend-gps" className="m-card m-card--shadow m-card--padded popular-card">
         <img
-          src="/images/content/apple-watch-image.jpg"
+          src="/images/content/thumbnail/apple-watch-image.jpg"
           alt="GPSモデルがおすすめな人"
           className="popular-card-img"
           width={240}

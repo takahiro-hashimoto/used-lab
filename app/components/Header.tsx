@@ -31,7 +31,7 @@ export default function Header() {
       <div className="header-inner">
         <Link href="/" className="m-logo">
           <Image
-            src="/images/content/logo-used-lab.webp"
+            src="/images/content/photo/logo-used-lab.webp"
             alt="ユーズドラボ"
             width={180}
             height={30}

@@ -15,7 +15,7 @@ export default function HealthSection() {
           {/* 13. フィットネスアプリで1日の活動量をチェック */}
           <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
             <img
-              src="/images/content/used-lab-image.jpg"
+              src="/images/content/photo/used-lab-image.jpg"
               alt="Apple Watchのアクティビティリング"
               className="popular-card-img"
               width={240}
@@ -55,7 +55,7 @@ export default function HealthSection() {
           {/* 14. ワークアウトで運動の記録を取る */}
           <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
             <img
-              src="/images/content/apple-watch-workout.jpg"
+              src="/images/content/photo/apple-watch-workout.jpg"
               alt="Apple Watchでワークアウトを記録する様子"
               className="popular-card-img"
               width={240}

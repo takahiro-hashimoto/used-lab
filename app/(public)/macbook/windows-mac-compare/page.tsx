@@ -13,16 +13,17 @@ const PAGE_DESCRIPTION =
 const PAGE_URL = 'https://used-lab.com/macbook/windows-mac-compare/'
 
 export const metadata: Metadata = {
-  title: `${PAGE_TITLE} | ユーズドラボ`,
+  title: PAGE_TITLE,
   description: PAGE_DESCRIPTION,
+  alternates: { canonical: '/macbook/windows-mac-compare/' },
   openGraph: {
-    title: `${PAGE_TITLE} | ユーズドラボ`,
+    title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/macbook/windows-mac-compare/',
     images: [{ url: '/images/macbook/mba-13-2024.jpg', width: 360, height: 360, alt: PAGE_TITLE }],
   },
   twitter: {
-    title: `${PAGE_TITLE} | ユーズドラボ`,
+    title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     images: ['/images/macbook/mba-13-2024.jpg'],
   },
@@ -110,7 +111,7 @@ export default function WindowsMacComparePage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/content/macbook-image-06.jpg"
+                  src="/images/content/thumbnail/macbook-image-06.jpg"
                   alt="MacとWindowsの比較イメージ"
                   className="hero-media__img"
                   width={360}

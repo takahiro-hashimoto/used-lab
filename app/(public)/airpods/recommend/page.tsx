@@ -34,16 +34,17 @@ const PAGE_DESCRIPTION =
 const PAGE_URL = 'https://used-lab.com/airpods/recommend/'
 
 export const metadata: Metadata = {
-  title: `${PAGE_TITLE} | ユーズドラボ`,
+  title: PAGE_TITLE,
   description: PAGE_DESCRIPTION,
+  alternates: { canonical: '/airpods/recommend/' },
   openGraph: {
-    title: `${PAGE_TITLE} | ユーズドラボ`,
+    title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/airpods/recommend/',
     images: [{ url: '/images/airpods/mtjv3j:a.jpg', width: 360, height: 360, alt: PAGE_TITLE }],
   },
   twitter: {
-    title: `${PAGE_TITLE} | ユーズドラボ`,
+    title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     images: ['/images/airpods/mtjv3j:a.jpg'],
   },
@@ -212,7 +213,7 @@ export default async function AirPodsRecommendPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/content/airpods-image-02.jpg"
+                  src="/images/content/thumbnail/airpods-image-02.jpg"
                   alt={`中古AirPodsおすすめ${RECOMMEND_COUNT}選のイメージ`}
                   className="hero-media__img"
                   width={360}

@@ -33,7 +33,7 @@ export default function PreCheckSection() {
                 Apple WatchのwatchOSサポート期間は約5年で、iPhoneの約7年、iPadの約5〜6年と比べても短めです。特にSEシリーズや古いSeriesは発売から4年程度でサポートが終了する場合もあります。
               </p>
               <p>
-                「今使える」と「今後も使える」は別です。安さより<strong>「あと何年使えるか」で判断</strong>しましょう。
+                「今使える」と「今後も使える」は別です。安さより<strong>「あと何年使えるか」で判断</strong>しましょう。各モデルのサポート期間は「<a href="/watch/used-watch-support/">watchOSサポート期間一覧</a>」で確認できます。
               </p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
@@ -185,7 +185,7 @@ export default function PreCheckSection() {
                 セルラーモデルはGPSモデルより中古価格も高いため、セルラー機能を使わないなら割高な買い物になってしまいます。iPhoneを常に持ち歩く方はGPSモデルで十分です。
               </p>
               <p>
-                セルラー機能が必要な場合は、購入前にキャリアの対応状況を確認し、別途ウォッチナンバー契約（月額385円〜550円）が必要であることも踏まえて検討しましょう。
+                セルラー機能が必要な場合は、購入前にキャリアの対応状況を確認し、別途ウォッチナンバー契約（月額385円〜550円）が必要であることも踏まえて検討しましょう。詳しくは「<a href="/watch/gps-cellular-compare/">GPSモデルとセルラーモデルの違い比較</a>」をご覧ください。
               </p>
             </div>
           </div>

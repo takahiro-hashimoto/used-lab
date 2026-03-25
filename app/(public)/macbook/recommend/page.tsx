@@ -36,16 +36,17 @@ const PAGE_DESCRIPTION =
 const PAGE_URL = 'https://used-lab.com/macbook/recommend/'
 
 export const metadata: Metadata = {
-  title: `${PAGE_TITLE} | ユーズドラボ`,
+  title: PAGE_TITLE,
   description: PAGE_DESCRIPTION,
+  alternates: { canonical: '/macbook/recommend/' },
   openGraph: {
-    title: `${PAGE_TITLE} | ユーズドラボ`,
+    title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/macbook/recommend/',
     images: [{ url: '/images/macbook/mba-13-2024.jpg', width: 360, height: 360, alt: PAGE_TITLE }],
   },
   twitter: {
-    title: `${PAGE_TITLE} | ユーズドラボ`,
+    title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     images: ['/images/macbook/mba-13-2024.jpg'],
   },
@@ -195,7 +196,7 @@ export default async function MacBookRecommendPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/content/macbook-image-04.jpg"
+                  src="/images/content/thumbnail/macbook-image-04.jpg"
                   alt={`中古MacBookおすすめ${RECOMMEND_COUNT}選のイメージ`}
                   className="hero-media__img"
                   width={360}

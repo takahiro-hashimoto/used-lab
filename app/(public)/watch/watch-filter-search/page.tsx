@@ -9,17 +9,18 @@ import ShareBox from '@/app/components/ShareBox'
 import RecommendBanner from '@/app/(public)/watch/[slug]/components/RecommendBanner'
 
 export const metadata: Metadata = {
-  title: 'Apple Watch機種診断シミュレーター｜自分に合うおすすめ中古アップルウォッチがすぐわかる【2026年版】 | ユーズドラボ',
+  title: 'Apple Watch機種診断シミュレーター｜自分に合うおすすめ中古アップルウォッチがすぐわかる【2026年版】',
   description:
     '目的・予算・こだわり条件から、あなたに最適な中古Apple Watchを無料で診断。Apple Watch SE〜Ultra 3まで全機種のデータベースから最適な1台を提案します。',
+  alternates: { canonical: '/watch/watch-filter-search/' },
   openGraph: {
-    title: 'Apple Watch機種診断シミュレーター｜自分に合うおすすめ中古アップルウォッチがすぐわかる【2026年版】 | ユーズドラボ',
+    title: 'Apple Watch機種診断シミュレーター｜自分に合うおすすめ中古アップルウォッチがすぐわかる【2026年版】',
     description: '目的・予算・こだわり条件から、あなたに最適な中古Apple Watchを無料で診断。',
     url: '/watch/watch-filter-search/',
     images: [{ url: '/images/watch/watch-ultra2.jpg', width: 360, height: 360, alt: 'Apple Watch機種診断シミュレーター' }],
   },
   twitter: {
-    title: 'Apple Watch機種診断シミュレーター｜自分に合うおすすめ中古アップルウォッチがすぐわかる【2026年版】 | ユーズドラボ',
+    title: 'Apple Watch機種診断シミュレーター｜自分に合うおすすめ中古アップルウォッチがすぐわかる【2026年版】',
     description: '目的・予算・こだわり条件から、あなたに最適な中古Apple Watchを無料で診断。',
     images: ['/images/watch/watch-ultra2.jpg'],
   },
@@ -207,7 +208,7 @@ export default async function WatchFilterSearchPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/content/simulator.jpg"
+                  src="/images/content/thumbnail/simulator.jpg"
                   alt="Apple Watch機種診断シミュレーターのイメージ"
                   className="hero-media__img"
                   width={360}
@@ -296,7 +297,7 @@ export default async function WatchFilterSearchPage() {
             <div className="m-card m-card--shadow popular-card">
               <figure className="popular-card-figure">
                 <Image
-                  src="/images/content/watch-image-08.jpg"
+                  src="/images/content/thumbnail/watch-image-08.jpg"
                   alt="中古Apple Watchおすすめ5選のイメージ画像"
                   className="popular-card-img"
                   width={400}

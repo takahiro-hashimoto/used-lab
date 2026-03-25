@@ -1,16 +1,7 @@
 import Link from 'next/link'
 import type { BenchModel } from './BenchmarkRanking'
 import type { ProductShopLink } from '@/lib/types'
-import { SHOP_KEY_TO_ID } from '@/lib/types'
-
-type UseCaseItem = {
-  icon: string
-  title: string
-  description: string
-  singleMin: number
-  multiMin: number
-  metalMin: number | null
-}
+import { type UseCaseItem, findBestMatch, getIosysUrl } from '@/lib/utils/benchmark-helpers'
 
 /**
  * 推奨スコアの根拠:
@@ -65,30 +56,6 @@ const USE_CASES: UseCaseItem[] = [
     metalMin: 10000,
   },
 ]
-
-function findBestMatch(models: BenchModel[], useCase: UseCaseItem): BenchModel | null {
-  const candidates = models.filter((m) => {
-    if (m.score_single < useCase.singleMin) return false
-    if (m.score_multi < useCase.multiMin) return false
-    if (useCase.metalMin && m.score_metal < useCase.metalMin) return false
-    return true
-  })
-
-  if (candidates.length === 0) return null
-
-  const withPrice = candidates.filter((m) => m.minPrice != null)
-  if (withPrice.length > 0) {
-    return withPrice.sort((a, b) => (a.minPrice || Infinity) - (b.minPrice || Infinity))[0]
-  }
-  return candidates.sort((a, b) =>
-    (a.score_single + a.score_multi + a.score_metal) - (b.score_single + b.score_multi + b.score_metal)
-  )[0]
-}
-
-function getIosysUrl(shopLinks: ProductShopLink[], productId: number): string | null {
-  const link = shopLinks.find((l) => l.product_id === productId && l.shop_id === SHOP_KEY_TO_ID.iosys)
-  return link?.url || null
-}
 
 type Props = {
   models: BenchModel[]

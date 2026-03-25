@@ -5,7 +5,7 @@ export default function IPhonePopularSection() {
     <PopularSectionBase
       sectionTitle="目的別に人気の中古iPhone"
       sectionDescription="目的別におすすめの機種を厳選。今回の記事で購入するべき機種が判断できなかった方はぜひご覧ください。"
-      imageSrc="/images/content/iphone-setting.webp"
+      imageSrc="/images/content/thumbnail/iphone-setting.webp"
       imageAlt="中古iPhoneおすすめ5選のイメージ画像"
       subtitle="目的別におすすめ機種を厳選！"
       cardTitle="中古iPhoneおすすめ5選"

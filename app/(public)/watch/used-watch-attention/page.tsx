@@ -17,16 +17,17 @@ const PAGE_DESCRIPTION =
 const PAGE_URL = 'https://used-lab.com/watch/used-watch-attention/'
 
 export const metadata: Metadata = {
-  title: `${PAGE_TITLE} | ユーズドラボ`,
+  title: PAGE_TITLE,
   description: PAGE_DESCRIPTION,
+  alternates: { canonical: '/watch/used-watch-attention/' },
   openGraph: {
-    title: `${PAGE_TITLE} | ユーズドラボ`,
+    title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/watch/used-watch-attention/',
     images: [{ url: '/images/watch/watch-10.jpg', width: 360, height: 360, alt: PAGE_TITLE }],
   },
   twitter: {
-    title: `${PAGE_TITLE} | ユーズドラボ`,
+    title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     images: ['/images/watch/watch-10.jpg'],
   },
@@ -166,7 +167,7 @@ export default function UsedWatchAttentionPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/content/check-list.jpg"
+                  src="/images/content/thumbnail/check-list.jpg"
                   alt="中古Apple Watch購入時の注意点イメージ"
                   className="hero-media__img"
                   width={360}
@@ -247,7 +248,7 @@ export default function UsedWatchAttentionPage() {
           <PopularSection
             sectionTitle="目的別に人気の中古Apple Watch"
             sectionDescription="目的別におすすめの機種を厳選。診断で迷った方はぜひご覧ください。"
-            imageSrc="/images/content/watch-image-11.jpg"
+            imageSrc="/images/content/thumbnail/watch-image-11.jpg"
             imageAlt="中古Apple Watchおすすめのイメージ画像"
             subtitle="目的別におすすめ機種を厳選！"
             cardTitle="中古Apple Watchおすすめモデル"

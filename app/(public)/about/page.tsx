@@ -7,15 +7,16 @@ const PAGE_TITLE = '運営者情報'
 const PAGE_DESCRIPTION = 'ユーズドラボの運営者タカヒロのプロフィールや、サイト開設の経緯についてご紹介します。'
 
 export const metadata: Metadata = {
-  title: `${PAGE_TITLE} | ユーズドラボ`,
+  title: PAGE_TITLE,
   description: PAGE_DESCRIPTION,
+  alternates: { canonical: '/about/' },
   openGraph: {
-    title: `${PAGE_TITLE} | ユーズドラボ`,
+    title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/about/',
   },
   twitter: {
-    title: `${PAGE_TITLE} | ユーズドラボ`,
+    title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
   },
 }
@@ -115,7 +116,7 @@ export default function AboutPage() {
             <div className="about-profile-inner">
               <div className="about-profile-avatar">
                 <Image
-                  src="/images/content/my-icon.webp"
+                  src="/images/content/thumbnail/my-icon.webp"
                   alt="タカヒロ"
                   width={200}
                   height={200}
@@ -199,7 +200,7 @@ export default function AboutPage() {
           <div className="about-history m-card m-card--shadow m-card--padded">
             <div className="about-history-image">
               <Image
-                src="/images/content/ipad-image.jpg"
+                src="/images/content/photo/ipad-image.jpg"
                 alt="Apple製品のイメージ"
                 width={800}
                 height={400}

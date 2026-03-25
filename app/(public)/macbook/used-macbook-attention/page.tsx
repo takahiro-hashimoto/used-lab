@@ -17,16 +17,17 @@ const PAGE_DESCRIPTION =
 const PAGE_URL = 'https://used-lab.com/macbook/used-macbook-attention/'
 
 export const metadata: Metadata = {
-  title: `${PAGE_TITLE} | ユーズドラボ`,
+  title: PAGE_TITLE,
   description: PAGE_DESCRIPTION,
+  alternates: { canonical: '/macbook/used-macbook-attention/' },
   openGraph: {
-    title: `${PAGE_TITLE} | ユーズドラボ`,
+    title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/macbook/used-macbook-attention/',
     images: [{ url: '/images/macbook/mbp-14-2024-nov.jpg', width: 360, height: 360, alt: PAGE_TITLE }],
   },
   twitter: {
-    title: `${PAGE_TITLE} | ユーズドラボ`,
+    title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     images: ['/images/macbook/mbp-14-2024-nov.jpg'],
   },
@@ -166,7 +167,7 @@ export default function UsedMacBookAttentionPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/content/check-list.jpg"
+                  src="/images/content/thumbnail/check-list.jpg"
                   alt="中古MacBook購入時の注意点イメージ"
                   className="hero-media__img"
                   width={360}

@@ -16,18 +16,19 @@ const PAGE_DESCRIPTION = `中古iPhoneとセットで通信契約できる格安
 const PAGE_URL = 'https://used-lab.com/iphone/mvno/'
 
 export const metadata: Metadata = {
-  title: `${PAGE_TITLE} | ユーズドラボ`,
+  title: PAGE_TITLE,
   description: PAGE_DESCRIPTION,
+  alternates: { canonical: '/iphone/mvno/' },
   openGraph: {
-    title: `${PAGE_TITLE} | ユーズドラボ`,
+    title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/iphone/mvno/',
-    images: [{ url: '/images/content/sim.webp', width: 360, height: 360, alt: PAGE_TITLE }],
+    images: [{ url: '/images/content/thumbnail/sim.webp', width: 360, height: 360, alt: PAGE_TITLE }],
   },
   twitter: {
-    title: `${PAGE_TITLE} | ユーズドラボ`,
+    title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
-    images: ['/images/content/sim.webp'],
+    images: ['/images/content/thumbnail/sim.webp'],
   },
 }
 
@@ -185,7 +186,7 @@ export default async function MvnoPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <img
-                  src="/images/content/sim.webp"
+                  src="/images/content/thumbnail/sim.webp"
                   alt="SIMカードをスマートフォンに挿入するイメージ"
                   className="hero-media__img"
                   width={360}
@@ -774,7 +775,7 @@ export default async function MvnoPage() {
                   width={400}
                   height={500}
                   className="popular-card-img"
-                  src="/images/content/iphone-setting.webp"
+                  src="/images/content/thumbnail/iphone-setting.webp"
                 />
               </figure>
               <div className="popular-card-body">

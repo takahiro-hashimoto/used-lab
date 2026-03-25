@@ -19,14 +19,14 @@ export const GUIDE_PRICE_SLUGS = [
 
 // ---------- スペック比較リンク ----------
 export const GUIDE_SPEC_LINKS = [
-  { href: '/ipad/ipad-spec-table/', icon: 'fa-table-cells', title: '歴代iPadスペック比較表', desc: 'CPU、ディスプレイ、重量、端子など、歴代iPadの全スペックを網羅した一覧表。', image: '/images/content/ipad-image-11.jpg' },
-  { href: '/ipad/used-ipad-support/', icon: 'fa-shield-halved', title: 'iPadOSサポート期間一覧表', desc: '各モデルのサポート終了予測を解説。「いつまで使えるか」の目安がわかります。', image: '/images/content/ipad-image-06.jpg' },
-  { href: '/ipad/apple-pencil-compare/', icon: 'fa-pen-fancy', title: 'Apple Pencil対応比較表', desc: 'Apple Pencilの世代ごとの対応状況・機能の違いを一覧で比較できます。', image: '/images/content/ipad-image-07.jpg' },
-  { href: '/ipad/accessories-summary/', icon: 'fa-keyboard', title: 'Magic Keyboard 型番・対応一覧', desc: '歴代iPadに対応するMagic Keyboard・Smart Keyboardの型番と対応機種を一覧で紹介。', image: '/images/content/ipad-keyboard.jpg' },
-  { href: '/ipad/wifi-cellular/', icon: 'fa-wifi', title: 'Wi-Fi vs Cellularモデル比較', desc: 'Wi-FiモデルとCellularモデルの違い、選び方のポイントを解説。', image: '/images/content/ipad-image-02.jpg' },
-  { href: '/macbook/ipad-macbook-compare/', icon: 'fa-laptop', title: 'iPad vs MacBook 徹底比較', desc: 'iPadとMacBookの違いを用途別に比較。どちらを選ぶべきか迷っている方必見。', image: '/images/content/macbook-ipad.jpg' },
-  { href: '/ipad/storage-guide/', icon: 'fa-hard-drive', title: 'ストレージ容量ガイド', desc: '用途別のおすすめ容量と、容量違いによる中古価格差を比較できます。', image: '/images/content/ipad-image-09.jpg' },
-  { href: '/ipad/benchmark/', icon: 'fa-ranking-star', title: '歴代iPadベンチマーク比較', desc: 'Geekbench 6・AnTuTuスコアで歴代iPadの性能をランキング形式で比較。', image: '/images/content/ipad-image-12.jpg' },
+  { href: '/ipad/ipad-spec-table/', icon: 'fa-table-cells', title: '歴代iPadスペック比較表', desc: 'CPU、ディスプレイ、重量、端子など、歴代iPadの全スペックを網羅した一覧表。' },
+  { href: '/ipad/used-ipad-support/', icon: 'fa-shield-halved', title: 'iPadOSサポート期間一覧表', desc: '各モデルのサポート終了予測を解説。「いつまで使えるか」の目安がわかります。' },
+  { href: '/ipad/apple-pencil-compare/', icon: 'fa-pen-fancy', title: 'Apple Pencil対応比較表', desc: 'Apple Pencilの世代ごとの対応状況・機能の違いを一覧で比較できます。' },
+  { href: '/ipad/accessories-summary/', icon: 'fa-keyboard', title: 'Magic Keyboard 型番・対応一覧', desc: '歴代iPadに対応するMagic Keyboard・Smart Keyboardの型番と対応機種を一覧で紹介。' },
+  { href: '/ipad/wifi-cellular/', icon: 'fa-wifi', title: 'Wi-Fi vs Cellularモデル比較', desc: 'Wi-FiモデルとCellularモデルの違い、選び方のポイントを解説。' },
+  { href: '/macbook/ipad-macbook-compare/', icon: 'fa-laptop', title: 'iPad vs MacBook 徹底比較', desc: 'iPadとMacBookの違いを用途別に比較。どちらを選ぶべきか迷っている方必見。' },
+  { href: '/ipad/storage-guide/', icon: 'fa-hard-drive', title: 'ストレージ容量ガイド', desc: '用途別のおすすめ容量と歴代モデルの容量ラインナップをまとめています。' },
+  { href: '/ipad/benchmark/', icon: 'fa-ranking-star', title: '歴代iPadベンチマーク比較', desc: 'Geekbench 6・AnTuTuスコアで歴代iPadの性能をランキング形式で比較。' },
 ] as const
 
 // ---------- FAQ ----------
@@ -69,7 +69,7 @@ export const GUIDE_FAQ_ITEMS = [
   },
   {
     question: 'iPadのストレージ容量はどれを選ぶべき？',
-    answer: 'Web閲覧・動画視聴・ノートアプリがメインなら64GBでも運用可能です。写真やイラスト、アプリを多く入れるなら128GB以上、動画編集やゲームを本格的に楽しむなら256GB以上がおすすめです。iPadはストレージの後から増設ができないため、迷ったら1段階上の容量を選んでおくと後悔しにくくなります。',
+    answer: 'Web閲覧・動画視聴・ノートアプリがメインなら64GBでも運用可能です。写真やイラスト、アプリを多く入れるなら128GB以上、動画編集やゲームを本格的に楽しむなら256GB以上がおすすめです。iPadはストレージの後から増設ができないため、迷ったら1段階上の容量を選んでおくと後悔しにくくなります。詳しくは「ストレージ容量ガイド」をご覧ください。',
   },
   {
     question: 'メルカリやヤフオクで中古iPadを買っても大丈夫？',

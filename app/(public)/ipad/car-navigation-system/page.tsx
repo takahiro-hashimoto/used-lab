@@ -11,18 +11,19 @@ const PAGE_DESCRIPTION =
 const PAGE_URL = 'https://used-lab.com/ipad/car-navigation-system/'
 
 export const metadata: Metadata = {
-  title: `${PAGE_TITLE} | ユーズドラボ`,
+  title: PAGE_TITLE,
   description: PAGE_DESCRIPTION,
+  alternates: { canonical: '/ipad/car-navigation-system/' },
   openGraph: {
-    title: `${PAGE_TITLE} | ユーズドラボ`,
+    title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/ipad/car-navigation-system/',
-    images: [{ url: '/images/content/ipad-car-navi-02.jpg', width: 360, height: 360, alt: PAGE_TITLE }],
+    images: [{ url: '/images/content/photo/ipad-car-navi-02.jpg', width: 360, height: 360, alt: PAGE_TITLE }],
   },
   twitter: {
-    title: `${PAGE_TITLE} | ユーズドラボ`,
+    title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
-    images: ['/images/content/ipad-car-navi-02.jpg'],
+    images: ['/images/content/photo/ipad-car-navi-02.jpg'],
   },
 }
 
@@ -108,7 +109,7 @@ export default function CarNavigationSystemPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/content/ipad-image-10.jpg"
+                  src="/images/content/thumbnail/ipad-image-10.jpg"
                   alt="iPadをカーナビ化した様子"
                   className="hero-media__img"
                   width={360}

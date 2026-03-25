@@ -11,16 +11,17 @@ const PAGE_DESCRIPTION =
 const PAGE_URL = 'https://used-lab.com/ipad/wifi-cellular/'
 
 export const metadata: Metadata = {
-  title: `${PAGE_TITLE} | ユーズドラボ`,
+  title: PAGE_TITLE,
   description: PAGE_DESCRIPTION,
+  alternates: { canonical: '/ipad/wifi-cellular/' },
   openGraph: {
-    title: `${PAGE_TITLE} | ユーズドラボ`,
+    title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/ipad/wifi-cellular/',
     images: [{ url: '/images/ipad/ipad-air-6.jpg', width: 360, height: 360, alt: PAGE_TITLE }],
   },
   twitter: {
-    title: `${PAGE_TITLE} | ユーズドラボ`,
+    title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     images: ['/images/ipad/ipad-air-6.jpg'],
   },
@@ -107,7 +108,7 @@ export default function WifiCellularPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/content/ipad-image-02.jpg"
+                  src="/images/content/thumbnail/ipad-image-02.jpg"
                   alt="iPadのWi-FiモデルとセルラーモデルのイメージA"
                   className="hero-media__img"
                   width={360}
@@ -244,7 +245,7 @@ export default function WifiCellularPage() {
                 <div className="m-card m-card--shadow popular-card popular-card--full">
                   <figure className="popular-card-figure">
                     <img
-                      src="/images/content/ipad-wifi-01.webp"
+                      src="/images/content/photo/ipad-wifi-01.webp"
                       alt="データ通信方式の違いイメージ"
                       className="popular-card-img"
                       width={400}
@@ -278,7 +279,7 @@ export default function WifiCellularPage() {
                 <div className="m-card m-card--shadow popular-card popular-card--full">
                   <figure className="popular-card-figure">
                     <img
-                      src="/images/content/ipad-wifi-02.webp"
+                      src="/images/content/photo/ipad-wifi-02.webp"
                       alt="背面デザインの違いイメージ"
                       className="popular-card-img"
                       width={400}
@@ -312,7 +313,7 @@ export default function WifiCellularPage() {
                 <div className="m-card m-card--shadow popular-card popular-card--full">
                   <figure className="popular-card-figure">
                     <img
-                      src="/images/content/ipad-wifi-03.webp"
+                      src="/images/content/photo/ipad-wifi-03.webp"
                       alt="GPS機能の違いイメージ"
                       className="popular-card-img"
                       width={400}
@@ -347,7 +348,7 @@ export default function WifiCellularPage() {
                 <div className="m-card m-card--shadow popular-card popular-card--full">
                   <figure className="popular-card-figure">
                     <img
-                      src="/images/content/ipad-wifi-04.webp"
+                      src="/images/content/photo/ipad-wifi-04.webp"
                       alt="テザリング機能の違いイメージ"
                       className="popular-card-img"
                       width={400}
@@ -389,7 +390,7 @@ export default function WifiCellularPage() {
                 <div className="m-card m-card--shadow popular-card popular-card--full">
                   <figure className="popular-card-figure">
                     <img
-                      src="/images/content/wifi-image.webp"
+                      src="/images/content/photo/wifi-image.webp"
                       alt="iPad Wi-Fiモデルの使用イメージ"
                       className="popular-card-img"
                       width={400}
@@ -423,7 +424,7 @@ export default function WifiCellularPage() {
                 <div className="m-card m-card--shadow popular-card popular-card--full">
                   <figure className="popular-card-figure">
                     <img
-                      src="/images/content/cellular-image.webp"
+                      src="/images/content/photo/cellular-image.webp"
                       alt="iPad セルラーモデルの使用イメージ"
                       className="popular-card-img"
                       width={400}
@@ -557,7 +558,7 @@ export default function WifiCellularPage() {
                     width={400}
                     height={500}
                     className="popular-card-img"
-                    src="/images/content/ipad-image-03.jpg"
+                    src="/images/content/thumbnail/ipad-image-03.jpg"
                   />
                 </figure>
                 <div className="popular-card-body">
@@ -619,7 +620,7 @@ export default function WifiCellularPage() {
                   width={400}
                   height={500}
                   className="popular-card-img"
-                  src="/images/content/ipad-image-03.jpg"
+                  src="/images/content/thumbnail/ipad-image-03.jpg"
                 />
               </figure>
               <div className="popular-card-body">

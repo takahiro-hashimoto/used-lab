@@ -26,17 +26,18 @@ import ShareBox from '@/app/components/ShareBox'
 import RecommendBanner from '@/app/(public)/watch/[slug]/components/RecommendBanner'
 
 export const metadata: Metadata = {
-  title: '歴代Apple Watchスペック比較表！各世代の性能の違いがすぐわかる | ユーズドラボ',
+  title: '歴代Apple Watchスペック比較表！各世代の性能の違いがすぐわかる',
   description:
     '歴代Apple Watchのスペック比較表一覧です。Series・SE・Ultraの性能差や機能の違いを一目で確認できます。',
+  alternates: { canonical: '/watch/watch-spec-table/' },
   openGraph: {
-    title: '歴代Apple Watchスペック比較表！各世代の性能の違いがすぐわかる | ユーズドラボ',
+    title: '歴代Apple Watchスペック比較表！各世代の性能の違いがすぐわかる',
     description: '歴代Apple Watchのスペック比較表一覧です。Series・SE・Ultraの性能差や機能の違いを一目で確認できます。',
     url: '/watch/watch-spec-table/',
     images: [{ url: '/images/watch/watch-11.jpg', width: 360, height: 360, alt: '歴代Apple Watchスペック比較表のイメージ' }],
   },
   twitter: {
-    title: '歴代Apple Watchスペック比較表！各世代の性能の違いがすぐわかる | ユーズドラボ',
+    title: '歴代Apple Watchスペック比較表！各世代の性能の違いがすぐわかる',
     description: '歴代Apple Watchのスペック比較表一覧です。Series・SE・Ultraの性能差や機能の違いを一目で確認できます。',
     images: ['/images/watch/watch-11.jpg'],
   },
@@ -171,7 +172,7 @@ export default async function WatchSpecTablePage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/content/watch-image-02.jpg"
+                  src="/images/content/thumbnail/watch-image-02.jpg"
                   alt="歴代Apple Watchスペック比較表のイメージ"
                   className="hero-media__img"
                   width={360}

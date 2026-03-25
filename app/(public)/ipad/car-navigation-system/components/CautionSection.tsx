@@ -4,7 +4,7 @@ export default function CautionSection() {
       {/* ①セルラーモデルのiPadが必須 */}
       <div id="caution-cellular" className="m-card m-card--shadow m-card--padded popular-card">
         <img
-          src="/images/content/ipad-image.jpg"
+          src="/images/content/photo/ipad-image.jpg"
           alt="iPadのセルラーモデル"
           className="popular-card-img"
           width={240}

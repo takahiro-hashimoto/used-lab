@@ -8,17 +8,18 @@ import FilterSearchApp from './components/FilterSearchApp'
 import ShareBox from '@/app/components/ShareBox'
 
 export const metadata: Metadata = {
-  title: 'iPhone機種診断シミュレーター｜自分に合うおすすめ中古スマホがすぐわかる【2026年版】 | ユーズドラボ',
+  title: 'iPhone機種診断シミュレーター｜自分に合うおすすめ中古スマホがすぐわかる【2026年版】',
   description:
     '3つのステップで自分にぴったりの中古iPhoneが見つかる診断シミュレーター。用途・予算・こだわり条件を選ぶだけで最適な機種を提案します。',
+  alternates: { canonical: '/iphone/filter-search/' },
   openGraph: {
-    title: 'iPhone機種診断シミュレーター｜自分に合うおすすめ中古スマホがすぐわかる【2026年版】 | ユーズドラボ',
+    title: 'iPhone機種診断シミュレーター｜自分に合うおすすめ中古スマホがすぐわかる【2026年版】',
     description: '3つのステップで自分にぴったりの中古iPhoneが見つかる診断シミュレーター。',
     url: '/iphone/filter-search/',
     images: [{ url: '/images/iphone/iphone16pro.jpg', width: 360, height: 360, alt: 'iPhone機種診断シミュレーター' }],
   },
   twitter: {
-    title: 'iPhone機種診断シミュレーター｜自分に合うおすすめ中古スマホがすぐわかる【2026年版】 | ユーズドラボ',
+    title: 'iPhone機種診断シミュレーター｜自分に合うおすすめ中古スマホがすぐわかる【2026年版】',
     description: '3つのステップで自分にぴったりの中古iPhoneが見つかる診断シミュレーター。',
     images: ['/images/iphone/iphone16pro.jpg'],
   },
@@ -213,7 +214,7 @@ export default async function IPhoneFilterSearchPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/content/simulator.jpg"
+                  src="/images/content/thumbnail/simulator.jpg"
                   alt="iPhone機種診断シミュレーターのイメージ"
                   className="hero-media__img"
                   width={360}
@@ -302,7 +303,7 @@ export default async function IPhoneFilterSearchPage() {
             <div className="m-card m-card--shadow popular-card">
               <figure className="popular-card-figure">
                 <Image
-                  src="/images/content/iphone-setting.webp"
+                  src="/images/content/thumbnail/iphone-setting.webp"
                   alt="中古iPhoneおすすめ5選のイメージ画像"
                   className="popular-card-img"
                   width={400}

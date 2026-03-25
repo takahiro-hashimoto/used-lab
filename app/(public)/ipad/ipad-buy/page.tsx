@@ -10,16 +10,17 @@ const PAGE_DESCRIPTION =
 const PAGE_URL = 'https://used-lab.com/ipad/ipad-buy/'
 
 export const metadata: Metadata = {
-  title: `${PAGE_TITLE} | ユーズドラボ`,
+  title: PAGE_TITLE,
   description: PAGE_DESCRIPTION,
+  alternates: { canonical: '/ipad/ipad-buy/' },
   openGraph: {
-    title: `${PAGE_TITLE} | ユーズドラボ`,
+    title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/ipad/ipad-buy/',
     images: [{ url: '/images/ipad/ipad-air-m2.jpg', width: 360, height: 360, alt: PAGE_TITLE }],
   },
   twitter: {
-    title: `${PAGE_TITLE} | ユーズドラボ`,
+    title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     images: ['/images/ipad/ipad-air-m2.jpg'],
   },
@@ -110,7 +111,7 @@ export default function IPadBuyPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <img
-                  src="/images/content/cheap-buy.jpg"
+                  src="/images/content/thumbnail/cheap-buy.jpg"
                   alt="iPadを安く買う方法のイメージ"
                   className="hero-media__img"
                   width={360}

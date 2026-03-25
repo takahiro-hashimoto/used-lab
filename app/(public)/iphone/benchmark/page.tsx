@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
+import { getHeroImage } from '@/lib/data/hero-images'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import ShareBox from '@/app/components/ShareBox'
 import { getAllIPhoneModels, getAllIPhonePriceLogsByModelIds, getAllProductShopLinksByType } from '@/lib/queries'
@@ -17,18 +18,19 @@ const PAGE_URL = 'https://used-lab.com/iphone/benchmark/'
 export const revalidate = 86400
 
 export const metadata: Metadata = {
-  title: `${PAGE_TITLE} | ユーズドラボ`,
+  title: PAGE_TITLE,
   description: PAGE_DESCRIPTION,
+  alternates: { canonical: '/iphone/benchmark/' },
   openGraph: {
-    title: `${PAGE_TITLE} | ユーズドラボ`,
+    title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/iphone/benchmark/',
-    images: [{ url: '/images/content/iphone-setting.webp', width: 360, height: 360, alt: PAGE_TITLE }],
+    images: [{ url: '/images/content/thumbnail/iphone-setting.webp', width: 360, height: 360, alt: PAGE_TITLE }],
   },
   twitter: {
-    title: `${PAGE_TITLE} | ユーズドラボ`,
+    title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
-    images: ['/images/content/iphone-setting.webp'],
+    images: ['/images/content/thumbnail/iphone-setting.webp'],
   },
 }
 
@@ -182,7 +184,7 @@ export default async function BenchmarkPage() {
               <div className="hero-visual">
                 <figure className="hero-media">
                   <Image
-                    src="/images/content/iphone-setting.webp"
+                    src="/images/content/thumbnail/iphone-setting.webp"
                     alt="iPhoneベンチマーク比較のイメージ"
                     className="hero-media__img"
                     width={360}
@@ -287,28 +289,28 @@ export default async function BenchmarkPage() {
               <p className="m-section-desc">ベンチマーク以外の観点からもiPhone選びをサポートする記事をまとめました。</p>
               <div className="l-grid l-grid--2col l-grid--gap-lg">
                 <Link href="/iphone/iphone-spec-table/" className="m-card m-card--shadow related-link-card m-card--hoverable">
-                  <img src="/images/content/iphone-compare.jpg" alt="iPhoneスペック比較表" className="related-link-card__img" width={400} height={300} loading="lazy" />
+                  <Image src={getHeroImage('/iphone/iphone-spec-table/')} alt="iPhoneスペック比較表" className="related-link-card__img" width={400} height={300} loading="lazy" />
                   <div className="related-link-card__body">
                     <h3 className="related-link-card__title">iPhoneスペック比較表</h3>
                     <p className="related-link-card__desc">歴代iPhoneの全スペックを一覧で比較</p>
                   </div>
                 </Link>
                 <Link href="/iphone/battery-compare/" className="m-card m-card--shadow related-link-card m-card--hoverable">
-                  <img src="/images/content/iphone-battery.jpg" alt="バッテリー容量比較" className="related-link-card__img" width={400} height={300} loading="lazy" />
+                  <Image src={getHeroImage('/iphone/battery-compare/')} alt="バッテリー容量比較" className="related-link-card__img" width={400} height={300} loading="lazy" />
                   <div className="related-link-card__body">
                     <h3 className="related-link-card__title">バッテリー容量比較ランキング</h3>
                     <p className="related-link-card__desc">電池持ちのいいiPhoneがひと目でわかる</p>
                   </div>
                 </Link>
                 <Link href="/iphone/recommend/" className="m-card m-card--shadow related-link-card m-card--hoverable">
-                  <img src="/images/iphone/iphone-setting.avif" alt="おすすめ中古iPhone" className="related-link-card__img" width={400} height={300} loading="lazy" />
+                  <Image src={getHeroImage('/iphone/recommend/')} alt="おすすめ中古iPhone" className="related-link-card__img" width={400} height={300} loading="lazy" />
                   <div className="related-link-card__body">
                     <h3 className="related-link-card__title">おすすめ中古iPhone</h3>
                     <p className="related-link-card__desc">目的別におすすめの中古iPhoneを厳選して紹介</p>
                   </div>
                 </Link>
                 <Link href="/iphone/storage-guide/" className="m-card m-card--shadow related-link-card m-card--hoverable">
-                  <img src="/images/content/used-iphone-ios-support.jpg" alt="ストレージ容量ガイド" className="related-link-card__img" width={400} height={300} loading="lazy" />
+                  <Image src={getHeroImage('/iphone/storage-guide/')} alt="ストレージ容量ガイド" className="related-link-card__img" width={400} height={300} loading="lazy" />
                   <div className="related-link-card__body">
                     <h3 className="related-link-card__title">ストレージ容量ガイド</h3>
                     <p className="related-link-card__desc">用途別のおすすめ容量と中古価格を比較</p>

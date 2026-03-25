@@ -18,18 +18,19 @@ const PAGE_DESCRIPTION =
 const PAGE_URL = 'https://used-lab.com/macbook/air-pro-compare/'
 
 export const metadata: Metadata = {
-  title: `${PAGE_TITLE} | ユーズドラボ`,
+  title: PAGE_TITLE,
   description: PAGE_DESCRIPTION,
+  alternates: { canonical: '/macbook/air-pro-compare/' },
   openGraph: {
-    title: `${PAGE_TITLE} | ユーズドラボ`,
+    title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/macbook/air-pro-compare/',
-    images: [{ url: '/images/content/macbook-image-05.jpg', width: 360, height: 360, alt: PAGE_TITLE }],
+    images: [{ url: '/images/content/thumbnail/macbook-image-05.jpg', width: 360, height: 360, alt: PAGE_TITLE }],
   },
   twitter: {
-    title: `${PAGE_TITLE} | ユーズドラボ`,
+    title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
-    images: ['/images/content/macbook-image-05.jpg'],
+    images: ['/images/content/thumbnail/macbook-image-05.jpg'],
   },
 }
 
@@ -127,7 +128,7 @@ export default async function AirProComparePage() {
               <div className="hero-visual">
                 <figure className="hero-media">
                   <Image
-                    src="/images/content/macbook-image-05.jpg"
+                    src="/images/content/thumbnail/macbook-image-04.jpg"
                     alt="MacBook AirとProの比較イメージ"
                     className="hero-media__img"
                     width={360}

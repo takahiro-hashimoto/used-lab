@@ -17,16 +17,17 @@ const PAGE_DESCRIPTION =
 const PAGE_URL = 'https://used-lab.com/ipad/used-ipad-attention/'
 
 export const metadata: Metadata = {
-  title: `${PAGE_TITLE} | ユーズドラボ`,
+  title: PAGE_TITLE,
   description: PAGE_DESCRIPTION,
+  alternates: { canonical: '/ipad/used-ipad-attention/' },
   openGraph: {
-    title: `${PAGE_TITLE} | ユーズドラボ`,
+    title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/ipad/used-ipad-attention/',
     images: [{ url: '/images/ipad/ipad-pro-13-2.jpg', width: 360, height: 360, alt: PAGE_TITLE }],
   },
   twitter: {
-    title: `${PAGE_TITLE} | ユーズドラボ`,
+    title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     images: ['/images/ipad/ipad-pro-13-2.jpg'],
   },
@@ -166,7 +167,7 @@ export default function UsedIpadAttentionPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/content/check-list.jpg"
+                  src="/images/content/thumbnail/check-list.jpg"
                   alt="中古iPad購入時の注意点イメージ"
                   className="hero-media__img"
                   width={360}
@@ -247,7 +248,7 @@ export default function UsedIpadAttentionPage() {
           <PopularSection
             sectionTitle="目的別に人気の中古iPad"
             sectionDescription="目的別におすすめの機種を厳選。診断で迷った方はぜひご覧ください。"
-            imageSrc="/images/content/ipad-image-03.jpg"
+            imageSrc="/images/content/thumbnail/ipad-image-03.jpg"
             imageAlt="中古iPadおすすめ5選のイメージ画像"
             subtitle="目的別におすすめ機種を厳選！"
             cardTitle="中古iPadおすすめ5選"

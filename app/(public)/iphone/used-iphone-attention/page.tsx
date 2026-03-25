@@ -17,18 +17,19 @@ const PAGE_DESCRIPTION =
 const PAGE_URL = 'https://used-lab.com/iphone/used-iphone-attention/'
 
 export const metadata: Metadata = {
-  title: `${PAGE_TITLE} | ユーズドラボ`,
+  title: PAGE_TITLE,
   description: PAGE_DESCRIPTION,
+  alternates: { canonical: '/iphone/used-iphone-attention/' },
   openGraph: {
-    title: `${PAGE_TITLE} | ユーズドラボ`,
+    title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/iphone/used-iphone-attention/',
-    images: [{ url: '/images/content/used-iphone-ios-support.jpg', width: 360, height: 360, alt: PAGE_TITLE }],
+    images: [{ url: '/images/content/thumbnail/used-iphone-ios-support.jpg', width: 360, height: 360, alt: PAGE_TITLE }],
   },
   twitter: {
-    title: `${PAGE_TITLE} | ユーズドラボ`,
+    title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
-    images: ['/images/content/used-iphone-ios-support.jpg'],
+    images: ['/images/content/thumbnail/used-iphone-ios-support.jpg'],
   },
 }
 
@@ -166,7 +167,7 @@ export default function UsedIphoneAttentionPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/content/check-list.jpg"
+                  src="/images/content/thumbnail/check-list.jpg"
                   alt="中古iPhone購入時の注意点イメージ"
                   className="hero-media__img"
                   width={360}
@@ -276,7 +277,7 @@ export default function UsedIphoneAttentionPage() {
           <PopularSection
             sectionTitle="目的別に人気の中古iPhone"
             sectionDescription="目的別におすすめの機種を厳選。診断で迷った方はぜひご覧ください。"
-            imageSrc="/images/content/iphone-setting.webp"
+            imageSrc="/images/content/thumbnail/iphone-setting.webp"
             imageAlt="中古iPhoneおすすめ5選のイメージ画像"
             subtitle="目的別におすすめ機種を厳選！"
             cardTitle="中古iPhoneおすすめ5選"

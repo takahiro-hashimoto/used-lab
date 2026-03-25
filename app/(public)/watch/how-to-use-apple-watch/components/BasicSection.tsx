@@ -14,7 +14,7 @@ export default function BasicSection() {
           {/* 1. 文字盤のカスタマイズを楽しむ */}
           <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
             <img
-              src="/images/content/apple-watch-face.jpg"
+              src="/images/content/photo/apple-watch-face.jpg"
               alt="Apple Watchの文字盤カスタマイズ"
               className="popular-card-img"
               width={240}
@@ -45,7 +45,7 @@ export default function BasicSection() {
           {/* 2. ベルト・ケースを交換する */}
           <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
             <img
-              src="/images/content/apple-watch-band.jpg"
+              src="/images/content/photo/apple-watch-band.jpg"
               alt="Apple Watchのベルト交換"
               className="popular-card-img"
               width={240}
@@ -93,7 +93,7 @@ export default function BasicSection() {
           {/* 4. 再生している音楽・動画のコントロールする */}
           <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
             <img
-              src="/images/content/used-lab-image-2.jpg"
+              src="/images/content/photo/used-lab-image-2.jpg"
               alt="Apple Watchで音楽をコントロールする様子"
               className="popular-card-img"
               width={240}
@@ -114,7 +114,7 @@ export default function BasicSection() {
           {/* 5. iPhoneの通知を確認する */}
           <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
             <img
-              src="/images/content/used-lab-image-3.jpg"
+              src="/images/content/photo/used-lab-image-3.jpg"
               alt="Apple Watchで通知を確認する様子"
               className="popular-card-img"
               width={240}
@@ -159,7 +159,7 @@ export default function BasicSection() {
           {/* 7. 振動アラームが使える */}
           <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
             <img
-              src="/images/content/apple-watch-alarm.jpg"
+              src="/images/content/photo/apple-watch-alarm.jpg"
               alt="Apple Watchの振動アラーム"
               className="popular-card-img"
               width={240}

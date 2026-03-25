@@ -32,15 +32,16 @@ const PAGE_TITLE = 'サイトマップ'
 const PAGE_DESCRIPTION = 'ユーズドラボの全ページ一覧。中古iPhone・iPad・MacBook・Apple Watch・AirPodsの製品別ページをまとめて確認できます。'
 
 export const metadata: Metadata = {
-  title: `${PAGE_TITLE} | ユーズドラボ`,
+  title: PAGE_TITLE,
   description: PAGE_DESCRIPTION,
+  alternates: { canonical: '/sitemap-page/' },
   openGraph: {
-    title: `${PAGE_TITLE} | ユーズドラボ`,
+    title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/sitemap-page/',
   },
   twitter: {
-    title: `${PAGE_TITLE} | ユーズドラボ`,
+    title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
   },
 }

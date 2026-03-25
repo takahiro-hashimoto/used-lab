@@ -49,7 +49,7 @@ export default function CreativeSection() {
           {/* 20. 写真編集する */}
           <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
             <img
-              src="/images/content/ipad-use-image-white-4.jpg"
+              src="/images/content/photo/ipad-use-image-white-4.jpg"
               alt="iPadでLightroomを操作する様子"
               className="popular-card-img"
               width={240}
@@ -80,7 +80,7 @@ export default function CreativeSection() {
           {/* 21. イラストを書く */}
           <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
             <img
-              src="/images/content/how-to-use-ipad-min-sketch.jpg"
+              src="/images/content/photo/how-to-use-ipad-min-sketch.jpg"
               alt="Apple Pencilでイラストを書く様子"
               className="popular-card-img"
               width={240}
@@ -118,7 +118,7 @@ export default function CreativeSection() {
           {/* 22. モデリングをする */}
           <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
             <img
-              src="/images/content/G8qw3UXbQAACat7.jpg"
+              src="/images/content/photo/G8qw3UXbQAACat7.jpg"
               alt="iPadでモデリングする様子"
               className="popular-card-img"
               width={240}
@@ -160,7 +160,7 @@ export default function CreativeSection() {
           {/* 23(番外). カメラでテザー撮影する */}
           <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
             <img
-              src="/images/content/shooting-camera.jpg"
+              src="/images/content/photo/shooting-camera.jpg"
               alt="カメラでテザー撮影する様子"
               className="popular-card-img"
               width={240}

@@ -5,7 +5,7 @@ export default function MacBookPopularSection() {
     <PopularSectionBase
       sectionTitle="目的別に人気の中古MacBook"
       sectionDescription="目的別におすすめの機種を厳選。今回の記事で購入するべき機種が判断できなかった方はぜひご覧ください。"
-      imageSrc="/images/content/macbook-image-04.jpg"
+      imageSrc="/images/content/thumbnail/macbook-image-04.jpg"
       imageAlt="中古MacBookおすすめ5選のイメージ画像"
       subtitle="目的別におすすめ機種を厳選！"
       cardTitle="中古MacBookおすすめ5選"

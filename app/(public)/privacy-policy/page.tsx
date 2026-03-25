@@ -7,15 +7,16 @@ const PAGE_DESCRIPTION =
   'ユーズドラボにおけるプライバシーポリシー・免責事項についてご説明します。'
 
 export const metadata: Metadata = {
-  title: `${PAGE_TITLE} | ユーズドラボ`,
+  title: PAGE_TITLE,
   description: PAGE_DESCRIPTION,
+  alternates: { canonical: '/privacy-policy/' },
   openGraph: {
-    title: `${PAGE_TITLE} | ユーズドラボ`,
+    title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/privacy-policy/',
   },
   twitter: {
-    title: `${PAGE_TITLE} | ユーズドラボ`,
+    title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
   },
 }
@@ -132,7 +133,7 @@ export default function PrivacyPolicyPage() {
             <div className="pp-contact-link">
               <Link href="/contact/" className="about-media-link">
                 <i className="fa-solid fa-envelope" aria-hidden="true"></i>
-                <span>お問い合わせ | ユーズドラボ</span>
+                <span>お問い合わせ</span>
               </Link>
             </div>
 

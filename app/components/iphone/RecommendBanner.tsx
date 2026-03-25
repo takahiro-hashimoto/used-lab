@@ -15,7 +15,7 @@ export default function RecommendBanner() {
         <div className="m-card m-card--shadow popular-card">
           <figure className="popular-card-figure">
             <Image
-              src="/images/content/iphone-setting.webp"
+              src="/images/content/thumbnail/iphone-setting.webp"
               alt="中古iPhoneおすすめ5選のイメージ画像"
               className="popular-card-img"
               width={400}

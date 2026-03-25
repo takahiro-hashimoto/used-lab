@@ -1,16 +1,8 @@
 import { BenchBar } from '@/app/components/spec-table-utils'
 import type { BenchModel } from './BenchmarkRanking'
+import { groupByGeneration, calcImprovement } from '@/lib/utils/benchmark-helpers'
 
-type ChipGroup = {
-  chip: string
-  order: number
-  models: BenchModel[]
-  avgSingle: number
-  avgMulti: number
-  avgMetal: number
-}
-
-/** cpuフィールドからチップ世代を抽出
+/** iPadのcpuフィールドからチップ世代を抽出
  *  "A14 Bionic" → "A14", "M2" → "M2", "A12Z Bionic" → "A12Z"
  */
 function getChipGeneration(cpu: string | null): string | null {
@@ -22,41 +14,8 @@ function getChipGeneration(cpu: string | null): string | null {
   return null
 }
 
-function getChipOrder(chip: string): number {
-  if (chip.startsWith('M')) return 100 + parseInt(chip.replace('M', ''), 10)
-  const num = parseInt(chip.replace('A', '').replace('Z', ''), 10)
-  return isNaN(num) ? 0 : num
-}
-
-function groupByGeneration(models: BenchModel[]): ChipGroup[] {
-  const map = new Map<string, BenchModel[]>()
-
-  for (const m of models) {
-    const gen = getChipGeneration(m.cpu)
-    if (!gen) continue
-    const arr = map.get(gen) || []
-    arr.push(m)
-    map.set(gen, arr)
-  }
-
-  return Array.from(map.entries())
-    .map(([chip, models]) => {
-      const avgSingle = Math.round(models.reduce((s, m) => s + m.score_single, 0) / models.length)
-      const avgMulti = Math.round(models.reduce((s, m) => s + m.score_multi, 0) / models.length)
-      const avgMetal = Math.round(models.reduce((s, m) => s + m.score_metal, 0) / models.length)
-      return { chip, order: getChipOrder(chip), models, avgSingle, avgMulti, avgMetal }
-    })
-    .sort((a, b) => a.order - b.order)
-}
-
-function calcImprovement(current: number, previous: number): string {
-  if (previous === 0) return '-'
-  const pct = Math.round(((current - previous) / previous) * 100)
-  return pct > 0 ? `+${pct}%` : `${pct}%`
-}
-
 export default function ChipGenerationCompare({ models }: { models: BenchModel[] }) {
-  const generations = groupByGeneration(models)
+  const generations = groupByGeneration(models, getChipGeneration)
   if (generations.length < 2) return null
 
   const maxSingle = Math.max(...generations.map((g) => g.avgSingle))

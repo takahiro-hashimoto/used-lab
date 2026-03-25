@@ -15,7 +15,7 @@ export default function WorkStudySection() {
           {/* 13. ノートを取る */}
           <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
             <img
-              src="/images/content/ipad-mini-6-apple-pencil.jpg"
+              src="/images/content/photo/ipad-mini-6-apple-pencil.jpg"
               alt="iPad miniとApple Pencil"
               className="popular-card-img"
               width={240}
@@ -55,7 +55,7 @@ export default function WorkStudySection() {
           {/* 14. 資料作成をする */}
           <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
             <img
-              src="/images/content/magic-keyboarda.jpg"
+              src="/images/content/photo/magic-keyboarda.jpg"
               alt="iPadで資料作成する様子"
               className="popular-card-img"
               width={240}
@@ -89,7 +89,7 @@ export default function WorkStudySection() {
           {/* 15. 教科書を持ち歩く */}
           <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
             <img
-              src="/images/content/ipad-pro-use.jpg"
+              src="/images/content/photo/ipad-pro-use.jpg"
               alt="iPadを手に持つ様子"
               className="popular-card-img"
               width={240}
@@ -155,7 +155,7 @@ export default function WorkStudySection() {
           {/* 17. サブディスプレイとして使う */}
           <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
             <img
-              src="/images/content/ipad-mini-macbook.jpg"
+              src="/images/content/photo/ipad-mini-macbook.jpg"
               alt="iPadをサブモニターとして使用する様子"
               className="popular-card-img"
               width={240}
@@ -183,7 +183,7 @@ export default function WorkStudySection() {
           {/* 18. 連携マークアップを使用する */}
           <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
             <img
-              src="/images/content/how-to-use-ipad-markup.jpg"
+              src="/images/content/photo/how-to-use-ipad-markup.jpg"
               alt="iPadで連携マークアップをする様子"
               className="popular-card-img"
               width={240}

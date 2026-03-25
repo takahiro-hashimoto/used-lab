@@ -24,22 +24,24 @@ import Breadcrumb from '@/app/components/Breadcrumb'
 import ShareBox from '@/app/components/ShareBox'
 import VendorCardGrid from '@/app/components/VendorCardGrid'
 import GuideModelLinks from '@/app/components/GuideModelLinks'
+import { getHeroImage } from '@/lib/data/hero-images'
 
 const PAGE_TITLE = `中古Apple Watch完全購入ガイド | 選び方・相場・おすすめモデルまとめ【${GUIDE_DATE_LABEL}版】`
 const PAGE_DESCRIPTION = `${GUIDE_DATE_LABEL}版・中古Apple Watchの完全購入ガイド。選び方のポイント、モデル別の相場、おすすめ機種をまとめて解説。失敗しない中古Apple Watch選びをサポートします。`
 const PAGE_URL = 'https://used-lab.com/watch/'
 
 export const metadata: Metadata = {
-  title: `${PAGE_TITLE} | ユーズドラボ`,
+  title: PAGE_TITLE,
   description: PAGE_DESCRIPTION,
+  alternates: { canonical: '/watch/' },
   openGraph: {
-    title: `${PAGE_TITLE} | ユーズドラボ`,
+    title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/watch/',
     images: [{ url: '/images/watch/watch-9.jpg', width: 360, height: 360, alt: PAGE_TITLE }],
   },
   twitter: {
-    title: `${PAGE_TITLE} | ユーズドラボ`,
+    title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     images: ['/images/watch/watch-9.jpg'],
   },
@@ -169,7 +171,7 @@ export default async function WatchGuidePage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <img
-                  src="/images/content/apple-watch-image.jpg"
+                  src="/images/content/thumbnail/apple-watch-image.jpg"
                   alt="中古Apple Watch購入ガイドのイメージ"
                   className="hero-media__img"
                   width={360}
@@ -225,7 +227,7 @@ export default async function WatchGuidePage() {
               <div className="m-card m-card--shadow popular-card">
                 <figure className="popular-card-figure">
                   <img
-                    src="/images/content/simulator.jpg"
+                    src="/images/content/thumbnail/simulator.jpg"
                     alt="Apple Watch機種絞り込みツール"
                     className="popular-card-img"
                     width={400}
@@ -254,10 +256,10 @@ export default async function WatchGuidePage() {
               <p className="m-section-desc">イオシス・GEO・じゃんぱらの価格を毎日自動で更新。</p>
               <p className="m-section-desc">watchOSサポート期間・流通量・価格安定性の3点を基準に、「今買われやすい中古Apple Watch」を抽出しています。</p>
 
-              <div className="guide-price-grid l-grid l-grid--2col l-grid--gap-lg">
+              <div className="price-card-grid l-grid l-grid--2col l-grid--gap-lg">
                 {priceModels.map((model, i) => (
-                  <div key={model.id} className="guide-price-card m-card m-card--shadow">
-                    <figure className="guide-price-card__img">
+                  <div key={model.id} className="price-card m-card m-card--shadow">
+                    <figure className="price-card__img">
                       <img
                         src={model.image ? `/images/watch/${model.image}` : `https://placehold.co/80x80/f5f5f7/1d1d1f?text=${encodeURIComponent(model.model)}`}
                         alt={model.model}
@@ -266,15 +268,15 @@ export default async function WatchGuidePage() {
                         loading="lazy"
                       />
                     </figure>
-                    <div className="guide-price-card__info">
-                      <h3 className="guide-price-card__name">{model.model}</h3>
-                      <p className="guide-price-card__meta">
+                    <div className="price-card__info">
+                      <h3 className="price-card__name">{model.model}</h3>
+                      <p className="price-card__meta">
                         {model.date ? `${model.date.split('/')[0]}年` : ''} / {model.cpu || ''}
                       </p>
                     </div>
-                    <div className="guide-price-card__price">
-                      <span className="guide-price-card__label">中古相場（{getSizeLabel(model)}）</span>
-                      <span className="guide-price-card__value m-price-display m-price-display--sm m-price-display--primary">{getMinPrice(latestPrices[i])} 〜</span>
+                    <div className="price-card__price">
+                      <span className="price-card__label">中古相場（{getSizeLabel(model)}）</span>
+                      <span className="price-card__value m-price-display m-price-display--sm m-price-display--primary">{getMinPrice(latestPrices[i])} 〜</span>
                     </div>
                   </div>
                 ))}
@@ -520,7 +522,7 @@ export default async function WatchGuidePage() {
               <div className="l-grid l-grid--2col l-grid--gap-lg guide-spec-links">
                 {GUIDE_SPEC_LINKS.map((link) => (
                   <Link key={link.href} href={link.href} className="m-card m-card--shadow related-link-card m-card--hoverable">
-                    <img src={link.image} alt={link.title} className="related-link-card__img" width={400} height={300} loading="lazy" />
+                    <img src={getHeroImage(link.href)} alt={link.title} className="related-link-card__img" width={400} height={300} loading="lazy" />
                     <div className="related-link-card__body">
                       <h3 className="related-link-card__title">{link.title}</h3>
                       <p className="related-link-card__desc">{link.desc}</p>

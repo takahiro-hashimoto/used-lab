@@ -74,7 +74,7 @@ function buildCompareRows(current: IPadModel, compare: IPadModel): CompareRow[] 
     { section: 'カメラ', label: 'LiDARスキャナー', current: getFeatureValue(current, 'lidar'), compare: getFeatureValue(compare, 'lidar') },
     // 入力・アクセサリ
     { section: '入力・アクセサリ', label: 'Apple Pencil', current: current.pencil || '-', compare: compare.pencil || '-' },
-    { section: '入力・アクセサリ', label: 'キーボード', current: formatKeyboard(current.keyboard), compare: formatKeyboard(compare.keyboard) },
+    { section: '入力・アクセサリ', label: 'キーボード', current: formatKeyboard(current.keyboard ?? null), compare: formatKeyboard(compare.keyboard ?? null) },
     { section: '入力・アクセサリ', label: 'スピーカー', current: current.speaker || '-', compare: compare.speaker || '-' },
     // その他
     { section: 'その他', label: '発売日', current: formatReleaseDate(current.date), compare: formatReleaseDate(compare.date) },

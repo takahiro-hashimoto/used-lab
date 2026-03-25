@@ -149,7 +149,7 @@ export default function PreCheckSection() {
                 Apple Pencilやキーボードの対応状況はiPadのモデルごとに異なります。「Apple Pencilで絵を描きたい」「Magic Keyboardでノートパソコン代わりにしたい」という方は、購入前に必ず対応表を確認してください。
               </p>
               <p>
-                特にApple Pencilは世代によって<strong>充電方式・接続方式が全く違う</strong>ため、非対応のiPadを買ってしまうと使えません。
+                特にApple Pencilは世代によって<strong>充電方式・接続方式が全く違う</strong>ため、非対応のiPadを買ってしまうと使えません。Apple Pencilの互換性について詳しくは「<a href="/ipad/apple-pencil-compare/">Apple Pencil比較ガイド</a>」をご覧ください。
               </p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}

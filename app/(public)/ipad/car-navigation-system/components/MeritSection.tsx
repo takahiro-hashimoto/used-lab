@@ -4,7 +4,7 @@ export default function MeritSection() {
       {/* ①マップを更新する必要がない */}
       <div id="merit-map" className="m-card m-card--shadow m-card--padded popular-card">
         <img
-          src="/images/content/ipad-car-navi-02.jpg"
+          src="/images/content/photo/ipad-car-navi-02.jpg"
           alt="iPad miniをカーナビ化した様子"
           className="popular-card-img"
           width={240}
@@ -71,7 +71,7 @@ export default function MeritSection() {
       {/* ③画面が大きくてみやすい */}
       <div id="merit-display" className="m-card m-card--shadow m-card--padded popular-card">
         <img
-          src="/images/content/ipad-image.jpg"
+          src="/images/content/photo/ipad-image.jpg"
           alt="iPadの画面サイズ比較"
           className="popular-card-img"
           width={240}
@@ -92,7 +92,7 @@ export default function MeritSection() {
       {/* ④直感的な操作ができる */}
       <div id="merit-ui" className="m-card m-card--shadow m-card--padded popular-card">
         <img
-          src="/images/content/ipad-pro-use.jpg"
+          src="/images/content/photo/ipad-pro-use.jpg"
           alt="iPadで地図アプリをタッチ操作する様子"
           className="popular-card-img"
           width={240}
@@ -113,7 +113,7 @@ export default function MeritSection() {
       {/* ⑤音楽や動画の再生もしやすい */}
       <div id="merit-media" className="m-card m-card--shadow m-card--padded popular-card">
         <img
-          src="/images/content/ipad-mini-6-reading.jpg"
+          src="/images/content/photo/ipad-mini-6-reading.jpg"
           alt="iPadで音楽アプリを再生する様子"
           className="popular-card-img"
           width={240}

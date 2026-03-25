@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
+import { getHeroImage } from '@/lib/data/hero-images'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import ShareBox from '@/app/components/ShareBox'
 import { getAllIPadModels, getAllIPadPriceLogsByModelIds, getAllProductShopLinksByType } from '@/lib/queries'
@@ -17,18 +18,19 @@ const PAGE_URL = 'https://used-lab.com/ipad/benchmark/'
 export const revalidate = 86400
 
 export const metadata: Metadata = {
-  title: `${PAGE_TITLE} | ユーズドラボ`,
+  title: PAGE_TITLE,
   description: PAGE_DESCRIPTION,
+  alternates: { canonical: '/ipad/benchmark/' },
   openGraph: {
-    title: `${PAGE_TITLE} | ユーズドラボ`,
+    title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/ipad/benchmark/',
-    images: [{ url: '/images/content/ipad-image-12.jpg', width: 360, height: 360, alt: PAGE_TITLE }],
+    images: [{ url: '/images/content/thumbnail/ipad-image-12.jpg', width: 360, height: 360, alt: PAGE_TITLE }],
   },
   twitter: {
-    title: `${PAGE_TITLE} | ユーズドラボ`,
+    title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
-    images: ['/images/content/ipad-image-12.jpg'],
+    images: ['/images/content/thumbnail/ipad-image-12.jpg'],
   },
 }
 
@@ -180,7 +182,7 @@ export default async function BenchmarkPage() {
               </div>
               <div className="hero-visual">
                 <figure className="hero-media">
-                  <Image src="/images/content/ipad-image-12.jpg" alt="iPadベンチマーク比較のイメージ" className="hero-media__img" width={360} height={360} priority />
+                  <Image src="/images/content/thumbnail/ipad-image-12.jpg" alt="iPadベンチマーク比較のイメージ" className="hero-media__img" width={360} height={360} priority />
                 </figure>
               </div>
             </div>
@@ -268,28 +270,28 @@ export default async function BenchmarkPage() {
               <p className="m-section-desc">ベンチマーク以外の観点からもiPad選びをサポートする記事をまとめました。</p>
               <div className="l-grid l-grid--2col l-grid--gap-lg">
                 <Link href="/ipad/ipad-spec-table/" className="m-card m-card--shadow related-link-card m-card--hoverable">
-                  <img src="/images/content/ipad-image-11.jpg" alt="iPadスペック比較表" className="related-link-card__img" width={400} height={300} loading="lazy" />
+                  <Image src={getHeroImage('/ipad/ipad-spec-table/')} alt="iPadスペック比較表" className="related-link-card__img" width={400} height={300} loading="lazy" />
                   <div className="related-link-card__body">
                     <h3 className="related-link-card__title">iPadスペック比較表</h3>
                     <p className="related-link-card__desc">歴代iPadの全スペックを一覧で比較</p>
                   </div>
                 </Link>
                 <Link href="/ipad/recommend/" className="m-card m-card--shadow related-link-card m-card--hoverable">
-                  <img src="/images/content/ipad-image-03.jpg" alt="おすすめ中古iPad" className="related-link-card__img" width={400} height={300} loading="lazy" />
+                  <Image src={getHeroImage('/ipad/recommend/')} alt="おすすめ中古iPad" className="related-link-card__img" width={400} height={300} loading="lazy" />
                   <div className="related-link-card__body">
                     <h3 className="related-link-card__title">おすすめ中古iPad</h3>
                     <p className="related-link-card__desc">目的別におすすめの中古iPadを厳選して紹介</p>
                   </div>
                 </Link>
                 <Link href="/ipad/apple-pencil-compare/" className="m-card m-card--shadow related-link-card m-card--hoverable">
-                  <img src="/images/content/ipad-image-07.jpg" alt="Apple Pencil比較" className="related-link-card__img" width={400} height={300} loading="lazy" />
+                  <Image src={getHeroImage('/ipad/apple-pencil-compare/')} alt="Apple Pencil比較" className="related-link-card__img" width={400} height={300} loading="lazy" />
                   <div className="related-link-card__body">
                     <h3 className="related-link-card__title">Apple Pencil互換性比較</h3>
                     <p className="related-link-card__desc">どのiPadにどのPencilが対応するか一覧で確認</p>
                   </div>
                 </Link>
                 <Link href="/ipad/storage-guide/" className="m-card m-card--shadow related-link-card m-card--hoverable">
-                  <img src="/images/content/ipad-image-09.jpg" alt="ストレージ容量ガイド" className="related-link-card__img" width={400} height={300} loading="lazy" />
+                  <Image src={getHeroImage('/ipad/storage-guide/')} alt="ストレージ容量ガイド" className="related-link-card__img" width={400} height={300} loading="lazy" />
                   <div className="related-link-card__body">
                     <h3 className="related-link-card__title">ストレージ容量ガイド</h3>
                     <p className="related-link-card__desc">用途別のおすすめ容量と中古価格を比較</p>

@@ -32,7 +32,7 @@ export default function SummarySection() {
                 width={400}
                 height={500}
                 loading="lazy"
-                src="/images/content/macbook-image-04.jpg"
+                src="/images/content/thumbnail/macbook-image-04.jpg"
               />
             </figure>
             <div className="popular-card-body">

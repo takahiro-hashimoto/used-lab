@@ -14,7 +14,7 @@ const DETAILS = [
   {
     id: 'detail-findmy',
     title: '探す（Find My）対応',
-    image: '/images/content/findmy.jpg',
+    image: '/images/content/thumbnail/findmy.jpg',
     items: [
       { label: '', text: 'Appleが提供する「探す」アプリを使って、Apple Pencilの現在地を地図上で確認できる機能です。Apple Pencilはコンパクトなアクセサリーなので、カバンの中やソファの隙間に紛れてしまうことがよくあります。「探す」機能があれば、iPhoneやiPadから場所を特定して効率よく見つけることができます。' },
       { label: '', text: 'この機能はApple Pencil Proのみに搭載されています。第2世代・USB-C・第1世代には非搭載のため、紛失が心配な方はProモデルを選ぶと安心です。' },
@@ -68,7 +68,7 @@ const DETAILS = [
   {
     id: 'detail-squeeze',
     title: 'スクイーズ',
-    image: '/images/content/ipad-image-08.jpg',
+    image: '/images/content/thumbnail/ipad-image-08.jpg',
     items: [
       { label: '', text: 'Apple Pencilをギュッと握り込むと、ペン先のすぐ近くにツールパレット（色やブラシの選択画面）がポップアップ表示される機能です。通常であれば画面の端にあるツールバーまで手を伸ばす必要がありますが、スクイーズを使えば今描いている場所のすぐそばでツールを変更できます。' },
       { label: '', text: '作業の流れを中断せずにペン先の種類や色を素早く変更できるため、イラスト制作やデザイン作業の効率が格段に向上します。' },

@@ -7,19 +7,20 @@ import ChargingTable from './components/ChargingTable'
 import ShareBox from '@/app/components/ShareBox'
 
 export const metadata: Metadata = {
-  title: '歴代iPhoneのバッテリー容量比較ランキング！電池持ちがいい機種はどれ？ | ユーズドラボ',
+  title: '歴代iPhoneのバッテリー容量比較ランキング！電池持ちがいい機種はどれ？',
   description:
     '歴代iPhoneのバッテリー容量を比較しランキング形式で紹介。電池持ちのいいiPhoneがひと目でわかります。中古iPhoneを選ぶ際の参考にどうぞ。',
+  alternates: { canonical: '/iphone/battery-compare/' },
   openGraph: {
-    title: '歴代iPhoneのバッテリー容量比較ランキング！電池持ちがいい機種はどれ？ | ユーズドラボ',
+    title: '歴代iPhoneのバッテリー容量比較ランキング！電池持ちがいい機種はどれ？',
     description: '歴代iPhoneのバッテリー容量を比較しランキング形式で紹介。電池持ちのいいiPhoneがひと目でわかります。',
     url: '/iphone/battery-compare/',
-    images: [{ url: '/images/content/iphone-battery.jpg', width: 360, height: 360, alt: '歴代iPhoneバッテリー容量比較のイメージ' }],
+    images: [{ url: '/images/content/thumbnail/iphone-battery.jpg', width: 360, height: 360, alt: '歴代iPhoneバッテリー容量比較のイメージ' }],
   },
   twitter: {
-    title: '歴代iPhoneのバッテリー容量比較ランキング！電池持ちがいい機種はどれ？ | ユーズドラボ',
+    title: '歴代iPhoneのバッテリー容量比較ランキング！電池持ちがいい機種はどれ？',
     description: '歴代iPhoneのバッテリー容量を比較しランキング形式で紹介。',
-    images: ['/images/content/iphone-battery.jpg'],
+    images: ['/images/content/thumbnail/iphone-battery.jpg'],
   },
 }
 
@@ -172,7 +173,7 @@ export default async function IPhoneBatteryComparePage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/content/iphone-battery.jpg"
+                  src="/images/content/thumbnail/iphone-battery.jpg"
                   alt="歴代iPhoneバッテリー容量比較のイメージ"
                   className="hero-media__img"
                   width={360}
@@ -253,7 +254,7 @@ export default async function IPhoneBatteryComparePage() {
                 <div className="caution-check-card__visual">
                   <figure className="caution-check-card__image">
                     <Image
-                      src="/images/content/iphone-battery-limit.jpg"
+                      src="/images/content/thumbnail/iphone-battery-limit.jpg"
                       alt="iPhoneのバッテリーの状態確認画面"
                       width={260}
                       height={260}
@@ -312,7 +313,7 @@ export default async function IPhoneBatteryComparePage() {
             <div className="m-card m-card--shadow popular-card">
               <figure className="popular-card-figure">
                 <Image
-                  src="/images/content/iphone-setting.webp"
+                  src="/images/content/thumbnail/iphone-setting.webp"
                   alt="中古iPhoneおすすめ5選のイメージ画像"
                   className="popular-card-img"
                   width={400}

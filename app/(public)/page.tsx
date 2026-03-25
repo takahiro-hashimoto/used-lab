@@ -53,7 +53,7 @@ export default async function HomePage() {
       {/* ── Hero ── */}
       <header className="hero hero--top">
         <Image
-          src="/images/content/pc-main.jpg"
+          src="/images/content/photo/pc-main.jpg"
           alt=""
           className="hero--top__bg"
           fill
@@ -183,7 +183,7 @@ export default async function HomePage() {
               <div className="top-about-card__body">
                 <div className="top-about-card__avatar">
                   <Image
-                    src="/images/content/my-icon.webp"
+                    src="/images/content/thumbnail/my-icon.webp"
                     alt="タカヒロ"
                     className="about-profile-img"
                     width={80}

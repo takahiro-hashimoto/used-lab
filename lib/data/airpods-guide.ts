@@ -18,9 +18,9 @@ export const GUIDE_PRICE_SLUGS = [
 
 // ---------- 関連記事リンク ----------
 export const GUIDE_SPEC_LINKS = [
-  { href: '/airpods/price/', icon: 'fa-chart-line', title: 'AirPods中古価格推移', desc: '各モデルの中古価格推移をグラフで確認。買い時のタイミングがわかります。', image: '/images/content/airpods-image-03.jpg' },
-  { href: '/airpods/recommend/', icon: 'fa-ranking-star', title: '中古AirPodsおすすめモデル', desc: '用途別おすすめモデルを厳選。ノイキャン重視・オープン型・コスパ重視の3機種を紹介。', image: '/images/content/airpods-image-02.jpg' },
-  { href: '/airpods/airpods-find/', icon: 'fa-magnifying-glass', title: 'AirPodsを紛失した時の対処法', desc: 'ケースやイヤホン片方を無くした時の探し方と、代替品の購入先をまとめて紹介。', image: '/images/content/airpods-image-01.jpg' },
+  { href: '/airpods/price/', icon: 'fa-chart-line', title: 'AirPods中古価格推移', desc: '各モデルの中古価格推移をグラフで確認。買い時のタイミングがわかります。' },
+  { href: '/airpods/recommend/', icon: 'fa-ranking-star', title: '中古AirPodsおすすめモデル', desc: '用途別おすすめモデルを厳選。ノイキャン重視・オープン型・コスパ重視の3機種を紹介。' },
+  { href: '/airpods/airpods-find/', icon: 'fa-magnifying-glass', title: 'AirPodsを紛失した時の対処法', desc: 'ケースやイヤホン片方を無くした時の探し方と、代替品の購入先をまとめて紹介。' },
 ] as const
 
 // ---------- FAQ ----------

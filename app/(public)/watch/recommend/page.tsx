@@ -36,16 +36,17 @@ const PAGE_DESCRIPTION =
 const PAGE_URL = 'https://used-lab.com/watch/recommend/'
 
 export const metadata: Metadata = {
-  title: `${PAGE_TITLE} | ユーズドラボ`,
+  title: PAGE_TITLE,
   description: PAGE_DESCRIPTION,
+  alternates: { canonical: '/watch/recommend/' },
   openGraph: {
-    title: `${PAGE_TITLE} | ユーズドラボ`,
+    title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/watch/recommend/',
     images: [{ url: '/images/watch/watch-9.jpg', width: 360, height: 360, alt: PAGE_TITLE }],
   },
   twitter: {
-    title: `${PAGE_TITLE} | ユーズドラボ`,
+    title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     images: ['/images/watch/watch-9.jpg'],
   },
@@ -188,7 +189,7 @@ export default async function WatchRecommendPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/content/watch-image-08.jpg"
+                  src="/images/content/thumbnail/watch-image-08.jpg"
                   alt={`中古Apple Watchおすすめ${RECOMMEND_COUNT}選のイメージ`}
                   className="hero-media__img"
                   width={360}

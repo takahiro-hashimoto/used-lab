@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
+import { getHeroImage } from '@/lib/data/hero-images'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import ShareBox from '@/app/components/ShareBox'
 import { getAllMacBookModels, getAllMacBookPriceLogsByModelIds, getAllProductShopLinksByType } from '@/lib/queries'
@@ -17,18 +18,19 @@ const PAGE_URL = 'https://used-lab.com/macbook/benchmark/'
 export const revalidate = 86400
 
 export const metadata: Metadata = {
-  title: `${PAGE_TITLE} | ユーズドラボ`,
+  title: PAGE_TITLE,
   description: PAGE_DESCRIPTION,
+  alternates: { canonical: '/macbook/benchmark/' },
   openGraph: {
-    title: `${PAGE_TITLE} | ユーズドラボ`,
+    title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/macbook/benchmark/',
-    images: [{ url: '/images/content/macbook-image-05.jpg', width: 360, height: 360, alt: PAGE_TITLE }],
+    images: [{ url: '/images/content/thumbnail/macbook-image-05.jpg', width: 360, height: 360, alt: PAGE_TITLE }],
   },
   twitter: {
-    title: `${PAGE_TITLE} | ユーズドラボ`,
+    title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
-    images: ['/images/content/macbook-image-05.jpg'],
+    images: ['/images/content/thumbnail/macbook-image-05.jpg'],
   },
 }
 
@@ -205,7 +207,7 @@ export default async function BenchmarkPage() {
               <div className="hero-visual">
                 <figure className="hero-media">
                   <Image
-                    src="/images/content/macbook-image-05.jpg"
+                    src="/images/content/thumbnail/macbook-ipad.jpg"
                     alt="MacBookベンチマーク比較のイメージ"
                     className="hero-media__img"
                     width={360}
@@ -310,28 +312,28 @@ export default async function BenchmarkPage() {
               <p className="m-section-desc">ベンチマーク以外の観点からもMacBook選びをサポートする記事をまとめました。</p>
               <div className="l-grid l-grid--2col l-grid--gap-lg">
                 <Link href="/macbook/air-pro-compare/" className="m-card m-card--shadow related-link-card m-card--hoverable">
-                  <img src="/images/content/macbook-image-01.jpg" alt="MacBook AirとProの比較" className="related-link-card__img" width={400} height={300} loading="lazy" />
+                  <Image src={getHeroImage('/macbook/air-pro-compare/')} alt="MacBook AirとProの比較" className="related-link-card__img" width={400} height={300} loading="lazy" />
                   <div className="related-link-card__body">
                     <h3 className="related-link-card__title">MacBook AirとProどっちがいい？</h3>
                     <p className="related-link-card__desc">冷却方式・チップ性能・ディスプレイ・ポートの違いを解説</p>
                   </div>
                 </Link>
                 <Link href="/macbook/macbook-spec-table/" className="m-card m-card--shadow related-link-card m-card--hoverable">
-                  <img src="/images/content/macbook-image-05.jpg" alt="MacBookスペック比較表" className="related-link-card__img" width={400} height={300} loading="lazy" />
+                  <Image src={getHeroImage('/macbook/macbook-spec-table/')} alt="MacBookスペック比較表" className="related-link-card__img" width={400} height={300} loading="lazy" />
                   <div className="related-link-card__body">
                     <h3 className="related-link-card__title">MacBookスペック比較表</h3>
                     <p className="related-link-card__desc">歴代MacBookの全スペックを一覧で比較</p>
                   </div>
                 </Link>
                 <Link href="/macbook/recommend/" className="m-card m-card--shadow related-link-card m-card--hoverable">
-                  <img src="/images/content/macbook-image-01.jpg" alt="おすすめ中古MacBook" className="related-link-card__img" width={400} height={300} loading="lazy" />
+                  <Image src={getHeroImage('/macbook/recommend/')} alt="おすすめ中古MacBook" className="related-link-card__img" width={400} height={300} loading="lazy" />
                   <div className="related-link-card__body">
                     <h3 className="related-link-card__title">おすすめ中古MacBook</h3>
                     <p className="related-link-card__desc">目的別におすすめの中古MacBookを厳選して紹介</p>
                   </div>
                 </Link>
                 <Link href="/macbook/storage-guide/" className="m-card m-card--shadow related-link-card m-card--hoverable">
-                  <img src="/images/content/macbook-image-05.jpg" alt="ストレージ容量ガイド" className="related-link-card__img" width={400} height={300} loading="lazy" />
+                  <Image src={getHeroImage('/macbook/storage-guide/')} alt="ストレージ容量ガイド" className="related-link-card__img" width={400} height={300} loading="lazy" />
                   <div className="related-link-card__body">
                     <h3 className="related-link-card__title">ストレージ容量ガイド</h3>
                     <p className="related-link-card__desc">用途別のおすすめ容量と中古価格を比較</p>

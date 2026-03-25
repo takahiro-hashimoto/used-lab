@@ -100,22 +100,23 @@ const PAGE_URL = 'https://used-lab.com/macbook/macbook-price-info/'
 export async function generateMetadata(): Promise<Metadata> {
   const allModels = await getAllMacBookModels()
   const modelCount = allModels.length
-  const title = `MacBookの中古相場一覧 | 歴代${modelCount}機種の価格推移を独自集計【${PRICE_INFO_UPDATE_MONTH}】 | ユーズドラボ`
+  const title = `MacBookの中古相場一覧 | 歴代${modelCount}機種の価格推移を独自集計【${PRICE_INFO_UPDATE_MONTH}】`
   const description = `中古MacBook${modelCount}機種の価格相場を毎日更新。価格推移グラフ、スペック比較、最安値ランキングを掲載。楽天市場の中古ショップから実売価格を集計。`
 
   return {
     title,
     description,
+  alternates: { canonical: '/macbook/macbook-price-info/' },
     openGraph: {
       title,
       description,
       url: '/macbook/macbook-price-info/',
-      images: [{ url: '/images/content/graph-image.jpg', width: 360, height: 360, alt: title }],
+      images: [{ url: '/images/content/thumbnail/graph-image.jpg', width: 360, height: 360, alt: title }],
     },
     twitter: {
       title,
       description,
-      images: ['/images/content/graph-image.jpg'],
+      images: ['/images/content/thumbnail/graph-image.jpg'],
     },
   }
 }
@@ -340,7 +341,7 @@ export default async function MacBookPriceInfoPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <img
-                  src="/images/content/graph-image.jpg"
+                  src="/images/content/thumbnail/graph-image.jpg"
                   alt="中古MacBook価格相場"
                   className="hero-media__img"
                   width={360}
@@ -439,7 +440,7 @@ export default async function MacBookPriceInfoPage() {
                     width={400}
                     height={500}
                     className="popular-card-img"
-                    src="/images/content/macbook-image-04.jpg"
+                    src="/images/content/thumbnail/macbook-image-04.jpg"
                   />
                 </figure>
                 <div className="popular-card-body">

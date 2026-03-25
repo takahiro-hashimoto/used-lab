@@ -11,16 +11,17 @@ const PAGE_DESCRIPTION =
 const PAGE_URL = 'https://used-lab.com/watch/apple-watch-buy/'
 
 export const metadata: Metadata = {
-  title: `${PAGE_TITLE} | ユーズドラボ`,
+  title: PAGE_TITLE,
   description: PAGE_DESCRIPTION,
+  alternates: { canonical: '/watch/apple-watch-buy/' },
   openGraph: {
-    title: `${PAGE_TITLE} | ユーズドラボ`,
+    title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/watch/apple-watch-buy/',
     images: [{ url: '/images/watch/apple-watch.jpg', width: 360, height: 360, alt: PAGE_TITLE }],
   },
   twitter: {
-    title: `${PAGE_TITLE} | ユーズドラボ`,
+    title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     images: ['/images/watch/apple-watch.jpg'],
   },
@@ -111,7 +112,7 @@ export default function AppleWatchBuyPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <img
-                  src="/images/content/cheap-buy.jpg"
+                  src="/images/content/thumbnail/cheap-buy.jpg"
                   alt="Apple Watchを安く買う方法のイメージ"
                   className="hero-media__img"
                   width={360}

@@ -39,7 +39,7 @@ export default function PaymentSection() {
           {/* 20. 電子決済をする */}
           <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
             <img
-              src="/images/content/apple-watch-payment.jpg"
+              src="/images/content/photo/apple-watch-payment.jpg"
               alt="Apple Watchで電子決済する様子"
               className="popular-card-img"
               width={240}

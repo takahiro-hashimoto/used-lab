@@ -41,7 +41,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { slug } = await params
   const model = await getMacBookModelBySlug(slug)
   if (!model) return {}
-  const title = `中古${model.model}は今買うべき？製品寿命、基本スペック、ベンチマークスコア、中古相場から解説 | ユーズドラボ`
+  const title = `中古${model.model}は今買うべき？製品寿命、基本スペック、ベンチマークスコア、中古相場から解説`
   const description = `${model.model}の中古価格相場、ベンチマークスコア、スペック比較、おすすめショップ情報を徹底解説。`
   return {
     title,

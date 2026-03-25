@@ -39,7 +39,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const model = await getAirPodsModelBySlug(slug)
   if (!model) return {}
   const displayName = model.model ? `${model.name}（${model.model}）` : model.name
-  const title = `中古${displayName}は今買うべき？サポート期間、基本スペック、中古相場から解説 | ユーズドラボ`
+  const title = `中古${displayName}は今買うべき？サポート期間、基本スペック、中古相場から解説`
   const description = `${displayName}の中古価格相場、スペック比較、おすすめショップ情報を徹底解説。`
   return {
     title,

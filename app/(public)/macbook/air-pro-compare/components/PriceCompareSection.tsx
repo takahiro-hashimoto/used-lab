@@ -11,7 +11,7 @@ function buildPairs(models: MacBookModel[], priceMap: Map<number, MacBookPriceLo
   // Airモデル（13インチ）を基準にして同世代のProとペアリング
   const airModels = models
     .filter(m => m.model.includes('Air') && m.model.includes('13'))
-    .sort((a, b) => b.date.localeCompare(a.date))
+    .sort((a, b) => (b.date ?? '').localeCompare(a.date ?? ''))
 
   const pairs: {
     gen: string
@@ -22,7 +22,7 @@ function buildPairs(models: MacBookModel[], priceMap: Map<number, MacBookPriceLo
 
   for (const air of airModels) {
     // Airのチップ世代を抽出 (M1, M2, M3, M4)
-    const chipMatch = air.cpu.match(/M\d+/)
+    const chipMatch = air.cpu?.match(/M\d+/)
     if (!chipMatch) continue
     const chipGen = chipMatch[0]
 
@@ -30,7 +30,7 @@ function buildPairs(models: MacBookModel[], priceMap: Map<number, MacBookPriceLo
     const pro = models.find(m =>
       m.model.includes('Pro') &&
       (m.model.includes('14') || m.model.includes('13')) &&
-      m.cpu.includes(chipGen)
+      m.cpu?.includes(chipGen)
     )
 
     const airPrice = calculatePriceRange(priceMap.get(air.id) ?? null)

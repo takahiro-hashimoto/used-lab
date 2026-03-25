@@ -15,16 +15,17 @@ const PAGE_DESCRIPTION =
 const PAGE_URL = 'https://used-lab.com/ipad/used-ipad-support/'
 
 export const metadata: Metadata = {
-  title: `${PAGE_TITLE} | ユーズドラボ`,
+  title: PAGE_TITLE,
   description: PAGE_DESCRIPTION,
+  alternates: { canonical: '/ipad/used-ipad-support/' },
   openGraph: {
-    title: `${PAGE_TITLE} | ユーズドラボ`,
+    title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/ipad/used-ipad-support/',
     images: [{ url: '/images/ipad/ipad-pro-13-2.jpg', width: 360, height: 360, alt: PAGE_TITLE }],
   },
   twitter: {
-    title: `${PAGE_TITLE} | ユーズドラボ`,
+    title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     images: ['/images/ipad/ipad-pro-13-2.jpg'],
   },
@@ -105,7 +106,7 @@ export default async function UsedIpadSupportPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/content/ipad-image-06.jpg"
+                  src="/images/content/thumbnail/ipad-image-06.jpg"
                   alt="iPadの寿命・サポート期間イメージ"
                   className="hero-media__img"
                   width={360}

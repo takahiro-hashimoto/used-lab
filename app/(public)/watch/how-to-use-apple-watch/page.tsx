@@ -14,16 +14,17 @@ const PAGE_DESCRIPTION =
 const PAGE_URL = 'https://used-lab.com/watch/how-to-use-apple-watch/'
 
 export const metadata: Metadata = {
-  title: `${PAGE_TITLE} | ユーズドラボ`,
+  title: PAGE_TITLE,
   description: PAGE_DESCRIPTION,
+  alternates: { canonical: '/watch/how-to-use-apple-watch/' },
   openGraph: {
-    title: `${PAGE_TITLE} | ユーズドラボ`,
+    title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/watch/how-to-use-apple-watch/',
     images: [{ url: '/images/watch/watch-9.jpg', width: 360, height: 360, alt: PAGE_TITLE }],
   },
   twitter: {
-    title: `${PAGE_TITLE} | ユーズドラボ`,
+    title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     images: ['/images/watch/watch-9.jpg'],
   },
@@ -111,7 +112,7 @@ export default function HowToUseAppleWatchPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/content/watch-image-11.jpg"
+                  src="/images/content/thumbnail/watch-image-11.jpg"
                   alt="Apple Watchのできることイメージ"
                   className="hero-media__img"
                   width={360}

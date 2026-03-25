@@ -10,18 +10,19 @@ const PAGE_DESCRIPTION =
 const PAGE_URL = 'https://used-lab.com/iphone/network-limit/'
 
 export const metadata: Metadata = {
-  title: `${PAGE_TITLE} | ユーズドラボ`,
+  title: PAGE_TITLE,
   description: PAGE_DESCRIPTION,
+  alternates: { canonical: '/iphone/network-limit/' },
   openGraph: {
-    title: `${PAGE_TITLE} | ユーズドラボ`,
+    title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/iphone/network-limit/',
-    images: [{ url: '/images/content/iphone-image-02.jpg', width: 360, height: 360, alt: PAGE_TITLE }],
+    images: [{ url: '/images/content/thumbnail/iphone-image-02.jpg', width: 360, height: 360, alt: PAGE_TITLE }],
   },
   twitter: {
-    title: `${PAGE_TITLE} | ユーズドラボ`,
+    title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
-    images: ['/images/content/iphone-image-02.jpg'],
+    images: ['/images/content/thumbnail/iphone-image-02.jpg'],
   },
 }
 
@@ -153,7 +154,7 @@ export default function NetworkLimitPage() {
               <div className="hero-visual">
                 <figure className="hero-media">
                   <Image
-                    src="/images/content/iphone-image-02.jpg"
+                    src="/images/content/thumbnail/iphone-image-02.jpg"
                     alt="ネットワーク制限△の中古iPhone解説イメージ"
                     className="hero-media__img"
                     width={360}
@@ -299,7 +300,7 @@ export default function NetworkLimitPage() {
                 </p>
                 <figure style={{ marginTop: 'var(--space-md)' }}>
                   <Image
-                    src="/images/content/network-limit-compare.webp"
+                    src="/images/content/photo/network-limit-compare.webp"
                     alt="ネットワーク制限△と通常の中古iPhoneの価格比較"
                     width={1200}
                     height={675}
@@ -500,7 +501,7 @@ export default function NetworkLimitPage() {
               <p className="m-section-desc">目的別におすすめの機種を厳選。今回の記事で購入するべき機種が判断できなかった方はぜひご覧ください。</p>
               <div className="m-card m-card--shadow popular-card">
                 <figure className="popular-card-figure">
-                  <Image alt="中古iPhoneおすすめ5選のイメージ画像" loading="lazy" width={400} height={500} className="popular-card-img" src="/images/content/iphone-setting.webp" />
+                  <Image alt="中古iPhoneおすすめ5選のイメージ画像" loading="lazy" width={400} height={500} className="popular-card-img" src="/images/content/thumbnail/iphone-setting.webp" />
                 </figure>
                 <div className="popular-card-body">
                   <p className="popular-card-subtitle">目的別におすすめ機種を厳選！</p>

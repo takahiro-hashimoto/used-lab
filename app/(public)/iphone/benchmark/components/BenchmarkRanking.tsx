@@ -5,7 +5,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { BenchBar } from '@/app/components/spec-table-utils'
 import type { ProductShopLink } from '@/lib/types'
-import { SHOP_KEY_TO_ID } from '@/lib/types'
+import { getTotal, getAntutuTotal, getCospa, getIosysUrl } from '@/lib/utils/benchmark-helpers'
 
 export type BenchModel = {
   id: number
@@ -31,24 +31,6 @@ type FilterCategory = 'all' | 'pro' | 'standard'
 
 function getModelCategory(model: string): 'pro' | 'standard' {
   return model.toLowerCase().includes('pro') ? 'pro' : 'standard'
-}
-
-function getTotal(m: BenchModel) {
-  return m.score_single + m.score_multi + m.score_metal
-}
-
-function getAntutuTotal(m: BenchModel) {
-  return (m.antutu_cpu || 0) + (m.antutu_gpu || 0) + (m.antutu_mem || 0) + (m.antutu_ux || 0)
-}
-
-function getCospa(m: BenchModel) {
-  if (!m.minPrice || m.minPrice === 0) return 0
-  return getTotal(m) / m.minPrice * 1000
-}
-
-function getIosysUrl(shopLinks: ProductShopLink[], productId: number): string | null {
-  const link = shopLinks.find((l) => l.product_id === productId && l.shop_id === SHOP_KEY_TO_ID.iosys)
-  return link?.url || null
 }
 
 export default function BenchmarkRanking({ models, shopLinks }: { models: BenchModel[]; shopLinks: ProductShopLink[] }) {

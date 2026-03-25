@@ -19,13 +19,13 @@ export const GUIDE_PRICE_SLUGS = [
 
 // ---------- スペック比較リンク ----------
 export const GUIDE_SPEC_LINKS = [
-  { href: '/macbook/macbook-spec-table/', icon: 'fa-table-cells', title: '歴代MacBookスペック比較表', desc: 'チップ、ディスプレイ、ポート構成、重量など、歴代MacBookの全スペックを一覧で比較。', image: '/images/content/macbook-image-05.jpg' },
-  { href: '/macbook/used-macbook-support/', icon: 'fa-shield-halved', title: 'macOSサポート期間一覧表', desc: '各モデルのサポート終了予測を解説。「いつまで使えるか」の目安がわかります。', image: '/images/content/macbook-image-03.jpg' },
-  { href: '/macbook/used-macbook-attention/', icon: 'fa-triangle-exclamation', title: '中古MacBookの注意点と選び方', desc: '購入前に確認すべきポイントや失敗しないためのチェックリストをまとめています。', image: '/images/content/check-list.jpg' },
-  { href: '/macbook/macbook-shop/', icon: 'fa-store', title: '中古MacBookを買えるおすすめECサイト', desc: '各ショップの保証内容・価格帯・特徴を比較。安心して購入できるお店を紹介。', image: '/images/content/macbook-image-02.jpg' },
-  { href: '/macbook/storage-guide/', icon: 'fa-hard-drive', title: 'ストレージ容量ガイド', desc: '用途別のおすすめ容量と歴代モデルの容量ラインナップ・中古価格を比較できます。', image: '/images/content/macbook-image-05.jpg' },
-  { href: '/macbook/air-pro-compare/', icon: 'fa-scale-balanced', title: 'MacBook AirとProの違い比較', desc: '冷却方式・チップ性能・ディスプレイ・ポート・中古価格の5観点で違いを解説。', image: '/images/content/macbook-image-01.jpg' },
-  { href: '/macbook/benchmark/', icon: 'fa-ranking-star', title: '歴代MacBookベンチマーク比較', desc: 'Geekbench 6スコアで歴代MacBookの性能をランキング形式で比較。チップ世代別の進化や用途別おすすめも。', image: '/images/content/macbook-image-05.jpg' },
+  { href: '/macbook/macbook-spec-table/', icon: 'fa-table-cells', title: '歴代MacBookスペック比較表', desc: 'チップ、ディスプレイ、ポート構成、重量など、歴代MacBookの全スペックを一覧で比較。' },
+  { href: '/macbook/used-macbook-support/', icon: 'fa-shield-halved', title: 'macOSサポート期間一覧表', desc: '各モデルのサポート終了予測を解説。「いつまで使えるか」の目安がわかります。' },
+  { href: '/macbook/used-macbook-attention/', icon: 'fa-triangle-exclamation', title: '中古MacBookの注意点と選び方', desc: '購入前に確認すべきポイントや失敗しないためのチェックリストをまとめています。' },
+  { href: '/macbook/macbook-shop/', icon: 'fa-store', title: '中古MacBookを買えるおすすめECサイト', desc: '各ショップの保証内容・価格帯・特徴を比較。安心して購入できるお店を紹介。' },
+  { href: '/macbook/storage-guide/', icon: 'fa-hard-drive', title: 'ストレージ容量ガイド', desc: '用途別のおすすめ容量と歴代モデルの容量ラインナップをまとめています。' },
+  { href: '/macbook/air-pro-compare/', icon: 'fa-scale-balanced', title: 'MacBook AirとProの違い比較', desc: '冷却方式・チップ性能・ディスプレイ・ポート・中古価格の5観点で違いを解説。' },
+  { href: '/macbook/benchmark/', icon: 'fa-ranking-star', title: '歴代MacBookベンチマーク比較', desc: 'Geekbench 6スコアで歴代MacBookの性能をランキング形式で比較。チップ世代別の進化や用途別おすすめも。' },
 ] as const
 
 // ---------- FAQ ----------
@@ -60,7 +60,7 @@ export const GUIDE_FAQ_ITEMS = [
   },
   {
     question: 'ストレージ容量はどれくらい必要ですか？',
-    answer: 'Web閲覧・事務作業メインなら256GBで十分です。写真や動画を扱うなら512GB以上がおすすめです。MacBookはストレージの後から増設ができないため、用途に合った容量を最初に選ぶことが重要です。',
+    answer: 'Web閲覧・事務作業メインなら256GBで十分です。写真や動画を扱うなら512GB以上がおすすめです。MacBookはストレージの後から増設ができないため、用途に合った容量を最初に選ぶことが重要です。詳しくは「ストレージ容量ガイド」をご覧ください。',
   },
 ]
 

@@ -19,12 +19,12 @@ export const GUIDE_PRICE_SLUGS = [
 
 // ---------- スペック比較リンク ----------
 export const GUIDE_SPEC_LINKS = [
-  { href: '/iphone/iphone-spec-table/', icon: 'fa-table-cells', title: '歴代iPhoneスペック比較表', desc: 'CPU、ディスプレイ、重量、端子など、歴代iPhoneの全スペックを網羅した一覧表。', image: '/images/content/iphone-compare.jpg' },
-  { href: '/iphone/used-iphone-support/', icon: 'fa-shield-halved', title: 'iOSサポート期間一覧表', desc: '各モデルのサポート終了予測を解説。「いつまで使えるか」の目安がわかります。', image: '/images/content/iphone-image-02.jpg' },
-  { href: '/iphone/iphone-camera/', icon: 'fa-camera', title: 'iPhoneカメラ性能比較表', desc: '歴代iPhoneのカメラ性能の違いや搭載されている撮影モードをを徹底解説。', image: '/images/content/iphone-camera.jpg' },
-  { href: '/iphone/battery-compare/', icon: 'fa-battery-full', title: 'バッテリー性能比較ランキング', desc: '動画再生時間、音楽再生時間、バッテリー容量(mAh)を一覧表で比較できます。', image: '/images/content/iphone-battery.jpg' },
-  { href: '/iphone/storage-guide/', icon: 'fa-hard-drive', title: 'ストレージ容量ガイド', desc: '用途別のおすすめ容量と、容量違いによる中古価格差を比較できます。', image: '/images/content/iphone-setting.webp' },
-  { href: '/iphone/benchmark/', icon: 'fa-ranking-star', title: '歴代iPhoneベンチマーク比較', desc: 'Geekbench 6・AnTuTuスコアで歴代iPhoneの性能をランキング形式で比較。', image: '/images/content/iphone-setting.webp' },
+  { href: '/iphone/iphone-spec-table/', icon: 'fa-table-cells', title: '歴代iPhoneスペック比較表', desc: 'CPU、ディスプレイ、重量、端子など、歴代iPhoneの全スペックを網羅した一覧表。' },
+  { href: '/iphone/used-iphone-support/', icon: 'fa-shield-halved', title: 'iOSサポート期間一覧表', desc: '各モデルのサポート終了予測を解説。「いつまで使えるか」の目安がわかります。' },
+  { href: '/iphone/iphone-camera/', icon: 'fa-camera', title: 'iPhoneカメラ性能比較表', desc: '歴代iPhoneのカメラ性能の違いや搭載されている撮影モードをを徹底解説。' },
+  { href: '/iphone/battery-compare/', icon: 'fa-battery-full', title: 'バッテリー性能比較ランキング', desc: '動画再生時間、音楽再生時間、バッテリー容量(mAh)を一覧表で比較できます。' },
+  { href: '/iphone/storage-guide/', icon: 'fa-hard-drive', title: 'ストレージ容量ガイド', desc: '用途別のおすすめ容量と歴代モデルの容量ラインナップをまとめています。' },
+  { href: '/iphone/benchmark/', icon: 'fa-ranking-star', title: '歴代iPhoneベンチマーク比較', desc: 'Geekbench 6・AnTuTuスコアで歴代iPhoneの性能をランキング形式で比較。' },
 ] as const
 
 // ---------- FAQ ----------
@@ -56,6 +56,10 @@ export const GUIDE_FAQ_ITEMS = [
   {
     question: '中古iPhoneのバッテリー状態は確認できますか？',
     answer: 'はい、iPhoneの「設定」→「バッテリー」→「バッテリーの状態」から最大容量を確認できます。80%以上あれば実用上問題ありません。中古専門店では商品ページにバッテリー状態が記載されていることが多いです。',
+  },
+  {
+    question: 'iPhoneのストレージ容量はどれを選ぶべき？',
+    answer: '写真や動画をよく撮る方は128GB以上、アプリやゲームを多く入れる方は256GB以上がおすすめです。iPhoneはストレージの後から増設ができないため、迷ったら1段階上の容量を選んでおくと後悔しにくくなります。',
   },
   {
     question: 'ネットワーク利用制限△の中古iPhoneは買っても大丈夫？',

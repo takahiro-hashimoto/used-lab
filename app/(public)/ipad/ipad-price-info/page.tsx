@@ -105,22 +105,23 @@ const PAGE_URL = 'https://used-lab.com/ipad/ipad-price-info/'
 export async function generateMetadata(): Promise<Metadata> {
   const allModels = await getAllIPadModels()
   const modelCount = allModels.length
-  const title = `iPadの中古相場一覧 | 歴代${modelCount}機種の価格推移を独自集計【${PRICE_INFO_UPDATE_MONTH}】 | ユーズドラボ`
+  const title = `iPadの中古相場一覧 | 歴代${modelCount}機種の価格推移を独自集計【${PRICE_INFO_UPDATE_MONTH}】`
   const description = `中古iPad${modelCount}機種の価格相場を毎日更新。価格推移グラフ、最安値ランキングを掲載。イオシス・ゲオ・じゃんぱらの実売価格を集計。`
 
   return {
     title,
     description,
+  alternates: { canonical: '/ipad/ipad-price-info/' },
     openGraph: {
       title,
       description,
       url: '/ipad/ipad-price-info/',
-      images: [{ url: '/images/content/graph-image.jpg', width: 360, height: 360, alt: title }],
+      images: [{ url: '/images/content/thumbnail/graph-image.jpg', width: 360, height: 360, alt: title }],
     },
     twitter: {
       title,
       description,
-      images: ['/images/content/graph-image.jpg'],
+      images: ['/images/content/thumbnail/graph-image.jpg'],
     },
   }
 }
@@ -357,7 +358,7 @@ export default async function IPadPriceInfoPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <img
-                  src="/images/content/graph-image.jpg"
+                  src="/images/content/thumbnail/graph-image.jpg"
                   alt="中古iPad価格相場"
                   className="hero-media__img"
                   width={360}

@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://used-lab.com'),
   title: {
     default: 'ユーズドラボ | 中古Apple製品の価格比較・スペック情報',
-    template: '%s',
+    template: '%s | ユーズドラボ',
   },
   description: '中古iPhone・iPad・Apple Watch・MacBook・AirPodsの価格比較、スペック情報、おすすめショップを紹介',
   openGraph: {

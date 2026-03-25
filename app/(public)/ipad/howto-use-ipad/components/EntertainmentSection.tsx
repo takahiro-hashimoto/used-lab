@@ -15,7 +15,7 @@ export default function EntertainmentSection() {
           {/* 1. 大画面で動画鑑賞を楽しむ */}
           <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
             <img
-              src="/images/content/magextand-m-use-low-table.jpg"
+              src="/images/content/photo/magextand-m-use-low-table.jpg"
               alt="iPadで動画鑑賞する様子"
               className="popular-card-img"
               width={240}
@@ -51,7 +51,7 @@ export default function EntertainmentSection() {
           {/* 2. 電子書籍を読む */}
           <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
             <img
-              src="/images/content/ipad-mini-6-reading.jpg"
+              src="/images/content/photo/ipad-mini-6-reading.jpg"
               alt="iPadで電子書籍を読む様子"
               className="popular-card-img"
               width={240}
@@ -121,7 +121,7 @@ export default function EntertainmentSection() {
           {/* 4. 地上波テレビを視聴する */}
           <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
             <img
-              src="/images/content/nasne-use-ipad-1.jpg"
+              src="/images/content/photo/nasne-use-ipad-1.jpg"
               alt="iPad + nasneで地上波テレビを見る様子"
               className="popular-card-img"
               width={240}

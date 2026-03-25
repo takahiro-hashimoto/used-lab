@@ -7,15 +7,16 @@ const PAGE_DESCRIPTION =
   '当サイトでは中古Apple製品に関する情報を正確かつわかりやすくお届けすることを使命としています。コンテンツ制作フローや信頼性の担保についてご紹介します。'
 
 export const metadata: Metadata = {
-  title: `${PAGE_TITLE} | ユーズドラボ`,
+  title: PAGE_TITLE,
   description: PAGE_DESCRIPTION,
+  alternates: { canonical: '/guidelines/' },
   openGraph: {
-    title: `${PAGE_TITLE} | ユーズドラボ`,
+    title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/guidelines/',
   },
   twitter: {
-    title: `${PAGE_TITLE} | ユーズドラボ`,
+    title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
   },
 }
@@ -320,7 +321,7 @@ export default function GuidelinesPage() {
               <div className="gl-about-link">
                 <Link href="/about/" className="about-media-link">
                   <i className="fa-solid fa-user" aria-hidden="true"></i>
-                  <span>運営者情報 | ユーズドラボ</span>
+                  <span>運営者情報</span>
                 </Link>
               </div>
             </div>

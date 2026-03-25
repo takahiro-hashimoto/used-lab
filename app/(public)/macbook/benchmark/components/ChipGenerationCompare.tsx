@@ -1,34 +1,15 @@
 import { BenchBar } from '@/app/components/spec-table-utils'
 import type { BenchModel } from './BenchmarkRanking'
+import { groupByGeneration, calcImprovement, getChipOrder, type BenchScoreModel } from '@/lib/utils/benchmark-helpers'
 
-type ChipGroup = {
-  chip: string
-  order: number
-  models: BenchModel[]
-  avgSingle: number
-  avgMulti: number
-  avgMetal: number
-}
-
-/** cpuフィールドからチップ世代を抽出 (M1, M2, M3, M4) */
+/** MacBookのcpuフィールドからチップ世代を抽出 (M1, M2, M3, M4) */
 function getChipGeneration(cpu: string | null): string | null {
   if (!cpu) return null
-  // "Apple M3 Pro" → "M3", "Apple M1" → "M1" etc.
   const match = cpu.match(/M(\d)/)
   return match ? `M${match[1]}` : null
 }
 
-/** チップ世代→ソート順 */
-function getChipOrder(chip: string): number {
-  const num = parseInt(chip.replace('M', ''), 10)
-  return isNaN(num) ? 0 : num
-}
-
-/** cpuフィールドからサブタイプ一覧を抽出 (標準, Pro, Max)
- *  "M2 Pro / M2 Max" → ['Pro', 'Max']
- *  "M4 / M4 Pro / M4 Max" → ['標準', 'Pro', 'Max']
- *  "M3" → ['標準']
- */
+/** cpuフィールドからサブタイプ一覧を抽出 (標準, Pro, Max) */
 function getChipSubtypes(cpu: string | null): string[] {
   if (!cpu) return ['標準']
   const parts = cpu.split('/').map((s) => s.trim())
@@ -45,35 +26,8 @@ function getChipSubtypes(cpu: string | null): string[] {
   return subtypes.length > 0 ? subtypes : ['標準']
 }
 
-function groupByGeneration(models: BenchModel[]): ChipGroup[] {
-  const map = new Map<string, BenchModel[]>()
-
-  for (const m of models) {
-    const gen = getChipGeneration(m.cpu)
-    if (!gen) continue
-    const arr = map.get(gen) || []
-    arr.push(m)
-    map.set(gen, arr)
-  }
-
-  return Array.from(map.entries())
-    .map(([chip, models]) => {
-      const avgSingle = Math.round(models.reduce((s, m) => s + m.score_single, 0) / models.length)
-      const avgMulti = Math.round(models.reduce((s, m) => s + m.score_multi, 0) / models.length)
-      const avgMetal = Math.round(models.reduce((s, m) => s + m.score_metal, 0) / models.length)
-      return { chip, order: getChipOrder(chip), models, avgSingle, avgMulti, avgMetal }
-    })
-    .sort((a, b) => a.order - b.order)
-}
-
-function calcImprovement(current: number, previous: number): string {
-  if (previous === 0) return '-'
-  const pct = Math.round(((current - previous) / previous) * 100)
-  return pct > 0 ? `+${pct}%` : `${pct}%`
-}
-
 export default function ChipGenerationCompare({ models }: { models: BenchModel[] }) {
-  const generations = groupByGeneration(models)
+  const generations = groupByGeneration(models, getChipGeneration)
   if (generations.length < 2) return null
 
   const maxSingle = Math.max(...generations.map((g) => g.avgSingle))
@@ -84,9 +38,9 @@ export default function ChipGenerationCompare({ models }: { models: BenchModel[]
   type SubGroup = { subtype: string; chip: string; avgSingle: number; avgMulti: number; avgMetal: number }
   const subtypeGroups: SubGroup[] = []
   for (const gen of generations) {
-    const subtypeMap = new Map<string, BenchModel[]>()
+    const subtypeMap = new Map<string, BenchScoreModel[]>()
     for (const m of gen.models) {
-      const subs = getChipSubtypes(m.cpu)
+      const subs = getChipSubtypes(m.cpu ?? null)
       for (const sub of subs) {
         const arr = subtypeMap.get(sub) || []
         arr.push(m)

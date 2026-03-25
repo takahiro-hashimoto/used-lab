@@ -4,7 +4,7 @@ export default function MacbookStrengths() {
       {/* Webデザイン */}
       <div id="web-design" className="m-card m-card--shadow m-card--padded popular-card">
         <img
-          src="/images/content/use-macbook.jpg"
+          src="/images/content/photo/use-macbook.jpg"
           alt="MacBookでWebデザインをする様子"
           className="popular-card-img"
           width={240}
@@ -30,7 +30,7 @@ export default function MacbookStrengths() {
       {/* プログラミング */}
       <div id="programming" className="m-card m-card--shadow m-card--padded popular-card">
         <img
-          src="/images/content/ipad-pro-use.jpg"
+          src="/images/content/photo/ipad-pro-use.jpg"
           alt="MacBookでプログラミングをする様子"
           className="popular-card-img"
           width={240}
@@ -56,7 +56,7 @@ export default function MacbookStrengths() {
       {/* 動画編集 */}
       <div id="video-editing" className="m-card m-card--shadow m-card--padded popular-card">
         <img
-          src="/images/content/ipad-mini-macbook.jpg"
+          src="/images/content/photo/ipad-mini-macbook.jpg"
           alt="MacBookで動画編集をする様子"
           className="popular-card-img"
           width={240}
@@ -84,7 +84,7 @@ export default function MacbookStrengths() {
       {/* エクセル（Officeツール） */}
       <div id="excel" className="m-card m-card--shadow m-card--padded popular-card">
         <img
-          src="/images/content/ipad-image.jpg"
+          src="/images/content/photo/ipad-image.jpg"
           alt="エクセルでの作業イメージ"
           className="popular-card-img"
           width={240}

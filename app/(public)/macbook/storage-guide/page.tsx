@@ -4,6 +4,7 @@ import Image from 'next/image'
 import {
   getAllMacBookModels,
   getAllMacBookPriceLogsByModelIds,
+  getAllProductShopLinksByType,
 } from '@/lib/queries'
 import type { MacBookPriceLog } from '@/lib/types'
 import StorageTable, { type StorageModel } from './components/StorageTable'
@@ -12,19 +13,20 @@ import ShareBox from '@/app/components/ShareBox'
 export const revalidate = 86400
 
 export const metadata: Metadata = {
-  title: '中古MacBookのストレージ容量はどれがいい？用途別おすすめ容量まとめ | ユーズドラボ',
+  title: '中古MacBookのストレージ容量はどれがいい？用途別おすすめ容量まとめ',
   description:
     '中古MacBookを買うとき何GBを選ぶべきか、用途別の目安を解説。歴代モデルの容量ラインナップ一覧と中古最安価格も比較できます。',
+  alternates: { canonical: '/macbook/storage-guide/' },
   openGraph: {
-    title: '中古MacBookのストレージ容量はどれがいい？用途別おすすめ容量まとめ | ユーズドラボ',
-    description: '中古MacBookのストレージ容量の選び方を解説。容量別の価格差も比較できます。',
+    title: '中古MacBookのストレージ容量はどれがいい？用途別おすすめ容量まとめ',
+    description: '中古MacBookのストレージ容量の選び方を用途別に解説。歴代モデルの容量ラインナップも一覧で確認できます。',
     url: '/macbook/storage-guide/',
-    images: [{ url: '/images/content/macbook-image-05.jpg', width: 360, height: 360, alt: '中古MacBookストレージ容量ガイドのイメージ' }],
+    images: [{ url: '/images/content/thumbnail/macbook-image-05.jpg', width: 360, height: 360, alt: '中古MacBookストレージ容量ガイドのイメージ' }],
   },
   twitter: {
-    title: '中古MacBookのストレージ容量はどれがいい？用途別おすすめ容量まとめ | ユーズドラボ',
+    title: '中古MacBookのストレージ容量はどれがいい？用途別おすすめ容量まとめ',
     description: '中古MacBookのストレージ容量の選び方を解説。',
-    images: ['/images/content/macbook-image-05.jpg'],
+    images: ['/images/content/thumbnail/macbook-image-05.jpg'],
   },
 }
 
@@ -62,7 +64,10 @@ function calcMinPrice(log: MacBookPriceLog): number | null {
 }
 
 export default async function StorageGuidePage() {
-  const allModels = await getAllMacBookModels()
+  const [allModels, allShopLinks] = await Promise.all([
+    getAllMacBookModels(),
+    getAllProductShopLinksByType('macbook'),
+  ])
 
   const priceLogsMap = await getAllMacBookPriceLogsByModelIds(allModels.map((m) => m.id))
 
@@ -85,6 +90,8 @@ export default async function StorageGuidePage() {
       storageLabel = isNaN(num) ? latestLog.storage : num >= 1000 ? `${num / 1000}TB` : `${num}GB`
     }
 
+    const iosysLink = allShopLinks.find((l) => l.product_id === m.id && l.shop_id === 1)
+
     return {
       id: m.id,
       model: m.model,
@@ -95,6 +102,7 @@ export default async function StorageGuidePage() {
       strage: m.strage,
       storageLabel,
       avgMin,
+      iosysUrl: iosysLink?.url ?? null,
     }
   })
 
@@ -216,7 +224,7 @@ export default async function StorageGuidePage() {
             </div>
             <div className="hero-visual">
               <figure className="hero-media">
-                <Image src="/images/content/macbook-image-05.jpg" alt="中古MacBookストレージ容量ガイドのイメージ" className="hero-media__img" width={360} height={360} priority />
+                <Image src="/images/content/thumbnail/macbook-image-05.jpg" alt="中古MacBookストレージ容量ガイドのイメージ" className="hero-media__img" width={360} height={360} priority />
               </figure>
             </div>
           </div>
@@ -392,7 +400,7 @@ export default async function StorageGuidePage() {
                 <div className="caution-check-card__visual">
                   <figure className="caution-check-card__image">
                     <img
-                      src="/images/content/macbook-storage.jpg"
+                      src="/images/content/thumbnail/macbook-storage.jpg"
                       alt="MacBookのストレージ使用量確認画面"
                       width={280}
                       height={200}
@@ -434,7 +442,7 @@ export default async function StorageGuidePage() {
             <p className="m-section-desc">目的別におすすめの機種を厳選。容量だけでなくスペック全体を見て選びたい方はぜひご覧ください。</p>
             <div className="m-card m-card--shadow popular-card">
               <figure className="popular-card-figure">
-                <Image src="/images/content/macbook-image-01.jpg" alt="中古MacBookおすすめのイメージ画像" className="popular-card-img" width={400} height={500} loading="lazy" />
+                <Image src="/images/content/thumbnail/macbook-image-01.jpg" alt="中古MacBookおすすめのイメージ画像" className="popular-card-img" width={400} height={500} loading="lazy" />
               </figure>
               <div className="popular-card-body">
                 <p className="popular-card-subtitle">目的別におすすめ機種を厳選！</p>

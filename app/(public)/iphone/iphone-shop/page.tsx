@@ -23,18 +23,19 @@ const PAGE_DESCRIPTION = `中古iPhoneを買うならどこがおすすめ？信
 const PAGE_URL = 'https://used-lab.com/iphone/iphone-shop/'
 
 export const metadata: Metadata = {
-  title: `${PAGE_TITLE} | ユーズドラボ`,
+  title: PAGE_TITLE,
   description: PAGE_DESCRIPTION,
+  alternates: { canonical: '/iphone/iphone-shop/' },
   openGraph: {
-    title: `${PAGE_TITLE} | ユーズドラボ`,
+    title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/iphone/iphone-shop/',
-    images: [{ url: '/images/content/cheap-buy.jpg', width: 360, height: 360, alt: PAGE_TITLE }],
+    images: [{ url: '/images/content/thumbnail/cheap-buy.jpg', width: 360, height: 360, alt: PAGE_TITLE }],
   },
   twitter: {
-    title: `${PAGE_TITLE} | ユーズドラボ`,
+    title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
-    images: ['/images/content/cheap-buy.jpg'],
+    images: ['/images/content/thumbnail/cheap-buy.jpg'],
   },
 }
 
@@ -152,7 +153,7 @@ export default async function IPhoneShopPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <img
-                  src="/images/content/cheap-buy.jpg"
+                  src="/images/content/thumbnail/cheap-buy.jpg"
                   alt="中古iPhoneの購入先イメージ"
                   className="hero-media__img"
                   width={360}

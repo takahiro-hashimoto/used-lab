@@ -16,11 +16,11 @@ export default function ComparisonBasics() {
         </div>
         <div className="popular-card-img-grid">
           <figure>
-            <Image src="/images/content/macbook-folder-manegment.webp" alt="MacBookのファイル管理方法" width={400} height={300} loading="lazy" style={{ border: '1px solid #d5d5d8', borderRadius: 'var(--radius-md)' }} />
+            <Image src="/images/content/photo/macbook-folder-manegment.webp" alt="MacBookのファイル管理方法" width={400} height={300} loading="lazy" style={{ border: '1px solid #d5d5d8', borderRadius: 'var(--radius-md)' }} />
             <figcaption>MacBookのファイル管理方法</figcaption>
           </figure>
           <figure>
-            <Image src="/images/content/ipad-folder-image.webp" alt="iPadのファイル管理方法" width={400} height={300} loading="lazy" style={{ border: '1px solid #d5d5d8', borderRadius: 'var(--radius-md)' }} />
+            <Image src="/images/content/photo/ipad-folder-image.webp" alt="iPadのファイル管理方法" width={400} height={300} loading="lazy" style={{ border: '1px solid #d5d5d8', borderRadius: 'var(--radius-md)' }} />
             <figcaption>iPadのファイル管理方法</figcaption>
           </figure>
         </div>
@@ -39,11 +39,11 @@ export default function ComparisonBasics() {
         </div>
         <div className="popular-card-img-grid">
           <figure>
-            <Image src="/images/content/use-macbook.jpg" alt="MacBookで複数アプリを立ち上げ・行き来する様子" width={400} height={300} loading="lazy" />
+            <Image src="/images/content/photo/use-macbook.jpg" alt="MacBookで複数アプリを立ち上げ・行き来する様子" width={400} height={300} loading="lazy" />
             <figcaption>MacBookで複数アプリを立ち上げ・行き来する様子</figcaption>
           </figure>
           <figure>
-            <Image src="/images/content/ipad-split-view.jpg" alt="iPadのSplit Viewで複数のアプリを同時に立ち上げる様子" width={400} height={300} loading="lazy" />
+            <Image src="/images/content/photo/ipad-split-view.jpg" alt="iPadのSplit Viewで複数のアプリを同時に立ち上げる様子" width={400} height={300} loading="lazy" />
             <figcaption>iPadのSplit Viewで複数のアプリを同時に立ち上げる様子</figcaption>
           </figure>
         </div>

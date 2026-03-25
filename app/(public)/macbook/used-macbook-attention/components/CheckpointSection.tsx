@@ -132,7 +132,7 @@ export default function CheckpointSection() {
             冷却ファン
           </h3>
           <p className="checkpoint-card__text">
-            PCの熱暴走を防ぐのに重要な冷却ファンはProモデルのみに搭載されています。高負荷がかかる作業が多いならProモデルがおすすめです。
+            PCの熱暴走を防ぐのに重要な冷却ファンはProモデルのみに搭載されています。高負荷がかかる作業が多いならProモデルがおすすめです。AirとProの違いは「<a href="/macbook/air-pro-compare/">MacBook AirとProの比較ガイド</a>」で詳しく解説しています。
           </p>
           <div className="checkpoint-card__table-wrap">
             <table className="m-table">

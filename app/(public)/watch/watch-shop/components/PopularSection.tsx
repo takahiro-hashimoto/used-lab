@@ -9,7 +9,7 @@ export default function PopularSection() {
         <div className="m-card m-card--shadow popular-card">
           <figure className="popular-card-figure">
             <img
-              src="/images/content/watch-image-08.jpg"
+              src="/images/content/thumbnail/watch-image-08.jpg"
               alt="中古Apple Watchおすすめ3選のイメージ画像"
               className="popular-card-img"
               width={400}

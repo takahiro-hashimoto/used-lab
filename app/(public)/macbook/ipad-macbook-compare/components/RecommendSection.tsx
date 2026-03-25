@@ -5,7 +5,7 @@ export default function RecommendSection() {
       <div id="recommend-macbook" className="m-card m-card--shadow m-card--padded">
         <div className="recommend-card-img-wrap">
           <img
-            src="/images/content/use-macbook.jpg"
+            src="/images/content/photo/use-macbook.jpg"
             alt="MacBookがおすすめな人"
             className="recommend-card-img"
             width={800}

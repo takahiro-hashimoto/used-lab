@@ -15,16 +15,17 @@ const PAGE_DESCRIPTION =
 const PAGE_URL = 'https://used-lab.com/macbook/used-macbook-support/'
 
 export const metadata: Metadata = {
-  title: `${PAGE_TITLE} | ユーズドラボ`,
+  title: PAGE_TITLE,
   description: PAGE_DESCRIPTION,
+  alternates: { canonical: '/macbook/used-macbook-support/' },
   openGraph: {
-    title: `${PAGE_TITLE} | ユーズドラボ`,
+    title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/macbook/used-macbook-support/',
     images: [{ url: '/images/macbook/mbp-14-2024-nov.jpg', width: 360, height: 360, alt: PAGE_TITLE }],
   },
   twitter: {
-    title: `${PAGE_TITLE} | ユーズドラボ`,
+    title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     images: ['/images/macbook/mbp-14-2024-nov.jpg'],
   },
@@ -105,7 +106,7 @@ export default async function UsedMacbookSupportPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/content/macbook-image-03.jpg"
+                  src="/images/content/thumbnail/macbook-image-03.jpg"
                   alt="MacBookの寿命・サポート期間イメージ"
                   className="hero-media__img"
                   width={360}

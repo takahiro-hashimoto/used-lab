@@ -28,17 +28,18 @@ import ShareBox from '@/app/components/ShareBox'
 import PopularMacBook from '@/app/components/PopularMacBook'
 
 export const metadata: Metadata = {
-  title: '歴代MacBookスペック比較表！Air・Proの性能差や違いがすぐわかる | ユーズドラボ',
+  title: '歴代MacBookスペック比較表！Air・Proの性能差や違いがすぐわかる',
   description:
     '歴代MacBook Air・Proのスペック比較表一覧です。チップ性能やディスプレイ、ポート構成の違いを一目で確認できます。',
+  alternates: { canonical: '/macbook/macbook-spec-table/' },
   openGraph: {
-    title: '歴代MacBookスペック比較表！Air・Proの性能差や違いがすぐわかる | ユーズドラボ',
+    title: '歴代MacBookスペック比較表！Air・Proの性能差や違いがすぐわかる',
     description: '歴代MacBook Air・Proのスペック比較表一覧です。チップ性能やディスプレイ、ポート構成の違いを一目で確認できます。',
     url: '/macbook/macbook-spec-table/',
     images: [{ url: '/images/macbook/mba-13-2025.jpg', width: 360, height: 360, alt: '歴代MacBookスペック比較表のイメージ' }],
   },
   twitter: {
-    title: '歴代MacBookスペック比較表！Air・Proの性能差や違いがすぐわかる | ユーズドラボ',
+    title: '歴代MacBookスペック比較表！Air・Proの性能差や違いがすぐわかる',
     description: '歴代MacBook Air・Proのスペック比較表一覧です。チップ性能やディスプレイ、ポート構成の違いを一目で確認できます。',
     images: ['/images/macbook/mba-13-2025.jpg'],
   },
@@ -176,7 +177,7 @@ export default async function MacBookSpecTablePage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/content/macbook-image-05.jpg"
+                  src="/images/content/thumbnail/macbook-user.jpg"
                   alt="歴代MacBookスペック比較表のイメージ"
                   className="hero-media__img"
                   width={360}

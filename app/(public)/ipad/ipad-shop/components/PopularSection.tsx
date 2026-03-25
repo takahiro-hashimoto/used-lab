@@ -9,7 +9,7 @@ export default function PopularSection() {
         <div className="m-card m-card--shadow popular-card">
           <figure className="popular-card-figure">
             <img
-              src="/images/content/ipad-image-03.jpg"
+              src="/images/content/thumbnail/ipad-image-03.jpg"
               alt="中古iPadおすすめ5選のイメージ画像"
               className="popular-card-img"
               width={400}

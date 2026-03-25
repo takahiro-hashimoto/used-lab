@@ -15,16 +15,17 @@ const PAGE_DESCRIPTION =
 const PAGE_URL = 'https://used-lab.com/watch/used-watch-support/'
 
 export const metadata: Metadata = {
-  title: `${PAGE_TITLE} | ユーズドラボ`,
+  title: PAGE_TITLE,
   description: PAGE_DESCRIPTION,
+  alternates: { canonical: '/watch/used-watch-support/' },
   openGraph: {
-    title: `${PAGE_TITLE} | ユーズドラボ`,
+    title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/watch/used-watch-support/',
     images: [{ url: '/images/watch/watch-ultra3.jpg', width: 360, height: 360, alt: PAGE_TITLE }],
   },
   twitter: {
-    title: `${PAGE_TITLE} | ユーズドラボ`,
+    title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     images: ['/images/watch/watch-ultra3.jpg'],
   },
@@ -105,7 +106,7 @@ export default async function UsedWatchSupportPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/content/watch-image.jpg"
+                  src="/images/content/thumbnail/watch-image.jpg"
                   alt="Apple Watchの寿命・サポート期間イメージ"
                   className="hero-media__img"
                   width={360}

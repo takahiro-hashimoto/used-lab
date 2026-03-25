@@ -12,7 +12,7 @@ export default function PurchaseMethodSection() {
   ]
 
   return (
-    <div style={{ marginTop: 'var(--space-2xl)' }}>
+    <div>
       {/* Appleストア */}
       <h3 className="m-sub-heading">Appleストアで購入する</h3>
       <p className="m-body-text" style={{ marginTop: 'var(--space-sm)' }}>
@@ -42,7 +42,7 @@ export default function PurchaseMethodSection() {
       </div>
 
       {/* メルカリ */}
-      <h3 className="m-sub-heading" style={{ marginTop: 'var(--space-2xl)' }}>メルカリ・ラクマで購入する</h3>
+      <h3 className="m-sub-heading">メルカリ・ラクマで購入する</h3>
       <p className="m-body-text" style={{ marginTop: 'var(--space-sm)' }}>
         メルカリやラクマといったフリマサービスでも「AirPods 片方」「AirPods ケースのみ」などのキーワードで検索すると多数の出品アイテムがヒットします。Appleストアに比べると相場はぐっと安くなりますが、出品者の信頼性や購入後のトラブルには注意が必要です。
       </p>
@@ -58,7 +58,7 @@ export default function PurchaseMethodSection() {
       </div>
 
       {/* eイヤホン */}
-      <h3 className="m-sub-heading" style={{ marginTop: 'var(--space-2xl)' }} id="recommend-shop">eイヤホンで購入する（おすすめ）</h3>
+      <h3 className="m-sub-heading" id="recommend-shop">eイヤホンで購入する（おすすめ）</h3>
       <p className="m-body-text" style={{ marginTop: 'var(--space-sm)' }}>
         Appleストアでは費用が高く、フリマでは品質に不安が残る。そこでおすすめなのが、イヤホン専門店の<strong>eイヤホン</strong>で欠けたパーツを買う方法です。
       </p>

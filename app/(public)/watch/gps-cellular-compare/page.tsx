@@ -13,18 +13,19 @@ const PAGE_DESCRIPTION =
 const PAGE_URL = 'https://used-lab.com/watch/gps-cellular-compare/'
 
 export const metadata: Metadata = {
-  title: `${PAGE_TITLE} | ユーズドラボ`,
+  title: PAGE_TITLE,
   description: PAGE_DESCRIPTION,
+  alternates: { canonical: '/watch/gps-cellular-compare/' },
   openGraph: {
-    title: `${PAGE_TITLE} | ユーズドラボ`,
+    title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/watch/gps-cellular-compare/',
-    images: [{ url: '/images/content/apple-watch-image.jpg', width: 360, height: 360, alt: PAGE_TITLE }],
+    images: [{ url: '/images/content/thumbnail/apple-watch-image.jpg', width: 360, height: 360, alt: PAGE_TITLE }],
   },
   twitter: {
-    title: `${PAGE_TITLE} | ユーズドラボ`,
+    title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
-    images: ['/images/content/apple-watch-image.jpg'],
+    images: ['/images/content/thumbnail/apple-watch-image.jpg'],
   },
 }
 
@@ -125,7 +126,7 @@ export default function GpsCellularComparePage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/content/watch-image-09.jpg"
+                  src="/images/content/thumbnail/watch-image-09.jpg"
                   alt="Apple Watch GPSモデルとセルラーモデルの比較"
                   className="hero-media__img"
                   width={360}

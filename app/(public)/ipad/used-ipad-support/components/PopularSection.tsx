@@ -5,7 +5,7 @@ export default function IPadPopularSection() {
     <PopularSectionBase
       sectionTitle="目的別に人気の中古iPad"
       sectionDescription="目的別におすすめの機種を厳選。今回の記事で購入するべき機種が判断できなかった方はぜひご覧ください。"
-      imageSrc="/images/content/ipad-image-03.jpg"
+      imageSrc="/images/content/thumbnail/ipad-image-03.jpg"
       imageAlt="中古iPadおすすめ5選のイメージ画像"
       subtitle="目的別におすすめ機種を厳選！"
       cardTitle="中古iPadおすすめ5選"

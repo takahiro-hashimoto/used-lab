@@ -48,7 +48,7 @@ export const RECENT_ARTICLES: RecentArticle[] = [
     date: '2026.02',
     category: 'iPad',
     icon: 'fa-tablet-screen-button',
-    image: '/images/content/ipad-car-navi-02.jpg',
+    image: '/images/content/photo/ipad-car-navi-02.jpg',
   },
   {
     href: '/macbook/windows-mac-compare/',

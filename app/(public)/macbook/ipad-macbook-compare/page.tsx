@@ -16,16 +16,17 @@ const PAGE_DESCRIPTION =
 const PAGE_URL = 'https://used-lab.com/macbook/ipad-macbook-compare/'
 
 export const metadata: Metadata = {
-  title: `${PAGE_TITLE} | ユーズドラボ`,
+  title: PAGE_TITLE,
   description: PAGE_DESCRIPTION,
+  alternates: { canonical: '/macbook/ipad-macbook-compare/' },
   openGraph: {
-    title: `${PAGE_TITLE} | ユーズドラボ`,
+    title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/macbook/ipad-macbook-compare/',
     images: [{ url: '/images/macbook/mba-13-2024.jpg', width: 360, height: 360, alt: PAGE_TITLE }],
   },
   twitter: {
-    title: `${PAGE_TITLE} | ユーズドラボ`,
+    title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     images: ['/images/macbook/mba-13-2024.jpg'],
   },
@@ -113,7 +114,7 @@ export default function IpadMacbookComparePage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/content/macbook-ipad.jpg"
+                  src="/images/content/thumbnail/macbook-ipad.jpg"
                   alt="MacBookとiPadの比較イメージ"
                   className="hero-media__img"
                   width={360}

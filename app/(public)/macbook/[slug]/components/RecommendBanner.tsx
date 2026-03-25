@@ -15,7 +15,7 @@ export default function RecommendBanner() {
         <div className="m-card m-card--shadow popular-card">
           <figure className="popular-card-figure">
             <Image
-              src="/images/content/macbook-image-04.jpg"
+              src="/images/content/thumbnail/macbook-image-04.jpg"
               alt="中古MacBookおすすめ5選のイメージ画像"
               className="popular-card-img"
               width={400}

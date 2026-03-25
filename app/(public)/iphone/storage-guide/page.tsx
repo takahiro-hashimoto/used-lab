@@ -4,6 +4,7 @@ import Image from 'next/image'
 import {
   getAllIPhoneModels,
   getAllIPhonePriceLogsByModelIds,
+  getAllProductShopLinksByType,
 } from '@/lib/queries'
 import type { IPhonePriceLog } from '@/lib/types'
 import StorageTable, { type StorageModel } from './components/StorageTable'
@@ -12,19 +13,20 @@ import ShareBox from '@/app/components/ShareBox'
 export const revalidate = 86400
 
 export const metadata: Metadata = {
-  title: '中古iPhoneのストレージ容量はどれがいい？用途別おすすめ容量と容量別の価格差まとめ | ユーズドラボ',
+  title: '中古iPhoneのストレージ容量はどれがいい？用途別おすすめ容量まとめ',
   description:
-    '中古iPhoneを買うとき何GBを選ぶべきか、用途別の目安を解説。歴代モデルの容量ラインナップ一覧と、容量違いによる中古価格差も比較できます。',
+    '中古iPhoneを買うとき何GBを選ぶべきか、用途別の目安を解説。歴代モデルの容量ラインナップ一覧もまとめています。',
+  alternates: { canonical: '/iphone/storage-guide/' },
   openGraph: {
-    title: '中古iPhoneのストレージ容量はどれがいい？用途別おすすめ容量と容量別の価格差まとめ | ユーズドラボ',
-    description: '中古iPhoneのストレージ容量の選び方を解説。容量別の価格差も比較できます。',
+    title: '中古iPhoneのストレージ容量はどれがいい？用途別おすすめ容量まとめ',
+    description: '中古iPhoneのストレージ容量の選び方を用途別に解説。歴代モデルの容量ラインナップも一覧で確認できます。',
     url: '/iphone/storage-guide/',
-    images: [{ url: '/images/content/used-iphone-ios-support.jpg', width: 360, height: 360, alt: '中古iPhoneストレージ容量ガイドのイメージ' }],
+    images: [{ url: '/images/content/thumbnail/used-iphone-ios-support.jpg', width: 360, height: 360, alt: '中古iPhoneストレージ容量ガイドのイメージ' }],
   },
   twitter: {
-    title: '中古iPhoneのストレージ容量はどれがいい？用途別おすすめ容量と容量別の価格差まとめ | ユーズドラボ',
-    description: '中古iPhoneのストレージ容量の選び方を解説。容量別の価格差も比較できます。',
-    images: ['/images/content/used-iphone-ios-support.jpg'],
+    title: '中古iPhoneのストレージ容量はどれがいい？用途別おすすめ容量まとめ',
+    description: '中古iPhoneのストレージ容量の選び方を用途別に解説。歴代モデルの容量ラインナップも一覧で確認できます。',
+    images: ['/images/content/thumbnail/used-iphone-ios-support.jpg'],
   },
 }
 
@@ -66,7 +68,10 @@ function calcAvgMinPrice(log: IPhonePriceLog): number | null {
 }
 
 export default async function StorageGuidePage() {
-  const allModels = await getAllIPhoneModels()
+  const [allModels, allShopLinks] = await Promise.all([
+    getAllIPhoneModels(),
+    getAllProductShopLinksByType('iphone'),
+  ])
 
   // StorageTable用データ: モデル情報 + PriceLogの最安価格を統合
   const priceLogsMap = await getAllIPhonePriceLogsByModelIds(allModels.map((m) => m.id))
@@ -91,6 +96,8 @@ export default async function StorageGuidePage() {
       storageLabel = isNaN(num) ? latestLog.storage : num >= 1000 ? `${num / 1000}TB` : `${num}GB`
     }
 
+    const iosysLink = allShopLinks.find((l) => l.product_id === m.id && l.shop_id === 1)
+
     return {
       id: m.id,
       model: m.model,
@@ -100,6 +107,7 @@ export default async function StorageGuidePage() {
       strage: m.strage,
       storageLabel,
       avgMin,
+      iosysUrl: iosysLink?.url ?? null,
     }
   })
 
@@ -116,8 +124,8 @@ export default async function StorageGuidePage() {
   const articleJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Article',
-    headline: '中古iPhoneのストレージ容量はどれがいい？用途別おすすめ容量と容量別の価格差まとめ',
-    description: '中古iPhoneのストレージ容量の選び方を解説。容量別の価格差も比較できます。',
+    headline: '中古iPhoneのストレージ容量はどれがいい？用途別おすすめ容量まとめ',
+    description: '中古iPhoneのストレージ容量の選び方を用途別に解説。歴代モデルの容量ラインナップも一覧で確認できます。',
     datePublished: new Date().toISOString().split('T')[0],
     dateModified: new Date().toISOString().split('T')[0],
     author: { '@type': 'Organization', name: 'ユーズドラボ', url: 'https://used-lab.com/' },
@@ -203,7 +211,7 @@ export default async function StorageGuidePage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/content/used-iphone-ios-support.jpg"
+                  src="/images/content/thumbnail/used-iphone-ios-support.jpg"
                   alt="中古iPhoneストレージ容量ガイドのイメージ"
                   className="hero-media__img"
                   width={360}
@@ -221,7 +229,7 @@ export default async function StorageGuidePage() {
           <div className="l-container">
             <div className="lead-box">
               <p>中古iPhoneを選ぶとき、容量（ストレージ）選びで迷う方は多いのではないでしょうか。iPhoneはSDカードで容量を増やせないため、購入時の選択がそのまま使い勝手に直結します。</p>
-              <p>本記事では、<strong>用途別のおすすめ容量の目安、歴代iPhoneの容量ラインナップ、そして容量違いによる中古価格差</strong>をまとめました。「何GBにすればいいかわからない」という方はぜひ参考にしてみてください。</p>
+              <p>本記事では、<strong>用途別のおすすめ容量の目安と歴代iPhoneの容量ラインナップ</strong>をまとめました。「何GBにすればいいかわからない」という方はぜひ参考にしてみてください。</p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
                 情報を網羅的に得たい方は「<Link href="/iphone">中古iPhone購入完全ガイド</Link>」も参考にしてみてください！
@@ -436,7 +444,7 @@ export default async function StorageGuidePage() {
                 <div className="caution-check-card__visual">
                   <figure className="caution-check-card__image">
                     <img
-                      src="/images/content/iphone-storage.jpg"
+                      src="/images/content/thumbnail/iphone-storage.jpg"
                       alt="iPhoneのストレージ使用量確認画面"
                       width={280}
                       height={200}
@@ -497,7 +505,7 @@ export default async function StorageGuidePage() {
             <div className="m-card m-card--shadow popular-card">
               <figure className="popular-card-figure">
                 <Image
-                  src="/images/content/iphone-setting.webp"
+                  src="/images/content/thumbnail/iphone-setting.webp"
                   alt="中古iPhoneおすすめ5選のイメージ画像"
                   className="popular-card-img"
                   width={400}
@@ -542,7 +550,7 @@ export default async function StorageGuidePage() {
           </div>
         </section>
 
-        <ShareBox url="https://used-lab.com/iphone/storage-guide/" text="中古iPhoneのストレージ容量はどれがいい？用途別おすすめ容量と容量別の価格差まとめ" />
+        <ShareBox url="https://used-lab.com/iphone/storage-guide/" text="中古iPhoneのストレージ容量はどれがいい？用途別おすすめ容量まとめ" />
         </div>
       </article>
     </main>

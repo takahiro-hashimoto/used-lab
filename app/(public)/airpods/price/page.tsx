@@ -98,12 +98,13 @@ const PAGE_URL = 'https://used-lab.com/airpods/price/'
 export async function generateMetadata(): Promise<Metadata> {
   const allModels = await getAllAirPodsModels()
   const modelCount = allModels.length
-  const title = `AirPodsの中古相場一覧 | 歴代${modelCount}機種の価格推移を独自集計【${PRICE_INFO_UPDATE_MONTH}】 | ユーズドラボ`
+  const title = `AirPodsの中古相場一覧 | 歴代${modelCount}機種の価格推移を独自集計【${PRICE_INFO_UPDATE_MONTH}】`
   const description = `中古AirPods${modelCount}機種の価格相場を毎日更新。価格推移グラフ、最安値ランキングを掲載。イオシス・じゃんぱら・eイヤホンの実売価格を集計。`
 
   return {
     title,
     description,
+  alternates: { canonical: '/airpods/price/' },
     openGraph: {
       title,
       description,
@@ -333,7 +334,7 @@ export default async function AirPodsPriceInfoPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <img
-                  src="/images/content/airpods-image-03.jpg"
+                  src="/images/content/thumbnail/airpods-image-03.jpg"
                   alt="中古AirPods価格相場"
                   className="hero-media__img"
                   width={360}

@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import type { ModelData } from '../page'
 
 type Props = {
@@ -27,38 +26,36 @@ export default function PriceDropSection({ items, dateDisplay }: Props) {
           </p>
         )}
 
-        <ol className="pd-card-grid">
+        <ol className="price-card-grid l-grid l-grid--2col l-grid--gap-lg">
           {items.map((model) => (
-            <li key={model.id} className="pd-card m-card m-card--shadow">
-              <div className="pd-card__left">
-                <div className="pd-card__thumb">
-                  {model.image && (
-                    <Image
-                      src={`/images/macbook/${model.image}`}
-                      alt={model.name}
-                      width={60}
-                      height={60}
-                      className="pd-card__img"
-                    />
-                  )}
-                </div>
-                <div className="pd-card__info">
-                  <p className="pd-card__name">
-                    {model.shopUrl ? (
-                      <a href={model.shopUrl} className="pd-card__link" target="_blank" rel="noopener noreferrer">{model.name}</a>
-                    ) : model.name}
-                  </p>
-                  <p className="pd-card__meta">{model.year}年 / {model.chip}</p>
-                </div>
+            <li key={model.id} className="price-card m-card m-card--shadow">
+              <figure className="price-card__img">
+                {model.image && (
+                  <img
+                    src={`/images/macbook/${model.image}`}
+                    alt={model.name}
+                    width={80}
+                    height={80}
+                    loading="lazy"
+                  />
+                )}
+              </figure>
+              <div className="price-card__info">
+                <h3 className="price-card__name">
+                  {model.shopUrl ? (
+                    <a href={model.shopUrl} className="price-card__link" target="_blank" rel="noopener noreferrer">{model.name.replace(/（\d{4}）/, '')}</a>
+                  ) : model.name.replace(/（\d{4}）/, '')}
+                </h3>
+                <p className="price-card__meta">{model.year}年 / {model.chip}</p>
               </div>
-              <div className="pd-card__right">
-                <p className="pd-card__price-label">中古相場（{model.storage}の場合）</p>
-                <p className="pd-card__price m-price-display m-price-display--md">
-                  &yen;{model.currentPrice.toLocaleString()} <span className="pd-card__tilde">〜</span>
-                </p>
-                <p className="pd-card__change">
+              <div className="price-card__price">
+                <span className="price-card__label">中古相場（{model.storage}）</span>
+                <span className="price-card__value m-price-display m-price-display--sm m-price-display--primary">
+                  &yen;{model.currentPrice.toLocaleString()} <span className="price-card__tilde">〜</span>
+                </span>
+                <span className="price-card__change">
                   {model.priceChange.toLocaleString()}円<small>（{model.priceChangePercent}%）</small>
-                </p>
+                </span>
               </div>
             </li>
           ))}

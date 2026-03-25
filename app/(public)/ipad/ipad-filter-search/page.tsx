@@ -9,17 +9,18 @@ import IPadFilterSearchApp from './components/IPadFilterSearchApp'
 import ShareBox from '@/app/components/ShareBox'
 
 export const metadata: Metadata = {
-  title: 'iPad機種診断シミュレーター｜自分に合うおすすめ中古iPadがすぐわかる【2026年版】 | ユーズドラボ',
+  title: 'iPad機種診断シミュレーター｜自分に合うおすすめ中古iPadがすぐわかる【2026年版】',
   description:
     '目的・予算・こだわり条件から、あなたに最適な中古iPadを無料で診断。iPad mini〜iPad Pro 13インチまで全機種のデータベースから最適な1台を提案します。',
+  alternates: { canonical: '/ipad/ipad-filter-search/' },
   openGraph: {
-    title: 'iPad機種診断シミュレーター｜自分に合うおすすめ中古iPadがすぐわかる【2026年版】 | ユーズドラボ',
+    title: 'iPad機種診断シミュレーター｜自分に合うおすすめ中古iPadがすぐわかる【2026年版】',
     description: '目的・予算・こだわり条件から、あなたに最適な中古iPadを無料で診断。',
     url: '/ipad/ipad-filter-search/',
     images: [{ url: '/images/ipad/ipad-all.jpg', width: 360, height: 360, alt: 'iPad機種診断シミュレーター' }],
   },
   twitter: {
-    title: 'iPad機種診断シミュレーター｜自分に合うおすすめ中古iPadがすぐわかる【2026年版】 | ユーズドラボ',
+    title: 'iPad機種診断シミュレーター｜自分に合うおすすめ中古iPadがすぐわかる【2026年版】',
     description: '目的・予算・こだわり条件から、あなたに最適な中古iPadを無料で診断。',
     images: ['/images/ipad/ipad-all.jpg'],
   },
@@ -209,7 +210,7 @@ export default async function IPadFilterSearchPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/content/simulator.jpg"
+                  src="/images/content/thumbnail/simulator.jpg"
                   alt="iPad機種診断シミュレーターのイメージ"
                   className="hero-media__img"
                   width={360}
@@ -298,7 +299,7 @@ export default async function IPadFilterSearchPage() {
             <div className="m-card m-card--shadow popular-card">
               <figure className="popular-card-figure">
                 <Image
-                  src="/images/content/ipad-image-03.jpg"
+                  src="/images/content/thumbnail/ipad-image-03.jpg"
                   alt="中古iPadおすすめ5選のイメージ画像"
                   className="popular-card-img"
                   width={400}

@@ -11,7 +11,7 @@ export default function PopularMacBook() {
         <div className="m-card m-card--shadow popular-card">
           <figure className="popular-card-figure">
             <img
-              src="/images/content/macbook-image-04.jpg"
+              src="/images/content/thumbnail/macbook-image-04.jpg"
               alt="中古MacBookおすすめのイメージ画像"
               className="popular-card-img"
               width={400}

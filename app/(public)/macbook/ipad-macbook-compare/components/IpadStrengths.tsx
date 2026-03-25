@@ -4,7 +4,7 @@ export default function IpadStrengths() {
       {/* ノートを取る */}
       <div id="note-taking" className="m-card m-card--shadow m-card--padded popular-card">
         <img
-          src="/images/content/ipad-image-12.jpg"
+          src="/images/content/thumbnail/ipad-image-12.jpg"
           alt="iPadとApple Pencilでノートを取る様子"
           className="popular-card-img"
           width={240}
@@ -30,7 +30,7 @@ export default function IpadStrengths() {
       {/* イラストを描く */}
       <div id="illustration" className="m-card m-card--shadow m-card--padded popular-card">
         <img
-          src="/images/content/ipad-illust.jpg"
+          src="/images/content/thumbnail/ipad-illust.jpg"
           alt="iPadでイラストを描く様子"
           className="popular-card-img"
           width={240}
@@ -54,7 +54,7 @@ export default function IpadStrengths() {
       {/* 写真編集 */}
       <div id="photo-editing" className="m-card m-card--shadow m-card--padded popular-card">
         <img
-          src="/images/content/ipad-image-01.jpg"
+          src="/images/content/thumbnail/ipad-image-01.jpg"
           alt="iPadで写真編集をする様子"
           className="popular-card-img"
           width={240}
@@ -80,7 +80,7 @@ export default function IpadStrengths() {
       {/* 電子書籍の閲覧 */}
       <div id="ebook" className="m-card m-card--shadow m-card--padded popular-card">
         <img
-          src="/images/content/ipad-image-02.jpg"
+          src="/images/content/thumbnail/ipad-image-02.jpg"
           alt="iPadで電子書籍を読む様子"
           className="popular-card-img"
           width={240}

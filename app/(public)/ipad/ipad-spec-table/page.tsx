@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
+import { getHeroImage } from '@/lib/data/hero-images'
 import { getAllIPadModels, getAllProductShopLinksByType, getAllIPadAccessories, getAllIPadAccessoryCompatibility } from '@/lib/queries'
 import { buildAccessoryLookup, getPencilTextFromAccessories, getKeyboardTextFromAccessories } from '@/lib/utils/ipad-helpers'
 import SpecTable from './components/SpecTable'
@@ -25,17 +26,18 @@ const GLOSSARY_ITEMS = [
 import ShareBox from '@/app/components/ShareBox'
 
 export const metadata: Metadata = {
-  title: '歴代iPadスペック比較表！各世代の性能の違いがすぐわかる | ユーズドラボ',
+  title: '歴代iPadスペック比較表！各世代の性能の違いがすぐわかる',
   description:
     '歴代iPadのスペック比較表一覧です。iPad Pro・Air・mini・無印の性能差や機能の違いを一目で確認できます。',
+  alternates: { canonical: '/ipad/ipad-spec-table/' },
   openGraph: {
-    title: '歴代iPadスペック比較表！各世代の性能の違いがすぐわかる | ユーズドラボ',
+    title: '歴代iPadスペック比較表！各世代の性能の違いがすぐわかる',
     description: '歴代iPadのスペック比較表一覧です。iPad Pro・Air・mini・無印の性能差や機能の違いを一目で確認できます。',
     url: '/ipad/ipad-spec-table/',
     images: [{ url: '/images/ipad/ipad-pro-13-2.jpg', width: 360, height: 360, alt: '歴代iPadスペック比較表のイメージ' }],
   },
   twitter: {
-    title: '歴代iPadスペック比較表！各世代の性能の違いがすぐわかる | ユーズドラボ',
+    title: '歴代iPadスペック比較表！各世代の性能の違いがすぐわかる',
     description: '歴代iPadのスペック比較表一覧です。iPad Pro・Air・mini・無印の性能差や機能の違いを一目で確認できます。',
     images: ['/images/ipad/ipad-pro-13-2.jpg'],
   },
@@ -182,7 +184,7 @@ export default async function IPadSpecTablePage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/content/ipad-image-11.jpg"
+                  src="/images/content/thumbnail/ipad-image-11.jpg"
                   alt="歴代iPadスペック比較表のイメージ"
                   className="hero-media__img"
                   width={360}
@@ -258,6 +260,45 @@ export default async function IPadSpecTablePage() {
         <BenchmarkSection models={serializedModels} />
         <EvolutionTimeline />
         <GlossarySection productName="iPad" items={GLOSSARY_ITEMS} />
+
+        {/* 関連記事 */}
+        <section className="l-section" id="related" aria-labelledby="heading-related">
+          <div className="l-container">
+            <h2 className="m-section-heading m-section-heading--lg" id="heading-related">iPad選びのヒントになる関連記事</h2>
+            <p className="m-section-desc">スペック以外の観点からもiPad選びをサポートする記事をまとめました。</p>
+            <div className="l-grid l-grid--2col l-grid--gap-lg">
+              <Link href="/ipad/apple-pencil-compare/" className="m-card m-card--shadow related-link-card m-card--hoverable">
+                <Image src={getHeroImage('/ipad/apple-pencil-compare/')} alt="Apple Pencil比較" className="related-link-card__img" width={400} height={300} loading="lazy" />
+                <div className="related-link-card__body">
+                  <h3 className="related-link-card__title">Apple Pencil比較</h3>
+                  <p className="related-link-card__desc">各モデルの違いと対応iPadがわかる</p>
+                </div>
+              </Link>
+              <Link href="/ipad/accessories-summary/" className="m-card m-card--shadow related-link-card m-card--hoverable">
+                <Image src={getHeroImage('/ipad/accessories-summary/')} alt="Magic Keyboard型番一覧" className="related-link-card__img" width={400} height={300} loading="lazy" />
+                <div className="related-link-card__body">
+                  <h3 className="related-link-card__title">Magic Keyboard 型番一覧</h3>
+                  <p className="related-link-card__desc">対応キーボードがすぐわかる</p>
+                </div>
+              </Link>
+              <Link href="/ipad/storage-guide/" className="m-card m-card--shadow related-link-card m-card--hoverable">
+                <Image src={getHeroImage('/ipad/storage-guide/')} alt="ストレージ容量ガイド" className="related-link-card__img" width={400} height={300} loading="lazy" />
+                <div className="related-link-card__body">
+                  <h3 className="related-link-card__title">ストレージ容量ガイド</h3>
+                  <p className="related-link-card__desc">用途別のおすすめ容量と中古価格を比較</p>
+                </div>
+              </Link>
+              <Link href="/ipad/benchmark/" className="m-card m-card--shadow related-link-card m-card--hoverable">
+                <Image src={getHeroImage('/ipad/benchmark/')} alt="ベンチマーク比較ランキング" className="related-link-card__img" width={400} height={300} loading="lazy" />
+                <div className="related-link-card__body">
+                  <h3 className="related-link-card__title">ベンチマーク比較ランキング</h3>
+                  <p className="related-link-card__desc">歴代iPadのチップ性能をスコアで比較</p>
+                </div>
+              </Link>
+            </div>
+          </div>
+        </section>
+
         {/* 目的別に人気の中古iPad */}
         <section className="l-section" id="popular" aria-labelledby="heading-popular">
           <div className="l-container">
@@ -271,7 +312,7 @@ export default async function IPadSpecTablePage() {
                   width={400}
                   height={500}
                   className="popular-card-img"
-                  src="/images/content/ipad-image-03.jpg"
+                  src="/images/content/thumbnail/ipad-image-03.jpg"
                 />
               </figure>
               <div className="popular-card-body">

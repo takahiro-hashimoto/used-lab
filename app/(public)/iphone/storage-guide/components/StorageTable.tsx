@@ -3,6 +3,7 @@
 import { useState, useMemo } from 'react'
 import Link from 'next/link'
 import { parseDate, formatDate } from '@/app/components/spec-table-utils'
+import { parseMaxStorageGb, expandStorageRange, formatPrice } from '@/lib/utils/storage-helpers'
 
 export type StorageModel = {
   id: number
@@ -13,6 +14,7 @@ export type StorageModel = {
   strage: string | null
   storageLabel: string | null
   avgMin: number | null
+  iosysUrl: string | null
 }
 
 type Props = {
@@ -33,57 +35,7 @@ function getModelCategory(model: string): string {
   return 'standard'
 }
 
-/** ストレージ文字列からGB/TB部分をすべて抽出 */
-function parseStorageParts(strage: string | null): string[] {
-  if (!strage) return []
-  return strage.split(/\s*[\/,~]\s*/).map((s) => s.trim()).filter(Boolean)
-}
-
-/** ストレージ文字列から最大容量(GB)を数値で返す */
-function parseMaxStorageGb(strage: string | null): number {
-  const parts = parseStorageParts(strage)
-  let maxGb = 0
-  for (const part of parts) {
-    const tbMatch = part.match(/([\d.]+)\s*TB/i)
-    if (tbMatch) {
-      maxGb = Math.max(maxGb, parseFloat(tbMatch[1]) * 1024)
-      continue
-    }
-    const gbMatch = part.match(/([\d.]+)\s*GB/i)
-    if (gbMatch) {
-      maxGb = Math.max(maxGb, parseFloat(gbMatch[1]))
-    }
-  }
-  return maxGb
-}
-
-/** ストレージ文字列を個別の容量タグに分割（"64GB ~ 256GB" → ["64GB", "128GB", "256GB"]） */
-function expandStorageRange(strage: string | null): string[] {
-  if (!strage) return []
-  const parts = parseStorageParts(strage)
-  if (parts.length !== 2) return parts
-
-  const parseGb = (s: string): number => {
-    const tb = s.match(/([\d.]+)\s*TB/i)
-    if (tb) return parseFloat(tb[1]) * 1024
-    const gb = s.match(/([\d.]+)\s*GB/i)
-    if (gb) return parseFloat(gb[1])
-    return 0
-  }
-
-  const minGb = parseGb(parts[0])
-  const maxGb = parseGb(parts[1])
-  if (minGb === 0 || maxGb === 0) return parts
-
-  const allSteps = [32, 64, 128, 256, 512, 1024, 2048]
-  const expanded = allSteps.filter((gb) => gb >= minGb && gb <= maxGb)
-
-  return expanded.map((gb) => gb >= 1024 ? `${gb / 1024}TB` : `${gb}GB`)
-}
-
-function formatPrice(price: number): string {
-  return `¥${price.toLocaleString()}`
-}
+const IPHONE_STORAGE_STEPS = [32, 64, 128, 256, 512, 1024, 2048]
 
 export default function StorageTable({ models }: Props) {
   const [sortOrder, setSortOrder] = useState<SortOrder>('new')
@@ -211,13 +163,16 @@ export default function StorageTable({ models }: Props) {
                       </td>
                       <td>
                         <div className="storage-tags">
-                          {expandStorageRange(m.strage).map((opt) => (
+                          {expandStorageRange(m.strage, IPHONE_STORAGE_STEPS).map((opt) => (
                             <span key={opt} className="storage-tag">{opt}</span>
                           ))}
                           {!m.strage && '-'}
                         </div>
                       </td>
                       <td className="storage-price-cell">
+                        {m.storageLabel && (
+                          <span className="storage-price-label">{m.storageLabel}</span>
+                        )}
                         {m.avgMin != null ? (
                           <span className="storage-price-value">
                             {formatPrice(m.avgMin)}〜
@@ -225,19 +180,20 @@ export default function StorageTable({ models }: Props) {
                         ) : (
                           <span className="storage-price-na">-</span>
                         )}
-                        {m.storageLabel && (
-                          <span className="battery-table__date">{m.storageLabel}〜</span>
-                        )}
                       </td>
                       <td>
-                        <a
-                          href={`https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%3Fkeyword%3D${encodeURIComponent(m.model)}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="m-btn m-btn--primary m-btn--sm"
-                        >
-                          イオシスで探す
-                        </a>
+                        {m.iosysUrl ? (
+                          <a
+                            href={m.iosysUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="m-btn m-btn--primary m-btn--sm"
+                          >
+                            イオシスで探す
+                          </a>
+                        ) : (
+                          <span className="storage-price-na">-</span>
+                        )}
                       </td>
                     </tr>
                   ))}

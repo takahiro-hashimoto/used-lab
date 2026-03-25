@@ -1392,7 +1392,7 @@ a.header-admin-link:hover {
   inset: 0;
   overflow: hidden;
   pointer-events: none;
-  background: url('/images/content/header-wave.png') center / cover no-repeat;
+  background: url('/images/content/photo/header-wave.png') center / cover no-repeat;
   opacity: 0.1;
 }
 
@@ -4374,64 +4374,85 @@ a.header-admin-link:hover {
 }
 
 
-/* ---------- guide-price-card ---------- */
-.guide-price-grid {
+/* ---------- price-card ---------- */
+.price-card-grid {
+  list-style: none;
   margin-bottom: var(--space-2xl);
 }
 
-.guide-price-card {
+.price-card {
   align-items: center;
   gap: var(--space-md);
-  padding: var(--space-lg) var(--space-lg);
+  padding: var(--space-lg);
   grid-template-columns: 64px 1fr auto;
   display: grid;
 }
 
-.guide-price-card__img {
+.price-card__img {
   margin: 0;
   width: 64px;
   height: 64px;
   flex-shrink: 0;
 }
 
-.guide-price-card__img img {
+.price-card__img img {
   width: 100%;
   height: 100%;
   object-fit: contain;
   border-radius: var(--radius-sm);
 }
 
-.guide-price-card__info {
+.price-card__info {
   min-width: 0;
 }
 
-.guide-price-card__name {
+.price-card__name {
   font-size: var(--font-size-base);
   font-weight: 700;
   color: var(--color-text);
 }
 
-.guide-price-card__meta {
+.price-card__link {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.price-card__link:hover {
+  text-decoration: underline;
+}
+
+.price-card__meta {
   font-size: var(--font-size-xs);
   color: var(--color-text-muted);
   margin-top: 2px;
 }
 
-.guide-price-card__price {
+.price-card__price {
   text-align: right;
   flex-shrink: 0;
 }
 
-.guide-price-card__label {
+.price-card__label {
   display: block;
   font-size: var(--font-size-xs);
   color: var(--color-text-muted);
   margin-bottom: 2px;
 }
 
-/* .guide-price-card__value → use .m-price-display.m-price-display--sm.m-price-display--primary */
-.guide-price-card__value {
+.price-card__value {
   display: block;
+}
+
+.price-card__tilde {
+  font-weight: 400;
+  color: var(--color-text-muted);
+}
+
+.price-card__change {
+  font-size: var(--font-size-sm);
+  color: var(--color-negative);
+  font-weight: 600;
+  margin-top: 2px;
 }
 
 .guide-section-note {
@@ -5363,26 +5384,26 @@ body.is-menu-open {
   }
 
 
-  .guide-price-card {
+  .price-card {
     grid-template-columns: 48px 1fr auto;
     gap: var(--space-xs) var(--space-sm);
     padding: var(--space-md);
     align-items: center;
   }
 
-  .guide-price-card__img {
+  .price-card__img {
     width: 48px;
     height: 48px;
     grid-row: 1 / 3;
   }
 
-  .guide-price-card__price {
+  .price-card__price {
     grid-row: 1 / 3;
     grid-column: 3;
     text-align: right;
   }
 
-  .guide-price-card__value {
+  .price-card__value {
     font-size: var(--font-size-lg);
   }
 
@@ -5870,97 +5891,6 @@ body.is-menu-open {
 }
 
 /* --- Card Grid (Drop & Ranking shared) --- */
-.pd-card-grid {
-  list-style: none;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-md);
-}
-
-.pd-card {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-md);
-  padding: var(--space-md);
-}
-
-/* 左側：ランク + 機種名 */
-.pd-card__left {
-  display: flex;
-  align-items: center;
-  gap: var(--space-md);
-  min-width: 0;
-}
-
-/* サムネイル */
-.pd-card__thumb {
-  flex-shrink: 0;
-  width: 60px;
-  height: 60px;
-}
-
-.pd-card__img {
-  width: 60px;
-  height: 60px;
-  object-fit: contain;
-  border-radius: var(--radius-sm);
-}
-
-.pd-card__info {
-  min-width: 0;
-}
-
-.pd-card__name {
-  font-size: var(--font-size-base);
-  font-weight: 700;
-  color: var(--color-text);
-  margin: 0;
-}
-
-.pd-card__meta {
-  font-size: var(--font-size-xs);
-  color: var(--color-text-muted);
-  margin: var(--space-xs) 0 0;
-}
-
-/* 右側：価格 */
-.pd-card__right {
-  text-align: right;
-  flex-shrink: 0;
-}
-
-.pd-card__price-label {
-  font-size: var(--font-size-xs);
-  color: var(--color-text-muted);
-  margin: 0;
-}
-
-/* .pd-card__price → use .m-price-display.m-price-display--md */
-.pd-card__price {
-  margin: 0;
-}
-
-.pd-card__link {
-  color: var(--color-primary);
-  text-decoration: none;
-}
-
-.pd-card__link:hover {
-  text-decoration: underline;
-}
-
-.pd-card__tilde {
-  font-weight: 400;
-  color: var(--color-text-muted);
-}
-
-.pd-card__change {
-  font-size: var(--font-size-sm);
-  color: var(--color-negative);
-  font-weight: 600;
-  margin: 0;
-}
 
 /* --- Recommend banner --- */
 /* .pd-recommend-banner → add .m-card--hoverable */
@@ -6173,9 +6103,6 @@ body.is-menu-open {
 
 /* --- Responsive --- */
 @media (max-width: 768px) {
-  .pd-card-grid {
-    grid-template-columns: 1fr;
-  }
 
   .pd-chart-area__header {
     flex-direction: column;
@@ -8321,11 +8248,20 @@ body.is-menu-open {
 
 .storage-price-cell {
   min-width: 6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.15rem;
+}
+
+.storage-price-label {
+  font-size: 0.75rem;
+  color: var(--color-text-tertiary, #999);
 }
 
 .storage-price-value {
-  font-weight: 600;
-  font-size: 0.85rem;
+  font-weight: 700;
+  font-size: 1.35rem;
 }
 
 .storage-price-na {

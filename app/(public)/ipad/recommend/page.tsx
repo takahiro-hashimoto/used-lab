@@ -39,16 +39,17 @@ const PAGE_DESCRIPTION =
 const PAGE_URL = 'https://used-lab.com/ipad/recommend/'
 
 export const metadata: Metadata = {
-  title: `${PAGE_TITLE} | ユーズドラボ`,
+  title: PAGE_TITLE,
   description: PAGE_DESCRIPTION,
+  alternates: { canonical: '/ipad/recommend/' },
   openGraph: {
-    title: `${PAGE_TITLE} | ユーズドラボ`,
+    title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/ipad/recommend/',
     images: [{ url: '/images/ipad/ipad-air-5.jpg', width: 360, height: 360, alt: PAGE_TITLE }],
   },
   twitter: {
-    title: `${PAGE_TITLE} | ユーズドラボ`,
+    title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     images: ['/images/ipad/ipad-air-5.jpg'],
   },
@@ -205,7 +206,7 @@ export default async function IPadRecommendPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/content/ipad-image-03.jpg"
+                  src="/images/content/thumbnail/ipad-image-03.jpg"
                   alt={`中古iPadおすすめ${RECOMMEND_COUNT}選のイメージ`}
                   className="hero-media__img"
                   width={360}
