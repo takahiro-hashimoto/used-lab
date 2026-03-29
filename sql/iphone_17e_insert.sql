@@ -1,6 +1,7 @@
 -- ============================================
 -- iPhone 17e スペックデータ INSERT
 -- Source: https://www.apple.com/jp/iphone-17e/specs/
+-- ※ スペックページに記載のない項目は NULL
 -- ============================================
 
 INSERT INTO iphone_models (
@@ -14,7 +15,7 @@ INSERT INTO iphone_models (
   in_camera, front_camera, image_sensor, video,
   -- 接続・その他
   port, certification, sim, audio, streaming,
-  -- ベンチマーク（未計測のため NULL）
+  -- ベンチマーク
   score_single, score_multi, score_metal,
   antutu_cpu, antutu_gpu, antutu_mem, antutu_ux,
   -- 機能フラグ（boolean）
@@ -30,16 +31,16 @@ INSERT INTO iphone_models (
   '17e',
   1,
   NULL,
-  '2026/3',
+  NULL,       -- 発売日：スペックページに記載なし
   'A19',
   'ビデオ再生：最大26時間',
-  '48MP Fusionカメラ・A19チップ・Apple Intelligence対応・MagSafe・アクションボタン搭載のスタンダードモデル',
-  NULL,
+  NULL,       -- point：スペックページに記載なし
+  NULL,       -- official：スペックページに記載なし
 
   -- ストレージ・色・RAM
   '256GB/512GB',
   'ブラック/ホワイト/ソフトピンク',
-  NULL,
+  NULL,       -- RAM：スペックページに記載なし
 
   -- ディスプレイ・物理
   '6.1インチ',
@@ -50,7 +51,7 @@ INSERT INTO iphone_models (
   -- カメラ
   '48MP Fusion（26mm、ƒ/1.6、光学式手ぶれ補正）、12MP 2倍望遠（52mm）',
   '12MP TrueDepth（ƒ/1.9、Focus Pixels AF）',
-  NULL,
+  NULL,       -- image_sensor：スペックページに記載なし
   '4Kドルビービジョン（24/25/30/60fps）、1080pスロー（120/240fps）、シネマティックビデオ手ぶれ補正',
 
   -- 接続・その他
@@ -64,24 +65,24 @@ INSERT INTO iphone_models (
   NULL, NULL, NULL,
   NULL, NULL, NULL, NULL,
 
-  -- 機能フラグ
-  true,   -- apple_intelligence
-  true,   -- photography_style（フォトグラフスタイル）
-  true,   -- portrait_mode（ポートレート）
-  false,  -- action_mode（アクションモード ※記載なし）
-  false,  -- cinematic_mode（シネマティック ※記載なし）
-  false,  -- macro_mode（マクロ ※記載なし）
-  true,   -- night_mode（ナイトモード）
-  false,  -- apple_proraw（ProRAW ※記載なし）
-  false,  -- apple_prores（ProRes ※記載なし）
-  true,   -- magsafe（最大15W）
-  false,  -- dynamic_island（※記載なし）
-  true,   -- accident_detection（衝突事故検出）
-  false,  -- promotion（ProMotion ※記載なし）
-  false,  -- lidar（LiDAR ※記載なし）
-  true,   -- action_button（アクションボタン）
-  false,  -- camera_control（カメラコントロール ※記載なし）
-  false,  -- centerframe（センターフレーム ※記載なし）
+  -- 機能フラグ（スペックページに記載あり → true、記載なし → NULL）
+  true,   -- apple_intelligence（Apple Intelligence記載あり）
+  true,   -- photography_style（フォトグラフスタイル記載あり）
+  true,   -- portrait_mode（ポートレート記載あり）
+  NULL,   -- action_mode（スペックページに記載なし）
+  NULL,   -- cinematic_mode（スペックページに記載なし）
+  NULL,   -- macro_mode（スペックページに記載なし）
+  true,   -- night_mode（ナイトモード記載あり）
+  NULL,   -- apple_proraw（スペックページに記載なし）
+  NULL,   -- apple_prores（スペックページに記載なし）
+  true,   -- magsafe（MagSafe最大15W記載あり）
+  NULL,   -- dynamic_island（スペックページに記載なし）
+  true,   -- accident_detection（衝突事故検出記載あり）
+  NULL,   -- promotion（スペックページに記載なし）
+  NULL,   -- lidar（スペックページに記載なし）
+  true,   -- action_button（アクションボタン記載あり）
+  NULL,   -- camera_control（スペックページに記載なし）
+  NULL,   -- centerframe（スペックページに記載なし）
 
   -- アクセサリ・価格・iOS
   NULL,

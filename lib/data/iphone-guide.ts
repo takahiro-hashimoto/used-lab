@@ -25,6 +25,7 @@ export const GUIDE_SPEC_LINKS = [
   { href: '/iphone/battery-compare/', icon: 'fa-battery-full', title: 'バッテリー性能比較ランキング', desc: '動画再生時間、音楽再生時間、バッテリー容量(mAh)を一覧表で比較できます。' },
   { href: '/iphone/storage-guide/', icon: 'fa-hard-drive', title: 'ストレージ容量ガイド', desc: '用途別のおすすめ容量と歴代モデルの容量ラインナップをまとめています。' },
   { href: '/iphone/benchmark/', icon: 'fa-ranking-star', title: '歴代iPhoneベンチマーク比較', desc: 'Geekbench 6・AnTuTuスコアで歴代iPhoneの性能をランキング形式で比較。' },
+  { href: '/iphone/16e-17e-compare/', icon: 'fa-scale-balanced', title: 'iPhone 16eと17eの違いを比較', desc: 'チップ・モデム・カメラ・ストレージなど6項目でiPhone 16eと17eを徹底比較。' },
 ] as const
 
 // ---------- FAQ ----------
@@ -88,6 +89,7 @@ export const GUIDE_MODEL_LINKS = {
   standard: [
     { slug: '17normal', name: 'iPhone 17', meta: '2025年9月発売 / A19 Bionic' },
     { slug: 'air', name: 'iPhone Air', meta: '2025年9月発売 / A19 pro Bionic' },
+    { slug: '17e', name: 'iPhone 17e', meta: 'A19' },
     { slug: '16e-se', name: 'iPhone16e', meta: '2025年2月発売 / A18 Bionic' },
     { slug: '16normal', name: 'iPhone 16', meta: '2024年9月発売 / A18 Bionic' },
     { slug: '16plus', name: 'iPhone 16 Plus', meta: '2024年9月発売 / A18 Bionic' },
