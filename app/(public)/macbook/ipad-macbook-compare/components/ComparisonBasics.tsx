@@ -4,17 +4,17 @@ export default function ComparisonBasics() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-xl)', marginTop: 'var(--space-2xl)' }}>
       {/* ファイル管理 */}
-      <div id="file-management" className="m-card m-card--shadow m-card--padded popular-card popular-card--vertical">
-        <div className="popular-card-body">
-          <h3 className="popular-card-title">ファイル管理</h3>
-          <p className="popular-card-desc">
+      <div id="file-management" className="m-card m-card--shadow m-card--padded">
+        <div className="media-card__body">
+          <h3 className="media-card__title">ファイル管理</h3>
+          <p className="media-card__desc">
             macOSではフォルダの移動はドラッグ&ドロップ、ファイルのコピーは「Command+C」のショートカットで簡単に行うことができます。
           </p>
-          <p className="popular-card-desc" style={{ marginTop: 'var(--space-sm)' }}>
+          <p className="media-card__desc" style={{ marginTop: 'var(--space-sm)' }}>
             一方iPadOSでは、上記のようなファイル操作をmacOSほどシンプルに行うことができません。また、macOSのほうがファイルの階層構造がわかりやすく必要なファイルにアクセスしやすいので、<strong>ファイル管理という点ではmacOSが操作しやすい</strong>と言えます。
           </p>
         </div>
-        <div className="popular-card-img-grid">
+        <div className="media-card__img-grid">
           <figure>
             <Image src="/images/content/photo/macbook-folder-manegment.webp" alt="MacBookのファイル管理方法" width={400} height={300} loading="lazy" style={{ border: '1px solid #d5d5d8', borderRadius: 'var(--radius-md)' }} />
             <figcaption>MacBookのファイル管理方法</figcaption>
@@ -27,17 +27,17 @@ export default function ComparisonBasics() {
       </div>
 
       {/* マルチタスク機能 */}
-      <div id="multitask" className="m-card m-card--shadow m-card--padded popular-card popular-card--vertical">
-        <div className="popular-card-body">
-          <h3 className="popular-card-title">マルチタスク機能</h3>
-          <p className="popular-card-desc">
+      <div id="multitask" className="m-card m-card--shadow m-card--padded">
+        <div className="media-card__body">
+          <h3 className="media-card__title">マルチタスク機能</h3>
+          <p className="media-card__desc">
             iPadOSではSplit Viewを使用してアプリを2つ横に並べたり、Slide Overでアプリを重ねて表示したりできます。ただし、どちらも表示できるアプリは2つまでですし、対応するアプリも限られます。
           </p>
-          <p className="popular-card-desc" style={{ marginTop: 'var(--space-sm)' }}>
+          <p className="media-card__desc" style={{ marginTop: 'var(--space-sm)' }}>
             それに対してmacOSは<strong>アプリを複数画面に表示できるのはもちろんのこと、複数デスクトップを作成して効率よく作業する</strong>ことができます。マルチタスクのしやすさは圧倒的にMacBookのほうが上というのが現状です。
           </p>
         </div>
-        <div className="popular-card-img-grid">
+        <div className="media-card__img-grid">
           <figure>
             <Image src="/images/content/photo/use-macbook.jpg" alt="MacBookで複数アプリを立ち上げ・行き来する様子" width={400} height={300} loading="lazy" />
             <figcaption>MacBookで複数アプリを立ち上げ・行き来する様子</figcaption>
@@ -50,10 +50,10 @@ export default function ComparisonBasics() {
       </div>
 
       {/* サイズ・形状 */}
-      <div id="size" className="m-card m-card--shadow m-card--padded popular-card popular-card--vertical">
-        <div className="popular-card-body">
-          <h3 className="popular-card-title">サイズ・形状</h3>
-          <p className="popular-card-desc">
+      <div id="size" className="m-card m-card--shadow m-card--padded">
+        <div className="media-card__body">
+          <h3 className="media-card__title">サイズ・形状</h3>
+          <p className="media-card__desc">
             MacBookはノートパソコン型のデバイスです。現行ラインナップの各モデルごとのインチ数や重量をまとめると下記のようになります。
           </p>
         </div>
@@ -114,8 +114,8 @@ export default function ComparisonBasics() {
           </div>
         </div>
 
-        <div className="popular-card-body" style={{ marginTop: 'var(--space-lg)' }}>
-          <p className="popular-card-desc">
+        <div className="media-card__body" style={{ marginTop: 'var(--space-lg)' }}>
+          <p className="media-card__desc">
             iPadはタブレット端末で、Magic KeyboardなどのApple純正キーボードを組み合わせることで、ノートパソコンに近い感覚でタイピングできるようになります。現行ラインナップの各モデルごとのインチ数や重量をまとめると下記のようになります。
           </p>
         </div>
@@ -198,18 +198,18 @@ export default function ComparisonBasics() {
           </div>
         </div>
 
-        <div className="popular-card-body" style={{ marginTop: 'var(--space-md)' }}>
-          <p className="popular-card-desc">
+        <div className="media-card__body" style={{ marginTop: 'var(--space-md)' }}>
+          <p className="media-card__desc">
             各iPadに対応しているSmart Keyboard FolioやMagic Keyboardの重量は500〜700gほど。<strong>組み合わせ次第では同等のインチ数のMacBookよりも重量が重くなる</strong>のはややネガティブなポイントです。
           </p>
         </div>
       </div>
 
       {/* 操作方法 */}
-      <div id="operation" className="m-card m-card--shadow m-card--padded popular-card popular-card--vertical">
-        <div className="popular-card-body">
-          <h3 className="popular-card-title">操作方法</h3>
-          <p className="popular-card-desc">
+      <div id="operation" className="m-card m-card--shadow m-card--padded">
+        <div className="media-card__body">
+          <h3 className="media-card__title">操作方法</h3>
+          <p className="media-card__desc">
             操作方法も両者の基本的な違いのひとつです。それぞれ下記のような特徴があります。
           </p>
         </div>
@@ -220,7 +220,7 @@ export default function ComparisonBasics() {
               <i className="fa-solid fa-laptop" aria-hidden="true" style={{ marginRight: 'var(--space-xs)' }}></i>
               MacBook
             </p>
-            <p className="popular-card-desc">
+            <p className="media-card__desc">
               キーボードやトラックパッドで操作するのが基本。トラックパッドは細かく設定を変えることができ、これを駆使することで作業効率をぐっとアップさせることができます。
             </p>
           </div>
@@ -230,14 +230,14 @@ export default function ComparisonBasics() {
               <i className="fa-solid fa-tablet-screen-button" aria-hidden="true" style={{ marginRight: 'var(--space-xs)' }}></i>
               iPad
             </p>
-            <p className="popular-card-desc">
+            <p className="media-card__desc">
               スマホと同様にタッチ操作で扱うのが基本。加えてApple PencilやMagic Keyboardなどの周辺機器を使用することで、手書き入力やキーボード入力もできるようになります。
             </p>
           </div>
         </div>
 
-        <div className="popular-card-body" style={{ marginTop: 'var(--space-md)' }}>
-          <p className="popular-card-desc">
+        <div className="media-card__body" style={{ marginTop: 'var(--space-md)' }}>
+          <p className="media-card__desc">
             また、iPadはUSB端子がひとつしかなく、拡張性を上げるにはUSBハブが必須です。それに対して<strong>MacBook（特にMacBook Pro）はインターフェイスの種類が豊富</strong>なので、マルチメディアハブなどがなくてもある程度の作業をこなすことができます。
           </p>
         </div>

@@ -1,3 +1,5 @@
+import IconCard from '@/app/components/IconCard'
+
 export default function BuyingOptionsSection() {
   return (
     <section className="l-section" id="shops" aria-labelledby="heading-shops">
@@ -10,44 +12,24 @@ export default function BuyingOptionsSection() {
 
         <div className="l-grid l-grid--2col l-grid--gap-lg post-check-grid">
           {/* 中古スマホ専門店 */}
-          <div className="m-card m-card--shadow m-card--padded post-check-item">
-            <h3 className="post-check-item__heading">
-              <i className="fa-solid fa-store" aria-hidden="true"></i> 中古スマホ専門店
-            </h3>
-            <div className="caution-check-card__text m-rich-text">
+          <IconCard icon="fa-solid fa-store" title="中古スマホ専門店">
               <p>イオシス、にこスマ、ゲオなど、中古スマホを専門に扱うショップ。独自の保証制度や検品体制を整えています。</p>
-            </div>
-          </div>
+          </IconCard>
 
           {/* キャリア認定中古 */}
-          <div className="m-card m-card--shadow m-card--padded post-check-item">
-            <h3 className="post-check-item__heading">
-              <i className="fa-solid fa-mobile-screen-button" aria-hidden="true"></i> キャリア認定中古
-            </h3>
-            <div className="caution-check-card__text m-rich-text">
+          <IconCard icon="fa-solid fa-mobile-screen-button" title="キャリア認定中古">
               <p>ドコモ、au、ソフトバンクなどの通信キャリアが販売する認定整備済みiPhone。キャリア独自の保証が付帯します。</p>
-            </div>
-          </div>
+          </IconCard>
 
           {/* ECモール */}
-          <div className="m-card m-card--shadow m-card--padded post-check-item">
-            <h3 className="post-check-item__heading">
-              <i className="fa-solid fa-cart-shopping" aria-hidden="true"></i> ECモール（Amazon / 楽天など）
-            </h3>
-            <div className="caution-check-card__text m-rich-text">
+          <IconCard icon="fa-solid fa-cart-shopping" title="ECモール（Amazon / 楽天など）">
               <p>Amazonや楽天市場などのECモールに出店している中古ショップから購入。ポイント還元などのメリットがあります。</p>
-            </div>
-          </div>
+          </IconCard>
 
           {/* フリマアプリ・個人売買 */}
-          <div className="m-card m-card--shadow m-card--padded post-check-item">
-            <h3 className="post-check-item__heading">
-              <i className="fa-solid fa-comments-dollar" aria-hidden="true"></i> フリマアプリ・個人売買
-            </h3>
-            <div className="caution-check-card__text m-rich-text">
+          <IconCard icon="fa-solid fa-comments-dollar" title="フリマアプリ・個人売買">
               <p>メルカリやヤフオクなど、個人間で売買できるプラットフォーム。価格の安さが魅力ですが、自己責任の範囲が広くなります。</p>
-            </div>
-          </div>
+          </IconCard>
         </div>
       </div>
     </section>

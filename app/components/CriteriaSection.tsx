@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import IconCard from '@/app/components/IconCard'
 
 type CriteriaCard = {
   iconClass: string
@@ -27,15 +28,9 @@ export default function CriteriaSection({ recommendCount, recommendCountLabel, d
 
         <div className="l-grid l-grid--3col l-grid--gap-lg">
           {cards.map((card) => (
-            <div key={card.title} className="m-card m-card--shadow criteria-card">
-              <div className="criteria-card__head">
-                <span className={`criteria-card__icon criteria-card__icon--${card.iconColor} m-icon-box m-icon-box--lg`}>
-                  <i className={card.iconClass} aria-hidden="true"></i>
-                </span>
-                <h3 className="criteria-card__title">{card.title}</h3>
-              </div>
-              <p className="criteria-card__desc">{card.desc}</p>
-            </div>
+            <IconCard key={card.title} icon={card.iconClass} title={card.title}>
+              <p>{card.desc}</p>
+            </IconCard>
           ))}
         </div>
       </div>

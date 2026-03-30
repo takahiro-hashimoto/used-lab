@@ -22,7 +22,7 @@ export default function LifespanSection({ model }: Props) {
         </p>
 
         <div className="l-grid l-grid--2col l-grid--gap-lg l-grid--mb-xl">
-          <div className="m-card m-stat-card m-stat-card--lg lifespan-card">
+          <div className="m-card m-stat-card m-stat-card--lg lifespan-card" style={{ alignItems: 'center', textAlign: 'center' }}>
             <span className="m-badge m-badge--primary lifespan-card-label">
               <i className="fa-solid fa-code-branch" aria-hidden="true"></i> OSアップデート
             </span>
@@ -37,7 +37,7 @@ export default function LifespanSection({ model }: Props) {
               最新のiOS機能が使える目安。<br />発売から7年ほどが経過するとサポート終了になる傾向がある。
             </p>
           </div>
-          <div className="m-card m-stat-card m-stat-card--lg lifespan-card">
+          <div className="m-card m-stat-card m-stat-card--lg lifespan-card" style={{ alignItems: 'center', textAlign: 'center' }}>
             <span className="m-badge m-badge--primary lifespan-card-label">
               <i className="fa-solid fa-wrench" aria-hidden="true"></i> 修理受付期間
             </span>

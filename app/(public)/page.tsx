@@ -9,6 +9,7 @@ import {
 } from '@/lib/queries'
 import { PRODUCT_CATEGORIES } from '@/lib/routes'
 import { getPublishedNews } from '@/app/admin/actions'
+import IconCard from '@/app/components/IconCard'
 
 /** カテゴリごとの画像ベースパス */
 const CATEGORY_IMAGE_BASE: Record<string, string> = {
@@ -117,39 +118,15 @@ export default async function HomePage() {
           <p className="m-section-desc">中古Apple製品選びに必要な情報をワンストップで提供します</p>
 
           <div className="l-grid l-grid--3col l-grid--gap-lg">
-            <div className="m-card m-card--shadow criteria-card">
-              <div className="criteria-card__head">
-                <span className="m-icon-box m-icon-box--lg criteria-card__icon criteria-card__icon--blue">
-                  <i className="fa-solid fa-chart-line" aria-hidden="true"></i>
-                </span>
-                <h3 className="criteria-card__title">毎日更新の価格データ</h3>
-              </div>
-              <p className="criteria-card__desc">
-                イオシス・ゲオ・じゃんぱらなど主要ショップの中古価格を毎日自動収集。値下がりトレンドや買い時がひと目でわかる価格推移グラフを全モデルに掲載。
-              </p>
-            </div>
-            <div className="m-card m-card--shadow criteria-card">
-              <div className="criteria-card__head">
-                <span className="m-icon-box m-icon-box--lg criteria-card__icon criteria-card__icon--green">
-                  <i className="fa-solid fa-table-cells" aria-hidden="true"></i>
-                </span>
-                <h3 className="criteria-card__title">全モデル網羅のスペック比較</h3>
-              </div>
-              <p className="criteria-card__desc">
-                CPU・ディスプレイ・カメラ・バッテリーなど、歴代モデルの全スペックを一覧表で比較可能。気になる機種同士の性能差がすぐにわかります。
-              </p>
-            </div>
-            <div className="m-card m-card--shadow criteria-card">
-              <div className="criteria-card__head">
-                <span className="m-icon-box m-icon-box--lg criteria-card__icon criteria-card__icon--red">
-                  <i className="fa-solid fa-star" aria-hidden="true"></i>
-                </span>
-                <h3 className="criteria-card__title">目的別のおすすめガイド</h3>
-              </div>
-              <p className="criteria-card__desc">
-                コスパ重視・カメラ性能・コンパクトさなど、重視するポイント別に狙い目の型落ちモデルを厳選。購入先の比較や注意点もあわせて解説しています。
-              </p>
-            </div>
+            <IconCard icon="fa-solid fa-chart-line" title="毎日更新の価格データ">
+              <p>イオシス・ゲオ・じゃんぱらなど主要ショップの中古価格を毎日自動収集。値下がりトレンドや買い時がひと目でわかる価格推移グラフを全モデルに掲載。</p>
+            </IconCard>
+            <IconCard icon="fa-solid fa-table-cells" title="全モデル網羅のスペック比較">
+              <p>CPU・ディスプレイ・カメラ・バッテリーなど、歴代モデルの全スペックを一覧表で比較可能。気になる機種同士の性能差がすぐにわかります。</p>
+            </IconCard>
+            <IconCard icon="fa-solid fa-star" title="目的別のおすすめガイド">
+              <p>コスパ重視・カメラ性能・コンパクトさなど、重視するポイント別に狙い目の型落ちモデルを厳選。購入先の比較や注意点もあわせて解説しています。</p>
+            </IconCard>
           </div>
         </div>
       </section>

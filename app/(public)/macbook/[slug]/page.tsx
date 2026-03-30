@@ -9,7 +9,7 @@ import {
   getMacBookPriceLogsByModelId,
   getLatestMacBookPriceLog,
 } from '@/lib/queries'
-import { aggregateDailyPrices, filterLast3Months } from '@/lib/utils/macbook-helpers'
+import { aggregateDailyPrices, filterLast3Months, calculateOSLifespan, calculatePriceRange } from '@/lib/utils/macbook-helpers'
 import HeroSection from './components/HeroSection'
 import LeadText from './components/LeadText'
 import TableOfContents from './components/TableOfContents'
@@ -41,11 +41,22 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { slug } = await params
   const model = await getMacBookModelBySlug(slug)
   if (!model) return {}
-  const title = `中古${model.model}は今買うべき？製品寿命、基本スペック、ベンチマークスコア、中古相場から解説`
-  const description = `${model.model}の中古価格相場、ベンチマークスコア、スペック比較、おすすめショップ情報を徹底解説。`
+
+  const latestLog = await getLatestMacBookPriceLog(model.id)
+  const priceRange = calculatePriceRange(latestLog)
+  const osLife = calculateOSLifespan(model.date)
+
+  const priceText = priceRange.minPrice ? `中古相場¥${priceRange.minPrice.toLocaleString()}〜` : '中古価格'
+  const chipText = model.cpu ? `${model.cpu}搭載` : ''
+  const osText = osLife.isSupported ? `${osLife.osEndYear}年頃までmacOSサポート見込み` : 'macOSサポート終了済み'
+
+  const title = `中古${model.model} レビュー｜スペック・価格相場・いつまで使える？`
+  const description = `${model.model}の${priceText}や${osText}をもとに、今から中古で買うべきかを判定。${chipText ? chipText + 'の' : ''}Geekbenchスコア・拡張性を比較しながら失敗しない選び方を解説します。`
+
   return {
     title,
     description,
+    alternates: { canonical: `/macbook/${slug}/` },
     openGraph: {
       title,
       description,
@@ -91,7 +102,7 @@ export default async function MacBookDetailPage({ params }: PageProps) {
       <AdminEditLink categoryKey="macbook" modelId={model.id} />
       <article>
         <HeroSection model={model} latestPrice={latestPrice} />
-        <LeadText model={model} />
+        <LeadText model={model} latestPrice={latestPrice} />
         <TableOfContents />
         <div className="l-sections">
         <PurchaseVerdict model={model} latestPrice={latestPrice} />

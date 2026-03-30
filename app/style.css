@@ -312,7 +312,6 @@ ul {
 /* Legacy aliases: kept for elements where adding class in TSX is impractical */
 .glossary-item-desc,
 .popular-card-desc,
-.criteria-card__desc,
 .glossary-grid__desc,
 .guide-recommend__desc,
 .pd-history-seo p,
@@ -446,7 +445,9 @@ ul {
 
 .m-btn--sm {
   font-size: var(--font-size-xs);
-  padding: var(--space-xs) var(--space-md);
+  padding: 6px 16px;
+  line-height: 1.5;
+  border-radius: 999px;
 }
 
 .m-btn--block {
@@ -694,6 +695,18 @@ ul {
 .m-table-card {
   padding: 0;
   overflow: hidden;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border-light);
+}
+
+.m-table-card .m-table {
+  border: none;
+}
+
+.m-table-note {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-tertiary);
+  margin-top: var(--space-sm);
 }
 
 /* .m-table-scroll → use .m-scroll-x */
@@ -702,13 +715,19 @@ ul {
   -webkit-overflow-scrolling: touch;
 }
 
+/* --- Compare Table overrides --- */
+.compare-cell--win {
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
 /* --- m-stat-card --- */
 .m-stat-card {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2px;
-  padding: var(--space-md);
+  gap: var(--space-xs);
+  padding: var(--space-lg);
   text-align: center;
 }
 
@@ -1790,7 +1809,7 @@ a.header-admin-link:hover {
 
 /* .conclusion-body → use .m-rich-text */
 .conclusion-body p + p {
-  margin-top: var(--space-xs);
+  margin-top: var(--space-md);
 }
 
 .conclusion-card .m-rating {
@@ -1840,10 +1859,16 @@ a.header-admin-link:hover {
 }
 
 /* ---------- section-lifespan ---------- */
+.lifespan-card {
+  align-items: center;
+  text-align: center;
+  gap: var(--space-sm);
+  padding: var(--space-xl);
+}
 .lifespan-card-label {
   display: inline-flex;
   align-items: center;
-  margin-bottom: var(--space-sm);
+  margin-bottom: var(--space-xs);
 }
 
 /* glossary-box */
@@ -2506,16 +2531,7 @@ a.header-admin-link:hover {
   object-fit: cover;
 }
 
-/* -- popular-card full-width (1-column) variant -- */
-.popular-card--full {
-  grid-template-columns: 1fr;
-  align-items: stretch;
-}
-
-.popular-card--full .popular-card-img {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-}
+/* popular-card--full は media-card に統一済み */
 
 .popular-card-body {
   display: flex;
@@ -3022,42 +3038,6 @@ a.header-admin-link:hover {
   margin-top: var(--space-xs);
 }
 
-/* ---------- criteria-card ---------- */
-.criteria-card {
-  padding: var(--space-xl);
-}
-
-.criteria-card__head {
-  display: flex;
-  align-items: center;
-  gap: var(--space-md);
-  margin-bottom: var(--space-md);
-}
-
-/* .criteria-card__icon → use .m-icon-box.m-icon-box--lg + color modifier */
-.criteria-card__icon {
-  color: #fff;
-}
-
-/* .criteria-card__icon--sm → use .m-icon-box.m-icon-box--sm */
-
-.criteria-card__icon--blue { background: var(--color-primary); }
-.criteria-card__icon--green { background: var(--color-positive); }
-.criteria-card__icon--red { background: var(--color-negative); }
-
-.criteria-card__title {
-  font-size: var(--font-size-base);
-  font-weight: 700;
-  color: var(--color-text);
-  line-height: 1.5;
-}
-
-/* .criteria-card__desc → shared description text */
-
-.criteria-card__desc strong {
-  font-weight: 700;
-  color: var(--color-text);
-}
 
 /* ---------- recommend-card ---------- */
 .recommend-card {
@@ -4454,6 +4434,20 @@ a.header-admin-link:hover {
   margin-top: 2px;
 }
 
+.price-card__cta {
+  margin-top: 6px;
+}
+
+
+.price-card__cta .m-btn,
+.guide-recommend__aside .m-btn {
+  font-size: var(--font-size-xs);
+  padding: 6px 16px;
+  border-radius: 999px;
+  white-space: nowrap;
+  line-height: 1.5;
+}
+
 .guide-section-note {
   text-align: center;
   font-size: var(--font-size-sm);
@@ -4551,12 +4545,12 @@ a.header-admin-link:hover {
 }
 
 .guide-recommend__specs {
-  display: flex;
   gap: var(--space-sm);
-  list-style: none;
   font-size: var(--font-size-sm);
   color: var(--color-text-muted);
-  margin-bottom: var(--space-md);
+  margin-bottom: var(--space-xs);
+  list-style: none;
+  display: flex;
 }
 
 .guide-recommend__specs li + li {
@@ -4733,7 +4727,8 @@ a.header-admin-link:hover {
 
 .caution-check-card__text ul {
   margin-top: var(--space-sm);
-  padding-left: 0;
+  padding-left: var(--space-xl);
+  list-style: disc;
   font-size: var(--font-size-sm);
   line-height: 1.9;
   color: var(--color-text);
@@ -4912,6 +4907,10 @@ a.header-admin-link:hover {
   font-weight: 800;
   color: var(--color-text);
   margin-bottom: var(--space-sm);
+}
+.post-check-item__heading i {
+  margin-right: 0.5rem;
+  color: var(--color-primary);
 }
 
 /* ---------- caution page: insurance ---------- */
@@ -5282,6 +5281,12 @@ body.is-menu-open {
     font-size: var(--font-size-sm);
   }
 
+  .m-btn.m-btn--sm {
+    padding: 4px 10px;
+    font-size: 11px;
+    line-height: 1.5;
+  }
+
   .hero-media__img {
     max-width: 180px;
     margin-top: 18px;
@@ -5385,7 +5390,8 @@ body.is-menu-open {
 
   .price-card {
     grid-template-columns: 48px 1fr auto;
-    gap: var(--space-xs) var(--space-sm);
+    grid-template-rows: auto;
+    gap: var(--space-sm);
     padding: var(--space-md);
     align-items: center;
   }
@@ -5393,17 +5399,21 @@ body.is-menu-open {
   .price-card__img {
     width: 48px;
     height: 48px;
-    grid-row: 1 / 3;
   }
 
   .price-card__price {
-    grid-row: 1 / 3;
-    grid-column: 3;
     text-align: right;
   }
 
   .price-card__value {
     font-size: var(--font-size-lg);
+  }
+
+  .price-card__cta .m-btn,
+  .guide-recommend__aside .m-btn {
+    font-size: 11px;
+    padding: 4px 10px;
+    line-height: 1.5;
   }
 
   /* guide-checklist → glossary-box に統合済み。glossary-box の responsive は既存 */
@@ -5413,17 +5423,18 @@ body.is-menu-open {
   }
 
   .guide-recommend__inner {
-    grid-template-columns: 60px 1fr;
+    grid-template-columns: 60px 1fr auto;
     grid-template-rows: auto auto;
     gap: var(--space-sm) var(--space-md);
+    align-items: center;
   }
 
   .guide-recommend__img {
-    grid-row: 1;
+    grid-row: 1 / 3;
     grid-column: 1;
     width: 60px;
     margin: 0;
-    align-self: start;
+    align-self: center;
   }
 
   .guide-recommend__body {
@@ -5432,32 +5443,32 @@ body.is-menu-open {
   }
 
   .guide-recommend__header {
-    flex-wrap: wrap;
-    gap: var(--space-xs);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
   }
 
   .guide-recommend__name {
-    font-size: var(--font-size-md);
+    font-size: var(--font-size-base);
+    font-weight: 700;
   }
 
   .guide-recommend__specs {
-    flex-wrap: wrap;
-    font-size: var(--font-size-xs);
-    margin-bottom: var(--space-xs);
+    display: none;
   }
 
   .guide-recommend__desc {
-    font-size: var(--font-size-xs);
+    display: none;
   }
 
   .guide-recommend__aside {
-    grid-row: 2;
-    grid-column: 1 / -1;
-    flex-direction: row;
-    flex-wrap: wrap;
+    grid-row: 1 / 3;
+    grid-column: 3;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: var(--space-xs) var(--space-sm);
+    gap: var(--space-xs);
+    text-align: right;
   }
 
   .guide-recommend__price-label {
@@ -5470,7 +5481,7 @@ body.is-menu-open {
   }
 
   .guide-recommend__aside .m-btn {
-    margin-left: auto;
+    margin-left: 0;
   }
 
   .guide-service-card {
@@ -5609,8 +5620,8 @@ body.is-menu-open {
     font-weight: 700;
     font-size: var(--font-size-sm);
     padding: var(--space-xs) var(--space-md);
-    background: var(--color-bg-muted);
-    border-bottom: 1px solid var(--color-border-light);
+    background: var(--color-bg-subtle);
+    border-bottom: none;
   }
 
   .compare-table tbody tr:not(:first-child) td {
@@ -5618,14 +5629,6 @@ body.is-menu-open {
     font-size: var(--font-size-sm);
     padding: var(--space-sm) var(--space-md);
     border-bottom: 1px solid var(--color-border-light);
-  }
-
-  /* nth-child padding リセット */
-  .compare-table tbody tr:nth-child(2) th,
-  .compare-table tbody tr:nth-child(2) td,
-  .compare-table tbody tr:last-child th,
-  .compare-table tbody tr:last-child td {
-    padding: var(--space-sm) var(--space-md);
   }
 
   /* アクション行 */
@@ -7342,8 +7345,8 @@ body.is-menu-open {
 }
 
 .merit-box {
-  background: #eef6ff;
-  border: 1px solid #b8d4f0;
+  background: #f0f9f0;
+  border: 1px solid #c3e6c3;
 }
 
 .demerit-box {
@@ -7362,7 +7365,7 @@ body.is-menu-open {
 }
 
 .merit-box__title {
-  color: #0071e3;
+  color: #4caf50;
 }
 
 .demerit-box__title {
@@ -7371,10 +7374,22 @@ body.is-menu-open {
 
 .merit-box ul,
 .demerit-box ul {
-  list-style: disc;
-  padding-left: 1.4em;
+  list-style: none;
+  padding-left: 0;
   margin: 0;
   color: var(--color-text-secondary);
+}
+
+.merit-box li::before {
+  content: '✓ ';
+  color: #4caf50;
+  font-weight: 700;
+}
+
+.demerit-box li::before {
+  content: '× ';
+  color: #e74c6f;
+  font-weight: 700;
 }
 
 .merit-box li,
@@ -7839,6 +7854,7 @@ body.is-menu-open {
   .vz__model-price {
     font-size: var(--font-size-xs);
   }
+
 }
 
 /* ============================================================
@@ -8216,6 +8232,7 @@ body.is-menu-open {
 
 .bench-ranking-table__model-cell {
   min-width: 200px;
+  width: 200px;
 }
 
 .bench-model-link {
@@ -8249,6 +8266,12 @@ body.is-menu-open {
   font-weight: 600;
   line-height: 1.3;
   transition: color 0.15s;
+  text-decoration: none;
+  color: inherit;
+}
+
+.bench-model-name:hover {
+  color: var(--color-primary);
 }
 
 .bench-model-chip {
@@ -8505,29 +8528,196 @@ body.is-menu-open {
   }
 }
 
-/* Recommend card image (iPad vs MacBook) */
-.recommend-card-img-wrap {
+/* ── media-card ── */
+/* Card with full-width hero image + body text.
+   PC: 16:9 cropped / SP: original aspect ratio
+   Variants: default (vertical), --aside (horizontal) */
+
+.media-card__img-wrap {
   overflow: hidden;
-  border-radius: 8px;
-  margin-bottom: var(--space-md);
-  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-md);
 }
 
-.recommend-card-img {
+.media-card__img {
   width: 100%;
-  height: 100%;
+  aspect-ratio: 16 / 9;
   object-fit: cover;
   display: block;
 }
 
+.media-card__body {
+  gap: var(--space-sm);
+  margin-top: var(--space-lg);
+  flex-direction: column;
+  display: flex;
+}
+
+.media-card__title {
+  font-size: var(--font-size-xl);
+  color: var(--color-text);
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+
+.media-card__desc {
+  font-size: var(--font-size-base);
+  margin-bottom: var(--space-sm);
+}
+
+.media-card__list {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  line-height: 2;
+  padding-left: var(--space-lg);
+  list-style: disc;
+  margin-top: var(--space-sm);
+}
+
+ol.media-card__list {
+  list-style: decimal;
+}
+
+.media-card__img-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-md);
+  margin-top: var(--space-md);
+}
+
+.media-card__img-grid img {
+  width: 100%;
+  border-radius: var(--radius-md);
+  object-fit: cover;
+  aspect-ratio: 16 / 10;
+}
+
+.media-card__img-grid figcaption {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+  text-align: center;
+  margin-top: var(--space-xs);
+}
+
+/* -- media-card aside variant (image + text side-by-side on PC) -- */
+.media-card--aside {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  align-items: center;
+  gap: var(--space-xl);
+}
+
+.media-card--aside .media-card__img-wrap {
+  width: 100%;
+}
+
+.media-card--aside .media-card__img {
+  aspect-ratio: auto;
+  border-radius: var(--radius-md);
+}
+
+.media-card--aside .media-card__body {
+  margin-top: 0;
+}
+
 @media (max-width: 768px) {
-  .recommend-card-img-wrap {
+  .media-card__img {
     aspect-ratio: auto;
   }
 
-  .recommend-card-img {
-    height: auto;
+  .media-card--aside {
+    grid-template-columns: 1fr;
+  }
+
+  .media-card__img-grid {
+    grid-template-columns: 1fr;
   }
 }
 
+/* ── info-card ── */
+/* Small inline card with icon + title + list (e.g. 検証環境, 設定方法) */
 
+.info-card {
+  padding: var(--space-lg);
+  margin-top: var(--space-sm);
+}
+
+.info-card__heading {
+  font-weight: 700;
+  margin-bottom: var(--space-sm);
+}
+
+.info-card__heading i {
+  margin-right: var(--space-xs);
+}
+
+.info-card__list {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  line-height: 2;
+  padding-left: var(--space-lg);
+  list-style: disc;
+}
+
+ol.info-card__list {
+  list-style: decimal;
+}
+
+/* ── card-grid ── */
+/* 2-column card grid, stacks to 1 column on SP */
+
+.card-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-xl);
+}
+
+@media (max-width: 768px) {
+  .card-grid-2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── vs-card ── */
+/* Comparison card using dl/dt/dd with CSS dashed separators */
+
+.vs-card {
+  padding: var(--space-lg);
+}
+
+.vs-card dt {
+  font-weight: 700;
+}
+
+.vs-card dt i {
+  margin-right: var(--space-xs);
+}
+
+.vs-card dd {
+  margin: 0;
+  margin-top: var(--space-xs);
+}
+
+.vs-card dt + dd + dt {
+  margin-top: var(--space-md);
+  padding-top: var(--space-md);
+  border-top: 1px dashed var(--color-border-light);
+}
+
+/* --- SP: guide-recommend を price-card に統一 --- */
+@media (max-width: 768px) {
+  .sp-hidden {
+    display: none;
+  }
+
+  .sp-col {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+  }
+
+  .sp-text-base {
+    font-size: var(--font-size-base);
+  }
+}
+
+/* --- Feature Card / Compare → compare.css --- */

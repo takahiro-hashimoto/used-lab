@@ -5,6 +5,7 @@
 -- ============================================
 
 INSERT INTO iphone_models (
+  id,
   -- 基本情報
   model, slug, show, image, date, cpu, battery, point, official,
   -- ストレージ・色・RAM
@@ -26,12 +27,13 @@ INSERT INTO iphone_models (
   -- アクセサリ・価格・iOS
   accessory_case, accessory_film, price, last_ios
 ) VALUES (
+  (SELECT COALESCE(MAX(id), 0) + 1 FROM iphone_models),
   -- 基本情報
   'iPhone 17e',
   '17e',
   1,
   NULL,
-  NULL,       -- 発売日：スペックページに記載なし
+  '2026/3/1', -- 発売日
   'A19',
   'ビデオ再生：最大26時間',
   NULL,       -- point：スペックページに記載なし

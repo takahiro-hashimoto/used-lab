@@ -10,7 +10,7 @@ import {
   getLatestPriceLog,
   getIPhoneReviewsBySlug,
 } from '@/lib/queries'
-import { aggregateDailyPrices, filterLast3Months } from '@/lib/utils/iphone-helpers'
+import { aggregateDailyPrices, filterLast3Months, calculateOSLifespan, calculatePriceRange } from '@/lib/utils/iphone-helpers'
 import HeroSection from './components/HeroSection'
 import LeadText from './components/LeadText'
 import TableOfContents from './components/TableOfContents'
@@ -23,7 +23,7 @@ import CompareSection from '@/app/components/CompareSection'
 import CompareSelector from './components/CompareSelector'
 import BenchmarkGeekbench from './components/BenchmarkGeekbench'
 import BenchmarkAntutu from './components/BenchmarkAntutu'
-import RecommendBanner from '@/app/components/iphone/RecommendBanner'
+import RelatedArticles from './components/RelatedArticles'
 import FaqSection from './components/FaqSection'
 import ReviewSection from '@/app/components/ReviewSection'
 import ShareBox from '@/app/components/ShareBox'
@@ -42,11 +42,23 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { slug } = await params
   const model = await getIPhoneModelBySlug(slug)
   if (!model) return {}
-  const title = `中古${model.model}は今買うべき？製品寿命、基本スペック、ベンチマークスコア、中古相場から解説`
-  const description = `${model.model}の中古価格相場、ベンチマークスコア、スペック比較、おすすめショップ情報を徹底解説。`
+
+  const latestLog = await getLatestPriceLog(model.id)
+  const priceRange = calculatePriceRange(latestLog)
+  const osLife = calculateOSLifespan(model.date)
+
+  // 動的に価格・チップ・サポート年数を埋め込む
+  const priceText = priceRange.minPrice ? `中古相場¥${priceRange.minPrice.toLocaleString()}〜` : '中古価格'
+  const chipText = model.cpu ? `${model.cpu}搭載` : ''
+  const osText = osLife.isSupported ? `${osLife.osEndYear}年頃までiOSサポート見込み` : 'iOSサポート終了済み'
+
+  const title = `中古${model.model} レビュー｜スペック・価格相場・いつまで使える？`
+  const description = `${model.model}の${priceText}や${osText}をもとに、今から中古で買うべきかを判定。${chipText ? chipText + 'の' : ''}ベンチマーク・カメラ・バッテリーを比較しながら失敗しない選び方を解説します。`
+
   return {
     title,
     description,
+    alternates: { canonical: `/iphone/${slug}/` },
     openGraph: {
       title,
       description,
@@ -96,7 +108,7 @@ export default async function IPhoneDetailPage({ params }: PageProps) {
       <AdminEditLink categoryKey="iphone" modelId={model.id} />
       <article>
         <HeroSection model={model} latestPrice={latestPrice} />
-        <LeadText model={model} />
+        <LeadText model={model} latestPrice={latestPrice} />
         <TableOfContents />
         <div className="l-sections">
         <PurchaseVerdict model={model} latestPrice={latestPrice} />
@@ -121,7 +133,7 @@ export default async function IPhoneDetailPage({ params }: PageProps) {
         <BenchmarkGeekbench model={model} allModels={allModels} />
         <BenchmarkAntutu model={model} allModels={allModels} />
         <ReviewSection modelName={model.model} reviews={reviews} />
-        <RecommendBanner />
+        <RelatedArticles model={model} />
         <FaqSection model={model} latestPrice={latestPrice} shopLinks={modelShopLinks} />
         <ShareBox url={`https://used-lab.com/iphone/${model.slug}/`} text={`中古${model.model}は今買うべき？製品寿命、基本スペック、ベンチマークスコア、中古相場から解説`} />
         </div>

@@ -8,9 +8,10 @@ import Breadcrumb from '@/app/components/Breadcrumb'
 import ShareBox from '@/app/components/ShareBox'
 import KeyboardCompatTable from './components/KeyboardCompatTable'
 import KeyboardListSection from './components/KeyboardListSection'
+import KeyboardCompareSection from './components/KeyboardCompareSection'
 import FaqSection from '@/app/components/support/FaqSection'
 
-const PAGE_TITLE = '歴代iPadのMagic Keyboard 型番一覧｜対応キーボードがすぐわかる'
+const PAGE_TITLE = 'iPadのキーボードどれが使える？Magic Keyboard全型番と対応モデル一覧'
 const PAGE_DESCRIPTION =
   '歴代iPadに対応するMagic Keyboard（マジックキーボード）・Smart Keyboardの型番と対応機種を一覧表で紹介。純正キーボードの互換性やSmart Connector対応モデルが一目でわかります。'
 const PAGE_URL = 'https://used-lab.com/ipad/accessories-summary/'
@@ -94,7 +95,7 @@ export default async function AccessoriesSummaryPage() {
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.com/' },
       { '@type': 'ListItem', position: 2, name: '中古iPad完全購入ガイド', item: 'https://used-lab.com/ipad' },
-      { '@type': 'ListItem', position: 3, name: '歴代iPadのMagic Keyboard 型番一覧' },
+      { '@type': 'ListItem', position: 3, name: 'iPadのキーボードどれが使える？Magic Keyboard全型番と対応モデル一覧' },
     ],
   }
 
@@ -128,7 +129,7 @@ export default async function AccessoriesSummaryPage() {
         <Breadcrumb
           items={[
             { label: '中古iPad完全購入ガイド', href: '/ipad' },
-            { label: '歴代iPadのMagic Keyboard 型番一覧' },
+            { label: 'iPadのキーボードどれが使える？Magic Keyboard全型番と対応モデル一覧' },
           ]}
         />
 
@@ -141,7 +142,7 @@ export default async function AccessoriesSummaryPage() {
           <div className="hero-inner l-container">
             <div className="hero-content">
               <h1 className="hero-title" itemProp="headline">
-                歴代iPadの<br className="sp-only" />Magic Keyboard 型番一覧
+                iPadのキーボードどれが使える？<br className="sp-only" />Magic Keyboard全型番と対応モデル一覧
               </h1>
               <div className="hero-actions">
                 <a href="#compare-table" className="m-btn m-btn--hero-primary">
@@ -207,6 +208,11 @@ export default async function AccessoriesSummaryPage() {
                 </a>
               </li>
               <li>
+                <a href="#keyboard-compare" className="toc-item">
+                  Magic Keyboard vs Smart Keyboard Folio <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                </a>
+              </li>
+              <li>
                 <a href="#faq" className="toc-item">
                   よくある質問 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
                 </a>
@@ -219,6 +225,7 @@ export default async function AccessoriesSummaryPage() {
         <div className="l-sections" id="content" itemProp="articleBody">
           <KeyboardCompatTable models={serializedModels} keyboardAccessories={serializedKeyboards} />
           <KeyboardListSection models={serializedModels} keyboardAccessories={serializedKeyboards} />
+          <KeyboardCompareSection />
 
           {/* 目的別に人気の中古iPad */}
           <section className="l-section" id="popular" aria-labelledby="heading-popular">
@@ -257,10 +264,6 @@ export default async function AccessoriesSummaryPage() {
               {
                 question: 'Magic Keyboard（マジックキーボード）とは？どんな機能がある？',
                 answer: 'Magic KeyboardはApple純正のiPad用キーボードで、トラックパッドを搭載しているのが最大の特徴です。Smart Connector経由でiPadと接続するため、Bluetoothのペアリングや充電は不要。フローティングカンチレバーデザインにより、画面の角度を自由に調整できます。iPad Air・iPad Proシリーズに対応しています。',
-              },
-              {
-                question: 'Magic KeyboardとSmart Keyboard Folioの違いは何？',
-                answer: 'Magic Keyboardはトラックパッドを搭載し、フローティングデザインで角度調整が可能です。Smart Keyboard Folioはトラックパッド非搭載でよりシンプルな構造ですが、軽量で価格も抑えめです。どちらもSmart Connectorで接続します。文字入力が中心ならSmart Keyboard Folio、マウス操作もしたいならMagic Keyboardがおすすめです。',
               },
               {
                 question: 'Magic Keyboard FolioとMagic Keyboardの違いは何？',

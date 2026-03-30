@@ -242,91 +242,91 @@ export default function WifiCellularPage() {
               <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-xl)' }}>
 
                 {/* 1. データ通信方式 */}
-                <div className="m-card m-card--shadow popular-card popular-card--full">
-                  <figure className="popular-card-figure">
+                <div className="m-card m-card--shadow m-card--padded">
+                  <div className="media-card__img-wrap">
                     <img
                       src="/images/content/photo/ipad-wifi-01.webp"
                       alt="データ通信方式の違いイメージ"
-                      className="popular-card-img"
-                      width={400}
-                      height={500}
+                      className="media-card__img"
+                      width={800}
+                      height={450}
                       loading="lazy"
                     />
-                  </figure>
-                  <div className="popular-card-body">
-                    <h3 className="popular-card-title">データ通信方式</h3>
-                    <p className="popular-card-desc">
+                  </div>
+                  <div className="media-card__body">
+                    <h3 className="media-card__title">データ通信方式</h3>
+                    <p className="media-card__desc">
                       Wi-Fiモデルとセルラーモデルの最大の違いはインターネットへの接続方法です。両者には下記のような違いがあります。
                     </p>
-                    <p className="popular-card-desc">
+                    <p className="media-card__desc">
                       セルラーモデルは4G LTEや5Gのモバイル回線に対応しているため、SIMカードやeSIMを設定すればWi-Fiがない場所でも単体で通信できます。通勤中の電車内やカフェなど、Wi-Fiスポットが見つからない環境でもすぐにインターネットを利用できるのが大きなメリットです。
                     </p>
                     <div className="m-card" style={{ padding: 'var(--space-lg)', display: 'flex', flexDirection: 'column', gap: 'var(--space-md)' }}>
                       <div>
                         <p style={{ fontWeight: 700 }}>Cellularモデル</p>
-                        <p className="popular-card-desc">通信キャリアと契約してSIMカードを挿すことで、どこでもモバイルデータ通信が可能。eSIMにも対応しており、オンラインで簡単に開通できる</p>
+                        <p className="media-card__desc">通信キャリアと契約してSIMカードを挿すことで、どこでもモバイルデータ通信が可能。eSIMにも対応しており、オンラインで簡単に開通できる</p>
                       </div>
                       <hr style={{ border: 'none', borderTop: '1px dashed var(--color-border-light)' }} />
                       <div>
                         <p style={{ fontWeight: 700 }}>Wi-Fiモデル</p>
-                        <p className="popular-card-desc">Wi-Fi環境があるところでしかインターネットに接続することができない。ただしiPhoneのテザリング機能を活用すれば外出先でも利用可能</p>
+                        <p className="media-card__desc">Wi-Fi環境があるところでしかインターネットに接続することができない。ただしiPhoneのテザリング機能を活用すれば外出先でも利用可能</p>
                       </div>
                     </div>
                   </div>
                 </div>
 
                 {/* 2. 背面デザイン */}
-                <div className="m-card m-card--shadow popular-card popular-card--full">
-                  <figure className="popular-card-figure">
+                <div className="m-card m-card--shadow m-card--padded">
+                  <div className="media-card__img-wrap">
                     <img
                       src="/images/content/photo/ipad-wifi-02.webp"
                       alt="背面デザインの違いイメージ"
-                      className="popular-card-img"
-                      width={400}
-                      height={500}
+                      className="media-card__img"
+                      width={800}
+                      height={450}
                       loading="lazy"
                     />
-                  </figure>
-                  <div className="popular-card-body">
-                    <h3 className="popular-card-title">背面デザイン</h3>
-                    <p className="popular-card-desc">
+                  </div>
+                  <div className="media-card__body">
+                    <h3 className="media-card__title">背面デザイン</h3>
+                    <p className="media-card__desc">
                       データ通信方式の違いにより、両者のデバイスには見た目にも差が出ています。背面のデザインでどちらの通信方式の端末かを簡単に見分けることが可能です。
                     </p>
-                    <p className="popular-card-desc">
+                    <p className="media-card__desc">
                       中古iPadを購入する際にも、この白いアンテナラインの有無を確認すれば、Wi-Fiモデルかセルラーモデルかをすぐに判別できます。フリマアプリで購入するときには写真でチェックしておきましょう。
                     </p>
                     <div className="m-card" style={{ padding: 'var(--space-lg)', display: 'flex', flexDirection: 'column', gap: 'var(--space-md)' }}>
                       <div>
                         <p style={{ fontWeight: 700 }}>Cellularモデル</p>
-                        <p className="popular-card-desc">モバイルデータ通信のアンテナが背面上部に設置されており、白いラインがある</p>
+                        <p className="media-card__desc">モバイルデータ通信のアンテナが背面上部に設置されており、白いラインがある</p>
                       </div>
                       <hr style={{ border: 'none', borderTop: '1px dashed var(--color-border-light)' }} />
                       <div>
                         <p style={{ fontWeight: 700 }}>Wi-Fiモデル</p>
-                        <p className="popular-card-desc">アンテナが入っておらずすっきりとしたデザインになっている</p>
+                        <p className="media-card__desc">アンテナが入っておらずすっきりとしたデザインになっている</p>
                       </div>
                     </div>
                   </div>
                 </div>
 
                 {/* 3. GPS機能搭載 */}
-                <div className="m-card m-card--shadow popular-card popular-card--full">
-                  <figure className="popular-card-figure">
+                <div className="m-card m-card--shadow m-card--padded">
+                  <div className="media-card__img-wrap">
                     <img
                       src="/images/content/photo/ipad-wifi-03.webp"
                       alt="GPS機能の違いイメージ"
-                      className="popular-card-img"
-                      width={400}
-                      height={500}
+                      className="media-card__img"
+                      width={800}
+                      height={450}
                       loading="lazy"
                     />
-                  </figure>
-                  <div className="popular-card-body">
-                    <h3 className="popular-card-title">GPS機能搭載</h3>
-                    <p className="popular-card-desc">
+                  </div>
+                  <div className="media-card__body">
+                    <h3 className="media-card__title">GPS機能搭載</h3>
+                    <p className="media-card__desc">
                       正確な位置情報を特定するGPS機能はセルラーモデルのみに搭載されています。iPadをカーナビ代わりに使いたい方や、登山・サイクリングなどでルート記録を残したい方にとっては欠かせない機能です。
                     </p>
-                    <p className="popular-card-desc">
+                    <p className="media-card__desc">
                       GPS機能があると下記のようなアプリをiPadから利用することが可能です。
                     </p>
                     <ul style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)', lineHeight: 1.8, paddingLeft: 'var(--space-lg)', listStyle: 'disc' }}>
@@ -334,7 +334,7 @@ export default function WifiCellularPage() {
                       <li>ポケモンGO、ドラクエウォークなど位置情報を活用したアプリ</li>
                       <li>Strava、YAMAPなどアウトドア系のルート記録アプリ</li>
                     </ul>
-                    <p className="popular-card-desc">
+                    <p className="media-card__desc">
                       ちなみにWi-FiモデルのiPadでもネット接続をすれば位置情報を取得することは可能です。ただし、Wi-Fiの電波強度を元に位置を推定する仕組みのため、GPS機能を搭載したセルラーモデルと比較すると精度がやや劣ります。特に屋外や移動中はズレが大きくなるので注意が必要です。
                     </p>
                     <p className="lead-link">
@@ -345,26 +345,26 @@ export default function WifiCellularPage() {
                 </div>
 
                 {/* 4. テザリング機能の有無 */}
-                <div className="m-card m-card--shadow popular-card popular-card--full">
-                  <figure className="popular-card-figure">
+                <div className="m-card m-card--shadow m-card--padded">
+                  <div className="media-card__img-wrap">
                     <img
                       src="/images/content/photo/ipad-wifi-04.webp"
                       alt="テザリング機能の違いイメージ"
-                      className="popular-card-img"
-                      width={400}
-                      height={500}
+                      className="media-card__img"
+                      width={800}
+                      height={450}
                       loading="lazy"
                     />
-                  </figure>
-                  <div className="popular-card-body">
-                    <h3 className="popular-card-title">テザリング機能の有無</h3>
-                    <p className="popular-card-desc">
+                  </div>
+                  <div className="media-card__body">
+                    <h3 className="media-card__title">テザリング機能の有無</h3>
+                    <p className="media-card__desc">
                       iPadをWi-Fiの親機として利用するテザリング機能はセルラーモデルのみに搭載されています。
                     </p>
-                    <p className="popular-card-desc">
+                    <p className="media-card__desc">
                       iPadはiPhoneに比べるとバッテリー容量が大きいため、外出先で長時間インターネット接続する事が可能です。出先でノートパソコンを使用する機会が多い方には重宝する機能かもしれません。
                     </p>
-                    <p className="popular-card-desc">
+                    <p className="media-card__desc">
                       なお、テザリングを利用するにはセルラーモデルで通信キャリアの回線契約が必要です。格安SIMのデータ専用プランでもテザリングに対応しているものが多いので、コストを抑えながら活用することも十分可能です。
                     </p>
                   </div>
@@ -387,26 +387,26 @@ export default function WifiCellularPage() {
               <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-xl)' }}>
 
                 {/* Wi-Fiモデルがおすすめの人 */}
-                <div className="m-card m-card--shadow popular-card popular-card--full">
-                  <figure className="popular-card-figure">
+                <div className="m-card m-card--shadow m-card--padded">
+                  <div className="media-card__img-wrap">
                     <img
                       src="/images/content/photo/wifi-image.webp"
                       alt="iPad Wi-Fiモデルの使用イメージ"
-                      className="popular-card-img"
-                      width={400}
-                      height={500}
+                      className="media-card__img"
+                      width={800}
+                      height={450}
                       loading="lazy"
                     />
-                  </figure>
-                  <div className="popular-card-body">
-                    <h3 className="popular-card-title">Wi-Fiモデルがおすすめの人</h3>
-                    <p className="popular-card-desc">
+                  </div>
+                  <div className="media-card__body">
+                    <h3 className="media-card__title">Wi-Fiモデルがおすすめの人</h3>
+                    <p className="media-card__desc">
                       Wi-FiモデルのiPadは機能が限られている分、安価な価格で購入できるのが魅力の端末。
                     </p>
-                    <p className="popular-card-desc">
+                    <p className="media-card__desc">
                       ネット接続できるのはWi-Fi環境下のみというデメリットはiPhoneのテザリング機能で補うことも可能なので、ライトユーザーの方ならWi-Fiモデルを選んでおけば問題ないと思います。
                     </p>
-                    <p className="popular-card-desc">
+                    <p className="media-card__desc">
                       また、iPadの<strong>ワイファイモデルとセルラーモデルの価格差は約2万円ほどある</strong>ので、浮いたお金をMagic Keyboardや保護フィルムなどの周辺機器・アクセサリー購入費用に当てれば充実したデジタルライフのスタートを切れるはず。
                     </p>
                     <div className="m-card" style={{ padding: 'var(--space-lg)', marginTop: 'var(--space-sm)' }}>
@@ -421,26 +421,26 @@ export default function WifiCellularPage() {
                 </div>
 
                 {/* セルラーモデルがおすすめの人 */}
-                <div className="m-card m-card--shadow popular-card popular-card--full">
-                  <figure className="popular-card-figure">
+                <div className="m-card m-card--shadow m-card--padded">
+                  <div className="media-card__img-wrap">
                     <img
                       src="/images/content/photo/cellular-image.webp"
                       alt="iPad セルラーモデルの使用イメージ"
-                      className="popular-card-img"
-                      width={400}
-                      height={500}
+                      className="media-card__img"
+                      width={800}
+                      height={450}
                       loading="lazy"
                     />
-                  </figure>
-                  <div className="popular-card-body">
-                    <h3 className="popular-card-title">セルラーモデルがおすすめの人</h3>
-                    <p className="popular-card-desc">
+                  </div>
+                  <div className="media-card__body">
+                    <h3 className="media-card__title">セルラーモデルがおすすめの人</h3>
+                    <p className="media-card__desc">
                       セルラーモデルiPadは端末代金が高いのに加え、毎月の通信料が発生するのがデメリット。
                     </p>
-                    <p className="popular-card-desc">
+                    <p className="media-card__desc">
                       しかし、その分幅広いシーンで活躍してくれるため、外出してiPadを使い倒したいという方におすすめです。
                     </p>
-                    <p className="popular-card-desc">
+                    <p className="media-card__desc">
                       特に<strong>iPadをカーナビ代わりに使用したい</strong>場合はGPS機能を搭載して位置情報を正確につかめるセルラーモデルが必須になります。
                     </p>
                     <div className="m-card" style={{ padding: 'var(--space-lg)', marginTop: 'var(--space-sm)' }}>
@@ -541,36 +541,6 @@ export default function WifiCellularPage() {
                   </div>
                 </div>
 
-              </div>
-            </div>
-          </section>
-
-          {/* 目的別に人気の中古iPad */}
-          <section className="l-section" id="popular" aria-labelledby="heading-popular">
-            <div className="l-container">
-              <h2 className="m-section-heading m-section-heading--lg" id="heading-popular">目的別に人気の中古iPad</h2>
-              <p className="m-section-desc">目的別におすすめの機種を厳選。診断で迷った方はぜひご覧ください。</p>
-              <div className="m-card m-card--shadow popular-card">
-                <figure className="popular-card-figure">
-                  <Image
-                    alt="中古iPadおすすめ5選のイメージ画像"
-                    loading="lazy"
-                    width={400}
-                    height={500}
-                    className="popular-card-img"
-                    src="/images/content/thumbnail/ipad-image-03.jpg"
-                  />
-                </figure>
-                <div className="popular-card-body">
-                  <p className="popular-card-subtitle">目的別におすすめ機種を厳選！</p>
-                  <p className="popular-card-title">中古iPadおすすめ5選</p>
-                  <p className="popular-card-desc">イラスト制作に最適なモデル、動画視聴に大画面モデルなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。</p>
-                  <div>
-                    <a className="m-btn m-btn--primary" href="/ipad/recommend/">
-                      おすすめ5機種を見る <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
-                    </a>
-                  </div>
-                </div>
               </div>
             </div>
           </section>

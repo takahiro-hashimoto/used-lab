@@ -1,58 +1,57 @@
 export default function RecommendSection() {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-xl)', marginTop: 'var(--space-2xl)' }}>
+    <div className="card-grid-2" style={{ marginTop: 'var(--space-2xl)' }}>
       {/* GPSモデルがおすすめな人 */}
-      <div id="recommend-gps" className="m-card m-card--shadow m-card--padded popular-card">
-        <img
-          src="/images/content/thumbnail/apple-watch-image.jpg"
-          alt="GPSモデルがおすすめな人"
-          className="popular-card-img"
-          width={240}
-          height={160}
-          loading="lazy"
-        />
-        <div className="popular-card-body">
-          <h3 className="popular-card-title">GPSモデルがおすすめな人</h3>
-          <p className="popular-card-desc">
-            GPSモデルはiPhoneとBluetooth接続して使うのが基本スタイルです。セルラーモデルのような通信契約が不要で、<strong>ランニングコストがかからない</strong>のが大きな魅力。初めてApple Watchを購入する方にはコスパの面でこちらがおすすめです。
+      <div id="recommend-gps" className="m-card m-card--shadow m-card--padded">
+        <div className="media-card__img-wrap">
+          <img
+            src="/images/content/thumbnail/apple-watch-image.jpg"
+            alt="GPSモデルがおすすめな人"
+            className="media-card__img"
+            width={800}
+            height={450}
+            loading="lazy"
+          />
+        </div>
+        <div className="media-card__body">
+          <h3 className="media-card__title">GPSモデルがおすすめな人</h3>
+          <p className="media-card__desc">
+            コスパ重視で後悔しない選択をしたいならこちら。通信契約が不要で<strong>ランニングコストがかからず、購入価格も安い</strong>ため、迷ったらまずGPSモデルを選んでおけば間違いありません。
           </p>
-          <ul style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)', lineHeight: 2, paddingLeft: 'var(--space-lg)', listStyle: 'disc', marginTop: 'var(--space-sm)' }}>
-            <li>Apple Watch単体での通信機能に魅力を感じなかった</li>
+          <ul className="media-card__list">
             <li><strong>なるべく安くApple Watchを購入したい</strong></li>
-            <li>ランニングコストはかけたくない</li>
-            <li>iPhoneの通信キャリアが格安SIMである</li>
+            <li>月額の通信費用をかけたくない</li>
+            <li>iPhoneが常に手元にある生活スタイル</li>
+            <li>通信キャリアが格安SIM（MVNO）で契約できない</li>
+            <li>初めてのApple Watchでまず試してみたい</li>
           </ul>
-          <p className="popular-card-desc" style={{ marginTop: 'var(--space-sm)' }}>
-            なお、GPSモデルでもWi-Fi環境があればLINE通知やSiriの利用、Apple Musicの同期済み再生などは可能です。
-          </p>
         </div>
       </div>
 
       {/* セルラーモデルがおすすめな人 */}
-      <div id="recommend-cellular" className="m-card m-card--shadow m-card--padded popular-card">
-        <img
-          src="/images/watch/watch-10.jpg"
-          alt="セルラーモデルがおすすめな人"
-          className="popular-card-img"
-          width={240}
-          height={160}
-          loading="lazy"
-        />
-        <div className="popular-card-body">
-          <h3 className="popular-card-title">セルラーモデルがおすすめな人</h3>
-          <p className="popular-card-desc">
-            セルラーモデルはiPhoneとの通信契約オプションを結ぶことで、<strong>Apple Watch単体で通話やデータ通信が可能</strong>になります。iPhoneから独立して使いたい方や、非常時の備えとして通信機能を持たせたい方におすすめです。
+      <div id="recommend-cellular" className="m-card m-card--shadow m-card--padded">
+        <div className="media-card__img-wrap">
+          <img
+            src="/images/watch/watch-10.jpg"
+            alt="セルラーモデルがおすすめな人"
+            className="media-card__img"
+            width={800}
+            height={450}
+            loading="lazy"
+          />
+        </div>
+        <div className="media-card__body">
+          <h3 className="media-card__title">セルラーモデルがおすすめな人</h3>
+          <p className="media-card__desc">
+            iPhoneなしで使いたい明確な理由があるならこちら一択。<strong>Apple Watch単体でLTE通信による通話やデータ通信が可能</strong>になります。ただし月額385〜550円の通信費用が発生する点は要注意です。
           </p>
-          <ul style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)', lineHeight: 2, paddingLeft: 'var(--space-lg)', listStyle: 'disc', marginTop: 'var(--space-sm)' }}>
+          <ul className="media-card__list">
             <li><strong>iPhoneなしでランニングや外出をしたい</strong></li>
-            <li>iPhoneのバッテリーが切れても連絡を取りたい</li>
-            <li>災害時や緊急時に備えて通信手段を確保したい</li>
-            <li>ステンレスやチタニウムなどの高級素材モデルが欲しい</li>
-            <li>ファミリー共有で子どもにApple Watchを持たせたい</li>
+            <li>緊急SOSや転倒検出で安全面を重視したい</li>
+            <li>ステンレス・チタニウムなどの高級素材が欲しい</li>
+            <li>ファミリー共有で子どもにキッズケータイ代わりとして持たせたい</li>
+            <li>Apple Watch Ultraが欲しい</li>
           </ul>
-          <p className="popular-card-desc" style={{ marginTop: 'var(--space-sm)' }}>
-            なお、月額385〜550円の通信オプション（ワンナンバーサービスやナンバーシェアなど）への加入が必要です。
-          </p>
         </div>
       </div>
     </div>

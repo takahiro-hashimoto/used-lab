@@ -4,6 +4,10 @@ import Breadcrumb from '@/app/components/Breadcrumb'
 import ShareBox from '@/app/components/ShareBox'
 import MeritSection from './components/MeritSection'
 import CautionSection from './components/CautionSection'
+import PrepareSection from './components/PrepareSection'
+import NaviAppSection from './components/NaviAppSection'
+import RunningCostSection from './components/RunningCostSection'
+import FaqSection from '@/app/components/support/FaqSection'
 
 const PAGE_TITLE = 'iPadをカーナビ化するメリットが凄い！地図が古くなる問題をすっきり解消'
 const PAGE_DESCRIPTION =
@@ -152,11 +156,6 @@ export default function CarNavigationSystemPage() {
                 </a>
               </li>
               <li>
-                <a href="#old-navi-demerit" className="toc-item">
-                  古いカーナビのデメリット <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
-                </a>
-              </li>
-              <li>
                 <a href="#merit" className="toc-item">
                   メリット5つ <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
                 </a>
@@ -167,13 +166,23 @@ export default function CarNavigationSystemPage() {
                 </a>
               </li>
               <li>
-                <a href="#recommend-model" className="toc-item">
-                  おすすめモデル <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <a href="#navi-app" className="toc-item">
+                  カーナビアプリ比較 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
                 </a>
               </li>
               <li>
-                <a href="#summary" className="toc-item">
-                  まとめ <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <a href="#prepare" className="toc-item">
+                  必要なもの <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                </a>
+              </li>
+              <li>
+                <a href="#running-cost" className="toc-item">
+                  通信費・ランニングコスト <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                </a>
+              </li>
+              <li>
+                <a href="#faq" className="toc-item">
+                  よくある質問 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
                 </a>
               </li>
             </ol>
@@ -192,15 +201,14 @@ export default function CarNavigationSystemPage() {
                 iPadをカーナビ化して感じたメリットと注意点の概要です。
               </p>
 
-              <div className="l-grid l-grid--2col l-grid--gap-lg" style={{ marginTop: 'var(--space-2xl)' }}>
-                {/* メリットカード */}
-                <div className="m-card m-card--shadow m-card--padded">
-                  <h3 className="popular-card-title">
-                    <i className="fa-solid fa-circle-check" aria-hidden="true" style={{ marginRight: 'var(--space-xs)', color: 'var(--color-primary)' }}></i>
+              <div className="merit-demerit" style={{ marginTop: 'var(--space-2xl)' }}>
+                <div className="merit-box">
+                  <p className="merit-box__title">
+                    <i className="fa-solid fa-circle-check" aria-hidden="true"></i>
                     メリット5つ
-                  </h3>
-                  <ul style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)', lineHeight: 2, paddingLeft: 'var(--space-lg)', listStyle: 'disc', marginTop: 'var(--space-sm)' }}>
-                    <li><strong>マップの更新が不要</strong>（常に最新の地図）</li>
+                  </p>
+                  <ul>
+                    <li>マップの更新が不要（常に最新の地図）</li>
                     <li>渋滞情報の精度が高い</li>
                     <li>画面が大きくてみやすい</li>
                     <li>キーボード・音声で直感的に操作</li>
@@ -208,55 +216,22 @@ export default function CarNavigationSystemPage() {
                   </ul>
                 </div>
 
-                {/* 注意点カード */}
-                <div className="m-card m-card--shadow m-card--padded">
-                  <h3 className="popular-card-title">
-                    <i className="fa-solid fa-triangle-exclamation" aria-hidden="true" style={{ marginRight: 'var(--space-xs)', color: 'var(--color-warning, #e8a300)' }}></i>
+                <div className="demerit-box">
+                  <p className="demerit-box__title">
+                    <i className="fa-solid fa-circle-xmark" aria-hidden="true"></i>
                     注意点2つ
-                  </h3>
-                  <ul style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)', lineHeight: 2, paddingLeft: 'var(--space-lg)', listStyle: 'disc', marginTop: 'var(--space-sm)' }}>
-                    <li><strong>セルラーモデル（GPS搭載）が必須</strong></li>
-                    <li>車載ホルダー選びは慎重に</li>
-                  </ul>
-                  <p className="popular-card-desc" style={{ marginTop: 'var(--space-sm)' }}>
-                    Wi-FiモデルはGPS非搭載のためカーナビとしては使えません。
                   </p>
+                  <ul>
+                    <li>セルラーモデル（GPS搭載）が必須</li>
+                    <li>車に合う車載ホルダーを探す必要がある</li>
+                  </ul>
                 </div>
               </div>
 
-              <p className="m-section-desc" style={{ marginTop: 'var(--space-xl)', textAlign: 'center' }}>
-                ここからはメリット・注意点それぞれの詳細を、実体験をもとに解説していきます。
-              </p>
             </div>
           </section>
 
-          {/* h2: 古いカーナビのデメリット */}
-          <section className="l-section" id="old-navi-demerit" aria-labelledby="heading-old-navi-demerit">
-            <div className="l-container">
-              <h2 className="m-section-heading m-section-heading--lg" id="heading-old-navi-demerit">
-                古いカーナビを使い続けるデメリット
-              </h2>
-              <p className="m-section-desc">
-                iPadカーナビ化のきっかけとなった、古い車載カーナビの問題点を紹介します。
-              </p>
-
-              <div className="m-card m-card--shadow m-card--padded" style={{ marginTop: 'var(--space-2xl)' }}>
-                <p className="popular-card-desc">
-                  10年以上前に購入した車載カーナビを使い続けていると、地理情報もかなり大きく変わっており下記のようなデメリットが発生していました。
-                </p>
-                <ul style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)', lineHeight: 2, paddingLeft: 'var(--space-lg)', listStyle: 'disc', marginTop: 'var(--space-md)' }}>
-                  <li><strong>目的地を検索してもヒットしない</strong>場合、住所を手入力する必要がある</li>
-                  <li>新しい道路を通ると<strong>地図にない道をひた走る状態</strong>になり、経路案内が狂う</li>
-                  <li>目的地を入力する画面が使いづらい</li>
-                </ul>
-                <p className="popular-card-desc" style={{ marginTop: 'var(--space-md)' }}>
-                  あまり気にせずにいましたが、改めて振り返ると古くなったカーナビを使い続けるデメリットは想像以上に大きいです。「常に最新のマップを見たい、でも更新には結構な費用がかかる…」という悩みを抱えている方は多いのではないでしょうか。
-                </p>
-              </div>
-            </div>
-          </section>
-
-          {/* h2: メリット5つ */}
+{/* h2: メリット5つ */}
           <section className="l-section" id="merit" aria-labelledby="heading-merit">
             <div className="l-container">
               <h2 className="m-section-heading m-section-heading--lg" id="heading-merit">
@@ -282,78 +257,37 @@ export default function CarNavigationSystemPage() {
             </div>
           </section>
 
-          {/* h2: おすすめモデル */}
-          <section className="l-section" id="recommend-model" aria-labelledby="heading-recommend-model">
-            <div className="l-container">
-              <h2 className="m-section-heading m-section-heading--lg" id="heading-recommend-model">
-                iPadのカーナビ化におすすめのモデル
-              </h2>
-              <p className="m-section-desc">
-                iPadは旧モデルでも十分な性能があるため、中古の型落ちモデルでもカーナビ用途には問題ありません。
-              </p>
+          <NaviAppSection />
+          <PrepareSection />
+          <RunningCostSection />
 
-              <div className="m-card m-card--shadow m-card--padded" style={{ marginTop: 'var(--space-2xl)' }}>
-                <p className="popular-card-desc">
-                  特にiPadをカーナビ代わりに使いたいというニーズの方には、<strong>お手頃な中古iPadのセルラーモデルを購入するのがおすすめ</strong>です。必要な機能がはっきりしていれば1世代前の型落ち品でも十分活躍します。
-                </p>
-              </div>
+          <FaqSection
+            title="iPadカーナビ化に関するよくある質問"
+            description="iPadをカーナビとして使う際によく寄せられる疑問にお答えします。"
+            items={[
+              {
+                question: 'iPadのCarPlay対応は？CarPlayとの違いは何？',
+                answer: 'iPadはCarPlayに対応していません。CarPlayはiPhoneを車載ディスプレイに接続して使う機能で、iPadは対象外です。ただしiPadはそれ自体が大画面ディスプレイなので、Googleマップなどのカーナビアプリを直接起動すれば、CarPlayと同等以上の使い勝手が得られます。',
+              },
+              {
+                question: 'iPadカーナビ化にはWi-Fiモデルでも使える？',
+                answer: 'Wi-FiモデルのiPadにはGPS機能が搭載されていないため、カーナビとしての利用には向きません。正確な位置情報をリアルタイムで取得するには、GPS搭載のセルラーモデルが必要です。',
+              },
+              {
+                question: 'カーナビアプリの通信量はどれくらい？',
+                answer: 'Googleマップなどのカーナビアプリは1時間あたり約5〜10MB程度の通信量です。月30時間使用しても300MB以下なので、格安SIMの最小プランでも十分まかなえます。Googleマップならオフライン地図をダウンロードしておけば、通信量をさらに節約できます。',
+              },
+              {
+                question: 'iPadカーナビ化のおすすめサイズは？',
+                answer: '車内での取り回しを考えると、iPad mini（8.3インチ）が最もおすすめです。ダッシュボードに設置しても視界を遮りにくく、一般的な車載カーナビよりも大きい画面で快適に使えます。',
+              },
+              {
+                question: '夏場の車内でiPadは大丈夫？',
+                answer: '直射日光が当たる環境ではiPadが高温になり「高温注意」の警告が表示されることがあります。サンシェードの使用や、エアコンの風が当たる位置に設置するなどの対策が有効です。駐車時は車内に放置せず持ち出すようにしましょう。',
+              },
+            ]}
+          />
 
-              <div className="l-grid l-grid--2col l-grid--gap-lg guide-spec-links" style={{ marginTop: 'var(--space-xl)' }}>
-                <a className="m-card m-card--shadow related-link-card related-link-card--icon" href="/ipad/ipad-spec-table/">
-                  <span className="related-link-card__icon">
-                    <i className="fa-solid fa-table-cells" aria-hidden="true"></i>
-                  </span>
-                  <h3 className="related-link-card__title">歴代iPadスペック比較表</h3>
-                  <p className="related-link-card__desc">
-                    歴代iPadのスペックや各世代の進化ポイントをまとめています。型落ちモデル選びの参考に。
-                  </p>
-                  <span className="related-link-card__arrow">
-                    <i className="fa-solid fa-chevron-right" aria-hidden="true"></i>
-                  </span>
-                </a>
-                <a className="m-card m-card--shadow related-link-card related-link-card--icon" href="/ipad/wifi-cellular/">
-                  <span className="related-link-card__icon">
-                    <i className="fa-solid fa-signal" aria-hidden="true"></i>
-                  </span>
-                  <h3 className="related-link-card__title">Wi-Fiモデルとセルラーモデルの違い</h3>
-                  <p className="related-link-card__desc">
-                    カーナビ化にはセルラーモデルが必須。両モデルの違いを詳しく解説しています。
-                  </p>
-                  <span className="related-link-card__arrow">
-                    <i className="fa-solid fa-chevron-right" aria-hidden="true"></i>
-                  </span>
-                </a>
-              </div>
-            </div>
-          </section>
-
-          {/* h2: まとめ */}
-          <section className="l-section" id="summary" aria-labelledby="heading-summary">
-            <div className="l-container">
-              <h2 className="m-section-heading m-section-heading--lg" id="heading-summary">
-                まとめ：iPadは車載モニターとして最高のデバイス
-              </h2>
-              <p className="m-section-desc">
-                iPadカーナビ化のメリット5つと注意点2つを実体験をもとに紹介しました。
-              </p>
-
-              <div className="lead-box" style={{ marginTop: 'var(--space-2xl)' }}>
-                <p>
-                  長年使っていたカーナビをiPadに代替してみた結果、<strong>「従来のカーナビは何だったのか？」と思うほど利便性に優れていた</strong>のが正直な感想です。
-                </p>
-                <p>
-                  車載カーナビのすべての機能を代替できるわけではありませんが、多くの方がiPadのカーナビ化でより快適にドライブを楽しめるようになるはずです。
-                </p>
-                <p>
-                  車載カーナビの地図が古くて更新しようか悩んでいるという方は、解決方法のひとつとしてiPadのカーナビ化をぜひ検討してみてください。
-                </p>
-                <p className="lead-link">
-                  <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                  中古iPadの購入を検討中の方は「<a href="/ipad">中古iPad完全購入ガイド</a>」をご覧ください。
-                </p>
-              </div>
-            </div>
-          </section>
         {/* シェアボックス */}
         <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>

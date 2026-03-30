@@ -1,0 +1,87 @@
+/* CompareSummary コンポーネント専用スタイル */
+
+.col {
+  text-align: left;
+}
+
+.img {
+  justify-content: center;
+}
+
+.name {
+  text-align: center;
+}
+
+.price {
+  align-items: center;
+}
+
+/* 主要スペック＋おすすめブロック */
+.infoBlock {
+  padding: var(--space-sm) 0 0;
+  margin-top: 0;
+}
+
+.infoTitle {
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 2px;
+}
+
+.specTable {
+  width: 100%;
+  font-size: var(--font-size-xs);
+  border-collapse: collapse;
+}
+
+.specLabel {
+  text-align: left;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  padding: 3px 8px 3px 0;
+  white-space: nowrap;
+  vertical-align: top;
+  width: 1%;
+}
+
+.specValue {
+  text-align: left;
+  padding: 3px 0;
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.divider {
+  border: none;
+  border-top: 1px dashed var(--color-border, #e0e0e0);
+  margin: var(--space-md) 0;
+}
+
+.recTitle {
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 4px;
+}
+
+.recIcon {
+  margin-right: 4px;
+}
+
+.recList {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.recItem {
+  line-height: 1.7;
+}
+
+.shopLink {
+  margin-top: auto;
+  padding-top: var(--space-md);
+}

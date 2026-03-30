@@ -150,7 +150,7 @@ export default function AppleWatchAlwaysLitPage() {
           <div className="l-container">
             <div className="lead-box">
               <p>
-                Apple Watchを選ぶときに多くの人が迷うポイントのひとつが、「<strong>常時点灯ディスプレイは必要か？</strong>」という点です。
+                中古Apple Watchを選ぶときに多くの人が迷うポイントのひとつが、「<strong>常時点灯ディスプレイは必要か？</strong>」という点です。
               </p>
               <p>
                 搭載の有無によって価格に差が出るだけでなく、実際の使い勝手にも大きく影響します。

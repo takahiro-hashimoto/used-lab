@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
-import { getHeroImage } from '@/lib/data/hero-images'
 import { getAllIPhoneModels, getAllProductShopLinksByType } from '@/lib/queries'
 import SpecTable from './components/SpecTable'
 import DualCompare from './components/DualCompare'
@@ -30,6 +29,7 @@ const GLOSSARY_ITEMS = [
   { title: 'Apple ProRAW', icon: 'fa-solid fa-image', desc: '多くの情報を保持したRAW形式で撮影可能。高精度な編集に対応し、プロ仕様の仕上がりに。' },
   { title: 'Apple ProRes', icon: 'fa-solid fa-video', desc: '高画質な映像を記録できるフォーマット。豊かな階調と高い編集耐性が特徴。' },
 ]
+import IPhoneRelatedLinks from '@/app/components/iphone/IPhoneRelatedLinks'
 import ShareBox from '@/app/components/ShareBox'
 
 export const metadata: Metadata = {
@@ -279,42 +279,7 @@ export default async function IPhoneSpecTablePage() {
         <GlossarySection productName="iPhone" items={GLOSSARY_ITEMS} />
 
         {/* 関連記事 */}
-        <section className="l-section" id="related" aria-labelledby="heading-related">
-          <div className="l-container">
-            <h2 className="m-section-heading m-section-heading--lg" id="heading-related">iPhone選びのヒントになる関連記事</h2>
-            <p className="m-section-desc">スペック以外の観点からもiPhone選びをサポートする記事をまとめました。</p>
-            <div className="l-grid l-grid--2col l-grid--gap-lg">
-              <Link href="/iphone/iphone-camera/" className="m-card m-card--shadow related-link-card m-card--hoverable">
-                <Image src={getHeroImage('/iphone/iphone-camera/')} alt="iPhoneカメラ性能比較" className="related-link-card__img" width={400} height={300} loading="lazy" />
-                <div className="related-link-card__body">
-                  <h3 className="related-link-card__title">カメラ性能比較</h3>
-                  <p className="related-link-card__desc">歴代モデルのカメラ機能の違いがわかる</p>
-                </div>
-              </Link>
-              <Link href="/iphone/battery-compare/" className="m-card m-card--shadow related-link-card m-card--hoverable">
-                <Image src={getHeroImage('/iphone/battery-compare/')} alt="バッテリー容量比較" className="related-link-card__img" width={400} height={300} loading="lazy" />
-                <div className="related-link-card__body">
-                  <h3 className="related-link-card__title">バッテリー容量比較ランキング</h3>
-                  <p className="related-link-card__desc">電池持ちのいいiPhoneがひと目でわかる</p>
-                </div>
-              </Link>
-              <Link href="/iphone/benchmark/" className="m-card m-card--shadow related-link-card m-card--hoverable">
-                <Image src={getHeroImage('/iphone/benchmark/')} alt="ベンチマーク比較ランキング" className="related-link-card__img" width={400} height={300} loading="lazy" />
-                <div className="related-link-card__body">
-                  <h3 className="related-link-card__title">ベンチマーク比較ランキング</h3>
-                  <p className="related-link-card__desc">歴代iPhoneのチップ性能をスコアで比較</p>
-                </div>
-              </Link>
-              <Link href="/iphone/storage-guide/" className="m-card m-card--shadow related-link-card m-card--hoverable">
-                <Image src={getHeroImage('/iphone/storage-guide/')} alt="ストレージ容量ガイド" className="related-link-card__img" width={400} height={300} loading="lazy" />
-                <div className="related-link-card__body">
-                  <h3 className="related-link-card__title">ストレージ容量ガイド</h3>
-                  <p className="related-link-card__desc">用途別のおすすめ容量と中古価格を比較</p>
-                </div>
-              </Link>
-            </div>
-          </div>
-        </section>
+        <IPhoneRelatedLinks excludeHref="/iphone/iphone-spec-table/" />
         <section className="l-section" id="popular" aria-labelledby="heading-popular">
           <div className="l-container">
             <h2 className="m-section-heading m-section-heading--lg" id="heading-popular">目的別に人気の中古iPhone</h2>

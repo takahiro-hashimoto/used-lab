@@ -12,7 +12,7 @@ import {
   getAllIPadAccessoryCompatibility,
   getIPadReviewsBySlug,
 } from '@/lib/queries'
-import { aggregateDailyPrices, buildAccessoryLookup, getPencilTextFromAccessories, getKeyboardTextFromAccessories } from '@/lib/utils/ipad-helpers'
+import { aggregateDailyPrices, buildAccessoryLookup, getPencilTextFromAccessories, getKeyboardTextFromAccessories, calculateOSLifespan, calculatePriceRange } from '@/lib/utils/ipad-helpers'
 import HeroSection from './components/HeroSection'
 import LeadText from './components/LeadText'
 import TableOfContents from './components/TableOfContents'
@@ -46,11 +46,22 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { slug } = await params
   const model = await getIPadModelBySlug(slug)
   if (!model) return {}
-  const title = `中古${model.model}は今買うべき？製品寿命、基本スペック、ベンチマークスコア、中古相場から解説`
-  const description = `${model.model}の中古価格相場、ベンチマークスコア、スペック比較、おすすめショップ情報を徹底解説。`
+
+  const latestLog = await getLatestIPadPriceLog(model.id)
+  const priceRange = calculatePriceRange(latestLog)
+  const osLife = calculateOSLifespan(model.date)
+
+  const priceText = priceRange.minPrice ? `中古相場¥${priceRange.minPrice.toLocaleString()}〜` : '中古価格'
+  const chipText = model.cpu ? `${model.cpu}搭載` : ''
+  const osText = osLife.isSupported ? `${osLife.osEndYear}年頃までiPadOSサポート見込み` : 'iPadOSサポート終了済み'
+
+  const title = `中古${model.model} レビュー｜スペック・価格相場・いつまで使える？`
+  const description = `${model.model}の${priceText}や${osText}をもとに、今から中古で買うべきかを判定。${chipText ? chipText + 'の' : ''}ベンチマーク・描画性能・Apple Pencil対応を比較しながら失敗しない選び方を解説します。`
+
   return {
     title,
     description,
+    alternates: { canonical: `/ipad/${slug}/` },
     openGraph: {
       title,
       description,
@@ -112,7 +123,7 @@ export default async function IPadDetailPage({ params }: PageProps) {
       <AdminEditLink categoryKey="ipad" modelId={model.id} />
       <article>
         <HeroSection model={enrichedModel} latestPrice={latestPrice} />
-        <LeadText model={enrichedModel} />
+        <LeadText model={enrichedModel} latestPrice={latestPrice} />
         <TableOfContents />
         <div className="l-sections">
         <PurchaseVerdict model={enrichedModel} latestPrice={latestPrice} />

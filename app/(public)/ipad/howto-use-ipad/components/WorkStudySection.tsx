@@ -13,18 +13,20 @@ export default function WorkStudySection() {
         <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-xl)' }}>
 
           {/* 13. ノートを取る */}
-          <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
-            <img
-              src="/images/content/photo/ipad-mini-6-apple-pencil.jpg"
-              alt="iPad miniとApple Pencil"
-              className="popular-card-img"
-              width={240}
-              height={160}
-              loading="lazy"
-            />
-            <div className="popular-card-body">
-              <h3 className="popular-card-title">ノートを取る</h3>
-              <p className="popular-card-desc">
+          <div className="m-card m-card--shadow m-card--padded">
+            <div className="media-card__img-wrap">
+              <img
+                src="/images/content/photo/ipad-mini-6-apple-pencil.jpg"
+                alt="iPad miniとApple Pencil"
+                className="media-card__img"
+                width={240}
+                height={160}
+                loading="lazy"
+              />
+            </div>
+            <div className="media-card__body">
+              <h3 className="media-card__title">ノートを取る</h3>
+              <p className="media-card__desc">
                 iPadはApple Pencilとセットで使うことで、ノートとして活用することができます。iPadをデジタルノートとして使う上で欠かせないアプリといえばGoodnotes 5。
               </p>
               <div className="m-card" style={{ padding: 'var(--space-lg)', marginTop: 'var(--space-sm)' }}>
@@ -36,7 +38,7 @@ export default function WorkStudySection() {
                   <li>ファイル検索の精度が高い</li>
                 </ul>
               </div>
-              <p className="popular-card-desc" style={{ marginTop: 'var(--space-md)' }}>
+              <p className="media-card__desc" style={{ marginTop: 'var(--space-md)' }}>
                 iPadをメモ帳や、授業用ノートに使いたいという方はぜひインストールしてみてください。
               </p>
               <div className="m-card" style={{ padding: 'var(--space-lg)', marginTop: 'var(--space-sm)' }}>
@@ -53,24 +55,26 @@ export default function WorkStudySection() {
           </div>
 
           {/* 14. 資料作成をする */}
-          <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
-            <img
-              src="/images/content/photo/magic-keyboarda.jpg"
-              alt="iPadで資料作成する様子"
-              className="popular-card-img"
-              width={240}
-              height={160}
-              loading="lazy"
-            />
-            <div className="popular-card-body">
-              <h3 className="popular-card-title">資料作成をする</h3>
-              <p className="popular-card-desc">
+          <div className="m-card m-card--shadow m-card--padded">
+            <div className="media-card__img-wrap">
+              <img
+                src="/images/content/photo/magic-keyboarda.jpg"
+                alt="iPadで資料作成する様子"
+                className="media-card__img"
+                width={240}
+                height={160}
+                loading="lazy"
+              />
+            </div>
+            <div className="media-card__body">
+              <h3 className="media-card__title">資料作成をする</h3>
+              <p className="media-card__desc">
                 iPadは「Smart Keyboard Folio」や「Magic Keyboard」などのアクセサリが豊富で、ノートPCのような感覚でタイピングが可能です。快適に文字入力ができるため、外出先での資料作成とも非常に相性が良いです。
               </p>
-              <p className="popular-card-desc">
+              <p className="media-card__desc">
                 アプリは標準搭載の「Pages」や「Numbers」がおすすめ。洗練されたテンプレートが揃っており、手軽に見栄えの良い資料を仕上げられます。もちろん、Microsoft OfficeやGoogleドキュメントといった定番ツールも利用可能。用途に合わせて柔軟にツールを選べるのがiPadの強みです。
               </p>
-              <p className="popular-card-desc">
+              <p className="media-card__desc">
                 なお、歴代iPadの純正キーボード対応状況は「<a href="/ipad/accessories-summary/">iPadアクセサリー対応機種一覧</a>」で詳しく紹介しています。
               </p>
               <div className="m-card" style={{ padding: 'var(--space-lg)', marginTop: 'var(--space-sm)' }}>
@@ -87,24 +91,26 @@ export default function WorkStudySection() {
           </div>
 
           {/* 15. 教科書を持ち歩く */}
-          <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
-            <img
-              src="/images/content/photo/ipad-pro-use.jpg"
-              alt="iPadを手に持つ様子"
-              className="popular-card-img"
-              width={240}
-              height={160}
-              loading="lazy"
-            />
-            <div className="popular-card-body">
-              <h3 className="popular-card-title">教科書を持ち歩く</h3>
-              <p className="popular-card-desc">
+          <div className="m-card m-card--shadow m-card--padded">
+            <div className="media-card__img-wrap">
+              <img
+                src="/images/content/photo/ipad-pro-use.jpg"
+                alt="iPadを手に持つ様子"
+                className="media-card__img"
+                width={240}
+                height={160}
+                loading="lazy"
+              />
+            </div>
+            <div className="media-card__body">
+              <h3 className="media-card__title">教科書を持ち歩く</h3>
+              <p className="media-card__desc">
                 学生の中には「毎日重たい教科書を持って移動するのが大変…」と感じている方も多いと思います。iPadがあればデータ版の教科書を入れて、最小限の荷物で登校することも可能。
               </p>
-              <p className="popular-card-desc">
+              <p className="media-card__desc">
                 iPadに教科書を入れれば、荷物が少なくなるだけでなく、家に必要な教科書を忘れてくる心配も減り、一石二鳥です。
               </p>
-              <p className="popular-card-desc">
+              <p className="media-card__desc">
                 ただし、教科書の中には電子書籍化されていない場合もあります。その場合は「AdobeScan」などスキャンアプリを利用して、紙媒体の教科書をPDFに変換して、データを持ち歩くのがおすすめです。
               </p>
               <div className="m-card" style={{ padding: 'var(--space-lg)', marginTop: 'var(--space-sm)' }}>
@@ -121,21 +127,23 @@ export default function WorkStudySection() {
           </div>
 
           {/* 16. 子供の知育や学習ツールに使う */}
-          <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
-            <img
-              src="/images/content/ipad-kids-learning.jpg"
-              alt="iPadで子供が知育アプリを使う様子"
-              className="popular-card-img"
-              width={240}
-              height={160}
-              loading="lazy"
-            />
-            <div className="popular-card-body">
-              <h3 className="popular-card-title">子供の知育や学習ツールに使う</h3>
-              <p className="popular-card-desc">
+          <div className="m-card m-card--shadow m-card--padded">
+            <div className="media-card__img-wrap">
+              <img
+                src="/images/content/ipad-kids-learning.jpg"
+                alt="iPadで子供が知育アプリを使う様子"
+                className="media-card__img"
+                width={240}
+                height={160}
+                loading="lazy"
+              />
+            </div>
+            <div className="media-card__body">
+              <h3 className="media-card__title">子供の知育や学習ツールに使う</h3>
+              <p className="media-card__desc">
                 iPadは知育・学習ツールが非常に充実しており、算数やひらがなの自宅学習に活用するご家庭が増えています。
               </p>
-              <p className="popular-card-desc">
+              <p className="media-card__desc">
                 例えばベネッセの「こどもちゃれんじ」では、毎月の教材と連動した「しまじろうクラブ」アプリを提供。教材の使い方もアプリで分かりやすく紹介してくれるため、お子さんが自ら楽しみながら学習を進められます。デジタルならではの演出で、子供の自主的な知育をサポートできるのが大きな魅力です。
               </p>
               <div className="m-card" style={{ padding: 'var(--space-lg)', marginTop: 'var(--space-sm)' }}>
@@ -153,27 +161,29 @@ export default function WorkStudySection() {
           </div>
 
           {/* 17. サブディスプレイとして使う */}
-          <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
-            <img
-              src="/images/content/photo/ipad-mini-macbook.jpg"
-              alt="iPadをサブモニターとして使用する様子"
-              className="popular-card-img"
-              width={240}
-              height={160}
-              loading="lazy"
-            />
-            <div className="popular-card-body">
-              <h3 className="popular-card-title">サブディスプレイとして使う</h3>
-              <p className="popular-card-desc">
+          <div className="m-card m-card--shadow m-card--padded">
+            <div className="media-card__img-wrap">
+              <img
+                src="/images/content/photo/ipad-mini-macbook.jpg"
+                alt="iPadをサブモニターとして使用する様子"
+                className="media-card__img"
+                width={240}
+                height={160}
+                loading="lazy"
+              />
+            </div>
+            <div className="media-card__body">
+              <h3 className="media-card__title">サブディスプレイとして使う</h3>
+              <p className="media-card__desc">
                 Apple製品といえばそれぞれのデバイスがシームレスに連携できるのが大きな魅力の一つ。MacBookとの連携機能を活用すれば、作業効率をぐっと上げることができるようになります。
               </p>
-              <p className="popular-card-desc">
+              <p className="media-card__desc">
                 代表的なのはiPadをMacBookのサブモニターにできる<strong>「Sidecar」</strong>。出先のカフェなどでも手軽にデュアルディスプレイ環境を構築できます。
               </p>
-              <p className="popular-card-desc">
+              <p className="media-card__desc">
                 異なる情報を同時に参照しながらの作業は効率が良く、iPadが一台あれば重いモバイルモニターを別途持ち運ぶ必要もありません。場所を選ばず生産性を高めたい方には必須の機能です。
               </p>
-              <p className="popular-card-desc">
+              <p className="media-card__desc">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
                 <a href="https://support.apple.com/ja-jp/102597" target="_blank" rel="noopener">iPadをMacの2台目のディスプレイとして使う – Apple サポート</a>
               </p>
@@ -181,18 +191,20 @@ export default function WorkStudySection() {
           </div>
 
           {/* 18. 連携マークアップを使用する */}
-          <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
-            <img
-              src="/images/content/photo/how-to-use-ipad-markup.jpg"
-              alt="iPadで連携マークアップをする様子"
-              className="popular-card-img"
-              width={240}
-              height={160}
-              loading="lazy"
-            />
-            <div className="popular-card-body">
-              <h3 className="popular-card-title">連携マークアップを使用する</h3>
-              <p className="popular-card-desc">
+          <div className="m-card m-card--shadow m-card--padded">
+            <div className="media-card__img-wrap">
+              <img
+                src="/images/content/photo/how-to-use-ipad-markup.jpg"
+                alt="iPadで連携マークアップをする様子"
+                className="media-card__img"
+                width={240}
+                height={160}
+                loading="lazy"
+              />
+            </div>
+            <div className="media-card__body">
+              <h3 className="media-card__title">連携マークアップを使用する</h3>
+              <p className="media-card__desc">
                 Mac上のデータにiPadからリアルタイムで書き込みができる「連携マークアップ」も非常に便利な機能です。Macへ画像を転送する手間を省き、iPadのペン操作を活かして直感的に編集を行えます。
               </p>
               <div className="m-card" style={{ padding: 'var(--space-lg)', marginTop: 'var(--space-sm)' }}>
@@ -201,10 +213,10 @@ export default function WorkStudySection() {
                   <li>デザイン修正：資料やデザイン案に、手書きで直接指示を書き込む</li>
                 </ul>
               </div>
-              <p className="popular-card-desc" style={{ marginTop: 'var(--space-md)' }}>
+              <p className="media-card__desc" style={{ marginTop: 'var(--space-md)' }}>
                 Macの大きな画面で作業しつつ、iPadを「高機能な液タブ」のように併用できるこの連携は、クリエイティブな作業効率を劇的に高めてくれます。
               </p>
-              <p className="popular-card-desc">
+              <p className="media-card__desc">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
                 <a href="https://support.apple.com/ja-jp/guide/mac-help/mchl1fd88863/mac" target="_blank" rel="noopener">Macでファイルにマークアップする – Apple サポート</a>
               </p>

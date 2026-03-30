@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import IconCard from '@/app/components/IconCard'
 import {
   getAllIPadModels,
   getLatestIPadPriceLog,
@@ -24,6 +25,7 @@ import ShareBox from '@/app/components/ShareBox'
 import VendorCardGrid from '@/app/components/VendorCardGrid'
 import GuideModelLinks from '@/app/components/GuideModelLinks'
 import { getHeroImage } from '@/lib/data/hero-images'
+import ProductCard from '@/app/components/ProductCard'
 
 const PAGE_TITLE = `中古iPad完全購入ガイド | 選び方・相場・おすすめモデルまとめ【${GUIDE_DATE_LABEL}版】`
 const PAGE_DESCRIPTION = `${GUIDE_DATE_LABEL}版・中古iPadの完全購入ガイド。選び方のポイント、モデル別の相場、おすすめ機種をまとめて解説。失敗しない中古iPad選びをサポートします。`
@@ -257,27 +259,17 @@ export default async function IPadGuidePage() {
 
               <div className="price-card-grid l-grid l-grid--2col l-grid--gap-lg">
                 {priceModels.map((model, i) => (
-                  <div key={model.id} className="price-card m-card m-card--shadow">
-                    <figure className="price-card__img">
-                      <img
-                        src={model.image ? `/images/ipad/${model.image}` : `https://placehold.co/80x80/f5f5f7/1d1d1f?text=${encodeURIComponent(model.model)}`}
-                        alt={model.model}
-                        width={80}
-                        height={80}
-                        loading="lazy"
-                      />
-                    </figure>
-                    <div className="price-card__info">
-                      <h3 className="price-card__name">{model.model}</h3>
-                      <p className="price-card__meta">
-                        {model.date ? `${model.date.split('/')[0]}年` : ''} / {model.cpu || ''}
-                      </p>
-                    </div>
-                    <div className="price-card__price">
-                      <span className="price-card__label">中古相場（{getStorageLabel(model)}）</span>
-                      <span className="price-card__value m-price-display m-price-display--sm m-price-display--primary">{getMinPrice(latestPrices[i])} 〜</span>
-                    </div>
-                  </div>
+                  <ProductCard
+                    key={model.id}
+                    variant="compact"
+                    modelId={model.id}
+                    modelName={model.model}
+                    imageUrl={model.image ? `/images/ipad/${model.image}` : null}
+                    metaText={`${model.date ? `${model.date.split('/')[0]}年` : ''} / ${model.cpu || ''}`}
+                    priceLabel={`中古相場（${getStorageLabel(model)}）`}
+                    priceValue={getMinPrice(latestPrices[i])}
+                    shopUrl={allShopLinks.find((l) => l.product_id === model.id && l.shop_id === 1)?.url}
+                  />
                 ))}
               </div>
 
@@ -382,49 +374,25 @@ export default async function IPadGuidePage() {
                 {recommendModels.map((model, i) => {
                   const meta = RECOMMEND_META[model.slug]
                   return (
-                    <div key={model.id} className="guide-recommend m-card m-card--shadow">
-                      <div className="guide-recommend__inner">
-                        <figure className="guide-recommend__img">
-                          <img
-                            src={model.image ? `/images/ipad/${model.image}` : `https://placehold.co/120x140/f5f5f7/1d1d1f?text=${encodeURIComponent(model.model)}`}
-                            alt={model.model}
-                            width={120}
-                            height={140}
-                            loading="lazy"
-                          />
-                        </figure>
-                        <div className="guide-recommend__body">
-                          <div className="guide-recommend__header">
-                            <h3 className="guide-recommend__name">{model.model}</h3>
-                            <span className="guide-recommend__tag">{meta?.label || ''}</span>
-                          </div>
-                          <ul className="guide-recommend__specs">
-                            <li>{model.date ? `${model.date.split('/')[0]}年発売` : ''}</li>
-                            <li>{model.cpu || ''}</li>
-                            <li>{model.display ? model.display.split(' ')[0] : ''}</li>
-                          </ul>
-                          <p className="guide-recommend__desc">{meta?.desc || ''}</p>
-                        </div>
-                        <div className="guide-recommend__aside">
-                          <span className="guide-recommend__price-label">中古相場（{getStorageLabel(model)}）</span>
-                          <span className="guide-recommend__price-value m-price-display m-price-display--md">{getMinPrice(recommendPrices[i])}〜</span>
-                          {(() => {
-                            const iosysLink = allShopLinks.find((l) => l.product_id === model.id && l.shop_id === 1)
-                            return iosysLink ? (
-                              <a href={iosysLink.url} className="m-btn m-btn--primary m-btn--sm" target="_blank" rel="noopener noreferrer nofollow">
-                                <span>在庫情報を見る</span>
-                                <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
-                              </a>
-                            ) : (
-                              <Link href={`/ipad/${model.slug}/`} className="m-btn m-btn--primary m-btn--sm">
-                                <span>在庫情報を見る</span>
-                                <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
-                              </Link>
-                            )
-                          })()}
-                        </div>
-                      </div>
-                    </div>
+                    <ProductCard
+                      key={model.id}
+                      variant="detail"
+                      modelId={model.id}
+                      modelName={model.model}
+                      imageUrl={model.image ? `/images/ipad/${model.image}` : null}
+                      metaText={`${model.date ? `${model.date.split('/')[0]}年` : ''} / ${model.cpu || ''}`}
+                      tagLabel={meta?.label || ''}
+                      specs={[
+                        model.date ? `${model.date.split('/')[0]}年発売` : '',
+                        model.cpu || '',
+                        model.display ? model.display.split(' ')[0] : '',
+                      ]}
+                      description={meta?.desc || ''}
+                      priceLabel={`中古相場（${getStorageLabel(model)}）`}
+                      priceValue={getMinPrice(recommendPrices[i])}
+                      shopUrl={allShopLinks.find((l) => l.product_id === model.id && l.shop_id === 1)?.url}
+                      fallbackHref={`/ipad/${model.slug}/`}
+                    />
                   )
                 })}
               </div>
@@ -473,35 +441,23 @@ export default async function IPadGuidePage() {
               <p className="m-section-desc">iPadは動画やゲームなどのエンタメはもちろん、勉強・仕事の効率化からイラスト制作まで幅広く活躍するデバイスです。</p>
 
               <div className="l-grid l-grid--2col l-grid--gap-lg" style={{ marginBottom: 'var(--space-xl)' }}>
-                <div className="m-card m-card--shadow m-card--padded">
-                  <h3 style={{ fontSize: 'var(--font-size-md)', fontWeight: 700, marginBottom: 'var(--space-sm)' }}>
-                    <i className="fa-solid fa-film" aria-hidden="true" style={{ marginRight: 'var(--space-xs)', color: 'var(--color-primary)' }}></i>
-                    エンタメ
-                  </h3>
+                <IconCard icon="fa-solid fa-film" title="エンタメ">
                   <ul style={{ paddingLeft: 'var(--space-lg)', listStyle: 'disc', lineHeight: 2, fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)' }}>
                     <li>大画面での動画視聴（Netflix・Amazon Prime Video・YouTube）</li>
                     <li>電子書籍・マンガ（Kindle・楽天kobo）</li>
                     <li>ゲーム（原神など高グラフィックタイトルに対応）</li>
                     <li>音楽鑑賞（Apple Music・Spotify）</li>
                   </ul>
-                </div>
-                <div className="m-card m-card--shadow m-card--padded">
-                  <h3 style={{ fontSize: 'var(--font-size-md)', fontWeight: 700, marginBottom: 'var(--space-sm)' }}>
-                    <i className="fa-solid fa-palette" aria-hidden="true" style={{ marginRight: 'var(--space-xs)', color: 'var(--color-primary)' }}></i>
-                    クリエイティブ
-                  </h3>
+                </IconCard>
+                <IconCard icon="fa-solid fa-palette" title="クリエイティブ">
                   <ul style={{ paddingLeft: 'var(--space-lg)', listStyle: 'disc', lineHeight: 2, fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)' }}>
                     <li>Apple Pencilを使ったイラスト制作（Procreate・CLIP STUDIO PAINT）</li>
                     <li>写真編集・RAW現像（Lightroom・Snapseed）</li>
                     <li>動画編集（LumaFusion・iMovie）</li>
                     <li>デザイン・バナー作成（Canva・Affinity Designer）</li>
                   </ul>
-                </div>
-                <div className="m-card m-card--shadow m-card--padded">
-                  <h3 style={{ fontSize: 'var(--font-size-md)', fontWeight: 700, marginBottom: 'var(--space-sm)' }}>
-                    <i className="fa-solid fa-graduation-cap" aria-hidden="true" style={{ marginRight: 'var(--space-xs)', color: 'var(--color-primary)' }}></i>
-                    勉強・仕事
-                  </h3>
+                </IconCard>
+                <IconCard icon="fa-solid fa-graduation-cap" title="勉強・仕事">
                   <ul style={{ paddingLeft: 'var(--space-lg)', listStyle: 'disc', lineHeight: 2, fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)' }}>
                     <li>手書きノート（GoodNotes・Notability）</li>
                     <li>PDFへの書き込み・教科書のデジタル化</li>
@@ -509,19 +465,15 @@ export default async function IPadGuidePage() {
                     <li>プレゼン資料作成・ペーパーレス化</li>
                     <li>SidecarでMacのサブディスプレイとして活用</li>
                   </ul>
-                </div>
-                <div className="m-card m-card--shadow m-card--padded">
-                  <h3 style={{ fontSize: 'var(--font-size-md)', fontWeight: 700, marginBottom: 'var(--space-sm)' }}>
-                    <i className="fa-solid fa-house" aria-hidden="true" style={{ marginRight: 'var(--space-xs)', color: 'var(--color-primary)' }}></i>
-                    暮らし・その他
-                  </h3>
+                </IconCard>
+                <IconCard icon="fa-solid fa-house" title="暮らし・その他">
                   <ul style={{ paddingLeft: 'var(--space-lg)', listStyle: 'disc', lineHeight: 2, fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)' }}>
                     <li><Link href="/ipad/car-navigation-system/" style={{ color: 'var(--color-primary)' }}>カーナビ代わり</Link>に大画面で地図表示</li>
                     <li>レシピを見ながら料理</li>
                     <li>スマートホームの操作パネル（HomeKit）</li>
                     <li>子供の知育・学習用タブレット</li>
                   </ul>
-                </div>
+                </IconCard>
               </div>
 
               <div className="m-callout m-callout--tip" style={{ marginTop: 'var(--space-2xl)' }}>

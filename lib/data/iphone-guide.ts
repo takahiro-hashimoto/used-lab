@@ -25,7 +25,26 @@ export const GUIDE_SPEC_LINKS = [
   { href: '/iphone/battery-compare/', icon: 'fa-battery-full', title: 'バッテリー性能比較ランキング', desc: '動画再生時間、音楽再生時間、バッテリー容量(mAh)を一覧表で比較できます。' },
   { href: '/iphone/storage-guide/', icon: 'fa-hard-drive', title: 'ストレージ容量ガイド', desc: '用途別のおすすめ容量と歴代モデルの容量ラインナップをまとめています。' },
   { href: '/iphone/benchmark/', icon: 'fa-ranking-star', title: '歴代iPhoneベンチマーク比較', desc: 'Geekbench 6・AnTuTuスコアで歴代iPhoneの性能をランキング形式で比較。' },
-  { href: '/iphone/16e-17e-compare/', icon: 'fa-scale-balanced', title: 'iPhone 16eと17eの違いを比較', desc: 'チップ・モデム・カメラ・ストレージなど6項目でiPhone 16eと17eを徹底比較。' },
+] as const
+
+// ---------- 2機種比較リンク ----------
+export const GUIDE_COMPARE_LINKS = [
+  // 同世代 Standard vs Pro
+  { href: '/iphone/iphone15-15pro-compare/', title: 'iPhone 15 vs 15 Pro', desc: '同世代の無印とProを比較' },
+  { href: '/iphone/iphone16-16pro-compare/', title: 'iPhone 16 vs 16 Pro', desc: '同世代の無印とProを比較' },
+  { href: '/iphone/iphone14-14pro-compare/', title: 'iPhone 14 vs 14 Pro', desc: '同世代の無印とProを比較' },
+  { href: '/iphone/iphone13-13pro-compare/', title: 'iPhone 13 vs 13 Pro', desc: '同世代の無印とProを比較' },
+  // 世代間 Standard
+  { href: '/iphone/iphone15-16-compare/', title: 'iPhone 15 vs 16', desc: '世代間の進化と価格差を検証' },
+  { href: '/iphone/iphone14-15-compare/', title: 'iPhone 14 vs 15', desc: '世代間の進化と価格差を検証' },
+  { href: '/iphone/iphone13-14-compare/', title: 'iPhone 13 vs 14', desc: '世代間の進化と価格差を検証' },
+  // 世代間 Pro
+  { href: '/iphone/iphone15pro-16pro-compare/', title: 'iPhone 15 Pro vs 16 Pro', desc: 'Pro同士の世代間比較' },
+  { href: '/iphone/iphone14pro-15pro-compare/', title: 'iPhone 14 Pro vs 15 Pro', desc: 'Pro同士の世代間比較' },
+  { href: '/iphone/iphone13pro-14pro-compare/', title: 'iPhone 13 Pro vs 14 Pro', desc: 'Pro同士の世代間比較' },
+  // 特殊
+  { href: '/iphone/iphone16e-se3-compare/', title: 'iPhone 16e vs SE(第3世代)', desc: 'エントリーモデル対決' },
+  { href: '/iphone/iphone16plus-air-compare/', title: 'iPhone 16 Plus vs Air', desc: '大画面＆軽量モデル対決' },
 ] as const
 
 // ---------- FAQ ----------
@@ -104,6 +123,8 @@ export const GUIDE_MODEL_LINKS = {
     { slug: '11normal', name: 'iPhone11', meta: '2019年9月発売 / A13 Bionic' },
   ],
   other: [
+    { slug: '17e', name: 'iPhone 17e', meta: '2026年3月発売 / A19' },
+    { slug: '16e', name: 'iPhone 16e', meta: '2025年2月発売 / A18' },
     { slug: 'se3', name: 'iPhone SE 第3世代', meta: '2022年3月発売 / A15 Bionic' },
     { slug: 'se2', name: 'iPhone SE 第2世代', meta: '2020年4月発売 / A13 Bionic' },
   ],

@@ -13,42 +13,46 @@ export default function PaymentSection() {
         <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-xl)' }}>
 
           {/* 19. Suicaの改札を通る */}
-          <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
-            <img
-              src="/images/content/apple-watch-suica.jpg"
-              alt="Apple WatchでSuicaを使う様子"
-              className="popular-card-img"
-              width={240}
-              height={160}
-              loading="lazy"
-            />
-            <div className="popular-card-body">
-              <h3 className="popular-card-title">Suicaの改札を通る</h3>
-              <p className="popular-card-desc">
+          <div className="m-card m-card--shadow m-card--padded">
+            <div className="media-card__img-wrap">
+              <img
+                src="/images/content/apple-watch-suica.jpg"
+                alt="Apple WatchでSuicaを使う様子"
+                className="media-card__img"
+                width={240}
+                height={160}
+                loading="lazy"
+              />
+            </div>
+            <div className="media-card__body">
+              <h3 className="media-card__title">Suicaの改札を通る</h3>
+              <p className="media-card__desc">
                 Apple WatchはFeliCaチップを搭載しているため、Suicaや各種電子決済（Apple Pay）を利用できます。
               </p>
-              <p className="popular-card-desc">
+              <p className="media-card__desc">
                 レジでの支払いや改札を通るたびにスマートフォンを取り出す手間が一切不要になるのは、非常に大きな利便性です。一度この手軽さを体験すると、もう元には戻れません。
               </p>
-              <p className="popular-card-desc">
+              <p className="media-card__desc">
                 ちなみに、改札を通る際はわざわざ画面側をパネルにかざす必要はありません。自然な角度で手首をかざすだけでしっかりと認証されるため、無理に手首をひねる動作も不要です。
               </p>
             </div>
           </div>
 
           {/* 20. 電子決済をする */}
-          <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
-            <img
-              src="/images/content/photo/apple-watch-payment.jpg"
-              alt="Apple Watchで電子決済する様子"
-              className="popular-card-img"
-              width={240}
-              height={160}
-              loading="lazy"
-            />
-            <div className="popular-card-body">
-              <h3 className="popular-card-title">電子決済をする</h3>
-              <p className="popular-card-desc">
+          <div className="m-card m-card--shadow m-card--padded">
+            <div className="media-card__img-wrap">
+              <img
+                src="/images/content/photo/apple-watch-payment.jpg"
+                alt="Apple Watchで電子決済する様子"
+                className="media-card__img"
+                width={240}
+                height={160}
+                loading="lazy"
+              />
+            </div>
+            <div className="media-card__body">
+              <h3 className="media-card__title">電子決済をする</h3>
+              <p className="media-card__desc">
                 Apple Watchは、Suicaに加えて、下記のような複数の主要な電子決済サービスに対応しています。
               </p>
               <div className="m-card" style={{ padding: 'var(--space-lg)', marginTop: 'var(--space-sm)' }}>
@@ -64,34 +68,36 @@ export default function PaymentSection() {
                   <li>Visaのタッチ決済</li>
                 </ul>
               </div>
-              <p className="popular-card-desc" style={{ marginTop: 'var(--space-md)' }}>
+              <p className="media-card__desc" style={{ marginTop: 'var(--space-md)' }}>
                 これらを活用することで、コンビニなどのちょっとした買い物をスマートフォンを出さずにスピーディーに行うことができ、非常に便利です。
               </p>
-              <p className="popular-card-desc">
+              <p className="media-card__desc">
                 また、レジの決済端末は左側にあることが多いため、Apple Watchを左腕に身に付けていればスムーズにかざして決済を完了できます。
               </p>
             </div>
           </div>
 
           {/* 21. PayPayや楽天ペイのQRコード決済を行う */}
-          <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
-            <img
-              src="/images/content/apple-watch-qr-payment.jpg"
-              alt="Apple WatchでQRコード決済をする様子"
-              className="popular-card-img"
-              width={240}
-              height={160}
-              loading="lazy"
-            />
-            <div className="popular-card-body">
-              <h3 className="popular-card-title">PayPayや楽天ペイのQRコード決済を行う</h3>
-              <p className="popular-card-desc">
+          <div className="m-card m-card--shadow m-card--padded">
+            <div className="media-card__img-wrap">
+              <img
+                src="/images/content/apple-watch-qr-payment.jpg"
+                alt="Apple WatchでQRコード決済をする様子"
+                className="media-card__img"
+                width={240}
+                height={160}
+                loading="lazy"
+              />
+            </div>
+            <div className="media-card__body">
+              <h3 className="media-card__title">PayPayや楽天ペイのQRコード決済を行う</h3>
+              <p className="media-card__desc">
                 Apple Watchは、SuicaやiDといった非接触型決済だけでなく、PayPayや楽天ペイなどのQRコード決済にも対応しています。
               </p>
-              <p className="popular-card-desc">
+              <p className="media-card__desc">
                 Apple Watchで専用アプリを立ち上げ、表示されたバーコード（またはQRコード）をレジで読み取ってもらうだけで、スピーディーに会計を済ませることができます。
               </p>
-              <p className="popular-card-desc">
+              <p className="media-card__desc">
                 カバンからiPhoneを探したり、ロックを解除してアプリを開くといった手間がなくなるこの決済体験は、一度慣れると手放せないほど快適です。
               </p>
             </div>

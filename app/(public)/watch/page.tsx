@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import IconCard from '@/app/components/IconCard'
 import {
   getAllWatchModels,
   getLatestWatchPriceLog,
@@ -24,6 +25,7 @@ import Breadcrumb from '@/app/components/Breadcrumb'
 import ShareBox from '@/app/components/ShareBox'
 import VendorCardGrid from '@/app/components/VendorCardGrid'
 import GuideModelLinks from '@/app/components/GuideModelLinks'
+import ProductCard from '@/app/components/ProductCard'
 import { getHeroImage } from '@/lib/data/hero-images'
 
 const PAGE_TITLE = `中古Apple Watch完全購入ガイド | 選び方・相場・おすすめモデルまとめ【${GUIDE_DATE_LABEL}版】`
@@ -258,27 +260,17 @@ export default async function WatchGuidePage() {
 
               <div className="price-card-grid l-grid l-grid--2col l-grid--gap-lg">
                 {priceModels.map((model, i) => (
-                  <div key={model.id} className="price-card m-card m-card--shadow">
-                    <figure className="price-card__img">
-                      <img
-                        src={model.image ? `/images/watch/${model.image}` : `https://placehold.co/80x80/f5f5f7/1d1d1f?text=${encodeURIComponent(model.model)}`}
-                        alt={model.model}
-                        width={80}
-                        height={80}
-                        loading="lazy"
-                      />
-                    </figure>
-                    <div className="price-card__info">
-                      <h3 className="price-card__name">{model.model}</h3>
-                      <p className="price-card__meta">
-                        {model.date ? `${model.date.split('/')[0]}年` : ''} / {model.cpu || ''}
-                      </p>
-                    </div>
-                    <div className="price-card__price">
-                      <span className="price-card__label">中古相場（{getSizeLabel(model)}）</span>
-                      <span className="price-card__value m-price-display m-price-display--sm m-price-display--primary">{getMinPrice(latestPrices[i])} 〜</span>
-                    </div>
-                  </div>
+                  <ProductCard
+                    key={model.id}
+                    variant="compact"
+                    modelId={model.id}
+                    modelName={model.model}
+                    imageUrl={model.image ? `/images/watch/${model.image}` : null}
+                    metaText={`${model.date ? `${model.date.split('/')[0]}年` : ''} / ${model.cpu || ''}`}
+                    priceLabel={`中古相場（${getSizeLabel(model)}）`}
+                    priceValue={getMinPrice(latestPrices[i])}
+                    shopUrl={allShopLinks.find((l) => l.product_id === model.id && l.shop_id === 1)?.url}
+                  />
                 ))}
               </div>
 
@@ -369,49 +361,25 @@ export default async function WatchGuidePage() {
                 {recommendModels.map((model, i) => {
                   const meta = RECOMMEND_META[model.slug]
                   return (
-                    <div key={model.id} className="guide-recommend m-card m-card--shadow">
-                      <div className="guide-recommend__inner">
-                        <figure className="guide-recommend__img">
-                          <img
-                            src={model.image ? `/images/watch/${model.image}` : `https://placehold.co/120x140/f5f5f7/1d1d1f?text=${encodeURIComponent(model.model)}`}
-                            alt={model.model}
-                            width={120}
-                            height={140}
-                            loading="lazy"
-                          />
-                        </figure>
-                        <div className="guide-recommend__body">
-                          <div className="guide-recommend__header">
-                            <h3 className="guide-recommend__name">{model.model}</h3>
-                            <span className="guide-recommend__tag">{meta?.label || ''}</span>
-                          </div>
-                          <ul className="guide-recommend__specs">
-                            <li>{model.date ? `${model.date.split('/')[0]}年発売` : ''}</li>
-                            <li>{model.cpu || ''}</li>
-                            <li>{model.size || ''}</li>
-                          </ul>
-                          <p className="guide-recommend__desc">{meta?.desc || ''}</p>
-                        </div>
-                        <div className="guide-recommend__aside">
-                          <span className="guide-recommend__price-label">中古相場（{getSizeLabel(model)}）</span>
-                          <span className="guide-recommend__price-value m-price-display m-price-display--md">{getMinPrice(recommendPrices[i])}〜</span>
-                          {(() => {
-                            const iosysLink = allShopLinks.find((l) => l.product_id === model.id && l.shop_id === 1)
-                            return iosysLink ? (
-                              <a href={iosysLink.url} className="m-btn m-btn--primary m-btn--sm" target="_blank" rel="noopener noreferrer nofollow">
-                                <span>在庫情報を見る</span>
-                                <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
-                              </a>
-                            ) : (
-                              <Link href={`/watch/${model.slug}/`} className="m-btn m-btn--primary m-btn--sm">
-                                <span>在庫情報を見る</span>
-                                <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
-                              </Link>
-                            )
-                          })()}
-                        </div>
-                      </div>
-                    </div>
+                    <ProductCard
+                      key={model.id}
+                      variant="detail"
+                      modelId={model.id}
+                      modelName={model.model}
+                      imageUrl={model.image ? `/images/watch/${model.image}` : null}
+                      metaText={`${model.date ? `${model.date.split('/')[0]}年` : ''} / ${model.cpu || ''}`}
+                      tagLabel={meta?.label || ''}
+                      specs={[
+                        model.date ? `${model.date.split('/')[0]}年発売` : '',
+                        model.cpu || '',
+                        model.size || '',
+                      ]}
+                      description={meta?.desc || ''}
+                      priceLabel={`中古相場（${getSizeLabel(model)}）`}
+                      priceValue={getMinPrice(recommendPrices[i])}
+                      shopUrl={allShopLinks.find((l) => l.product_id === model.id && l.shop_id === 1)?.url}
+                      fallbackHref={`/watch/${model.slug}/`}
+                    />
                   )
                 })}
               </div>
@@ -453,11 +421,7 @@ export default async function WatchGuidePage() {
               <p className="m-section-desc">Apple Watchは通知や決済などの日常機能に加え、健康管理やApple製品との連携まで幅広く活躍するデバイスです。</p>
 
               <div className="l-grid l-grid--2col l-grid--gap-lg" style={{ marginBottom: 'var(--space-xl)' }}>
-                <div className="m-card m-card--shadow m-card--padded">
-                  <h3 style={{ fontSize: 'var(--font-size-md)', fontWeight: 700, marginBottom: 'var(--space-sm)' }}>
-                    <i className="fa-solid fa-clock" aria-hidden="true" style={{ marginRight: 'var(--space-xs)', color: 'var(--color-primary)' }}></i>
-                    基本機能
-                  </h3>
+                <IconCard icon="fa-solid fa-clock" title="基本機能">
                   <ul style={{ paddingLeft: 'var(--space-lg)', listStyle: 'disc', lineHeight: 2, fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)' }}>
                     <li>iPhoneの通知確認・LINEやメッセージの閲覧</li>
                     <li>電話の発着信・Siriでのタイマー操作</li>
@@ -465,12 +429,8 @@ export default async function WatchGuidePage() {
                     <li>文字盤カスタマイズ・バンド交換</li>
                     <li>iPhoneカメラのリモート撮影</li>
                   </ul>
-                </div>
-                <div className="m-card m-card--shadow m-card--padded">
-                  <h3 style={{ fontSize: 'var(--font-size-md)', fontWeight: 700, marginBottom: 'var(--space-sm)' }}>
-                    <i className="fa-solid fa-heart-pulse" aria-hidden="true" style={{ marginRight: 'var(--space-xs)', color: 'var(--color-primary)' }}></i>
-                    健康・フィットネス
-                  </h3>
+                </IconCard>
+                <IconCard icon="fa-solid fa-heart-pulse" title="健康・フィットネス">
                   <ul style={{ paddingLeft: 'var(--space-lg)', listStyle: 'disc', lineHeight: 2, fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)' }}>
                     <li>フィットネスアプリで1日の活動量を管理</li>
                     <li>ワークアウト記録（ランニング・ウォーキング・水泳など）</li>
@@ -478,30 +438,22 @@ export default async function WatchGuidePage() {
                     <li>心拍数モニタリング・心電図（ECG）</li>
                     <li>血中酸素濃度（SpO2）測定・転倒検出</li>
                   </ul>
-                </div>
-                <div className="m-card m-card--shadow m-card--padded">
-                  <h3 style={{ fontSize: 'var(--font-size-md)', fontWeight: 700, marginBottom: 'var(--space-sm)' }}>
-                    <i className="fa-solid fa-credit-card" aria-hidden="true" style={{ marginRight: 'var(--space-xs)', color: 'var(--color-primary)' }}></i>
-                    決済・電子マネー
-                  </h3>
+                </IconCard>
+                <IconCard icon="fa-solid fa-credit-card" title="決済・電子マネー">
                   <ul style={{ paddingLeft: 'var(--space-lg)', listStyle: 'disc', lineHeight: 2, fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)' }}>
                     <li>Suica・PASMOで改札をタッチ通過</li>
                     <li>Apple Payでコンビニ・店舗の電子決済</li>
                     <li>PayPay・楽天ペイなどQRコード決済</li>
                   </ul>
-                </div>
-                <div className="m-card m-card--shadow m-card--padded">
-                  <h3 style={{ fontSize: 'var(--font-size-md)', fontWeight: 700, marginBottom: 'var(--space-sm)' }}>
-                    <i className="fa-brands fa-apple" aria-hidden="true" style={{ marginRight: 'var(--space-xs)', color: 'var(--color-primary)' }}></i>
-                    Apple製品連携
-                  </h3>
+                </IconCard>
+                <IconCard icon="fa-brands fa-apple" title="Apple製品連携">
                   <ul style={{ paddingLeft: 'var(--space-lg)', listStyle: 'disc', lineHeight: 2, fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)' }}>
                     <li>「iPhoneを探す」で遠隔から音を鳴らす</li>
                     <li>置き忘れ防止通知</li>
                     <li>iPhone・MacBookのロック解除</li>
                     <li>AirPodsの再生コントロール</li>
                   </ul>
-                </div>
+                </IconCard>
               </div>
 
               <div className="m-callout m-callout--tip" style={{ marginTop: 'var(--space-2xl)' }}>

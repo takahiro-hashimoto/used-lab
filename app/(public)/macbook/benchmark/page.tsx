@@ -233,7 +233,7 @@ export default async function BenchmarkPage() {
               </p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                全スペックを横断比較したい方は「<Link href="/macbook/macbook-spec-table/">MacBookスペック比較表</Link>」もご覧ください
+                情報を網羅的に得たい方は「<Link href="/macbook">中古MacBook購入完全ガイド</Link>」も参考にしてみてください！
               </p>
             </div>
           </div>

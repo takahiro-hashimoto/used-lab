@@ -65,6 +65,13 @@ export default function RankingSection({ items, modelCount, dateDisplay }: Props
                 <span className="price-card__value m-price-display m-price-display--sm m-price-display--primary">
                   &yen;{model.currentPrice.toLocaleString()} <span className="price-card__tilde">〜</span>
                 </span>
+                {model.iosysUrl && (
+                  <div className="price-card__cta">
+                    <a href={model.iosysUrl} className="m-btn m-btn--primary m-btn--sm" target="_blank" rel="noopener noreferrer nofollow">
+                      在庫情報を見る <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                    </a>
+                  </div>
+                )}
               </div>
             </li>
           ))}

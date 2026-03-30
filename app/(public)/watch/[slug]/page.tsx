@@ -9,7 +9,7 @@ import {
   getWatchPriceLogsByModelId,
   getLatestWatchPriceLog,
 } from '@/lib/queries'
-import { aggregateDailyPrices } from '@/lib/utils/watch-helpers'
+import { aggregateDailyPrices, calculateOSLifespan, calculatePriceRange } from '@/lib/utils/watch-helpers'
 import HeroSection from './components/HeroSection'
 import LeadText from './components/LeadText'
 import TableOfContents from './components/TableOfContents'
@@ -41,11 +41,22 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { slug } = await params
   const model = await getWatchModelBySlug(slug)
   if (!model) return {}
-  const title = `中古${model.model}は今買うべき？製品寿命、基本スペック、中古相場から解説`
-  const description = `${model.model}の中古価格相場、スペック比較、おすすめショップ情報を徹底解説。`
+
+  const latestLog = await getLatestWatchPriceLog(model.id)
+  const priceRange = calculatePriceRange(latestLog)
+  const osLife = calculateOSLifespan(model.date)
+
+  const priceText = priceRange.minPrice ? `中古相場¥${priceRange.minPrice.toLocaleString()}〜` : '中古価格'
+  const sizeText = model.size ? `${model.size}` : ''
+  const osText = osLife.isSupported ? `${osLife.osEndYear}年頃までwatchOSサポート見込み` : 'watchOSサポート終了済み'
+
+  const title = `中古${model.model} レビュー｜スペック・価格相場・いつまで使える？`
+  const description = `${model.model}の${priceText}や${osText}をもとに、今から中古で買うべきかを判定。${sizeText ? sizeText + '・' : ''}健康機能・バッテリー持ちを比較しながら失敗しない選び方を解説します。`
+
   return {
     title,
     description,
+    alternates: { canonical: `/watch/${slug}/` },
     openGraph: {
       title,
       description,
@@ -91,7 +102,7 @@ export default async function WatchDetailPage({ params }: PageProps) {
       <AdminEditLink categoryKey="watch" modelId={model.id} />
       <article>
         <HeroSection model={model} latestPrice={latestPrice} />
-        <LeadText model={model} />
+        <LeadText model={model} latestPrice={latestPrice} />
         <TableOfContents />
         <div className="l-sections">
         <PurchaseVerdict model={model} latestPrice={latestPrice} />

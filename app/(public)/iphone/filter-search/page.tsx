@@ -3,6 +3,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { getAllIPhoneModels, getAllProductShopLinksByType } from '@/lib/queries'
 import type { IPhonePriceLog } from '@/lib/types'
+import IconCard from '@/app/components/IconCard'
 import { supabase } from '@/lib/supabase'
 import FilterSearchApp from './components/FilterSearchApp'
 import ShareBox from '@/app/components/ShareBox'
@@ -242,33 +243,15 @@ export default async function IPhoneFilterSearchPage() {
         <section className="l-section l-section--no-pt" aria-label="診断の特徴">
           <div className="l-container">
             <div className="l-grid l-grid--3col l-grid--gap-lg">
-              <div className="m-card m-card--shadow criteria-card">
-                <div className="criteria-card__head">
-                  <span className="m-icon-box m-icon-box--lg criteria-card__icon criteria-card__icon--blue">
-                    <i className="fa-solid fa-bullseye" aria-hidden="true"></i>
-                  </span>
-                  <h3 className="criteria-card__title">用途で絞り込み</h3>
-                </div>
-                <p className="criteria-card__desc">SNS・動画視聴・ゲームなど、あなたの使い方に合った機種を提案します。</p>
-              </div>
-              <div className="m-card m-card--shadow criteria-card">
-                <div className="criteria-card__head">
-                  <span className="m-icon-box m-icon-box--lg criteria-card__icon criteria-card__icon--green">
-                    <i className="fa-solid fa-wallet" aria-hidden="true"></i>
-                  </span>
-                  <h3 className="criteria-card__title">予算で絞り込み</h3>
-                </div>
-                <p className="criteria-card__desc">ご希望の予算帯に収まる機種だけを表示。無理のない選択ができます。</p>
-              </div>
-              <div className="m-card m-card--shadow criteria-card">
-                <div className="criteria-card__head">
-                  <span className="m-icon-box m-icon-box--lg criteria-card__icon criteria-card__icon--red">
-                    <i className="fa-solid fa-sliders" aria-hidden="true"></i>
-                  </span>
-                  <h3 className="criteria-card__title">こだわり条件</h3>
-                </div>
-                <p className="criteria-card__desc">画面サイズやカメラ性能など、細かい条件でさらに絞り込めます。</p>
-              </div>
+              <IconCard icon="fa-solid fa-bullseye" title="用途で絞り込み">
+                <p>SNS・動画視聴・ゲームなど、あなたの使い方に合った機種を提案します。</p>
+              </IconCard>
+              <IconCard icon="fa-solid fa-wallet" title="予算で絞り込み">
+                <p>ご希望の予算帯に収まる機種だけを表示。無理のない選択ができます。</p>
+              </IconCard>
+              <IconCard icon="fa-solid fa-sliders" title="こだわり条件">
+                <p>画面サイズやカメラ性能など、細かい条件でさらに絞り込めます。</p>
+              </IconCard>
             </div>
           </div>
         </section>

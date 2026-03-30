@@ -1,0 +1,5 @@
+/* CompareStoragePrice – minimal overrides (m-table handles most styling) */
+
+.table th[scope='row'] {
+  white-space: nowrap;
+}

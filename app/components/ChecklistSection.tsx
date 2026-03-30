@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import IconCard from '@/app/components/IconCard'
 
 type ChecklistItem = {
   iconClass: string
@@ -33,15 +34,9 @@ export default function ChecklistSection({ productName, items, memoLinks }: Prop
 
         <div className="l-grid l-grid--2col l-grid--gap-lg">
           {items.map((item) => (
-            <div key={item.title} className="m-card m-card--shadow criteria-card">
-              <div className="criteria-card__head">
-                <span className="criteria-card__icon criteria-card__icon--sm criteria-card__icon--blue m-icon-box m-icon-box--sm">
-                  <i className={item.iconClass} aria-hidden="true"></i>
-                </span>
-                <h3 className="criteria-card__title">{item.title}</h3>
-              </div>
-              <p className="criteria-card__desc">{item.desc}</p>
-            </div>
+            <IconCard key={item.title} icon={item.iconClass} title={item.title}>
+              <p>{item.desc}</p>
+            </IconCard>
           ))}
         </div>
 

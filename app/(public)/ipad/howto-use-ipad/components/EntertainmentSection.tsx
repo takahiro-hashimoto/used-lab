@@ -13,24 +13,26 @@ export default function EntertainmentSection() {
         <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-xl)' }}>
 
           {/* 1. 大画面で動画鑑賞を楽しむ */}
-          <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
-            <img
-              src="/images/content/photo/magextand-m-use-low-table.jpg"
-              alt="iPadで動画鑑賞する様子"
-              className="popular-card-img"
-              width={240}
-              height={160}
-              loading="lazy"
-            />
-            <div className="popular-card-body">
-              <h3 className="popular-card-title">大画面で動画鑑賞を楽しむ</h3>
-              <p className="popular-card-desc">
+          <div className="m-card m-card--shadow m-card--padded">
+            <div className="media-card__img-wrap">
+              <img
+                src="/images/content/photo/magextand-m-use-low-table.jpg"
+                alt="iPadで動画鑑賞する様子"
+                className="media-card__img"
+                width={240}
+                height={160}
+                loading="lazy"
+              />
+            </div>
+            <div className="media-card__body">
+              <h3 className="media-card__title">大画面で動画鑑賞を楽しむ</h3>
+              <p className="media-card__desc">
                 iPadは臨場感に溢れた映像コンテンツを楽しむのに最適なデバイスです。
               </p>
-              <p className="popular-card-desc">
+              <p className="media-card__desc">
                 スマホだと見落としがちな演者の細かい表情や演出効果も大画面のiPadならじっくり楽しむことができます。
               </p>
-              <p className="popular-card-desc">
+              <p className="media-card__desc">
                 さらにiPadでの動画鑑賞には楽な姿勢で動画を視聴しやすくなったり、目が疲れづらくなるメリットも。コンテンツを十二分に楽しめて体にも優しいなんて一石二鳥です。
               </p>
               <div className="m-card" style={{ padding: 'var(--space-lg)', marginTop: 'var(--space-sm)' }}>
@@ -49,24 +51,26 @@ export default function EntertainmentSection() {
           </div>
 
           {/* 2. 電子書籍を読む */}
-          <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
-            <img
-              src="/images/content/photo/ipad-mini-6-reading.jpg"
-              alt="iPadで電子書籍を読む様子"
-              className="popular-card-img"
-              width={240}
-              height={160}
-              loading="lazy"
-            />
-            <div className="popular-card-body">
-              <h3 className="popular-card-title">電子書籍を読む</h3>
-              <p className="popular-card-desc">
+          <div className="m-card m-card--shadow m-card--padded">
+            <div className="media-card__img-wrap">
+              <img
+                src="/images/content/photo/ipad-mini-6-reading.jpg"
+                alt="iPadで電子書籍を読む様子"
+                className="media-card__img"
+                width={240}
+                height={160}
+                loading="lazy"
+              />
+            </div>
+            <div className="media-card__body">
+              <h3 className="media-card__title">電子書籍を読む</h3>
+              <p className="media-card__desc">
                 スマホでの読書は、画面の小ささゆえに拡大・縮小を繰り返す必要があり、どうしても視覚的なストレスが溜まりがちです。
               </p>
-              <p className="popular-card-desc">
+              <p className="media-card__desc">
                 また、電子書籍の醍醐味である「マーカー機能」も、スマホの画面サイズでは誤操作が起きやすく、集中力を削がれる原因にもなります。
               </p>
-              <p className="popular-card-desc">
+              <p className="media-card__desc">
                 その点、iPadなら本物の雑誌を広げるような感覚でコンテンツに没入できます。画面が広い分、ペンや指でのハイライト操作も驚くほどスムーズ。<strong>電子書籍を日常的に楽しむ習慣がある方にとって、iPadの導入は読書体験を劇的にアップデートする最良の投資</strong>になります。
               </p>
               <div className="m-card" style={{ padding: 'var(--space-lg)', marginTop: 'var(--space-sm)' }}>
@@ -84,24 +88,26 @@ export default function EntertainmentSection() {
           </div>
 
           {/* 3. ゲームを楽しむ */}
-          <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
-            <img
-              src="/images/content/ipad-gaming.jpg"
-              alt="iPadでゲームを楽しむ様子"
-              className="popular-card-img"
-              width={240}
-              height={160}
-              loading="lazy"
-            />
-            <div className="popular-card-body">
-              <h3 className="popular-card-title">ゲームを楽しむ</h3>
-              <p className="popular-card-desc">
+          <div className="m-card m-card--shadow m-card--padded">
+            <div className="media-card__img-wrap">
+              <img
+                src="/images/content/ipad-gaming.jpg"
+                alt="iPadでゲームを楽しむ様子"
+                className="media-card__img"
+                width={240}
+                height={160}
+                loading="lazy"
+              />
+            </div>
+            <div className="media-card__body">
+              <h3 className="media-card__title">ゲームを楽しむ</h3>
+              <p className="media-card__desc">
                 繊細なグラフィックや美しい色彩を堪能したいなら、iPadの大画面は外せません。
               </p>
-              <p className="popular-card-desc">
+              <p className="media-card__desc">
                 例えば『三国志真戦』のような戦略シミュレーションでは、クオリティの高い戦闘シーンを大画面でよりダイナミックに楽しめます。また、オープンワールドのRPGでも、スマホの小さな画面では見落としがちな細かなテクスチャや美しいライティングを存分に味わうことが可能です。
               </p>
-              <p className="popular-card-desc">
+              <p className="media-card__desc">
                 複雑なUI（ボタン配置）に画面を占領されるストレスからも解放され、純粋にゲームの世界観に没入できる。<strong>iPhoneでのプレイに少しでも窮屈さを感じているなら、ぜひiPadでのゲーム体験を試してみてください。</strong>
               </p>
               <div className="m-card" style={{ padding: 'var(--space-lg)', marginTop: 'var(--space-sm)' }}>
@@ -119,24 +125,26 @@ export default function EntertainmentSection() {
           </div>
 
           {/* 4. 地上波テレビを視聴する */}
-          <div className="m-card m-card--shadow m-card--padded popular-card popular-card--full">
-            <img
-              src="/images/content/photo/nasne-use-ipad-1.jpg"
-              alt="iPad + nasneで地上波テレビを見る様子"
-              className="popular-card-img"
-              width={240}
-              height={160}
-              loading="lazy"
-            />
-            <div className="popular-card-body">
-              <h3 className="popular-card-title">地上波テレビを視聴する</h3>
-              <p className="popular-card-desc">
+          <div className="m-card m-card--shadow m-card--padded">
+            <div className="media-card__img-wrap">
+              <img
+                src="/images/content/photo/nasne-use-ipad-1.jpg"
+                alt="iPad + nasneで地上波テレビを見る様子"
+                className="media-card__img"
+                width={240}
+                height={160}
+                loading="lazy"
+              />
+            </div>
+            <div className="media-card__body">
+              <h3 className="media-card__title">地上波テレビを視聴する</h3>
+              <p className="media-card__desc">
                 iPadはネットワークレコーダーを導入することで、テレビ視聴が可能になります。
               </p>
-              <p className="popular-card-desc">
+              <p className="media-card__desc">
                 家の中どこでもテレビを視聴できる環境はとても魅力的ですし、たまにしかテレビは見ないから所有したくないなんていう方にもうってつけ。
               </p>
-              <p className="popular-card-desc">
+              <p className="media-card__desc">
                 おすすめのネットワークレコーダーは<a href="https://amzn.to/3YmsyaI" rel="nofollow sponsored noopener" target="_blank"><strong>nasne</strong></a>というアイテム。
               </p>
               <div className="m-card" style={{ padding: 'var(--space-lg)', marginTop: 'var(--space-sm)' }}>
@@ -151,7 +159,7 @@ export default function EntertainmentSection() {
                   <li>アプリの動作も軽くて使いやすい</li>
                 </ul>
               </div>
-              <p className="popular-card-desc" style={{ marginTop: 'var(--space-md)' }}>
+              <p className="media-card__desc" style={{ marginTop: 'var(--space-md)' }}>
                 我が家でも大活躍しているアイテムなので、気になった方はぜひチェックしてみてください！
               </p>
             </div>

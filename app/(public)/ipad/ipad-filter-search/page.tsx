@@ -3,6 +3,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { getAllIPadModels, getAllProductShopLinksByType, getAllIPadAccessories, getAllIPadAccessoryCompatibility } from '@/lib/queries'
 import { buildAccessoryLookup, getPencilTextFromAccessories, getKeyboardTextFromAccessories } from '@/lib/utils/ipad-helpers'
+import IconCard from '@/app/components/IconCard'
 import type { IPadPriceLog } from '@/lib/types'
 import { supabase } from '@/lib/supabase'
 import IPadFilterSearchApp from './components/IPadFilterSearchApp'
@@ -238,33 +239,15 @@ export default async function IPadFilterSearchPage() {
         <section className="l-section l-section--no-pt" aria-label="診断の特徴">
           <div className="l-container">
             <div className="l-grid l-grid--3col l-grid--gap-lg">
-              <div className="m-card m-card--shadow criteria-card">
-                <div className="criteria-card__head">
-                  <span className="m-icon-box m-icon-box--lg criteria-card__icon criteria-card__icon--blue">
-                    <i className="fa-solid fa-bolt" aria-hidden="true"></i>
-                  </span>
-                  <h3 className="criteria-card__title">かんたん30秒診断</h3>
-                </div>
-                <p className="criteria-card__desc">質問に答えるだけで、あなたに最適なiPadを自動でシミュレーション。難しい知識は不要です。</p>
-              </div>
-              <div className="m-card m-card--shadow criteria-card">
-                <div className="criteria-card__head">
-                  <span className="m-icon-box m-icon-box--lg criteria-card__icon criteria-card__icon--green">
-                    <i className="fa-solid fa-yen-sign" aria-hidden="true"></i>
-                  </span>
-                  <h3 className="criteria-card__title">リアルタイム価格表示</h3>
-                </div>
-                <p className="criteria-card__desc">イオシス・ゲオ・じゃんぱらの中古価格を毎日更新。最安値がすぐにわかります。</p>
-              </div>
-              <div className="m-card m-card--shadow criteria-card">
-                <div className="criteria-card__head">
-                  <span className="m-icon-box m-icon-box--lg criteria-card__icon criteria-card__icon--red">
-                    <i className="fa-solid fa-check-double" aria-hidden="true"></i>
-                  </span>
-                  <h3 className="criteria-card__title">全{totalModels}機種を網羅</h3>
-                </div>
-                <p className="criteria-card__desc">iPad mini〜iPad Pro 13インチまで、現在中古市場で流通する全モデルを比較・診断できます。</p>
-              </div>
+              <IconCard icon="fa-solid fa-bolt" title="かんたん30秒診断">
+                <p>質問に答えるだけで、あなたに最適なiPadを自動でシミュレーション。難しい知識は不要です。</p>
+              </IconCard>
+              <IconCard icon="fa-solid fa-yen-sign" title="リアルタイム価格表示">
+                <p>イオシス・ゲオ・じゃんぱらの中古価格を毎日更新。最安値がすぐにわかります。</p>
+              </IconCard>
+              <IconCard icon="fa-solid fa-check-double" title={`全${totalModels}機種を網羅`}>
+                <p>iPad mini〜iPad Pro 13インチまで、現在中古市場で流通する全モデルを比較・診断できます。</p>
+              </IconCard>
             </div>
           </div>
         </section>

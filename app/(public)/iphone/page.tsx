@@ -14,12 +14,14 @@ import {
   GUIDE_FAQ_ITEMS,
   GUIDE_MODEL_LINKS,
   GUIDE_VENDOR_CARDS,
+  GUIDE_COMPARE_LINKS,
 } from '@/lib/data/iphone-guide'
 import {
   RECOMMEND_SLUGS,
   RECOMMEND_META,
   RECOMMEND_COUNT_LABEL,
 } from '@/lib/data/iphone-recommend'
+import ProductCard from '@/app/components/ProductCard'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import ShareBox from '@/app/components/ShareBox'
 import VendorCardGrid from '@/app/components/VendorCardGrid'
@@ -257,27 +259,17 @@ export default async function IPhoneGuidePage() {
 
               <div className="price-card-grid l-grid l-grid--2col l-grid--gap-lg">
                 {priceModels.map((model, i) => (
-                  <div key={model.id} className="price-card m-card m-card--shadow">
-                    <figure className="price-card__img">
-                      <img
-                        src={model.image ? `/images/iphone/${model.image}` : `https://placehold.co/80x80/f5f5f7/1d1d1f?text=${encodeURIComponent(model.model)}`}
-                        alt={model.model}
-                        width={80}
-                        height={80}
-                        loading="lazy"
-                      />
-                    </figure>
-                    <div className="price-card__info">
-                      <h3 className="price-card__name">{model.model}</h3>
-                      <p className="price-card__meta">
-                        {model.date ? `${model.date.split('/')[0]}年` : ''} / {model.cpu || ''}
-                      </p>
-                    </div>
-                    <div className="price-card__price">
-                      <span className="price-card__label">中古相場（{latestPrices[i]?.storage ? `${latestPrices[i].storage}` : getStorageLabel(model)}）</span>
-                      <span className="price-card__value m-price-display m-price-display--sm m-price-display--primary">{getMinPrice(latestPrices[i])} 〜</span>
-                    </div>
-                  </div>
+                  <ProductCard
+                    key={model.id}
+                    variant="compact"
+                    modelId={model.id}
+                    modelName={model.model}
+                    imageUrl={model.image ? `/images/iphone/${model.image}` : null}
+                    metaText={`${model.date ? `${model.date.split('/')[0]}年` : ''} / ${model.cpu || ''}`}
+                    priceLabel={`中古相場（${latestPrices[i]?.storage ? `${latestPrices[i].storage}` : getStorageLabel(model)}）`}
+                    priceValue={getMinPrice(latestPrices[i])}
+                    shopUrl={allShopLinks.find((l) => l.product_id === model.id && l.shop_id === 1)?.url}
+                  />
                 ))}
               </div>
 
@@ -365,49 +357,25 @@ export default async function IPhoneGuidePage() {
                 {recommendModels.map((model, i) => {
                   const meta = RECOMMEND_META[model.slug]
                   return (
-                    <div key={model.id} className="guide-recommend m-card m-card--shadow">
-                      <div className="guide-recommend__inner">
-                        <figure className="guide-recommend__img">
-                          <img
-                            src={model.image ? `/images/iphone/${model.image}` : `https://placehold.co/120x140/f5f5f7/1d1d1f?text=${encodeURIComponent(model.model)}`}
-                            alt={model.model}
-                            width={120}
-                            height={140}
-                            loading="lazy"
-                          />
-                        </figure>
-                        <div className="guide-recommend__body">
-                          <div className="guide-recommend__header">
-                            <h3 className="guide-recommend__name">{model.model}</h3>
-                            <span className="guide-recommend__tag">{meta?.label || ''}</span>
-                          </div>
-                          <ul className="guide-recommend__specs">
-                            <li>{model.date ? `${model.date.split('/')[0]}年発売` : ''}</li>
-                            <li>{model.cpu || ''}</li>
-                            <li>{model.display ? model.display.split(' ')[0] : ''}</li>
-                          </ul>
-                          <p className="guide-recommend__desc">{meta?.desc || ''}</p>
-                        </div>
-                        <div className="guide-recommend__aside">
-                          <span className="guide-recommend__price-label">中古相場（{recommendPrices[i]?.storage ? `${recommendPrices[i].storage}` : getStorageLabel(model)}）</span>
-                          <span className="guide-recommend__price-value m-price-display m-price-display--md">{getMinPrice(recommendPrices[i])}〜</span>
-                          {(() => {
-                            const iosysLink = allShopLinks.find((l) => l.product_id === model.id && l.shop_id === 1)
-                            return iosysLink ? (
-                              <a href={iosysLink.url} className="m-btn m-btn--primary m-btn--sm" target="_blank" rel="noopener noreferrer nofollow">
-                                <span>在庫情報を見る</span>
-                                <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
-                              </a>
-                            ) : (
-                              <Link href={`/iphone/${model.slug}/`} className="m-btn m-btn--primary m-btn--sm">
-                                <span>在庫情報を見る</span>
-                                <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
-                              </Link>
-                            )
-                          })()}
-                        </div>
-                      </div>
-                    </div>
+                    <ProductCard
+                      key={model.id}
+                      variant="detail"
+                      modelId={model.id}
+                      modelName={model.model}
+                      imageUrl={model.image ? `/images/iphone/${model.image}` : null}
+                      metaText={`${model.date ? `${model.date.split('/')[0]}年` : ''} / ${model.cpu || ''}`}
+                      tagLabel={meta?.label || ''}
+                      specs={[
+                        model.date ? `${model.date.split('/')[0]}年発売` : '',
+                        model.cpu || '',
+                        model.display ? model.display.split(' ')[0] : '',
+                      ]}
+                      description={meta?.desc || ''}
+                      priceLabel={`中古相場（${recommendPrices[i]?.storage ? `${recommendPrices[i].storage}` : getStorageLabel(model)}）`}
+                      priceValue={getMinPrice(recommendPrices[i])}
+                      shopUrl={allShopLinks.find((l) => l.product_id === model.id && l.shop_id === 1)?.url}
+                      fallbackHref={`/iphone/${model.slug}/`}
+                    />
                   )
                 })}
               </div>
@@ -506,6 +474,23 @@ export default async function IPhoneGuidePage() {
                   { label: 'その他（SEなど）', items: GUIDE_MODEL_LINKS.other },
                 ]}
               />
+
+              {/* 2機種比較リンク */}
+              <div className="guide-model-links">
+                <h3 className="guide-model-links__heading">2機種比較</h3>
+                <p className="guide-model-links__desc">気になる2機種の違いをスペック・カメラ・バッテリー・中古価格で徹底比較。</p>
+                <div className="l-grid l-grid--3col l-grid--gap-md guide-model-grid">
+                  {GUIDE_COMPARE_LINKS.map((link) => (
+                    <Link key={link.href} href={link.href} className="guide-model-item m-card">
+                      <span className="guide-model-item__name">
+                        <i className="fa-solid fa-scale-balanced" aria-hidden="true" style={{ color: 'var(--color-primary)', marginRight: 'var(--space-xs)', fontSize: 'var(--font-size-xs)' }}></i>
+                        {link.title}
+                      </span>
+                      <span className="guide-model-item__meta">{link.desc}</span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
             </div>
           </section>
 

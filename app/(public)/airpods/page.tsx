@@ -20,6 +20,7 @@ import {
   RECOMMEND_META,
   RECOMMEND_COUNT_LABEL,
 } from '@/lib/data/airpods-recommend'
+import ProductCard from '@/app/components/ProductCard'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import ShareBox from '@/app/components/ShareBox'
 import VendorCardGrid from '@/app/components/VendorCardGrid'
@@ -228,27 +229,18 @@ export default async function AirPodsGuidePage() {
 
               <div className="price-card-grid l-grid l-grid--2col l-grid--gap-lg">
                 {priceModels.map((model, i) => (
-                  <div key={model.id} className="price-card m-card m-card--shadow">
-                    <figure className="price-card__img">
-                      <img
-                        src={model.image ? `/images/airpods/${model.image}` : `https://placehold.co/80x80/f5f5f7/1d1d1f?text=AirPods`}
-                        alt={model.name}
-                        width={80}
-                        height={80}
-                        loading="lazy"
-                      />
-                    </figure>
-                    <div className="price-card__info">
-                      <h3 className="price-card__name">{model.name}</h3>
-                      <p className="price-card__meta">
-                        {model.date ? `${model.date.split('/')[0]}年` : ''} / {model.chip || ''}
-                      </p>
-                    </div>
-                    <div className="price-card__price">
-                      <span className="price-card__label">中古相場</span>
-                      <span className="price-card__value m-price-display m-price-display--sm m-price-display--primary">{getAirPodsMinPrice(latestPrices[i])} 〜</span>
-                    </div>
-                  </div>
+                  <ProductCard
+                    key={model.id}
+                    variant="compact"
+                    modelId={model.id}
+                    modelName={model.name}
+                    imageUrl={model.image ? `/images/airpods/${model.image}` : null}
+                    imageFallbackText="AirPods"
+                    metaText={`${model.date ? `${model.date.split('/')[0]}年` : ''} / ${model.chip || ''}`}
+                    priceLabel="中古相場"
+                    priceValue={getAirPodsMinPrice(latestPrices[i])}
+                    shopUrl={allShopLinks.find((l) => l.product_id === model.id && l.shop_id === 1)?.url}
+                  />
                 ))}
               </div>
 
@@ -317,49 +309,26 @@ export default async function AirPodsGuidePage() {
                 {recommendModels.map((model, i) => {
                   const meta = RECOMMEND_META[model.slug]
                   return (
-                    <div key={model.id} className="guide-recommend m-card m-card--shadow">
-                      <div className="guide-recommend__inner">
-                        <figure className="guide-recommend__img">
-                          <img
-                            src={model.image ? `/images/airpods/${model.image}` : `https://placehold.co/120x140/f5f5f7/1d1d1f?text=AirPods`}
-                            alt={model.name}
-                            width={120}
-                            height={140}
-                            loading="lazy"
-                          />
-                        </figure>
-                        <div className="guide-recommend__body">
-                          <div className="guide-recommend__header">
-                            <h3 className="guide-recommend__name">{model.name}</h3>
-                            <span className="guide-recommend__tag">{meta?.label || ''}</span>
-                          </div>
-                          <ul className="guide-recommend__specs">
-                            <li>{model.date ? `${model.date.split('/')[0]}年発売` : ''}</li>
-                            <li>{model.chip || ''}</li>
-                            <li>{model.fit || ''}</li>
-                          </ul>
-                          <p className="guide-recommend__desc">{meta?.desc || ''}</p>
-                        </div>
-                        <div className="guide-recommend__aside">
-                          <span className="guide-recommend__price-label">中古相場</span>
-                          <span className="guide-recommend__price-value m-price-display m-price-display--md">{getAirPodsMinPrice(recommendPrices[i])}〜</span>
-                          {(() => {
-                            const iosysLink = allShopLinks.find((l) => l.product_id === model.id && l.shop_id === 1)
-                            return iosysLink ? (
-                              <a href={iosysLink.url} className="m-btn m-btn--primary m-btn--sm" target="_blank" rel="noopener noreferrer nofollow">
-                                <span>在庫情報を見る</span>
-                                <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
-                              </a>
-                            ) : (
-                              <Link href={`/airpods/${model.slug}/`} className="m-btn m-btn--primary m-btn--sm">
-                                <span>在庫情報を見る</span>
-                                <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
-                              </Link>
-                            )
-                          })()}
-                        </div>
-                      </div>
-                    </div>
+                    <ProductCard
+                      key={model.id}
+                      variant="detail"
+                      modelId={model.id}
+                      modelName={model.name}
+                      imageUrl={model.image ? `/images/airpods/${model.image}` : null}
+                      imageFallbackText="AirPods"
+                      metaText={`${model.date ? `${model.date.split('/')[0]}年` : ''} / ${model.chip || ''}`}
+                      tagLabel={meta?.label || ''}
+                      specs={[
+                        model.date ? `${model.date.split('/')[0]}年発売` : '',
+                        model.chip || '',
+                        model.fit || '',
+                      ]}
+                      description={meta?.desc || ''}
+                      priceLabel="中古相場"
+                      priceValue={getAirPodsMinPrice(recommendPrices[i])}
+                      shopUrl={allShopLinks.find((l) => l.product_id === model.id && l.shop_id === 1)?.url}
+                      fallbackHref={`/airpods/${model.slug}/`}
+                    />
                   )
                 })}
               </div>

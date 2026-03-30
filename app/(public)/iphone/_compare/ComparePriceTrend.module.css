@@ -1,0 +1,73 @@
+/* ComparePriceTrend — 買い時判断セクション */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-lg);
+}
+
+.card {
+  background: var(--color-bg);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06), 0 4px 16px rgba(0, 0, 0, 0.04);
+  padding: var(--space-lg);
+}
+
+.modelName {
+  font-size: var(--font-size-md);
+  font-weight: 700;
+  margin-bottom: var(--space-md);
+}
+
+.trendRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-xs) 0;
+  border-bottom: 1px solid var(--color-border, #eee);
+  font-size: var(--font-size-sm);
+}
+
+.trendLabel {
+  color: var(--color-text-muted);
+}
+
+.trendValue {
+  font-weight: 600;
+}
+
+.trendUp {
+  color: #e74c6f;
+}
+
+.trendDown {
+  color: #22a667;
+}
+
+.trendFlat {
+  color: var(--color-text-secondary);
+}
+
+.verdictBadge {
+  display: inline-block;
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: var(--radius-full, 999px);
+  margin-top: var(--space-sm);
+}
+
+.verdictGreen {
+  background: #e6f7ee;
+  color: #1a7d46;
+}
+
+.verdictYellow {
+  background: #fff5e0;
+  color: #b8860b;
+}
+
+.verdictRed {
+  background: #fde8ec;
+  color: #c0392b;
+}

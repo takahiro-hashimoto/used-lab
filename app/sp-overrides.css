@@ -1,0 +1,17 @@
+/* SP: guide-recommend を price-card レイアウトに統一 */
+@media (max-width: 768px) {
+  .sp-hidden {
+    display: none;
+  }
+
+  .sp-col {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+  }
+
+  .sp-text-base {
+    font-size: var(--font-size-base);
+  }
+
+}

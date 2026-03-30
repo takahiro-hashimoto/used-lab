@@ -56,6 +56,13 @@ export default function PriceDropSection({ items, dateDisplay }: Props) {
                 <span className="price-card__change">
                   {model.priceChange.toLocaleString()}円<small>（{model.priceChangePercent}%）</small>
                 </span>
+                {model.shopUrl && (
+                  <div className="price-card__cta">
+                    <a href={model.shopUrl} className="m-btn m-btn--primary m-btn--sm" target="_blank" rel="noopener noreferrer nofollow">
+                      在庫情報を見る <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                    </a>
+                  </div>
+                )}
               </div>
             </li>
           ))}

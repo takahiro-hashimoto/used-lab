@@ -119,15 +119,15 @@ export default function BenchmarkRanking({ models, shopLinks }: { models: BenchM
                         <span className={`bench-rank ${rank <= 3 ? `bench-rank--${rank}` : ''}`}>{rank}</span>
                       </td>
                       <td className="bench-ranking-table__model-cell">
-                        <Link href={`/iphone/${m.slug}/`} className="bench-model-link">
+                        <div className="bench-model-link">
                           {m.image && m.image.startsWith('/') && (
                             <Image src={m.image} alt={m.model} width={40} height={40} className="bench-model-img" />
                           )}
                           <span className="bench-model-info">
-                            <span className="bench-model-name">{m.model}</span>
+                            <Link href={`/iphone/${m.slug}/`} className="bench-model-name">{m.model}</Link>
                             <span className="bench-model-chip">{m.cpu}</span>
                           </span>
-                        </Link>
+                        </div>
                       </td>
                       <td><BenchBar value={m.score_single} maxValue={maxSingle} color="#e74c6f" /></td>
                       <td><BenchBar value={m.score_multi} maxValue={maxMulti} color="#f0a030" /></td>

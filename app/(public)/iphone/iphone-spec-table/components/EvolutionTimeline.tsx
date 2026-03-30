@@ -264,6 +264,21 @@ const FLAGSHIP_TIMELINE = [
 
 const SE_TIMELINE = [
   {
+    date: '2026年3月',
+    title: 'iPhone 17e',
+    slug: '17e',
+    filled: false,
+    items: [
+      'A19チップ搭載（16eのA18からさらに性能向上）',
+      'Apple Intelligence対応を継続',
+      'デュアルeSIM専用（物理SIMスロット廃止）',
+      '48MP Fusionカメラ＋12MP 2倍望遠の2眼構成',
+      'フォトグラフスタイル対応',
+      'アクションボタン搭載を継続',
+      '最小ストレージが256GBに増加',
+    ],
+  },
+  {
     date: '2025年2月',
     title: 'iPhone 16e',
     slug: 'iphone16e',

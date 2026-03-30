@@ -15,7 +15,7 @@ export default function RecommendByTypeSection() {
           </h3>
           <div className="caution-check-card__text m-rich-text">
             <p>中古に不安がある、失敗したくない、知識はあまりない人。検品済みで保証があり、Cellularモデルでも赤ロムの心配がほぼありません。初めてなら「安さ」より「戻れるかどうか」を基準に選ぶべきです。</p>
-            <p><strong>&rarr; 中古タブレット専門店 or Apple認定整備済製品</strong></p>
+            <p className="lead-link">&rarr; 中古タブレット専門店 or Apple認定整備済製品</p>
           </div>
         </div>
 
@@ -26,7 +26,7 @@ export default function RecommendByTypeSection() {
           </h3>
           <div className="caution-check-card__text m-rich-text">
             <p>中古iPadの相場感があり、多少の条件確認は自分でできる人。フリマより安全でありながら、セールや在庫次第で価格が下がりやすく、最低限の保証もあります。「安い＝フリマ」ではありません。</p>
-            <p><strong>&rarr; 中古タブレット専門店（価格重視店） or Amazon整備済み</strong></p>
+            <p className="lead-link">&rarr; 中古タブレット専門店（価格重視店） or Amazon整備済み</p>
           </div>
         </div>
 
@@ -37,7 +37,7 @@ export default function RecommendByTypeSection() {
           </h3>
           <div className="caution-check-card__text m-rich-text">
             <p>バッテリー状態・赤ロム・モデル寿命・Apple Pencil対応を自分で判断できる人。リスクを理解していることが前提です。初心者には向きません。安い理由を理解できないなら、手を出すべきではありません。</p>
-            <p><strong>&rarr; フリマアプリ・個人売買</strong></p>
+            <p className="lead-link">&rarr; フリマアプリ・個人売買</p>
           </div>
         </div>
       </div>

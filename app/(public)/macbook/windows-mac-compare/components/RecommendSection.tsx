@@ -41,27 +41,22 @@ export default function RecommendSection() {
               デザイナーやプログラマーなどクリエイティブ系の職業の方や、これからクリエイティブ系の仕事を目指す学生の方にはMacがおすすめです。
             </p>
 
-            <div className="m-card" style={{ padding: 'var(--space-lg)', marginTop: 'var(--space-sm)', display: 'flex', flexDirection: 'column', gap: 'var(--space-md)' }}>
-              <div>
-                <p style={{ fontWeight: 700, marginBottom: 'var(--space-xs)' }}>
-                  <i className="fa-solid fa-palette" aria-hidden="true" style={{ marginRight: 'var(--space-xs)' }}></i>
-                  デザイナーにMacが親しまれる理由
-                </p>
-                <p className="popular-card-desc">
-                  標準搭載フォントが豊富でDTP主流フォントも最初から使える。ディスプレイの色再現性が高く、印刷物の仕上がりをイメージしやすい。周りにMacユーザーが多くデータの受け渡しがしやすい。
-                </p>
-              </div>
-              <hr style={{ border: 'none', borderTop: '1px dashed var(--color-border-light)' }} />
-              <div>
-                <p style={{ fontWeight: 700, marginBottom: 'var(--space-xs)' }}>
-                  <i className="fa-solid fa-code" aria-hidden="true" style={{ marginRight: 'var(--space-xs)' }}></i>
-                  プログラマーにMacが親しまれる理由
-                </p>
-                <p className="popular-card-desc">
-                  UNIXコマンドがすぐに使え開発環境を整えやすい。iPhoneアプリ開発に必須の「Xcode」が使えるのはMacのみ。トラックパッドの操作性が高く作業が捗る。
-                </p>
-              </div>
-            </div>
+            <dl className="m-card vs-card" style={{ marginTop: 'var(--space-sm)' }}>
+              <dt>
+                <i className="fa-solid fa-palette" aria-hidden="true"></i>
+                デザイナーにMacが親しまれる理由
+              </dt>
+              <dd>
+                標準搭載フォントが豊富でDTP主流フォントも最初から使える。ディスプレイの色再現性が高く、印刷物の仕上がりをイメージしやすい。周りにMacユーザーが多くデータの受け渡しがしやすい。
+              </dd>
+              <dt>
+                <i className="fa-solid fa-code" aria-hidden="true"></i>
+                プログラマーにMacが親しまれる理由
+              </dt>
+              <dd>
+                UNIXコマンドがすぐに使え開発環境を整えやすい。iPhoneアプリ開発に必須の「Xcode」が使えるのはMacのみ。トラックパッドの操作性が高く作業が捗る。
+              </dd>
+            </dl>
 
             <p className="popular-card-desc" style={{ marginTop: 'var(--space-sm)' }}>
               またMacBookは製品ラインナップが絞られており、一番安価なMacBook Airを購入してもそこそこハイスペックなモデルです。<strong>パソコン選びに自信がなく失敗しない一台がほしい方</strong>にもおすすめ。ある程度のスペックがあるので、後から動画編集などの重い作業を始めたくなっても買い替えなしで対応できます。

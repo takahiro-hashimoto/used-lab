@@ -4,7 +4,7 @@ export const FAQ_ITEMS = [
     answer: 'Apple Watchシリーズ5以降のモデルは常時点灯に対応しています。ただし、Apple Watch SE（第1世代・第2世代）は対象外となっています。',
   },
   {
-    question: 'アップルウォッチの常時点灯ありなしでバッテリー持ち（消費スピード）にはどれくらいの差が出ますか？',
+    question: 'Apple Watchの常時点灯ありなしでバッテリー持ち（消費スピード）にはどれくらいの差が出ますか？',
     answer: '常時点灯ありのモデルを1日装着して過ごしたところ、バッテリーの減りは非対応モデルに比べて約1.5倍早いという結果になりました。使用状況にもよりますが、バッテリー持ちを重視する方は非対応モデルの方が安心です。',
   },
   {
@@ -22,7 +22,7 @@ export default function AlwaysLitFaqSection() {
     <section className="l-section" id="faq" aria-labelledby="heading-faq">
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg" id="heading-faq">
-          アップルウォッチの常時点灯に関するよくある質問
+          Apple Watchの常時点灯に関するよくある質問
         </h2>
         <p className="m-section-desc">
           Apple Watchの常時点灯ディスプレイについて、よく寄せられる疑問をまとめました。
