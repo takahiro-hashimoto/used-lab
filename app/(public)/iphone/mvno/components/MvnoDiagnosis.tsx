@@ -267,7 +267,7 @@ export default function MvnoDiagnosis({ providers }: Props) {
           </div>
 
           {/* 選択サマリー */}
-          <div className="diagnosis-summary">
+          <div className="u-mb-lg">
             <div className="diagnosis-summary__items">
               {QUESTIONS.map(q => {
                 const v = answers[q.key]
@@ -281,7 +281,7 @@ export default function MvnoDiagnosis({ providers }: Props) {
           </div>
 
           {/* フィードバック */}
-          <div className="diagnosis-feedback">
+          <div className="u-mb-xl">
             <p className="diagnosis-feedback__text">
               <i className="fa-solid fa-lightbulb" aria-hidden="true" />
               {getFeedback(answers, top3[0])}

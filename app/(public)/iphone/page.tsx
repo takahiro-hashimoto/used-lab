@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import Image from 'next/image'
 import {
   getAllIPhoneModels,
   getLatestPriceLog,
@@ -152,16 +153,6 @@ export default async function IPhoneGuidePage() {
                 中古iPhone完全購入ガイド
                 選び方・相場・おすすめモデルまとめ【{GUIDE_DATE_LABEL}版】
               </h1>
-              <div className="hero-actions">
-                <a href="#recommended" className="m-btn m-btn--hero-primary">
-                  <i className="fa-regular fa-star" aria-hidden="true"></i>
-                  <span>おすすめモデルを見る</span>
-                </a>
-                <a href="#caution" className="m-btn m-btn--hero-outline">
-                  <i className="fa-regular fa-circle-check" aria-hidden="true"></i>
-                  <span>選び方を確認</span>
-                </a>
-              </div>
               <div className="hero-meta">
                 <i className="fa-regular fa-clock" aria-hidden="true"></i>
                 <span>
@@ -205,7 +196,7 @@ export default async function IPhoneGuidePage() {
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
             <p className="toc-title">タップできる目次</p>
-            <ol className="l-grid l-grid--3col toc-list">
+            <ol className="l-grid l-grid--3col u-list-reset">
               <li><a href="#filter-tool" className="toc-item">診断ツール <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#market-price" className="toc-item">最新相場 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#caution" className="toc-item">注意点 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
@@ -257,7 +248,7 @@ export default async function IPhoneGuidePage() {
               <p className="m-section-desc">イオシス・GEO・じゃんぱらの価格を毎日自動で更新。</p>
               <p className="m-section-desc">OSサポート期間・流通量・価格安定性の3点を基準に、「今買われやすい中古iPhone」を抽出しています。</p>
 
-              <div className="price-card-grid l-grid l-grid--2col l-grid--gap-lg">
+              <div className="u-list-reset u-mb-2xl l-grid l-grid--2col l-grid--gap-lg">
                 {priceModels.map((model, i) => (
                   <ProductCard
                     key={model.id}
@@ -276,7 +267,7 @@ export default async function IPhoneGuidePage() {
               <p className="guide-section-note">2019年以降に発売されたiPhone30機種の詳細な価格推移グラフ・相場データをご覧いただけます</p>
               <div className="guide-section-cta">
                 <Link href="/iphone/price-info/" className="m-btn m-btn--primary m-btn--block">
-                  <span>iPhoneの中古相場・価格推移グラフ</span>
+                  <span>中古iPhoneの相場・価格推移グラフ</span>
                   <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
                 </Link>
               </div>
@@ -399,7 +390,7 @@ export default async function IPhoneGuidePage() {
 
               <VendorCardGrid cards={GUIDE_VENDOR_CARDS} />
 
-              <p className="guide-section-note guide-section-note--mt">各ショップの詳細やサービス内容の違いは以下の記事で解説しています。</p>
+              <p className="guide-section-note u-mt-2xl">各ショップの詳細やサービス内容の違いは以下の記事で解説しています。</p>
               <div className="guide-section-cta">
                 <Link href="/iphone/iphone-shop/" className="m-btn m-btn--primary m-btn--block">
                   <span>中古iPhoneを安心して購入できるECサイト</span>
@@ -451,12 +442,12 @@ export default async function IPhoneGuidePage() {
               <h2 className="m-section-heading m-section-heading--lg" id="heading-spec-compare">中古iPhoneのデータ・スペック比較ガイド</h2>
               <p className="m-section-desc">カメラ性能、バッテリー寿命、サポート期間など、機種選びに役立つ詳細なスペック比較記事をまとめました。</p>
 
-              <div className="l-grid l-grid--2col l-grid--gap-lg guide-spec-links">
+              <div className="l-grid l-grid--2col l-grid--gap-lg l-grid--mb-2xl">
                 {GUIDE_SPEC_LINKS.map((link) => (
                   <Link key={link.href} href={link.href} className="m-card m-card--shadow related-link-card m-card--hoverable">
-                    <img src={getHeroImage(link.href)} alt={link.title} className="related-link-card__img" width={400} height={300} loading="lazy" />
+                    <Image src={getHeroImage(link.href)} alt={link.title} className="related-link-card__img" width={400} height={300} loading="lazy" />
                     <div className="related-link-card__body">
-                      <h3 className="related-link-card__title">{link.title}</h3>
+                      <p className="related-link-card__title">{link.title}</p>
                       <p className="related-link-card__desc">{link.desc}</p>
                     </div>
                   </Link>
@@ -479,11 +470,10 @@ export default async function IPhoneGuidePage() {
               <div className="guide-model-links">
                 <h3 className="guide-model-links__heading">2機種比較</h3>
                 <p className="guide-model-links__desc">気になる2機種の違いをスペック・カメラ・バッテリー・中古価格で徹底比較。</p>
-                <div className="l-grid l-grid--3col l-grid--gap-md guide-model-grid">
+                <div className="l-grid l-grid--3col l-grid--gap-md u-mb-2xl">
                   {GUIDE_COMPARE_LINKS.map((link) => (
                     <Link key={link.href} href={link.href} className="guide-model-item m-card">
                       <span className="guide-model-item__name">
-                        <i className="fa-solid fa-scale-balanced" aria-hidden="true" style={{ color: 'var(--color-primary)', marginRight: 'var(--space-xs)', fontSize: 'var(--font-size-xs)' }}></i>
                         {link.title}
                       </span>
                       <span className="guide-model-item__meta">{link.desc}</span>

@@ -7,6 +7,8 @@ import HealthSection from './components/HealthSection'
 import PaymentSection from './components/PaymentSection'
 import AppleEcoSection from './components/AppleEcoSection'
 import RecommendBanner from '@/app/(public)/watch/[slug]/components/RecommendBanner'
+import WatchRelatedLinks from '@/app/components/watch/WatchRelatedLinks'
+import FaqSection from '@/app/components/support/FaqSection'
 
 const PAGE_TITLE = 'アップルウォッチのできること25選！便利な機能や使い方がわかる【初心者向け】'
 const PAGE_DESCRIPTION =
@@ -89,18 +91,8 @@ export default function HowToUseAppleWatchPage() {
           <div className="hero-inner l-container">
             <div className="hero-content">
               <h1 className="hero-title" itemProp="headline">
-                アップルウォッチの<br className="sp-only" />できること25選！<br className="sp-only" />【初心者向け】
+                アップルウォッチのできること25選！【初心者向け】
               </h1>
-              <div className="hero-actions">
-                <a href="#content" className="m-btn m-btn--hero-primary">
-                  <i className="fa-solid fa-lightbulb" aria-hidden="true"></i>
-                  <span>できることを見る</span>
-                </a>
-                <a href="#matome" className="m-btn m-btn--hero-outline">
-                  <i className="fa-regular fa-circle-check" aria-hidden="true"></i>
-                  <span>まとめを確認</span>
-                </a>
-              </div>
               <div className="hero-meta">
                 <i className="fa-regular fa-clock" aria-hidden="true"></i>
                 <span>
@@ -150,7 +142,7 @@ export default function HowToUseAppleWatchPage() {
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
             <p className="toc-title">タップできる目次</p>
-            <ol className="l-grid l-grid--3col toc-list">
+            <ol className="l-grid l-grid--3col u-list-reset">
               <li>
                 <a href="#basic" className="toc-item">
                   基本機能編 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
@@ -169,6 +161,11 @@ export default function HowToUseAppleWatchPage() {
               <li>
                 <a href="#apple-eco" className="toc-item">
                   Apple製品連携編 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                </a>
+              </li>
+              <li>
+                <a href="#faq" className="toc-item">
+                  よくある質問 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
                 </a>
               </li>
             </ol>
@@ -190,33 +187,41 @@ export default function HowToUseAppleWatchPage() {
           {/* セクション: Apple製品連携編 */}
           <AppleEcoSection />
 
-        {/* まとめ */}
-        <section className="l-section" id="matome" aria-labelledby="heading-matome">
-          <div className="l-container">
-            <h2 className="m-section-heading m-section-heading--lg" id="heading-matome">
-              Apple Watchがあればできること25選 まとめ
-            </h2>
-            <div className="m-card m-card--shadow m-card--padded content-prose">
-              <p>
-                Apple Watchを身につけていることで実現できる25個の機能を厳選してご紹介してきました。
-              </p>
-              <p>
-                Apple Watchがあれば、日々の健康管理の意識が格段に高まりますし、iPhoneを取り出さなくても様々なアクションが手元で完結できるようになります。
-              </p>
-              <p>
-                さらに、豊富な文字盤やベルトを気分やTPOに合わせて選べるため、ファッションアイテムとしても楽しめる点も大きな魅力です。
-              </p>
-              <p>
-                今回ご紹介した機能の中で、もし10個以上「これは便利そうだ」「使ってみたい」と感じた魅力的な部分があれば、きっとApple Watchを導入してご満足いただけると確信しています。
-              </p>
-              <p>
-                ぜひ、Apple Watchをあなたの生活に取り入れるかどうかの最適な判断材料としてご活用ください。
-              </p>
-            </div>
-          </div>
-        </section>
+          <FaqSection
+            title="Apple Watchに関するよくある質問"
+            description="Apple Watchの購入や使い方でよく寄せられる疑問にお答えします。"
+            items={[
+              {
+                question: 'Apple WatchはiPhoneがないと使えない？',
+                answer: '初期設定にはiPhoneが必要ですが、セットアップ後はWi-Fi環境下であればiPhoneが手元になくても多くの機能を単体で利用できます。GPS + Cellularモデルならモバイル通信にも対応しており、電話やメッセージの送受信もApple Watch単体で可能です。',
+              },
+              {
+                question: 'Apple Watchのバッテリーはどのくらい持つ？',
+                answer: '通常使用で約18時間（Series 9以降は最大36時間の低電力モード対応）です。就寝前に充電すれば日中のバッテリー切れの心配はほぼありません。急速充電に対応したモデルなら約45分で80%まで充電できます。',
+              },
+              {
+                question: 'Apple WatchはAndroidスマホでも使える？',
+                answer: 'いいえ、Apple WatchはiPhoneとのペアリングが必須のため、Androidスマートフォンでは利用できません。Apple Watchを使うにはiPhone 8以降（iOS 17以降）が必要です。',
+              },
+              {
+                question: 'Apple Watchのサイズはどう選べばいい？',
+                answer: '手首の細い方は小さいケースサイズ（40〜42mm）、標準〜太めの方は大きいケースサイズ（44〜46mm）がおすすめです。画面が大きいほど文字が読みやすく操作もしやすいため、迷ったら大きい方を選ぶのが無難です。',
+              },
+              {
+                question: 'Apple Watchは中古で買っても大丈夫？',
+                answer: 'はい、中古でも十分活用できます。ただし、アクティベーションロックが解除されていること、バッテリーの最大容量が80%以上あることを確認しましょう。詳しい選び方は中古Apple Watch購入ガイドをご覧ください。',
+              },
+              {
+                question: 'GPSモデルとGPS + Cellularモデルの違いは？',
+                answer: 'GPSモデルはiPhoneが近くにある状態で通信機能を利用します。GPS + CellularモデルはApple Watch単体でモバイル通信が可能で、ランニング中にiPhoneを持たずに音楽ストリーミングや電話ができます。詳しくは「GPSモデルとセルラーモデルの違い」をご覧ください。',
+              },
+            ]}
+          />
+
 
         <RecommendBanner />
+
+        <WatchRelatedLinks excludeHref="/watch/how-to-use-apple-watch/" />
 
         {/* シェアボックス */}
         <ShareBox url={PAGE_URL} text={PAGE_TITLE} />

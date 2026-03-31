@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import Image from 'next/image'
 import {
   getAllAirPodsModels,
   getLatestAirPodsPriceLog,
@@ -154,16 +155,6 @@ export default async function AirPodsGuidePage() {
                 中古AirPods完全購入ガイド
                 選び方・相場・おすすめモデルまとめ【{GUIDE_DATE_LABEL}版】
               </h1>
-              <div className="hero-actions">
-                <a href="#recommended" className="m-btn m-btn--hero-primary">
-                  <i className="fa-regular fa-star" aria-hidden="true"></i>
-                  <span>おすすめモデルを見る</span>
-                </a>
-                <a href="#caution" className="m-btn m-btn--hero-outline">
-                  <i className="fa-regular fa-circle-check" aria-hidden="true"></i>
-                  <span>選び方を確認</span>
-                </a>
-              </div>
               <div className="hero-meta">
                 <i className="fa-regular fa-clock" aria-hidden="true"></i>
                 <span>
@@ -207,7 +198,7 @@ export default async function AirPodsGuidePage() {
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
             <p className="toc-title">タップできる目次</p>
-            <ol className="l-grid l-grid--3col toc-list">
+            <ol className="l-grid l-grid--3col u-list-reset">
               <li><a href="#market-price" className="toc-item">最新相場 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#caution" className="toc-item">注意点 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#recommended" className="toc-item">目的別 おすすめ機種 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
@@ -227,7 +218,7 @@ export default async function AirPodsGuidePage() {
               <p className="m-section-desc">イオシス・じゃんぱら・eイヤホンの価格を毎日自動で更新。</p>
               <p className="m-section-desc">ファームウェアサポート期間・中古流通量・価格のバランスを基準に、「今買われやすい中古AirPods」を抽出しています。</p>
 
-              <div className="price-card-grid l-grid l-grid--2col l-grid--gap-lg">
+              <div className="u-list-reset l-grid l-grid--2col l-grid--gap-lg l-grid--mb-2xl">
                 {priceModels.map((model, i) => (
                   <ProductCard
                     key={model.id}
@@ -247,7 +238,7 @@ export default async function AirPodsGuidePage() {
               <p className="guide-section-note">各モデルの詳細な価格推移グラフ・相場データをご覧いただけます</p>
               <div className="guide-section-cta">
                 <Link href="/airpods/price/" className="m-btn m-btn--primary m-btn--block">
-                  <span>AirPodsの中古相場・価格推移グラフ</span>
+                  <span>中古AirPodsの相場・価格推移グラフ</span>
                   <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
                 </Link>
               </div>
@@ -266,7 +257,7 @@ export default async function AirPodsGuidePage() {
                   <div className="glossary-item">
                     <dt className="glossary-item-title">ファームウェアサポート期間</dt>
                     <dd className="glossary-item-desc">
-                      AirPodsのファームウェアサポートは発売から約7年が目安。古すぎるモデルはサポート終了が近いため、新機能が使えなくなるリスクがあります。
+                      AirPodsのファームウェアサポートは発売から約7年。古すぎるモデルはサポート終了が近いため、新機能が使えなくなるリスクがあります。
                     </dd>
                   </div>
                   <div className="glossary-item">
@@ -360,12 +351,12 @@ export default async function AirPodsGuidePage() {
               <h2 className="m-section-heading m-section-heading--lg" id="heading-spec-compare">中古AirPodsの関連記事</h2>
               <p className="m-section-desc">価格推移やおすすめモデルなど、中古AirPods選びに役立つ記事をまとめました。</p>
 
-              <div className="l-grid l-grid--2col l-grid--gap-lg guide-spec-links">
+              <div className="l-grid l-grid--2col l-grid--gap-lg l-grid--mb-2xl">
                 {GUIDE_SPEC_LINKS.map((link) => (
                   <Link key={link.href} href={link.href} className="m-card m-card--shadow related-link-card m-card--hoverable">
-                    <img src={getHeroImage(link.href)} alt={link.title} className="related-link-card__img" width={400} height={300} loading="lazy" />
+                    <Image src={getHeroImage(link.href)} alt={link.title} className="related-link-card__img" width={400} height={300} loading="lazy" />
                     <div className="related-link-card__body">
-                      <h3 className="related-link-card__title">{link.title}</h3>
+                      <p className="related-link-card__title">{link.title}</p>
                       <p className="related-link-card__desc">{link.desc}</p>
                     </div>
                   </Link>

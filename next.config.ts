@@ -18,6 +18,10 @@ const nextConfig: NextConfig = {
         hostname: 'used-lab.jp',
         pathname: '/wp-content/uploads/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'placehold.co',
+      },
     ],
   },
   async headers() {

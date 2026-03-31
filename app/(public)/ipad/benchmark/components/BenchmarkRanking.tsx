@@ -66,7 +66,7 @@ export default function BenchmarkRanking({ models, shopLinks }: { models: BenchM
         </h2>
         <p className="m-section-desc">Geekbench 6のスコアで歴代iPadの性能を比較。中古最安価格も併記しているのでコスパ重視の方にもおすすめです。</p>
 
-        <div className="spec-filter" aria-label="絞り込み">
+        <div className="u-mb-xl" aria-label="絞り込み">
           <div className="spec-filter__row">
             <span className="spec-filter__label">並び替え</span>
             <div className="spec-filter__tags">

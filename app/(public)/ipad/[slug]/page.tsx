@@ -30,6 +30,7 @@ import RecommendBanner from './components/RecommendBanner'
 import FaqSection from './components/FaqSection'
 import AccessorySection from './components/AccessorySection'
 import ReviewSection from '@/app/components/ReviewSection'
+import IPadRelatedLinks from '@/app/components/ipad/IPadRelatedLinks'
 import ShareBox from '@/app/components/ShareBox'
 import AdminEditLink from '@/app/components/AdminEditLink'
 
@@ -51,12 +52,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const priceRange = calculatePriceRange(latestLog)
   const osLife = calculateOSLifespan(model.date)
 
-  const priceText = priceRange.minPrice ? `中古相場¥${priceRange.minPrice.toLocaleString()}〜` : '中古価格'
+  const priceText = priceRange.minPrice ? `（¥${priceRange.minPrice.toLocaleString()}〜）` : ''
   const chipText = model.cpu ? `${model.cpu}搭載` : ''
-  const osText = osLife.isSupported ? `${osLife.osEndYear}年頃までiPadOSサポート見込み` : 'iPadOSサポート終了済み'
+  const osText = osLife.isSupported ? `iPadOSサポート見込み` : 'iPadOSサポート終了済み'
 
   const title = `中古${model.model} レビュー｜スペック・価格相場・いつまで使える？`
-  const description = `${model.model}の${priceText}や${osText}をもとに、今から中古で買うべきかを判定。${chipText ? chipText + 'の' : ''}ベンチマーク・描画性能・Apple Pencil対応を比較しながら失敗しない選び方を解説します。`
+  const description = `${model.model}の中古相場${priceText}や${osText}をもとに、今から中古で買うべきかを判定。${chipText ? chipText + 'の' : ''}ベンチマーク・描画性能・Apple Pencil対応を比較しながら失敗しない選び方を解説します。`
 
   return {
     title,
@@ -153,6 +154,7 @@ export default async function IPadDetailPage({ params }: PageProps) {
         <ReviewSection modelName={enrichedModel.model} reviews={reviews} />
         <RecommendBanner />
         <FaqSection model={enrichedModel} latestPrice={latestPrice} shopLinks={modelShopLinks} />
+        <IPadRelatedLinks excludeHref={`/ipad/${enrichedModel.slug}/`} />
         <ShareBox url={`https://used-lab.com/ipad/${enrichedModel.slug}/`} text={`中古${enrichedModel.model}は今買うべき？製品寿命、基本スペック、ベンチマークスコア、中古相場から解説`} />
         </div>
       </article>

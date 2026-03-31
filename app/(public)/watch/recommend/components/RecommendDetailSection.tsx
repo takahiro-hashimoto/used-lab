@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import { placeholder } from '@/lib/placeholder'
 import type { WatchModel, WatchPriceLog, ProductShopLink, FallbackShop } from '@/lib/types'
 import { formatPrice, formatReleaseDate, buildDisplayLinks, calculateAnnualCost } from '@/lib/utils/shared-helpers'
 import { calculatePriceRange, calculateOSLifespan } from '@/lib/utils/watch-helpers'
@@ -73,7 +74,7 @@ export default function RecommendDetailSection({ items }: Props) {
                     />
                   ) : (
                     <Image
-                      src="https://placehold.co/200x280/f5f5f7/1d1d1f?text=Watch"
+                      src={placeholder(200, 280, 'Watch')}
                       alt={`${model.model}の外観`}
                       width={200}
                       height={280}

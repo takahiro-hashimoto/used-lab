@@ -21,7 +21,7 @@ export default function PopularMacBook() {
           </figure>
           <div className="popular-card-body">
             <p className="popular-card-subtitle">目的別におすすめ機種を厳選！</p>
-            <h3 className="popular-card-title">中古MacBookおすすめモデル</h3>
+            <p className="popular-card-title">中古MacBookおすすめモデル</p>
             <p className="popular-card-desc">
               コスパ重視、クリエイティブ向け、持ち運び重視など目的別に買うべきモデルを紹介。チップ性能やメモリ、バッテリー持ち、macOSサポート期間など購入前にチェックすべき項目も網羅しています。
             </p>

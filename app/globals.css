@@ -1,3 +1,5 @@
+/* global styles */
 @import './style.css';
+@import './search.css';
 @import './compare.css';
 @import './sp-overrides.css';

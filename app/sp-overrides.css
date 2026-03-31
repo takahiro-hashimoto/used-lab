@@ -1,5 +1,9 @@
 /* SP: guide-recommend を price-card レイアウトに統一 */
 @media (max-width: 768px) {
+  .l-container {
+    padding: 0 var(--space-md);
+  }
+
   .sp-hidden {
     display: none;
   }
@@ -12,6 +16,28 @@
 
   .sp-text-base {
     font-size: var(--font-size-base);
+  }
+
+  .header-search-link {
+    display: none;
+  }
+
+  .ifd-results-header {
+    align-items: center;
+  }
+
+  /* insurance card SP fix */
+  .media-card--aside-footer {
+    overflow: hidden;
+  }
+
+  .media-card--aside-footer > * {
+    min-width: 0;
+  }
+
+  .insurance-card .media-card__body {
+    overflow-wrap: break-word;
+    word-break: break-word;
   }
 
 }

@@ -8,6 +8,7 @@ import {
 } from '@/lib/data/iphone-mvno'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import ShareBox from '@/app/components/ShareBox'
+import IPhoneRelatedLinks from '@/app/components/iphone/IPhoneRelatedLinks'
 import MvnoDiagnosis from './components/MvnoDiagnosis'
 import type { DiagnosisProvider } from './components/MvnoDiagnosis'
 
@@ -163,18 +164,8 @@ export default async function MvnoPage() {
           <div className="hero-inner l-container">
             <div className="hero-content">
               <h1 className="hero-title" itemProp="headline">
-                中古iPhoneの購入と通信契約が<br />セットでできる格安SIM業者まとめ
+                中古iPhoneの購入と通信契約がセットでできる格安SIM業者まとめ
               </h1>
-              <div className="hero-actions">
-                <a href="#providers" className="m-btn m-btn--hero-primary">
-                  <i className="fa-solid fa-sim-card" aria-hidden="true"></i>
-                  <span>格安SIM業者を比較する</span>
-                </a>
-                <a href="#faq" className="m-btn m-btn--hero-outline">
-                  <i className="fa-solid fa-circle-question" aria-hidden="true"></i>
-                  <span>よくある質問</span>
-                </a>
-              </div>
               <div className="hero-meta">
                 <i className="fa-regular fa-clock" aria-hidden="true"></i>
                 <span>
@@ -220,7 +211,7 @@ export default async function MvnoPage() {
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
             <p className="toc-title">タップできる目次</p>
-            <ol className="l-grid l-grid--3col toc-list">
+            <ol className="l-grid l-grid--3col u-list-reset">
               <li>
                 <a href="#pitfall" className="toc-item">
                   単体購入の落とし穴 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
@@ -274,7 +265,7 @@ export default async function MvnoPage() {
               <h3 className="post-check-item__heading">
                 中古スマホ単体購入の「落とし穴」
               </h3>
-              <div className="caution-check-card__text">
+              <div className="media-card__desc">
                 <p>中古スマホを専門店やフリマで購入した場合、通信契約の前に以下の確認が必要になります。SIMに詳しくない人ほど、ここでつまずきがちです。</p>
                 <ul>
                   <li><strong>回線との相性確認：</strong>買った端末がドコモ/au/ソフトバンクのどの回線に対応しているか</li>
@@ -295,7 +286,7 @@ export default async function MvnoPage() {
               <h3 className="post-check-item__heading">
                 セット契約なら、全部おまかせでOK
               </h3>
-              <div className="caution-check-card__text">
+              <div className="media-card__desc">
                 <p>セット契約で提供される中古端末は、事業者側で以下の確認・設定がすべて完了しています。</p>
                 <ul>
                   <li><strong>動作確認済み：</strong>その回線で使えることが保証されている</li>
@@ -315,7 +306,7 @@ export default async function MvnoPage() {
               <h3 className="post-check-item__heading">
                 大手キャリアからの乗り換えで、こんなにお得
               </h3>
-              <div className="caution-check-card__text">
+              <div className="media-card__desc">
                 <p>今、大手キャリアで新品iPhoneを使っている方。セット契約で中古iPhone+格安SIMに乗り換えると、<strong>初期費用も月額もグッと抑えられます。</strong></p>
               </div>
               <div className="l-grid l-grid--2col l-grid--gap-lg" style={{ marginTop: 'var(--space-lg)' }}>
@@ -330,7 +321,7 @@ export default async function MvnoPage() {
                   <p className="text-sm text-muted" style={{ margin: 0 }}>＋端末代 3〜5万円程度</p>
                 </div>
               </div>
-              <div className="caution-check-card__text" style={{ marginTop: 'var(--space-lg)' }}>
+              <div className="media-card__desc" style={{ marginTop: 'var(--space-lg)' }}>
                 <p><strong>2年間で10万円以上の差</strong>がつくことも珍しくありません。浮いたお金で旅行に行くもよし、貯金するもよし。賢く機種変更しましょう。</p>
               </div>
             </div>
@@ -351,7 +342,7 @@ export default async function MvnoPage() {
               <h3 className="post-check-item__heading">
                 「セット契約」の定義
               </h3>
-              <div className="caution-check-card__text">
+              <div className="media-card__desc">
                 <p>
                   この記事でいうセット契約とは、<strong>格安SIM業者の公式サイトやサービス上で、中古スマホ（またはリユース端末）と通信回線を同時に申し込める形態</strong>を指します。
                 </p>
@@ -368,7 +359,7 @@ export default async function MvnoPage() {
               <h3 className="post-check-item__heading">
                 キャリアショップとの違い
               </h3>
-              <div className="caution-check-card__text">
+              <div className="media-card__desc">
                 <p>
                   大手キャリア（ドコモ・au・ソフトバンク）のショップでも端末と回線のセット契約はできますよね。ただし、そこで扱われるのは基本的に<strong>新品端末</strong>であり、中古端末を選べるケースは限られています。
                 </p>
@@ -382,7 +373,7 @@ export default async function MvnoPage() {
               <h3 className="post-check-item__heading">
                 正直に言うと、最安とは限らない
               </h3>
-              <div className="caution-check-card__text">
+              <div className="media-card__desc">
                 <p>
                   ここは正直に書いておきますね。<strong>セット契約が常に最安になるわけではありません。</strong>
                 </p>
@@ -719,7 +710,7 @@ export default async function MvnoPage() {
 
             <div className="m-card m-card--shadow m-card--padded">
               <h3 className="post-check-item__heading">欲しい機種が明確に決まっている場合</h3>
-              <div className="caution-check-card__text">
+              <div className="media-card__desc">
                 <p>「iPhone 13 Proの256GB、シエラブルーが欲しい」など、機種・容量・カラーまで決まっている場合、セット契約の在庫では見つからない可能性が高いです。</p>
                 <p>中古スマホ専門店（イオシス、じゃんぱら、ゲオオンラインなど）で探したほうが選択肢は広くなります。</p>
               </div>
@@ -727,7 +718,7 @@ export default async function MvnoPage() {
 
             <div className="m-card m-card--shadow m-card--padded" style={{ marginTop: 'var(--space-xl)' }}>
               <h3 className="post-check-item__heading">価格を最優先にしたい場合</h3>
-              <div className="caution-check-card__text">
+              <div className="media-card__desc">
                 <p>中古スマホ専門店では、セールや在庫処分で大幅に値下げされることがあります。セット契約の端末価格と比較して、数千円〜1万円以上の差がつくこともあります。</p>
                 <p>時間と手間をかけられるなら、端末と回線を分けて最安を狙うほうがお得になりやすいです。</p>
               </div>
@@ -735,14 +726,14 @@ export default async function MvnoPage() {
 
             <div className="m-card m-card--shadow m-card--padded" style={{ marginTop: 'var(--space-xl)' }}>
               <h3 className="post-check-item__heading">すでに使いたい格安SIMが決まっている場合</h3>
-              <div className="caution-check-card__text">
+              <div className="media-card__desc">
                 <p>「mineoを使いたい」「IIJmioのギガプランがいい」など、すでに使いたい格安SIMが決まっていて、その事業者が中古端末を扱っていない場合は、端末は別で調達するしかありません。</p>
               </div>
             </div>
 
             <div className="m-card m-card--shadow m-card--padded" style={{ marginTop: 'var(--space-xl)' }}>
               <h3 className="post-check-item__heading">長期保証を重視する場合</h3>
-              <div className="caution-check-card__text">
+              <div className="media-card__desc">
                 <p>セット契約の保証期間は8日〜90日程度が多いです。一方、中古スマホ専門店では3ヶ月〜6ヶ月の保証がついていることもあります。</p>
                 <p>また、別途「スマホ保険」に加入する選択肢もあります。保証を重視するなら、端末を別で買ったほうが選択肢が広がります。</p>
               </div>
@@ -750,7 +741,7 @@ export default async function MvnoPage() {
 
             <div className="m-card m-card--shadow m-card--padded" style={{ marginTop: 'var(--space-xl)' }}>
               <h3 className="post-check-item__heading">端末の状態を細かく確認したい場合</h3>
-              <div className="caution-check-card__text">
+              <div className="media-card__desc">
                 <p>中古スマホ専門店の店頭なら、実機を手に取って傷や状態を確認できます。セット契約はオンライン申し込みが基本のため、届くまで実物を確認できません。</p>
                 <p>状態にこだわりたい人は、店頭で選んで購入したほうがいいでしょう。</p>
               </div>
@@ -881,7 +872,7 @@ export default async function MvnoPage() {
           </div>
         </section>
 
-        {/* ===== シェアボックス ===== */}
+        <IPhoneRelatedLinks excludeHref={["/iphone/mvno/", "/iphone/recommend/"]} />
         <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>
       </article>

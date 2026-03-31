@@ -24,6 +24,7 @@ const GLOSSARY_ITEMS = [
 ]
 import ShareBox from '@/app/components/ShareBox'
 import RecommendBanner from '@/app/(public)/watch/[slug]/components/RecommendBanner'
+import WatchRelatedLinks from '@/app/components/watch/WatchRelatedLinks'
 
 export const metadata: Metadata = {
   title: '歴代Apple Watchスペック比較表！各世代の性能の違いがすぐわかる',
@@ -150,16 +151,6 @@ export default async function WatchSpecTablePage() {
               <h1 className="hero-title">
                 歴代Apple Watchスペック比較表！各世代の性能の違いがすぐわかる
               </h1>
-              <div className="hero-actions">
-                <a href="#spec-table" className="m-btn m-btn--hero-primary">
-                  <i className="fa-solid fa-table-list" aria-hidden="true"></i>
-                  <span>スペック表を見る</span>
-                </a>
-                <a href="#compare" className="m-btn m-btn--hero-outline">
-                  <i className="fa-solid fa-chart-bar" aria-hidden="true"></i>
-                  <span>2機種を比較する</span>
-                </a>
-              </div>
               <div className="hero-meta">
                 <i className="fa-regular fa-clock" aria-hidden="true"></i>
                 <span>
@@ -207,7 +198,7 @@ export default async function WatchSpecTablePage() {
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
             <p className="toc-title">タップできる目次</p>
-            <ol className="l-grid l-grid--3col toc-list">
+            <ol className="l-grid l-grid--3col u-list-reset">
               <li>
                 <a href="#spec-table" className="toc-item">
                   歴代Apple Watchスペック比較表{' '}
@@ -242,6 +233,7 @@ export default async function WatchSpecTablePage() {
         <EvolutionTimeline />
         <GlossarySection productName="Apple Watch" items={GLOSSARY_ITEMS} />
         <RecommendBanner />
+        <WatchRelatedLinks excludeHref="/watch/watch-spec-table/" />
         <ShareBox url="https://used-lab.com/watch/watch-spec-table/" text="歴代Apple Watchスペック比較表！各世代の性能の違いがすぐわかる" />
         </div>
       </article>

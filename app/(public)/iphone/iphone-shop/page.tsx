@@ -9,6 +9,7 @@ import {
 } from '@/lib/data/iphone-shop'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import ShareBox from '@/app/components/ShareBox'
+import IPhoneRelatedLinks from '@/app/components/iphone/IPhoneRelatedLinks'
 import BuyingOptionsSection from './components/BuyingOptionsSection'
 import ShopComparisonSection from './components/ShopComparisonSection'
 import RecommendByTypeSection from './components/RecommendByTypeSection'
@@ -130,18 +131,8 @@ export default async function IPhoneShopPage() {
           <div className="hero-inner l-container">
             <div className="hero-content">
               <h1 className="hero-title" itemProp="headline">
-                中古iPhoneを買うならどこ？<br />ECサイト・ショップのおすすめを紹介
+                中古iPhoneを買うならどこ？ECサイト・ショップのおすすめを紹介
               </h1>
-              <div className="hero-actions">
-                <a href="#shops-detail" className="m-btn m-btn--hero-primary">
-                  <i className="fa-regular fa-bookmark" aria-hidden="true"></i>
-                  <span>おすすめショップを見る</span>
-                </a>
-                <a href="#shops" className="m-btn m-btn--hero-outline">
-                  <i className="fa-regular fa-circle-check" aria-hidden="true"></i>
-                  <span>選び方を確認</span>
-                </a>
-              </div>
               <div className="hero-meta">
                 <i className="fa-regular fa-clock" aria-hidden="true"></i>
                 <span>
@@ -189,7 +180,7 @@ export default async function IPhoneShopPage() {
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
             <p className="toc-title">タップできる目次</p>
-            <ol className="l-grid l-grid--3col toc-list">
+            <ol className="l-grid l-grid--3col u-list-reset">
               <li>
                 <a href="#shops" className="toc-item">
                   主な購入先4つ <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
@@ -234,6 +225,7 @@ export default async function IPhoneShopPage() {
           <ChecklistSection />
           <PopularSection />
           <FaqSection />
+        <IPhoneRelatedLinks excludeHref={["/iphone/iphone-shop/", "/iphone/recommend/"]} />
         <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>
       </article>

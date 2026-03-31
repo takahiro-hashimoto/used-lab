@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import type { ReactNode } from 'react'
+import { placeholder } from '@/lib/placeholder'
 
 type ConclusionItem = {
   id: number
@@ -52,7 +53,7 @@ export default function ConclusionSection({ items, heading, descriptions, gridCo
                     />
                   ) : (
                     <Image
-                      src={`https://placehold.co/200x200/f5f5f7/1d1d1f?text=${placeholderText}`}
+                      src={placeholder(200, 200, placeholderText)}
                       alt={`${item.displayName}の外観`}
                       className="listing-pick-card__img"
                       width={200}
@@ -62,7 +63,7 @@ export default function ConclusionSection({ items, heading, descriptions, gridCo
                   )}
                 </figure>
                 <div className="listing-pick-card__body">
-                  <h3 className="listing-pick-card__name">{item.displayName}</h3>
+                  <p className="listing-pick-card__name">{item.displayName}</p>
                   {releaseDate && (
                     <p className="listing-pick-card__release">
                       <i className="fa-regular fa-calendar" aria-hidden="true"></i> {releaseDate}
@@ -78,7 +79,7 @@ export default function ConclusionSection({ items, heading, descriptions, gridCo
                     </div>
                   )}
                 </div>
-                <a href={`#detail-${item.slug}`} className="m-btn m-btn--primary m-btn--block listing-pick-card__btn">
+                <a href={`#detail-${item.slug}`} className="m-btn m-btn--primary m-btn--block u-w-full">
                   詳しく見る <i className="fa-solid fa-arrow-down" aria-hidden="true"></i>
                 </a>
               </article>

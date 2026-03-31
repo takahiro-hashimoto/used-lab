@@ -318,7 +318,7 @@ export default function GuidelinesPage() {
               <p>
                 ガジェットレビューブログの運営で得た知見を生かして「買い物の参考になる情報をわかりやすく発信すること」をモットーに中古Apple製品関連の情報を発信しています。
               </p>
-              <div className="gl-about-link">
+              <div className="u-mt-lg">
                 <Link href="/about/" className="about-media-link">
                   <i className="fa-solid fa-user" aria-hidden="true"></i>
                   <span>運営者情報</span>
@@ -345,7 +345,7 @@ export default function GuidelinesPage() {
                 <div key={index} className="m-timeline__item">
                   <div className="m-timeline__number">{index + 1}</div>
                   <div className="m-timeline__content">
-                    <h4>{step.title}</h4>
+                    <h3>{step.title}</h3>
                     <p>{step.description}</p>
                   </div>
                 </div>
@@ -392,14 +392,14 @@ export default function GuidelinesPage() {
             公開中の記事は、下記の情報源・公式サイトを参考にしつつ執筆しております。
           </p>
 
-          <div className="gl-ref-section">
+          <div className="u-mt-xl">
             <h3 className="content-heading">
               公的機関の情報
             </h3>
             <ReferenceList items={REFERENCE_GOVERNMENT} />
           </div>
 
-          <div className="gl-ref-section">
+          <div className="u-mt-2xl">
             <h3 className="content-heading">
               通信キャリア・ECサイト
             </h3>

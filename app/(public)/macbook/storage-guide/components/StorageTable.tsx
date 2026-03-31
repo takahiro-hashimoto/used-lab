@@ -74,7 +74,7 @@ export default function StorageTable({ models }: Props) {
           歴代MacBookの容量ラインナップと最小容量での中古最安価格を一覧で比較できます。
         </p>
 
-        <div className="spec-filter" aria-label="絞り込み">
+        <div className="u-mb-xl" aria-label="絞り込み">
           <div className="spec-filter__row">
             <span className="spec-filter__label">並び替え</span>
             <div className="spec-filter__tags">
@@ -197,7 +197,7 @@ export default function StorageTable({ models }: Props) {
           <span className="m-callout__label">memo</span>
           <p className="m-callout__text">
             表示価格は最小容量での最安値です。容量が大きいモデルは上記より高くなります。
-            詳しい価格推移は「<Link href="/macbook/macbook-price-info/">価格推移グラフ</Link>」で確認できます。
+            詳細は「<Link href="/macbook/macbook-price-info/">価格推移グラフ</Link>」で確認できます。
           </p>
         </div>
       </div>

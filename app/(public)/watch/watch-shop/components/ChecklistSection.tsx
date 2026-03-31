@@ -12,7 +12,7 @@ export default function ChecklistSection() {
         </p>
         <p className="m-section-desc">どれも実際の購入者が見落としがちな項目なので、必ず確認しておきましょう。</p>
 
-        <div className="l-grid l-grid--2col l-grid--gap-lg post-check-grid">
+        <div className="l-grid l-grid--2col l-grid--gap-lg u-mt-xl">
           <IconCard icon="fa-solid fa-battery-half" title="バッテリー最大容量は80%以上が目安">
             <p>Apple Watchはバッテリー持ちが使い心地に直結します。新品時は最大18時間（Ultraは最大36時間）ですが、80%を下回ると1日持たない可能性が高くなります。</p>
             <p>にこスマなどバッテリー表示のあるショップで確認してから購入するのがおすすめです。</p>

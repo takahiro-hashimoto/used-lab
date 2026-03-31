@@ -4,8 +4,8 @@ import Breadcrumb from '@/app/components/Breadcrumb'
 import ShareBox from '@/app/components/ShareBox'
 import ComparisonTable from './components/ComparisonTable'
 import ComparisonSections from './components/ComparisonSections'
-import RecommendSection from './components/RecommendSection'
 import SummarySection from './components/SummarySection'
+import MacBookRelatedLinks from '@/app/components/macbook/MacBookRelatedLinks'
 
 const PAGE_TITLE = 'MacとWindowsどっちがいい？両者の違いとどんな人におすすめかをやさしく解説'
 const PAGE_DESCRIPTION =
@@ -88,18 +88,8 @@ export default function WindowsMacComparePage() {
           <div className="hero-inner l-container">
             <div className="hero-content">
               <h1 className="hero-title" itemProp="headline">
-                MacとWindowsどっちがいい？<br className="sp-only" />両者の違いとおすすめを<br className="sp-only" />やさしく解説
+                MacとWindowsどっちがいい？両者の違いとおすすめをやさしく解説
               </h1>
-              <div className="hero-actions">
-                <a href="#comparison" className="m-btn m-btn--hero-primary">
-                  <i className="fa-solid fa-scale-balanced" aria-hidden="true"></i>
-                  <span>比較表を見る</span>
-                </a>
-                <a href="#recommend" className="m-btn m-btn--hero-outline">
-                  <i className="fa-solid fa-user-check" aria-hidden="true"></i>
-                  <span>おすすめ診断</span>
-                </a>
-              </div>
               <div className="hero-meta">
                 <i className="fa-regular fa-clock" aria-hidden="true"></i>
                 <span>
@@ -133,7 +123,7 @@ export default function WindowsMacComparePage() {
                 初めてのパソコン選びや買い替えで、多くの方が悩むポイントです。<strong>MacとWindowsはOS（基本ソフト）が異なり、操作感・対応ソフト・価格帯にそれぞれ特徴</strong>があります。
               </p>
               <p>
-                そこで本記事ではWindowsとMacの違いを11項目にわたって比較し、<strong>あなたの使い方に合ったパソコン</strong>がどちらかを判断できるようにやさしく解説します。ぜひ最後までお付き合いください。
+                そこで本記事ではWindowsとMacの違いを16項目にわたって比較し、<strong>あなたの使い方に合ったパソコン</strong>がどちらかを判断できるようやさしく解説します。
               </p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
@@ -147,7 +137,7 @@ export default function WindowsMacComparePage() {
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
             <p className="toc-title">タップできる目次</p>
-            <ol className="l-grid l-grid--3col toc-list">
+            <ol className="l-grid l-grid--3col u-list-reset">
               <li>
                 <a href="#comparison" className="toc-item">
                   比較表を見る <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
@@ -209,8 +199,28 @@ export default function WindowsMacComparePage() {
                 </a>
               </li>
               <li>
-                <a href="#recommend" className="toc-item">
-                  おすすめ診断 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <a href="#security" className="toc-item">
+                  セキュリティ <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                </a>
+              </li>
+              <li>
+                <a href="#battery" className="toc-item">
+                  バッテリー <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                </a>
+              </li>
+              <li>
+                <a href="#lifespan" className="toc-item">
+                  寿命・耐用年数 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                </a>
+              </li>
+              <li>
+                <a href="#support" className="toc-item">
+                  サポート体制 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                </a>
+              </li>
+              <li>
+                <a href="#chip" className="toc-item">
+                  Apple Silicon・性能 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
                 </a>
               </li>
               <li>
@@ -238,11 +248,9 @@ export default function WindowsMacComparePage() {
             </div>
           </section>
 
-          {/* h2: おすすめセクション */}
-          <RecommendSection />
-
           {/* h2: まとめセクション */}
           <SummarySection />
+        <MacBookRelatedLinks excludeHref="/macbook/windows-mac-compare/" />
         {/* シェアボックス */}
         <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>

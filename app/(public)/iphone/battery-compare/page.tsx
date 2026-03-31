@@ -5,6 +5,7 @@ import { getAllIPhoneModels } from '@/lib/queries'
 import BatteryTable from './components/BatteryTable'
 import ChargingTable from './components/ChargingTable'
 import ShareBox from '@/app/components/ShareBox'
+import IPhoneRelatedLinks from '@/app/components/iphone/IPhoneRelatedLinks'
 
 export const metadata: Metadata = {
   title: '歴代iPhoneのバッテリー容量比較ランキング！電池持ちがいい機種はどれ？',
@@ -151,16 +152,6 @@ export default async function IPhoneBatteryComparePage() {
               <h1 className="hero-title">
                 歴代iPhoneのバッテリー容量比較ランキング！電池持ちがいい機種はどれ？
               </h1>
-              <div className="hero-actions">
-                <a href="#battery-ranking" className="m-btn m-btn--hero-primary">
-                  <i className="fa-solid fa-ranking-star" aria-hidden="true"></i>
-                  <span>ランキングを見る</span>
-                </a>
-                <a href="#battery-chart" className="m-btn m-btn--hero-outline">
-                  <i className="fa-solid fa-chart-column" aria-hidden="true"></i>
-                  <span>比較チャートを見る</span>
-                </a>
-              </div>
               <div className="hero-meta">
                 <i className="fa-regular fa-clock" aria-hidden="true"></i>
                 <span>
@@ -204,7 +195,7 @@ export default async function IPhoneBatteryComparePage() {
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
             <p className="toc-title">タップできる目次</p>
-            <ol className="l-grid l-grid--2col toc-list">
+            <ol className="l-grid l-grid--2col u-list-reset">
               <li>
                 <a href="#battery-ranking" className="toc-item">
                   バッテリー容量 一覧表{' '}
@@ -249,31 +240,29 @@ export default async function IPhoneBatteryComparePage() {
               中古iPhoneを購入する際はバッテリーの劣化状態を必ず確認しましょう。
             </p>
 
-            <div className="m-card m-card--shadow m-card--padded caution-check-card">
-              <div className="caution-check-card__body">
-                <div className="caution-check-card__visual">
-                  <figure className="caution-check-card__image">
-                    <Image
-                      src="/images/content/thumbnail/iphone-battery-limit.jpg"
-                      alt="iPhoneのバッテリーの状態確認画面"
-                      width={260}
-                      height={260}
-                      loading="lazy"
-                    />
-                  </figure>
-                </div>
-                <div className="caution-check-card__text">
+            <div className="m-card m-card--shadow m-card--padded">
+              <div className="media-card__img-wrap">
+                <Image
+                  src="/images/content/thumbnail/iphone-battery-limit.jpg"
+                  alt="iPhoneのバッテリーの状態確認画面"
+                  className="media-card__img"
+                  width={800}
+                  height={450}
+                  loading="lazy"
+                />
+              </div>
+              <div className="media-card__body">
+                <div className="media-card__desc m-rich-text">
                   <p>iPhoneのバッテリーにはリチウムイオン電池が使用されています。</p>
                   <p>このバッテリーは充電を繰り返すうちに劣化し、<strong>充電できる最大容量が減っていく</strong>性質があります。</p>
                   <p>iPhoneの「バッテリー最大容量」が80%を下回っていると体感できるレベルでバッテリーの減りが早く感じます。</p>
                   <p>ちなみに筆者の過去の経験からすると<strong>毎日iPhoneを充電すると2~3年でバッテリー最大容量80%を下回る</strong>傾向がありました。</p>
                 </div>
-              </div>
 
-              <div className="caution-how-to">
-                <h4 className="caution-how-to__heading">
+              <div className="u-pt-xl">
+                <h3 className="caution-how-to__heading">
                   <i className="fa-regular fa-lightbulb" aria-hidden="true"></i> バッテリー最大容量の確認方法
-                </h4>
+                </h3>
                 <ol className="caution-steps">
                   <li className="caution-steps__item">
                     <span className="caution-steps__num">1</span>
@@ -296,6 +285,7 @@ export default async function IPhoneBatteryComparePage() {
                     <Link href="/iphone/used-iphone-support/"><i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> iPhoneはいつまで使える？機種別のサポート期間目安まとめ。買い替えるべき4つのタイミングも解説。</Link>
                   </li>
                 </ul>
+              </div>
               </div>
             </div>
           </div>
@@ -358,6 +348,7 @@ export default async function IPhoneBatteryComparePage() {
           </div>
         </section>
 
+        <IPhoneRelatedLinks excludeHref={["/iphone/battery-compare/", "/iphone/recommend/"]} />
         <ShareBox url="https://used-lab.com/iphone/battery-compare/" text="歴代iPhoneのバッテリー容量比較ランキング！電池持ちがいい機種はどれ？" />
         </div>
       </article>

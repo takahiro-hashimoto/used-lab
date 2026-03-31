@@ -12,7 +12,7 @@ export default function ChecklistSection() {
         </p>
         <p className="m-section-desc">どれも実際の購入者が見落としがちな項目なので、必ず確認しておきましょう。</p>
 
-        <div className="l-grid l-grid--2col l-grid--gap-lg post-check-grid">
+        <div className="l-grid l-grid--2col l-grid--gap-lg u-mt-xl">
           <IconCard icon="fa-solid fa-battery-half" title="バッテリー充放電回数を確認する">
             <p>MacBookのバッテリーは充放電回数1,000回が交換目安です。</p>
             <p>500回以下なら安心、800回を超えるとバッテリー持ちに不安が出始めます。にこスマなどバッテリー表示のあるショップで確認してから購入するのがおすすめです。</p>

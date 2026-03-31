@@ -1,3 +1,5 @@
+import Image from 'next/image'
+
 export default function RunningCostSection() {
   return (
     <section className="l-section" id="running-cost" aria-labelledby="heading-running-cost">
@@ -34,17 +36,17 @@ export default function RunningCostSection() {
                   <td><strong>ロゴ</strong></td>
                   <td>
                     <a href="https://povo.jp/" target="_blank" rel="noopener noreferrer">
-                      <img src="/images/mvno/povo.jpg" alt="povo2.0のロゴ" width={80} height={40} style={{ objectFit: 'contain' }} />
+                      <Image src="/images/mvno/povo.jpg" alt="povo2.0のロゴ" width={80} height={40} style={{ objectFit: 'contain' }} />
                     </a>
                   </td>
                   <td>
                     <a href="https://www.iijmio.jp/" target="_blank" rel="noopener noreferrer">
-                      <img src="/images/mvno/iijmio.jpg" alt="IIJmioのロゴ" width={80} height={40} style={{ objectFit: 'contain' }} />
+                      <Image src="/images/mvno/iijmio.jpg" alt="IIJmioのロゴ" width={80} height={40} style={{ objectFit: 'contain' }} />
                     </a>
                   </td>
                   <td>
                     <a href="https://network.mobile.rakuten.co.jp/" target="_blank" rel="noopener noreferrer">
-                      <img src="/images/mvno/rakuten-mobile.jpg" alt="楽天モバイルのロゴ" width={80} height={40} style={{ objectFit: 'contain' }} />
+                      <Image src="/images/mvno/rakuten-mobile.jpg" alt="楽天モバイルのロゴ" width={80} height={40} style={{ objectFit: 'contain' }} />
                     </a>
                   </td>
                 </tr>

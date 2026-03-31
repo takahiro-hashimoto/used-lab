@@ -8,6 +8,7 @@ import type { IPadPriceLog } from '@/lib/types'
 import { supabase } from '@/lib/supabase'
 import IPadFilterSearchApp from './components/IPadFilterSearchApp'
 import ShareBox from '@/app/components/ShareBox'
+import IPadRelatedLinks from '@/app/components/ipad/IPadRelatedLinks'
 
 export const metadata: Metadata = {
   title: 'iPad機種診断シミュレーター｜自分に合うおすすめ中古iPadがすぐわかる【2026年版】',
@@ -189,16 +190,6 @@ export default async function IPadFilterSearchPage() {
               <h1 className="hero-title">
                 iPad機種診断シミュレーター｜選び方がわからなくてもどれを買うべきかわかる
               </h1>
-              <div className="hero-actions">
-                <a href="#ifd-step1" className="m-btn m-btn--hero-primary">
-                  <i className="fa-solid fa-stethoscope" aria-hidden="true"></i>
-                  <span>診断をはじめる</span>
-                </a>
-                <a href="#ifd-results" className="m-btn m-btn--hero-outline">
-                  <i className="fa-solid fa-list" aria-hidden="true"></i>
-                  <span>結果一覧を見る</span>
-                </a>
-              </div>
               <div className="hero-meta">
                 <i className="fa-regular fa-clock" aria-hidden="true"></i>
                 <span>
@@ -327,6 +318,7 @@ export default async function IPadFilterSearchPage() {
           </div>
         </section>
 
+        <IPadRelatedLinks excludeHref={["/ipad/ipad-filter-search/", "/ipad/recommend/"]} />
         <ShareBox url="https://used-lab.com/ipad/ipad-filter-search/" text="iPad機種診断シミュレーター｜自分に合うおすすめ中古iPadがすぐわかる【2026年版】" />
         </div>
       </article>

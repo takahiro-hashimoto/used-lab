@@ -15,6 +15,7 @@ export default function RelatedArticles({ model }: Props) {
     <IPhoneRelatedLinks
       heading="iPhone選びのヒントになる記事"
       description="iPhone選びをサポートする記事をまとめました。"
+      excludeHref={`/iphone/${model.slug}/`}
     />
   )
 }

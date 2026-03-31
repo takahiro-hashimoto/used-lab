@@ -100,7 +100,7 @@ export default function PriceHistorySection({ models }: Props) {
                 <div className="pd-history-content">
                   {/* 月別サマリー */}
                   {monthlySummary.length > 0 && (
-                    <div className="pd-history-monthly">
+                    <div className="u-mt-lg u-mb-xl">
                       <h4 className="pd-history-subtitle">月別平均価格</h4>
                       <div className="l-grid l-grid--3col l-grid--gap-lg">
                         {monthlySummary.map((ms) => (
@@ -117,7 +117,7 @@ export default function PriceHistorySection({ models }: Props) {
                   )}
 
                   {/* 日別データ */}
-                  <div className="pd-history-daily">
+                  <div className="u-mt-lg">
                     <h4 className="pd-history-subtitle">日別価格データ</h4>
                     <div className="price-table-wrap">
                       <table className="m-table">

@@ -84,16 +84,6 @@ export default function HeroSection({ model }: Props) {
             <h1 className="hero-title">
               中古{model.name}（{model.model}）は今買うべき？サポート期間、基本スペック、中古相場から解説
             </h1>
-            <div className="hero-actions">
-              <a href="#shops" className="m-btn m-btn--hero-primary">
-                <i className="fa-regular fa-bookmark" aria-hidden="true"></i>
-                <span>購入サイトを見る</span>
-              </a>
-              <a href="#buy-now" className="m-btn m-btn--hero-outline">
-                <i className="fa-regular fa-circle-check" aria-hidden="true"></i>
-                <span>詳細を確認</span>
-              </a>
-            </div>
             <div className="hero-meta">
               <i className="fa-regular fa-clock" aria-hidden="true"></i>
               <span>

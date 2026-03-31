@@ -104,12 +104,6 @@ export default function ValueZoneChart({
 
   return (
     <section className="l-section" id="value-zone" aria-labelledby="heading-value-zone">
-      <style dangerouslySetInnerHTML={{ __html: `
-        @media (max-width: 768px) {
-          .vz__models { display: grid !important; grid-template-columns: 1fr 1fr; }
-          .vz__model:nth-child(n+3) { display: none; }
-        }
-      ` }} />
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg" id="heading-value-zone">
           中古{productName}の「お得ゾーン」とは？

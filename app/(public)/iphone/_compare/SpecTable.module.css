@@ -14,7 +14,7 @@
   background: var(--color-bg-dark);
   color: var(--color-text-inverse);
   font-weight: 700;
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-base);
   border-radius: var(--radius-sm) var(--radius-sm) 0 0;
 }
 
@@ -37,7 +37,7 @@
   color: var(--color-text);
   background: var(--color-bg-secondary, #f7f7f8);
   padding: var(--space-xs) var(--space-md);
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-base);
 }
 
 .spValues {
@@ -48,7 +48,7 @@
 .spCell {
   text-align: center;
   padding: var(--space-sm) var(--space-md);
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-base);
 }
 
 .spCell small {
@@ -59,10 +59,10 @@
 
 @media (max-width: 768px) {
   .pc {
-    display: none !important;
+    display: none;
   }
 
   .sp {
-    display: block !important;
+    display: block;
   }
 }

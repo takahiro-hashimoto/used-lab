@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import Image from 'next/image'
 import {
   getAllMacBookModels,
   getLatestMacBookPriceLog,
@@ -143,16 +144,6 @@ export default async function MacBookGuidePage() {
                 中古MacBook完全購入ガイド
                 選び方・相場・おすすめモデルまとめ【{GUIDE_DATE_LABEL}版】
               </h1>
-              <div className="hero-actions">
-                <a href="#recommended" className="m-btn m-btn--hero-primary">
-                  <i className="fa-regular fa-star" aria-hidden="true"></i>
-                  <span>おすすめモデルを見る</span>
-                </a>
-                <a href="#caution" className="m-btn m-btn--hero-outline">
-                  <i className="fa-regular fa-circle-check" aria-hidden="true"></i>
-                  <span>選び方を確認</span>
-                </a>
-              </div>
               <div className="hero-meta">
                 <i className="fa-regular fa-clock" aria-hidden="true"></i>
                 <span>
@@ -196,7 +187,7 @@ export default async function MacBookGuidePage() {
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
             <p className="toc-title">タップできる目次</p>
-            <ol className="l-grid l-grid--3col toc-list">
+            <ol className="l-grid l-grid--3col u-list-reset">
               <li><a href="#market-price" className="toc-item">最新相場 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#caution" className="toc-item">注意点 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#recommended" className="toc-item">目的別 おすすめ機種 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
@@ -217,7 +208,7 @@ export default async function MacBookGuidePage() {
               <p className="m-section-desc">楽天市場の中古ショップから価格を毎日自動で更新。</p>
               <p className="m-section-desc">各モデルの最小構成（最小メモリ・最小ストレージ）での最安値を基準にしています。</p>
 
-              <div className="price-card-grid l-grid l-grid--2col l-grid--gap-lg">
+              <div className="u-list-reset u-mb-2xl l-grid l-grid--2col l-grid--gap-lg">
                 {priceModels.map((model, i) => {
                   const price = latestPrices[i]
                   const minPrice = price?.min1_price
@@ -242,7 +233,7 @@ export default async function MacBookGuidePage() {
               <p className="guide-section-note">Apple Silicon搭載MacBook全{allModels.length}機種の詳細な価格推移グラフ・相場データをご覧いただけます</p>
               <div className="guide-section-cta">
                 <Link href="/macbook/macbook-price-info/" className="m-btn m-btn--primary m-btn--block">
-                  <span>MacBookの中古相場・価格推移グラフ</span>
+                  <span>中古MacBookの相場・価格推移グラフ</span>
                   <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
                 </Link>
               </div>
@@ -366,7 +357,7 @@ export default async function MacBookGuidePage() {
 
               <VendorCardGrid cards={GUIDE_VENDOR_CARDS} />
 
-              <p className="guide-section-note guide-section-note--mt">各ショップの詳細やサービス内容の違いは以下の記事で解説しています。</p>
+              <p className="guide-section-note u-mt-2xl">各ショップの詳細やサービス内容の違いは以下の記事で解説しています。</p>
               <div className="guide-section-cta">
                 <Link href="/macbook/macbook-shop/" className="m-btn m-btn--primary m-btn--block">
                   <span>中古MacBookを安心して購入できるECサイト</span>
@@ -383,25 +374,25 @@ export default async function MacBookGuidePage() {
               <h2 className="m-section-heading m-section-heading--lg" id="heading-compare-devices">MacBookと他デバイスの比較</h2>
               <p className="m-section-desc">「iPadとどっちがいい？」「Windowsから乗り換えるべき？」といった疑問に答える比較記事をまとめました。</p>
 
-              <div className="l-grid l-grid--2col l-grid--gap-lg guide-spec-links">
+              <div className="l-grid l-grid--2col l-grid--gap-lg">
                 <Link href="/macbook/air-pro-compare/" className="m-card m-card--shadow related-link-card m-card--hoverable">
-                  <img src={getHeroImage('/macbook/air-pro-compare/')} alt="MacBook AirとProの比較" className="related-link-card__img" width={400} height={300} loading="lazy" />
+                  <Image src={getHeroImage('/macbook/air-pro-compare/')} alt="MacBook AirとProの比較" className="related-link-card__img" width={400} height={300} loading="lazy" />
                   <div className="related-link-card__body">
-                    <h3 className="related-link-card__title">MacBook AirとProどっちがいい？</h3>
+                    <p className="related-link-card__title">MacBook AirとProどっちがいい？</p>
                     <p className="related-link-card__desc">冷却方式・チップ性能・ディスプレイ・ポート・中古価格の5観点で違いを解説。用途別おすすめ早見表付き。</p>
                   </div>
                 </Link>
                 <Link href="/macbook/ipad-macbook-compare/" className="m-card m-card--shadow related-link-card m-card--hoverable">
-                  <img src={getHeroImage('/macbook/ipad-macbook-compare/')} alt="MacBookとiPadの比較" className="related-link-card__img" width={400} height={300} loading="lazy" />
+                  <Image src={getHeroImage('/macbook/ipad-macbook-compare/')} alt="MacBookとiPadの比較" className="related-link-card__img" width={400} height={300} loading="lazy" />
                   <div className="related-link-card__body">
-                    <h3 className="related-link-card__title">MacBookとiPadどっちを買う？</h3>
+                    <p className="related-link-card__title">MacBookとiPadどっちを買う？</p>
                     <p className="related-link-card__desc">作業効率・携帯性・価格・Apple Pencil対応など、用途別に両者の違いをわかりやすく比較。タブレットかノートPCか迷っている方に。</p>
                   </div>
                 </Link>
                 <Link href="/macbook/windows-mac-compare/" className="m-card m-card--shadow related-link-card m-card--hoverable">
-                  <img src={getHeroImage('/macbook/windows-mac-compare/')} alt="MacとWindowsの比較" className="related-link-card__img" width={400} height={300} loading="lazy" />
+                  <Image src={getHeroImage('/macbook/windows-mac-compare/')} alt="MacとWindowsの比較" className="related-link-card__img" width={400} height={300} loading="lazy" />
                   <div className="related-link-card__body">
-                    <h3 className="related-link-card__title">MacとWindowsどっちがいい？</h3>
+                    <p className="related-link-card__title">MacとWindowsどっちがいい？</p>
                     <p className="related-link-card__desc">操作性・対応ソフト・コスト・互換性など初心者にもわかりやすく解説。Windowsからの乗り換えを検討中の方にもおすすめ。</p>
                   </div>
                 </Link>
@@ -415,12 +406,12 @@ export default async function MacBookGuidePage() {
               <h2 className="m-section-heading m-section-heading--lg" id="heading-spec-compare">中古MacBookのデータ・スペック比較ガイド</h2>
               <p className="m-section-desc">チップ性能、ポート構成、サポート期間など、機種選びに役立つ詳細なスペック比較記事をまとめました。</p>
 
-              <div className="l-grid l-grid--2col l-grid--gap-lg guide-spec-links">
+              <div className="l-grid l-grid--2col l-grid--gap-lg l-grid--mb-2xl">
                 {GUIDE_SPEC_LINKS.map((link) => (
                   <Link key={link.href} href={link.href} className="m-card m-card--shadow related-link-card m-card--hoverable">
-                    <img src={getHeroImage(link.href)} alt={link.title} className="related-link-card__img" width={400} height={300} loading="lazy" />
+                    <Image src={getHeroImage(link.href)} alt={link.title} className="related-link-card__img" width={400} height={300} loading="lazy" />
                     <div className="related-link-card__body">
-                      <h3 className="related-link-card__title">{link.title}</h3>
+                      <p className="related-link-card__title">{link.title}</p>
                       <p className="related-link-card__desc">{link.desc}</p>
                     </div>
                   </Link>
@@ -435,20 +426,18 @@ export default async function MacBookGuidePage() {
 
               <GuideModelLinks
                 basePath="/macbook"
-                heading="MacBook Pro"
                 categories={[
-                  { label: '14インチ', items: GUIDE_MODEL_LINKS.pro14 },
-                  { label: '16インチ', items: GUIDE_MODEL_LINKS.pro16 },
-                  { label: '13インチ', items: GUIDE_MODEL_LINKS.pro13 },
+                  { label: 'MacBook Pro 14インチ', items: GUIDE_MODEL_LINKS.pro14 },
+                  { label: 'MacBook Pro 16インチ', items: GUIDE_MODEL_LINKS.pro16 },
+                  { label: 'MacBook Pro 13インチ', items: GUIDE_MODEL_LINKS.pro13 },
                 ]}
               />
 
               <GuideModelLinks
                 basePath="/macbook"
-                heading="MacBook Air"
                 categories={[
-                  { label: '13インチ', items: GUIDE_MODEL_LINKS.air13 },
-                  { label: '15インチ', items: GUIDE_MODEL_LINKS.air15 },
+                  { label: 'MacBook Air 13インチ', items: GUIDE_MODEL_LINKS.air13 },
+                  { label: 'MacBook Air 15インチ', items: GUIDE_MODEL_LINKS.air15 },
                 ]}
               />
             </div>

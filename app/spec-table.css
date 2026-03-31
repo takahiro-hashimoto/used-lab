@@ -27,8 +27,8 @@
   color: var(--color-text-secondary);
 }
 
-.spec-table__th-label {
-  text-align: left !important;
+.spec-table .spec-table__th-label {
+  text-align: left;
   width: 30%;
 }
 
@@ -36,8 +36,8 @@
   width: 35%;
 }
 
-.spec-table__label {
-  text-align: left !important;
+.spec-table .spec-table__label {
+  text-align: left;
   font-size: var(--font-size-sm);
   font-weight: 600;
   color: var(--color-text);

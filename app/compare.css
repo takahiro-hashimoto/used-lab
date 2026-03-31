@@ -269,6 +269,15 @@
   font-weight: 700;
 }
 
+/* --- Lifespan / Price Summary Grid --- */
+.compare-lifespan-grid,
+.compare-price-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-lg);
+  margin-bottom: var(--space-xl);
+}
+
 /* --- SP: Feature Card --- */
 @media (max-width: 768px) {
   .fc__header {
@@ -336,11 +345,11 @@
   }
 
   .compare-lifespan-grid {
-    grid-template-columns: 1fr !important;
+    grid-template-columns: 1fr;
   }
 
   .compare-price-summary-grid {
-    grid-template-columns: 1fr !important;
+    grid-template-columns: 1fr;
   }
 
 }

@@ -198,7 +198,7 @@ export default function AboutPage() {
           </p>
 
           <div className="about-history m-card m-card--shadow m-card--padded">
-            <div className="about-history-image">
+            <div className="u-mb-lg">
               <Image
                 src="/images/content/photo/ipad-image.jpg"
                 alt="Apple製品のイメージ"

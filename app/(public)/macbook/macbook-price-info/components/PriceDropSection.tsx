@@ -26,7 +26,7 @@ export default function PriceDropSection({ items, dateDisplay }: Props) {
           </p>
         )}
 
-        <ol className="price-card-grid l-grid l-grid--2col l-grid--gap-lg">
+        <ol className="u-list-reset u-mb-2xl price-card-list">
           {items.map((model) => (
             <li key={model.id} className="price-card m-card m-card--shadow">
               <figure className="price-card__img">

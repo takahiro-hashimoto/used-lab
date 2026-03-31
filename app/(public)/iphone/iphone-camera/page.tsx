@@ -6,6 +6,7 @@ import CameraComparisonTable from './components/CameraComparisonTable'
 import CameraFeatureCard from './components/CameraFeatureCard'
 import FaqSection from '@/app/components/support/FaqSection'
 import Image from 'next/image'
+import IPhoneRelatedLinks from '@/app/components/iphone/IPhoneRelatedLinks'
 
 const PAGE_TITLE = 'iPhoneのカメラ性能の違いは何？歴代モデルの機能を比較'
 const PAGE_DESCRIPTION =
@@ -125,18 +126,8 @@ export default async function IPhoneCameraPage() {
           <div className="hero-inner l-container">
             <div className="hero-content">
               <h1 className="hero-title" itemProp="headline">
-                iPhoneのカメラ性能の違いは何？<br />歴代モデルの機能を比較
+                iPhoneのカメラ性能の違いは何？歴代モデルの機能を比較
               </h1>
-              <div className="hero-actions">
-                <a href="#camera-comparison" className="m-btn m-btn--hero-primary">
-                  <i className="fa-regular fa-table" aria-hidden="true"></i>
-                  <span>カメラスペック比較表を見る</span>
-                </a>
-                <a href="#camera-features" className="m-btn m-btn--hero-outline">
-                  <i className="fa-regular fa-lightbulb" aria-hidden="true"></i>
-                  <span>注目機能をチェック</span>
-                </a>
-              </div>
               <div className="hero-meta">
                 <i className="fa-regular fa-clock" aria-hidden="true"></i>
                 <span>
@@ -183,7 +174,7 @@ export default async function IPhoneCameraPage() {
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
             <p className="toc-title">タップできる目次</p>
-            <ol className="l-grid l-grid--2col toc-list">
+            <ol className="l-grid l-grid--2col u-list-reset">
               <li>
                 <a href="#camera-comparison" className="toc-item">
                   カメラ性能 比較表 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
@@ -566,6 +557,7 @@ export default async function IPhoneCameraPage() {
           ]}
         />
 
+        <IPhoneRelatedLinks excludeHref={["/iphone/iphone-camera/", "/iphone/recommend/"]} />
         <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>
       </article>

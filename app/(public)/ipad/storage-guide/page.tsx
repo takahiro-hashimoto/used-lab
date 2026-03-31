@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
-import { getHeroImage } from '@/lib/data/hero-images'
 import {
   getAllIPadModels,
   getAllIPadPriceLogsByModelIds,
@@ -10,6 +9,7 @@ import {
 import type { IPadPriceLog } from '@/lib/types'
 import StorageTable, { type StorageModel } from './components/StorageTable'
 import ShareBox from '@/app/components/ShareBox'
+import IPadRelatedLinks from '@/app/components/ipad/IPadRelatedLinks'
 
 export const revalidate = 86400
 
@@ -178,16 +178,6 @@ export default async function StorageGuidePage() {
               <h1 className="hero-title">
                 中古iPadのストレージ容量はどれがいい？用途別おすすめ容量まとめ
               </h1>
-              <div className="hero-actions">
-                <a href="#storage-quick" className="m-btn m-btn--hero-primary">
-                  <i className="fa-solid fa-list-check" aria-hidden="true"></i>
-                  <span>容量の目安を見る</span>
-                </a>
-                <a href="#storage-list" className="m-btn m-btn--hero-outline">
-                  <i className="fa-solid fa-table-cells" aria-hidden="true"></i>
-                  <span>容量・価格一覧を見る</span>
-                </a>
-              </div>
               <div className="hero-meta">
                 <i className="fa-regular fa-clock" aria-hidden="true"></i>
                 <span>
@@ -231,7 +221,7 @@ export default async function StorageGuidePage() {
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
             <p className="toc-title">タップできる目次</p>
-            <ol className="l-grid l-grid--3col toc-list">
+            <ol className="l-grid l-grid--3col u-list-reset">
               <li>
                 <a href="#storage-points" className="toc-item">
                   容量選びのポイント{' '}
@@ -279,41 +269,41 @@ export default async function StorageGuidePage() {
 
             <div className="l-grid l-grid--2col l-grid--gap-lg">
               <div className="m-card m-card--shadow m-card--padded">
-                <h3 className="storage-point-heading">
+                <h3 className="post-check-item__heading">
                   <i className="fa-solid fa-ban" aria-hidden="true" style={{ color: '#ef4444' }}></i>
                   後から容量を増やせない
                 </h3>
-                <p className="storage-point-desc">
+                <p className="post-check-item__desc">
                   iPadはSDカードに非対応で、購入後にストレージを増設できません。USB-C外付けストレージは使えますが、アプリのインストール先にはできないため、購入時の容量選びが重要です。
                 </p>
               </div>
 
               <div className="m-card m-card--shadow m-card--padded">
-                <h3 className="storage-point-heading">
+                <h3 className="post-check-item__heading">
                   <i className="fa-solid fa-pen-fancy" aria-hidden="true" style={{ color: '#2563eb' }}></i>
                   クリエイティブ用途は容量を消費しやすい
                 </h3>
-                <p className="storage-point-desc">
+                <p className="post-check-item__desc">
                   Procreateのイラスト1枚で数十〜数百MB、4K動画素材は1分で約400MB消費します。iPadをイラスト制作や動画編集に使う場合、容量はiPhone以上に重要な選択ポイントです。
                 </p>
               </div>
 
               <div className="m-card m-card--shadow m-card--padded">
-                <h3 className="storage-point-heading">
+                <h3 className="post-check-item__heading">
                   <i className="fa-solid fa-gauge-high" aria-hidden="true" style={{ color: '#f59e0b' }}></i>
                   空き容量不足で動作が遅くなる
                 </h3>
-                <p className="storage-point-desc">
+                <p className="post-check-item__desc">
                   iPadはストレージの空き容量が極端に少なくなると、キャッシュや一時ファイルが作れずアプリの動作が重くなります。快適に使うには常に10%以上の空きが必要です。
                 </p>
               </div>
 
               <div className="m-card m-card--shadow m-card--padded">
-                <h3 className="storage-point-heading">
+                <h3 className="post-check-item__heading">
                   <i className="fa-solid fa-arrow-up-from-bracket" aria-hidden="true" style={{ color: '#10b981' }}></i>
                   iPadOSアップデートにも空き容量が必要
                 </h3>
-                <p className="storage-point-desc">
+                <p className="post-check-item__desc">
                   iPadOSのメジャーアップデートには数GBの空き容量が必要です。32GBモデルではアップデート時に容量不足になるケースも多く報告されています。
                 </p>
               </div>
@@ -426,30 +416,26 @@ export default async function StorageGuidePage() {
               今使っているiPadのストレージ使用量を確認すれば、次に買う端末の容量選びの参考になります。
             </p>
 
-            <div className="m-card m-card--shadow m-card--padded caution-check-card">
-              <div className="caution-check-card__body">
-                <div className="caution-check-card__visual">
-                  <figure className="caution-check-card__image">
-                    <img
-                      src="/images/content/thumbnail/ipad-storage.jpg"
-                      alt="iPadのストレージ使用量確認画面"
-                      width={280}
-                      height={200}
-                      loading="lazy"
-                    />
-                  </figure>
-                </div>
-                <div className="caution-check-card__text">
+            <div className="m-card m-card--shadow m-card--padded media-card--aside-footer">
+              <div className="media-card__img-wrap">
+                <img
+                  src="/images/content/thumbnail/ipad-storage.jpg"
+                  alt="iPadのストレージ使用量確認画面"
+                  className="media-card__img"
+                  width={800}
+                  height={450}
+                  loading="lazy"
+                />
+              </div>
+              <div className="media-card__body">
+                <div className="media-card__desc">
                   <p>iPadの「設定」からストレージの使用状況を確認できます。</p>
                   <p>アプリごとの容量も表示されるため、<strong>何にどのくらい容量を使っているか</strong>を把握できます。</p>
                   <p>現在使っている容量を基準に、次のiPadの容量を選ぶのがもっとも確実な方法です。</p>
                 </div>
               </div>
-
-              <div className="caution-how-to">
-                <h4 className="caution-how-to__heading">
-                  <i className="fa-regular fa-lightbulb" aria-hidden="true"></i> ストレージ使用量の確認方法
-                </h4>
+              <div className="media-card__footer">
+                <h3 className="caution-how-to__heading">ストレージ使用量の確認方法</h3>
                 <ol className="caution-steps">
                   <li className="caution-steps__item">
                     <span className="caution-steps__num">1</span>
@@ -464,14 +450,13 @@ export default async function StorageGuidePage() {
                     <span>「iPadストレージ」をタップ</span>
                   </li>
                 </ol>
-              </div>
-
-              <div className="m-callout m-callout--subtle caution-links-box">
-                <ul className="caution-links-box__list">
-                  <li>
-                    <Link href="/ipad/used-ipad-attention/"><i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> 中古iPadの注意点と選び方まとめ</Link>
-                  </li>
-                </ul>
+                <div className="m-callout m-callout--subtle caution-links-box">
+                  <ul className="caution-links-box__list">
+                    <li>
+                      <Link href="/ipad/used-ipad-attention/"><i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> 中古iPadの注意点と選び方まとめ</Link>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
@@ -534,43 +519,7 @@ export default async function StorageGuidePage() {
           </div>
         </section>
 
-        <section className="l-section" id="related" aria-labelledby="heading-related-storage">
-          <div className="l-container">
-            <h2 className="m-section-heading m-section-heading--lg" id="heading-related-storage">iPad選びのヒントになる関連記事</h2>
-            <p className="m-section-desc">ストレージ以外の観点からもiPad選びをサポートする記事をまとめました。</p>
-            <div className="l-grid l-grid--2col l-grid--gap-lg">
-              <Link href="/ipad/ipad-spec-table/" className="m-card m-card--shadow related-link-card m-card--hoverable">
-                <Image src={getHeroImage('/ipad/ipad-spec-table/')} alt="iPadスペック比較表" className="related-link-card__img" width={400} height={300} loading="lazy" />
-                <div className="related-link-card__body">
-                  <h3 className="related-link-card__title">iPadスペック比較表</h3>
-                  <p className="related-link-card__desc">歴代iPadの全スペックを一覧で比較</p>
-                </div>
-              </Link>
-              <Link href="/ipad/apple-pencil-compare/" className="m-card m-card--shadow related-link-card m-card--hoverable">
-                <Image src={getHeroImage('/ipad/apple-pencil-compare/')} alt="Apple Pencil比較" className="related-link-card__img" width={400} height={300} loading="lazy" />
-                <div className="related-link-card__body">
-                  <h3 className="related-link-card__title">Apple Pencil比較</h3>
-                  <p className="related-link-card__desc">各モデルの違いと対応iPadがわかる</p>
-                </div>
-              </Link>
-              <Link href="/ipad/accessories-summary/" className="m-card m-card--shadow related-link-card m-card--hoverable">
-                <Image src={getHeroImage('/ipad/accessories-summary/')} alt="Magic Keyboard型番一覧" className="related-link-card__img" width={400} height={300} loading="lazy" />
-                <div className="related-link-card__body">
-                  <h3 className="related-link-card__title">Magic Keyboard 型番一覧</h3>
-                  <p className="related-link-card__desc">対応キーボードがすぐわかる</p>
-                </div>
-              </Link>
-              <Link href="/ipad/benchmark/" className="m-card m-card--shadow related-link-card m-card--hoverable">
-                <Image src={getHeroImage('/ipad/benchmark/')} alt="ベンチマーク比較ランキング" className="related-link-card__img" width={400} height={300} loading="lazy" />
-                <div className="related-link-card__body">
-                  <h3 className="related-link-card__title">ベンチマーク比較ランキング</h3>
-                  <p className="related-link-card__desc">歴代iPadのチップ性能をスコアで比較</p>
-                </div>
-              </Link>
-            </div>
-          </div>
-        </section>
-
+        <IPadRelatedLinks excludeHref={["/ipad/storage-guide/", "/ipad/recommend/"]} />
         <ShareBox url="https://used-lab.com/ipad/storage-guide/" text="中古iPadのストレージ容量はどれがいい？用途別おすすめ容量まとめ" />
         </div>
       </article>

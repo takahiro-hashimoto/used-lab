@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import { placeholder } from '@/lib/placeholder'
 import type { AirPodsModel, AirPodsPriceLog, ProductShopLink, FallbackShop } from '@/lib/types'
 import { formatPrice, formatReleaseDate, buildDisplayLinks } from '@/lib/utils/shared-helpers'
 import { calculatePriceRange, calculateFirmwareLifespan } from '@/lib/utils/airpods-helpers'
@@ -74,7 +75,7 @@ export default function RecommendDetailSection({ items }: Props) {
                     />
                   ) : (
                     <Image
-                      src="https://placehold.co/200x280/f5f5f7/1d1d1f?text=AirPods"
+                      src={placeholder(200, 280, 'AirPods')}
                       alt={`${model.name}の外観`}
                       width={200}
                       height={280}

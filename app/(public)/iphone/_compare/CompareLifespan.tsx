@@ -49,7 +49,7 @@ export default function CompareLifespan({ modelL, modelR }: Props) {
           OSアップデートがあと何年続くかを予測・比較します。
         </p>
 
-        <div className="compare-lifespan-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 'var(--space-lg)', marginBottom: 'var(--space-xl)' }}>
+        <div className="compare-lifespan-grid">
           <LifespanCard model={modelL} />
           <LifespanCard model={modelR} />
         </div>

@@ -51,6 +51,36 @@ export default function FaqSection() {
             </div>
           </div>
 
+          {/* Q5 */}
+          <div className="faq-item m-card m-card--shadow">
+            <h3 className="faq-question">iPadのストレージ容量はどれくらい必要ですか？</h3>
+            <div className="faq-answer">
+              <p>
+                動画視聴や電子書籍がメインなら64GB〜128GBで十分です。写真・動画編集やイラスト制作など大容量データを扱う場合は256GB以上がおすすめ。USB-C対応モデルなら外部ストレージも活用できるため、本体容量を抑えるという選択肢もあります。
+              </p>
+            </div>
+          </div>
+
+          {/* Q6 */}
+          <div className="faq-item m-card m-card--shadow">
+            <h3 className="faq-question">Apple PencilはどのiPadに対応していますか？</h3>
+            <div className="faq-answer">
+              <p>
+                Apple Pencilは世代やモデルによって対応するiPadが異なります。最新のApple Pencil ProはM4 iPad ProやM2以降のiPad Airに対応。第1世代・第2世代・USB-Cモデルもそれぞれ対応機種が違うため、購入前に必ず確認しましょう。詳しくは「<a href="/ipad/apple-pencil-compare/">Apple Pencilの違い</a>」で解説しています。
+              </p>
+            </div>
+          </div>
+
+          {/* Q7 */}
+          <div className="faq-item m-card m-card--shadow">
+            <h3 className="faq-question">中古や整備済製品のiPadでも快適に使えますか？</h3>
+            <div className="faq-answer">
+              <p>
+                はい、iPadOSのサポート対象モデルであれば中古でも快適に使えます。特にM1チップ以降を搭載したモデルは処理性能に余裕があり、ステージマネージャーやApple Intelligenceなどの最新機能にも対応しています。中古品を選ぶ際はバッテリーの状態やAirDropなどの機能が正常に動作するかを確認しましょう。
+              </p>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>

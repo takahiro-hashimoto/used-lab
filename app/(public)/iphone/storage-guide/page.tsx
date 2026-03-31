@@ -9,6 +9,7 @@ import {
 import type { IPhonePriceLog } from '@/lib/types'
 import StorageTable, { type StorageModel } from './components/StorageTable'
 import ShareBox from '@/app/components/ShareBox'
+import IPhoneRelatedLinks from '@/app/components/iphone/IPhoneRelatedLinks'
 
 export const revalidate = 86400
 
@@ -189,16 +190,6 @@ export default async function StorageGuidePage() {
               <h1 className="hero-title">
                 中古iPhoneのストレージ容量はどれがいい？用途別おすすめ容量まとめ
               </h1>
-              <div className="hero-actions">
-                <a href="#storage-quick" className="m-btn m-btn--hero-primary">
-                  <i className="fa-solid fa-list-check" aria-hidden="true"></i>
-                  <span>容量の目安を見る</span>
-                </a>
-                <a href="#storage-list" className="m-btn m-btn--hero-outline">
-                  <i className="fa-solid fa-table-cells" aria-hidden="true"></i>
-                  <span>容量・価格一覧を見る</span>
-                </a>
-              </div>
               <div className="hero-meta">
                 <i className="fa-regular fa-clock" aria-hidden="true"></i>
                 <span>
@@ -242,7 +233,7 @@ export default async function StorageGuidePage() {
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
             <p className="toc-title">タップできる目次</p>
-            <ol className="l-grid l-grid--3col toc-list">
+            <ol className="l-grid l-grid--3col u-list-reset">
               <li>
                 <a href="#storage-points" className="toc-item">
                   容量選びのポイント{' '}
@@ -290,41 +281,41 @@ export default async function StorageGuidePage() {
 
             <div className="l-grid l-grid--2col l-grid--gap-lg">
               <div className="m-card m-card--shadow m-card--padded">
-                <h3 className="storage-point-heading">
+                <h3 className="post-check-item__heading">
                   <i className="fa-solid fa-ban" aria-hidden="true" style={{ color: '#ef4444' }}></i>
                   後から容量を増やせない
                 </h3>
-                <p className="storage-point-desc">
+                <p className="post-check-item__desc">
                   iPhoneはSDカードに非対応で、購入後にストレージを増設する手段がありません。購入時の容量がそのまま上限になるため、最初の選択が非常に重要です。
                 </p>
               </div>
 
               <div className="m-card m-card--shadow m-card--padded">
-                <h3 className="storage-point-heading">
+                <h3 className="post-check-item__heading">
                   <i className="fa-solid fa-mobile-screen" aria-hidden="true" style={{ color: '#2563eb' }}></i>
                   インストールできるアプリ数に直結
                 </h3>
-                <p className="storage-point-desc">
+                <p className="post-check-item__desc">
                   SNSアプリで約500MB、大型ゲームは1本で5〜10GB消費します。容量が少ないと入れられるアプリが限られ、使いたいアプリのために他を削除する必要が出てきます。
                 </p>
               </div>
 
               <div className="m-card m-card--shadow m-card--padded">
-                <h3 className="storage-point-heading">
+                <h3 className="post-check-item__heading">
                   <i className="fa-solid fa-gauge-high" aria-hidden="true" style={{ color: '#f59e0b' }}></i>
                   空き容量不足で動作が遅くなる
                 </h3>
-                <p className="storage-point-desc">
+                <p className="post-check-item__desc">
                   iPhoneはストレージの空き容量が極端に少なくなると、キャッシュや一時ファイルが作れずゲームやアプリの動作が重くなります。快適に使うには常に10%以上の空きが必要です。
                 </p>
               </div>
 
               <div className="m-card m-card--shadow m-card--padded">
-                <h3 className="storage-point-heading">
+                <h3 className="post-check-item__heading">
                   <i className="fa-solid fa-arrow-up-from-bracket" aria-hidden="true" style={{ color: '#10b981' }}></i>
                   iOSアップデートにも空き容量が必要
                 </h3>
-                <p className="storage-point-desc">
+                <p className="post-check-item__desc">
                   iOSのメジャーアップデートには数GBの空き容量が必要です。容量が足りないとアップデートできず、セキュリティリスクにつながる可能性もあります。
                 </p>
               </div>
@@ -439,30 +430,26 @@ export default async function StorageGuidePage() {
               今使っているiPhoneのストレージ使用量を確認すれば、次に買う端末の容量選びの参考になります。
             </p>
 
-            <div className="m-card m-card--shadow m-card--padded caution-check-card">
-              <div className="caution-check-card__body">
-                <div className="caution-check-card__visual">
-                  <figure className="caution-check-card__image">
-                    <img
-                      src="/images/content/thumbnail/iphone-storage.jpg"
-                      alt="iPhoneのストレージ使用量確認画面"
-                      width={280}
-                      height={200}
-                      loading="lazy"
-                    />
-                  </figure>
-                </div>
-                <div className="caution-check-card__text">
+            <div className="m-card m-card--shadow m-card--padded media-card--aside-footer">
+              <div className="media-card__img-wrap">
+                <img
+                  src="/images/content/thumbnail/iphone-storage.jpg"
+                  alt="iPhoneのストレージ使用量確認画面"
+                  className="media-card__img"
+                  width={800}
+                  height={450}
+                  loading="lazy"
+                />
+              </div>
+              <div className="media-card__body">
+                <div className="media-card__desc m-rich-text">
                   <p>iPhoneの「設定」からストレージの使用状況を確認できます。</p>
                   <p>アプリごとの容量も表示されるため、<strong>何にどのくらい容量を使っているか</strong>を把握できます。</p>
                   <p>現在使っている容量を基準に、次のiPhoneの容量を選ぶのがもっとも確実な方法です。</p>
                 </div>
               </div>
-
-              <div className="caution-how-to">
-                <h4 className="caution-how-to__heading">
-                  <i className="fa-regular fa-lightbulb" aria-hidden="true"></i> ストレージ使用量の確認方法
-                </h4>
+              <div className="media-card__footer">
+                <h3 className="caution-how-to__heading">ストレージ使用量の確認方法</h3>
                 <ol className="caution-steps">
                   <li className="caution-steps__item">
                     <span className="caution-steps__num">1</span>
@@ -477,17 +464,16 @@ export default async function StorageGuidePage() {
                     <span>「iPhoneストレージ」をタップ</span>
                   </li>
                 </ol>
-              </div>
-
-              <div className="m-callout m-callout--subtle caution-links-box">
-                <ul className="caution-links-box__list">
-                  <li>
-                    <Link href="/iphone/used-iphone-attention/"><i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> 中古iPhoneの注意点と選び方まとめ</Link>
-                  </li>
-                  <li>
-                    <Link href="/iphone/battery-compare/"><i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> 歴代iPhoneのバッテリー容量比較ランキング</Link>
-                  </li>
-                </ul>
+                <div className="m-callout m-callout--subtle caution-links-box">
+                  <ul className="caution-links-box__list">
+                    <li>
+                      <Link href="/iphone/used-iphone-attention/"><i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> 中古iPhoneの注意点と選び方まとめ</Link>
+                    </li>
+                    <li>
+                      <Link href="/iphone/battery-compare/"><i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> 歴代iPhoneのバッテリー容量比較ランキング</Link>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
@@ -550,6 +536,7 @@ export default async function StorageGuidePage() {
           </div>
         </section>
 
+        <IPhoneRelatedLinks excludeHref={["/iphone/storage-guide/", "/iphone/recommend/"]} />
         <ShareBox url="https://used-lab.com/iphone/storage-guide/" text="中古iPhoneのストレージ容量はどれがいい？用途別おすすめ容量まとめ" />
         </div>
       </article>

@@ -25,14 +25,22 @@ function formatPrice(price: number | null): string {
   return `¥${price.toLocaleString()}`
 }
 
+function roundTo100(value: number): number {
+  return Math.round(value / 100) * 100
+}
+
+function avg(values: number[]): number {
+  return values.reduce((a, b) => a + b, 0) / values.length
+}
+
 function calculateAvgPriceRange(pairs: { mins: number[]; maxes: number[] }[]): { min: number | null; max: number | null } {
   const allMins: number[] = []
   const allMaxes: number[] = []
   for (const pair of pairs) {
     const mins = pair.mins.filter(v => v > 0)
     const maxes = pair.maxes.filter(v => v > 0)
-    if (mins.length > 0) allMins.push(Math.round(mins.reduce((a, b) => a + b, 0) / mins.length / 100) * 100)
-    if (maxes.length > 0) allMaxes.push(Math.round(maxes.reduce((a, b) => a + b, 0) / maxes.length / 100) * 100)
+    if (mins.length > 0) allMins.push(roundTo100(avg(mins)))
+    if (maxes.length > 0) allMaxes.push(roundTo100(avg(maxes)))
   }
   return {
     min: allMins.length > 0 ? Math.min(...allMins) : null,
@@ -97,7 +105,7 @@ function calculateMonthlySummary(dailyData: DailyDataType): MonthlySummary[] {
       return {
         month: `${y}年${parseInt(m)}月`,
         dateTime: ym,
-        avgPrice: allPrices.length > 0 ? Math.round(allPrices.reduce((a, b) => a + b, 0) / allPrices.length / 100) * 100 : null,
+        avgPrice: allPrices.length > 0 ? roundTo100(avg(allPrices)) : null,
         minPrice: mins.length > 0 ? Math.min(...mins) : null,
         maxPrice: maxes.length > 0 ? Math.max(...maxes) : null,
       }
@@ -120,17 +128,17 @@ function calculateDailyTableData(dailyData: DailyDataType): DailyRow[] {
   for (let i = labels.length - 1; i >= Math.max(0, labels.length - 30); i--) {
     const min = avgMin[i]
     const max = avgMax[i]
-    const avg = (min != null && max != null) ? Math.round((min + max) / 2 / 100) * 100 : null
+    const dayAvg = (min != null && max != null) ? roundTo100((min + max) / 2) : null
     let prevAvg: number | null = null
     if (i > 0 && avgMin[i - 1] != null && avgMax[i - 1] != null) {
-      prevAvg = Math.round((avgMin[i - 1]! + avgMax[i - 1]!) / 2 / 100) * 100
+      prevAvg = roundTo100((avgMin[i - 1]! + avgMax[i - 1]!) / 2)
     }
-    const change = (avg != null && prevAvg != null) ? avg - prevAvg : null
+    const change = (dayAvg != null && prevAvg != null) ? dayAvg - prevAvg : null
     const changeDirection: 'up' | 'down' | 'stable' = change != null ? (change > 0 ? 'up' : change < 0 ? 'down' : 'stable') : 'stable'
     rows.push({
       dateStr: labels[i].replace(/-/g, '/'),
       dateTime: labels[i],
-      min, max, avg, change, changeDirection,
+      min, max, avg: dayAvg, change, changeDirection,
     })
   }
   return rows
@@ -164,16 +172,9 @@ export default function PriceChartSection({
                 <p className="price-current-value m-price-display m-price-display--lg">
                   &yen;{range.min?.toLocaleString()} 〜 &yen;{range.max?.toLocaleString()}
                 </p>
-                {storageNote && (
-                  <p className="price-current-note">
-                    集計対象：{modelName} {storageNote}
-                  </p>
-                )}
-                {!storageNote && (
-                  <p className="price-current-note">
-                    集計対象：{modelName}
-                  </p>
-                )}
+                <p className="price-current-note">
+                  集計対象：{modelName}{storageNote ? ` ${storageNote}` : ''}
+                </p>
               </div>
               {trendChanges.length > 0 && (
                 <dl className="price-trends">
@@ -219,11 +220,11 @@ export default function PriceChartSection({
         </div>
 
         <div className="m-card m-card--shadow price-details-card">
-          <h3 className="price-details-card-heading">{modelName}の価格推移 詳細</h3>
+          <p className="price-details-card-heading">{modelName}の価格推移 詳細</p>
 
           {monthlySummary.length > 0 && (
             <>
-              <h4 className="price-details-heading">月別平均価格</h4>
+              <p className="price-details-heading">月別平均価格</p>
               <div className="l-grid l-grid--3col l-grid--gap-lg l-grid--mb-2xl">
                 {monthlySummary.map(ms => (
                   <div key={ms.dateTime} className="m-card m-card--sm m-stat-card monthly-card">
@@ -240,7 +241,7 @@ export default function PriceChartSection({
 
           {dailyRows.length > 0 && (
             <>
-              <h4 className="price-details-heading">日別価格データ</h4>
+              <p className="price-details-heading">日別価格データ</p>
               <div className="price-table-wrap">
                 <table className="m-table">
                   <caption className="visually-hidden">{modelName}の日別中古価格データ</caption>

@@ -30,6 +30,7 @@ import ChecklistSection from '@/app/components/ChecklistSection'
 import ShopSection from '@/app/components/ShopSection'
 import IPhoneFaqSection from './components/IPhoneFaqSection'
 import ValueZoneChart from '@/app/components/ValueZoneChart'
+import IPhoneRelatedLinks from '@/app/components/iphone/IPhoneRelatedLinks'
 
 const PAGE_TITLE = `中古iPhoneおすすめ機種${RECOMMEND_COUNT}選｜目的別に狙い目モデルを解説【${RECOMMEND_DATE_LABEL}版】`
 const PAGE_DESCRIPTION =
@@ -179,13 +180,6 @@ export default async function IPhoneTopPage() {
               <h1 className="hero-title" itemProp="headline">
                 {PAGE_TITLE}
               </h1>
-              <div className="hero-badges">
-                {recommendModels.map((model) => (
-                  <span key={model.id} className="m-badge m-badge--translucent">
-                    <i className="fa-regular fa-square" aria-hidden="true"></i> {model.model}
-                  </span>
-                ))}
-              </div>
               <div className="hero-meta">
                 <i className="fa-regular fa-clock" aria-hidden="true"></i>
                 <span>
@@ -239,7 +233,7 @@ export default async function IPhoneTopPage() {
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
             <p className="toc-title">タップできる目次</p>
-            <ol className="l-grid l-grid--3col toc-list">
+            <ol className="l-grid l-grid--3col u-list-reset">
               <li>
                 <a href="#conclusion" className="toc-item">
                   結論：選ぶべき{RECOMMEND_COUNT_LABEL} <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
@@ -386,6 +380,11 @@ export default async function IPhoneTopPage() {
             ]}
           />
           <IPhoneFaqSection />
+          <IPhoneRelatedLinks
+            heading="iPhone選びをもっと深掘りする"
+            description="購入先の比較や相場チェックなど、iPhone選びに役立つ記事をまとめました。"
+            excludeHref="/iphone/recommend/"
+          />
         <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>
       </article>

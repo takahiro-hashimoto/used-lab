@@ -19,6 +19,7 @@ import {
   FAQ_JSONLD_ITEMS,
 } from '@/lib/data/airpods-recommend'
 import Breadcrumb from '@/app/components/Breadcrumb'
+import AirPodsRelatedLinks from '@/app/components/airpods/AirPodsRelatedLinks'
 import ShareBox from '@/app/components/ShareBox'
 import ConclusionSection from '@/app/components/ConclusionSection'
 import CriteriaSection from '@/app/components/CriteriaSection'
@@ -195,13 +196,6 @@ export default async function AirPodsRecommendPage() {
               <h1 className="hero-title" itemProp="headline">
                 {PAGE_TITLE}
               </h1>
-              <div className="hero-badges">
-                {recommendModels.map((model) => (
-                  <span key={model.id} className="m-badge m-badge--translucent">
-                    <i className="fa-solid fa-headphones" aria-hidden="true"></i> {model.name}
-                  </span>
-                ))}
-              </div>
               <div className="hero-meta">
                 <i className="fa-regular fa-clock" aria-hidden="true"></i>
                 <span>
@@ -248,7 +242,7 @@ export default async function AirPodsRecommendPage() {
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
             <p className="toc-title">タップできる目次</p>
-            <ol className="l-grid l-grid--3col toc-list">
+            <ol className="l-grid l-grid--3col u-list-reset">
               <li>
                 <a href="#conclusion" className="toc-item">
                   結論：選ぶべき{RECOMMEND_COUNT_LABEL} <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
@@ -369,6 +363,7 @@ export default async function AirPodsRecommendPage() {
             ]}
           />
           <AirPodsFaqSection />
+        <AirPodsRelatedLinks excludeHref="/airpods/recommend/" />
         <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>
       </article>

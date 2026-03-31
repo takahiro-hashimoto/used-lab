@@ -10,6 +10,22 @@ const organizationJsonLd = {
   url: 'https://used-lab.com',
   logo: 'https://used-lab.com/images/logo.png',
   description: '中古Apple製品の価格比較・スペック情報サイト',
+  founder: {
+    '@type': 'Person',
+    name: 'タカヒロ',
+  },
+  foundingDate: '2024-08',
+  sameAs: [
+    'https://twitter.com/takahiro_mono',
+    'https://www.instagram.com/takahiro_mono',
+    'https://www.youtube.com/@takahiro_mono',
+    'https://note.com/takahiro_mono',
+  ],
+  contactPoint: {
+    '@type': 'ContactPoint',
+    contactType: 'customer support',
+    url: 'https://used-lab.com/contact/',
+  },
 }
 
 const searchActionJsonLd = {

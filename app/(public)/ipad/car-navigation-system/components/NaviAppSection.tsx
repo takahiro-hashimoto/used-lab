@@ -1,3 +1,5 @@
+import Image from 'next/image'
+
 export default function NaviAppSection() {
   return (
     <section className="l-section" id="navi-app" aria-labelledby="heading-navi-app">
@@ -22,9 +24,9 @@ export default function NaviAppSection() {
             <tbody>
               <tr>
                 <td><strong>ロゴ</strong></td>
-                <td><img src="/images/content/thumbnail/google-map.jpg" alt="Googleマップのロゴ" width={80} height={40} style={{ objectFit: 'contain', border: '1px solid var(--color-border-light)', borderRadius: 'var(--radius-sm)' }} /></td>
-                <td><img src="/images/content/thumbnail/car-navi-app.png" alt="Yahoo!カーナビのロゴ" width={80} height={40} style={{ objectFit: 'contain', border: '1px solid var(--color-border-light)', borderRadius: 'var(--radius-sm)' }} /></td>
-                <td><img src="/images/content/thumbnail/navitime.png" alt="カーナビタイムのロゴ" width={80} height={40} style={{ objectFit: 'contain', border: '1px solid var(--color-border-light)', borderRadius: 'var(--radius-sm)' }} /></td>
+                <td><Image src="/images/content/thumbnail/google-map.jpg" alt="Googleマップのロゴ" width={80} height={40} style={{ objectFit: 'contain', border: '1px solid var(--color-border-light)', borderRadius: 'var(--radius-sm)' }} /></td>
+                <td><Image src="/images/content/thumbnail/car-navi-app.png" alt="Yahoo!カーナビのロゴ" width={80} height={40} style={{ objectFit: 'contain', border: '1px solid var(--color-border-light)', borderRadius: 'var(--radius-sm)' }} /></td>
+                <td><Image src="/images/content/thumbnail/navitime.png" alt="カーナビタイムのロゴ" width={80} height={40} style={{ objectFit: 'contain', border: '1px solid var(--color-border-light)', borderRadius: 'var(--radius-sm)' }} /></td>
               </tr>
               <tr>
                 <td><strong>料金</strong></td>

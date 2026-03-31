@@ -8,6 +8,7 @@ import PostCheckSection from '@/app/components/attention/PostCheckSection'
 import FailureSection from '@/app/components/attention/FailureSection'
 import InsuranceSection from '@/app/components/attention/InsuranceSection'
 import FaqSection from '@/app/components/attention/FaqSection'
+import IPhoneRelatedLinks from '@/app/components/iphone/IPhoneRelatedLinks'
 import PopularSection from '@/app/components/support/PopularSection'
 import { insuranceData, faqItems, postCheckItems, failurePatterns } from './components/data'
 
@@ -144,18 +145,8 @@ export default function UsedIphoneAttentionPage() {
           <div className="hero-inner l-container">
             <div className="hero-content">
               <h1 className="hero-title" itemProp="headline">
-                中古iPhoneはやめた方がいい？<br className="sp-only" />購入前に確認すべき注意点まとめ
+                中古iPhoneはやめた方がいい？購入前に確認すべき注意点まとめ
               </h1>
-              <div className="hero-actions">
-                <a href="#checklist" className="m-btn m-btn--hero-primary">
-                  <i className="fa-solid fa-list-check" aria-hidden="true"></i>
-                  <span>チェックリストを見る</span>
-                </a>
-                <a href="#content" className="m-btn m-btn--hero-outline">
-                  <i className="fa-regular fa-circle-check" aria-hidden="true"></i>
-                  <span>詳細を確認</span>
-                </a>
-              </div>
               <div className="hero-meta">
                 <i className="fa-regular fa-clock" aria-hidden="true"></i>
                 <span>
@@ -203,7 +194,7 @@ export default function UsedIphoneAttentionPage() {
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
             <p className="toc-title">タップできる目次</p>
-            <ol className="l-grid l-grid--3col toc-list">
+            <ol className="l-grid l-grid--3col u-list-reset">
               <li>
                 <a href="#pre-check" className="toc-item">
                   購入前の必須確認 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
@@ -286,6 +277,7 @@ export default function UsedIphoneAttentionPage() {
             buttonHref="/iphone/recommend/"
           />
           <FaqSection productName="iPhone" faqItems={faqItems} />
+        <IPhoneRelatedLinks excludeHref={["/iphone/used-iphone-attention/", "/iphone/recommend/"]} />
         <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>
       </article>

@@ -332,13 +332,14 @@ export async function getNewsItems(): Promise<NewsItem[]> {
 }
 
 /** 公開中の新着情報を取得（トップページ用） */
-export async function getPublishedNews(limit = 5): Promise<NewsItem[]> {
-  const { data, error } = await supabaseAdmin
+export async function getPublishedNews(limit?: number): Promise<NewsItem[]> {
+  let query = supabaseAdmin
     .from('news')
     .select('*')
     .eq('published', true)
     .order('date', { ascending: false })
-    .limit(limit)
+  if (limit) query = query.limit(limit)
+  const { data, error } = await query
 
   if (error) {
     console.error('getPublishedNews:', error.message)

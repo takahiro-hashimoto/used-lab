@@ -329,6 +329,26 @@ export async function getIPhoneReviewsBySlug(modelSlug: string): Promise<Product
   return data as ProductReview[]
 }
 
+// ============================================================
+// 関連記事リンク クリック数
+// ============================================================
+
+/** 指定ページから発生した関連記事クリック数を取得 */
+export async function getRelatedLinkClicks(
+  sourcePath: string
+): Promise<Record<string, number>> {
+  const { data, error } = await supabase
+    .from('related_link_clicks')
+    .select('dest_path, click_count')
+    .eq('source_path', sourcePath)
+  if (error || !data) return {}
+  const map: Record<string, number> = {}
+  for (const row of data) {
+    map[row.dest_path] = row.click_count
+  }
+  return map
+}
+
 export async function getIPadReviewsBySlug(modelSlug: string): Promise<ProductReview[]> {
   const { data, error } = await supabase
     .from('ipad_reviews')

@@ -25,6 +25,7 @@ import CompareSelector from './components/CompareSelector'
 import Accessories from './components/Accessories'
 import RecommendBanner from './components/RecommendBanner'
 import FaqSection from './components/FaqSection'
+import WatchRelatedLinks from '@/app/components/watch/WatchRelatedLinks'
 import ShareBox from '@/app/components/ShareBox'
 import AdminEditLink from '@/app/components/AdminEditLink'
 
@@ -46,12 +47,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const priceRange = calculatePriceRange(latestLog)
   const osLife = calculateOSLifespan(model.date)
 
-  const priceText = priceRange.minPrice ? `中古相場¥${priceRange.minPrice.toLocaleString()}〜` : '中古価格'
+  const priceText = priceRange.minPrice ? `（¥${priceRange.minPrice.toLocaleString()}〜）` : ''
   const sizeText = model.size ? `${model.size}` : ''
-  const osText = osLife.isSupported ? `${osLife.osEndYear}年頃までwatchOSサポート見込み` : 'watchOSサポート終了済み'
+  const osText = osLife.isSupported ? `watchOSサポート見込み` : 'watchOSサポート終了済み'
 
   const title = `中古${model.model} レビュー｜スペック・価格相場・いつまで使える？`
-  const description = `${model.model}の${priceText}や${osText}をもとに、今から中古で買うべきかを判定。${sizeText ? sizeText + '・' : ''}健康機能・バッテリー持ちを比較しながら失敗しない選び方を解説します。`
+  const description = `${model.model}の中古相場${priceText}や${osText}をもとに、今から中古で買うべきかを判定。${sizeText ? sizeText + '・' : ''}健康機能・バッテリー持ちを比較しながら失敗しない選び方を解説します。`
 
   return {
     title,
@@ -130,6 +131,7 @@ export default async function WatchDetailPage({ params }: PageProps) {
         <Accessories model={model} />
         <RecommendBanner />
         <FaqSection model={model} latestPrice={latestPrice} shopLinks={modelShopLinks} />
+        <WatchRelatedLinks excludeHref={`/watch/${model.slug}/`} />
         <ShareBox url={`https://used-lab.com/watch/${model.slug}/`} text={`中古${model.model}は今買うべき？製品寿命、基本スペック、中古相場から解説`} />
         </div>
       </article>

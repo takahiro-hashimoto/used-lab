@@ -10,7 +10,7 @@ export default function FleaMarketSection() {
 
         <div className="m-card m-card--shadow m-card--padded post-check-item">
           <h3 className="post-check-item__heading"><i className="fa-solid fa-yen-sign" aria-hidden="true"></i> なぜフリマは安くなりやすいのか</h3>
-          <div className="caution-check-card__text m-rich-text">
+          <div className="media-card__desc m-rich-text">
             <p>フリマアプリで中古iPhoneが安く出品される理由は、以下の構造的な要因によるものです。</p>
             <p>「安い＝お得」ではなく、「安くなる理由が価格にそのまま反映されている」という点を理解しておく必要があります。</p>
             <ul>
@@ -23,7 +23,7 @@ export default function FleaMarketSection() {
 
         <div className="m-card m-card--shadow m-card--padded post-check-item">
           <h3 className="post-check-item__heading"><i className="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> 起こりやすいリスク</h3>
-          <div className="caution-check-card__text m-rich-text">
+          <div className="media-card__desc m-rich-text">
             <p>個人間売買では以下のようなリスクが発生する可能性があります。</p>
             <p>これらのリスクについては、購入前に必ず理解しておく必要があります。</p>
             <ul>

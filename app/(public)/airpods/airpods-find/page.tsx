@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Breadcrumb from '@/app/components/Breadcrumb'
+import AirPodsRelatedLinks from '@/app/components/airpods/AirPodsRelatedLinks'
 import ShareBox from '@/app/components/ShareBox'
 import FaqSection from '@/app/components/support/FaqSection'
 import FindMethodSection from './components/FindMethodSection'
@@ -113,18 +114,8 @@ export default function AirpodsFindPage() {
             <div className="hero-inner l-container">
               <div className="hero-content">
                 <h1 className="hero-title" itemProp="headline">
-                  AirPodsのケースや<br className="sp-only" />イヤホン片方を無くした時の<br className="sp-only" />探し方、代替品の購入先まとめ
+                  AirPodsのケースやイヤホン片方を無くした時の探し方、代替品の購入先まとめ
                 </h1>
-                <div className="hero-actions">
-                  <a href="#find-method" className="m-btn m-btn--hero-primary">
-                    <i className="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
-                    <span>探し方を見る</span>
-                  </a>
-                  <a href="#purchase-method" className="m-btn m-btn--hero-outline">
-                    <i className="fa-solid fa-cart-shopping" aria-hidden="true"></i>
-                    <span>購入先を確認</span>
-                  </a>
-                </div>
                 <div className="hero-meta">
                   <i className="fa-regular fa-clock" aria-hidden="true"></i>
                   <span>
@@ -168,7 +159,7 @@ export default function AirpodsFindPage() {
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
             <p className="toc-title">タップできる目次</p>
-            <ol className="l-grid l-grid--3col toc-list">
+            <ol className="l-grid l-grid--3col u-list-reset">
               <li>
                 <a href="#find-method" className="toc-item">
                   紛失時の探し方 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
@@ -257,6 +248,7 @@ export default function AirpodsFindPage() {
             </div>
           </section>
 
+          <AirPodsRelatedLinks excludeHref="/airpods/airpods-find/" />
           <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>
       </article>

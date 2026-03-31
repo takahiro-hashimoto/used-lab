@@ -1,7 +1,5 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
 import Image from 'next/image'
-import { getHeroImage } from '@/lib/data/hero-images'
 import { getAllIPadModels, getAllProductShopLinksByType, getAllIPadAccessories, getAllIPadAccessoryCompatibility } from '@/lib/queries'
 import { buildAccessoryLookup, getPencilTextFromAccessories } from '@/lib/utils/ipad-helpers'
 import Breadcrumb from '@/app/components/Breadcrumb'
@@ -11,6 +9,7 @@ import PencilSpecTable from './components/PencilSpecTable'
 import PencilDetailSection from './components/PencilDetailSection'
 import PencilGuideSection from './components/PencilGuideSection'
 import FaqSection from '@/app/components/support/FaqSection'
+import IPadRelatedLinks from '@/app/components/ipad/IPadRelatedLinks'
 
 const PAGE_TITLE = 'Apple Pencilの違いを比較！あなたにぴったりのアップルペンシルがわかる'
 const PAGE_DESCRIPTION =
@@ -119,18 +118,8 @@ export default async function ApplePencilComparePage() {
           <div className="hero-inner l-container">
             <div className="hero-content">
               <h1 className="hero-title" itemProp="headline">
-                Apple Pencilの違いを比較！<br className="sp-only" />あなたにぴったりの<br className="sp-only" />アップルペンシルがわかる
+                Apple Pencilの違いを比較！あなたにぴったりのアップルペンシルがわかる
               </h1>
-              <div className="hero-actions">
-                <a href="#compare-table" className="m-btn m-btn--hero-primary">
-                  <i className="fa-solid fa-table" aria-hidden="true"></i>
-                  <span>比較表を見る</span>
-                </a>
-                <a href="#content" className="m-btn m-btn--hero-outline">
-                  <i className="fa-solid fa-pen-nib" aria-hidden="true"></i>
-                  <span>詳細を確認</span>
-                </a>
-              </div>
               <div className="hero-meta">
                 <i className="fa-regular fa-clock" aria-hidden="true"></i>
                 <span>
@@ -173,7 +162,7 @@ export default async function ApplePencilComparePage() {
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
             <p className="toc-title">タップできる目次</p>
-            <ol className="l-grid l-grid--3col toc-list">
+            <ol className="l-grid l-grid--3col u-list-reset">
               <li>
                 <a href="#compare-table" className="toc-item">
                   対応機種一覧表 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
@@ -287,42 +276,7 @@ export default async function ApplePencilComparePage() {
             ]}
           />
 
-        <section className="l-section" id="related" aria-labelledby="heading-related-pencil">
-          <div className="l-container">
-            <h2 className="m-section-heading m-section-heading--lg" id="heading-related-pencil">iPad選びのヒントになる関連記事</h2>
-            <p className="m-section-desc">Apple Pencil以外の観点からもiPad選びをサポートする記事をまとめました。</p>
-            <div className="l-grid l-grid--2col l-grid--gap-lg">
-              <Link href="/ipad/ipad-spec-table/" className="m-card m-card--shadow related-link-card m-card--hoverable">
-                <Image src={getHeroImage('/ipad/ipad-spec-table/')} alt="iPadスペック比較表" className="related-link-card__img" width={400} height={300} loading="lazy" />
-                <div className="related-link-card__body">
-                  <h3 className="related-link-card__title">iPadスペック比較表</h3>
-                  <p className="related-link-card__desc">歴代iPadの全スペックを一覧で比較</p>
-                </div>
-              </Link>
-              <Link href="/ipad/accessories-summary/" className="m-card m-card--shadow related-link-card m-card--hoverable">
-                <Image src={getHeroImage('/ipad/accessories-summary/')} alt="Magic Keyboard型番一覧" className="related-link-card__img" width={400} height={300} loading="lazy" />
-                <div className="related-link-card__body">
-                  <h3 className="related-link-card__title">Magic Keyboard 型番一覧</h3>
-                  <p className="related-link-card__desc">対応キーボードがすぐわかる</p>
-                </div>
-              </Link>
-              <Link href="/ipad/storage-guide/" className="m-card m-card--shadow related-link-card m-card--hoverable">
-                <Image src={getHeroImage('/ipad/storage-guide/')} alt="ストレージ容量ガイド" className="related-link-card__img" width={400} height={300} loading="lazy" />
-                <div className="related-link-card__body">
-                  <h3 className="related-link-card__title">ストレージ容量ガイド</h3>
-                  <p className="related-link-card__desc">用途別のおすすめ容量と中古価格を比較</p>
-                </div>
-              </Link>
-              <Link href="/ipad/benchmark/" className="m-card m-card--shadow related-link-card m-card--hoverable">
-                <Image src={getHeroImage('/ipad/benchmark/')} alt="ベンチマーク比較ランキング" className="related-link-card__img" width={400} height={300} loading="lazy" />
-                <div className="related-link-card__body">
-                  <h3 className="related-link-card__title">ベンチマーク比較ランキング</h3>
-                  <p className="related-link-card__desc">歴代iPadのチップ性能をスコアで比較</p>
-                </div>
-              </Link>
-            </div>
-          </div>
-        </section>
+        <IPadRelatedLinks excludeHref={["/ipad/apple-pencil-compare/", "/ipad/recommend/"]} />
 
         <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>

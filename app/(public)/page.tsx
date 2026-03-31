@@ -10,6 +10,8 @@ import {
 import { PRODUCT_CATEGORIES } from '@/lib/routes'
 import { getPublishedNews } from '@/app/admin/actions'
 import IconCard from '@/app/components/IconCard'
+import HeroSearch from '@/app/components/HeroSearch'
+import { placeholder } from '@/lib/placeholder'
 
 /** カテゴリごとの画像ベースパス */
 const CATEGORY_IMAGE_BASE: Record<string, string> = {
@@ -28,7 +30,7 @@ export default async function HomePage() {
     getAllMacBookModels(),
     getAllWatchModels(),
     getAllAirPodsModels(),
-    getPublishedNews(5),
+    getPublishedNews(),
   ])
 
   // モデル数
@@ -67,12 +69,9 @@ export default async function HomePage() {
               中古Apple製品を賢く選ぶ。
             </p>
             <h1 className="hero-subtitle--top">
-              中古Apple製品のおすすめ機種・安く買う方法を解説
+              中古Apple製品のおすすめ機種・賢い選び方・安く買う方法を解説
             </h1>
-            <div className="hero-scroll" aria-hidden="true">
-              <i className="fa-solid fa-chevron-down"></i>
-              <span>Scroll</span>
-            </div>
+            <HeroSearch />
           </div>
         </div>
       </header>
@@ -89,7 +88,7 @@ export default async function HomePage() {
               <article key={cat.id} className="m-card m-card--shadow listing-pick-card">
                 <figure className="listing-pick-card__figure">
                   <Image
-                    src={categoryImages[cat.id] || `https://placehold.co/200x200/f5f5f7/1d1d1f?text=${encodeURIComponent(cat.label)}`}
+                    src={categoryImages[cat.id] || placeholder(200, 200, cat.label)}
                     alt={`中古${cat.label}の写真`}
                     className="listing-pick-card__img"
                     width={200}
@@ -102,7 +101,7 @@ export default async function HomePage() {
                   <p className="listing-pick-card__release">{modelCounts[cat.id]}モデル掲載中</p>
                   <p className="listing-pick-card__desc">{cat.desc}</p>
                 </div>
-                <Link href={`${cat.basePath}/`} className="m-btn m-btn--primary m-btn--block listing-pick-card__btn">
+                <Link href={`${cat.basePath}/`} className="m-btn m-btn--primary m-btn--block u-w-full">
                   ガイドを見る <i className="fa-solid fa-chevron-right" aria-hidden="true"></i>
                 </Link>
               </article>
@@ -121,7 +120,7 @@ export default async function HomePage() {
             <IconCard icon="fa-solid fa-chart-line" title="毎日更新の価格データ">
               <p>イオシス・ゲオ・じゃんぱらなど主要ショップの中古価格を毎日自動収集。値下がりトレンドや買い時がひと目でわかる価格推移グラフを全モデルに掲載。</p>
             </IconCard>
-            <IconCard icon="fa-solid fa-table-cells" title="全モデル網羅のスペック比較">
+            <IconCard icon="fa-solid fa-table-cells" title="歴代モデルのスペック比較">
               <p>CPU・ディスプレイ・カメラ・バッテリーなど、歴代モデルの全スペックを一覧表で比較可能。気になる機種同士の性能差がすぐにわかります。</p>
             </IconCard>
             <IconCard icon="fa-solid fa-star" title="目的別のおすすめガイド">

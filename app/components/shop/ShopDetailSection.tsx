@@ -63,7 +63,7 @@ export default function ShopDetailSection({ productName, items, specRows, getCta
                 />
               </figure>
               <div className="recommend-card__info" style={{ background: 'var(--color-primary-light)', borderRadius: 'var(--radius-md)' }}>
-                <h4 className="recommend-card__info-title">{shop.shop}の特徴</h4>
+                <p className="recommend-card__info-title">{shop.shop}の特徴</p>
                 <dl className="recommend-card__specs">
                   {specRows.map((row) => (
                     <div key={row.label} className="recommend-card__spec-item" style={{ display: 'flex' }}>
@@ -75,7 +75,7 @@ export default function ShopDetailSection({ productName, items, specRows, getCta
               </div>
             </div>
             <div className="recommend-card__body m-rich-text">
-              <h4 className="recommend-card__subtitle">{meta.subtitle}</h4>
+              <p className="recommend-card__subtitle">{meta.subtitle}</p>
               {meta.description.map((p, i) => (
                 <p key={i}>{p}</p>
               ))}
@@ -83,9 +83,9 @@ export default function ShopDetailSection({ productName, items, specRows, getCta
             <div className="recommend-card__fit">
               <div className="l-grid l-grid--2col l-grid--gap-lg">
                 <div className="recommend-card__fit-box recommend-card__fit-box--good">
-                  <h4>
+                  <p>
                     <i className="fa-solid fa-circle-check" aria-hidden="true"></i> メリット
-                  </h4>
+                  </p>
                   <ul>
                     {meta.good.map((item, i) => (
                       <li key={i}>
@@ -95,9 +95,9 @@ export default function ShopDetailSection({ productName, items, specRows, getCta
                   </ul>
                 </div>
                 <div className="recommend-card__fit-box recommend-card__fit-box--bad">
-                  <h4>
+                  <p>
                     <i className="fa-solid fa-circle-xmark" aria-hidden="true"></i> デメリット
-                  </h4>
+                  </p>
                   <ul>
                     {meta.bad.map((item, i) => (
                       <li key={i}>

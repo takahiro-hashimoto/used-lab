@@ -9,6 +9,7 @@ import {
 import type { MacBookPriceLog } from '@/lib/types'
 import StorageTable, { type StorageModel } from './components/StorageTable'
 import ShareBox from '@/app/components/ShareBox'
+import MacBookRelatedLinks from '@/app/components/macbook/MacBookRelatedLinks'
 
 export const revalidate = 86400
 
@@ -203,16 +204,6 @@ export default async function StorageGuidePage() {
           <div className="hero-inner l-container">
             <div className="hero-content">
               <h1 className="hero-title">中古MacBookのストレージ容量はどれがいい？用途別おすすめ容量まとめ</h1>
-              <div className="hero-actions">
-                <a href="#storage-quick" className="m-btn m-btn--hero-primary">
-                  <i className="fa-solid fa-list-check" aria-hidden="true"></i>
-                  <span>容量の目安を見る</span>
-                </a>
-                <a href="#storage-list" className="m-btn m-btn--hero-outline">
-                  <i className="fa-solid fa-table-cells" aria-hidden="true"></i>
-                  <span>容量・価格一覧を見る</span>
-                </a>
-              </div>
               <div className="hero-meta">
                 <i className="fa-regular fa-clock" aria-hidden="true"></i>
                 <span>
@@ -247,7 +238,7 @@ export default async function StorageGuidePage() {
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
             <p className="toc-title">タップできる目次</p>
-            <ol className="l-grid l-grid--3col toc-list">
+            <ol className="l-grid l-grid--3col u-list-reset">
               <li><a href="#storage-points" className="toc-item">容量選びのポイント <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#storage-quick" className="toc-item">容量別おすすめ早見表 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#storage-list" className="toc-item">容量・価格一覧表 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
@@ -266,35 +257,35 @@ export default async function StorageGuidePage() {
 
             <div className="l-grid l-grid--2col l-grid--gap-lg">
               <div className="m-card m-card--shadow m-card--padded">
-                <h3 className="storage-point-heading">
+                <h3 className="post-check-item__heading">
                   <i className="fa-solid fa-ban" aria-hidden="true" style={{ color: '#ef4444' }}></i>
                   購入後のSSD交換・増設は不可
                 </h3>
-                <p className="storage-point-desc">Appleシリコン搭載MacBook（M1以降）はSSDがロジックボードに直接実装されており、後からの交換・増設は一切できません。購入時の容量が上限です。</p>
+                <p className="post-check-item__desc">Appleシリコン搭載MacBook（M1以降）はSSDがロジックボードに直接実装されており、後からの交換・増設は一切できません。購入時の容量が上限です。</p>
               </div>
 
               <div className="m-card m-card--shadow m-card--padded">
-                <h3 className="storage-point-heading">
+                <h3 className="post-check-item__heading">
                   <i className="fa-solid fa-code" aria-hidden="true" style={{ color: '#2563eb' }}></i>
                   開発環境は想像以上に容量を消費
                 </h3>
-                <p className="storage-point-desc">Xcode（約40GB）、Docker、Homebrew、各種SDK・ライブラリなどを入れると、開発環境だけで100GB以上消費することも珍しくありません。</p>
+                <p className="post-check-item__desc">Xcode（約40GB）、Docker、Homebrew、各種SDK・ライブラリなどを入れると、開発環境だけで100GB以上消費することも珍しくありません。</p>
               </div>
 
               <div className="m-card m-card--shadow m-card--padded">
-                <h3 className="storage-point-heading">
+                <h3 className="post-check-item__heading">
                   <i className="fa-solid fa-gauge-high" aria-hidden="true" style={{ color: '#f59e0b' }}></i>
                   空き容量不足でパフォーマンスが低下
                 </h3>
-                <p className="storage-point-desc">macOSは仮想メモリやキャッシュにSSDの空き領域を使います。空き容量が10%を切るとスワップが頻発し、動作が目に見えて遅くなります。</p>
+                <p className="post-check-item__desc">macOSは仮想メモリやキャッシュにSSDの空き領域を使います。空き容量が10%を切るとスワップが頻発し、動作が目に見えて遅くなります。</p>
               </div>
 
               <div className="m-card m-card--shadow m-card--padded">
-                <h3 className="storage-point-heading">
+                <h3 className="post-check-item__heading">
                   <i className="fa-solid fa-hard-drive" aria-hidden="true" style={{ color: '#10b981' }}></i>
                   外付けSSDで補えるが利便性は下がる
                 </h3>
-                <p className="storage-point-desc">USB-C外付けSSDで容量を補うことは可能ですが、常に持ち歩く手間や、アプリのインストール先にはできない制約があります。本体容量に余裕を持つのが理想です。</p>
+                <p className="post-check-item__desc">USB-C外付けSSDで容量を補うことは可能ですが、常に持ち歩く手間や、アプリのインストール先にはできない制約があります。本体容量に余裕を持つのが理想です。</p>
               </div>
             </div>
           </div>
@@ -395,41 +386,36 @@ export default async function StorageGuidePage() {
             <h2 className="m-section-heading m-section-heading--lg" id="heading-storage-check">現在のストレージ使用量を確認する方法</h2>
             <p className="m-section-desc">今使っているMacBookのストレージ使用量を確認すれば、次に買う端末の容量選びの参考になります。</p>
 
-            <div className="m-card m-card--shadow m-card--padded caution-check-card">
-              <div className="caution-check-card__body">
-                <div className="caution-check-card__visual">
-                  <figure className="caution-check-card__image">
-                    <img
-                      src="/images/content/thumbnail/macbook-storage.jpg"
-                      alt="MacBookのストレージ使用量確認画面"
-                      width={280}
-                      height={200}
-                      loading="lazy"
-                    />
-                  </figure>
-                </div>
-                <div className="caution-check-card__text">
+            <div className="m-card m-card--shadow m-card--padded media-card--aside-footer">
+              <div className="media-card__img-wrap">
+                <img
+                  src="/images/content/thumbnail/macbook-storage.jpg"
+                  alt="MacBookのストレージ使用量確認画面"
+                  className="media-card__img"
+                  width={800}
+                  height={450}
+                  loading="lazy"
+                />
+              </div>
+              <div className="media-card__body">
+                <div className="media-card__desc">
                   <p>Macの「システム設定」からストレージの使用状況を確認できます。</p>
                   <p>カテゴリ別（アプリ・書類・写真・システムなど）の使用量が表示されるため、<strong>何にどのくらい容量を使っているか</strong>を把握できます。</p>
                   <p>新しいMacBookを購入する際にストレージ容量を決める際の判断材料にしましょう。</p>
                 </div>
               </div>
-
-              <div className="caution-how-to">
-                <h4 className="caution-how-to__heading">
-                  <i className="fa-regular fa-lightbulb" aria-hidden="true"></i> ストレージ使用量の確認方法
-                </h4>
+              <div className="media-card__footer">
+                <h3 className="caution-how-to__heading">ストレージ使用量の確認方法</h3>
                 <ol className="caution-steps">
                   <li className="caution-steps__item"><span className="caution-steps__num">1</span><span>画面左上の  メニュー →「システム設定」</span></li>
                   <li className="caution-steps__item"><span className="caution-steps__num">2</span><span>「一般」をクリック</span></li>
                   <li className="caution-steps__item"><span className="caution-steps__num">3</span><span>「ストレージ」をクリック</span></li>
                 </ol>
-              </div>
-
-              <div className="m-callout m-callout--subtle caution-links-box">
-                <ul className="caution-links-box__list">
-                  <li><Link href="/macbook/used-macbook-attention/"><i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> 中古MacBookの注意点と選び方まとめ</Link></li>
-                </ul>
+                <div className="m-callout m-callout--subtle caution-links-box">
+                  <ul className="caution-links-box__list">
+                    <li><Link href="/macbook/used-macbook-attention/"><i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> 中古MacBookの注意点と選び方まとめ</Link></li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
@@ -470,6 +456,7 @@ export default async function StorageGuidePage() {
           </div>
         </section>
 
+        <MacBookRelatedLinks excludeHref={["/macbook/storage-guide/", "/macbook/recommend/"]} />
         <ShareBox url="https://used-lab.com/macbook/storage-guide/" text="中古MacBookのストレージ容量はどれがいい？用途別おすすめ容量まとめ" />
         </div>
       </article>

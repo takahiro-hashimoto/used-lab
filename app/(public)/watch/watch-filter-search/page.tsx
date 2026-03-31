@@ -8,6 +8,7 @@ import { supabase } from '@/lib/supabase'
 import WatchFilterSearchApp from './components/WatchFilterSearchApp'
 import ShareBox from '@/app/components/ShareBox'
 import RecommendBanner from '@/app/(public)/watch/[slug]/components/RecommendBanner'
+import WatchRelatedLinks from '@/app/components/watch/WatchRelatedLinks'
 
 export const metadata: Metadata = {
   title: 'Apple Watch機種診断シミュレーター｜自分に合うおすすめ中古アップルウォッチがすぐわかる【2026年版】',
@@ -187,16 +188,6 @@ export default async function WatchFilterSearchPage() {
               <h1 className="hero-title">
                 Apple Watch機種診断シミュレーター｜選び方がわからなくてもどれを買うべきかわかる
               </h1>
-              <div className="hero-actions">
-                <a href="#ifd-step1" className="m-btn m-btn--hero-primary">
-                  <i className="fa-solid fa-stethoscope" aria-hidden="true"></i>
-                  <span>診断をはじめる</span>
-                </a>
-                <a href="#ifd-results" className="m-btn m-btn--hero-outline">
-                  <i className="fa-solid fa-list" aria-hidden="true"></i>
-                  <span>結果一覧を見る</span>
-                </a>
-              </div>
               <div className="hero-meta">
                 <i className="fa-regular fa-clock" aria-hidden="true"></i>
                 <span>
@@ -325,6 +316,7 @@ export default async function WatchFilterSearchPage() {
           </div>
         </section>
 
+        <WatchRelatedLinks excludeHref={["/watch/watch-filter-search/", "/watch/recommend/"]} />
         <ShareBox url="https://used-lab.com/watch/watch-filter-search/" text="Apple Watch機種診断シミュレーター｜自分に合うおすすめ中古アップルウォッチがすぐわかる【2026年版】" />
         </div>
       </article>

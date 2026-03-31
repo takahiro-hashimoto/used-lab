@@ -9,6 +9,7 @@ import TipsSection from './components/TipsSection'
 import SpecTableSection from './components/SpecTableSection'
 import AlwaysLitFaqSection, { FAQ_ITEMS } from './components/AlwaysLitFaqSection'
 import RecommendBanner from '@/app/(public)/watch/[slug]/components/RecommendBanner'
+import WatchRelatedLinks from '@/app/components/watch/WatchRelatedLinks'
 
 const PAGE_TITLE = 'Apple Watchの常時点灯はいらない？使ってみてわかったメリット・デメリットまとめ'
 const PAGE_DESCRIPTION =
@@ -109,18 +110,8 @@ export default function AppleWatchAlwaysLitPage() {
           <div className="hero-inner l-container">
             <div className="hero-content">
               <h1 className="hero-title" itemProp="headline">
-                Apple Watchの常時点灯はいらない？<br className="sp-only" />使ってみてわかったメリット・デメリットまとめ
+                Apple Watchの常時点灯はいらない？使ってみてわかったメリット・デメリットまとめ
               </h1>
-              <div className="hero-actions">
-                <a href="#merit-demerit" className="m-btn m-btn--hero-primary">
-                  <i className="fa-solid fa-scale-balanced" aria-hidden="true"></i>
-                  <span>メリデメを見る</span>
-                </a>
-                <a href="#content" className="m-btn m-btn--hero-outline">
-                  <i className="fa-regular fa-circle-check" aria-hidden="true"></i>
-                  <span>詳細を確認</span>
-                </a>
-              </div>
               <div className="hero-meta">
                 <i className="fa-regular fa-clock" aria-hidden="true"></i>
                 <span>
@@ -173,7 +164,7 @@ export default function AppleWatchAlwaysLitPage() {
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
             <p className="toc-title">タップできる目次</p>
-            <ol className="l-grid l-grid--3col toc-list">
+            <ol className="l-grid l-grid--3col u-list-reset">
               <li>
                 <a href="#merit" className="toc-item">
                   常時点灯のメリット <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
@@ -217,6 +208,7 @@ export default function AppleWatchAlwaysLitPage() {
           <SpecTableSection />
           <RecommendBanner />
           <AlwaysLitFaqSection />
+        <WatchRelatedLinks excludeHref="/watch/apple-watch-always-lit/" />
         <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>
       </article>

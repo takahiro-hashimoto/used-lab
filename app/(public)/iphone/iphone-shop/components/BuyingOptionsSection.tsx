@@ -10,7 +10,7 @@ export default function BuyingOptionsSection() {
         <p className="m-section-desc">中古iPhoneを購入できる場所は大きく分けて4つあります。</p>
         <p className="m-section-desc">それぞれの特徴を簡単に把握しておきましょう。</p>
 
-        <div className="l-grid l-grid--2col l-grid--gap-lg post-check-grid">
+        <div className="l-grid l-grid--2col l-grid--gap-lg u-mt-xl">
           {/* 中古スマホ専門店 */}
           <IconCard icon="fa-solid fa-store" title="中古スマホ専門店">
               <p>イオシス、にこスマ、ゲオなど、中古スマホを専門に扱うショップ。独自の保証制度や検品体制を整えています。</p>

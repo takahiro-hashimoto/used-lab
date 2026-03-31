@@ -6,6 +6,7 @@ import RecommendSection from './components/RecommendSection'
 import ComparisonDetails from './components/ComparisonDetails'
 import FaqSection, { FAQ_ITEMS } from './components/FaqSection'
 import RecommendBanner from '@/app/(public)/watch/[slug]/components/RecommendBanner'
+import WatchRelatedLinks from '@/app/components/watch/WatchRelatedLinks'
 
 const PAGE_TITLE = 'Apple Watch セルラーモデルのできることを解説！GPSモデルとの違いがわかる'
 const PAGE_DESCRIPTION =
@@ -103,18 +104,8 @@ export default function GpsCellularComparePage() {
           <div className="hero-inner l-container">
             <div className="hero-content">
               <h1 className="hero-title" itemProp="headline">
-                Apple Watch セルラーモデルの<br className="sp-only" />できることを解説！<br className="sp-only" />GPSモデルとの違いがわかる
+                Apple Watch セルラーモデルのできることを解説！GPSモデルとの違いがわかる
               </h1>
-              <div className="hero-actions">
-                <a href="#recommend" className="m-btn m-btn--hero-primary">
-                  <i className="fa-solid fa-user-check" aria-hidden="true"></i>
-                  <span>結論を見る</span>
-                </a>
-                <a href="#comparison" className="m-btn m-btn--hero-outline">
-                  <i className="fa-solid fa-scale-balanced" aria-hidden="true"></i>
-                  <span>違いを比較する</span>
-                </a>
-              </div>
               <div className="hero-meta">
                 <i className="fa-regular fa-clock" aria-hidden="true"></i>
                 <span>
@@ -162,7 +153,7 @@ export default function GpsCellularComparePage() {
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
             <p className="toc-title">タップできる目次</p>
-            <ol className="l-grid l-grid--2col toc-list">
+            <ol className="l-grid l-grid--2col u-list-reset">
               <li>
                 <a href="#recommend" className="toc-item">
                   結論：おすすめ <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
@@ -199,9 +190,6 @@ export default function GpsCellularComparePage() {
                 それぞれのモデルが向いている人の特徴をまとめました。
               </p>
               <RecommendSection />
-              <p className="m-section-desc" style={{ marginTop: 'var(--space-xl)', textAlign: 'center' }}>
-                ここからは上記の結論に至った理由を、両モデルの違いを比較しながら詳しく解説していきます。
-              </p>
             </div>
           </section>
 
@@ -269,35 +257,9 @@ export default function GpsCellularComparePage() {
                 </p>
               </div>
 
-              {/* 関連リンク */}
-              <div className="l-grid l-grid--2col l-grid--gap-lg guide-spec-links" style={{ marginTop: 'var(--space-2xl)' }}>
-                <a className="m-card m-card--shadow related-link-card related-link-card--icon m-card--hoverable" href="/watch">
-                  <span className="related-link-card__icon m-icon-box m-icon-box--sm">
-                    <i className="fa-solid fa-clock" aria-hidden="true"></i>
-                  </span>
-                  <h3 className="related-link-card__title">中古Apple Watch完全購入ガイド</h3>
-                  <p className="related-link-card__desc">
-                    Apple Watchの選び方・おすすめモデル・中古相場をわかりやすく解説。初めての方でも安心です。
-                  </p>
-                  <span className="related-link-card__arrow">
-                    <i className="fa-solid fa-chevron-right" aria-hidden="true"></i>
-                  </span>
-                </a>
-                <a className="m-card m-card--shadow related-link-card related-link-card--icon m-card--hoverable" href="/watch/recommend">
-                  <span className="related-link-card__icon m-icon-box m-icon-box--sm">
-                    <i className="fa-solid fa-star" aria-hidden="true"></i>
-                  </span>
-                  <h3 className="related-link-card__title">中古Apple Watchおすすめモデル</h3>
-                  <p className="related-link-card__desc">
-                    予算や用途に合わせた中古Apple Watchのおすすめモデルを厳選して紹介しています。
-                  </p>
-                  <span className="related-link-card__arrow">
-                    <i className="fa-solid fa-chevron-right" aria-hidden="true"></i>
-                  </span>
-                </a>
-              </div>
             </div>
           </section>
+        <WatchRelatedLinks excludeHref={["/watch/gps-cellular-compare/", "/watch/recommend/"]} />
         {/* シェアボックス */}
         <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>

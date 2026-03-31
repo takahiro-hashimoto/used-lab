@@ -9,6 +9,7 @@ import UseCaseSection from './components/UseCaseSection'
 import PriceCompareSection from './components/PriceCompareSection'
 import FaqSection from './components/FaqSection'
 import SummarySection from './components/SummarySection'
+import MacBookRelatedLinks from '@/app/components/macbook/MacBookRelatedLinks'
 import { getAllMacBookModels, getLatestMacBookPriceLog } from '@/lib/queries'
 import type { MacBookPriceLog } from '@/lib/types'
 
@@ -105,18 +106,8 @@ export default async function AirProComparePage() {
             <div className="hero-inner l-container">
               <div className="hero-content">
                 <h1 className="hero-title" itemProp="headline">
-                  MacBook AirとPro<br className="sp-only" />どっちがいい？<br className="sp-only" />違いと選び方を<br className="sp-only" />やさしく解説
+                  MacBook AirとProどっちがいい？違いと選び方をやさしく解説
                 </h1>
-                <div className="hero-actions">
-                  <a href="#comparison" className="m-btn m-btn--hero-primary">
-                    <i className="fa-solid fa-scale-balanced" aria-hidden="true"></i>
-                    <span>比較表を見る</span>
-                  </a>
-                  <a href="#usecase" className="m-btn m-btn--hero-outline">
-                    <i className="fa-solid fa-user-check" aria-hidden="true"></i>
-                    <span>用途別おすすめ</span>
-                  </a>
-                </div>
                 <div className="hero-meta">
                   <i className="fa-regular fa-clock" aria-hidden="true"></i>
                   <span>
@@ -164,7 +155,7 @@ export default async function AirProComparePage() {
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
             <p className="toc-title">タップできる目次</p>
-            <ol className="l-grid l-grid--3col toc-list">
+            <ol className="l-grid l-grid--3col u-list-reset">
               <li>
                 <a href="#comparison" className="toc-item">
                   比較表 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
@@ -255,6 +246,7 @@ export default async function AirProComparePage() {
           {/* まとめ */}
           <SummarySection />
 
+          <MacBookRelatedLinks excludeHref="/macbook/air-pro-compare/" />
           <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>
       </article>

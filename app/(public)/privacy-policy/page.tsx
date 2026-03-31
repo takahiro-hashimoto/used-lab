@@ -130,7 +130,7 @@ export default function PrivacyPolicyPage() {
             {/* お問い合わせ */}
             <h2 className="content-heading">お問い合わせ</h2>
             <p>当サイトのプライバシーポリシーに関する、ご意見、ご質問、その他ユーザー情報の取り扱いに関するお問い合わせは、以下にご連絡ください。</p>
-            <div className="pp-contact-link">
+            <div className="u-mt-md">
               <Link href="/contact/" className="about-media-link">
                 <i className="fa-solid fa-envelope" aria-hidden="true"></i>
                 <span>お問い合わせ</span>
@@ -145,9 +145,9 @@ export default function PrivacyPolicyPage() {
               <li>制定：2024年08月01日</li>
             </ul>
 
-            <div className="pp-footer">
+            <address className="pp-footer">
               <p>ユーズドラボ<br />運営責任者：タカヒロ</p>
-            </div>
+            </address>
 
           </div>
         </div>

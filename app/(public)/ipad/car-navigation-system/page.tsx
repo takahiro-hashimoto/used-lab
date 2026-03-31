@@ -8,6 +8,7 @@ import PrepareSection from './components/PrepareSection'
 import NaviAppSection from './components/NaviAppSection'
 import RunningCostSection from './components/RunningCostSection'
 import FaqSection from '@/app/components/support/FaqSection'
+import IPadRelatedLinks from '@/app/components/ipad/IPadRelatedLinks'
 
 const PAGE_TITLE = 'iPadをカーナビ化するメリットが凄い！地図が古くなる問題をすっきり解消'
 const PAGE_DESCRIPTION =
@@ -90,18 +91,8 @@ export default function CarNavigationSystemPage() {
           <div className="hero-inner l-container">
             <div className="hero-content">
               <h1 className="hero-title" itemProp="headline">
-                iPadをカーナビ化する<br className="sp-only" />メリットが凄い！<br className="sp-only" />地図が古くなる問題をすっきり解消
+                iPadをカーナビ化するメリットが凄い！地図が古くなる問題をすっきり解消
               </h1>
-              <div className="hero-actions">
-                <a href="#merit" className="m-btn m-btn--hero-primary">
-                  <i className="fa-solid fa-thumbs-up" aria-hidden="true"></i>
-                  <span>メリットを見る</span>
-                </a>
-                <a href="#caution" className="m-btn m-btn--hero-outline">
-                  <i className="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>
-                  <span>注意点を確認</span>
-                </a>
-              </div>
               <div className="hero-meta">
                 <i className="fa-regular fa-clock" aria-hidden="true"></i>
                 <span>
@@ -149,7 +140,7 @@ export default function CarNavigationSystemPage() {
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
             <p className="toc-title">タップできる目次</p>
-            <ol className="l-grid l-grid--3col toc-list">
+            <ol className="l-grid l-grid--3col u-list-reset">
               <li>
                 <a href="#conclusion" className="toc-item">
                   結論：メリット・注意点 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
@@ -288,7 +279,7 @@ export default function CarNavigationSystemPage() {
             ]}
           />
 
-        {/* シェアボックス */}
+        <IPadRelatedLinks excludeHref="/ipad/car-navigation-system/" />
         <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>
       </article>

@@ -18,11 +18,6 @@ export default function CompareHero({ modelL, modelR, slug }: Props) {
 
   return (
     <div className="hero-wrapper">
-      <style dangerouslySetInnerHTML={{ __html: `
-        @media (min-width: 769px) {
-          .hero-inner--compare { grid-template-columns: 1fr 1fr !important; }
-        }
-      `}} />
       <Breadcrumb
         items={[
           { label: '中古iPhone完全購入ガイド', href: '/iphone/' },
@@ -38,11 +33,12 @@ export default function CompareHero({ modelL, modelR, slug }: Props) {
         <div className="hero-inner hero-inner--compare l-container">
           <div className="hero-content">
             <h1 className="hero-title">
-              {modelL.model}と{shortR}<br className="sp-only" />
-              中古で買うならどっち？<br className="sp-only" />
-              2機種の違いを比較
+              {modelL.model}と{shortR}中古で買うならどっち？2機種の違いを比較
             </h1>
             <div className="hero-meta">
+              <i className="fa-regular fa-clock" aria-hidden="true"></i>
+              <span>最終更新日: <time dateTime="2026-03-31">2026年3月31日</time></span>
+              <span>｜</span>
               <span>当記事のリンクには広告が含まれています</span>
             </div>
           </div>
@@ -57,7 +53,6 @@ export default function CompareHero({ modelL, modelR, slug }: Props) {
                   width={140}
                   height={140}
                   priority
-                  style={{ borderRadius: 'var(--radius-lg)', background: 'rgba(255,255,255,0.9)', padding: 'var(--space-md)', objectFit: 'contain' }}
                 />
               )}
               <p>{modelL.model}</p>
@@ -71,7 +66,6 @@ export default function CompareHero({ modelL, modelR, slug }: Props) {
                   width={140}
                   height={140}
                   priority
-                  style={{ borderRadius: 'var(--radius-lg)', background: 'rgba(255,255,255,0.9)', padding: 'var(--space-md)', objectFit: 'contain' }}
                 />
               )}
               <p>{modelR.model}</p>

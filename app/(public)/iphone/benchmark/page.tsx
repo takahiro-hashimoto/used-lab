@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
-import { getHeroImage } from '@/lib/data/hero-images'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import ShareBox from '@/app/components/ShareBox'
 import { getAllIPhoneModels, getAllIPhonePriceLogsByModelIds, getAllProductShopLinksByType } from '@/lib/queries'
@@ -9,10 +8,11 @@ import type { IPhonePriceLog, ProductShopLink } from '@/lib/types'
 import BenchmarkRanking from './components/BenchmarkRanking'
 import ChipGenerationCompare from './components/ChipGenerationCompare'
 import UseCaseGuide from './components/UseCaseGuide'
+import IPhoneRelatedLinks from '@/app/components/iphone/IPhoneRelatedLinks'
 
-const PAGE_TITLE = '歴代iPhoneのベンチマーク比較ランキング｜Geekbench 6 & AnTuTuスコアで性能が一目でわかる'
+const PAGE_TITLE = 'iPhoneのベンチマークを比較！全モデルの性能がわかるスコアランキング【2026年版】'
 const PAGE_DESCRIPTION =
-  '歴代iPhoneのGeekbench 6・AnTuTuベンチマークスコアをランキング形式で比較。シングルコア・マルチコア・GPU性能の3指標で性能差がひと目でわかります。チップ世代別の進化や用途別おすすめスコアの目安も解説。'
+  '歴代iPhoneのGeekbench 6・AnTuTuベンチマークスコアをランキング形式で比較。A15〜A19チップの性能差がひと目でわかる一覧表付き。用途別おすすめスコアの目安も解説。'
 const PAGE_URL = 'https://used-lab.com/iphone/benchmark/'
 
 export const revalidate = 86400
@@ -161,18 +161,8 @@ export default async function BenchmarkPage() {
             <div className="hero-inner l-container">
               <div className="hero-content">
                 <h1 className="hero-title" itemProp="headline">
-                  歴代iPhoneの<br className="sp-only" />ベンチマーク比較ランキング
+                  iPhoneのベンチマークを比較！全モデルの性能がわかるスコアランキング
                 </h1>
-                <div className="hero-actions">
-                  <a href="#ranking" className="m-btn m-btn--hero-primary">
-                    <i className="fa-solid fa-ranking-star" aria-hidden="true"></i>
-                    <span>ランキングを見る</span>
-                  </a>
-                  <a href="#chip-compare" className="m-btn m-btn--hero-outline">
-                    <i className="fa-solid fa-microchip" aria-hidden="true"></i>
-                    <span>チップ世代比較</span>
-                  </a>
-                </div>
                 <div className="hero-meta">
                   <i className="fa-regular fa-clock" aria-hidden="true"></i>
                   <span>
@@ -220,7 +210,7 @@ export default async function BenchmarkPage() {
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
             <p className="toc-title">タップできる目次</p>
-            <ol className="l-grid l-grid--3col toc-list">
+            <ol className="l-grid l-grid--3col u-list-reset">
               <li><a href="#score-guide" className="toc-item">スコアの読み方 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#ranking" className="toc-item">総合ランキング <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#chip-compare" className="toc-item">チップ世代比較 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
@@ -239,27 +229,27 @@ export default async function BenchmarkPage() {
 
               <div className="l-grid l-grid--3col l-grid--gap-lg">
                 <div className="m-card m-card--shadow m-card--padded">
-                  <h3 className="storage-point-heading">
+                  <h3 className="post-check-item__heading">
                     <i className="fa-solid fa-microchip" aria-hidden="true" style={{ color: '#e74c6f' }}></i>
                     シングルコア
                   </h3>
-                  <p className="storage-point-desc">CPU1コアの処理速度。アプリの起動、Web閲覧、SNSの操作など日常操作の快適さに直結します。</p>
+                  <p className="post-check-item__desc">CPU1コアの処理速度。アプリの起動、Web閲覧、SNSの操作など日常操作の快適さに直結します。</p>
                 </div>
 
                 <div className="m-card m-card--shadow m-card--padded">
-                  <h3 className="storage-point-heading">
+                  <h3 className="post-check-item__heading">
                     <i className="fa-solid fa-grip" aria-hidden="true" style={{ color: '#f0a030' }}></i>
                     マルチコア
                   </h3>
-                  <p className="storage-point-desc">全CPUコアを同時に使った処理能力。写真処理、動画書き出し、複数アプリの同時使用に影響します。</p>
+                  <p className="post-check-item__desc">全CPUコアを同時に使った処理能力。写真処理、動画書き出し、複数アプリの同時使用に影響します。</p>
                 </div>
 
                 <div className="m-card m-card--shadow m-card--padded">
-                  <h3 className="storage-point-heading">
+                  <h3 className="post-check-item__heading">
                     <i className="fa-solid fa-bolt" aria-hidden="true" style={{ color: '#2563eb' }}></i>
                     Metal（GPU）
                   </h3>
-                  <p className="storage-point-desc">GPUのグラフィック処理性能。3Dゲーム、カメラエフェクト、AR体験の快適さに関わります。</p>
+                  <p className="post-check-item__desc">GPUのグラフィック処理性能。3Dゲーム、カメラエフェクト、AR体験の快適さに関わります。</p>
                 </div>
               </div>
 
@@ -282,44 +272,6 @@ export default async function BenchmarkPage() {
           {/* 用途別おすすめスコアの目安 */}
           <UseCaseGuide models={benchModels} shopLinks={shopLinks} />
 
-          {/* 関連記事 */}
-          <section className="l-section" id="related" aria-labelledby="heading-related">
-            <div className="l-container">
-              <h2 className="m-section-heading m-section-heading--lg" id="heading-related">iPhone選びのヒントになる関連記事</h2>
-              <p className="m-section-desc">ベンチマーク以外の観点からもiPhone選びをサポートする記事をまとめました。</p>
-              <div className="l-grid l-grid--2col l-grid--gap-lg">
-                <Link href="/iphone/iphone-spec-table/" className="m-card m-card--shadow related-link-card m-card--hoverable">
-                  <Image src={getHeroImage('/iphone/iphone-spec-table/')} alt="iPhoneスペック比較表" className="related-link-card__img" width={400} height={300} loading="lazy" />
-                  <div className="related-link-card__body">
-                    <h3 className="related-link-card__title">iPhoneスペック比較表</h3>
-                    <p className="related-link-card__desc">歴代iPhoneの全スペックを一覧で比較</p>
-                  </div>
-                </Link>
-                <Link href="/iphone/battery-compare/" className="m-card m-card--shadow related-link-card m-card--hoverable">
-                  <Image src={getHeroImage('/iphone/battery-compare/')} alt="バッテリー容量比較" className="related-link-card__img" width={400} height={300} loading="lazy" />
-                  <div className="related-link-card__body">
-                    <h3 className="related-link-card__title">バッテリー容量比較ランキング</h3>
-                    <p className="related-link-card__desc">電池持ちのいいiPhoneがひと目でわかる</p>
-                  </div>
-                </Link>
-                <Link href="/iphone/recommend/" className="m-card m-card--shadow related-link-card m-card--hoverable">
-                  <Image src={getHeroImage('/iphone/recommend/')} alt="おすすめ中古iPhone" className="related-link-card__img" width={400} height={300} loading="lazy" />
-                  <div className="related-link-card__body">
-                    <h3 className="related-link-card__title">おすすめ中古iPhone</h3>
-                    <p className="related-link-card__desc">目的別におすすめの中古iPhoneを厳選して紹介</p>
-                  </div>
-                </Link>
-                <Link href="/iphone/storage-guide/" className="m-card m-card--shadow related-link-card m-card--hoverable">
-                  <Image src={getHeroImage('/iphone/storage-guide/')} alt="ストレージ容量ガイド" className="related-link-card__img" width={400} height={300} loading="lazy" />
-                  <div className="related-link-card__body">
-                    <h3 className="related-link-card__title">ストレージ容量ガイド</h3>
-                    <p className="related-link-card__desc">用途別のおすすめ容量と中古価格を比較</p>
-                  </div>
-                </Link>
-              </div>
-            </div>
-          </section>
-
           {/* よくある質問 */}
           <section className="l-section" id="faq" aria-labelledby="heading-faq">
             <div className="l-container">
@@ -336,6 +288,7 @@ export default async function BenchmarkPage() {
             </div>
           </section>
 
+          <IPhoneRelatedLinks excludeHref="/iphone/benchmark/" />
           <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>
       </article>

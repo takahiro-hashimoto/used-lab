@@ -84,7 +84,7 @@ export default function CompareRelated() {
                 src={item.image}
               />
               <div className="related-link-card__body">
-                <h3 className="related-link-card__title">{item.title}</h3>
+                <p className="related-link-card__title">{item.title}</p>
                 <p className="related-link-card__desc">{item.desc}</p>
               </div>
             </a>

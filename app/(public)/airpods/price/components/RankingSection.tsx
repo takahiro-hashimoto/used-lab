@@ -30,7 +30,7 @@ export default function RankingSection({ items, modelCount, dateDisplay }: Props
           と続きます。全{modelCount}機種を掲載中。
         </p>
 
-        <ol className="price-card-grid l-grid l-grid--2col l-grid--gap-lg">
+        <ol className="u-list-reset u-mb-2xl l-grid l-grid--2col l-grid--gap-lg">
           {items.map((model, rank) => (
             <li
               key={model.id}

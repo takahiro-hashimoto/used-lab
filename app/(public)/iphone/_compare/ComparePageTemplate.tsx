@@ -111,7 +111,7 @@ export default async function ComparePageTemplate({ config }: Props) {
         <nav className="l-section l-section--sm l-section--no-pt" aria-label="目次">
           <div className="l-container">
             <p className="toc-title">タップできる目次</p>
-            <ol className="l-grid l-grid--3col toc-list">
+            <ol className="l-grid l-grid--3col u-list-reset">
               <li><a href="#spec" className="toc-item">基本スペック <i className="fa-solid fa-chevron-down"></i></a></li>
               <li><a href="#camera" className="toc-item">カメラ性能 <i className="fa-solid fa-chevron-down"></i></a></li>
               <li><a href="#cpu" className="toc-item">処理性能 <i className="fa-solid fa-chevron-down"></i></a></li>

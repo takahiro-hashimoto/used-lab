@@ -370,7 +370,7 @@ function VerdictCard({
 
       {recommends.length > 0 && (
         <>
-          <p style={{ fontSize: 'var(--font-size-sm)', fontWeight: 700, marginBottom: 'var(--space-xs)' }}>
+          <p style={{ fontSize: 'var(--font-size-base)', fontWeight: 700, marginBottom: 'var(--space-xs)' }}>
             こんな人に最適
           </p>
           <ul className={s.list}>

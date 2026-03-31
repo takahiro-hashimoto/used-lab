@@ -2,11 +2,11 @@ export default function ComparisonSections() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-xl)', marginTop: 'var(--space-2xl)' }}>
       {/* OSの違い */}
-      <div id="os" className="m-card m-card--shadow m-card--padded media-card--aside">
+      <div id="os" className="m-card m-card--shadow m-card--padded">
         <div className="media-card__img-wrap">
           <img
-            src="/images/content/photo/use-macbook.jpg"
-            alt="MacBookを操作する様子"
+            src="/images/content/photo/apple-watch-unlock-macbook.jpg"
+            alt="Apple WatchでMacBookをロック解除する様子"
             className="media-card__img"
             width={240}
             height={160}
@@ -16,24 +16,25 @@ export default function ComparisonSections() {
         <div className="media-card__body">
           <h3 className="media-card__title">OSの違い</h3>
           <p className="media-card__desc">
-            OSはシステム全体を管理し、さまざまなアプリケーションを動かすための最も基本的なソフトウェアです。これが異なるため、後述する対応ソフトや操作性などさまざまな箇所に違いが出てきます。
+            OSはアプリケーションを動かすための基本ソフトウェアです。OSが異なるため、対応ソフトや操作性などさまざまな箇所に違いが出てきます。
           </p>
           <p className="media-card__desc" style={{ marginTop: 'var(--space-sm)' }}>
-            <strong>Windows</strong>はMicrosoft社が開発したWindowsシリーズをOSとして搭載。DELL、SONY、富士通、LENOVOなどさまざまなメーカーからパソコンが製造・販売されており、対応アプリの豊富さや製品の選択肢の多さが強みです。
+            <strong>Windows</strong>はMicrosoft社が開発。DELL、富士通、LENOVOなど多くのメーカーからPCが販売されており、対応アプリの豊富さや製品の選択肢の多さが強みです。
           </p>
           <p className="media-card__desc" style={{ marginTop: 'var(--space-sm)' }}>
-            <strong>Mac</strong>はApple社が開発したmacOSを搭載。OSとPC本体の製造がすべてApple社で行われており、Apple製品同士のスムーズな連携が強みです。直感的に操作できるシンプルなUI設計も人気の理由のひとつです。
+            <strong>Mac</strong>はApple社が開発したmacOSを搭載。OSとハードウェアをすべてApple社が手掛けており、Apple製品同士のスムーズな連携と直感的なUI設計が人気の理由です。
           </p>
         </div>
       </div>
 
       {/* シェアの違い */}
-      <div id="share" className="m-card m-card--shadow m-card--padded media-card--aside">
+      <div id="share" className="m-card m-card--shadow m-card--padded">
         <div className="media-card__img-wrap">
           <img
-            src="/images/content/thumbnail/iphone-image.jpg"
+            src="/images/content/photo/macboook-share.jpg"
             alt="WindowsとMacのシェア比較"
             className="media-card__img"
+            style={{ border: '1px solid var(--color-border, #e0e0e0)' }}
             width={240}
             height={160}
             loading="lazy"
@@ -42,16 +43,19 @@ export default function ComparisonSections() {
         <div className="media-card__body">
           <h3 className="media-card__title">シェアの違い</h3>
           <p className="media-card__desc">
-            統計データによると、日本国内のパソコンOSシェアはWindowsユーザーが約7割を占めており、圧倒的に高いことがわかります。
+            日本国内のパソコンOSシェアはWindowsが約7割と圧倒的です。官公庁や一般企業の多くがWindows環境を標準としており、ビジネス用途ではWindowsが主流です。
           </p>
           <p className="media-card__desc" style={{ marginTop: 'var(--space-sm)' }}>
-            ただし、会社や職種単位で見るとシェアの割合は変わってきます。<strong>デザイナーやエンジニアなど、クリエイティブ系の職種やIT企業ではMacのシェアが高い</strong>傾向にあります。
+            ただし職種単位で見ると割合は変わり、<strong>デザイナーやエンジニアなどクリエイティブ系の職種やIT企業ではMacのシェアが高い</strong>傾向にあります。近年はiPhoneユーザーがMacにも興味を持つケースが増え、個人利用のシェアも緩やかに伸びています。
+          </p>
+          <p className="media-card__desc" style={{ marginTop: 'var(--space-sm)' }}>
+            シェアが高いOSを選ぶと<strong>周囲に同じOSのユーザーが多く操作を教えてもらいやすい</strong>ほか、対応ソフトやアクセサリーも豊富です。職場や学校の環境も判断材料にしましょう。
           </p>
         </div>
       </div>
 
       {/* 製品数・価格帯の違い */}
-      <div id="price" className="m-card m-card--shadow m-card--padded media-card--aside">
+      <div id="price" className="m-card m-card--shadow m-card--padded">
         <div className="media-card__img-wrap">
           <img
             src="/images/content/photo/ipad-mini-macbook.jpg"
@@ -65,19 +69,19 @@ export default function ComparisonSections() {
         <div className="media-card__body">
           <h3 className="media-card__title">製品数・価格帯の違い</h3>
           <p className="media-card__desc">
-            Windows OSを搭載しているパソコンはMicrosoft以外にもDELL、SONY、富士通、LENOVO、マウスなどさまざまなメーカーで製造されています。そのため、数万円台で買える低スペックモデルから数十万円のハイスペックモデルまで幅広い選択肢があり、予算に見合ったモデルを購入しやすいです。
+            WindowsはDELL、富士通、LENOVO、マウスなど多数のメーカーが製造しており、数万円台の低スペックモデルから数十万円のハイスペックモデルまで幅広い選択肢があります。
           </p>
           <p className="media-card__desc" style={{ marginTop: 'var(--space-sm)' }}>
-            一方、macOSを搭載しているパソコンはApple社のみで製造されており、製品ラインナップも10〜20種類前後とかなり絞られています。基本的にハイスペックなモデルが多く、一番安いモデルでも15万円前後の価格です。購入するパソコンの選択肢はWindowsのほうが豊富と言えます。
+            一方MacはApple社のみが製造し、ラインナップは10〜20種類前後。全体的にハイスペックで、最安モデルでも15万円前後です。選択肢の多さではWindowsが有利と言えます。
           </p>
         </div>
       </div>
 
       {/* カスタマイズ性・自由度の違い */}
-      <div id="customize" className="m-card m-card--shadow m-card--padded media-card--aside">
+      <div id="customize" className="m-card m-card--shadow m-card--padded">
         <div className="media-card__img-wrap">
           <img
-            src="/images/content/photo/ipad-pro-use.jpg"
+            src="/images/content/photo/pc-custmize_motherboard.webp"
             alt="パソコンのカスタマイズ"
             className="media-card__img"
             width={240}
@@ -88,19 +92,19 @@ export default function ComparisonSections() {
         <div className="media-card__body">
           <h3 className="media-card__title">カスタマイズ性・自由度の違い</h3>
           <p className="media-card__desc">
-            WindowsはCPU、メモリ、ストレージ、無線LANの有無などさまざまな要素を細かくカスタマイズして購入することが可能です。また、購入後に使用感に不満が出てきたらメモリやストレージを自分で増設することもできるので、非常にカスタマイズ性が高いと言えます。
+            WindowsはCPU・メモリ・ストレージなどを細かく選んで購入でき、購入後にメモリやストレージを自分で増設することも可能。カスタマイズ性は非常に高いです。
           </p>
           <p className="media-card__desc" style={{ marginTop: 'var(--space-sm)' }}>
-            Macも購入時にある程度スペックをカスタマイズして注文することは可能ですが、購入後にメモリやストレージを自分で増設することは基本的にできません。買った後に不満が出てもカスタマイズができないため、カスタマイズ性・自由度はWindowsに比べて低いと言えるでしょう。
+            Macも購入時のスペック選択は可能ですが、購入後の増設は基本的にできません。カスタマイズの自由度はWindowsに比べて低いと言えるでしょう。
           </p>
         </div>
       </div>
 
       {/* 対応ソフト・アプリの違い */}
-      <div id="apps" className="m-card m-card--shadow m-card--padded media-card--aside">
+      <div id="apps" className="m-card m-card--shadow m-card--padded">
         <div className="media-card__img-wrap">
           <img
-            src="/images/content/photo/ipad-split-view.jpg"
+            src="/images/content/photo/macbook-peep-prevention-filter-front-02.jpg"
             alt="対応アプリの違い"
             className="media-card__img"
             width={240}
@@ -111,7 +115,7 @@ export default function ComparisonSections() {
         <div className="media-card__body">
           <h3 className="media-card__title">対応ソフト・アプリの違い</h3>
           <p className="media-card__desc">
-            OfficeやAdobeなどのメジャーなアプリ・ソフトウェアは基本的にWindows、MacどちらのOSでも使用できます。ただし、ソフトウェアはシェアの高いWindowsを基準に設計される傾向が強く、中にはWindowsのみ対応だったり、Macでは機能が制限されている場合もあります。
+            OfficeやAdobeなどのメジャーなソフトは両OSで使用可能です。ただしソフトウェアはWindowsを基準に設計される傾向があり、Windowsのみ対応やMacでは機能制限がある場合もあります。
           </p>
 
           <div className="m-card" style={{ padding: 'var(--space-lg)', marginTop: 'var(--space-sm)' }}>
@@ -125,21 +129,21 @@ export default function ComparisonSections() {
               <li>PowerPoint → <strong>Keynote</strong></li>
             </ul>
             <p className="media-card__desc" style={{ marginTop: 'var(--space-sm)' }}>
-              互換アプリは便利な存在ですが、ファイルを開くとレイアウトが崩れることもあります。OfficeファイルをMacで扱うなら「Office for Mac」を使うのが無難です。
+              互換アプリはレイアウトが崩れることもあるため、OfficeファイルをMacで扱うなら「Office for Mac」が無難です。
             </p>
           </div>
 
           <p className="media-card__desc" style={{ marginTop: 'var(--space-sm)' }}>
-            パソコンを購入する際は具体的にどのようなアプリをメインで使うかをしっかり考えた上で必要なOSを選びましょう。
+            どのアプリをメインで使うかを考えた上でOSを選びましょう。
           </p>
         </div>
       </div>
 
       {/* ゲームプレイについての違い */}
-      <div id="game" className="m-card m-card--shadow m-card--padded media-card--aside">
+      <div id="game" className="m-card m-card--shadow m-card--padded">
         <div className="media-card__img-wrap">
           <img
-            src="/images/content/photo/ipad-md-clock.jpg"
+            src="/images/content/photo/game-pc.webp"
             alt="パソコンゲームのイメージ"
             className="media-card__img"
             width={240}
@@ -150,27 +154,27 @@ export default function ComparisonSections() {
         <div className="media-card__body">
           <h3 className="media-card__title">ゲームプレイについての違い</h3>
           <p className="media-card__desc">
-            パソコンでゲームをプレイしたい場合はWindowsを選択しましょう。理由は大きく2つあります。
+            PCゲームを楽しみたいならWindowsを選びましょう。理由は大きく2つあります。
           </p>
 
           <div className="m-card" style={{ padding: 'var(--space-lg)', marginTop: 'var(--space-sm)' }}>
             <ul className="media-card__list">
-              <li><strong>Windows対応のゲームソフトの数がMacに比べて圧倒的に多い</strong></li>
+              <li><strong>Windows対応のゲームソフトがMacに比べて圧倒的に多い</strong></li>
               <li><strong>WindowsはGPUやグラフィックボードを独自に拡張しやすい</strong>が、Macでは難しい</li>
             </ul>
           </div>
 
           <p className="media-card__desc" style={{ marginTop: 'var(--space-sm)' }}>
-            Macでも仮想環境ソフト（Parallelsなど）を使えばWindows環境を構築できますが、高いスペックのMacが必要になるためコスパが悪く、あまりおすすめできる選択肢ではありません。
+            Macでも仮想環境ソフト（Parallelsなど）でWindows環境を構築できますが、高スペックなMacが必要でコスパが悪いためおすすめしにくいです。
           </p>
         </div>
       </div>
 
       {/* マウス・トラックパッドの操作性の違い */}
-      <div id="operation" className="m-card m-card--shadow m-card--padded media-card--aside">
+      <div id="operation" className="m-card m-card--shadow m-card--padded">
         <div className="media-card__img-wrap">
           <img
-            src="/images/content/photo/magic-keyboarda.jpg"
+            src="/images/content/photo/use-trackpad.webp"
             alt="Macのトラックパッド操作"
             className="media-card__img"
             width={240}
@@ -181,19 +185,19 @@ export default function ComparisonSections() {
         <div className="media-card__body">
           <h3 className="media-card__title">マウス・トラックパッドの操作性の違い</h3>
           <p className="media-card__desc">
-            Macのトラックパッドはタップ、スワイプ、ピンチなどさまざまなジェスチャー機能が搭載されており、直感的なアプリ操作が可能です。出先のカフェなどでマウスがなくても困るシーンはほとんどありません。
+            Macのトラックパッドはタップ・スワイプ・ピンチなど豊富なジェスチャーに対応しており、マウスなしでも快適に操作できます。
           </p>
           <p className="media-card__desc" style={{ marginTop: 'var(--space-sm)' }}>
-            一方Windowsのトラックパッドはあくまでもマウスの補助的な役割にとどまり、基本的にはマウス操作が主となります。もちろんメーカーによって使用感はさまざまなので一概には言えませんが、トラックパッドの満足度はMacのほうが高いと考えてよいでしょう。
+            Windowsのトラックパッドはマウスの補助的な役割にとどまり、基本的にはマウス操作が主です。メーカーにより差はありますが、トラックパッドの満足度はMacが上回る傾向にあります。
           </p>
         </div>
       </div>
 
       {/* キーボードの違い */}
-      <div id="keyboard" className="m-card m-card--shadow m-card--padded media-card--aside">
+      <div id="keyboard" className="m-card m-card--shadow m-card--padded">
         <div className="media-card__img-wrap">
           <img
-            src="/images/content/photo/use-macbook.jpg"
+            src="/images/content/photo/mx-keys-mini-for-mac-use-03-1024x683.webp"
             alt="キーボードの違い"
             className="media-card__img"
             width={240}
@@ -204,7 +208,7 @@ export default function ComparisonSections() {
         <div className="media-card__body">
           <h3 className="media-card__title">キーボードの違い</h3>
           <p className="media-card__desc">
-            WindowsとMacのキーボードは修飾キーが異なるのが特徴です。これによってショートカットキーの組み合わせなどに違いが出てきます。
+            WindowsとMacは修飾キーが異なり、ショートカットの組み合わせにも違いがあります。
           </p>
 
           <dl className="m-card vs-card" style={{ marginTop: 'var(--space-sm)' }}>
@@ -221,16 +225,16 @@ export default function ComparisonSections() {
           </dl>
 
           <p className="media-card__desc" style={{ marginTop: 'var(--space-sm)' }}>
-            WindowsPCはメーカーごとにキー配列に差がある場合がありますが、Macはキーボード配列が統一されています。新しいMacに買い替えても違和感なく使えるのはMacのメリットです。
+            WindowsPCはメーカーごとにキー配列が異なる場合がありますが、Macは全モデルで配列が統一されています。買い替えても違和感なく使えるのはMacのメリットです。
           </p>
         </div>
       </div>
 
       {/* デザインの違い */}
-      <div id="design" className="m-card m-card--shadow m-card--padded media-card--aside">
+      <div id="design" className="m-card m-card--shadow m-card--padded">
         <div className="media-card__img-wrap">
           <img
-            src="/images/content/photo/ipad-11-pro-m4-15.jpg"
+            src="/images/content/photo/review-macbook-14inch-2021-logo.jpg"
             alt="Macのデザイン"
             className="media-card__img"
             width={240}
@@ -241,19 +245,19 @@ export default function ComparisonSections() {
         <div className="media-card__body">
           <h3 className="media-card__title">デザインの違い</h3>
           <p className="media-card__desc">
-            Macといえばアルミ削り出しの洗練されたボディが印象的です。薄く軽量で強度のあるノートPCを作るために一枚のアルミ厚板を削り出したのが始まりで、今ではiMacやMac miniなどの筐体にも採用されています。装飾が少なくシンプルな見た目が特徴で、デザインに惚れ込んで購入するユーザーも多数います。
+            Macはアルミ削り出しの洗練されたボディが特徴です。薄型・軽量ながら高い剛性を実現しており、装飾を排したシンプルな見た目はカフェや会議室でも映えます。<strong>デザインに惚れ込んで購入するユーザーも多く</strong>、所有する満足感が高いのもMacならではの魅力です。
           </p>
           <p className="media-card__desc" style={{ marginTop: 'var(--space-sm)' }}>
-            Windowsはさまざまなメーカーから販売されているため、デザインもメーカーによって大きく異なります。個性的なモデルからMacと同じくアルミ削り出しのスタイリッシュなモデルまで多種多様。見た目の好みで選べる自由度の高さがWindowsの魅力です。
+            Windowsはメーカーごとにデザインが大きく異なり、個性的なモデルからアルミ筐体のスタイリッシュなモデルまで多種多様。カラーバリエーションやタッチスクリーン搭載モデル、2in1タイプなど、見た目と使い方の両面で選べる自由度の高さが魅力です。
           </p>
         </div>
       </div>
 
       {/* データ連携・共有 */}
-      <div id="data" className="m-card m-card--shadow m-card--padded media-card--aside">
+      <div id="data" className="m-card m-card--shadow m-card--padded">
         <div className="media-card__img-wrap">
           <img
-            src="/images/content/thumbnail/apple-watch-image.jpg"
+            src="/images/content/photo/Anker-620-MagGo-Phone-Grip-glip-02-1024x683.webp"
             alt="Macのデータ連携"
             className="media-card__img"
             width={240}
@@ -264,19 +268,19 @@ export default function ComparisonSections() {
         <div className="media-card__body">
           <h3 className="media-card__title">データ連携・共有</h3>
           <p className="media-card__desc">
-            MacはAirDropを使うことでiPhoneやiPadなどのデバイスに簡単に写真や動画などのデータを送ることができます。またiCloudを利用すればMacで書いたテキストメモをすぐにスマホから編集・チェックすることも可能。ハードからソフトまですべて一社で手掛けているAppleだからこそ実現できるデバイス間連携は非常に使い勝手がよいです。
+            MacはAirDropでiPhoneやiPadへ簡単にデータを送れます。iCloudを使えばメモや書類もデバイス間で即座に同期可能。Apple製品同士のシームレスな連携は大きな強みです。
           </p>
           <p className="media-card__desc" style={{ marginTop: 'var(--space-sm)' }}>
-            Windowsも「Windowsにリンク」アプリを使えばAndroidやiPhoneにデータを送ることができますが、転送できるデータの種類が限られます。サードパーティ製のファイル転送ソフトを使う手もありますが、Macに比べるとやや手間が多く直感的とは言えません。
+            Windowsも「Windowsにリンク」アプリでスマホにデータを送れますが、転送できるデータの種類が限られます。Macに比べるとやや手間が多く、直感的とは言えません。
           </p>
         </div>
       </div>
 
       {/* リセールバリューの違い */}
-      <div id="resale" className="m-card m-card--shadow m-card--padded media-card--aside">
+      <div id="resale" className="m-card m-card--shadow m-card--padded">
         <div className="media-card__img-wrap">
           <img
-            src="/images/content/photo/ipad-image.jpg"
+            src="/images/content/photo/iosis-macbook.webp"
             alt="Macのリセールバリュー"
             className="media-card__img"
             width={240}
@@ -287,13 +291,147 @@ export default function ComparisonSections() {
         <div className="media-card__body">
           <h3 className="media-card__title">リセールバリューの違い</h3>
           <p className="media-card__desc">
-            Macは旧モデルになっても人気が高く、中古市場での需要が安定しています。初期費用はWindowsより高く感じるかもしれませんが、古くなったPCを下取りに出せば、そこまでお金をかけずに新しいPCに買い替えることができるのが魅力です。
+            Macは旧モデルでも中古市場での人気が高く、<strong>購入から数年経っても比較的高い価格で売却できる</strong>のが大きな魅力です。下取りに出せば少ない追加費用で新しいMacに買い替えられるため、長い目で見るとコスパのよい選択と言えます。
           </p>
           <p className="media-card__desc" style={{ marginTop: 'var(--space-sm)' }}>
-            逆にWindowsはハイスペックなパソコンでも中古だと値段が下がりやすい傾向があります。新品にこだわらなければ、使い勝手のよいWindows PCをお手頃価格で手に入れられる可能性もあります。
+            Windowsはハイスペックモデルでも中古だと値段が下がりやすい傾向があります。メーカーやモデルが多いぶん需要が分散し、特定の機種に人気が集中しにくいことが理由のひとつです。逆に言えば、<strong>新品にこだわらなければお手頃価格で高性能なWindows PCを手に入れるチャンス</strong>もあります。
+          </p>
+          <p className="media-card__desc" style={{ marginTop: 'var(--space-sm)' }}>
+            パソコンの買い替えサイクルまで考慮すると、初期費用だけでなくリセールバリューも含めた「実質コスト」で比較するのが賢い選び方です。
           </p>
         </div>
       </div>
+
+      {/* セキュリティ・ウイルス対策の違い */}
+      <div id="security" className="m-card m-card--shadow m-card--padded">
+        <div className="media-card__img-wrap">
+          <img
+            src="/images/content/photo/macbook-edit.webp"
+            alt="セキュリティのイメージ"
+            className="media-card__img"
+            width={240}
+            height={160}
+            loading="lazy"
+          />
+        </div>
+        <div className="media-card__body">
+          <h3 className="media-card__title">セキュリティ・ウイルス対策の違い</h3>
+          <p className="media-card__desc">
+            「Macはウイルスに強い」とよく言われますが、<strong>近年はMacを標的にしたマルウェアやフィッシング詐欺も増加</strong>しています。かつてはシェアの低さゆえに狙われにくかっただけです。
+          </p>
+          <p className="media-card__desc" style={{ marginTop: 'var(--space-sm)' }}>
+            macOSにはGatekeeper・XProtect・FileVaultなどのセキュリティ機能が標準で備わっており、初期状態でも一定の安全性があります。WindowsもWindows Defenderの性能が大幅に向上していますが、<strong>シェアが高い分だけ攻撃対象にされやすい</strong>ため、ウイルス対策ソフトを追加するユーザーも多いです。
+          </p>
+          <p className="media-card__desc" style={{ marginTop: 'var(--space-sm)' }}>
+            どちらのOSでも、OSやアプリを常に最新版に保つことが最も重要なセキュリティ対策です。
+          </p>
+        </div>
+      </div>
+
+      {/* バッテリー持ち・省電力性の違い */}
+      <div id="battery" className="m-card m-card--shadow m-card--padded">
+        <div className="media-card__img-wrap">
+          <img
+            src="/images/content/photo/macbook-image.jpg"
+            alt="MacBookのバッテリー"
+            className="media-card__img"
+            width={240}
+            height={160}
+            loading="lazy"
+          />
+        </div>
+        <div className="media-card__body">
+          <h3 className="media-card__title">バッテリー持ち・省電力性の違い</h3>
+          <p className="media-card__desc">
+            <strong>MacBookはApple Siliconの採用以降、バッテリー性能が飛躍的に向上</strong>しました。MacBook Airで最大18時間、MacBook Proでは最大24時間駆動と、一日中充電なしで作業できるレベルです。
+          </p>
+          <p className="media-card__desc" style={{ marginTop: 'var(--space-sm)' }}>
+            WindowsノートPCのバッテリー駆動時間はモデルによりさまざまですが、同価格帯で比較するとMacBookが優れるケースが多いです。外出先で長時間作業したい方はバッテリー性能を重視しましょう。
+          </p>
+        </div>
+      </div>
+
+      {/* 寿命・耐用年数の違い */}
+      <div id="lifespan" className="m-card m-card--shadow m-card--padded">
+        <div className="media-card__img-wrap">
+          <img
+            src="/images/content/photo/review-macbook-14inch-2021-summary.jpg"
+            alt="MacBook Proの外観"
+            className="media-card__img"
+            width={240}
+            height={160}
+            loading="lazy"
+          />
+        </div>
+        <div className="media-card__body">
+          <h3 className="media-card__title">寿命・耐用年数の違い</h3>
+          <p className="media-card__desc">
+            一般的にWindowsは3〜5年、Macは5〜7年が寿命の目安です。<strong>AppleはOSとハードウェアを一体設計しているため、古いモデルでも最適化されたパフォーマンスを維持しやすい</strong>のが長寿命の理由です。
+          </p>
+          <p className="media-card__desc" style={{ marginTop: 'var(--space-sm)' }}>
+            OSサポート期間も異なります。macOSは発売から約6〜7年間アップデートが提供されますが、Windowsはバージョンにより変動します。Windows 10は2025年10月にサポート終了予定で、Windows 11にはハードウェア要件を満たす必要があります。
+          </p>
+          <p className="media-card__desc" style={{ marginTop: 'var(--space-sm)' }}>
+            どちらのOSでも<strong>購入時のスペックに余裕を持たせる</strong>ことが寿命を延ばすコツです。
+          </p>
+        </div>
+      </div>
+
+      {/* サポート体制の違い */}
+      <div id="support" className="m-card m-card--shadow m-card--padded">
+        <div className="media-card__img-wrap">
+          <img
+            src="/images/content/photo/apple-store.jpg"
+            alt="Apple Storeの外観"
+            className="media-card__img"
+            width={240}
+            height={160}
+            loading="lazy"
+          />
+        </div>
+        <div className="media-card__body">
+          <h3 className="media-card__title">サポート体制の違い</h3>
+          <p className="media-card__desc">
+            MacはApple Store内の「Genius Bar」で専門スタッフに直接相談でき、電話やチャットサポートも充実。<strong>サポートが一元化されている</strong>のは初心者にとって安心です。AppleCare+に加入すれば修理費用も大幅に抑えられます。
+          </p>
+          <p className="media-card__desc" style={{ marginTop: 'var(--space-sm)' }}>
+            WindowsはOSサポートがMicrosoft、ハードウェアは各メーカーと問い合わせ先が分かれます。大手メーカーは手厚いサポートがありますが、格安モデルでは限定的な場合も。<strong>メーカーのサポート体制や保証内容を確認した上で購入</strong>しましょう。
+          </p>
+        </div>
+      </div>
+
+      {/* Apple Silicon（Mチップ）と性能面の違い */}
+      <div id="chip" className="m-card m-card--shadow m-card--padded">
+        <div className="media-card__img-wrap">
+          <img
+            src="/images/content/photo/m2.webp"
+            alt="Apple Silicon M2チップ"
+            className="media-card__img"
+            width={240}
+            height={160}
+            loading="lazy"
+          />
+        </div>
+        <div className="media-card__body">
+          <h3 className="media-card__title">Apple Silicon（Mチップ）と性能面の違い</h3>
+          <p className="media-card__desc">
+            2020年以降のMacにはApple独自の「Apple Silicon（M1〜M4チップ）」を搭載。CPUとGPUを統合したSoC設計により、<strong>高い処理性能と省電力を両立</strong>しています。動画編集や画像処理でも発熱が少なく、ファンレスで動作するモデルもあります。
+          </p>
+          <p className="media-card__desc" style={{ marginTop: 'var(--space-sm)' }}>
+            WindowsはIntel・AMD・Qualcommなど複数メーカーのCPUから選択可能。ハイエンドのIntel Core UltraやAMD Ryzenは、マルチコア性能やGPU拡張性でMacを上回る場面もあります。
+          </p>
+          <p className="media-card__desc" style={{ marginTop: 'var(--space-sm)' }}>
+            <strong>日常作業や動画編集ではApple Siliconのコスパが非常に高く</strong>、3Dレンダリングなど特殊な用途ではWindows＋高性能GPUが有利です。
+          </p>
+          <p className="lead-link" style={{ marginTop: 'var(--space-sm)' }}>
+            <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
+            Apple Siliconの性能をより詳しく知りたい方は「<a href="/macbook/benchmark/">MacBookベンチマークスコア比較</a>」もあわせてご覧ください。
+          </p>
+        </div>
+      </div>
+
+
+
     </div>
   )
 }

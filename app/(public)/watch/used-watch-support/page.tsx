@@ -8,6 +8,7 @@ import LifespanTable from './components/LifespanTable'
 import TimingSection from './components/TimingSection'
 import PopularSection from './components/PopularSection'
 import FaqSection from './components/FaqSection'
+import WatchRelatedLinks from '@/app/components/watch/WatchRelatedLinks'
 
 const PAGE_TITLE = 'Apple Watchはいつまで使える？機種別のサポート期間目安まとめ。買い替えるべき3つのタイミングも解説。'
 const PAGE_DESCRIPTION =
@@ -94,7 +95,7 @@ export default async function UsedWatchSupportPage() {
           <div className="hero-inner l-container">
             <div className="hero-content">
               <h1 className="hero-title">
-                Apple Watchはいつまで使える？<br />機種別のサポート期間目安まとめ
+                Apple Watchはいつまで使える？機種別のサポート期間目安まとめ
               </h1>
               <div className="hero-meta">
                 <i className="fa-regular fa-clock" aria-hidden="true"></i>
@@ -138,7 +139,7 @@ export default async function UsedWatchSupportPage() {
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
             <p className="toc-title">タップできる目次</p>
-            <ol className="l-grid l-grid--2col toc-list">
+            <ol className="l-grid l-grid--2col u-list-reset">
               <li>
                 <a href="#support-table" className="toc-item">
                   watchOS別サポート機種一覧表{' '}
@@ -173,6 +174,7 @@ export default async function UsedWatchSupportPage() {
         <TimingSection />
         <PopularSection />
         <FaqSection />
+        <WatchRelatedLinks excludeHref={["/watch/used-watch-support/", "/watch/recommend/"]} />
         <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>
       </article>

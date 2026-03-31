@@ -48,12 +48,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const osLife = calculateOSLifespan(model.date)
 
   // 動的に価格・チップ・サポート年数を埋め込む
-  const priceText = priceRange.minPrice ? `中古相場¥${priceRange.minPrice.toLocaleString()}〜` : '中古価格'
+  const priceText = priceRange.minPrice ? `（¥${priceRange.minPrice.toLocaleString()}〜）` : ''
   const chipText = model.cpu ? `${model.cpu}搭載` : ''
-  const osText = osLife.isSupported ? `${osLife.osEndYear}年頃までiOSサポート見込み` : 'iOSサポート終了済み'
+  const osText = osLife.isSupported ? `iOSサポート見込み` : 'iOSサポート終了済み'
 
   const title = `中古${model.model} レビュー｜スペック・価格相場・いつまで使える？`
-  const description = `${model.model}の${priceText}や${osText}をもとに、今から中古で買うべきかを判定。${chipText ? chipText + 'の' : ''}ベンチマーク・カメラ・バッテリーを比較しながら失敗しない選び方を解説します。`
+  const description = `${model.model}の中古相場${priceText}や${osText}をもとに、今から中古で買うべきかを判定。${chipText ? chipText + 'の' : ''}ベンチマーク・カメラ・バッテリーを比較しながら失敗しない選び方を解説します。`
 
   return {
     title,
@@ -133,8 +133,8 @@ export default async function IPhoneDetailPage({ params }: PageProps) {
         <BenchmarkGeekbench model={model} allModels={allModels} />
         <BenchmarkAntutu model={model} allModels={allModels} />
         <ReviewSection modelName={model.model} reviews={reviews} />
-        <RelatedArticles model={model} />
         <FaqSection model={model} latestPrice={latestPrice} shopLinks={modelShopLinks} />
+        <RelatedArticles model={model} />
         <ShareBox url={`https://used-lab.com/iphone/${model.slug}/`} text={`中古${model.model}は今買うべき？製品寿命、基本スペック、ベンチマークスコア、中古相場から解説`} />
         </div>
       </article>

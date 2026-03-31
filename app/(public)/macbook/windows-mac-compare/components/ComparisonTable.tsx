@@ -9,6 +9,11 @@ const rows = [
   { label: 'データ連携', win: 'やや不便', mac: '直感的に連携できる' },
   { label: 'デザイン', win: '多種多様', mac: 'シンプルで美しい' },
   { label: 'リセールバリュー', win: '低い', mac: '高い' },
+  { label: 'セキュリティ', win: '対策ソフト推奨', mac: '標準で高い安全性' },
+  { label: 'バッテリー', win: 'モデルによる', mac: '非常に長い' },
+  { label: '寿命', win: '3〜5年が目安', mac: '5〜7年が目安' },
+  { label: 'サポート', win: 'メーカーごとに異なる', mac: 'Appleが一元対応' },
+  { label: 'チップ性能', win: 'Intel / AMD（選択肢豊富）', mac: 'Apple Silicon（高効率）' },
 ]
 
 export default function ComparisonTable() {

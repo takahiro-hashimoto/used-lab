@@ -8,6 +8,7 @@ import type { AirPodsModel, AirPodsPriceLog, ProductShopLink } from '@/lib/types
 import { filterLast3Months } from '@/lib/utils/shared-helpers'
 import { PRICE_INFO_UPDATE_MONTH, CHART_COLORS, FAQ_ITEMS } from '@/lib/data/airpods-price-info'
 import Breadcrumb from '@/app/components/Breadcrumb'
+import AirPodsRelatedLinks from '@/app/components/airpods/AirPodsRelatedLinks'
 import ShareBox from '@/app/components/ShareBox'
 import DashboardSection from './components/DashboardSection'
 import PriceDropSection from './components/PriceDropSection'
@@ -317,12 +318,6 @@ export default async function AirPodsPriceInfoPage() {
               <h1 className="hero-title" itemProp="headline">
                 AirPodsの中古相場一覧 | 歴代{modelCount}機種の価格推移を独自集計【{PRICE_INFO_UPDATE_MONTH}】
               </h1>
-              <div className="hero-badges">
-                <span className="m-badge m-badge--translucent">全{modelCount}機種掲載</span>
-                <span className="m-badge m-badge--translucent">毎日自動更新</span>
-                <span className="m-badge m-badge--translucent">最安 &yen;{cheapestPrice}〜</span>
-                <span className="m-badge m-badge--translucent">イオシス・じゃんぱら・eイヤホン</span>
-              </div>
               <div className="hero-meta">
                 <i className="fa-regular fa-clock" aria-hidden="true"></i>
                 <span>
@@ -366,7 +361,7 @@ export default async function AirPodsPriceInfoPage() {
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
             <p className="toc-title">タップできる目次</p>
-            <ol className="l-grid l-grid--3col toc-list">
+            <ol className="l-grid l-grid--3col u-list-reset">
               <li>
                 <a href="#pd-dashboard" className="toc-item">
                   中古相場と価格推移 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
@@ -424,6 +419,7 @@ export default async function AirPodsPriceInfoPage() {
           <RecommendBanner />
 
           <FaqSection />
+        <AirPodsRelatedLinks excludeHref="/airpods/price/" />
         <ShareBox url={PAGE_URL} text={`AirPodsの中古相場一覧 | 歴代${modelCount}機種の価格推移を独自集計`} />
         </div>
       </article>

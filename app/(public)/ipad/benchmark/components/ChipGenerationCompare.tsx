@@ -56,7 +56,7 @@ export default function ChipGenerationCompare({ models }: { models: BenchModel[]
                       <td><BenchBar value={gen.avgSingle} maxValue={maxSingle} color="#e74c6f" /></td>
                       <td><BenchBar value={gen.avgMulti} maxValue={maxMulti} color="#f0a030" /></td>
                       <td><BenchBar value={gen.avgMetal} maxValue={maxMetal} color="var(--color-primary, #2589d0)" /></td>
-                      <td className="chip-gen-table__improvement">
+                      <td className="u-text-center">
                         {prev ? (
                           <span className="chip-gen-improvement">
                             <span className="chip-gen-improvement__badge chip-gen-improvement__badge--up">

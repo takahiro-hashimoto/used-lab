@@ -76,7 +76,7 @@ export default function KeyboardCompatTable({ models, keyboardAccessories }: Pro
           型番とあわせてチェックすることで、間違いのない購入ができます。
         </p>
         {/* フィルターUI */}
-        <div className="spec-filter" aria-label="絞り込み">
+        <div className="u-mb-xl" aria-label="絞り込み">
           <div className="spec-filter__row">
             <span className="spec-filter__label">機種絞り込み</span>
             <div className="spec-filter__tags">

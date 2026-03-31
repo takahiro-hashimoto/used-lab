@@ -8,6 +8,7 @@ import LifespanTable from './components/LifespanTable'
 import TimingSection from './components/TimingSection'
 import PopularSection from './components/PopularSection'
 import FaqSection from './components/FaqSection'
+import MacBookRelatedLinks from '@/app/components/macbook/MacBookRelatedLinks'
 
 const PAGE_TITLE = 'MacBookはいつまで使える？各機種ごとの寿命や買い替えのタイミングを解説'
 const PAGE_DESCRIPTION =
@@ -94,7 +95,7 @@ export default async function UsedMacbookSupportPage() {
           <div className="hero-inner l-container">
             <div className="hero-content">
               <h1 className="hero-title">
-                MacBookはいつまで使える？<br />各機種ごとの寿命や買い替えタイミング
+                MacBookはいつまで使える？各機種ごとの寿命や買い替えタイミング
               </h1>
               <div className="hero-meta">
                 <i className="fa-regular fa-clock" aria-hidden="true"></i>
@@ -138,7 +139,7 @@ export default async function UsedMacbookSupportPage() {
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
             <p className="toc-title">タップできる目次</p>
-            <ol className="l-grid l-grid--2col toc-list">
+            <ol className="l-grid l-grid--2col u-list-reset">
               <li>
                 <a href="#support-table" className="toc-item">
                   macOS別サポート機種一覧表{' '}
@@ -173,6 +174,7 @@ export default async function UsedMacbookSupportPage() {
         <TimingSection />
         <PopularSection />
         <FaqSection />
+        <MacBookRelatedLinks excludeHref={["/macbook/used-macbook-support/", "/macbook/recommend/"]} />
         <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>
       </article>

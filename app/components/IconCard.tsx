@@ -13,7 +13,7 @@ export default function IconCard({ icon, title, children }: IconCardProps) {
         <i className={icon} aria-hidden="true"></i>
         {title}
       </h3>
-      <div className="caution-check-card__text m-rich-text">
+      <div className="media-card__desc m-rich-text">
         {children}
       </div>
     </div>

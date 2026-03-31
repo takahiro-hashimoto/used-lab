@@ -13,7 +13,7 @@ export default function RecommendByTypeSection() {
           <h3 className="post-check-item__heading text-info">
             <i className="fa-solid fa-shield-halved" aria-hidden="true"></i> 安全重視・初めて中古iPadを買う人
           </h3>
-          <div className="caution-check-card__text m-rich-text">
+          <div className="media-card__desc m-rich-text">
             <p>中古に不安がある、失敗したくない、知識はあまりない人。検品済みで保証があり、Cellularモデルでも赤ロムの心配がほぼありません。初めてなら「安さ」より「戻れるかどうか」を基準に選ぶべきです。</p>
             <p className="lead-link">&rarr; 中古タブレット専門店 or Apple認定整備済製品</p>
           </div>
@@ -24,7 +24,7 @@ export default function RecommendByTypeSection() {
           <h3 className="post-check-item__heading text-caution">
             <i className="fa-solid fa-tags" aria-hidden="true"></i> 価格重視・ある程度知識がある人
           </h3>
-          <div className="caution-check-card__text m-rich-text">
+          <div className="media-card__desc m-rich-text">
             <p>中古iPadの相場感があり、多少の条件確認は自分でできる人。フリマより安全でありながら、セールや在庫次第で価格が下がりやすく、最低限の保証もあります。「安い＝フリマ」ではありません。</p>
             <p className="lead-link">&rarr; 中古タブレット専門店（価格重視店） or Amazon整備済み</p>
           </div>
@@ -35,7 +35,7 @@ export default function RecommendByTypeSection() {
           <h3 className="post-check-item__heading text-negative">
             <i className="fa-solid fa-gem" aria-hidden="true"></i> 掘り出し物を狙いたい人（上級者向け）
           </h3>
-          <div className="caution-check-card__text m-rich-text">
+          <div className="media-card__desc m-rich-text">
             <p>バッテリー状態・赤ロム・モデル寿命・Apple Pencil対応を自分で判断できる人。リスクを理解していることが前提です。初心者には向きません。安い理由を理解できないなら、手を出すべきではありません。</p>
             <p className="lead-link">&rarr; フリマアプリ・個人売買</p>
           </div>

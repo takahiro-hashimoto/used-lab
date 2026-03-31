@@ -3,6 +3,7 @@ import Breadcrumb from '@/app/components/Breadcrumb'
 import ShareBox from '@/app/components/ShareBox'
 import BuyMethodsSection from './components/BuyMethodsSection'
 import ConclusionSection from './components/ConclusionSection'
+import MacBookRelatedLinks from '@/app/components/macbook/MacBookRelatedLinks'
 
 const PAGE_TITLE = 'MacBookを安く買うには？おすすめの購入先7つを比較'
 const PAGE_DESCRIPTION =
@@ -88,18 +89,8 @@ export default function MacBookBuyPage() {
           <div className="hero-inner l-container">
             <div className="hero-content">
               <h1 className="hero-title" itemProp="headline">
-                MacBookを安く買うには？<br />おすすめの購入先7つを比較
+                MacBookを安く買うには？おすすめの購入先7つを比較
               </h1>
-              <div className="hero-actions">
-                <a href="#comparison" className="m-btn m-btn--hero-primary">
-                  <i className="fa-regular fa-bookmark" aria-hidden="true"></i>
-                  <span>購入先を比較する</span>
-                </a>
-                <a href="#how-to" className="m-btn m-btn--hero-outline">
-                  <i className="fa-regular fa-circle-check" aria-hidden="true"></i>
-                  <span>安く買うコツを見る</span>
-                </a>
-              </div>
               <div className="hero-meta">
                 <i className="fa-regular fa-clock" aria-hidden="true"></i>
                 <span>
@@ -151,7 +142,7 @@ export default function MacBookBuyPage() {
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
             <p className="toc-title">タップできる目次</p>
-            <ol className="l-grid l-grid--3col toc-list">
+            <ol className="l-grid l-grid--3col u-list-reset">
               <li>
                 <a href="#gift-rebates" className="toc-item">
                   ギフトカード×リーベイツ <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
@@ -198,6 +189,7 @@ export default function MacBookBuyPage() {
 
           <BuyMethodsSection />
 
+        <MacBookRelatedLinks excludeHref="/macbook/macbook-buy/" />
         <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>
       </article>

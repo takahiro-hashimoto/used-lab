@@ -197,7 +197,7 @@ export async function fetchMacbookPrices(): Promise<void> {
   const { data: models, error } = await supabase
     .from('macbook_models')
     .select('id, model, slug, cpu, strage, date')
-    .is('last_macos', null)
+    .eq('show', 1)
     .order('id', { ascending: true })
 
   if (error || !models) {

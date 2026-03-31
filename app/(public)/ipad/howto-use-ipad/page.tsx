@@ -7,6 +7,7 @@ import LifestyleSection from './components/LifestyleSection'
 import WorkStudySection from './components/WorkStudySection'
 import CreativeSection from './components/CreativeSection'
 import FaqSection from './components/FaqSection'
+import IPadRelatedLinks from '@/app/components/ipad/IPadRelatedLinks'
 
 const PAGE_TITLE = 'iPadがあればできること・便利な使い道 22選【生活が変わる】'
 const PAGE_DESCRIPTION =
@@ -96,6 +97,30 @@ export default function HowtoUseIpadPage() {
           text: 'iPadの違いに関しては歴代iPadのスペック比較で詳しく解説しています。',
         },
       },
+      {
+        '@type': 'Question',
+        name: 'iPadのストレージ容量はどれくらい必要ですか？',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: '動画視聴や電子書籍がメインなら64GB〜128GBで十分です。写真・動画編集やイラスト制作など大容量データを扱う場合は256GB以上がおすすめ。USB-C対応モデルなら外部ストレージも活用できるため、本体容量を抑えるという選択肢もあります。',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Apple PencilはどのiPadに対応していますか？',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Apple Pencilは世代やモデルによって対応するiPadが異なります。最新のApple Pencil ProはM4 iPad ProやM2以降のiPad Airに対応。第1世代・第2世代・USB-Cモデルもそれぞれ対応機種が違うため、購入前に必ず確認しましょう。',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: '中古や整備済製品のiPadでも快適に使えますか？',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'はい、iPadOSのサポート対象モデルであれば中古でも快適に使えます。特にM1チップ以降を搭載したモデルは処理性能に余裕があり、ステージマネージャーやApple Intelligenceなどの最新機能にも対応しています。',
+        },
+      },
     ],
   }
 
@@ -133,18 +158,8 @@ export default function HowtoUseIpadPage() {
           <div className="hero-inner l-container">
             <div className="hero-content">
               <h1 className="hero-title" itemProp="headline">
-                iPadがあればできること<br className="sp-only" />便利な使い道 22選<br className="sp-only" />【生活が変わる】
+                iPadがあればできること 便利な使い道 22選【生活が変わる】
               </h1>
-              <div className="hero-actions">
-                <a href="#content" className="m-btn m-btn--hero-primary">
-                  <i className="fa-solid fa-lightbulb" aria-hidden="true"></i>
-                  <span>使い道を見る</span>
-                </a>
-                <a href="#matome" className="m-btn m-btn--hero-outline">
-                  <i className="fa-regular fa-circle-check" aria-hidden="true"></i>
-                  <span>まとめを確認</span>
-                </a>
-              </div>
               <div className="hero-meta">
                 <i className="fa-regular fa-clock" aria-hidden="true"></i>
                 <span>
@@ -177,10 +192,10 @@ export default function HowtoUseIpadPage() {
                 「iPadって結局何に使うの？」「買っても使わなくなりそう…」そんな疑問を持っている方は多いのではないでしょうか。
               </p>
               <p>
-                実はiPadは使い方次第で<strong>日常生活から仕事・勉強・趣味まで幅広く活躍</strong>してくれる万能デバイス。本記事ではiPadの便利な使い道を22個厳選してご紹介します。
+                実はiPadは使い方次第で<strong>日常生活から仕事・勉強・趣味まで幅広く活躍</strong>してくれる万能デバイス。iPadOSのマルチタスク機能やApple Pencilとの連携により、スマホでは難しかった作業も快適にこなせます。本記事ではiPadの便利な使い道を22個厳選してご紹介します。
               </p>
               <p>
-                きっと「こんな使い方もあったのか！」と新しい発見があるはずです。
+                きっと「こんな使い方もあったのか！」と、iPadを使いこなすための新しい発見があるはずです。
               </p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
@@ -194,7 +209,7 @@ export default function HowtoUseIpadPage() {
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
             <p className="toc-title">タップできる目次</p>
-            <ol className="l-grid l-grid--3col toc-list">
+            <ol className="l-grid l-grid--3col u-list-reset">
               <li>
                 <a href="#entertainment" className="toc-item">
                   エンタメ編 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
@@ -272,7 +287,7 @@ export default function HowtoUseIpadPage() {
           {/* セクション: よくある質問 */}
           <FaqSection />
 
-        {/* シェアボックス */}
+        <IPadRelatedLinks excludeHref={["/ipad/howto-use-ipad/", "/ipad/recommend/"]} />
         <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>
       </article>

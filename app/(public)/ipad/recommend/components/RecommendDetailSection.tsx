@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import { placeholder } from '@/lib/placeholder'
 import type { IPadModel, IPadPriceLog, ProductShopLink, FallbackShop } from '@/lib/types'
 import { formatPrice, formatReleaseDate, buildDisplayLinks, calculateAnnualCost } from '@/lib/utils/shared-helpers'
 import { calculatePriceRange, calculateOSLifespan } from '@/lib/utils/ipad-helpers'
@@ -68,16 +69,16 @@ export default function RecommendDetailSection({ items }: Props) {
                     <Image
                       src={`/images/ipad/${model.image}`}
                       alt={`${model.model}の外観`}
-                      width={200}
-                      height={280}
+                      width={300}
+                      height={420}
                       loading="lazy"
                     />
                   ) : (
                     <Image
-                      src="https://placehold.co/200x280/f5f5f7/1d1d1f?text=iPad"
+                      src={placeholder(300, 420, 'iPad')}
                       alt={`${model.model}の外観`}
-                      width={200}
-                      height={280}
+                      width={300}
+                      height={420}
                       loading="lazy"
                     />
                   )}

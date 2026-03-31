@@ -41,8 +41,8 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
   },
   robots: {
-    index: false,
-    follow: false,
+    index: true,
+    follow: true,
   },
 };
 
@@ -55,11 +55,13 @@ export default function RootLayout({
     <html lang="ja" className={`${inter.variable} ${notoSansJP.variable}`}>
       <head>
         <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossOrigin="anonymous" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossOrigin="anonymous" />
+        <Script id="fa-loader" strategy="afterInteractive" dangerouslySetInnerHTML={{
+          __html: `var l=document.createElement('link');l.rel='stylesheet';l.href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css';l.crossOrigin='anonymous';document.head.appendChild(l);`,
+        }} />
         {GA_ID && (
           <>
-            <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} strategy="afterInteractive" />
-            <Script id="gtag-init" strategy="afterInteractive" dangerouslySetInnerHTML={{
+            <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} strategy="lazyOnload" />
+            <Script id="gtag-init" strategy="lazyOnload" dangerouslySetInnerHTML={{
               __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${GA_ID}');`,
             }} />
           </>

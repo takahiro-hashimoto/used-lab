@@ -53,7 +53,7 @@ export default function ModelPurchaseVerdict({
           </div>
 
           {/* 結論テキスト */}
-          <div className="conclusion-body m-rich-text">
+          <div className="u-mb-lg m-rich-text">
             {v.descriptions.map((text, i) => (
               <p key={i}>{text}</p>
             ))}

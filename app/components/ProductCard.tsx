@@ -1,4 +1,6 @@
 import Link from 'next/link'
+import Image from 'next/image'
+import { placeholder } from '@/lib/placeholder'
 
 interface ProductCardProps {
   variant: 'compact' | 'detail'
@@ -43,8 +45,8 @@ export default function ProductCard({
     return (
       <div key={modelId} className="price-card m-card m-card--shadow">
         <figure className="price-card__img">
-          <img
-            src={imageUrl || `https://placehold.co/80x80/f5f5f7/1d1d1f?text=${encodeURIComponent(fallbackImg)}`}
+          <Image
+            src={imageUrl || placeholder(80, 80, fallbackImg)}
             alt={modelName}
             width={80}
             height={80}
@@ -52,7 +54,7 @@ export default function ProductCard({
           />
         </figure>
         <div className="price-card__info">
-          <h3 className="price-card__name">{modelName}</h3>
+          <p className="price-card__name">{modelName}</p>
           <p className="price-card__meta">{metaText}</p>
         </div>
         <div className="price-card__price">
@@ -75,8 +77,8 @@ export default function ProductCard({
     <div key={modelId} className="guide-recommend m-card m-card--shadow">
       <div className="guide-recommend__inner">
         <figure className="guide-recommend__img">
-          <img
-            src={imageUrl || `https://placehold.co/120x140/f5f5f7/1d1d1f?text=${encodeURIComponent(fallbackImg)}`}
+          <Image
+            src={imageUrl || placeholder(120, 140, fallbackImg)}
             alt={modelName}
             width={120}
             height={140}
@@ -85,7 +87,7 @@ export default function ProductCard({
         </figure>
         <div className="guide-recommend__body">
           <div className="guide-recommend__header sp-col">
-            <h3 className="guide-recommend__name sp-text-base">{modelName}</h3>
+            <p className="guide-recommend__name sp-text-base">{modelName}</p>
             {tagLabel && <span className="guide-recommend__tag">{tagLabel}</span>}
           </div>
           {specs && (

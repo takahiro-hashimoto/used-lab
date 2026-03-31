@@ -2,13 +2,13 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import ShareBox from '@/app/components/ShareBox'
-import PopularMacBook from '@/app/components/PopularMacBook'
 import FaqSection from './components/FaqSection'
 import ComparisonBasics from './components/ComparisonBasics'
 import MacbookStrengths from './components/MacbookStrengths'
 import IpadStrengths from './components/IpadStrengths'
 import NoDifference from './components/NoDifference'
 import RecommendSection from './components/RecommendSection'
+import MacBookRelatedLinks from '@/app/components/macbook/MacBookRelatedLinks'
 
 const PAGE_TITLE = 'MacBookとiPadどっちを買うのがおすすめ？両者の違いと使い勝手を比較'
 const PAGE_DESCRIPTION =
@@ -91,18 +91,8 @@ export default function IpadMacbookComparePage() {
           <div className="hero-inner l-container">
             <div className="hero-content">
               <h1 className="hero-title" itemProp="headline">
-                MacBookとiPadどっちを<br className="sp-only" />買うのがおすすめ？<br className="sp-only" />両者の違いと使い勝手を比較
+                MacBookとiPadどっちを買うのがおすすめ？両者の違いと使い勝手を比較
               </h1>
-              <div className="hero-actions">
-                <a href="#recommend" className="m-btn m-btn--hero-primary">
-                  <i className="fa-solid fa-user-check" aria-hidden="true"></i>
-                  <span>結論を見る</span>
-                </a>
-                <a href="#comparison" className="m-btn m-btn--hero-outline">
-                  <i className="fa-solid fa-scale-balanced" aria-hidden="true"></i>
-                  <span>比較表を見る</span>
-                </a>
-              </div>
               <div className="hero-meta">
                 <i className="fa-regular fa-clock" aria-hidden="true"></i>
                 <span>
@@ -150,7 +140,7 @@ export default function IpadMacbookComparePage() {
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
             <p className="toc-title">タップできる目次</p>
-            <ol className="l-grid l-grid--3col toc-list">
+            <ol className="l-grid l-grid--3col u-list-reset">
               <li>
                 <a href="#recommend" className="toc-item">
                   結論：おすすめ <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
@@ -304,12 +294,12 @@ export default function IpadMacbookComparePage() {
               </div>
 
               {/* 関連リンク */}
-              <div className="l-grid l-grid--2col l-grid--gap-lg guide-spec-links" style={{ marginTop: 'var(--space-2xl)' }}>
+              <div className="l-grid l-grid--2col l-grid--gap-lg u-mb-3xl" style={{ marginTop: 'var(--space-2xl)' }}>
                 <a className="m-card m-card--shadow related-link-card related-link-card--icon m-card--hoverable" href="/macbook">
                   <span className="related-link-card__icon m-icon-box m-icon-box--sm">
                     <i className="fa-solid fa-laptop" aria-hidden="true"></i>
                   </span>
-                  <h3 className="related-link-card__title">中古MacBook完全購入ガイド</h3>
+                  <p className="related-link-card__title">中古MacBook完全購入ガイド</p>
                   <p className="related-link-card__desc">
                     MacBookの選び方・おすすめモデル・中古相場をわかりやすく解説。初めての方でも安心です。
                   </p>
@@ -321,7 +311,7 @@ export default function IpadMacbookComparePage() {
                   <span className="related-link-card__icon m-icon-box m-icon-box--sm">
                     <i className="fa-solid fa-tablet-screen-button" aria-hidden="true"></i>
                   </span>
-                  <h3 className="related-link-card__title">中古iPad完全購入ガイド</h3>
+                  <p className="related-link-card__title">中古iPad完全購入ガイド</p>
                   <p className="related-link-card__desc">
                     iPadの選び方・おすすめモデル・中古相場をわかりやすく解説。自分に合った1台が見つかります。
                   </p>
@@ -333,7 +323,7 @@ export default function IpadMacbookComparePage() {
             </div>
           </section>
         <FaqSection />
-        <PopularMacBook />
+        <MacBookRelatedLinks excludeHref={["/macbook/ipad-macbook-compare/", "/macbook/recommend/"]} />
 
         {/* シェアボックス */}
         <ShareBox url={PAGE_URL} text={PAGE_TITLE} />

@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from 'react'
 import { BoolCell } from '@/app/components/spec-table-utils'
+import { placeholder } from '@/lib/placeholder'
 
 type Series = 'normal' | 'se' | 'ultra'
 
@@ -99,7 +100,7 @@ export default function SpecTableSection() {
         </p>
 
         {/* フィルターUI */}
-        <div className="spec-filter" aria-label="絞り込み">
+        <div className="u-mb-xl" aria-label="絞り込み">
           <div className="spec-filter__row">
             <span className="spec-filter__label">並び替え</span>
             <div className="spec-filter__tags">
@@ -161,7 +162,7 @@ export default function SpecTableSection() {
                   {filtered.map(m => (
                     <td key={`img-${m.slug}`}>
                       <img
-                        src={m.image ? `/images/watch/${m.image}` : `https://placehold.co/60x60/f5f5f7/1d1d1f?text=${encodeURIComponent(m.name)}`}
+                        src={m.image ? `/images/watch/${m.image}` : placeholder(60, 60, m.name)}
                         alt={`${m.name}の商品画像`}
                         width={60}
                         height={60}

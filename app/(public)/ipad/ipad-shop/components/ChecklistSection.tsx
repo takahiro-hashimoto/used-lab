@@ -12,7 +12,7 @@ export default function ChecklistSection() {
         </p>
         <p className="m-section-desc">どれも実際の購入者が見落としがちな項目なので、必ず確認しておきましょう。</p>
 
-        <div className="l-grid l-grid--2col l-grid--gap-lg post-check-grid">
+        <div className="l-grid l-grid--2col l-grid--gap-lg u-mt-xl">
           <IconCard icon="fa-solid fa-battery-half" title="バッテリー最大容量は80%以上が目安">
               <p>中古iPadではバッテリーの劣化具合が使い心地に直結します。</p>
               <p>iPadはiPhoneと異なり標準設定からバッテリー最大容量を確認できないため、販売店の記載を確認するか、にこスマなどバッテリー表示のあるショップで購入するのがおすすめです。</p>

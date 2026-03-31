@@ -20,7 +20,6 @@ export default function Footer() {
               <a href="https://www.youtube.com/@takahiro_mono" aria-label="YouTube" rel="noopener noreferrer">
                 <i className="fa-brands fa-youtube" aria-hidden="true"></i>
               </a>
-
             </div>
           </div>
 

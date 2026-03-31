@@ -22,6 +22,7 @@ import CompareSection from '@/app/components/CompareSection'
 import CompareSelector from './components/CompareSelector'
 import RecommendBanner from './components/RecommendBanner'
 import FaqSection from './components/FaqSection'
+import AirPodsRelatedLinks from '@/app/components/airpods/AirPodsRelatedLinks'
 import ShareBox from '@/app/components/ShareBox'
 import AdminEditLink from '@/app/components/AdminEditLink'
 
@@ -40,7 +41,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!model) return {}
   const displayName = model.model ? `${model.name}（${model.model}）` : model.name
   const title = `中古${displayName}は今買うべき？サポート期間、基本スペック、中古相場から解説`
-  const description = `${displayName}の中古価格相場、スペック比較、おすすめショップ情報を徹底解説。`
+  const description = `${displayName}の中古相場やスペックをもとに、今から中古で買うべきかを判定。音質・ノイズキャンセリング・バッテリーを比較しながら失敗しない選び方を解説します。`
   return {
     title,
     description,
@@ -113,6 +114,7 @@ export default async function AirPodsDetailPage({ params }: PageProps) {
         </CompareSection>
         <RecommendBanner />
         <FaqSection model={model} latestPrice={latestPrice} shopLinks={modelShopLinks} />
+        <AirPodsRelatedLinks excludeHref={`/airpods/${model.slug}/`} />
         <ShareBox url={`https://used-lab.com/airpods/${model.slug}/`} text={`中古${model.name}（${model.model}）は今買うべき？サポート期間、基本スペック、中古相場から解説`} />
         </div>
       </article>

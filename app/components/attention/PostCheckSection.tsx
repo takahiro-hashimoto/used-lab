@@ -16,14 +16,14 @@ export default function PostCheckSection({ heading, productName, checkItems }: P
         <p className="m-section-desc">中古{productName}が届いたら、返品・交換期限を逃さないために以下の項目をすぐに確認してください。</p>
         <p className="m-section-desc">初期不良や記載と異なる点があれば、早めにショップへ連絡しましょう。</p>
 
-        <div className="l-grid l-grid--2col l-grid--gap-lg post-check-grid">
+        <div className="l-grid l-grid--2col l-grid--gap-lg u-mt-xl">
           {checkItems.map((item, i) => (
             <div key={i} className="m-card m-card--shadow m-card--padded post-check-item">
               <h3 className="post-check-item__heading">
                 {item.icon && <i className={item.icon} aria-hidden="true"></i>}
                 {item.heading}
               </h3>
-              <div className="caution-check-card__text m-rich-text">{item.text}</div>
+              <div className="media-card__desc m-rich-text">{item.text}</div>
             </div>
           ))}
         </div>

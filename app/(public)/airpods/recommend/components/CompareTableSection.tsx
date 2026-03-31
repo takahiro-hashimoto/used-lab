@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import { placeholder } from '@/lib/placeholder'
 import type { AirPodsModel, AirPodsPriceLog, ProductShopLink } from '@/lib/types'
 import { calculateFirmwareLifespan } from '@/lib/utils/airpods-helpers'
 import { RECOMMEND_COUNT_LABEL } from '@/lib/data/airpods-recommend'
@@ -59,7 +60,7 @@ export default function CompareTableSection({ items }: Props) {
                         />
                       ) : (
                         <Image
-                          src="https://placehold.co/60x80/f5f5f7/1d1d1f?text=AirPods"
+                          src={placeholder(60, 80, 'AirPods')}
                           alt={model.name}
                           width={60}
                           height={80}
@@ -164,12 +165,12 @@ export default function CompareTableSection({ items }: Props) {
         </div>
 
         {/* 関連リンクカード */}
-        <div className="l-grid l-grid--3col l-grid--gap-lg related-links">
+        <div className="l-grid l-grid--3col l-grid--gap-lg u-mt-2xl">
           <Link href="/airpods/airpods-spec-table/" className="m-card m-card--shadow related-link-card related-link-card--icon">
             <span className="related-link-card__icon related-link-card__icon--blue">
               <i className="fa-solid fa-table-cells" aria-hidden="true"></i>
             </span>
-            <h3 className="related-link-card__title">スペック比較表</h3>
+            <p className="related-link-card__title">スペック比較表</p>
             <p className="related-link-card__desc">歴代AirPodsのスペックを網羅。細かな仕様まで確認</p>
             <span className="related-link-card__arrow">
               <i className="fa-solid fa-chevron-right" aria-hidden="true"></i>
@@ -179,7 +180,7 @@ export default function CompareTableSection({ items }: Props) {
             <span className="related-link-card__icon">
               <i className="fa-solid fa-clock-rotate-left" aria-hidden="true"></i>
             </span>
-            <h3 className="related-link-card__title">サポート期間一覧</h3>
+            <p className="related-link-card__title">サポート期間一覧</p>
             <p className="related-link-card__desc">AirPodsの寿命とサポート期間を機種別に一覧で紹介</p>
             <span className="related-link-card__arrow">
               <i className="fa-solid fa-chevron-right" aria-hidden="true"></i>
@@ -189,7 +190,7 @@ export default function CompareTableSection({ items }: Props) {
             <span className="related-link-card__icon">
               <i className="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>
             </span>
-            <h3 className="related-link-card__title">購入時の注意点</h3>
+            <p className="related-link-card__title">購入時の注意点</p>
             <p className="related-link-card__desc">中古AirPodsを買う前に確認すべきチェックポイント</p>
             <span className="related-link-card__arrow">
               <i className="fa-solid fa-chevron-right" aria-hidden="true"></i>

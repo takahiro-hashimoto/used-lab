@@ -3,6 +3,7 @@ import Breadcrumb from '@/app/components/Breadcrumb'
 import ShareBox from '@/app/components/ShareBox'
 import BuyMethodsSection from './components/BuyMethodsSection'
 import ConclusionSection from './components/ConclusionSection'
+import IPadRelatedLinks from '@/app/components/ipad/IPadRelatedLinks'
 
 const PAGE_TITLE = 'iPadを安く買うには？おすすめの購入先7つを比較'
 const PAGE_DESCRIPTION =
@@ -88,18 +89,8 @@ export default function IPadBuyPage() {
           <div className="hero-inner l-container">
             <div className="hero-content">
               <h1 className="hero-title" itemProp="headline">
-                iPadを安く買うには？<br />おすすめの購入先7つを比較
+                iPadを安く買うには？おすすめの購入先7つを比較
               </h1>
-              <div className="hero-actions">
-                <a href="#comparison" className="m-btn m-btn--hero-primary">
-                  <i className="fa-regular fa-bookmark" aria-hidden="true"></i>
-                  <span>購入先を比較する</span>
-                </a>
-                <a href="#how-to" className="m-btn m-btn--hero-outline">
-                  <i className="fa-regular fa-circle-check" aria-hidden="true"></i>
-                  <span>安く買うコツを見る</span>
-                </a>
-              </div>
               <div className="hero-meta">
                 <i className="fa-regular fa-clock" aria-hidden="true"></i>
                 <span>
@@ -151,7 +142,7 @@ export default function IPadBuyPage() {
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
             <p className="toc-title">タップできる目次</p>
-            <ol className="l-grid l-grid--3col toc-list">
+            <ol className="l-grid l-grid--3col u-list-reset">
               <li>
                 <a href="#gift-rebates" className="toc-item">
                   ギフトカード×リーベイツ <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
@@ -198,6 +189,7 @@ export default function IPadBuyPage() {
 
           <BuyMethodsSection />
 
+        <IPadRelatedLinks excludeHref="/ipad/ipad-buy/" />
         <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>
       </article>

@@ -151,7 +151,7 @@ export default function DashboardSection({ modelsData, initialSelected, seriesGr
         </p>
 
         {/* モデル選択チップ */}
-        <div className="pd-selector">
+        <div className="u-mb-xl">
           <p className="pd-selector__title">比較モデルを選択（最大4機種）</p>
           <div className="pd-selector__grid">
             {modelsData.map((m) => (

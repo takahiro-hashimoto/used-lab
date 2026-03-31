@@ -15,6 +15,7 @@ import RankingSection from './components/RankingSection'
 import PriceHistorySection from './components/PriceHistorySection'
 import Image from 'next/image'
 import FaqSection from './components/FaqSection'
+import MacBookRelatedLinks from '@/app/components/macbook/MacBookRelatedLinks'
 
 // ============================================================
 // 型定義
@@ -324,12 +325,6 @@ export default async function MacBookPriceInfoPage() {
               <h1 className="hero-title" itemProp="headline">
                 MacBookの中古相場一覧 | 歴代{modelCount}機種の価格推移を独自集計【{PRICE_INFO_UPDATE_MONTH}】
               </h1>
-              <div className="hero-badges">
-                <span className="m-badge m-badge--translucent">全{modelCount}機種掲載</span>
-                <span className="m-badge m-badge--translucent">毎日自動更新</span>
-                <span className="m-badge m-badge--translucent">最安 &yen;{cheapestPrice}〜</span>
-                <span className="m-badge m-badge--translucent">楽天市場の中古ショップから集計</span>
-              </div>
               <div className="hero-meta">
                 <i className="fa-regular fa-clock" aria-hidden="true"></i>
                 <span>
@@ -373,7 +368,7 @@ export default async function MacBookPriceInfoPage() {
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
             <p className="toc-title">タップできる目次</p>
-            <ol className="l-grid l-grid--3col toc-list">
+            <ol className="l-grid l-grid--3col u-list-reset">
               <li>
                 <a href="#pd-dashboard" className="toc-item">
                   中古相場と価格推移 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
@@ -458,6 +453,7 @@ export default async function MacBookPriceInfoPage() {
           </section>
 
           <FaqSection />
+          <MacBookRelatedLinks excludeHref={["/macbook/macbook-price-info/", "/macbook/recommend/"]} />
           <ShareBox url={PAGE_URL} text={`MacBookの中古相場一覧 | 歴代${modelCount}機種の価格推移を独自集計`} />
         </div>
       </article>

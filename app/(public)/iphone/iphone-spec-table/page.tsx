@@ -178,16 +178,6 @@ export default async function IPhoneSpecTablePage() {
               <h1 className="hero-title" itemProp="headline">
                 歴代iPhoneスペック比較表！気になる機種の性能差や違いがわかる
               </h1>
-              <div className="hero-actions">
-                <a href="#spec-table" className="m-btn m-btn--hero-primary">
-                  <i className="fa-solid fa-table-list" aria-hidden="true"></i>
-                  <span>スペック表を見る</span>
-                </a>
-                <a href="#benchmark" className="m-btn m-btn--hero-outline">
-                  <i className="fa-solid fa-chart-bar" aria-hidden="true"></i>
-                  <span>ベンチマークを見る</span>
-                </a>
-              </div>
               <div className="hero-meta">
                 <i className="fa-regular fa-clock" aria-hidden="true"></i>
                 <span>
@@ -236,7 +226,7 @@ export default async function IPhoneSpecTablePage() {
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
             <p className="toc-title">タップできる目次</p>
-            <ol className="l-grid l-grid--3col toc-list">
+            <ol className="l-grid l-grid--3col u-list-reset">
               <li>
                 <a href="#spec-table" className="toc-item">
                   歴代iPhoneのスペック比較表一覧{' '}
@@ -279,7 +269,7 @@ export default async function IPhoneSpecTablePage() {
         <GlossarySection productName="iPhone" items={GLOSSARY_ITEMS} />
 
         {/* 関連記事 */}
-        <IPhoneRelatedLinks excludeHref="/iphone/iphone-spec-table/" />
+        <IPhoneRelatedLinks excludeHref={["/iphone/iphone-spec-table/", "/iphone/recommend/"]} />
         <section className="l-section" id="popular" aria-labelledby="heading-popular">
           <div className="l-container">
             <h2 className="m-section-heading m-section-heading--lg" id="heading-popular">目的別に人気の中古iPhone</h2>

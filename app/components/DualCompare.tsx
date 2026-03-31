@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Image from 'next/image'
 import StickyTableWrapper from '@/app/components/StickyTableWrapper'
 import type { ProductShopLink } from '@/lib/types'
 
@@ -112,7 +113,7 @@ export default function DualCompare({
                 <th></th>
                 <td className="compare-table__image-cell">
                   {modelA.image && (
-                    <img
+                    <Image
                       src={`/images/${imagePath}/${modelA.image}`}
                       alt={modelA.model}
                       width={120}
@@ -123,7 +124,7 @@ export default function DualCompare({
                 </td>
                 <td className="compare-table__image-cell">
                   {modelB.image && (
-                    <img
+                    <Image
                       src={`/images/${imagePath}/${modelB.image}`}
                       alt={modelB.model}
                       width={120}

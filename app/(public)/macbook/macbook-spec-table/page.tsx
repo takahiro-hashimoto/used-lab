@@ -26,6 +26,7 @@ const GLOSSARY_ITEMS = [
 ]
 import ShareBox from '@/app/components/ShareBox'
 import PopularMacBook from '@/app/components/PopularMacBook'
+import MacBookRelatedLinks from '@/app/components/macbook/MacBookRelatedLinks'
 
 export const metadata: Metadata = {
   title: '歴代MacBookスペック比較表！Air・Proの性能差や違いがすぐわかる',
@@ -155,16 +156,6 @@ export default async function MacBookSpecTablePage() {
               <h1 className="hero-title">
                 歴代MacBookスペック比較表！Air・Proの性能差や違いがすぐわかる
               </h1>
-              <div className="hero-actions">
-                <a href="#spec-table" className="m-btn m-btn--hero-primary">
-                  <i className="fa-solid fa-table-list" aria-hidden="true"></i>
-                  <span>スペック表を見る</span>
-                </a>
-                <a href="#benchmark" className="m-btn m-btn--hero-outline">
-                  <i className="fa-solid fa-chart-bar" aria-hidden="true"></i>
-                  <span>ベンチマークを見る</span>
-                </a>
-              </div>
               <div className="hero-meta">
                 <i className="fa-regular fa-clock" aria-hidden="true"></i>
                 <span>
@@ -212,7 +203,7 @@ export default async function MacBookSpecTablePage() {
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
             <p className="toc-title">タップできる目次</p>
-            <ol className="l-grid l-grid--3col toc-list">
+            <ol className="l-grid l-grid--3col u-list-reset">
               <li>
                 <a href="#spec-table" className="toc-item">
                   歴代MacBookスペック比較表{' '}
@@ -254,6 +245,7 @@ export default async function MacBookSpecTablePage() {
         <EvolutionTimeline />
         <GlossarySection productName="MacBook" items={GLOSSARY_ITEMS} />
         <PopularMacBook />
+        <MacBookRelatedLinks excludeHref="/macbook/macbook-spec-table/" />
         <ShareBox url="https://used-lab.com/macbook/macbook-spec-table/" text="歴代MacBookスペック比較表！Air・Proの性能差や違いがすぐわかる" />
         </div>
       </article>

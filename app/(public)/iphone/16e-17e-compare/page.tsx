@@ -84,18 +84,8 @@ export default function IPhone16e17eComparePage() {
             <div className="hero-inner l-container">
               <div className="hero-content">
                 <h1 className="hero-title" itemProp="headline">
-                  iPhone 16eと17e<br className="sp-only" />どっちがいい？<br className="sp-only" />違いと選び方を<br className="sp-only" />やさしく解説
+                  iPhone 16eと17eどっちがいい？違いと選び方をやさしく解説
                 </h1>
-                <div className="hero-actions">
-                  <a href="#comparison" className="m-btn m-btn--hero-primary">
-                    <i className="fa-solid fa-scale-balanced" aria-hidden="true"></i>
-                    <span>比較表を見る</span>
-                  </a>
-                  <a href="#recommend" className="m-btn m-btn--hero-outline">
-                    <i className="fa-solid fa-user-check" aria-hidden="true"></i>
-                    <span>おすすめを見る</span>
-                  </a>
-                </div>
                 <div className="hero-meta">
                   <i className="fa-regular fa-clock" aria-hidden="true"></i>
                   <span>
@@ -131,7 +121,7 @@ export default function IPhone16e17eComparePage() {
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
             <p className="toc-title">タップできる目次</p>
-            <ol className="l-grid l-grid--3col toc-list">
+            <ol className="l-grid l-grid--3col u-list-reset">
               <li>
                 <a href="#comparison" className="toc-item">
                   比較表 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>

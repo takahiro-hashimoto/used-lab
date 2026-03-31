@@ -35,7 +35,7 @@ export default function RecommendSection() {
       <div id="recommend-ipad" className="m-card m-card--shadow m-card--padded">
         <div className="media-card__img-wrap">
           <img
-            src="/images/ipad/ipad-11-pro-m4-8.webp"
+            src="/images/content/photo/magextand-m-use-low-table.jpg"
             alt="iPadがおすすめな人"
             className="media-card__img"
             width={800}

@@ -10,6 +10,7 @@ import { filterLast3Months } from '@/lib/utils/shared-helpers'
 import { PRICE_INFO_UPDATE_MONTH, CHART_COLORS, FAQ_ITEMS } from '@/lib/data/iphone-price-info'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import ShareBox from '@/app/components/ShareBox'
+import IPhoneRelatedLinks from '@/app/components/iphone/IPhoneRelatedLinks'
 import DashboardSection from './components/DashboardSection'
 import PriceDropSection from './components/PriceDropSection'
 import RankingSection from './components/RankingSection'
@@ -349,12 +350,6 @@ export default async function IPhonePriceInfoPage() {
               <h1 className="hero-title" itemProp="headline">
                 iPhoneの中古相場一覧 | 歴代{modelCount}機種の価格推移を独自集計【{PRICE_INFO_UPDATE_MONTH}】
               </h1>
-              <div className="hero-badges">
-                <span className="m-badge m-badge--translucent">全{modelCount}機種掲載</span>
-                <span className="m-badge m-badge--translucent">毎日自動更新</span>
-                <span className="m-badge m-badge--translucent">最安 &yen;{cheapestPrice}〜</span>
-                <span className="m-badge m-badge--translucent">イオシス・ゲオ・じゃんぱら</span>
-              </div>
               <div className="hero-meta">
                 <i className="fa-regular fa-clock" aria-hidden="true"></i>
                 <span>
@@ -398,7 +393,7 @@ export default async function IPhonePriceInfoPage() {
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
             <p className="toc-title">タップできる目次</p>
-            <ol className="l-grid l-grid--3col toc-list">
+            <ol className="l-grid l-grid--3col u-list-reset">
               <li>
                 <a href="#pd-dashboard" className="toc-item">
                   中古相場と価格推移 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
@@ -456,6 +451,7 @@ export default async function IPhonePriceInfoPage() {
           <RecommendBanner />
 
           <FaqSection />
+        <IPhoneRelatedLinks excludeHref="/iphone/price-info/" />
         <ShareBox url={PAGE_URL} text={`iPhoneの中古相場一覧 | 歴代${modelCount}機種の価格推移を独自集計`} />
         </div>
       </article>

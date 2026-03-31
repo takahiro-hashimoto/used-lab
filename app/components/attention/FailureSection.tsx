@@ -17,14 +17,14 @@ export default function FailureSection({ productName, guidePath, failurePatterns
         <p className="m-section-desc">中古{productName}購入で後悔する人には共通点があります。</p>
         <p className="m-section-desc">以下の{failurePatterns.length}つは特に多い失敗パターンです。当てはまりそうなら要注意。</p>
 
-        <div className="l-grid l-grid--2col l-grid--gap-lg post-check-grid">
+        <div className="l-grid l-grid--2col l-grid--gap-lg u-mt-xl">
           {failurePatterns.map((item, i) => (
             <div key={i} className="m-card m-card--shadow m-card--padded post-check-item">
               <h3 className="post-check-item__heading">
                 {item.icon && <i className={item.icon} aria-hidden="true"></i>}
                 {item.heading}
               </h3>
-              <div className="caution-check-card__text m-rich-text">{item.text}</div>
+              <div className="media-card__desc m-rich-text">{item.text}</div>
             </div>
           ))}
         </div>

@@ -76,7 +76,7 @@ export default function ChargingTable({ models }: Props) {
         </p>
 
         {/* フィルターUI */}
-        <div className="spec-filter" aria-label="絞り込み">
+        <div className="u-mb-xl" aria-label="絞り込み">
           <div className="spec-filter__row">
             <span className="spec-filter__label">機種別の絞り込み</span>
             <div className="spec-filter__tags">

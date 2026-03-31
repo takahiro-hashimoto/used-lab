@@ -67,31 +67,31 @@ export const GUIDE_FAQ_ITEMS = [
 // ---------- 歴代MacBook個別記事リンク ----------
 export const GUIDE_MODEL_LINKS = {
   air13: [
-    { slug: 'mba-13-2025', name: 'MacBook Air 13インチ M4', meta: '2025年3月発売 / M4' },
-    { slug: 'mba-13-2024', name: 'MacBook Air 13インチ M3', meta: '2024年3月発売 / M3' },
-    { slug: 'mba-13-2022', name: 'MacBook Air 13インチ M2', meta: '2022年6月発売 / M2' },
-    { slug: 'mba-13-2020', name: 'MacBook Air 13インチ M1', meta: '2020年11月発売 / M1' },
+    { slug: 'mba-13-2025', name: 'MBA 13インチ M4', meta: '2025年3月発売' },
+    { slug: 'mba-13-2024', name: 'MBA 13インチ M3', meta: '2024年3月発売' },
+    { slug: 'mba-13-2022', name: 'MBA 13インチ M2', meta: '2022年6月発売' },
+    { slug: 'mba-13-2020', name: 'MBA 13インチ M1', meta: '2020年11月発売' },
   ],
   air15: [
-    { slug: 'mba-15-2025', name: 'MacBook Air 15インチ M4', meta: '2025年3月発売 / M4' },
-    { slug: 'mba-15-2024', name: 'MacBook Air 15インチ M3', meta: '2024年3月発売 / M3' },
-    { slug: 'mba-15-2023', name: 'MacBook Air 15インチ M2', meta: '2023年6月発売 / M2' },
+    { slug: 'mba-15-2025', name: 'MBA 15インチ M4', meta: '2025年3月発売' },
+    { slug: 'mba-15-2024', name: 'MBA 15インチ M3', meta: '2024年3月発売' },
+    { slug: 'mba-15-2023', name: 'MBA 15インチ M2', meta: '2023年6月発売' },
   ],
   pro14: [
-    { slug: 'mbp-14-2024-nov', name: 'MacBook Pro 14インチ M4', meta: '2024年11月発売 / M4' },
-    { slug: 'mbp-14-2023-nov', name: 'MacBook Pro 14インチ M3', meta: '2023年11月発売 / M3' },
-    { slug: 'mbp-14-2023', name: 'MacBook Pro 14インチ M2 Pro', meta: '2023年1月発売 / M2 Pro' },
-    { slug: 'mbp-14-2021', name: 'MacBook Pro 14インチ M1 Pro', meta: '2021年10月発売 / M1 Pro' },
+    { slug: 'mbp-14-2024-nov', name: 'MBP 14インチ M4', meta: '2024年11月発売' },
+    { slug: 'mbp-14-2023-nov', name: 'MBP 14インチ M3', meta: '2023年11月発売' },
+    { slug: 'mbp-14-2023', name: 'MBP 14インチ M2 Pro', meta: '2023年1月発売' },
+    { slug: 'mbp-14-2021', name: 'MBP 14インチ M1 Pro', meta: '2021年10月発売' },
   ],
   pro16: [
-    { slug: 'mbp-16-2024-nov', name: 'MacBook Pro 16インチ M4 Pro', meta: '2024年11月発売 / M4 Pro' },
-    { slug: 'mbp-16-2023-nov', name: 'MacBook Pro 16インチ M3 Pro', meta: '2023年11月発売 / M3 Pro' },
-    { slug: 'mbp-16-2023', name: 'MacBook Pro 16インチ M2 Pro', meta: '2023年1月発売 / M2 Pro' },
-    { slug: 'mbp-16-2021', name: 'MacBook Pro 16インチ M1 Pro', meta: '2021年10月発売 / M1 Pro' },
+    { slug: 'mbp-16-2024-nov', name: 'MBP 16インチ M4 Pro', meta: '2024年11月発売' },
+    { slug: 'mbp-16-2023-nov', name: 'MBP 16インチ M3 Pro', meta: '2023年11月発売' },
+    { slug: 'mbp-16-2023', name: 'MBP 16インチ M2 Pro', meta: '2023年1月発売' },
+    { slug: 'mbp-16-2021', name: 'MBP 16インチ M1 Pro', meta: '2021年10月発売' },
   ],
   pro13: [
-    { slug: 'mbp-13-2022', name: 'MacBook Pro 13インチ M2', meta: '2022年6月発売 / M2' },
-    { slug: 'mbp-13-2020', name: 'MacBook Pro 13インチ M1', meta: '2020年11月発売 / M1' },
+    { slug: 'mbp-13-2022', name: 'MBP 13インチ M2', meta: '2022年6月発売' },
+    { slug: 'mbp-13-2020', name: 'MBP 13インチ M1', meta: '2020年11月発売' },
   ],
 }
 

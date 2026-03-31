@@ -4,6 +4,7 @@ import RatingMark from '@/app/components/RatingMark'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import ShareBox from '@/app/components/ShareBox'
 import FaqSection from '@/app/components/support/FaqSection'
+import IPadRelatedLinks from '@/app/components/ipad/IPadRelatedLinks'
 
 const PAGE_TITLE = 'iPadはWi-Fiモデルとセルラーモデルどっちがおすすめ？両者の違い4つを比較'
 const PAGE_DESCRIPTION =
@@ -85,18 +86,8 @@ export default function WifiCellularPage() {
           <div className="hero-inner l-container">
             <div className="hero-content">
               <h1 className="hero-title" itemProp="headline">
-                iPadはWi-Fiモデルと<br className="sp-only" />セルラーモデルどっちがおすすめ？<br className="sp-only" />両者の違い4つを比較
+                iPadはWi-Fiモデルとセルラーモデルどっちがおすすめ？両者の違い4つを比較
               </h1>
-              <div className="hero-actions">
-                <a href="#content" className="m-btn m-btn--hero-primary">
-                  <i className="fa-solid fa-arrows-left-right" aria-hidden="true"></i>
-                  <span>違いを比較する</span>
-                </a>
-                <a href="#recommendation" className="m-btn m-btn--hero-outline">
-                  <i className="fa-regular fa-circle-check" aria-hidden="true"></i>
-                  <span>おすすめを確認</span>
-                </a>
-              </div>
               <div className="hero-meta">
                 <i className="fa-regular fa-clock" aria-hidden="true"></i>
                 <span>
@@ -143,7 +134,7 @@ export default function WifiCellularPage() {
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
             <p className="toc-title">タップできる目次</p>
-            <ol className="l-grid l-grid--3col toc-list">
+            <ol className="l-grid l-grid--3col u-list-reset">
               <li>
                 <a href="#conclusion" className="toc-item">
                   結論：違いのまとめ <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
@@ -473,23 +464,22 @@ export default function WifiCellularPage() {
 
                 {/* 1. 楽天モバイル */}
                 <div className="m-card m-card--shadow m-card--padded">
-                  <div className="caution-check-card__body">
-                    <div className="caution-check-card__visual">
-                      <figure className="caution-check-card__image">
-                        <a href="https://hb.afl.rakuten.co.jp/hsc/4ebf9dc9.4dc93727.1d6c2ffe.7ec2aeb6/?link_type=pict&rafst=rmn&ut=eyJwYWdlIjoic2hvcCIsInR5cGUiOiJwaWN0IiwiY29sIjoxLCJjYXQiOjEsImJhbiI6MjM3Nzg5NiwiYW1wIjpmYWxzZX0%3D" rel="nofollow sponsored noopener" target="_blank">
-                          {/* eslint-disable-next-line @next/next/no-img-element */}
-                          <img
-                            src="https://hbb.afl.rakuten.co.jp/hsb/4ebf9dc9.4dc93727.1d6c2ffe.7ec2aeb6/?me_id=2101065&me_adv_id=2377896&t=pict"
-                            alt="楽天モバイル"
-                            width={300}
-                            height={250}
-                            loading="lazy"
-                          />
-                        </a>
-                      </figure>
-                    </div>
-                    <div className="caution-check-card__text m-rich-text">
-                      <h3 className="caution-check-card__heading">楽天モバイル</h3>
+                  <div className="media-card__img-wrap">
+                    <a href="https://hb.afl.rakuten.co.jp/hsc/4ebf9dc9.4dc93727.1d6c2ffe.7ec2aeb6/?link_type=pict&rafst=rmn&ut=eyJwYWdlIjoic2hvcCIsInR5cGUiOiJwaWN0IiwiY29sIjoxLCJjYXQiOjEsImJhbiI6MjM3Nzg5NiwiYW1wIjpmYWxzZX0%3D" rel="nofollow sponsored noopener" target="_blank">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src="https://hbb.afl.rakuten.co.jp/hsb/4ebf9dc9.4dc93727.1d6c2ffe.7ec2aeb6/?me_id=2101065&me_adv_id=2377896&t=pict"
+                        alt="楽天モバイル"
+                        className="media-card__img"
+                        width={300}
+                        height={250}
+                        loading="lazy"
+                      />
+                    </a>
+                  </div>
+                  <div className="media-card__body">
+                    <div className="media-card__desc m-rich-text">
+                      <h3 className="media-card__title">楽天モバイル</h3>
                       <ul className="m-check-list">
                         <li><i className="fa-solid fa-check" aria-hidden="true"></i> 使った分だけ支払う段階制プラン</li>
                         <li><i className="fa-solid fa-check" aria-hidden="true"></i> 月3GBまで1,078円（税込）</li>
@@ -508,23 +498,22 @@ export default function WifiCellularPage() {
 
                 {/* 2. ahamo */}
                 <div className="m-card m-card--shadow m-card--padded">
-                  <div className="caution-check-card__body">
-                    <div className="caution-check-card__visual">
-                      <figure className="caution-check-card__image">
-                        <a href="https://px.a8.net/svt/ejp?a8mat=3HMOV6+ENI2R6+4TIO+5ZMCH" rel="nofollow sponsored noopener" target="_blank">
-                          {/* eslint-disable-next-line @next/next/no-img-element */}
-                          <img
-                            src="https://www28.a8.net/svt/bgt?aid=211010658886&wid=001&eno=01&mid=s00000022488001006000&mc=1"
-                            alt="ahamo"
-                            width={300}
-                            height={250}
-                            loading="lazy"
-                          />
-                        </a>
-                      </figure>
-                    </div>
-                    <div className="caution-check-card__text m-rich-text">
-                      <h3 className="caution-check-card__heading">ahamo</h3>
+                  <div className="media-card__img-wrap">
+                    <a href="https://px.a8.net/svt/ejp?a8mat=3HMOV6+ENI2R6+4TIO+5ZMCH" rel="nofollow sponsored noopener" target="_blank">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src="https://www28.a8.net/svt/bgt?aid=211010658886&wid=001&eno=01&mid=s00000022488001006000&mc=1"
+                        alt="ahamo"
+                        className="media-card__img"
+                        width={300}
+                        height={250}
+                        loading="lazy"
+                      />
+                    </a>
+                  </div>
+                  <div className="media-card__body">
+                    <div className="media-card__desc m-rich-text">
+                      <h3 className="media-card__title">ahamo</h3>
                       <ul className="m-check-list">
                         <li><i className="fa-solid fa-check" aria-hidden="true"></i> 月額2,970円（税込）で20GB</li>
                         <li><i className="fa-solid fa-check" aria-hidden="true"></i> <strong>大盛りオプションで最大100GB</strong></li>
@@ -607,7 +596,7 @@ export default function WifiCellularPage() {
           </div>
         </section>
 
-        {/* シェアボックス */}
+        <IPadRelatedLinks excludeHref={["/ipad/wifi-cellular/", "/ipad/recommend/"]} />
         <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>
       </article>

@@ -3,6 +3,7 @@ import Image from 'next/image'
 import RatingMark from '@/app/components/RatingMark'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import ShareBox from '@/app/components/ShareBox'
+import IPhoneRelatedLinks from '@/app/components/iphone/IPhoneRelatedLinks'
 
 const PAGE_TITLE = '意外と良い選択肢？ネットワーク制限△の中古iPhone・iPadを買うメリット・デメリットを解説'
 const PAGE_DESCRIPTION =
@@ -131,18 +132,8 @@ export default function NetworkLimitPage() {
             <div className="hero-inner l-container">
               <div className="hero-content">
                 <h1 className="hero-title" itemProp="headline">
-                  ネットワーク制限△の<br className="sp-only" />中古iPhone・iPadを買う<br className="sp-only" />メリット・デメリットを解説
+                  ネットワーク制限△の中古iPhone・iPadを買うメリット・デメリットを解説
                 </h1>
-                <div className="hero-actions">
-                  <a href="#merit-demerit" className="m-btn m-btn--hero-primary">
-                    <i className="fa-solid fa-scale-balanced" aria-hidden="true"></i>
-                    <span>メリデメを見る</span>
-                  </a>
-                  <a href="#shop" className="m-btn m-btn--hero-outline">
-                    <i className="fa-solid fa-shield-halved" aria-hidden="true"></i>
-                    <span>赤ロム保証ショップ</span>
-                  </a>
-                </div>
                 <div className="hero-meta">
                   <i className="fa-regular fa-clock" aria-hidden="true"></i>
                   <span>
@@ -189,7 +180,7 @@ export default function NetworkLimitPage() {
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
             <p className="toc-title">タップできる目次</p>
-            <ol className="l-grid l-grid--3col toc-list">
+            <ol className="l-grid l-grid--3col u-list-reset">
               <li>
                 <a href="#meaning" className="toc-item">
                   ネットワーク制限△の意味 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
@@ -513,6 +504,7 @@ export default function NetworkLimitPage() {
             </div>
           </section>
 
+          <IPhoneRelatedLinks excludeHref={["/iphone/network-limit/", "/iphone/recommend/"]} />
           <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>
       </article>

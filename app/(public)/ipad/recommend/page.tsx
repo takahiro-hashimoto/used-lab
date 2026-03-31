@@ -32,6 +32,7 @@ import ChecklistSection from '@/app/components/ChecklistSection'
 import ShopSection from '@/app/components/ShopSection'
 import IPadFaqSection from './components/IPadFaqSection'
 import ValueZoneChart from '@/app/components/ValueZoneChart'
+import IPadRelatedLinks from '@/app/components/ipad/IPadRelatedLinks'
 
 const PAGE_TITLE = `中古iPadのおすすめ${RECOMMEND_COUNT}機種を解説。狙い目の型落ちモデルどれ？【${RECOMMEND_DATE_LABEL}版】`
 const PAGE_DESCRIPTION =
@@ -188,13 +189,6 @@ export default async function IPadRecommendPage() {
               <h1 className="hero-title" itemProp="headline">
                 {PAGE_TITLE}
               </h1>
-              <div className="hero-badges">
-                {recommendModels.map((model) => (
-                  <span key={model.id} className="m-badge m-badge--translucent">
-                    <i className="fa-regular fa-square" aria-hidden="true"></i> {model.model}
-                  </span>
-                ))}
-              </div>
               <div className="hero-meta">
                 <i className="fa-regular fa-clock" aria-hidden="true"></i>
                 <span>
@@ -246,7 +240,7 @@ export default async function IPadRecommendPage() {
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
             <p className="toc-title">タップできる目次</p>
-            <ol className="l-grid l-grid--3col toc-list">
+            <ol className="l-grid l-grid--3col u-list-reset">
               <li>
                 <a href="#conclusion" className="toc-item">
                   結論：選ぶべき{RECOMMEND_COUNT_LABEL} <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
@@ -400,6 +394,7 @@ export default async function IPadRecommendPage() {
             ]}
           />
           <IPadFaqSection />
+        <IPadRelatedLinks heading="iPad選びをもっと深掘りする" description="購入先の比較や相場チェックなど、iPad選びに役立つ記事をまとめました。" excludeHref="/ipad/recommend/" />
         <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>
       </article>

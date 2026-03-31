@@ -39,12 +39,12 @@ export default function ComparisonBasics() {
         </div>
         <div className="media-card__img-grid">
           <figure>
-            <Image src="/images/content/photo/use-macbook.jpg" alt="MacBookで複数アプリを立ち上げ・行き来する様子" width={400} height={300} loading="lazy" />
-            <figcaption>MacBookで複数アプリを立ち上げ・行き来する様子</figcaption>
+            <Image src="/images/content/photo/ipad-sprit-view-1024x683.webp" alt="iPadのSplit Viewで複数のアプリを同時に立ち上げる様子" width={400} height={300} loading="lazy" />
+            <figcaption>iPadのSplit Viewで複数のアプリを同時に立ち上げる様子</figcaption>
           </figure>
           <figure>
-            <Image src="/images/content/photo/ipad-split-view.jpg" alt="iPadのSplit Viewで複数のアプリを同時に立ち上げる様子" width={400} height={300} loading="lazy" />
-            <figcaption>iPadのSplit Viewで複数のアプリを同時に立ち上げる様子</figcaption>
+            <Image src="/images/content/photo/macbook-multi-task-1024x683.webp" alt="MacBookで複数アプリを立ち上げ・行き来する様子" width={400} height={300} loading="lazy" />
+            <figcaption>MacBookで複数アプリを立ち上げ・行き来する様子</figcaption>
           </figure>
         </div>
       </div>
@@ -54,154 +54,31 @@ export default function ComparisonBasics() {
         <div className="media-card__body">
           <h3 className="media-card__title">サイズ・形状</h3>
           <p className="media-card__desc">
-            MacBookはノートパソコン型のデバイスです。現行ラインナップの各モデルごとのインチ数や重量をまとめると下記のようになります。
+            MacBookとiPadはそもそもデバイスの形状が異なります。それぞれの特徴を押さえておきましょう。
           </p>
         </div>
 
-        {/* MacBook スペック表 */}
-        <div className="m-card m-table-card" style={{ marginTop: 'var(--space-md)' }}>
-          <div className="m-table-scroll">
-            <table className="m-table m-table--center">
-              <thead>
-                <tr>
-                  <th></th>
-                  <th colSpan={3}>MacBook Air</th>
-                  <th colSpan={3}>MacBook Pro</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th>イメージ</th>
-                  <td>
-                    <Image src="/images/macbook/mba-13-2020.jpg" alt="MacBook Air 13.3インチ" width={80} height={80} style={{ objectFit: 'contain' }} />
-                  </td>
-                  <td>
-                    <Image src="/images/macbook/mba-13-2024.jpg" alt="MacBook Air 13.6インチ" width={80} height={80} style={{ objectFit: 'contain' }} />
-                  </td>
-                  <td>
-                    <Image src="/images/macbook/mba-15-2024.jpg" alt="MacBook Air 15.3インチ" width={80} height={80} style={{ objectFit: 'contain' }} />
-                  </td>
-                  <td>
-                    <Image src="/images/macbook/mbp-13-2022.jpg" alt="MacBook Pro 13.6インチ" width={80} height={80} style={{ objectFit: 'contain' }} />
-                  </td>
-                  <td>
-                    <Image src="/images/macbook/mbp-14-2024-nov.jpg" alt="MacBook Pro 14.2インチ" width={80} height={80} style={{ objectFit: 'contain' }} />
-                  </td>
-                  <td>
-                    <Image src="/images/macbook/mbp-16-2024-nov.jpg" alt="MacBook Pro 16.2インチ" width={80} height={80} style={{ objectFit: 'contain' }} />
-                  </td>
-                </tr>
-                <tr>
-                  <th>インチ数</th>
-                  <td>13.3インチ</td>
-                  <td>13.6インチ</td>
-                  <td>15.3インチ</td>
-                  <td>13.6インチ</td>
-                  <td>14.2インチ</td>
-                  <td>16.2インチ</td>
-                </tr>
-                <tr>
-                  <th>重量</th>
-                  <td>1.2kg</td>
-                  <td>1.2kg</td>
-                  <td>1.5kg</td>
-                  <td>1.4kg</td>
-                  <td>1.6kg</td>
-                  <td>2.1kg</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <div className="media-card__body" style={{ marginTop: 'var(--space-lg)' }}>
-          <p className="media-card__desc">
-            iPadはタブレット端末で、Magic KeyboardなどのApple純正キーボードを組み合わせることで、ノートパソコンに近い感覚でタイピングできるようになります。現行ラインナップの各モデルごとのインチ数や重量をまとめると下記のようになります。
-          </p>
-        </div>
-
-        {/* iPad スペック表 */}
-        <div className="m-card m-table-card" style={{ marginTop: 'var(--space-md)' }}>
-          <div className="m-table-scroll">
-            <table className="m-table m-table--center">
-              <thead>
-                <tr>
-                  <th></th>
-                  <th>iPad Pro 12.9</th>
-                  <th>iPad Pro 11</th>
-                  <th>iPad Air</th>
-                  <th>iPad mini</th>
-                  <th>無印 iPad</th>
-                  <th>無印 iPad</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th>イメージ</th>
-                  <td>
-                    <Image src="/images/ipad/ipad-pro-12-6.jpg" alt="iPad Pro 12.9インチ" width={80} height={80} style={{ objectFit: 'contain' }} />
-                  </td>
-                  <td>
-                    <Image src="/images/ipad/ipad-pro-11-6.jpg" alt="iPad Pro 11インチ" width={80} height={80} style={{ objectFit: 'contain' }} />
-                  </td>
-                  <td>
-                    <Image src="/images/ipad/ipad-air-7-11.jpg" alt="iPad Air" width={80} height={80} style={{ objectFit: 'contain' }} />
-                  </td>
-                  <td>
-                    <Image src="/images/ipad/ipad-mini-7.jpg" alt="iPad mini" width={80} height={80} style={{ objectFit: 'contain' }} />
-                  </td>
-                  <td>
-                    <Image src="/images/ipad/ipad-10.jpg" alt="無印 iPad 10.9インチ" width={80} height={80} style={{ objectFit: 'contain' }} />
-                  </td>
-                  <td>
-                    <Image src="/images/ipad/ipad-9.jpg" alt="無印 iPad 10.2インチ" width={80} height={80} style={{ objectFit: 'contain' }} />
-                  </td>
-                </tr>
-                <tr>
-                  <th>画面サイズ</th>
-                  <td>12.9インチ</td>
-                  <td>11インチ</td>
-                  <td>10.9インチ</td>
-                  <td>8.3インチ</td>
-                  <td>10.9インチ</td>
-                  <td>10.2インチ</td>
-                </tr>
-                <tr>
-                  <th>重さ</th>
-                  <td>682g</td>
-                  <td>466g</td>
-                  <td>461g</td>
-                  <td>293g</td>
-                  <td>477g</td>
-                  <td>487g</td>
-                </tr>
-                <tr>
-                  <th>純正キーボード</th>
-                  <td>
-                    Magic Keyboard<br />
-                    Smart Keyboard Folio
-                  </td>
-                  <td>
-                    Magic Keyboard<br />
-                    Smart Keyboard Folio
-                  </td>
-                  <td>
-                    Magic Keyboard<br />
-                    Smart Keyboard Folio
-                  </td>
-                  <td>なし</td>
-                  <td>Smart Keyboard Folio</td>
-                  <td>Smart Keyboard</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <div className="media-card__body" style={{ marginTop: 'var(--space-md)' }}>
-          <p className="media-card__desc">
-            各iPadに対応しているSmart Keyboard FolioやMagic Keyboardの重量は500〜700gほど。<strong>組み合わせ次第では同等のインチ数のMacBookよりも重量が重くなる</strong>のはややネガティブなポイントです。
-          </p>
+        <div className="glossary-box" style={{ marginTop: 'var(--space-md)', backgroundColor: '#f7f7f8', borderRadius: 'var(--radius-md)' }}>
+          <dl className="glossary-list">
+            <div className="glossary-item">
+              <dt className="glossary-item-title">
+                <i className="fa-solid fa-laptop" aria-hidden="true" style={{ marginRight: 'var(--space-xs)' }}></i>
+                MacBook
+              </dt>
+              <dd className="glossary-item-desc">
+                ノートパソコン型のデバイス。画面サイズは<strong>13.3〜16.2インチ</strong>、重量は<strong>約1.2〜2.1kg</strong>。キーボードとトラックパッドが一体になっているため、開いたらすぐに作業を始められます。
+              </dd>
+            </div>
+            <div className="glossary-item">
+              <dt className="glossary-item-title">
+                <i className="fa-solid fa-tablet-screen-button" aria-hidden="true" style={{ marginRight: 'var(--space-xs)' }}></i>
+                iPad
+              </dt>
+              <dd className="glossary-item-desc">
+                タブレット型のデバイス。画面サイズは<strong>8.3〜12.9インチ</strong>、本体重量は<strong>約293〜682g</strong>と軽量です。Magic KeyboardなどのApple純正キーボードを組み合わせればノートパソコンに近い感覚でタイピングもできます。ただしキーボードの重量が500〜700gあるため、<strong>組み合わせ次第では同サイズのMacBookより重くなる</strong>点には注意が必要です。
+              </dd>
+            </div>
+          </dl>
         </div>
       </div>
 
@@ -214,26 +91,27 @@ export default function ComparisonBasics() {
           </p>
         </div>
 
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-md)', marginTop: 'var(--space-md)' }}>
-          <div className="m-card" style={{ padding: 'var(--space-lg)' }}>
-            <p style={{ fontWeight: 700, marginBottom: 'var(--space-sm)' }}>
-              <i className="fa-solid fa-laptop" aria-hidden="true" style={{ marginRight: 'var(--space-xs)' }}></i>
-              MacBook
-            </p>
-            <p className="media-card__desc">
-              キーボードやトラックパッドで操作するのが基本。トラックパッドは細かく設定を変えることができ、これを駆使することで作業効率をぐっとアップさせることができます。
-            </p>
-          </div>
-
-          <div className="m-card" style={{ padding: 'var(--space-lg)' }}>
-            <p style={{ fontWeight: 700, marginBottom: 'var(--space-sm)' }}>
-              <i className="fa-solid fa-tablet-screen-button" aria-hidden="true" style={{ marginRight: 'var(--space-xs)' }}></i>
-              iPad
-            </p>
-            <p className="media-card__desc">
-              スマホと同様にタッチ操作で扱うのが基本。加えてApple PencilやMagic Keyboardなどの周辺機器を使用することで、手書き入力やキーボード入力もできるようになります。
-            </p>
-          </div>
+        <div className="glossary-box" style={{ marginTop: 'var(--space-md)', backgroundColor: '#f7f7f8', borderRadius: 'var(--radius-md)' }}>
+          <dl className="glossary-list">
+            <div className="glossary-item">
+              <dt className="glossary-item-title">
+                <i className="fa-solid fa-laptop" aria-hidden="true" style={{ marginRight: 'var(--space-xs)' }}></i>
+                MacBook
+              </dt>
+              <dd className="glossary-item-desc">
+                キーボードやトラックパッドで操作するのが基本。トラックパッドは細かく設定を変えることができ、これを駆使することで作業効率をぐっとアップさせることができます。
+              </dd>
+            </div>
+            <div className="glossary-item">
+              <dt className="glossary-item-title">
+                <i className="fa-solid fa-tablet-screen-button" aria-hidden="true" style={{ marginRight: 'var(--space-xs)' }}></i>
+                iPad
+              </dt>
+              <dd className="glossary-item-desc">
+                スマホと同様にタッチ操作で扱うのが基本。加えてApple PencilやMagic Keyboardなどの周辺機器を使用することで、手書き入力やキーボード入力もできるようになります。
+              </dd>
+            </div>
+          </dl>
         </div>
 
         <div className="media-card__body" style={{ marginTop: 'var(--space-md)' }}>

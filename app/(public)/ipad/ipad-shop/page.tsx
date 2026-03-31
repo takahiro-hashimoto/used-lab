@@ -18,6 +18,7 @@ import ChecklistSection from './components/ChecklistSection'
 import PopularSection from './components/PopularSection'
 import ConclusionSection from './components/ConclusionSection'
 import FaqSection from './components/FaqSection'
+import IPadRelatedLinks from '@/app/components/ipad/IPadRelatedLinks'
 
 const PAGE_TITLE = `中古iPadはどこで買う？ECサイト・ショップのおすすめを紹介【${SHOP_PAGE_DATE_LABEL}】`
 const PAGE_DESCRIPTION = `中古iPadを買うならどこがおすすめ？信頼できるECサイト・ショップを保証・価格・品質の観点から徹底比較。最適な購入先を紹介します【${SHOP_PAGE_DATE_LABEL}】`
@@ -131,18 +132,8 @@ export default async function IPadShopPage() {
           <div className="hero-inner l-container">
             <div className="hero-content">
               <h1 className="hero-title" itemProp="headline">
-                中古iPadを買うならどこ？<br />ECサイト・ショップのおすすめを紹介
+                中古iPadを買うならどこ？ECサイト・ショップのおすすめを紹介
               </h1>
-              <div className="hero-actions">
-                <a href="#shops-detail" className="m-btn m-btn--hero-primary">
-                  <i className="fa-regular fa-bookmark" aria-hidden="true"></i>
-                  <span>おすすめショップを見る</span>
-                </a>
-                <a href="#shops" className="m-btn m-btn--hero-outline">
-                  <i className="fa-regular fa-circle-check" aria-hidden="true"></i>
-                  <span>選び方を確認</span>
-                </a>
-              </div>
               <div className="hero-meta">
                 <i className="fa-regular fa-clock" aria-hidden="true"></i>
                 <span>
@@ -190,7 +181,7 @@ export default async function IPadShopPage() {
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
             <p className="toc-title">タップできる目次</p>
-            <ol className="l-grid l-grid--3col toc-list">
+            <ol className="l-grid l-grid--3col u-list-reset">
               <li>
                 <a href="#shops" className="toc-item">
                   主な購入先4つ <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
@@ -236,6 +227,7 @@ export default async function IPadShopPage() {
           <PopularSection />
           <FaqSection />
           <ConclusionSection />
+        <IPadRelatedLinks excludeHref={["/ipad/ipad-shop/", "/ipad/recommend/"]} />
         <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>
       </article>

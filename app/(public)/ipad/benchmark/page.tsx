@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
-import { getHeroImage } from '@/lib/data/hero-images'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import ShareBox from '@/app/components/ShareBox'
 import { getAllIPadModels, getAllIPadPriceLogsByModelIds, getAllProductShopLinksByType } from '@/lib/queries'
@@ -9,10 +8,11 @@ import type { IPadPriceLog, ProductShopLink } from '@/lib/types'
 import BenchmarkRanking from './components/BenchmarkRanking'
 import ChipGenerationCompare from './components/ChipGenerationCompare'
 import UseCaseGuide from './components/UseCaseGuide'
+import IPadRelatedLinks from '@/app/components/ipad/IPadRelatedLinks'
 
-const PAGE_TITLE = '歴代iPadのベンチマーク比較ランキング｜Geekbench 6 & AnTuTuスコアで性能が一目でわかる'
+const PAGE_TITLE = 'iPadのベンチマークを比較！全モデルの性能がわかるスコアランキング【2026年版】'
 const PAGE_DESCRIPTION =
-  '歴代iPadのGeekbench 6・AnTuTuベンチマークスコアをランキング形式で比較。シングルコア・マルチコア・GPU性能の3指標で性能差がひと目でわかります。チップ世代別の進化や用途別おすすめスコアの目安も解説。'
+  '歴代iPadのGeekbench 6・AnTuTuベンチマークスコアをランキング形式で比較。AチップからMチップまで、シングルコア・マルチコア・GPU性能の差がひと目でわかる一覧表付き。用途別おすすめスコアの目安も解説。'
 const PAGE_URL = 'https://used-lab.com/ipad/benchmark/'
 
 export const revalidate = 86400
@@ -160,18 +160,8 @@ export default async function BenchmarkPage() {
             <div className="hero-inner l-container">
               <div className="hero-content">
                 <h1 className="hero-title" itemProp="headline">
-                  歴代iPadの<br className="sp-only" />ベンチマーク比較ランキング
+                  iPadのベンチマークを比較！全モデルの性能がわかるスコアランキング
                 </h1>
-                <div className="hero-actions">
-                  <a href="#ranking" className="m-btn m-btn--hero-primary">
-                    <i className="fa-solid fa-ranking-star" aria-hidden="true"></i>
-                    <span>ランキングを見る</span>
-                  </a>
-                  <a href="#chip-compare" className="m-btn m-btn--hero-outline">
-                    <i className="fa-solid fa-microchip" aria-hidden="true"></i>
-                    <span>チップ世代比較</span>
-                  </a>
-                </div>
                 <div className="hero-meta">
                   <i className="fa-regular fa-clock" aria-hidden="true"></i>
                   <span>
@@ -210,7 +200,7 @@ export default async function BenchmarkPage() {
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
             <p className="toc-title">タップできる目次</p>
-            <ol className="l-grid l-grid--3col toc-list">
+            <ol className="l-grid l-grid--3col u-list-reset">
               <li><a href="#score-guide" className="toc-item">スコアの読み方 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#ranking" className="toc-item">総合ランキング <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#chip-compare" className="toc-item">チップ世代比較 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
@@ -228,25 +218,25 @@ export default async function BenchmarkPage() {
 
               <div className="l-grid l-grid--3col l-grid--gap-lg">
                 <div className="m-card m-card--shadow m-card--padded">
-                  <h3 className="storage-point-heading">
+                  <h3 className="post-check-item__heading">
                     <i className="fa-solid fa-microchip" aria-hidden="true" style={{ color: '#e74c6f' }}></i>
                     シングルコア
                   </h3>
-                  <p className="storage-point-desc">CPU1コアの処理速度。アプリの起動、Web閲覧、手書きノートの反応速度など日常操作の快適さに直結します。</p>
+                  <p className="post-check-item__desc">CPU1コアの処理速度。アプリの起動、Web閲覧、手書きノートの反応速度など日常操作の快適さに直結します。</p>
                 </div>
                 <div className="m-card m-card--shadow m-card--padded">
-                  <h3 className="storage-point-heading">
+                  <h3 className="post-check-item__heading">
                     <i className="fa-solid fa-grip" aria-hidden="true" style={{ color: '#f0a030' }}></i>
                     マルチコア
                   </h3>
-                  <p className="storage-point-desc">全CPUコアを同時に使った処理能力。写真処理、動画書き出し、Split Viewでの複数アプリ同時使用に影響します。</p>
+                  <p className="post-check-item__desc">全CPUコアを同時に使った処理能力。写真処理、動画書き出し、Split Viewでの複数アプリ同時使用に影響します。</p>
                 </div>
                 <div className="m-card m-card--shadow m-card--padded">
-                  <h3 className="storage-point-heading">
+                  <h3 className="post-check-item__heading">
                     <i className="fa-solid fa-bolt" aria-hidden="true" style={{ color: '#2563eb' }}></i>
                     Metal（GPU）
                   </h3>
-                  <p className="storage-point-desc">GPUのグラフィック処理性能。3Dゲーム、Procreateでの大量レイヤー処理、動画編集に関わります。</p>
+                  <p className="post-check-item__desc">GPUのグラフィック処理性能。3Dゲーム、Procreateでの大量レイヤー処理、動画編集に関わります。</p>
                 </div>
               </div>
 
@@ -264,42 +254,7 @@ export default async function BenchmarkPage() {
           <ChipGenerationCompare models={benchModels} />
           <UseCaseGuide models={benchModels} shopLinks={shopLinks} />
 
-          <section className="l-section" id="related" aria-labelledby="heading-related">
-            <div className="l-container">
-              <h2 className="m-section-heading m-section-heading--lg" id="heading-related">iPad選びのヒントになる関連記事</h2>
-              <p className="m-section-desc">ベンチマーク以外の観点からもiPad選びをサポートする記事をまとめました。</p>
-              <div className="l-grid l-grid--2col l-grid--gap-lg">
-                <Link href="/ipad/ipad-spec-table/" className="m-card m-card--shadow related-link-card m-card--hoverable">
-                  <Image src={getHeroImage('/ipad/ipad-spec-table/')} alt="iPadスペック比較表" className="related-link-card__img" width={400} height={300} loading="lazy" />
-                  <div className="related-link-card__body">
-                    <h3 className="related-link-card__title">iPadスペック比較表</h3>
-                    <p className="related-link-card__desc">歴代iPadの全スペックを一覧で比較</p>
-                  </div>
-                </Link>
-                <Link href="/ipad/recommend/" className="m-card m-card--shadow related-link-card m-card--hoverable">
-                  <Image src={getHeroImage('/ipad/recommend/')} alt="おすすめ中古iPad" className="related-link-card__img" width={400} height={300} loading="lazy" />
-                  <div className="related-link-card__body">
-                    <h3 className="related-link-card__title">おすすめ中古iPad</h3>
-                    <p className="related-link-card__desc">目的別におすすめの中古iPadを厳選して紹介</p>
-                  </div>
-                </Link>
-                <Link href="/ipad/apple-pencil-compare/" className="m-card m-card--shadow related-link-card m-card--hoverable">
-                  <Image src={getHeroImage('/ipad/apple-pencil-compare/')} alt="Apple Pencil比較" className="related-link-card__img" width={400} height={300} loading="lazy" />
-                  <div className="related-link-card__body">
-                    <h3 className="related-link-card__title">Apple Pencil互換性比較</h3>
-                    <p className="related-link-card__desc">どのiPadにどのPencilが対応するか一覧で確認</p>
-                  </div>
-                </Link>
-                <Link href="/ipad/storage-guide/" className="m-card m-card--shadow related-link-card m-card--hoverable">
-                  <Image src={getHeroImage('/ipad/storage-guide/')} alt="ストレージ容量ガイド" className="related-link-card__img" width={400} height={300} loading="lazy" />
-                  <div className="related-link-card__body">
-                    <h3 className="related-link-card__title">ストレージ容量ガイド</h3>
-                    <p className="related-link-card__desc">用途別のおすすめ容量と中古価格を比較</p>
-                  </div>
-                </Link>
-              </div>
-            </div>
-          </section>
+          <IPadRelatedLinks excludeHref="/ipad/benchmark/" />
 
           <section className="l-section" id="faq" aria-labelledby="heading-faq">
             <div className="l-container">

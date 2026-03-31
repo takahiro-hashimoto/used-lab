@@ -1,11 +1,12 @@
 import Link from 'next/link'
 import TimingSectionBase from '@/app/components/support/TimingSection'
 import type { TimingCard } from '@/app/components/support/TimingSection'
+import { placeholder } from '@/lib/placeholder'
 
 const TIMING_CARDS: TimingCard[] = [
   {
     title: '①発売から7年が経過しそうになった時',
-    imgSrc: 'https://placehold.co/400x520/f5f5f7/1d1d1f?text=iPad',
+    imgSrc: placeholder(400, 520, 'iPad'),
     imgAlt: 'iPadのホーム画面',
     content: (
       <>
@@ -18,7 +19,7 @@ const TIMING_CARDS: TimingCard[] = [
   },
   {
     title: '②バッテリーの持ちが明らかに悪くなった時',
-    imgSrc: 'https://placehold.co/400x520/f5f5f7/1d1d1f?text=Battery',
+    imgSrc: placeholder(400, 520, 'Battery'),
     imgAlt: 'バッテリーの状態画面',
     content: (
       <>
@@ -30,7 +31,7 @@ const TIMING_CARDS: TimingCard[] = [
   },
   {
     title: '③用途に対して性能が不足してきた時',
-    imgSrc: 'https://placehold.co/400x520/f5f5f7/1d1d1f?text=Performance',
+    imgSrc: placeholder(400, 520, 'Performance'),
     imgAlt: 'iPadの性能イメージ',
     content: (
       <>
