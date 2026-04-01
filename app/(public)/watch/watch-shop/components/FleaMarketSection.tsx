@@ -13,7 +13,7 @@ export default function FleaMarketSection() {
           <div className="media-card__desc m-rich-text">
             <p>フリマアプリで中古Apple Watchが安く出品される理由は、以下の構造的な要因によるものです。</p>
             <p>「安い＝お得」ではなく、「安くなる理由が価格にそのまま反映されている」という点を理解しておく必要があります。</p>
-            <ul>
+            <ul className="media-card__list">
               <li>個人間取引のため、店舗の人件費や検品コストが発生しない</li>
               <li>保証や返品対応が価格に含まれていない</li>
               <li>バッテリー劣化やケースの傷をリスクとして織り込んだ価格設定になっている</li>
@@ -26,13 +26,13 @@ export default function FleaMarketSection() {
           <div className="media-card__desc m-rich-text">
             <p>個人間売買では以下のようなリスクが発生する可能性があります。</p>
             <p>Apple Watchならではのリスクとして、ケースの傷やバッテリー劣化は使用感に直結します。</p>
-            <ul>
-              <li><strong>バッテリーが大きく劣化</strong>していて1日持たない</li>
-              <li><strong>ケースの傷</strong>が写真では分かりにくい</li>
-              <li><strong>保証・返品対応</strong>が基本的にない</li>
-              <li><strong>アクティベーションロック</strong>の解除忘れ</li>
-              <li><strong>GPS/Cellular</strong>モデルの勘違い</li>
-              <li><strong>watchOSサポート</strong>が終了間近のモデルを購入してしまう</li>
+            <ul className="media-card__list">
+              <li>バッテリーが大きく劣化していて1日持たない</li>
+              <li>ケースの傷が写真では分かりにくい</li>
+              <li>保証・返品対応が基本的にない</li>
+              <li>アクティベーションロックの解除忘れ</li>
+              <li>GPS/Cellularモデルの勘違い</li>
+              <li>watchOSサポートが終了間近のモデルを購入してしまう</li>
             </ul>
           </div>
         </div>

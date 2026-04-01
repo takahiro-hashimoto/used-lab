@@ -610,11 +610,11 @@ export default function StyleGuidePage() {
             <dl className="faq-list" style={{ marginTop: 'var(--space-md)' }}>
               <div className="faq-item">
                 <dt className="faq-question">質問テキストがここに入ります</dt>
-                <dd className="faq-answer">回答テキストがここに入ります。m-card と同じ角丸・ボーダーのスタイルです。</dd>
+                <dd className="faq-answer m-rich-text m-rich-text--muted">回答テキストがここに入ります。m-card と同じ角丸・ボーダーのスタイルです。</dd>
               </div>
               <div className="faq-item">
                 <dt className="faq-question">2つ目の質問テキスト</dt>
-                <dd className="faq-answer">2つ目の回答テキスト。</dd>
+                <dd className="faq-answer m-rich-text m-rich-text--muted">2つ目の回答テキスト。</dd>
               </div>
             </dl>
 

@@ -2,16 +2,45 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import RatingMark from '@/app/components/RatingMark'
 import Breadcrumb from '@/app/components/Breadcrumb'
+import FaqSection from '@/app/components/support/FaqSection'
 import ShareBox from '@/app/components/ShareBox'
 import IPhoneRelatedLinks from '@/app/components/iphone/IPhoneRelatedLinks'
 import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
+import PopularSection from '@/app/components/support/PopularSection'
 
 const PAGE_TITLE = '意外と良い選択肢？ネットワーク制限△の中古iPhone・iPadを買うメリット・デメリットを解説'
 const PAGE_DESCRIPTION =
   'ネットワーク制限△の中古iPhone・iPadは買っても大丈夫？赤ロムリスクや○△×の違い、メリット・デメリットをわかりやすく解説。赤ロム永久保証付きの安心ショップも紹介します。'
 const PAGE_URL = 'https://used-lab.com/iphone/network-limit/'
+
+const FAQ_ITEMS = [
+  {
+    question: 'ネットワーク制限△の端末が赤ロムになる確率はどれくらい？',
+    answer: '人気中古ECショップのイオシスが発信している情報では、2021〜2022年の2年間に販売したネットワーク制限△の端末が赤ロムになった確率は0.15%でした。ここまで低い確率なら過度に不安になる必要はなさそうです。',
+  },
+  {
+    question: 'ネットワーク制限○△×はどうやって判定するの？',
+    answer: '端末のIMEI（製造番号）を各キャリアの確認ページに入力することで判定できます。IMEIはiPhoneの場合「設定」→「一般」→「情報」から確認可能です。フリマで購入する際は、出品者からキャリア名とIMEIを聞いて事前にチェックしましょう。',
+  },
+  {
+    question: 'SIMフリー端末ならネットワーク制限の影響はない？',
+    answer: 'いいえ、SIMフリーでもネットワーク制限がかかる可能性はあります。SIMロック解除とは別の問題で、端末自体の分割支払い状況がキャリアで管理されているため影響を受ける場合があります。',
+  },
+  {
+    question: 'ネットワーク制限△の中古端末を買うときの注意点は？',
+    answer: '「赤ロム保証」が付いているかどうかを確認するのが大切です。保証があれば、仮に後から赤ロムになった場合でも返品や交換の対応を受けられるため安心して購入できます。',
+  },
+  {
+    question: '総務省が赤ロムを原則禁止にするって本当？',
+    answer: 'はい。総務省は端末代金の未払いなど金銭的な問題に起因するネットワーク利用制限について、中古端末の新しい所有者には責任がないという考えに基づき原則禁止とする方向で調整を進めています。盗難や不正契約による制限は引き続き維持されますが、将来的にネットワーク制限△のリスクはさらに低下する見通しです。',
+  },
+  {
+    question: 'ネットワーク制限とアクティベーションロックは別物？',
+    answer: 'はい、まったく別の問題です。ネットワーク制限はキャリアが通信を制限する仕組みで、アクティベーションロックはApple IDに紐づく盗難防止機能です。アクティベーションロックが解除されていない端末は初期設定すらできないため、購入前に必ず確認しましょう。',
+  },
+]
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,
@@ -50,68 +79,11 @@ export default function NetworkLimitPage() {
     url: PAGE_URL,
   })
 
-  const faqJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: [
-      {
-        '@type': 'Question',
-        name: 'ネットワーク制限△の端末が赤ロムになる確率はどれくらい？',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: '人気中古ECショップのイオシスが発信している情報では、2021〜2022年の2年間に販売したネットワーク制限△の端末が赤ロムになった確率は0.15%でした。',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'ネットワーク制限○△×はどうやって判定するの？',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: '端末のIMEI（製造番号）を各キャリアの確認ページに入力することで、制限の状況を確認できます。ドコモ、au、ソフトバンク、楽天モバイルそれぞれに確認ページがあります。',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'SIMフリー端末ならネットワーク制限の影響はない？',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'いいえ、SIMフリーでもネットワーク制限がかかる可能性はあります。SIMロック解除とは別の問題で、端末自体の分割支払い状況がキャリアで管理されているため影響を受ける場合があります。',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'ネットワーク制限△の中古端末を買うときの注意点は？',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: '「赤ロム保証」が付いているかどうかを確認するのが大切です。保証があれば、仮に後から赤ロムになった場合でも返品や交換の対応を受けられます。',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: '総務省が赤ロムを原則禁止にするって本当？',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: '総務省は端末代金の未払いなど金銭的な問題に起因するネットワーク利用制限について、中古端末の新しい所有者には責任がないという考えに基づき原則禁止とする方向で調整を進めています。将来的にネットワーク制限△のリスクはさらに低下する見通しです。',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'ネットワーク制限とアクティベーションロックは別物？',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'はい、まったく別の問題です。ネットワーク制限はキャリアが通信を制限する仕組みで、アクティベーションロックはApple IDに紐づく盗難防止機能です。アクティベーションロックが解除されていない端末は初期設定すらできないため、購入前に必ず確認しましょう。',
-        },
-      },
-    ],
-  }
-
   return (
     <main>
       <article itemScope itemType="https://schema.org/Article">
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
-
         <div className="hero-wrapper">
           <Breadcrumb
             items={[
@@ -420,90 +392,25 @@ export default function NetworkLimitPage() {
           </section>
 
           {/* よくある質問 */}
-          <section className="l-section" id="faq" aria-labelledby="heading-faq">
-            <div className="l-container">
-              <h2 className="m-section-heading m-section-heading--lg" id="heading-faq">
-                ネットワーク制限に関するよくある質問
-              </h2>
+          <FaqSection
+            title="ネットワーク制限に関するよくある質問"
+            description=""
+            items={FAQ_ITEMS}
+          />
 
-              <div className="faq-list">
-                <div className="m-card faq-item">
-                  <h3 className="faq-question">ネットワーク制限△の端末が赤ロムになる確率はどれくらい？</h3>
-                  <div className="faq-answer m-rich-text m-rich-text--muted">
-                    <p>人気中古ECショップのイオシスが発信している情報では、2021〜2022年の2年間に販売したネットワーク制限△の端末が赤ロムになった確率は<strong>0.15%</strong>でした。ここまで低い確率なら過度に不安になる必要はなさそうです。</p>
-                    <p className="lead-link" style={{ marginTop: 'var(--space-sm)' }}>
-                      <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                      <a href="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fspecial%2Fnetwork_sankaku" target="_blank" rel="nofollow noopener noreferrer">ネットワーク利用制限▲って？ | 中古スマホ販売の【イオシス】</a>
-                    </p>
-                  </div>
-                </div>
-                <div className="m-card faq-item">
-                  <h3 className="faq-question">ネットワーク制限○△×はどうやって判定するの？</h3>
-                  <div className="faq-answer m-rich-text m-rich-text--muted">
-                    <p>端末のIMEI（製造番号）を各キャリアの確認ページに入力することで判定できます。IMEIはiPhoneの場合「設定」→「一般」→「情報」から確認可能です。フリマで購入する際は、出品者からキャリア名とIMEIを聞いて事前にチェックしましょう。</p>
-                    <ul>
-                      <li><a href="https://nw-restriction.nttdocomo.co.jp/top.php" rel="nofollow noopener" target="_blank">ドコモ ネットワーク利用制限照会</a></li>
-                      <li><a href="https://au-cs0.kddi.com/FtHome" rel="nofollow noopener" target="_blank">au ネットワーク利用制限照会</a></li>
-                      <li><a href="https://ct11.my.softbank.jp/WBF/icv" rel="nofollow noopener" target="_blank">ソフトバンク/Y!mobile ネットワーク利用制限照会</a></li>
-                      <li><a href="https://network.mobile.rakuten.co.jp/restriction/" rel="nofollow noopener" target="_blank">楽天モバイル ネットワーク利用制限照会</a></li>
-                    </ul>
-                  </div>
-                </div>
-                <div className="m-card faq-item">
-                  <h3 className="faq-question">SIMフリー端末ならネットワーク制限の影響はない？</h3>
-                  <div className="faq-answer m-rich-text m-rich-text--muted">
-                    <p>いいえ、SIMフリーでもネットワーク制限がかかる可能性はあります。SIMロック解除とは別の問題で、端末自体の分割支払い状況がキャリアで管理されているため影響を受ける場合があります。</p>
-                  </div>
-                </div>
-                <div className="m-card faq-item">
-                  <h3 className="faq-question">ネットワーク制限△の中古端末を買うときの注意点は？</h3>
-                  <div className="faq-answer m-rich-text m-rich-text--muted">
-                    <p>「赤ロム保証」が付いているかどうかを確認するのが大切です。保証があれば、仮に後から赤ロムになった場合でも返品や交換の対応を受けられるため安心して購入できます。</p>
-                    <p className="lead-link">
-                      <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                      <a href="/iphone/used-iphone-attention/">中古iPhoneを買う際の注意点まとめ</a>
-                    </p>
-                  </div>
-                </div>
-                <div className="m-card faq-item">
-                  <h3 className="faq-question">総務省が赤ロムを原則禁止にするって本当？</h3>
-                  <div className="faq-answer m-rich-text m-rich-text--muted">
-                    <p>はい。総務省は端末代金の未払いなど金銭的な問題に起因するネットワーク利用制限について、中古端末の新しい所有者には責任がないという考えに基づき原則禁止とする方向で調整を進めています。盗難や不正契約による制限は引き続き維持されますが、将来的にネットワーク制限△のリスクはさらに低下する見通しです。</p>
-                  </div>
-                </div>
-                <div className="m-card faq-item">
-                  <h3 className="faq-question">ネットワーク制限とアクティベーションロックは別物？</h3>
-                  <div className="faq-answer m-rich-text m-rich-text--muted">
-                    <p>はい、まったく別の問題です。ネットワーク制限はキャリアが通信を制限する仕組みで、アクティベーションロックはApple IDに紐づく盗難防止機能です。アクティベーションロックが解除されていない端末は初期設定すらできないため、購入前に必ず確認しましょう。</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* 目的別に人気の中古iPhone */}
-          <section className="l-section" id="popular" aria-labelledby="heading-popular">
-            <div className="l-container">
-              <h2 className="m-section-heading m-section-heading--lg" id="heading-popular">目的別に人気の中古iPhone</h2>
-              <p className="m-section-desc">目的別におすすめの機種を厳選。今回の記事で購入するべき機種が判断できなかった方はぜひご覧ください。</p>
-              <div className="m-card m-card--shadow popular-card">
-                <figure className="popular-card-figure">
-                  <Image alt="中古iPhoneおすすめ5選のイメージ画像" loading="lazy" width={400} height={500} className="popular-card-img" src="/images/content/thumbnail/iphone-setting.webp" />
-                </figure>
-                <div className="popular-card-body">
-                  <p className="popular-card-subtitle">目的別におすすめ機種を厳選！</p>
-                  <p className="popular-card-title">中古iPhoneおすすめ5選</p>
-                <p className="popular-card-subtitle">目的別におすすめ機種を厳選！</p>                  <p className="popular-card-desc">カメラ性能を重視する人向け、大画面で動画やSNSを楽しみたい人向けなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。</p>
-                  <div className="popular-card-buttons">
-                    <a className="m-btn m-btn--primary" href="/iphone/recommend/">おすすめ5機種を見る <i className="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
-                    <a className="m-btn m-btn--secondary" href="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Fsmartphone%2Fiphone" target="_blank" rel="noopener noreferrer">
-                      イオシスで中古iPhoneを探す <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
+          <PopularSection
+            sectionTitle="目的別に人気の中古iPhone"
+            sectionDescription="目的別におすすめの機種を厳選。今回の記事で購入するべき機種が判断できなかった方はぜひご覧ください。"
+            imageSrc="/images/content/thumbnail/iphone-setting.webp"
+            imageAlt="中古iPhoneおすすめ5選のイメージ画像"
+            subtitle="目的別におすすめ機種を厳選！"
+            cardTitle="中古iPhoneおすすめ5選"
+            cardDescription="カメラ性能を重視する人向け、大画面で動画やSNSを楽しみたい人向けなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。"
+            buttonText="おすすめ5機種を見る"
+            buttonHref="/iphone/recommend/"
+            secondaryButtonText="イオシスで中古iPhoneを探す"
+            secondaryButtonHref="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Fsmartphone%2Fiphone"
+          />
 
           <IPhoneRelatedLinks excludeHref={["/iphone/network-limit/", "/iphone/recommend/"]} />
           <ShareBox url={PAGE_URL} text={PAGE_TITLE} />

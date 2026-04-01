@@ -7,6 +7,7 @@ import {
   getProviderMeta,
 } from '@/lib/data/iphone-mvno'
 import Breadcrumb from '@/app/components/Breadcrumb'
+import FaqSection from '@/app/components/support/FaqSection'
 import ShareBox from '@/app/components/ShareBox'
 import IPhoneRelatedLinks from '@/app/components/iphone/IPhoneRelatedLinks'
 import PopularSection from '@/app/components/support/PopularSection'
@@ -19,6 +20,37 @@ import HeroMeta from '@/app/components/HeroMeta'
 const PAGE_TITLE = `中古iPhoneの購入と通信契約が一緒にできる格安SIM業者まとめ【${MVNO_PAGE_DATE_LABEL}】`
 const PAGE_DESCRIPTION = `中古iPhoneとセットで通信契約できる格安SIM・MVNOを徹底比較。楽天モバイル、UQモバイル、ワイモバイル、IIJmio、mineoなど主要7社の料金プランと端末販売の有無をまとめました【${MVNO_PAGE_DATE_LABEL}】`
 const PAGE_URL = 'https://used-lab.com/iphone/mvno/'
+
+const FAQ_ITEMS = [
+  {
+    question: 'セット契約と、端末・SIMを別々に買うのはどちらがお得？',
+    answer: '手間を考慮するとセット契約、価格最優先なら別々購入がお得です。セット契約は動作確認・SIMロック解除・初期設定が済んだ状態で届くため、失敗リスクが低く手間がかかりません。一方、中古スマホ専門店のセール時期などを狙えば、別々に購入したほうが数千円〜1万円程度安くなるケースもあります。',
+  },
+  {
+    question: '中古スマホのバッテリーは大丈夫？',
+    answer: '認定中古品なら80%以上が保証されています。楽天モバイル、UQモバイル、ahamoなどのキャリア認定中古品は、バッテリー最大容量80%以上が保証されています。一般的に80%以上あれば日常使用に問題ありません。保証がない事業者の場合は、購入後すぐに「設定」→「バッテリー」→「バッテリーの状態」で確認しましょう。',
+  },
+  {
+    question: 'SIMロック解除は必要？',
+    answer: 'セット契約なら不要です。セット契約で販売される中古端末は、すでにSIMロック解除済みの状態です。自分で手続きする必要はありません。なお、2021年10月以降に発売された端末は、原則SIMロックがかかっていません。',
+  },
+  {
+    question: '今使っている電話番号は引き継げる？',
+    answer: 'MNP（携帯電話番号ポータビリティ）で引き継げます。現在契約中のキャリアでMNP予約番号を取得し、新しい格安SIMの申し込み時に入力すれば、同じ電話番号をそのまま使えます。MNP予約番号の有効期限は15日間なので、取得後は早めに申し込みましょう。',
+  },
+  {
+    question: '届いた中古端末に不具合があったらどうする？',
+    answer: '保証期間内であれば交換・返品が可能です。事業者によって保証期間は異なります（8日〜90日）。届いたらすぐに動作確認を行い、不具合があれば速やかに連絡しましょう。特に保証期間が短い事業者（ワイモバイル8日など）は、届いた当日に確認することをおすすめします。',
+  },
+  {
+    question: '大手キャリアから格安SIMに乗り換えるデメリットは？',
+    answer: 'キャリアメール・店舗サポート・通信速度に違いが出る場合があります。キャリアメール（@docomo.ne.jpなど）は使えなくなります（有料で継続可能な場合あり）。店舗サポートがない、または少ない事業者が多いです。混雑時間帯（昼12時台など）に通信速度が低下することがあります。ただし、月額料金が大幅に下がるメリットを考えると、多くの人にとっては乗り換えたほうがお得です。',
+  },
+  {
+    question: 'eSIMと物理SIMはどちらを選べばいい？',
+    answer: '初めてならeSIMがおすすめです。eSIMはSIMカードの配送を待たずに即日開通できます。iPhone XS以降のモデルはeSIMに対応しています。物理SIMは端末を買い替えたときにSIMカードを差し替えるだけで使えるメリットがあります。どちらも通信品質に違いはありません。',
+  },
+]
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,
@@ -257,7 +289,7 @@ export default async function MvnoPage() {
               </h3>
               <div className="media-card__desc">
                 <p>中古スマホを専門店やフリマで購入した場合、通信契約の前に以下の確認が必要になります。SIMに詳しくない人ほど、ここでつまずきがちです。</p>
-                <ul>
+                <ul className="media-card__list">
                   <li><strong>回線との相性確認：</strong>買った端末がドコモ/au/ソフトバンクのどの回線に対応しているか</li>
                   <li><strong>SIMロック解除：</strong>ロックがかかっていたら自分で解除手続きが必要</li>
                   <li><strong>対応バンドの確認：</strong>周波数帯が合わないと電波が入りにくい</li>
@@ -278,7 +310,7 @@ export default async function MvnoPage() {
               </h3>
               <div className="media-card__desc">
                 <p>セット契約で提供される中古端末は、事業者側で以下の確認・設定がすべて完了しています。</p>
-                <ul>
+                <ul className="media-card__list">
                   <li><strong>動作確認済み：</strong>その回線で使えることが保証されている</li>
                   <li><strong>SIMロック解除済み：</strong>自分で手続きする必要なし</li>
                   <li><strong>SIM挿入済み or APN設定済み：</strong>届いたらすぐ使える</li>
@@ -337,7 +369,7 @@ export default async function MvnoPage() {
                   この記事でいうセット契約とは、<strong>格安SIM業者の公式サイトやサービス上で、中古スマホ（またはリユース端末）と通信回線を同時に申し込める形態</strong>を指します。
                 </p>
                 <p>具体的には以下のような特徴があります。</p>
-                <ul>
+                <ul className="media-card__list">
                   <li>端末と回線を一度の手続きで申し込める</li>
                   <li>届いた時点でSIMが挿入済み、または初期設定が済んでいる場合が多い</li>
                   <li>端末の動作確認や回線との相性チェックが事業者側で行われている</li>
@@ -740,91 +772,11 @@ export default async function MvnoPage() {
         </section>
 
         {/* ===== よくある質問 ===== */}
-        <section id="faq" className="l-section" aria-labelledby="heading-faq">
-          <div className="l-container">
-            <script
-              type="application/ld+json"
-              dangerouslySetInnerHTML={{ __html: JSON.stringify({
-                '@context': 'https://schema.org',
-                '@type': 'FAQPage',
-                mainEntity: [
-                  { '@type': 'Question', name: 'セット契約と、端末・SIMを別々に買うのはどちらがお得？', acceptedAnswer: { '@type': 'Answer', text: '手間を考慮するとセット契約、価格最優先なら別々購入がお得です。セット契約は動作確認・SIMロック解除・初期設定が済んだ状態で届くため、失敗リスクが低く手間がかかりません。一方、中古スマホ専門店のセール時期などを狙えば、別々に購入したほうが数千円〜1万円程度安くなるケースもあります。' } },
-                  { '@type': 'Question', name: '中古スマホのバッテリーは大丈夫？', acceptedAnswer: { '@type': 'Answer', text: '認定中古品なら80%以上が保証されています。楽天モバイル、UQモバイル、ahamoなどのキャリア認定中古品は、バッテリー最大容量80%以上が保証されています。一般的に80%以上あれば日常使用に問題ありません。' } },
-                  { '@type': 'Question', name: 'SIMロック解除は必要？', acceptedAnswer: { '@type': 'Answer', text: 'セット契約なら不要です。セット契約で販売される中古端末は、すでにSIMロック解除済みの状態です。なお、2021年10月以降に発売された端末は、原則SIMロックがかかっていません。' } },
-                  { '@type': 'Question', name: '今使っている電話番号は引き継げる？', acceptedAnswer: { '@type': 'Answer', text: 'MNP（携帯電話番号ポータビリティ）で引き継げます。現在契約中のキャリアでMNP予約番号を取得し、新しい格安SIMの申し込み時に入力すれば、同じ電話番号をそのまま使えます。' } },
-                  { '@type': 'Question', name: '届いた中古端末に不具合があったらどうする？', acceptedAnswer: { '@type': 'Answer', text: '保証期間内であれば交換・返品が可能です。事業者によって保証期間は異なります（8日〜90日）。届いたらすぐに動作確認を行い、不具合があれば速やかに連絡しましょう。' } },
-                  { '@type': 'Question', name: '大手キャリアから格安SIMに乗り換えるデメリットは？', acceptedAnswer: { '@type': 'Answer', text: 'キャリアメール・店舗サポート・通信速度に違いが出る場合があります。ただし、月額料金が大幅に下がるメリットを考えると、多くの人にとっては乗り換えたほうがお得です。' } },
-                  { '@type': 'Question', name: 'eSIMと物理SIMはどちらを選べばいい？', acceptedAnswer: { '@type': 'Answer', text: '初めてならeSIMがおすすめです。eSIMはSIMカードの配送を待たずに即日開通できます。iPhone XS以降のモデルはeSIMに対応しています。' } },
-                ],
-              }) }}
-            />
-
-            <h2 className="m-section-heading m-section-heading--lg" id="heading-faq">
-              よくある質問
-            </h2>
-            <p className="m-section-desc">
-              中古スマホ×格安SIMのセット契約についてよくある質問をまとめました。
-            </p>
-
-            <div className="faq-list">
-              <div className="m-card m-card--shadow faq-item">
-                <h3 className="faq-question">セット契約と、端末・SIMを別々に買うのはどちらがお得？</h3>
-                <div className="faq-answer">
-                  <p><strong>手間を考慮するとセット契約、価格最優先なら別々購入がお得です。</strong></p>
-                  <p>セット契約は動作確認・SIMロック解除・初期設定が済んだ状態で届くため、失敗リスクが低く手間がかかりません。一方、中古スマホ専門店のセール時期などを狙えば、別々に購入したほうが数千円〜1万円程度安くなるケースもあります。</p>
-                </div>
-              </div>
-
-              <div className="m-card m-card--shadow faq-item">
-                <h3 className="faq-question">中古スマホのバッテリーは大丈夫？</h3>
-                <div className="faq-answer">
-                  <p><strong>認定中古品なら80%以上が保証されています。</strong></p>
-                  <p>楽天モバイル、UQモバイル、ahamoなどのキャリア認定中古品は、バッテリー最大容量80%以上が保証されています。一般的に80%以上あれば日常使用に問題ありません。保証がない事業者の場合は、購入後すぐに「設定」→「バッテリー」→「バッテリーの状態」で確認しましょう。</p>
-                </div>
-              </div>
-
-              <div className="m-card m-card--shadow faq-item">
-                <h3 className="faq-question">SIMロック解除は必要？</h3>
-                <div className="faq-answer">
-                  <p><strong>セット契約なら不要です。</strong></p>
-                  <p>セット契約で販売される中古端末は、すでにSIMロック解除済みの状態です。自分で手続きする必要はありません。なお、2021年10月以降に発売された端末は、原則SIMロックがかかっていません。</p>
-                </div>
-              </div>
-
-              <div className="m-card m-card--shadow faq-item">
-                <h3 className="faq-question">今使っている電話番号は引き継げる？</h3>
-                <div className="faq-answer">
-                  <p><strong>MNP（携帯電話番号ポータビリティ）で引き継げます。</strong></p>
-                  <p>現在契約中のキャリアでMNP予約番号を取得し、新しい格安SIMの申し込み時に入力すれば、同じ電話番号をそのまま使えます。MNP予約番号の有効期限は15日間なので、取得後は早めに申し込みましょう。</p>
-                </div>
-              </div>
-
-              <div className="m-card m-card--shadow faq-item">
-                <h3 className="faq-question">届いた中古端末に不具合があったらどうする？</h3>
-                <div className="faq-answer">
-                  <p><strong>保証期間内であれば交換・返品が可能です。</strong></p>
-                  <p>事業者によって保証期間は異なります（8日〜90日）。届いたらすぐに動作確認を行い、不具合があれば速やかに連絡しましょう。特に保証期間が短い事業者（ワイモバイル8日など）は、届いた当日に確認することをおすすめします。</p>
-                </div>
-              </div>
-
-              <div className="m-card m-card--shadow faq-item">
-                <h3 className="faq-question">大手キャリアから格安SIMに乗り換えるデメリットは？</h3>
-                <div className="faq-answer">
-                  <p><strong>キャリアメール・店舗サポート・通信速度に違いが出る場合があります。</strong></p>
-                  <p>キャリアメール（@docomo.ne.jpなど）は使えなくなります（有料で継続可能な場合あり）。店舗サポートがない、または少ない事業者が多いです。混雑時間帯（昼12時台など）に通信速度が低下することがあります。ただし、月額料金が大幅に下がるメリットを考えると、多くの人にとっては乗り換えたほうがお得です。</p>
-                </div>
-              </div>
-
-              <div className="m-card m-card--shadow faq-item">
-                <h3 className="faq-question">eSIMと物理SIMはどちらを選べばいい？</h3>
-                <div className="faq-answer">
-                  <p><strong>初めてならeSIMがおすすめです。</strong></p>
-                  <p>eSIMはSIMカードの配送を待たずに即日開通できます。iPhone XS以降のモデルはeSIMに対応しています。物理SIMは端末を買い替えたときにSIMカードを差し替えるだけで使えるメリットがあります。どちらも通信品質に違いはありません。</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        <FaqSection
+          title="よくある質問"
+          description="中古スマホ×格安SIMのセット契約についてよくある質問をまとめました。"
+          items={FAQ_ITEMS}
+        />
 
         <PopularSection
             sectionTitle="目的別に人気の中古iPhone"

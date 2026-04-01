@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
+import Breadcrumb from '@/app/components/Breadcrumb'
+import FaqSection from '@/app/components/support/FaqSection'
 import {
   getAllMacBookModels,
   getAllMacBookPriceLogsByModelIds,
@@ -184,19 +186,12 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/macbook/storage
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
 
         <div className="hero-wrapper">
-        <nav className="breadcrumb" aria-label="パンくずリスト">
-          <div className="l-container">
-            <ol className="breadcrumb-list">
-              <li className="breadcrumb-item">
-                <Link href="/"><i className="fa-solid fa-house" aria-hidden="true"></i> <span>中古Apple製品を安く買う</span></Link>
-              </li>
-              <li className="breadcrumb-item">
-                <Link href="/macbook">中古MacBook完全購入ガイド</Link>
-              </li>
-              <li className="breadcrumb-item" aria-current="page">ストレージ容量ガイド</li>
-            </ol>
-          </div>
-        </nav>
+        <Breadcrumb
+          items={[
+            { label: '中古MacBook完全購入ガイド', href: '/macbook' },
+            { label: 'ストレージ容量ガイド' },
+          ]}
+        />
 
         <header className="hero">
           <div className="hero-bg" aria-hidden="true">
@@ -420,20 +415,11 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/macbook/storage
         </section>
 
         {/* よくある質問 */}
-        <section className="l-section" id="faq" aria-labelledby="heading-faq">
-          <div className="l-container">
-            <h2 className="m-section-heading m-section-heading--lg" id="heading-faq">MacBookのストレージ容量に関するよくある質問</h2>
-            <p className="m-section-desc">ストレージ容量に関して多く寄せられる質問をまとめました。</p>
-            <div className="faq-list">
-              {FAQ_ITEMS.map((item, i) => (
-                <div key={i} className="m-card m-card--shadow faq-item">
-                  <h3 className="faq-question">{item.question}</h3>
-                  <div className="faq-answer">{item.answer.split('\n').map((p, j) => <p key={j}>{p}</p>)}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+        <FaqSection
+          title="MacBookのストレージ容量に関するよくある質問"
+          description="ストレージ容量に関して多く寄せられる質問をまとめました。"
+          items={FAQ_ITEMS}
+        />
 
         <PopularMacBook />
         <MacBookRelatedLinks excludeHref={["/macbook/storage-guide/", "/macbook/recommend/"]} />

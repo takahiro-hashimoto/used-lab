@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
+import Breadcrumb from '@/app/components/Breadcrumb'
+import FaqSection from '@/app/components/support/FaqSection'
 import {
   getAllIPadModels,
   getAllIPadPriceLogsByModelIds,
@@ -13,6 +15,7 @@ import IPadRelatedLinks from '@/app/components/ipad/IPadRelatedLinks'
 import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
+import PopularSection from '@/app/components/support/PopularSection'
 
 export const revalidate = 86400
 
@@ -133,15 +136,6 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/ipad/storage-gu
     url: 'https://used-lab.com/ipad/storage-guide/',
   })
 
-  const faqJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: FAQ_ITEMS.map((item) => ({
-      '@type': 'Question',
-      name: item.question,
-      acceptedAnswer: { '@type': 'Answer', text: item.answer },
-    })),
-  }
 
 
   return (
@@ -149,25 +143,14 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/ipad/storage-gu
       <article>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
 
         <div className="hero-wrapper">
-        <nav className="breadcrumb" aria-label="パンくずリスト">
-          <div className="l-container">
-            <ol className="breadcrumb-list">
-              <li className="breadcrumb-item">
-                <Link href="/">
-                  <i className="fa-solid fa-house" aria-hidden="true"></i>{' '}
-                  <span>中古Apple製品を安く買う</span>
-                </Link>
-              </li>
-              <li className="breadcrumb-item">
-                <Link href="/ipad">中古iPad完全購入ガイド</Link>
-              </li>
-              <li className="breadcrumb-item" aria-current="page">ストレージ容量ガイド</li>
-            </ol>
-          </div>
-        </nav>
+        <Breadcrumb
+          items={[
+            { label: '中古iPad完全購入ガイド', href: '/ipad' },
+            { label: 'ストレージ容量ガイド' },
+          ]}
+        />
 
         <header className="hero">
           <div className="hero-bg" aria-hidden="true">
@@ -460,64 +443,25 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/ipad/storage-gu
         </section>
 
         {/* よくある質問 */}
-        <section className="l-section" id="faq" aria-labelledby="heading-faq">
-          <div className="l-container">
-            <h2 className="m-section-heading m-section-heading--lg" id="heading-faq">
-              iPadのストレージ容量に関するよくある質問
-            </h2>
-            <p className="m-section-desc">ストレージ容量に関して多く寄せられる質問をまとめました。</p>
+        <FaqSection
+          title="iPadのストレージ容量に関するよくある質問"
+          description="ストレージ容量に関して多く寄せられる質問をまとめました。"
+          items={FAQ_ITEMS}
+        />
 
-            <div className="faq-list">
-              {FAQ_ITEMS.map((item, i) => (
-                <div key={i} className="m-card m-card--shadow faq-item">
-                  <h3 className="faq-question">{item.question}</h3>
-                  <div className="faq-answer">
-                    {item.answer.split('\n').map((p, j) => <p key={j}>{p}</p>)}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* 目的別に人気の中古iPad */}
-        <section className="l-section" id="popular" aria-labelledby="heading-popular">
-          <div className="l-container">
-            <h2 className="m-section-heading m-section-heading--lg" id="heading-popular">
-              目的別に人気の中古iPad
-            </h2>
-            <p className="m-section-desc">
-              目的別におすすめの機種を厳選。容量だけでなくスペック全体を見て選びたい方はぜひご覧ください。
-            </p>
-            <div className="m-card m-card--shadow popular-card">
-              <figure className="popular-card-figure">
-                <Image
-                  src="/images/content/thumbnail/ipad-image-06.jpg"
-                  alt="中古iPadおすすめのイメージ画像"
-                  className="popular-card-img"
-                  width={400}
-                  height={500}
-                  loading="lazy"
-                />
-              </figure>
-              <div className="popular-card-body">
-                <p className="popular-card-subtitle">目的別におすすめ機種を厳選！</p>
-                <p className="popular-card-title">中古iPadおすすめ機種</p>
-              <p className="popular-card-subtitle">目的別におすすめ機種を厳選！</p>                <p className="popular-card-desc">
-                  イラスト制作向け、動画視聴向け、勉強・ノート用途向けなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。
-                </p>
-                <div className="popular-card-buttons">
-                  <Link href="/ipad/recommend" className="m-btn m-btn--primary">
-                    おすすめ機種を見る <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
-                  </Link>
-                  <a className="m-btn m-btn--secondary" href="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Ftablet%2Fios%2Fipad" target="_blank" rel="noopener noreferrer">
-                    イオシスで中古iPadを探す <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        <PopularSection
+          sectionTitle="目的別に人気の中古iPad"
+          sectionDescription="目的別におすすめの機種を厳選。容量だけでなくスペック全体を見て選びたい方はぜひご覧ください。"
+          imageSrc="/images/content/thumbnail/ipad-image-06.jpg"
+          imageAlt="中古iPadおすすめのイメージ画像"
+          subtitle="目的別におすすめ機種を厳選！"
+          cardTitle="中古iPadおすすめ機種"
+          cardDescription="イラスト制作向け、動画視聴向け、勉強・ノート用途向けなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。"
+          buttonText="おすすめ機種を見る"
+          buttonHref="/ipad/recommend"
+          secondaryButtonText="イオシスで中古iPadを探す"
+          secondaryButtonHref="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Ftablet%2Fios%2Fipad"
+        />
 
         <IPadRelatedLinks excludeHref={["/ipad/storage-guide/", "/ipad/recommend/"]} />
         <ShareBox url="https://used-lab.com/ipad/storage-guide/" text="中古iPadのストレージ容量はどれがいい？用途別おすすめ容量まとめ" />

@@ -10,6 +10,7 @@ import InsuranceSection from '@/app/components/attention/InsuranceSection'
 import FaqSection from '@/app/components/attention/FaqSection'
 import IPhoneRelatedLinks from '@/app/components/iphone/IPhoneRelatedLinks'
 import PopularSection from '@/app/components/support/PopularSection'
+import SummaryChecklist from '@/app/components/SummaryChecklist'
 import { insuranceData, faqItems, postCheckItems, failurePatterns } from './components/data'
 import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
@@ -243,18 +244,15 @@ export default function UsedIphoneAttentionPage() {
                 この記事で解説した内容を押さえておけば、大きな失敗は避けられます。
               </p>
 
-              <div className="m-card m-card--shadow m-card--padded" style={{ maxWidth: 720, margin: 'var(--space-xl) auto 0' }}>
-                <h3 className="summary-card__title">
-                  <i className="fa-solid fa-circle-check" aria-hidden="true" style={{ color: 'var(--color-primary)' }}></i>
-                  {' '}購入前に確認すべき4つのポイント
-                </h3>
-                <ol className="summary-card__list">
-                  <li><strong>ネットワーク制限</strong>が「△」の端末は避けましょう。IMEIで事前に確認できます。</li>
-                  <li><strong>バッテリー最大容量</strong>が80%未満の端末は避けましょう。設定アプリから確認できます。</li>
-                  <li><strong>iOSサポート</strong>の残りが2年未満の端末は避けましょう。発売から約7年が目安です。</li>
-                  <li><strong>SIMロック</strong>が解除できない端末は避けましょう。設定アプリから確認できます。</li>
-                </ol>
-              </div>
+              <SummaryChecklist
+                title="購入前に確認すべき4つのポイント"
+                items={[
+                  { label: 'ネットワーク制限', text: 'が「△」の端末は避けましょう。IMEIで事前に確認できます。' },
+                  { label: 'バッテリー最大容量', text: 'が80%未満の端末は避けましょう。設定アプリから確認できます。' },
+                  { label: 'iOSサポート', text: 'の残りが2年未満の端末は避けましょう。発売から約7年が目安です。' },
+                  { label: 'SIMロック', text: 'が解除できない端末は避けましょう。設定アプリから確認できます。' },
+                ]}
+              />
             </div>
           </section>
 

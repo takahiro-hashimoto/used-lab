@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
+import Breadcrumb from '@/app/components/Breadcrumb'
 import { getAllIPadModels, getAllProductShopLinksByType, getAllIPadAccessories, getAllIPadAccessoryCompatibility } from '@/lib/queries'
 import { buildAccessoryLookup, getPencilTextFromAccessories, getKeyboardTextFromAccessories } from '@/lib/utils/ipad-helpers'
 import SpecTable from './components/SpecTable'
@@ -9,6 +10,7 @@ import BenchmarkSection from './components/BenchmarkSection'
 import EvolutionTimeline from './components/EvolutionTimeline'
 import GlossarySection from '@/app/components/GlossarySection'
 import IPadRelatedLinks from '@/app/components/ipad/IPadRelatedLinks'
+import PopularSection from '@/app/components/support/PopularSection'
 
 const GLOSSARY_ITEMS = [
   { title: 'CPU', icon: 'fa-solid fa-microchip', desc: 'iPadの処理性能を決める中核チップ。AシリーズやMシリーズが搭載され、Mシリーズはパソコン並の高性能を誇る。' },
@@ -134,22 +136,12 @@ export default async function IPadSpecTablePage() {
 
         <div className="hero-wrapper">
         {/* パンくず */}
-        <nav className="breadcrumb" aria-label="パンくずリスト">
-          <div className="l-container">
-            <ol className="breadcrumb-list">
-              <li className="breadcrumb-item">
-                <Link href="/">
-                  <i className="fa-solid fa-house" aria-hidden="true"></i>{' '}
-                  <span>中古Apple製品を安く買う</span>
-                </Link>
-              </li>
-              <li className="breadcrumb-item">
-                <Link href="/ipad">中古iPad完全購入ガイド</Link>
-              </li>
-              <li className="breadcrumb-item" aria-current="page">歴代iPadスペック比較表</li>
-            </ol>
-          </div>
-        </nav>
+        <Breadcrumb
+          items={[
+            { label: '中古iPad完全購入ガイド', href: '/ipad' },
+            { label: '歴代iPadスペック比較表' },
+          ]}
+        />
 
         {/* Hero */}
         <header className="hero">
@@ -248,37 +240,19 @@ export default async function IPadSpecTablePage() {
         <GlossarySection productName="iPad" items={GLOSSARY_ITEMS} />
 
         {/* 目的別に人気の中古iPad */}
-        <section className="l-section" id="popular" aria-labelledby="heading-popular">
-          <div className="l-container">
-            <h2 className="m-section-heading m-section-heading--lg" id="heading-popular">目的別に人気の中古iPad</h2>
-            <p className="m-section-desc">目的別におすすめの機種を厳選。診断で迷った方はぜひご覧ください。</p>
-            <div className="m-card m-card--shadow popular-card">
-              <figure className="popular-card-figure">
-                <Image
-                  alt="中古iPadおすすめ5選のイメージ画像"
-                  loading="lazy"
-                  width={400}
-                  height={500}
-                  className="popular-card-img"
-                  src="/images/content/thumbnail/ipad-image-03.jpg"
-                />
-              </figure>
-              <div className="popular-card-body">
-                <p className="popular-card-subtitle">目的別におすすめ機種を厳選！</p>
-                <p className="popular-card-title">中古iPadおすすめ5選</p>
-              <p className="popular-card-subtitle">目的別におすすめ機種を厳選！</p>                <p className="popular-card-desc">イラスト制作に最適なモデル、動画視聴に大画面モデルなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。</p>
-                <div className="popular-card-buttons">
-                  <a className="m-btn m-btn--primary" href="/ipad/recommend/">
-                    おすすめ5機種を見る <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
-                  </a>
-                  <a className="m-btn m-btn--secondary" href="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Ftablet%2Fios%2Fipad" target="_blank" rel="noopener noreferrer">
-                    イオシスで中古iPadを探す <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        <PopularSection
+          sectionTitle="目的別に人気の中古iPad"
+          sectionDescription="目的別におすすめの機種を厳選。診断で迷った方はぜひご覧ください。"
+          imageSrc="/images/content/thumbnail/ipad-image-03.jpg"
+          imageAlt="中古iPadおすすめ5選のイメージ画像"
+          subtitle="目的別におすすめ機種を厳選！"
+          cardTitle="中古iPadおすすめ5選"
+          cardDescription="イラスト制作に最適なモデル、動画視聴に大画面モデルなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。"
+          buttonText="おすすめ5機種を見る"
+          buttonHref="/ipad/recommend/"
+          secondaryButtonText="イオシスで中古iPadを探す"
+          secondaryButtonHref="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Ftablet%2Fios%2Fipad"
+        />
 
         <IPadRelatedLinks excludeHref={["/ipad/ipad-spec-table/", "/ipad/recommend/"]} />
 

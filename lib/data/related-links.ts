@@ -50,7 +50,7 @@ export const IPAD_LINKS: RelatedLinkMeta[] = [
 /** Apple Watch サブページ一覧 */
 export const WATCH_LINKS: RelatedLinkMeta[] = [
   { href: '/watch/recommend/', title: '中古Apple Watchおすすめ3選【目的別】', desc: '用途に合った狙い目モデルを厳選紹介' },
-  { href: '/watch/watch-price-info/', title: '中古Apple Watch相場・価格推移【2026年】', desc: '主要モデルの相場と値動きをチェック' },
+  { href: '/watch/watch-price-info/', title: '中古Apple Watch相場・価格推移', desc: '主要モデルの相場と値動きをチェック' },
   { href: '/watch/watch-shop/', title: '中古Apple Watchの購入先おすすめ比較', desc: '信頼できるショップを比較して紹介' },
   { href: '/watch/watch-spec-table/', title: '歴代Apple Watchスペック比較表【全モデル】', desc: '歴代モデルの全スペックを一覧で比較' },
   { href: '/watch/used-watch-support/', title: '中古Apple Watchはいつまで使える？【サポート期間】', desc: '機種別のサポート期間目安まとめ' },

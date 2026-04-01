@@ -142,24 +142,26 @@ export default function GpsCellularComparePage() {
         {/* 目次 */}
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
-            <p className="toc-title"><i className="fa-solid fa-list" aria-hidden="true"></i> タップできる目次</p>
-            <ol className="l-grid l-grid--2col u-list-reset">
-              <li>
-                <a href="#recommend" className="toc-item">
-                  結論：おすすめ <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
-                </a>
-              </li>
-              <li>
-                <a href="#comparison" className="toc-item">
-                  セルラー・GPSの違い <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
-                </a>
-              </li>
-              <li>
-                <a href="#faq" className="toc-item">
-                  よくある質問 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
-                </a>
-              </li>
-            </ol>
+            <div className="toc-wrapper">
+              <p className="toc-title"><i className="fa-solid fa-list" aria-hidden="true"></i> タップできる目次</p>
+              <ol className="l-grid l-grid--3col u-list-reset">
+                <li>
+                  <a href="#recommend" className="toc-item">
+                    結論：おすすめ <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="#comparison" className="toc-item">
+                    セルラー・GPSの違い <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="#faq" className="toc-item">
+                    よくある質問 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                </li>
+              </ol>
+            </div>
             <AuthorByline />
           </div>
         </nav>
@@ -199,11 +201,11 @@ export default function GpsCellularComparePage() {
             sectionTitle="目的別に人気の中古Apple Watch"
             sectionDescription="目的別におすすめの機種を厳選。今回の記事で購入するべき機種が判断できなかった方はぜひご覧ください。"
             imageSrc="/images/content/thumbnail/watch-image-08.jpg"
-            imageAlt="中古Apple Watchおすすめ5選のイメージ画像"
+            imageAlt="中古Apple Watchおすすめ3選のイメージ画像"
             subtitle="目的別におすすめ機種を厳選！"
-            cardTitle="中古Apple Watchおすすめ5選"
+            cardTitle="中古Apple Watchおすすめ3選"
             cardDescription="健康管理を重視する人向け、コスパ重視の人向けなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。"
-            buttonText="おすすめ5機種を見る"
+            buttonText="おすすめ3機種を見る"
             buttonHref="/watch/recommend/"
             secondaryButtonText="イオシスで中古Apple Watchを探す"
             secondaryButtonHref="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Fwearable%2Fapple%3Fnot%3Dpencil"

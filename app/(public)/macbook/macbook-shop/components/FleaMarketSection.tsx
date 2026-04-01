@@ -13,7 +13,7 @@ export default function FleaMarketSection() {
           <div className="media-card__desc m-rich-text">
             <p>フリマアプリで中古MacBookが安く出品される理由は、以下の構造的な要因によるものです。</p>
             <p>「安い＝お得」ではなく、「安くなる理由が価格にそのまま反映されている」という点を理解しておく必要があります。</p>
-            <ul>
+            <ul className="media-card__list">
               <li>個人間取引のため、店舗の人件費や検品コストが発生しない</li>
               <li>保証や返品対応が価格に含まれていない</li>
               <li>キーボードのテカリやバッテリー劣化をリスクとして織り込んだ価格設定になっている</li>
@@ -26,7 +26,7 @@ export default function FleaMarketSection() {
           <div className="media-card__desc m-rich-text">
             <p>個人間売買では以下のようなリスクが発生する可能性があります。</p>
             <p>MacBookならではのリスクとして、キーボードやディスプレイの劣化は仕事の生産性に直結します。</p>
-            <ul>
+            <ul className="media-card__list">
               <li><strong>キーボードのテカリ・ヘタリ</strong>で打鍵感が悪い</li>
               <li><strong>ディスプレイのコーティング剥がれ</strong>（ステインゲート問題）</li>
               <li><strong>バッテリーの充放電回数</strong>が多く持ちが悪い</li>

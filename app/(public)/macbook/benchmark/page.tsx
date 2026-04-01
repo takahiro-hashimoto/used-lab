@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
 import Breadcrumb from '@/app/components/Breadcrumb'
+import FaqSection from '@/app/components/support/FaqSection'
 import PopularMacBook from '@/app/components/PopularMacBook'
 import MacBookRelatedLinks from '@/app/components/macbook/MacBookRelatedLinks'
 import ShareBox from '@/app/components/ShareBox'
@@ -290,20 +291,11 @@ export default async function BenchmarkPage() {
           <UseCaseGuide models={benchModels} shopLinks={shopLinks} />
 
           {/* よくある質問 */}
-          <section className="l-section" id="faq" aria-labelledby="heading-faq">
-            <div className="l-container">
-              <h2 className="m-section-heading m-section-heading--lg" id="heading-faq">MacBookのベンチマークに関するよくある質問</h2>
-              <p className="m-section-desc">ベンチマークスコアに関して多く寄せられる質問をまとめました。</p>
-              <div className="faq-list">
-                {FAQ_ITEMS.map((item, i) => (
-                  <div key={i} className="m-card m-card--shadow faq-item">
-                    <h3 className="faq-question">{item.question}</h3>
-                    <div className="faq-answer">{item.answer.split('\n').map((p, j) => <p key={j}>{p}</p>)}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
+          <FaqSection
+            title="MacBookのベンチマークに関するよくある質問"
+            description="ベンチマークスコアに関して多く寄せられる質問をまとめました。"
+            items={FAQ_ITEMS}
+          />
 
           <PopularMacBook />
           <MacBookRelatedLinks excludeHref={["/macbook/benchmark/", "/macbook/recommend/"]} />

@@ -2,12 +2,14 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
 import { getAllIPhoneModels, getAllProductShopLinksByType } from '@/lib/queries'
+import Breadcrumb from '@/app/components/Breadcrumb'
 import SpecTable from './components/SpecTable'
 import DualCompare from './components/DualCompare'
 import BenchmarkSection from './components/BenchmarkSection'
 import EvolutionTimeline from './components/EvolutionTimeline'
 import GlossarySection from '@/app/components/GlossarySection'
 import HeroMeta from '@/app/components/HeroMeta'
+import PopularSection from '@/app/components/support/PopularSection'
 
 const GLOSSARY_ITEMS = [
   { title: 'CPU', icon: 'fa-solid fa-microchip', desc: 'iPhoneの頭脳にあたるチップで、全体的な処理速度や電力効率に大きく影響。A16やA17 Proなどの世代ごとに性能が進化。' },
@@ -151,22 +153,12 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/iphone-s
 
         <div className="hero-wrapper">
         {/* パンくず */}
-        <nav className="breadcrumb" aria-label="パンくずリスト">
-          <div className="l-container">
-            <ol className="breadcrumb-list">
-              <li className="breadcrumb-item">
-                <Link href="/">
-                  <i className="fa-solid fa-house" aria-hidden="true"></i>{' '}
-                  <span>中古Apple製品を安く買う</span>
-                </Link>
-              </li>
-              <li className="breadcrumb-item">
-                <Link href="/iphone">中古iPhone完全購入ガイド</Link>
-              </li>
-              <li className="breadcrumb-item" aria-current="page">歴代iPhoneスペック比較表</li>
-            </ol>
-          </div>
-        </nav>
+        <Breadcrumb
+          items={[
+            { label: '中古iPhone完全購入ガイド', href: '/iphone' },
+            { label: '歴代iPhoneスペック比較表' },
+          ]}
+        />
 
         {/* Hero */}
         <header className="hero">
@@ -264,34 +256,19 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/iphone-s
         <EvolutionTimeline />
         <GlossarySection productName="iPhone" items={GLOSSARY_ITEMS} />
 
-        <section className="l-section" id="popular" aria-labelledby="heading-popular">
-          <div className="l-container">
-            <h2 className="m-section-heading m-section-heading--lg" id="heading-popular">目的別に人気の中古iPhone</h2>
-            <p className="m-section-desc">目的別におすすめの機種を厳選。今回の記事で購入するべき機種が判断できなかった方はぜひご覧ください。</p>
-            <div className="m-card m-card--shadow popular-card">
-              <figure className="popular-card-figure">
-                <Image alt="中古iPhoneおすすめ5選のイメージ画像" loading="lazy" width={400} height={500} className="popular-card-img" src="/images/content/thumbnail/iphone-setting.webp" />
-              </figure>
-              <div className="popular-card-body">
-                <p className="popular-card-subtitle">目的別におすすめ機種を厳選！</p>
-                <p className="popular-card-title">中古iPhoneおすすめ5選</p>
-              <p className="popular-card-subtitle">目的別におすすめ機種を厳選！</p>                <p className="popular-card-desc">カメラ性能を重視する人向け、大画面で動画やSNSを楽しみたい人向けなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。</p>
-                <div className="popular-card-buttons">
-                  <a className="m-btn m-btn--primary" href="/iphone/recommend/">おすすめ5機種を見る <i className="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
-                  <a className="m-btn m-btn--secondary" href="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Fsmartphone%2Fiphone" target="_blank" rel="noopener noreferrer">
-                    イオシスで中古iPhoneを探す <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div className="m-callout m-callout--muted" style={{ marginTop: 'var(--space-2xl)' }}>
-              <span className="m-callout__label">関連</span>
-              <p className="m-callout__text">
-                <a href="https://prodig.co.jp/blogs/column/iphone-history-model-selection" target="_blank" rel="noreferrer noopener">歴代iPhone徹底比較！歴史から学ぶ最適なモデル選びと賢い購入方法を解説</a>
-              </p>
-            </div>
-          </div>
-        </section>
+        <PopularSection
+          sectionTitle="目的別に人気の中古iPhone"
+          sectionDescription="目的別におすすめの機種を厳選。今回の記事で購入するべき機種が判断できなかった方はぜひご覧ください。"
+          imageSrc="/images/content/thumbnail/iphone-setting.webp"
+          imageAlt="中古iPhoneおすすめ5選のイメージ画像"
+          subtitle="目的別におすすめ機種を厳選！"
+          cardTitle="中古iPhoneおすすめ5選"
+          cardDescription="カメラ性能を重視する人向け、大画面で動画やSNSを楽しみたい人向けなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。"
+          buttonText="おすすめ5機種を見る"
+          buttonHref="/iphone/recommend/"
+          secondaryButtonText="イオシスで中古iPhoneを探す"
+          secondaryButtonHref="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Fsmartphone%2Fiphone"
+        />
         {/* 関連記事 */}
         <IPhoneRelatedLinks excludeHref={["/iphone/iphone-spec-table/", "/iphone/recommend/"]} />
         <ShareBox url="https://used-lab.com/iphone/iphone-spec-table/" text="歴代iPhoneスペック比較表！気になる機種の性能差や違いがわかる" />

@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
 import Breadcrumb from '@/app/components/Breadcrumb'
+import FaqSection from '@/app/components/support/FaqSection'
 import ShareBox from '@/app/components/ShareBox'
 import HeroMeta from '@/app/components/HeroMeta'
 import { getAllIPadModels, getAllIPadPriceLogsByModelIds, getAllProductShopLinksByType } from '@/lib/queries'
@@ -124,22 +125,11 @@ export default async function BenchmarkPage() {
     url: PAGE_URL,
   })
 
-  const faqJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: FAQ_ITEMS.map((item) => ({
-      '@type': 'Question',
-      name: item.question,
-      acceptedAnswer: { '@type': 'Answer', text: item.answer },
-    })),
-  }
-
   return (
     <main>
       <article itemScope itemType="https://schema.org/Article">
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
 
         <div className="hero-wrapper">
           <Breadcrumb
@@ -248,20 +238,11 @@ export default async function BenchmarkPage() {
           <ChipGenerationCompare models={benchModels} />
           <UseCaseGuide models={benchModels} shopLinks={shopLinks} />
 
-          <section className="l-section" id="faq" aria-labelledby="heading-faq">
-            <div className="l-container">
-              <h2 className="m-section-heading m-section-heading--lg" id="heading-faq">iPadのベンチマークに関するよくある質問</h2>
-              <p className="m-section-desc">ベンチマークスコアに関して多く寄せられる質問をまとめました。</p>
-              <div className="faq-list">
-                {FAQ_ITEMS.map((item, i) => (
-                  <div key={i} className="m-card m-card--shadow faq-item">
-                    <h3 className="faq-question">{item.question}</h3>
-                    <div className="faq-answer">{item.answer.split('\n').map((p, j) => <p key={j}>{p}</p>)}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
+          <FaqSection
+            title="iPadのベンチマークに関するよくある質問"
+            description="ベンチマークスコアに関して多く寄せられる質問をまとめました。"
+            items={FAQ_ITEMS}
+          />
 
           <PopularSection
             sectionTitle="目的別に人気の中古iPad"

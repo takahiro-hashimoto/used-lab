@@ -47,10 +47,10 @@ export default function PurchaseMethodSection() {
         メルカリやラクマといったフリマサービスでも「AirPods 片方」「AirPods ケースのみ」などのキーワードで検索すると多数の出品アイテムがヒットします。Appleストアに比べると相場はぐっと安くなりますが、出品者の信頼性や購入後のトラブルには注意が必要です。
       </p>
       <div className="m-callout m-callout--tip" style={{ marginTop: 'var(--space-md)' }}>
-        <p className="m-callout__title">
+        <span className="m-callout__label">
           <i className="fa-solid fa-lightbulb" aria-hidden="true"></i>
           メルカリで代替品をお得に購入
-        </p>
+        </span>
         <ul style={{ fontSize: 'var(--font-size-sm)', paddingLeft: 'var(--space-lg)', listStyle: 'disc', marginTop: 'var(--space-xs)' }}>
           <li><a href="https://jp.mercari.com/search?keyword=airpods+%E7%89%87%E8%80%B3" target="_blank" rel="noopener noreferrer nofollow">AirPods「イヤホン片方のみ」の在庫を見る</a></li>
           <li><a href="https://jp.mercari.com/search?keyword=airpods+%E3%82%B1%E3%83%BC%E3%82%B9%E3%81%AE%E3%81%BF" target="_blank" rel="noopener noreferrer nofollow">AirPods「ケースのみ」の在庫を見る</a></li>
@@ -71,10 +71,10 @@ export default function PurchaseMethodSection() {
         </ul>
       </div>
       <div className="m-callout m-callout--tip" style={{ marginTop: 'var(--space-md)' }}>
-        <p className="m-callout__title">
+        <span className="m-callout__label">
           <i className="fa-solid fa-lightbulb" aria-hidden="true"></i>
           eイヤホンで代替品をお得に購入
-        </p>
+        </span>
         <ul style={{ fontSize: 'var(--font-size-sm)', paddingLeft: 'var(--space-lg)', listStyle: 'disc', marginTop: 'var(--space-xs)' }}>
           <li><a href="https://px.a8.net/svt/ejp?a8mat=3T8VI7+EX11Z6+55QO+BW0YB&a8ejpredirect=https%3A%2F%2Fwww.e-earphone.jp%2Fsearch%3Ftype%3Dproduct%26options%255Bprefix%255D%3Dlast%26q%3DAirPods%2B%25E7%2589%2587%25E8%2580%25B3%26filter.p.m.custom.is_on_sale%3D%25E8%25B2%25A9%25E5%25A3%25B2%25E4%25B8%25AD" target="_blank" rel="noopener noreferrer nofollow">片耳のみの中古AirPodsを見る</a></li>
           <li><a href="https://px.a8.net/svt/ejp?a8mat=3T8VI7+EX11Z6+55QO+BW0YB&a8ejpredirect=https%3A%2F%2Fwww.e-earphone.jp%2Fsearch%3Ftype%3Dproduct%26options%255Bprefix%255D%3Dlast%26q%3DAirPods%2B%25E5%2585%2585%25E9%259B%25BB%25E3%2582%25B1%25E3%2583%25BC%25E3%2582%25B9%26filter.p.m.custom.is_on_sale%3D%25E8%25B2%25A9%25E5%25A3%25B2%25E4%25B8%25AD" target="_blank" rel="noopener noreferrer nofollow">充電ケースのみの中古AirPodsを見る</a></li>

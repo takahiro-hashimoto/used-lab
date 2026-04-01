@@ -8,7 +8,7 @@ export default function ConclusionSection() {
 
         <div className="m-card m-card--shadow m-card--padded">
           <div className="media-card__desc m-rich-text">
-            <ul>
+            <ul className="media-card__list">
               <li><strong>安全重視・初心者</strong> → 中古タブレット専門店 or Apple認定整備済製品</li>
               <li><strong>価格重視・知識あり</strong> → ECモール（ポイント還元あり）</li>
               <li><strong>最安値を狙いたい</strong> → フリマアプリ（赤ロム・バッテリー劣化は自己責任）</li>

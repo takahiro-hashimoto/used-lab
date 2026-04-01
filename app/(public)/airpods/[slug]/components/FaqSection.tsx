@@ -49,7 +49,7 @@ export default function FaqSection({ model, latestPrice, shopLinks }: Props) {
           {displayFaqs.map((faq, i) => (
             <div key={i} className="m-card m-card--shadow faq-item">
               <h3 className="faq-question">{faq.question}</h3>
-              <div className="faq-answer">{faq.answer}</div>
+              <div className="faq-answer m-rich-text m-rich-text--muted">{faq.answer}</div>
             </div>
           ))}
         </div>

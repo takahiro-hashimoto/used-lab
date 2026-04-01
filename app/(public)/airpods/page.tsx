@@ -23,6 +23,7 @@ import {
 } from '@/lib/data/airpods-recommend'
 import ProductCard from '@/app/components/ProductCard'
 import Breadcrumb from '@/app/components/Breadcrumb'
+import FaqSection from '@/app/components/support/FaqSection'
 import ShareBox from '@/app/components/ShareBox'
 import VendorCardGrid from '@/app/components/VendorCardGrid'
 import GuideModelLinks from '@/app/components/GuideModelLinks'
@@ -370,22 +371,11 @@ export default async function AirPodsGuidePage() {
           </section>
 
           {/* ========== よくある質問 ========== */}
-          <section className="l-section" id="faq" aria-labelledby="heading-faq">
-            <div className="l-container">
-              <h2 className="m-section-heading m-section-heading--lg" id="heading-faq">中古AirPodsに関するよくある質問</h2>
-              <p className="m-section-desc">中古AirPodsの購入を検討している方からよく寄せられる質問をまとめました。</p>
-              <div className="faq-list">
-                {GUIDE_FAQ_ITEMS.map((item) => (
-                  <div key={item.question} className="m-card faq-item">
-                    <h3 className="faq-question">{item.question}</h3>
-                    <div className="faq-answer">
-                      {item.answer.split('\n').map((p, j) => <p key={j}>{p}</p>)}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
+          <FaqSection
+            title="中古AirPodsに関するよくある質問"
+            description="中古AirPodsの購入を検討している方からよく寄せられる質問をまとめました。"
+            items={GUIDE_FAQ_ITEMS}
+          />
 
         <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>

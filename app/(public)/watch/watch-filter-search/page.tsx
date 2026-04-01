@@ -6,6 +6,8 @@ import type { WatchPriceLog } from '@/lib/types'
 import IconCard from '@/app/components/IconCard'
 import { supabase } from '@/lib/supabase'
 import WatchFilterSearchApp from './components/WatchFilterSearchApp'
+import Breadcrumb from '@/app/components/Breadcrumb'
+import FaqSection from '@/app/components/support/FaqSection'
 import ShareBox from '@/app/components/ShareBox'
 import PopularSection from '@/app/components/support/PopularSection'
 import WatchRelatedLinks from '@/app/components/watch/WatchRelatedLinks'
@@ -145,15 +147,6 @@ export default async function WatchFilterSearchPage() {
     },
   }
 
-  const faqJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: FAQ_ITEMS.map((item) => ({
-      '@type': 'Question',
-      name: item.question,
-      acceptedAnswer: { '@type': 'Answer', text: item.answer },
-    })),
-  }
 
     const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/watch/watch-filter-search/page.tsx')
 
@@ -168,29 +161,15 @@ export default async function WatchFilterSearchPage() {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
         />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
-        />
 
         <div className="hero-wrapper">
         {/* パンくず */}
-        <nav className="breadcrumb" aria-label="パンくずリスト">
-          <div className="l-container">
-            <ol className="breadcrumb-list">
-              <li className="breadcrumb-item">
-                <Link href="/">
-                  <i className="fa-solid fa-house" aria-hidden="true"></i>{' '}
-                  <span>中古Apple製品を安く買う</span>
-                </Link>
-              </li>
-              <li className="breadcrumb-item">
-                <Link href="/watch">中古Apple Watch購入完全ガイド</Link>
-              </li>
-              <li className="breadcrumb-item" aria-current="page">Apple Watch機種診断</li>
-            </ol>
-          </div>
-        </nav>
+        <Breadcrumb
+          items={[
+            { label: '中古Apple Watch購入完全ガイド', href: '/watch' },
+            { label: 'Apple Watch機種診断' },
+          ]}
+        />
 
         {/* Hero */}
         <header className="hero">
@@ -268,74 +247,21 @@ export default async function WatchFilterSearchPage() {
         </section>
 
         {/* よくある質問 */}
-        <section className="l-section" id="faq" aria-labelledby="heading-faq">
-          <div className="l-container">
-            <h2 className="m-section-heading m-section-heading--lg" id="heading-faq">
-              Apple Watch機種診断に関するよくある質問
-            </h2>
-            <p className="m-section-desc">中古Apple Watch購入に関するよくある疑問にお答えします。</p>
-
-            <div className="faq-list">
-              {FAQ_ITEMS.map((item, i) => (
-                <div key={i} className="m-card m-card--shadow faq-item">
-                  <h3 className="faq-question">{item.question}</h3>
-                  <div className="faq-answer">
-                    <p dangerouslySetInnerHTML={{ __html: item.answer }} />
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* 目的別に人気の中古Apple Watch */}
-        <section className="l-section" id="popular" aria-labelledby="heading-popular">
-          <div className="l-container">
-            <h2 className="m-section-heading m-section-heading--lg" id="heading-popular">
-              目的別に人気の中古Apple Watch
-            </h2>
-            <p className="m-section-desc">
-              目的別におすすめの機種を厳選。診断で迷った方はぜひご覧ください。
-            </p>
-            <div className="m-card m-card--shadow popular-card">
-              <figure className="popular-card-figure">
-                <Image
-                  src="/images/content/thumbnail/watch-image-08.jpg"
-                  alt="中古Apple Watchおすすめ5選のイメージ画像"
-                  className="popular-card-img"
-                  width={400}
-                  height={500}
-                  loading="lazy"
-                />
-              </figure>
-              <div className="popular-card-body">
-                <p className="popular-card-subtitle">目的別におすすめ機種を厳選！</p>
-                <p className="popular-card-title">中古Apple Watchおすすめ5選</p>
-                <p className="popular-card-desc">
-                  健康管理やフィットネスに最適なモデル、コスパ重視のSEモデルなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。
-                </p>
-                <div className="popular-card-buttons">
-                  <Link href="/watch/recommend" className="m-btn m-btn--primary">
-                    おすすめ5機種を見る <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
-                  </Link>
-                  <a className="m-btn m-btn--secondary" href="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Fwearable%2Fapple%3Fnot%3Dpencil" target="_blank" rel="noopener noreferrer">
-                    イオシスで中古Apple Watchを探す <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        <FaqSection
+          title="Apple Watch機種診断に関するよくある質問"
+          description="中古Apple Watch購入に関するよくある疑問にお答えします。"
+          items={FAQ_ITEMS}
+        />
 
         <PopularSection
           sectionTitle="目的別に人気の中古Apple Watch"
           sectionDescription="目的別におすすめの機種を厳選。今回の記事で購入するべき機種が判断できなかった方はぜひご覧ください。"
           imageSrc="/images/content/thumbnail/watch-image-08.jpg"
-          imageAlt="中古Apple Watchおすすめ5選のイメージ画像"
+          imageAlt="中古Apple Watchおすすめ3選のイメージ画像"
           subtitle="目的別におすすめ機種を厳選！"
-          cardTitle="中古Apple Watchおすすめ5選"
+          cardTitle="中古Apple Watchおすすめ3選"
           cardDescription="健康管理を重視する人向け、コスパ重視の人向けなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。"
-          buttonText="おすすめ5機種を見る"
+          buttonText="おすすめ3機種を見る"
           buttonHref="/watch/recommend/"
           secondaryButtonText="イオシスで中古Apple Watchを探す"
           secondaryButtonHref="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Fwearable%2Fapple%3Fnot%3Dpencil"

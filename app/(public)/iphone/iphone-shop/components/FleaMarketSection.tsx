@@ -13,7 +13,7 @@ export default function FleaMarketSection() {
           <div className="media-card__desc m-rich-text">
             <p>フリマアプリで中古iPhoneが安く出品される理由は、以下の構造的な要因によるものです。</p>
             <p>「安い＝お得」ではなく、「安くなる理由が価格にそのまま反映されている」という点を理解しておく必要があります。</p>
-            <ul>
+            <ul className="media-card__list">
               <li>個人間取引のため、店舗の人件費や検品コストが発生しない</li>
               <li>保証や返品対応が価格に含まれていない</li>
               <li>相場より安く売らないと売れにくい構造になっている</li>
@@ -26,7 +26,7 @@ export default function FleaMarketSection() {
           <div className="media-card__desc m-rich-text">
             <p>個人間売買では以下のようなリスクが発生する可能性があります。</p>
             <p>これらのリスクについては、購入前に必ず理解しておく必要があります。</p>
-            <ul>
+            <ul className="media-card__list">
               <li><strong>ネットワーク利用制限（赤ロム）</strong>の可能性</li>
               <li><strong>バッテリーが大きく劣化</strong>している場合がある</li>
               <li><strong>保証・返品対応</strong>が基本的にない</li>

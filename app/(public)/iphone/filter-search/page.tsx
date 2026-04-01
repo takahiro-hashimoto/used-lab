@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
 import Image from 'next/image'
 import { getAllIPhoneModels, getAllProductShopLinksByType } from '@/lib/queries'
 import type { IPhonePriceLog } from '@/lib/types'
@@ -10,6 +9,9 @@ import ShareBox from '@/app/components/ShareBox'
 import IPhoneRelatedLinks from '@/app/components/iphone/IPhoneRelatedLinks'
 import { getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
+import PopularSection from '@/app/components/support/PopularSection'
+import Breadcrumb from '@/app/components/Breadcrumb'
+import FaqSection from '@/app/components/support/FaqSection'
 
 export const metadata: Metadata = {
   title: 'iPhone機種診断シミュレーター｜自分に合うおすすめ中古スマホがすぐわかる【2026年版】',
@@ -151,15 +153,6 @@ export default async function IPhoneFilterSearchPage() {
     },
   }
 
-  const faqJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: FAQ_ITEMS.map((item) => ({
-      '@type': 'Question',
-      name: item.question,
-      acceptedAnswer: { '@type': 'Answer', text: item.answer },
-    })),
-  }
 
     const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/filter-search/page.tsx')
 
@@ -174,29 +167,14 @@ export default async function IPhoneFilterSearchPage() {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
         />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
-        />
-
         <div className="hero-wrapper">
         {/* パンくず */}
-        <nav className="breadcrumb" aria-label="パンくずリスト">
-          <div className="l-container">
-            <ol className="breadcrumb-list">
-              <li className="breadcrumb-item">
-                <Link href="/">
-                  <i className="fa-solid fa-house" aria-hidden="true"></i>{' '}
-                  <span>中古Apple製品を安く買う</span>
-                </Link>
-              </li>
-              <li className="breadcrumb-item">
-                <Link href="/iphone">中古iPhone完全購入ガイド</Link>
-              </li>
-              <li className="breadcrumb-item" aria-current="page">iPhone機種診断</li>
-            </ol>
-          </div>
-        </nav>
+        <Breadcrumb
+          items={[
+            { label: '中古iPhone完全購入ガイド', href: '/iphone' },
+            { label: 'iPhone機種診断' },
+          ]}
+        />
 
         {/* Hero */}
         <header className="hero">
@@ -274,64 +252,23 @@ export default async function IPhoneFilterSearchPage() {
         </section>
 
         {/* よくある質問 */}
-        <section className="l-section" id="faq" aria-labelledby="heading-faq">
-          <div className="l-container">
-            <h2 className="m-section-heading m-section-heading--lg" id="heading-faq">
-              iPhone機種診断に関するよくある質問
-            </h2>
-            <p className="m-section-desc">診断に関してよくある質問をまとめました。</p>
+        <FaqSection
+          title="iPhone機種診断に関するよくある質問"
+          description="診断に関してよくある質問をまとめました。"
+          items={FAQ_ITEMS}
+        />
 
-            <div className="faq-list">
-              {FAQ_ITEMS.map((item, i) => (
-                <div key={i} className="m-card m-card--shadow faq-item">
-                  <h3 className="faq-question">{item.question}</h3>
-                  <div className="faq-answer">
-                    <p dangerouslySetInnerHTML={{ __html: item.answer }} />
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* 目的別に人気の中古iPhone */}
-        <section className="l-section" id="popular" aria-labelledby="heading-popular">
-          <div className="l-container">
-            <h2 className="m-section-heading m-section-heading--lg" id="heading-popular">
-              目的別に人気の中古iPhone
-            </h2>
-            <p className="m-section-desc">
-              目的別におすすめの機種を厳選。診断で迷った方はぜひご覧ください。
-            </p>
-            <div className="m-card m-card--shadow popular-card">
-              <figure className="popular-card-figure">
-                <Image
-                  src="/images/content/thumbnail/iphone-setting.webp"
-                  alt="中古iPhoneおすすめ5選のイメージ画像"
-                  className="popular-card-img"
-                  width={400}
-                  height={500}
-                  loading="lazy"
-                />
-              </figure>
-              <div className="popular-card-body">
-                <p className="popular-card-subtitle">目的別におすすめ機種を厳選！</p>
-                <p className="popular-card-title">中古iPhoneおすすめ5選</p>
-                <p className="popular-card-desc">
-                  カメラ性能を重視する人向け、大画面で動画やSNSを楽しみたい人向けなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。
-                </p>
-                <div className="popular-card-buttons">
-                  <Link href="/iphone/recommend" className="m-btn m-btn--primary">
-                    おすすめ5機種を見る <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
-                  </Link>
-                  <a className="m-btn m-btn--secondary" href="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Fsmartphone%2Fiphone" target="_blank" rel="noopener noreferrer">
-                    イオシスで中古iPhoneを探す <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        <PopularSection
+          sectionTitle="目的別に人気の中古iPhone"
+          sectionDescription="目的別におすすめの機種を厳選。診断で迷った方はぜひご覧ください。"
+          imageSrc="/images/content/thumbnail/iphone-setting.webp"
+          imageAlt="中古iPhoneおすすめ5選のイメージ画像"
+          subtitle="目的別におすすめ機種を厳選！"
+          cardTitle="中古iPhoneおすすめ5選"
+          cardDescription="カメラ性能を重視する人向け、大画面で動画やSNSを楽しみたい人向けなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。"
+          buttonText="おすすめ5機種を見る"
+          buttonHref="/iphone/recommend"
+        />
 
         <IPhoneRelatedLinks excludeHref={["/iphone/filter-search/", "/iphone/recommend/"]} />
         <ShareBox url="https://used-lab.com/iphone/filter-search/" text="iPhone機種診断シミュレーター｜自分に合うおすすめ中古スマホがすぐわかる【2026年版】" />

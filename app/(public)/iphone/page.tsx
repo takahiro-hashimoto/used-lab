@@ -24,12 +24,14 @@ import {
 } from '@/lib/data/iphone-recommend'
 import ProductCard from '@/app/components/ProductCard'
 import Breadcrumb from '@/app/components/Breadcrumb'
+import FaqSection from '@/app/components/support/FaqSection'
 import ShareBox from '@/app/components/ShareBox'
 import VendorCardGrid from '@/app/components/VendorCardGrid'
 import GuideModelLinks from '@/app/components/GuideModelLinks'
 import { getHeroImage } from '@/lib/data/hero-images'
 import AuthorByline from '@/app/components/AuthorByline'
 import HeroMeta from '@/app/components/HeroMeta'
+import PopularSection from '@/app/components/support/PopularSection'
 
 const PAGE_TITLE = `中古iPhone完全購入ガイド | 選び方・相場・おすすめモデルまとめ【${GUIDE_DATE_LABEL}版】`
 const PAGE_DESCRIPTION = `${GUIDE_DATE_LABEL}版・中古iPhoneの完全購入ガイド。選び方のポイント、モデル別の相場、おすすめ機種をまとめて解説。失敗しない中古iPhone選びをサポートします。`
@@ -95,15 +97,6 @@ export default async function IPhoneGuidePage() {
     url: PAGE_URL,
   })
 
-  const faqJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: GUIDE_FAQ_ITEMS.map((item) => ({
-      '@type': 'Question',
-      name: item.question,
-      acceptedAnswer: { '@type': 'Answer', text: item.answer },
-    })),
-  }
 
   /** モデルのストレージラベル */
   function getStorageLabel(model: IPhoneModel): string {
@@ -123,11 +116,6 @@ export default async function IPhoneGuidePage() {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
         />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
-        />
-
         <div className="hero-wrapper">
         {/* パンくず */}
         <Breadcrumb
@@ -203,38 +191,19 @@ export default async function IPhoneGuidePage() {
         <div className="l-sections" itemProp="articleBody">
 
           {/* ========== 絞り込みツール ========== */}
-          <section className="l-section" id="filter-tool" aria-labelledby="heading-filter-tool">
-            <div className="l-container">
-              <h2 className="m-section-heading m-section-heading--lg" id="heading-filter-tool">条件に合うiPhoneを絞り込む</h2>
-              <p className="m-section-desc">予算・サイズ・認証方式・充電端子など、ご自身の条件を選ぶことで候補を絞り込めます。</p>
-
-              <div className="m-card m-card--shadow popular-card">
-                <figure className="popular-card-figure">
-                  <img
-                    src="/images/content/thumbnail/simulator.jpg"
-                    alt="iPhone機種絞り込みツール"
-                    className="popular-card-img"
-                    width={400}
-                    height={500}
-                    loading="lazy"
-                  />
-                </figure>
-                <div className="popular-card-body">
-                  <p className="popular-card-subtitle">条件にチェックを打つだけ！</p>
-                  <p className="popular-card-title">iPhone機種絞り込みツール</p>
-                  <p className="popular-card-desc">ゲームを快適にプレイしたい、ケーブルを統一したいなどの希望や・予算金額などにチェックを打つだけであなたにぴったり合うiPhoneをシミュレーションすることができます。</p>
-                  <div className="popular-card-buttons">
-                    <Link href="/iphone/filter-search/" className="m-btn m-btn--primary">
-                      機種診断スタート <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
-                    </Link>
-                    <a className="m-btn m-btn--secondary" href="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Fsmartphone%2Fiphone" target="_blank" rel="noopener noreferrer">
-                      イオシスで中古iPhoneを探す <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
+          <PopularSection
+            sectionTitle="条件に合うiPhoneを絞り込む"
+            sectionDescription="予算・サイズ・認証方式・充電端子など、ご自身の条件を選ぶことで候補を絞り込めます。"
+            imageSrc="/images/content/thumbnail/simulator.jpg"
+            imageAlt="iPhone機種絞り込みツール"
+            subtitle="条件にチェックを打つだけ！"
+            cardTitle="iPhone機種絞り込みツール"
+            cardDescription="ゲームを快適にプレイしたい、ケーブルを統一したいなどの希望や・予算金額などにチェックを打つだけであなたにぴったり合うiPhoneをシミュレーションすることができます。"
+            buttonText="機種診断スタート"
+            buttonHref="/iphone/filter-search/"
+            secondaryButtonText="イオシスで中古iPhoneを探す"
+            secondaryButtonHref="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Fsmartphone%2Fiphone"
+          />
 
           {/* ========== 中古iPhoneの最新相場 ========== */}
           <section className="l-section" id="market-price" aria-labelledby="heading-market-price">
@@ -396,43 +365,17 @@ export default async function IPhoneGuidePage() {
           </section>
 
           {/* ========== 格安SIM セット購入バナー ========== */}
-          <section className="l-section" id="mvno-banner" aria-labelledby="heading-mvno-banner">
-            <div className="l-container">
-              <h2 className="m-section-heading m-section-heading--lg" id="heading-mvno-banner">格安SIMとセットでお得に購入</h2>
-              <p className="m-section-desc">
-                中古iPhoneと通信回線をまとめて契約できる格安SIM業者を徹底比較。<br />
-                端末選びから回線契約まで一度に済ませたい方におすすめです。
-              </p>
-
-              <div className="m-card m-card--shadow popular-card">
-                <figure className="popular-card-figure">
-                  <img
-                    src="/images/content/thumbnail/sim.webp"
-                    alt="中古iPhoneの購入と通信契約が一緒にできる格安SIM業者まとめ"
-                    className="popular-card-img"
-                    width={400}
-                    height={500}
-                    loading="lazy"
-                  />
-                </figure>
-                <div className="popular-card-body">
-                  <p className="popular-card-subtitle">回線契約と端末購入を一度に！</p>
-                  <p className="popular-card-title">中古iPhoneの購入と通信契約が一緒にできる格安SIM業者まとめ</p>
-                  <p className="popular-card-desc">
-                    楽天モバイル・UQモバイル・ワイモバイルなど、中古iPhoneと通信回線をセットで契約できる事業者を比較。あなたに最適な業者が見つかる診断機能付き。
-                  </p>
-                  <div className="popular-card-buttons">
-                    <Link href="/iphone/mvno/" className="m-btn m-btn--primary">
-                      セット対応業者を見る <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
-                    </Link>
-                    <a className="m-btn m-btn--secondary" href="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Fsmartphone%2Fiphone" target="_blank" rel="noopener noreferrer">
-                      イオシスで中古iPhoneを探す <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
+          <PopularSection
+            sectionTitle="中古iPhoneの購入と通信契約が一緒にできる格安SIM業者まとめ"
+            sectionDescription="中古iPhoneと通信回線をまとめて契約できる格安SIM業者を徹底比較。端末選びから回線契約まで一度に済ませたい方におすすめです。"
+            imageSrc="/images/content/thumbnail/sim.webp"
+            imageAlt="中古iPhoneの購入と通信契約が一緒にできる格安SIM業者まとめ"
+            subtitle="回線契約と端末購入を一度に！"
+            cardTitle="中古iPhoneの購入と通信契約が一緒にできる格安SIM業者まとめ"
+            cardDescription="楽天モバイル・UQモバイル・ワイモバイルなど、中古iPhoneと通信回線をセットで契約できる事業者を比較。あなたに最適な業者が見つかる診断機能付き。"
+            buttonText="セット対応業者を見る"
+            buttonHref="/iphone/mvno/"
+          />
 
           {/* ========== スペック比較ガイド ========== */}
           <section className="l-section" id="spec-compare" aria-labelledby="heading-spec-compare">
@@ -483,68 +426,11 @@ export default async function IPhoneGuidePage() {
           </section>
 
           {/* ========== よくある質問 ========== */}
-          <section className="l-section" id="faq" aria-labelledby="heading-faq">
-            <div className="l-container">
-              <h2 className="m-section-heading m-section-heading--lg" id="heading-faq">中古iPhoneに関するよくある質問</h2>
-              <p className="m-section-desc">中古iPhoneの購入を検討している方からよく寄せられる質問をまとめました。</p>
-              <div className="faq-list">
-                <div className="m-card faq-item">
-                  <h3 className="faq-question">自分に合った中古iPhoneの選び方は？</h3>
-                  <div className="faq-answer">
-                    <p>用途や予算に応じて最適なモデルは異なります。カメラ重視ならProシリーズ、コスパ重視ならiPhone SE、バランス重視なら無印モデルがおすすめです。「<Link href="/iphone/filter-search/">スマホ機種診断シミュレーター</Link>」で条件を絞り込むと、あなたに合った機種が見つかります。</p>
-                  </div>
-                </div>
-                <div className="m-card faq-item">
-                  <h3 className="faq-question">iPhoneのスペックを比較したい</h3>
-                  <div className="faq-answer">
-                    <p>「<Link href="/iphone/iphone-spec-table/">歴代iPhoneのスペック比較表</Link>」で、歴代iPhoneのスペックを並べて比較できます。カメラ性能に特化した比較は「<Link href="/iphone/iphone-camera/">歴代iPhoneのカメラ性能比較</Link>」でご覧いただけます。</p>
-                  </div>
-                </div>
-                <div className="m-card faq-item">
-                  <h3 className="faq-question">中古iPhoneを買うベストなタイミングはいつですか？</h3>
-                  <div className="faq-answer">
-                    <p>新型iPhone発売直後（9〜10月）は旧モデルの価格が下がりやすい傾向があります。また、年末年始や決算期（3月）もセールが行われることが多いです。当サイトの<Link href="/iphone/price-info/">価格推移グラフ</Link>で、値下がり傾向を確認してから購入するのがおすすめです。</p>
-                  </div>
-                </div>
-                <div className="m-card faq-item">
-                  <h3 className="faq-question">中古iPhoneのランク（A/B/C）の違いは何ですか？</h3>
-                  <div className="faq-answer">
-                    <p>一般的に、Aランクは傷がほぼない美品、Bランクは軽微な傷がある良品、Cランクは目立つ傷がある並品です。実用上はBランクでも問題なく使用でき、コストパフォーマンスが高いです。</p>
-                  </div>
-                </div>
-                <div className="m-card faq-item">
-                  <h3 className="faq-question">中古iPhoneはどこで買うのがおすすめですか？</h3>
-                  <div className="faq-answer">
-                    <p>信頼性と保証の観点から、<Link href="/iphone/iphone-shop/">イオシス・ゲオ・じゃんぱらなどの大手中古専門店</Link>がおすすめです。これらの店舗では動作確認済みの端末を扱い、初期不良保証も付いています。</p>
-                  </div>
-                </div>
-                <div className="m-card faq-item">
-                  <h3 className="faq-question">中古iPhoneはいつまで使えますか？</h3>
-                  <div className="faq-answer">
-                    <p>iPhoneはAppleの発売から約6〜7年間iOSアップデートのサポートを受けられます。長く使いたい場合は、発売から3年以内のモデルを選ぶと安心です。詳しくは「<Link href="/iphone/used-iphone-support/">中古iPhoneの寿命とサポート期間の目安</Link>」をご覧ください。</p>
-                  </div>
-                </div>
-                <div className="m-card faq-item">
-                  <h3 className="faq-question">中古iPhoneのバッテリー状態は確認できますか？</h3>
-                  <div className="faq-answer">
-                    <p>はい、iPhoneの「設定」→「バッテリー」→「バッテリーの状態」から最大容量を確認できます。80%以上あれば実用上問題ありません。中古専門店では商品ページにバッテリー状態が記載されていることが多いです。各モデルのバッテリー容量は「<Link href="/iphone/battery-compare/">バッテリー性能比較ランキング</Link>」で確認できます。</p>
-                  </div>
-                </div>
-                <div className="m-card faq-item">
-                  <h3 className="faq-question">iPhoneのストレージ容量はどれを選ぶべき？</h3>
-                  <div className="faq-answer">
-                    <p>写真や動画をよく撮る方は128GB以上、アプリやゲームを多く入れる方は256GB以上がおすすめです。iPhoneはストレージの後から増設ができないため、迷ったら1段階上の容量を選んでおくと後悔しにくくなります。詳しくは「<Link href="/iphone/storage-guide/">ストレージ容量ガイド</Link>」をご覧ください。</p>
-                  </div>
-                </div>
-                <div className="m-card faq-item">
-                  <h3 className="faq-question">ネットワーク利用制限△の中古iPhoneは買っても大丈夫？</h3>
-                  <div className="faq-answer">
-                    <p>ネットワーク利用制限△は、前の所有者の分割払いが完了していない状態を示します。△でも通常利用は可能ですが、価格が安い分リスクもあるため、心配な方は○（制限なし）の端末を選ぶのが安心です。詳しくは「<Link href="/iphone/used-iphone-attention/">中古iPhoneの注意点と選び方</Link>」で解説しています。</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
+          <FaqSection
+            title="中古iPhoneに関するよくある質問"
+            description="中古iPhoneの購入を検討している方からよく寄せられる質問をまとめました。"
+            items={GUIDE_FAQ_ITEMS}
+          />
 
         <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>

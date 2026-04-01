@@ -13,7 +13,7 @@ export default function FaqSection() {
           {FAQ_ITEMS.map((item, i) => (
             <div key={i} className="faq-item m-card m-card--shadow">
               <h3 className="faq-question">{item.question}</h3>
-              <div className="faq-answer">
+              <div className="faq-answer m-rich-text m-rich-text--muted">
                 {item.answer.split('\n').map((p, j) => (
                   <p key={j}>{p}</p>
                 ))}

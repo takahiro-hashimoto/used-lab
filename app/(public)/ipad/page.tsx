@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
 import IconCard from '@/app/components/IconCard'
+import PopularSection from '@/app/components/support/PopularSection'
 import {
   getAllIPadModels,
   getLatestIPadPriceLog,
@@ -22,6 +23,7 @@ import {
   RECOMMEND_META,
 } from '@/lib/data/ipad-recommend'
 import Breadcrumb from '@/app/components/Breadcrumb'
+import FaqSection from '@/app/components/support/FaqSection'
 import ShareBox from '@/app/components/ShareBox'
 import VendorCardGrid from '@/app/components/VendorCardGrid'
 import GuideModelLinks from '@/app/components/GuideModelLinks'
@@ -94,16 +96,6 @@ export default async function IPadGuidePage() {
     url: PAGE_URL,
   })
 
-  const faqJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: GUIDE_FAQ_ITEMS.map((item) => ({
-      '@type': 'Question',
-      name: item.question,
-      acceptedAnswer: { '@type': 'Answer', text: item.answer },
-    })),
-  }
-
   /** モデルのストレージラベル */
   function getStorageLabel(model: IPadModel): string {
     if (!model.strage) return ''
@@ -121,10 +113,6 @@ export default async function IPadGuidePage() {
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
         />
 
         <div className="hero-wrapper">
@@ -203,38 +191,19 @@ export default async function IPadGuidePage() {
         <div className="l-sections" itemProp="articleBody">
 
           {/* ========== 絞り込みツール ========== */}
-          <section className="l-section" id="filter-tool" aria-labelledby="heading-filter-tool">
-            <div className="l-container">
-              <h2 className="m-section-heading m-section-heading--lg" id="heading-filter-tool">条件に合うiPadを絞り込む</h2>
-              <p className="m-section-desc">予算・画面サイズ・Apple Pencil対応・用途など、ご自身の条件を選ぶことで候補を絞り込めます。</p>
-
-              <div className="m-card m-card--shadow popular-card">
-                <figure className="popular-card-figure">
-                  <img
-                    src="/images/content/thumbnail/simulator.jpg"
-                    alt="iPad機種絞り込みツール"
-                    className="popular-card-img"
-                    width={400}
-                    height={500}
-                    loading="lazy"
-                  />
-                </figure>
-                <div className="popular-card-body">
-                  <p className="popular-card-subtitle">条件にチェックを打つだけ！</p>
-                  <p className="popular-card-title">iPad機種絞り込みツール</p>
-                <p className="popular-card-subtitle">目的別におすすめ機種を厳選！</p>                  <p className="popular-card-desc">イラストを描きたい、動画を大画面で楽しみたいなどの希望や予算金額などにチェックを打つだけで、あなたにぴったり合うiPadをシミュレーションすることができます。</p>
-                  <div className="popular-card-buttons">
-                    <Link href="/ipad/ipad-filter-search/" className="m-btn m-btn--primary">
-                      機種診断スタート <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
-                    </Link>
-                    <a className="m-btn m-btn--secondary" href="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Ftablet%2Fios%2Fipad" target="_blank" rel="noopener noreferrer">
-                      イオシスで中古iPadを探す <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
+          <PopularSection
+            sectionTitle="条件に合うiPadを絞り込む"
+            sectionDescription="予算・画面サイズ・Apple Pencil対応・用途など、ご自身の条件を選ぶことで候補を絞り込めます。"
+            imageSrc="/images/content/thumbnail/simulator.jpg"
+            imageAlt="iPad機種絞り込みツール"
+            subtitle="条件にチェックを打つだけ！"
+            cardTitle="iPad機種絞り込みツール"
+            cardDescription="イラストを描きたい、動画を大画面で楽しみたいなどの希望や予算金額などにチェックを打つだけで、あなたにぴったり合うiPadをシミュレーションすることができます。"
+            buttonText="機種診断スタート"
+            buttonHref="/ipad/ipad-filter-search/"
+            secondaryButtonText="イオシスで中古iPadを探す"
+            secondaryButtonHref="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Ftablet%2Fios%2Fipad"
+          />
 
           {/* ========== 中古iPadの最新相場 ========== */}
           <section className="l-section" id="market-price" aria-labelledby="heading-market-price">
@@ -505,86 +474,11 @@ export default async function IPadGuidePage() {
           </section>
 
           {/* ========== よくある質問 ========== */}
-          <section className="l-section" id="faq" aria-labelledby="heading-faq">
-            <div className="l-container">
-              <h2 className="m-section-heading m-section-heading--lg" id="heading-faq">中古iPadに関するよくある質問</h2>
-              <p className="m-section-desc">中古iPadの購入を検討している方からよく寄せられる質問をまとめました。</p>
-              <div className="faq-list">
-                <div className="m-card faq-item">
-                  <h3 className="faq-question">自分に合った中古iPadの選び方は？</h3>
-                  <div className="faq-answer">
-                    <p>用途や予算に応じて最適なモデルは異なります。イラスト・動画編集ならProシリーズ、コスパ重視ならiPad（無印）、持ち運び重視ならiPad mini、バランス重視ならiPad Airがおすすめです。「<Link href="/ipad/ipad-filter-search/">iPad機種診断シミュレーター</Link>」で条件を絞り込むと、あなたに合った機種が見つかります。</p>
-                  </div>
-                </div>
-                <div className="m-card faq-item">
-                  <h3 className="faq-question">iPadのスペックを比較したい</h3>
-                  <div className="faq-answer">
-                    <p>「<Link href="/ipad/ipad-spec-table/">歴代iPadスペック比較表</Link>」で、歴代iPadのスペックを並べて比較できます。Apple Pencilの対応状況は「<Link href="/ipad/apple-pencil-compare/">Apple Pencil対応比較表</Link>」でご覧いただけます。</p>
-                  </div>
-                </div>
-                <div className="m-card faq-item">
-                  <h3 className="faq-question">中古iPadを買うベストなタイミングはいつですか？</h3>
-                  <div className="faq-answer">
-                    <p>新型iPad発売直後は旧モデルの価格が下がりやすい傾向があります。また、年末年始や決算期（3月）もセールが行われることが多いです。当サイトの<Link href="/ipad/ipad-price-info/">価格推移グラフ</Link>で、値下がり傾向を確認してから購入するのがおすすめです。</p>
-                  </div>
-                </div>
-                <div className="m-card faq-item">
-                  <h3 className="faq-question">Wi-FiモデルとCellularモデルどちらを選ぶべき？</h3>
-                  <div className="faq-answer">
-                    <p>自宅やWi-Fi環境での利用がメインならWi-Fiモデルで十分です。外出先でも単体で通信したい場合はCellularモデルがおすすめですが、スマホのテザリングでも代用可能です。詳しくは「<Link href="/ipad/wifi-cellular/">Wi-FiモデルとCellularモデルの違い</Link>」で解説しています。</p>
-                  </div>
-                </div>
-                <div className="m-card faq-item">
-                  <h3 className="faq-question">中古iPadはどこで買うのがおすすめですか？</h3>
-                  <div className="faq-answer">
-                    <p>信頼性と保証の観点から、<Link href="/ipad/ipad-shop/">イオシス・ゲオ・じゃんぱらなどの大手中古専門店</Link>がおすすめです。これらの店舗では動作確認済みの端末を扱い、初期不良保証も付いています。</p>
-                  </div>
-                </div>
-                <div className="m-card faq-item">
-                  <h3 className="faq-question">中古iPadはいつまで使えますか？</h3>
-                  <div className="faq-answer">
-                    <p>iPadはAppleの発売から約6〜7年間iPadOSアップデートのサポートを受けられます。長く使いたい場合は、発売から3年以内のモデルを選ぶと安心です。詳しくは「<Link href="/ipad/used-ipad-support/">中古iPadの寿命とサポート期間の目安</Link>」をご覧ください。</p>
-                  </div>
-                </div>
-                <div className="m-card faq-item">
-                  <h3 className="faq-question">Apple Pencilはどの世代のiPadに対応していますか？</h3>
-                  <div className="faq-answer">
-                    <p>Apple Pencilには第1世代、第2世代、USB-C、Proの4種類があり、対応するiPadモデルが異なります。購入前に必ず「<Link href="/ipad/apple-pencil-compare/">Apple Pencil対応比較表</Link>」で対応状況を確認しましょう。</p>
-                  </div>
-                </div>
-                <div className="m-card faq-item">
-                  <h3 className="faq-question">中古iPadのランク（A/B/C）の違いは何ですか？</h3>
-                  <div className="faq-answer">
-                    <p>一般的に、Aランクは傷がほぼない美品、Bランクは軽微な傷がある良品、Cランクは目立つ傷がある並品です。実用上はBランクでも問題なく使用でき、コストパフォーマンスが高いです。詳しくは「<Link href="/ipad/used-ipad-attention/">中古iPadの注意点と選び方</Link>」で解説しています。</p>
-                  </div>
-                </div>
-                <div className="m-card faq-item">
-                  <h3 className="faq-question">iPad ProとiPad Airはどっちがいい？</h3>
-                  <div className="faq-answer">
-                    <p>iPad Proは最大120Hzの ProMotionディスプレイ、LiDARスキャナ、Thunderbolt対応など、プロ向けの機能が充実しています。一方iPad Airは、M1/M2チップ搭載で十分高性能ながら価格が抑えめなのが魅力です。動画編集や3D制作などの高負荷作業にはPro、ノートやイラスト・写真編集などの日常用途ならAirがコスパに優れています。</p>
-                  </div>
-                </div>
-                <div className="m-card faq-item">
-                  <h3 className="faq-question">iPadのストレージ容量はどれを選ぶべき？</h3>
-                  <div className="faq-answer">
-                    <p>Web閲覧・動画視聴・ノートアプリがメインなら64GBでも運用可能です。写真やイラスト、アプリを多く入れるなら128GB以上、動画編集やゲームを本格的に楽しむなら256GB以上がおすすめです。iPadはMacBookと同様にストレージの後から増設ができないため、迷ったら1段階上の容量を選んでおくと後悔しにくくなります。詳しくは「<Link href="/ipad/storage-guide/">ストレージ容量ガイド</Link>」をご覧ください。</p>
-                  </div>
-                </div>
-                <div className="m-card faq-item">
-                  <h3 className="faq-question">メルカリやヤフオクで中古iPadを買っても大丈夫？</h3>
-                  <div className="faq-answer">
-                    <p>フリマアプリやオークションサイトは相場より安く手に入る可能性がある反面、アクティベーションロック解除漏れ・バッテリー劣化・赤ロム（ネットワーク利用制限）といったリスクがあり、個人間取引のため返品保証もありません。初めて中古iPadを購入する方は、動作確認済み・保証付きの<Link href="/ipad/ipad-shop/">中古専門店</Link>を利用するのが安心です。</p>
-                  </div>
-                </div>
-                <div className="m-card faq-item">
-                  <h3 className="faq-question">Apple認定整備済製品と中古iPadの違いは？</h3>
-                  <div className="faq-answer">
-                    <p>Apple認定整備済製品はAppleが検品・部品交換・クリーニングを行い、バッテリーと外装が新品に交換済みで1年間のApple保証が付きます。価格は新品の最大15%オフ程度です。一方、中古ショップのiPadは型落ちモデルも含め選択肢が豊富で、整備済製品よりさらに安く手に入ります。保証期間や外装状態に差があるため、予算と安心感のバランスで選ぶのがおすすめです。</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
+          <FaqSection
+            title="中古iPadに関するよくある質問"
+            description="中古iPadの購入を検討している方からよく寄せられる質問をまとめました。"
+            items={GUIDE_FAQ_ITEMS}
+          />
 
         <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>

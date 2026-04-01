@@ -23,11 +23,13 @@ import {
   RECOMMEND_COUNT_LABEL,
 } from '@/lib/data/watch-recommend'
 import Breadcrumb from '@/app/components/Breadcrumb'
+import FaqSection from '@/app/components/support/FaqSection'
 import ShareBox from '@/app/components/ShareBox'
 import VendorCardGrid from '@/app/components/VendorCardGrid'
 import GuideModelLinks from '@/app/components/GuideModelLinks'
 import ProductCard from '@/app/components/ProductCard'
 import { getHeroImage } from '@/lib/data/hero-images'
+import PopularSection from '@/app/components/support/PopularSection'
 import AuthorByline from '@/app/components/AuthorByline'
 import HeroMeta from '@/app/components/HeroMeta'
 
@@ -95,15 +97,6 @@ export default async function WatchGuidePage() {
     url: PAGE_URL,
   })
 
-  const faqJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: GUIDE_FAQ_ITEMS.map((item) => ({
-      '@type': 'Question',
-      name: item.question,
-      acceptedAnswer: { '@type': 'Answer', text: item.answer },
-    })),
-  }
 
   /** モデルのサイズラベル */
   function getSizeLabel(model: WatchModel): string {
@@ -122,10 +115,6 @@ export default async function WatchGuidePage() {
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
         />
 
         <div className="hero-wrapper">
@@ -204,38 +193,19 @@ export default async function WatchGuidePage() {
         <div className="l-sections" itemProp="articleBody">
 
           {/* ========== 絞り込みツール ========== */}
-          <section className="l-section" id="filter-tool" aria-labelledby="heading-filter-tool">
-            <div className="l-container">
-              <h2 className="m-section-heading m-section-heading--lg" id="heading-filter-tool">条件に合うApple Watchを絞り込む</h2>
-              <p className="m-section-desc">予算・ケースサイズ・健康センサー・バッテリー持ちなど、ご自身の条件を選ぶことで候補を絞り込めます。</p>
-
-              <div className="m-card m-card--shadow popular-card">
-                <figure className="popular-card-figure">
-                  <img
-                    src="/images/content/thumbnail/simulator.jpg"
-                    alt="Apple Watch機種絞り込みツール"
-                    className="popular-card-img"
-                    width={400}
-                    height={500}
-                    loading="lazy"
-                  />
-                </figure>
-                <div className="popular-card-body">
-                  <p className="popular-card-subtitle">条件にチェックを打つだけ！</p>
-                  <p className="popular-card-title">Apple Watch機種絞り込みツール</p>
-                <p className="popular-card-subtitle">目的別におすすめ機種を厳選！</p>                  <p className="popular-card-desc">健康管理をしっかりしたい、バッテリーが長持ちしてほしいなどの希望や予算にチェックを打つだけで、あなたにぴったり合うApple Watchをシミュレーションすることができます。</p>
-                  <div className="popular-card-buttons">
-                    <Link href="/watch/watch-filter-search/" className="m-btn m-btn--primary">
-                      機種診断スタート <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
-                    </Link>
-                    <a className="m-btn m-btn--secondary" href="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Fwearable%2Fapple%3Fnot%3Dpencil" target="_blank" rel="noopener noreferrer">
-                      イオシスで中古Apple Watchを探す <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
+          <PopularSection
+            sectionTitle="条件に合うApple Watchを絞り込む"
+            sectionDescription="予算・ケースサイズ・健康センサー・バッテリー持ちなど、ご自身の条件を選ぶことで候補を絞り込めます。"
+            imageSrc="/images/content/thumbnail/simulator.jpg"
+            imageAlt="Apple Watch機種絞り込みツール"
+            subtitle="条件にチェックを打つだけ！"
+            cardTitle="Apple Watch機種絞り込みツール"
+            cardDescription="健康管理をしっかりしたい、バッテリーが長持ちしてほしいなどの希望や予算にチェックを打つだけで、あなたにぴったり合うApple Watchをシミュレーションすることができます。"
+            buttonText="機種診断スタート"
+            buttonHref="/watch/watch-filter-search/"
+            secondaryButtonText="イオシスで中古Apple Watchを探す"
+            secondaryButtonHref="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Fwearable%2Fapple%3Fnot%3Dpencil"
+          />
 
           {/* ========== 中古Apple Watchの最新相場 ========== */}
           <section className="l-section" id="market-price" aria-labelledby="heading-market-price">
@@ -275,7 +245,7 @@ export default async function WatchGuidePage() {
             <div className="l-container">
               <h2 className="m-section-heading m-section-heading--lg" id="heading-caution">中古Apple Watchを選ぶ際の確認ポイント</h2>
               <p className="m-section-desc">中古Apple Watchを購入する際に確認しておきたい6つのポイントをまとめました。</p>
-              <p className="m-section-desc">特に初めて中古スマートウォッチを買う方は、トラブルを避けるためにも一度確認しておくことをおすすめします。</p>
+              <p className="m-section-desc">トラブルを避けるためにも一度確認しておきましょう。</p>
 
               <div className="glossary-box glossary-box--numbered m-card m-card--shadow">
                 <ol className="glossary-list">
@@ -341,7 +311,6 @@ export default async function WatchGuidePage() {
             <div className="l-container">
               <h2 className="m-section-heading m-section-heading--lg" id="heading-recommended">目的別・おすすめ機種</h2>
               <p className="m-section-desc">{GUIDE_DATE_LABEL}現在、中古市場で選択肢として検討されることが多い機種の例を、目的別に整理しました。</p>
-              <p className="m-section-desc">それぞれの「特徴」と「選ばれる理由の傾向」をまとめています。</p>
 
               <div className="guide-recommend-list">
                 {recommendModels.map((model, i) => {
@@ -419,7 +388,7 @@ export default async function WatchGuidePage() {
                 <IconCard icon="fa-solid fa-heart-pulse" title="健康・フィットネス">
                   <ul style={{ paddingLeft: 'var(--space-lg)', listStyle: 'disc', lineHeight: 2, fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)' }}>
                     <li>フィットネスアプリで1日の活動量を管理</li>
-                    <li>ワークアウト記録（ランニング・ウォーキング・水泳など）</li>
+                    <li>ワークアウト（ランニング・ウォーキング・水泳など）</li>
                     <li>睡眠トラッキング・睡眠の質チェック</li>
                     <li>心拍数モニタリング・心電図（ECG）</li>
                     <li>血中酸素濃度（SpO2）測定・転倒検出</li>
@@ -484,86 +453,11 @@ export default async function WatchGuidePage() {
           </section>
 
           {/* ========== よくある質問 ========== */}
-          <section className="l-section" id="faq" aria-labelledby="heading-faq">
-            <div className="l-container">
-              <h2 className="m-section-heading m-section-heading--lg" id="heading-faq">中古Apple Watchに関するよくある質問</h2>
-              <p className="m-section-desc">中古Apple Watchの購入を検討している方からよく寄せられる質問をまとめました。</p>
-              <div className="faq-list">
-                <div className="m-card faq-item">
-                  <h3 className="faq-question">自分に合った中古Apple Watchの選び方は？</h3>
-                  <div className="faq-answer">
-                    <p>用途や予算に応じて最適なモデルは異なります。万能モデルならSeries 9、コスパ重視ならSE 第3世代、アウトドア・バッテリー重視ならUltra 2がおすすめです。「<Link href="/watch/watch-filter-search/">Apple Watch機種絞り込みツール</Link>」で条件を絞り込むと、あなたに合った機種が見つかります。</p>
-                  </div>
-                </div>
-                <div className="m-card faq-item">
-                  <h3 className="faq-question">Apple Watchのスペックを比較したい</h3>
-                  <div className="faq-answer">
-                    <p>「<Link href="/watch/watch-spec-table/">歴代Apple Watchスペック比較表</Link>」で、歴代Apple Watchのスペックを並べて比較できます。チップ性能、ケースサイズ、健康センサーの対応状況などを一覧で確認できます。</p>
-                  </div>
-                </div>
-                <div className="m-card faq-item">
-                  <h3 className="faq-question">中古Apple Watchを買うベストなタイミングはいつですか？</h3>
-                  <div className="faq-answer">
-                    <p>新型Apple Watch発売直後（9〜10月）は旧モデルの価格が下がりやすい傾向があります。また、年末年始や決算期（3月）もセールが行われることが多いです。当サイトの<Link href="/watch/watch-price-info/">価格推移グラフ</Link>で、値下がり傾向を確認してから購入するのがおすすめです。</p>
-                  </div>
-                </div>
-                <div className="m-card faq-item">
-                  <h3 className="faq-question">Apple WatchのGPSモデルとCellularモデルの違いは？</h3>
-                  <div className="faq-answer">
-                    <p>GPSモデルはiPhoneと接続して使う基本モデルです。CellularモデルはiPhoneがなくても単体で通話やデータ通信が可能です。ただしCellular利用には別途通信契約が必要で、中古価格も高めです。大半の方はGPSモデルで十分です。</p>
-                  </div>
-                </div>
-                <div className="m-card faq-item">
-                  <h3 className="faq-question">中古Apple Watchはどこで買うのがおすすめですか？</h3>
-                  <div className="faq-answer">
-                    <p>信頼性と保証の観点から、<Link href="/watch/watch-shop/">イオシス・ゲオ・じゃんぱらなどの大手中古専門店</Link>がおすすめです。これらの店舗では動作確認済みの端末を扱い、初期不良保証も付いています。</p>
-                  </div>
-                </div>
-                <div className="m-card faq-item">
-                  <h3 className="faq-question">中古Apple Watchはいつまで使えますか？</h3>
-                  <div className="faq-answer">
-                    <p>Apple WatchはAppleの発売から約5年間watchOSアップデートのサポートを受けられます。長く使いたい場合は、発売から2〜3年以内のモデルを選ぶと安心です。詳しくは「<Link href="/watch/used-watch-support/">中古Apple Watchの寿命とサポート期間の目安</Link>」をご覧ください。</p>
-                  </div>
-                </div>
-                <div className="m-card faq-item">
-                  <h3 className="faq-question">中古Apple Watchのバッテリー状態は確認できますか？</h3>
-                  <div className="faq-answer">
-                    <p>はい、Apple Watchの「設定」→「バッテリー」→「バッテリーの状態」から最大容量を確認できます。80%以上あれば実用上問題ありません。Apple Watchはバッテリー容量が小さいため、80%を下回ると1日持たなくなることがあります。中古専門店では商品ページにバッテリー状態が記載されていることが多いです。</p>
-                  </div>
-                </div>
-                <div className="m-card faq-item">
-                  <h3 className="faq-question">Apple WatchはどのiPhoneと組み合わせて使えますか？</h3>
-                  <div className="faq-answer">
-                    <p>最新のwatchOSを利用するには、対応するiOS以降を搭載したiPhoneが必要です。古いiPhoneを使っている場合は、Apple Watchとの互換性を事前に確認しましょう。詳しくは「<Link href="/watch/used-watch-support/">watchOSサポート期間一覧表</Link>」をご覧ください。</p>
-                  </div>
-                </div>
-                <div className="m-card faq-item">
-                  <h3 className="faq-question">Apple認定整備済製品と中古Apple Watchの違いは？</h3>
-                  <div className="faq-answer">
-                    <p>Apple認定整備済製品はAppleが検品・部品交換・クリーニングを行い、バッテリーと外装が新品に交換済みで1年間のApple保証が付きます。ただし、Apple Watchの整備済製品は入荷が少なく選択肢が限られます。中古ショップなら旧モデルを含め機種が豊富で、価格も手頃です。</p>
-                  </div>
-                </div>
-                <div className="m-card faq-item">
-                  <h3 className="faq-question">おすすめしない中古Apple Watchはどれ？</h3>
-                  <div className="faq-answer">
-                    <p>Series 4以前のモデルはwatchOSサポートが終了しており、新しいアプリや機能が使えなくなっています。また、Series 3は動作が重く実用的ではありません。長く使いたいなら、Series 7以降またはSE 第2世代以降を選ぶのが安心です。</p>
-                  </div>
-                </div>
-                <div className="m-card faq-item">
-                  <h3 className="faq-question">Apple Watchのバンドは他のモデルでも使い回せますか？</h3>
-                  <div className="faq-answer">
-                    <p>Apple Watchのバンドは同じケースサイズ系統であれば世代をまたいで互換性があります。38mm/40mm/41mm系と42mm/44mm/45mm系でそれぞれ共通です。Ultra（49mm）は45mm系バンドも装着可能ですが、Ultra専用バンドは他モデルには使えません。中古で購入する場合はバンドが付属しないケースもあるため、別途購入が必要か事前に確認しましょう。</p>
-                  </div>
-                </div>
-                <div className="m-card faq-item">
-                  <h3 className="faq-question">Apple Watchのケース素材（アルミ・ステンレス・チタン）の違いは？</h3>
-                  <div className="faq-answer">
-                    <p>アルミニウムは軽量で価格が手頃なエントリー素材です。ステンレススチールはアルミより重厚感があり傷に強く、サファイアクリスタルガラスを搭載。チタニウムはUltraシリーズに採用されており、軽さと耐久性を両立しています。中古市場ではアルミモデルが最も流通量が多く、ステンレスやチタンは希少なぶん価格も高めです。</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
+          <FaqSection
+            title="中古Apple Watchに関するよくある質問"
+            description="中古Apple Watchの購入を検討している方からよく寄せられる質問をまとめました。"
+            items={GUIDE_FAQ_ITEMS}
+          />
 
         <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>

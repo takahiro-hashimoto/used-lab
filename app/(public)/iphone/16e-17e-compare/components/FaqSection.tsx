@@ -62,7 +62,7 @@ export default function FaqSection() {
                 {item.question}
               </h3>
               <div
-                className="faq-answer"
+                className="faq-answer m-rich-text m-rich-text--muted"
                 itemScope
                 itemProp="acceptedAnswer"
                 itemType="https://schema.org/Answer"

@@ -108,7 +108,7 @@ export default function CompareFaq({ modelL, modelR, latestL, latestR }: Props) 
           {faqs.map((faq, i) => (
             <div key={i} className="m-card faq-item">
               <h3 className="faq-question">{faq.question}</h3>
-              <div className="faq-answer">
+              <div className="faq-answer m-rich-text m-rich-text--muted">
                 <p>{faq.answer}</p>
               </div>
             </div>

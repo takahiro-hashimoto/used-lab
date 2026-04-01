@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
+import Breadcrumb from '@/app/components/Breadcrumb'
 import { getAllMacBookModels, getAllProductShopLinksByType } from '@/lib/queries'
 import SpecTable from './components/SpecTable'
 import DualCompare from './components/DualCompare'
@@ -129,22 +130,12 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/macbook/macbook
 
         <div className="hero-wrapper">
         {/* パンくず */}
-        <nav className="breadcrumb" aria-label="パンくずリスト">
-          <div className="l-container">
-            <ol className="breadcrumb-list">
-              <li className="breadcrumb-item">
-                <Link href="/">
-                  <i className="fa-solid fa-house" aria-hidden="true"></i>{' '}
-                  <span>中古Apple製品を安く買う</span>
-                </Link>
-              </li>
-              <li className="breadcrumb-item">
-                <Link href="/macbook">中古MacBook完全購入ガイド</Link>
-              </li>
-              <li className="breadcrumb-item" aria-current="page">歴代MacBookスペック比較表</li>
-            </ol>
-          </div>
-        </nav>
+        <Breadcrumb
+          items={[
+            { label: '中古MacBook完全購入ガイド', href: '/macbook' },
+            { label: '歴代MacBookスペック比較表' },
+          ]}
+        />
 
         {/* Hero */}
         <header className="hero">

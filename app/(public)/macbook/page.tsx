@@ -22,6 +22,7 @@ import {
 } from '@/lib/data/macbook-recommend'
 import ProductCard from '@/app/components/ProductCard'
 import Breadcrumb from '@/app/components/Breadcrumb'
+import FaqSection from '@/app/components/support/FaqSection'
 import ShareBox from '@/app/components/ShareBox'
 import VendorCardGrid from '@/app/components/VendorCardGrid'
 import GuideModelLinks from '@/app/components/GuideModelLinks'
@@ -437,62 +438,11 @@ export default async function MacBookGuidePage() {
           </section>
 
           {/* ========== よくある質問 ========== */}
-          <section className="l-section" id="faq" aria-labelledby="heading-faq">
-            <div className="l-container">
-              <h2 className="m-section-heading m-section-heading--lg" id="heading-faq">中古MacBookに関するよくある質問</h2>
-              <p className="m-section-desc">中古MacBookの購入を検討している方からよく寄せられる質問をまとめました。</p>
-              <div className="faq-list">
-                <div className="m-card faq-item">
-                  <h3 className="faq-question">自分に合った中古MacBookの選び方は？</h3>
-                  <div className="faq-answer">
-                    <p>用途や予算に応じて最適なモデルは異なります。Web閲覧・事務作業メインならMacBook Air M2、長期利用ならMacBook Air M3、大画面なら15インチ Air、動画編集やプログラミングならMacBook Proがおすすめです。詳しくは「<Link href="/macbook/recommend/">中古MacBookのおすすめ機種</Link>」をご覧ください。</p>
-                  </div>
-                </div>
-                <div className="m-card faq-item">
-                  <h3 className="faq-question">MacBook AirとMacBook Proの違いは？</h3>
-                  <div className="faq-answer">
-                    <p>MacBook Airはファンレスで軽量・静音、日常作業に最適です。MacBook Proはファン搭載で長時間の高負荷作業に強く、ProMotionディスプレイやHDMI・SDカードスロットなど接続端子が豊富です。「<Link href="/macbook/air-pro-compare/">MacBook AirとProの違い比較</Link>」で詳しく解説しています。</p>
-                  </div>
-                </div>
-                <div className="m-card faq-item">
-                  <h3 className="faq-question">中古MacBookを買うベストなタイミングはいつですか？</h3>
-                  <div className="faq-answer">
-                    <p>新型MacBook発表直後（例年6月のWWDCや秋のイベント後）は旧モデルの価格が下がりやすい傾向があります。また、年末年始や決算期（3月）もセールが行われることが多いです。</p>
-                  </div>
-                </div>
-                <div className="m-card faq-item">
-                  <h3 className="faq-question">AppleシリコンとIntelどちらを選ぶべき？</h3>
-                  <div className="faq-answer">
-                    <p>2026年現在、IntelモデルはmacOSサポートが終了しているか、残りわずかです。Appleシリコン（M1以降）搭載モデルを選ぶことを強くおすすめします。詳しくは「<Link href="/macbook/used-macbook-support/">macOSサポート期間一覧表</Link>」をご覧ください。</p>
-                  </div>
-                </div>
-                <div className="m-card faq-item">
-                  <h3 className="faq-question">中古MacBookはどこで買うのがおすすめですか？</h3>
-                  <div className="faq-answer">
-                    <p>信頼性と保証の観点から、<Link href="/macbook/macbook-shop/">イオシス・ゲオ・じゃんぱらなどの大手中古専門店</Link>がおすすめです。これらの店舗では動作確認済みの端末を扱い、初期不良保証も付いています。</p>
-                  </div>
-                </div>
-                <div className="m-card faq-item">
-                  <h3 className="faq-question">中古MacBookはいつまで使えますか？</h3>
-                  <div className="faq-answer">
-                    <p>MacBookはAppleの発売から約7年間macOSアップデートのサポートを受けられます。長く使いたい場合は、発売から3年以内のモデルを選ぶと安心です。詳しくは「<Link href="/macbook/used-macbook-support/">中古MacBookの寿命とサポート期間の目安</Link>」をご覧ください。</p>
-                  </div>
-                </div>
-                <div className="m-card faq-item">
-                  <h3 className="faq-question">中古MacBookのバッテリー状態は確認できますか？</h3>
-                  <div className="faq-answer">
-                    <p>はい、MacBookの「システム情報」→「電源」からバッテリーの充放電回数や状態を確認できます。充放電回数1,000回以下が目安です。中古専門店では商品ページにバッテリー状態が記載されていることもあります。</p>
-                  </div>
-                </div>
-                <div className="m-card faq-item">
-                  <h3 className="faq-question">ストレージ容量はどれくらい必要ですか？</h3>
-                  <div className="faq-answer">
-                    <p>Web閲覧・事務作業メインなら256GBで十分です。写真や動画を扱うなら512GB以上がおすすめです。MacBookはストレージの後から増設ができないため、用途に合った容量を最初に選ぶことが重要です。詳しくは「<Link href="/macbook/storage-guide/">ストレージ容量ガイド</Link>」をご覧ください。</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
+          <FaqSection
+            title="中古MacBookに関するよくある質問"
+            description="中古MacBookの購入を検討している方からよく寄せられる質問をまとめました。"
+            items={GUIDE_FAQ_ITEMS}
+          />
 
         <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>
