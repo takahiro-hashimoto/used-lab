@@ -258,30 +258,33 @@ export default function NetworkLimitPage() {
                 わざわざネットワーク制限△を買うメリットなんてないと思う方も多いでしょう。しかし、実は魅力的な点も。
               </p>
 
-              <div className="m-card m-card--padded" style={{ marginTop: 'var(--space-xl)' }}>
-                <h3 className="m-sub-heading m-sub-heading--no-mt">
-                  <i className="fa-solid fa-circle-check" style={{ color: 'var(--color-positive)' }} aria-hidden="true"></i> メリット
-                </h3>
-                <ul className="m-check-list">
-                  <li className="m-check-list__item"><i className="fa-solid fa-check" aria-hidden="true"></i> 通常よりも安く中古端末が購入できる（同スペック比で5,000〜10,000円安い）</li>
-                  <li className="m-check-list__item"><i className="fa-solid fa-check" aria-hidden="true"></i> ネットワーク制限×にならない限り、普通に使える</li>
-                  <li className="m-check-list__item"><i className="fa-solid fa-check" aria-hidden="true"></i> 赤ロム永久保証してくれるECサイトで購入すれば実質問題なし</li>
-                  <li className="m-check-list__item"><i className="fa-solid fa-check" aria-hidden="true"></i> 万が一赤ロムになってもWi-Fi接続なら利用可能（サブ機・子供用として活用できる）</li>
-                </ul>
+              <div className="recommend-card__fit" style={{ marginTop: 'var(--space-xl)' }}>
+                <div className="l-grid l-grid--2col l-grid--gap-lg">
+                  <div className="recommend-card__fit-box recommend-card__fit-box--good">
+                    <h4>
+                      <i className="fa-solid fa-circle-check" aria-hidden="true"></i> こんな人におすすめ
+                    </h4>
+                    <ul>
+                      <li><i className="fa-solid fa-check" aria-hidden="true"></i> とにかく安く中古端末を手に入れたい（同スペック比で5,000〜10,000円安い）</li>
+                      <li><i className="fa-solid fa-check" aria-hidden="true"></i> 赤ロム永久保証のECサイトで購入できる</li>
+                      <li><i className="fa-solid fa-check" aria-hidden="true"></i> サブ機や子供用として使う予定</li>
+                      <li><i className="fa-solid fa-check" aria-hidden="true"></i> 多少のリスクよりコスパを重視する</li>
+                    </ul>
+                  </div>
+                  <div className="recommend-card__fit-box recommend-card__fit-box--bad">
+                    <h4>
+                      <i className="fa-solid fa-circle-xmark" aria-hidden="true"></i> こんな人には向かない
+                    </h4>
+                    <ul>
+                      <li><i className="fa-solid fa-xmark" aria-hidden="true"></i> 赤ロム化のリスクを一切取りたくない</li>
+                      <li><i className="fa-solid fa-xmark" aria-hidden="true"></i> 万が一の交換手続きが面倒に感じる</li>
+                      <li><i className="fa-solid fa-xmark" aria-hidden="true"></i> フリマアプリで保証なしの購入を検討している</li>
+                    </ul>
+                  </div>
+                </div>
               </div>
 
-              <div className="m-card m-card--padded" style={{ marginTop: 'var(--space-md)' }}>
-                <h3 className="m-sub-heading m-sub-heading--no-mt">
-                  <i className="fa-solid fa-triangle-exclamation" style={{ color: 'var(--color-negative)' }} aria-hidden="true"></i> デメリット
-                </h3>
-                <ul className="m-check-list">
-                  <li className="m-check-list__item"><i className="fa-solid fa-xmark" style={{ color: 'var(--color-negative)' }} aria-hidden="true"></i> 将来的に赤ロム化して通信不可になるリスクがある</li>
-                  <li className="m-check-list__item"><i className="fa-solid fa-xmark" style={{ color: 'var(--color-negative)' }} aria-hidden="true"></i> 赤ロムになった場合、交換の手間が発生する</li>
-                  <li className="m-check-list__item"><i className="fa-solid fa-xmark" style={{ color: 'var(--color-negative)' }} aria-hidden="true"></i> フリマで購入した場合は保証がないため注意</li>
-                </ul>
-              </div>
-
-              <div className="m-card m-card--padded" style={{ marginTop: 'var(--space-md)' }}>
+              <div className="m-card m-card--padded" style={{ marginTop: 'var(--space-md)', border: 'none' }}>
                 <h3 className="m-sub-heading m-sub-heading--no-mt">ネットワーク制限△のスマホはどれくらい安い？</h3>
                 <p style={{ marginTop: 'var(--space-md)', fontSize: 'var(--font-size-base)', color: 'var(--color-text-secondary)', lineHeight: 1.8 }}>
                   実際にネットワーク制限△と通常の中古iPhoneの価格を比較してみると、同スペック・同ランクの製品で5,000円ほどお手頃な場合が多いようです。
@@ -417,7 +420,7 @@ export default function NetworkLimitPage() {
               <div className="m-callout m-callout--tip" style={{ marginTop: 'var(--space-xl)' }}>
                 <span className="m-callout__label">memo</span>
                 <p>
-                  各ショップの特徴や選び方をもっと詳しく知りたい方は「<a href="/iphone/iphone-shop/" style={{ color: 'var(--color-primary)' }}>中古iPhoneはどこで買うのが正解？おすすめサイト・ショップ比較</a>」をご覧ください。
+                  各ショップの特徴や選び方を詳しく知りたい方は「<a href="/iphone/iphone-shop/" style={{ color: 'var(--color-primary)' }}>中古iPhoneはどこで買うのが正解？おすすめサイト・ショップ比較</a>」をご覧ください。
                 </p>
               </div>
             </div>

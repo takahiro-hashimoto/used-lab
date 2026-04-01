@@ -12,9 +12,9 @@ export default function PreCheckSection() {
 
         {/* 1. Apple Silicon vs Intel */}
         <MediaCard
-          src="/images/macbook/mba-13-2025.jpg"
+          src="/images/content/thumbnail/macbook-image-06.jpg"
           alt="Apple Silicon MacBookのイメージ"
-          title="Intel Macはサポート終了間近―中古で買うならApple Silicon（M1以降）を選ぶ"
+          title="中古MacBookはApple Silicon（M1以降）を選ぶ"
           width={800}
           height={450}
           aside
@@ -34,9 +34,9 @@ export default function PreCheckSection() {
 
         {/* 2. macOSサポート期間 */}
         <MediaCard
-          src="/images/macbook/mbp-14-2024-nov.jpg"
+          src="/images/content/thumbnail/macbook-image-04.jpg"
           alt="macOSサポートのイメージ画像"
-          title="macOSサポート切れのリスク―サポート残り2年未満なら購入を避ける"
+          title="macOSサポート残り2年未満なら避ける"
           width={800}
           height={450}
           aside
@@ -60,15 +60,15 @@ export default function PreCheckSection() {
 
         {/* 3. バッテリーの劣化状態 */}
         <MediaCard
-          src="/images/macbook/mba-15-2024.jpg"
+          src="/images/content/thumbnail/macbook-image-03.webp"
           alt="MacBookバッテリー確認のイメージ"
-          title="バッテリーの劣化状態―MacBookのバッテリー交換費用は高額"
+          title="バッテリー劣化と交換費用に注意"
           width={800}
           height={450}
           aside
           footer={
             <>
-              <h3 className="caution-how-to__heading">バッテリー交換費用の目安</h3>
+              <p className="caution-how-to__heading">バッテリー交換費用の目安</p>
               <div className="price-table-wrap">
                 <table className="m-table">
                   <thead>
@@ -115,9 +115,9 @@ export default function PreCheckSection() {
 
         {/* 4. キーボード・トラックパッドの不具合 */}
         <MediaCard
-          src="/images/macbook/mbp-14-2023-nov.jpg"
+          src="/images/content/thumbnail/macbook-image-02.jpg"
           alt="MacBookキーボードのイメージ"
-          title="キーボード・トラックパッドの不具合―中古特有のリスクが高い箇所"
+          title="キーボード・トラックパッドの不具合に注意"
           width={800}
           height={450}
           aside
@@ -137,7 +137,7 @@ export default function PreCheckSection() {
 
         {/* 5. メモリ・ストレージの増設不可 */}
         <MediaCard
-          src="/images/macbook/mbp-16-2024-nov.jpg"
+          src="/images/content/thumbnail/macbook-memory.jpg"
           alt="MacBookスペック選びのイメージ"
           title="メモリ・ストレージは購入後に増設できない"
           width={800}

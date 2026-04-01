@@ -251,8 +251,6 @@ export default async function IPadSpecTablePage() {
         <EvolutionTimeline />
         <GlossarySection productName="iPad" items={GLOSSARY_ITEMS} />
 
-        <IPadRelatedLinks excludeHref={["/ipad/ipad-spec-table/", "/ipad/recommend/"]} />
-
         {/* 目的別に人気の中古iPad */}
         <section className="l-section" id="popular" aria-labelledby="heading-popular">
           <div className="l-container">
@@ -282,6 +280,8 @@ export default async function IPadSpecTablePage() {
             </div>
           </div>
         </section>
+
+        <IPadRelatedLinks excludeHref={["/ipad/ipad-spec-table/", "/ipad/recommend/"]} />
 
         <ShareBox url="https://used-lab.com/ipad/ipad-spec-table/" text="歴代iPadスペック比較表！各世代の性能の違いがすぐわかる" />
         </div>

@@ -13,9 +13,9 @@ export default function PreCheckSection() {
 
         {/* 1. iPadOSサポート */}
         <MediaCard
-          src="/images/ipad/ipad-pro-13-2.jpg"
+          src="/images/content/thumbnail/ipad-image-03.jpg"
           alt="iPadOSサポートのイメージ画像"
-          title="iPadOSサポート切れのリスク―サポート残り2年未満なら購入を避ける"
+          title="iPadOSサポート切れに注意"
           width={800}
           height={450}
           aside
@@ -39,9 +39,9 @@ export default function PreCheckSection() {
 
         {/* 2. バッテリーの劣化状態 */}
         <MediaCard
-          src="/images/ipad/ipad-air-6-11.jpg"
+          src="/images/content/thumbnail/ipad-image-05.jpg"
           alt="iPadバッテリー確認のイメージ"
-          title="バッテリーの劣化状態―iPadはバッテリー交換費用が高い"
+          title="バッテリーの劣化状態を確認"
           width={800}
           height={450}
           aside
@@ -89,9 +89,9 @@ export default function PreCheckSection() {
 
         {/* 3. セルラーモデルのネットワーク利用制限 */}
         <MediaCard
-          src="/images/ipad/ipad-10.jpg"
+          src="/images/content/thumbnail/ipad-image-02.jpg"
           alt="iPadセルラーモデルのイメージ"
-          title="セルラーモデルはネットワーク利用制限（赤ロム）に注意"
+          title="ネットワーク利用制限（赤ロム）に注意"
           width={800}
           height={450}
           aside
@@ -115,9 +115,9 @@ export default function PreCheckSection() {
 
         {/* 4. Apple Pencil・キーボード対応 */}
         <MediaCard
-          src="/images/ipad/ipad-air-7-11.jpg"
+          src="/images/content/thumbnail/ipad-image-04.jpg"
           alt="Apple Pencil対応のイメージ"
-          title="Apple Pencil・キーボード対応―世代・モデルで互換性が異なる"
+          title="Apple Pencil・キーボードの互換性"
           width={800}
           height={450}
           aside

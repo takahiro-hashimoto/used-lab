@@ -1,5 +1,6 @@
 'use client'
 
+import { ReactNode } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { getHeroImage } from '@/lib/data/hero-images'
@@ -14,6 +15,8 @@ type Props = {
   compareLinks?: RelatedLinkMeta[]
   /** グリッドのカラム数（デフォルト: 2） */
   columns?: 2 | 3
+  /** セクション末尾に追加するコンテンツ */
+  children?: ReactNode
 }
 
 export default function RelatedLinksClient({
@@ -23,6 +26,7 @@ export default function RelatedLinksClient({
   description,
   compareLinks,
   columns = 2,
+  children,
 }: Props) {
   function handleClick(destPath: string) {
     if (typeof navigator?.sendBeacon === 'function') {
@@ -104,6 +108,7 @@ export default function RelatedLinksClient({
             </Link>
           ))}
         </div>
+        {children}
       </div>
     </section>
   )

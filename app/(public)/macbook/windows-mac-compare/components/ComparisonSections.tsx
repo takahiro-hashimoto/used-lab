@@ -117,22 +117,9 @@ export default function ComparisonSections() {
           <p className="media-card__desc">
             OfficeやAdobeなどのメジャーなソフトは両OSで使用可能です。ただしソフトウェアはWindowsを基準に設計される傾向があり、Windowsのみ対応やMacでは機能制限がある場合もあります。
           </p>
-
-          <div className="m-card" style={{ padding: 'var(--space-lg)', marginTop: 'var(--space-sm)' }}>
-            <p style={{ fontWeight: 700, marginBottom: 'var(--space-sm)' }}>
-              <i className="fa-solid fa-circle-info" aria-hidden="true" style={{ marginRight: 'var(--space-xs)' }}></i>
-              Mac標準搭載のOffice互換アプリ
-            </p>
-            <ul className="media-card__list">
-              <li>Excel → <strong>Numbers</strong></li>
-              <li>Word → <strong>Pages</strong></li>
-              <li>PowerPoint → <strong>Keynote</strong></li>
-            </ul>
-            <p className="media-card__desc" style={{ marginTop: 'var(--space-sm)' }}>
-              互換アプリはレイアウトが崩れることもあるため、OfficeファイルをMacで扱うなら「Office for Mac」が無難です。
-            </p>
-          </div>
-
+          <p className="media-card__desc" style={{ marginTop: 'var(--space-sm)' }}>
+            MacにはOffice互換アプリとして<strong>Numbers（Excel相当）・Pages（Word相当）・Keynote（PowerPoint相当）</strong>が標準搭載されています。ただし互換アプリではレイアウトが崩れることもあるため、仕事でOfficeファイルをやり取りするなら「Office for Mac」を導入するのが無難です。
+          </p>
           <p className="media-card__desc" style={{ marginTop: 'var(--space-sm)' }}>
             どのアプリをメインで使うかを考えた上でOSを選びましょう。
           </p>
@@ -157,12 +144,10 @@ export default function ComparisonSections() {
             PCゲームを楽しみたいならWindowsを選びましょう。理由は大きく2つあります。
           </p>
 
-          <div className="m-card" style={{ padding: 'var(--space-lg)', marginTop: 'var(--space-sm)' }}>
-            <ul className="media-card__list">
-              <li><strong>Windows対応のゲームソフトがMacに比べて圧倒的に多い</strong></li>
-              <li><strong>WindowsはGPUやグラフィックボードを独自に拡張しやすい</strong>が、Macでは難しい</li>
-            </ul>
-          </div>
+          <ul className="media-card__list" style={{ marginTop: 'var(--space-sm)' }}>
+            <li><strong>Windows対応のゲームソフトがMacに比べて圧倒的に多い</strong></li>
+            <li><strong>WindowsはGPUやグラフィックボードを独自に拡張しやすい</strong>が、Macでは難しい</li>
+          </ul>
 
           <p className="media-card__desc" style={{ marginTop: 'var(--space-sm)' }}>
             Macでも仮想環境ソフト（Parallelsなど）でWindows環境を構築できますが、高スペックなMacが必要でコスパが悪いためおすすめしにくいです。
@@ -210,6 +195,9 @@ export default function ComparisonSections() {
           <p className="media-card__desc">
             WindowsとMacは修飾キーが異なり、ショートカットの組み合わせにも違いがあります。
           </p>
+          <p className="media-card__desc" style={{ marginTop: 'var(--space-sm)' }}>
+            WindowsPCはメーカーごとにキー配列が異なる場合がありますが、Macは全モデルで配列が統一されています。買い替えても違和感なく使えるのはMacのメリットです。
+          </p>
 
           <dl className="m-card vs-card" style={{ marginTop: 'var(--space-sm)' }}>
             <dt>
@@ -223,10 +211,6 @@ export default function ComparisonSections() {
             </dt>
             <dd>Windows、Alt、Control</dd>
           </dl>
-
-          <p className="media-card__desc" style={{ marginTop: 'var(--space-sm)' }}>
-            WindowsPCはメーカーごとにキー配列が異なる場合がありますが、Macは全モデルで配列が統一されています。買い替えても違和感なく使えるのはMacのメリットです。
-          </p>
         </div>
       </div>
 
@@ -283,6 +267,7 @@ export default function ComparisonSections() {
             src="/images/content/photo/iosis-macbook.webp"
             alt="Macのリセールバリュー"
             className="media-card__img"
+            style={{ border: '1px solid var(--color-border, #e0e0e0)', borderRadius: '8px' }}
             width={240}
             height={160}
             loading="lazy"

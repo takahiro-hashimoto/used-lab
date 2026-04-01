@@ -172,8 +172,8 @@ export default async function UsedWatchSupportPage() {
         <WatchOsSupportMatrix models={allModelsWithEnded} />
         <LifespanTable models={allModelsWithEnded} />
         <TimingSection />
-        <PopularSection />
         <FaqSection />
+        <PopularSection />
         <WatchRelatedLinks excludeHref={["/watch/used-watch-support/", "/watch/recommend/"]} />
         <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>

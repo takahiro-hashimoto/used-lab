@@ -261,6 +261,27 @@ export default async function IPadFilterSearchPage() {
           </div>
         </section>
 
+        {/* よくある質問 */}
+        <section className="l-section" id="faq" aria-labelledby="heading-faq">
+          <div className="l-container">
+            <h2 className="m-section-heading m-section-heading--lg" id="heading-faq">
+              iPad機種診断に関するよくある質問
+            </h2>
+            <p className="m-section-desc">診断に関してよくある質問をまとめました。</p>
+
+            <div className="faq-list">
+              {FAQ_ITEMS.map((item, i) => (
+                <div key={i} className="m-card m-card--shadow faq-item">
+                  <h3 className="faq-question">{item.question}</h3>
+                  <div className="faq-answer">
+                    <p dangerouslySetInnerHTML={{ __html: item.answer }} />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* 目的別に人気の中古iPad */}
         <section className="l-section" id="popular" aria-labelledby="heading-popular">
           <div className="l-container">
@@ -293,27 +314,6 @@ export default async function IPadFilterSearchPage() {
                   </Link>
                 </div>
               </div>
-            </div>
-          </div>
-        </section>
-
-        {/* よくある質問 */}
-        <section className="l-section" id="faq" aria-labelledby="heading-faq">
-          <div className="l-container">
-            <h2 className="m-section-heading m-section-heading--lg" id="heading-faq">
-              iPad機種診断に関するよくある質問
-            </h2>
-            <p className="m-section-desc">診断に関してよくある質問をまとめました。</p>
-
-            <div className="faq-list">
-              {FAQ_ITEMS.map((item, i) => (
-                <div key={i} className="m-card m-card--shadow faq-item">
-                  <h3 className="faq-question">{item.question}</h3>
-                  <div className="faq-answer">
-                    <p dangerouslySetInnerHTML={{ __html: item.answer }} />
-                  </div>
-                </div>
-              ))}
             </div>
           </div>
         </section>

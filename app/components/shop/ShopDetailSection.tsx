@@ -83,9 +83,9 @@ export default function ShopDetailSection({ productName, items, specRows, getCta
             <div className="recommend-card__fit">
               <div className="l-grid l-grid--2col l-grid--gap-lg">
                 <div className="recommend-card__fit-box recommend-card__fit-box--good">
-                  <p>
-                    <i className="fa-solid fa-circle-check" aria-hidden="true"></i> メリット
-                  </p>
+                  <h4>
+                    <i className="fa-solid fa-circle-check" aria-hidden="true"></i> こんな人におすすめ
+                  </h4>
                   <ul>
                     {meta.good.map((item, i) => (
                       <li key={i}>
@@ -95,9 +95,9 @@ export default function ShopDetailSection({ productName, items, specRows, getCta
                   </ul>
                 </div>
                 <div className="recommend-card__fit-box recommend-card__fit-box--bad">
-                  <p>
-                    <i className="fa-solid fa-circle-xmark" aria-hidden="true"></i> デメリット
-                  </p>
+                  <h4>
+                    <i className="fa-solid fa-circle-xmark" aria-hidden="true"></i> こんな人には向かない
+                  </h4>
                   <ul>
                     {meta.bad.map((item, i) => (
                       <li key={i}>

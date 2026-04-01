@@ -224,9 +224,9 @@ export default async function IPadShopPage() {
           <ShopDetailSection items={shopDetailItems} />
           <FleaMarketSection />
           <ChecklistSection />
-          <PopularSection />
           <FaqSection />
           <ConclusionSection />
+          <PopularSection />
         <IPadRelatedLinks excludeHref={["/ipad/ipad-shop/", "/ipad/recommend/"]} />
         <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>

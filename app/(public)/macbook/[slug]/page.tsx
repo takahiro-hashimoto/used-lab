@@ -23,8 +23,9 @@ import CompareSection from '@/app/components/CompareSection'
 import CompareSelector from './components/CompareSelector'
 import BenchmarkGeekbench from './components/BenchmarkGeekbench'
 import Accessories from './components/Accessories'
-import RecommendBanner from './components/RecommendBanner'
+import PopularSection from '@/app/components/support/PopularSection'
 import FaqSection from './components/FaqSection'
+import PopularMacBook from '@/app/components/PopularMacBook'
 import MacBookRelatedLinks from '@/app/components/macbook/MacBookRelatedLinks'
 import ShareBox from '@/app/components/ShareBox'
 import AdminEditLink from '@/app/components/AdminEditLink'
@@ -128,9 +129,20 @@ export default async function MacBookDetailPage({ params }: PageProps) {
         </CompareSection>
         <BenchmarkGeekbench model={model} allModels={allModels} />
         <Accessories model={model} />
-        <RecommendBanner />
         <FaqSection model={model} latestPrice={latestPrice} shopLinks={modelShopLinks} />
-        <MacBookRelatedLinks excludeHref={`/macbook/${model.slug}/`} />
+        <PopularSection
+          sectionTitle="目的別に人気の中古MacBook"
+          sectionDescription="目的別におすすめの機種を厳選。今回の記事で購入するべき機種が判断できなかった方はぜひご覧ください。"
+          imageSrc="/images/content/thumbnail/macbook-image-04.jpg"
+          imageAlt="中古MacBookおすすめ5選のイメージ画像"
+          subtitle="目的別におすすめ機種を厳選！"
+          cardTitle="中古MacBookおすすめ5選"
+          cardDescription="クリエイティブ作業向け、コスパ重視の人向けなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。"
+          buttonText="おすすめ5機種を見る"
+          buttonHref="/macbook/recommend/"
+        />
+        <PopularMacBook />
+        <MacBookRelatedLinks excludeHref={[`/macbook/${model.slug}/`, "/macbook/recommend/"]} />
         <ShareBox url={`https://used-lab.com/macbook/${model.slug}/`} text={`中古${model.model}は今買うべき？製品寿命、基本スペック、ベンチマークスコア、中古相場から解説`} />
         </div>
       </article>

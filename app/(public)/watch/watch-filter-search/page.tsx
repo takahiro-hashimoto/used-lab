@@ -7,7 +7,7 @@ import IconCard from '@/app/components/IconCard'
 import { supabase } from '@/lib/supabase'
 import WatchFilterSearchApp from './components/WatchFilterSearchApp'
 import ShareBox from '@/app/components/ShareBox'
-import RecommendBanner from '@/app/(public)/watch/[slug]/components/RecommendBanner'
+import PopularSection from '@/app/components/support/PopularSection'
 import WatchRelatedLinks from '@/app/components/watch/WatchRelatedLinks'
 
 export const metadata: Metadata = {
@@ -259,6 +259,27 @@ export default async function WatchFilterSearchPage() {
           </div>
         </section>
 
+        {/* よくある質問 */}
+        <section className="l-section" id="faq" aria-labelledby="heading-faq">
+          <div className="l-container">
+            <h2 className="m-section-heading m-section-heading--lg" id="heading-faq">
+              Apple Watch機種診断に関するよくある質問
+            </h2>
+            <p className="m-section-desc">中古Apple Watch購入に関するよくある疑問にお答えします。</p>
+
+            <div className="faq-list">
+              {FAQ_ITEMS.map((item, i) => (
+                <div key={i} className="m-card m-card--shadow faq-item">
+                  <h3 className="faq-question">{item.question}</h3>
+                  <div className="faq-answer">
+                    <p dangerouslySetInnerHTML={{ __html: item.answer }} />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* 目的別に人気の中古Apple Watch */}
         <section className="l-section" id="popular" aria-labelledby="heading-popular">
           <div className="l-container">
@@ -295,27 +316,17 @@ export default async function WatchFilterSearchPage() {
           </div>
         </section>
 
-        {/* よくある質問 */}
-        <section className="l-section" id="faq" aria-labelledby="heading-faq">
-          <div className="l-container">
-            <h2 className="m-section-heading m-section-heading--lg" id="heading-faq">
-              Apple Watch機種診断に関するよくある質問
-            </h2>
-            <p className="m-section-desc">中古Apple Watch購入に関するよくある疑問にお答えします。</p>
-
-            <div className="faq-list">
-              {FAQ_ITEMS.map((item, i) => (
-                <div key={i} className="m-card m-card--shadow faq-item">
-                  <h3 className="faq-question">{item.question}</h3>
-                  <div className="faq-answer">
-                    <p dangerouslySetInnerHTML={{ __html: item.answer }} />
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
+        <PopularSection
+          sectionTitle="目的別に人気の中古Apple Watch"
+          sectionDescription="目的別におすすめの機種を厳選。今回の記事で購入するべき機種が判断できなかった方はぜひご覧ください。"
+          imageSrc="/images/content/thumbnail/watch-image-08.jpg"
+          imageAlt="中古Apple Watchおすすめ5選のイメージ画像"
+          subtitle="目的別におすすめ機種を厳選！"
+          cardTitle="中古Apple Watchおすすめ5選"
+          cardDescription="健康管理を重視する人向け、コスパ重視の人向けなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。"
+          buttonText="おすすめ5機種を見る"
+          buttonHref="/watch/recommend/"
+        />
         <WatchRelatedLinks excludeHref={["/watch/watch-filter-search/", "/watch/recommend/"]} />
         <ShareBox url="https://used-lab.com/watch/watch-filter-search/" text="Apple Watch機種診断シミュレーター｜自分に合うおすすめ中古アップルウォッチがすぐわかる【2026年版】" />
         </div>

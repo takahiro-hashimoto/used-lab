@@ -18,6 +18,7 @@ import ChecklistSection from './components/ChecklistSection'
 import PopularSection from './components/PopularSection'
 import ConclusionSection from './components/ConclusionSection'
 import FaqSection from './components/FaqSection'
+import PopularMacBook from '@/app/components/PopularMacBook'
 import MacBookRelatedLinks from '@/app/components/macbook/MacBookRelatedLinks'
 
 const PAGE_TITLE = `中古MacBookはどこで買う？ECサイト・ショップのおすすめを紹介【${SHOP_PAGE_DATE_LABEL}】`
@@ -225,9 +226,10 @@ export default async function MacBookShopPage() {
           <ShopDetailSection items={shopDetailItems} />
           <FleaMarketSection />
           <ChecklistSection />
-          <PopularSection />
           <FaqSection />
           <ConclusionSection />
+          <PopularSection />
+        <PopularMacBook />
         <MacBookRelatedLinks excludeHref={["/macbook/macbook-shop/", "/macbook/recommend/"]} />
         <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>

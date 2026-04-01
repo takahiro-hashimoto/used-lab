@@ -5,7 +5,7 @@ import ShareBox from '@/app/components/ShareBox'
 import RecommendSection from './components/RecommendSection'
 import ComparisonDetails from './components/ComparisonDetails'
 import FaqSection, { FAQ_ITEMS } from './components/FaqSection'
-import RecommendBanner from '@/app/(public)/watch/[slug]/components/RecommendBanner'
+import PopularSection from '@/app/components/support/PopularSection'
 import WatchRelatedLinks from '@/app/components/watch/WatchRelatedLinks'
 
 const PAGE_TITLE = 'Apple Watch セルラーモデルのできることを解説！GPSモデルとの違いがわかる'
@@ -169,11 +169,6 @@ export default function GpsCellularComparePage() {
                   よくある質問 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
                 </a>
               </li>
-              <li>
-                <a href="#summary" className="toc-item">
-                  まとめ <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
-                </a>
-              </li>
             </ol>
           </div>
         </nav>
@@ -206,59 +201,21 @@ export default function GpsCellularComparePage() {
             </div>
           </section>
 
-          <RecommendBanner />
-
           {/* h2: よくある質問 */}
           <FaqSection />
 
-          {/* h2: まとめ */}
-          <section className="l-section" id="summary" aria-labelledby="heading-summary">
-            <div className="l-container">
-              <h2 className="m-section-heading m-section-heading--lg" id="heading-summary">
-                まとめ：まずはGPSモデルがおすすめ
-              </h2>
-              <p className="m-section-desc">
-                両モデルの特徴を踏まえた結論です。
-              </p>
+          <PopularSection
+            sectionTitle="目的別に人気の中古Apple Watch"
+            sectionDescription="目的別におすすめの機種を厳選。今回の記事で購入するべき機種が判断できなかった方はぜひご覧ください。"
+            imageSrc="/images/content/thumbnail/watch-image-08.jpg"
+            imageAlt="中古Apple Watchおすすめ5選のイメージ画像"
+            subtitle="目的別におすすめ機種を厳選！"
+            cardTitle="中古Apple Watchおすすめ5選"
+            cardDescription="健康管理を重視する人向け、コスパ重視の人向けなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。"
+            buttonText="おすすめ5機種を見る"
+            buttonHref="/watch/recommend/"
+          />
 
-              <div className="l-grid l-grid--2col l-grid--gap-lg" style={{ marginTop: 'var(--space-2xl)' }}>
-                {/* GPSモデルカード */}
-                <div className="m-card m-card--shadow m-card--padded">
-                  <h3 className="popular-card-title">
-                    <i className="fa-solid fa-satellite-dish" aria-hidden="true" style={{ marginRight: 'var(--space-xs)' }}></i>
-                    GPSモデルの特徴
-                  </h3>
-                  <ul style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)', lineHeight: 2, paddingLeft: 'var(--space-lg)', listStyle: 'disc', marginTop: 'var(--space-sm)' }}>
-                    <li>iPhoneがないと使える機能が限定的</li>
-                    <li><strong>月額のランニングコストが発生しない</strong></li>
-                    <li>ケース素材はアルミニウムのみ</li>
-                    <li>初めてのApple Watchにおすすめ</li>
-                  </ul>
-                </div>
-
-                {/* セルラーモデルカード */}
-                <div className="m-card m-card--shadow m-card--padded">
-                  <h3 className="popular-card-title">
-                    <i className="fa-solid fa-tower-cell" aria-hidden="true" style={{ marginRight: 'var(--space-xs)' }}></i>
-                    セルラーモデルの特徴
-                  </h3>
-                  <ul style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)', lineHeight: 2, paddingLeft: 'var(--space-lg)', listStyle: 'disc', marginTop: 'var(--space-sm)' }}>
-                    <li>iPhoneなしでもできることが豊富</li>
-                    <li>月額385〜550円のランニングコストが発生</li>
-                    <li>ステンレス・チタニウム素材も選べる</li>
-                    <li>ファミリー共有に対応</li>
-                  </ul>
-                </div>
-              </div>
-
-              <div className="lead-box" style={{ marginTop: 'var(--space-2xl)' }}>
-                <p>
-                  Apple Watch単体でできることが増えると便利なのは間違いありません。しかしランニングコストが発生することや購入費用が高くなることを考えると、<strong>まずはGPSモデルを購入するのがおすすめ</strong>というのが本記事の結論です。
-                </p>
-              </div>
-
-            </div>
-          </section>
         <WatchRelatedLinks excludeHref={["/watch/gps-cellular-compare/", "/watch/recommend/"]} />
         {/* シェアボックス */}
         <ShareBox url={PAGE_URL} text={PAGE_TITLE} />

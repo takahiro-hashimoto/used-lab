@@ -236,6 +236,7 @@ export default function UsedWatchAttentionPage() {
           <PostCheckSection heading="中古Apple Watchの購入後すぐやるべきチェック" productName="Apple Watch" checkItems={postCheckItems} />
           <FailureSection productName="Apple Watch" guidePath="/watch" failurePatterns={failurePatterns} showMemo={false} />
           <InsuranceSection {...insuranceData} />
+          <FaqSection productName="Apple Watch" faqItems={faqItems} />
           <PopularSection
             sectionTitle="目的別に人気の中古Apple Watch"
             sectionDescription="目的別におすすめの機種を厳選。診断で迷った方はぜひご覧ください。"
@@ -247,7 +248,6 @@ export default function UsedWatchAttentionPage() {
             buttonText="おすすめモデルを見る"
             buttonHref="/watch/recommend/"
           />
-          <FaqSection productName="Apple Watch" faqItems={faqItems} />
         <WatchRelatedLinks excludeHref={["/watch/used-watch-attention/", "/watch/recommend/"]} />
         <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>

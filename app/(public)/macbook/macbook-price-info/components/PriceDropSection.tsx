@@ -46,7 +46,7 @@ export default function PriceDropSection({ items, dateDisplay }: Props) {
                     <a href={model.shopUrl} className="price-card__link" target="_blank" rel="noopener noreferrer">{model.name.replace(/（\d{4}）/, '')}</a>
                   ) : model.name.replace(/（\d{4}）/, '')}
                 </h3>
-                <p className="price-card__meta">{model.year}年 / {model.chip}</p>
+                <p className="price-card__meta">{model.chip} / 発売日{model.releaseDate.replace(/^(\d{4})\/0?(\d+)$/, '$1年$2月')}</p>
               </div>
               <div className="price-card__price">
                 <span className="price-card__label">中古相場（{model.storage}）</span>

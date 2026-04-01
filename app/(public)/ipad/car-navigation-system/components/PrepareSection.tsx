@@ -127,7 +127,7 @@ export default function PrepareSection() {
             <div className="media-card__body">
               <h3 className="media-card__title">SIMカード（格安SIM）</h3>
               <p className="media-card__desc">
-                セルラーモデルで通信するにはSIMカードが必要です。カーナビ用途なら<strong>月1〜3GB程度のデータ専用プラン</strong>で十分。格安SIMなら月額数百円から運用できます。
+                セルラーモデルで通信するにはSIMカードが必要です。カーナビ用途なら<strong>月1〜3GB程度のデータ専用プラン</strong>で十分。格安SIMなら月額数百円から運用できます。音声通話が不要なデータ専用SIMを選べば、さらにコストを抑えられます。IIJmioやmineoなどの格安SIM事業者では、データ専用プランが月額440円〜と非常にリーズナブル。iPadはeSIMにも対応しているため、オンラインで申し込めば即日開通も可能です。
               </p>
             </div>
           </div>

@@ -12,7 +12,7 @@ export default function RouteSection() {
 
         {/* フリマ・オークション */}
         <MediaCard
-          src="/images/ipad/ipad-pro-13-2.jpg"
+          src="/images/content/thumbnail/ipad-magic-keyboard-01.jpg"
           alt="フリマアプリのイメージ画像"
           title="フリマ・オークション購入時"
           width={800}
@@ -32,12 +32,13 @@ export default function RouteSection() {
 
         {/* 中古ショップ */}
         <MediaCard
-          src="/images/ipad/ipad-air-6-11.jpg"
+          src="/images/content/thumbnail/ipad-all.jpg"
           alt="中古ショップのイメージ画像"
           title="中古ショップ購入時"
           width={800}
           height={450}
           aside
+          imgStyle={{ border: '1px solid var(--color-border-light)' }}
         >
           <div className="media-card__desc m-rich-text">
             <p>イオシス・じゃんぱら・ゲオなどの中古ショップは、検品体制や保証が整っているため初心者でも安心です。ただし、注意すべき点もあります。</p>
@@ -47,6 +48,22 @@ export default function RouteSection() {
             <p>
               また、iPadは<strong>モデル名が非常にわかりにくい</strong>（「iPad Air 第4世代」と「iPad Air 第5世代」の見た目はほぼ同じ）ため、型番（モデル番号）まで確認することをおすすめします。
             </p>
+          </div>
+        </MediaCard>
+
+        {/* Apple認定整備済製品 */}
+        <MediaCard
+          src="/images/content/thumbnail/ipad-image-06.jpg"
+          alt="Apple認定整備済製品のイメージ画像"
+          title="Apple認定整備済製品（リファービッシュ）"
+          width={800}
+          height={450}
+          aside
+        >
+          <div className="media-card__desc m-rich-text">
+            <p>Appleが公式に販売する整備済製品は、新品同様のバッテリー・外装に交換済みで1年間のハードウェア保証も付きます。iPadの中古を検討する際は、整備済製品の在庫をチェックするのもおすすめです。</p>
+            <p>ただし、整備済製品は在庫が不安定で欲しいモデルが常にあるとは限りません。また、価格は新品の約15%引き程度で、中古ショップの同スペック品より高い場合もあります。</p>
+            <p><strong>予算を重視するなら中古ショップ、品質と保証を重視するなら整備済製品</strong>と使い分けましょう。</p>
           </div>
         </MediaCard>
       </div>

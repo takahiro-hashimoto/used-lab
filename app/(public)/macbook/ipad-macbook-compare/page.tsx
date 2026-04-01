@@ -8,6 +8,7 @@ import MacbookStrengths from './components/MacbookStrengths'
 import IpadStrengths from './components/IpadStrengths'
 import NoDifference from './components/NoDifference'
 import RecommendSection from './components/RecommendSection'
+import PopularMacBook from '@/app/components/PopularMacBook'
 import MacBookRelatedLinks from '@/app/components/macbook/MacBookRelatedLinks'
 
 const PAGE_TITLE = 'MacBookとiPadどっちを買うのがおすすめ？両者の違いと使い勝手を比較'
@@ -130,7 +131,7 @@ export default function IpadMacbookComparePage() {
               </p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                中古MacBookの購入を検討中の方は「<a href="/macbook">中古MacBook完全購入ガイド</a>」もあわせてご覧ください。
+                中古PCやタブレットの購入を検討中の方は「<a href="/macbook">中古MacBook完全購入ガイド</a>」や「<a href="/ipad">中古iPad完全購入ガイド</a>」もあわせてご覧ください。
               </p>
             </div>
           </div>
@@ -293,36 +294,10 @@ export default function IpadMacbookComparePage() {
                 </div>
               </div>
 
-              {/* 関連リンク */}
-              <div className="l-grid l-grid--2col l-grid--gap-lg u-mb-3xl" style={{ marginTop: 'var(--space-2xl)' }}>
-                <a className="m-card m-card--shadow related-link-card related-link-card--icon m-card--hoverable" href="/macbook">
-                  <span className="related-link-card__icon m-icon-box m-icon-box--sm">
-                    <i className="fa-solid fa-laptop" aria-hidden="true"></i>
-                  </span>
-                  <p className="related-link-card__title">中古MacBook完全購入ガイド</p>
-                  <p className="related-link-card__desc">
-                    MacBookの選び方・おすすめモデル・中古相場をわかりやすく解説。初めての方でも安心です。
-                  </p>
-                  <span className="related-link-card__arrow">
-                    <i className="fa-solid fa-chevron-right" aria-hidden="true"></i>
-                  </span>
-                </a>
-                <a className="m-card m-card--shadow related-link-card related-link-card--icon m-card--hoverable" href="/ipad">
-                  <span className="related-link-card__icon m-icon-box m-icon-box--sm">
-                    <i className="fa-solid fa-tablet-screen-button" aria-hidden="true"></i>
-                  </span>
-                  <p className="related-link-card__title">中古iPad完全購入ガイド</p>
-                  <p className="related-link-card__desc">
-                    iPadの選び方・おすすめモデル・中古相場をわかりやすく解説。自分に合った1台が見つかります。
-                  </p>
-                  <span className="related-link-card__arrow">
-                    <i className="fa-solid fa-chevron-right" aria-hidden="true"></i>
-                  </span>
-                </a>
-              </div>
             </div>
           </section>
         <FaqSection />
+        <PopularMacBook />
         <MacBookRelatedLinks excludeHref={["/macbook/ipad-macbook-compare/", "/macbook/recommend/"]} />
 
         {/* シェアボックス */}

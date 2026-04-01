@@ -9,6 +9,7 @@ import {
 import Breadcrumb from '@/app/components/Breadcrumb'
 import ShareBox from '@/app/components/ShareBox'
 import IPhoneRelatedLinks from '@/app/components/iphone/IPhoneRelatedLinks'
+import PopularSection from '@/app/components/support/PopularSection'
 import MvnoDiagnosis from './components/MvnoDiagnosis'
 import type { DiagnosisProvider } from './components/MvnoDiagnosis'
 
@@ -749,42 +750,6 @@ export default async function MvnoPage() {
           </div>
         </section>
 
-        {/* ===== 目的別に人気の中古iPhone ===== */}
-        <section id="popular" className="l-section" aria-labelledby="heading-popular">
-          <div className="l-container">
-            <h2 className="m-section-heading m-section-heading--lg" id="heading-popular">
-              目的別に人気の中古iPhone
-            </h2>
-            <p className="m-section-desc">
-              目的別におすすめの機種を厳選。今回の記事で購入するべき機種が判断できなかった方はぜひご覧ください。
-            </p>
-            <div className="m-card m-card--shadow popular-card">
-              <figure className="popular-card-figure">
-                <img
-                  alt="中古iPhoneおすすめ5選のイメージ画像"
-                  loading="lazy"
-                  width={400}
-                  height={500}
-                  className="popular-card-img"
-                  src="/images/content/thumbnail/iphone-setting.webp"
-                />
-              </figure>
-              <div className="popular-card-body">
-                <p className="popular-card-subtitle">目的別におすすめ機種を厳選！</p>
-                <p className="popular-card-title">中古iPhoneおすすめ5選</p>
-                <p className="popular-card-desc">
-                  カメラ性能を重視する人向け、大画面で動画やSNSを楽しみたい人向けなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。
-                </p>
-                <div>
-                  <a className="m-btn m-btn--primary" href="/iphone/recommend">
-                    おすすめ5機種を見る <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* ===== よくある質問 ===== */}
         <section id="faq" className="l-section" aria-labelledby="heading-faq">
           <div className="l-container">
@@ -872,6 +837,17 @@ export default async function MvnoPage() {
           </div>
         </section>
 
+        <PopularSection
+            sectionTitle="目的別に人気の中古iPhone"
+            sectionDescription="目的別におすすめの機種を厳選。相場だけでなくスペック全体を見て選びたい方はぜひご覧ください。"
+            imageSrc="/images/content/thumbnail/iphone-setting.webp"
+            imageAlt="中古iPhoneおすすめ5選のイメージ画像"
+            subtitle="目的別におすすめ機種を厳選！"
+            cardTitle="中古iPhoneおすすめ5選"
+            cardDescription="カメラ性能を重視する人向け、大画面で動画やSNSを楽しみたい人向けなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。"
+            buttonText="おすすめ5機種を見る"
+            buttonHref="/iphone/recommend/"
+          />
         <IPhoneRelatedLinks excludeHref={["/iphone/mvno/", "/iphone/recommend/"]} />
         <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>

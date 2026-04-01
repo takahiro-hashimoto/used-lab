@@ -17,8 +17,8 @@ import DashboardSection from './components/DashboardSection'
 import PriceDropSection from './components/PriceDropSection'
 import RankingSection from './components/RankingSection'
 import PriceHistorySection from './components/PriceHistorySection'
-import RecommendBanner from '@/app/(public)/ipad/[slug]/components/RecommendBanner'
 import FaqSection from './components/FaqSection'
+import PopularSection from '@/app/components/support/PopularSection'
 
 // ============================================================
 // 型定義
@@ -440,10 +440,19 @@ export default async function IPadPriceInfoPage() {
 
           <PriceHistorySection models={sortedModels} />
 
-          <RecommendBanner />
-
           <FaqSection />
-        <IPadRelatedLinks excludeHref="/ipad/ipad-price-info/" />
+        <PopularSection
+          sectionTitle="目的別に人気の中古iPad"
+          sectionDescription="目的別におすすめの機種を厳選。診断で迷った方はぜひご覧ください。"
+          imageSrc="/images/content/thumbnail/ipad-image-03.jpg"
+          imageAlt="中古iPadおすすめ5選のイメージ画像"
+          subtitle="目的別におすすめ機種を厳選！"
+          cardTitle="中古iPadおすすめ5選"
+          cardDescription="イラスト制作に最適なモデル、動画視聴に大画面モデルなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。"
+          buttonText="おすすめ5機種を見る"
+          buttonHref="/ipad/recommend/"
+        />
+        <IPadRelatedLinks excludeHref={["/ipad/ipad-price-info/", "/ipad/recommend/"]} />
         <ShareBox url={PAGE_URL} text={`iPadの中古相場一覧 | 歴代${modelCount}機種の価格推移を独自集計`} />
         </div>
       </article>

@@ -12,7 +12,7 @@ export default function RouteSection() {
 
         {/* フリマ・オークション */}
         <MediaCard
-          src="/images/content/thumbnail/used-iphone-freemarket.jpg"
+          src="/images/content/thumbnail/activate-lock.png"
           alt="フリマアプリのイメージ画像"
           title="フリマ・オークション購入時"
           width={800}
@@ -46,6 +46,28 @@ export default function RouteSection() {
             </p>
             <p>
               さらに、「未使用」「美品」でも内部状態（バッテリーなど）は別問題です。外装がきれいでもバッテリーが劣化しているケースがあるため、最大容量の表示があるショップを選ぶと安心です。
+            </p>
+          </div>
+        </MediaCard>
+
+        {/* Apple認定整備済製品 */}
+        <MediaCard
+          src="/images/content/thumbnail/iphone-image-03.jpg"
+          alt="Apple認定整備済製品のイメージ"
+          title="Apple認定整備済製品（リファービッシュ）"
+          width={800}
+          height={450}
+          aside
+        >
+          <div className="media-card__desc m-rich-text">
+            <p>
+              Appleが公式に販売する整備済製品は、<strong>新品同様のバッテリー・外装に交換済み</strong>で1年間のハードウェア保証も付きます。中古iPhoneを検討する際は、まず整備済製品の在庫をチェックするのがおすすめです。
+            </p>
+            <p>
+              ただし、整備済製品は<strong>在庫が不安定で欲しいモデルが常にあるとは限りません</strong>。また、価格は新品の約15%引き程度で、中古ショップの同スペック品より高い場合もあります。
+            </p>
+            <p>
+              予算を重視するなら中古ショップ、<strong>品質と保証を重視するなら整備済製品</strong>と使い分けましょう。
             </p>
           </div>
         </MediaCard>

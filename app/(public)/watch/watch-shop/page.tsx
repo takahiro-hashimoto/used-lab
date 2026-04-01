@@ -225,9 +225,9 @@ export default async function WatchShopPage() {
           <ShopDetailSection items={shopDetailItems} />
           <FleaMarketSection />
           <ChecklistSection />
-          <PopularSection />
           <FaqSection />
           <ConclusionSection />
+          <PopularSection />
         <WatchRelatedLinks excludeHref={["/watch/watch-shop/", "/watch/recommend/"]} />
         <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>

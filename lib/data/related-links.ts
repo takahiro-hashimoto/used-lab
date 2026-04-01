@@ -44,6 +44,7 @@ export const IPAD_LINKS: RelatedLinkMeta[] = [
   { href: '/ipad/ipad-buy/', title: 'iPadを安く買う方法7選', desc: '7つの購入先を比較して紹介' },
   { href: '/ipad/car-navigation-system/', title: 'iPadカーナビ化の方法と注意点', desc: 'メリットと注意点を解説' },
   { href: '/ipad/ipad-filter-search/', title: 'iPad機種診断ツール', desc: '質問に答えるだけで最適な機種がわかる' },
+  { href: '/macbook/ipad-macbook-compare/', title: 'iPadとMacBookどっちがいい？【徹底比較】', desc: '両デバイスの違いと選び方を解説' },
 ]
 
 /** Apple Watch サブページ一覧 */

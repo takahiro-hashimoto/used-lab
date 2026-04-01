@@ -18,6 +18,7 @@ export default function PreCheckSection() {
           width={800}
           height={450}
           aside
+          imgStyle={{ border: '1px solid var(--color-border, #e0e0e0)', borderRadius: '8px' }}
           footer={
             <>
               <h3 className="caution-how-to__heading">確認方法</h3>

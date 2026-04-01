@@ -9,6 +9,7 @@ import BenchmarkRanking from './components/BenchmarkRanking'
 import ChipGenerationCompare from './components/ChipGenerationCompare'
 import UseCaseGuide from './components/UseCaseGuide'
 import IPhoneRelatedLinks from '@/app/components/iphone/IPhoneRelatedLinks'
+import PopularSection from '@/app/components/support/PopularSection'
 
 const PAGE_TITLE = 'iPhoneのベンチマークを比較！全モデルの性能がわかるスコアランキング【2026年版】'
 const PAGE_DESCRIPTION =
@@ -288,7 +289,18 @@ export default async function BenchmarkPage() {
             </div>
           </section>
 
-          <IPhoneRelatedLinks excludeHref="/iphone/benchmark/" />
+          <PopularSection
+            sectionTitle="目的別に人気の中古iPhone"
+            sectionDescription="目的別におすすめの機種を厳選。ベンチマークだけでなく総合的に選びたい方はぜひご覧ください。"
+            imageSrc="/images/content/thumbnail/iphone-setting.webp"
+            imageAlt="中古iPhoneおすすめ5選のイメージ画像"
+            subtitle="目的別におすすめ機種を厳選！"
+            cardTitle="中古iPhoneおすすめ5選"
+            cardDescription="カメラ性能を重視する人向け、大画面で動画やSNSを楽しみたい人向けなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。"
+            buttonText="おすすめ5機種を見る"
+            buttonHref="/iphone/recommend/"
+          />
+          <IPhoneRelatedLinks excludeHref={["/iphone/benchmark/", "/iphone/recommend/"]} />
           <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>
       </article>

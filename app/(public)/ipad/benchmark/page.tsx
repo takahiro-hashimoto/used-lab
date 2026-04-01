@@ -9,6 +9,7 @@ import BenchmarkRanking from './components/BenchmarkRanking'
 import ChipGenerationCompare from './components/ChipGenerationCompare'
 import UseCaseGuide from './components/UseCaseGuide'
 import IPadRelatedLinks from '@/app/components/ipad/IPadRelatedLinks'
+import PopularSection from '@/app/components/support/PopularSection'
 
 const PAGE_TITLE = 'iPadのベンチマークを比較！全モデルの性能がわかるスコアランキング【2026年版】'
 const PAGE_DESCRIPTION =
@@ -254,8 +255,6 @@ export default async function BenchmarkPage() {
           <ChipGenerationCompare models={benchModels} />
           <UseCaseGuide models={benchModels} shopLinks={shopLinks} />
 
-          <IPadRelatedLinks excludeHref="/ipad/benchmark/" />
-
           <section className="l-section" id="faq" aria-labelledby="heading-faq">
             <div className="l-container">
               <h2 className="m-section-heading m-section-heading--lg" id="heading-faq">iPadのベンチマークに関するよくある質問</h2>
@@ -270,6 +269,20 @@ export default async function BenchmarkPage() {
               </div>
             </div>
           </section>
+
+          <PopularSection
+            sectionTitle="目的別に人気の中古iPad"
+            sectionDescription="目的別におすすめの機種を厳選。診断で迷った方はぜひご覧ください。"
+            imageSrc="/images/content/thumbnail/ipad-image-03.jpg"
+            imageAlt="中古iPadおすすめ5選のイメージ画像"
+            subtitle="目的別におすすめ機種を厳選！"
+            cardTitle="中古iPadおすすめ5選"
+            cardDescription="イラスト制作に最適なモデル、動画視聴に大画面モデルなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。"
+            buttonText="おすすめ5機種を見る"
+            buttonHref="/ipad/recommend/"
+          />
+
+          <IPadRelatedLinks excludeHref={["/ipad/benchmark/", "/ipad/recommend/"]} />
 
           <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>

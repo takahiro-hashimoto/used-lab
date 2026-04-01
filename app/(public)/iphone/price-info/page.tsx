@@ -15,7 +15,7 @@ import DashboardSection from './components/DashboardSection'
 import PriceDropSection from './components/PriceDropSection'
 import RankingSection from './components/RankingSection'
 import PriceHistorySection from './components/PriceHistorySection'
-import RecommendBanner from '@/app/components/iphone/RecommendBanner'
+import PopularSection from '@/app/components/support/PopularSection'
 import FaqSection from './components/FaqSection'
 
 // ============================================================
@@ -410,11 +410,6 @@ export default async function IPhonePriceInfoPage() {
                 </a>
               </li>
               <li>
-                <a href="#popular" className="toc-item">
-                  目的別の人気機種 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
-                </a>
-              </li>
-              <li>
                 <a href="#pd-history" className="toc-item">
                   価格推移データ <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
                 </a>
@@ -448,10 +443,20 @@ export default async function IPhonePriceInfoPage() {
 
           <PriceHistorySection models={sortedModels} />
 
-          <RecommendBanner />
-
           <FaqSection />
-        <IPhoneRelatedLinks excludeHref="/iphone/price-info/" />
+
+          <PopularSection
+            sectionTitle="目的別に人気の中古iPhone"
+            sectionDescription="目的別におすすめの機種を厳選。今回の記事で購入するべき機種が判断できなかった方はぜひご覧ください。"
+            imageSrc="/images/content/thumbnail/iphone-setting.webp"
+            imageAlt="中古iPhoneおすすめ5選のイメージ画像"
+            subtitle="目的別におすすめ機種を厳選！"
+            cardTitle="中古iPhoneおすすめ5選"
+            cardDescription="カメラ性能を重視する人向け、大画面で動画やSNSを楽しみたい人向けなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。"
+            buttonText="おすすめ5機種を見る"
+            buttonHref="/iphone/recommend/"
+          />
+        <IPhoneRelatedLinks excludeHref={["/iphone/price-info/", "/iphone/recommend/"]} />
         <ShareBox url={PAGE_URL} text={`iPhoneの中古相場一覧 | 歴代${modelCount}機種の価格推移を独自集計`} />
         </div>
       </article>

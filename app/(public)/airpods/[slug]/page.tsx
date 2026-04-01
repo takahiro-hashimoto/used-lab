@@ -20,7 +20,7 @@ import BasicSpecs from './components/BasicSpecs'
 import PriceChartSection from '@/app/components/PriceChartSection'
 import CompareSection from '@/app/components/CompareSection'
 import CompareSelector from './components/CompareSelector'
-import RecommendBanner from './components/RecommendBanner'
+import PopularSection from '@/app/components/support/PopularSection'
 import FaqSection from './components/FaqSection'
 import AirPodsRelatedLinks from '@/app/components/airpods/AirPodsRelatedLinks'
 import ShareBox from '@/app/components/ShareBox'
@@ -112,8 +112,18 @@ export default async function AirPodsDetailPage({ params }: PageProps) {
         <CompareSection model={model} allModels={allModels} shopLinks={shopLinks} displayName={displayName}>
           {(props) => <CompareSelector {...props} />}
         </CompareSection>
-        <RecommendBanner />
         <FaqSection model={model} latestPrice={latestPrice} shopLinks={modelShopLinks} />
+        <PopularSection
+          sectionTitle="目的別に人気の中古AirPods"
+          sectionDescription="目的別におすすめの機種を厳選。今回の記事で購入するべき機種が判断できなかった方はぜひご覧ください。"
+          imageSrc="/images/content/airpods-desk.webp"
+          imageAlt="中古AirPodsおすすめのイメージ画像"
+          subtitle="目的別におすすめ機種を厳選！"
+          cardTitle="中古AirPodsおすすめモデル"
+          cardDescription="ノイキャン重視、コスパ重視の人向けなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。"
+          buttonText="おすすめモデルを見る"
+          buttonHref="/airpods/recommend/"
+        />
         <AirPodsRelatedLinks excludeHref={`/airpods/${model.slug}/`} />
         <ShareBox url={`https://used-lab.com/airpods/${model.slug}/`} text={`中古${model.name}（${model.model}）は今買うべき？サポート期間、基本スペック、中古相場から解説`} />
         </div>

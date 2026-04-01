@@ -223,8 +223,8 @@ export default async function IPhoneShopPage() {
           <ShopDetailSection items={shopDetailItems} />
           <FleaMarketSection />
           <ChecklistSection />
-          <PopularSection />
           <FaqSection />
+          <PopularSection />
         <IPhoneRelatedLinks excludeHref={["/iphone/iphone-shop/", "/iphone/recommend/"]} />
         <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>

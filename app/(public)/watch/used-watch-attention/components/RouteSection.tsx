@@ -12,7 +12,7 @@ export default function RouteSection() {
 
         {/* フリマ・オークション */}
         <MediaCard
-          src="/images/watch/watch-10.jpg"
+          src="/images/content/thumbnail/apple-watch-image.jpg"
           alt="フリマアプリのイメージ画像"
           title="フリマ・オークション購入時"
           width={800}
@@ -32,7 +32,7 @@ export default function RouteSection() {
 
         {/* 中古ショップ */}
         <MediaCard
-          src="/images/watch/watch-10.jpg"
+          src="/images/content/thumbnail/watch-image-03.jpg"
           alt="中古ショップのイメージ画像"
           title="中古ショップ購入時"
           width={800}
@@ -46,6 +46,28 @@ export default function RouteSection() {
             </p>
             <p>
               また、Apple Watchは<strong>バッテリー残量を掲載していないショップがほとんど</strong>です。できるだけ状態ランクの高い端末（A〜Bランク）を選ぶことで、バッテリー劣化のリスクを抑えられます。
+            </p>
+          </div>
+        </MediaCard>
+
+        {/* Apple認定整備済製品 */}
+        <MediaCard
+          src="/images/content/thumbnail/apple-watch-type.jpg"
+          alt="Apple認定整備済製品のイメージ"
+          title="Apple認定整備済製品（リファービッシュ）"
+          width={800}
+          height={450}
+          aside
+        >
+          <div className="media-card__desc m-rich-text">
+            <p>
+              Appleが公式に販売する整備済製品は、<strong>新品同様のバッテリー・外装に交換済み</strong>で1年間のハードウェア保証も付きます。中古Apple Watchを検討する際は、まず整備済製品の在庫をチェックするのがおすすめです。
+            </p>
+            <p>
+              ただし、整備済製品は<strong>在庫が不安定で欲しいモデルが常にあるとは限りません</strong>。また、価格は新品の約15%引き程度で、中古ショップの同スペック品より高い場合もあります。
+            </p>
+            <p>
+              予算を重視するなら中古ショップ、<strong>品質と保証を重視するなら整備済製品</strong>と使い分けましょう。
             </p>
           </div>
         </MediaCard>

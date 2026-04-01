@@ -463,7 +463,7 @@ export default function WifiCellularPage() {
               <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-xl)' }}>
 
                 {/* 1. 楽天モバイル */}
-                <div className="m-card m-card--shadow m-card--padded">
+                <div className="m-card m-card--shadow m-card--padded media-card--aside">
                   <div className="media-card__img-wrap">
                     <a href="https://hb.afl.rakuten.co.jp/hsc/4ebf9dc9.4dc93727.1d6c2ffe.7ec2aeb6/?link_type=pict&rafst=rmn&ut=eyJwYWdlIjoic2hvcCIsInR5cGUiOiJwaWN0IiwiY29sIjoxLCJjYXQiOjEsImJhbiI6MjM3Nzg5NiwiYW1wIjpmYWxzZX0%3D" rel="nofollow sponsored noopener" target="_blank">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -497,7 +497,7 @@ export default function WifiCellularPage() {
                 </div>
 
                 {/* 2. ahamo */}
-                <div className="m-card m-card--shadow m-card--padded">
+                <div className="m-card m-card--shadow m-card--padded media-card--aside">
                   <div className="media-card__img-wrap">
                     <a href="https://px.a8.net/svt/ejp?a8mat=3HMOV6+ENI2R6+4TIO+5ZMCH" rel="nofollow sponsored noopener" target="_blank">
                       {/* eslint-disable-next-line @next/next/no-img-element */}

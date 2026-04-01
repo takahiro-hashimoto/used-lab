@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
 import Breadcrumb from '@/app/components/Breadcrumb'
+import PopularMacBook from '@/app/components/PopularMacBook'
 import MacBookRelatedLinks from '@/app/components/macbook/MacBookRelatedLinks'
 import ShareBox from '@/app/components/ShareBox'
 import { getAllMacBookModels, getAllMacBookPriceLogsByModelIds, getAllProductShopLinksByType } from '@/lib/queries'
@@ -295,9 +296,6 @@ export default async function BenchmarkPage() {
           {/* 用途別おすすめスコアの目安 */}
           <UseCaseGuide models={benchModels} shopLinks={shopLinks} />
 
-          {/* 関連記事 */}
-          <MacBookRelatedLinks excludeHref="/macbook/benchmark/" />
-
           {/* よくある質問 */}
           <section className="l-section" id="faq" aria-labelledby="heading-faq">
             <div className="l-container">
@@ -314,6 +312,8 @@ export default async function BenchmarkPage() {
             </div>
           </section>
 
+          <PopularMacBook />
+          <MacBookRelatedLinks excludeHref={["/macbook/benchmark/", "/macbook/recommend/"]} />
           <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>
       </article>

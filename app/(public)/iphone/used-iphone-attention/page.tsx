@@ -265,6 +265,7 @@ export default function UsedIphoneAttentionPage() {
             </div>
           </section>
 
+          <FaqSection productName="iPhone" faqItems={faqItems} />
           <PopularSection
             sectionTitle="目的別に人気の中古iPhone"
             sectionDescription="目的別におすすめの機種を厳選。診断で迷った方はぜひご覧ください。"
@@ -276,7 +277,6 @@ export default function UsedIphoneAttentionPage() {
             buttonText="おすすめ5機種を見る"
             buttonHref="/iphone/recommend/"
           />
-          <FaqSection productName="iPhone" faqItems={faqItems} />
         <IPhoneRelatedLinks excludeHref={["/iphone/used-iphone-attention/", "/iphone/recommend/"]} />
         <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>

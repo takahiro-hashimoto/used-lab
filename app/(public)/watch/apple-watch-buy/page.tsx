@@ -3,7 +3,7 @@ import Breadcrumb from '@/app/components/Breadcrumb'
 import ShareBox from '@/app/components/ShareBox'
 import BuyMethodsSection from './components/BuyMethodsSection'
 import ConclusionSection from './components/ConclusionSection'
-import RecommendBanner from '@/app/(public)/watch/[slug]/components/RecommendBanner'
+import PopularSection from '@/app/components/support/PopularSection'
 import WatchRelatedLinks from '@/app/components/watch/WatchRelatedLinks'
 
 const PAGE_TITLE = 'Apple Watchを安く買うには？おすすめの購入先7つを比較'
@@ -189,20 +189,26 @@ export default function AppleWatchBuyPage() {
         {/* セクション */}
         <div className="l-sections" itemProp="articleBody">
           <BuyMethodsSection />
-        <RecommendBanner />
+        <PopularSection
+          sectionTitle="目的別に人気の中古Apple Watch"
+          sectionDescription="目的別におすすめの機種を厳選。今回の記事で購入するべき機種が判断できなかった方はぜひご覧ください。"
+          imageSrc="/images/content/thumbnail/watch-image-08.jpg"
+          imageAlt="中古Apple Watchおすすめ5選のイメージ画像"
+          subtitle="目的別におすすめ機種を厳選！"
+          cardTitle="中古Apple Watchおすすめ5選"
+          cardDescription="健康管理を重視する人向け、コスパ重視の人向けなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。"
+          buttonText="おすすめ5機種を見る"
+          buttonHref="/watch/recommend/"
+        />
 
-        <section className="l-section" aria-label="関連リンク">
-          <div className="l-container">
-            <div className="m-callout m-callout--muted">
-              <span className="m-callout__label">関連</span>
-              <p className="m-callout__text">
-                <a href="https://selectra.jp/%E3%82%B9%E3%83%88%E3%83%AA%E3%83%BC%E3%83%9F%E3%83%B3%E3%82%B0/%E3%83%97%E3%83%AD%E3%83%90%E3%82%A4%E3%83%80%E3%83%BC/%E3%82%A2%E3%83%9E%E3%82%BE%E3%83%B3%E3%83%97%E3%83%A9%E3%82%A4%E3%83%A0/sale" target="_blank" rel="noreferrer noopener">Amazonセール最新情報｜セールはいつ？プライムデーなど年間スケジュールをチェック</a>
-              </p>
-            </div>
+        <WatchRelatedLinks excludeHref="/watch/apple-watch-buy/">
+          <div className="m-callout m-callout--muted" style={{ marginTop: 'var(--space-xl)' }}>
+            <span className="m-callout__label">関連</span>
+            <p className="m-callout__text">
+              <a href="https://selectra.jp/%E3%82%B9%E3%83%88%E3%83%AA%E3%83%BC%E3%83%9F%E3%83%B3%E3%82%B0/%E3%83%97%E3%83%AD%E3%83%90%E3%82%A4%E3%83%80%E3%83%BC/%E3%82%A2%E3%83%9E%E3%82%BE%E3%83%B3%E3%83%97%E3%83%A9%E3%82%A4%E3%83%A0/sale" target="_blank" rel="noreferrer noopener">Amazonセール最新情報｜セールはいつ？プライムデーなど年間スケジュールをチェック</a>
+            </p>
           </div>
-        </section>
-
-        <WatchRelatedLinks excludeHref="/watch/apple-watch-buy/" />
+        </WatchRelatedLinks>
         <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>
       </article>

@@ -23,7 +23,7 @@ const GLOSSARY_ITEMS = [
   { title: '高度計', icon: 'fa-solid fa-mountain', desc: 'リアルタイムでの高度変化を記録できる高度計を内蔵しており、登山やハイキングなどのアクティビティで活用されている。' },
 ]
 import ShareBox from '@/app/components/ShareBox'
-import RecommendBanner from '@/app/(public)/watch/[slug]/components/RecommendBanner'
+import PopularSection from '@/app/components/support/PopularSection'
 import WatchRelatedLinks from '@/app/components/watch/WatchRelatedLinks'
 
 export const metadata: Metadata = {
@@ -232,7 +232,17 @@ export default async function WatchSpecTablePage() {
         <DualCompare models={serializedModels} shopLinks={serializedLinks} />
         <EvolutionTimeline />
         <GlossarySection productName="Apple Watch" items={GLOSSARY_ITEMS} />
-        <RecommendBanner />
+        <PopularSection
+          sectionTitle="目的別に人気の中古Apple Watch"
+          sectionDescription="目的別におすすめの機種を厳選。今回の記事で購入するべき機種が判断できなかった方はぜひご覧ください。"
+          imageSrc="/images/content/thumbnail/watch-image-08.jpg"
+          imageAlt="中古Apple Watchおすすめ5選のイメージ画像"
+          subtitle="目的別におすすめ機種を厳選！"
+          cardTitle="中古Apple Watchおすすめ5選"
+          cardDescription="健康管理を重視する人向け、コスパ重視の人向けなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。"
+          buttonText="おすすめ5機種を見る"
+          buttonHref="/watch/recommend/"
+        />
         <WatchRelatedLinks excludeHref="/watch/watch-spec-table/" />
         <ShareBox url="https://used-lab.com/watch/watch-spec-table/" text="歴代Apple Watchスペック比較表！各世代の性能の違いがすぐわかる" />
         </div>

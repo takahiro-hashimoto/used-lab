@@ -14,7 +14,7 @@ import DashboardSection from './components/DashboardSection'
 import PriceDropSection from './components/PriceDropSection'
 import RankingSection from './components/RankingSection'
 import PriceHistorySection from './components/PriceHistorySection'
-import RecommendBanner from '@/app/(public)/airpods/[slug]/components/RecommendBanner'
+import PopularSection from '@/app/components/support/PopularSection'
 import FaqSection from './components/FaqSection'
 
 // ============================================================
@@ -416,9 +416,18 @@ export default async function AirPodsPriceInfoPage() {
 
           <PriceHistorySection models={sortedModels} />
 
-          <RecommendBanner />
-
           <FaqSection />
+          <PopularSection
+            sectionTitle="目的別に人気の中古AirPods"
+            sectionDescription="目的別におすすめの機種を厳選。今回の記事で購入するべき機種が判断できなかった方はぜひご覧ください。"
+            imageSrc="/images/content/airpods-desk.webp"
+            imageAlt="中古AirPodsおすすめのイメージ画像"
+            subtitle="目的別におすすめ機種を厳選！"
+            cardTitle="中古AirPodsおすすめモデル"
+            cardDescription="ノイキャン重視、コスパ重視の人向けなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。"
+            buttonText="おすすめモデルを見る"
+            buttonHref="/airpods/recommend/"
+          />
         <AirPodsRelatedLinks excludeHref="/airpods/price/" />
         <ShareBox url={PAGE_URL} text={`AirPodsの中古相場一覧 | 歴代${modelCount}機種の価格推移を独自集計`} />
         </div>

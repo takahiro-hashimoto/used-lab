@@ -15,6 +15,7 @@ import RankingSection from './components/RankingSection'
 import PriceHistorySection from './components/PriceHistorySection'
 import Image from 'next/image'
 import FaqSection from './components/FaqSection'
+import PopularMacBook from '@/app/components/PopularMacBook'
 import MacBookRelatedLinks from '@/app/components/macbook/MacBookRelatedLinks'
 
 // ============================================================
@@ -423,36 +424,8 @@ export default async function MacBookPriceInfoPage() {
 
           <PriceHistorySection models={sortedModels} />
 
-          <section className="l-section" id="popular" aria-labelledby="heading-popular">
-            <div className="l-container">
-              <h2 className="m-section-heading m-section-heading--lg" id="heading-popular">目的別に人気の中古MacBook</h2>
-              <p className="m-section-desc">目的別におすすめの機種を厳選。今回の記事で購入するべき機種が判断できなかった方はぜひご覧ください。</p>
-              <div className="m-card m-card--shadow popular-card">
-                <figure className="popular-card-figure">
-                  <Image
-                    alt="中古MacBookおすすめ機種のイメージ画像"
-                    loading="lazy"
-                    width={400}
-                    height={500}
-                    className="popular-card-img"
-                    src="/images/content/thumbnail/macbook-image-04.jpg"
-                  />
-                </figure>
-                <div className="popular-card-body">
-                  <p className="popular-card-subtitle">目的別におすすめ機種を厳選！</p>
-                  <p className="popular-card-title">中古MacBookおすすめ機種</p>
-                  <p className="popular-card-desc">動画編集向け、普段使い向けなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。</p>
-                  <div>
-                    <a className="m-btn m-btn--primary" href="/macbook/recommend/">
-                      おすすめ機種を見る <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
           <FaqSection />
+          <PopularMacBook />
           <MacBookRelatedLinks excludeHref={["/macbook/macbook-price-info/", "/macbook/recommend/"]} />
           <ShareBox url={PAGE_URL} text={`MacBookの中古相場一覧 | 歴代${modelCount}機種の価格推移を独自集計`} />
         </div>

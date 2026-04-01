@@ -172,8 +172,8 @@ export default async function UsedIpadSupportPage() {
         <IPadOsSupportMatrix models={allModelsWithEnded} />
         <LifespanTable models={allModelsWithEnded} />
         <TimingSection />
-        <PopularSection />
         <FaqSection />
+        <PopularSection />
         <IPadRelatedLinks excludeHref={["/ipad/used-ipad-support/", "/ipad/recommend/"]} />
         <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>

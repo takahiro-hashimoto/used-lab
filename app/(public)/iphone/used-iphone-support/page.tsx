@@ -107,7 +107,7 @@ export default async function UsedIphoneSupportPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/content/thumbnail/iphone-image-02.jpg"
+                  src="/images/content/thumbnail/iphone-image-03.jpg"
                   alt="iPhoneの寿命・サポート期間イメージ"
                   className="hero-media__img"
                   width={360}
@@ -172,8 +172,8 @@ export default async function UsedIphoneSupportPage() {
         <IosSupportMatrix models={allModelsWithEnded} />
         <LifespanTable models={allModelsWithEnded} />
         <TimingSection />
-        <PopularSection />
         <FaqSection />
+        <PopularSection />
         <IPhoneRelatedLinks excludeHref={["/iphone/used-iphone-support/", "/iphone/recommend/"]} />
         <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>

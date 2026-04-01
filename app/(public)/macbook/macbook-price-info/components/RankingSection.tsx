@@ -57,7 +57,7 @@ export default function RankingSection({ items, modelCount, dateDisplay }: Props
                     <a href={model.shopUrl} className="price-card__link" target="_blank" rel="noopener noreferrer">{model.name.replace(/（\d{4}）/, '')}</a>
                   ) : model.name.replace(/（\d{4}）/, '')}
                 </h3>
-                <p className="price-card__meta">{model.year}年 / {model.chip}</p>
+                <p className="price-card__meta">{model.chip} / 発売日{model.releaseDate.replace(/^(\d{4})\/0?(\d+)$/, '$1年$2月')}</p>
                 <meta itemProp="brand" content="Apple" />
               </div>
               <div className="price-card__price">

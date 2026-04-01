@@ -4,6 +4,7 @@ import ShareBox from '@/app/components/ShareBox'
 import BuyMethodsSection from './components/BuyMethodsSection'
 import ConclusionSection from './components/ConclusionSection'
 import IPadRelatedLinks from '@/app/components/ipad/IPadRelatedLinks'
+import PopularSection from '@/app/components/support/PopularSection'
 
 const PAGE_TITLE = 'iPadを安く買うには？おすすめの購入先7つを比較'
 const PAGE_DESCRIPTION =
@@ -189,7 +190,18 @@ export default function IPadBuyPage() {
 
           <BuyMethodsSection />
 
-        <IPadRelatedLinks excludeHref="/ipad/ipad-buy/" />
+        <PopularSection
+          sectionTitle="目的別に人気の中古iPad"
+          sectionDescription="目的別におすすめの機種を厳選。診断で迷った方はぜひご覧ください。"
+          imageSrc="/images/content/thumbnail/ipad-image-03.jpg"
+          imageAlt="中古iPadおすすめ5選のイメージ画像"
+          subtitle="目的別におすすめ機種を厳選！"
+          cardTitle="中古iPadおすすめ5選"
+          cardDescription="イラスト制作に最適なモデル、動画視聴に大画面モデルなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。"
+          buttonText="おすすめ5機種を見る"
+          buttonHref="/ipad/recommend/"
+        />
+        <IPadRelatedLinks excludeHref={["/ipad/ipad-buy/", "/ipad/recommend/"]} />
         <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>
       </article>

@@ -5,7 +5,7 @@ export default function RecommendSection() {
       <div id="recommend-gps" className="m-card m-card--shadow m-card--padded">
         <div className="media-card__img-wrap">
           <img
-            src="/images/content/thumbnail/apple-watch-image.jpg"
+            src="/images/content/photo/used-lab-image.jpg"
             alt="GPSモデルがおすすめな人"
             className="media-card__img"
             width={800}
@@ -32,7 +32,7 @@ export default function RecommendSection() {
       <div id="recommend-cellular" className="m-card m-card--shadow m-card--padded">
         <div className="media-card__img-wrap">
           <img
-            src="/images/watch/watch-10.jpg"
+            src="/images/content/photo/apple-watch-workout.jpg"
             alt="セルラーモデルがおすすめな人"
             className="media-card__img"
             width={800}

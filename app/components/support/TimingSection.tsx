@@ -1,10 +1,12 @@
 import type { ReactNode } from 'react'
+import MediaCard from '@/app/components/MediaCard'
 
 type TimingCard = {
   title: string
   imgSrc: string
   imgAlt: string
   content: ReactNode
+  footer?: ReactNode
 }
 
 type Props = {
@@ -25,23 +27,18 @@ export default function TimingSection({ sectionTitle, sectionDescription, cards 
         <p className="m-section-desc">{sectionDescription}</p>
 
         {cards.map((card) => (
-          <div key={card.title} className="m-card m-card--shadow m-card--padded">
-            <div className="timing-card">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                className="timing-card__img"
-                src={card.imgSrc}
-                alt={card.imgAlt}
-                width={400}
-                height={520}
-                loading="lazy"
-              />
-              <div className="timing-card__body">
-                <h3 className="m-sub-heading m-sub-heading--no-mt">{card.title}</h3>
-                {card.content}
-              </div>
-            </div>
-          </div>
+          <MediaCard
+            key={card.title}
+            src={card.imgSrc}
+            alt={card.imgAlt}
+            title={card.title}
+            width={800}
+            height={450}
+            aside
+            footer={card.footer}
+          >
+            {card.content}
+          </MediaCard>
         ))}
       </div>
     </section>

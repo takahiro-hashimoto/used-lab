@@ -172,8 +172,8 @@ export default async function UsedMacbookSupportPage() {
         <MacOsSupportMatrix models={allModelsWithEnded} />
         <LifespanTable models={allModelsWithEnded} />
         <TimingSection />
-        <PopularSection />
         <FaqSection />
+        <PopularSection />
         <MacBookRelatedLinks excludeHref={["/macbook/used-macbook-support/", "/macbook/recommend/"]} />
         <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>

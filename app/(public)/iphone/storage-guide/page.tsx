@@ -443,9 +443,9 @@ export default async function StorageGuidePage() {
               </div>
               <div className="media-card__body">
                 <div className="media-card__desc m-rich-text">
-                  <p>iPhoneの「設定」からストレージの使用状況を確認できます。</p>
-                  <p>アプリごとの容量も表示されるため、<strong>何にどのくらい容量を使っているか</strong>を把握できます。</p>
-                  <p>現在使っている容量を基準に、次のiPhoneの容量を選ぶのがもっとも確実な方法です。</p>
+                  <p>iPhoneの「設定」アプリからストレージの使用状況を確認できます。アプリごとの容量内訳も表示されるため、<strong>何にどのくらい容量を使っているか</strong>を一目で把握可能です。</p>
+                  <p>たとえば「写真だけで30GB使っている」「ゲームアプリが合計20GBを占めている」といった具体的な数値がわかるので、次のiPhoneに必要な容量の目安を判断しやすくなります。</p>
+                  <p>現在の使用量に加えて、今後のアプリ追加や写真の増加も考慮し、少し余裕を持った容量を選ぶのがおすすめです。</p>
                 </div>
               </div>
               <div className="media-card__footer">
@@ -475,6 +475,27 @@ export default async function StorageGuidePage() {
                   </ul>
                 </div>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* よくある質問 */}
+        <section className="l-section" id="faq" aria-labelledby="heading-faq">
+          <div className="l-container">
+            <h2 className="m-section-heading m-section-heading--lg" id="heading-faq">
+              iPhoneのストレージ容量に関するよくある質問
+            </h2>
+            <p className="m-section-desc">ストレージ容量に関して多く寄せられる質問をまとめました。</p>
+
+            <div className="faq-list">
+              {FAQ_ITEMS.map((item, i) => (
+                <div key={i} className="m-card m-card--shadow faq-item">
+                  <h3 className="faq-question">{item.question}</h3>
+                  <div className="faq-answer">
+                    <p>{item.answer}</p>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </section>
@@ -511,27 +532,6 @@ export default async function StorageGuidePage() {
                   </Link>
                 </div>
               </div>
-            </div>
-          </div>
-        </section>
-
-        {/* よくある質問 */}
-        <section className="l-section" id="faq" aria-labelledby="heading-faq">
-          <div className="l-container">
-            <h2 className="m-section-heading m-section-heading--lg" id="heading-faq">
-              iPhoneのストレージ容量に関するよくある質問
-            </h2>
-            <p className="m-section-desc">ストレージ容量に関して多く寄せられる質問をまとめました。</p>
-
-            <div className="faq-list">
-              {FAQ_ITEMS.map((item, i) => (
-                <div key={i} className="m-card m-card--shadow faq-item">
-                  <h3 className="faq-question">{item.question}</h3>
-                  <div className="faq-answer">
-                    <p>{item.answer}</p>
-                  </div>
-                </div>
-              ))}
             </div>
           </div>
         </section>

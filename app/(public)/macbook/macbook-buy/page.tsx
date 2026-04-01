@@ -3,6 +3,7 @@ import Breadcrumb from '@/app/components/Breadcrumb'
 import ShareBox from '@/app/components/ShareBox'
 import BuyMethodsSection from './components/BuyMethodsSection'
 import ConclusionSection from './components/ConclusionSection'
+import PopularMacBook from '@/app/components/PopularMacBook'
 import MacBookRelatedLinks from '@/app/components/macbook/MacBookRelatedLinks'
 
 const PAGE_TITLE = 'MacBookを安く買うには？おすすめの購入先7つを比較'
@@ -189,7 +190,8 @@ export default function MacBookBuyPage() {
 
           <BuyMethodsSection />
 
-        <MacBookRelatedLinks excludeHref="/macbook/macbook-buy/" />
+        <PopularMacBook />
+        <MacBookRelatedLinks excludeHref={["/macbook/macbook-buy/", "/macbook/recommend/"]} />
         <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>
       </article>

@@ -5,6 +5,7 @@ import ShareBox from '@/app/components/ShareBox'
 import ComparisonTable from './components/ComparisonTable'
 import ComparisonSections from './components/ComparisonSections'
 import SummarySection from './components/SummarySection'
+import PopularMacBook from '@/app/components/PopularMacBook'
 import MacBookRelatedLinks from '@/app/components/macbook/MacBookRelatedLinks'
 
 const PAGE_TITLE = 'MacとWindowsどっちがいい？両者の違いとどんな人におすすめかをやさしく解説'
@@ -250,7 +251,8 @@ export default function WindowsMacComparePage() {
 
           {/* h2: まとめセクション */}
           <SummarySection />
-        <MacBookRelatedLinks excludeHref="/macbook/windows-mac-compare/" />
+        <PopularMacBook />
+        <MacBookRelatedLinks excludeHref={["/macbook/windows-mac-compare/", "/macbook/recommend/"]} />
         {/* シェアボックス */}
         <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>

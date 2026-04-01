@@ -254,6 +254,9 @@ export default function HowtoUseIpadPage() {
           {/* セクション: クリエイティブ編 */}
           <CreativeSection />
 
+          {/* セクション: よくある質問 */}
+          <FaqSection />
+
           {/* 目的別に人気の中古iPad */}
           <section className="l-section" id="popular" aria-labelledby="heading-popular">
             <div className="l-container">
@@ -283,9 +286,6 @@ export default function HowtoUseIpadPage() {
               </div>
             </div>
           </section>
-
-          {/* セクション: よくある質問 */}
-          <FaqSection />
 
         <IPadRelatedLinks excludeHref={["/ipad/howto-use-ipad/", "/ipad/recommend/"]} />
         <ShareBox url={PAGE_URL} text={PAGE_TITLE} />

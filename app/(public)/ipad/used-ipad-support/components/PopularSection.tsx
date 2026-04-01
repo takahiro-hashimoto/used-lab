@@ -11,7 +11,7 @@ export default function IPadPopularSection() {
       cardTitle="中古iPadおすすめ5選"
       cardDescription="動画視聴やイラスト制作、ノートPC代わりなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。"
       buttonText="おすすめ5機種を見る"
-      buttonHref="#"
+      buttonHref="/ipad/recommend/"
     />
   )
 }

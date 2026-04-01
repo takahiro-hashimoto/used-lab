@@ -9,6 +9,7 @@ import {
 import type { MacBookPriceLog } from '@/lib/types'
 import StorageTable, { type StorageModel } from './components/StorageTable'
 import ShareBox from '@/app/components/ShareBox'
+import PopularMacBook from '@/app/components/PopularMacBook'
 import MacBookRelatedLinks from '@/app/components/macbook/MacBookRelatedLinks'
 
 export const revalidate = 86400
@@ -421,25 +422,6 @@ export default async function StorageGuidePage() {
           </div>
         </section>
 
-        {/* 目的別に人気の中古MacBook */}
-        <section className="l-section" id="popular" aria-labelledby="heading-popular">
-          <div className="l-container">
-            <h2 className="m-section-heading m-section-heading--lg" id="heading-popular">目的別に人気の中古MacBook</h2>
-            <p className="m-section-desc">目的別におすすめの機種を厳選。容量だけでなくスペック全体を見て選びたい方はぜひご覧ください。</p>
-            <div className="m-card m-card--shadow popular-card">
-              <figure className="popular-card-figure">
-                <Image src="/images/content/thumbnail/macbook-image-01.jpg" alt="中古MacBookおすすめのイメージ画像" className="popular-card-img" width={400} height={500} loading="lazy" />
-              </figure>
-              <div className="popular-card-body">
-                <p className="popular-card-subtitle">目的別におすすめ機種を厳選！</p>
-                <p className="popular-card-title">中古MacBookおすすめ機種</p>
-                <p className="popular-card-desc">Web閲覧・事務作業向け、動画編集向け、プログラミング向けなど目的別に買うべきモデルを紹介。</p>
-                <div><Link href="/macbook/recommend" className="m-btn m-btn--primary">おすすめ機種を見る <i className="fa-solid fa-arrow-right" aria-hidden="true"></i></Link></div>
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* よくある質問 */}
         <section className="l-section" id="faq" aria-labelledby="heading-faq">
           <div className="l-container">
@@ -456,6 +438,7 @@ export default async function StorageGuidePage() {
           </div>
         </section>
 
+        <PopularMacBook />
         <MacBookRelatedLinks excludeHref={["/macbook/storage-guide/", "/macbook/recommend/"]} />
         <ShareBox url="https://used-lab.com/macbook/storage-guide/" text="中古MacBookのストレージ容量はどれがいい？用途別おすすめ容量まとめ" />
         </div>

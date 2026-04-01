@@ -58,6 +58,13 @@ export default function ComparisonBasics() {
           </p>
         </div>
 
+        <div className="media-card__img-grid">
+          <figure>
+            <Image src="/images/content/photo/mac-ipad-compare.jpg" alt="MacBookとiPadのサイズ・形状比較" width={400} height={300} loading="lazy" style={{ border: '1px solid #d5d5d8', borderRadius: 'var(--radius-md)' }} />
+            <figcaption>MacBookとiPadのサイズ・形状比較</figcaption>
+          </figure>
+        </div>
+
         <div className="glossary-box" style={{ marginTop: 'var(--space-md)', backgroundColor: '#f7f7f8', borderRadius: 'var(--radius-md)' }}>
           <dl className="glossary-list">
             <div className="glossary-item">
@@ -89,6 +96,13 @@ export default function ComparisonBasics() {
           <p className="media-card__desc">
             操作方法も両者の基本的な違いのひとつです。それぞれ下記のような特徴があります。
           </p>
+        </div>
+
+        <div className="media-card__img-grid">
+          <figure>
+            <Image src="/images/content/photo/magic-keyboarda.jpg" alt="iPadのMagic Keyboardによる操作" width={400} height={300} loading="lazy" style={{ border: '1px solid #d5d5d8', borderRadius: 'var(--radius-md)' }} />
+            <figcaption>iPadのMagic Keyboardによる操作</figcaption>
+          </figure>
         </div>
 
         <div className="glossary-box" style={{ marginTop: 'var(--space-md)', backgroundColor: '#f7f7f8', borderRadius: 'var(--radius-md)' }}>

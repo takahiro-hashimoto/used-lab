@@ -246,7 +246,7 @@ export default async function AirProComparePage() {
           {/* まとめ */}
           <SummarySection />
 
-          <MacBookRelatedLinks excludeHref="/macbook/air-pro-compare/" />
+          <MacBookRelatedLinks excludeHref={["/macbook/air-pro-compare/", "/macbook/recommend/"]} />
           <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>
       </article>

@@ -5,6 +5,7 @@
  * - 全カテゴリ共通で利用
  */
 
+import { ReactNode } from 'react'
 import { getRelatedLinkClicks } from '@/lib/queries'
 import type { RelatedLinkMeta } from '@/lib/data/related-links'
 import RelatedLinksClient from './RelatedLinksClient'
@@ -24,6 +25,8 @@ type Props = {
   compareLinks?: RelatedLinkMeta[]
   /** グリッドのカラム数（デフォルト: 2） */
   columns?: 2 | 3
+  /** セクション末尾に追加するコンテンツ */
+  children?: ReactNode
 }
 
 export default async function RelatedLinks({
@@ -34,6 +37,7 @@ export default async function RelatedLinks({
   sourcePath,
   compareLinks,
   columns,
+  children,
 }: Props) {
   // 除外処理
   const excludes = excludeHref
@@ -59,6 +63,8 @@ export default async function RelatedLinks({
       description={description}
       compareLinks={compareLinks}
       columns={columns}
-    />
+    >
+      {children}
+    </RelatedLinksClient>
   )
 }

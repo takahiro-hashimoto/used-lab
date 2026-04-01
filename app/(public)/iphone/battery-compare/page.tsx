@@ -240,7 +240,7 @@ export default async function IPhoneBatteryComparePage() {
               中古iPhoneを購入する際はバッテリーの劣化状態を必ず確認しましょう。
             </p>
 
-            <div className="m-card m-card--shadow m-card--padded">
+            <div className="m-card m-card--shadow m-card--padded media-card--aside-footer">
               <div className="media-card__img-wrap">
                 <Image
                   src="/images/content/thumbnail/iphone-battery-limit.jpg"
@@ -252,17 +252,15 @@ export default async function IPhoneBatteryComparePage() {
                 />
               </div>
               <div className="media-card__body">
+                <h3 className="media-card__title">バッテリー最大容量が80%を下回ったら要注意</h3>
                 <div className="media-card__desc m-rich-text">
-                  <p>iPhoneのバッテリーにはリチウムイオン電池が使用されています。</p>
-                  <p>このバッテリーは充電を繰り返すうちに劣化し、<strong>充電できる最大容量が減っていく</strong>性質があります。</p>
+                  <p>iPhoneのバッテリーにはリチウムイオン電池が使用されています。このバッテリーは充電を繰り返すうちに劣化し、<strong>充電できる最大容量が減っていく</strong>性質があります。</p>
                   <p>iPhoneの「バッテリー最大容量」が80%を下回っていると体感できるレベルでバッテリーの減りが早く感じます。</p>
                   <p>ちなみに筆者の過去の経験からすると<strong>毎日iPhoneを充電すると2~3年でバッテリー最大容量80%を下回る</strong>傾向がありました。</p>
                 </div>
-
-              <div className="u-pt-xl">
-                <h3 className="caution-how-to__heading">
-                  <i className="fa-regular fa-lightbulb" aria-hidden="true"></i> バッテリー最大容量の確認方法
-                </h3>
+              </div>
+              <div className="media-card__footer">
+                <h3 className="caution-how-to__heading">バッテリー最大容量の確認方法</h3>
                 <ol className="caution-steps">
                   <li className="caution-steps__item">
                     <span className="caution-steps__num">1</span>
@@ -277,16 +275,35 @@ export default async function IPhoneBatteryComparePage() {
                     <span>「バッテリーの状態」をタップ</span>
                   </li>
                 </ol>
+                <div className="m-callout m-callout--subtle caution-links-box">
+                  <ul className="caution-links-box__list">
+                    <li>
+                      <Link href="/iphone/used-iphone-support/"><i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> iPhoneはいつまで使える？機種別のサポート期間目安まとめ。買い替えるべき4つのタイミングも解説。</Link>
+                    </li>
+                  </ul>
+                </div>
               </div>
+            </div>
+          </div>
+        </section>
 
-              <div className="m-callout m-callout--subtle caution-links-box">
-                <ul className="caution-links-box__list">
-                  <li>
-                    <Link href="/iphone/used-iphone-support/"><i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> iPhoneはいつまで使える？機種別のサポート期間目安まとめ。買い替えるべき4つのタイミングも解説。</Link>
-                  </li>
-                </ul>
-              </div>
-              </div>
+        {/* よくある質問 */}
+        <section className="l-section" id="faq" aria-labelledby="heading-faq">
+          <div className="l-container">
+            <h2 className="m-section-heading m-section-heading--lg" id="heading-faq">
+              iPhoneのバッテリーに関するよくある質問
+            </h2>
+            <p className="m-section-desc">バッテリーに関して多く寄せられる質問をまとめました。</p>
+
+            <div className="faq-list">
+              {FAQ_ITEMS.map((item, i) => (
+                <div key={i} className="m-card m-card--shadow faq-item">
+                  <h3 className="faq-question">{item.question}</h3>
+                  <div className="faq-answer">
+                    <p>{item.answer}</p>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </section>
@@ -323,27 +340,6 @@ export default async function IPhoneBatteryComparePage() {
                   </Link>
                 </div>
               </div>
-            </div>
-          </div>
-        </section>
-
-        {/* よくある質問 */}
-        <section className="l-section" id="faq" aria-labelledby="heading-faq">
-          <div className="l-container">
-            <h2 className="m-section-heading m-section-heading--lg" id="heading-faq">
-              iPhoneのバッテリーに関するよくある質問
-            </h2>
-            <p className="m-section-desc">バッテリーに関して多く寄せられる質問をまとめました。</p>
-
-            <div className="faq-list">
-              {FAQ_ITEMS.map((item, i) => (
-                <div key={i} className="m-card m-card--shadow faq-item">
-                  <h3 className="faq-question">{item.question}</h3>
-                  <div className="faq-answer">
-                    <p>{item.answer}</p>
-                  </div>
-                </div>
-              ))}
             </div>
           </div>
         </section>

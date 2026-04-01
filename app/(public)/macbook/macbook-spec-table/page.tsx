@@ -245,7 +245,7 @@ export default async function MacBookSpecTablePage() {
         <EvolutionTimeline />
         <GlossarySection productName="MacBook" items={GLOSSARY_ITEMS} />
         <PopularMacBook />
-        <MacBookRelatedLinks excludeHref="/macbook/macbook-spec-table/" />
+        <MacBookRelatedLinks excludeHref={["/macbook/macbook-spec-table/", "/macbook/recommend/"]} />
         <ShareBox url="https://used-lab.com/macbook/macbook-spec-table/" text="歴代MacBookスペック比較表！Air・Proの性能差や違いがすぐわかる" />
         </div>
       </article>

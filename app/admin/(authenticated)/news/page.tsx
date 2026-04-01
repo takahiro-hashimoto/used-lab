@@ -47,6 +47,9 @@ export default async function AdminNewsPage() {
                     <Link href={`/admin/news/${item.id}`} className="admin-table__link">
                       編集
                     </Link>
+                    <Link href={`/admin/news/new?content=${encodeURIComponent(item.content)}&published=${item.published ? '1' : '0'}`} className="admin-table__link">
+                      複製
+                    </Link>
                     <NewsDeleteButton id={item.id} deleteAction={deleteNewsItem} />
                   </td>
                 </tr>

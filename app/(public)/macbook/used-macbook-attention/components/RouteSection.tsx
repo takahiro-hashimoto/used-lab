@@ -12,7 +12,7 @@ export default function RouteSection() {
 
         {/* フリマ・オークション */}
         <MediaCard
-          src="/images/macbook/mba-13-2024.jpg"
+          src="/images/content/thumbnail/macbook-type.jpg"
           alt="フリマアプリのイメージ画像"
           title="フリマ・オークション購入時"
           width={800}
@@ -32,7 +32,7 @@ export default function RouteSection() {
 
         {/* 中古ショップ */}
         <MediaCard
-          src="/images/macbook/mba-13-2024.jpg"
+          src="/images/content/thumbnail/macbook-front.jpg"
           alt="中古ショップのイメージ画像"
           title="中古ショップ購入時"
           width={800}
@@ -52,7 +52,7 @@ export default function RouteSection() {
 
         {/* Apple認定整備済製品 */}
         <MediaCard
-          src="/images/macbook/mba-13-2024.jpg"
+          src="/images/content/thumbnail/macbook-image-05.jpg"
           alt="Apple認定整備済製品のイメージ"
           title="Apple認定整備済製品（リファービッシュ）"
           width={800}

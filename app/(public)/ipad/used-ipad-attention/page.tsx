@@ -236,6 +236,7 @@ export default function UsedIpadAttentionPage() {
           <PostCheckSection heading="中古iPadの購入後すぐやるべき確認項目" productName="iPad" checkItems={postCheckItems} />
           <FailureSection productName="iPad" guidePath="/ipad" failurePatterns={failurePatterns} showMemo={false} />
           <InsuranceSection {...insuranceData} />
+          <FaqSection productName="iPad" faqItems={faqItems} />
           <PopularSection
             sectionTitle="目的別に人気の中古iPad"
             sectionDescription="目的別におすすめの機種を厳選。診断で迷った方はぜひご覧ください。"
@@ -247,7 +248,6 @@ export default function UsedIpadAttentionPage() {
             buttonText="おすすめ5機種を見る"
             buttonHref="/ipad/recommend/"
           />
-          <FaqSection productName="iPad" faqItems={faqItems} />
         <IPadRelatedLinks excludeHref={["/ipad/used-ipad-attention/", "/ipad/recommend/"]} />
         <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>

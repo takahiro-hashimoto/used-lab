@@ -12,9 +12,9 @@ export default function PreCheckSection() {
 
         {/* 1. watchOSサポート */}
         <MediaCard
-          src="/images/watch/watch-10.jpg"
+          src="/images/content/thumbnail/watch-image-08.webp"
           alt="watchOSサポートのイメージ画像"
-          title="watchOSサポート切れのリスク―サポート残り2年未満なら購入を避ける"
+          title="watchOSサポート期間の確認"
           width={800}
           height={450}
           aside
@@ -27,7 +27,7 @@ export default function PreCheckSection() {
               Apple WatchのwatchOSサポート期間は約5年で、iPhoneの約7年、iPadの約5〜6年と比べても短めです。特にSEシリーズや古いSeriesは発売から4年程度でサポートが終了する場合もあります。
             </p>
             <p>
-              「今使える」と「今後も使える」は別です。安さより<strong>「あと何年使えるか」で判断</strong>しましょう。各モデルのサポート期間は「<a href="/watch/used-watch-support/">watchOSサポート期間一覧</a>」で確認できます。
+              「今使える」と「今後も使える」は別です。安さより<strong>「あと何年使えるか」で判断</strong>しましょう。
             </p>
             <p className="lead-link">
               <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
@@ -38,15 +38,15 @@ export default function PreCheckSection() {
 
         {/* 2. バッテリーの劣化状態 */}
         <MediaCard
-          src="/images/watch/watch-ultra2.jpg"
+          src="/images/content/thumbnail/watch-charge.jpg"
           alt="Apple Watchバッテリー確認のイメージ"
-          title="バッテリーの劣化状態―Apple Watchはバッテリーが小さく劣化の影響が大きい"
+          title="バッテリーの劣化状態"
           width={800}
           height={450}
           aside
           footer={
             <>
-              <h3 className="caution-how-to__heading">バッテリー交換費用の目安</h3>
+              <p className="caution-how-to__heading">バッテリー交換費用の目安</p>
               <div className="price-table-wrap">
                 <table className="m-table">
                   <thead>
@@ -93,9 +93,9 @@ export default function PreCheckSection() {
 
         {/* 3. アクティベーションロック（ペアリング解除） */}
         <MediaCard
-          src="/images/watch/watch-9.jpg"
+          src="/images/content/thumbnail/activate-lock.png"
           alt="アクティベーションロックのイメージ"
-          title="アクティベーションロック（ペアリング解除漏れ）―解除されていないと使用不可"
+          title="アクティベーションロックの確認"
           width={800}
           height={450}
           aside
@@ -115,9 +115,9 @@ export default function PreCheckSection() {
 
         {/* 4. ケースサイズとバンド互換性 */}
         <MediaCard
-          src="/images/watch/watch-11.jpg"
+          src="/images/content/thumbnail/watch-image-11.jpg"
           alt="Apple Watchケースサイズのイメージ"
-          title="ケースサイズとバンド互換性―中古は試着できないまま購入することが多い"
+          title="ケースサイズとバンドの互換性"
           width={800}
           height={450}
           aside
@@ -137,9 +137,9 @@ export default function PreCheckSection() {
 
         {/* 5. GPSモデルとセルラーモデルの選択 */}
         <MediaCard
-          src="/images/watch/watch-ultra3.jpg"
+          src="/images/content/thumbnail/watch-image-10.jpg"
           alt="Apple Watchセルラーモデルのイメージ"
-          title="GPSモデルとセルラーモデル―中古ではセルラー機能が使えない場合もある"
+          title="GPSモデルとセルラーモデルの違い"
           width={800}
           height={450}
           aside
@@ -152,7 +152,11 @@ export default function PreCheckSection() {
               セルラーモデルはGPSモデルより中古価格も高いため、セルラー機能を使わないなら割高な買い物になってしまいます。iPhoneを常に持ち歩く方はGPSモデルで十分です。
             </p>
             <p>
-              セルラー機能が必要な場合は、購入前にキャリアの対応状況を確認し、別途ウォッチナンバー契約（月額385円〜550円）が必要であることも踏まえて検討しましょう。詳しくは「<a href="/watch/gps-cellular-compare/">GPSモデルとセルラーモデルの違い比較</a>」をご覧ください。
+              セルラー機能が必要な場合は、購入前にキャリアの対応状況を確認し、別途ウォッチナンバー契約（月額385円〜550円）が必要であることも踏まえて検討しましょう。
+            </p>
+            <p className="lead-link">
+              <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
+              <a href="/watch/gps-cellular-compare/">GPSモデルとセルラーモデルの違い比較</a>
             </p>
           </div>
         </MediaCard>

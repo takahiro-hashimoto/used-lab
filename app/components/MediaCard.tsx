@@ -10,9 +10,10 @@ type Props = {
   height?: number
   aside?: boolean
   footer?: ReactNode
+  imgStyle?: React.CSSProperties
 }
 
-export default function MediaCard({ src, alt, title, children, width = 240, height = 160, aside, footer }: Props) {
+export default function MediaCard({ src, alt, title, children, width = 240, height = 160, aside, footer, imgStyle }: Props) {
   const variant = aside
     ? footer ? ' media-card--aside-footer' : ' media-card--aside'
     : ''
@@ -24,6 +25,7 @@ export default function MediaCard({ src, alt, title, children, width = 240, heig
           src={src}
           alt={alt}
           className="media-card__img"
+          style={imgStyle}
           width={width}
           height={height}
           loading="lazy"

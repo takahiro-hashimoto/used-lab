@@ -9,10 +9,9 @@ const TIMING_CARDS: TimingCard[] = [
     imgAlt: 'iPhoneのホーム画面',
     content: (
       <>
-        <p>これまで解説した通り、iPhoneは発売から約7年が経過すると、最新のiOSアップデート対象から外れる可能性が非常に高くなります。</p>
-        <p>OSの更新が止まると、最新の機能が使えないだけでなく、セキュリティのリスクが高まったり、LINEや金融系アプリ、SNSなどの主要アプリが次第に非対応になって使えなくなったりといった、日常生活に直結する支障が出てきます。</p>
-        <p>また、Appleでは販売終了から7年経った製品を「オブソリート製品」と定義しており、この指定を受けるとAppleでの修理受付が完全に終了します。</p>
-        <p>特に毎日持ち歩き、頻繁に充電を繰り返すiPhoneにとって、「バッテリー交換」などの公式サポートが受けられなくなることは致命的です。そのため、発売から7年は、安全性と快適さを維持しながら使い続けられる「物理的な限界ライン」といえるでしょう。</p>
+        <p>iPhoneは発売から約7年が経過すると、最新のiOSアップデート対象から外れる可能性が非常に高くなります。</p>
+        <p>OSの更新が止まるとセキュリティリスクが高まるほか、LINEや金融系アプリなどが次第に非対応になり、日常利用に支障が出てきます。</p>
+        <p>また、Appleは販売終了から7年経った製品を「オブソリート製品」に指定し、バッテリー交換を含むすべての修理受付を終了します。発売から7年が、安心して使い続けられる限界ラインといえるでしょう。</p>
       </>
     ),
   },
@@ -25,10 +24,25 @@ const TIMING_CARDS: TimingCard[] = [
         <p>iPhoneのバッテリーにはリチウムイオン電池が使用されています。このバッテリーは充電を繰り返すうちに劣化し、充電できる最大容量が減っていく性質があり、電池の減りの速さを感じた時も買い替えを検討するタイミングとなります。</p>
         <p>iPhoneの「バッテリー最大容量」をチェックしたときに80%を下回っているかどうかを一つの目安としましょう。</p>
         <p>ちなみに筆者の過去の経験からすると毎日iPhoneを充電すると2〜3年でバッテリー最大容量80%を下回る傾向がありました。</p>
-        <div className="m-callout m-callout--tip">
-          <span className="m-callout__label">バッテリー最大容量の確認方法</span>
-          <p className="m-callout__text">設定アプリを開く → 「バッテリー」をタップ → 「バッテリーの状態」をタップ</p>
-        </div>
+      </>
+    ),
+    footer: (
+      <>
+        <h3 className="caution-how-to__heading">バッテリー最大容量の確認方法</h3>
+        <ol className="caution-steps">
+          <li className="caution-steps__item">
+            <span className="caution-steps__num">1</span>
+            <span className="caution-steps__text">設定アプリを開く</span>
+          </li>
+          <li className="caution-steps__item">
+            <span className="caution-steps__num">2</span>
+            <span className="caution-steps__text">「バッテリー」をタップ</span>
+          </li>
+          <li className="caution-steps__item">
+            <span className="caution-steps__num">3</span>
+            <span className="caution-steps__text">「バッテリーの状態」をタップ</span>
+          </li>
+        </ol>
       </>
     ),
   },
