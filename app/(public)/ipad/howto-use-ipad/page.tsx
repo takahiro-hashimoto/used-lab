@@ -8,6 +8,8 @@ import WorkStudySection from './components/WorkStudySection'
 import CreativeSection from './components/CreativeSection'
 import FaqSection from './components/FaqSection'
 import IPadRelatedLinks from '@/app/components/ipad/IPadRelatedLinks'
+import AuthorByline from '@/app/components/AuthorByline'
+import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 
 const PAGE_TITLE = 'iPadがあればできること・便利な使い道 22選【生活が変わる】'
 const PAGE_DESCRIPTION =
@@ -32,9 +34,7 @@ export const metadata: Metadata = {
 }
 
 export default function HowtoUseIpadPage() {
-  const today = new Date()
-  const dateStr = today.toISOString().split('T')[0]
-  const dateDisplay = today.toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' })
+  const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/ipad/howto-use-ipad/page.tsx')
 
   // JSON-LD: BreadcrumbList
   const breadcrumbJsonLd = {
@@ -48,17 +48,12 @@ export default function HowtoUseIpadPage() {
   }
 
   // JSON-LD: Article
-  const articleJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
+    const articleJsonLd = buildArticleJsonLd({
     headline: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
-    datePublished: dateStr,
-    dateModified: dateStr,
-    author: { '@type': 'Organization', name: 'ユーズドラボ', url: 'https://used-lab.com/' },
-    publisher: { '@type': 'Organization', name: 'ユーズドラボ' },
-    mainEntityOfPage: { '@type': 'WebPage', '@id': PAGE_URL },
-  }
+    dateStr,
+    url: PAGE_URL,
+  })
 
   // JSON-LD: FAQPage
   const faqJsonLd = {
@@ -236,6 +231,7 @@ export default function HowtoUseIpadPage() {
                 </a>
               </li>
             </ol>
+          <AuthorByline />
           </div>
         </nav>
 

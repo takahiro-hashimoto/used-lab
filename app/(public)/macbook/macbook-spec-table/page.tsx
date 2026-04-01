@@ -27,6 +27,8 @@ const GLOSSARY_ITEMS = [
 import ShareBox from '@/app/components/ShareBox'
 import PopularMacBook from '@/app/components/PopularMacBook'
 import MacBookRelatedLinks from '@/app/components/macbook/MacBookRelatedLinks'
+import AuthorByline from '@/app/components/AuthorByline'
+import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 
 export const metadata: Metadata = {
   title: '歴代MacBookスペック比較表！Air・Proの性能差や違いがすぐわかる',
@@ -62,17 +64,14 @@ export default async function MacBookSpecTablePage() {
     ],
   }
 
-  const articleJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
+const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/macbook/macbook-spec-table/page.tsx')
+
+      const articleJsonLd = buildArticleJsonLd({
     headline: '【2025年】歴代MacBookのスペック＆性能比較表',
     description: '歴代MacBook Air・Proのスペック比較表一覧。チップ性能やディスプレイの違いを一目で確認できます。',
-    datePublished: new Date().toISOString().split('T')[0],
-    dateModified: new Date().toISOString().split('T')[0],
-    author: { '@type': 'Organization', name: 'ユーズドラボ', url: 'https://used-lab.com/' },
-    publisher: { '@type': 'Organization', name: 'ユーズドラボ' },
-    mainEntityOfPage: { '@type': 'WebPage', '@id': 'https://used-lab.com/macbook/macbook-spec-table/' },
-  }
+    dateStr: dateStr,
+    url: 'https://used-lab.com/macbook/macbook-spec-table/',
+  })
 
   const serializedModels = allModels.map((m) => ({
     id: m.id,
@@ -113,6 +112,7 @@ export default async function MacBookSpecTablePage() {
     shop_id: l.shop_id,
     url: l.url,
   }))
+
 
   return (
     <main>
@@ -159,8 +159,8 @@ export default async function MacBookSpecTablePage() {
               <div className="hero-meta">
                 <i className="fa-regular fa-clock" aria-hidden="true"></i>
                 <span>
-                  更新日: <time dateTime={new Date().toISOString().split('T')[0]}>
-                    {new Date().toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' })}
+                  更新日: <time dateTime={dateStr}>
+                    {dateDisplay}
                   </time> | 当記事のリンクには広告が含まれています
                 </span>
               </div>
@@ -235,6 +235,7 @@ export default async function MacBookSpecTablePage() {
                 </a>
               </li>
             </ol>
+            <AuthorByline />
           </div>
         </nav>
         <div className="l-sections">

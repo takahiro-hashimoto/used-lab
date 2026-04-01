@@ -119,11 +119,15 @@ export default async function IPadDetailPage({ params }: PageProps) {
   const storageNote = latestLogEntries[0]?.storage || ''
   const modelShopLinks = shopLinks.filter((l) => l.product_id === model.id)
 
+  const today = new Date()
+  const dateStr = today.toISOString().split('T')[0]
+  const dateDisplay = today.toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' })
+
   return (
     <main>
       <AdminEditLink categoryKey="ipad" modelId={model.id} />
       <article>
-        <HeroSection model={enrichedModel} latestPrice={latestPrice} />
+        <HeroSection model={enrichedModel} latestPrice={latestPrice} dateStr={dateStr} dateDisplay={dateDisplay} />
         <LeadText model={enrichedModel} latestPrice={latestPrice} />
         <TableOfContents />
         <div className="l-sections">

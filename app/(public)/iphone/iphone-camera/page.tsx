@@ -7,6 +7,8 @@ import CameraFeatureCard from './components/CameraFeatureCard'
 import FaqSection from '@/app/components/support/FaqSection'
 import Image from 'next/image'
 import IPhoneRelatedLinks from '@/app/components/iphone/IPhoneRelatedLinks'
+import AuthorByline from '@/app/components/AuthorByline'
+import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 
 const PAGE_TITLE = 'iPhoneのカメラ性能の違いは何？歴代モデルの機能を比較'
 const PAGE_DESCRIPTION =
@@ -36,13 +38,7 @@ export default async function IPhoneCameraPage() {
     getAllProductShopLinksByType('iphone'),
   ])
 
-  const today = new Date()
-  const dateStr = today.toISOString().split('T')[0]
-  const dateDisplay = today.toLocaleDateString('ja-JP', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  })
+  const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/iphone-camera/page.tsx')
 
   // JSON-LD
   const breadcrumbJsonLd = {
@@ -55,17 +51,12 @@ export default async function IPhoneCameraPage() {
     ],
   }
 
-  const articleJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
+    const articleJsonLd = buildArticleJsonLd({
     headline: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
-    datePublished: dateStr,
-    dateModified: dateStr,
-    author: { '@type': 'Organization', name: 'ユーズドラボ', url: 'https://used-lab.com/' },
-    publisher: { '@type': 'Organization', name: 'ユーズドラボ' },
-    mainEntityOfPage: { '@type': 'WebPage', '@id': PAGE_URL },
-  }
+    dateStr,
+    url: PAGE_URL,
+  })
 
   const serializedModels = allModels.map((m) => ({
     id: m.id,
@@ -196,6 +187,7 @@ export default async function IPhoneCameraPage() {
                 </a>
               </li>
             </ol>
+          <AuthorByline />
           </div>
         </nav>
 

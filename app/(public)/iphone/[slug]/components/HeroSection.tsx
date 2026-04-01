@@ -12,8 +12,10 @@ const config: ModelHeroConfig = {
 type Props = {
   model: IPhoneModel
   latestPrice: IPhonePriceLog | null
+  dateStr: string
+  dateDisplay: string
 }
 
-export default function HeroSection({ model }: Props) {
-  return <ModelHeroSection model={model} config={config} />
+export default function HeroSection({ model, dateStr, dateDisplay }: Props) {
+  return <ModelHeroSection model={model} config={config} dateStr={dateStr} dateDisplay={dateDisplay} />
 }

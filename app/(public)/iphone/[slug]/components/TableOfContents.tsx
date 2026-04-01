@@ -1,3 +1,4 @@
+import AuthorByline from '@/app/components/AuthorByline'
 const TOC_ITEMS = [
   { id: 'buy-now', label: '今から買うのはあり？' },
   { id: 'shops', label: 'おすすめ購入サイト' },
@@ -26,6 +27,7 @@ export default function TableOfContents() {
             </li>
           ))}
         </ol>
+        <AuthorByline />
       </div>
     </nav>
   )

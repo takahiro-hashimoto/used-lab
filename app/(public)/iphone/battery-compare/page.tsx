@@ -6,6 +6,8 @@ import BatteryTable from './components/BatteryTable'
 import ChargingTable from './components/ChargingTable'
 import ShareBox from '@/app/components/ShareBox'
 import IPhoneRelatedLinks from '@/app/components/iphone/IPhoneRelatedLinks'
+import AuthorByline from '@/app/components/AuthorByline'
+import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 
 export const metadata: Metadata = {
   title: '歴代iPhoneのバッテリー容量比較ランキング！電池持ちがいい機種はどれ？',
@@ -84,17 +86,14 @@ export default async function IPhoneBatteryComparePage() {
     ],
   }
 
-  const articleJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
+const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/battery-compare/page.tsx')
+
+      const articleJsonLd = buildArticleJsonLd({
     headline: '歴代iPhoneのバッテリー容量比較ランキング！電池持ちがいい機種はどれ？',
     description: '歴代iPhoneのバッテリー容量を比較しランキング形式で紹介。電池持ちのいいiPhoneがひと目でわかります。',
-    datePublished: new Date().toISOString().split('T')[0],
-    dateModified: new Date().toISOString().split('T')[0],
-    author: { '@type': 'Organization', name: 'ユーズドラボ', url: 'https://used-lab.com/' },
-    publisher: { '@type': 'Organization', name: 'ユーズドラボ' },
-    mainEntityOfPage: { '@type': 'WebPage', '@id': 'https://used-lab.com/iphone/battery-compare/' },
-  }
+    dateStr: dateStr,
+    url: 'https://used-lab.com/iphone/battery-compare/',
+  })
 
   const faqJsonLd = {
     '@context': 'https://schema.org',
@@ -105,6 +104,7 @@ export default async function IPhoneBatteryComparePage() {
       acceptedAnswer: { '@type': 'Answer', text: item.answer },
     })),
   }
+
 
   return (
     <main>
@@ -155,8 +155,8 @@ export default async function IPhoneBatteryComparePage() {
               <div className="hero-meta">
                 <i className="fa-regular fa-clock" aria-hidden="true"></i>
                 <span>
-                  更新日: <time dateTime={new Date().toISOString().split('T')[0]}>
-                    {new Date().toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' })}
+                  更新日: <time dateTime={dateStr}>
+                    {dateDisplay}
                   </time> | 当記事のリンクには広告が含まれています
                 </span>
               </div>
@@ -221,6 +221,7 @@ export default async function IPhoneBatteryComparePage() {
                 </a>
               </li>
             </ol>
+            <AuthorByline />
           </div>
         </nav>
         <div className="l-sections">

@@ -5,6 +5,8 @@ import BuyMethodsSection from './components/BuyMethodsSection'
 import ConclusionSection from './components/ConclusionSection'
 import PopularSection from '@/app/components/support/PopularSection'
 import WatchRelatedLinks from '@/app/components/watch/WatchRelatedLinks'
+import AuthorByline from '@/app/components/AuthorByline'
+import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 
 const PAGE_TITLE = 'Apple Watchを安く買うには？おすすめの購入先7つを比較'
 const PAGE_DESCRIPTION =
@@ -29,13 +31,7 @@ export const metadata: Metadata = {
 }
 
 export default function AppleWatchBuyPage() {
-  const today = new Date()
-  const dateStr = today.toISOString().split('T')[0]
-  const dateDisplay = today.toLocaleDateString('ja-JP', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  })
+  const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/watch/apple-watch-buy/page.tsx')
 
   // JSON-LD
   const breadcrumbJsonLd = {
@@ -48,17 +44,12 @@ export default function AppleWatchBuyPage() {
     ],
   }
 
-  const articleJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
+    const articleJsonLd = buildArticleJsonLd({
     headline: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
-    datePublished: dateStr,
-    dateModified: dateStr,
-    author: { '@type': 'Organization', name: 'ユーズドラボ', url: 'https://used-lab.com/' },
-    publisher: { '@type': 'Organization', name: 'ユーズドラボ' },
-    mainEntityOfPage: { '@type': 'WebPage', '@id': PAGE_URL },
-  }
+    dateStr,
+    url: PAGE_URL,
+  })
 
   return (
     <main>
@@ -180,6 +171,7 @@ export default function AppleWatchBuyPage() {
                 </a>
               </li>
             </ol>
+          <AuthorByline />
           </div>
         </nav>
 

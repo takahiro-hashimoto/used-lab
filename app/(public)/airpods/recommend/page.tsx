@@ -7,7 +7,7 @@ import {
   getLatestAirPodsPriceLog,
 } from '@/lib/queries'
 import type { AirPodsModel, AirPodsPriceLog } from '@/lib/types'
-import { buildFallbackShops } from '@/lib/utils/shared-helpers'
+import { buildFallbackShops, buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import {
   RECOMMEND_DATE_LABEL,
   RECOMMEND_YEAR,
@@ -28,6 +28,7 @@ import CompareTableSection from './components/CompareTableSection'
 import ChecklistSection from '@/app/components/ChecklistSection'
 import ShopSection from '@/app/components/ShopSection'
 import AirPodsFaqSection from './components/AirPodsFaqSection'
+import AuthorByline from '@/app/components/AuthorByline'
 
 const PAGE_TITLE = `中古AirPodsおすすめ${RECOMMEND_COUNT}機種を解説。狙い目の型落ちモデルはどれ？【${RECOMMEND_DATE_LABEL}版】`
 const PAGE_DESCRIPTION =
@@ -68,9 +69,7 @@ export default async function AirPodsRecommendPage() {
     recommendModels.map((m) => getLatestAirPodsPriceLog(m.id))
   )
 
-  const today = new Date()
-  const dateStr = today.toISOString().split('T')[0]
-  const dateDisplay = today.toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' })
+  const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/airpods/recommend/page.tsx')
 
   // JSON-LD
   const breadcrumbJsonLd = {
@@ -83,17 +82,12 @@ export default async function AirPodsRecommendPage() {
     ],
   }
 
-  const articleJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
+    const articleJsonLd = buildArticleJsonLd({
     headline: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
-    datePublished: dateStr,
-    dateModified: dateStr,
-    author: { '@type': 'Organization', name: 'ユーズドラボ', url: 'https://used-lab.com/' },
-    publisher: { '@type': 'Organization', name: 'ユーズドラボ' },
-    mainEntityOfPage: { '@type': 'WebPage', '@id': PAGE_URL },
-  }
+    dateStr,
+    url: PAGE_URL,
+  })
 
   const faqJsonLd = {
     '@context': 'https://schema.org',
@@ -274,6 +268,7 @@ export default async function AirPodsRecommendPage() {
                 </a>
               </li>
             </ol>
+          <AuthorByline />
           </div>
         </nav>
 

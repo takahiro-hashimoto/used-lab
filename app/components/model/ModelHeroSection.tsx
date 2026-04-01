@@ -15,6 +15,8 @@ export type ModelHeroConfig = {
 type Props = {
   model: { model: string; slug: string; image: string | null }
   config: ModelHeroConfig
+  dateStr: string
+  dateDisplay: string
 }
 
 const DEFAULT_H1 = (name: string) =>
@@ -23,7 +25,7 @@ const DEFAULT_H1 = (name: string) =>
 const DEFAULT_DESCRIPTION = (name: string) =>
   `${name}の中古価格相場、ベンチマークスコア、スペック比較、おすすめショップ情報。`
 
-export default function ModelHeroSection({ model, config }: Props) {
+export default function ModelHeroSection({ model, config, dateStr, dateDisplay }: Props) {
   const {
     categoryPath,
     categoryLabel,
@@ -122,8 +124,8 @@ export default function ModelHeroSection({ model, config }: Props) {
             <div className="hero-meta">
               <i className="fa-regular fa-clock" aria-hidden="true"></i>
               <span>
-                更新日: <time dateTime={new Date().toISOString().split('T')[0]}>
-                  {new Date().toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' })}
+                更新日: <time dateTime={dateStr}>
+                  {dateDisplay}
                 </time> | 当記事のリンクには広告が含まれています
               </span>
             </div>

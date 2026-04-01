@@ -5,8 +5,10 @@ import ShareBox from '@/app/components/ShareBox'
 import RecommendSection from './components/RecommendSection'
 import ComparisonDetails from './components/ComparisonDetails'
 import FaqSection, { FAQ_ITEMS } from './components/FaqSection'
+import AuthorByline from '@/app/components/AuthorByline'
 import PopularSection from '@/app/components/support/PopularSection'
 import WatchRelatedLinks from '@/app/components/watch/WatchRelatedLinks'
+import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 
 const PAGE_TITLE = 'Apple Watch セルラーモデルのできることを解説！GPSモデルとの違いがわかる'
 const PAGE_DESCRIPTION =
@@ -31,9 +33,7 @@ export const metadata: Metadata = {
 }
 
 export default function GpsCellularComparePage() {
-  const today = new Date()
-  const dateStr = today.toISOString().split('T')[0]
-  const dateDisplay = today.toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' })
+  const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/watch/gps-cellular-compare/page.tsx')
 
   // JSON-LD: BreadcrumbList
   const breadcrumbJsonLd = {
@@ -47,17 +47,12 @@ export default function GpsCellularComparePage() {
   }
 
   // JSON-LD: Article
-  const articleJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
+    const articleJsonLd = buildArticleJsonLd({
     headline: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
-    datePublished: dateStr,
-    dateModified: dateStr,
-    author: { '@type': 'Organization', name: 'ユーズドラボ', url: 'https://used-lab.com/' },
-    publisher: { '@type': 'Organization', name: 'ユーズドラボ' },
-    mainEntityOfPage: { '@type': 'WebPage', '@id': PAGE_URL },
-  }
+    dateStr,
+    url: PAGE_URL,
+  })
 
   // JSON-LD: FAQPage
   const faqJsonLd = {
@@ -170,6 +165,7 @@ export default function GpsCellularComparePage() {
                 </a>
               </li>
             </ol>
+            <AuthorByline />
           </div>
         </nav>
 

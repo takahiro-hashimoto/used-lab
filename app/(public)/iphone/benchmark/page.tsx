@@ -10,6 +10,8 @@ import ChipGenerationCompare from './components/ChipGenerationCompare'
 import UseCaseGuide from './components/UseCaseGuide'
 import IPhoneRelatedLinks from '@/app/components/iphone/IPhoneRelatedLinks'
 import PopularSection from '@/app/components/support/PopularSection'
+import AuthorByline from '@/app/components/AuthorByline'
+import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 
 const PAGE_TITLE = 'iPhoneのベンチマークを比較！全モデルの性能がわかるスコアランキング【2026年版】'
 const PAGE_DESCRIPTION =
@@ -59,9 +61,7 @@ const FAQ_ITEMS = [
 ]
 
 export default async function BenchmarkPage() {
-  const today = new Date()
-  const dateStr = today.toISOString().split('T')[0]
-  const dateDisplay = today.toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' })
+  const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/benchmark/page.tsx')
 
   const [allModels, shopLinks] = await Promise.all([
     getAllIPhoneModels(),
@@ -117,17 +117,12 @@ export default async function BenchmarkPage() {
     ],
   }
 
-  const articleJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
+    const articleJsonLd = buildArticleJsonLd({
     headline: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
-    datePublished: '2026-03-24',
-    dateModified: dateStr,
-    author: { '@type': 'Organization', name: 'ユーズドラボ', url: 'https://used-lab.com/' },
-    publisher: { '@type': 'Organization', name: 'ユーズドラボ' },
-    mainEntityOfPage: { '@type': 'WebPage', '@id': PAGE_URL },
-  }
+    dateStr,
+    url: PAGE_URL,
+  })
 
   const faqJsonLd = {
     '@context': 'https://schema.org',
@@ -218,6 +213,7 @@ export default async function BenchmarkPage() {
               <li><a href="#usecase" className="toc-item">用途別おすすめ <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#faq" className="toc-item">よくある質問 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
             </ol>
+          <AuthorByline />
           </div>
         </nav>
 

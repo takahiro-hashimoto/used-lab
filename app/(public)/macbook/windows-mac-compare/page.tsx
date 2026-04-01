@@ -7,6 +7,8 @@ import ComparisonSections from './components/ComparisonSections'
 import SummarySection from './components/SummarySection'
 import PopularMacBook from '@/app/components/PopularMacBook'
 import MacBookRelatedLinks from '@/app/components/macbook/MacBookRelatedLinks'
+import AuthorByline from '@/app/components/AuthorByline'
+import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 
 const PAGE_TITLE = 'MacとWindowsどっちがいい？両者の違いとどんな人におすすめかをやさしく解説'
 const PAGE_DESCRIPTION =
@@ -31,9 +33,7 @@ export const metadata: Metadata = {
 }
 
 export default function WindowsMacComparePage() {
-  const today = new Date()
-  const dateStr = today.toISOString().split('T')[0]
-  const dateDisplay = today.toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' })
+  const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/macbook/windows-mac-compare/page.tsx')
 
   // JSON-LD: BreadcrumbList
   const breadcrumbJsonLd = {
@@ -47,17 +47,12 @@ export default function WindowsMacComparePage() {
   }
 
   // JSON-LD: Article
-  const articleJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
+    const articleJsonLd = buildArticleJsonLd({
     headline: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
-    datePublished: dateStr,
-    dateModified: dateStr,
-    author: { '@type': 'Organization', name: 'ユーズドラボ', url: 'https://used-lab.com/' },
-    publisher: { '@type': 'Organization', name: 'ユーズドラボ' },
-    mainEntityOfPage: { '@type': 'WebPage', '@id': PAGE_URL },
-  }
+    dateStr,
+    url: PAGE_URL,
+  })
 
   return (
     <main>
@@ -230,6 +225,7 @@ export default function WindowsMacComparePage() {
                 </a>
               </li>
             </ol>
+          <AuthorByline />
           </div>
         </nav>
 

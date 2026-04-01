@@ -1,5 +1,6 @@
 /* global styles */
 @import './style.css';
+@import './author-byline.css';
 @import './search.css';
 @import './compare.css';
 @import './sp-overrides.css';

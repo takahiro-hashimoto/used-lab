@@ -5,6 +5,8 @@ import ShareBox from '@/app/components/ShareBox'
 import FaqSection from '@/app/components/support/FaqSection'
 import FindMethodSection from './components/FindMethodSection'
 import PurchaseMethodSection from './components/PurchaseMethodSection'
+import AuthorByline from '@/app/components/AuthorByline'
+import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 
 const PAGE_TITLE = 'AirPodsのケースやイヤホン片方を無くした時の探し方、代替品の購入先まとめ'
 const PAGE_DESCRIPTION =
@@ -60,9 +62,7 @@ const FAQ_ITEMS = [
 ]
 
 export default function AirpodsFindPage() {
-  const today = new Date()
-  const dateStr = today.toISOString().split('T')[0]
-  const dateDisplay = today.toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' })
+  const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/airpods/airpods-find/page.tsx')
 
   const breadcrumbJsonLd = {
     '@context': 'https://schema.org',
@@ -74,17 +74,12 @@ export default function AirpodsFindPage() {
     ],
   }
 
-  const articleJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
+    const articleJsonLd = buildArticleJsonLd({
     headline: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
-    datePublished: dateStr,
-    dateModified: dateStr,
-    author: { '@type': 'Organization', name: 'ユーズドラボ', url: 'https://used-lab.com/' },
-    publisher: { '@type': 'Organization', name: 'ユーズドラボ' },
-    mainEntityOfPage: { '@type': 'WebPage', '@id': PAGE_URL },
-  }
+    dateStr,
+    url: PAGE_URL,
+  })
 
   return (
     <main>
@@ -181,6 +176,7 @@ export default function AirpodsFindPage() {
                 </a>
               </li>
             </ol>
+          <AuthorByline />
           </div>
         </nav>
 

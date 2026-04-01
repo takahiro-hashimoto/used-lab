@@ -18,6 +18,8 @@ import FleaMarketSection from './components/FleaMarketSection'
 import ChecklistSection from './components/ChecklistSection'
 import PopularSection from './components/PopularSection'
 import FaqSection from './components/FaqSection'
+import AuthorByline from '@/app/components/AuthorByline'
+import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 
 const PAGE_TITLE = `中古iPhoneを買うならどこ？ECサイト・ショップのおすすめを紹介【${SHOP_PAGE_DATE_LABEL}】`
 const PAGE_DESCRIPTION = `中古iPhoneを買うならどこがおすすめ？信頼できるECサイト・ショップを保証・価格・品質の観点から徹底比較。最適な購入先を紹介します【${SHOP_PAGE_DATE_LABEL}】`
@@ -43,13 +45,7 @@ export const metadata: Metadata = {
 export default async function IPhoneShopPage() {
   const shops = await getShops()
 
-  const today = new Date()
-  const dateStr = today.toISOString().split('T')[0]
-  const dateDisplay = today.toLocaleDateString('ja-JP', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  })
+  const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/iphone-shop/page.tsx')
 
   // JSON-LD
   const breadcrumbJsonLd = {
@@ -62,17 +58,12 @@ export default async function IPhoneShopPage() {
     ],
   }
 
-  const articleJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
+    const articleJsonLd = buildArticleJsonLd({
     headline: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
-    datePublished: dateStr,
-    dateModified: dateStr,
-    author: { '@type': 'Organization', name: 'ユーズドラボ', url: 'https://used-lab.com/' },
-    publisher: { '@type': 'Organization', name: 'ユーズドラボ' },
-    mainEntityOfPage: { '@type': 'WebPage', '@id': PAGE_URL },
-  }
+    dateStr,
+    url: PAGE_URL,
+  })
 
   const faqJsonLd = {
     '@context': 'https://schema.org',
@@ -212,6 +203,7 @@ export default async function IPhoneShopPage() {
                 </a>
               </li>
             </ol>
+          <AuthorByline />
           </div>
         </nav>
 

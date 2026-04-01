@@ -85,11 +85,15 @@ export default async function AirPodsDetailPage({ params }: PageProps) {
   const displayName = model.model ? `${model.name}（${model.model}）` : model.name
   const modelShopLinks = shopLinks.filter((l) => l.product_id === model.id)
 
+  const today = new Date()
+  const dateStr = today.toISOString().split('T')[0]
+  const dateDisplay = today.toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' })
+
   return (
     <main>
       <AdminEditLink categoryKey="airpods" modelId={model.id} />
       <article>
-        <HeroSection model={model} />
+        <HeroSection model={model} dateStr={dateStr} dateDisplay={dateDisplay} />
         <LeadText model={model} />
         <TableOfContents />
         <div className="l-sections">

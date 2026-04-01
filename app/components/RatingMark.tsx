@@ -8,7 +8,7 @@
  * × → fa-solid fa-xmark（バツ）
  */
 
-type Mark = '◎' | '◯' | '○' | '△' | '×'
+type Mark = '◎' | '◯' | '○' | '△' | '×' | '✕'
 
 type Props = {
   mark: Mark | string
@@ -21,6 +21,7 @@ const MARK_CONFIG: Record<string, { icon: string; label: string; className: stri
   '○': { icon: 'fa-regular fa-circle', label: '良好', className: 'm-mark--good' },
   '△': { icon: 'fa-solid fa-triangle-exclamation', label: '注意', className: 'm-mark--fair' },
   '×': { icon: 'fa-solid fa-xmark', label: 'なし', className: 'm-mark--none' },
+  '✕': { icon: 'fa-solid fa-xmark', label: 'なし', className: 'm-mark--none' },
 }
 
 export default function RatingMark({ mark, size = 'md' }: Props) {

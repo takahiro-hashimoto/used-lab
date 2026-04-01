@@ -149,10 +149,6 @@ export default function RecommendDetailSection({ items }: Props) {
                 {description.map((p, i) => (
                   <p key={i}>{p}</p>
                 ))}
-                <p className="recommend-card__detail-link">
-                  <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                  <a href={`/macbook/${model.slug}/`}>{model.model}の詳細情報を見る</a>
-                </p>
               </div>
 
               <div className="recommend-card__fit">
@@ -202,6 +198,13 @@ export default function RecommendDetailSection({ items }: Props) {
                         <i className="fa-solid fa-chevron-right" aria-hidden="true"></i>
                       </a>
                     ))}
+                    <a
+                      href={`/macbook/${model.slug}/`}
+                      className="m-btn m-btn--primary"
+                    >
+                      詳細記事を見る{' '}
+                      <i className="fa-solid fa-chevron-right" aria-hidden="true"></i>
+                    </a>
                   </div>
                 </div>
               )}

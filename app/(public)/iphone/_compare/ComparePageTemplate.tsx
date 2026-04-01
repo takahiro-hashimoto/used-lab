@@ -11,7 +11,7 @@ import {
   getLatestPriceLog,
   getProductShopLinks,
 } from '@/lib/queries'
-import { buildBreadcrumbJsonLd, buildArticleJsonLd } from '@/lib/utils/shared-helpers'
+import { buildBreadcrumbJsonLd, buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import { getShortName } from './helpers'
 import type { ComparePageConfig } from './config'
 import {
@@ -30,6 +30,7 @@ import CompareFaq from './CompareFaq'
 import CompareVerdict from './CompareVerdict'
 import CompareRelated from './CompareRelated'
 import ShareBox from '@/app/components/ShareBox'
+import AuthorByline from '@/app/components/AuthorByline'
 
 type Props = {
   config: ComparePageConfig
@@ -62,7 +63,9 @@ export default async function ComparePageTemplate({ config }: Props) {
   const shortL = getShortName(modelL)
   const shortR = getShortName(modelR)
 
-  // JSON-LD
+  const { dateStr, dateDisplay } = getGitDateForFile(`app/(public)/iphone/${config.slug}/page.tsx`)
+
+    // JSON-LD
   const breadcrumbJsonLd = buildBreadcrumbJsonLd([
     { name: 'ホーム', item: 'https://used-lab.com/' },
     { name: '中古iPhone', item: 'https://used-lab.com/iphone/' },
@@ -71,9 +74,10 @@ export default async function ComparePageTemplate({ config }: Props) {
   const articleJsonLd = buildArticleJsonLd({
     headline: config.title,
     description: config.description,
-    dateStr: new Date().toISOString().substring(0, 10),
+    dateStr,
     url: `https://used-lab.com/iphone/${config.slug}/`,
   })
+
 
   return (
     <main>
@@ -122,6 +126,7 @@ export default async function ComparePageTemplate({ config }: Props) {
               <li><a href="#verdict" className="toc-item">どんな人におすすめ？ <i className="fa-solid fa-chevron-down"></i></a></li>
               <li><a href="#faq" className="toc-item">よくある質問 <i className="fa-solid fa-chevron-down"></i></a></li>
             </ol>
+          <AuthorByline />
           </div>
         </nav>
 

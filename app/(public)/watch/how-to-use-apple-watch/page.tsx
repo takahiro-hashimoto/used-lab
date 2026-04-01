@@ -9,6 +9,8 @@ import AppleEcoSection from './components/AppleEcoSection'
 import PopularSection from '@/app/components/support/PopularSection'
 import WatchRelatedLinks from '@/app/components/watch/WatchRelatedLinks'
 import FaqSection from '@/app/components/support/FaqSection'
+import AuthorByline from '@/app/components/AuthorByline'
+import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 
 const PAGE_TITLE = 'アップルウォッチのできること25選！便利な機能や使い方がわかる【初心者向け】'
 const PAGE_DESCRIPTION =
@@ -33,9 +35,7 @@ export const metadata: Metadata = {
 }
 
 export default function HowToUseAppleWatchPage() {
-  const today = new Date()
-  const dateStr = today.toISOString().split('T')[0]
-  const dateDisplay = today.toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' })
+  const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/watch/how-to-use-apple-watch/page.tsx')
 
   // JSON-LD: BreadcrumbList
   const breadcrumbJsonLd = {
@@ -49,17 +49,12 @@ export default function HowToUseAppleWatchPage() {
   }
 
   // JSON-LD: Article
-  const articleJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
+    const articleJsonLd = buildArticleJsonLd({
     headline: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
-    datePublished: dateStr,
-    dateModified: dateStr,
-    author: { '@type': 'Organization', name: 'ユーズドラボ', url: 'https://used-lab.com/' },
-    publisher: { '@type': 'Organization', name: 'ユーズドラボ' },
-    mainEntityOfPage: { '@type': 'WebPage', '@id': PAGE_URL },
-  }
+    dateStr,
+    url: PAGE_URL,
+  })
 
   return (
     <main>
@@ -169,6 +164,7 @@ export default function HowToUseAppleWatchPage() {
                 </a>
               </li>
             </ol>
+          <AuthorByline />
           </div>
         </nav>
 

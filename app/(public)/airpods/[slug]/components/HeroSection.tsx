@@ -4,9 +4,11 @@ import type { AirPodsModel } from '@/lib/types'
 
 type Props = {
   model: AirPodsModel
+  dateStr: string
+  dateDisplay: string
 }
 
-export default function HeroSection({ model }: Props) {
+export default function HeroSection({ model, dateStr, dateDisplay }: Props) {
   const displayName = model.model ? `${model.name}（${model.model}）` : model.name
   const productJsonLd = {
     '@context': 'https://schema.org',
@@ -87,8 +89,8 @@ export default function HeroSection({ model }: Props) {
             <div className="hero-meta">
               <i className="fa-regular fa-clock" aria-hidden="true"></i>
               <span>
-                更新日: <time dateTime={new Date().toISOString().split('T')[0]}>
-                  {new Date().toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' })}
+                更新日: <time dateTime={dateStr}>
+                  {dateDisplay}
                 </time> | 当記事のリンクには広告が含まれています
               </span>
             </div>

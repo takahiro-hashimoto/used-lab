@@ -17,6 +17,7 @@ import PriceHistorySection from './components/PriceHistorySection'
 import PopularSection from '@/app/components/support/PopularSection'
 import FaqSection from './components/FaqSection'
 import WatchRelatedLinks from '@/app/components/watch/WatchRelatedLinks'
+import AuthorByline from '@/app/components/AuthorByline'
 
 // ============================================================
 // 型定義
@@ -279,7 +280,18 @@ export default async function WatchPriceInfoPage() {
       highPrice: rankingData[rankingData.length - 1]?.currentPrice ?? 0,
       offerCount: modelCount,
     },
-    author: { '@type': 'Organization', name: 'ユーズドラボ' },
+    author: {
+      '@type': 'Person',
+      name: 'タカヒロ',
+      url: 'https://used-lab.com/about/',
+      sameAs: [
+        'https://twitter.com/takahiro_mono',
+        'https://www.instagram.com/takahiro_mono',
+        'https://www.youtube.com/@takahiro_mono',
+        'https://digital-style.jp/',
+        'https://nightscape.tokyo/',
+      ],
+    },
     dateModified: new Date().toISOString(),
   }
 
@@ -404,6 +416,7 @@ export default async function WatchPriceInfoPage() {
                 </a>
               </li>
             </ol>
+          <AuthorByline />
           </div>
         </nav>
 

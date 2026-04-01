@@ -24,6 +24,8 @@ const GLOSSARY_ITEMS = [
   { title: '外付けキーボード', icon: 'fa-solid fa-keyboard', desc: <>iPad専用のMagic KeyboardやSmart Keyboardなどが対応。タイピング作業や資料作成が快適になり、ラップトップのように使える。詳しくは「<Link href="/ipad/accessories-summary/#kb-16">iPadのMagic Keyboard 型番一覧</Link>」を参照。</> },
 ]
 import ShareBox from '@/app/components/ShareBox'
+import AuthorByline from '@/app/components/AuthorByline'
+import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 
 export const metadata: Metadata = {
   title: '歴代iPadスペック比較表！各世代の性能の違いがすぐわかる',
@@ -52,6 +54,8 @@ export default async function IPadSpecTablePage() {
   ])
   const accessoryLookup = buildAccessoryLookup(allAccessories, allCompatibility)
 
+  const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/ipad/ipad-spec-table/page.tsx')
+
   // JSON-LD
   const breadcrumbJsonLd = {
     '@context': 'https://schema.org',
@@ -63,17 +67,12 @@ export default async function IPadSpecTablePage() {
     ],
   }
 
-  const articleJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
+    const articleJsonLd = buildArticleJsonLd({
     headline: '【2025年】歴代iPadのスペック＆性能比較表',
     description: '歴代iPadのスペック比較表一覧。iPad Pro・Air・mini・無印の性能差を一目で確認できます。',
-    datePublished: new Date().toISOString().split('T')[0],
-    dateModified: new Date().toISOString().split('T')[0],
-    author: { '@type': 'Organization', name: 'ユーズドラボ', url: 'https://used-lab.com/' },
-    publisher: { '@type': 'Organization', name: 'ユーズドラボ' },
-    mainEntityOfPage: { '@type': 'WebPage', '@id': 'https://used-lab.com/ipad/ipad-spec-table/' },
-  }
+    dateStr: dateStr,
+    url: 'https://used-lab.com/ipad/ipad-spec-table/',
+  })
 
   // シリアライズ可能な形に変換
   const serializedModels = allModels.map((m) => ({
@@ -165,8 +164,8 @@ export default async function IPadSpecTablePage() {
               <div className="hero-meta">
                 <i className="fa-regular fa-clock" aria-hidden="true"></i>
                 <span>
-                  更新日: <time dateTime={new Date().toISOString().split('T')[0]}>
-                    {new Date().toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' })}
+                  更新日: <time dateTime={dateStr}>
+                    {dateDisplay}
                   </time> | 当記事のリンクには広告が含まれています
                 </span>
               </div>
@@ -241,6 +240,7 @@ export default async function IPadSpecTablePage() {
                 </a>
               </li>
             </ol>
+            <AuthorByline />
           </div>
         </nav>
         <div className="l-sections">

@@ -7,7 +7,7 @@ import {
   getAllProductShopLinksByType,
 } from '@/lib/queries'
 import type { IPhoneModel, IPhonePriceLog } from '@/lib/types'
-import { formatPrice, getMinPrice } from '@/lib/utils/shared-helpers'
+import { formatPrice, getMinPrice, buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import {
   GUIDE_DATE_LABEL,
   GUIDE_PRICE_SLUGS,
@@ -28,6 +28,7 @@ import ShareBox from '@/app/components/ShareBox'
 import VendorCardGrid from '@/app/components/VendorCardGrid'
 import GuideModelLinks from '@/app/components/GuideModelLinks'
 import { getHeroImage } from '@/lib/data/hero-images'
+import AuthorByline from '@/app/components/AuthorByline'
 
 const PAGE_TITLE = `中古iPhone完全購入ガイド | 選び方・相場・おすすめモデルまとめ【${GUIDE_DATE_LABEL}版】`
 const PAGE_DESCRIPTION = `${GUIDE_DATE_LABEL}版・中古iPhoneの完全購入ガイド。選び方のポイント、モデル別の相場、おすすめ機種をまとめて解説。失敗しない中古iPhone選びをサポートします。`
@@ -74,9 +75,7 @@ export default async function IPhoneGuidePage() {
     recommendModels.map((m) => getLatestPriceLog(m.id))
   )
 
-  const today = new Date()
-  const dateStr = today.toISOString().split('T')[0]
-  const dateDisplay = today.toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' })
+  const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/page.tsx')
 
   // JSON-LD
   const breadcrumbJsonLd = {
@@ -88,17 +87,12 @@ export default async function IPhoneGuidePage() {
     ],
   }
 
-  const articleJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
+    const articleJsonLd = buildArticleJsonLd({
     headline: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
-    datePublished: dateStr,
-    dateModified: dateStr,
-    author: { '@type': 'Organization', name: 'ユーズドラボ', url: 'https://used-lab.com/' },
-    publisher: { '@type': 'Organization', name: 'ユーズドラボ' },
-    mainEntityOfPage: { '@type': 'WebPage', '@id': PAGE_URL },
-  }
+    dateStr,
+    url: PAGE_URL,
+  })
 
   const faqJsonLd = {
     '@context': 'https://schema.org',
@@ -205,6 +199,7 @@ export default async function IPhoneGuidePage() {
               <li><a href="#spec-compare" className="toc-item">スペック比較 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#faq" className="toc-item">よくある質問 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
             </ol>
+          <AuthorByline />
           </div>
         </nav>
 

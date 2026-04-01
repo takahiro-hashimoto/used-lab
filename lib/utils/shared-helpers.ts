@@ -3,7 +3,31 @@
  * 全製品タイプで共有する汎用ユーティリティ
  */
 
+import { execSync } from 'child_process'
 import type { Shop, ProductShopLink, FallbackShop, BasePriceLog } from '@/lib/types'
+
+/**
+ * 指定ファイルの git 最終コミット日を取得
+ * 相場ページ以外の更新日表示に使用（相場ページは毎日更新のため new Date() を使用）
+ */
+export function getGitDateForFile(filePath: string): { dateStr: string; dateDisplay: string } {
+  try {
+    const result = execSync(`git log -1 --format=%aI -- "${filePath}"`, { encoding: 'utf-8' }).trim()
+    if (result) {
+      const date = new Date(result)
+      const dateStr = date.toISOString().split('T')[0]
+      const dateDisplay = date.toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' })
+      return { dateStr, dateDisplay }
+    }
+  } catch {
+    // git が利用できない場合はフォールバック
+  }
+  const today = new Date()
+  return {
+    dateStr: today.toISOString().split('T')[0],
+    dateDisplay: today.toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' }),
+  }
+}
 
 /**
  * shops テーブルからフォールバック用ショップリンクを生成
@@ -134,7 +158,18 @@ export function buildArticleJsonLd(opts: {
     description: opts.description,
     datePublished: opts.dateStr,
     dateModified: opts.dateStr,
-    author: { '@type': 'Organization', name: 'ユーズドラボ', url: 'https://used-lab.com/' },
+    author: {
+      '@type': 'Person',
+      name: 'タカヒロ',
+      url: 'https://used-lab.com/about/',
+      sameAs: [
+        'https://twitter.com/takahiro_mono',
+        'https://www.instagram.com/takahiro_mono',
+        'https://www.youtube.com/@takahiro_mono',
+        'https://digital-style.jp/',
+        'https://nightscape.tokyo/',
+      ],
+    },
     publisher: { '@type': 'Organization', name: 'ユーズドラボ' },
     mainEntityOfPage: { '@type': 'WebPage', '@id': opts.url },
   }

@@ -5,15 +5,15 @@ export default function ConclusionSection() {
         <h2 className="m-section-heading m-section-heading--lg" id="heading-conclusion">
           結論｜迷ったら「中古タブレット専門店」から選べば失敗しない
         </h2>
-        <p className="m-section-desc">
-          中古iPadの購入先に正解はありませんが、迷っている時点で最も失敗が少ないのは「中古タブレット専門店」です。
-        </p>
 
         <div className="m-card m-card--shadow m-card--padded">
           <div className="media-card__desc m-rich-text">
-            <p>中古iPadの購入先に正解はありませんが、迷っている時点で最も失敗が少ないのは「中古タブレット専門店」か「Apple認定整備済製品」です。</p>
-            <p>価格だけを見てフリマを選ぶと、赤ロムやバッテリー劣化、Apple Pencil対応の確認漏れなどのリスクを自分で処理する必要があります。一方、保証や返品が用意されている購入先なら、多少高くても"戻れる選択肢"が残ります。</p>
-            <p>この記事で紹介した購入先の中から、まずは「自分がどこまでリスクを許容できるか」を基準に選んでください。</p>
+            <ul>
+              <li><strong>安全重視・初心者</strong> → 中古タブレット専門店 or Apple認定整備済製品</li>
+              <li><strong>価格重視・知識あり</strong> → ECモール（ポイント還元あり）</li>
+              <li><strong>最安値を狙いたい</strong> → フリマアプリ（赤ロム・バッテリー劣化は自己責任）</li>
+            </ul>
+            <p>迷っている時点では「専門店」か「Apple整備済」を選ぶのが無難です。保証・返品に対応しており、失敗しても"戻れる選択肢"が残ります。</p>
           </div>
         </div>
       </div>

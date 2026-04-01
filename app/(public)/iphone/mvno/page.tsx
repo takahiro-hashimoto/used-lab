@@ -12,6 +12,8 @@ import IPhoneRelatedLinks from '@/app/components/iphone/IPhoneRelatedLinks'
 import PopularSection from '@/app/components/support/PopularSection'
 import MvnoDiagnosis from './components/MvnoDiagnosis'
 import type { DiagnosisProvider } from './components/MvnoDiagnosis'
+import AuthorByline from '@/app/components/AuthorByline'
+import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 
 const PAGE_TITLE = `中古iPhoneの購入と通信契約が一緒にできる格安SIM業者まとめ【${MVNO_PAGE_DATE_LABEL}】`
 const PAGE_DESCRIPTION = `中古iPhoneとセットで通信契約できる格安SIM・MVNOを徹底比較。楽天モバイル、UQモバイル、ワイモバイル、IIJmio、mineoなど主要7社の料金プランと端末販売の有無をまとめました【${MVNO_PAGE_DATE_LABEL}】`
@@ -69,13 +71,7 @@ export default async function MvnoPage() {
   // ゲオモバイルは非表示
   const mvnoProviders = allMvnoProviders.filter((db) => db.provider_slug !== 'geo-mobile')
 
-  const today = new Date()
-  const dateStr = today.toISOString().split('T')[0]
-  const dateDisplay = today.toLocaleDateString('ja-JP', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  })
+  const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/mvno/page.tsx')
 
   // 診断コンポーネント用データ
   const diagnosisProviders: DiagnosisProvider[] = mvnoProviders
@@ -123,17 +119,12 @@ export default async function MvnoPage() {
     ],
   }
 
-  const articleJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
+    const articleJsonLd = buildArticleJsonLd({
     headline: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
-    datePublished: dateStr,
-    dateModified: dateStr,
-    author: { '@type': 'Organization', name: 'ユーズドラボ', url: 'https://used-lab.com/' },
-    publisher: { '@type': 'Organization', name: 'ユーズドラボ' },
-    mainEntityOfPage: { '@type': 'WebPage', '@id': PAGE_URL },
-  }
+    dateStr,
+    url: PAGE_URL,
+  })
 
   return (
     <main>
@@ -249,6 +240,7 @@ export default async function MvnoPage() {
                 </a>
               </li>
             </ol>
+          <AuthorByline />
           </div>
         </nav>
         <div className="l-sections">

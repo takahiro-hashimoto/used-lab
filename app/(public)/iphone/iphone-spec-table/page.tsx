@@ -31,6 +31,8 @@ const GLOSSARY_ITEMS = [
 ]
 import IPhoneRelatedLinks from '@/app/components/iphone/IPhoneRelatedLinks'
 import ShareBox from '@/app/components/ShareBox'
+import AuthorByline from '@/app/components/AuthorByline'
+import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 
 export const metadata: Metadata = {
   title: '歴代iPhoneスペック比較表！気になる機種の性能差や違いがわかる',
@@ -67,17 +69,14 @@ export default async function IPhoneSpecTablePage() {
     ],
   }
 
-  const articleJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
+const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/iphone-spec-table/page.tsx')
+
+      const articleJsonLd = buildArticleJsonLd({
     headline: '【2025年】歴代iPhoneのスペック＆性能比較表',
     description: '2019年以降に発売された歴代iPhoneのスペック比較表一覧。機能のアップデート履歴を一目で確認できます。',
-    datePublished: new Date().toISOString().split('T')[0],
-    dateModified: new Date().toISOString().split('T')[0],
-    author: { '@type': 'Organization', name: 'ユーズドラボ', url: 'https://used-lab.com/' },
-    publisher: { '@type': 'Organization', name: 'ユーズドラボ' },
-    mainEntityOfPage: { '@type': 'WebPage', '@id': 'https://used-lab.com/iphone/iphone-spec-table/' },
-  }
+    dateStr: dateStr,
+    url: 'https://used-lab.com/iphone/iphone-spec-table/',
+  })
 
   // シリアライズ可能な形に変換
   const serializedModels = allModels.map((m) => ({
@@ -136,6 +135,7 @@ export default async function IPhoneSpecTablePage() {
     url: l.url,
   }))
 
+
   return (
     <main>
       <article itemScope itemType="https://schema.org/Article">
@@ -181,10 +181,10 @@ export default async function IPhoneSpecTablePage() {
               <div className="hero-meta">
                 <i className="fa-regular fa-clock" aria-hidden="true"></i>
                 <span>
-                  更新日: <time dateTime={new Date().toISOString().split('T')[0]} itemProp="dateModified">
-                    {new Date().toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' })}
+                  更新日: <time dateTime={dateStr} itemProp="dateModified">
+                    {dateDisplay}
                   </time> | 当記事のリンクには広告が含まれています
-                  <meta itemProp="datePublished" content={new Date().toISOString().split('T')[0]} />
+                  <meta itemProp="datePublished" content={dateStr} />
                 </span>
               </div>
             </div>
@@ -258,6 +258,7 @@ export default async function IPhoneSpecTablePage() {
                 </a>
               </li>
             </ol>
+            <AuthorByline />
           </div>
         </nav>
         <div className="l-sections" itemProp="articleBody">

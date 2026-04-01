@@ -10,6 +10,8 @@ import type { IPhonePriceLog } from '@/lib/types'
 import StorageTable, { type StorageModel } from './components/StorageTable'
 import ShareBox from '@/app/components/ShareBox'
 import IPhoneRelatedLinks from '@/app/components/iphone/IPhoneRelatedLinks'
+import AuthorByline from '@/app/components/AuthorByline'
+import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 
 export const revalidate = 86400
 
@@ -122,17 +124,14 @@ export default async function StorageGuidePage() {
     ],
   }
 
-  const articleJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
+const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/storage-guide/page.tsx')
+
+      const articleJsonLd = buildArticleJsonLd({
     headline: '中古iPhoneのストレージ容量はどれがいい？用途別おすすめ容量まとめ',
     description: '中古iPhoneのストレージ容量の選び方を用途別に解説。歴代モデルの容量ラインナップも一覧で確認できます。',
-    datePublished: new Date().toISOString().split('T')[0],
-    dateModified: new Date().toISOString().split('T')[0],
-    author: { '@type': 'Organization', name: 'ユーズドラボ', url: 'https://used-lab.com/' },
-    publisher: { '@type': 'Organization', name: 'ユーズドラボ' },
-    mainEntityOfPage: { '@type': 'WebPage', '@id': 'https://used-lab.com/iphone/storage-guide/' },
-  }
+    dateStr: dateStr,
+    url: 'https://used-lab.com/iphone/storage-guide/',
+  })
 
   const faqJsonLd = {
     '@context': 'https://schema.org',
@@ -143,6 +142,7 @@ export default async function StorageGuidePage() {
       acceptedAnswer: { '@type': 'Answer', text: item.answer },
     })),
   }
+
 
   return (
     <main>
@@ -193,8 +193,8 @@ export default async function StorageGuidePage() {
               <div className="hero-meta">
                 <i className="fa-regular fa-clock" aria-hidden="true"></i>
                 <span>
-                  更新日: <time dateTime={new Date().toISOString().split('T')[0]}>
-                    {new Date().toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' })}
+                  更新日: <time dateTime={dateStr}>
+                    {dateDisplay}
                   </time> | 当記事のリンクには広告が含まれています
                 </span>
               </div>
@@ -265,6 +265,7 @@ export default async function StorageGuidePage() {
                 </a>
               </li>
             </ol>
+            <AuthorByline />
           </div>
         </nav>
 

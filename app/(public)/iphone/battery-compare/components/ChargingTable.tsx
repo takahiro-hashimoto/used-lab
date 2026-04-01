@@ -142,20 +142,22 @@ export default function ChargingTable({ models }: Props) {
                   {filteredModels.map((m) => (
                     <tr key={m.id}>
                       <td className="battery-table__model-cell">
-                        <div className="battery-table__img-wrap">
-                          {m.image && (
-                            <img
-                              src={`/images/iphone/${m.image}`}
-                              alt={m.model}
-                              loading="lazy"
-                            />
-                          )}
-                        </div>
-                        <div className="battery-table__model-info">
-                          <Link href={`/iphone/${m.slug}`} className="battery-table__model-name">
-                            {m.model}
-                          </Link>
-                          <span className="battery-table__date">容量: {m.battery || '-'}</span>
+                        <div className="battery-table__model-inner">
+                          <div className="battery-table__img-wrap">
+                            {m.image && (
+                              <img
+                                src={`/images/iphone/${m.image}`}
+                                alt={m.model}
+                                loading="lazy"
+                              />
+                            )}
+                          </div>
+                          <div className="battery-table__model-info">
+                            <Link href={`/iphone/${m.slug}`} className="battery-table__model-name">
+                              {m.model}
+                            </Link>
+                            <span className="battery-table__date">容量: {m.battery || '-'}</span>
+                          </div>
                         </div>
                       </td>
                       <td>{formatDate(m.date)}</td>

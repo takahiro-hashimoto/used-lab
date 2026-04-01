@@ -4,6 +4,8 @@ import RatingMark from '@/app/components/RatingMark'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import ShareBox from '@/app/components/ShareBox'
 import IPhoneRelatedLinks from '@/app/components/iphone/IPhoneRelatedLinks'
+import AuthorByline from '@/app/components/AuthorByline'
+import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 
 const PAGE_TITLE = '意外と良い選択肢？ネットワーク制限△の中古iPhone・iPadを買うメリット・デメリットを解説'
 const PAGE_DESCRIPTION =
@@ -28,9 +30,7 @@ export const metadata: Metadata = {
 }
 
 export default function NetworkLimitPage() {
-  const today = new Date()
-  const dateStr = today.toISOString().split('T')[0]
-  const dateDisplay = today.toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' })
+  const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/network-limit/page.tsx')
 
   const breadcrumbJsonLd = {
     '@context': 'https://schema.org',
@@ -42,17 +42,12 @@ export default function NetworkLimitPage() {
     ],
   }
 
-  const articleJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
+    const articleJsonLd = buildArticleJsonLd({
     headline: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
-    datePublished: dateStr,
-    dateModified: dateStr,
-    author: { '@type': 'Organization', name: 'ユーズドラボ', url: 'https://used-lab.com/' },
-    publisher: { '@type': 'Organization', name: 'ユーズドラボ' },
-    mainEntityOfPage: { '@type': 'WebPage', '@id': PAGE_URL },
-  }
+    dateStr,
+    url: PAGE_URL,
+  })
 
   const faqJsonLd = {
     '@context': 'https://schema.org',
@@ -202,6 +197,7 @@ export default function NetworkLimitPage() {
                 </a>
               </li>
             </ol>
+          <AuthorByline />
           </div>
         </nav>
 

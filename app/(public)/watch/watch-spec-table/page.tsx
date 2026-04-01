@@ -25,6 +25,8 @@ const GLOSSARY_ITEMS = [
 import ShareBox from '@/app/components/ShareBox'
 import PopularSection from '@/app/components/support/PopularSection'
 import WatchRelatedLinks from '@/app/components/watch/WatchRelatedLinks'
+import AuthorByline from '@/app/components/AuthorByline'
+import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 
 export const metadata: Metadata = {
   title: '歴代Apple Watchスペック比較表！各世代の性能の違いがすぐわかる',
@@ -61,17 +63,14 @@ export default async function WatchSpecTablePage() {
     ],
   }
 
-  const articleJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
+const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/watch/watch-spec-table/page.tsx')
+
+      const articleJsonLd = buildArticleJsonLd({
     headline: '【2025年】歴代Apple Watchのスペック＆性能比較表',
     description: '歴代Apple Watchのスペック比較表一覧。Series・SE・Ultraの性能差を一目で確認できます。',
-    datePublished: new Date().toISOString().split('T')[0],
-    dateModified: new Date().toISOString().split('T')[0],
-    author: { '@type': 'Organization', name: 'ユーズドラボ', url: 'https://used-lab.com/' },
-    publisher: { '@type': 'Organization', name: 'ユーズドラボ' },
-    mainEntityOfPage: { '@type': 'WebPage', '@id': 'https://used-lab.com/watch/watch-spec-table/' },
-  }
+    dateStr: dateStr,
+    url: 'https://used-lab.com/watch/watch-spec-table/',
+  })
 
   // シリアライズ可能な形に変換
   const serializedModels = allModels.map((m) => ({
@@ -108,6 +107,7 @@ export default async function WatchSpecTablePage() {
     shop_id: l.shop_id,
     url: l.url,
   }))
+
 
   return (
     <main>
@@ -154,8 +154,8 @@ export default async function WatchSpecTablePage() {
               <div className="hero-meta">
                 <i className="fa-regular fa-clock" aria-hidden="true"></i>
                 <span>
-                  更新日: <time dateTime={new Date().toISOString().split('T')[0]}>
-                    {new Date().toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' })}
+                  更新日: <time dateTime={dateStr}>
+                    {dateDisplay}
                   </time> | 当記事のリンクには広告が含まれています
                 </span>
               </div>
@@ -224,6 +224,7 @@ export default async function WatchSpecTablePage() {
                 </a>
               </li>
             </ol>
+            <AuthorByline />
           </div>
         </nav>
         <div className="l-sections">

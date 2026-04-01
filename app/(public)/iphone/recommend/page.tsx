@@ -8,7 +8,7 @@ import {
   getLatestPriceLog,
 } from '@/lib/queries'
 import type { IPhoneModel } from '@/lib/types'
-import { buildFallbackShops, buildBreadcrumbJsonLd, buildArticleJsonLd, buildFaqJsonLd, formatPrice } from '@/lib/utils/shared-helpers'
+import { buildFallbackShops, buildBreadcrumbJsonLd, buildArticleJsonLd, buildFaqJsonLd, formatPrice, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import { calculatePriceRange } from '@/lib/utils/iphone-helpers'
 import {
   RECOMMEND_DATE_LABEL,
@@ -31,6 +31,7 @@ import ShopSection from '@/app/components/ShopSection'
 import IPhoneFaqSection from './components/IPhoneFaqSection'
 import ValueZoneChart from '@/app/components/ValueZoneChart'
 import IPhoneRelatedLinks from '@/app/components/iphone/IPhoneRelatedLinks'
+import AuthorByline from '@/app/components/AuthorByline'
 
 const PAGE_TITLE = `中古iPhoneおすすめ機種${RECOMMEND_COUNT}選｜目的別に狙い目モデルを解説【${RECOMMEND_DATE_LABEL}版】`
 const PAGE_DESCRIPTION =
@@ -73,9 +74,7 @@ export default async function IPhoneTopPage() {
   )
 
 
-  const today = new Date()
-  const dateStr = today.toISOString().split('T')[0]
-  const dateDisplay = today.toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' })
+  const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/recommend/page.tsx')
 
   // JSON-LD
   const breadcrumbJsonLd = buildBreadcrumbJsonLd([
@@ -270,6 +269,7 @@ export default async function IPhoneTopPage() {
                 </a>
               </li>
             </ol>
+          <AuthorByline />
           </div>
         </nav>
 

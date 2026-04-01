@@ -103,11 +103,15 @@ export default async function IPhoneDetailPage({ params }: PageProps) {
   const modelShopLinks = shopLinks.filter((l) => l.product_id === model.id)
 
 
+  const today = new Date()
+  const dateStr = today.toISOString().split('T')[0]
+  const dateDisplay = today.toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' })
+
   return (
     <main>
       <AdminEditLink categoryKey="iphone" modelId={model.id} />
       <article>
-        <HeroSection model={model} latestPrice={latestPrice} />
+        <HeroSection model={model} latestPrice={latestPrice} dateStr={dateStr} dateDisplay={dateDisplay} />
         <LeadText model={model} latestPrice={latestPrice} />
         <TableOfContents />
         <div className="l-sections">

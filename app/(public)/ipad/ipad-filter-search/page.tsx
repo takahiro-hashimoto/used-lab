@@ -9,6 +9,7 @@ import { supabase } from '@/lib/supabase'
 import IPadFilterSearchApp from './components/IPadFilterSearchApp'
 import ShareBox from '@/app/components/ShareBox'
 import IPadRelatedLinks from '@/app/components/ipad/IPadRelatedLinks'
+import { getGitDateForFile } from '@/lib/utils/shared-helpers'
 
 export const metadata: Metadata = {
   title: 'iPad機種診断シミュレーター｜自分に合うおすすめ中古iPadがすぐわかる【2026年版】',
@@ -131,7 +132,18 @@ export default async function IPadFilterSearchPage() {
     applicationCategory: 'UtilityApplication',
     operatingSystem: 'All',
     offers: { '@type': 'Offer', price: '0', priceCurrency: 'JPY' },
-    author: { '@type': 'Organization', name: 'ユーズドラボ', url: 'https://used-lab.com/' },
+    author: {
+      '@type': 'Person',
+      name: 'タカヒロ',
+      url: 'https://used-lab.com/about/',
+      sameAs: [
+        'https://twitter.com/takahiro_mono',
+        'https://www.instagram.com/takahiro_mono',
+        'https://www.youtube.com/@takahiro_mono',
+        'https://digital-style.jp/',
+        'https://nightscape.tokyo/',
+      ],
+    },
   }
 
   const faqJsonLd = {
@@ -143,6 +155,8 @@ export default async function IPadFilterSearchPage() {
       acceptedAnswer: { '@type': 'Answer', text: item.answer },
     })),
   }
+
+    const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/ipad/ipad-filter-search/page.tsx')
 
   return (
     <main>
@@ -193,8 +207,8 @@ export default async function IPadFilterSearchPage() {
               <div className="hero-meta">
                 <i className="fa-regular fa-clock" aria-hidden="true"></i>
                 <span>
-                  更新日: <time dateTime={new Date().toISOString().split('T')[0]}>
-                    {new Date().toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' })}
+                  更新日: <time dateTime={dateStr}>
+                    {dateDisplay}
                   </time> | 当記事のリンクには広告が含まれています
                 </span>
               </div>

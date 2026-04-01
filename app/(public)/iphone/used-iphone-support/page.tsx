@@ -9,6 +9,8 @@ import TimingSection from './components/TimingSection'
 import PopularSection from './components/PopularSection'
 import FaqSection from './components/FaqSection'
 import IPhoneRelatedLinks from '@/app/components/iphone/IPhoneRelatedLinks'
+import AuthorByline from '@/app/components/AuthorByline'
+import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 
 const PAGE_TITLE = 'iPhoneはいつまで使える？機種別のサポート期間目安まとめ。買い替えるべき4つのタイミングも解説。'
 const PAGE_DESCRIPTION =
@@ -37,9 +39,7 @@ export default async function UsedIphoneSupportPage() {
     getAllIPhoneModels(),
     getAllIPhoneModelsIncludingEnded(),
   ])
-  const today = new Date()
-  const dateStr = today.toISOString().split('T')[0]
-  const dateDisplay = today.toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' })
+  const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/used-iphone-support/page.tsx')
 
   // JSON-LD: BreadcrumbList
   const breadcrumbJsonLd = {
@@ -53,17 +53,12 @@ export default async function UsedIphoneSupportPage() {
   }
 
   // JSON-LD: Article
-  const articleJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
+    const articleJsonLd = buildArticleJsonLd({
     headline: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
-    datePublished: dateStr,
-    dateModified: dateStr,
-    author: { '@type': 'Organization', name: 'ユーズドラボ', url: 'https://used-lab.com/' },
-    publisher: { '@type': 'Organization', name: 'ユーズドラボ' },
-    mainEntityOfPage: { '@type': 'WebPage', '@id': PAGE_URL },
-  }
+    dateStr,
+    url: PAGE_URL,
+  })
 
   return (
     <main>
@@ -165,6 +160,7 @@ export default async function UsedIphoneSupportPage() {
                 </a>
               </li>
             </ol>
+          <AuthorByline />
           </div>
         </nav>
         <div className="l-sections">

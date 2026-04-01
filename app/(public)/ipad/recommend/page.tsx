@@ -10,7 +10,7 @@ import {
   getAllIPadAccessoryCompatibility,
 } from '@/lib/queries'
 import type { IPadModel, IPadPriceLog } from '@/lib/types'
-import { buildFallbackShops, buildBreadcrumbJsonLd, buildArticleJsonLd, buildFaqJsonLd, formatPrice } from '@/lib/utils/shared-helpers'
+import { buildFallbackShops, buildBreadcrumbJsonLd, buildArticleJsonLd, buildFaqJsonLd, formatPrice, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import { buildAccessoryLookup, getPencilTextFromAccessories, getKeyboardTextFromAccessories, calculatePriceRange } from '@/lib/utils/ipad-helpers'
 import {
   RECOMMEND_DATE_LABEL,
@@ -33,6 +33,7 @@ import ShopSection from '@/app/components/ShopSection'
 import IPadFaqSection from './components/IPadFaqSection'
 import ValueZoneChart from '@/app/components/ValueZoneChart'
 import IPadRelatedLinks from '@/app/components/ipad/IPadRelatedLinks'
+import AuthorByline from '@/app/components/AuthorByline'
 
 const PAGE_TITLE = `中古iPadのおすすめ${RECOMMEND_COUNT}機種を解説。狙い目の型落ちモデルどれ？【${RECOMMEND_DATE_LABEL}版】`
 const PAGE_DESCRIPTION =
@@ -82,9 +83,7 @@ export default async function IPadRecommendPage() {
     recommendModels.map((m) => getLatestIPadPriceLog(m.id))
   )
 
-  const today = new Date()
-  const dateStr = today.toISOString().split('T')[0]
-  const dateDisplay = today.toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' })
+  const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/ipad/recommend/page.tsx')
 
   // JSON-LD
   const breadcrumbJsonLd = buildBreadcrumbJsonLd([
@@ -277,6 +276,7 @@ export default async function IPadRecommendPage() {
                 </a>
               </li>
             </ol>
+          <AuthorByline />
           </div>
         </nav>
 

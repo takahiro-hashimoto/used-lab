@@ -14,8 +14,10 @@ const config: ModelHeroConfig = {
 type Props = {
   model: MacBookModel
   latestPrice: MacBookPriceLog | null
+  dateStr: string
+  dateDisplay: string
 }
 
-export default function HeroSection({ model }: Props) {
-  return <ModelHeroSection model={model} config={config} />
+export default function HeroSection({ model, dateStr, dateDisplay }: Props) {
+  return <ModelHeroSection model={model} config={config} dateStr={dateStr} dateDisplay={dateDisplay} />
 }

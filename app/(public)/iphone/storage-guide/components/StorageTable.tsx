@@ -145,20 +145,22 @@ export default function StorageTable({ models }: Props) {
                   {filteredModels.map((m) => (
                     <tr key={m.id}>
                       <td className="battery-table__model-cell">
-                        <div className="battery-table__img-wrap">
-                          {m.image && (
-                            <img
-                              src={`/images/iphone/${m.image}`}
-                              alt={m.model}
-                              loading="lazy"
-                            />
-                          )}
-                        </div>
-                        <div className="battery-table__model-info">
-                          <Link href={`/iphone/${m.slug}`} className="battery-table__model-name">
-                            {m.model}
-                          </Link>
-                          <span className="battery-table__date">{formatDate(m.date)} 発売</span>
+                        <div className="battery-table__model-inner">
+                          <div className="battery-table__img-wrap">
+                            {m.image && (
+                              <img
+                                src={`/images/iphone/${m.image}`}
+                                alt={m.model}
+                                loading="lazy"
+                              />
+                            )}
+                          </div>
+                          <div className="battery-table__model-info">
+                            <Link href={`/iphone/${m.slug}`} className="battery-table__model-name">
+                              {m.model}
+                            </Link>
+                            <span className="battery-table__date">{formatDate(m.date)} 発売</span>
+                          </div>
                         </div>
                       </td>
                       <td>
@@ -170,16 +172,18 @@ export default function StorageTable({ models }: Props) {
                         </div>
                       </td>
                       <td className="storage-price-cell">
-                        {m.storageLabel && (
-                          <span className="storage-price-label">{m.storageLabel}</span>
-                        )}
-                        {m.avgMin != null ? (
-                          <span className="storage-price-value">
-                            {formatPrice(m.avgMin)}〜
-                          </span>
-                        ) : (
-                          <span className="storage-price-na">-</span>
-                        )}
+                        <div className="storage-price-cell__inner">
+                          {m.storageLabel && (
+                            <span className="storage-price-label">{m.storageLabel}</span>
+                          )}
+                          {m.avgMin != null ? (
+                            <span className="storage-price-value">
+                              {formatPrice(m.avgMin)}〜
+                            </span>
+                          ) : (
+                            <span className="storage-price-na">-</span>
+                          )}
+                        </div>
                       </td>
                       <td>
                         {m.iosysUrl ? (

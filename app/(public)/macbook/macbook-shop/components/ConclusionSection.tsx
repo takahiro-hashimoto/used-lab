@@ -5,15 +5,15 @@ export default function ConclusionSection() {
         <h2 className="m-section-heading m-section-heading--lg" id="heading-conclusion">
           結論｜迷ったら「中古PC専門店」から選べば失敗しない
         </h2>
-        <p className="m-section-desc">
-          中古MacBookの購入先に正解はありませんが、迷っている時点で最も失敗が少ないのは「中古PC専門店」です。
-        </p>
 
         <div className="m-card m-card--shadow m-card--padded">
           <div className="media-card__desc m-rich-text">
-            <p>中古MacBookの購入先に正解はありませんが、迷っている時点で最も失敗が少ないのは「中古PC専門店」か「Apple認定整備済製品」です。</p>
-            <p>MacBookは仕事でメインマシンとして使う方も多く、キーボードのテカリやバッテリー劣化は生産性に直結します。価格だけを見てフリマを選ぶと、バッテリー劣化やキーボードのヘタリなど、自分で処理するリスクが増えます。一方、保証や返品が用意されている購入先なら、多少高くても"戻れる選択肢"が残ります。</p>
-            <p>この記事で紹介した購入先の中から、まずは「自分がどこまでリスクを許容できるか」を基準に選んでください。</p>
+            <ul>
+              <li><strong>安全重視・初心者</strong> → 中古PC専門店 or Apple認定整備済製品</li>
+              <li><strong>価格重視・知識あり</strong> → ECモール（ポイント還元あり）</li>
+              <li><strong>最安値を狙いたい</strong> → フリマアプリ（バッテリー・キーボードの状態は自己責任）</li>
+            </ul>
+            <p>MacBookは仕事のメインマシンになることが多く、不具合は生産性に直結します。迷っているなら保証・返品に対応した「専門店」か「Apple整備済」を選べば失敗しにくいです。</p>
           </div>
         </div>
       </div>

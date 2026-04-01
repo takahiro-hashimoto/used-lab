@@ -9,6 +9,8 @@ import KeyboardListSection from './components/KeyboardListSection'
 import KeyboardCompareSection from './components/KeyboardCompareSection'
 import FaqSection from '@/app/components/support/FaqSection'
 import IPadRelatedLinks from '@/app/components/ipad/IPadRelatedLinks'
+import AuthorByline from '@/app/components/AuthorByline'
+import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 
 const PAGE_TITLE = 'iPadのキーボードどれが使える？Magic Keyboard全型番と対応モデル一覧'
 const PAGE_DESCRIPTION =
@@ -45,9 +47,7 @@ export default async function AccessoriesSummaryPage() {
     .filter((a) => a.type === 'keyboard')
     .sort((a, b) => a.display_order - b.display_order)
 
-  const today = new Date()
-  const dateStr = today.toISOString().split('T')[0]
-  const dateDisplay = today.toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' })
+  const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/ipad/accessories-summary/page.tsx')
 
   // シリアライズ: 各モデルに対応キーボード情報を付与
   const serializedKeyboards = keyboardAccessories.map((kb) => ({
@@ -99,17 +99,12 @@ export default async function AccessoriesSummaryPage() {
   }
 
   // JSON-LD: Article
-  const articleJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
+    const articleJsonLd = buildArticleJsonLd({
     headline: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
-    datePublished: dateStr,
-    dateModified: dateStr,
-    author: { '@type': 'Organization', name: 'ユーズドラボ', url: 'https://used-lab.com/' },
-    publisher: { '@type': 'Organization', name: 'ユーズドラボ' },
-    mainEntityOfPage: { '@type': 'WebPage', '@id': PAGE_URL },
-  }
+    dateStr,
+    url: PAGE_URL,
+  })
 
   return (
     <main>
@@ -207,6 +202,7 @@ export default async function AccessoriesSummaryPage() {
                 </a>
               </li>
             </ol>
+          <AuthorByline />
           </div>
         </nav>
 

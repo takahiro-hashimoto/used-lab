@@ -25,6 +25,9 @@ type Props = {
   items: ShopDetailItem[]
   specRows: SpecRow[]
   getCtaUrl?: (shop: Shop) => string
+  renderExtra?: (shopKey: string) => React.ReactNode
+  imageOverrides?: Record<string, { src: string; alt: string }>
+  ctaOverrides?: Record<string, { label: string; url: string }>
 }
 
 function SpecValue({ value }: { value: string | null }) {
@@ -34,7 +37,7 @@ function SpecValue({ value }: { value: string | null }) {
   return <>{value}</>
 }
 
-export default function ShopDetailSection({ productName, items, specRows, getCtaUrl }: Props) {
+export default function ShopDetailSection({ productName, items, specRows, getCtaUrl, renderExtra, imageOverrides, ctaOverrides }: Props) {
   if (items.length === 0) return null
 
   return (
@@ -55,8 +58,8 @@ export default function ShopDetailSection({ productName, items, specRows, getCta
             <div className="recommend-card__overview">
               <figure className="recommend-card__image">
                 <img
-                  src={`/images/shop/${shop.shop_key}-thumb.jpg`}
-                  alt={`${shop.shop}公式サイトのスクリーンショット`}
+                  src={imageOverrides?.[shop.shop_key]?.src ?? `/images/shop/${shop.shop_key}-thumb.jpg`}
+                  alt={imageOverrides?.[shop.shop_key]?.alt ?? `${shop.shop}公式サイトのスクリーンショット`}
                   width={300}
                   height={400}
                   loading="lazy"
@@ -112,7 +115,16 @@ export default function ShopDetailSection({ productName, items, specRows, getCta
               <p className="recommend-card__shops-label">
                 ＼ {shop.shop}で<strong>中古{productName}を探す</strong> ／
               </p>
-              {meta.ctaButtons && meta.ctaButtons.length > 0 ? (
+              {ctaOverrides?.[shop.shop_key] ? (
+                <div className="recommend-card__shop-btns recommend-card__shop-btns--single">
+                  <a
+                    href={ctaOverrides[shop.shop_key].url}
+                    className="m-btn m-btn--primary"
+                  >
+                    {ctaOverrides[shop.shop_key].label} <i className="fa-solid fa-chevron-right" aria-hidden="true"></i>
+                  </a>
+                </div>
+              ) : meta.ctaButtons && meta.ctaButtons.length > 0 ? (
                 <div className="recommend-card__shop-btns">
                   {meta.ctaButtons.map((btn, i) => (
                     <a
@@ -139,6 +151,7 @@ export default function ShopDetailSection({ productName, items, specRows, getCta
                 </div>
               )}
             </div>
+            {renderExtra?.(shop.shop_key)}
           </div>
         ))}
       </div>

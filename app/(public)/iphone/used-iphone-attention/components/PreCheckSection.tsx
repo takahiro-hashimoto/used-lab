@@ -14,7 +14,7 @@ export default function PreCheckSection() {
         <MediaCard
           src="/images/content/photo/used-iphone-network-restriction.jpg"
           alt="IMEI確認のイメージ"
-          title="ネットワーク制限△の端末を買うのは慎重に。"
+          title="ネットワーク制限が「△」なら避ける"
           width={800}
           height={450}
           aside
@@ -82,7 +82,7 @@ export default function PreCheckSection() {
         <MediaCard
           src="/images/content/thumbnail/used-iphone-battery-check.jpg"
           alt="バッテリー容量を確認する様子"
-          title="バッテリーの劣化状態―最大容量80%未満なら購入を避ける"
+          title="バッテリー最大容量が80%未満なら避ける"
           width={800}
           height={450}
           aside
@@ -145,7 +145,7 @@ export default function PreCheckSection() {
         <MediaCard
           src="/images/content/thumbnail/used-iphone-ios-support.jpg"
           alt="iOSサポートのイメージ画像"
-          title="iOSサポート切れのリスク―サポート残り2年未満なら購入を避ける"
+          title="iOSサポート残り2年未満なら避ける"
           width={800}
           height={450}
           aside
@@ -168,7 +168,7 @@ export default function PreCheckSection() {
         <MediaCard
           src="/images/content/thumbnail/used-iphone-simlock.jpg"
           alt="SIMカードのイメージ画像"
-          title="SIMロック・通信周り―ロック解除できない端末は購入を避ける"
+          title="SIMロック未解除の端末は避ける"
           width={800}
           height={450}
           aside

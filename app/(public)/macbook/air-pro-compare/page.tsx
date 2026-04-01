@@ -12,6 +12,8 @@ import SummarySection from './components/SummarySection'
 import MacBookRelatedLinks from '@/app/components/macbook/MacBookRelatedLinks'
 import { getAllMacBookModels, getLatestMacBookPriceLog } from '@/lib/queries'
 import type { MacBookPriceLog } from '@/lib/types'
+import AuthorByline from '@/app/components/AuthorByline'
+import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 
 const PAGE_TITLE = 'MacBook AirとProどっちがいい？違いと選び方をやさしく解説'
 const PAGE_DESCRIPTION =
@@ -38,9 +40,7 @@ export const metadata: Metadata = {
 export const revalidate = 86400
 
 export default async function AirProComparePage() {
-  const today = new Date()
-  const dateStr = today.toISOString().split('T')[0]
-  const dateDisplay = today.toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' })
+  const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/macbook/air-pro-compare/page.tsx')
 
   // データ取得
   const models = await getAllMacBookModels()
@@ -66,17 +66,12 @@ export default async function AirProComparePage() {
     ],
   }
 
-  const articleJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
+    const articleJsonLd = buildArticleJsonLd({
     headline: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
-    datePublished: '2026-03-24',
-    dateModified: dateStr,
-    author: { '@type': 'Organization', name: 'ユーズドラボ', url: 'https://used-lab.com/' },
-    publisher: { '@type': 'Organization', name: 'ユーズドラボ' },
-    mainEntityOfPage: { '@type': 'WebPage', '@id': PAGE_URL },
-  }
+    dateStr,
+    url: PAGE_URL,
+  })
 
   return (
     <main>
@@ -212,6 +207,7 @@ export default async function AirProComparePage() {
                 </a>
               </li>
             </ol>
+          <AuthorByline />
           </div>
         </nav>
 

@@ -10,6 +10,8 @@ import PencilDetailSection from './components/PencilDetailSection'
 import PencilGuideSection from './components/PencilGuideSection'
 import FaqSection from '@/app/components/support/FaqSection'
 import IPadRelatedLinks from '@/app/components/ipad/IPadRelatedLinks'
+import AuthorByline from '@/app/components/AuthorByline'
+import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 
 const PAGE_TITLE = 'Apple Pencilの違いを比較！あなたにぴったりのアップルペンシルがわかる'
 const PAGE_DESCRIPTION =
@@ -42,9 +44,7 @@ export default async function ApplePencilComparePage() {
   ])
   const accessoryLookup = buildAccessoryLookup(allAccessories, allCompatibility)
 
-  const today = new Date()
-  const dateStr = today.toISOString().split('T')[0]
-  const dateDisplay = today.toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' })
+  const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/ipad/apple-pencil-compare/page.tsx')
 
   const serializedModels = allModels.map((m) => ({
     id: m.id,
@@ -76,17 +76,12 @@ export default async function ApplePencilComparePage() {
   }
 
   // JSON-LD: Article
-  const articleJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
+    const articleJsonLd = buildArticleJsonLd({
     headline: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
-    datePublished: dateStr,
-    dateModified: dateStr,
-    author: { '@type': 'Organization', name: 'ユーズドラボ', url: 'https://used-lab.com/' },
-    publisher: { '@type': 'Organization', name: 'ユーズドラボ' },
-    mainEntityOfPage: { '@type': 'WebPage', '@id': PAGE_URL },
-  }
+    dateStr,
+    url: PAGE_URL,
+  })
 
   return (
     <main>
@@ -189,6 +184,7 @@ export default async function ApplePencilComparePage() {
                 </a>
               </li>
             </ol>
+          <AuthorByline />
           </div>
         </nav>
 

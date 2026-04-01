@@ -23,6 +23,18 @@ export default function ShopDetailSection({ items }: Props) {
       productName="iPhone"
       items={items}
       specRows={specRows}
+      imageOverrides={{
+        carrier: {
+          src: '/images/mvno/rakuten-mobile-thumb.jpg',
+          alt: '格安SIMで中古iPhoneをお得に使う',
+        },
+      }}
+      ctaOverrides={{
+        carrier: {
+          label: 'キャリア認定中古で探す',
+          url: '/iphone/mvno/',
+        },
+      }}
     />
   )
 }

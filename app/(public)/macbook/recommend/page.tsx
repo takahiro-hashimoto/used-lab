@@ -8,7 +8,7 @@ import {
   getLatestMacBookPriceLog,
 } from '@/lib/queries'
 import type { MacBookModel, MacBookPriceLog } from '@/lib/types'
-import { buildFallbackShops, buildBreadcrumbJsonLd, buildArticleJsonLd, buildFaqJsonLd } from '@/lib/utils/shared-helpers'
+import { buildFallbackShops, buildBreadcrumbJsonLd, buildArticleJsonLd, buildFaqJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import {
   RECOMMEND_DATE_LABEL,
   RECOMMEND_YEAR,
@@ -30,6 +30,7 @@ import ShopSection from '@/app/components/ShopSection'
 import MacBookFaqSection from './components/MacBookFaqSection'
 import MacBookRelatedLinks from '@/app/components/macbook/MacBookRelatedLinks'
 import ValueZoneChart from '@/app/components/ValueZoneChart'
+import AuthorByline from '@/app/components/AuthorByline'
 
 const PAGE_TITLE = `中古MacBookおすすめ${RECOMMEND_COUNT}機種を解説。狙い目の型落ちモデルはどれ？【${RECOMMEND_DATE_LABEL}版】`
 const PAGE_DESCRIPTION =
@@ -71,9 +72,7 @@ export default async function MacBookRecommendPage() {
     recommendModels.map((m) => getLatestMacBookPriceLog(m.id))
   )
 
-  const today = new Date()
-  const dateStr = today.toISOString().split('T')[0]
-  const dateDisplay = today.toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' })
+  const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/macbook/recommend/page.tsx')
 
   // JSON-LD
   const breadcrumbJsonLd = buildBreadcrumbJsonLd([
@@ -262,6 +261,7 @@ export default async function MacBookRecommendPage() {
                 </a>
               </li>
             </ol>
+          <AuthorByline />
           </div>
         </nav>
 
