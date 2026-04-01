@@ -32,6 +32,7 @@ import IPhoneFaqSection from './components/IPhoneFaqSection'
 import ValueZoneChart from '@/app/components/ValueZoneChart'
 import IPhoneRelatedLinks from '@/app/components/iphone/IPhoneRelatedLinks'
 import AuthorByline from '@/app/components/AuthorByline'
+import HeroMeta from '@/app/components/HeroMeta'
 
 const PAGE_TITLE = `中古iPhoneおすすめ機種${RECOMMEND_COUNT}選｜目的別に狙い目モデルを解説【${RECOMMEND_DATE_LABEL}版】`
 const PAGE_DESCRIPTION =
@@ -46,7 +47,7 @@ export const metadata: Metadata = {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/iphone/recommend/',
-    images: [{ url: '/images/iphone/iphone16pro.jpg', width: 360, height: 360, alt: PAGE_TITLE }],
+    images: [{ url: '/images/iphone/iphone16pro.jpg', width: 1200, height: 630, alt: PAGE_TITLE }],
   },
   twitter: {
     title: PAGE_TITLE,
@@ -179,13 +180,7 @@ export default async function IPhoneTopPage() {
               <h1 className="hero-title" itemProp="headline">
                 {PAGE_TITLE}
               </h1>
-              <div className="hero-meta">
-                <i className="fa-regular fa-clock" aria-hidden="true"></i>
-                <span>
-                  更新日: <time dateTime={dateStr} itemProp="dateModified">{dateDisplay}</time> | 当記事のリンクには広告が含まれています
-                </span>
-                <meta itemProp="datePublished" content={dateStr} />
-              </div>
+              <HeroMeta dateStr={dateStr} dateDisplay={dateDisplay} withItemProp />
             </div>
             <div className="hero-visual">
               <figure className="hero-media">
@@ -231,7 +226,8 @@ export default async function IPhoneTopPage() {
         {/* 目次 */}
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
-            <p className="toc-title">タップできる目次</p>
+            <div className="toc-wrapper">
+<p className="toc-title"><i className="fa-solid fa-list" aria-hidden="true"></i> タップできる目次</p>
             <ol className="l-grid l-grid--3col u-list-reset">
               <li>
                 <a href="#conclusion" className="toc-item">
@@ -269,6 +265,7 @@ export default async function IPhoneTopPage() {
                 </a>
               </li>
             </ol>
+</div>
           <AuthorByline />
           </div>
         </nav>

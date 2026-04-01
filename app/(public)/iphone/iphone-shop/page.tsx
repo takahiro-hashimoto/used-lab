@@ -20,6 +20,7 @@ import PopularSection from './components/PopularSection'
 import FaqSection from './components/FaqSection'
 import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
+import HeroMeta from '@/app/components/HeroMeta'
 
 const PAGE_TITLE = `中古iPhoneを買うならどこ？ECサイト・ショップのおすすめを紹介【${SHOP_PAGE_DATE_LABEL}】`
 const PAGE_DESCRIPTION = `中古iPhoneを買うならどこがおすすめ？信頼できるECサイト・ショップを保証・価格・品質の観点から徹底比較。最適な購入先を紹介します【${SHOP_PAGE_DATE_LABEL}】`
@@ -33,7 +34,7 @@ export const metadata: Metadata = {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/iphone/iphone-shop/',
-    images: [{ url: '/images/content/thumbnail/cheap-buy.jpg', width: 360, height: 360, alt: PAGE_TITLE }],
+    images: [{ url: '/images/content/thumbnail/cheap-buy.jpg', width: 1200, height: 630, alt: PAGE_TITLE }],
   },
   twitter: {
     title: PAGE_TITLE,
@@ -124,13 +125,7 @@ export default async function IPhoneShopPage() {
               <h1 className="hero-title" itemProp="headline">
                 中古iPhoneを買うならどこ？ECサイト・ショップのおすすめを紹介
               </h1>
-              <div className="hero-meta">
-                <i className="fa-regular fa-clock" aria-hidden="true"></i>
-                <span>
-                  更新日: <time dateTime={dateStr} itemProp="dateModified">{dateDisplay}</time> | 当記事のリンクには広告が含まれています
-                </span>
-                <meta itemProp="datePublished" content={dateStr} />
-              </div>
+              <HeroMeta dateStr={dateStr} dateDisplay={dateDisplay} withItemProp />
             </div>
             <div className="hero-visual">
               <figure className="hero-media">
@@ -170,7 +165,8 @@ export default async function IPhoneShopPage() {
         {/* 目次 */}
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
-            <p className="toc-title">タップできる目次</p>
+            <div className="toc-wrapper">
+<p className="toc-title"><i className="fa-solid fa-list" aria-hidden="true"></i> タップできる目次</p>
             <ol className="l-grid l-grid--3col u-list-reset">
               <li>
                 <a href="#shops" className="toc-item">
@@ -203,6 +199,7 @@ export default async function IPhoneShopPage() {
                 </a>
               </li>
             </ol>
+</div>
           <AuthorByline />
           </div>
         </nav>

@@ -23,7 +23,8 @@ export default function StyleGuidePage() {
       {/* 目次 */}
       <nav className="l-section l-section--no-pt" aria-label="目次">
         <div className="l-container">
-          <p className="toc-title">セクション</p>
+          <div className="toc-wrapper">
+<p className="toc-title"><i className="fa-solid fa-list" aria-hidden="true"></i> セクション</p>
           <ol className="l-grid l-grid--3col u-list-reset">
             {[
               ['#tokens', 'デザイントークン'],
@@ -47,6 +48,7 @@ export default function StyleGuidePage() {
               </li>
             ))}
           </ol>
+</div>
         </div>
       </nav>
 

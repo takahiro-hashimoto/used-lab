@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import ShareBox from '@/app/components/ShareBox'
 import ComparisonTable from './components/ComparisonTable'
+import HeroMeta from '@/app/components/HeroMeta'
 import ComparisonSections from './components/ComparisonSections'
 import RecommendSection from './components/RecommendSection'
 import UseCaseSection from './components/UseCaseSection'
@@ -28,7 +29,7 @@ export const metadata: Metadata = {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/macbook/air-pro-compare/',
-    images: [{ url: '/images/content/thumbnail/macbook-image-05.jpg', width: 360, height: 360, alt: PAGE_TITLE }],
+    images: [{ url: '/images/content/thumbnail/macbook-image-05.jpg', width: 1200, height: 630, alt: PAGE_TITLE }],
   },
   twitter: {
     title: PAGE_TITLE,
@@ -103,13 +104,7 @@ export default async function AirProComparePage() {
                 <h1 className="hero-title" itemProp="headline">
                   MacBook AirとProどっちがいい？違いと選び方をやさしく解説
                 </h1>
-                <div className="hero-meta">
-                  <i className="fa-regular fa-clock" aria-hidden="true"></i>
-                  <span>
-                    更新日: <time dateTime={dateStr} itemProp="dateModified">{dateDisplay}</time> | 当記事のリンクには広告が含まれています
-                  </span>
-                  <meta itemProp="datePublished" content="2026-03-24" />
-                </div>
+                <HeroMeta dateStr={dateStr} dateDisplay={dateDisplay} withItemProp />
               </div>
               <div className="hero-visual">
                 <figure className="hero-media">
@@ -149,7 +144,8 @@ export default async function AirProComparePage() {
         {/* 目次 */}
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
-            <p className="toc-title">タップできる目次</p>
+            <div className="toc-wrapper">
+<p className="toc-title"><i className="fa-solid fa-list" aria-hidden="true"></i> タップできる目次</p>
             <ol className="l-grid l-grid--3col u-list-reset">
               <li>
                 <a href="#comparison" className="toc-item">
@@ -207,6 +203,7 @@ export default async function AirProComparePage() {
                 </a>
               </li>
             </ol>
+</div>
           <AuthorByline />
           </div>
         </nav>

@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import type { AirPodsModel } from '@/lib/types'
+import HeroMeta from '@/app/components/HeroMeta'
 
 type Props = {
   model: AirPodsModel
@@ -86,14 +87,7 @@ export default function HeroSection({ model, dateStr, dateDisplay }: Props) {
             <h1 className="hero-title">
               中古{model.name}（{model.model}）は今買うべき？サポート期間、基本スペック、中古相場から解説
             </h1>
-            <div className="hero-meta">
-              <i className="fa-regular fa-clock" aria-hidden="true"></i>
-              <span>
-                更新日: <time dateTime={dateStr}>
-                  {dateDisplay}
-                </time> | 当記事のリンクには広告が含まれています
-              </span>
-            </div>
+            <HeroMeta dateStr={dateStr} dateDisplay={dateDisplay} />
           </div>
           <div className="hero-visual">
             <figure className="hero-media">

@@ -18,6 +18,7 @@ import FaqSection from './components/FaqSection'
 import PopularMacBook from '@/app/components/PopularMacBook'
 import MacBookRelatedLinks from '@/app/components/macbook/MacBookRelatedLinks'
 import AuthorByline from '@/app/components/AuthorByline'
+import HeroMeta from '@/app/components/HeroMeta'
 
 // ============================================================
 // 型定義
@@ -114,7 +115,7 @@ export async function generateMetadata(): Promise<Metadata> {
       title,
       description,
       url: '/macbook/macbook-price-info/',
-      images: [{ url: '/images/content/thumbnail/graph-image.jpg', width: 360, height: 360, alt: title }],
+      images: [{ url: '/images/content/thumbnail/graph-image.jpg', width: 1200, height: 630, alt: title }],
     },
     twitter: {
       title,
@@ -338,13 +339,7 @@ export default async function MacBookPriceInfoPage() {
               <h1 className="hero-title" itemProp="headline">
                 MacBookの中古相場一覧 | 歴代{modelCount}機種の価格推移を独自集計【{PRICE_INFO_UPDATE_MONTH}】
               </h1>
-              <div className="hero-meta">
-                <i className="fa-regular fa-clock" aria-hidden="true"></i>
-                <span>
-                  更新日: <time dateTime={dateStr} itemProp="dateModified">{dateDisplay}</time> | 当記事のリンクには広告が含まれています
-                </span>
-                <meta itemProp="datePublished" content={dateStr} />
-              </div>
+              <HeroMeta dateStr={dateStr} dateDisplay={dateDisplay} withItemProp />
             </div>
             <div className="hero-visual">
               <figure className="hero-media">
@@ -380,7 +375,8 @@ export default async function MacBookPriceInfoPage() {
         {/* 目次 */}
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
-            <p className="toc-title">タップできる目次</p>
+            <div className="toc-wrapper">
+<p className="toc-title"><i className="fa-solid fa-list" aria-hidden="true"></i> タップできる目次</p>
             <ol className="l-grid l-grid--3col u-list-reset">
               <li>
                 <a href="#pd-dashboard" className="toc-item">
@@ -413,6 +409,7 @@ export default async function MacBookPriceInfoPage() {
                 </a>
               </li>
             </ol>
+</div>
           <AuthorByline />
           </div>
         </nav>

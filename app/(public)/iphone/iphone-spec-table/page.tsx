@@ -7,6 +7,7 @@ import DualCompare from './components/DualCompare'
 import BenchmarkSection from './components/BenchmarkSection'
 import EvolutionTimeline from './components/EvolutionTimeline'
 import GlossarySection from '@/app/components/GlossarySection'
+import HeroMeta from '@/app/components/HeroMeta'
 
 const GLOSSARY_ITEMS = [
   { title: 'CPU', icon: 'fa-solid fa-microchip', desc: 'iPhoneの頭脳にあたるチップで、全体的な処理速度や電力効率に大きく影響。A16やA17 Proなどの世代ごとに性能が進化。' },
@@ -43,7 +44,7 @@ export const metadata: Metadata = {
     title: '歴代iPhoneスペック比較表！気になる機種の性能差や違いがわかる',
     description: '2019年以降に発売された歴代iPhoneのスペック比較表一覧です。iPhoneの機能がどのようにアップデートされてきたのか確認するのにご活用ください。',
     url: '/iphone/iphone-spec-table/',
-    images: [{ url: '/images/iphone/iphone16pro.jpg', width: 360, height: 360, alt: '歴代iPhoneスペック比較表のイメージ' }],
+    images: [{ url: '/images/iphone/iphone16pro.jpg', width: 1200, height: 630, alt: '歴代iPhoneスペック比較表のイメージ' }],
   },
   twitter: {
     title: '歴代iPhoneスペック比較表！気になる機種の性能差や違いがわかる',
@@ -178,15 +179,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/iphone-s
               <h1 className="hero-title" itemProp="headline">
                 歴代iPhoneスペック比較表！気になる機種の性能差や違いがわかる
               </h1>
-              <div className="hero-meta">
-                <i className="fa-regular fa-clock" aria-hidden="true"></i>
-                <span>
-                  更新日: <time dateTime={dateStr} itemProp="dateModified">
-                    {dateDisplay}
-                  </time> | 当記事のリンクには広告が含まれています
-                  <meta itemProp="datePublished" content={dateStr} />
-                </span>
-              </div>
+              <HeroMeta dateStr={dateStr} dateDisplay={dateDisplay} withItemProp />
             </div>
             <div className="hero-visual">
               <figure className="hero-media">
@@ -225,7 +218,8 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/iphone-s
         {/* 目次 */}
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
-            <p className="toc-title">タップできる目次</p>
+            <div className="toc-wrapper">
+<p className="toc-title"><i className="fa-solid fa-list" aria-hidden="true"></i> タップできる目次</p>
             <ol className="l-grid l-grid--3col u-list-reset">
               <li>
                 <a href="#spec-table" className="toc-item">
@@ -258,6 +252,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/iphone-s
                 </a>
               </li>
             </ol>
+</div>
             <AuthorByline />
           </div>
         </nav>
@@ -269,8 +264,6 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/iphone-s
         <EvolutionTimeline />
         <GlossarySection productName="iPhone" items={GLOSSARY_ITEMS} />
 
-        {/* 関連記事 */}
-        <IPhoneRelatedLinks excludeHref={["/iphone/iphone-spec-table/", "/iphone/recommend/"]} />
         <section className="l-section" id="popular" aria-labelledby="heading-popular">
           <div className="l-container">
             <h2 className="m-section-heading m-section-heading--lg" id="heading-popular">目的別に人気の中古iPhone</h2>
@@ -282,8 +275,13 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/iphone-s
               <div className="popular-card-body">
                 <p className="popular-card-subtitle">目的別におすすめ機種を厳選！</p>
                 <p className="popular-card-title">中古iPhoneおすすめ5選</p>
-                <p className="popular-card-desc">カメラ性能を重視する人向け、大画面で動画やSNSを楽しみたい人向けなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。</p>
-                <div><a className="m-btn m-btn--primary" href="/iphone/recommend/">おすすめ5機種を見る <i className="fa-solid fa-arrow-right" aria-hidden="true"></i></a></div>
+              <p className="popular-card-subtitle">目的別におすすめ機種を厳選！</p>                <p className="popular-card-desc">カメラ性能を重視する人向け、大画面で動画やSNSを楽しみたい人向けなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。</p>
+                <div className="popular-card-buttons">
+                  <a className="m-btn m-btn--primary" href="/iphone/recommend/">おすすめ5機種を見る <i className="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+                  <a className="m-btn m-btn--secondary" href="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Fsmartphone%2Fiphone" target="_blank" rel="noopener noreferrer">
+                    イオシスで中古iPhoneを探す <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                  </a>
+                </div>
               </div>
             </div>
             <div className="m-callout m-callout--muted" style={{ marginTop: 'var(--space-2xl)' }}>
@@ -294,6 +292,8 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/iphone-s
             </div>
           </div>
         </section>
+        {/* 関連記事 */}
+        <IPhoneRelatedLinks excludeHref={["/iphone/iphone-spec-table/", "/iphone/recommend/"]} />
         <ShareBox url="https://used-lab.com/iphone/iphone-spec-table/" text="歴代iPhoneスペック比較表！気になる機種の性能差や違いがわかる" />
         </div>
       </article>

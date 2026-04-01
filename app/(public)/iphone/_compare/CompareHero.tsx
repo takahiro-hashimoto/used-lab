@@ -6,6 +6,7 @@ import Image from 'next/image'
 import type { IPhoneModel } from '@/lib/types'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import { getShortName } from './helpers'
+import HeroMeta from '@/app/components/HeroMeta'
 
 type Props = {
   modelL: IPhoneModel
@@ -35,12 +36,7 @@ export default function CompareHero({ modelL, modelR, slug }: Props) {
             <h1 className="hero-title">
               {modelL.model}と{shortR}中古で買うならどっち？2機種の違いを比較
             </h1>
-            <div className="hero-meta">
-              <i className="fa-regular fa-clock" aria-hidden="true"></i>
-              <span>最終更新日: <time dateTime="2026-03-31">2026年3月31日</time></span>
-              <span>｜</span>
-              <span>当記事のリンクには広告が含まれています</span>
-            </div>
+            <HeroMeta dateStr="2026-03-31" dateDisplay="2026年3月31日" />
           </div>
 
           {/* VS ビジュアル */}

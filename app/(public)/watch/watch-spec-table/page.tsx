@@ -27,6 +27,7 @@ import PopularSection from '@/app/components/support/PopularSection'
 import WatchRelatedLinks from '@/app/components/watch/WatchRelatedLinks'
 import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
+import HeroMeta from '@/app/components/HeroMeta'
 
 export const metadata: Metadata = {
   title: '歴代Apple Watchスペック比較表！各世代の性能の違いがすぐわかる',
@@ -37,7 +38,7 @@ export const metadata: Metadata = {
     title: '歴代Apple Watchスペック比較表！各世代の性能の違いがすぐわかる',
     description: '歴代Apple Watchのスペック比較表一覧です。Series・SE・Ultraの性能差や機能の違いを一目で確認できます。',
     url: '/watch/watch-spec-table/',
-    images: [{ url: '/images/watch/watch-11.jpg', width: 360, height: 360, alt: '歴代Apple Watchスペック比較表のイメージ' }],
+    images: [{ url: '/images/watch/watch-11.jpg', width: 1200, height: 630, alt: '歴代Apple Watchスペック比較表のイメージ' }],
   },
   twitter: {
     title: '歴代Apple Watchスペック比較表！各世代の性能の違いがすぐわかる',
@@ -151,14 +152,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/watch/watch-spe
               <h1 className="hero-title">
                 歴代Apple Watchスペック比較表！各世代の性能の違いがすぐわかる
               </h1>
-              <div className="hero-meta">
-                <i className="fa-regular fa-clock" aria-hidden="true"></i>
-                <span>
-                  更新日: <time dateTime={dateStr}>
-                    {dateDisplay}
-                  </time> | 当記事のリンクには広告が含まれています
-                </span>
-              </div>
+              <HeroMeta dateStr={dateStr} dateDisplay={dateDisplay} />
             </div>
             <div className="hero-visual">
               <figure className="hero-media">
@@ -197,7 +191,8 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/watch/watch-spe
         {/* 目次 */}
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
-            <p className="toc-title">タップできる目次</p>
+            <div className="toc-wrapper">
+<p className="toc-title"><i className="fa-solid fa-list" aria-hidden="true"></i> タップできる目次</p>
             <ol className="l-grid l-grid--3col u-list-reset">
               <li>
                 <a href="#spec-table" className="toc-item">
@@ -224,6 +219,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/watch/watch-spe
                 </a>
               </li>
             </ol>
+</div>
             <AuthorByline />
           </div>
         </nav>
@@ -243,6 +239,8 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/watch/watch-spe
           cardDescription="健康管理を重視する人向け、コスパ重視の人向けなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。"
           buttonText="おすすめ5機種を見る"
           buttonHref="/watch/recommend/"
+          secondaryButtonText="イオシスで中古Apple Watchを探す"
+          secondaryButtonHref="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Fwearable%2Fapple%3Fnot%3Dpencil"
         />
         <WatchRelatedLinks excludeHref="/watch/watch-spec-table/" />
         <ShareBox url="https://used-lab.com/watch/watch-spec-table/" text="歴代Apple Watchスペック比較表！各世代の性能の違いがすぐわかる" />

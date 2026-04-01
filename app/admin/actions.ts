@@ -101,7 +101,6 @@ export async function getModels(categoryKey: string) {
     .order('id', { ascending: true })
 
   if (error) {
-    console.error(`getModels(${categoryKey}):`, error.message)
     return []
   }
   return data || []
@@ -132,7 +131,6 @@ export async function createModel(categoryKey: string, formData: FormData) {
     .insert(record)
 
   if (error) {
-    console.error(`createModel(${categoryKey}):`, error.message)
     return { error: `保存に失敗しました: ${error.message}` }
   }
 
@@ -152,7 +150,6 @@ export async function updateModel(categoryKey: string, id: number, formData: For
     .eq('id', id)
 
   if (error) {
-    console.error(`updateModel(${categoryKey}, ${id}):`, error.message)
     return { error: `更新に失敗しました: ${error.message}` }
   }
 
@@ -172,7 +169,6 @@ export async function getIPadModelsForSelect(): Promise<{ id: number; model: str
     .order('id', { ascending: true })
 
   if (error) {
-    console.error('getIPadModelsForSelect:', error.message)
     return []
   }
   return (data || []) as { id: number; model: string }[]
@@ -186,7 +182,6 @@ export async function getAccessoryCompatibility(accessoryId: number): Promise<nu
     .eq('accessory_id', accessoryId)
 
   if (error) {
-    console.error('getAccessoryCompatibility:', error.message)
     return []
   }
   return (data || []).map((row: { ipad_model_id: number }) => row.ipad_model_id)
@@ -204,7 +199,6 @@ export async function updateAccessoryCompatibility(
     .eq('accessory_id', accessoryId)
 
   if (deleteError) {
-    console.error('updateAccessoryCompatibility (delete):', deleteError.message)
     return { error: `互換性の更新に失敗しました: ${deleteError.message}` }
   }
 
@@ -220,7 +214,6 @@ export async function updateAccessoryCompatibility(
       .insert(rows)
 
     if (insertError) {
-      console.error('updateAccessoryCompatibility (insert):', insertError.message)
       return { error: `互換性の保存に失敗しました: ${insertError.message}` }
     }
   }
@@ -240,7 +233,6 @@ export async function getShopsForAdmin(): Promise<{ id: number; shop: string; sh
     .order('id', { ascending: true })
 
   if (error) {
-    console.error('getShopsForAdmin:', error.message)
     return []
   }
   return (data || []) as { id: number; shop: string; shop_key: string }[]
@@ -258,7 +250,6 @@ export async function getProductShopLinksForAdmin(
     .eq('product_id', productId)
 
   if (error) {
-    console.error('getProductShopLinksForAdmin:', error.message)
     return []
   }
   return (data || []) as { shop_id: number; url: string }[]
@@ -278,7 +269,6 @@ export async function updateProductShopLinks(
     .eq('product_id', productId)
 
   if (deleteError) {
-    console.error('updateProductShopLinks (delete):', deleteError.message)
     return { error: `ショップリンクの更新に失敗しました: ${deleteError.message}` }
   }
 
@@ -297,7 +287,6 @@ export async function updateProductShopLinks(
       .insert(rows)
 
     if (insertError) {
-      console.error('updateProductShopLinks (insert):', insertError.message)
       return { error: `ショップリンクの保存に失敗しました: ${insertError.message}` }
     }
   }
@@ -325,7 +314,6 @@ export async function getNewsItems(): Promise<NewsItem[]> {
     .order('date', { ascending: false })
 
   if (error) {
-    console.error('getNewsItems:', error.message)
     return []
   }
   return (data || []) as NewsItem[]
@@ -342,7 +330,6 @@ export async function getPublishedNews(limit?: number): Promise<NewsItem[]> {
   const { data, error } = await query
 
   if (error) {
-    console.error('getPublishedNews:', error.message)
     return []
   }
   return (data || []) as NewsItem[]
@@ -363,7 +350,6 @@ export async function createNewsItem(formData: FormData) {
     .insert({ date, content, published })
 
   if (error) {
-    console.error('createNewsItem:', error.message)
     return { error: `保存に失敗しました: ${error.message}` }
   }
 
@@ -387,7 +373,6 @@ export async function updateNewsItem(id: number, formData: FormData) {
     .eq('id', id)
 
   if (error) {
-    console.error('updateNewsItem:', error.message)
     return { error: `更新に失敗しました: ${error.message}` }
   }
 
@@ -403,7 +388,6 @@ export async function deleteNewsItem(id: number) {
     .eq('id', id)
 
   if (error) {
-    console.error('deleteNewsItem:', error.message)
     return { error: `削除に失敗しました: ${error.message}` }
   }
 

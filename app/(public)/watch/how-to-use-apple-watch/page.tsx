@@ -11,6 +11,7 @@ import WatchRelatedLinks from '@/app/components/watch/WatchRelatedLinks'
 import FaqSection from '@/app/components/support/FaqSection'
 import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
+import HeroMeta from '@/app/components/HeroMeta'
 
 const PAGE_TITLE = 'アップルウォッチのできること25選！便利な機能や使い方がわかる【初心者向け】'
 const PAGE_DESCRIPTION =
@@ -25,7 +26,7 @@ export const metadata: Metadata = {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/watch/how-to-use-apple-watch/',
-    images: [{ url: '/images/watch/watch-9.jpg', width: 360, height: 360, alt: PAGE_TITLE }],
+    images: [{ url: '/images/watch/watch-9.jpg', width: 1200, height: 630, alt: PAGE_TITLE }],
   },
   twitter: {
     title: PAGE_TITLE,
@@ -88,13 +89,7 @@ export default function HowToUseAppleWatchPage() {
               <h1 className="hero-title" itemProp="headline">
                 アップルウォッチのできること25選！【初心者向け】
               </h1>
-              <div className="hero-meta">
-                <i className="fa-regular fa-clock" aria-hidden="true"></i>
-                <span>
-                  更新日: <time dateTime={dateStr} itemProp="dateModified">{dateDisplay}</time> | 当記事のリンクには広告が含まれています
-                </span>
-                <meta itemProp="datePublished" content={dateStr} />
-              </div>
+              <HeroMeta dateStr={dateStr} dateDisplay={dateDisplay} withItemProp />
             </div>
             <div className="hero-visual">
               <figure className="hero-media">
@@ -136,7 +131,8 @@ export default function HowToUseAppleWatchPage() {
         {/* 目次 */}
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
-            <p className="toc-title">タップできる目次</p>
+            <div className="toc-wrapper">
+<p className="toc-title"><i className="fa-solid fa-list" aria-hidden="true"></i> タップできる目次</p>
             <ol className="l-grid l-grid--3col u-list-reset">
               <li>
                 <a href="#basic" className="toc-item">
@@ -164,6 +160,7 @@ export default function HowToUseAppleWatchPage() {
                 </a>
               </li>
             </ol>
+</div>
           <AuthorByline />
           </div>
         </nav>
@@ -189,11 +186,11 @@ export default function HowToUseAppleWatchPage() {
             items={[
               {
                 question: 'Apple WatchはiPhoneがないと使えない？',
-                answer: '初期設定にはiPhoneが必要ですが、セットアップ後はWi-Fi環境下であればiPhoneが手元になくても多くの機能を単体で利用できます。GPS + Cellularモデルならモバイル通信にも対応しており、電話やメッセージの送受信もApple Watch単体で可能です。',
+                answer: '初期設定にはiPhoneが必要ですが、セットアップ後はWi-Fi環境下であればiPhoneが手元になくても多くの機能を単体で利用できます。\nGPS + Cellularモデルならモバイル通信にも対応しており、電話やメッセージの送受信もApple Watch単体で可能です。',
               },
               {
                 question: 'Apple Watchのバッテリーはどのくらい持つ？',
-                answer: '通常使用で約18時間（Series 9以降は最大36時間の低電力モード対応）です。就寝前に充電すれば日中のバッテリー切れの心配はほぼありません。急速充電に対応したモデルなら約45分で80%まで充電できます。',
+                answer: '通常使用で約18時間（Series 9以降は最大36時間の低電力モード対応）です。就寝前に充電すれば日中のバッテリー切れの心配はほぼありません。\n急速充電に対応したモデルなら約45分で80%まで充電できます。',
               },
               {
                 question: 'Apple WatchはAndroidスマホでも使える？',
@@ -201,15 +198,15 @@ export default function HowToUseAppleWatchPage() {
               },
               {
                 question: 'Apple Watchのサイズはどう選べばいい？',
-                answer: '手首の細い方は小さいケースサイズ（40〜42mm）、標準〜太めの方は大きいケースサイズ（44〜46mm）がおすすめです。画面が大きいほど文字が読みやすく操作もしやすいため、迷ったら大きい方を選ぶのが無難です。',
+                answer: '手首の細い方は小さいケースサイズ（40〜42mm）、標準〜太めの方は大きいケースサイズ（44〜46mm）がおすすめです。\n画面が大きいほど文字が読みやすく操作もしやすいため、迷ったら大きい方を選ぶのが無難です。',
               },
               {
                 question: 'Apple Watchは中古で買っても大丈夫？',
-                answer: 'はい、中古でも十分活用できます。ただし、アクティベーションロックが解除されていること、バッテリーの最大容量が80%以上あることを確認しましょう。詳しい選び方は中古Apple Watch購入ガイドをご覧ください。',
+                answer: 'はい、中古でも十分活用できます。\nただし、アクティベーションロックが解除されていること、バッテリーの最大容量が80%以上あることを確認しましょう。詳しい選び方は中古Apple Watch購入ガイドをご覧ください。',
               },
               {
                 question: 'GPSモデルとGPS + Cellularモデルの違いは？',
-                answer: 'GPSモデルはiPhoneが近くにある状態で通信機能を利用します。GPS + CellularモデルはApple Watch単体でモバイル通信が可能で、ランニング中にiPhoneを持たずに音楽ストリーミングや電話ができます。詳しくは「GPSモデルとセルラーモデルの違い」をご覧ください。',
+                answer: 'GPSモデルはiPhoneが近くにある状態で通信機能を利用します。GPS + CellularモデルはApple Watch単体でモバイル通信が可能で、ランニング中にiPhoneを持たずに音楽ストリーミングや電話ができます。\n詳しくは「GPSモデルとセルラーモデルの違い」をご覧ください。',
               },
             ]}
           />
@@ -225,6 +222,8 @@ export default function HowToUseAppleWatchPage() {
           cardDescription="健康管理を重視する人向け、コスパ重視の人向けなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。"
           buttonText="おすすめ5機種を見る"
           buttonHref="/watch/recommend/"
+          secondaryButtonText="イオシスで中古Apple Watchを探す"
+          secondaryButtonHref="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Fwearable%2Fapple%3Fnot%3Dpencil"
         />
 
         <WatchRelatedLinks excludeHref="/watch/how-to-use-apple-watch/" />

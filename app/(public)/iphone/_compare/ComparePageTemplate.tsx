@@ -114,7 +114,8 @@ export default async function ComparePageTemplate({ config }: Props) {
         {/* 目次 */}
         <nav className="l-section l-section--sm l-section--no-pt" aria-label="目次">
           <div className="l-container">
-            <p className="toc-title">タップできる目次</p>
+            <div className="toc-wrapper">
+<p className="toc-title"><i className="fa-solid fa-list" aria-hidden="true"></i> タップできる目次</p>
             <ol className="l-grid l-grid--3col u-list-reset">
               <li><a href="#spec" className="toc-item">基本スペック <i className="fa-solid fa-chevron-down"></i></a></li>
               <li><a href="#camera" className="toc-item">カメラ性能 <i className="fa-solid fa-chevron-down"></i></a></li>
@@ -126,6 +127,7 @@ export default async function ComparePageTemplate({ config }: Props) {
               <li><a href="#verdict" className="toc-item">どんな人におすすめ？ <i className="fa-solid fa-chevron-down"></i></a></li>
               <li><a href="#faq" className="toc-item">よくある質問 <i className="fa-solid fa-chevron-down"></i></a></li>
             </ol>
+</div>
           <AuthorByline />
           </div>
         </nav>

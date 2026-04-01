@@ -11,10 +11,10 @@ export const RECOMMEND_DATE_LABEL = `${RECOMMEND_YEAR}年${RECOMMEND_MONTH}月`
 
 // ---------- おすすめ機種のslug一覧 ----------
 export const RECOMMEND_SLUGS = [
-  'normal-10',
-  'mini-6',
+  'normal-11',
+  'mini-7',
   'air-5',
-  'pro11-3',
+  'pro11-4',
   'pro12-6',
 ]
 
@@ -36,15 +36,15 @@ export type RecommendMeta = {
 }
 
 export const RECOMMEND_META: Record<string, RecommendMeta> = {
-  'normal-10': {
+  'normal-11': {
     label: 'コスパ重視',
     desc: 'はじめてのiPadに最適な1台',
-    subtitle: '万能エントリーモデル',
+    subtitle: '入門用iPadの新定番',
     description: [
-      '「できるだけ安くiPadを使いたい」なら、iPad 第10世代が最適です。A14 Bionicチップ搭載で、動画視聴・Web閲覧・SNSはもちろん、ちょっとした書類作成やオンライン授業にも十分対応できます。',
-      '10.9インチのLiquid Retinaディスプレイは、前世代から大幅にデザインが刷新されフルスクリーン化。USB-C端子を採用し、充電ケーブルも他のApple製品と統一できます。',
+      '「できるだけ安くiPadを使いたい」なら、iPad 第11世代が最適です。A16 Bionicチップ搭載で、前世代のA14から処理性能が大幅に向上。動画視聴・Web閲覧・SNSはもちろん、ちょっとした書類作成やオンライン授業にも余裕を持って対応できます。',
+      '10.9インチのLiquid Retinaディスプレイはフルスクリーンデザインを継続。USB-C端子を採用し、充電ケーブルも他のApple製品と統一できます。',
       'Apple Pencil（第1世代・USB-C）に対応しており、手書きメモやノート用途にも使えます。Smart Keyboard Folioも使えるため、簡易的なPC代わりとしても活躍します。',
-      '中古市場では在庫が非常に豊富で、3万円台から購入可能。iPadOSサポートも2029年頃まで続く見込みで、コスパは抜群です。',
+      '2025年発売の最新モデルのため、iPadOSサポートは2032年頃まで続く見込みです。前世代の第10世代は在庫がかなり少なくなっており、価格差もそこまで大きくないため、今から買うなら第11世代がおすすめです。',
     ],
     good: [
       'とにかく安くiPadを手に入れたい',
@@ -60,15 +60,15 @@ export const RECOMMEND_META: Record<string, RecommendMeta> = {
     displayLabel: '10.9" Liquid Retina',
     targetUser: 'コスパ重視<br>はじめてのiPad',
   },
-  'mini-6': {
+  'mini-7': {
     label: '携帯性重視',
     desc: '片手で持てるコンパクトiPad',
-    subtitle: 'ポケットサイズの万能機',
+    subtitle: '小型タブレットの決定版',
     description: [
-      '持ち運びやすさを最優先するなら、iPad mini 第6世代が最適です。8.3インチの小型ディスプレイながら、A15 Bionicチップ搭載で処理性能は必要十分。電子書籍リーダーとしても、ゲーム機としても優秀です。',
-      'USB-C端子を採用し、Apple Pencil（第2世代）にも対応。コンパクトなボディでありながら、メモ書きやスケッチといったクリエイティブ用途もこなせます。',
+      '持ち運びやすさを最優先するなら、iPad mini 第7世代が一押しです。8.3インチの小型ディスプレイながら、A17 Proチップ搭載でiPhone 15 Proと同等の処理性能。電子書籍リーダーとしても、ゲーム機としても非常に優秀です。',
+      'USB-C端子を採用し、Apple Pencil（Pro）にも対応。コンパクトなボディでありながら、メモ書きやスケッチといったクリエイティブ用途もこなせます。Apple Intelligenceにも対応しています。',
       '重量はわずか293gで、カバンに入れても負担にならないサイズ感。通勤・通学中の読書や、出先でのちょっとした作業に最適です。',
-      '中古市場ではmini 第7世代の登場で価格がこなれてきており、コンパクトなiPadを求めるなら今が狙い目です。iPadOSサポートも2028年頃まで続く見込みです。',
+      '前世代のmini 第6世代は2021年発売でiPadOSのサポート期間が残りわずかです。小型タブレットが欲しいなら、2031年頃までサポートが続く見込みのmini 第7世代を選びましょう。',
     ],
     good: [
       '片手で持てるコンパクトなiPadが欲しい',
@@ -78,9 +78,9 @@ export const RECOMMEND_META: Record<string, RecommendMeta> = {
     bad: [
       '大画面で動画や資料を見たい',
       'キーボードを付けてPC代わりに使いたい',
-      '5年以上の長期利用を想定している',
+      'できるだけ安くiPadを手に入れたい',
     ],
-    pencilLabel: '第2世代',
+    pencilLabel: 'Pro',
     displayLabel: '8.3" Liquid Retina',
     targetUser: '携帯性重視<br>電子書籍・ゲーム',
   },
@@ -108,15 +108,15 @@ export const RECOMMEND_META: Record<string, RecommendMeta> = {
     displayLabel: '10.9" Liquid Retina',
     targetUser: 'バランス重視<br>クリエイティブ用途',
   },
-  'pro11-3': {
+  'pro11-4': {
     label: 'プロ向け',
-    desc: 'M1チップ＋ProMotionの万能Pro',
-    subtitle: '型落ちProを最安で手に入れる',
+    desc: 'M2チップ＋ProMotionの万能Pro',
+    subtitle: '型落ちProのベストバイ',
     description: [
-      'プロ向けの高性能iPadを手頃な価格で手に入れたいなら、iPad Pro 11インチ 第3世代が最適です。M1チップ搭載で、動画編集・3Dモデリング・大量のレイヤーを使ったイラスト制作も快適にこなせます。',
+      'プロ向けの高性能iPadを手頃な価格で手に入れたいなら、iPad Pro 11インチ 第4世代が最適です。M2チップ搭載で、前世代のM1からさらに処理性能が向上。動画編集・3Dモデリング・大量のレイヤーを使ったイラスト制作も快適にこなせます。',
       'ProMotionテクノロジー（最大120Hz）による滑らかな表示は、Apple Pencilでの描画体験を大きく向上させます。LiDARスキャナ搭載で、AR関連のアプリや3Dスキャンにも対応。',
       'Thunderbolt / USB 4対応で、外部ストレージやディスプレイとの接続も高速。プロの現場でも通用するスペックを備えています。',
-      '中古市場ではM2・M4搭載の後継モデルが登場し、M1 Proの価格が大幅に下落。Pro性能を最もコスパ良く手に入れられるモデルです。',
+      '中古市場ではM4搭載の後継モデルが登場し、M2 Proの価格が大きく下落。12.9インチ 第6世代と同じM2チップを搭載しつつ、コンパクトで持ち運びやすいのが強みです。',
     ],
     good: [
       'ProMotion（120Hz）の滑らかな描画が欲しい',
@@ -165,7 +165,7 @@ export const SHOP_SECTION_IDS = [1, 2, 3, 6, 7]
 export const FAQ_JSONLD_ITEMS = [
   {
     question: '中古iPadのおすすめはどれ？',
-    answer: `${RECOMMEND_DATE_LABEL}現在、「iPad 第10世代」「iPad mini 第6世代」「iPad Air 第5世代」「iPad Pro 11インチ 第3世代」「iPad Pro 12.9インチ 第6世代」の${RECOMMEND_COUNT}機種がおすすめです。コスパ重視ならiPad 第10世代、携帯性ならiPad mini 第6世代、バランス重視ならiPad Air 第5世代、プロ性能ならiPad Pro 11インチ 第3世代、大画面ならiPad Pro 12.9インチ 第6世代が最適です。`,
+    answer: `${RECOMMEND_DATE_LABEL}現在、「iPad 第11世代」「iPad mini 第7世代」「iPad Air 第5世代」「iPad Pro 11インチ 第4世代」「iPad Pro 12.9インチ 第6世代」の${RECOMMEND_COUNT}機種がおすすめです。コスパ重視ならiPad 第11世代、携帯性ならiPad mini 第7世代、バランス重視ならiPad Air 第5世代、プロ性能ならiPad Pro 11インチ 第4世代、大画面ならiPad Pro 12.9インチ 第6世代が最適です。`,
   },
   {
     question: '中古iPadを選ぶときのポイントは？',
@@ -189,6 +189,6 @@ export const FAQ_JSONLD_ITEMS = [
   },
   {
     question: `おすすめしない中古iPadはどれ？`,
-    answer: `${RECOMMEND_YEAR}年現在、iPad 第7世代以前のモデルはiPadOSサポート終了済みまたは終了間近でおすすめしません。また、ストレージ32GBモデルはアプリを数個入れるだけで容量不足になり、iPadはSDカードで増設できないため致命的です。iPad mini 第5世代以前もサポート残が短くApple Pencil第2世代にも非対応です。最低でも64GB以上のモデルを選びましょう。`,
+    answer: `${RECOMMEND_YEAR}年現在、iPad 第9世代以前のモデルはiPadOSサポート終了済みまたは終了間近でおすすめしません。また、ストレージ32GBモデルはアプリを数個入れるだけで容量不足になり、iPadはSDカードで増設できないため致命的です。iPad mini 第6世代以前もサポート残が短くなっています。最低でも64GB以上のモデルを選びましょう。`,
   },
 ]

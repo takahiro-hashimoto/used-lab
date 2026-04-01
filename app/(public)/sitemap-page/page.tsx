@@ -27,6 +27,7 @@ import { SHOP_PAGE_DATE_LABEL as IPHONE_SHOP_DATE } from '@/lib/data/iphone-shop
 import { SHOP_PAGE_DATE_LABEL as IPAD_SHOP_DATE } from '@/lib/data/ipad-shop'
 import { SHOP_PAGE_DATE_LABEL as MACBOOK_SHOP_DATE } from '@/lib/data/macbook-shop'
 import { SHOP_PAGE_DATE_LABEL as WATCH_SHOP_DATE } from '@/lib/data/watch-shop'
+import HeroMeta from '@/app/components/HeroMeta'
 
 const PAGE_TITLE = 'サイトマップ'
 const PAGE_DESCRIPTION = 'ユーズドラボの全ページ一覧。中古iPhone・iPad・MacBook・Apple Watch・AirPodsの製品別ページをまとめて確認できます。'
@@ -124,10 +125,7 @@ export default async function SitemapPage() {
           <div className="hero-content">
             <h1 className="hero-title">サイトマップ</h1>
             <p className="hero-description">ユーズドラボの記事ページ一覧をご紹介します。</p>
-            <div className="hero-meta">
-              <i className="fa-regular fa-clock" aria-hidden="true"></i>
-              <span>更新日: <time dateTime="2026-03-20">2026年3月20日</time></span>
-            </div>
+            <HeroMeta dateStr="2026-03-20" dateDisplay="2026年3月20日" />
           </div>
         </div>
       </header>

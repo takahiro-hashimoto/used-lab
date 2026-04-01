@@ -1,3 +1,5 @@
+import Image from 'next/image'
+
 export default function KeyboardCompareSection() {
   const compareData = [
     { label: 'トラックパッド', magic: '搭載', smart: '非搭載' },
@@ -44,9 +46,19 @@ export default function KeyboardCompareSection() {
         </div>
 
         {/* おすすめタイプ別 */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 'var(--space-xl)' }}>
+        <div className="l-grid l-grid--2col">
 
           <div className="m-card m-card--shadow m-card--padded">
+            <figure className="media-card__figure">
+              <Image
+                src="/images/content/thumbnail/ipad-magic-keyboard-other.jpg"
+                alt="Magic Keyboardのイメージ"
+                width={400}
+                height={300}
+                className="media-card__img"
+                loading="lazy"
+              />
+            </figure>
             <div className="media-card__body">
               <h3 className="media-card__title">Magic Keyboardがおすすめな人</h3>
               <p className="media-card__desc">
@@ -68,6 +80,16 @@ export default function KeyboardCompareSection() {
           </div>
 
           <div className="m-card m-card--shadow m-card--padded">
+            <figure className="media-card__figure">
+              <Image
+                src="/images/content/thumbnail/ipad-magic-keyboard-folio.jpg"
+                alt="Smart Keyboard Folioのイメージ"
+                width={400}
+                height={300}
+                className="media-card__img"
+                loading="lazy"
+              />
+            </figure>
             <div className="media-card__body">
               <h3 className="media-card__title">Smart Keyboard Folioがおすすめな人</h3>
               <p className="media-card__desc">
@@ -88,17 +110,6 @@ export default function KeyboardCompareSection() {
             </div>
           </div>
 
-        </div>
-
-        {/* 補足 */}
-        <div className="m-card info-card" style={{ marginTop: 'var(--space-xl)' }}>
-          <p className="info-card__heading">
-            <i className="fa-solid fa-lightbulb" aria-hidden="true"></i>
-            中古で買うならどっち？
-          </p>
-          <p className="info-card__text">
-            中古市場ではMagic Keyboardの方が流通量が多く、状態の良い個体も見つけやすい傾向にあります。Smart Keyboard Folioは生産終了モデルもあるため、希望の型番が見つかったら早めの購入がおすすめです。どちらも型番とサイズ（11インチ / 13インチ）の確認を忘れずに。
-          </p>
         </div>
       </div>
     </section>

@@ -22,12 +22,12 @@ export default function SummarySection() {
           <div className="popular-card-body">
             <p className="popular-card-subtitle">目的別におすすめ機種を厳選！</p>
             <h3 className="popular-card-title">中古MacBookおすすめモデル</h3>
-            <p className="popular-card-desc">
-              コスパ重視、クリエイティブ向け、持ち運び重視など目的別に買うべきモデルを紹介。チップ性能やメモリ、バッテリー持ち、macOSサポート期間など購入前にチェックすべき項目も網羅しています。
-            </p>
-            <div>
+            <div className="popular-card-buttons">
               <a href="/macbook/recommend/" className="m-btn m-btn--primary">
                 おすすめモデルを見る <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
+              </a>
+              <a className="m-btn m-btn--secondary" href="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Fpc%2Fnotepc%2Fmacbook" target="_blank" rel="noopener noreferrer">
+                イオシスで中古MacBookを探す <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
               </a>
             </div>
           </div>

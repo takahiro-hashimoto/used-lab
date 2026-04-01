@@ -5,6 +5,18 @@ const securityHeaders = [
   { key: 'X-Content-Type-Options', value: 'nosniff' },
   { key: 'Referrer-Policy', value: 'origin-when-cross-origin' },
   { key: 'X-Frame-Options', value: 'DENY' },
+  {
+    key: 'Content-Security-Policy',
+    value: [
+      "default-src 'self'",
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://cdn.jsdelivr.net",
+      "style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com",
+      "font-src 'self' https://cdnjs.cloudflare.com https://fonts.gstatic.com",
+      "img-src 'self' data: https://*.supabase.co https://placehold.co",
+      "connect-src 'self' https://*.supabase.co https://www.google-analytics.com https://www.googletagmanager.com",
+      "frame-src 'none'",
+    ].join('; '),
+  },
 ]
 
 const nextConfig: NextConfig = {

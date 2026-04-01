@@ -17,6 +17,7 @@ import PriceHistorySection from './components/PriceHistorySection'
 import PopularSection from '@/app/components/support/PopularSection'
 import FaqSection from './components/FaqSection'
 import AuthorByline from '@/app/components/AuthorByline'
+import HeroMeta from '@/app/components/HeroMeta'
 
 // ============================================================
 // 型定義
@@ -111,7 +112,7 @@ export async function generateMetadata(): Promise<Metadata> {
       title,
       description,
       url: '/airpods/price/',
-      images: [{ url: '/images/airpods/mtjv3j:a.jpg', width: 360, height: 360, alt: title }],
+      images: [{ url: '/images/airpods/mtjv3j:a.jpg', width: 1200, height: 630, alt: title }],
     },
     twitter: {
       title,
@@ -330,13 +331,7 @@ export default async function AirPodsPriceInfoPage() {
               <h1 className="hero-title" itemProp="headline">
                 AirPodsの中古相場一覧 | 歴代{modelCount}機種の価格推移を独自集計【{PRICE_INFO_UPDATE_MONTH}】
               </h1>
-              <div className="hero-meta">
-                <i className="fa-regular fa-clock" aria-hidden="true"></i>
-                <span>
-                  更新日: <time dateTime={dateStr} itemProp="dateModified">{dateDisplay}</time> | 当記事のリンクには広告が含まれています
-                </span>
-                <meta itemProp="datePublished" content={dateStr} />
-              </div>
+              <HeroMeta dateStr={dateStr} dateDisplay={dateDisplay} withItemProp />
             </div>
             <div className="hero-visual">
               <figure className="hero-media">
@@ -372,7 +367,8 @@ export default async function AirPodsPriceInfoPage() {
         {/* 目次 */}
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
-            <p className="toc-title">タップできる目次</p>
+            <div className="toc-wrapper">
+<p className="toc-title"><i className="fa-solid fa-list" aria-hidden="true"></i> タップできる目次</p>
             <ol className="l-grid l-grid--3col u-list-reset">
               <li>
                 <a href="#pd-dashboard" className="toc-item">
@@ -405,6 +401,7 @@ export default async function AirPodsPriceInfoPage() {
                 </a>
               </li>
             </ol>
+</div>
           <AuthorByline />
           </div>
         </nav>
@@ -440,6 +437,8 @@ export default async function AirPodsPriceInfoPage() {
             cardDescription="ノイキャン重視、コスパ重視の人向けなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。"
             buttonText="おすすめモデルを見る"
             buttonHref="/airpods/recommend/"
+            secondaryButtonText="イオシスで中古AirPodsを探す"
+            secondaryButtonHref="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Faudiovisual"
           />
         <AirPodsRelatedLinks excludeHref="/airpods/price/" />
         <ShareBox url={PAGE_URL} text={`AirPodsの中古相場一覧 | 歴代${modelCount}機種の価格推移を独自集計`} />

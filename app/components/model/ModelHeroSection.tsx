@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
+import HeroMeta from '@/app/components/HeroMeta'
 
 export type ModelHeroConfig = {
   categoryPath: string
@@ -121,14 +122,7 @@ export default function ModelHeroSection({ model, config, dateStr, dateDisplay }
             <h1 className="hero-title">
               {h1Text}
             </h1>
-            <div className="hero-meta">
-              <i className="fa-regular fa-clock" aria-hidden="true"></i>
-              <span>
-                更新日: <time dateTime={dateStr}>
-                  {dateDisplay}
-                </time> | 当記事のリンクには広告が含まれています
-              </span>
-            </div>
+            <HeroMeta dateStr={dateStr} dateDisplay={dateDisplay} />
           </div>
           <div className="hero-visual">
             <figure className="hero-media">

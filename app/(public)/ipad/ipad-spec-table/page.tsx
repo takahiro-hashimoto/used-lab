@@ -26,6 +26,7 @@ const GLOSSARY_ITEMS = [
 import ShareBox from '@/app/components/ShareBox'
 import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
+import HeroMeta from '@/app/components/HeroMeta'
 
 export const metadata: Metadata = {
   title: '歴代iPadスペック比較表！各世代の性能の違いがすぐわかる',
@@ -36,7 +37,7 @@ export const metadata: Metadata = {
     title: '歴代iPadスペック比較表！各世代の性能の違いがすぐわかる',
     description: '歴代iPadのスペック比較表一覧です。iPad Pro・Air・mini・無印の性能差や機能の違いを一目で確認できます。',
     url: '/ipad/ipad-spec-table/',
-    images: [{ url: '/images/ipad/ipad-pro-13-2.jpg', width: 360, height: 360, alt: '歴代iPadスペック比較表のイメージ' }],
+    images: [{ url: '/images/ipad/ipad-pro-13-2.jpg', width: 1200, height: 630, alt: '歴代iPadスペック比較表のイメージ' }],
   },
   twitter: {
     title: '歴代iPadスペック比較表！各世代の性能の違いがすぐわかる',
@@ -161,14 +162,7 @@ export default async function IPadSpecTablePage() {
               <h1 className="hero-title">
                 歴代iPadスペック比較表！各世代の性能の違いがすぐわかる
               </h1>
-              <div className="hero-meta">
-                <i className="fa-regular fa-clock" aria-hidden="true"></i>
-                <span>
-                  更新日: <time dateTime={dateStr}>
-                    {dateDisplay}
-                  </time> | 当記事のリンクには広告が含まれています
-                </span>
-              </div>
+              <HeroMeta dateStr={dateStr} dateDisplay={dateDisplay} />
             </div>
             <div className="hero-visual">
               <figure className="hero-media">
@@ -207,7 +201,8 @@ export default async function IPadSpecTablePage() {
         {/* 目次 */}
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
-            <p className="toc-title">タップできる目次</p>
+            <div className="toc-wrapper">
+<p className="toc-title"><i className="fa-solid fa-list" aria-hidden="true"></i> タップできる目次</p>
             <ol className="l-grid l-grid--3col u-list-reset">
               <li>
                 <a href="#spec-table" className="toc-item">
@@ -240,6 +235,7 @@ export default async function IPadSpecTablePage() {
                 </a>
               </li>
             </ol>
+</div>
             <AuthorByline />
           </div>
         </nav>
@@ -270,10 +266,13 @@ export default async function IPadSpecTablePage() {
               <div className="popular-card-body">
                 <p className="popular-card-subtitle">目的別におすすめ機種を厳選！</p>
                 <p className="popular-card-title">中古iPadおすすめ5選</p>
-                <p className="popular-card-desc">イラスト制作に最適なモデル、動画視聴に大画面モデルなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。</p>
-                <div>
+              <p className="popular-card-subtitle">目的別におすすめ機種を厳選！</p>                <p className="popular-card-desc">イラスト制作に最適なモデル、動画視聴に大画面モデルなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。</p>
+                <div className="popular-card-buttons">
                   <a className="m-btn m-btn--primary" href="/ipad/recommend/">
                     おすすめ5機種を見る <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                  </a>
+                  <a className="m-btn m-btn--secondary" href="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Ftablet%2Fios%2Fipad" target="_blank" rel="noopener noreferrer">
+                    イオシスで中古iPadを探す <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
                   </a>
                 </div>
               </div>

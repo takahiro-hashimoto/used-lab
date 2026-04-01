@@ -16,7 +16,8 @@ export default function TableOfContents() {
   return (
     <nav className="l-section l-section--no-pt" aria-label="目次">
       <div className="l-container">
-        <p className="toc-title">タップできる目次</p>
+        <div className="toc-wrapper">
+<p className="toc-title"><i className="fa-solid fa-list" aria-hidden="true"></i> タップできる目次</p>
         <ol className="l-grid l-grid--3col u-list-reset">
           {TOC_ITEMS.map((item) => (
             <li key={item.id}>
@@ -27,6 +28,7 @@ export default function TableOfContents() {
             </li>
           ))}
         </ol>
+</div>
         <AuthorByline />
       </div>
     </nav>

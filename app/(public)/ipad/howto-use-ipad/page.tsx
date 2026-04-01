@@ -10,6 +10,7 @@ import FaqSection from './components/FaqSection'
 import IPadRelatedLinks from '@/app/components/ipad/IPadRelatedLinks'
 import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
+import HeroMeta from '@/app/components/HeroMeta'
 
 const PAGE_TITLE = 'iPadがあればできること・便利な使い道 22選【生活が変わる】'
 const PAGE_DESCRIPTION =
@@ -24,7 +25,7 @@ export const metadata: Metadata = {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/ipad/howto-use-ipad/',
-    images: [{ url: '/images/content/thumbnail/ipad-lightroom.jpg', width: 360, height: 360, alt: PAGE_TITLE }],
+    images: [{ url: '/images/content/thumbnail/ipad-lightroom.jpg', width: 1200, height: 630, alt: PAGE_TITLE }],
   },
   twitter: {
     title: PAGE_TITLE,
@@ -155,13 +156,7 @@ export default function HowtoUseIpadPage() {
               <h1 className="hero-title" itemProp="headline">
                 iPadがあればできること 便利な使い道 22選【生活が変わる】
               </h1>
-              <div className="hero-meta">
-                <i className="fa-regular fa-clock" aria-hidden="true"></i>
-                <span>
-                  更新日: <time dateTime={dateStr} itemProp="dateModified">{dateDisplay}</time> | 当記事のリンクには広告が含まれています
-                </span>
-                <meta itemProp="datePublished" content={dateStr} />
-              </div>
+              <HeroMeta dateStr={dateStr} dateDisplay={dateDisplay} withItemProp />
             </div>
             <div className="hero-visual">
               <figure className="hero-media">
@@ -203,7 +198,8 @@ export default function HowtoUseIpadPage() {
         {/* 目次 */}
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
-            <p className="toc-title">タップできる目次</p>
+            <div className="toc-wrapper">
+<p className="toc-title"><i className="fa-solid fa-list" aria-hidden="true"></i> タップできる目次</p>
             <ol className="l-grid l-grid--3col u-list-reset">
               <li>
                 <a href="#entertainment" className="toc-item">
@@ -231,6 +227,7 @@ export default function HowtoUseIpadPage() {
                 </a>
               </li>
             </ol>
+</div>
           <AuthorByline />
           </div>
         </nav>
@@ -272,10 +269,13 @@ export default function HowtoUseIpadPage() {
                 <div className="popular-card-body">
                   <p className="popular-card-subtitle">目的別におすすめ機種を厳選！</p>
                   <p className="popular-card-title">中古iPadおすすめ5選</p>
-                  <p className="popular-card-desc">イラスト制作に最適なモデル、動画視聴に大画面モデルなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。</p>
-                  <div>
+                <p className="popular-card-subtitle">目的別におすすめ機種を厳選！</p>                  <p className="popular-card-desc">イラスト制作に最適なモデル、動画視聴に大画面モデルなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。</p>
+                  <div className="popular-card-buttons">
                     <a className="m-btn m-btn--primary" href="/ipad/recommend/">
                       おすすめ5機種を見る <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                    </a>
+                    <a className="m-btn m-btn--secondary" href="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Ftablet%2Fios%2Fipad" target="_blank" rel="noopener noreferrer">
+                      イオシスで中古iPadを探す <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
                     </a>
                   </div>
                 </div>

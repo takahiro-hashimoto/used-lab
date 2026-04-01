@@ -12,6 +12,7 @@ import ShareBox from '@/app/components/ShareBox'
 import IPhoneRelatedLinks from '@/app/components/iphone/IPhoneRelatedLinks'
 import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
+import HeroMeta from '@/app/components/HeroMeta'
 
 export const revalidate = 86400
 
@@ -24,7 +25,7 @@ export const metadata: Metadata = {
     title: '中古iPhoneのストレージ容量はどれがいい？用途別おすすめ容量まとめ',
     description: '中古iPhoneのストレージ容量の選び方を用途別に解説。歴代モデルの容量ラインナップも一覧で確認できます。',
     url: '/iphone/storage-guide/',
-    images: [{ url: '/images/content/thumbnail/used-iphone-ios-support.jpg', width: 360, height: 360, alt: '中古iPhoneストレージ容量ガイドのイメージ' }],
+    images: [{ url: '/images/content/thumbnail/used-iphone-ios-support.jpg', width: 1200, height: 630, alt: '中古iPhoneストレージ容量ガイドのイメージ' }],
   },
   twitter: {
     title: '中古iPhoneのストレージ容量はどれがいい？用途別おすすめ容量まとめ',
@@ -36,19 +37,19 @@ export const metadata: Metadata = {
 const FAQ_ITEMS = [
   {
     question: '中古iPhoneのストレージ容量は後から増やせますか？',
-    answer: 'iPhoneはSDカードに対応しておらず、ストレージの増設はできません。iCloud（月額130円〜）や外付けUSBメモリで対処できますが、アプリの容量は減らせないため、購入時に余裕のある容量を選ぶことが重要です。',
+    answer: 'iPhoneはSDカードに対応しておらず、ストレージの増設はできません。\niCloud（月額130円〜）や外付けUSBメモリで対処できますが、アプリの容量は減らせないため、購入時に余裕のある容量を選ぶことが重要です。',
   },
   {
     question: '128GBと256GBで迷ったらどちらがいい？',
-    answer: '2026年現在、写真や動画の高画質化・アプリの大型化が進んでおり、メイン端末なら256GBがおすすめです。128GBでも日常使いは可能ですが、2〜3年使うと容量が逼迫しやすくなります。中古価格の差が1万円以内であれば256GBを選んだほうが後悔しにくいです。',
+    answer: '2026年現在、写真や動画の高画質化・アプリの大型化が進んでおり、メイン端末なら256GBがおすすめです。\n128GBでも日常使いは可能ですが、2〜3年使うと容量が逼迫しやすくなります。中古価格の差が1万円以内であれば256GBを選んだほうが後悔しにくいです。',
   },
   {
     question: '64GBのiPhoneは2026年でも使えますか？',
-    answer: '使えますが、余裕はありません。iOS自体で10GB以上、標準アプリで数GB消費するため、実質的に使える容量は40〜45GB程度です。写真やアプリを厳選して使う方、サブ機として使う方なら問題ありませんが、メイン端末としては128GB以上をおすすめします。',
+    answer: '使えますが、余裕はありません。iOS自体で10GB以上、標準アプリで数GB消費するため、実質的に使える容量は40〜45GB程度です。\n写真やアプリを厳選して使う方、サブ機として使う方なら問題ありませんが、メイン端末としては128GB以上をおすすめします。',
   },
   {
     question: '写真や動画はどのくらいの容量を消費しますか？',
-    answer: '写真1枚あたり約2〜5MB（Live Photoだと約5〜8MB）、1分間の動画撮影は1080pで約130MB、4Kで約400MBが目安です。1,000枚の写真で約5GB、30分の4K動画で約12GB消費する計算です。',
+    answer: '写真1枚あたり約2〜5MB（Live Photoだと約5〜8MB）、1分間の動画撮影は1080pで約130MB、4Kで約400MBが目安です。\n1,000枚の写真で約5GB、30分の4K動画で約12GB消費する計算です。',
   },
   {
     question: 'iCloudを使えばストレージは少なくても大丈夫？',
@@ -190,14 +191,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/storage-
               <h1 className="hero-title">
                 中古iPhoneのストレージ容量はどれがいい？用途別おすすめ容量まとめ
               </h1>
-              <div className="hero-meta">
-                <i className="fa-regular fa-clock" aria-hidden="true"></i>
-                <span>
-                  更新日: <time dateTime={dateStr}>
-                    {dateDisplay}
-                  </time> | 当記事のリンクには広告が含まれています
-                </span>
-              </div>
+              <HeroMeta dateStr={dateStr} dateDisplay={dateDisplay} />
             </div>
             <div className="hero-visual">
               <figure className="hero-media">
@@ -232,7 +226,8 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/storage-
         {/* 目次 */}
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
-            <p className="toc-title">タップできる目次</p>
+            <div className="toc-wrapper">
+<p className="toc-title"><i className="fa-solid fa-list" aria-hidden="true"></i> タップできる目次</p>
             <ol className="l-grid l-grid--3col u-list-reset">
               <li>
                 <a href="#storage-points" className="toc-item">
@@ -265,6 +260,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/storage-
                 </a>
               </li>
             </ol>
+</div>
             <AuthorByline />
           </div>
         </nav>
@@ -276,9 +272,8 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/storage-
             <h2 className="m-section-heading m-section-heading--lg" id="heading-storage-points">
               ストレージ容量を選ぶ時のポイント
             </h2>
-            <p className="m-section-desc">
-              iPhoneのストレージ容量は、データの保存だけでなく端末の快適さ全体に影響します。購入前に知っておきたいポイントをまとめました。
-            </p>
+            <p className="m-section-desc">iPhoneのストレージ容量はデータの保存だけでなく端末の快適さ全体に影響します。</p>
+            <p className="m-section-desc">購入前に知っておきたいポイントを確認しましょう。</p>
 
             <div className="l-grid l-grid--2col l-grid--gap-lg">
               <div className="m-card m-card--shadow m-card--padded">
@@ -493,7 +488,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/storage-
                 <div key={i} className="m-card m-card--shadow faq-item">
                   <h3 className="faq-question">{item.question}</h3>
                   <div className="faq-answer">
-                    <p>{item.answer}</p>
+                    {item.answer.split('\n').map((p, j) => <p key={j}>{p}</p>)}
                   </div>
                 </div>
               ))}
@@ -524,13 +519,16 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/storage-
               <div className="popular-card-body">
                 <p className="popular-card-subtitle">目的別におすすめ機種を厳選！</p>
                 <p className="popular-card-title">中古iPhoneおすすめ5選</p>
-                <p className="popular-card-desc">
+              <p className="popular-card-subtitle">目的別におすすめ機種を厳選！</p>                <p className="popular-card-desc">
                   カメラ性能を重視する人向け、大画面で動画やSNSを楽しみたい人向けなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。
                 </p>
-                <div>
+                <div className="popular-card-buttons">
                   <Link href="/iphone/recommend" className="m-btn m-btn--primary">
                     おすすめ5機種を見る <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
                   </Link>
+                  <a className="m-btn m-btn--secondary" href="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Fsmartphone%2Fiphone" target="_blank" rel="noopener noreferrer">
+                    イオシスで中古iPhoneを探す <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                  </a>
                 </div>
               </div>
             </div>

@@ -62,7 +62,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       title,
       description,
       url: `/watch/${slug}/`,
-      images: model.image ? [{ url: `/images/watch/${model.image}`, width: 360, height: 360, alt: `${model.model} の外観イメージ` }] : [],
+      images: model.image ? [{ url: `/images/watch/${model.image}`, width: 1200, height: 630, alt: `${model.model} の外観イメージ` }] : [],
     },
     twitter: {
       title,
@@ -144,6 +144,8 @@ export default async function WatchDetailPage({ params }: PageProps) {
           cardDescription="健康管理を重視する人向け、コスパ重視の人向けなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。"
           buttonText="おすすめ5機種を見る"
           buttonHref="/watch/recommend/"
+          secondaryButtonText="イオシスで中古Apple Watchを探す"
+          secondaryButtonHref="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Fwearable%2Fapple%3Fnot%3Dpencil"
         />
         <WatchRelatedLinks excludeHref={`/watch/${model.slug}/`} />
         <ShareBox url={`https://used-lab.com/watch/${model.slug}/`} text={`中古${model.model}は今買うべき？製品寿命、基本スペック、中古相場から解説`} />

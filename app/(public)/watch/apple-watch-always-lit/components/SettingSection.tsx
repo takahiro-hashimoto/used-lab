@@ -10,7 +10,7 @@ export default function SettingSection() {
           設定はApple Watch本体・iPhoneどちらからでも簡単に変更できます。
         </p>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 'var(--space-xl)' }}>
+        <div className="l-grid l-grid--2col" style={{ gap: 'var(--space-xl)' }}>
 
           {/* Apple Watchから設定を変える */}
           <div className="m-card m-card--shadow m-card--padded">

@@ -2,6 +2,8 @@ import LifespanTableBase from '@/app/components/support/LifespanTable'
 import type { LifespanEntryWithModels, GlossaryGroup } from '@/app/components/support/LifespanTable'
 import type { IPadModel } from '@/lib/types'
 
+const IOSYS_IPAD = 'https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Ftablet%2Fios%2Fipad'
+
 const LIFESPAN_DATA: LifespanEntryWithModels[] = [
   {
     series: 'iPad Pro 2025モデル',
@@ -12,6 +14,7 @@ const LIFESPAN_DATA: LifespanEntryWithModels[] = [
     ],
     osEnd: '2032年10月',
     repairEnd: '2034年10月',
+    iosysUrl: IOSYS_IPAD,
   },
   {
     series: 'iPad Pro 2024モデル',
@@ -22,6 +25,7 @@ const LIFESPAN_DATA: LifespanEntryWithModels[] = [
     ],
     osEnd: '2031年5月',
     repairEnd: '2033年5月',
+    iosysUrl: IOSYS_IPAD,
   },
   {
     series: 'iPad Pro 2022モデル',
@@ -32,6 +36,7 @@ const LIFESPAN_DATA: LifespanEntryWithModels[] = [
     ],
     osEnd: '2029年10月',
     repairEnd: '2031年10月',
+    iosysUrl: IOSYS_IPAD,
   },
   {
     series: 'iPad Pro 2021モデル',
@@ -42,6 +47,7 @@ const LIFESPAN_DATA: LifespanEntryWithModels[] = [
     ],
     osEnd: '2028年5月',
     repairEnd: '2030年5月',
+    iosysUrl: IOSYS_IPAD,
   },
   {
     series: 'iPad Pro 2020モデル',
@@ -52,6 +58,7 @@ const LIFESPAN_DATA: LifespanEntryWithModels[] = [
     ],
     osEnd: '2027年3月',
     repairEnd: '2029年3月',
+    iosysUrl: IOSYS_IPAD,
   },
   {
     series: 'iPad Air 2025モデル',
@@ -62,6 +69,7 @@ const LIFESPAN_DATA: LifespanEntryWithModels[] = [
     ],
     osEnd: '2032年3月',
     repairEnd: '2034年3月',
+    iosysUrl: IOSYS_IPAD,
   },
   {
     series: 'iPad Air 2024モデル',
@@ -72,6 +80,7 @@ const LIFESPAN_DATA: LifespanEntryWithModels[] = [
     ],
     osEnd: '2031年5月',
     repairEnd: '2033年5月',
+    iosysUrl: IOSYS_IPAD,
   },
   {
     series: 'iPad Air 2022モデル',
@@ -79,6 +88,7 @@ const LIFESPAN_DATA: LifespanEntryWithModels[] = [
     models: [{ label: 'iPad Air 第5世代', href: '/ipad/air-5' }],
     osEnd: '2029年3月',
     repairEnd: '2031年3月',
+    iosysUrl: IOSYS_IPAD,
   },
   {
     series: 'iPad Air 2020モデル',
@@ -86,6 +96,7 @@ const LIFESPAN_DATA: LifespanEntryWithModels[] = [
     models: [{ label: 'iPad Air 第4世代', href: '/ipad/air-4' }],
     osEnd: '2027年9月',
     repairEnd: '2029年9月',
+    iosysUrl: IOSYS_IPAD,
   },
   {
     series: 'iPad 2025モデル',
@@ -93,6 +104,7 @@ const LIFESPAN_DATA: LifespanEntryWithModels[] = [
     models: [{ label: 'iPad 第11世代', href: '/ipad/normal-11' }],
     osEnd: '2032年3月',
     repairEnd: '2034年3月',
+    iosysUrl: IOSYS_IPAD,
   },
   {
     series: 'iPad 2022モデル',
@@ -100,6 +112,7 @@ const LIFESPAN_DATA: LifespanEntryWithModels[] = [
     models: [{ label: 'iPad 第10世代', href: '/ipad/normal-10' }],
     osEnd: '2029年10月',
     repairEnd: '2031年10月',
+    iosysUrl: IOSYS_IPAD,
   },
   {
     series: 'iPad 2021モデル',
@@ -107,6 +120,7 @@ const LIFESPAN_DATA: LifespanEntryWithModels[] = [
     models: [{ label: 'iPad 第9世代', href: '/ipad/normal-9' }],
     osEnd: '2028年9月',
     repairEnd: '2030年9月',
+    iosysUrl: IOSYS_IPAD,
   },
   {
     series: 'iPad mini 2024モデル',
@@ -114,6 +128,7 @@ const LIFESPAN_DATA: LifespanEntryWithModels[] = [
     models: [{ label: 'iPad mini 第7世代', href: '/ipad/mini-7' }],
     osEnd: '2031年10月',
     repairEnd: '2033年10月',
+    iosysUrl: IOSYS_IPAD,
   },
   {
     series: 'iPad mini 2021モデル',
@@ -121,6 +136,7 @@ const LIFESPAN_DATA: LifespanEntryWithModels[] = [
     models: [{ label: 'iPad mini 第6世代', href: '/ipad/mini-6' }],
     osEnd: '2028年9月',
     repairEnd: '2030年9月',
+    iosysUrl: IOSYS_IPAD,
   },
   {
     series: 'iPad mini 2019モデル',
@@ -128,6 +144,7 @@ const LIFESPAN_DATA: LifespanEntryWithModels[] = [
     models: [{ label: 'iPad mini 第5世代', href: '/ipad/mini-5' }],
     osEnd: '2026年3月',
     repairEnd: '2028年3月',
+    iosysUrl: IOSYS_IPAD,
   },
 ]
 
@@ -205,6 +222,7 @@ export default function IPadLifespanTable({ models }: Props) {
       tableCaption="iPad機種別サポート期間・寿命予想一覧"
       showModelsColumn
       glossaryGroups={GLOSSARY_GROUPS}
+      showIosysColumn
     />
   )
 }

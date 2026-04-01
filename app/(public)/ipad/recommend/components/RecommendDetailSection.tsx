@@ -185,9 +185,6 @@ export default function RecommendDetailSection({ items }: Props) {
 
               {displayLinks.length > 0 && (
                 <div className="recommend-card__shops">
-                  <p className="recommend-card__shops-label">
-                    ＼ 人気ショップの比較で最安値の<strong>中古端末を探す</strong> ／
-                  </p>
                   <div className="recommend-card__shop-btns">
                     {displayLinks.map((link) => (
                       <a

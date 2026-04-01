@@ -6,6 +6,7 @@ import ShareBox from '@/app/components/ShareBox'
 import IPhoneRelatedLinks from '@/app/components/iphone/IPhoneRelatedLinks'
 import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
+import HeroMeta from '@/app/components/HeroMeta'
 
 const PAGE_TITLE = '意外と良い選択肢？ネットワーク制限△の中古iPhone・iPadを買うメリット・デメリットを解説'
 const PAGE_DESCRIPTION =
@@ -20,7 +21,7 @@ export const metadata: Metadata = {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/iphone/network-limit/',
-    images: [{ url: '/images/content/thumbnail/iphone-image-02.jpg', width: 360, height: 360, alt: PAGE_TITLE }],
+    images: [{ url: '/images/content/thumbnail/iphone-image-02.jpg', width: 1200, height: 630, alt: PAGE_TITLE }],
   },
   twitter: {
     title: PAGE_TITLE,
@@ -129,13 +130,7 @@ export default function NetworkLimitPage() {
                 <h1 className="hero-title" itemProp="headline">
                   ネットワーク制限△の中古iPhone・iPadを買うメリット・デメリットを解説
                 </h1>
-                <div className="hero-meta">
-                  <i className="fa-regular fa-clock" aria-hidden="true"></i>
-                  <span>
-                    更新日: <time dateTime={dateStr} itemProp="dateModified">{dateDisplay}</time> | 当記事のリンクには広告が含まれています
-                  </span>
-                  <meta itemProp="datePublished" content={dateStr} />
-                </div>
+                <HeroMeta dateStr={dateStr} dateDisplay={dateDisplay} withItemProp />
               </div>
               <div className="hero-visual">
                 <figure className="hero-media">
@@ -174,7 +169,8 @@ export default function NetworkLimitPage() {
         {/* 目次 */}
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
-            <p className="toc-title">タップできる目次</p>
+            <div className="toc-wrapper">
+<p className="toc-title"><i className="fa-solid fa-list" aria-hidden="true"></i> タップできる目次</p>
             <ol className="l-grid l-grid--3col u-list-reset">
               <li>
                 <a href="#meaning" className="toc-item">
@@ -197,6 +193,7 @@ export default function NetworkLimitPage() {
                 </a>
               </li>
             </ol>
+</div>
           <AuthorByline />
           </div>
         </nav>
@@ -445,7 +442,7 @@ export default function NetworkLimitPage() {
                   <div className="faq-answer m-rich-text m-rich-text--muted">
                     <p>端末のIMEI（製造番号）を各キャリアの確認ページに入力することで判定できます。IMEIはiPhoneの場合「設定」→「一般」→「情報」から確認可能です。フリマで購入する際は、出品者からキャリア名とIMEIを聞いて事前にチェックしましょう。</p>
                     <ul>
-                      <li><a href="http://nw-restriction.nttdocomo.co.jp/top.php" rel="nofollow noopener" target="_blank">ドコモ ネットワーク利用制限照会</a></li>
+                      <li><a href="https://nw-restriction.nttdocomo.co.jp/top.php" rel="nofollow noopener" target="_blank">ドコモ ネットワーク利用制限照会</a></li>
                       <li><a href="https://au-cs0.kddi.com/FtHome" rel="nofollow noopener" target="_blank">au ネットワーク利用制限照会</a></li>
                       <li><a href="https://ct11.my.softbank.jp/WBF/icv" rel="nofollow noopener" target="_blank">ソフトバンク/Y!mobile ネットワーク利用制限照会</a></li>
                       <li><a href="https://network.mobile.rakuten.co.jp/restriction/" rel="nofollow noopener" target="_blank">楽天モバイル ネットワーク利用制限照会</a></li>
@@ -496,8 +493,13 @@ export default function NetworkLimitPage() {
                 <div className="popular-card-body">
                   <p className="popular-card-subtitle">目的別におすすめ機種を厳選！</p>
                   <p className="popular-card-title">中古iPhoneおすすめ5選</p>
-                  <p className="popular-card-desc">カメラ性能を重視する人向け、大画面で動画やSNSを楽しみたい人向けなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。</p>
-                  <div><a className="m-btn m-btn--primary" href="/iphone/recommend/">おすすめ5機種を見る <i className="fa-solid fa-arrow-right" aria-hidden="true"></i></a></div>
+                <p className="popular-card-subtitle">目的別におすすめ機種を厳選！</p>                  <p className="popular-card-desc">カメラ性能を重視する人向け、大画面で動画やSNSを楽しみたい人向けなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。</p>
+                  <div className="popular-card-buttons">
+                    <a className="m-btn m-btn--primary" href="/iphone/recommend/">おすすめ5機種を見る <i className="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+                    <a className="m-btn m-btn--secondary" href="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Fsmartphone%2Fiphone" target="_blank" rel="noopener noreferrer">
+                      イオシスで中古iPhoneを探す <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>

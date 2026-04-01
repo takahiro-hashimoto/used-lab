@@ -8,6 +8,7 @@ import FaqSection from './components/FaqSection'
 import SummarySection from './components/SummarySection'
 import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
+import HeroMeta from '@/app/components/HeroMeta'
 
 const PAGE_TITLE = 'iPhone 16eと17eどっちがいい？違いと選び方をやさしく解説'
 const PAGE_DESCRIPTION =
@@ -81,13 +82,7 @@ export default function IPhone16e17eComparePage() {
                 <h1 className="hero-title" itemProp="headline">
                   iPhone 16eと17eどっちがいい？違いと選び方をやさしく解説
                 </h1>
-                <div className="hero-meta">
-                  <i className="fa-regular fa-clock" aria-hidden="true"></i>
-                  <span>
-                    更新日: <time dateTime={dateStr} itemProp="dateModified">{dateDisplay}</time> | 当記事のリンクには広告が含まれています
-                  </span>
-                  <meta itemProp="datePublished" content={dateStr} />
-                </div>
+                <HeroMeta dateStr={dateStr} dateDisplay={dateDisplay} withItemProp />
               </div>
             </div>
           </header>
@@ -115,7 +110,8 @@ export default function IPhone16e17eComparePage() {
         {/* 目次 */}
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
-            <p className="toc-title">タップできる目次</p>
+            <div className="toc-wrapper">
+<p className="toc-title"><i className="fa-solid fa-list" aria-hidden="true"></i> タップできる目次</p>
             <ol className="l-grid l-grid--3col u-list-reset">
               <li>
                 <a href="#comparison" className="toc-item">
@@ -168,6 +164,7 @@ export default function IPhone16e17eComparePage() {
                 </a>
               </li>
             </ol>
+</div>
           <AuthorByline />
           </div>
         </nav>

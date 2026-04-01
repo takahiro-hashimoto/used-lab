@@ -14,6 +14,7 @@ import MvnoDiagnosis from './components/MvnoDiagnosis'
 import type { DiagnosisProvider } from './components/MvnoDiagnosis'
 import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
+import HeroMeta from '@/app/components/HeroMeta'
 
 const PAGE_TITLE = `中古iPhoneの購入と通信契約が一緒にできる格安SIM業者まとめ【${MVNO_PAGE_DATE_LABEL}】`
 const PAGE_DESCRIPTION = `中古iPhoneとセットで通信契約できる格安SIM・MVNOを徹底比較。楽天モバイル、UQモバイル、ワイモバイル、IIJmio、mineoなど主要7社の料金プランと端末販売の有無をまとめました【${MVNO_PAGE_DATE_LABEL}】`
@@ -27,7 +28,7 @@ export const metadata: Metadata = {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/iphone/mvno/',
-    images: [{ url: '/images/content/thumbnail/sim.webp', width: 360, height: 360, alt: PAGE_TITLE }],
+    images: [{ url: '/images/content/thumbnail/sim.webp', width: 1200, height: 630, alt: PAGE_TITLE }],
   },
   twitter: {
     title: PAGE_TITLE,
@@ -158,13 +159,7 @@ export default async function MvnoPage() {
               <h1 className="hero-title" itemProp="headline">
                 中古iPhoneの購入と通信契約がセットでできる格安SIM業者まとめ
               </h1>
-              <div className="hero-meta">
-                <i className="fa-regular fa-clock" aria-hidden="true"></i>
-                <span>
-                  更新日: <time dateTime={dateStr} itemProp="dateModified">{dateDisplay}</time> | 当記事のリンクには広告が含まれています
-                </span>
-                <meta itemProp="datePublished" content={dateStr} />
-              </div>
+              <HeroMeta dateStr={dateStr} dateDisplay={dateDisplay} withItemProp />
             </div>
             <div className="hero-visual">
               <figure className="hero-media">
@@ -202,7 +197,8 @@ export default async function MvnoPage() {
         {/* ===== 目次 ===== */}
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
-            <p className="toc-title">タップできる目次</p>
+            <div className="toc-wrapper">
+<p className="toc-title"><i className="fa-solid fa-list" aria-hidden="true"></i> タップできる目次</p>
             <ol className="l-grid l-grid--3col u-list-reset">
               <li>
                 <a href="#pitfall" className="toc-item">
@@ -240,6 +236,7 @@ export default async function MvnoPage() {
                 </a>
               </li>
             </ol>
+</div>
           <AuthorByline />
           </div>
         </nav>
@@ -839,6 +836,8 @@ export default async function MvnoPage() {
             cardDescription="カメラ性能を重視する人向け、大画面で動画やSNSを楽しみたい人向けなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。"
             buttonText="おすすめ5機種を見る"
             buttonHref="/iphone/recommend/"
+            secondaryButtonText="イオシスで中古iPhoneを探す"
+            secondaryButtonHref="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Fsmartphone%2Fiphone"
           />
         <IPhoneRelatedLinks excludeHref={["/iphone/mvno/", "/iphone/recommend/"]} />
         <ShareBox url={PAGE_URL} text={PAGE_TITLE} />

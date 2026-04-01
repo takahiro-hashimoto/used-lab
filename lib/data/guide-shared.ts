@@ -11,7 +11,6 @@ const VENDOR_CARD_BASES: VendorCardBase[] = [
   {
     name: 'イオシス',
     recommended: true,
-    badgeText: '迷ったらココ！',
     tag: '保証延長サービス',
     specs: [
       { label: '価格', value: '◎' },

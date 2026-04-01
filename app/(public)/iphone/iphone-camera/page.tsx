@@ -9,6 +9,7 @@ import Image from 'next/image'
 import IPhoneRelatedLinks from '@/app/components/iphone/IPhoneRelatedLinks'
 import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
+import HeroMeta from '@/app/components/HeroMeta'
 
 const PAGE_TITLE = 'iPhoneのカメラ性能の違いは何？歴代モデルの機能を比較'
 const PAGE_DESCRIPTION =
@@ -23,7 +24,7 @@ export const metadata: Metadata = {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/iphone/iphone-camera/',
-    images: [{ url: '/images/iphone/iphone16pro.jpg', width: 360, height: 360, alt: PAGE_TITLE }],
+    images: [{ url: '/images/iphone/iphone16pro.jpg', width: 1200, height: 630, alt: PAGE_TITLE }],
   },
   twitter: {
     title: PAGE_TITLE,
@@ -119,13 +120,7 @@ export default async function IPhoneCameraPage() {
               <h1 className="hero-title" itemProp="headline">
                 iPhoneのカメラ性能の違いは何？歴代モデルの機能を比較
               </h1>
-              <div className="hero-meta">
-                <i className="fa-regular fa-clock" aria-hidden="true"></i>
-                <span>
-                  更新日: <time dateTime={dateStr} itemProp="dateModified">{dateDisplay}</time> | 当記事のリンクには広告が含まれています
-                </span>
-                <meta itemProp="datePublished" content={dateStr} />
-              </div>
+              <HeroMeta dateStr={dateStr} dateDisplay={dateDisplay} withItemProp />
             </div>
             <div className="hero-visual">
               <figure className="hero-media">
@@ -164,7 +159,7 @@ export default async function IPhoneCameraPage() {
 
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
-            <p className="toc-title">タップできる目次</p>
+            <p className="toc-title"><i className="fa-solid fa-list" aria-hidden="true"></i> タップできる目次</p>
             <ol className="l-grid l-grid--2col u-list-reset">
               <li>
                 <a href="#camera-comparison" className="toc-item">
@@ -499,6 +494,29 @@ export default async function IPhoneCameraPage() {
 
             </div>
           </section>
+        <FaqSection
+          title="iPhoneのカメラに関するよくある質問"
+          description="iPhoneのカメラ機能に関して、よく寄せられる疑問にお答えします。"
+          items={[
+            {
+              question: '最新のiPhoneじゃなくても、良いカメラ性能のモデルはありますか？',
+              answer: 'はい、最新モデルにこだわらなくても、優れたカメラ性能を持つiPhoneはたくさんあります。例えば、数世代前のモデルでも、多くのユーザーにとっては十分満足できる画質や機能を提供しています。\n重要なのは、あなたがどのような写真を撮りたいか、どのような機能を重視するかです。本記事の比較を参考に、ご自身のニーズに合ったモデルを見つけてみてください。',
+            },
+            {
+              question: 'iPhoneの「Pro」と「無印」ではカメラにどんな違いがありますか？',
+              answer: '「Pro」モデルには望遠レンズやProRAW、LiDARスキャナなどが搭載されており、写真・動画のクオリティにこだわる方に最適です。一方で「無印」は日常使いには十分な性能を持っています。',
+            },
+            {
+              question: '子どもの運動会や旅行に向いているiPhoneモデルは？',
+              answer: '動きの速いシーンや遠くの被写体をしっかり撮りたい場合は、望遠レンズと手ぶれ補正が強化された「iPhone 15 Pro」や「iPhone 15 Pro Max」がおすすめです。光学ズームで遠くの被写体もくっきり撮影でき、アクティビティ中でもブレの少ない写真が残せます。\n旅行での風景撮影も想定するなら、超広角レンズ搭載モデル（iPhone 11以降）が便利。広大な景色や建物を迫力ある構図で残せます。',
+            },
+            {
+              question: 'SNS投稿に強いカメラはどのiPhone？',
+              answer: 'SNSで写真や動画を映えさせたいなら、iPhone 13以降のモデルがおすすめです。特に「シネマティックモード」や「ポートレートモード」、「ナイトモード」など、表現力に優れた機能が揃っており、誰でも簡単にプロっぽい写真・動画が撮影できます。\nさらに、iPhone 14 Proや15 Proシリーズでは、より繊細な描写ができる48MPの高解像度センサーや被写体を立体的に写すLiDARスキャナを搭載。背景をぼかした印象的な写真や、暗所でもノイズの少ない美しい写真が撮れます。',
+            },
+          ]}
+        />
+
         <section className="l-section" id="popular" aria-labelledby="heading-popular">
           <div className="l-container">
             <h2 className="m-section-heading m-section-heading--lg" id="heading-popular">目的別に人気の中古iPhone</h2>
@@ -517,37 +535,17 @@ export default async function IPhoneCameraPage() {
               <div className="popular-card-body">
                 <p className="popular-card-subtitle">目的別におすすめ機種を厳選！</p>
                 <p className="popular-card-title">中古iPhoneおすすめ5選</p>
-                <p className="popular-card-desc">カメラ性能を重視する人向け、大画面で動画やSNSを楽しみたい人向けなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。</p>
-                <div>
+              <p className="popular-card-subtitle">目的別におすすめ機種を厳選！</p>                <p className="popular-card-desc">カメラ性能を重視する人向け、大画面で動画やSNSを楽しみたい人向けなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。</p>
+                <div className="popular-card-buttons">
                   <a className="m-btn m-btn--primary" href="/iphone/recommend">おすすめ5機種を見る <i className="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+                  <a className="m-btn m-btn--secondary" href="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Fsmartphone%2Fiphone" target="_blank" rel="noopener noreferrer">
+                    イオシスで中古iPhoneを探す <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                  </a>
                 </div>
               </div>
             </div>
           </div>
         </section>
-
-        <FaqSection
-          title="iPhoneのカメラに関するよくある質問"
-          description="iPhoneのカメラ機能に関して、よく寄せられる疑問にお答えします。"
-          items={[
-            {
-              question: '最新のiPhoneじゃなくても、良いカメラ性能のモデルはありますか？',
-              answer: 'はい、最新モデルにこだわらなくても、優れたカメラ性能を持つiPhoneはたくさんあります。例えば、数世代前のモデルでも、多くのユーザーにとっては十分満足できる画質や機能を提供しています。重要なのは、あなたがどのような写真を撮りたいか、どのような機能を重視するかです。本記事の比較を参考に、ご自身のニーズに合ったモデルを見つけてみてください。',
-            },
-            {
-              question: 'iPhoneの「Pro」と「無印」ではカメラにどんな違いがありますか？',
-              answer: '「Pro」モデルには望遠レンズやProRAW、LiDARスキャナなどが搭載されており、写真・動画のクオリティにこだわる方に最適です。一方で「無印」は日常使いには十分な性能を持っています。',
-            },
-            {
-              question: '子どもの運動会や旅行に向いているiPhoneモデルは？',
-              answer: '動きの速いシーンや遠くの被写体をしっかり撮りたい場合は、望遠レンズと手ぶれ補正が強化された「iPhone 15 Pro」や「iPhone 15 Pro Max」がおすすめです。光学ズームで遠くの被写体もくっきり撮影でき、アクティビティ中でもブレの少ない写真が残せます。旅行での風景撮影も想定するなら、超広角レンズ搭載モデル（iPhone 11以降）が便利。広大な景色や建物を迫力ある構図で残せます。',
-            },
-            {
-              question: 'SNS投稿に強いカメラはどのiPhone？',
-              answer: 'SNSで写真や動画を映えさせたいなら、iPhone 13以降のモデルがおすすめです。特に「シネマティックモード」や「ポートレートモード」、「ナイトモード」など、表現力に優れた機能が揃っており、誰でも簡単にプロっぽい写真・動画が撮影できます。さらに、iPhone 14 Proや15 Proシリーズでは、より繊細な描写ができる48MPの高解像度センサーや被写体を立体的に写すLiDARスキャナを搭載。背景をぼかした印象的な写真や、暗所でもノイズの少ない美しい写真が撮れます。',
-            },
-          ]}
-        />
 
         <IPhoneRelatedLinks excludeHref={["/iphone/iphone-camera/", "/iphone/recommend/"]} />
         <ShareBox url={PAGE_URL} text={PAGE_TITLE} />

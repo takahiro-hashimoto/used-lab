@@ -112,9 +112,6 @@ export default function ShopDetailSection({ productName, items, specRows, getCta
               </div>
             </div>
             <div className="recommend-card__shops">
-              <p className="recommend-card__shops-label">
-                ＼ {shop.shop}で<strong>中古{productName}を探す</strong> ／
-              </p>
               {ctaOverrides?.[shop.shop_key] ? (
                 <div className="recommend-card__shop-btns recommend-card__shop-btns--single">
                   <a

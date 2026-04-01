@@ -29,6 +29,7 @@ import PopularMacBook from '@/app/components/PopularMacBook'
 import MacBookRelatedLinks from '@/app/components/macbook/MacBookRelatedLinks'
 import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
+import HeroMeta from '@/app/components/HeroMeta'
 
 export const metadata: Metadata = {
   title: '歴代MacBookスペック比較表！Air・Proの性能差や違いがすぐわかる',
@@ -39,7 +40,7 @@ export const metadata: Metadata = {
     title: '歴代MacBookスペック比較表！Air・Proの性能差や違いがすぐわかる',
     description: '歴代MacBook Air・Proのスペック比較表一覧です。チップ性能やディスプレイ、ポート構成の違いを一目で確認できます。',
     url: '/macbook/macbook-spec-table/',
-    images: [{ url: '/images/macbook/mba-13-2025.jpg', width: 360, height: 360, alt: '歴代MacBookスペック比較表のイメージ' }],
+    images: [{ url: '/images/macbook/mba-13-2025.jpg', width: 1200, height: 630, alt: '歴代MacBookスペック比較表のイメージ' }],
   },
   twitter: {
     title: '歴代MacBookスペック比較表！Air・Proの性能差や違いがすぐわかる',
@@ -156,14 +157,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/macbook/macbook
               <h1 className="hero-title">
                 歴代MacBookスペック比較表！Air・Proの性能差や違いがすぐわかる
               </h1>
-              <div className="hero-meta">
-                <i className="fa-regular fa-clock" aria-hidden="true"></i>
-                <span>
-                  更新日: <time dateTime={dateStr}>
-                    {dateDisplay}
-                  </time> | 当記事のリンクには広告が含まれています
-                </span>
-              </div>
+              <HeroMeta dateStr={dateStr} dateDisplay={dateDisplay} />
             </div>
             <div className="hero-visual">
               <figure className="hero-media">
@@ -202,7 +196,8 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/macbook/macbook
         {/* 目次 */}
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
-            <p className="toc-title">タップできる目次</p>
+            <div className="toc-wrapper">
+<p className="toc-title"><i className="fa-solid fa-list" aria-hidden="true"></i> タップできる目次</p>
             <ol className="l-grid l-grid--3col u-list-reset">
               <li>
                 <a href="#spec-table" className="toc-item">
@@ -235,6 +230,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/macbook/macbook
                 </a>
               </li>
             </ol>
+</div>
             <AuthorByline />
           </div>
         </nav>

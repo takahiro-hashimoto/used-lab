@@ -29,6 +29,7 @@ import GuideModelLinks from '@/app/components/GuideModelLinks'
 import ProductCard from '@/app/components/ProductCard'
 import { getHeroImage } from '@/lib/data/hero-images'
 import AuthorByline from '@/app/components/AuthorByline'
+import HeroMeta from '@/app/components/HeroMeta'
 
 const PAGE_TITLE = `中古Apple Watch完全購入ガイド | 選び方・相場・おすすめモデルまとめ【${GUIDE_DATE_LABEL}版】`
 const PAGE_DESCRIPTION = `${GUIDE_DATE_LABEL}版・中古Apple Watchの完全購入ガイド。選び方のポイント、モデル別の相場、おすすめ機種をまとめて解説。失敗しない中古Apple Watch選びをサポートします。`
@@ -42,7 +43,7 @@ export const metadata: Metadata = {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/watch/',
-    images: [{ url: '/images/watch/watch-9.jpg', width: 360, height: 360, alt: PAGE_TITLE }],
+    images: [{ url: '/images/watch/watch-9.jpg', width: 1200, height: 630, alt: PAGE_TITLE }],
   },
   twitter: {
     title: PAGE_TITLE,
@@ -147,13 +148,7 @@ export default async function WatchGuidePage() {
                 中古Apple Watch完全購入ガイド
                 選び方・相場・おすすめモデルまとめ【{GUIDE_DATE_LABEL}版】
               </h1>
-              <div className="hero-meta">
-                <i className="fa-regular fa-clock" aria-hidden="true"></i>
-                <span>
-                  更新日: <time dateTime={dateStr} itemProp="dateModified">{dateDisplay}</time> | 当記事のリンクには広告が含まれています
-                </span>
-                <meta itemProp="datePublished" content={dateStr} />
-              </div>
+              <HeroMeta dateStr={dateStr} dateDisplay={dateDisplay} withItemProp />
             </div>
             <div className="hero-visual">
               <figure className="hero-media">
@@ -189,7 +184,8 @@ export default async function WatchGuidePage() {
         {/* 目次 */}
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
-            <p className="toc-title">タップできる目次</p>
+            <div className="toc-wrapper">
+<p className="toc-title"><i className="fa-solid fa-list" aria-hidden="true"></i> タップできる目次</p>
             <ol className="l-grid l-grid--3col u-list-reset">
               <li><a href="#filter-tool" className="toc-item">診断ツール <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#market-price" className="toc-item">最新相場 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
@@ -200,6 +196,7 @@ export default async function WatchGuidePage() {
               <li><a href="#spec-compare" className="toc-item">スペック比較 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#faq" className="toc-item">よくある質問 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
             </ol>
+</div>
           <AuthorByline />
           </div>
         </nav>
@@ -226,11 +223,14 @@ export default async function WatchGuidePage() {
                 <div className="popular-card-body">
                   <p className="popular-card-subtitle">条件にチェックを打つだけ！</p>
                   <p className="popular-card-title">Apple Watch機種絞り込みツール</p>
-                  <p className="popular-card-desc">健康管理をしっかりしたい、バッテリーが長持ちしてほしいなどの希望や予算にチェックを打つだけで、あなたにぴったり合うApple Watchをシミュレーションすることができます。</p>
-                  <div className="popular-card-cta" style={{ alignSelf: 'flex-end' }}>
+                <p className="popular-card-subtitle">目的別におすすめ機種を厳選！</p>                  <p className="popular-card-desc">健康管理をしっかりしたい、バッテリーが長持ちしてほしいなどの希望や予算にチェックを打つだけで、あなたにぴったり合うApple Watchをシミュレーションすることができます。</p>
+                  <div className="popular-card-buttons">
                     <Link href="/watch/watch-filter-search/" className="m-btn m-btn--primary">
                       機種診断スタート <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
                     </Link>
+                    <a className="m-btn m-btn--secondary" href="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Fwearable%2Fapple%3Fnot%3Dpencil" target="_blank" rel="noopener noreferrer">
+                      イオシスで中古Apple Watchを探す <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                    </a>
                   </div>
                 </div>
               </div>
@@ -373,7 +373,7 @@ export default async function WatchGuidePage() {
               <p className="guide-section-note">{GUIDE_DATE_LABEL}現在おすすめの中古Apple Watchはこちらの記事でじっくり解説しています。</p>
               <div className="guide-section-cta">
                 <Link href="/watch/recommend/" className="m-btn m-btn--primary m-btn--block">
-                  <span>中古Apple Watchのおすすめ機種【{GUIDE_DATE_LABEL}版】</span>
+                  <span>中古Apple Watchのおすすめ機種</span>
                   <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
                 </Link>
               </div>

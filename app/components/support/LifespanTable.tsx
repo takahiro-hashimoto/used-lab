@@ -18,6 +18,7 @@ type LifespanEntryWithHref = {
   osEnd: string
   repairEnd: string
   osEnded?: boolean
+  iosysUrl?: string
 }
 
 /** 対象機種列を持つ（iPhone / iPad で使用） */
@@ -28,6 +29,7 @@ type LifespanEntryWithModels = {
   osEnd: string
   repairEnd: string
   osEnded?: boolean
+  iosysUrl?: string
 }
 
 type LifespanEntry = LifespanEntryWithHref | LifespanEntryWithModels
@@ -71,6 +73,8 @@ type Props = {
   showModelsColumn?: boolean
   /** 用語解説グループ */
   glossaryGroups: GlossaryGroup[]
+  /** イオシスリンク列を表示するか */
+  showIosysColumn?: boolean
 }
 
 export type { LifespanEntry, LifespanEntryWithHref, LifespanEntryWithModels, ModelLink, GlossaryItem, GlossaryGroup }
@@ -85,6 +89,7 @@ export default function LifespanTable({
   data,
   showModelsColumn = false,
   glossaryGroups,
+  showIosysColumn = false,
 }: Props) {
   return (
     <section className="l-section" id="lifespan-table" aria-labelledby="heading-lifespan-table">
@@ -105,6 +110,7 @@ export default function LifespanTable({
                   {showModelsColumn && <th>対象機種</th>}
                   <th>OSサポート</th>
                   <th>修理受付</th>
+                  {showIosysColumn && <th>イオシス</th>}
                 </tr>
               </thead>
               <tbody>
@@ -147,6 +153,15 @@ export default function LifespanTable({
                       <br />
                       <small>頃まで</small>
                     </td>
+                    {showIosysColumn && (
+                      <td>
+                        {entry.iosysUrl ? (
+                          <a href={entry.iosysUrl} className="m-btn m-btn--primary m-btn--sm" target="_blank" rel="noopener noreferrer nofollow">中古価格を見る</a>
+                        ) : (
+                          <span>—</span>
+                        )}
+                      </td>
+                    )}
                   </tr>
                 ))}
               </tbody>

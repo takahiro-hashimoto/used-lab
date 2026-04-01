@@ -10,6 +10,7 @@ import IPadFilterSearchApp from './components/IPadFilterSearchApp'
 import ShareBox from '@/app/components/ShareBox'
 import IPadRelatedLinks from '@/app/components/ipad/IPadRelatedLinks'
 import { getGitDateForFile } from '@/lib/utils/shared-helpers'
+import HeroMeta from '@/app/components/HeroMeta'
 
 export const metadata: Metadata = {
   title: 'iPad機種診断シミュレーター｜自分に合うおすすめ中古iPadがすぐわかる【2026年版】',
@@ -20,7 +21,7 @@ export const metadata: Metadata = {
     title: 'iPad機種診断シミュレーター｜自分に合うおすすめ中古iPadがすぐわかる【2026年版】',
     description: '目的・予算・こだわり条件から、あなたに最適な中古iPadを無料で診断。',
     url: '/ipad/ipad-filter-search/',
-    images: [{ url: '/images/ipad/ipad-all.jpg', width: 360, height: 360, alt: 'iPad機種診断シミュレーター' }],
+    images: [{ url: '/images/ipad/ipad-all.jpg', width: 1200, height: 630, alt: 'iPad機種診断シミュレーター' }],
   },
   twitter: {
     title: 'iPad機種診断シミュレーター｜自分に合うおすすめ中古iPadがすぐわかる【2026年版】',
@@ -204,14 +205,7 @@ export default async function IPadFilterSearchPage() {
               <h1 className="hero-title">
                 iPad機種診断シミュレーター｜選び方がわからなくてもどれを買うべきかわかる
               </h1>
-              <div className="hero-meta">
-                <i className="fa-regular fa-clock" aria-hidden="true"></i>
-                <span>
-                  更新日: <time dateTime={dateStr}>
-                    {dateDisplay}
-                  </time> | 当記事のリンクには広告が含まれています
-                </span>
-              </div>
+              <HeroMeta dateStr={dateStr} dateDisplay={dateDisplay} />
             </div>
             <div className="hero-visual">
               <figure className="hero-media">
@@ -322,10 +316,13 @@ export default async function IPadFilterSearchPage() {
                 <p className="popular-card-desc">
                   イラスト制作に最適なモデル、動画視聴に大画面モデルなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。
                 </p>
-                <div>
+                <div className="popular-card-buttons">
                   <Link href="/ipad/recommend" className="m-btn m-btn--primary">
                     おすすめ5機種を見る <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
                   </Link>
+                  <a className="m-btn m-btn--secondary" href="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Ftablet%2Fios%2Fipad" target="_blank" rel="noopener noreferrer">
+                    イオシスで中古iPadを探す <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                  </a>
                 </div>
               </div>
             </div>

@@ -48,7 +48,7 @@
 }
 
 .author-byline__heading {
-  font-size: var(--font-size-lg);
+  font-size: var(--font-size-md);
   font-weight: 700;
   color: var(--color-text);
 }
@@ -81,7 +81,11 @@
     text-align: center;
   }
 
+  .author-byline__desc {
+    text-align: left;
+  }
+
   .author-byline__link {
-    align-self: center;
+    align-self: flex-start;
   }
 }

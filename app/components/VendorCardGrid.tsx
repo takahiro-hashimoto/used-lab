@@ -28,11 +28,8 @@ export default function VendorCardGrid({ cards }: Props) {
       {cards.map((card) => (
         <article
           key={card.name}
-          className={`m-card m-card--shadow m-vendor-card${card.recommended ? ' m-vendor-card--recommended' : ''}`}
+          className="m-card m-card--shadow m-vendor-card"
         >
-          {card.badgeText && (
-            <span className="m-badge m-badge--primary m-vendor-card__badge">{card.badgeText}</span>
-          )}
           <div className="m-vendor-card__header">
             <h3 className="m-vendor-card__name">{card.name}</h3>
             {card.tag && <span className="m-tag">{card.tag}</span>}

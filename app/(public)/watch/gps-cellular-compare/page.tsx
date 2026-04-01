@@ -9,6 +9,7 @@ import AuthorByline from '@/app/components/AuthorByline'
 import PopularSection from '@/app/components/support/PopularSection'
 import WatchRelatedLinks from '@/app/components/watch/WatchRelatedLinks'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
+import HeroMeta from '@/app/components/HeroMeta'
 
 const PAGE_TITLE = 'Apple Watch セルラーモデルのできることを解説！GPSモデルとの違いがわかる'
 const PAGE_DESCRIPTION =
@@ -23,7 +24,7 @@ export const metadata: Metadata = {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/watch/gps-cellular-compare/',
-    images: [{ url: '/images/content/thumbnail/apple-watch-image.jpg', width: 360, height: 360, alt: PAGE_TITLE }],
+    images: [{ url: '/images/content/thumbnail/apple-watch-image.jpg', width: 1200, height: 630, alt: PAGE_TITLE }],
   },
   twitter: {
     title: PAGE_TITLE,
@@ -101,13 +102,7 @@ export default function GpsCellularComparePage() {
               <h1 className="hero-title" itemProp="headline">
                 Apple Watch セルラーモデルのできることを解説！GPSモデルとの違いがわかる
               </h1>
-              <div className="hero-meta">
-                <i className="fa-regular fa-clock" aria-hidden="true"></i>
-                <span>
-                  更新日: <time dateTime={dateStr} itemProp="dateModified">{dateDisplay}</time> | 当記事のリンクには広告が含まれています
-                </span>
-                <meta itemProp="datePublished" content={dateStr} />
-              </div>
+              <HeroMeta dateStr={dateStr} dateDisplay={dateDisplay} withItemProp />
             </div>
             <div className="hero-visual">
               <figure className="hero-media">
@@ -147,7 +142,7 @@ export default function GpsCellularComparePage() {
         {/* 目次 */}
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
-            <p className="toc-title">タップできる目次</p>
+            <p className="toc-title"><i className="fa-solid fa-list" aria-hidden="true"></i> タップできる目次</p>
             <ol className="l-grid l-grid--2col u-list-reset">
               <li>
                 <a href="#recommend" className="toc-item">
@@ -210,6 +205,8 @@ export default function GpsCellularComparePage() {
             cardDescription="健康管理を重視する人向け、コスパ重視の人向けなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。"
             buttonText="おすすめ5機種を見る"
             buttonHref="/watch/recommend/"
+            secondaryButtonText="イオシスで中古Apple Watchを探す"
+            secondaryButtonHref="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Fwearable%2Fapple%3Fnot%3Dpencil"
           />
 
         <WatchRelatedLinks excludeHref={["/watch/gps-cellular-compare/", "/watch/recommend/"]} />

@@ -11,7 +11,7 @@ export default function Footer() {
             </Link>
             <p className="footer-tagline">中古Apple製品の「ちょうどいい」を見つけるメディア。豊富なデータで最適な商品がわかる。型落ちの中古Apple製品をお手頃にゲットしよう！</p>
             <div className="footer-social">
-              <a href="http://twitter.com/takahiro_mono" aria-label="X (Twitter)" rel="noopener noreferrer">
+              <a href="https://twitter.com/takahiro_mono" aria-label="X (Twitter)" rel="noopener noreferrer">
                 <i className="fa-brands fa-x-twitter" aria-hidden="true"></i>
               </a>
               <a href="https://www.instagram.com/takahiro_mono" aria-label="Instagram" rel="noopener noreferrer">

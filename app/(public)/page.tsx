@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import {
@@ -6,12 +7,23 @@ import {
   getAllMacBookModels,
   getAllWatchModels,
   getAllAirPodsModels,
+  getLatestPriceUpdateDate,
 } from '@/lib/queries'
 import { PRODUCT_CATEGORIES } from '@/lib/routes'
 import { getPublishedNews } from '@/app/admin/actions'
 import IconCard from '@/app/components/IconCard'
-import HeroSearch from '@/app/components/HeroSearch'
 import { placeholder } from '@/lib/placeholder'
+
+export const metadata: Metadata = {
+  title: 'ユーズドラボ | 中古Apple製品の価格比較・スペック情報',
+  description: '中古iPhone・iPad・MacBook・Apple Watch・AirPodsの価格推移・スペック比較・おすすめ機種を毎日更新。中古Apple製品選びに必要な情報をワンストップで提供します。',
+  alternates: { canonical: '/' },
+  openGraph: {
+    title: 'ユーズドラボ | 中古Apple製品の価格比較・スペック情報',
+    description: '中古iPhone・iPad・MacBook・Apple Watch・AirPodsの価格推移・スペック比較・おすすめ機種を毎日更新。',
+    url: '/',
+  },
+}
 
 /** カテゴリごとの画像ベースパス */
 const CATEGORY_IMAGE_BASE: Record<string, string> = {
@@ -23,15 +35,24 @@ const CATEGORY_IMAGE_BASE: Record<string, string> = {
 }
 
 export default async function HomePage() {
-  // 全モデル＋新着情報を並列取得
-  const [iPhoneModels, iPadModels, macBookModels, watchModels, airPodsModels, newsItems] = await Promise.all([
+  // 全モデル＋新着情報＋価格更新日を並列取得
+  const [iPhoneModels, iPadModels, macBookModels, watchModels, airPodsModels, newsItems, latestPriceDate] = await Promise.all([
     getAllIPhoneModels(),
     getAllIPadModels(),
     getAllMacBookModels(),
     getAllWatchModels(),
     getAllAirPodsModels(),
     getPublishedNews(),
+    getLatestPriceUpdateDate(),
   ])
+
+  // 価格更新日のフォーマット（例: 2026/4/1）
+  const priceUpdateLabel = latestPriceDate
+    ? (() => {
+        const [y, m, d] = latestPriceDate.split('-')
+        return `${y}年${Number(m)}月${Number(d)}日`
+      })()
+    : null
 
   // モデル数
   const modelCounts: Record<string, number> = {
@@ -71,7 +92,12 @@ export default async function HomePage() {
             <h1 className="hero-subtitle--top">
               中古Apple製品のおすすめ機種・賢い選び方・安く買う方法を解説
             </h1>
-            <HeroSearch />
+            {priceUpdateLabel && (
+              <p className="hero-freshness">
+                <i className="fa-solid fa-rotate" aria-hidden="true"></i>
+                中古価格データの最終更新日：{priceUpdateLabel}
+              </p>
+            )}
           </div>
         </div>
       </header>

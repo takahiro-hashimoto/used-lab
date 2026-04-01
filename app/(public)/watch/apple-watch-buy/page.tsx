@@ -7,6 +7,7 @@ import PopularSection from '@/app/components/support/PopularSection'
 import WatchRelatedLinks from '@/app/components/watch/WatchRelatedLinks'
 import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
+import HeroMeta from '@/app/components/HeroMeta'
 
 const PAGE_TITLE = 'Apple Watchを安く買うには？おすすめの購入先7つを比較'
 const PAGE_DESCRIPTION =
@@ -21,7 +22,7 @@ export const metadata: Metadata = {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/watch/apple-watch-buy/',
-    images: [{ url: '/images/watch/apple-watch.jpg', width: 360, height: 360, alt: PAGE_TITLE }],
+    images: [{ url: '/images/watch/apple-watch.jpg', width: 1200, height: 630, alt: PAGE_TITLE }],
   },
   twitter: {
     title: PAGE_TITLE,
@@ -83,13 +84,7 @@ export default function AppleWatchBuyPage() {
               <h1 className="hero-title" itemProp="headline">
                 Apple Watchを安く買うには？おすすめの購入先7つを比較
               </h1>
-              <div className="hero-meta">
-                <i className="fa-regular fa-clock" aria-hidden="true"></i>
-                <span>
-                  更新日: <time dateTime={dateStr} itemProp="dateModified">{dateDisplay}</time> | 当記事のリンクには広告が含まれています
-                </span>
-                <meta itemProp="datePublished" content={dateStr} />
-              </div>
+              <HeroMeta dateStr={dateStr} dateDisplay={dateDisplay} withItemProp />
             </div>
             <div className="hero-visual">
               <figure className="hero-media">
@@ -133,7 +128,8 @@ export default function AppleWatchBuyPage() {
         {/* 目次 */}
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
-            <p className="toc-title">タップできる目次</p>
+            <div className="toc-wrapper">
+<p className="toc-title"><i className="fa-solid fa-list" aria-hidden="true"></i> タップできる目次</p>
             <ol className="l-grid l-grid--3col u-list-reset">
               <li>
                 <a href="#gift-rebates" className="toc-item">
@@ -171,6 +167,7 @@ export default function AppleWatchBuyPage() {
                 </a>
               </li>
             </ol>
+</div>
           <AuthorByline />
           </div>
         </nav>
@@ -191,6 +188,8 @@ export default function AppleWatchBuyPage() {
           cardDescription="健康管理を重視する人向け、コスパ重視の人向けなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。"
           buttonText="おすすめ5機種を見る"
           buttonHref="/watch/recommend/"
+          secondaryButtonText="イオシスで中古Apple Watchを探す"
+          secondaryButtonHref="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Fwearable%2Fapple%3Fnot%3Dpencil"
         />
 
         <WatchRelatedLinks excludeHref="/watch/apple-watch-buy/">

@@ -271,6 +271,18 @@ export async function getMvnoProviders(): Promise<MvnoProvider[]> {
 // 共通クエリ（製品横断）
 // ============================================================
 
+/** 価格データの最終更新日を取得（YYYY-MM-DD） */
+export async function getLatestPriceUpdateDate(): Promise<string | null> {
+  const { data, error } = await supabase
+    .from('iphone_price_logs')
+    .select('logged_at')
+    .order('logged_at', { ascending: false })
+    .limit(1)
+    .maybeSingle()
+  if (error || !data) return null
+  return data.logged_at.substring(0, 10)
+}
+
 export const getShops = unstable_cache(
   async (): Promise<Shop[]> => {
     const { data, error } = await supabase

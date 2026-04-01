@@ -13,6 +13,7 @@ import PopularSection from '@/app/components/support/PopularSection'
 import WatchRelatedLinks from '@/app/components/watch/WatchRelatedLinks'
 import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
+import HeroMeta from '@/app/components/HeroMeta'
 
 const PAGE_TITLE = '中古Apple Watchはやめた方がいい？購入前に確認すべき注意点まとめ'
 const PAGE_DESCRIPTION =
@@ -27,7 +28,7 @@ export const metadata: Metadata = {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/watch/used-watch-attention/',
-    images: [{ url: '/images/watch/watch-10.jpg', width: 360, height: 360, alt: PAGE_TITLE }],
+    images: [{ url: '/images/watch/watch-10.jpg', width: 1200, height: 630, alt: PAGE_TITLE }],
   },
   twitter: {
     title: PAGE_TITLE,
@@ -142,13 +143,7 @@ export default function UsedWatchAttentionPage() {
               <h1 className="hero-title" itemProp="headline">
                 中古Apple Watchはやめた方がいい？購入前に確認すべき注意点まとめ
               </h1>
-              <div className="hero-meta">
-                <i className="fa-regular fa-clock" aria-hidden="true"></i>
-                <span>
-                  更新日: <time dateTime={dateStr} itemProp="dateModified">{dateDisplay}</time> | 当記事のリンクには広告が含まれています
-                </span>
-                <meta itemProp="datePublished" content={dateStr} />
-              </div>
+              <HeroMeta dateStr={dateStr} dateDisplay={dateDisplay} withItemProp />
             </div>
             <div className="hero-visual">
               <figure className="hero-media">
@@ -188,7 +183,8 @@ export default function UsedWatchAttentionPage() {
         {/* 目次 */}
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
-            <p className="toc-title">タップできる目次</p>
+            <div className="toc-wrapper">
+<p className="toc-title"><i className="fa-solid fa-list" aria-hidden="true"></i> タップできる目次</p>
             <ol className="l-grid l-grid--3col u-list-reset">
               <li>
                 <a href="#pre-check" className="toc-item">
@@ -221,6 +217,7 @@ export default function UsedWatchAttentionPage() {
                 </a>
               </li>
             </ol>
+</div>
           <AuthorByline />
           </div>
         </nav>
@@ -243,6 +240,8 @@ export default function UsedWatchAttentionPage() {
             cardDescription="健康管理重視、コスパ重視、スポーツ向けなど目的別に買うべきモデルを紹介。watchOSサポート期間やバッテリー持ちなど購入前にチェックすべき項目も網羅しています。"
             buttonText="おすすめモデルを見る"
             buttonHref="/watch/recommend/"
+            secondaryButtonText="イオシスで中古Apple Watchを探す"
+            secondaryButtonHref="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Fwearable%2Fapple%3Fnot%3Dpencil"
           />
         <WatchRelatedLinks excludeHref={["/watch/used-watch-attention/", "/watch/recommend/"]} />
         <ShareBox url={PAGE_URL} text={PAGE_TITLE} />

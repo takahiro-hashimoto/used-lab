@@ -13,6 +13,7 @@ import PopularMacBook from '@/app/components/PopularMacBook'
 import MacBookRelatedLinks from '@/app/components/macbook/MacBookRelatedLinks'
 import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
+import HeroMeta from '@/app/components/HeroMeta'
 
 export const revalidate = 86400
 
@@ -25,7 +26,7 @@ export const metadata: Metadata = {
     title: '中古MacBookのストレージ容量はどれがいい？用途別おすすめ容量まとめ',
     description: '中古MacBookのストレージ容量の選び方を用途別に解説。歴代モデルの容量ラインナップも一覧で確認できます。',
     url: '/macbook/storage-guide/',
-    images: [{ url: '/images/content/thumbnail/macbook-image-05.jpg', width: 360, height: 360, alt: '中古MacBookストレージ容量ガイドのイメージ' }],
+    images: [{ url: '/images/content/thumbnail/macbook-image-05.jpg', width: 1200, height: 630, alt: '中古MacBookストレージ容量ガイドのイメージ' }],
   },
   twitter: {
     title: '中古MacBookのストレージ容量はどれがいい？用途別おすすめ容量まとめ',
@@ -37,11 +38,11 @@ export const metadata: Metadata = {
 const FAQ_ITEMS = [
   {
     question: '中古MacBookのストレージ容量は後から増やせますか？',
-    answer: 'Appleシリコン搭載のMacBook（M1以降）はSSDがロジックボードに直接搭載されており、後からの増設・交換はできません。一部のIntelモデルでは交換できたケースもありますが、現行モデルはすべて不可です。外付けSSDで対処はできますが、持ち歩きの手間が増えます。',
+    answer: 'Appleシリコン搭載のMacBook（M1以降）はSSDがロジックボードに直接搭載されており、後からの増設・交換はできません。\n一部のIntelモデルでは交換できたケースもありますが、現行モデルはすべて不可です。外付けSSDで対処はできますが、持ち歩きの手間が増えます。',
   },
   {
     question: '256GBと512GBで迷ったらどちらがいい？',
-    answer: '2026年現在、macOSやアプリの大型化が進んでおり、メイン機として長く使うなら512GBがおすすめです。256GBでもWeb閲覧・事務作業中心なら使えますが、Xcodeやfinal Cut Proなどの開発・クリエイティブツールを使うと容量が逼迫しやすいです。',
+    answer: '2026年現在、macOSやアプリの大型化が進んでおり、メイン機として長く使うなら512GBがおすすめです。\n256GBでもWeb閲覧・事務作業中心なら使えますが、Xcodeやfinal Cut Proなどの開発・クリエイティブツールを使うと容量が逼迫しやすいです。',
   },
   {
     question: 'MacBookで動画編集をする場合、何GBがおすすめ？',
@@ -205,14 +206,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/macbook/storage
           <div className="hero-inner l-container">
             <div className="hero-content">
               <h1 className="hero-title">中古MacBookのストレージ容量はどれがいい？用途別おすすめ容量まとめ</h1>
-              <div className="hero-meta">
-                <i className="fa-regular fa-clock" aria-hidden="true"></i>
-                <span>
-                  更新日: <time dateTime={dateStr}>
-                    {dateDisplay}
-                  </time> | 当記事のリンクには広告が含まれています
-                </span>
-              </div>
+              <HeroMeta dateStr={dateStr} dateDisplay={dateDisplay} />
             </div>
             <div className="hero-visual">
               <figure className="hero-media">
@@ -238,7 +232,8 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/macbook/storage
 
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
-            <p className="toc-title">タップできる目次</p>
+            <div className="toc-wrapper">
+<p className="toc-title"><i className="fa-solid fa-list" aria-hidden="true"></i> タップできる目次</p>
             <ol className="l-grid l-grid--3col u-list-reset">
               <li><a href="#storage-points" className="toc-item">容量選びのポイント <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#storage-quick" className="toc-item">容量別おすすめ早見表 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
@@ -246,6 +241,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/macbook/storage
               <li><a href="#storage-check" className="toc-item">ストレージ確認方法 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#faq" className="toc-item">よくある質問 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
             </ol>
+</div>
             <AuthorByline />
           </div>
         </nav>
@@ -432,7 +428,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/macbook/storage
               {FAQ_ITEMS.map((item, i) => (
                 <div key={i} className="m-card m-card--shadow faq-item">
                   <h3 className="faq-question">{item.question}</h3>
-                  <div className="faq-answer"><p>{item.answer}</p></div>
+                  <div className="faq-answer">{item.answer.split('\n').map((p, j) => <p key={j}>{p}</p>)}</div>
                 </div>
               ))}
             </div>

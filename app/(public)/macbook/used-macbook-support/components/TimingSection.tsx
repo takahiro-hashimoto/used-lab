@@ -1,12 +1,11 @@
 import Link from 'next/link'
 import TimingSectionBase from '@/app/components/support/TimingSection'
 import type { TimingCard } from '@/app/components/support/TimingSection'
-import { placeholder } from '@/lib/placeholder'
 
 const TIMING_CARDS: TimingCard[] = [
   {
     title: '①発売から7年が経過しそうになった時',
-    imgSrc: placeholder(400, 520, 'MacBook'),
+    imgSrc: '/images/content/thumbnail/macbook-image-01.jpg',
     imgAlt: 'MacBookのイメージ',
     content: (
       <>
@@ -19,7 +18,7 @@ const TIMING_CARDS: TimingCard[] = [
   },
   {
     title: '②バッテリーの持ちが明らかに悪くなった時',
-    imgSrc: placeholder(400, 520, 'Battery'),
+    imgSrc: '/images/content/thumbnail/macbook-charge.jpg',
     imgAlt: 'バッテリーの状態画面',
     content: (
       <>
@@ -35,7 +34,7 @@ const TIMING_CARDS: TimingCard[] = [
   },
   {
     title: '③作業効率に不満を感じ始めた時',
-    imgSrc: placeholder(400, 520, 'Performance'),
+    imgSrc: '/images/content/thumbnail/macbook-image-02.jpg',
     imgAlt: 'MacBookの性能イメージ',
     content: (
       <>

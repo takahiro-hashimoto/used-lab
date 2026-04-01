@@ -2,18 +2,20 @@ import LifespanTableBase from '@/app/components/support/LifespanTable'
 import type { LifespanEntryWithHref, GlossaryGroup } from '@/app/components/support/LifespanTable'
 import type { MacBookModel } from '@/lib/types'
 
+const IOSYS_MACBOOK = 'https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Fpc%2Fnotepc%2Fmacbook'
+
 const LIFESPAN_DATA: LifespanEntryWithHref[] = [
-  { series: 'MBP 14/16インチ M4（2024）', href: '/macbook/mbp-14-2024-nov', releaseDate: '2024年11月発売', osEnd: '2031年11月', repairEnd: '2033年11月' },
-  { series: 'MBP 14/16インチ M3 Pro/Max（2023）', href: '/macbook/mbp-14-2023-nov', releaseDate: '2023年11月発売', osEnd: '2030年11月', repairEnd: '2032年11月' },
-  { series: 'MBP 14/16インチ M2 Pro/Max（2023）', href: '/macbook/mbp-14-2023', releaseDate: '2023年2月発売', osEnd: '2030年2月', repairEnd: '2032年2月' },
-  { series: 'MBP 13インチ M2（2022）', href: '/macbook/mbp-13-2022', releaseDate: '2022年6月発売', osEnd: '2029年6月', repairEnd: '2031年6月' },
-  { series: 'MBP 14/16インチ M1 Pro/Max（2021）', href: '/macbook/mbp-14-2021', releaseDate: '2021年10月発売', osEnd: '2028年10月', repairEnd: '2030年10月' },
-  { series: 'MBP 13インチ M1（2020）', href: '/macbook/mbp-13-2020', releaseDate: '2020年11月発売', osEnd: '2027年11月', repairEnd: '2029年11月' },
-  { series: 'MBA 13/15インチ M4（2025）', href: '/macbook/mba-13-2025', releaseDate: '2025年3月発売', osEnd: '2032年3月', repairEnd: '2034年3月' },
-  { series: 'MBA 13/15インチ M3（2024）', href: '/macbook/mba-13-2024', releaseDate: '2024年3月発売', osEnd: '2031年3月', repairEnd: '2033年3月' },
-  { series: 'MBA 15インチ M2（2023）', href: '/macbook/mba-15-2023', releaseDate: '2023年6月発売', osEnd: '2030年6月', repairEnd: '2032年6月' },
-  { series: 'MBA 13インチ M2（2022）', href: '/macbook/mba-13-2022', releaseDate: '2022年7月発売', osEnd: '2029年7月', repairEnd: '2031年7月' },
-  { series: 'MBA 13インチ M1（2020）', href: '/macbook/mba-13-2020', releaseDate: '2020年11月発売', osEnd: '2027年11月', repairEnd: '2029年11月' },
+  { series: 'MBP 14/16インチ M4（2024）', href: '/macbook/mbp-14-2024-nov', releaseDate: '2024年11月発売', osEnd: '2031年11月', repairEnd: '2033年11月', iosysUrl: IOSYS_MACBOOK },
+  { series: 'MBP 14/16インチ M3 Pro/Max（2023）', href: '/macbook/mbp-14-2023-nov', releaseDate: '2023年11月発売', osEnd: '2030年11月', repairEnd: '2032年11月', iosysUrl: IOSYS_MACBOOK },
+  { series: 'MBP 14/16インチ M2 Pro/Max（2023）', href: '/macbook/mbp-14-2023', releaseDate: '2023年2月発売', osEnd: '2030年2月', repairEnd: '2032年2月', iosysUrl: IOSYS_MACBOOK },
+  { series: 'MBP 13インチ M2（2022）', href: '/macbook/mbp-13-2022', releaseDate: '2022年6月発売', osEnd: '2029年6月', repairEnd: '2031年6月', iosysUrl: IOSYS_MACBOOK },
+  { series: 'MBP 14/16インチ M1 Pro/Max（2021）', href: '/macbook/mbp-14-2021', releaseDate: '2021年10月発売', osEnd: '2028年10月', repairEnd: '2030年10月', iosysUrl: IOSYS_MACBOOK },
+  { series: 'MBP 13インチ M1（2020）', href: '/macbook/mbp-13-2020', releaseDate: '2020年11月発売', osEnd: '2027年11月', repairEnd: '2029年11月', iosysUrl: IOSYS_MACBOOK },
+  { series: 'MBA 13/15インチ M4（2025）', href: '/macbook/mba-13-2025', releaseDate: '2025年3月発売', osEnd: '2032年3月', repairEnd: '2034年3月', iosysUrl: IOSYS_MACBOOK },
+  { series: 'MBA 13/15インチ M3（2024）', href: '/macbook/mba-13-2024', releaseDate: '2024年3月発売', osEnd: '2031年3月', repairEnd: '2033年3月', iosysUrl: IOSYS_MACBOOK },
+  { series: 'MBA 15インチ M2（2023）', href: '/macbook/mba-15-2023', releaseDate: '2023年6月発売', osEnd: '2030年6月', repairEnd: '2032年6月', iosysUrl: IOSYS_MACBOOK },
+  { series: 'MBA 13インチ M2（2022）', href: '/macbook/mba-13-2022', releaseDate: '2022年7月発売', osEnd: '2029年7月', repairEnd: '2031年7月', iosysUrl: IOSYS_MACBOOK },
+  { series: 'MBA 13インチ M1（2020）', href: '/macbook/mba-13-2020', releaseDate: '2020年11月発売', osEnd: '2027年11月', repairEnd: '2029年11月', iosysUrl: IOSYS_MACBOOK },
 ]
 
 const GLOSSARY_GROUPS: GlossaryGroup[] = [
@@ -89,6 +91,7 @@ export default function MacBookLifespanTable({ models }: Props) {
       }
       tableCaption="MacBook機種別サポート期間・寿命予想一覧"
       glossaryGroups={GLOSSARY_GROUPS}
+      showIosysColumn
     />
   )
 }

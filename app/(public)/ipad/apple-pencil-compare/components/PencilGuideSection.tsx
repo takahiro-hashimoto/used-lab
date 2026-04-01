@@ -47,10 +47,6 @@ export default function PencilGuideSection() {
         <div className="l-grid l-grid--2col" style={{ gap: 'var(--space-lg)', marginTop: 'var(--space-xl)' }}>
           {GUIDES.map((g) => (
             <div key={g.id} id={g.id} className="m-card m-card--shadow m-card--padded">
-              <p className="popular-card-subtitle">
-                <i className={g.icon} aria-hidden="true" style={{ marginRight: '0.5em' }}></i>
-                {g.title}
-              </p>
               <p className="popular-card-title">
                 <a href={g.amazonUrl} rel="nofollow noopener noreferrer" target="_blank">
                   {g.recommendation}

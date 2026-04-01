@@ -2,6 +2,8 @@ import LifespanTableBase from '@/app/components/support/LifespanTable'
 import type { LifespanEntryWithModels, GlossaryGroup } from '@/app/components/support/LifespanTable'
 import type { IPhoneModel } from '@/lib/types'
 
+const IOSYS_IPHONE = 'https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Fsmartphone%2Fiphone'
+
 const LIFESPAN_DATA: LifespanEntryWithModels[] = [
   {
     series: 'iPhone 17シリーズ',
@@ -14,6 +16,7 @@ const LIFESPAN_DATA: LifespanEntryWithModels[] = [
     ],
     osEnd: '2032年9月',
     repairEnd: '2034年9月',
+    iosysUrl: IOSYS_IPHONE,
   },
   {
     series: 'iPhone 16eシリーズ',
@@ -21,6 +24,7 @@ const LIFESPAN_DATA: LifespanEntryWithModels[] = [
     models: [{ label: 'iPhone 16e', href: '/iphone/16e-se' }],
     osEnd: '2032年2月',
     repairEnd: '2034年2月',
+    iosysUrl: IOSYS_IPHONE,
   },
   {
     series: 'iPhone 16シリーズ',
@@ -33,6 +37,7 @@ const LIFESPAN_DATA: LifespanEntryWithModels[] = [
     ],
     osEnd: '2031年9月',
     repairEnd: '2033年9月',
+    iosysUrl: IOSYS_IPHONE,
   },
   {
     series: 'iPhone 15シリーズ',
@@ -45,6 +50,7 @@ const LIFESPAN_DATA: LifespanEntryWithModels[] = [
     ],
     osEnd: '2030年9月',
     repairEnd: '2032年9月',
+    iosysUrl: IOSYS_IPHONE,
   },
   {
     series: 'iPhone 14シリーズ',
@@ -57,6 +63,7 @@ const LIFESPAN_DATA: LifespanEntryWithModels[] = [
     ],
     osEnd: '2029年9月',
     repairEnd: '2031年9月',
+    iosysUrl: IOSYS_IPHONE,
   },
   {
     series: 'iPhone SE（第3世代）',
@@ -64,6 +71,7 @@ const LIFESPAN_DATA: LifespanEntryWithModels[] = [
     models: [{ label: 'iPhone SE 第3世代', href: '/iphone/se3' }],
     osEnd: '2029年3月',
     repairEnd: '2031年3月',
+    iosysUrl: IOSYS_IPHONE,
   },
   {
     series: 'iPhone 13シリーズ',
@@ -76,6 +84,7 @@ const LIFESPAN_DATA: LifespanEntryWithModels[] = [
     ],
     osEnd: '2028年9月',
     repairEnd: '2030年9月',
+    iosysUrl: IOSYS_IPHONE,
   },
   {
     series: 'iPhone 12シリーズ',
@@ -88,6 +97,7 @@ const LIFESPAN_DATA: LifespanEntryWithModels[] = [
     ],
     osEnd: '2027年11月',
     repairEnd: '2029年11月',
+    iosysUrl: IOSYS_IPHONE,
   },
   {
     series: 'iPhone SE（第2世代）',
@@ -95,6 +105,7 @@ const LIFESPAN_DATA: LifespanEntryWithModels[] = [
     models: [{ label: 'iPhone SE 第2世代', href: '/iphone/se2' }],
     osEnd: '2027年4月',
     repairEnd: '2029年4月',
+    iosysUrl: IOSYS_IPHONE,
   },
   {
     series: 'iPhone 11シリーズ',
@@ -106,6 +117,7 @@ const LIFESPAN_DATA: LifespanEntryWithModels[] = [
     ],
     osEnd: '2026年9月',
     repairEnd: '2028年9月',
+    iosysUrl: IOSYS_IPHONE,
   },
 ]
 
@@ -183,6 +195,7 @@ export default function IPhoneLifespanTable({ models }: Props) {
       tableCaption="iPhone機種別サポート期間・寿命予想一覧"
       showModelsColumn
       glossaryGroups={GLOSSARY_GROUPS}
+      showIosysColumn
     />
   )
 }

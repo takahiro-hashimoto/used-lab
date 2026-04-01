@@ -45,11 +45,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title,
     description,
+    alternates: { canonical: `/airpods/${slug}/` },
     openGraph: {
       title,
       description,
       url: `/airpods/${slug}/`,
-      images: model.image ? [{ url: `/images/airpods/${model.image}`, width: 360, height: 360, alt: `${displayName} の外観イメージ` }] : [],
+      images: model.image ? [{ url: `/images/airpods/${model.image}`, width: 1200, height: 630, alt: `${displayName} の外観イメージ` }] : [],
     },
     twitter: {
       title,
@@ -127,6 +128,8 @@ export default async function AirPodsDetailPage({ params }: PageProps) {
           cardDescription="ノイキャン重視、コスパ重視の人向けなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。"
           buttonText="おすすめモデルを見る"
           buttonHref="/airpods/recommend/"
+          secondaryButtonText="イオシスで中古AirPodsを探す"
+          secondaryButtonHref="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Faudiovisual"
         />
         <AirPodsRelatedLinks excludeHref={`/airpods/${model.slug}/`} />
         <ShareBox url={`https://used-lab.com/airpods/${model.slug}/`} text={`中古${model.name}（${model.model}）は今買うべき？サポート期間、基本スペック、中古相場から解説`} />

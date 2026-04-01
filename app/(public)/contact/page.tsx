@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Breadcrumb from '@/app/components/Breadcrumb'
+import HeroMeta from '@/app/components/HeroMeta'
 
 const PAGE_TITLE = 'お問い合わせ'
 const PAGE_DESCRIPTION = 'ユーズドラボへのお問い合わせはこちらのフォームからお送りください。'
@@ -48,10 +49,7 @@ export default function ContactPage() {
           <div className="hero-content">
             <h1 className="hero-title">お問い合わせ</h1>
             <p className="hero-description">{PAGE_DESCRIPTION}</p>
-            <div className="hero-meta">
-              <i className="fa-regular fa-clock" aria-hidden="true"></i>
-              <span>更新日: <time dateTime="2026-03-20">2026年3月20日</time></span>
-            </div>
+            <HeroMeta dateStr="2026-03-20" dateDisplay="2026年3月20日" />
           </div>
         </div>
       </header>

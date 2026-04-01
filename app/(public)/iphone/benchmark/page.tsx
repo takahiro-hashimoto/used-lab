@@ -3,6 +3,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import ShareBox from '@/app/components/ShareBox'
+import HeroMeta from '@/app/components/HeroMeta'
 import { getAllIPhoneModels, getAllIPhonePriceLogsByModelIds, getAllProductShopLinksByType } from '@/lib/queries'
 import type { IPhonePriceLog, ProductShopLink } from '@/lib/types'
 import BenchmarkRanking from './components/BenchmarkRanking'
@@ -28,7 +29,7 @@ export const metadata: Metadata = {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/iphone/benchmark/',
-    images: [{ url: '/images/content/thumbnail/iphone-setting.webp', width: 360, height: 360, alt: PAGE_TITLE }],
+    images: [{ url: '/images/content/thumbnail/iphone-setting.webp', width: 1200, height: 630, alt: PAGE_TITLE }],
   },
   twitter: {
     title: PAGE_TITLE,
@@ -40,23 +41,23 @@ export const metadata: Metadata = {
 const FAQ_ITEMS = [
   {
     question: 'Geekbench 6のスコアはどのくらい信頼できますか？',
-    answer: 'Geekbench 6は業界標準のベンチマークツールの一つで、CPU・GPU性能を定量的に比較するのに役立ちます。ただし実際の使用感はメモリ量、ソフトウェア最適化、バッテリー状態など複数の要素に左右されるため、スコアはあくまで参考指標として活用しましょう。',
+    answer: 'Geekbench 6は業界標準のベンチマークツールの一つで、CPU・GPU性能を定量的に比較するのに役立ちます。\nただし実際の使用感はメモリ量、ソフトウェア最適化、バッテリー状態など複数の要素に左右されるため、スコアはあくまで参考指標として活用しましょう。',
   },
   {
     question: 'AnTuTuスコアとGeekbenchスコアの違いは？',
-    answer: 'Geekbenchは主にCPUとGPUの「処理能力」を測定します。一方AnTuTuはCPU・GPU・メモリ・UX（操作性）の4項目を総合的に評価するため、実際の使用感に近い指標と言えます。両方を参考にすることで、より正確な性能比較ができます。',
+    answer: 'Geekbenchは主にCPUとGPUの「処理能力」を測定します。\n一方AnTuTuはCPU・GPU・メモリ・UX（操作性）の4項目を総合的に評価するため、実際の使用感に近い指標と言えます。両方を参考にすることで、より正確な性能比較ができます。',
   },
   {
     question: 'A15チップのiPhoneは2026年でもまだ使えますか？',
-    answer: 'A15チップ（iPhone 13シリーズ等）は2026年現在でもWeb閲覧、SNS、動画視聴など日常的な用途には十分な性能です。ただし最新の3Dゲームや高負荷なアプリでは、A16以降との差が体感できるケースがあります。iOSのサポートも引き続き対象なので、用途が合えばコスパの良い選択肢です。',
+    answer: 'A15チップ（iPhone 13シリーズ等）は2026年現在でもWeb閲覧、SNS、動画視聴など日常的な用途には十分な性能です。\nただし最新の3Dゲームや高負荷なアプリでは、A16以降との差が体感できるケースがあります。iOSのサポートも引き続き対象なので、用途が合えばコスパの良い選択肢です。',
   },
   {
     question: 'Pro版とノーマル版のチップでどのくらいの差がありますか？',
-    answer: 'iPhone 15以降ではProモデルに1世代上のチップ（15 Proには A17 Pro、16 ProにはA18 Pro）が搭載されます。シングルコアでは約10〜15%、GPUでは20〜30%の差があり、特にゲームやカメラ処理で体感差が出ます。日常使いではノーマル版でも十分快適です。',
+    answer: 'iPhone 15以降ではProモデルに1世代上のチップ（15 Proには A17 Pro、16 ProにはA18 Pro）が搭載されます。\nシングルコアでは約10〜15%、GPUでは20〜30%の差があり、特にゲームやカメラ処理で体感差が出ます。日常使いではノーマル版でも十分快適です。',
   },
   {
     question: 'ゲームを快適に遊ぶにはどのくらいのスコアが必要ですか？',
-    answer: '原神やFPS系の高負荷ゲームを高画質で楽しむなら、Geekbench Metal（GPU）スコア8,000以上、AnTuTu GPUスコア300,000以上を目安にしてください。A15 Bionic以降のチップであれば多くのゲームを快適にプレイできます。',
+    answer: '原神やFPS系の高負荷ゲームを高画質で楽しむなら、Geekbench Metal（GPU）スコア8,000以上、AnTuTu GPUスコア300,000以上を目安にしてください。\nA15 Bionic以降のチップであれば多くのゲームを快適にプレイできます。',
   },
 ]
 
@@ -159,13 +160,7 @@ export default async function BenchmarkPage() {
                 <h1 className="hero-title" itemProp="headline">
                   iPhoneのベンチマークを比較！全モデルの性能がわかるスコアランキング
                 </h1>
-                <div className="hero-meta">
-                  <i className="fa-regular fa-clock" aria-hidden="true"></i>
-                  <span>
-                    更新日: <time dateTime={dateStr} itemProp="dateModified">{dateDisplay}</time> | 当記事のリンクには広告が含まれています
-                  </span>
-                  <meta itemProp="datePublished" content="2026-03-24" />
-                </div>
+                <HeroMeta dateStr={dateStr} dateDisplay={dateDisplay} withItemProp />
               </div>
               <div className="hero-visual">
                 <figure className="hero-media">
@@ -205,7 +200,8 @@ export default async function BenchmarkPage() {
         {/* 目次 */}
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
-            <p className="toc-title">タップできる目次</p>
+            <div className="toc-wrapper">
+<p className="toc-title"><i className="fa-solid fa-list" aria-hidden="true"></i> タップできる目次</p>
             <ol className="l-grid l-grid--3col u-list-reset">
               <li><a href="#score-guide" className="toc-item">スコアの読み方 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#ranking" className="toc-item">総合ランキング <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
@@ -213,6 +209,7 @@ export default async function BenchmarkPage() {
               <li><a href="#usecase" className="toc-item">用途別おすすめ <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#faq" className="toc-item">よくある質問 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
             </ol>
+</div>
           <AuthorByline />
           </div>
         </nav>
@@ -278,7 +275,7 @@ export default async function BenchmarkPage() {
                 {FAQ_ITEMS.map((item, i) => (
                   <div key={i} className="m-card m-card--shadow faq-item">
                     <h3 className="faq-question">{item.question}</h3>
-                    <div className="faq-answer"><p>{item.answer}</p></div>
+                    <div className="faq-answer">{item.answer.split('\n').map((p, j) => <p key={j}>{p}</p>)}</div>
                   </div>
                 ))}
               </div>
@@ -295,6 +292,8 @@ export default async function BenchmarkPage() {
             cardDescription="カメラ性能を重視する人向け、大画面で動画やSNSを楽しみたい人向けなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。"
             buttonText="おすすめ5機種を見る"
             buttonHref="/iphone/recommend/"
+            secondaryButtonText="イオシスで中古iPhoneを探す"
+            secondaryButtonHref="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Fsmartphone%2Fiphone"
           />
           <IPhoneRelatedLinks excludeHref={["/iphone/benchmark/", "/iphone/recommend/"]} />
           <ShareBox url={PAGE_URL} text={PAGE_TITLE} />

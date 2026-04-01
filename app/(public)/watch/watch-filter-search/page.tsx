@@ -10,6 +10,7 @@ import ShareBox from '@/app/components/ShareBox'
 import PopularSection from '@/app/components/support/PopularSection'
 import WatchRelatedLinks from '@/app/components/watch/WatchRelatedLinks'
 import { getGitDateForFile } from '@/lib/utils/shared-helpers'
+import HeroMeta from '@/app/components/HeroMeta'
 
 export const metadata: Metadata = {
   title: 'Apple Watch機種診断シミュレーター｜自分に合うおすすめ中古アップルウォッチがすぐわかる【2026年版】',
@@ -20,7 +21,7 @@ export const metadata: Metadata = {
     title: 'Apple Watch機種診断シミュレーター｜自分に合うおすすめ中古アップルウォッチがすぐわかる【2026年版】',
     description: '目的・予算・こだわり条件から、あなたに最適な中古Apple Watchを無料で診断。',
     url: '/watch/watch-filter-search/',
-    images: [{ url: '/images/watch/watch-ultra2.jpg', width: 360, height: 360, alt: 'Apple Watch機種診断シミュレーター' }],
+    images: [{ url: '/images/watch/watch-ultra2.jpg', width: 1200, height: 630, alt: 'Apple Watch機種診断シミュレーター' }],
   },
   twitter: {
     title: 'Apple Watch機種診断シミュレーター｜自分に合うおすすめ中古アップルウォッチがすぐわかる【2026年版】',
@@ -202,14 +203,7 @@ export default async function WatchFilterSearchPage() {
               <h1 className="hero-title">
                 Apple Watch機種診断シミュレーター｜選び方がわからなくてもどれを買うべきかわかる
               </h1>
-              <div className="hero-meta">
-                <i className="fa-regular fa-clock" aria-hidden="true"></i>
-                <span>
-                  更新日: <time dateTime={dateStr}>
-                    {dateDisplay}
-                  </time> | 当記事のリンクには広告が含まれています
-                </span>
-              </div>
+              <HeroMeta dateStr={dateStr} dateDisplay={dateDisplay} />
             </div>
             <div className="hero-visual">
               <figure className="hero-media">
@@ -320,10 +314,13 @@ export default async function WatchFilterSearchPage() {
                 <p className="popular-card-desc">
                   健康管理やフィットネスに最適なモデル、コスパ重視のSEモデルなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。
                 </p>
-                <div>
+                <div className="popular-card-buttons">
                   <Link href="/watch/recommend" className="m-btn m-btn--primary">
                     おすすめ5機種を見る <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
                   </Link>
+                  <a className="m-btn m-btn--secondary" href="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Fwearable%2Fapple%3Fnot%3Dpencil" target="_blank" rel="noopener noreferrer">
+                    イオシスで中古Apple Watchを探す <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                  </a>
                 </div>
               </div>
             </div>
@@ -340,6 +337,8 @@ export default async function WatchFilterSearchPage() {
           cardDescription="健康管理を重視する人向け、コスパ重視の人向けなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。"
           buttonText="おすすめ5機種を見る"
           buttonHref="/watch/recommend/"
+          secondaryButtonText="イオシスで中古Apple Watchを探す"
+          secondaryButtonHref="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Fwearable%2Fapple%3Fnot%3Dpencil"
         />
         <WatchRelatedLinks excludeHref={["/watch/watch-filter-search/", "/watch/recommend/"]} />
         <ShareBox url="https://used-lab.com/watch/watch-filter-search/" text="Apple Watch機種診断シミュレーター｜自分に合うおすすめ中古アップルウォッチがすぐわかる【2026年版】" />

@@ -28,6 +28,7 @@ import GuideModelLinks from '@/app/components/GuideModelLinks'
 import { getHeroImage } from '@/lib/data/hero-images'
 import ProductCard from '@/app/components/ProductCard'
 import AuthorByline from '@/app/components/AuthorByline'
+import HeroMeta from '@/app/components/HeroMeta'
 
 const PAGE_TITLE = `中古iPad完全購入ガイド | 選び方・相場・おすすめモデルまとめ【${GUIDE_DATE_LABEL}版】`
 const PAGE_DESCRIPTION = `${GUIDE_DATE_LABEL}版・中古iPadの完全購入ガイド。選び方のポイント、モデル別の相場、おすすめ機種をまとめて解説。失敗しない中古iPad選びをサポートします。`
@@ -41,7 +42,7 @@ export const metadata: Metadata = {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/ipad/',
-    images: [{ url: '/images/ipad/ipad-air-6.jpg', width: 360, height: 360, alt: PAGE_TITLE }],
+    images: [{ url: '/images/ipad/ipad-air-6.jpg', width: 1200, height: 630, alt: PAGE_TITLE }],
   },
   twitter: {
     title: PAGE_TITLE,
@@ -146,13 +147,7 @@ export default async function IPadGuidePage() {
                 中古iPad完全購入ガイド
                 選び方・相場・おすすめモデルまとめ【{GUIDE_DATE_LABEL}版】
               </h1>
-              <div className="hero-meta">
-                <i className="fa-regular fa-clock" aria-hidden="true"></i>
-                <span>
-                  更新日: <time dateTime={dateStr} itemProp="dateModified">{dateDisplay}</time> | 当記事のリンクには広告が含まれています
-                </span>
-                <meta itemProp="datePublished" content={dateStr} />
-              </div>
+              <HeroMeta dateStr={dateStr} dateDisplay={dateDisplay} withItemProp />
             </div>
             <div className="hero-visual">
               <figure className="hero-media">
@@ -188,7 +183,8 @@ export default async function IPadGuidePage() {
         {/* 目次 */}
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
-            <p className="toc-title">タップできる目次</p>
+            <div className="toc-wrapper">
+<p className="toc-title"><i className="fa-solid fa-list" aria-hidden="true"></i> タップできる目次</p>
             <ol className="l-grid l-grid--3col u-list-reset">
               <li><a href="#filter-tool" className="toc-item">診断ツール <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#market-price" className="toc-item">最新相場 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
@@ -199,6 +195,7 @@ export default async function IPadGuidePage() {
               <li><a href="#spec-compare" className="toc-item">スペック比較 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#faq" className="toc-item">よくある質問 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
             </ol>
+</div>
           <AuthorByline />
           </div>
         </nav>
@@ -225,11 +222,14 @@ export default async function IPadGuidePage() {
                 <div className="popular-card-body">
                   <p className="popular-card-subtitle">条件にチェックを打つだけ！</p>
                   <p className="popular-card-title">iPad機種絞り込みツール</p>
-                  <p className="popular-card-desc">イラストを描きたい、動画を大画面で楽しみたいなどの希望や予算金額などにチェックを打つだけで、あなたにぴったり合うiPadをシミュレーションすることができます。</p>
-                  <div>
+                <p className="popular-card-subtitle">目的別におすすめ機種を厳選！</p>                  <p className="popular-card-desc">イラストを描きたい、動画を大画面で楽しみたいなどの希望や予算金額などにチェックを打つだけで、あなたにぴったり合うiPadをシミュレーションすることができます。</p>
+                  <div className="popular-card-buttons">
                     <Link href="/ipad/ipad-filter-search/" className="m-btn m-btn--primary">
                       機種診断スタート <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
                     </Link>
+                    <a className="m-btn m-btn--secondary" href="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Ftablet%2Fios%2Fipad" target="_blank" rel="noopener noreferrer">
+                      イオシスで中古iPadを探す <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                    </a>
                   </div>
                 </div>
               </div>
@@ -386,7 +386,7 @@ export default async function IPadGuidePage() {
               <p className="guide-section-note">{GUIDE_DATE_LABEL}現在おすすめの中古iPadはこちらの記事でじっくり解説しています。</p>
               <div className="guide-section-cta">
                 <Link href="/ipad/recommend/" className="m-btn m-btn--primary m-btn--block">
-                  <span>中古iPadのおすすめ機種【{GUIDE_DATE_LABEL}版】</span>
+                  <span>中古iPadのおすすめ機種</span>
                   <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
                 </Link>
               </div>

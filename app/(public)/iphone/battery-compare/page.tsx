@@ -8,6 +8,7 @@ import ShareBox from '@/app/components/ShareBox'
 import IPhoneRelatedLinks from '@/app/components/iphone/IPhoneRelatedLinks'
 import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
+import HeroMeta from '@/app/components/HeroMeta'
 
 export const metadata: Metadata = {
   title: '歴代iPhoneのバッテリー容量比較ランキング！電池持ちがいい機種はどれ？',
@@ -18,7 +19,7 @@ export const metadata: Metadata = {
     title: '歴代iPhoneのバッテリー容量比較ランキング！電池持ちがいい機種はどれ？',
     description: '歴代iPhoneのバッテリー容量を比較しランキング形式で紹介。電池持ちのいいiPhoneがひと目でわかります。',
     url: '/iphone/battery-compare/',
-    images: [{ url: '/images/content/thumbnail/iphone-battery.jpg', width: 360, height: 360, alt: '歴代iPhoneバッテリー容量比較のイメージ' }],
+    images: [{ url: '/images/content/thumbnail/iphone-battery.jpg', width: 1200, height: 630, alt: '歴代iPhoneバッテリー容量比較のイメージ' }],
   },
   twitter: {
     title: '歴代iPhoneのバッテリー容量比較ランキング！電池持ちがいい機種はどれ？',
@@ -34,7 +35,7 @@ const FAQ_ITEMS = [
   },
   {
     question: 'ストリーミング再生とビデオ再生のバッテリー持ちが違う理由は？',
-    answer: 'ストリーミングでは動画をネット経由で受信するため、Wi-Fiやモバイル通信を使ったデータのやり取りが常に発生します。さらに、そのときの通信状況に応じて画質を自動調整したり、アプリがバックグラウンドで動作することもあり、結果としてバッテリーを多く消費します。一方で、あらかじめ端末に保存されたビデオを再生する場合は、通信を使わず画面表示と処理に専念できるため、電池の持ちが良くなります。',
+    answer: 'ストリーミングでは動画をネット経由で受信するため、Wi-Fiやモバイル通信を使ったデータのやり取りが常に発生します。さらに、そのときの通信状況に応じて画質を自動調整したり、アプリがバックグラウンドで動作することもあり、結果としてバッテリーを多く消費します。\n一方で、あらかじめ端末に保存されたビデオを再生する場合は、通信を使わず画面表示と処理に専念できるため、電池の持ちが良くなります。',
   },
   {
     question: 'iPhoneのバッテリーが劣化するとどんな症状が出ますか？',
@@ -152,14 +153,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/battery-
               <h1 className="hero-title">
                 歴代iPhoneのバッテリー容量比較ランキング！電池持ちがいい機種はどれ？
               </h1>
-              <div className="hero-meta">
-                <i className="fa-regular fa-clock" aria-hidden="true"></i>
-                <span>
-                  更新日: <time dateTime={dateStr}>
-                    {dateDisplay}
-                  </time> | 当記事のリンクには広告が含まれています
-                </span>
-              </div>
+              <HeroMeta dateStr={dateStr} dateDisplay={dateDisplay} />
             </div>
             <div className="hero-visual">
               <figure className="hero-media">
@@ -194,7 +188,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/battery-
         {/* 目次 */}
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
-            <p className="toc-title">タップできる目次</p>
+            <p className="toc-title"><i className="fa-solid fa-list" aria-hidden="true"></i> タップできる目次</p>
             <ol className="l-grid l-grid--2col u-list-reset">
               <li>
                 <a href="#battery-ranking" className="toc-item">
@@ -301,7 +295,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/battery-
                 <div key={i} className="m-card m-card--shadow faq-item">
                   <h3 className="faq-question">{item.question}</h3>
                   <div className="faq-answer">
-                    <p>{item.answer}</p>
+                    {item.answer.split('\n').map((p, j) => <p key={j}>{p}</p>)}
                   </div>
                 </div>
               ))}
@@ -332,13 +326,16 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/battery-
               <div className="popular-card-body">
                 <p className="popular-card-subtitle">目的別におすすめ機種を厳選！</p>
                 <p className="popular-card-title">中古iPhoneおすすめ5選</p>
-                <p className="popular-card-desc">
+              <p className="popular-card-subtitle">目的別におすすめ機種を厳選！</p>                <p className="popular-card-desc">
                   カメラ性能を重視する人向け、大画面で動画やSNSを楽しみたい人向けなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。
                 </p>
-                <div>
+                <div className="popular-card-buttons">
                   <Link href="/iphone/recommend" className="m-btn m-btn--primary">
                     おすすめ5機種を見る <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
                   </Link>
+                  <a className="m-btn m-btn--secondary" href="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Fsmartphone%2Fiphone" target="_blank" rel="noopener noreferrer">
+                    イオシスで中古iPhoneを探す <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                  </a>
                 </div>
               </div>
             </div>

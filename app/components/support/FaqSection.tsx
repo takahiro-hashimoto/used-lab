@@ -44,7 +44,9 @@ export default function FaqSection({ title, description, items, children }: Prop
             <div key={item.question} className="m-card faq-item">
               <h3 className="faq-question">{item.question}</h3>
               <div className="faq-answer m-rich-text m-rich-text--muted">
-                <p>{item.answer}</p>
+                {item.answer.split('\n').map((paragraph, i) => (
+                  <p key={i}>{paragraph}</p>
+                ))}
               </div>
             </div>
           ))}

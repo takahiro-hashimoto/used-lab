@@ -52,27 +52,29 @@ export default function DemeritSection() {
               </p>
 
               {/* バッテリー比較テーブル */}
-              <div style={{ marginBottom: 'var(--space-xl)' }}>
-                <table className="m-table">
-                  <thead>
-                    <tr>
-                      <th>時刻</th>
-                      <th>常時点灯 オン</th>
-                      <th>常時点灯 オフ</th>
-                      <th>差</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {batteryData.map((row) => (
-                      <tr key={row.time}>
-                        <td>{row.time}</td>
-                        <td>{row.on}%</td>
-                        <td>{row.off}%</td>
-                        <td>{row.off - row.on === 0 ? '±0%' : `+${row.off - row.on}%`}</td>
+              <div className="m-card m-table-card" style={{ marginBottom: 'var(--space-xl)' }}>
+                <div className="m-table-scroll">
+                  <table className="m-table">
+                    <thead>
+                      <tr>
+                        <th>時刻</th>
+                        <th>常時点灯 オン</th>
+                        <th>常時点灯 オフ</th>
+                        <th>差</th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
+                    </thead>
+                    <tbody>
+                      {batteryData.map((row) => (
+                        <tr key={row.time}>
+                          <td>{row.time}</td>
+                          <td>{row.on}%</td>
+                          <td>{row.off}%</td>
+                          <td>{row.off - row.on === 0 ? '±0%' : `+${row.off - row.on}%`}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
               </div>
 
               <p className="media-card__desc">

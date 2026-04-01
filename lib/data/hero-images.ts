@@ -8,7 +8,7 @@
 export const HERO_IMAGES: Record<string, string> = {
   // ── AirPods ──
   '/airpods/': '/images/content/thumbnail/airpods-image-01.jpg',
-  '/airpods/airpods-find/': '/images/content/thumbnail/airpods-image-03.jpg',
+  '/airpods/airpods-find/': '/images/content/thumbnail/airpods-image-01.jpg',
   '/airpods/price/': '/images/content/thumbnail/airpods-image-03.jpg',
   '/airpods/recommend/': '/images/content/thumbnail/airpods-image-02.jpg',
 

@@ -10,6 +10,8 @@ type Props = {
   cardDescription: string
   buttonText: string
   buttonHref: string
+  secondaryButtonText?: string
+  secondaryButtonHref?: string
 }
 
 export default function PopularSection({
@@ -22,6 +24,8 @@ export default function PopularSection({
   cardDescription,
   buttonText,
   buttonHref,
+  secondaryButtonText,
+  secondaryButtonHref,
 }: Props) {
   // 外部URL（placehold.co等）は <img>、ローカル画像は <Image> を使用
   const isExternal = imageSrc.startsWith('http')
@@ -61,10 +65,15 @@ export default function PopularSection({
             <p className="popular-card-subtitle">{subtitle}</p>
             <p className="popular-card-title">{cardTitle}</p>
             <p className="popular-card-desc">{cardDescription}</p>
-            <div>
+            <div className="popular-card-buttons">
               <a className="m-btn m-btn--primary" href={buttonHref}>
                 {buttonText} <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
               </a>
+              {secondaryButtonHref && secondaryButtonText && (
+                <a className="m-btn m-btn--secondary" href={secondaryButtonHref} target="_blank" rel="noopener noreferrer">
+                  {secondaryButtonText} <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                </a>
+              )}
             </div>
           </div>
         </div>

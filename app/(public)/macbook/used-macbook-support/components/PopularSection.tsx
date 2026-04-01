@@ -12,6 +12,8 @@ export default function MacBookPopularSection() {
       cardDescription="動画編集向け、普段使い向けなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。"
       buttonText="おすすめ5機種を見る"
       buttonHref="/macbook/recommend"
+      secondaryButtonText="イオシスで中古MacBookを探す"
+      secondaryButtonHref="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Fpc%2Fnotepc%2Fmacbook"
     />
   )
 }

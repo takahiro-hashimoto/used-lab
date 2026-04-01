@@ -12,6 +12,7 @@ import ShareBox from '@/app/components/ShareBox'
 import IPadRelatedLinks from '@/app/components/ipad/IPadRelatedLinks'
 import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
+import HeroMeta from '@/app/components/HeroMeta'
 
 export const revalidate = 86400
 
@@ -24,7 +25,7 @@ export const metadata: Metadata = {
     title: '中古iPadのストレージ容量はどれがいい？用途別おすすめ容量まとめ',
     description: '中古iPadのストレージ容量の選び方を用途別に解説。歴代モデルの容量ラインナップも一覧で確認できます。',
     url: '/ipad/storage-guide/',
-    images: [{ url: '/images/content/thumbnail/ipad-image-09.jpg', width: 360, height: 360, alt: '中古iPadストレージ容量ガイドのイメージ' }],
+    images: [{ url: '/images/content/thumbnail/ipad-image-09.jpg', width: 1200, height: 630, alt: '中古iPadストレージ容量ガイドのイメージ' }],
   },
   twitter: {
     title: '中古iPadのストレージ容量はどれがいい？用途別おすすめ容量まとめ',
@@ -36,11 +37,11 @@ export const metadata: Metadata = {
 const FAQ_ITEMS = [
   {
     question: '中古iPadのストレージ容量は後から増やせますか？',
-    answer: 'iPadはSDカードに対応しておらず、ストレージの増設はできません。iCloud（月額130円〜）や外付けUSBストレージで対処できますが、アプリの容量は減らせないため、購入時に余裕のある容量を選ぶことが重要です。',
+    answer: 'iPadはSDカードに対応しておらず、ストレージの増設はできません。\niCloud（月額130円〜）や外付けUSBストレージで対処できますが、アプリの容量は減らせないため、購入時に余裕のある容量を選ぶことが重要です。',
   },
   {
     question: '64GBと256GBで迷ったらどちらがいい？',
-    answer: '2026年現在、iPadOSやアプリの大型化が進んでおり、メイン端末なら256GBがおすすめです。64GBでもWeb閲覧や動画視聴中心なら使えますが、アプリやファイルの管理に気を使う場面が増えます。中古価格差が1万円以内なら256GBを選んだほうが後悔しにくいです。',
+    answer: '2026年現在、iPadOSやアプリの大型化が進んでおり、メイン端末なら256GBがおすすめです。\n64GBでもWeb閲覧や動画視聴中心なら使えますが、アプリやファイルの管理に気を使う場面が増えます。中古価格差が1万円以内なら256GBを選んだほうが後悔しにくいです。',
   },
   {
     question: 'iPadで動画編集やイラスト制作をする場合、何GBがおすすめ？',
@@ -178,14 +179,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/ipad/storage-gu
               <h1 className="hero-title">
                 中古iPadのストレージ容量はどれがいい？用途別おすすめ容量まとめ
               </h1>
-              <div className="hero-meta">
-                <i className="fa-regular fa-clock" aria-hidden="true"></i>
-                <span>
-                  更新日: <time dateTime={dateStr}>
-                    {dateDisplay}
-                  </time> | 当記事のリンクには広告が含まれています
-                </span>
-              </div>
+              <HeroMeta dateStr={dateStr} dateDisplay={dateDisplay} />
             </div>
             <div className="hero-visual">
               <figure className="hero-media">
@@ -220,7 +214,8 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/ipad/storage-gu
         {/* 目次 */}
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
-            <p className="toc-title">タップできる目次</p>
+            <div className="toc-wrapper">
+<p className="toc-title"><i className="fa-solid fa-list" aria-hidden="true"></i> タップできる目次</p>
             <ol className="l-grid l-grid--3col u-list-reset">
               <li>
                 <a href="#storage-points" className="toc-item">
@@ -253,6 +248,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/ipad/storage-gu
                 </a>
               </li>
             </ol>
+</div>
             <AuthorByline />
           </div>
         </nav>
@@ -476,7 +472,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/ipad/storage-gu
                 <div key={i} className="m-card m-card--shadow faq-item">
                   <h3 className="faq-question">{item.question}</h3>
                   <div className="faq-answer">
-                    <p>{item.answer}</p>
+                    {item.answer.split('\n').map((p, j) => <p key={j}>{p}</p>)}
                   </div>
                 </div>
               ))}
@@ -507,13 +503,16 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/ipad/storage-gu
               <div className="popular-card-body">
                 <p className="popular-card-subtitle">目的別におすすめ機種を厳選！</p>
                 <p className="popular-card-title">中古iPadおすすめ機種</p>
-                <p className="popular-card-desc">
+              <p className="popular-card-subtitle">目的別におすすめ機種を厳選！</p>                <p className="popular-card-desc">
                   イラスト制作向け、動画視聴向け、勉強・ノート用途向けなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。
                 </p>
-                <div>
+                <div className="popular-card-buttons">
                   <Link href="/ipad/recommend" className="m-btn m-btn--primary">
                     おすすめ機種を見る <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
                   </Link>
+                  <a className="m-btn m-btn--secondary" href="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Ftablet%2Fios%2Fipad" target="_blank" rel="noopener noreferrer">
+                    イオシスで中古iPadを探す <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                  </a>
                 </div>
               </div>
             </div>

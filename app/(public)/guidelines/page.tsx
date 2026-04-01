@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import Breadcrumb from '@/app/components/Breadcrumb'
+import HeroMeta from '@/app/components/HeroMeta'
 
 const PAGE_TITLE = 'コンテンツ制作・運営ポリシー'
 const PAGE_DESCRIPTION =
@@ -289,10 +290,7 @@ export default function GuidelinesPage() {
           <div className="hero-content">
             <h1 className="hero-title">コンテンツ制作・運営ポリシー</h1>
             <p className="hero-description">ユーズドラボのコンテンツ制作フローや信頼性の担保についてご紹介します。</p>
-            <div className="hero-meta">
-              <i className="fa-regular fa-clock" aria-hidden="true"></i>
-              <span>更新日: <time dateTime="2026-03-20">2026年3月20日</time></span>
-            </div>
+            <HeroMeta dateStr="2026-03-20" dateDisplay="2026年3月20日" />
           </div>
         </div>
       </header>

@@ -9,6 +9,7 @@ import FilterSearchApp from './components/FilterSearchApp'
 import ShareBox from '@/app/components/ShareBox'
 import IPhoneRelatedLinks from '@/app/components/iphone/IPhoneRelatedLinks'
 import { getGitDateForFile } from '@/lib/utils/shared-helpers'
+import HeroMeta from '@/app/components/HeroMeta'
 
 export const metadata: Metadata = {
   title: 'iPhone機種診断シミュレーター｜自分に合うおすすめ中古スマホがすぐわかる【2026年版】',
@@ -19,7 +20,7 @@ export const metadata: Metadata = {
     title: 'iPhone機種診断シミュレーター｜自分に合うおすすめ中古スマホがすぐわかる【2026年版】',
     description: '3つのステップで自分にぴったりの中古iPhoneが見つかる診断シミュレーター。',
     url: '/iphone/filter-search/',
-    images: [{ url: '/images/iphone/iphone16pro.jpg', width: 360, height: 360, alt: 'iPhone機種診断シミュレーター' }],
+    images: [{ url: '/images/iphone/iphone16pro.jpg', width: 1200, height: 630, alt: 'iPhone機種診断シミュレーター' }],
   },
   twitter: {
     title: 'iPhone機種診断シミュレーター｜自分に合うおすすめ中古スマホがすぐわかる【2026年版】',
@@ -208,14 +209,7 @@ export default async function IPhoneFilterSearchPage() {
               <h1 className="hero-title">
                 iPhone機種診断シミュレーター｜自分に合うおすすめ中古スマホがすぐわかる
               </h1>
-              <div className="hero-meta">
-                <i className="fa-regular fa-clock" aria-hidden="true"></i>
-                <span>
-                  更新日: <time dateTime={dateStr}>
-                    {dateDisplay}
-                  </time> | 当記事のリンクには広告が含まれています
-                </span>
-              </div>
+              <HeroMeta dateStr={dateStr} dateDisplay={dateDisplay} />
             </div>
             <div className="hero-visual">
               <figure className="hero-media">
@@ -326,10 +320,13 @@ export default async function IPhoneFilterSearchPage() {
                 <p className="popular-card-desc">
                   カメラ性能を重視する人向け、大画面で動画やSNSを楽しみたい人向けなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。
                 </p>
-                <div>
+                <div className="popular-card-buttons">
                   <Link href="/iphone/recommend" className="m-btn m-btn--primary">
                     おすすめ5機種を見る <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
                   </Link>
+                  <a className="m-btn m-btn--secondary" href="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Fsmartphone%2Fiphone" target="_blank" rel="noopener noreferrer">
+                    イオシスで中古iPhoneを探す <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                  </a>
                 </div>
               </div>
             </div>

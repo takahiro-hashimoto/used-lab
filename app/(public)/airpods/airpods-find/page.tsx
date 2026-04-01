@@ -7,6 +7,7 @@ import FindMethodSection from './components/FindMethodSection'
 import PurchaseMethodSection from './components/PurchaseMethodSection'
 import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
+import HeroMeta from '@/app/components/HeroMeta'
 
 const PAGE_TITLE = 'AirPodsのケースやイヤホン片方を無くした時の探し方、代替品の購入先まとめ'
 const PAGE_DESCRIPTION =
@@ -32,12 +33,12 @@ const FAQ_ITEMS = [
   {
     question: '「探す」アプリでAirPodsの現在地はわかるの？',
     answer:
-      '「探す」アプリに表示されるのは、最後にBluetooth接続が切れた地点です。完全なリアルタイム位置ではありませんが、紛失場所の目安としては有効です。',
+      '「探す」アプリに表示されるのは、最後にBluetooth接続が切れた地点です。\n完全なリアルタイム位置ではありませんが、紛失場所の目安としては有効です。',
   },
   {
     question: '紛失モードを使うとどうなる？',
     answer:
-      '紛失モードを有効にすると、ほかのiPhoneユーザーがAirPodsの近くを通った際に位置情報を自動で取得し通知が届きます。また、拾った人のiPhoneに連絡先やメッセージを表示することも可能です。',
+      '紛失モードを有効にすると、ほかのiPhoneユーザーがAirPodsの近くを通った際に位置情報を自動で取得し通知が届きます。\nまた、拾った人のiPhoneに連絡先やメッセージを表示することも可能です。',
   },
   {
     question: 'AirPodsを片方だけ失くした場合の費用は？',
@@ -57,7 +58,7 @@ const FAQ_ITEMS = [
   {
     question: '紛失時にやってはいけないことは？',
     answer:
-      '他人のAirPodsと混同して使おうとしたり、SNSでシリアル番号を公開するのはNGです。トラブルや不正利用につながる可能性があるため、正規ルートでの対応をおすすめします。',
+      '他人のAirPodsと混同して使おうとしたり、SNSでシリアル番号を公開するのはNGです。\nトラブルや不正利用につながる可能性があるため、正規ルートでの対応をおすすめします。',
   },
 ]
 
@@ -111,18 +112,12 @@ export default function AirpodsFindPage() {
                 <h1 className="hero-title" itemProp="headline">
                   AirPodsのケースやイヤホン片方を無くした時の探し方、代替品の購入先まとめ
                 </h1>
-                <div className="hero-meta">
-                  <i className="fa-regular fa-clock" aria-hidden="true"></i>
-                  <span>
-                    更新日: <time dateTime={dateStr} itemProp="dateModified">{dateDisplay}</time> | 当記事のリンクには広告が含まれています
-                  </span>
-                  <meta itemProp="datePublished" content={dateStr} />
-                </div>
+                <HeroMeta dateStr={dateStr} dateDisplay={dateDisplay} withItemProp />
               </div>
               <div className="hero-visual">
                 <figure className="hero-media">
                   <img
-                    src="/images/content/thumbnail/airpods-image-03.jpg"
+                    src="/images/content/thumbnail/airpods-image-01.jpg"
                     alt="AirPodsの紛失対処法"
                     className="hero-media__img"
                     width={360}
@@ -153,7 +148,8 @@ export default function AirpodsFindPage() {
         {/* 目次 */}
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
-            <p className="toc-title">タップできる目次</p>
+            <div className="toc-wrapper">
+<p className="toc-title"><i className="fa-solid fa-list" aria-hidden="true"></i> タップできる目次</p>
             <ol className="l-grid l-grid--3col u-list-reset">
               <li>
                 <a href="#find-method" className="toc-item">
@@ -176,6 +172,7 @@ export default function AirpodsFindPage() {
                 </a>
               </li>
             </ol>
+</div>
           <AuthorByline />
           </div>
         </nav>

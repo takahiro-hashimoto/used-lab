@@ -3,6 +3,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import ShareBox from '@/app/components/ShareBox'
+import HeroMeta from '@/app/components/HeroMeta'
 import { getAllIPadModels, getAllIPadPriceLogsByModelIds, getAllProductShopLinksByType } from '@/lib/queries'
 import type { IPadPriceLog, ProductShopLink } from '@/lib/types'
 import BenchmarkRanking from './components/BenchmarkRanking'
@@ -28,7 +29,7 @@ export const metadata: Metadata = {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/ipad/benchmark/',
-    images: [{ url: '/images/content/thumbnail/ipad-image-12.jpg', width: 360, height: 360, alt: PAGE_TITLE }],
+    images: [{ url: '/images/content/thumbnail/ipad-image-12.jpg', width: 1200, height: 630, alt: PAGE_TITLE }],
   },
   twitter: {
     title: PAGE_TITLE,
@@ -40,23 +41,23 @@ export const metadata: Metadata = {
 const FAQ_ITEMS = [
   {
     question: 'iPadのベンチマークスコアはiPhoneと比較できますか？',
-    answer: '同じチップ（例: A15 Bionic）を搭載していれば基本的に同等のスコアになります。ただしiPad ProはMチップ搭載モデルがあり、これらはiPhoneを大幅に上回る性能です。M1以降のiPad Proは、MacBook Airと同等クラスのCPU・GPU性能を持ちます。',
+    answer: '同じチップ（例: A15 Bionic）を搭載していれば基本的に同等のスコアになります。\nただしiPad ProはMチップ搭載モデルがあり、これらはiPhoneを大幅に上回る性能です。M1以降のiPad Proは、MacBook Airと同等クラスのCPU・GPU性能を持ちます。',
   },
   {
     question: 'iPadでイラストや動画編集をするにはどのくらいのスコアが必要？',
-    answer: 'Procreateでのイラスト制作ならA14 Bionic以降で快適です。LumaFusionやiMovieでの4K動画編集にはM1チップ以降のiPad ProまたはiPad Airをおすすめします。レイヤー数が多いイラストや長尺動画の編集ではM2以降がより安心です。',
+    answer: 'Procreateでのイラスト制作ならA14 Bionic以降で快適です。\nLumaFusionやiMovieでの4K動画編集にはM1チップ以降のiPad ProまたはiPad Airをおすすめします。レイヤー数が多いイラストや長尺動画の編集ではM2以降がより安心です。',
   },
   {
     question: 'iPad miniはベンチマーク的にどのくらいの性能ですか？',
-    answer: 'iPad mini（第6世代）はA15 Bionic搭載でiPhone 13 Proと同等の性能です。iPad mini（A17 Pro）はA17 Pro搭載でiPhone 15 Proクラスの性能を持ち、コンパクトながら高い処理能力を備えています。',
+    answer: 'iPad mini（第6世代）はA15 Bionic搭載でiPhone 13 Proと同等の性能です。\niPad mini（A17 Pro）はA17 Pro搭載でiPhone 15 Proクラスの性能を持ち、コンパクトながら高い処理能力を備えています。',
   },
   {
     question: 'MチップのiPadとAチップのiPadではどのくらいの差がありますか？',
-    answer: 'M1チップはA15 Bionicと比較してシングルコアで約40%、マルチコアで約2倍、GPU（Metal）で約3〜4倍の差があります。特にGPU性能の差が大きく、動画編集や3D処理で顕著な違いが出ます。',
+    answer: 'M1チップはA15 Bionicと比較してシングルコアで約40%、マルチコアで約2倍、GPU（Metal）で約3〜4倍の差があります。\n特にGPU性能の差が大きく、動画編集や3D処理で顕著な違いが出ます。',
   },
   {
     question: 'ゲームを快適に遊ぶにはどのiPadがおすすめ？',
-    answer: '原神などの高負荷ゲームを快適に遊ぶなら、A15 Bionic以降のiPad（iPad mini 第6世代、iPad Air M1など）が目安です。大画面でゲームを楽しみたい場合は11インチ以上のiPad Air M1/M2がコスパ良くおすすめです。',
+    answer: '原神などの高負荷ゲームを快適に遊ぶなら、A15 Bionic以降のiPad（iPad mini 第6世代、iPad Air M1など）が目安です。\n大画面でゲームを楽しみたい場合は11インチ以上のiPad Air M1/M2がコスパ良くおすすめです。',
   },
 ]
 
@@ -158,13 +159,7 @@ export default async function BenchmarkPage() {
                 <h1 className="hero-title" itemProp="headline">
                   iPadのベンチマークを比較！全モデルの性能がわかるスコアランキング
                 </h1>
-                <div className="hero-meta">
-                  <i className="fa-regular fa-clock" aria-hidden="true"></i>
-                  <span>
-                    更新日: <time dateTime={dateStr} itemProp="dateModified">{dateDisplay}</time> | 当記事のリンクには広告が含まれています
-                  </span>
-                  <meta itemProp="datePublished" content="2026-03-24" />
-                </div>
+                <HeroMeta dateStr={dateStr} dateDisplay={dateDisplay} withItemProp />
               </div>
               <div className="hero-visual">
                 <figure className="hero-media">
@@ -195,7 +190,8 @@ export default async function BenchmarkPage() {
 
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
-            <p className="toc-title">タップできる目次</p>
+            <div className="toc-wrapper">
+<p className="toc-title"><i className="fa-solid fa-list" aria-hidden="true"></i> タップできる目次</p>
             <ol className="l-grid l-grid--3col u-list-reset">
               <li><a href="#score-guide" className="toc-item">スコアの読み方 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#ranking" className="toc-item">総合ランキング <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
@@ -203,6 +199,7 @@ export default async function BenchmarkPage() {
               <li><a href="#usecase" className="toc-item">用途別おすすめ <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#faq" className="toc-item">よくある質問 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
             </ol>
+</div>
           <AuthorByline />
           </div>
         </nav>
@@ -259,7 +256,7 @@ export default async function BenchmarkPage() {
                 {FAQ_ITEMS.map((item, i) => (
                   <div key={i} className="m-card m-card--shadow faq-item">
                     <h3 className="faq-question">{item.question}</h3>
-                    <div className="faq-answer"><p>{item.answer}</p></div>
+                    <div className="faq-answer">{item.answer.split('\n').map((p, j) => <p key={j}>{p}</p>)}</div>
                   </div>
                 ))}
               </div>
@@ -276,6 +273,8 @@ export default async function BenchmarkPage() {
             cardDescription="イラスト制作に最適なモデル、動画視聴に大画面モデルなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。"
             buttonText="おすすめ5機種を見る"
             buttonHref="/ipad/recommend/"
+            secondaryButtonText="イオシスで中古iPadを探す"
+            secondaryButtonHref="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Ftablet%2Fios%2Fipad"
           />
 
           <IPadRelatedLinks excludeHref={["/ipad/benchmark/", "/ipad/recommend/"]} />

@@ -13,7 +13,7 @@ export const RECOMMEND_DATE_LABEL = `${RECOMMEND_YEAR}年${RECOMMEND_MONTH}月`
 export const RECOMMEND_SLUGS = [
   'se3',
   '14pro',
-  '13mini',
+  '16e-se',
   '15normal',
   '14plus',
 ]
@@ -84,29 +84,29 @@ export const RECOMMEND_META: Record<string, RecommendMeta> = {
     batteryLabel: '○ 良好',
     targetUser: 'カメラ性能<br>高性能重視',
   },
-  '13mini': {
-    label: '小型・軽量',
-    desc: '5.4インチ・140gの超軽量ボディで片手操作が快適',
-    subtitle: '最後の小型iPhone',
+  '16e-se': {
+    label: 'コンパクト',
+    desc: '6.1インチながら軽量・A18チップ搭載のコンパクトモデル',
+    subtitle: '最新チップ搭載の軽量モデル',
     description: [
-      '片手で快適に操作できるiPhoneを求めるなら、iPhone13 miniが唯一の選択肢です。Appleが5.4インチサイズのminiシリーズを廃止したため、新品では手に入らない貴重なモデルです。',
-      'A15 Bionicチップを搭載し、日常使いからゲームまで十分な性能を発揮。デュアルカメラでナイトモードやシネマティックモードにも対応しており、小さくても機能は妥協していません。',
-      '重量は140gと軽量で、ジーンズのポケットにもすっぽり収まるサイズ感。通勤中の片手操作や、ランニング時の携帯にも最適です。',
-      '小型スマホの需要は根強く、中古市場でも人気が高いモデル。サポート期間は2028年頃までと他の5機種に比べてやや短めですが、それでも2年以上使える計算です。',
+      'コンパクトで軽いiPhoneが欲しいなら、iPhone 16eが最適です。6.1インチディスプレイながら重量は約170gと軽量で、片手でも快適に操作できます。',
+      'A18チップを搭載し、iPhone 16と同等の処理性能を実現。Apple Intelligenceにも対応しており、最新のAI機能を活用できます。USB-Cポート採用で、MacBookやiPadとケーブルを共有できるのも便利です。',
+      '4800万画素のメインカメラを搭載し、日常の写真撮影はもちろんポートレートモードにも対応。Face IDによるスムーズなロック解除も快適です。',
+      '2025年発売の最新モデルのため、iOSサポートは2032年頃まで続く見込み。長期利用を前提としたコンパクトiPhoneを求めるなら、現時点でベストな選択肢です。',
     ],
     good: [
-      '片手操作できるコンパクトなiPhoneが欲しい',
-      '軽くてポケットに収まるサイズが好み',
-      'ランニングや通勤時に邪魔にならないモデルが欲しい',
+      '軽量でコンパクトなiPhoneが欲しい',
+      '最新のA18チップとApple Intelligence対応が魅力',
+      'USB-C対応で長期間使いたい',
     ],
     bad: [
+      'できるだけ安く抑えたい（予算3万円以下）',
+      'ProMotion（120Hz）やトリプルカメラが必要',
       '大画面で動画やゲームを楽しみたい',
-      'バッテリー持ちを最優先にしたい',
-      '5年以上の長期利用を想定している',
     ],
-    cameraLabel: 'デュアル',
-    batteryLabel: '△ 標準',
-    targetUser: '小型<br>片手操作重視',
+    cameraLabel: 'シングル',
+    batteryLabel: '○ 良好',
+    targetUser: 'コンパクト<br>最新チップ重視',
   },
   '15normal': {
     label: 'USB-C対応',
@@ -165,7 +165,7 @@ export const SHOP_SECTION_IDS = [1, 2, 3, 6, 7]
 export const FAQ_JSONLD_ITEMS = [
   {
     question: '中古iPhoneのおすすめはどれ？',
-    answer: `${RECOMMEND_DATE_LABEL}現在、「iPhone SE 第3世代」「iPhone14 Pro」「iPhone13 mini」「iPhone15」「iPhone14 Plus」の5機種がおすすめです。予算重視ならiPhone SE 第3世代、性能重視ならiPhone14 Pro、小型モデルならiPhone13 mini、USB-C対応ならiPhone15、大画面ならiPhone14 Plusが最適です。いずれも2030年頃までiOSサポートが続く見込みで、数年単位で安心して使えます。`,
+    answer: `${RECOMMEND_DATE_LABEL}現在、「iPhone SE 第3世代」「iPhone14 Pro」「iPhone 16e」「iPhone15」「iPhone14 Plus」の5機種がおすすめです。予算重視ならiPhone SE 第3世代、性能重視ならiPhone14 Pro、コンパクト重視ならiPhone 16e、USB-C対応ならiPhone15、大画面ならiPhone14 Plusが最適です。いずれも2030年頃までiOSサポートが続く見込みで、数年単位で安心して使えます。`,
   },
   {
     question: '中古iPhoneを選ぶときのポイントは？',

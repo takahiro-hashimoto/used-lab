@@ -71,11 +71,8 @@ export default function ModelShopGrid({
             return (
               <article
                 key={shop.id}
-                className={`m-card m-card--shadow m-vendor-card${isRecommended ? ' m-vendor-card--recommended' : ''}`}
+                className="m-card m-card--shadow m-vendor-card"
               >
-                {isRecommended && (
-                  <span className="m-badge m-badge--primary m-vendor-card__badge">迷ったらココ！</span>
-                )}
                 <div className="m-vendor-card__header">
                   <h3 className="m-vendor-card__name">{shop.shop}</h3>
                   {shop.extension_name && shop.extension_name !== '-' && (

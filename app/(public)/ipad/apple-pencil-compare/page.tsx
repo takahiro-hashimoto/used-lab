@@ -12,6 +12,7 @@ import FaqSection from '@/app/components/support/FaqSection'
 import IPadRelatedLinks from '@/app/components/ipad/IPadRelatedLinks'
 import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
+import HeroMeta from '@/app/components/HeroMeta'
 
 const PAGE_TITLE = 'Apple Pencilの違いを比較！あなたにぴったりのアップルペンシルがわかる'
 const PAGE_DESCRIPTION =
@@ -26,7 +27,7 @@ export const metadata: Metadata = {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/ipad/apple-pencil-compare/',
-    images: [{ url: '/images/ipad/ipad-pro-13-2.jpg', width: 360, height: 360, alt: PAGE_TITLE }],
+    images: [{ url: '/images/ipad/ipad-pro-13-2.jpg', width: 1200, height: 630, alt: PAGE_TITLE }],
   },
   twitter: {
     title: PAGE_TITLE,
@@ -115,13 +116,7 @@ export default async function ApplePencilComparePage() {
               <h1 className="hero-title" itemProp="headline">
                 Apple Pencilの違いを比較！あなたにぴったりのアップルペンシルがわかる
               </h1>
-              <div className="hero-meta">
-                <i className="fa-regular fa-clock" aria-hidden="true"></i>
-                <span>
-                  更新日: <time dateTime={dateStr} itemProp="dateModified">{dateDisplay}</time> | 当記事のリンクには広告が含まれています
-                </span>
-                <meta itemProp="datePublished" content={dateStr} />
-              </div>
+              <HeroMeta dateStr={dateStr} dateDisplay={dateDisplay} withItemProp />
             </div>
             <div className="hero-visual">
               <figure className="hero-media">
@@ -156,7 +151,8 @@ export default async function ApplePencilComparePage() {
         {/* 目次 */}
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
-            <p className="toc-title">タップできる目次</p>
+            <div className="toc-wrapper">
+<p className="toc-title"><i className="fa-solid fa-list" aria-hidden="true"></i> タップできる目次</p>
             <ol className="l-grid l-grid--3col u-list-reset">
               <li>
                 <a href="#compare-table" className="toc-item">
@@ -184,6 +180,7 @@ export default async function ApplePencilComparePage() {
                 </a>
               </li>
             </ol>
+</div>
           <AuthorByline />
           </div>
         </nav>
@@ -201,43 +198,43 @@ export default async function ApplePencilComparePage() {
             items={[
               {
                 question: 'Apple Pencil ProとApple Pencil 第2世代の違いは何？',
-                answer: 'Apple Pencil Proには下記の機能が搭載されていますが、Apple Pencil 第2世代には非搭載です。スクイーズ（ペンを握り込む動作でツールパレットを呼び出す機能）、バレルロール（ペンを回転させてブラシの向きを制御する機能）、触覚フィードバック（操作時に軽い振動で反応を返す機能）、「探す」機能（Apple Pencilの場所を追跡できる機能）。',
+                answer: 'Apple Pencil Proには下記の機能が搭載されていますが、Apple Pencil 第2世代には非搭載です。\nスクイーズ（ペンを握り込む動作でツールパレットを呼び出す機能）、バレルロール（ペンを回転させてブラシの向きを制御する機能）、触覚フィードバック（操作時に軽い振動で反応を返す機能）、「探す」機能（Apple Pencilの場所を追跡できる機能）。',
               },
               {
                 question: 'Apple Pencil 第2世代とApple Pencil（USB-C）の違いは何？',
-                answer: 'Apple Pencil 第2世代は以下の機能が搭載されていますが、Apple Pencil（USB-C）には非搭載です。筆圧感知（軽いタッチから強いタッチまで、筆圧を正確に検知する機能）、ダブルタップ（ペンや消しゴムなどのツールをすばやく切り替える機能）、ワイヤレス充電・ペアリング（iPadの側面にマグネットで吸着させるだけで充電とペアリングを行う機能）。',
+                answer: 'Apple Pencil 第2世代は以下の機能が搭載されていますが、Apple Pencil（USB-C）には非搭載です。\n筆圧感知（軽いタッチから強いタッチまで、筆圧を正確に検知する機能）、ダブルタップ（ペンや消しゴムなどのツールをすばやく切り替える機能）、ワイヤレス充電・ペアリング（iPadの側面にマグネットで吸着させるだけで充電とペアリングを行う機能）。',
               },
               {
                 question: 'Apple Pencil 第2世代とApple Pencil 第1世代の違いは何？',
-                answer: 'Apple Pencil 第2世代は以下の機能が搭載されていますが、Apple Pencil（第1世代）には非搭載です。ワイヤレス充電・ペアリング（iPadの側面にマグネットで吸着させるだけで、充電とペアリングを自動で行う機能）、ダブルタップ（ペンの側面を指でトントンと叩くだけで、ペンと消しゴムなどのツールをすばやく切り替える機能）、マグネットによる吸着保管（iPadの側面に磁力で固定して持ち運べる機能）。',
+                answer: 'Apple Pencil 第2世代は以下の機能が搭載されていますが、Apple Pencil（第1世代）には非搭載です。\nワイヤレス充電・ペアリング（iPadの側面にマグネットで吸着させるだけで、充電とペアリングを自動で行う機能）、ダブルタップ（ペンの側面を指でトントンと叩くだけで、ペンと消しゴムなどのツールをすばやく切り替える機能）、マグネットによる吸着保管（iPadの側面に磁力で固定して持ち運べる機能）。',
               },
               {
                 question: 'Apple Pencilのペン先（チップ）は交換できる？寿命の目安は？',
-                answer: 'はい、すべてのApple Pencilのペン先は交換可能です。Apple純正の替え芯（4個入り・約3,000円前後）のほか、サードパーティ製のペン先も販売されています。ペン先の寿命は使用頻度によりますが、毎日使う方で半年〜1年、たまに使う方で1〜2年が交換の目安です。ペン先が摩耗すると書き心地が悪くなるだけでなく、iPadの画面を傷つけるリスクもあるため、先端がすり減ってきたら早めの交換をおすすめします。',
+                answer: 'はい、すべてのApple Pencilのペン先は交換可能です。Apple純正の替え芯（4個入り・約3,000円前後）のほか、サードパーティ製のペン先も販売されています。\nペン先の寿命は使用頻度によりますが、毎日使う方で半年〜1年、たまに使う方で1〜2年が交換の目安です。\nペン先が摩耗すると書き心地が悪くなるだけでなく、iPadの画面を傷つけるリスクもあるため、先端がすり減ってきたら早めの交換をおすすめします。',
               },
               {
                 question: 'Apple Pencilのバッテリー寿命はどのくらい？',
-                answer: 'Apple Pencilのバッテリー寿命は一般的に3〜5年程度です。1回の充電で約12時間使用でき、15秒の急速充電で約30分間使えます。ただし、バッテリー残量0%のまま長期間放置すると「過放電」により充電できなくなることがあるため、定期的に充電することが重要です。Apple Pencilはバッテリー交換ができない構造のため、バッテリーの寿命＝製品の寿命となる点に注意してください。',
+                answer: 'Apple Pencilのバッテリー寿命は一般的に3〜5年程度です。1回の充電で約12時間使用でき、15秒の急速充電で約30分間使えます。\nただし、バッテリー残量0%のまま長期間放置すると「過放電」により充電できなくなることがあるため、定期的に充電することが重要です。\nApple Pencilはバッテリー交換ができない構造のため、バッテリーの寿命＝製品の寿命となる点に注意してください。',
               },
               {
                 question: '中古のApple Pencilを買う際の注意点は？',
-                answer: '中古Apple Pencilを購入する際は、まずバッテリーの状態を確認することが最も重要です。過放電で充電不能になっている個体もあるため、「動作確認済み」と明記された商品を選びましょう。また、ペン先の摩耗具合、筆圧感知や傾き検知が正常に動作するか、ペアリングが問題なくできるかも確認ポイントです。フリマアプリより、保証付きの中古専門店での購入が安心です。',
+                answer: '中古Apple Pencilを購入する際は、まずバッテリーの状態を確認することが最も重要です。過放電で充電不能になっている個体もあるため、「動作確認済み」と明記された商品を選びましょう。\nまた、ペン先の摩耗具合、筆圧感知や傾き検知が正常に動作するか、ペアリングが問題なくできるかも確認ポイントです。フリマアプリより、保証付きの中古専門店での購入が安心です。',
               },
               {
                 question: 'Apple Pencilの代わりになるサードパーティ製スタイラスペンはある？',
-                answer: 'はい、iPad対応のサードパーティ製スタイラスペンは多数販売されており、傾き検知やパームリジェクション（手を画面に置いても誤反応しない機能）に対応した製品もあります。ただし、筆圧感知はApple Pencil独自の技術のため、互換ペンでは非対応です。イラスト制作など筆圧を活かした作業にはApple Pencilが必須ですが、メモ書きやPDF注釈が中心であれば互換ペンでも十分実用的です。',
+                answer: 'はい、iPad対応のサードパーティ製スタイラスペンは多数販売されており、傾き検知やパームリジェクション（手を画面に置いても誤反応しない機能）に対応した製品もあります。ただし、筆圧感知はApple Pencil独自の技術のため、互換ペンでは非対応です。\nイラスト制作など筆圧を活かした作業にはApple Pencilが必須ですが、メモ書きやPDF注釈が中心であれば互換ペンでも十分実用的です。',
               },
               {
                 question: 'Apple Pencilの書き心地や遅延（レイテンシー）に違いはある？',
-                answer: 'Apple Pencil Proと第2世代はどちらも非常に低遅延で、紙に書いているような自然な書き心地です。Apple Pencil（USB-C）は筆圧感知非対応のため、筆圧による線の太さ変化が出ない点で書き心地に差があります。第1世代も筆圧・傾き検知に対応していますが、Lightningコネクタでの充電が必要で取り回しに差があります。ProMotion対応iPad（120Hz）と組み合わせると、さらに滑らかな描画体験が得られます。',
+                answer: 'Apple Pencil Proと第2世代はどちらも非常に低遅延で、紙に書いているような自然な書き心地です。Apple Pencil（USB-C）は筆圧感知非対応のため、筆圧による線の太さ変化が出ない点で書き心地に差があります。\n第1世代も筆圧・傾き検知に対応していますが、Lightningコネクタでの充電が必要で取り回しに差があります。ProMotion対応iPad（120Hz）と組み合わせると、さらに滑らかな描画体験が得られます。',
               },
               {
                 question: 'Apple Pencilの価格はいくら？モデル別の定価を知りたい',
-                answer: 'Apple Pencilの定価はモデルにより異なります。Apple Pencil Pro：21,800円（税込）、Apple Pencil 第2世代：21,800円（税込）、Apple Pencil（USB-C）：13,800円（税込）、Apple Pencil 第1世代：16,800円（税込）です。USB-Cモデルが最も安く、筆圧感知が不要な方にとってはコストパフォーマンスに優れた選択肢です。中古市場ではさらにお得に購入できる場合があります。',
+                answer: 'Apple Pencilの定価はモデルにより異なります。Apple Pencil Pro：21,800円（税込）、Apple Pencil 第2世代：21,800円（税込）、Apple Pencil（USB-C）：13,800円（税込）、Apple Pencil 第1世代：16,800円（税込）です。\nUSB-Cモデルが最も安く、筆圧感知が不要な方にとってはコストパフォーマンスに優れた選択肢です。中古市場ではさらにお得に購入できる場合があります。',
               },
               {
                 question: 'iPadにはApple Pencil以外にどんなアクセサリがある？',
-                answer: 'Apple PencilのほかにiPadの活用の幅を広げるアクセサリとして、Magic KeyboardやSmart Keyboard Folioなどの純正キーボードがあります。キーボードを使えばiPadをノートパソコンのように活用でき、文字入力や資料作成が格段に快適になります。各iPadに対応するキーボードの型番や互換性は「歴代iPadのMagic Keyboard 型番一覧（https://used-lab.com/ipad/accessories-summary/）」で確認できます。',
+                answer: 'Apple PencilのほかにiPadの活用の幅を広げるアクセサリとして、Magic KeyboardやSmart Keyboard Folioなどの純正キーボードがあります。\nキーボードを使えばiPadをノートパソコンのように活用でき、文字入力や資料作成が格段に快適になります。各iPadに対応するキーボードの型番や互換性は「歴代iPadのMagic Keyboard 型番一覧（https://used-lab.com/ipad/accessories-summary/）」で確認できます。',
               },
             ]}
           />
@@ -261,10 +258,13 @@ export default async function ApplePencilComparePage() {
                 <div className="popular-card-body">
                   <p className="popular-card-subtitle">目的別におすすめ機種を厳選！</p>
                   <p className="popular-card-title">中古iPadおすすめ5選</p>
-                  <p className="popular-card-desc">動画視聴やイラスト制作を重視する人向け、大画面で作業したい人向けなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。</p>
-                  <div>
+                <p className="popular-card-subtitle">目的別におすすめ機種を厳選！</p>                  <p className="popular-card-desc">動画視聴やイラスト制作を重視する人向け、大画面で作業したい人向けなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。</p>
+                  <div className="popular-card-buttons">
                     <a className="m-btn m-btn--primary" href="/ipad/recommend">
                       おすすめ5機種を見る <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                    </a>
+                    <a className="m-btn m-btn--secondary" href="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Ftablet%2Fios%2Fipad" target="_blank" rel="noopener noreferrer">
+                      イオシスで中古iPadを探す <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
                     </a>
                   </div>
                 </div>

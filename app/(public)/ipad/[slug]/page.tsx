@@ -67,7 +67,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       title,
       description,
       url: `/ipad/${slug}/`,
-      images: model.image ? [{ url: `/images/ipad/${model.image}`, width: 360, height: 360, alt: `${model.model} の外観イメージ` }] : [],
+      images: model.image ? [{ url: `/images/ipad/${model.image}`, width: 1200, height: 630, alt: `${model.model} の外観イメージ` }] : [],
     },
     twitter: {
       title,
@@ -167,6 +167,8 @@ export default async function IPadDetailPage({ params }: PageProps) {
           cardDescription="動画視聴やイラスト制作を重視する人向け、大画面で作業したい人向けなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。"
           buttonText="おすすめ5機種を見る"
           buttonHref="/ipad/recommend/"
+          secondaryButtonText="イオシスで中古iPadを探す"
+          secondaryButtonHref="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Ftablet%2Fios%2Fipad"
         />
         <IPadRelatedLinks excludeHref={`/ipad/${enrichedModel.slug}/`} />
         <ShareBox url={`https://used-lab.com/ipad/${enrichedModel.slug}/`} text={`中古${enrichedModel.model}は今買うべき？製品寿命、基本スペック、ベンチマークスコア、中古相場から解説`} />

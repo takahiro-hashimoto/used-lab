@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "tsx scripts/check-sitemap-coverage.ts && next build",
     "start": "next start",
     "lint": "eslint",
     "fetch-prices": "tsx scripts/fetch-prices.ts",

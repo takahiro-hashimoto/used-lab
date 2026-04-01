@@ -88,6 +88,19 @@ export const PRODUCT_CATEGORIES: CategoryDef[] = [
       { path: '/iphone/benchmark/', label: '歴代iPhoneのベンチマーク比較ランキング｜Geekbench 6スコアで性能が一目でわかる' },
       { path: '/iphone/mvno/', label: (p) => `中古iPhoneの購入と通信契約が一緒にできる格安SIM業者まとめ【${p.mvnoDate}】` },
       { path: '/iphone/network-limit/', label: 'ネットワーク制限△の中古iPhone・iPadを買うメリット・デメリットを解説' },
+      { path: '/iphone/iphone13-13pro-compare/', label: '中古iPhone 13と13 Proの違いを比較｜中古で買うならどっち？' },
+      { path: '/iphone/iphone13-14-compare/', label: '中古iPhone 13と14の違いを比較｜中古で買うならどっち？' },
+      { path: '/iphone/iphone13pro-14pro-compare/', label: '中古iPhone 13 Proと14 Proの違いを比較｜中古で買うならどっち？' },
+      { path: '/iphone/iphone14-14pro-compare/', label: '中古iPhone 14と14 Proの違いを比較｜中古で買うならどっち？' },
+      { path: '/iphone/iphone14-15-compare/', label: '中古iPhone 14と15の違いを比較｜中古で買うならどっち？' },
+      { path: '/iphone/iphone14pro-15pro-compare/', label: '中古iPhone 14 Proと15 Proの違いを比較｜中古で買うならどっち？' },
+      { path: '/iphone/iphone15-15pro-compare/', label: '中古iPhone 15と15 Proの違いを比較｜中古で買うならどっち？' },
+      { path: '/iphone/iphone15-16-compare/', label: '中古iPhone 15と16の違いを比較｜中古で買うならどっち？' },
+      { path: '/iphone/iphone15pro-16pro-compare/', label: '中古iPhone 15 Proと16 Proの違いを比較｜中古で買うならどっち？' },
+      { path: '/iphone/iphone16-16pro-compare/', label: '中古iPhone 16と16 Proの違いを比較｜中古で買うならどっち？' },
+      { path: '/iphone/iphone16e-se3-compare/', label: '中古iPhone 16eとSE(第3世代)の違いを比較｜中古で買うならどっち？' },
+      { path: '/iphone/iphone16plus-air-compare/', label: '中古iPhone 16 PlusとiPhone Airの違いを比較｜買うならどっち？' },
+      { path: '/iphone/16e-17e-compare/', label: 'iPhone 16eと17eどっちがいい？違いと選び方をやさしく解説' },
     ],
   },
   {
@@ -165,6 +178,7 @@ export const PRODUCT_CATEGORIES: CategoryDef[] = [
     desc: '中古AirPodsのおすすめ機種・中古相場など、購入に役立つ記事をまとめています。',
     basePath: '/airpods',
     pages: [
+      { path: '/airpods/', label: '中古AirPods完全購入ガイド | 選び方・相場・おすすめモデルまとめ', priority: 0.9 },
       { path: '/airpods/recommend/', label: (p) => `中古AirPodsおすすめ${p.airpodsRecCount}機種を解説。狙い目の型落ちモデルはどれ？【${p.airpodsRecDate}版】` },
       { path: '/airpods/price/', label: (p) => `AirPodsの中古相場一覧 | 歴代${p.airpodsModelCount}機種の価格推移を独自集計【${p.airpodsPriceMonth}】` },
       { path: '/airpods/airpods-find/', label: 'AirPodsのケースやイヤホン片方を無くした時の探し方、代替品の購入先まとめ' },
@@ -173,6 +187,7 @@ export const PRODUCT_CATEGORIES: CategoryDef[] = [
 ]
 
 export const UTILITY_PAGES: PageDef[] = [
+  { path: '/search/', label: '記事を検索', priority: 0.3, changeFrequency: 'monthly' },
   { path: '/sitemap-page/', label: 'サイトマップ', priority: 0.3, changeFrequency: 'monthly' },
   { path: '/contact/', label: 'お問い合わせ', priority: 0.3, changeFrequency: 'yearly' },
   { path: '/about/', label: '運営者情報', priority: 0.3, changeFrequency: 'yearly' },

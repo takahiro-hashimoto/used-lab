@@ -12,6 +12,8 @@ export default function WatchPopularSection() {
       cardDescription="健康管理を重視する人向け、コスパ重視の人向けなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。"
       buttonText="おすすめ5機種を見る"
       buttonHref="/watch/recommend"
+      secondaryButtonText="イオシスで中古Apple Watchを探す"
+      secondaryButtonHref="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Fwearable%2Fapple%3Fnot%3Dpencil"
     />
   )
 }

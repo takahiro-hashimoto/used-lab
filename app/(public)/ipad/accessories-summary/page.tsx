@@ -11,6 +11,7 @@ import FaqSection from '@/app/components/support/FaqSection'
 import IPadRelatedLinks from '@/app/components/ipad/IPadRelatedLinks'
 import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
+import HeroMeta from '@/app/components/HeroMeta'
 
 const PAGE_TITLE = 'iPadのキーボードどれが使える？Magic Keyboard全型番と対応モデル一覧'
 const PAGE_DESCRIPTION =
@@ -25,7 +26,7 @@ export const metadata: Metadata = {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/ipad/accessories-summary/',
-    images: [{ url: '/images/ipad/ipad-pro-13-2.jpg', width: 360, height: 360, alt: PAGE_TITLE }],
+    images: [{ url: '/images/ipad/ipad-pro-13-2.jpg', width: 1200, height: 630, alt: PAGE_TITLE }],
   },
   twitter: {
     title: PAGE_TITLE,
@@ -138,13 +139,7 @@ export default async function AccessoriesSummaryPage() {
               <h1 className="hero-title" itemProp="headline">
                 iPadのキーボードどれが使える？Magic Keyboard全型番と対応モデル一覧
               </h1>
-              <div className="hero-meta">
-                <i className="fa-regular fa-clock" aria-hidden="true"></i>
-                <span>
-                  更新日: <time dateTime={dateStr} itemProp="dateModified">{dateDisplay}</time> | 当記事のリンクには広告が含まれています
-                </span>
-                <meta itemProp="datePublished" content={dateStr} />
-              </div>
+              <HeroMeta dateStr={dateStr} dateDisplay={dateDisplay} withItemProp />
             </div>
             <div className="hero-visual">
               <figure className="hero-media">
@@ -179,8 +174,14 @@ export default async function AccessoriesSummaryPage() {
         {/* 目次 */}
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
-            <p className="toc-title">タップできる目次</p>
+            <div className="toc-wrapper">
+<p className="toc-title"><i className="fa-solid fa-list" aria-hidden="true"></i> タップできる目次</p>
             <ol className="l-grid l-grid--3col u-list-reset">
+              <li>
+                <a href="#keyboard-compare" className="toc-item">
+                  Magic Keyboard vs Smart Keyboard Folio <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                </a>
+              </li>
               <li>
                 <a href="#compare-table" className="toc-item">
                   対応機種一覧表 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
@@ -192,25 +193,21 @@ export default async function AccessoriesSummaryPage() {
                 </a>
               </li>
               <li>
-                <a href="#keyboard-compare" className="toc-item">
-                  Magic Keyboard vs Smart Keyboard Folio <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
-                </a>
-              </li>
-              <li>
                 <a href="#faq" className="toc-item">
                   よくある質問 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
                 </a>
               </li>
             </ol>
+</div>
           <AuthorByline />
           </div>
         </nav>
 
         {/* セクション */}
         <div className="l-sections" id="content" itemProp="articleBody">
+          <KeyboardCompareSection />
           <KeyboardCompatTable models={serializedModels} keyboardAccessories={serializedKeyboards} />
           <KeyboardListSection models={serializedModels} keyboardAccessories={serializedKeyboards} />
-          <KeyboardCompareSection />
 
           <FaqSection
             title="iPadのキーボードに関するよくある質問"
@@ -218,11 +215,11 @@ export default async function AccessoriesSummaryPage() {
             items={[
               {
                 question: 'Magic Keyboard（マジックキーボード）とは？どんな機能がある？',
-                answer: 'Magic KeyboardはApple純正のiPad用キーボードで、トラックパッドを搭載しているのが最大の特徴です。Smart Connector経由でiPadと接続するため、Bluetoothのペアリングや充電は不要。フローティングカンチレバーデザインにより、画面の角度を自由に調整できます。iPad Air・iPad Proシリーズに対応しています。',
+                answer: 'Magic KeyboardはApple純正のiPad用キーボードで、トラックパッドを搭載しているのが最大の特徴です。Smart Connector経由でiPadと接続するため、Bluetoothのペアリングや充電は不要。\nフローティングカンチレバーデザインにより、画面の角度を自由に調整できます。iPad Air・iPad Proシリーズに対応しています。',
               },
               {
                 question: 'Magic Keyboard FolioとMagic Keyboardの違いは何？',
-                answer: 'Magic Keyboard Folioは無印iPad（第10世代・第11世代）専用のキーボードで、キーボード部分とスタンド部分が分離するデザインです。Magic KeyboardはiPad Air・iPad Pro向けで、フローティングカンチレバーデザインを採用しています。対応モデルが異なるため、お持ちのiPadに合わせて選びましょう。',
+                answer: 'Magic Keyboard Folioは無印iPad（第10世代・第11世代）専用のキーボードで、キーボード部分とスタンド部分が分離するデザインです。\nMagic KeyboardはiPad Air・iPad Pro向けで、フローティングカンチレバーデザインを採用しています。対応モデルが異なるため、お持ちのiPadに合わせて選びましょう。',
               },
               {
                 question: 'iPadのキーボードのサイズ（11インチ・13インチ）は互換性がある？',
@@ -234,11 +231,11 @@ export default async function AccessoriesSummaryPage() {
               },
               {
                 question: '中古のMagic Keyboardを購入する際の注意点は？',
-                answer: '中古のMagic Keyboard（マジックキーボード）を購入する際は、型番を確認して自分のiPadに対応しているかを必ずチェックしましょう。JIS配列かUS配列かも要確認です。また、キーの反応やトラックパッドの動作、充電端子の状態、本体の折り曲げ部分のヘタリなども確認ポイントです。信頼できる中古ショップでの購入をおすすめします。',
+                answer: '中古のMagic Keyboard（マジックキーボード）を購入する際は、型番を確認して自分のiPadに対応しているかを必ずチェックしましょう。JIS配列かUS配列かも要確認です。\nまた、キーの反応やトラックパッドの動作、充電端子の状態、本体の折り曲げ部分のヘタリなども確認ポイントです。信頼できる中古ショップでの購入をおすすめします。',
               },
               {
                 question: 'iPadにはキーボード以外にどんなアクセサリがある？',
-                answer: 'キーボードのほかに、Apple Pencilも代表的なiPadアクセサリです。Apple Pencilは手書きメモ、イラスト制作、PDFへの注釈など幅広い用途に活用できます。現在4つのモデルが販売されており、対応iPadや機能（筆圧感知・傾き検知など）がそれぞれ異なります。各モデルの違いや選び方は「Apple Pencilの違いを比較（https://used-lab.com/ipad/apple-pencil-compare/）」で詳しく解説しています。',
+                answer: 'キーボードのほかに、Apple Pencilも代表的なiPadアクセサリです。Apple Pencilは手書きメモ、イラスト制作、PDFへの注釈など幅広い用途に活用できます。\n現在4つのモデルが販売されており、対応iPadや機能（筆圧感知・傾き検知など）がそれぞれ異なります。各モデルの違いや選び方は「Apple Pencilの違いを比較（https://used-lab.com/ipad/apple-pencil-compare/）」で詳しく解説しています。',
               },
             ]}
           />
@@ -262,10 +259,13 @@ export default async function AccessoriesSummaryPage() {
                 <div className="popular-card-body">
                   <p className="popular-card-subtitle">目的別におすすめ機種を厳選！</p>
                   <p className="popular-card-title">中古iPadおすすめ5選</p>
-                  <p className="popular-card-desc">動画視聴やイラスト制作を重視する人向け、大画面で作業したい人向けなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。</p>
-                  <div>
+                <p className="popular-card-subtitle">目的別におすすめ機種を厳選！</p>                  <p className="popular-card-desc">動画視聴やイラスト制作を重視する人向け、大画面で作業したい人向けなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。</p>
+                  <div className="popular-card-buttons">
                     <a className="m-btn m-btn--primary" href="/ipad/recommend">
                       おすすめ5機種を見る <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                    </a>
+                    <a className="m-btn m-btn--secondary" href="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Ftablet%2Fios%2Fipad" target="_blank" rel="noopener noreferrer">
+                      イオシスで探す <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
                     </a>
                   </div>
                 </div>

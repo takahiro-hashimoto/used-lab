@@ -8,6 +8,7 @@ import ShareBox from '@/app/components/ShareBox'
 import { getAllMacBookModels, getAllMacBookPriceLogsByModelIds, getAllProductShopLinksByType } from '@/lib/queries'
 import type { MacBookPriceLog, ProductShopLink } from '@/lib/types'
 import BenchmarkRanking from './components/BenchmarkRanking'
+import HeroMeta from '@/app/components/HeroMeta'
 import ChipGenerationCompare from './components/ChipGenerationCompare'
 import UseCaseGuide from './components/UseCaseGuide'
 import AuthorByline from '@/app/components/AuthorByline'
@@ -28,7 +29,7 @@ export const metadata: Metadata = {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/macbook/benchmark/',
-    images: [{ url: '/images/content/thumbnail/macbook-image-05.jpg', width: 360, height: 360, alt: PAGE_TITLE }],
+    images: [{ url: '/images/content/thumbnail/macbook-image-05.jpg', width: 1200, height: 630, alt: PAGE_TITLE }],
   },
   twitter: {
     title: PAGE_TITLE,
@@ -40,23 +41,23 @@ export const metadata: Metadata = {
 const FAQ_ITEMS = [
   {
     question: 'Geekbench 6のスコアはどのくらい信頼できますか？',
-    answer: 'Geekbench 6は業界標準のベンチマークツールの一つで、CPU・GPU性能を定量的に比較するのに役立ちます。ただし実際の作業パフォーマンスはメモリ量、SSD速度、ソフトウェア最適化など複数の要素に左右されるため、スコアはあくまで参考指標として活用しましょう。',
+    answer: 'Geekbench 6は業界標準のベンチマークツールの一つで、CPU・GPU性能を定量的に比較するのに役立ちます。\nただし実際の作業パフォーマンスはメモリ量、SSD速度、ソフトウェア最適化など複数の要素に左右されるため、スコアはあくまで参考指標として活用しましょう。',
   },
   {
     question: 'メモリ8GBと16GBでベンチマークスコアは変わりますか？',
-    answer: 'Geekbenchのスコア自体はメモリ量でほとんど変わりません。ただし実際の作業では、メモリが多いほど同時に処理できるタスク量が増えるため、マルチタスク時の体感速度には大きな差が出ます。ベンチマークだけでなくメモリ量も含めて判断することをおすすめします。',
+    answer: 'Geekbenchのスコア自体はメモリ量でほとんど変わりません。\nただし実際の作業では、メモリが多いほど同時に処理できるタスク量が増えるため、マルチタスク時の体感速度には大きな差が出ます。ベンチマークだけでなくメモリ量も含めて判断することをおすすめします。',
   },
   {
     question: 'M1のMacBookは2026年でもまだ使えますか？',
-    answer: 'M1チップは2026年現在でもWeb閲覧、Office作業、軽いプログラミングなど一般的な用途には十分な性能です。ただし4K動画編集や大規模な開発環境ではM2以降との差が目立ちます。macOSのサポートも引き続き対象なので、用途が合えばコスパの良い選択肢です。',
+    answer: 'M1チップは2026年現在でもWeb閲覧、Office作業、軽いプログラミングなど一般的な用途には十分な性能です。\nただし4K動画編集や大規模な開発環境ではM2以降との差が目立ちます。macOSのサポートも引き続き対象なので、用途が合えばコスパの良い選択肢です。',
   },
   {
     question: 'ProチップやMaxチップは一般ユーザーにも必要ですか？',
-    answer: 'Pro/Maxチップは主に動画編集、3Dレンダリング、機械学習など高負荷な作業向けです。Web閲覧、資料作成、プログラミングなど一般的な用途であれば、通常のM1〜M4チップで十分です。Proチップ以上はマルチコア・GPU性能が大幅に向上する一方、価格も高くなるため、用途に見合った選択が重要です。',
+    answer: 'Pro/Maxチップは主に動画編集、3Dレンダリング、機械学習など高負荷な作業向けです。\nWeb閲覧、資料作成、プログラミングなど一般的な用途であれば、通常のM1〜M4チップで十分です。\nProチップ以上はマルチコア・GPU性能が大幅に向上する一方、価格も高くなるため、用途に見合った選択が重要です。',
   },
   {
     question: 'MacBook AirとProではどのくらいの性能差がありますか？',
-    answer: '同じ世代のチップを搭載している場合、シングルコア性能はほぼ同等です。ただしProはファンを搭載しているため、長時間の高負荷作業でもサーマルスロットリング（熱による性能低下）が起きにくく、マルチコア性能を持続的に発揮できます。また、Proには上位チップ（Pro/Max）が選べるため、GPU性能に大きな差がつきます。',
+    answer: '同じ世代のチップを搭載している場合、シングルコア性能はほぼ同等です。\nただしProはファンを搭載しているため、長時間の高負荷作業でもサーマルスロットリング（熱による性能低下）が起きにくく、マルチコア性能を持続的に発揮できます。\nまた、Proには上位チップ（Pro/Max）が選べるため、GPU性能に大きな差がつきます。',
   },
 ]
 
@@ -182,13 +183,7 @@ export default async function BenchmarkPage() {
                 <h1 className="hero-title" itemProp="headline">
                   MacBookのベンチマークを比較！全モデルの性能がわかるスコアランキング
                 </h1>
-                <div className="hero-meta">
-                  <i className="fa-regular fa-clock" aria-hidden="true"></i>
-                  <span>
-                    更新日: <time dateTime={dateStr} itemProp="dateModified">{dateDisplay}</time> | 当記事のリンクには広告が含まれています
-                  </span>
-                  <meta itemProp="datePublished" content="2026-03-24" />
-                </div>
+                <HeroMeta dateStr={dateStr} dateDisplay={dateDisplay} withItemProp />
               </div>
               <div className="hero-visual">
                 <figure className="hero-media">
@@ -228,7 +223,8 @@ export default async function BenchmarkPage() {
         {/* 目次 */}
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
-            <p className="toc-title">タップできる目次</p>
+            <div className="toc-wrapper">
+<p className="toc-title"><i className="fa-solid fa-list" aria-hidden="true"></i> タップできる目次</p>
             <ol className="l-grid l-grid--3col u-list-reset">
               <li><a href="#score-guide" className="toc-item">スコアの読み方 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#ranking" className="toc-item">総合ランキング <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
@@ -237,6 +233,7 @@ export default async function BenchmarkPage() {
               <li><a href="#usecase" className="toc-item">用途別おすすめ <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#faq" className="toc-item">よくある質問 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
             </ol>
+</div>
           <AuthorByline />
           </div>
         </nav>
@@ -301,7 +298,7 @@ export default async function BenchmarkPage() {
                 {FAQ_ITEMS.map((item, i) => (
                   <div key={i} className="m-card m-card--shadow faq-item">
                     <h3 className="faq-question">{item.question}</h3>
-                    <div className="faq-answer"><p>{item.answer}</p></div>
+                    <div className="faq-answer">{item.answer.split('\n').map((p, j) => <p key={j}>{p}</p>)}</div>
                   </div>
                 ))}
               </div>

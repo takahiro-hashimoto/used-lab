@@ -7,6 +7,7 @@ import FaqSection from '@/app/components/support/FaqSection'
 import IPadRelatedLinks from '@/app/components/ipad/IPadRelatedLinks'
 import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
+import HeroMeta from '@/app/components/HeroMeta'
 
 const PAGE_TITLE = 'iPadはWi-Fiモデルとセルラーモデルどっちがおすすめ？両者の違い4つを比較'
 const PAGE_DESCRIPTION =
@@ -21,7 +22,7 @@ export const metadata: Metadata = {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/ipad/wifi-cellular/',
-    images: [{ url: '/images/ipad/ipad-air-6.jpg', width: 360, height: 360, alt: PAGE_TITLE }],
+    images: [{ url: '/images/ipad/ipad-air-6.jpg', width: 1200, height: 630, alt: PAGE_TITLE }],
   },
   twitter: {
     title: PAGE_TITLE,
@@ -83,13 +84,7 @@ export default function WifiCellularPage() {
               <h1 className="hero-title" itemProp="headline">
                 iPadはWi-Fiモデルとセルラーモデルどっちがおすすめ？両者の違い4つを比較
               </h1>
-              <div className="hero-meta">
-                <i className="fa-regular fa-clock" aria-hidden="true"></i>
-                <span>
-                  更新日: <time dateTime={dateStr} itemProp="dateModified">{dateDisplay}</time> | 当記事のリンクには広告が含まれています
-                </span>
-                <meta itemProp="datePublished" content={dateStr} />
-              </div>
+              <HeroMeta dateStr={dateStr} dateDisplay={dateDisplay} withItemProp />
             </div>
             <div className="hero-visual">
               <figure className="hero-media">
@@ -128,7 +123,8 @@ export default function WifiCellularPage() {
         {/* 目次（仮置き） */}
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
-            <p className="toc-title">タップできる目次</p>
+            <div className="toc-wrapper">
+<p className="toc-title"><i className="fa-solid fa-list" aria-hidden="true"></i> タップできる目次</p>
             <ol className="l-grid l-grid--3col u-list-reset">
               <li>
                 <a href="#conclusion" className="toc-item">
@@ -156,6 +152,7 @@ export default function WifiCellularPage() {
                 </a>
               </li>
             </ol>
+</div>
           <AuthorByline />
           </div>
         </nav>
@@ -537,19 +534,19 @@ export default function WifiCellularPage() {
             items={[
               {
                 question: 'iPadのWi-Fiモデルとセルラーモデルの違いはなんですか？',
-                answer: 'iPadのWi-Fiモデルは、自宅やカフェなどのWi-Fi環境がある場所でのみインターネット接続が可能です。一方、セルラーモデルはSIMカードを挿入することで、4Gや5Gのモバイル回線を利用して場所を問わず通信ができます。外出先での利用が多い方は、通信の自由度が高いセルラーモデルが便利です。',
+                answer: 'iPadのWi-Fiモデルは、自宅やカフェなどのWi-Fi環境がある場所でのみインターネット接続が可能です。\n一方、セルラーモデルはSIMカードを挿入することで、4Gや5Gのモバイル回線を利用して場所を問わず通信ができます。外出先での利用が多い方は、通信の自由度が高いセルラーモデルが便利です。',
               },
               {
                 question: 'アイパッドを買うならWi-Fiモデルとセルラーモデルどちらがおすすめですか？',
-                answer: '外出先でも頻繁にiPadを使いたい場合はセルラーモデルがおすすめです。どこでも通信できるため、移動中や出張先でもスムーズに使えます。一方、自宅や職場などWi-Fi環境が中心の方はWi-Fiモデルでも十分。スマホのテザリング機能を活用すれば、一時的な外出先でもネット接続が可能です。',
+                answer: '外出先でも頻繁にiPadを使いたい場合はセルラーモデルがおすすめです。どこでも通信できるため、移動中や出張先でもスムーズに使えます。\n一方、自宅や職場などWi-Fi環境が中心の方はWi-Fiモデルでも十分。スマホのテザリング機能を活用すれば、一時的な外出先でもネット接続が可能です。',
               },
               {
                 question: 'Wi-Fiモデルとセルラーモデルは見た目で見分けられますか？',
-                answer: 'はい、見分け方は簡単です。セルラーモデルのiPadは本体背面の上部に白いアンテナラインが入っており、Wi-Fiモデルにはありません。また、設定画面に「モバイルデータ通信」の項目があるのもセルラーモデルの特徴です。',
+                answer: 'はい、見分け方は簡単です。セルラーモデルのiPadは本体背面の上部に白いアンテナラインが入っており、Wi-Fiモデルにはありません。\nまた、設定画面に「モバイルデータ通信」の項目があるのもセルラーモデルの特徴です。',
               },
               {
                 question: 'セルラーモデルのiPadにおすすめの通信キャリアは？',
-                answer: 'データ使用量に応じて料金が変動する楽天モバイルがおすすめです。月3GBまでなら月額1,078円（税込）、たくさん使っても20GB超は月額3,278円（税込）で上限固定。iPadの利用頻度が月によって異なる方にはコスパ抜群の選択肢です。ただし、対応エリアを事前に確認しましょう。',
+                answer: 'データ使用量に応じて料金が変動する楽天モバイルがおすすめです。月3GBまでなら月額1,078円（税込）、たくさん使っても20GB超は月額3,278円（税込）で上限固定。\niPadの利用頻度が月によって異なる方にはコスパ抜群の選択肢です。ただし、対応エリアを事前に確認しましょう。',
               },
               {
                 question: 'iPadのセルラーモデルを使う際にeSIMは使えますか？',
@@ -581,10 +578,13 @@ export default function WifiCellularPage() {
               <div className="popular-card-body">
                 <p className="popular-card-subtitle">目的別におすすめ機種を厳選！</p>
                 <p className="popular-card-title">中古iPadおすすめ5選</p>
-                <p className="popular-card-desc">イラスト制作に最適なモデル、動画視聴に大画面モデルなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。</p>
-                <div>
+              <p className="popular-card-subtitle">目的別におすすめ機種を厳選！</p>                <p className="popular-card-desc">イラスト制作に最適なモデル、動画視聴に大画面モデルなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。</p>
+                <div className="popular-card-buttons">
                   <a className="m-btn m-btn--primary" href="/ipad/recommend/">
                     おすすめ5機種を見る <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                  </a>
+                  <a className="m-btn m-btn--secondary" href="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Ftablet%2Fios%2Fipad" target="_blank" rel="noopener noreferrer">
+                    イオシスで中古iPadを探す <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
                   </a>
                 </div>
               </div>

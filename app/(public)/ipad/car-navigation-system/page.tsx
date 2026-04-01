@@ -12,6 +12,7 @@ import IPadRelatedLinks from '@/app/components/ipad/IPadRelatedLinks'
 import PopularSection from '@/app/components/support/PopularSection'
 import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
+import HeroMeta from '@/app/components/HeroMeta'
 
 const PAGE_TITLE = 'iPadをカーナビ化するメリットが凄い！地図が古くなる問題をすっきり解消'
 const PAGE_DESCRIPTION =
@@ -26,7 +27,7 @@ export const metadata: Metadata = {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/ipad/car-navigation-system/',
-    images: [{ url: '/images/content/photo/ipad-car-navi-02.jpg', width: 360, height: 360, alt: PAGE_TITLE }],
+    images: [{ url: '/images/content/photo/ipad-car-navi-02.jpg', width: 1200, height: 630, alt: PAGE_TITLE }],
   },
   twitter: {
     title: PAGE_TITLE,
@@ -89,13 +90,7 @@ export default function CarNavigationSystemPage() {
               <h1 className="hero-title" itemProp="headline">
                 iPadをカーナビ化するメリットが凄い！地図が古くなる問題をすっきり解消
               </h1>
-              <div className="hero-meta">
-                <i className="fa-regular fa-clock" aria-hidden="true"></i>
-                <span>
-                  更新日: <time dateTime={dateStr} itemProp="dateModified">{dateDisplay}</time> | 当記事のリンクには広告が含まれています
-                </span>
-                <meta itemProp="datePublished" content={dateStr} />
-              </div>
+              <HeroMeta dateStr={dateStr} dateDisplay={dateDisplay} withItemProp />
             </div>
             <div className="hero-visual">
               <figure className="hero-media">
@@ -135,7 +130,8 @@ export default function CarNavigationSystemPage() {
         {/* 目次 */}
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
-            <p className="toc-title">タップできる目次</p>
+            <div className="toc-wrapper">
+<p className="toc-title"><i className="fa-solid fa-list" aria-hidden="true"></i> タップできる目次</p>
             <ol className="l-grid l-grid--3col u-list-reset">
               <li>
                 <a href="#conclusion" className="toc-item">
@@ -173,6 +169,7 @@ export default function CarNavigationSystemPage() {
                 </a>
               </li>
             </ol>
+</div>
           <AuthorByline />
           </div>
         </nav>
@@ -255,7 +252,7 @@ export default function CarNavigationSystemPage() {
             items={[
               {
                 question: 'iPadのCarPlay対応は？CarPlayとの違いは何？',
-                answer: 'iPadはCarPlayに対応していません。CarPlayはiPhoneを車載ディスプレイに接続して使う機能で、iPadは対象外です。ただしiPadはそれ自体が大画面ディスプレイなので、Googleマップなどのカーナビアプリを直接起動すれば、CarPlayと同等以上の使い勝手が得られます。',
+                answer: 'iPadはCarPlayに対応していません。CarPlayはiPhoneを車載ディスプレイに接続して使う機能で、iPadは対象外です。\nただしiPadはそれ自体が大画面ディスプレイなので、Googleマップなどのカーナビアプリを直接起動すれば、CarPlayと同等以上の使い勝手が得られます。',
               },
               {
                 question: 'iPadカーナビ化にはWi-Fiモデルでも使える？',
@@ -263,7 +260,7 @@ export default function CarNavigationSystemPage() {
               },
               {
                 question: 'カーナビアプリの通信量はどれくらい？',
-                answer: 'Googleマップなどのカーナビアプリは1時間あたり約5〜10MB程度の通信量です。月30時間使用しても300MB以下なので、格安SIMの最小プランでも十分まかなえます。Googleマップならオフライン地図をダウンロードしておけば、通信量をさらに節約できます。',
+                answer: 'Googleマップなどのカーナビアプリは1時間あたり約5〜10MB程度の通信量です。月30時間使用しても300MB以下なので、格安SIMの最小プランでも十分まかなえます。\nGoogleマップならオフライン地図をダウンロードしておけば、通信量をさらに節約できます。',
               },
               {
                 question: 'iPadカーナビ化のおすすめサイズは？',
@@ -271,7 +268,7 @@ export default function CarNavigationSystemPage() {
               },
               {
                 question: '夏場の車内でiPadは大丈夫？',
-                answer: '直射日光が当たる環境ではiPadが高温になり「高温注意」の警告が表示されることがあります。サンシェードの使用や、エアコンの風が当たる位置に設置するなどの対策が有効です。駐車時は車内に放置せず持ち出すようにしましょう。',
+                answer: '直射日光が当たる環境ではiPadが高温になり「高温注意」の警告が表示されることがあります。\nサンシェードの使用や、エアコンの風が当たる位置に設置するなどの対策が有効です。駐車時は車内に放置せず持ち出すようにしましょう。',
               },
             ]}
           />
@@ -286,6 +283,8 @@ export default function CarNavigationSystemPage() {
           cardDescription="イラスト制作に最適なモデル、動画視聴に大画面モデルなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。"
           buttonText="おすすめ5機種を見る"
           buttonHref="/ipad/recommend/"
+          secondaryButtonText="イオシスで中古iPadを探す"
+          secondaryButtonHref="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Ftablet%2Fios%2Fipad"
         />
         <IPadRelatedLinks excludeHref={["/ipad/car-navigation-system/", "/ipad/recommend/"]} />
         <ShareBox url={PAGE_URL} text={PAGE_TITLE} />

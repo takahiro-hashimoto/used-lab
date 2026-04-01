@@ -138,7 +138,7 @@ export default function BenchmarkRanking({ models, shopLinks }: { models: BenchM
                           const url = getIosysUrl(shopLinks, m.id)
                           return url ? (
                             <a href={url} target="_blank" rel="noopener noreferrer" className="m-btn m-btn--primary m-btn--sm">
-                              イオシスで探す
+                              イオシスで中古MacBookを探す
                             </a>
                           ) : null
                         })()}

@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
 import Breadcrumb from '@/app/components/Breadcrumb'
+import HeroMeta from '@/app/components/HeroMeta'
 
 const PAGE_TITLE = '運営者情報'
 const PAGE_DESCRIPTION = 'ユーズドラボの運営者タカヒロのプロフィールや、サイト開設の経緯についてご紹介します。'
@@ -91,10 +92,7 @@ export default function AboutPage() {
           <div className="hero-content">
             <h1 className="hero-title">運営者情報</h1>
             <p className="hero-description">ユーズドラボの運営者タカヒロのプロフィールや、サイト開設の経緯についてご紹介します。</p>
-            <div className="hero-meta">
-              <i className="fa-regular fa-clock" aria-hidden="true"></i>
-              <span>更新日: <time dateTime="2026-03-20">2026年3月20日</time></span>
-            </div>
+            <HeroMeta dateStr="2026-03-20" dateDisplay="2026年3月20日" />
           </div>
         </div>
       </header>

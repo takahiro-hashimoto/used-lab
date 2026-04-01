@@ -63,7 +63,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       title,
       description,
       url: `/iphone/${slug}/`,
-      images: model.image ? [{ url: `/images/iphone/${model.image}`, width: 360, height: 360, alt: `${model.model} の外観イメージ` }] : [],
+      images: model.image ? [{ url: `/images/iphone/${model.image}`, width: 1200, height: 630, alt: `${model.model} の外観イメージ` }] : [],
     },
     twitter: {
       title,
