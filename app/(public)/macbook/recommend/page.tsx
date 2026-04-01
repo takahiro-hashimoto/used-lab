@@ -325,11 +325,6 @@ export default async function MacBookRecommendPage() {
               { label: 'MBA 13 / 15 {year}（{chip}）', representativeSlug: 'mba-13-2025' },
             ]}
             allModels={allModelsIncludingEnded}
-            buildLabel={(s, model, year) => {
-              const match = model.cpu?.match(/M\d+(\s?(Pro|Max|Ultra))?/i)
-              const chip = match ? match[0] : model.cpu || '---'
-              return s.label.replace('{year}', String(year)).replace('{chip}', chip)
-            }}
           />
           <RecommendDetailSection items={detailItems} />
           <CompareTableSection items={compareItems} />

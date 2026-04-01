@@ -3,7 +3,7 @@
 
 'use client'
 
-import { useState, type ReactNode } from 'react'
+import { useState } from 'react'
 import type { BaseProductModel } from '@/lib/types'
 
 // ---------- ゾーン表示情報（全製品共通） ----------
@@ -40,8 +40,6 @@ type Props = {
   sweetMax: number
   series: SeriesDefinition[]
   allModels: BaseProductModel[]
-  /** モデルからラベルを生成する関数（デフォルト: label + （発売年）） */
-  buildLabel?: (seriesDef: SeriesDefinition, model: BaseProductModel, releaseYear: number) => ReactNode
   /** 発売年をラベル外に表示するか（デフォルト: true） */
   showReleaseYear?: boolean
 }
@@ -76,7 +74,6 @@ export default function ValueZoneChart({
   sweetMax,
   series,
   allModels,
-  buildLabel,
   showReleaseYear = true,
 }: Props) {
   const slugMap = new Map(allModels.map((m) => [m.slug, m]))
@@ -87,13 +84,20 @@ export default function ValueZoneChart({
       if (!model?.date) return null
       const remaining = calcSupportRemaining(model.date, supportYears)
       const releaseYear = new Date(model.date).getFullYear()
+      const hasTemplate = s.label.includes('{year}') || s.label.includes('{chip}')
+      let label: string = s.label
+      if (hasTemplate) {
+        const match = model.cpu?.match(/M\d+(\s?(Pro|Max|Ultra))?/i)
+        const chip = match ? match[0] : model.cpu || '---'
+        label = label.replace('{year}', String(releaseYear)).replace('{chip}', chip)
+      }
       return {
-        label: buildLabel ? buildLabel(s, model, releaseYear) : s.label,
+        label,
         releaseYear,
         remaining,
         supportLabel: formatSupportLabel(remaining),
         zoneId: getZoneId(remaining, sweetMin, sweetMax),
-        showYear: !buildLabel,
+        showYear: !hasTemplate,
       }
     })
     .filter((s) => s != null)
