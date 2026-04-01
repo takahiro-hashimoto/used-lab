@@ -136,9 +136,9 @@ export default function CompareTableSection({ items }: Props) {
                   ))}
                 </tr>
 
-                {/* イオシスで中古AirPodsを探す */}
+                {/* イオシスで探す */}
                 <tr>
-                  <th scope="row">イオシスで中古AirPodsを探す</th>
+                  <th scope="row">イオシスで探す</th>
                   {items.map(({ model, shopLinks }) => {
                     const iosysLink = shopLinks.find((l) => l.shop_id === 1)
                     return (

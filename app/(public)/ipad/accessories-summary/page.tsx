@@ -265,7 +265,7 @@ export default async function AccessoriesSummaryPage() {
                       おすすめ5機種を見る <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
                     </a>
                     <a className="m-btn m-btn--secondary" href="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Ftablet%2Fios%2Fipad" target="_blank" rel="noopener noreferrer">
-                      イオシスで探す <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                      イオシスで中古iPadを探す <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
                     </a>
                   </div>
                 </div>
