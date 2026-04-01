@@ -1,7 +1,9 @@
 // スペクトラム型「お得ゾーン」インフォグラフィック（全製品共通）
 // サポート残年数でゾーンを全自動振り分け
 
-import type { ReactNode } from 'react'
+'use client'
+
+import { useState, type ReactNode } from 'react'
 import type { BaseProductModel } from '@/lib/types'
 
 // ---------- ゾーン表示情報（全製品共通） ----------
@@ -102,6 +104,8 @@ export default function ValueZoneChart({
     items: seriesWithZone.filter((s) => s.zoneId === id),
   }))
 
+  const [activeTab, setActiveTab] = useState<ZoneId>('sweet')
+
   return (
     <section className="l-section" id="value-zone" aria-labelledby="heading-value-zone">
       <div className="l-container">
@@ -116,17 +120,27 @@ export default function ValueZoneChart({
         </p>
 
         <div className="vz">
-          <div className="vz__bar">
+          <div className="vz__bar" role="tablist">
             {zones.map((z) => (
-              <div key={z.id} className={`vz__bar-seg vz__bar-seg--${z.id}`}>
+              <button
+                key={z.id}
+                role="tab"
+                aria-selected={activeTab === z.id}
+                className={`vz__bar-seg vz__bar-seg--${z.id}${activeTab === z.id ? ' vz__bar-seg--active' : ''}`}
+                onClick={() => setActiveTab(z.id)}
+              >
                 {z.barLabel}
-              </div>
+              </button>
             ))}
           </div>
 
           <div className="vz__cols">
             {zones.map((z) => (
-              <div key={z.id} className={`vz__col vz__col--${z.id}`}>
+              <div
+                key={z.id}
+                role="tabpanel"
+                className={`vz__col vz__col--${z.id}${activeTab === z.id ? ' vz__col--active' : ''}`}
+              >
                 <p className="vz__col-title">{z.title}</p>
                 <p className="vz__col-sub">{z.subtitle}</p>
                 <ul className="vz__models">
