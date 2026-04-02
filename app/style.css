@@ -3085,7 +3085,6 @@
   background: #fef8f1;
   border: 1px solid #f0c89a;
   padding-top: var(--space-xl);
-  margin-top: var(--space-lg);
 }
 
 .m-callout--tip .m-callout__label {
