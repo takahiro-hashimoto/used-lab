@@ -38,7 +38,7 @@ export default function ChecklistSection() {
           </IconCard>
         </div>
 
-        <div className="m-callout m-callout--tip" style={{ marginTop: 'var(--space-2xl)' }}>
+        <div className="m-callout m-callout--tip u-mt-2xl">
           <span className="m-callout__label">memo</span>
           <p className="m-callout__text">
             各モデルのサポート終了時期や注意点は

@@ -1,6 +1,6 @@
 export default function CautionSection() {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-xl)', marginTop: 'var(--space-2xl)' }}>
+    <div className="u-mt-2xl" style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-xl)' }}>
       {/* ①セルラーモデルのiPadが必須 */}
       <div id="caution-cellular" className="m-card m-card--shadow m-card--padded">
         <div className="media-card__img-wrap">
@@ -18,7 +18,7 @@ export default function CautionSection() {
           <p className="media-card__desc">
             iPadには「セルラーモデル（GPS機能あり）」と「Wi-Fiモデル（GPS機能なし）」の2種類がありますが、<strong>カーナビ化するならGPS機能を搭載しているセルラーモデルが必須</strong>です。
           </p>
-          <p className="media-card__desc" style={{ marginTop: 'var(--space-sm)' }}>
+          <p className="media-card__desc u-mt-sm">
             Wi-FiモデルのiPadをiPhoneのテザリングでネット接続しても、GPS非搭載のため現在位置が正確に定まらず経路案内を円滑に行うことができません。カーナビとして使うならデバイス本体にGPS機能を持ち合わせたセルラーモデルを利用しましょう。
           </p>
           <p className="lead-link">
@@ -45,10 +45,10 @@ export default function CautionSection() {
           <p className="media-card__desc">
             iPadをカーナビとして使うには車載ホルダーが必須ですが、吸盤タイプ・エアコン吹き出し口型・CDスロット型などさまざまな種類があり、車種との相性もあるため自分の車に合うものを見つけるのに苦労するかもしれません。
           </p>
-          <p className="media-card__desc" style={{ marginTop: 'var(--space-sm)' }}>
+          <p className="media-card__desc u-mt-sm">
             たとえばエアコン吹き出し口型はしっかり固定できる反面、エアコンの風がタブレットに当たり続けるなどのデメリットもあります。おすすめは<strong>吸盤・粘着ゲルタイプ</strong>で、取り付け位置の自由度が高く車種を問わず使いやすいのが特長です。購入前にダッシュボード周りのスペースを確認しておきましょう。
           </p>
-          <p className="lead-link" style={{ marginTop: 'var(--space-sm)' }}>
+          <p className="lead-link u-mt-sm">
             <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
             <a href="https://amzn.to/4bFbYKv" target="_blank" rel="noopener noreferrer">AmazonでiPad対応の車載ホルダーを探す</a>
           </p>

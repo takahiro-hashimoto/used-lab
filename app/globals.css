@@ -1,4 +1,4 @@
-/* global styles */
+/* non-critical — components & page-specific (critical.css is imported separately in layout.tsx) */
 @import './style.css';
 @import './author-byline.css';
 @import './search.css';

@@ -135,7 +135,7 @@ export default function UseCaseGuide({ models, shopLinks }: Props) {
           })}
         </div>
 
-        <div className="m-callout m-callout--tip" style={{ marginTop: 'var(--space-2xl)' }}>
+        <div className="m-callout m-callout--tip u-mt-2xl">
           <span className="m-callout__label">memo</span>
           <p className="m-callout__text">
             上記の推奨スコアはGeekbench 6公式ベンチマークの実測値をもとに、各用途で快適に動作するチップ世代の下限を目安として設定しています。予算に余裕があれば1段階上のモデルを選ぶと、数年後もストレスなく使い続けられます。

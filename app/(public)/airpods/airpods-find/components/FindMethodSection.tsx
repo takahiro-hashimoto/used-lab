@@ -11,7 +11,7 @@ export default function FindMethodSection() {
     <div className="m-card m-card--shadow m-card--padded">
       {/* モデル別対応表 */}
       <h3 className="m-sub-heading">各モデルごとの「探す」アプリの対応状況</h3>
-      <div className="m-table-card" style={{ marginTop: 'var(--space-md)' }}>
+      <div className="m-table-card u-mt-md">
         <div className="m-table-scroll">
           <table className="m-table">
             <thead>
@@ -46,10 +46,10 @@ export default function FindMethodSection() {
       <h3 className="m-sub-heading">
         「探す」アプリで紛失したAirPodsを探す
       </h3>
-      <p className="m-body-text" style={{ marginTop: 'var(--space-sm)' }}>
+      <p className="m-body-text u-mt-sm">
         手元にiPhoneがある場合は下記の手順で簡単にAirPodsの位置をチェックすることができます。
       </p>
-      <div className="m-timeline" style={{ marginTop: 'var(--space-lg)' }}>
+      <div className="m-timeline u-mt-lg">
         <div className="m-timeline__item">
           <div className="m-timeline__number">1</div>
           <div className="m-timeline__content">
@@ -77,10 +77,10 @@ export default function FindMethodSection() {
       <h3 className="m-sub-heading">
         iCloudから紛失したAirPodsを探す
       </h3>
-      <p className="m-body-text" style={{ marginTop: 'var(--space-sm)' }}>
+      <p className="m-body-text u-mt-sm">
         手元にiPhoneがない場合はiCloudにアクセスして、AirPodsの位置をチェックしましょう。
       </p>
-      <div className="m-timeline" style={{ marginTop: 'var(--space-lg)' }}>
+      <div className="m-timeline u-mt-lg">
         <div className="m-timeline__item">
           <div className="m-timeline__number">1</div>
           <div className="m-timeline__content">

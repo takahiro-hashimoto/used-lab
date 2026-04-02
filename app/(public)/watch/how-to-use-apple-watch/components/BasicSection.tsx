@@ -160,10 +160,10 @@ export default function BasicSection() {
         <p className="media-card__desc">
           Apple Watchには、手元を照らすのに便利な3種類の懐中電灯（フラッシュライト）モードが搭載されています。
         </p>
-        <p className="media-card__desc" style={{ marginTop: 'var(--space-sm)' }}>
+        <p className="media-card__desc u-mt-sm">
           これらのモードは、コントロールセンターから簡単に切り替えが可能です。暗闇での安全確保から、夜間の作業まで、様々なシーンで役立ちます。
         </p>
-        <dl className="m-card vs-card" style={{ marginTop: 'var(--space-sm)' }}>
+        <dl className="m-card vs-card u-mt-sm">
           <dt>白く点灯</dt>
           <dd>暗闘の道や手元作業、停電時の補助照明に。一般的な懐中電灯として使えます。</dd>
           <dt>白く点滅</dt>

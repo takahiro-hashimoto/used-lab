@@ -30,7 +30,7 @@ export default function FailureSection({ productName, guidePath, failurePatterns
         </div>
 
         {showMemo && (
-          <div className="m-callout m-callout--tip" style={{ marginTop: 'var(--space-2xl)' }}>
+          <div className="m-callout m-callout--tip u-mt-2xl">
             <span className="m-callout__label">memo</span>
             <p className="m-callout__text">
               どの機種を選べばいいか迷ったら「<a href={guidePath}>中古{productName}おすすめ機種</a>」をご覧ください。あなたに合ったコスパのよい機種が見つかります。

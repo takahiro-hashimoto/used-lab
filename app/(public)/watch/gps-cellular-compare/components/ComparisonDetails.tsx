@@ -1,6 +1,6 @@
 export default function ComparisonDetails() {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-xl)', marginTop: 'var(--space-2xl)' }}>
+    <div className="u-mt-2xl" style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-xl)' }}>
       {/* ①Apple Watch単体で出来る範囲 — フルサイズ画像 */}
       <div id="standalone" className="m-card m-card--shadow m-card--padded">
         <div className="media-card__img-wrap">
@@ -23,7 +23,7 @@ export default function ComparisonDetails() {
           </p>
         </div>
 
-        <div className="m-card m-table-card" style={{ marginTop: 'var(--space-md)' }}>
+        <div className="m-card m-table-card u-mt-md">
           <div className="m-table-scroll">
             <table className="m-table m-table--center">
               <thead>
@@ -99,7 +99,7 @@ export default function ComparisonDetails() {
           </div>
         </div>
 
-        <div className="m-callout m-callout--tip" style={{ marginTop: 'var(--space-xl)' }}>
+        <div className="m-callout m-callout--tip u-mt-xl">
           <span className="m-callout__label">ポイント</span>
           <p className="m-callout__text">
             緊急SOSや転倒検出はGPSモデルでも動作しますが、iPhoneが近くにない場合は<strong>セルラーモデルでなければ自動的に緊急通報できません</strong>。安全面を重視するならセルラーモデルが安心です。
@@ -129,7 +129,7 @@ export default function ComparisonDetails() {
           </p>
         </div>
 
-        <div className="m-card m-table-card" style={{ marginTop: 'var(--space-md)' }}>
+        <div className="m-card m-table-card u-mt-md">
           <div className="m-table-scroll">
             <table className="m-table m-table--center">
               <thead>
@@ -175,7 +175,7 @@ export default function ComparisonDetails() {
           </div>
         </div>
 
-        <div className="m-callout m-callout--tip" style={{ marginTop: 'var(--space-xl)' }}>
+        <div className="m-callout m-callout--tip u-mt-xl">
           <span className="m-callout__label">ポイント</span>
           <p className="m-callout__text">
             <strong>格安SIM（MVNO）ではApple Watchのセルラー通信は利用できません。</strong>povo・LINEMO・Y!mobile・UQモバイルなどのサブブランドも現時点では非対応です。セルラーモデルの通信機能を使うには、上記の大手キャリア回線が必要になる点に注意してください。
@@ -207,7 +207,7 @@ export default function ComparisonDetails() {
             <p className="media-card__desc">
               なお<strong>Apple Watch Ultraはセルラーモデルのみ</strong>の展開です。
             </p>
-            <div className="m-card m-table-card" style={{ marginTop: 'var(--space-md)' }}>
+            <div className="m-card m-table-card u-mt-md">
               <div className="m-table-scroll">
                 <table className="m-table m-table--center">
                   <thead>
@@ -266,7 +266,7 @@ export default function ComparisonDetails() {
             <p className="media-card__desc">
               さらにセルラーモデルは月額の通信費もかかるため、トータルコストの差はさらに広がります。
             </p>
-            <div className="m-card m-table-card" style={{ marginTop: 'var(--space-md)' }}>
+            <div className="m-card m-table-card u-mt-md">
               <div className="m-table-scroll">
                 <table className="m-table m-table--center">
                   <thead>

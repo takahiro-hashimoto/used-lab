@@ -59,7 +59,7 @@ Apple Watchを安く買う7つの方法
                     <p>カードは1,500円から50,000円まで、1円単位で指定可能。Apple製品はもちろん、サブスクの支払いにも使えます。</p>
                     <p>上記は「楽天SPU6倍」と「5と0のつく日」に購入した際の画面です。これだけで4,500円分のポイント還元。実質的な割引額として考えるとかなり大きいですよね。</p>
                     <p>ただし、購入時には下記のような制約もあります。狙っているデバイスがあるなら、計画的に準備を進めましょう。</p>
-                    <ul className="buy-method-card__list" style={{ marginTop: 'var(--space-md)' }}>
+                    <ul className="buy-method-card__list u-mt-md">
                       <li>初回購入〜45日：1万円まで</li>
                       <li>46日〜：1万円以上も購入可能</li>
                       <li>一度購入すると15日ほど制限があるので月に買えるのは2回まで</li>
@@ -98,11 +98,11 @@ Apple Watchを安く買う7つの方法
                     />
                     <p>あとはネットショップまとめサイトの楽天リーベイツを経由してApple公式ストアへ進み、チャージしたAppleギフトで買い物をするだけ。</p>
                     <p>このフローを挟むことで、下記のような還元率でポイントをゲットできます。</p>
-                    <ul className="buy-method-card__list" style={{ marginTop: 'var(--space-md)' }}>
+                    <ul className="buy-method-card__list u-mt-md">
                       <li>通常時期：1〜2％</li>
                       <li>楽天スーパーセール実施時期：3〜5%</li>
                     </ul>
-                    <p style={{ marginTop: 'var(--space-sm)' }}>発売して間もないアイテムは対象外になるデメリットもありますが、多くの商品がポイント還元の対象なので、こちらも忘れずに実施しましょう！</p>
+                    <p className="u-mt-sm">発売して間もないアイテムは対象外になるデメリットもありますが、多くの商品がポイント還元の対象なので、こちらも忘れずに実施しましょう！</p>
                   </div>
                 </div>
               </div>
@@ -164,7 +164,7 @@ Apple Watchを安く買う7つの方法
                   <p>Amazonでは年に4回ほど大きなセールが実施されており、Apple Watchシリーズが頻繁にセール対象品として登場します。</p>
                   <p>また、大型セール以外にも月末に実施されるタイムセール祭が行われており、ここでもApple Watchがセール対象になる場合があるので要チェックです。</p>
                 </div>
-                <div className="m-card m-table-card" style={{ marginTop: 'var(--space-md)' }}>
+                <div className="m-card m-table-card u-mt-md">
                   <div className="m-table-scroll">
                     <table className="m-table m-table--center">
                       <thead>
@@ -249,7 +249,7 @@ Apple Watchを安く買う7つの方法
                   <p>楽天市場はセールの回数が非常に多く、月の3分の1は何かしらのイベントが実施されている状況です。</p>
                   <p>毎年恒例で行われている主要なセールは以下の通り。</p>
                 </div>
-                <div className="m-card m-table-card" style={{ marginTop: 'var(--space-md)' }}>
+                <div className="m-card m-table-card u-mt-md">
                   <div className="m-table-scroll">
                     <table className="m-table">
                       <thead>
@@ -266,7 +266,7 @@ Apple Watchを安く買う7つの方法
                     </table>
                   </div>
                 </div>
-                <div className="buy-method-card__text" style={{ marginTop: 'var(--space-md)' }}>
+                <div className="buy-method-card__text u-mt-md">
                   <p>Apple Watchが直接値引きになるケースは少ないですが、セール時にはポイント還元率もアップするので、活かさない手はありません。</p>
                   <p>おすすめは年に4回実施される楽天スーパーセール。ショップ買い周りでポイント還元率が最大42倍になるので、欲しい物のまとめ買いで実質購入金額をぐっと抑えましょう。</p>
                 </div>
@@ -330,7 +330,7 @@ Apple Watchを安く買う7つの方法
                   <p>頻繁にセールやポイントアップイベントが開催されているのが魅力のYahoo!ショッピング。</p>
                   <p>毎年恒例で行われている主要なセールは以下の通り。</p>
                 </div>
-                <div className="m-card m-table-card" style={{ marginTop: 'var(--space-md)' }}>
+                <div className="m-card m-table-card u-mt-md">
                   <div className="m-table-scroll">
                     <table className="m-table">
                       <thead>
@@ -345,7 +345,7 @@ Apple Watchを安く買う7つの方法
                     </table>
                   </div>
                 </div>
-                <div className="buy-method-card__text" style={{ marginTop: 'var(--space-md)' }}>
+                <div className="buy-method-card__text u-mt-md">
                   <p>Apple Watchが直接値引きになるケースは少ないですが、セール時にはポイント還元率もアップするので、活かさない手はありません。</p>
                   <p>おすすめは超PayPay祭。ショップ買い周りでポイント還元率が最大22.5％になるので、欲しい物のまとめ買いで実質購入金額をぐっと抑えましょう。</p>
                 </div>

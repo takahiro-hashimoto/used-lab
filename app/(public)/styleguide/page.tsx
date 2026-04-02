@@ -673,6 +673,21 @@ export default function StyleGuidePage() {
             </div>
 
             <h3 className="m-sub-heading" style={{ marginTop: 'var(--space-2xl)' }}>Glossary Box</h3>
+            <p className="m-desc-text" style={{ marginTop: 'var(--space-sm)' }}>用語解説や比較カードに使用。dl/dt/ddで意味的にマークアップ。</p>
+            <div className="glossary-box" style={{ marginTop: 'var(--space-md)' }}>
+              <dl className="glossary-list">
+                <div className="glossary-item">
+                  <dt className="glossary-item-title">Cellularモデル</dt>
+                  <dd className="glossary-item-desc">通信キャリアと契約してSIMカードを挿すことで、どこでもモバイルデータ通信が可能。eSIMにも対応しており、オンラインで簡単に開通できる</dd>
+                </div>
+                <div className="glossary-item">
+                  <dt className="glossary-item-title">Wi-Fiモデル</dt>
+                  <dd className="glossary-item-desc">Wi-Fi環境があるところでしかインターネットに接続することができない。ただしiPhoneのテザリング機能を活用すれば外出先でも利用可能</dd>
+                </div>
+              </dl>
+            </div>
+
+            <h4 className="m-sub-heading" style={{ marginTop: 'var(--space-xl)' }}>Glossary Box（--numbered）</h4>
             <div className="glossary-box glossary-box--numbered" style={{ marginTop: 'var(--space-md)' }}>
               <div className="glossary-header">
                 <i className="fa-solid fa-book" aria-hidden="true" style={{ marginRight: 'var(--space-xs)' }}></i>
@@ -687,6 +702,24 @@ export default function StyleGuidePage() {
                 <p className="glossary-item-desc">2つ目の用語の説明文。</p>
               </div>
             </div>
+
+            <h3 className="m-sub-heading" style={{ marginTop: 'var(--space-2xl)' }}>info-card__list</h3>
+            <p className="m-desc-text" style={{ marginTop: 'var(--space-sm)' }}>disc付きリスト。glossary-box内の「こんな方におすすめ」パターンにも使用。</p>
+            <div className="glossary-box" style={{ marginTop: 'var(--space-md)' }}>
+              <p className="glossary-item-title">こんな方におすすめ</p>
+              <ul className="info-card__list">
+                <li>使用シーンはほぼ自宅やオフィスに限定される</li>
+                <li>外でiPadを使用する際はスマホのテザリングで十分</li>
+                <li>なるべく安くiPadを購入したい</li>
+              </ul>
+            </div>
+
+            <h4 className="m-sub-heading" style={{ marginTop: 'var(--space-xl)' }}>info-card__list--filled（背景カラー付き）</h4>
+            <ul className="info-card__list info-card__list--filled" style={{ marginTop: 'var(--space-md)' }}>
+              <li>外出して使用する頻度が多い方（ビジネス用途）</li>
+              <li>iPadをカーナビとして使いたい</li>
+              <li>位置情報を使用するアプリをiPadで楽しみたい</li>
+            </ul>
 
             <h3 className="m-sub-heading" style={{ marginTop: 'var(--space-2xl)' }}>タイムライン（m-timeline）</h3>
             <div className="m-timeline" style={{ marginTop: 'var(--space-md)' }}>

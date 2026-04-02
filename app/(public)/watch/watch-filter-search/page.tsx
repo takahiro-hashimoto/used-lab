@@ -14,6 +14,8 @@ import WatchRelatedLinks from '@/app/components/watch/WatchRelatedLinks'
 import { getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
 
+export const revalidate = 3600
+
 export const metadata: Metadata = {
   title: 'Apple Watch機種診断シミュレーター｜自分に合うおすすめ中古アップルウォッチがすぐわかる【2026年版】',
   description:

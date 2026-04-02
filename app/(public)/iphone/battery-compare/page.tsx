@@ -13,6 +13,8 @@ import PopularSection from '@/app/components/support/PopularSection'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import FaqSection from '@/app/components/support/FaqSection'
 
+export const revalidate = 3600
+
 export const metadata: Metadata = {
   title: '歴代iPhoneのバッテリー容量比較ランキング！電池持ちがいい機種はどれ？',
   description:

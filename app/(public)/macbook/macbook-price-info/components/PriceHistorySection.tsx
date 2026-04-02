@@ -183,7 +183,7 @@ export default function PriceHistorySection({ models }: Props) {
           )
         })}
 
-        <div className="m-callout m-callout--tip" style={{ marginTop: 'var(--space-2xl)' }}>
+        <div className="m-callout m-callout--tip u-mt-2xl">
           <span className="m-callout__label"><i className="fa-solid fa-lightbulb" aria-hidden="true"></i> 価格データについて</span>
           <p className="m-callout__text">
             当ページでは、中古MacBook全{models.length}機種の価格推移データを毎日更新で公開しています。楽天市場の中古ショップから自動取得した実売価格をもとに、最安値・最高値・平均相場を算出。過去90日間の日別データと月別サマリーにより、価格トレンドを把握できます。

@@ -126,7 +126,7 @@ export default function AccessorySection({ model, accessories }: Props) {
           ))}
         </div>
 
-        <div className="m-callout m-callout--tip" style={{ marginTop: 'var(--space-2xl)' }}>
+        <div className="m-callout m-callout--tip u-mt-2xl">
           <span className="m-callout__label">memo</span>
           <p className="m-callout__text">
             Apple Pencilやキーボードの対応機種・型番の詳細は、下記の比較ページもあわせてご確認ください。

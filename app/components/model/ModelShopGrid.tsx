@@ -106,7 +106,7 @@ export default function ModelShopGrid({
         </div>
 
         {memoLink && (
-          <div className="m-callout m-callout--tip" style={{ marginTop: 'var(--space-2xl)' }}>
+          <div className="m-callout m-callout--tip u-mt-2xl">
             <span className="m-callout__label">memo</span>
             <p className="m-callout__text">
               購入先を比較したい方は「<a href={memoLink.href}>{memoLink.text}</a>」もあわせてご覧ください。

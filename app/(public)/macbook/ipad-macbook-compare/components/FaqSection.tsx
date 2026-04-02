@@ -64,12 +64,6 @@ export default function FaqSection() {
           ))}
         </div>
 
-        <div className="m-callout m-callout--muted" style={{ marginTop: 'var(--space-2xl)' }}>
-          <span className="m-callout__label">関連</span>
-          <p className="m-callout__text">
-            <a href="https://japan-design.jp/" target="_blank" rel="noreferrer noopener">日本デザイン｜WEBデザインの知りたい！知りたかった！が見つかる情報サイト</a>
-          </p>
-        </div>
       </div>
     </section>
   )

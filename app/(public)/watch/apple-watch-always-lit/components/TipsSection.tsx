@@ -14,7 +14,7 @@ export default function TipsSection() {
 
           {/* 1. AssistiveTouchを使う */}
           <div className="m-card m-card--shadow m-card--padded">
-            <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden', borderRadius: 'var(--radius-md)', marginBottom: 'var(--space-md)' }}>
+            <div className="u-mb-md" style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden', borderRadius: 'var(--radius-md)' }}>
               <iframe
                 width="560"
                 height="315"

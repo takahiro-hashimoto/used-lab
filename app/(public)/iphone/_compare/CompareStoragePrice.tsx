@@ -149,7 +149,7 @@ export default function CompareStoragePrice({
           </div>
         </div>
 
-        <div className="m-callout m-callout--tip" style={{ marginTop: 'var(--space-2xl)' }}>
+        <div className="m-callout m-callout--tip u-mt-2xl">
           <span className="m-callout__label">memo</span>
           <p className="m-callout__text">
             ストレージ容量の選び方は「<a href="/iphone/storage-guide/">iPhoneストレージ容量ガイド</a>」を参考にしてください。

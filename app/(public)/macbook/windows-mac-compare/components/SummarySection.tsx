@@ -10,14 +10,14 @@ export default function SummarySection() {
             両者の特徴を一言でまとめると以下のとおり。どちらが優れているかではなく、自分の使い方に合ったOSを選ぶことが重要です。
           </p>
 
-          <div className="l-grid l-grid--2col" style={{ gap: 'var(--space-lg)', marginTop: 'var(--space-xl)' }}>
+          <div className="l-grid l-grid--2col u-mt-xl" style={{ gap: 'var(--space-lg)' }}>
             {/* Windows */}
             <div className="m-card m-card--shadow m-card--padded">
               <h3 className="popular-card-title">
                 <i className="fa-brands fa-windows" aria-hidden="true" style={{ marginRight: 'var(--space-xs)' }}></i>
                 Windowsが向いている人
               </h3>
-              <ul style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)', lineHeight: 2, paddingLeft: 'var(--space-lg)', listStyle: 'disc', marginTop: 'var(--space-sm)' }}>
+              <ul className="u-mt-sm" style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)', lineHeight: 2, paddingLeft: 'var(--space-lg)', listStyle: 'disc' }}>
                 <li>予算や用途に合わせて柔軟に選びたい</li>
                 <li>Officeやビジネスソフトを多用する</li>
                 <li>PCゲームを楽しみたい</li>
@@ -32,7 +32,7 @@ export default function SummarySection() {
                 <i className="fa-brands fa-apple" aria-hidden="true" style={{ marginRight: 'var(--space-xs)' }}></i>
                 Macが向いている人
               </h3>
-              <ul style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)', lineHeight: 2, paddingLeft: 'var(--space-lg)', listStyle: 'disc', marginTop: 'var(--space-sm)' }}>
+              <ul className="u-mt-sm" style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)', lineHeight: 2, paddingLeft: 'var(--space-lg)', listStyle: 'disc' }}>
                 <li>長時間バッテリーで持ち運びたい</li>
                 <li>iPhone・iPadと連携して使いたい</li>
                 <li>デザイン・動画編集・プログラミング用途</li>

@@ -22,7 +22,7 @@ export default function ConclusionSection() {
             </p>
           </div>
 
-          <div className="m-card m-table-card" style={{ marginTop: 'var(--space-lg)' }}>
+          <div className="m-card m-table-card u-mt-lg">
             <div className="m-table-scroll">
               <table className="m-table m-table--center">
                 <thead>

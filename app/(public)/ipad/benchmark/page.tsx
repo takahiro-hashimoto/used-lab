@@ -224,7 +224,7 @@ export default async function BenchmarkPage() {
                 </div>
               </div>
 
-              <div className="m-callout m-callout--tip" style={{ marginTop: 'var(--space-2xl)' }}>
+              <div className="m-callout m-callout--tip u-mt-2xl">
                 <span className="m-callout__label">memo</span>
                 <p className="m-callout__text">
                   <strong>iPadはMチップ搭載モデルで性能が大きく変わります。</strong>iPad Pro（M1以降）はMacBook Air並みの処理能力を持ち、Aチップ搭載のiPad Air/mini/無印とは別次元のパフォーマンスです。

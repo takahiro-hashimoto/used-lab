@@ -67,13 +67,13 @@ export default function CreativeSection() {
         <p className="media-card__desc">
           iPadとApple Pencilの組み合わせは、3Dプリンター用のデータ作成とも非常に相性が良いです。PCのCADソフトは習得に時間がかかりますが、iPadなら直感的な操作でアイデアを素早く形にできます。
         </p>
-        <dl className="m-card vs-card" style={{ marginTop: 'var(--space-sm)' }}>
+        <dl className="m-card vs-card u-mt-sm">
           <dt>Shapr3D</dt>
           <dd>Apple Pencilに最適化された3DCADアプリ。図面を描くような感覚で精密なモデリングが可能で、3Dプリンター用の出力もスムーズに行えます。</dd>
           <dt>Nomad Sculpt</dt>
           <dd>粘土をこねるように造形できるスカルプトアプリ。フィギュアなどの有機的な形状作りに最適で、ペン先でなぞるだけで直感的なディテールの作り込みが可能です。</dd>
         </dl>
-        <p className="media-card__desc" style={{ marginTop: 'var(--space-md)' }}>
+        <p className="media-card__desc u-mt-md">
           作成したモデルをAR（拡張現実）で実寸表示し、プリント前にサイズ感を確認できるのもiPadならではの強み。趣味の造形から実用パーツ作成まで、3Dプリンターをフル活用したい方にとってiPadは最強のパートナーになります。
         </p>
         <InfoCard heading="おすすめのモデリングアプリ">
@@ -92,7 +92,7 @@ export default function CreativeSection() {
           <li>明るさを調整しやすい</li>
           <li>iPadに直接写真が保存されるから編集効率が上がる</li>
         </InfoCard>
-        <p className="media-card__desc" style={{ marginTop: 'var(--space-md)' }}>
+        <p className="media-card__desc u-mt-md">
           ノートPCでもテザー撮影はできるのですが、どうしても機動性がいまいち。iPadなら、どこでも身軽にテザー撮影を行うことができるので、外で写真を撮る方なんかに特におすすめです。
         </p>
         <InfoCard heading="おすすめのテザー撮影用アプリ">

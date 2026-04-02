@@ -223,7 +223,7 @@ export default function NetworkLimitPage() {
                 わざわざネットワーク制限△を買うメリットなんてないと思う方も多いでしょう。しかし、実は魅力的な点も。
               </p>
 
-              <div className="recommend-card__fit" style={{ marginTop: 'var(--space-xl)' }}>
+              <div className="recommend-card__fit u-mt-xl">
                 <div className="l-grid l-grid--2col l-grid--gap-lg">
                   <div className="recommend-card__fit-box recommend-card__fit-box--good">
                     <h4>
@@ -249,15 +249,15 @@ export default function NetworkLimitPage() {
                 </div>
               </div>
 
-              <div className="m-card m-card--padded" style={{ marginTop: 'var(--space-md)', border: 'none' }}>
+              <div className="m-card m-card--padded u-mt-md" style={{ border: 'none' }}>
                 <h3 className="m-sub-heading m-sub-heading--no-mt">ネットワーク制限△のスマホはどれくらい安い？</h3>
-                <p style={{ marginTop: 'var(--space-md)', fontSize: 'var(--font-size-base)', color: 'var(--color-text-secondary)', lineHeight: 1.8 }}>
+                <p className="u-mt-md" style={{ fontSize: 'var(--font-size-base)', color: 'var(--color-text-secondary)', lineHeight: 1.8 }}>
                   実際にネットワーク制限△と通常の中古iPhoneの価格を比較してみると、同スペック・同ランクの製品で5,000円ほどお手頃な場合が多いようです。
                 </p>
-                <p style={{ marginTop: 'var(--space-sm)', fontSize: 'var(--font-size-base)', color: 'var(--color-text-secondary)', lineHeight: 1.8 }}>
+                <p className="u-mt-sm" style={{ fontSize: 'var(--font-size-base)', color: 'var(--color-text-secondary)', lineHeight: 1.8 }}>
                   また、赤ロム永久保証のある中古ECサイトなら、万が一のトラブルが起きても同スペックの中古端末に無料交換してもらえるため、金銭面でのマイナスになるリスクもほとんどありません。
                 </p>
-                <figure style={{ marginTop: 'var(--space-md)' }}>
+                <figure className="u-mt-md">
                   <Image
                     src="/images/content/photo/network-limit-compare.webp"
                     alt="ネットワーク制限△と通常の中古iPhoneの価格比較"
@@ -266,7 +266,7 @@ export default function NetworkLimitPage() {
                     className="u-pc-crop-16x9"
                     style={{ width: '100%', height: 'auto', borderRadius: 'var(--radius-md)', border: '1px solid var(--color-border-light)' }}
                   />
-                  <figcaption style={{ fontSize: 'var(--font-size-xs)', color: 'var(--color-text-muted)', textAlign: 'center', marginTop: 'var(--space-xs)' }}>
+                  <figcaption className="u-mt-xs" style={{ fontSize: 'var(--font-size-xs)', color: 'var(--color-text-muted)', textAlign: 'center' }}>
                     ネットワーク制限△と通常（○）の中古iPhoneの価格比較
                   </figcaption>
                 </figure>
@@ -382,7 +382,7 @@ export default function NetworkLimitPage() {
                 </article>
               </div>
 
-              <div className="m-callout m-callout--tip" style={{ marginTop: 'var(--space-xl)' }}>
+              <div className="m-callout m-callout--tip u-mt-xl">
                 <span className="m-callout__label">memo</span>
                 <p>
                   各ショップの特徴や選び方を詳しく知りたい方は「<a href="/iphone/iphone-shop/" style={{ color: 'var(--color-primary)' }}>中古iPhoneはどこで買うのが正解？おすすめサイト・ショップ比較</a>」をご覧ください。

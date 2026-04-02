@@ -15,6 +15,8 @@ import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
 
+export const revalidate = 3600
+
 const PAGE_TITLE = 'Apple Pencilの違いを比較！あなたにぴったりのアップルペンシルがわかる'
 const PAGE_DESCRIPTION =
   'Apple Pencil Pro・第2世代・第1世代・USB-Cの違いを徹底比較。機能・対応iPad・価格の違いを一覧表で解説し、あなたの用途に合ったApple Pencilの選び方をわかりやすく紹介します。'

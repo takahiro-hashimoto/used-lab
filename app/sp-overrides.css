@@ -1,11 +1,11 @@
 /* SP: guide-recommend を price-card レイアウトに統一 */
 @media (max-width: 768px) {
   :root {
-    --font-size-xs: 0.75rem;     /* 12px */
-    --font-size-sm: 0.875rem;    /* 14px */
-    --font-size-base: 1rem;      /* 16px */
-    --font-size-lg: 1.125rem;    /* 18px */
-    --font-size-xl: 1.25rem;     /* 20px */
+    --font-size-xs: .8rem;
+    --font-size-sm: .9rem;
+    --font-size-base: 1.05rem;
+    --font-size-lg: 1.1rem;
+    --font-size-xl: 1.3rem;
   }
 
   .l-container {

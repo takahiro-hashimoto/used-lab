@@ -68,7 +68,7 @@ export default function CompareBenchmark({ id, title, desc, modelL, modelR, name
         {desc && <p className="m-section-desc">{desc}</p>}
 
         {/* チップ名サマリー */}
-        <dl style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 'var(--space-lg)', marginBottom: 'var(--space-2xl)' }}>
+        <dl className="u-mb-2xl" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 'var(--space-lg)' }}>
           <div className="m-card m-stat-card">
             <dt className="m-stat-card__label">{nameL}</dt>
             <dd className="m-stat-card__value" style={{ fontSize: 'var(--font-size-lg)' }}>{chipL}</dd>

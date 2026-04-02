@@ -67,7 +67,7 @@ export default function LifestyleSection() {
         <p className="media-card__desc">
           さらに、アプリ版には紙の新聞にはない便利な機能が備わっており、情報収集の効率が劇的に向上します。
         </p>
-        <dl className="m-card vs-card" style={{ marginTop: 'var(--space-sm)' }}>
+        <dl className="m-card vs-card u-mt-sm">
           <dt>速報プッシュ通知</dt>
           <dd>重要ニュースをリアルタイムで受信。翌朝の朝刊を待つことなく、常に最新情報をいち早くキャッチできます。</dd>
           <dt>キーワード登録機能</dt>
@@ -75,7 +75,7 @@ export default function LifestyleSection() {
           <dt>紙面ビューアー機能</dt>
           <dd>実際の紙面と同じレイアウトで閲覧が可能。iPadの画面を活かして全体を俯瞰できます。</dd>
         </dl>
-        <p className="media-card__desc" style={{ marginTop: 'var(--space-md)' }}>
+        <p className="media-card__desc u-mt-md">
           もし、現在紙の新聞を購読されているなら、この機会にiPadでの「スマートな購読スタイル」に切り替えてみてはいかがでしょうか。
         </p>
         <InfoCard heading="おすすめの新聞アプリ">
@@ -90,13 +90,13 @@ export default function LifestyleSection() {
         <p className="media-card__desc">
           スマホでは見づらい1ヶ月の予定も、iPadなら一画面でスッキリと俯瞰できます。情報量の多さを活かしたスケジュール管理は、iPadならではの強みです。
         </p>
-        <dl className="m-card vs-card" style={{ marginTop: 'var(--space-sm)' }}>
+        <dl className="m-card vs-card u-mt-sm">
           <dt>FirstSeedCalendar</dt>
           <dd>日本企業が開発した、シンプルかつ高機能な定番アプリ。カスタマイズ性が高く、自分好みの見やすいカレンダーを作れます。</dd>
           <dt>Planner for iPad</dt>
           <dd>Apple Pencilでの手書きに特化したアプリ。付箋やスタンプでデコレーションもできるため、本物のシステム手帳のような感覚で楽しめます。</dd>
         </dl>
-        <p className="media-card__desc" style={{ marginTop: 'var(--space-md)' }}>
+        <p className="media-card__desc u-mt-md">
           「予定を確認する」だけでなく、iPadなら「予定を書き込む楽しさ」まで味わえるようになります。
         </p>
         <InfoCard heading="おすすめのスケジュール管理アプリ">
@@ -113,14 +113,14 @@ export default function LifestyleSection() {
         <p className="media-card__desc">
           多くのiPadに搭載されているセンターフレーム機能も見逃せません。
         </p>
-        <dl className="m-card vs-card" style={{ marginTop: 'var(--space-sm)' }}>
+        <dl className="m-card vs-card u-mt-sm">
           <dt>
             <i className="fa-solid fa-video" aria-hidden="true"></i>
             センターフレーム機能
           </dt>
           <dd>超広角フロントカメラが、動く自分を常に追いかけて自動でフレーム内に収めてくれる機能。通話中に少し動いても最適な画角を保ち続けてくれるため、手放しでのビデオ通話も快適に行えます。</dd>
         </dl>
-        <p className="media-card__desc" style={{ marginTop: 'var(--space-md)' }}>
+        <p className="media-card__desc u-mt-md">
           手ぶらでのビデオ通話や、家族との近況報告など、iPadがあるだけでテレビ電話のストレスはぐっと軽減されるはずです。
         </p>
         <InfoCard heading="おすすめのビデオチャットアプリ">

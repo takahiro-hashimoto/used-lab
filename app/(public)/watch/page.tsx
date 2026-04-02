@@ -33,6 +33,8 @@ import PopularSection from '@/app/components/support/PopularSection'
 import AuthorByline from '@/app/components/AuthorByline'
 import HeroMeta from '@/app/components/HeroMeta'
 
+export const revalidate = 3600
+
 const PAGE_TITLE = `中古Apple Watch完全購入ガイド | 選び方・相場・おすすめモデルまとめ【${GUIDE_DATE_LABEL}版】`
 const PAGE_DESCRIPTION = `${GUIDE_DATE_LABEL}版・中古Apple Watchの完全購入ガイド。選び方のポイント、モデル別の相場、おすすめ機種をまとめて解説。失敗しない中古Apple Watch選びをサポートします。`
 const PAGE_URL = 'https://used-lab.com/watch/'
@@ -203,8 +205,6 @@ export default async function WatchGuidePage() {
             cardDescription="健康管理をしっかりしたい、バッテリーが長持ちしてほしいなどの希望や予算にチェックを打つだけで、あなたにぴったり合うApple Watchをシミュレーションすることができます。"
             buttonText="機種診断スタート"
             buttonHref="/watch/watch-filter-search/"
-            secondaryButtonText="イオシスで中古Apple Watchを探す"
-            secondaryButtonHref="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Fwearable%2Fapple%3Fnot%3Dpencil"
           />
 
           {/* ========== 中古Apple Watchの最新相場 ========== */}
@@ -375,7 +375,7 @@ export default async function WatchGuidePage() {
               <p className="m-section-desc">「Apple Watchって何ができるの？」という疑問をお持ちの方へ。</p>
               <p className="m-section-desc">Apple Watchは通知や決済などの日常機能に加え、健康管理やApple製品との連携まで幅広く活躍するデバイスです。</p>
 
-              <div className="l-grid l-grid--2col l-grid--gap-lg" style={{ marginBottom: 'var(--space-xl)' }}>
+              <div className="l-grid l-grid--2col l-grid--gap-lg u-mb-xl">
                 <IconCard icon="fa-solid fa-clock" title="基本機能">
                   <ul style={{ paddingLeft: 'var(--space-lg)', listStyle: 'disc', lineHeight: 2, fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)' }}>
                     <li>iPhoneの通知確認・LINEやメッセージの閲覧</li>
@@ -411,7 +411,7 @@ export default async function WatchGuidePage() {
                 </IconCard>
               </div>
 
-              <div className="m-callout m-callout--tip" style={{ marginTop: 'var(--space-2xl)' }}>
+              <div className="m-callout m-callout--tip u-mt-2xl">
                 <span className="m-callout__label">memo</span>
                 <p className="m-callout__text">
                   各機能の詳しい解説は「<Link href="/watch/how-to-use-apple-watch/">Apple Watchのできること25選</Link>」でまとめています。購入前に具体的な使用イメージを確認したい方はぜひご覧ください。

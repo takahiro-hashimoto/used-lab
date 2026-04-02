@@ -22,6 +22,8 @@ import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
 
+export const revalidate = 3600
+
 const PAGE_TITLE = `中古iPhoneを買うならどこ？ECサイト・ショップのおすすめを紹介【${SHOP_PAGE_DATE_LABEL}】`
 const PAGE_DESCRIPTION = `中古iPhoneを買うならどこがおすすめ？信頼できるECサイト・ショップを保証・価格・品質の観点から徹底比較。最適な購入先を紹介します【${SHOP_PAGE_DATE_LABEL}】`
 const PAGE_URL = 'https://used-lab.com/iphone/iphone-shop/'
@@ -215,6 +217,21 @@ export default async function IPhoneShopPage() {
           <FaqSection />
           <PopularSection />
         <IPhoneRelatedLinks excludeHref={["/iphone/iphone-shop/", "/iphone/recommend/"]} />
+
+        <section className="l-section l-section--sm" aria-label="関連リンク">
+          <div className="l-container">
+            <div className="m-callout m-callout--muted">
+              <span className="m-callout__label">関連</span>
+              <p className="m-callout__text">
+                <a href="https://smapple-tenjin.com/">iPhone修理福岡 ならスマップル天神店</a><br />
+                <a href="https://smapple-omiya.com/">iPhone修理大宮 ならスマップル大宮店</a><br />
+                <a href="https://smapple-sendai.com/">iPhone修理仙台 スマップル仙台店</a><br />
+                <a href="https://www.a-sas.ne.jp/" target="_blank" rel="noreferrer noopener">【誰でもスマホ】 携帯ブラックでも契約できる格安SIM</a>
+              </p>
+            </div>
+          </div>
+        </section>
+
         <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>
       </article>

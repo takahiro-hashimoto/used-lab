@@ -295,7 +295,7 @@ export default function EvolutionTimeline() {
         <p className="m-section-desc">シリーズを重ねるごとにどのような点がアップデートされてきたのかを把握するのにお役立てください！</p>
 
         {/* iPad Pro */}
-        <h3 className="m-section-heading m-section-heading--md" style={{ textAlign: 'left', marginTop: 'var(--space-2xl, 32px)' }}>
+        <h3 className="m-section-heading m-section-heading--md u-mt-2xl" style={{ textAlign: 'left' }}>
           iPad Pro シリーズの進化した点
         </h3>
 
@@ -332,7 +332,7 @@ export default function EvolutionTimeline() {
         </div>
 
         {/* iPad Air */}
-        <h3 className="m-section-heading m-section-heading--md" style={{ textAlign: 'left', marginTop: 'var(--space-3xl, 48px)' }}>
+        <h3 className="m-section-heading m-section-heading--md u-mt-3xl" style={{ textAlign: 'left' }}>
           iPad Air シリーズの進化した点
         </h3>
 
@@ -369,7 +369,7 @@ export default function EvolutionTimeline() {
         </div>
 
         {/* iPad mini */}
-        <h3 className="m-section-heading m-section-heading--md" style={{ textAlign: 'left', marginTop: 'var(--space-3xl, 48px)' }}>
+        <h3 className="m-section-heading m-section-heading--md u-mt-3xl" style={{ textAlign: 'left' }}>
           iPad mini シリーズの進化した点
         </h3>
 
@@ -410,7 +410,7 @@ export default function EvolutionTimeline() {
         </div>
 
         {/* iPad（無印） */}
-        <h3 className="m-section-heading m-section-heading--md" style={{ textAlign: 'left', marginTop: 'var(--space-3xl, 48px)' }}>
+        <h3 className="m-section-heading m-section-heading--md u-mt-3xl" style={{ textAlign: 'left' }}>
           iPad（無印）シリーズの進化した点
         </h3>
 

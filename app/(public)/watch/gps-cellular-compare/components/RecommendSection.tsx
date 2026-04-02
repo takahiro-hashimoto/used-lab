@@ -1,6 +1,6 @@
 export default function RecommendSection() {
   return (
-    <div className="card-grid-2" style={{ marginTop: 'var(--space-2xl)' }}>
+    <div className="card-grid-2 u-mt-2xl">
       {/* GPSモデルがおすすめな人 */}
       <div id="recommend-gps" className="m-card m-card--shadow m-card--padded">
         <div className="media-card__img-wrap">

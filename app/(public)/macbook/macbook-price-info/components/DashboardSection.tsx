@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useRef, useEffect, useCallback } from 'react'
+import Script from 'next/script'
 import type { ModelData } from '../page'
 
 type Props = {
@@ -129,16 +130,11 @@ export default function DashboardSection({ modelsData, initialSelected, seriesGr
   }, [selectedModels, timeRange, modelsData])
 
   useEffect(() => {
-    const script = document.createElement('script')
-    script.src = 'https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js'
-    script.onload = () => updateChart()
-    document.head.appendChild(script)
     return () => {
       if (chartInstanceRef.current) {
         (chartInstanceRef.current as { destroy: () => void }).destroy()
       }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {
@@ -150,6 +146,12 @@ export default function DashboardSection({ modelsData, initialSelected, seriesGr
     .filter((m): m is ModelData => m != null)
 
   return (
+    <>
+      <Script
+        src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"
+        strategy="lazyOnload"
+        onLoad={() => updateChart()}
+      />
     <section className="l-section" id="pd-dashboard" aria-labelledby="pd-dashboard-title">
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg" id="pd-dashboard-title">
@@ -224,7 +226,7 @@ export default function DashboardSection({ modelsData, initialSelected, seriesGr
         </div>
 
         {/* 算出方法の補足 */}
-        <div className="m-callout m-callout--tip" style={{ marginTop: 'var(--space-2xl)' }}>
+        <div className="m-callout m-callout--tip u-mt-2xl">
           <span className="m-callout__label">価格算出方法について</span>
           <p className="m-callout__text">
             当サイトの中古相場は、楽天市場の中古ショップから毎日自動取得した最安値Top5・最高値Top5の平均中間値を算出しています。対象は各機種の最小構成モデル（例：MacBook Air M2なら8GB/256GB）で、100円単位に丸めて表示しています。
@@ -232,5 +234,6 @@ export default function DashboardSection({ modelsData, initialSelected, seriesGr
         </div>
       </div>
     </section>
+    </>
   )
 }

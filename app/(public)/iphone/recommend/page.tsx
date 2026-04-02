@@ -29,10 +29,16 @@ import CompareTableSection from './components/CompareTableSection'
 import ChecklistSection from '@/app/components/ChecklistSection'
 import ShopSection from '@/app/components/ShopSection'
 import IPhoneFaqSection from './components/IPhoneFaqSection'
-import ValueZoneChart from '@/app/components/ValueZoneChart'
+import dynamic from 'next/dynamic'
+
+const ValueZoneChart = dynamic(() => import('@/app/components/ValueZoneChart'), {
+  loading: () => <div style={{ height: '300px' }} />,
+})
 import IPhoneRelatedLinks from '@/app/components/iphone/IPhoneRelatedLinks'
 import AuthorByline from '@/app/components/AuthorByline'
 import HeroMeta from '@/app/components/HeroMeta'
+
+export const revalidate = 3600
 
 const PAGE_TITLE = `中古iPhoneおすすめ機種${RECOMMEND_COUNT}選｜目的別に狙い目モデルを解説【${RECOMMEND_DATE_LABEL}版】`
 const PAGE_DESCRIPTION =

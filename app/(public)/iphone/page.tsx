@@ -33,6 +33,8 @@ import AuthorByline from '@/app/components/AuthorByline'
 import HeroMeta from '@/app/components/HeroMeta'
 import PopularSection from '@/app/components/support/PopularSection'
 
+export const revalidate = 3600
+
 const PAGE_TITLE = `中古iPhone完全購入ガイド | 選び方・相場・おすすめモデルまとめ【${GUIDE_DATE_LABEL}版】`
 const PAGE_DESCRIPTION = `${GUIDE_DATE_LABEL}版・中古iPhoneの完全購入ガイド。選び方のポイント、モデル別の相場、おすすめ機種をまとめて解説。失敗しない中古iPhone選びをサポートします。`
 const PAGE_URL = 'https://used-lab.com/iphone/'
@@ -201,8 +203,6 @@ export default async function IPhoneGuidePage() {
             cardDescription="ゲームを快適にプレイしたい、ケーブルを統一したいなどの希望や・予算金額などにチェックを打つだけであなたにぴったり合うiPhoneをシミュレーションすることができます。"
             buttonText="機種診断スタート"
             buttonHref="/iphone/filter-search/"
-            secondaryButtonText="イオシスで中古iPhoneを探す"
-            secondaryButtonHref="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Fsmartphone%2Fiphone"
           />
 
           {/* ========== 中古iPhoneの最新相場 ========== */}
@@ -270,7 +270,7 @@ export default async function IPhoneGuidePage() {
                     <dt className="glossary-item-title">ネットワーク利用制限（赤ロム）</dt>
                     <dd className="glossary-item-desc">
                       支払い状況の問題で通信が制限される端末があります。利用制限の状態や、保証の有無は事前にチェックしましょう。
-                      <p className="lead-link" style={{ marginTop: 'var(--space-xs)' }}>
+                      <p className="lead-link u-mt-xs">
                         <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
                         <a href="/iphone/network-limit/">ネットワーク制限△のメリット・デメリットを解説</a>
                       </p>

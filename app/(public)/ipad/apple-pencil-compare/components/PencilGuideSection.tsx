@@ -44,7 +44,7 @@ export default function PencilGuideSection() {
           どのApple Pencilを選ぶか迷っている方に向けて、用途別におすすめのモデルをまとめました。
         </p>
 
-        <div className="l-grid l-grid--2col" style={{ gap: 'var(--space-lg)', marginTop: 'var(--space-xl)' }}>
+        <div className="l-grid l-grid--2col u-mt-xl" style={{ gap: 'var(--space-lg)' }}>
           {GUIDES.map((g) => (
             <div key={g.id} id={g.id} className="m-card m-card--shadow m-card--padded">
               <p className="popular-card-title">

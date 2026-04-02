@@ -193,7 +193,7 @@ export default function AppleWatchBuyPage() {
         />
 
         <WatchRelatedLinks excludeHref={["/watch/apple-watch-buy/", "/watch/recommend/"]}>
-          <div className="m-callout m-callout--muted" style={{ marginTop: 'var(--space-xl)' }}>
+          <div className="m-callout m-callout--muted u-mt-xl">
             <span className="m-callout__label">関連</span>
             <p className="m-callout__text">
               <a href="https://selectra.jp/%E3%82%B9%E3%83%88%E3%83%AA%E3%83%BC%E3%83%9F%E3%83%B3%E3%82%B0/%E3%83%97%E3%83%AD%E3%83%90%E3%82%A4%E3%83%80%E3%83%BC/%E3%82%A2%E3%83%9E%E3%82%BE%E3%83%B3%E3%83%97%E3%83%A9%E3%82%A4%E3%83%A0/sale" target="_blank" rel="noreferrer noopener">Amazonセール最新情報｜セールはいつ？プライムデーなど年間スケジュールをチェック</a>

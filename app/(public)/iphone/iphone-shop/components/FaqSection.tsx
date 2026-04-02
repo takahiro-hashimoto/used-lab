@@ -19,16 +19,6 @@ export default function FaqSection() {
             </div>
           ))}
         </div>
-
-        <div className="m-callout m-callout--muted" style={{ marginTop: 'var(--space-2xl)' }}>
-          <span className="m-callout__label">関連</span>
-          <p className="m-callout__text">
-            <a href="https://smapple-tenjin.com/">iPhone修理福岡 ならスマップル天神店</a><br />
-            <a href="https://smapple-omiya.com/">iPhone修理大宮 ならスマップル大宮店</a><br />
-            <a href="https://smapple-sendai.com/">iPhone修理仙台 スマップル仙台店</a><br />
-            <a href="https://www.a-sas.ne.jp/" target="_blank" rel="noreferrer noopener">【誰でもスマホ】 携帯ブラックでも契約できる格安SIM</a>
-          </p>
-        </div>
       </div>
     </section>
   )

@@ -378,7 +378,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/storage-
               </div>
             </div>
 
-            <div className="m-callout m-callout--tip" style={{ marginTop: 'var(--space-2xl)' }}>
+            <div className="m-callout m-callout--tip u-mt-2xl">
               <span className="m-callout__label">memo</span>
               <p className="m-callout__text">
                 <strong>迷ったら256GBがおすすめ。</strong>写真・動画の高画質化やアプリの大型化が進み、128GBでは2〜3年で窮屈になるケースが増えています。

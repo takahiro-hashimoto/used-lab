@@ -1,6 +1,6 @@
 export default function IpadStrengths() {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-xl)', marginTop: 'var(--space-2xl)' }}>
+    <div className="u-mt-2xl" style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-xl)' }}>
       {/* ノートを取る */}
       <div id="note-taking" className="m-card m-card--shadow m-card--padded media-card--aside">
         <div className="media-card__img-wrap">
@@ -18,7 +18,7 @@ export default function IpadStrengths() {
           <p className="media-card__desc">
             iPadの強力な武器のひとつが<strong>Apple Pencilを利用できる</strong>という点です。Apple Pencilがあれば授業のノートを取ったり、手書きでメモを取るのが簡単に行えます。
           </p>
-          <p className="media-card__desc" style={{ marginTop: 'var(--space-sm)' }}>
+          <p className="media-card__desc u-mt-sm">
             iPadでノートを取れるメリットはさらに下記のような点もあげられます。
           </p>
           <ul className="media-card__list">
@@ -46,10 +46,10 @@ export default function IpadStrengths() {
           <p className="media-card__desc">
             ノートを取る以外にも、iPadの描画性能を活かすことでイラスト制作にも向いています。MacBookで絵を描く場合はペンタブレットをつなぐ必要がありますが、<strong>iPadとApple Pencilがあれば直接イラストを描くことが可能</strong>です。
           </p>
-          <p className="media-card__desc" style={{ marginTop: 'var(--space-sm)' }}>
+          <p className="media-card__desc u-mt-sm">
             また、Apple Pencilは筆圧感知機能も備わっており、線の強弱も実際のペンのように再現できるのも魅力的なポイントです。
           </p>
-          <p className="media-card__desc" style={{ marginTop: 'var(--space-sm)' }}>
+          <p className="media-card__desc u-mt-sm">
             120Hzの高リフレッシュレートを誇るiPad Proならリアルな紙とペンに近い感覚でイラストが描けるので、本格的なイラスト制作をしたい方はぜひiPad Proの購入を検討しましょう。
           </p>
         </div>
@@ -77,7 +77,7 @@ export default function IpadStrengths() {
             <li>携帯性に優れており、場所を選ばずに写真編集ができる</li>
             <li>外部カメラもあるので撮影した写真をそのまま編集できる</li>
           </ul>
-          <p className="media-card__desc" style={{ marginTop: 'var(--space-sm)' }}>
+          <p className="media-card__desc u-mt-sm">
             Mac版のLightroom Classicと比べると機能が制限されてしまうデメリットもあるので、より複雑な編集作業をする場合はMacを使ったほうがよいです。しかしシンプルな現像作業を繰り返すのであれば、iPadで十分でしょう。
           </p>
         </div>
@@ -100,7 +100,7 @@ export default function IpadStrengths() {
           <p className="media-card__desc">
             電子書籍の雑誌やビジネス書などを読む作業もiPadのほうが得意です。<strong>タッチ操作でさくさくページ送りできる感覚はリアルな書籍に近い</strong>ものがあり、相性がとても良いからです。
           </p>
-          <p className="media-card__desc" style={{ marginTop: 'var(--space-sm)' }}>
+          <p className="media-card__desc u-mt-sm">
             MacBookでもKindleなどで購入した書籍は楽しめますが、iPadのほうが場所を選ばずに読書が楽しめるので、携帯性という観点からもiPadがおすすめです。
           </p>
         </div>

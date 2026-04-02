@@ -12,6 +12,8 @@ import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helper
 import HeroMeta from '@/app/components/HeroMeta'
 import PopularSection from '@/app/components/support/PopularSection'
 
+export const revalidate = 3600
+
 const PAGE_TITLE = 'iPhoneのカメラ性能の違いは何？歴代モデルの機能を比較'
 const PAGE_DESCRIPTION =
   'iPhoneのカメラ性能を歴代モデルごとに徹底比較。画素数・レンズ構成・ナイトモード・シネマティックモードなど、世代ごとの違いと進化をわかりやすく解説します。'

@@ -30,6 +30,8 @@ import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
 
+export const revalidate = 3600
+
 export const metadata: Metadata = {
   title: '歴代Apple Watchスペック比較表！各世代の性能の違いがすぐわかる',
   description:

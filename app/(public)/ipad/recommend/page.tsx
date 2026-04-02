@@ -31,10 +31,16 @@ import CompareTableSection from './components/CompareTableSection'
 import ChecklistSection from '@/app/components/ChecklistSection'
 import ShopSection from '@/app/components/ShopSection'
 import IPadFaqSection from './components/IPadFaqSection'
-import ValueZoneChart from '@/app/components/ValueZoneChart'
+import dynamic from 'next/dynamic'
+
+const ValueZoneChart = dynamic(() => import('@/app/components/ValueZoneChart'), {
+  loading: () => <div style={{ height: '300px' }} />,
+})
 import IPadRelatedLinks from '@/app/components/ipad/IPadRelatedLinks'
 import AuthorByline from '@/app/components/AuthorByline'
 import HeroMeta from '@/app/components/HeroMeta'
+
+export const revalidate = 3600
 
 const PAGE_TITLE = `中古iPadのおすすめ${RECOMMEND_COUNT}機種を解説。狙い目の型落ちモデルどれ？【${RECOMMEND_DATE_LABEL}版】`
 const PAGE_DESCRIPTION =

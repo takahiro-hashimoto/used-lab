@@ -49,12 +49,12 @@ export default function RelatedLinksClient({
         {compareLinks && compareLinks.length > 0 && (
           <>
             <h3
-              className="m-section-heading m-section-heading--md"
-              style={{ textAlign: 'left', marginBottom: 'var(--space-md)' }}
+              className="m-section-heading m-section-heading--md u-mb-md"
+              style={{ textAlign: 'left' }}
             >
               2機種比較
             </h3>
-            <div className="l-grid l-grid--2col l-grid--gap-lg" style={{ marginBottom: 'var(--space-2xl)' }}>
+            <div className="l-grid l-grid--2col l-grid--gap-lg u-mb-2xl">
               {compareLinks.map((item) => (
                 <Link
                   key={item.href}
@@ -78,8 +78,8 @@ export default function RelatedLinksClient({
         {/* 比較記事ありの場合のサブ見出し */}
         {compareLinks && compareLinks.length > 0 && (
           <h3
-            className="m-section-heading m-section-heading--md"
-            style={{ textAlign: 'left', marginBottom: 'var(--space-md)' }}
+            className="m-section-heading m-section-heading--md u-mb-md"
+            style={{ textAlign: 'left' }}
           >
             関連記事
           </h3>

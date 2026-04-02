@@ -282,7 +282,7 @@ export default function PriceChartSection({
         </div>
 
         {priceListLink && (
-          <div className="m-callout m-callout--tip" style={{ marginTop: 'var(--space-2xl)' }}>
+          <div className="m-callout m-callout--tip u-mt-2xl">
             <span className="m-callout__label">memo</span>
             <p className="m-callout__text">
               中古相場を比較したい方は「<a href={priceListLink.href}>{priceListLink.label}</a>」もあわせてご覧ください。

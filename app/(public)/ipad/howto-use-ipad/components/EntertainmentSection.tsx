@@ -87,7 +87,7 @@ export default function EntertainmentSection() {
           <li>録画した番組を家の外から視聴できる</li>
           <li>アプリの動作も軽くて使いやすい</li>
         </InfoCard>
-        <p className="media-card__desc" style={{ marginTop: 'var(--space-md)' }}>
+        <p className="media-card__desc u-mt-md">
           我が家でも大活躍しているアイテムなので、気になった方はぜひチェックしてみてください！
         </p>
       </MediaCard>

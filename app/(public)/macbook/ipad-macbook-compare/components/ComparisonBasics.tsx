@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function ComparisonBasics() {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-xl)', marginTop: 'var(--space-2xl)' }}>
+    <div className="u-mt-2xl" style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-xl)' }}>
       {/* ファイル管理 */}
       <div id="file-management" className="m-card m-card--shadow m-card--padded">
         <div className="media-card__body">
@@ -10,7 +10,7 @@ export default function ComparisonBasics() {
           <p className="media-card__desc">
             macOSではフォルダの移動はドラッグ&ドロップ、ファイルのコピーは「Command+C」のショートカットで簡単に行うことができます。
           </p>
-          <p className="media-card__desc" style={{ marginTop: 'var(--space-sm)' }}>
+          <p className="media-card__desc u-mt-sm">
             一方iPadOSでは、上記のようなファイル操作をmacOSほどシンプルに行うことができません。また、macOSのほうがファイルの階層構造がわかりやすく必要なファイルにアクセスしやすいので、<strong>ファイル管理という点ではmacOSが操作しやすい</strong>と言えます。
           </p>
         </div>
@@ -33,7 +33,7 @@ export default function ComparisonBasics() {
           <p className="media-card__desc">
             iPadOSではSplit Viewを使用してアプリを2つ横に並べたり、Slide Overでアプリを重ねて表示したりできます。ただし、どちらも表示できるアプリは2つまでですし、対応するアプリも限られます。
           </p>
-          <p className="media-card__desc" style={{ marginTop: 'var(--space-sm)' }}>
+          <p className="media-card__desc u-mt-sm">
             それに対してmacOSは<strong>アプリを複数画面に表示できるのはもちろんのこと、複数デスクトップを作成して効率よく作業する</strong>ことができます。マルチタスクのしやすさは圧倒的にMacBookのほうが上というのが現状です。
           </p>
         </div>
@@ -65,7 +65,7 @@ export default function ComparisonBasics() {
           </figure>
         </div>
 
-        <div className="glossary-box" style={{ marginTop: 'var(--space-md)', backgroundColor: '#f7f7f8', borderRadius: 'var(--radius-md)' }}>
+        <div className="glossary-box glossary-box--filled u-mt-md">
           <dl className="glossary-list">
             <div className="glossary-item">
               <dt className="glossary-item-title">
@@ -105,7 +105,7 @@ export default function ComparisonBasics() {
           </figure>
         </div>
 
-        <div className="glossary-box" style={{ marginTop: 'var(--space-md)', backgroundColor: '#f7f7f8', borderRadius: 'var(--radius-md)' }}>
+        <div className="glossary-box glossary-box--filled u-mt-md">
           <dl className="glossary-list">
             <div className="glossary-item">
               <dt className="glossary-item-title">
@@ -128,7 +128,7 @@ export default function ComparisonBasics() {
           </dl>
         </div>
 
-        <div className="media-card__body" style={{ marginTop: 'var(--space-md)' }}>
+        <div className="media-card__body u-mt-md">
           <p className="media-card__desc">
             また、iPadはUSB端子がひとつしかなく、拡張性を上げるにはUSBハブが必須です。それに対して<strong>MacBook（特にMacBook Pro）はインターフェイスの種類が豊富</strong>なので、マルチメディアハブなどがなくてもある程度の作業をこなすことができます。
           </p>

@@ -81,7 +81,7 @@ export default function BenchmarkSection({ models }: Props) {
           MacBookを買い替えたらどれくらい処理速度が上がるのか確認するのにご活用ください。
         </p>
 
-        <div className="l-grid l-grid--3col l-grid--gap-lg" style={{ marginBottom: 'var(--space-xl, 24px)' }}>
+        <div className="l-grid l-grid--3col l-grid--gap-lg u-mb-xl">
           <div className="m-card m-card--shadow" style={{ padding: 'var(--space-lg, 20px)' }}>
             <p className="glossary-item-title">シングルスコア</p>
             <p className="glossary-item-desc">1つのCPUコアの処理性能を示す指標でアプリの起動やWeb閲覧など日常的な操作に影響する</p>
@@ -112,7 +112,7 @@ export default function BenchmarkSection({ models }: Props) {
         )}
 
         {airModels.length > 0 && (
-          <div style={{ marginTop: 'var(--space-2xl, 32px)' }}>
+          <div className="u-mt-2xl">
             <h3 className="m-section-heading m-section-heading--md" style={{ textAlign: 'left' }}>
               MacBook Air
             </h3>
@@ -125,7 +125,7 @@ export default function BenchmarkSection({ models }: Props) {
             />
           </div>
         )}
-        <div className="m-callout m-callout--tip" style={{ marginTop: 'var(--space-2xl, 32px)' }}>
+        <div className="m-callout m-callout--tip u-mt-2xl">
           <span className="m-callout__label">memo</span>
           <p className="m-callout__text">
             チップ世代別の性能進化や用途別おすすめスコアの目安など、より詳しい解説は「<Link href="/macbook/benchmark/">歴代MacBookのベンチマーク比較ランキング</Link>」をご覧ください。

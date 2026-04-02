@@ -24,7 +24,7 @@ export default function KeyboardCompareSection() {
         </p>
 
         {/* 比較表 */}
-        <div className="m-card m-card--shadow m-table-card" style={{ marginBottom: 'var(--space-xl)' }}>
+        <div className="m-card m-card--shadow m-table-card u-mb-xl">
           <table className="m-table">
             <thead>
               <tr>

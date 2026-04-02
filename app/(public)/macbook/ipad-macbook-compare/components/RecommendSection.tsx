@@ -1,6 +1,6 @@
 export default function RecommendSection() {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-xl)', marginTop: 'var(--space-2xl)' }}>
+    <div className="u-mt-2xl" style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-xl)' }}>
       {/* MacBookがおすすめな人 */}
       <div id="recommend-macbook" className="m-card m-card--shadow m-card--padded">
         <div className="media-card__img-wrap">

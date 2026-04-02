@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useRef, useEffect, useCallback } from 'react'
+import Script from 'next/script'
 
 export type ChartModelData = {
   name: string
@@ -105,16 +106,11 @@ export default function ComparePriceChartClient({ models }: Props) {
   }, [timeRange, models])
 
   useEffect(() => {
-    const script = document.createElement('script')
-    script.src = 'https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js'
-    script.onload = () => updateChart()
-    document.head.appendChild(script)
     return () => {
       if (chartInstanceRef.current) {
         (chartInstanceRef.current as { destroy: () => void }).destroy()
       }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {
@@ -123,6 +119,11 @@ export default function ComparePriceChartClient({ models }: Props) {
 
   return (
     <>
+      <Script
+        src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"
+        strategy="lazyOnload"
+        onLoad={() => updateChart()}
+      />
       {/* グラフエリア */}
       <div className="pd-chart-area">
         <div className="pd-chart-area__header">

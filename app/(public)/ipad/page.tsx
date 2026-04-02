@@ -32,6 +32,8 @@ import ProductCard from '@/app/components/ProductCard'
 import AuthorByline from '@/app/components/AuthorByline'
 import HeroMeta from '@/app/components/HeroMeta'
 
+export const revalidate = 3600
+
 const PAGE_TITLE = `中古iPad完全購入ガイド | 選び方・相場・おすすめモデルまとめ【${GUIDE_DATE_LABEL}版】`
 const PAGE_DESCRIPTION = `${GUIDE_DATE_LABEL}版・中古iPadの完全購入ガイド。選び方のポイント、モデル別の相場、おすすめ機種をまとめて解説。失敗しない中古iPad選びをサポートします。`
 const PAGE_URL = 'https://used-lab.com/ipad/'
@@ -201,8 +203,6 @@ export default async function IPadGuidePage() {
             cardDescription="イラストを描きたい、動画を大画面で楽しみたいなどの希望や予算金額などにチェックを打つだけで、あなたにぴったり合うiPadをシミュレーションすることができます。"
             buttonText="機種診断スタート"
             buttonHref="/ipad/ipad-filter-search/"
-            secondaryButtonText="イオシスで中古iPadを探す"
-            secondaryButtonHref="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Ftablet%2Fios%2Fipad"
           />
 
           {/* ========== 中古iPadの最新相場 ========== */}
@@ -379,7 +379,7 @@ export default async function IPadGuidePage() {
                 </Link>
               </div>
 
-              <div className="m-callout m-callout--tip" style={{ marginTop: 'var(--space-2xl)' }}>
+              <div className="m-callout m-callout--tip u-mt-2xl">
                 <span className="m-callout__label">memo</span>
                 <p className="m-callout__text">
                   中古以外にもApple認定整備済製品・Amazon・家電量販店のセールなど、iPadを安く買う方法はさまざまです。新品・中古を含めた全7つの購入先を「<Link href="/ipad/ipad-buy/">iPadを安く買うには？おすすめの購入先7つを比較</Link>」で解説しています。
@@ -395,7 +395,7 @@ export default async function IPadGuidePage() {
               <p className="m-section-desc">「iPadって結局何に使えるの？」という疑問をお持ちの方へ。</p>
               <p className="m-section-desc">iPadは動画やゲームなどのエンタメはもちろん、勉強・仕事の効率化からイラスト制作まで幅広く活躍するデバイスです。</p>
 
-              <div className="l-grid l-grid--2col l-grid--gap-lg" style={{ marginBottom: 'var(--space-xl)' }}>
+              <div className="l-grid l-grid--2col l-grid--gap-lg u-mb-xl">
                 <IconCard icon="fa-solid fa-film" title="エンタメ">
                   <ul style={{ paddingLeft: 'var(--space-lg)', listStyle: 'disc', lineHeight: 2, fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)' }}>
                     <li>大画面での動画視聴（Netflix・Amazon Prime Video・YouTube）</li>
@@ -431,7 +431,7 @@ export default async function IPadGuidePage() {
                 </IconCard>
               </div>
 
-              <div className="m-callout m-callout--tip" style={{ marginTop: 'var(--space-2xl)' }}>
+              <div className="m-callout m-callout--tip u-mt-2xl">
                 <span className="m-callout__label">memo</span>
                 <p className="m-callout__text">
                   各活用シーンの詳しい解説やおすすめアプリは「<Link href="/ipad/howto-use-ipad/">iPadの便利な使い道22選</Link>」でまとめています。購入前に具体的な使用イメージを確認したい方はぜひご覧ください。

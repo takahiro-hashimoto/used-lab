@@ -37,6 +37,8 @@ import ShareBox from '@/app/components/ShareBox'
 import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 
+export const revalidate = 3600
+
 export const metadata: Metadata = {
   title: '歴代iPhoneスペック比較表！気になる機種の性能差や違いがわかる',
   description:

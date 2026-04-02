@@ -373,7 +373,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/ipad/storage-gu
               </div>
             </div>
 
-            <div className="m-callout m-callout--tip" style={{ marginTop: 'var(--space-2xl)' }}>
+            <div className="m-callout m-callout--tip u-mt-2xl">
               <span className="m-callout__label">memo</span>
               <p className="m-callout__text">
                 <strong>迷ったら256GBがおすすめ。</strong>iPadはiPhone以上にクリエイティブ用途で使われることが多く、容量不足になりやすい傾向があります。

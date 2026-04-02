@@ -186,7 +186,7 @@ export default function IpadMacbookComparePage() {
                 まずは結論からお伝えします。MacBookとiPadはそれぞれ得意な分野が異なるため、自分の利用目的に合わせて選ぶことが大切です。以下を参考に、あなたに合ったデバイスを確認してみてください。
               </p>
               <RecommendSection />
-              <p className="m-section-desc" style={{ marginTop: 'var(--space-xl)', textAlign: 'center' }}>
+              <p className="m-section-desc u-mt-xl" style={{ textAlign: 'center' }}>
                 ここからは上記の結論に至った理由を、両者の違いや得意な作業を比較しながら詳しく解説していきます。
               </p>
             </div>
@@ -257,14 +257,14 @@ export default function IpadMacbookComparePage() {
                 最後に、MacBookとiPadどちらを選ぶべきかの判断基準を改めて整理します。
               </p>
 
-              <div className="l-grid l-grid--2col l-grid--gap-lg" style={{ marginTop: 'var(--space-2xl)' }}>
+              <div className="l-grid l-grid--2col l-grid--gap-lg u-mt-2xl">
                 {/* iPadカード */}
                 <div className="m-card m-card--shadow m-card--padded">
                   <h3 className="popular-card-title">
                     <i className="fa-solid fa-tablet-screen-button" aria-hidden="true" style={{ marginRight: 'var(--space-xs)' }}></i>
                     Apple Pencilに惹かれたら → iPad
                   </h3>
-                  <ul style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)', lineHeight: 2, paddingLeft: 'var(--space-lg)', listStyle: 'disc', marginTop: 'var(--space-sm)' }}>
+                  <ul className="u-mt-sm" style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)', lineHeight: 2, paddingLeft: 'var(--space-lg)', listStyle: 'disc' }}>
                     <li><strong>Apple Pencilが使える</strong>のがiPad最大の武器</li>
                     <li>ノート・イラスト・写真編集との相性が抜群</li>
                     <li>タッチ操作で直感的に扱える</li>
@@ -278,7 +278,7 @@ export default function IpadMacbookComparePage() {
                     <i className="fa-solid fa-laptop" aria-hidden="true" style={{ marginRight: 'var(--space-xs)' }}></i>
                     それ以外なら → MacBook
                   </h3>
-                  <ul style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)', lineHeight: 2, paddingLeft: 'var(--space-lg)', listStyle: 'disc', marginTop: 'var(--space-sm)' }}>
+                  <ul className="u-mt-sm" style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)', lineHeight: 2, paddingLeft: 'var(--space-lg)', listStyle: 'disc' }}>
                     <li>Apple Pencilに惹かれないなら<strong>MacBookのほうが後悔が少ない</strong></li>
                     <li>同等スペックをiPadで揃えると<strong>価格がMacBookより高くなる</strong></li>
                     <li>iPad版アプリは<strong>機能制限されている</strong>ことが多い</li>
@@ -291,7 +291,14 @@ export default function IpadMacbookComparePage() {
           </section>
         <FaqSection />
         <PopularMacBook />
-        <MacBookRelatedLinks excludeHref={["/macbook/ipad-macbook-compare/", "/macbook/recommend/"]} />
+        <MacBookRelatedLinks excludeHref={["/macbook/ipad-macbook-compare/", "/macbook/recommend/"]}>
+          <div className="m-callout m-callout--muted u-mt-2xl">
+            <span className="m-callout__label">関連</span>
+            <p className="m-callout__text">
+              <a href="https://japan-design.jp/" target="_blank" rel="noreferrer noopener">日本デザイン｜WEBデザインの知りたい！知りたかった！が見つかる情報サイト</a>
+            </p>
+          </div>
+        </MacBookRelatedLinks>
 
         {/* シェアボックス */}
         <ShareBox url={PAGE_URL} text={PAGE_TITLE} />

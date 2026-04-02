@@ -13,7 +13,11 @@ import { PRICE_INFO_UPDATE_MONTH, CHART_COLORS, FAQ_ITEMS } from '@/lib/data/ipa
 import Breadcrumb from '@/app/components/Breadcrumb'
 import ShareBox from '@/app/components/ShareBox'
 import IPadRelatedLinks from '@/app/components/ipad/IPadRelatedLinks'
-import DashboardSection from './components/DashboardSection'
+import dynamic from 'next/dynamic'
+
+const DashboardSection = dynamic(() => import('./components/DashboardSection'), {
+  loading: () => <div style={{ height: '400px' }} />,
+})
 import PriceDropSection from './components/PriceDropSection'
 import RankingSection from './components/RankingSection'
 import PriceHistorySection from './components/PriceHistorySection'

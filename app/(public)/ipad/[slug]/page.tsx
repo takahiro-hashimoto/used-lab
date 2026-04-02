@@ -34,6 +34,8 @@ import IPadRelatedLinks from '@/app/components/ipad/IPadRelatedLinks'
 import ShareBox from '@/app/components/ShareBox'
 import AdminEditLink from '@/app/components/AdminEditLink'
 
+export const revalidate = 3600
+
 type PageProps = {
   params: Promise<{ slug: string }>
 }

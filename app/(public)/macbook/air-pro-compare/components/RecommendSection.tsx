@@ -16,7 +16,7 @@ export default function RecommendSection() {
               <i className="fa-solid fa-feather" aria-hidden="true" style={{ marginRight: 'var(--space-xs)', color: 'var(--color-primary)' }}></i>
               Airがおすすめな人
             </h3>
-            <ul style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)', lineHeight: 2.2, paddingLeft: 'var(--space-lg)', listStyle: 'disc', marginTop: 'var(--space-md)' }}>
+            <ul className="u-mt-md" style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)', lineHeight: 2.2, paddingLeft: 'var(--space-lg)', listStyle: 'disc' }}>
               <li>Web閲覧・事務作業・SNSがメインの人</li>
               <li>持ち運びの軽さを重視する人</li>
               <li>予算を抑えたい人・コスパ重視の人</li>
@@ -24,7 +24,7 @@ export default function RecommendSection() {
               <li>完全な静音環境で作業したい人</li>
               <li>初めてMacを使う人</li>
             </ul>
-            <p className="popular-card-desc" style={{ marginTop: 'var(--space-lg)' }}>
+            <p className="popular-card-desc u-mt-lg">
               <strong>8割のユーザーにはMacBook Airで十分</strong>です。日常的な作業であればAirで快適に使えます。
             </p>
           </div>
@@ -35,7 +35,7 @@ export default function RecommendSection() {
               <i className="fa-solid fa-bolt" aria-hidden="true" style={{ marginRight: 'var(--space-xs)', color: 'var(--color-primary)' }}></i>
               Proがおすすめな人
             </h3>
-            <ul style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)', lineHeight: 2.2, paddingLeft: 'var(--space-lg)', listStyle: 'disc', marginTop: 'var(--space-md)' }}>
+            <ul className="u-mt-md" style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)', lineHeight: 2.2, paddingLeft: 'var(--space-lg)', listStyle: 'disc' }}>
               <li>動画編集・3Dレンダリングを日常的に行う人</li>
               <li>大規模なプログラムのビルドが必要な人</li>
               <li>音楽制作（DTM）でトラック数が多い人</li>
@@ -43,7 +43,7 @@ export default function RecommendSection() {
               <li>外部ディスプレイを複数接続したい人</li>
               <li>ProMotion 120Hzの表示が必要な人</li>
             </ul>
-            <p className="popular-card-desc" style={{ marginTop: 'var(--space-lg)' }}>
+            <p className="popular-card-desc u-mt-lg">
               Proを選ぶべきなのは<strong>「明確にProが必要な理由がある」場合</strong>です。
             </p>
           </div>

@@ -77,7 +77,7 @@ export default function LifespanSection({ model }: Props) {
           </dl>
         </aside>
 
-        <div className="m-callout m-callout--tip" style={{ marginTop: 'var(--space-2xl)' }}>
+        <div className="m-callout m-callout--tip u-mt-2xl">
           <span className="m-callout__label">memo</span>
           <p className="m-callout__text">
             サポート期間を確認したい方は「<a href="/macbook/used-macbook-support/">MacBookはいつまで使える？各機種ごとの寿命一覧</a>」もあわせてご覧ください。

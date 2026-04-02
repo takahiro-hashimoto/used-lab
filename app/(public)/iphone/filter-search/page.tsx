@@ -13,6 +13,8 @@ import PopularSection from '@/app/components/support/PopularSection'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import FaqSection from '@/app/components/support/FaqSection'
 
+export const revalidate = 3600
+
 export const metadata: Metadata = {
   title: 'iPhone機種診断シミュレーター｜自分に合うおすすめ中古スマホがすぐわかる【2026年版】',
   description:

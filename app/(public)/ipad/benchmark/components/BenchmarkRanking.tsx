@@ -147,7 +147,7 @@ export default function BenchmarkRanking({ models, shopLinks }: { models: BenchM
           </div>
         </div>
 
-        <div className="m-callout m-callout--tip" style={{ marginTop: 'var(--space-2xl)' }}>
+        <div className="m-callout m-callout--tip u-mt-2xl">
           <span className="m-callout__label">memo</span>
           <p className="m-callout__text">
             <strong>「コスパ」は総合スコア÷中古最安価格で算出。</strong>性能あたりの価格が安いモデルほど上位に表示されます。予算を重視する方はコスパ順で並び替えてみてください。

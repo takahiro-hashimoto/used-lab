@@ -11,7 +11,7 @@ export default function NaviAppSection() {
           iPadで使える主要カーナビアプリの特徴を比較します。いずれも無料で利用可能です。
         </p>
 
-        <div className="m-card m-card--shadow m-table-card" style={{ marginTop: 'var(--space-2xl)' }}>
+        <div className="m-card m-card--shadow m-table-card u-mt-2xl">
           <table className="m-table">
             <thead>
               <tr>
@@ -68,7 +68,7 @@ export default function NaviAppSection() {
           </table>
         </div>
 
-        <div className="glossary-box m-card m-card--shadow" style={{ marginTop: 'var(--space-xl)' }}>
+        <div className="glossary-box m-card m-card--shadow u-mt-xl">
           <ol className="glossary-list">
             <div className="glossary-item">
               <dt className="glossary-item-title">

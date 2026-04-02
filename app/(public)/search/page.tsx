@@ -11,6 +11,8 @@ import {
 } from '@/lib/queries'
 import SearchClient, { type SearchEntry } from './SearchClient'
 
+export const revalidate = 3600
+
 export const metadata: Metadata = {
   title: '記事を検索',
   description: 'ユーズドラボの記事をキーワードで検索できます。iPhone・iPad・MacBook・Apple Watch・AirPodsの購入ガイド・比較・おすすめ記事を探せます。',

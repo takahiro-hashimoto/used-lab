@@ -1,6 +1,6 @@
 export default function MeritSection() {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-xl)', marginTop: 'var(--space-2xl)' }}>
+    <div className="u-mt-2xl" style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-xl)' }}>
       {/* ①マップを更新する必要がない */}
       <div id="merit-map" className="m-card m-card--shadow m-card--padded">
         <div className="media-card__img-wrap">
@@ -18,10 +18,10 @@ export default function MeritSection() {
           <p className="media-card__desc">
             車載カーナビの地図が古くなると、カーナビが認識していない道をひた走る羽目になったり、目的地を検索してもヒットしないことがあります。マップを更新する場合ディーラーに頼むと<strong>2〜3万円の費用</strong>がかかるのも地味に痛いポイントです。
           </p>
-          <p className="media-card__desc" style={{ marginTop: 'var(--space-sm)' }}>
+          <p className="media-card__desc u-mt-sm">
             しかしiPadをカーナビ化して<strong>GoogleマップやYahoo!カーナビ</strong>といったアプリを導入すれば、常に最新の地図情報をもとに道案内をしてもらうことが可能。更新を気にすることなく、いつも最新の地図で目的地に向かえるのはとても便利です。
           </p>
-          <p className="media-card__desc" style={{ marginTop: 'var(--space-sm)' }}>
+          <p className="media-card__desc u-mt-sm">
             Yahoo!カーナビは道案内の精度もわかりやすさも優秀で、よく行く目的地の登録や音声操作にも対応。カーナビとして使いたい機能は一通り揃っています。
           </p>
         </div>
@@ -71,7 +71,7 @@ export default function MeritSection() {
           <p className="media-card__desc">
             車載カーナビのディスプレイは5インチ〜8インチが一般的ですが、iPadは一番小さいminiサイズでも<strong>8.3インチ</strong>の大きさがあり、一般的なカーナビよりも広い画面で情報を確認できます。
           </p>
-          <p className="media-card__desc" style={{ marginTop: 'var(--space-sm)' }}>
+          <p className="media-card__desc u-mt-sm">
             さらにiPadの現行モデルはすべて<strong>Retinaディスプレイ</strong>を搭載。画面の大きさに加え、高精細な映像が見られるのもiPadをカーナビ化する魅力のひとつです。
           </p>
         </div>
@@ -94,7 +94,7 @@ export default function MeritSection() {
           <p className="media-card__desc">
             古いカーナビは文字入力が「あいうえお順」だったり、検索結果が反映されるまでの処理速度も遅かったりと、操作性に不満を感じることが少なくありません。
           </p>
-          <p className="media-card__desc" style={{ marginTop: 'var(--space-sm)' }}>
+          <p className="media-card__desc u-mt-sm">
             iPadなら<strong>キーボード入力でさっと目的地を入力</strong>したり、<strong>Siriに話しかけてルート案内を開始</strong>することも可能。地図のピンチイン・ピンチアウトも滑らかで、レスポンスも早いので操作周りで煩わしい思いをすることはほぼゼロになります。
           </p>
         </div>
@@ -117,10 +117,10 @@ export default function MeritSection() {
           <p className="media-card__desc">
             車載カーナビでは音源をCDからHDDに取り込んだり、SDカードに入れてから再生するのが一般的。手軽にインターネットから音楽を再生できる時代にこの運用はやや不便です。
           </p>
-          <p className="media-card__desc" style={{ marginTop: 'var(--space-sm)' }}>
+          <p className="media-card__desc u-mt-sm">
             iPadをカーナビ化すれば、<strong>Apple MusicやSpotifyなど使い慣れたアプリからそのまま再生</strong>することが可能。Bluetoothで車のスピーカーに接続すれば、最新の曲やお気に入りのプレイリストを高音質で楽しめます。
           </p>
-          <p className="media-card__desc" style={{ marginTop: 'var(--space-sm)' }}>
+          <p className="media-card__desc u-mt-sm">
             もちろん動画視聴も可能で、BGM代わりにYouTubeやPrime Videoなどの<strong>VODアプリを再生</strong>することもできます。
           </p>
         </div>

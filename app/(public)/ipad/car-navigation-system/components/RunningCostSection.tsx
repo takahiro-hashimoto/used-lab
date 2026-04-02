@@ -11,7 +11,7 @@ export default function RunningCostSection() {
           カーナビ用途に必要なデータ量と、おすすめの格安SIMプランを紹介します。
         </p>
 
-        <div className="m-card m-card--shadow m-card--padded" style={{ marginTop: 'var(--space-2xl)' }}>
+        <div className="m-card m-card--shadow m-card--padded u-mt-2xl">
           <div className="media-card__body">
             <p className="media-card__desc">
               カーナビ用途のデータ通信量の目安は<strong>1時間あたり約5〜10MB</strong>程度。月に30時間ナビを使っても<strong>約150〜300MB</strong>なので、1GBプランでも十分足ります。
@@ -21,7 +21,7 @@ export default function RunningCostSection() {
             </p>
           </div>
 
-          <div className="m-table-card" style={{ marginTop: 'var(--space-xl)' }}>
+          <div className="m-table-card u-mt-xl">
             <table className="m-table">
               <thead>
                 <tr>
@@ -97,7 +97,7 @@ export default function RunningCostSection() {
           </div>
           <p className="m-table-note">※ 2026年4月時点の情報です。最新の料金・プラン内容は各公式サイトをご確認ください。</p>
 
-          <div className="m-callout m-callout--tip" style={{ marginTop: 'var(--space-2xl)' }}>
+          <div className="m-callout m-callout--tip u-mt-2xl">
             <p className="m-callout__label">コストを最小限に抑えるには</p>
             <p className="m-callout__body">
               カーナビ専用なら<strong>povo2.0</strong>が最もコスパに優れています。基本料金0円で、必要なときだけ1GB（390円/7日間）をトッピングする使い方が可能。月によって利用頻度が異なる方に最適です。毎日のように使う方は<strong>IIJmioのデータ専用eSIM（2GB/440円）</strong>が業界最安水準で安定しておすすめ。データ量を気にせず使いたい方は<strong>楽天モバイル</strong>なら3GB超でも無制限（3,278円）で利用できます。

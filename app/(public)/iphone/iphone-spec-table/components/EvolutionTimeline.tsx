@@ -343,7 +343,7 @@ export default function EvolutionTimeline() {
         <p className="m-section-desc">歴代iPhoneの主に進化したポイントを時系列順に整理しました。</p>
         <p className="m-section-desc">シリーズを重ねるごとにどのような点がアップデートされてきたのかを把握するのにお役立てください！</p>
 
-        <h3 className="m-section-heading m-section-heading--md" style={{ textAlign: 'left', marginTop: 'var(--space-2xl, 32px)' }}>
+        <h3 className="m-section-heading m-section-heading--md u-mt-2xl" style={{ textAlign: 'left' }}>
           フラッグシップモデルの進化した点
         </h3>
 
@@ -384,7 +384,7 @@ export default function EvolutionTimeline() {
           ))}
         </div>
 
-        <h3 className="m-section-heading m-section-heading--md" style={{ textAlign: 'left', marginTop: 'var(--space-3xl, 48px)' }}>
+        <h3 className="m-section-heading m-section-heading--md u-mt-3xl" style={{ textAlign: 'left' }}>
           廉価モデル（SEシリーズ）の進化した点
         </h3>
 

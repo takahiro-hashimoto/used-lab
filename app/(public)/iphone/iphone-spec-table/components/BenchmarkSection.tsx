@@ -67,7 +67,7 @@ export default function BenchmarkSection({ models }: Props) {
             </p>
 
             {/* 用語解説カード */}
-            <div className="l-grid l-grid--3col l-grid--gap-lg" style={{ marginBottom: 'var(--space-xl, 24px)' }}>
+            <div className="l-grid l-grid--3col l-grid--gap-lg u-mb-xl">
               <div className="m-card m-card--shadow" style={{ padding: 'var(--space-lg, 20px)' }}>
                 <p className="glossary-item-title">シングルスコア</p>
                 <p className="glossary-item-desc">1つのCPUコアの処理性能を示す指標でアプリの起動やWeb閲覧など日常的な操作に影響する</p>
@@ -113,7 +113,7 @@ export default function BenchmarkSection({ models }: Props) {
 
         {/* Antutu */}
         {antutuModels.length > 0 && (
-          <div id="antutu" style={{ marginTop: 'var(--space-3xl, 48px)' }}>
+          <div id="antutu" className="u-mt-3xl">
             <h3 className="m-section-heading m-section-heading--md" style={{ textAlign: 'left' }}>
               Antutu スコア一覧
             </h3>
@@ -122,7 +122,7 @@ export default function BenchmarkSection({ models }: Props) {
             </p>
 
             {/* 用語解説カード */}
-            <div className="l-grid l-grid--4col l-grid--gap-lg" style={{ marginBottom: 'var(--space-xl, 24px)' }}>
+            <div className="l-grid l-grid--4col l-grid--gap-lg u-mb-xl">
               <div className="m-card m-card--shadow" style={{ padding: 'var(--space-lg, 20px)' }}>
                 <p className="glossary-item-title">CPU</p>
                 <p className="glossary-item-desc">デバイスの演算処理能力。アプリの起動や動作速度、OSの基本操作の速さに直結します。</p>
@@ -177,7 +177,7 @@ export default function BenchmarkSection({ models }: Props) {
           </div>
         )}
 
-        <div className="m-callout m-callout--tip" style={{ marginTop: 'var(--space-2xl)' }}>
+        <div className="m-callout m-callout--tip u-mt-2xl">
           <span className="m-callout__label">詳しく見る</span>
           <p className="m-callout__text">
             チップ世代別の性能比較や用途別おすすめスコアの目安は「<Link href="/iphone/benchmark/">歴代iPhoneベンチマーク比較ランキング</Link>」で詳しく解説しています。

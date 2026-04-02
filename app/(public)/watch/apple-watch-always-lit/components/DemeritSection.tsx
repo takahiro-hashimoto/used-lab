@@ -52,7 +52,7 @@ export default function DemeritSection() {
               </p>
 
               {/* バッテリー比較テーブル */}
-              <div className="m-card m-table-card" style={{ marginBottom: 'var(--space-xl)' }}>
+              <div className="m-card m-table-card u-mb-xl">
                 <div className="m-table-scroll">
                   <table className="m-table">
                     <thead>

@@ -9,7 +9,7 @@ export default function RecommendByTypeSection() {
         <p className="m-section-desc">「自分はどこで買うべきか」を明確にするため、3つのタイプ別におすすめの購入先を提示します。</p>
 
         {/* 安全重視 */}
-        <div className="m-card m-card--shadow m-card--padded" style={{ marginTop: 'var(--space-xl)' }}>
+        <div className="m-card m-card--shadow m-card--padded u-mt-xl">
           <h3 className="post-check-item__heading text-info">
             <i className="fa-solid fa-shield-halved" aria-hidden="true"></i> 安全重視・初めて中古iPhoneを買う人
           </h3>
@@ -20,7 +20,7 @@ export default function RecommendByTypeSection() {
         </div>
 
         {/* 価格重視 */}
-        <div className="m-card m-card--shadow m-card--padded" style={{ marginTop: 'var(--space-lg)' }}>
+        <div className="m-card m-card--shadow m-card--padded u-mt-lg">
           <h3 className="post-check-item__heading text-caution">
             <i className="fa-solid fa-tags" aria-hidden="true"></i> 価格重視・ある程度知識がある人
           </h3>
@@ -31,7 +31,7 @@ export default function RecommendByTypeSection() {
         </div>
 
         {/* 掘り出し物 */}
-        <div className="m-card m-card--shadow m-card--padded" style={{ marginTop: 'var(--space-lg)' }}>
+        <div className="m-card m-card--shadow m-card--padded u-mt-lg">
           <h3 className="post-check-item__heading text-negative">
             <i className="fa-solid fa-gem" aria-hidden="true"></i> 掘り出し物を狙いたい人（上級者向け）
           </h3>

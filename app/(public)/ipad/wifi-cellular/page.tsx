@@ -246,16 +246,17 @@ export default function WifiCellularPage() {
                     <p className="media-card__desc">
                       セルラーモデルは4G LTEや5Gのモバイル回線に対応しているため、SIMカードやeSIMを設定すればWi-Fiがない場所でも単体で通信できます。通勤中の電車内やカフェなど、Wi-Fiスポットが見つからない環境でもすぐにインターネットを利用できるのが大きなメリットです。
                     </p>
-                    <div className="m-card" style={{ padding: 'var(--space-lg)', display: 'flex', flexDirection: 'column', gap: 'var(--space-md)' }}>
-                      <div>
-                        <p style={{ fontWeight: 700 }}>Cellularモデル</p>
-                        <p className="media-card__desc">通信キャリアと契約してSIMカードを挿すことで、どこでもモバイルデータ通信が可能。eSIMにも対応しており、オンラインで簡単に開通できる</p>
-                      </div>
-                      <hr style={{ border: 'none', borderTop: '1px dashed var(--color-border-light)' }} />
-                      <div>
-                        <p style={{ fontWeight: 700 }}>Wi-Fiモデル</p>
-                        <p className="media-card__desc">Wi-Fi環境があるところでしかインターネットに接続することができない。ただしiPhoneのテザリング機能を活用すれば外出先でも利用可能</p>
-                      </div>
+                    <div className="glossary-box">
+                      <dl className="glossary-list">
+                        <div className="glossary-item">
+                          <dt className="glossary-item-title">Cellularモデル</dt>
+                          <dd className="glossary-item-desc">通信キャリアと契約してSIMカードを挿すことで、どこでもモバイルデータ通信が可能。eSIMにも対応しており、オンラインで簡単に開通できる</dd>
+                        </div>
+                        <div className="glossary-item">
+                          <dt className="glossary-item-title">Wi-Fiモデル</dt>
+                          <dd className="glossary-item-desc">Wi-Fi環境があるところでしかインターネットに接続することができない。ただしiPhoneのテザリング機能を活用すれば外出先でも利用可能</dd>
+                        </div>
+                      </dl>
                     </div>
                   </div>
                 </div>
@@ -280,16 +281,17 @@ export default function WifiCellularPage() {
                     <p className="media-card__desc">
                       中古iPadを購入する際にも、この白いアンテナラインの有無を確認すれば、Wi-Fiモデルかセルラーモデルかをすぐに判別できます。フリマアプリで購入するときには写真でチェックしておきましょう。
                     </p>
-                    <div className="m-card" style={{ padding: 'var(--space-lg)', display: 'flex', flexDirection: 'column', gap: 'var(--space-md)' }}>
-                      <div>
-                        <p style={{ fontWeight: 700 }}>Cellularモデル</p>
-                        <p className="media-card__desc">モバイルデータ通信のアンテナが背面上部に設置されており、白いラインがある</p>
-                      </div>
-                      <hr style={{ border: 'none', borderTop: '1px dashed var(--color-border-light)' }} />
-                      <div>
-                        <p style={{ fontWeight: 700 }}>Wi-Fiモデル</p>
-                        <p className="media-card__desc">アンテナが入っておらずすっきりとしたデザインになっている</p>
-                      </div>
+                    <div className="glossary-box">
+                      <dl className="glossary-list">
+                        <div className="glossary-item">
+                          <dt className="glossary-item-title">Cellularモデル</dt>
+                          <dd className="glossary-item-desc">モバイルデータ通信のアンテナが背面上部に設置されており、白いラインがある</dd>
+                        </div>
+                        <div className="glossary-item">
+                          <dt className="glossary-item-title">Wi-Fiモデル</dt>
+                          <dd className="glossary-item-desc">アンテナが入っておらずすっきりとしたデザインになっている</dd>
+                        </div>
+                      </dl>
                     </div>
                   </div>
                 </div>
@@ -314,7 +316,7 @@ export default function WifiCellularPage() {
                     <p className="media-card__desc">
                       GPS機能があると下記のようなアプリをiPadから利用することが可能です。
                     </p>
-                    <ul style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)', lineHeight: 1.8, paddingLeft: 'var(--space-lg)', listStyle: 'disc' }}>
+                    <ul className="info-card__list">
                       <li>Googleマップ、Yahoo!カーナビなどマップ情報を活用したアプリ</li>
                       <li>ポケモンGO、ドラクエウォークなど位置情報を活用したアプリ</li>
                       <li>Strava、YAMAPなどアウトドア系のルート記録アプリ</li>
@@ -394,9 +396,9 @@ export default function WifiCellularPage() {
                     <p className="media-card__desc">
                       また、iPadの<strong>ワイファイモデルとセルラーモデルの価格差は約2万円ほどある</strong>ので、浮いたお金をMagic Keyboardや保護フィルムなどの周辺機器・アクセサリー購入費用に当てれば充実したデジタルライフのスタートを切れるはず。
                     </p>
-                    <div className="m-card" style={{ padding: 'var(--space-lg)', marginTop: 'var(--space-sm)' }}>
-                      <p style={{ fontWeight: 700, marginBottom: 'var(--space-sm)' }}>こんな方におすすめ</p>
-                      <ul style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)', lineHeight: 2, paddingLeft: 'var(--space-lg)', listStyle: 'disc' }}>
+                    <div className="glossary-box">
+                      <p className="glossary-item-title">こんな方におすすめ</p>
+                      <ul className="info-card__list">
                         <li>使用シーンはほぼ自宅やオフィスに限定される</li>
                         <li>外でiPadを使用する際はスマホのテザリングで十分</li>
                         <li>なるべく安くiPadを購入したい</li>
@@ -428,9 +430,9 @@ export default function WifiCellularPage() {
                     <p className="media-card__desc">
                       特に<strong>iPadをカーナビ代わりに使用したい</strong>場合はGPS機能を搭載して位置情報を正確につかめるセルラーモデルが必須になります。
                     </p>
-                    <div className="m-card" style={{ padding: 'var(--space-lg)', marginTop: 'var(--space-sm)' }}>
-                      <p style={{ fontWeight: 700, marginBottom: 'var(--space-sm)' }}>こんな方におすすめ</p>
-                      <ul style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)', lineHeight: 2, paddingLeft: 'var(--space-lg)', listStyle: 'disc' }}>
+                    <div className="glossary-box">
+                      <p className="glossary-item-title">こんな方におすすめ</p>
+                      <ul className="info-card__list">
                         <li>外出して使用する頻度が多い方（ビジネス用途）</li>
                         <li>iPadをカーナビとして使いたい</li>
                         <li>位置情報を使用するアプリをiPadで楽しみたい</li>

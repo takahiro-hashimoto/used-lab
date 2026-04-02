@@ -32,6 +32,8 @@ import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
 
+export const revalidate = 3600
+
 export const metadata: Metadata = {
   title: '歴代MacBookスペック比較表！Air・Proの性能差や違いがすぐわかる',
   description:

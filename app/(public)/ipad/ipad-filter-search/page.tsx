@@ -15,6 +15,8 @@ import PopularSection from '@/app/components/support/PopularSection'
 import { getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
 
+export const revalidate = 3600
+
 export const metadata: Metadata = {
   title: 'iPad機種診断シミュレーター｜自分に合うおすすめ中古iPadがすぐわかる【2026年版】',
   description:

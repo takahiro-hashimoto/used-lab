@@ -186,7 +186,7 @@ export default function CarNavigationSystemPage() {
                 iPadをカーナビ化して感じたメリットと注意点の概要です。
               </p>
 
-              <div className="merit-demerit" style={{ marginTop: 'var(--space-2xl)' }}>
+              <div className="merit-demerit u-mt-2xl">
                 <div className="merit-box">
                   <p className="merit-box__title">
                     <i className="fa-solid fa-circle-check" aria-hidden="true"></i>

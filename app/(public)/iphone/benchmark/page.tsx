@@ -236,7 +236,7 @@ export default async function BenchmarkPage() {
                 </div>
               </div>
 
-              <div className="m-callout m-callout--tip" style={{ marginTop: 'var(--space-2xl)' }}>
+              <div className="m-callout m-callout--tip u-mt-2xl">
                 <span className="m-callout__label">memo</span>
                 <p className="m-callout__text">
                   <strong>日常使いで最も重要なのはシングルコアスコアです。</strong>ほとんどのアプリはシングルスレッドで動作するため、シングルコアが高いモデルほどアプリの起動や画面遷移が軽快になります。ゲームを重視する方はMetal（GPU）スコアも要チェックです。

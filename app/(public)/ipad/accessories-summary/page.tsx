@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import { getAllIPadModels, getAllIPadAccessories, getAllIPadAccessoryCompatibility } from '@/lib/queries'
 import { buildAccessoryLookup } from '@/lib/utils/ipad-helpers'
 import Breadcrumb from '@/app/components/Breadcrumb'
@@ -12,6 +13,8 @@ import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
 import PopularSection from '@/app/components/support/PopularSection'
+
+export const revalidate = 3600
 
 const PAGE_TITLE = 'iPadのキーボードどれが使える？Magic Keyboard全型番と対応モデル一覧'
 const PAGE_DESCRIPTION =

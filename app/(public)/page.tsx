@@ -14,6 +14,8 @@ import { getPublishedNews } from '@/app/admin/actions'
 import IconCard from '@/app/components/IconCard'
 import { placeholder } from '@/lib/placeholder'
 
+export const revalidate = 3600
+
 export const metadata: Metadata = {
   title: 'ユーズドラボ | 中古Apple製品の価格比較・スペック情報',
   description: '中古iPhone・iPad・MacBook・Apple Watch・AirPodsの価格推移・スペック比較・おすすめ機種を毎日更新。中古Apple製品選びに必要な情報をワンストップで提供します。',

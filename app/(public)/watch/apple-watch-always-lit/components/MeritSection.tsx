@@ -31,7 +31,7 @@ export default function MeritSection() {
               <p className="media-card__desc">
                 これが意外と不便に感じることが多くあります。例えば下記のようなシーン。
               </p>
-              <ul style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)', lineHeight: 2, paddingLeft: 'var(--space-lg)', listStyle: 'disc', marginBottom: 'var(--space-md)' }}>
+              <ul className="u-mb-md" style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)', lineHeight: 2, paddingLeft: 'var(--space-lg)', listStyle: 'disc' }}>
                 <li>電車でつり革に手をかけた状態で時計を見たい</li>
                 <li>会議中に来た通知をこそっと確認したい</li>
                 <li>会話を楽しんでいる最中さっと時刻を確認したい</li>
@@ -63,7 +63,7 @@ export default function MeritSection() {
               <p className="media-card__desc">
                 常時点灯モデルであれば常に文字盤が表示されるため、腕元のアクセントとして機能します。ファッション性も重視したい方には<strong>常時点灯ディスプレイのApple Watch</strong>がおすすめです。
               </p>
-              <dl className="m-card vs-card" style={{ marginTop: 'var(--space-sm)' }}>
+              <dl className="m-card vs-card u-mt-sm">
                 <dt>
                   <i className="fa-solid fa-circle-check" aria-hidden="true" style={{ color: 'var(--color-primary)' }}></i>
                   常時点灯あり
@@ -98,7 +98,7 @@ export default function MeritSection() {
               <p className="media-card__desc">
                 そのため、手を持ち上げたときには輝度が低い状態から高い状態へふわっと切り替わります。この切り替えのエフェクトが非常に心地よく、日常のちょっとした満足感につながります。
               </p>
-              <dl className="m-card vs-card" style={{ marginTop: 'var(--space-sm)' }}>
+              <dl className="m-card vs-card u-mt-sm">
                 <dt>
                   <i className="fa-solid fa-circle-check" aria-hidden="true" style={{ color: 'var(--color-primary)' }}></i>
                   常時点灯あり

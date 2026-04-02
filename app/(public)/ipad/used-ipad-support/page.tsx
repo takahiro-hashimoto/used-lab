@@ -13,6 +13,8 @@ import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
 
+export const revalidate = 3600
+
 const PAGE_TITLE = 'iPadはいつまで使える？機種別のサポート期間目安まとめ。買い替えるべき3つのタイミングも解説。'
 const PAGE_DESCRIPTION =
   'iPadの寿命とサポート期間を機種別に一覧で紹介。iPadOSアップデート終了時期の目安や、買い替えるべき3つのタイミングもわかりやすく解説します。'

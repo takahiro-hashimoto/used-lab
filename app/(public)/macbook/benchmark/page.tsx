@@ -272,7 +272,7 @@ export default async function BenchmarkPage() {
                 </div>
               </div>
 
-              <div className="m-callout m-callout--tip" style={{ marginTop: 'var(--space-2xl)' }}>
+              <div className="m-callout m-callout--tip u-mt-2xl">
                 <span className="m-callout__label">memo</span>
                 <p className="m-callout__text">
                   <strong>日常使いで最も重要なのはシングルコアスコアです。</strong>ほとんどのアプリケーションはシングルスレッドで動作するため、シングルコアが高いモデルほど普段の操作が軽快になります。マルチコア・Metalは動画編集や3D処理など特定の作業で差が出ます。

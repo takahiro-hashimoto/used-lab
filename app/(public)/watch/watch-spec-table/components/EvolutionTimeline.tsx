@@ -198,7 +198,7 @@ export default function EvolutionTimeline() {
         <p className="m-section-desc">シリーズを重ねるごとにどのような点がアップデートされてきたのかを把握するのにお役立てください！</p>
 
         {/* Series */}
-        <h3 className="m-section-heading m-section-heading--md" style={{ textAlign: 'left', marginTop: 'var(--space-2xl, 32px)' }}>
+        <h3 className="m-section-heading m-section-heading--md u-mt-2xl" style={{ textAlign: 'left' }}>
           Apple Watch Series の進化した点
         </h3>
 
@@ -232,7 +232,7 @@ export default function EvolutionTimeline() {
         </div>
 
         {/* SE */}
-        <h3 className="m-section-heading m-section-heading--md" style={{ textAlign: 'left', marginTop: 'var(--space-3xl, 48px)' }}>
+        <h3 className="m-section-heading m-section-heading--md u-mt-3xl" style={{ textAlign: 'left' }}>
           Apple Watch SE シリーズの進化した点
         </h3>
 
@@ -266,7 +266,7 @@ export default function EvolutionTimeline() {
         </div>
 
         {/* Ultra */}
-        <h3 className="m-section-heading m-section-heading--md" style={{ textAlign: 'left', marginTop: 'var(--space-3xl, 48px)' }}>
+        <h3 className="m-section-heading m-section-heading--md u-mt-3xl" style={{ textAlign: 'left' }}>
           Apple Watch Ultra シリーズの進化した点
         </h3>
 

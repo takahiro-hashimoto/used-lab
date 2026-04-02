@@ -29,9 +29,15 @@ import ChecklistSection from '@/app/components/ChecklistSection'
 import ShopSection from '@/app/components/ShopSection'
 import WatchFaqSection from './components/WatchFaqSection'
 import WatchRelatedLinks from '@/app/components/watch/WatchRelatedLinks'
-import ValueZoneChart from '@/app/components/ValueZoneChart'
+import dynamic from 'next/dynamic'
+
+const ValueZoneChart = dynamic(() => import('@/app/components/ValueZoneChart'), {
+  loading: () => <div style={{ height: '300px' }} />,
+})
 import AuthorByline from '@/app/components/AuthorByline'
 import HeroMeta from '@/app/components/HeroMeta'
+
+export const revalidate = 3600
 
 const PAGE_TITLE = `中古Apple Watchのおすすめ${RECOMMEND_COUNT}機種を解説。狙い目の型落ちモデルはどれ？【${RECOMMEND_DATE_LABEL}版】`
 const PAGE_DESCRIPTION =

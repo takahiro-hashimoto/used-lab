@@ -58,7 +58,7 @@ export default function CompareSection<T extends BaseModel>({
         })}
 
         {specLinks && specLinks.length > 0 && (
-          <div className="m-callout m-callout--tip" style={{ marginTop: 'var(--space-2xl)' }}>
+          <div className="m-callout m-callout--tip u-mt-2xl">
             <span className="m-callout__label">memo</span>
             <p className="m-callout__text">
               {specLinks.map((link, i) => (

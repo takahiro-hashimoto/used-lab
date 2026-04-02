@@ -17,6 +17,8 @@ import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
 
+export const revalidate = 3600
+
 const PAGE_TITLE = `中古iPhoneの購入と通信契約が一緒にできる格安SIM業者まとめ【${MVNO_PAGE_DATE_LABEL}】`
 const PAGE_DESCRIPTION = `中古iPhoneとセットで通信契約できる格安SIM・MVNOを徹底比較。楽天モバイル、UQモバイル、ワイモバイル、IIJmio、mineoなど主要7社の料金プランと端末販売の有無をまとめました【${MVNO_PAGE_DATE_LABEL}】`
 const PAGE_URL = 'https://used-lab.com/iphone/mvno/'
@@ -296,7 +298,7 @@ export default async function MvnoPage() {
                   <li><strong>APN設定：</strong>SIMカードが届いたら自分で初期設定が必要</li>
                 </ul>
               </div>
-              <div className="m-callout m-callout--tip" style={{ marginTop: 'var(--space-lg)' }}>
+              <div className="m-callout m-callout--tip u-mt-lg">
                 <span className="m-callout__label">注意</span>
                 <p className="m-callout__text">
                   これらを怠ると「SIMを挿したのに圏外」「データ通信ができない」といったトラブルに…
@@ -304,7 +306,7 @@ export default async function MvnoPage() {
               </div>
             </div>
 
-            <div className="m-card m-card--shadow m-card--padded" style={{ marginTop: 'var(--space-xl)' }}>
+            <div className="m-card m-card--shadow m-card--padded u-mt-xl">
               <h3 className="post-check-item__heading">
                 セット契約なら、全部おまかせでOK
               </h3>
@@ -317,21 +319,21 @@ export default async function MvnoPage() {
                   <li><strong>バッテリー80%以上保証（認定中古品）：</strong>劣化の心配が少ない</li>
                 </ul>
               </div>
-              <div className="recommend-card__fit-box recommend-card__fit-box--good" style={{ marginTop: 'var(--space-lg)' }}>
+              <div className="recommend-card__fit-box recommend-card__fit-box--good u-mt-lg">
                 <p style={{ margin: 0 }}>
                   <strong>つまり、SIMの知識がなくても「届いたらすぐ使える」状態で届きます。</strong>
                 </p>
               </div>
             </div>
 
-            <div className="m-card m-card--shadow m-card--padded" style={{ marginTop: 'var(--space-xl)' }}>
+            <div className="m-card m-card--shadow m-card--padded u-mt-xl">
               <h3 className="post-check-item__heading">
                 大手キャリアからの乗り換えで、こんなにお得
               </h3>
               <div className="media-card__desc">
                 <p>今、大手キャリアで新品iPhoneを使っている方。セット契約で中古iPhone+格安SIMに乗り換えると、<strong>初期費用も月額もグッと抑えられます。</strong></p>
               </div>
-              <div className="l-grid l-grid--2col l-grid--gap-lg" style={{ marginTop: 'var(--space-lg)' }}>
+              <div className="l-grid l-grid--2col l-grid--gap-lg u-mt-lg">
                 <div className="recommend-card__fit-box recommend-card__fit-box--bad" style={{ textAlign: 'center' }}>
                   <p className="text-sm text-muted" style={{ margin: '0 0 var(--space-xs)' }}>大手キャリア＋新品</p>
                   <p style={{ fontSize: 'var(--font-size-2xl)', fontWeight: 800, margin: '0 0 var(--space-xs)' }}>月額 8,000円〜</p>
@@ -343,7 +345,7 @@ export default async function MvnoPage() {
                   <p className="text-sm text-muted" style={{ margin: 0 }}>＋端末代 3〜5万円程度</p>
                 </div>
               </div>
-              <div className="media-card__desc" style={{ marginTop: 'var(--space-lg)' }}>
+              <div className="media-card__desc u-mt-lg">
                 <p><strong>2年間で10万円以上の差</strong>がつくことも珍しくありません。浮いたお金で旅行に行くもよし、貯金するもよし。賢く機種変更しましょう。</p>
               </div>
             </div>
@@ -377,7 +379,7 @@ export default async function MvnoPage() {
               </div>
             </div>
 
-            <div className="m-card m-card--shadow m-card--padded" style={{ marginTop: 'var(--space-xl)' }}>
+            <div className="m-card m-card--shadow m-card--padded u-mt-xl">
               <h3 className="post-check-item__heading">
                 キャリアショップとの違い
               </h3>
@@ -391,7 +393,7 @@ export default async function MvnoPage() {
               </div>
             </div>
 
-            <div className="m-card m-card--shadow m-card--padded" style={{ marginTop: 'var(--space-xl)' }}>
+            <div className="m-card m-card--shadow m-card--padded u-mt-xl">
               <h3 className="post-check-item__heading">
                 正直に言うと、最安とは限らない
               </h3>
@@ -738,7 +740,7 @@ export default async function MvnoPage() {
               </div>
             </div>
 
-            <div className="m-card m-card--shadow m-card--padded" style={{ marginTop: 'var(--space-xl)' }}>
+            <div className="m-card m-card--shadow m-card--padded u-mt-xl">
               <h3 className="post-check-item__heading">価格を最優先にしたい場合</h3>
               <div className="media-card__desc">
                 <p>中古スマホ専門店では、セールや在庫処分で大幅に値下げされることがあります。セット契約の端末価格と比較して、数千円〜1万円以上の差がつくこともあります。</p>
@@ -746,14 +748,14 @@ export default async function MvnoPage() {
               </div>
             </div>
 
-            <div className="m-card m-card--shadow m-card--padded" style={{ marginTop: 'var(--space-xl)' }}>
+            <div className="m-card m-card--shadow m-card--padded u-mt-xl">
               <h3 className="post-check-item__heading">すでに使いたい格安SIMが決まっている場合</h3>
               <div className="media-card__desc">
                 <p>「mineoを使いたい」「IIJmioのギガプランがいい」など、すでに使いたい格安SIMが決まっていて、その事業者が中古端末を扱っていない場合は、端末は別で調達するしかありません。</p>
               </div>
             </div>
 
-            <div className="m-card m-card--shadow m-card--padded" style={{ marginTop: 'var(--space-xl)' }}>
+            <div className="m-card m-card--shadow m-card--padded u-mt-xl">
               <h3 className="post-check-item__heading">長期保証を重視する場合</h3>
               <div className="media-card__desc">
                 <p>セット契約の保証期間は8日〜90日程度が多いです。一方、中古スマホ専門店では3ヶ月〜6ヶ月の保証がついていることもあります。</p>
@@ -761,7 +763,7 @@ export default async function MvnoPage() {
               </div>
             </div>
 
-            <div className="m-card m-card--shadow m-card--padded" style={{ marginTop: 'var(--space-xl)' }}>
+            <div className="m-card m-card--shadow m-card--padded u-mt-xl">
               <h3 className="post-check-item__heading">端末の状態を細かく確認したい場合</h3>
               <div className="media-card__desc">
                 <p>中古スマホ専門店の店頭なら、実機を手に取って傷や状態を確認できます。セット契約はオンライン申し込みが基本のため、届くまで実物を確認できません。</p>

@@ -22,7 +22,7 @@ export default function WorkStudySection() {
           <li>クラウド保存したデータは他のデバイスからも参照できる</li>
           <li>ファイル検索の精度が高い</li>
         </InfoCard>
-        <p className="media-card__desc" style={{ marginTop: 'var(--space-md)' }}>
+        <p className="media-card__desc u-mt-md">
           iPadをメモ帳や、授業用ノートに使いたいという方はぜひインストールしてみてください。
         </p>
         <InfoCard heading="おすすめのノートアプリ">
@@ -106,7 +106,7 @@ export default function WorkStudySection() {
           <li>サムネイル作成：写真に手書きテキストを加え、味のある画像に仕上げる</li>
           <li>デザイン修正：資料やデザイン案に、手書きで直接指示を書き込む</li>
         </InfoCard>
-        <p className="media-card__desc" style={{ marginTop: 'var(--space-md)' }}>
+        <p className="media-card__desc u-mt-md">
           Macの大きな画面で作業しつつ、iPadを「高機能な液タブ」のように併用できるこの連携は、クリエイティブな作業効率を劇的に高めてくれます。
         </p>
         <p className="media-card__desc">

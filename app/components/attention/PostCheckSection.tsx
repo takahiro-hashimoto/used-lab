@@ -28,7 +28,7 @@ export default function PostCheckSection({ heading, productName, checkItems }: P
           ))}
         </div>
 
-        <div className="m-callout m-callout--tip" style={{ marginTop: 'var(--space-2xl)' }}>
+        <div className="m-callout m-callout--tip u-mt-2xl">
           <span className="m-callout__label">memo</span>
           <p className="m-callout__text">
             これらのチェックは<strong>返品・交換期限内</strong>に必ず行いましょう。ショップによって期限は異なりますが、到着後7日〜30日以内が一般的です。問題があれば写真・動画で記録し、すぐにショップへ連絡してください。

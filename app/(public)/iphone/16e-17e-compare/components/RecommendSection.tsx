@@ -16,14 +16,14 @@ export default function RecommendSection() {
               <i className="fa-solid fa-coins" aria-hidden="true" style={{ marginRight: 'var(--space-xs)', color: 'var(--color-primary)' }}></i>
               iPhone 16eがおすすめな人
             </h3>
-            <ul style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)', lineHeight: 2.2, paddingLeft: 'var(--space-lg)', listStyle: 'disc', marginTop: 'var(--space-md)' }}>
+            <ul className="u-mt-md" style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)', lineHeight: 2.2, paddingLeft: 'var(--space-lg)', listStyle: 'disc' }}>
               <li>128GBストレージで十分な人</li>
               <li>カメラコントロールボタンを使いたい人</li>
               <li>MagSafe 25W充電を活用したい人</li>
               <li>中古で安く手に入れたい人</li>
               <li>カラーでコーラルやティールが欲しい人</li>
             </ul>
-            <p className="popular-card-desc" style={{ marginTop: 'var(--space-lg)' }}>
+            <p className="popular-card-desc u-mt-lg">
               中古市場では<strong>16eの方が価格がこなれており、コスパ重視なら最適</strong>です。カメラコントロールとMagSafe 25Wは16eだけの強みです。
             </p>
           </div>
@@ -34,14 +34,14 @@ export default function RecommendSection() {
               <i className="fa-solid fa-microchip" aria-hidden="true" style={{ marginRight: 'var(--space-xs)', color: 'var(--color-primary)' }}></i>
               iPhone 17eがおすすめな人
             </h3>
-            <ul style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)', lineHeight: 2.2, paddingLeft: 'var(--space-lg)', listStyle: 'disc', marginTop: 'var(--space-md)' }}>
+            <ul className="u-mt-md" style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)', lineHeight: 2.2, paddingLeft: 'var(--space-lg)', listStyle: 'disc' }}>
               <li>最新のA19チップの性能が欲しい人</li>
               <li>Apple自社モデム（C1X）による省電力に期待する人</li>
               <li>できるだけ長くiOSサポートを受けたい人</li>
               <li>最低256GBのストレージが必要な人</li>
               <li>ソフトピンクのカラーが気に入った人</li>
             </ul>
-            <p className="popular-card-desc" style={{ marginTop: 'var(--space-lg)' }}>
+            <p className="popular-card-desc u-mt-lg">
               <strong>長期利用を重視するなら17e</strong>です。チップが新しい分、iOSサポート期間も長くなることが期待できます。
             </p>
           </div>
