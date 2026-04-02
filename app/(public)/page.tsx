@@ -84,6 +84,7 @@ export default async function HomePage() {
           className="hero--top__bg"
           fill
           priority
+          sizes="(max-width: 768px) 100vw, 360px"
         />
         <div className="hero--top__overlay" aria-hidden="true" />
         <div className="hero-inner">

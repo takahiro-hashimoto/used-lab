@@ -49,6 +49,7 @@ export default function CompareHero({ modelL, modelR, slug }: Props) {
                   width={140}
                   height={140}
                   priority
+                  sizes="(max-width: 768px) 100vw, 360px"
                 />
               )}
               <p>{modelL.model}</p>
@@ -62,6 +63,7 @@ export default function CompareHero({ modelL, modelR, slug }: Props) {
                   width={140}
                   height={140}
                   priority
+                  sizes="(max-width: 768px) 100vw, 360px"
                 />
               )}
               <p>{modelR.model}</p>

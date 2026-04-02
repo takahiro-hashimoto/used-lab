@@ -205,7 +205,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/macbook/storage
             </div>
             <div className="hero-visual">
               <figure className="hero-media">
-                <Image src="/images/content/thumbnail/macbook-image-05.jpg" alt="中古MacBookストレージ容量ガイドのイメージ" className="hero-media__img" width={360} height={360} priority />
+                <Image src="/images/content/thumbnail/macbook-image-05.jpg" alt="中古MacBookストレージ容量ガイドのイメージ" className="hero-media__img" width={360} height={360} priority sizes="(max-width: 768px) 100vw, 360px" />
               </figure>
             </div>
           </div>

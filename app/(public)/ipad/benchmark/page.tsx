@@ -153,7 +153,7 @@ export default async function BenchmarkPage() {
               </div>
               <div className="hero-visual">
                 <figure className="hero-media">
-                  <Image src="/images/content/thumbnail/ipad-image-12.jpg" alt="iPadベンチマーク比較のイメージ" className="hero-media__img" width={360} height={360} priority />
+                  <Image src="/images/content/thumbnail/ipad-image-12.jpg" alt="iPadベンチマーク比較のイメージ" className="hero-media__img" width={360} height={360} priority sizes="(max-width: 768px) 100vw, 360px" />
                 </figure>
               </div>
             </div>

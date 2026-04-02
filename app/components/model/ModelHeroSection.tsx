@@ -134,6 +134,7 @@ export default function ModelHeroSection({ model, config, dateStr, dateDisplay }
                   width={imageWidth}
                   height={imageHeight}
                   priority
+                  sizes="(max-width: 768px) 100vw, 360px"
                 />
               )}
             </figure>

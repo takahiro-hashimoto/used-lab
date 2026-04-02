@@ -143,6 +143,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/battery-
                   width={360}
                   height={360}
                   priority
+                  sizes="(max-width: 768px) 100vw, 360px"
                 />
               </figure>
             </div>
