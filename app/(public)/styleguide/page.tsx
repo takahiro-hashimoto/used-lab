@@ -71,7 +71,7 @@ export default function StyleGuidePage() {
                 ['--color-accent', '#2ab0f0', 'Accent'],
                 ['--color-text', '#1d1d1f', 'Text'],
                 ['--color-text-secondary', '#6e6e73', 'Text Secondary'],
-                ['--color-text-muted', '#86868b', 'Text Muted'],
+                ['--color-text-muted', '#7c7c82', 'Text Muted'],
                 ['--color-bg-subtle', '#f5f5f7', 'BG Subtle'],
                 ['--color-bg-muted', '#edf2f9', 'BG Muted'],
                 ['--color-border', '#d2d2d7', 'Border'],

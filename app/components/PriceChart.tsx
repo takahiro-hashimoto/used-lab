@@ -19,7 +19,7 @@ ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, T
 const COLOR_PRIMARY = '#2589d0'       // --color-primary
 const COLOR_RED = '#e74c3c'           // --color-red
 const COLOR_TEXT_PRIMARY = '#333333'  // --color-text-primary
-const COLOR_TEXT_MUTED = '#999999'    // --color-text-muted
+const COLOR_TEXT_MUTED = '#7c7c82'    // --color-text-muted
 
 type Props = {
   labels: string[]

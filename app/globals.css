@@ -1,5 +1,2 @@
-/* non-critical — components & page-specific (critical.css is imported separately in layout.tsx) */
-@import './style.css';
-@import './author-byline.css';
-@import './search.css';
-@import './sp-overrides.css';
+/* non-critical CSS is now loaded asynchronously via layout.tsx Script tag */
+/* Only critical.css is imported synchronously in layout.tsx */

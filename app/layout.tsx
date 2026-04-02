@@ -54,9 +54,10 @@ export default function RootLayout({
   return (
     <html lang="ja" className={`${inter.variable} ${notoSansJP.variable}`}>
       <head>
+        <link rel="preload" href="/css/non-critical.min.css" as="style" />
         <link rel="preload" href="/fonts/fontawesome/all.min.css" as="style" />
-        <Script id="fa-loader" strategy="afterInteractive" dangerouslySetInnerHTML={{
-          __html: `var l=document.createElement('link');l.rel='stylesheet';l.href='/fonts/fontawesome/all.min.css';document.head.appendChild(l);`,
+        <Script id="css-loader" strategy="afterInteractive" dangerouslySetInnerHTML={{
+          __html: `['\/css\/non-critical.min.css','\/fonts\/fontawesome\/all.min.css'].forEach(function(h){var l=document.createElement('link');l.rel='stylesheet';l.href=h;document.head.appendChild(l)});`,
         }} />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
