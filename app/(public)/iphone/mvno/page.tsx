@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import { getMvnoPlans, getMvnoProviders } from '@/lib/queries'
 import type { MvnoProvider } from '@/lib/types'
 import {
@@ -197,13 +198,14 @@ export default async function MvnoPage() {
             </div>
             <div className="hero-visual">
               <figure className="hero-media">
-                <img
+                <Image
                   src="/images/content/thumbnail/sim.webp"
                   alt="SIMカードをスマートフォンに挿入するイメージ"
                   className="hero-media__img"
                   width={360}
                   height={360}
-                  fetchPriority="high"
+                  priority
+                  sizes="(max-width: 768px) 100vw, 360px"
                 />
               </figure>
             </div>

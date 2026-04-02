@@ -141,13 +141,14 @@ export default async function IPadGuidePage() {
             </div>
             <div className="hero-visual">
               <figure className="hero-media">
-                <img
+                <Image
                   src="/images/content/thumbnail/ipad-all.jpg"
                   alt="中古iPad購入ガイドのイメージ"
                   className="hero-media__img"
                   width={360}
                   height={360}
-                  fetchPriority="high"
+                  priority
+                  sizes="(max-width: 768px) 100vw, 360px"
                 />
               </figure>
             </div>

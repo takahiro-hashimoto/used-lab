@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import AirPodsRelatedLinks from '@/app/components/airpods/AirPodsRelatedLinks'
 import ShareBox from '@/app/components/ShareBox'
@@ -116,13 +117,14 @@ export default function AirpodsFindPage() {
               </div>
               <div className="hero-visual">
                 <figure className="hero-media">
-                  <img
+                  <Image
                     src="/images/content/thumbnail/airpods-image-01.jpg"
                     alt="AirPodsの紛失対処法"
                     className="hero-media__img"
                     width={360}
                     height={360}
-                    fetchPriority="high"
+                    priority
+                    sizes="(max-width: 768px) 100vw, 360px"
                   />
                 </figure>
               </div>

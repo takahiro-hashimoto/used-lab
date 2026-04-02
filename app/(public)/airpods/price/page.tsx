@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import {
   getAllAirPodsModels,
   getAllAirPodsPriceLogsByModelIds,
@@ -339,13 +340,14 @@ export default async function AirPodsPriceInfoPage() {
             </div>
             <div className="hero-visual">
               <figure className="hero-media">
-                <img
+                <Image
                   src="/images/content/thumbnail/airpods-image-03.jpg"
                   alt="中古AirPods価格相場"
                   className="hero-media__img"
                   width={360}
                   height={360}
-                  fetchPriority="high"
+                  priority
+                  sizes="(max-width: 768px) 100vw, 360px"
                 />
               </figure>
             </div>

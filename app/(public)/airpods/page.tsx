@@ -157,13 +157,14 @@ export default async function AirPodsGuidePage() {
             </div>
             <div className="hero-visual">
               <figure className="hero-media">
-                <img
+                <Image
                   src="/images/content/thumbnail/airpods-image-01.jpg"
                   alt="中古AirPods購入ガイドのイメージ"
                   className="hero-media__img"
                   width={360}
                   height={360}
-                  fetchPriority="high"
+                  priority
+                  sizes="(max-width: 768px) 100vw, 360px"
                 />
               </figure>
             </div>

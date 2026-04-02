@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import { getShops } from '@/lib/queries'
 import type { Shop } from '@/lib/types'
 import {
@@ -131,13 +132,14 @@ export default async function IPhoneShopPage() {
             </div>
             <div className="hero-visual">
               <figure className="hero-media">
-                <img
+                <Image
                   src="/images/content/thumbnail/cheap-buy.jpg"
                   alt="中古iPhoneの購入先イメージ"
                   className="hero-media__img"
                   width={360}
                   height={360}
-                  fetchPriority="high"
+                  priority
+                  sizes="(max-width: 768px) 100vw, 360px"
                 />
               </figure>
             </div>

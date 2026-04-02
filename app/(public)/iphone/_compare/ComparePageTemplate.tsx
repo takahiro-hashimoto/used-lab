@@ -3,6 +3,7 @@
  * 各ルートの page.tsx から config を受け取って全セクションを描画
  */
 
+import '@/app/compare.css'
 import { notFound } from 'next/navigation'
 import type { IPhoneModel, IPhonePriceLog } from '@/lib/types'
 import {

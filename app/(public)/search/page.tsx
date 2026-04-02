@@ -1,3 +1,4 @@
+import '@/app/search-page.css'
 import type { Metadata } from 'next'
 import { Suspense } from 'react'
 import { PRODUCT_CATEGORIES, type LabelParams } from '@/lib/routes'

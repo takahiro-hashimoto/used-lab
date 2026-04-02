@@ -142,13 +142,14 @@ export default async function IPhoneGuidePage() {
             </div>
             <div className="hero-visual">
               <figure className="hero-media">
-                <img
+                <Image
                   src="/images/content/thumbnail/iphone-image.jpeg"
                   alt="中古iPhone購入ガイドのイメージ"
                   className="hero-media__img"
                   width={360}
                   height={360}
-                  fetchPriority="high"
+                  priority
+                  sizes="(max-width: 768px) 100vw, 360px"
                 />
               </figure>
             </div>

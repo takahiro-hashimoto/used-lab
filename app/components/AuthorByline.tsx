@@ -3,17 +3,18 @@ import Link from 'next/link'
 
 export default function AuthorByline() {
   return (
-    <div className="author-byline">
-      <div className="author-byline__card">
+    <aside className="author-byline" aria-label="著者情報">
+      <address className="author-byline__card">
         <div className="author-byline__left">
           <Image
             src="/images/content/thumbnail/my-icon.webp"
-            alt="タカヒロ"
+            alt=""
             width={80}
             height={80}
             className="author-byline__avatar"
+            aria-hidden="true"
           />
-          <span className="author-byline__name">タカヒロ</span>
+          <span className="author-byline__name" rel="author">タカヒロ</span>
           <span className="author-byline__role">ガジェットブロガー</span>
         </div>
         <div className="author-byline__right">
@@ -26,7 +27,7 @@ export default function AuthorByline() {
             運営者情報・メディア掲載
           </Link>
         </div>
-      </div>
-    </div>
+      </address>
+    </aside>
   )
 }

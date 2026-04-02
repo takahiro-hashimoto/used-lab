@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import {
   getAllWatchModels,
   getAllWatchPriceLogsByModelIds,
@@ -350,13 +351,14 @@ export default async function WatchPriceInfoPage() {
             </div>
             <div className="hero-visual">
               <figure className="hero-media">
-                <img
+                <Image
                   src="/images/content/thumbnail/graph-image.jpg"
                   alt="中古Apple Watch価格相場"
                   className="hero-media__img"
                   width={360}
                   height={360}
-                  fetchPriority="high"
+                  priority
+                  sizes="(max-width: 768px) 100vw, 360px"
                 />
               </figure>
             </div>
