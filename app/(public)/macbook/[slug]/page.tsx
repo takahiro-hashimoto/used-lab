@@ -125,7 +125,7 @@ export default async function MacBookDetailPage({ params }: PageProps) {
             latestMinMaxPairs={latestMinMaxPairs}
             latestDate={latestDate}
             storageNote={storageNote}
-            priceListLink={{ href: '/macbook/macbook-price-info/', label: 'MacBookの中古相場一覧' }}
+            priceListLink={{ href: '/macbook/price-info/', label: 'MacBookの中古相場一覧' }}
           />
         )}
 
@@ -151,7 +151,7 @@ export default async function MacBookDetailPage({ params }: PageProps) {
         />
         <PopularMacBook />
         <MacBookRelatedLinks excludeHref={[`/macbook/${model.slug}/`, "/macbook/recommend/"]} />
-        <ShareBox url={`https://used-lab.com/macbook/${model.slug}/`} text={`中古${model.model}は今買うべき？製品寿命、基本スペック、ベンチマークスコア、中古相場から解説`} />
+        <ShareBox url={`https://used-lab.jp/macbook/${model.slug}/`} text={`中古${model.model}は今買うべき？製品寿命、基本スペック、ベンチマークスコア、中古相場から解説`} />
         </div>
       </article>
     </main>

@@ -120,8 +120,8 @@ export default async function WatchFilterSearchPage() {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.com/' },
-      { '@type': 'ListItem', position: 2, name: '中古Apple Watch購入完全ガイド', item: 'https://used-lab.com/watch' },
+      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
+      { '@type': 'ListItem', position: 2, name: '中古Apple Watch購入完全ガイド', item: 'https://used-lab.jp/watch' },
       { '@type': 'ListItem', position: 3, name: 'Apple Watch機種診断シミュレーター' },
     ],
   }
@@ -131,14 +131,14 @@ export default async function WatchFilterSearchPage() {
     '@type': 'WebApplication',
     name: 'Apple Watch機種診断シミュレーター',
     description: `目的・予算・こだわり条件から、あなたに最適な中古Apple Watchを無料で診断。全${totalModels}機種のデータベースから最適な1台を提案します。`,
-    url: 'https://used-lab.com/watch/watch-filter-search/',
+    url: 'https://used-lab.jp/watch/watch-filter-search/',
     applicationCategory: 'UtilityApplication',
     operatingSystem: 'All',
     offers: { '@type': 'Offer', price: '0', priceCurrency: 'JPY' },
     author: {
       '@type': 'Person',
       name: 'タカヒロ',
-      url: 'https://used-lab.com/about/',
+      url: 'https://used-lab.jp/profile/',
       sameAs: [
         'https://twitter.com/takahiro_mono',
         'https://www.instagram.com/takahiro_mono',
@@ -270,7 +270,7 @@ export default async function WatchFilterSearchPage() {
           secondaryButtonHref="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Fwearable%2Fapple%3Fnot%3Dpencil"
         />
         <WatchRelatedLinks excludeHref={["/watch/watch-filter-search/", "/watch/recommend/"]} />
-        <ShareBox url="https://used-lab.com/watch/watch-filter-search/" text="Apple Watch機種診断シミュレーター｜自分に合うおすすめ中古アップルウォッチがすぐわかる【2026年版】" />
+        <ShareBox url="https://used-lab.jp/watch/watch-filter-search/" text="Apple Watch機種診断シミュレーター｜自分に合うおすすめ中古アップルウォッチがすぐわかる【2026年版】" />
         </div>
       </article>
     </main>

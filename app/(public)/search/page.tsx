@@ -90,7 +90,7 @@ const PAGE_KEYWORDS: Record<string, string> = {
   '/macbook/used-macbook-support/': 'サポート期間 いつまで使える macOS アップデート',
   '/macbook/macbook-shop/': '買う場所 ショップ ECサイト 中古販売店',
   '/macbook/macbook-spec-table/': 'スペック 比較表 性能 歴代',
-  '/macbook/macbook-price-info/': '価格 相場 値段 中古価格 推移',
+  '/macbook/price-info/': '価格 相場 値段 中古価格 推移',
   '/macbook/storage-guide/': 'ストレージ 容量 GB SSD 選び方',
   '/macbook/benchmark/': 'ベンチマーク スコア 性能 Geekbench',
   '/macbook/macbook-buy/': '新品 安く買う 購入 セール',

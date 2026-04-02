@@ -42,7 +42,7 @@ export const revalidate = 3600
 const PAGE_TITLE = `中古Apple Watchのおすすめ${RECOMMEND_COUNT}機種を解説。狙い目の型落ちモデルはどれ？【${RECOMMEND_DATE_LABEL}版】`
 const PAGE_DESCRIPTION =
   `${RECOMMEND_DATE_LABEL}現在、中古Apple Watchのおすすめ${RECOMMEND_COUNT}機種を目的別に解説。watchOSサポート期間・性能・価格のバランスが良いモデルだけを厳選しました。`
-const PAGE_URL = 'https://used-lab.com/watch/recommend/'
+const PAGE_URL = 'https://used-lab.jp/watch/recommend/'
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,
@@ -83,8 +83,8 @@ export default async function WatchRecommendPage() {
 
   // JSON-LD
   const breadcrumbJsonLd = buildBreadcrumbJsonLd([
-    { name: '中古Apple製品を安く買う', item: 'https://used-lab.com/' },
-    { name: '中古Apple Watch完全購入ガイド', item: 'https://used-lab.com/watch' },
+    { name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
+    { name: '中古Apple Watch完全購入ガイド', item: 'https://used-lab.jp/watch' },
     { name: `中古Apple Watchおすすめ${RECOMMEND_COUNT}選` },
   ])
   const articleJsonLd = buildArticleJsonLd({ headline: PAGE_TITLE, description: PAGE_DESCRIPTION, dateStr, url: PAGE_URL })

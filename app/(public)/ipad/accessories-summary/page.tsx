@@ -19,7 +19,7 @@ export const revalidate = 3600
 const PAGE_TITLE = 'iPadのキーボードどれが使える？Magic Keyboard全型番と対応モデル一覧'
 const PAGE_DESCRIPTION =
   '歴代iPadに対応するMagic Keyboard（マジックキーボード）・Smart Keyboardの型番と対応機種を一覧表で紹介。純正キーボードの互換性やSmart Connector対応モデルが一目でわかります。'
-const PAGE_URL = 'https://used-lab.com/ipad/accessories-summary/'
+const PAGE_URL = 'https://used-lab.jp/ipad/accessories-summary/'
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,
@@ -96,8 +96,8 @@ export default async function AccessoriesSummaryPage() {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.com/' },
-      { '@type': 'ListItem', position: 2, name: '中古iPad完全購入ガイド', item: 'https://used-lab.com/ipad' },
+      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
+      { '@type': 'ListItem', position: 2, name: '中古iPad完全購入ガイド', item: 'https://used-lab.jp/ipad' },
       { '@type': 'ListItem', position: 3, name: 'iPadのキーボードどれが使える？Magic Keyboard全型番と対応モデル一覧' },
     ],
   }
@@ -239,7 +239,7 @@ export default async function AccessoriesSummaryPage() {
               },
               {
                 question: 'iPadにはキーボード以外にどんなアクセサリがある？',
-                answer: 'キーボードのほかに、Apple Pencilも代表的なiPadアクセサリです。Apple Pencilは手書きメモ、イラスト制作、PDFへの注釈など幅広い用途に活用できます。\n現在4つのモデルが販売されており、対応iPadや機能（筆圧感知・傾き検知など）がそれぞれ異なります。各モデルの違いや選び方は「Apple Pencilの違いを比較（https://used-lab.com/ipad/apple-pencil-compare/）」で詳しく解説しています。',
+                answer: 'キーボードのほかに、Apple Pencilも代表的なiPadアクセサリです。Apple Pencilは手書きメモ、イラスト制作、PDFへの注釈など幅広い用途に活用できます。\n現在4つのモデルが販売されており、対応iPadや機能（筆圧感知・傾き検知など）がそれぞれ異なります。各モデルの違いや選び方は「Apple Pencilの違いを比較（https://used-lab.jp/ipad/apple-pencil-compare/）」で詳しく解説しています。',
               },
             ]}
           />

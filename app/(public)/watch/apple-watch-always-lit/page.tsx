@@ -17,7 +17,7 @@ import HeroMeta from '@/app/components/HeroMeta'
 const PAGE_TITLE = 'Apple Watchの常時点灯はいらない？使ってみてわかったメリット・デメリットまとめ'
 const PAGE_DESCRIPTION =
   'Apple Watchの常時点灯（常時表示ディスプレイ）は本当に必要？実際に使ってわかったメリット・デメリットを徹底解説。バッテリーへの影響やオフにする設定方法、常時点灯なしモデルとの違いまで2026年最新情報でまとめました。'
-const PAGE_URL = 'https://used-lab.com/watch/apple-watch-always-lit/'
+const PAGE_URL = 'https://used-lab.jp/watch/apple-watch-always-lit/'
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,
@@ -44,8 +44,8 @@ export default function AppleWatchAlwaysLitPage() {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.com/' },
-      { '@type': 'ListItem', position: 2, name: '中古Apple Watch完全購入ガイド', item: 'https://used-lab.com/watch' },
+      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
+      { '@type': 'ListItem', position: 2, name: '中古Apple Watch完全購入ガイド', item: 'https://used-lab.jp/watch' },
       { '@type': 'ListItem', position: 3, name: 'Apple Watchの常時点灯はいらない？' },
     ],
   }

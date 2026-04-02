@@ -266,7 +266,7 @@ export default function GuidelinesPage() {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.com/' },
+      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
       { '@type': 'ListItem', position: 2, name: 'コンテンツ制作・運営ポリシー' },
     ],
   }
@@ -317,7 +317,7 @@ export default function GuidelinesPage() {
                 ガジェットレビューブログの運営で得た知見を生かして「買い物の参考になる情報をわかりやすく発信すること」をモットーに中古Apple製品関連の情報を発信しています。
               </p>
               <div className="u-mt-lg">
-                <Link href="/about/" className="about-media-link">
+                <Link href="/profile/" className="about-media-link">
                   <i className="fa-solid fa-user" aria-hidden="true"></i>
                   <span>運営者情報</span>
                 </Link>

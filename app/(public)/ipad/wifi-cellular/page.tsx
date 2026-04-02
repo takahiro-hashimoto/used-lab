@@ -13,7 +13,7 @@ import HeroMeta from '@/app/components/HeroMeta'
 const PAGE_TITLE = 'iPadはWi-Fiモデルとセルラーモデルどっちがおすすめ？両者の違い4つを比較'
 const PAGE_DESCRIPTION =
   'iPadのWi-Fiモデルとセルラーモデルの違いを4つのポイントで徹底比較。価格差・通信方式・GPS・リセールバリューなど、どちらを選ぶべきか用途別におすすめモデルを解説します。'
-const PAGE_URL = 'https://used-lab.com/ipad/wifi-cellular/'
+const PAGE_URL = 'https://used-lab.jp/ipad/wifi-cellular/'
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,
@@ -40,8 +40,8 @@ export default function WifiCellularPage() {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.com/' },
-      { '@type': 'ListItem', position: 2, name: '中古iPad完全購入ガイド', item: 'https://used-lab.com/ipad' },
+      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
+      { '@type': 'ListItem', position: 2, name: '中古iPad完全購入ガイド', item: 'https://used-lab.jp/ipad' },
       { '@type': 'ListItem', position: 3, name: 'Wi-Fiモデルとセルラーモデルの比較' },
     ],
   }

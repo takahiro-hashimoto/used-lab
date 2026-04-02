@@ -18,7 +18,7 @@ import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helper
 const PAGE_TITLE = 'MacBookのベンチマークを比較！全モデルの性能がわかるスコアランキング【2026年版】'
 const PAGE_DESCRIPTION =
   '歴代MacBookのGeekbench 6ベンチマークスコアをランキング形式で比較。M1〜M5チップのシングルコア・マルチコア・GPU性能差がひと目でわかる一覧表付き。用途別おすすめスコアの目安も解説。'
-const PAGE_URL = 'https://used-lab.com/macbook/benchmark/'
+const PAGE_URL = 'https://used-lab.jp/macbook/benchmark/'
 
 export const revalidate = 86400
 
@@ -136,8 +136,8 @@ export default async function BenchmarkPage() {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.com/' },
-      { '@type': 'ListItem', position: 2, name: '中古MacBook完全購入ガイド', item: 'https://used-lab.com/macbook' },
+      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
+      { '@type': 'ListItem', position: 2, name: '中古MacBook完全購入ガイド', item: 'https://used-lab.jp/macbook' },
       { '@type': 'ListItem', position: 3, name: 'ベンチマーク比較' },
     ],
   }

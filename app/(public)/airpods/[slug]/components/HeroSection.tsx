@@ -18,8 +18,8 @@ export default function HeroSection({ model, dateStr, dateDisplay }: Props) {
     description: `${displayName}の中古価格相場、スペック比較、おすすめショップ情報。`,
     brand: { '@type': 'Brand', name: 'Apple' },
     category: 'イヤホン・ヘッドホン',
-    ...(model.image && { image: `https://used-lab.com/images/airpods/${model.image}` }),
-    url: `https://used-lab.com/airpods/${model.slug}/`,
+    ...(model.image && { image: `https://used-lab.jp/images/airpods/${model.image}` }),
+    url: `https://used-lab.jp/airpods/${model.slug}/`,
   }
 
   const breadcrumbJsonLd = {
@@ -30,13 +30,13 @@ export default function HeroSection({ model, dateStr, dateDisplay }: Props) {
         '@type': 'ListItem',
         position: 1,
         name: '中古Apple製品を安く買う',
-        item: 'https://used-lab.com/',
+        item: 'https://used-lab.jp/',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: '中古AirPods完全ガイド',
-        item: 'https://used-lab.com/airpods',
+        item: 'https://used-lab.jp/airpods',
       },
       {
         '@type': 'ListItem',

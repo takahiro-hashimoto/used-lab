@@ -37,7 +37,7 @@ export default function Footer() {
             <div className="footer-col">
               <p className="footer-heading">サイト情報</p>
               <ul>
-                <li><Link href="/about">ユーズドラボについて</Link></li>
+                <li><Link href="/profile">ユーズドラボについて</Link></li>
                 <li><Link href="/contact">お問い合わせ</Link></li>
                 <li><Link href="/guidelines/">コンテンツ制作ポリシー</Link></li>
                 <li><Link href="/privacy-policy/">プライバシーポリシー</Link></li>

@@ -66,8 +66,8 @@ export default async function IPadSpecTablePage() {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.com/' },
-      { '@type': 'ListItem', position: 2, name: '中古iPad完全購入ガイド', item: 'https://used-lab.com/ipad' },
+      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
+      { '@type': 'ListItem', position: 2, name: '中古iPad完全購入ガイド', item: 'https://used-lab.jp/ipad' },
       { '@type': 'ListItem', position: 3, name: '歴代iPadスペック比較表' },
     ],
   }
@@ -76,7 +76,7 @@ export default async function IPadSpecTablePage() {
     headline: '【2025年】歴代iPadのスペック＆性能比較表',
     description: '歴代iPadのスペック比較表一覧。iPad Pro・Air・mini・無印の性能差を一目で確認できます。',
     dateStr: dateStr,
-    url: 'https://used-lab.com/ipad/ipad-spec-table/',
+    url: 'https://used-lab.jp/ipad/ipad-spec-table/',
   })
 
   // シリアライズ可能な形に変換
@@ -259,7 +259,7 @@ export default async function IPadSpecTablePage() {
 
         <IPadRelatedLinks excludeHref={["/ipad/ipad-spec-table/", "/ipad/recommend/"]} />
 
-        <ShareBox url="https://used-lab.com/ipad/ipad-spec-table/" text="歴代iPadスペック比較表！各世代の性能の違いがすぐわかる" />
+        <ShareBox url="https://used-lab.jp/ipad/ipad-spec-table/" text="歴代iPadスペック比較表！各世代の性能の違いがすぐわかる" />
         </div>
       </article>
     </main>

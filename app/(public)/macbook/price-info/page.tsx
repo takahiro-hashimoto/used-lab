@@ -103,7 +103,7 @@ export const revalidate = 86400
 // メタデータ
 // ============================================================
 
-const PAGE_URL = 'https://used-lab.com/macbook/macbook-price-info/'
+const PAGE_URL = 'https://used-lab.jp/macbook/price-info/'
 
 export async function generateMetadata(): Promise<Metadata> {
   const allModels = await getAllMacBookModels()
@@ -114,11 +114,11 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title,
     description,
-  alternates: { canonical: '/macbook/macbook-price-info/' },
+  alternates: { canonical: '/macbook/price-info/' },
     openGraph: {
       title,
       description,
-      url: '/macbook/macbook-price-info/',
+      url: '/macbook/price-info/',
       images: [{ url: '/images/content/thumbnail/graph-image.jpg', width: 1200, height: 630, alt: title }],
     },
     twitter: {
@@ -263,8 +263,8 @@ export default async function MacBookPriceInfoPage() {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.com/' },
-      { '@type': 'ListItem', position: 2, name: '中古MacBook完全購入ガイド', item: 'https://used-lab.com/macbook/' },
+      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
+      { '@type': 'ListItem', position: 2, name: '中古MacBook完全購入ガイド', item: 'https://used-lab.jp/macbook/' },
       { '@type': 'ListItem', position: 3, name: 'MacBookの中古相場一覧' },
     ],
   }
@@ -287,7 +287,7 @@ export default async function MacBookPriceInfoPage() {
     author: {
       '@type': 'Person',
       name: 'タカヒロ',
-      url: 'https://used-lab.com/about/',
+      url: 'https://used-lab.jp/profile/',
       sameAs: [
         'https://twitter.com/takahiro_mono',
         'https://www.instagram.com/takahiro_mono',
@@ -442,7 +442,7 @@ export default async function MacBookPriceInfoPage() {
 
           <FaqSection />
           <PopularMacBook />
-          <MacBookRelatedLinks excludeHref={["/macbook/macbook-price-info/", "/macbook/recommend/"]} />
+          <MacBookRelatedLinks excludeHref={["/macbook/price-info/", "/macbook/recommend/"]} />
           <ShareBox url={PAGE_URL} text={`MacBookの中古相場一覧 | 歴代${modelCount}機種の価格推移を独自集計`} />
         </div>
       </article>

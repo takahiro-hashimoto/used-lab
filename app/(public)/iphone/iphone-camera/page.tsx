@@ -17,7 +17,7 @@ export const revalidate = 3600
 const PAGE_TITLE = 'iPhoneのカメラ性能の違いは何？歴代モデルの機能を比較'
 const PAGE_DESCRIPTION =
   'iPhoneのカメラ性能を歴代モデルごとに徹底比較。画素数・レンズ構成・ナイトモード・シネマティックモードなど、世代ごとの違いと進化をわかりやすく解説します。'
-const PAGE_URL = 'https://used-lab.com/iphone/iphone-camera/'
+const PAGE_URL = 'https://used-lab.jp/iphone/iphone-camera/'
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,
@@ -49,8 +49,8 @@ export default async function IPhoneCameraPage() {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.com/' },
-      { '@type': 'ListItem', position: 2, name: '中古iPhone完全購入ガイド', item: 'https://used-lab.com/iphone/' },
+      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
+      { '@type': 'ListItem', position: 2, name: '中古iPhone完全購入ガイド', item: 'https://used-lab.jp/iphone/' },
       { '@type': 'ListItem', position: 3, name: 'iPhoneカメラ性能比較' },
     ],
   }

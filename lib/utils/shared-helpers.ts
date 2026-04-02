@@ -48,6 +48,14 @@ export function buildFallbackShops(
     .filter((item): item is FallbackShop => item != null)
 }
 
+/** プロトコルなしURLに https:// を補完 */
+function normalizeUrl(url: string): string {
+  if (url && !url.startsWith('http://') && !url.startsWith('https://')) {
+    return `https://${url}`
+  }
+  return url
+}
+
 /**
  * product_shop_links → displayLinks を生成
  * filteredLinks があればそちらを優先、なければ fallbackShops を使用
@@ -59,7 +67,7 @@ export function buildDisplayLinks(
 ): FallbackShop[] {
   const filteredLinks = shopLinks.filter((l) => shopNames[l.shop_id])
   if (filteredLinks.length > 0) {
-    return filteredLinks.map((l) => ({ shop_id: l.shop_id, url: l.url, shopName: shopNames[l.shop_id] }))
+    return filteredLinks.map((l) => ({ shop_id: l.shop_id, url: normalizeUrl(l.url), shopName: shopNames[l.shop_id] }))
   }
   return fallbackShops.filter((s) => shopNames[s.shop_id])
 }
@@ -161,7 +169,7 @@ export function buildArticleJsonLd(opts: {
     author: {
       '@type': 'Person',
       name: 'タカヒロ',
-      url: 'https://used-lab.com/about/',
+      url: 'https://used-lab.jp/profile/',
       sameAs: [
         'https://twitter.com/takahiro_mono',
         'https://www.instagram.com/takahiro_mono',

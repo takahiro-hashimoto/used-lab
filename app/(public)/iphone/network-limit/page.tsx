@@ -13,7 +13,7 @@ import PopularSection from '@/app/components/support/PopularSection'
 const PAGE_TITLE = '意外と良い選択肢？ネットワーク制限△の中古iPhone・iPadを買うメリット・デメリットを解説'
 const PAGE_DESCRIPTION =
   'ネットワーク制限△の中古iPhone・iPadは買っても大丈夫？赤ロムリスクや○△×の違い、メリット・デメリットをわかりやすく解説。赤ロム永久保証付きの安心ショップも紹介します。'
-const PAGE_URL = 'https://used-lab.com/iphone/network-limit/'
+const PAGE_URL = 'https://used-lab.jp/iphone/network-limit/'
 
 const FAQ_ITEMS = [
   {
@@ -66,8 +66,8 @@ export default function NetworkLimitPage() {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.com/' },
-      { '@type': 'ListItem', position: 2, name: '中古iPhone完全購入ガイド', item: 'https://used-lab.com/iphone/' },
+      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
+      { '@type': 'ListItem', position: 2, name: '中古iPhone完全購入ガイド', item: 'https://used-lab.jp/iphone/' },
       { '@type': 'ListItem', position: 3, name: 'ネットワーク制限△のメリット・デメリット' },
     ],
   }

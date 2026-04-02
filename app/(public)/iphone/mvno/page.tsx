@@ -22,7 +22,7 @@ export const revalidate = 3600
 
 const PAGE_TITLE = `中古iPhoneの購入と通信契約が一緒にできる格安SIM業者まとめ【${MVNO_PAGE_DATE_LABEL}】`
 const PAGE_DESCRIPTION = `中古iPhoneとセットで通信契約できる格安SIM・MVNOを徹底比較。楽天モバイル、UQモバイル、ワイモバイル、IIJmio、mineoなど主要7社の料金プランと端末販売の有無をまとめました【${MVNO_PAGE_DATE_LABEL}】`
-const PAGE_URL = 'https://used-lab.com/iphone/mvno/'
+const PAGE_URL = 'https://used-lab.jp/iphone/mvno/'
 
 const FAQ_ITEMS = [
   {
@@ -149,8 +149,8 @@ export default async function MvnoPage() {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.com/' },
-      { '@type': 'ListItem', position: 2, name: '中古iPhone完全購入ガイド', item: 'https://used-lab.com/iphone/' },
+      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
+      { '@type': 'ListItem', position: 2, name: '中古iPhone完全購入ガイド', item: 'https://used-lab.jp/iphone/' },
       { '@type': 'ListItem', position: 3, name: '格安SIM×中古iPhone' },
     ],
   }
@@ -438,7 +438,7 @@ export default async function MvnoPage() {
                 creator: {
                   '@type': 'Organization',
                   name: 'ユーズドラボ',
-                  url: 'https://used-lab.com/',
+                  url: 'https://used-lab.jp/',
                 },
               }) }}
             />

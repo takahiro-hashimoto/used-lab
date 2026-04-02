@@ -16,7 +16,7 @@ import HeroMeta from '@/app/components/HeroMeta'
 const PAGE_TITLE = 'アップルウォッチのできること25選！便利な機能や使い方がわかる【初心者向け】'
 const PAGE_DESCRIPTION =
   'Apple Watchの便利な機能・使い方を25個厳選して紹介。基本機能・健康管理・決済・Apple製品連携など、Apple Watchがあれば生活が変わる活用法を初心者にもわかりやすく解説します。'
-const PAGE_URL = 'https://used-lab.com/watch/how-to-use-apple-watch/'
+const PAGE_URL = 'https://used-lab.jp/watch/how-to-use-apple-watch/'
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,
@@ -43,8 +43,8 @@ export default function HowToUseAppleWatchPage() {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.com/' },
-      { '@type': 'ListItem', position: 2, name: '中古Apple Watch完全購入ガイド', item: 'https://used-lab.com/watch' },
+      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
+      { '@type': 'ListItem', position: 2, name: '中古Apple Watch完全購入ガイド', item: 'https://used-lab.jp/watch' },
       { '@type': 'ListItem', position: 3, name: 'Apple Watchのできること25選' },
     ],
   }

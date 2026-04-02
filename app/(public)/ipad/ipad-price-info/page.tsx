@@ -108,7 +108,7 @@ export const revalidate = 86400
 // メタデータ
 // ============================================================
 
-const PAGE_URL = 'https://used-lab.com/ipad/ipad-price-info/'
+const PAGE_URL = 'https://used-lab.jp/ipad/ipad-price-info/'
 
 export async function generateMetadata(): Promise<Metadata> {
   const allModels = await getAllIPadModels()
@@ -278,8 +278,8 @@ export default async function IPadPriceInfoPage() {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.com/' },
-      { '@type': 'ListItem', position: 2, name: '中古iPad完全購入ガイド', item: 'https://used-lab.com/ipad/' },
+      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
+      { '@type': 'ListItem', position: 2, name: '中古iPad完全購入ガイド', item: 'https://used-lab.jp/ipad/' },
       { '@type': 'ListItem', position: 3, name: 'iPadの中古相場一覧' },
     ],
   }
@@ -302,7 +302,7 @@ export default async function IPadPriceInfoPage() {
     author: {
       '@type': 'Person',
       name: 'タカヒロ',
-      url: 'https://used-lab.com/about/',
+      url: 'https://used-lab.jp/profile/',
       sameAs: [
         'https://twitter.com/takahiro_mono',
         'https://www.instagram.com/takahiro_mono',

@@ -200,7 +200,7 @@ export default async function HomePage() {
                 <p className="top-about-card__desc">
                   都内のIT企業でWebディレクターとして働く傍ら、メディア運営を行っています。中古Apple製品選びに役立つ情報を発信しています。
                 </p>
-                <Link href="/about/" className="top-about-card__text-link">
+                <Link href="/profile/" className="top-about-card__text-link">
                   運営者情報を見る <i className="fa-solid fa-chevron-right" aria-hidden="true"></i>
                 </Link>
                 <div className="top-about-card__links">

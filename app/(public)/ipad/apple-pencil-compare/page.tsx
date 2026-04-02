@@ -20,7 +20,7 @@ export const revalidate = 3600
 const PAGE_TITLE = 'Apple Pencilの違いを比較！あなたにぴったりのアップルペンシルがわかる'
 const PAGE_DESCRIPTION =
   'Apple Pencil Pro・第2世代・第1世代・USB-Cの違いを徹底比較。機能・対応iPad・価格の違いを一覧表で解説し、あなたの用途に合ったApple Pencilの選び方をわかりやすく紹介します。'
-const PAGE_URL = 'https://used-lab.com/ipad/apple-pencil-compare/'
+const PAGE_URL = 'https://used-lab.jp/ipad/apple-pencil-compare/'
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,
@@ -73,8 +73,8 @@ export default async function ApplePencilComparePage() {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.com/' },
-      { '@type': 'ListItem', position: 2, name: '中古iPad完全購入ガイド', item: 'https://used-lab.com/ipad' },
+      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
+      { '@type': 'ListItem', position: 2, name: '中古iPad完全購入ガイド', item: 'https://used-lab.jp/ipad' },
       { '@type': 'ListItem', position: 3, name: 'Apple Pencilの違いを比較' },
     ],
   }
@@ -238,7 +238,7 @@ export default async function ApplePencilComparePage() {
               },
               {
                 question: 'iPadにはApple Pencil以外にどんなアクセサリがある？',
-                answer: 'Apple PencilのほかにiPadの活用の幅を広げるアクセサリとして、Magic KeyboardやSmart Keyboard Folioなどの純正キーボードがあります。\nキーボードを使えばiPadをノートパソコンのように活用でき、文字入力や資料作成が格段に快適になります。各iPadに対応するキーボードの型番や互換性は「歴代iPadのMagic Keyboard 型番一覧（https://used-lab.com/ipad/accessories-summary/）」で確認できます。',
+                answer: 'Apple PencilのほかにiPadの活用の幅を広げるアクセサリとして、Magic KeyboardやSmart Keyboard Folioなどの純正キーボードがあります。\nキーボードを使えばiPadをノートパソコンのように活用でき、文字入力や資料作成が格段に快適になります。各iPadに対応するキーボードの型番や互換性は「歴代iPadのMagic Keyboard 型番一覧（https://used-lab.jp/ipad/accessories-summary/）」で確認できます。',
               },
             ]}
           />

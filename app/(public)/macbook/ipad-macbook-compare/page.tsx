@@ -17,7 +17,7 @@ import HeroMeta from '@/app/components/HeroMeta'
 const PAGE_TITLE = 'MacBookとiPadどっちを買うのがおすすめ？両者の違いと使い勝手を比較'
 const PAGE_DESCRIPTION =
   'MacBookとiPadはどっちを買うべき？作業効率・携帯性・価格・用途別に両者の違いをわかりやすく比較。あなたの使い方にぴったりな1台が見つかるガイドです。'
-const PAGE_URL = 'https://used-lab.com/macbook/ipad-macbook-compare/'
+const PAGE_URL = 'https://used-lab.jp/macbook/ipad-macbook-compare/'
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,
@@ -44,8 +44,8 @@ export default function IpadMacbookComparePage() {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.com/' },
-      { '@type': 'ListItem', position: 2, name: '中古MacBook完全購入ガイド', item: 'https://used-lab.com/macbook' },
+      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
+      { '@type': 'ListItem', position: 2, name: '中古MacBook完全購入ガイド', item: 'https://used-lab.jp/macbook' },
       { '@type': 'ListItem', position: 3, name: 'MacBookとiPadの違い' },
     ],
   }

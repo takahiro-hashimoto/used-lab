@@ -13,7 +13,7 @@ import HeroMeta from '@/app/components/HeroMeta'
 const PAGE_TITLE = 'iPhone 16eと17eどっちがいい？違いと選び方をやさしく解説'
 const PAGE_DESCRIPTION =
   'iPhone 16eと17eの違いをチップ・モデム・カメラ・ストレージ・充電・操作性の6項目で比較。用途別のおすすめで自分に合ったモデルがすぐわかります。'
-const PAGE_URL = 'https://used-lab.com/iphone/16e-17e-compare/'
+const PAGE_URL = 'https://used-lab.jp/iphone/16e-17e-compare/'
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,
@@ -39,8 +39,8 @@ export default function IPhone16e17eComparePage() {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.com/' },
-      { '@type': 'ListItem', position: 2, name: '中古iPhone完全購入ガイド', item: 'https://used-lab.com/iphone' },
+      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
+      { '@type': 'ListItem', position: 2, name: '中古iPhone完全購入ガイド', item: 'https://used-lab.jp/iphone' },
       { '@type': 'ListItem', position: 3, name: 'iPhone 16eと17eの違い' },
     ],
   }

@@ -19,7 +19,7 @@ import HeroMeta from '@/app/components/HeroMeta'
 const PAGE_TITLE = '中古iPhoneはやめた方がいい？購入前に確認すべき注意点まとめ【2026年版】'
 const PAGE_DESCRIPTION =
   '中古iPhoneはやめた方がいい？バッテリー劣化・赤ロム・アクティベーションロックなど、購入前に確認すべき注意点を徹底解説。失敗しない中古iPhone選びのポイントを2026年最新情報でまとめました。'
-const PAGE_URL = 'https://used-lab.com/iphone/used-iphone-attention/'
+const PAGE_URL = 'https://used-lab.jp/iphone/used-iphone-attention/'
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,
@@ -46,8 +46,8 @@ export default function UsedIphoneAttentionPage() {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.com/' },
-      { '@type': 'ListItem', position: 2, name: '中古iPhone完全購入ガイド', item: 'https://used-lab.com/iphone' },
+      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
+      { '@type': 'ListItem', position: 2, name: '中古iPhone完全購入ガイド', item: 'https://used-lab.jp/iphone' },
       { '@type': 'ListItem', position: 3, name: '中古iPhoneの注意点' },
     ],
   }

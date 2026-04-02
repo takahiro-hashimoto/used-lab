@@ -68,15 +68,15 @@ export default async function ComparePageTemplate({ config }: Props) {
 
     // JSON-LD
   const breadcrumbJsonLd = buildBreadcrumbJsonLd([
-    { name: 'ホーム', item: 'https://used-lab.com/' },
-    { name: '中古iPhone', item: 'https://used-lab.com/iphone/' },
+    { name: 'ホーム', item: 'https://used-lab.jp/' },
+    { name: '中古iPhone', item: 'https://used-lab.jp/iphone/' },
     { name: `${nameL}と${shortR}の比較` },
   ])
   const articleJsonLd = buildArticleJsonLd({
     headline: config.title,
     description: config.description,
     dateStr,
-    url: `https://used-lab.com/iphone/${config.slug}/`,
+    url: `https://used-lab.jp/iphone/${config.slug}/`,
   })
 
 
@@ -245,7 +245,7 @@ export default async function ComparePageTemplate({ config }: Props) {
           <CompareRelated />
 
           <ShareBox
-            url={`https://used-lab.com/iphone/${config.slug}/`}
+            url={`https://used-lab.jp/iphone/${config.slug}/`}
             text={config.title}
           />
         </div>

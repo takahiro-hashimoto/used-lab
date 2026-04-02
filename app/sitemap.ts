@@ -9,7 +9,7 @@ import {
 import { getAllStaticRoutes } from '@/lib/routes'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = 'https://used-lab.com'
+  const baseUrl = 'https://used-lab.jp'
 
   // 全製品のスラッグを並列取得
   const [iPhoneSlugs, iPadSlugs, watchSlugs, macBookSlugs, airPodsSlugs] = await Promise.all([

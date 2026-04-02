@@ -18,7 +18,7 @@ import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helper
 const PAGE_TITLE = 'iPadのベンチマークを比較！全モデルの性能がわかるスコアランキング【2026年版】'
 const PAGE_DESCRIPTION =
   '歴代iPadのGeekbench 6・AnTuTuベンチマークスコアをランキング形式で比較。AチップからMチップまで、シングルコア・マルチコア・GPU性能の差がひと目でわかる一覧表付き。用途別おすすめスコアの目安も解説。'
-const PAGE_URL = 'https://used-lab.com/ipad/benchmark/'
+const PAGE_URL = 'https://used-lab.jp/ipad/benchmark/'
 
 export const revalidate = 86400
 
@@ -112,8 +112,8 @@ export default async function BenchmarkPage() {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.com/' },
-      { '@type': 'ListItem', position: 2, name: '中古iPad完全購入ガイド', item: 'https://used-lab.com/ipad' },
+      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
+      { '@type': 'ListItem', position: 2, name: '中古iPad完全購入ガイド', item: 'https://used-lab.jp/ipad' },
       { '@type': 'ListItem', position: 3, name: 'ベンチマーク比較' },
     ],
   }

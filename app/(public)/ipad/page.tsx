@@ -36,7 +36,7 @@ export const revalidate = 3600
 
 const PAGE_TITLE = `中古iPad完全購入ガイド | 選び方・相場・おすすめモデルまとめ【${GUIDE_DATE_LABEL}版】`
 const PAGE_DESCRIPTION = `${GUIDE_DATE_LABEL}版・中古iPadの完全購入ガイド。選び方のポイント、モデル別の相場、おすすめ機種をまとめて解説。失敗しない中古iPad選びをサポートします。`
-const PAGE_URL = 'https://used-lab.com/ipad/'
+const PAGE_URL = 'https://used-lab.jp/ipad/'
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,
@@ -86,7 +86,7 @@ export default async function IPadGuidePage() {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.com/' },
+      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
       { '@type': 'ListItem', position: 2, name: '中古iPad完全購入ガイド' },
     ],
   }

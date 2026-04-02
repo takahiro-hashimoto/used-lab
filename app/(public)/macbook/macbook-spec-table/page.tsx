@@ -62,8 +62,8 @@ export default async function MacBookSpecTablePage() {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.com/' },
-      { '@type': 'ListItem', position: 2, name: '中古MacBook完全購入ガイド', item: 'https://used-lab.com/macbook' },
+      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
+      { '@type': 'ListItem', position: 2, name: '中古MacBook完全購入ガイド', item: 'https://used-lab.jp/macbook' },
       { '@type': 'ListItem', position: 3, name: '歴代MacBookスペック比較表' },
     ],
   }
@@ -74,7 +74,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/macbook/macbook
     headline: '【2025年】歴代MacBookのスペック＆性能比較表',
     description: '歴代MacBook Air・Proのスペック比較表一覧。チップ性能やディスプレイの違いを一目で確認できます。',
     dateStr: dateStr,
-    url: 'https://used-lab.com/macbook/macbook-spec-table/',
+    url: 'https://used-lab.jp/macbook/macbook-spec-table/',
   })
 
   const serializedModels = allModels.map((m) => ({
@@ -237,7 +237,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/macbook/macbook
         <GlossarySection productName="MacBook" items={GLOSSARY_ITEMS} />
         <PopularMacBook />
         <MacBookRelatedLinks excludeHref={["/macbook/macbook-spec-table/", "/macbook/recommend/"]} />
-        <ShareBox url="https://used-lab.com/macbook/macbook-spec-table/" text="歴代MacBookスペック比較表！Air・Proの性能差や違いがすぐわかる" />
+        <ShareBox url="https://used-lab.jp/macbook/macbook-spec-table/" text="歴代MacBookスペック比較表！Air・Proの性能差や違いがすぐわかる" />
         </div>
       </article>
     </main>

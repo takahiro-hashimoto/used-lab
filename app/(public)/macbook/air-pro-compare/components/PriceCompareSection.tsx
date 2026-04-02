@@ -105,7 +105,7 @@ export default function PriceCompareSection({ models, priceMap }: PriceCompareSe
         <div className="m-callout m-callout--tip u-mt-xl">
           <span className="m-callout__label">memo</span>
           <p className="m-callout__text">
-            表示価格は各モデルの最小構成での中古最安値です。詳しい価格推移は「<a href="/macbook/macbook-price-info/">中古MacBookの価格推移・相場一覧</a>」で確認できます。
+            表示価格は各モデルの最小構成での中古最安値です。詳しい価格推移は「<a href="/macbook/price-info/">中古MacBookの価格推移・相場一覧</a>」で確認できます。
           </p>
         </div>
       </div>

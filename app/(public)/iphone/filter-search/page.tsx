@@ -126,8 +126,8 @@ export default async function IPhoneFilterSearchPage() {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.com/' },
-      { '@type': 'ListItem', position: 2, name: '中古iPhone完全購入ガイド', item: 'https://used-lab.com/iphone' },
+      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
+      { '@type': 'ListItem', position: 2, name: '中古iPhone完全購入ガイド', item: 'https://used-lab.jp/iphone' },
       { '@type': 'ListItem', position: 3, name: 'iPhone機種診断シミュレーター' },
     ],
   }
@@ -137,14 +137,14 @@ export default async function IPhoneFilterSearchPage() {
     '@type': 'WebApplication',
     name: 'iPhone機種診断シミュレーター',
     description: '3つのステップで自分にぴったりの中古iPhoneが見つかる診断シミュレーター。',
-    url: 'https://used-lab.com/iphone/filter-search/',
+    url: 'https://used-lab.jp/iphone/filter-search/',
     applicationCategory: 'UtilityApplication',
     operatingSystem: 'All',
     offers: { '@type': 'Offer', price: '0', priceCurrency: 'JPY' },
     author: {
       '@type': 'Person',
       name: 'タカヒロ',
-      url: 'https://used-lab.com/about/',
+      url: 'https://used-lab.jp/profile/',
       sameAs: [
         'https://twitter.com/takahiro_mono',
         'https://www.instagram.com/takahiro_mono',
@@ -274,7 +274,7 @@ export default async function IPhoneFilterSearchPage() {
         />
 
         <IPhoneRelatedLinks excludeHref={["/iphone/filter-search/", "/iphone/recommend/"]} />
-        <ShareBox url="https://used-lab.com/iphone/filter-search/" text="iPhone機種診断シミュレーター｜自分に合うおすすめ中古スマホがすぐわかる【2026年版】" />
+        <ShareBox url="https://used-lab.jp/iphone/filter-search/" text="iPhone機種診断シミュレーター｜自分に合うおすすめ中古スマホがすぐわかる【2026年版】" />
         </div>
       </article>
     </main>

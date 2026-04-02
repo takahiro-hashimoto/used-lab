@@ -16,7 +16,7 @@ import HeroMeta from '@/app/components/HeroMeta'
 const PAGE_TITLE = 'iPadがあればできること・便利な使い道 22選【生活が変わる】'
 const PAGE_DESCRIPTION =
   'iPadの便利な使い道を22個厳選して紹介。動画視聴・ノート・イラスト・読書・仕事効率化など、iPadがあれば生活が変わる活用法を初心者にもわかりやすく解説します。'
-const PAGE_URL = 'https://used-lab.com/ipad/howto-use-ipad/'
+const PAGE_URL = 'https://used-lab.jp/ipad/howto-use-ipad/'
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,
@@ -43,8 +43,8 @@ export default function HowtoUseIpadPage() {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.com/' },
-      { '@type': 'ListItem', position: 2, name: '中古iPad完全購入ガイド', item: 'https://used-lab.com/ipad' },
+      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
+      { '@type': 'ListItem', position: 2, name: '中古iPad完全購入ガイド', item: 'https://used-lab.jp/ipad' },
       { '@type': 'ListItem', position: 3, name: 'iPadの便利な使い道 22選' },
     ],
   }

@@ -18,7 +18,7 @@ import HeroMeta from '@/app/components/HeroMeta'
 const PAGE_TITLE = '中古iPadはやめた方がいい？購入前に確認すべき注意点まとめ'
 const PAGE_DESCRIPTION =
   '中古iPadはやめた方がいい？バッテリー劣化・iPadOSサポート切れ・アクセサリ非対応など、購入前に確認すべき注意点を徹底解説。失敗しない中古iPad選びのポイントを2026年最新情報でまとめました。'
-const PAGE_URL = 'https://used-lab.com/ipad/used-ipad-attention/'
+const PAGE_URL = 'https://used-lab.jp/ipad/used-ipad-attention/'
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,
@@ -45,8 +45,8 @@ export default function UsedIpadAttentionPage() {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.com/' },
-      { '@type': 'ListItem', position: 2, name: '中古iPad完全購入ガイド', item: 'https://used-lab.com/ipad' },
+      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
+      { '@type': 'ListItem', position: 2, name: '中古iPad完全購入ガイド', item: 'https://used-lab.jp/ipad' },
       { '@type': 'ListItem', position: 3, name: '中古iPadの注意点' },
     ],
   }

@@ -29,11 +29,7 @@ import CompareTableSection from './components/CompareTableSection'
 import ChecklistSection from '@/app/components/ChecklistSection'
 import ShopSection from '@/app/components/ShopSection'
 import IPhoneFaqSection from './components/IPhoneFaqSection'
-import dynamic from 'next/dynamic'
-
-const ValueZoneChart = dynamic(() => import('@/app/components/ValueZoneChart'), {
-  loading: () => <div style={{ height: '300px' }} />,
-})
+import ValueZoneChartWrapper from './components/ValueZoneChartWrapper'
 import IPhoneRelatedLinks from '@/app/components/iphone/IPhoneRelatedLinks'
 import AuthorByline from '@/app/components/AuthorByline'
 import HeroMeta from '@/app/components/HeroMeta'
@@ -43,7 +39,7 @@ export const revalidate = 3600
 const PAGE_TITLE = `中古iPhoneおすすめ機種${RECOMMEND_COUNT}選｜目的別に狙い目モデルを解説【${RECOMMEND_DATE_LABEL}版】`
 const PAGE_DESCRIPTION =
   `${RECOMMEND_DATE_LABEL}現在、中古iPhoneのおすすめ機種${RECOMMEND_COUNT}選を目的別に解説。iOSサポート期間・性能・価格のバランスが良いモデルだけを厳選しました。`
-const PAGE_URL = 'https://used-lab.com/iphone/recommend/'
+const PAGE_URL = 'https://used-lab.jp/iphone/recommend/'
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,
@@ -85,8 +81,8 @@ export default async function IPhoneTopPage() {
 
   // JSON-LD
   const breadcrumbJsonLd = buildBreadcrumbJsonLd([
-    { name: '中古Apple製品を安く買う', item: 'https://used-lab.com/' },
-    { name: '中古iPhone完全購入ガイド', item: 'https://used-lab.com/iphone' },
+    { name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
+    { name: '中古iPhone完全購入ガイド', item: 'https://used-lab.jp/iphone' },
     { name: `中古iPhoneおすすめ${RECOMMEND_COUNT}選` },
   ])
   const articleJsonLd = buildArticleJsonLd({ headline: PAGE_TITLE, description: PAGE_DESCRIPTION, dateStr, url: PAGE_URL })
@@ -318,7 +314,7 @@ export default async function IPhoneTopPage() {
               },
             ]}
           />
-          <ValueZoneChart
+          <ValueZoneChartWrapper
             productName="iPhone"
             osName="iOS"
             supportYears={7}

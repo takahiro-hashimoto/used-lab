@@ -68,8 +68,8 @@ export default async function IPhoneSpecTablePage() {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.com/' },
-      { '@type': 'ListItem', position: 2, name: '中古iPhone完全購入ガイド', item: 'https://used-lab.com/iphone' },
+      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
+      { '@type': 'ListItem', position: 2, name: '中古iPhone完全購入ガイド', item: 'https://used-lab.jp/iphone' },
       { '@type': 'ListItem', position: 3, name: '歴代iPhoneスペック比較表' },
     ],
   }
@@ -80,7 +80,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/iphone-s
     headline: '【2025年】歴代iPhoneのスペック＆性能比較表',
     description: '2019年以降に発売された歴代iPhoneのスペック比較表一覧。機能のアップデート履歴を一目で確認できます。',
     dateStr: dateStr,
-    url: 'https://used-lab.com/iphone/iphone-spec-table/',
+    url: 'https://used-lab.jp/iphone/iphone-spec-table/',
   })
 
   // シリアライズ可能な形に変換
@@ -274,7 +274,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/iphone-s
         />
         {/* 関連記事 */}
         <IPhoneRelatedLinks excludeHref={["/iphone/iphone-spec-table/", "/iphone/recommend/"]} />
-        <ShareBox url="https://used-lab.com/iphone/iphone-spec-table/" text="歴代iPhoneスペック比較表！気になる機種の性能差や違いがわかる" />
+        <ShareBox url="https://used-lab.jp/iphone/iphone-spec-table/" text="歴代iPhoneスペック比較表！気になる機種の性能差や違いがわかる" />
         </div>
       </article>
     </main>

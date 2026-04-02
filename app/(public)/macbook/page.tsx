@@ -35,7 +35,7 @@ export const revalidate = 3600
 
 const PAGE_TITLE = `中古MacBook完全購入ガイド | 選び方・相場・おすすめモデルまとめ【${GUIDE_DATE_LABEL}版】`
 const PAGE_DESCRIPTION = `${GUIDE_DATE_LABEL}版・中古MacBookの完全購入ガイド。選び方のポイント、モデル別の相場、おすすめ機種をまとめて解説。失敗しない中古MacBook選びをサポートします。`
-const PAGE_URL = 'https://used-lab.com/macbook/'
+const PAGE_URL = 'https://used-lab.jp/macbook/'
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,
@@ -85,7 +85,7 @@ export default async function MacBookGuidePage() {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.com/' },
+      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
       { '@type': 'ListItem', position: 2, name: '中古MacBook完全購入ガイド' },
     ],
   }
@@ -230,7 +230,7 @@ export default async function MacBookGuidePage() {
 
               <p className="guide-section-note">Apple Silicon搭載MacBook全{allModels.length}機種の詳細な価格推移グラフ・相場データをご覧いただけます</p>
               <div className="guide-section-cta">
-                <Link href="/macbook/macbook-price-info/" className="m-btn m-btn--primary m-btn--block">
+                <Link href="/macbook/price-info/" className="m-btn m-btn--primary m-btn--block">
                   <span>中古MacBookの相場・価格推移グラフ</span>
                   <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
                 </Link>

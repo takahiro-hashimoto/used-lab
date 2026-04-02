@@ -13,7 +13,7 @@ const NAV_ITEMS = [
   { href: '/macbook', label: '中古MacBook' },
   { href: '/airpods', label: '中古AirPods' },
   { href: '/contact', label: 'お問い合わせ' },
-  { href: '/about', label: '運営者情報' },
+  { href: '/profile', label: '運営者情報' },
 ]
 
 export default function Header() {

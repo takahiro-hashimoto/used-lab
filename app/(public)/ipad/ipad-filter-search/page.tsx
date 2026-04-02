@@ -123,8 +123,8 @@ export default async function IPadFilterSearchPage() {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.com/' },
-      { '@type': 'ListItem', position: 2, name: '中古iPad購入完全ガイド', item: 'https://used-lab.com/ipad' },
+      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
+      { '@type': 'ListItem', position: 2, name: '中古iPad購入完全ガイド', item: 'https://used-lab.jp/ipad' },
       { '@type': 'ListItem', position: 3, name: 'iPad機種診断シミュレーター' },
     ],
   }
@@ -134,14 +134,14 @@ export default async function IPadFilterSearchPage() {
     '@type': 'WebApplication',
     name: 'iPad機種診断シミュレーター',
     description: `目的・予算・こだわり条件から、あなたに最適な中古iPadを無料で診断。全${totalModels}機種のデータベースから最適な1台を提案します。`,
-    url: 'https://used-lab.com/ipad/ipad-filter-search/',
+    url: 'https://used-lab.jp/ipad/ipad-filter-search/',
     applicationCategory: 'UtilityApplication',
     operatingSystem: 'All',
     offers: { '@type': 'Offer', price: '0', priceCurrency: 'JPY' },
     author: {
       '@type': 'Person',
       name: 'タカヒロ',
-      url: 'https://used-lab.com/about/',
+      url: 'https://used-lab.jp/profile/',
       sameAs: [
         'https://twitter.com/takahiro_mono',
         'https://www.instagram.com/takahiro_mono',
@@ -274,7 +274,7 @@ export default async function IPadFilterSearchPage() {
         />
 
         <IPadRelatedLinks excludeHref={["/ipad/ipad-filter-search/", "/ipad/recommend/"]} />
-        <ShareBox url="https://used-lab.com/ipad/ipad-filter-search/" text="iPad機種診断シミュレーター｜自分に合うおすすめ中古iPadがすぐわかる【2026年版】" />
+        <ShareBox url="https://used-lab.jp/ipad/ipad-filter-search/" text="iPad機種診断シミュレーター｜自分に合うおすすめ中古iPadがすぐわかる【2026年版】" />
         </div>
       </article>
     </main>

@@ -13,7 +13,7 @@ import HeroMeta from '@/app/components/HeroMeta'
 const PAGE_TITLE = 'MacBookを安く買うには？おすすめの購入先7つを比較'
 const PAGE_DESCRIPTION =
   'MacBookを安く買う方法を徹底解説。Apple認定整備済製品・中古ショップ・ECモール・家電量販店など7つの購入先を価格・保証・ポイント還元で比較し、最安で手に入れるコツを紹介します。'
-const PAGE_URL = 'https://used-lab.com/macbook/macbook-buy/'
+const PAGE_URL = 'https://used-lab.jp/macbook/macbook-buy/'
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,
@@ -40,8 +40,8 @@ export default function MacBookBuyPage() {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.com/' },
-      { '@type': 'ListItem', position: 2, name: '中古MacBook完全購入ガイド', item: 'https://used-lab.com/macbook/' },
+      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
+      { '@type': 'ListItem', position: 2, name: '中古MacBook完全購入ガイド', item: 'https://used-lab.jp/macbook/' },
       { '@type': 'ListItem', position: 3, name: 'MacBookを安く買うには？' },
     ],
   }

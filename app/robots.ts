@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: 'https://used-lab.com/sitemap.xml',
+    sitemap: 'https://used-lab.jp/sitemap.xml',
   }
 }

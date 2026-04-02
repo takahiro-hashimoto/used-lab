@@ -5,7 +5,7 @@ type BaseModel = {
   model: string | null
 }
 
-type SpecLink = {
+type LinkItem = {
   href: string
   label: string
 }
@@ -17,7 +17,9 @@ type Props<T extends BaseModel> = {
   /** 表示名（デフォルトは model.model） */
   displayName?: string
   /** スペック比較記事へのリンク */
-  specLinks?: SpecLink[]
+  specLinks?: LinkItem[]
+  /** よく比較されている組み合わせリンク */
+  compareLinks?: LinkItem[]
   /** CompareSelector コンポーネント */
   children: (props: {
     currentModel: T
@@ -29,7 +31,7 @@ type Props<T extends BaseModel> = {
 }
 
 export default function CompareSection<T extends BaseModel>({
-  model, allModels, shopLinks, displayName, specLinks, children,
+  model, allModels, shopLinks, displayName, specLinks, compareLinks, children,
 }: Props<T>) {
   const name = displayName || model.model || ''
   const otherModels = allModels.filter((m) => m.id !== model.id)
@@ -56,6 +58,17 @@ export default function CompareSection<T extends BaseModel>({
           iosysUrl: iosysLink?.url,
           shopLinks,
         })}
+
+        {compareLinks && compareLinks.length > 0 && (
+          <div className="m-callout m-callout--tip u-mt-2xl">
+            <span className="m-callout__label">よく比較されている組み合わせ</span>
+            <div className="m-callout__links">
+              {compareLinks.map((link) => (
+                <a key={link.href} href={link.href} className="m-callout__link">{link.label}</a>
+              ))}
+            </div>
+          </div>
+        )}
 
         {specLinks && specLinks.length > 0 && (
           <div className="m-callout m-callout--tip u-mt-2xl">

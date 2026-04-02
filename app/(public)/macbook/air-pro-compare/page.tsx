@@ -19,7 +19,7 @@ import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helper
 const PAGE_TITLE = 'MacBook AirとProどっちがいい？違いと選び方をやさしく解説'
 const PAGE_DESCRIPTION =
   'MacBook AirとProの違いを冷却方式・チップ性能・ディスプレイ・ポート・中古価格の5項目で比較。用途別のおすすめ早見表で自分に合ったモデルがすぐわかります。'
-const PAGE_URL = 'https://used-lab.com/macbook/air-pro-compare/'
+const PAGE_URL = 'https://used-lab.jp/macbook/air-pro-compare/'
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,
@@ -61,8 +61,8 @@ export default async function AirProComparePage() {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.com/' },
-      { '@type': 'ListItem', position: 2, name: '中古MacBook完全購入ガイド', item: 'https://used-lab.com/macbook' },
+      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
+      { '@type': 'ListItem', position: 2, name: '中古MacBook完全購入ガイド', item: 'https://used-lab.jp/macbook' },
       { '@type': 'ListItem', position: 3, name: 'MacBook AirとProの違い' },
     ],
   }

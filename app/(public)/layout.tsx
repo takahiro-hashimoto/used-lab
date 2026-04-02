@@ -7,8 +7,8 @@ const organizationJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
   name: 'ユーズドラボ',
-  url: 'https://used-lab.com',
-  logo: 'https://used-lab.com/images/logo.png',
+  url: 'https://used-lab.jp',
+  logo: 'https://used-lab.jp/images/logo.png',
   description: '中古Apple製品の価格比較・スペック情報サイト',
   founder: {
     '@type': 'Person',
@@ -24,7 +24,7 @@ const organizationJsonLd = {
   contactPoint: {
     '@type': 'ContactPoint',
     contactType: 'customer support',
-    url: 'https://used-lab.com/contact/',
+    url: 'https://used-lab.jp/contact/',
   },
 }
 
@@ -32,7 +32,7 @@ const searchActionJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
   name: 'ユーズドラボ',
-  url: 'https://used-lab.com',
+  url: 'https://used-lab.jp',
 }
 
 export default function PublicLayout({

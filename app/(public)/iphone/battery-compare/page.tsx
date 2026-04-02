@@ -86,8 +86,8 @@ export default async function IPhoneBatteryComparePage() {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.com/' },
-      { '@type': 'ListItem', position: 2, name: '中古iPhone完全購入ガイド', item: 'https://used-lab.com/iphone' },
+      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
+      { '@type': 'ListItem', position: 2, name: '中古iPhone完全購入ガイド', item: 'https://used-lab.jp/iphone' },
       { '@type': 'ListItem', position: 3, name: '歴代iPhoneバッテリー容量比較' },
     ],
   }
@@ -98,7 +98,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/battery-
     headline: '歴代iPhoneのバッテリー容量比較ランキング！電池持ちがいい機種はどれ？',
     description: '歴代iPhoneのバッテリー容量を比較しランキング形式で紹介。電池持ちのいいiPhoneがひと目でわかります。',
     dateStr: dateStr,
-    url: 'https://used-lab.com/iphone/battery-compare/',
+    url: 'https://used-lab.jp/iphone/battery-compare/',
   })
 
   return (
@@ -284,7 +284,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/battery-
         />
 
         <IPhoneRelatedLinks excludeHref={["/iphone/battery-compare/", "/iphone/recommend/"]} />
-        <ShareBox url="https://used-lab.com/iphone/battery-compare/" text="歴代iPhoneのバッテリー容量比較ランキング！電池持ちがいい機種はどれ？" />
+        <ShareBox url="https://used-lab.jp/iphone/battery-compare/" text="歴代iPhoneのバッテリー容量比較ランキング！電池持ちがいい機種はどれ？" />
         </div>
       </article>
     </main>

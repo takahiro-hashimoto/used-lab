@@ -144,7 +144,7 @@ export const PRODUCT_CATEGORIES: CategoryDef[] = [
       { path: '/macbook/ipad-macbook-compare/', label: 'MacBookとiPadどっちを買うのがおすすめ？両者の違いと使い勝手を比較' },
       { path: '/macbook/windows-mac-compare/', label: 'MacとWindowsどっちがいい？両者の違いとどんな人におすすめかをやさしく解説' },
       { path: '/macbook/macbook-buy/', label: 'MacBookを安く買うには？おすすめの購入先7つを比較' },
-      { path: '/macbook/macbook-price-info/', label: 'MacBookの中古相場一覧｜歴代モデルの価格推移を独自集計' },
+      { path: '/macbook/price-info/', label: 'MacBookの中古相場一覧｜歴代モデルの価格推移を独自集計' },
       { path: '/macbook/storage-guide/', label: '中古MacBookのストレージ容量はどれがいい？用途別おすすめ容量まとめ' },
       { path: '/macbook/air-pro-compare/', label: 'MacBook AirとProどっちがいい？違いと選び方をやさしく解説' },
       { path: '/macbook/benchmark/', label: '歴代MacBookのベンチマーク比較ランキング｜Geekbench 6スコアで性能が一目でわかる' },
@@ -190,7 +190,7 @@ export const UTILITY_PAGES: PageDef[] = [
   { path: '/search/', label: '記事を検索', priority: 0.3, changeFrequency: 'monthly' },
   { path: '/sitemap-page/', label: 'サイトマップ', priority: 0.3, changeFrequency: 'monthly' },
   { path: '/contact/', label: 'お問い合わせ', priority: 0.3, changeFrequency: 'yearly' },
-  { path: '/about/', label: '運営者情報', priority: 0.3, changeFrequency: 'yearly' },
+  { path: '/profile/', label: '運営者情報', priority: 0.3, changeFrequency: 'yearly' },
   { path: '/guidelines/', label: 'ガイドライン', priority: 0.3, changeFrequency: 'yearly' },
   { path: '/privacy-policy/', label: 'プライバシーポリシー', priority: 0.3, changeFrequency: 'yearly' },
 ]

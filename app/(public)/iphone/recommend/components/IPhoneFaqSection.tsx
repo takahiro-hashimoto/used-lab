@@ -8,12 +8,12 @@ export default function IPhoneFaqSection() {
         <>
           <p>
             {RECOMMEND_DATE_LABEL}現在、「<strong>iPhone SE 第3世代</strong>」「<strong>iPhone14 Pro</strong>」「
-            <strong>iPhone13 mini</strong>」「<strong>iPhone15</strong>」「<strong>iPhone14 Plus</strong>
+            <strong>iPhone 16e</strong>」「<strong>iPhone15</strong>」「<strong>iPhone14 Plus</strong>
             」の{RECOMMEND_COUNT_LABEL}がおすすめです。
           </p>
           <p>
             予算重視なら「iPhone SE 第3世代」（2万円台から購入可能）、性能重視なら「iPhone14 Pro」
-            （トリプルカメラ・ProMotion搭載）、小型モデルなら「iPhone13 mini」（片手操作可能な5.4インチ）、
+            （トリプルカメラ・ProMotion搭載）、コンパクト重視なら「iPhone 16e」（A18チップ搭載・約170g）、
             USB-C対応なら「iPhone15」、大画面なら「iPhone14 Plus」（6.7インチ）が最適です。
           </p>
           <p>

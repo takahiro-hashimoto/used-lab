@@ -7,7 +7,7 @@ import { supabase } from './supabase'
 import { PRODUCT_CATEGORIES } from './routes'
 import { PAGE_DESCRIPTIONS, PAGE_DESCRIPTIONS_FULL } from './llms-descriptions'
 
-const BASE_URL = 'https://used-lab.com'
+const BASE_URL = 'https://used-lab.jp'
 
 // ---------- カテゴリ → DB テーブル名のマッピング ----------
 const MODEL_TABLE_MAP: Record<string, string> = {
@@ -89,7 +89,7 @@ export async function buildLlmsTxt(): Promise<string> {
   lines.push('- サイト名: ユーズドラボ')
   lines.push(`- URL: ${BASE_URL}`)
   lines.push('- 言語: 日本語')
-  lines.push(`- 運営者情報: [運営者について](${BASE_URL}/about/)`)
+  lines.push(`- 運営者情報: [運営者について](${BASE_URL}/profile/)`)
   lines.push('')
 
   // カテゴリごとのページ一覧
@@ -152,7 +152,7 @@ export async function buildLlmsFullTxt(): Promise<string> {
   lines.push(`- URL: ${BASE_URL}`)
   lines.push('- 言語: 日本語')
   lines.push('- 対象読者: 中古Apple製品の購入を検討している日本語ユーザー')
-  lines.push(`- 運営者情報: [運営者について](${BASE_URL}/about/)`)
+  lines.push(`- 運営者情報: [運営者について](${BASE_URL}/profile/)`)
   lines.push(`- サイトマップ: [XML](${BASE_URL}/sitemap.xml) / [HTML](${BASE_URL}/sitemap-page/)`)
   lines.push('')
 

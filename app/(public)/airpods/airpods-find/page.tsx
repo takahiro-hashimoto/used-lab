@@ -13,7 +13,7 @@ import HeroMeta from '@/app/components/HeroMeta'
 const PAGE_TITLE = 'AirPodsのケースやイヤホン片方を無くした時の探し方、代替品の購入先まとめ'
 const PAGE_DESCRIPTION =
   'AirPodsのケースやイヤホン片方を紛失した際の探し方を「探す」アプリ・iCloudの手順で解説。見つからない場合の代替品の購入先（Appleストア・メルカリ・eイヤホン）も比較して紹介します。'
-const PAGE_URL = 'https://used-lab.com/airpods/airpods-find/'
+const PAGE_URL = 'https://used-lab.jp/airpods/airpods-find/'
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,
@@ -70,8 +70,8 @@ export default function AirpodsFindPage() {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.com/' },
-      { '@type': 'ListItem', position: 2, name: '中古AirPods完全購入ガイド', item: 'https://used-lab.com/airpods' },
+      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
+      { '@type': 'ListItem', position: 2, name: '中古AirPods完全購入ガイド', item: 'https://used-lab.jp/airpods' },
       { '@type': 'ListItem', position: 3, name: 'AirPodsの紛失対処法' },
     ],
   }

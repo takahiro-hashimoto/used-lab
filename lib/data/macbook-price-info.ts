@@ -1,6 +1,6 @@
 /**
  * MacBook 中古相場一覧ページ用 設定データ
- * 配置場所: /macbook/macbook-price-info/
+ * 配置場所: /macbook/price-info/
  */
 
 const now = new Date()

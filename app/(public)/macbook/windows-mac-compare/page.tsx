@@ -14,7 +14,7 @@ import HeroMeta from '@/app/components/HeroMeta'
 const PAGE_TITLE = 'MacとWindowsどっちがいい？両者の違いとどんな人におすすめかをやさしく解説'
 const PAGE_DESCRIPTION =
   'MacとWindowsの違いをわかりやすく比較。操作性・対応ソフト・コスパ・用途別のおすすめポイントを初心者向けにやさしく解説します。どっちを選ぶべきか迷っている方に最適なガイドです。'
-const PAGE_URL = 'https://used-lab.com/macbook/windows-mac-compare/'
+const PAGE_URL = 'https://used-lab.jp/macbook/windows-mac-compare/'
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,
@@ -41,8 +41,8 @@ export default function WindowsMacComparePage() {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.com/' },
-      { '@type': 'ListItem', position: 2, name: '中古MacBook完全購入ガイド', item: 'https://used-lab.com/macbook' },
+      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
+      { '@type': 'ListItem', position: 2, name: '中古MacBook完全購入ガイド', item: 'https://used-lab.jp/macbook' },
       { '@type': 'ListItem', position: 3, name: 'MacとWindowsの違い' },
     ],
   }

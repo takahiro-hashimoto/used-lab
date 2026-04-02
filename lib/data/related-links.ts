@@ -72,7 +72,7 @@ export const AIRPODS_LINKS: RelatedLinkMeta[] = [
 /** MacBook サブページ一覧 */
 export const MACBOOK_LINKS: RelatedLinkMeta[] = [
   { href: '/macbook/recommend/', title: '中古MacBookおすすめ3選【目的別】', desc: '用途に合った狙い目モデルを厳選紹介' },
-  { href: '/macbook/macbook-price-info/', title: '中古MacBook相場・価格推移【2026年】', desc: '主要モデルの相場と値動きをチェック' },
+  { href: '/macbook/price-info/', title: '中古MacBook相場・価格推移【2026年】', desc: '主要モデルの相場と値動きをチェック' },
   { href: '/macbook/macbook-shop/', title: '中古MacBookの購入先おすすめ比較', desc: '信頼できるショップを比較して紹介' },
   { href: '/macbook/macbook-spec-table/', title: '歴代MacBookスペック比較表【全モデル】', desc: '歴代モデルの全スペックを一覧で比較' },
   { href: '/macbook/benchmark/', title: 'MacBookベンチマーク比較ランキング', desc: '歴代MacBookのチップ性能をスコアで比較' },

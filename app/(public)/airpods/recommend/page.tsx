@@ -36,7 +36,7 @@ export const revalidate = 3600
 const PAGE_TITLE = `中古AirPodsおすすめ${RECOMMEND_COUNT}機種を解説。狙い目の型落ちモデルはどれ？【${RECOMMEND_DATE_LABEL}版】`
 const PAGE_DESCRIPTION =
   `${RECOMMEND_DATE_LABEL}現在、中古AirPodsのおすすめ${RECOMMEND_COUNT}機種を目的別に解説。ファームウェアサポート期間・機能・価格のバランスが良いモデルだけを厳選しました。`
-const PAGE_URL = 'https://used-lab.com/airpods/recommend/'
+const PAGE_URL = 'https://used-lab.jp/airpods/recommend/'
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,
@@ -79,8 +79,8 @@ export default async function AirPodsRecommendPage() {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.com/' },
-      { '@type': 'ListItem', position: 2, name: '中古AirPods完全ガイド', item: 'https://used-lab.com/airpods' },
+      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
+      { '@type': 'ListItem', position: 2, name: '中古AirPods完全ガイド', item: 'https://used-lab.jp/airpods' },
       { '@type': 'ListItem', position: 3, name: `中古AirPodsおすすめ${RECOMMEND_COUNT}選` },
     ],
   }

@@ -61,8 +61,8 @@ export default async function WatchSpecTablePage() {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.com/' },
-      { '@type': 'ListItem', position: 2, name: '中古Apple Watch完全購入ガイド', item: 'https://used-lab.com/watch' },
+      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
+      { '@type': 'ListItem', position: 2, name: '中古Apple Watch完全購入ガイド', item: 'https://used-lab.jp/watch' },
       { '@type': 'ListItem', position: 3, name: '歴代Apple Watchスペック比較表' },
     ],
   }
@@ -73,7 +73,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/watch/watch-spe
     headline: '【2025年】歴代Apple Watchのスペック＆性能比較表',
     description: '歴代Apple Watchのスペック比較表一覧。Series・SE・Ultraの性能差を一目で確認できます。',
     dateStr: dateStr,
-    url: 'https://used-lab.com/watch/watch-spec-table/',
+    url: 'https://used-lab.jp/watch/watch-spec-table/',
   })
 
   // シリアライズ可能な形に変換
@@ -237,7 +237,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/watch/watch-spe
           secondaryButtonHref="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Fwearable%2Fapple%3Fnot%3Dpencil"
         />
         <WatchRelatedLinks excludeHref={["/watch/watch-spec-table/", "/watch/recommend/"]} />
-        <ShareBox url="https://used-lab.com/watch/watch-spec-table/" text="歴代Apple Watchスペック比較表！各世代の性能の違いがすぐわかる" />
+        <ShareBox url="https://used-lab.jp/watch/watch-spec-table/" text="歴代Apple Watchスペック比較表！各世代の性能の違いがすぐわかる" />
         </div>
       </article>
     </main>

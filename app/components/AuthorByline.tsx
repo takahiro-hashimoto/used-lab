@@ -22,7 +22,7 @@ export default function AuthorByline() {
           <p className="author-byline__desc">
             毎年iPhone、Apple WatchなどのApple製品を購入しているガジェットブロガー。製品の完成度が高まり、最新機種でなくても十分やりたいことが実現できると実感したため当サイトを開設。型落ちの中古品を賢く選ぶ方法を発信中。
           </p>
-          <Link href="/about/" className="author-byline__link">
+          <Link href="/profile/" className="author-byline__link">
             <i className="fa-solid fa-circle-chevron-right" aria-hidden="true"></i>
             運営者情報・メディア掲載
           </Link>

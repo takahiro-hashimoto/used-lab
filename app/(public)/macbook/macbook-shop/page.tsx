@@ -28,7 +28,7 @@ export const revalidate = 3600
 
 const PAGE_TITLE = `中古MacBookはどこで買う？ECサイト・ショップのおすすめを紹介【${SHOP_PAGE_DATE_LABEL}】`
 const PAGE_DESCRIPTION = `中古MacBookを買うならどこがおすすめ？信頼できるECサイト・ショップを保証・価格・品質の観点から徹底比較。最適な購入先を紹介します【${SHOP_PAGE_DATE_LABEL}】`
-const PAGE_URL = 'https://used-lab.com/macbook/macbook-shop/'
+const PAGE_URL = 'https://used-lab.jp/macbook/macbook-shop/'
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,
@@ -57,8 +57,8 @@ export default async function MacBookShopPage() {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.com/' },
-      { '@type': 'ListItem', position: 2, name: '中古MacBook完全購入ガイド', item: 'https://used-lab.com/macbook/' },
+      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
+      { '@type': 'ListItem', position: 2, name: '中古MacBook完全購入ガイド', item: 'https://used-lab.jp/macbook/' },
       { '@type': 'ListItem', position: 3, name: '中古MacBookはどこで買う？' },
     ],
   }

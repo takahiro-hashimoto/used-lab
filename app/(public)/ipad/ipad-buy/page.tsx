@@ -13,7 +13,7 @@ import HeroMeta from '@/app/components/HeroMeta'
 const PAGE_TITLE = 'iPadを安く買うには？おすすめの購入先7つを比較'
 const PAGE_DESCRIPTION =
   'iPadを安く買う方法を徹底解説。Apple認定整備済製品・中古ショップ・ECモール・フリマアプリなど7つの購入先を価格・保証・信頼性で比較し、最安で手に入れるコツを紹介します。'
-const PAGE_URL = 'https://used-lab.com/ipad/ipad-buy/'
+const PAGE_URL = 'https://used-lab.jp/ipad/ipad-buy/'
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,
@@ -40,8 +40,8 @@ export default function IPadBuyPage() {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.com/' },
-      { '@type': 'ListItem', position: 2, name: '中古iPad完全購入ガイド', item: 'https://used-lab.com/ipad/' },
+      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
+      { '@type': 'ListItem', position: 2, name: '中古iPad完全購入ガイド', item: 'https://used-lab.jp/ipad/' },
       { '@type': 'ListItem', position: 3, name: 'iPadを安く買うには？' },
     ],
   }

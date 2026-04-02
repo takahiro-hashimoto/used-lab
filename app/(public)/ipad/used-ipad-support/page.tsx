@@ -18,7 +18,7 @@ export const revalidate = 3600
 const PAGE_TITLE = 'iPadはいつまで使える？機種別のサポート期間目安まとめ。買い替えるべき3つのタイミングも解説。'
 const PAGE_DESCRIPTION =
   'iPadの寿命とサポート期間を機種別に一覧で紹介。iPadOSアップデート終了時期の目安や、買い替えるべき3つのタイミングもわかりやすく解説します。'
-const PAGE_URL = 'https://used-lab.com/ipad/used-ipad-support/'
+const PAGE_URL = 'https://used-lab.jp/ipad/used-ipad-support/'
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,
@@ -49,8 +49,8 @@ export default async function UsedIpadSupportPage() {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.com/' },
-      { '@type': 'ListItem', position: 2, name: '中古iPad完全購入ガイド', item: 'https://used-lab.com/ipad' },
+      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
+      { '@type': 'ListItem', position: 2, name: '中古iPad完全購入ガイド', item: 'https://used-lab.jp/ipad' },
       { '@type': 'ListItem', position: 3, name: 'iPadはいつまで使える？' },
     ],
   }

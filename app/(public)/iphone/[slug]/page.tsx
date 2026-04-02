@@ -28,6 +28,7 @@ import FaqSection from './components/FaqSection'
 import ReviewSection from '@/app/components/ReviewSection'
 import ShareBox from '@/app/components/ShareBox'
 import AdminEditLink from '@/app/components/AdminEditLink'
+import { getCompareLinksForModel } from '@/app/(public)/iphone/_compare/config'
 
 export const revalidate = 3600
 
@@ -133,7 +134,7 @@ export default async function IPhoneDetailPage({ params }: PageProps) {
         )}
 
         <AdvanceFeatures model={model} />
-        <CompareSection model={model} allModels={allModels} shopLinks={shopLinks} specLinks={[{ href: '/iphone/iphone-spec-table/', label: '歴代iPhoneスペック比較表' }]}>
+        <CompareSection model={model} allModels={allModels} shopLinks={shopLinks} compareLinks={getCompareLinksForModel(model.slug)} specLinks={[{ href: '/iphone/iphone-spec-table/', label: '歴代iPhoneスペック比較表' }]}>
           {(props) => <CompareSelector {...props} />}
         </CompareSection>
         <BenchmarkGeekbench model={model} allModels={allModels} />
@@ -141,7 +142,7 @@ export default async function IPhoneDetailPage({ params }: PageProps) {
         <ReviewSection modelName={model.model} reviews={reviews} />
         <FaqSection model={model} latestPrice={latestPrice} shopLinks={modelShopLinks} />
         <RelatedArticles model={model} />
-        <ShareBox url={`https://used-lab.com/iphone/${model.slug}/`} text={`中古${model.model}は今買うべき？製品寿命、基本スペック、ベンチマークスコア、中古相場から解説`} />
+        <ShareBox url={`https://used-lab.jp/iphone/${model.slug}/`} text={`中古${model.model}は今買うべき？製品寿命、基本スペック、ベンチマークスコア、中古相場から解説`} />
         </div>
       </article>
     </main>

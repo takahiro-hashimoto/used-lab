@@ -101,7 +101,7 @@ export const revalidate = 86400
 // メタデータ
 // ============================================================
 
-const PAGE_URL = 'https://used-lab.com/airpods/price/'
+const PAGE_URL = 'https://used-lab.jp/airpods/price/'
 
 export async function generateMetadata(): Promise<Metadata> {
   const allModels = await getAllAirPodsModels()
@@ -254,8 +254,8 @@ export default async function AirPodsPriceInfoPage() {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.com/' },
-      { '@type': 'ListItem', position: 2, name: '中古AirPods完全ガイド', item: 'https://used-lab.com/airpods/' },
+      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
+      { '@type': 'ListItem', position: 2, name: '中古AirPods完全ガイド', item: 'https://used-lab.jp/airpods/' },
       { '@type': 'ListItem', position: 3, name: 'AirPodsの中古相場一覧' },
     ],
   }
@@ -278,7 +278,7 @@ export default async function AirPodsPriceInfoPage() {
     author: {
       '@type': 'Person',
       name: 'タカヒロ',
-      url: 'https://used-lab.com/about/',
+      url: 'https://used-lab.jp/profile/',
       sameAs: [
         'https://twitter.com/takahiro_mono',
         'https://www.instagram.com/takahiro_mono',

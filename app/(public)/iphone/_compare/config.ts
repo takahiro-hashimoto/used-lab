@@ -111,3 +111,13 @@ export const COMPARE_PAGES: ComparePageConfig[] = [
 export function getCompareConfig(slug: string): ComparePageConfig | undefined {
   return COMPARE_PAGES.find((p) => p.slug === slug)
 }
+
+/** モデルスラッグに関連する比較ページを取得 */
+export function getCompareLinksForModel(modelSlug: string): { href: string; label: string }[] {
+  return COMPARE_PAGES
+    .filter((p) => p.leftSlug === modelSlug || p.rightSlug === modelSlug)
+    .map((p) => ({
+      href: `/iphone/${p.slug}/`,
+      label: p.title.replace(/中古|｜.*$/g, ''),
+    }))
+}

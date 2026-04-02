@@ -53,8 +53,8 @@ export default function ModelHeroSection({ model, config, dateStr, dateDisplay }
     description,
     brand: { '@type': 'Brand', name: 'Apple' },
     category: categoryJsonLd,
-    ...(model.image && { image: `https://used-lab.com/images/${imageFolder}/${model.image}` }),
-    url: `https://used-lab.com${categoryPath}/${model.slug}/`,
+    ...(model.image && { image: `https://used-lab.jp/images/${imageFolder}/${model.image}` }),
+    url: `https://used-lab.jp${categoryPath}/${model.slug}/`,
   }
 
   const breadcrumbJsonLd = {
@@ -65,13 +65,13 @@ export default function ModelHeroSection({ model, config, dateStr, dateDisplay }
         '@type': 'ListItem',
         position: 1,
         name: '中古Apple製品を安く買う',
-        item: 'https://used-lab.com/',
+        item: 'https://used-lab.jp/',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: categoryLabel,
-        item: `https://used-lab.com${categoryPath}`,
+        item: `https://used-lab.jp${categoryPath}`,
       },
       {
         '@type': 'ListItem',

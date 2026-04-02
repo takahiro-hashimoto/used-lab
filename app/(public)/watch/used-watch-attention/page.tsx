@@ -18,7 +18,7 @@ import HeroMeta from '@/app/components/HeroMeta'
 const PAGE_TITLE = '中古Apple Watchはやめた方がいい？購入前に確認すべき注意点まとめ'
 const PAGE_DESCRIPTION =
   '中古Apple Watchはやめた方がいい？watchOSサポート切れ・バッテリー劣化・ペアリング解除漏れなど、購入前に確認すべき注意点を徹底解説。失敗しない中古Apple Watch選びのポイントを2026年最新情報でまとめました。'
-const PAGE_URL = 'https://used-lab.com/watch/used-watch-attention/'
+const PAGE_URL = 'https://used-lab.jp/watch/used-watch-attention/'
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,
@@ -45,8 +45,8 @@ export default function UsedWatchAttentionPage() {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.com/' },
-      { '@type': 'ListItem', position: 2, name: '中古Apple Watch完全購入ガイド', item: 'https://used-lab.com/watch' },
+      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
+      { '@type': 'ListItem', position: 2, name: '中古Apple Watch完全購入ガイド', item: 'https://used-lab.jp/watch' },
       { '@type': 'ListItem', position: 3, name: '中古Apple Watchの注意点' },
     ],
   }

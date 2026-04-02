@@ -152,8 +152,8 @@ export default async function StorageGuidePage() {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.com/' },
-      { '@type': 'ListItem', position: 2, name: '中古MacBook完全購入ガイド', item: 'https://used-lab.com/macbook' },
+      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
+      { '@type': 'ListItem', position: 2, name: '中古MacBook完全購入ガイド', item: 'https://used-lab.jp/macbook' },
       { '@type': 'ListItem', position: 3, name: 'ストレージ容量ガイド' },
     ],
   }
@@ -164,7 +164,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/macbook/storage
     headline: '中古MacBookのストレージ容量はどれがいい？用途別おすすめ容量まとめ',
     description: '中古MacBookのストレージ容量の選び方を解説。',
     dateStr: dateStr,
-    url: 'https://used-lab.com/macbook/storage-guide/',
+    url: 'https://used-lab.jp/macbook/storage-guide/',
   })
 
   const faqJsonLd = {
@@ -423,7 +423,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/macbook/storage
 
         <PopularMacBook />
         <MacBookRelatedLinks excludeHref={["/macbook/storage-guide/", "/macbook/recommend/"]} />
-        <ShareBox url="https://used-lab.com/macbook/storage-guide/" text="中古MacBookのストレージ容量はどれがいい？用途別おすすめ容量まとめ" />
+        <ShareBox url="https://used-lab.jp/macbook/storage-guide/" text="中古MacBookのストレージ容量はどれがいい？用途別おすすめ容量まとめ" />
         </div>
       </article>
     </main>

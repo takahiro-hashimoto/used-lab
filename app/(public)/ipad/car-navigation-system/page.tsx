@@ -17,7 +17,7 @@ import HeroMeta from '@/app/components/HeroMeta'
 const PAGE_TITLE = 'iPadをカーナビ化するメリットが凄い！地図が古くなる問題をすっきり解消'
 const PAGE_DESCRIPTION =
   'iPadをカーナビ代わりに使うメリット5つと注意点2つを実体験をもとに解説。常に最新の地図・渋滞情報・大画面・直感操作など、車載カーナビにはない利点をわかりやすく紹介します。'
-const PAGE_URL = 'https://used-lab.com/ipad/car-navigation-system/'
+const PAGE_URL = 'https://used-lab.jp/ipad/car-navigation-system/'
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,
@@ -44,8 +44,8 @@ export default function CarNavigationSystemPage() {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.com/' },
-      { '@type': 'ListItem', position: 2, name: '中古iPad完全購入ガイド', item: 'https://used-lab.com/ipad' },
+      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
+      { '@type': 'ListItem', position: 2, name: '中古iPad完全購入ガイド', item: 'https://used-lab.jp/ipad' },
       { '@type': 'ListItem', position: 3, name: 'iPadのカーナビ化' },
     ],
   }

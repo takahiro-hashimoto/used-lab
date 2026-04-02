@@ -5,7 +5,7 @@
 ## サイト概要
 
 - サイト名: ユーズドラボ
-- URL: https://used-lab.com
+- URL: https://used-lab.jp
 - 運営言語: 日本語
 - 専門分野: 中古Apple製品の購入ガイド・比較情報
 - 対象読者: 中古のiPhone・iPad・MacBook・Apple Watch・AirPodsの購入を検討している方
@@ -13,49 +13,49 @@
 ## 提供コンテンツ
 
 ### iPhone
-- [中古iPhoneの選び方・おすすめ](https://used-lab.com/iphone/recommend/)
-- [iPhoneスペック比較表](https://used-lab.com/iphone/iphone-spec-table/)
-- [中古iPhone購入時の注意点](https://used-lab.com/iphone/used-iphone-attention/)
-- [iPhoneのサポート期間ガイド](https://used-lab.com/iphone/used-iphone-support/)
-- [中古iPhoneおすすめショップ](https://used-lab.com/iphone/iphone-shop/)
-- [中古iPhone価格相場](https://used-lab.com/iphone/price-info/)
-- [iPhoneバッテリー比較](https://used-lab.com/iphone/battery-compare/)
-- [iPhoneカメラガイド](https://used-lab.com/iphone/iphone-camera/)
-- [格安SIM（MVNO）対応情報](https://used-lab.com/iphone/mvno/)
+- [中古iPhoneの選び方・おすすめ](https://used-lab.jp/iphone/recommend/)
+- [iPhoneスペック比較表](https://used-lab.jp/iphone/iphone-spec-table/)
+- [中古iPhone購入時の注意点](https://used-lab.jp/iphone/used-iphone-attention/)
+- [iPhoneのサポート期間ガイド](https://used-lab.jp/iphone/used-iphone-support/)
+- [中古iPhoneおすすめショップ](https://used-lab.jp/iphone/iphone-shop/)
+- [中古iPhone価格相場](https://used-lab.jp/iphone/price-info/)
+- [iPhoneバッテリー比較](https://used-lab.jp/iphone/battery-compare/)
+- [iPhoneカメラガイド](https://used-lab.jp/iphone/iphone-camera/)
+- [格安SIM（MVNO）対応情報](https://used-lab.jp/iphone/mvno/)
 
 ### iPad
-- [中古iPadの選び方・おすすめ](https://used-lab.com/ipad/recommend/)
-- [iPadスペック比較表](https://used-lab.com/ipad/ipad-spec-table/)
-- [中古iPad購入時の注意点](https://used-lab.com/ipad/used-ipad-attention/)
-- [iPadのサポート期間ガイド](https://used-lab.com/ipad/used-ipad-support/)
-- [中古iPadおすすめショップ](https://used-lab.com/ipad/ipad-shop/)
-- [中古iPad価格相場](https://used-lab.com/ipad/ipad-price-info/)
-- [Apple Pencil対応比較](https://used-lab.com/ipad/apple-pencil-compare/)
-- [iPad Wi-FiモデルとCellularモデルの違い](https://used-lab.com/ipad/wifi-cellular/)
-- [iPadの使い道ガイド](https://used-lab.com/ipad/howto-use-ipad/)
+- [中古iPadの選び方・おすすめ](https://used-lab.jp/ipad/recommend/)
+- [iPadスペック比較表](https://used-lab.jp/ipad/ipad-spec-table/)
+- [中古iPad購入時の注意点](https://used-lab.jp/ipad/used-ipad-attention/)
+- [iPadのサポート期間ガイド](https://used-lab.jp/ipad/used-ipad-support/)
+- [中古iPadおすすめショップ](https://used-lab.jp/ipad/ipad-shop/)
+- [中古iPad価格相場](https://used-lab.jp/ipad/ipad-price-info/)
+- [Apple Pencil対応比較](https://used-lab.jp/ipad/apple-pencil-compare/)
+- [iPad Wi-FiモデルとCellularモデルの違い](https://used-lab.jp/ipad/wifi-cellular/)
+- [iPadの使い道ガイド](https://used-lab.jp/ipad/howto-use-ipad/)
 
 ### MacBook
-- [中古MacBookの選び方・おすすめ](https://used-lab.com/macbook/recommend/)
-- [MacBookスペック比較表](https://used-lab.com/macbook/macbook-spec-table/)
-- [中古MacBook購入時の注意点](https://used-lab.com/macbook/used-macbook-attention/)
-- [MacBookのサポート期間ガイド](https://used-lab.com/macbook/used-macbook-support/)
-- [中古MacBookおすすめショップ](https://used-lab.com/macbook/macbook-shop/)
-- [iPad vs MacBook比較](https://used-lab.com/macbook/ipad-macbook-compare/)
-- [Mac vs Windows比較](https://used-lab.com/macbook/windows-mac-compare/)
+- [中古MacBookの選び方・おすすめ](https://used-lab.jp/macbook/recommend/)
+- [MacBookスペック比較表](https://used-lab.jp/macbook/macbook-spec-table/)
+- [中古MacBook購入時の注意点](https://used-lab.jp/macbook/used-macbook-attention/)
+- [MacBookのサポート期間ガイド](https://used-lab.jp/macbook/used-macbook-support/)
+- [中古MacBookおすすめショップ](https://used-lab.jp/macbook/macbook-shop/)
+- [iPad vs MacBook比較](https://used-lab.jp/macbook/ipad-macbook-compare/)
+- [Mac vs Windows比較](https://used-lab.jp/macbook/windows-mac-compare/)
 
 ### Apple Watch
-- [中古Apple Watchの選び方・おすすめ](https://used-lab.com/watch/recommend/)
-- [Apple Watchスペック比較表](https://used-lab.com/watch/watch-spec-table/)
-- [中古Apple Watch購入時の注意点](https://used-lab.com/watch/used-watch-attention/)
-- [Apple Watchのサポート期間ガイド](https://used-lab.com/watch/used-watch-support/)
-- [中古Apple Watchおすすめショップ](https://used-lab.com/watch/watch-shop/)
-- [中古Apple Watch価格相場](https://used-lab.com/watch/watch-price-info/)
-- [GPS vs Cellularモデルの違い](https://used-lab.com/watch/gps-cellular-compare/)
-- [常時表示ディスプレイガイド](https://used-lab.com/watch/apple-watch-always-lit/)
+- [中古Apple Watchの選び方・おすすめ](https://used-lab.jp/watch/recommend/)
+- [Apple Watchスペック比較表](https://used-lab.jp/watch/watch-spec-table/)
+- [中古Apple Watch購入時の注意点](https://used-lab.jp/watch/used-watch-attention/)
+- [Apple Watchのサポート期間ガイド](https://used-lab.jp/watch/used-watch-support/)
+- [中古Apple Watchおすすめショップ](https://used-lab.jp/watch/watch-shop/)
+- [中古Apple Watch価格相場](https://used-lab.jp/watch/watch-price-info/)
+- [GPS vs Cellularモデルの違い](https://used-lab.jp/watch/gps-cellular-compare/)
+- [常時表示ディスプレイガイド](https://used-lab.jp/watch/apple-watch-always-lit/)
 
 ### AirPods
-- [中古AirPodsのおすすめ](https://used-lab.com/airpods/recommend/)
-- [中古AirPods価格相場](https://used-lab.com/airpods/price/)
+- [中古AirPodsのおすすめ](https://used-lab.jp/airpods/recommend/)
+- [中古AirPods価格相場](https://used-lab.jp/airpods/price/)
 
 ## このサイトの専門性
 
@@ -67,5 +67,5 @@
 
 ## お問い合わせ
 
-- [お問い合わせフォーム](https://used-lab.com/contact/)
-- [サイトについて](https://used-lab.com/about/)
+- [お問い合わせフォーム](https://used-lab.jp/contact/)
+- [サイトについて](https://used-lab.jp/profile/)

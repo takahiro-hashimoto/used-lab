@@ -18,7 +18,7 @@ export const revalidate = 3600
 const PAGE_TITLE = 'MacBookはいつまで使える？各機種ごとの寿命や買い替えのタイミングを解説'
 const PAGE_DESCRIPTION =
   'MacBookの寿命とサポート期間を機種別に一覧で紹介。macOSアップデート終了時期の目安や、買い替えるべき3つのタイミングもわかりやすく解説します。'
-const PAGE_URL = 'https://used-lab.com/macbook/used-macbook-support/'
+const PAGE_URL = 'https://used-lab.jp/macbook/used-macbook-support/'
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,
@@ -49,8 +49,8 @@ export default async function UsedMacbookSupportPage() {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.com/' },
-      { '@type': 'ListItem', position: 2, name: '中古MacBook完全購入ガイド', item: 'https://used-lab.com/macbook' },
+      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
+      { '@type': 'ListItem', position: 2, name: '中古MacBook完全購入ガイド', item: 'https://used-lab.jp/macbook' },
       { '@type': 'ListItem', position: 3, name: 'MacBookはいつまで使える？' },
     ],
   }
