@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Noto_Sans_JP } from "next/font/google";
+import { Inter } from "next/font/google";
 import Script from "next/script";
 import "./critical.css";
 import "./globals.css";
@@ -11,12 +11,6 @@ const inter = Inter({
   weight: ["400", "700"],
   display: "swap",
   variable: "--font-inter",
-});
-
-const notoSansJP = Noto_Sans_JP({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-noto-sans-jp",
 });
 
 export const viewport: Viewport = {
@@ -52,7 +46,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ja" className={`${inter.variable} ${notoSansJP.variable}`}>
+    <html lang="ja" className={inter.variable}>
       <head>
         <link rel="preload" href="/css/non-critical.min.css" as="style" />
         <link rel="preload" href="/fonts/fontawesome/all.min.css" as="style" />
