@@ -4,7 +4,7 @@ const DETAILS = [
   {
     id: 'detail-charging',
     title: '充電方式',
-    image: '/images/content/apple-pencil-magnetic-charging-method.jpg',
+    image: '/images/content/thumbnail/apple-pencil-charge.jpg',
     items: [
       { label: 'Pro・第2世代', text: 'iPadのMagnet充電端子にくっつけるだけで充電可能' },
       { label: '第1世代', text: '充電にはLightningケーブルが必須' },
@@ -23,7 +23,7 @@ const DETAILS = [
   {
     id: 'detail-tilt',
     title: '傾き検知',
-    image: '/images/content/apple-pencil-tilt-detection-sensor.jpg',
+    image: '/images/content/thumbnail/apple-pencil-5.jpg',
     items: [
       { label: '', text: 'ペンの傾きを検出し、立てれば細い線、寝かせれば太く薄い線が描ける機能です。実際の鉛筆と同じ感覚で線の太さや濃淡を表現でき、イラストやスケッチに欠かせません。' },
       { label: '', text: 'USB-Cを含む全モデルに搭載。どのApple Pencilでも利用できます。' },
@@ -32,7 +32,7 @@ const DETAILS = [
   {
     id: 'detail-pressure',
     title: '筆圧感知',
-    image: '/images/content/apple-pencil-pressure-sensitivity.jpg',
+    image: '/images/content/thumbnail/apple-pencil-2.jpg',
     items: [
       { label: '', text: 'ペン先にかける力の強弱で、線の太さや濃さがリアルタイムに変化する機能です。軽いタッチで薄く細い線、強く押せば太く濃い線が描けるため、紙に描くような自然な書き心地を実現します。' },
       { label: '', text: 'Pro・第2世代・第1世代に搭載。USB-Cは非対応のため、イラストや手書きを重視する方はUSB-C以外を選びましょう。' },
@@ -41,7 +41,7 @@ const DETAILS = [
   {
     id: 'detail-doubletap',
     title: 'ダブルタップ切り替え',
-    image: '/images/content/apple-pencil-double-tap-switch.jpg',
+    image: '/images/content/thumbnail/apple-pencil-3.jpg',
     items: [
       { label: '', text: 'ペンの平面を指で2回タップするだけで、ペンと消しゴムなどのツールを瞬時に切り替えられる機能です。画面上のツールバーまで手を動かす必要がなく、ペンを持ったまま操作が完結します。' },
       { label: '', text: 'Apple Pencil ProとApple Pencil 第2世代に搭載。' },
@@ -50,7 +50,7 @@ const DETAILS = [
   {
     id: 'detail-hover',
     title: 'ホバー機能',
-    image: '/images/content/apple-pencil-hover-preview.jpg',
+    image: '/images/content/thumbnail/apple-pencil-5.jpg',
     items: [
       { label: '', text: 'ペン先を画面に近づけると、触れる前にカーソルやブラシのプレビューが表示される機能です。描き始める前にブラシの太さや位置を確認できるため、より正確な描画が可能になります。' },
       { label: '', text: 'Apple Pencil ProとApple Pencil 第2世代で利用可能。' },
@@ -59,7 +59,7 @@ const DETAILS = [
   {
     id: 'detail-barrel',
     title: 'バレルロール',
-    image: '/images/content/apple-pencil-barrel-roll-rotation.jpg',
+    image: '/images/content/thumbnail/ipad-image-07.jpg',
     items: [
       { label: '', text: 'ペンを指で回転させると、ブラシの向きが連動して変わる機能です。万年筆やマーカーなど、ペンの角度で表現が変わるブラシで真価を発揮し、アナログに近い直感的な描画体験ができます。' },
       { label: '', text: 'Apple Pencil Proのみに搭載。' },
@@ -77,7 +77,7 @@ const DETAILS = [
   {
     id: 'detail-haptic',
     title: '触覚フィードバック',
-    image: '/images/content/apple-pencil-haptic-feedback.jpg',
+    image: '/images/content/thumbnail/ipad-image-12.jpg',
     items: [
       { label: '', text: 'スクイーズやダブルタップの操作時に、Apple Pencilが「コツッ」と軽く振動する機能です。画面を見なくても操作が受け付けられたことを指先で確認でき、操作ミスを防ぎながらスムーズに作業を進められます。' },
       { label: '', text: 'Apple Pencil Proのみに搭載。' },
