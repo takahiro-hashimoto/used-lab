@@ -94,6 +94,7 @@ export default function IPadBuyPage() {
                   className="hero-media__img"
                   width={360}
                   height={360}
+                  fetchPriority="high"
                 />
               </figure>
             </div>

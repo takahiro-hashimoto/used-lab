@@ -133,6 +133,7 @@ export default async function IPhoneCameraPage() {
                   className="hero-media__img"
                   width={360}
                   height={360}
+                  priority
                 />
               </figure>
             </div>

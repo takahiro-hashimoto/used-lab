@@ -15,7 +15,6 @@ const inter = Inter({
 
 const notoSansJP = Noto_Sans_JP({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
   display: "swap",
   variable: "--font-noto-sans-jp",
 });
@@ -55,7 +54,10 @@ export default function RootLayout({
   return (
     <html lang="ja" className={`${inter.variable} ${notoSansJP.variable}`}>
       <head>
-        <link rel="stylesheet" href="/fonts/fontawesome/all.min.css" />
+        <link rel="preload" href="/fonts/fontawesome/all.min.css" as="style" />
+        <Script id="fa-loader" strategy="afterInteractive" dangerouslySetInnerHTML={{
+          __html: `var l=document.createElement('link');l.rel='stylesheet';l.href='/fonts/fontawesome/all.min.css';document.head.appendChild(l);`,
+        }} />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
         <Script id="gtm-init" strategy="afterInteractive" dangerouslySetInnerHTML={{

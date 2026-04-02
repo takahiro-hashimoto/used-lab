@@ -353,6 +353,7 @@ export default async function MacBookPriceInfoPage() {
                   className="hero-media__img"
                   width={360}
                   height={360}
+                  fetchPriority="high"
                 />
               </figure>
             </div>
