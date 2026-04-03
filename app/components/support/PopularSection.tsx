@@ -12,6 +12,8 @@ type Props = {
   buttonHref: string
   secondaryButtonText?: string
   secondaryButtonHref?: string
+  sectionId?: string
+  headingId?: string
 }
 
 export default function PopularSection({
@@ -26,14 +28,16 @@ export default function PopularSection({
   buttonHref,
   secondaryButtonText,
   secondaryButtonHref,
+  sectionId = 'popular',
+  headingId = 'heading-popular',
 }: Props) {
   // 外部URL（placehold.co等）は <img>、ローカル画像は <Image> を使用
   const isExternal = imageSrc.startsWith('http')
 
   return (
-    <section className="l-section" id="popular" aria-labelledby="heading-popular">
+    <section className="l-section" id={sectionId} aria-labelledby={headingId}>
       <div className="l-container">
-        <h2 className="m-section-heading m-section-heading--lg" id="heading-popular">
+        <h2 className="m-section-heading m-section-heading--lg" id={headingId}>
           {sectionTitle}
         </h2>
         <p className="m-section-desc">{sectionDescription}</p>

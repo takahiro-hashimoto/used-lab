@@ -12,6 +12,18 @@ type Props = {
 
 export type { FaqItem }
 
+/** [text](url) 形式のリンクをReactノードに変換 */
+function parseLinks(text: string): React.ReactNode[] {
+  const parts = text.split(/(\[[^\]]+\]\([^)]+\))/)
+  return parts.map((part, i) => {
+    const match = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/)
+    if (match) {
+      return <a key={i} href={match[2]}>{match[1]}</a>
+    }
+    return part
+  })
+}
+
 export default function FaqSection({ title, description, items, children }: Props) {
   const faqJsonLd = {
     '@context': 'https://schema.org',
@@ -45,7 +57,7 @@ export default function FaqSection({ title, description, items, children }: Prop
               <h3 className="faq-question">{item.question}</h3>
               <div className="faq-answer m-rich-text m-rich-text--muted">
                 {item.answer.split('\n').map((paragraph, i) => (
-                  <p key={i}>{paragraph}</p>
+                  <p key={i}>{parseLinks(paragraph)}</p>
                 ))}
               </div>
             </div>

@@ -31,6 +31,8 @@ import CompareFaq from './CompareFaq'
 import CompareVerdict from './CompareVerdict'
 import CompareRelated from './CompareRelated'
 import ShareBox from '@/app/components/ShareBox'
+import PopularSection from '@/app/components/support/PopularSection'
+import IPhoneRelatedLinks from '@/app/components/iphone/IPhoneRelatedLinks'
 import AuthorByline from '@/app/components/AuthorByline'
 
 type Props = {
@@ -117,7 +119,7 @@ export default async function ComparePageTemplate({ config }: Props) {
           <div className="l-container">
             <div className="toc-wrapper">
 <p className="toc-title"><i className="fa-solid fa-list" aria-hidden="true"></i> タップできる目次</p>
-            <ol className="l-grid l-grid--3col u-list-reset">
+            <ol className="l-grid l-grid--4col u-list-reset">
               <li><a href="#spec" className="toc-item">基本スペック <i className="fa-solid fa-chevron-down"></i></a></li>
               <li><a href="#camera" className="toc-item">カメラ性能 <i className="fa-solid fa-chevron-down"></i></a></li>
               <li><a href="#cpu" className="toc-item">処理性能 <i className="fa-solid fa-chevron-down"></i></a></li>
@@ -223,14 +225,6 @@ export default async function ComparePageTemplate({ config }: Props) {
             latestR={latestR}
           />
 
-          {/* 11. FAQ */}
-          <CompareFaq
-            modelL={modelL}
-            modelR={modelR}
-            latestL={latestL}
-            latestR={latestR}
-          />
-
           {/* まとめサマリー */}
           <CompareSummary
             modelL={modelL}
@@ -242,8 +236,29 @@ export default async function ComparePageTemplate({ config }: Props) {
             iosysUrlR={iosysUrlR}
           />
 
-          {/* 関連記事 */}
-          <CompareRelated />
+          {/* 11. FAQ */}
+          <CompareFaq
+            modelL={modelL}
+            modelR={modelR}
+            latestL={latestL}
+            latestR={latestR}
+          />
+
+          {/* 目的別に人気の中古iPhone */}
+          <PopularSection
+            sectionTitle="目的別に人気の中古iPhone"
+            sectionDescription="目的別におすすめの機種を厳選。今回の記事で購入するべき機種が判断できなかった方はぜひご覧ください。"
+            imageSrc="/images/content/thumbnail/iphone-setting.webp"
+            imageAlt="中古iPhoneおすすめ5選のイメージ画像"
+            subtitle="目的別におすすめ機種を厳選！"
+            cardTitle="中古iPhoneおすすめ5選"
+            cardDescription="カメラ性能を重視する人向け、大画面で動画やSNSを楽しみたい人向けなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。"
+            buttonText="おすすめ5機種を見る"
+            buttonHref="/iphone/recommend"
+            secondaryButtonText="イオシスで中古iPhoneを探す"
+            secondaryButtonHref="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Fsmartphone%2Fiphone"
+          />
+          <IPhoneRelatedLinks excludeHref={["/iphone/battery-compare/", "/iphone/recommend/"]} />
 
           <ShareBox
             url={`https://used-lab.jp/iphone/${config.slug}/`}

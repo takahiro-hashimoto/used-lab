@@ -166,7 +166,7 @@ export default async function IPhoneGuidePage() {
               </p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                結論から知りたい方は「<Link href="/iphone/recommend/">【{GUIDE_DATE_LABEL}版】おすすめの中古iPhoneを5機種厳選</Link>」をご覧ください。
+                結論から知りたい方は「<Link href="/iphone/recommend/">【{GUIDE_DATE_LABEL}版】おすすめ中古iPhoneを5機種</Link>」をご覧ください。
               </p>
             </div>
           </div>
@@ -176,7 +176,7 @@ export default async function IPhoneGuidePage() {
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
             <div className="toc-wrapper">
-<p className="toc-title"><i className="fa-solid fa-list" aria-hidden="true"></i> タップできる目次</p>
+            <p className="toc-title"><i className="fa-solid fa-list" aria-hidden="true"></i> タップできる目次</p>
             <ol className="l-grid l-grid--3col u-list-reset">
               <li><a href="#filter-tool" className="toc-item">診断ツール <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#market-price" className="toc-item">最新相場 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
@@ -184,10 +184,10 @@ export default async function IPhoneGuidePage() {
               <li><a href="#recommended" className="toc-item">目的別 おすすめ機種 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#where-to-buy" className="toc-item">購入先比較 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#spec-compare" className="toc-item">スペック比較 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
+              <li><a href="#heading-sim" className="toc-item">格安SIMセット <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#faq" className="toc-item">よくある質問 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
-              <li><a href="#related" className="toc-item">関連記事 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
             </ol>
-</div>
+            </div>
           <AuthorByline />
           </div>
         </nav>
@@ -205,6 +205,8 @@ export default async function IPhoneGuidePage() {
             cardDescription="ゲームを快適にプレイしたい、ケーブルを統一したいなどの希望や・予算金額などにチェックを打つだけであなたにぴったり合うiPhoneをシミュレーションすることができます。"
             buttonText="機種診断スタート"
             buttonHref="/iphone/filter-search/"
+            sectionId="filter-tool"
+            headingId="filter-tool"
           />
 
           {/* ========== 中古iPhoneの最新相場 ========== */}
@@ -368,8 +370,8 @@ export default async function IPhoneGuidePage() {
 
           {/* ========== 格安SIM セット購入バナー ========== */}
           <PopularSection
-            sectionTitle="中古iPhoneの購入と通信契約が一緒にできる格安SIM業者まとめ"
-            sectionDescription="中古iPhoneと通信回線をまとめて契約できる格安SIM業者を徹底比較。端末選びから回線契約まで一度に済ませたい方におすすめです。"
+            sectionTitle="中古iPhone&格安SIMをまとめて乗り換え"
+            sectionDescription="中古iPhoneと通信回線をまとめて契約できる格安SIM業者を比較。端末選びから回線契約まで一度に済ませたい方におすすめです。"
             imageSrc="/images/content/thumbnail/sim.webp"
             imageAlt="中古iPhoneの購入と通信契約が一緒にできる格安SIM業者まとめ"
             subtitle="回線契約と端末購入を一度に！"
@@ -377,6 +379,8 @@ export default async function IPhoneGuidePage() {
             cardDescription="楽天モバイル・UQモバイル・ワイモバイルなど、中古iPhoneと通信回線をセットで契約できる事業者を比較。あなたに最適な業者が見つかる診断機能付き。"
             buttonText="セット対応業者を見る"
             buttonHref="/iphone/mvno/"
+            sectionId="sim"
+            headingId="heading-sim"
           />
 
           {/* ========== スペック比較ガイド ========== */}
