@@ -1416,9 +1416,15 @@
     left: 0;
     z-index: 2;
     background: var(--color-bg-subtle);
-    white-space: nowrap;
+    white-space: normal;
     font-size: var(--font-size-xxs, 10px);
     width: 1%;
+  }
+
+  .bench-table__sticky .m-table-this-badge {
+    display: block;
+    width: fit-content;
+    margin-bottom: 2px;
   }
 
   .bench-table.m-table .bench-table__sticky {
