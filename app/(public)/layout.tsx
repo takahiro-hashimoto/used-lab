@@ -3,6 +3,8 @@ import Footer from "@/app/components/Footer";
 import SmoothScroll from "@/app/components/SmoothScroll";
 import AffiliateClickTracker from "@/app/components/AffiliateClickTracker";
 import StickyCta from "@/app/components/StickyCta";
+import { StickyCtaProvider } from "@/app/components/StickyCtaContext";
+import { getShops } from "@/lib/queries";
 
 const organizationJsonLd = {
   '@context': 'https://schema.org',
@@ -36,11 +38,20 @@ const searchActionJsonLd = {
   url: 'https://used-lab.jp',
 }
 
-export default function PublicLayout({
+export default async function PublicLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const shops = await getShops()
+  const iosys = shops.find((s) => s.id === 1)
+  const categoryUrls: Record<string, string> = {}
+  if (iosys?.url) categoryUrls.iphone = iosys.url
+  if (iosys?.ipad_url) categoryUrls.ipad = iosys.ipad_url
+  if (iosys?.watch_url) categoryUrls.watch = iosys.watch_url
+  if (iosys?.macbook_url) categoryUrls.macbook = iosys.macbook_url
+  if (iosys?.airpods_url) categoryUrls.airpods = iosys.airpods_url
+
   return (
     <>
       <script
@@ -53,10 +64,12 @@ export default function PublicLayout({
       />
       <SmoothScroll />
       <AffiliateClickTracker />
-      <Header />
-      {children}
-      <Footer />
-      <StickyCta />
+      <StickyCtaProvider categoryUrls={categoryUrls}>
+        <Header />
+        {children}
+        <Footer />
+        <StickyCta />
+      </StickyCtaProvider>
     </>
   );
 }

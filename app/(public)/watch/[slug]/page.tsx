@@ -28,6 +28,7 @@ import FaqSection from './components/FaqSection'
 import WatchRelatedLinks from '@/app/components/watch/WatchRelatedLinks'
 import ShareBox from '@/app/components/ShareBox'
 import AdminEditLink from '@/app/components/AdminEditLink'
+import StickyCtaOverride from '@/app/components/StickyCtaOverride'
 
 export const revalidate = 3600
 
@@ -105,8 +106,11 @@ export default async function WatchDetailPage({ params }: PageProps) {
   const dateStr = today.toISOString().split('T')[0]
   const dateDisplay = today.toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' })
 
+  const iosysModelLink = modelShopLinks.find((l) => l.shop_id === 1)
+
   return (
     <main>
+      {iosysModelLink?.url && <StickyCtaOverride href={iosysModelLink.url} />}
       <AdminEditLink categoryKey="watch" modelId={model.id} />
       <article>
         <HeroSection model={model} latestPrice={latestPrice} dateStr={dateStr} dateDisplay={dateDisplay} />

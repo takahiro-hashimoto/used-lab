@@ -142,31 +142,33 @@ export default function Header() {
         document.body
       )}
 
-      {/* SPメニュー */}
-      <nav
-        className={`mobile-menu${isMenuOpen ? ' is-open' : ''}`}
-        id="mobileMenu"
-        aria-label="モバイルナビゲーション"
-        hidden={!isMenuOpen}
-      >
-        <button
-          className="mobile-menu__close"
-          onClick={() => setIsMenuOpen(false)}
-          aria-label="メニューを閉じる"
+      {/* SPメニュー（portalでbody直下に描画 — header の backdrop-filter が containing block を生成し fixed が壊れるため） */}
+      {isMenuOpen && createPortal(
+        <nav
+          className="mobile-menu is-open"
+          id="mobileMenu"
+          aria-label="モバイルナビゲーション"
         >
-          <i className="fa-solid fa-xmark" aria-hidden="true"></i>
-        </button>
+          <button
+            className="mobile-menu__close"
+            onClick={() => setIsMenuOpen(false)}
+            aria-label="メニューを閉じる"
+          >
+            <i className="fa-solid fa-xmark" aria-hidden="true"></i>
+          </button>
 
-        <ul className="mobile-nav-list">
-          {NAV_ITEMS.map((item) => (
-            <li key={item.href}>
-              <Link href={item.href} onClick={() => setIsMenuOpen(false)}>
-                {item.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </nav>
+          <ul className="mobile-nav-list">
+            {NAV_ITEMS.map((item) => (
+              <li key={item.href}>
+                <Link href={item.href} onClick={() => setIsMenuOpen(false)}>
+                  {item.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>,
+        document.body
+      )}
     </header>
   )
 }
