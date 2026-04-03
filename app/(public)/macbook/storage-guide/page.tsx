@@ -235,7 +235,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/macbook/storage
               <li><a href="#storage-list" className="toc-item">容量・価格一覧表 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#storage-check" className="toc-item">ストレージ確認方法 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#faq" className="toc-item">よくある質問 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
-            </ol>
+              <li><a href="#related" className="toc-item">関連記事 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>            </ol>
 </div>
             <AuthorByline />
           </div>

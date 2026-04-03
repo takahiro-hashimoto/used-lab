@@ -267,6 +267,11 @@ export default async function IPhoneTopPage() {
                   おすすめショップ <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
                 </a>
               </li>
+              <li>
+                <a href="#related" className="toc-item">
+                  関連記事 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                </a>
+              </li>
             </ol>
 </div>
           <AuthorByline />
@@ -329,7 +334,7 @@ export default async function IPhoneTopPage() {
               { label: 'iPhone 14 シリーズ', representativeSlug: '14pro' },
               { label: 'iPhone 15 シリーズ', representativeSlug: '15normal' },
               { label: 'iPhone 16 シリーズ', representativeSlug: '16normal' },
-              { label: 'iPhone 16e', representativeSlug: '16e-se' },
+              { label: 'iPhone 16e', representativeSlug: '16e' },
             ]}
             allModels={allModelsIncludingEnded}
           />

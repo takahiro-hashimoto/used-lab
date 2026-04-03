@@ -260,7 +260,7 @@ export default async function MacBookRecommendPage() {
               </li>
               <li>
                 <a href="#shops" className="toc-item">
-                  おすすめショップ <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
+              <li><a href="#related" className="toc-item">関連記事 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>                  おすすめショップ <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
                 </a>
               </li>
             </ol>

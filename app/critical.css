@@ -1,5 +1,5 @@
 /* ========================================
-   USED LAB - Design System v2.2
+   USED LAB - Design System v2.3
    SMACSS Architecture
    ======================================== */
 
@@ -170,6 +170,26 @@ ul {
 .l-grid {
   gap: var(--space-md);
   display: grid;
+}
+
+.verdict-grid {
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.verdict-grid.l-grid {
+  gap: 0;
+  margin: 0 -1px -1px 0;
+}
+
+.conclusion-card .m-rating {
+  border: 0;
+  border-bottom: 1px dashed var(--color-border-light);
+  border-right: 1px dashed var(--color-border-light);
+  border-radius: 0;
+  margin-right: -1px;
+  margin-bottom: -1px;
 }
 
 .l-grid--2col {
@@ -401,9 +421,7 @@ a.header-admin-link:hover {
   right: 0;
   bottom: 0;
   z-index: 2000;
-  background: #fffffffa;
-  -webkit-backdrop-filter: blur(20px);
-  backdrop-filter: blur(20px);
+  background: #ffffff;
   padding: var(--space-xl);
   transform: translateY(-10px);
   opacity: 0;
@@ -659,14 +677,14 @@ a.header-admin-link:hover {
 }
 
 .hero-meta {
-  display: flex;
   align-items: center;
-  flex-wrap: wrap;
   gap: var(--space-xs) var(--space-sm);
   font-size: var(--font-size-sm);
-  color: #ffffff80;
-  line-height: 1.2;
+  color: #ffff;
+  flex-wrap: wrap;
   margin-top: 16px;
+  line-height: 1.2;
+  display: flex;
 }
 
 .hero-meta i {
@@ -1210,4 +1228,5 @@ a.header-admin-link:hover {
     align-self: flex-start;
   }
 }
+
 

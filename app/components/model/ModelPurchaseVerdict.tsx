@@ -60,7 +60,7 @@ export default function ModelPurchaseVerdict({
           </div>
 
           {/* 評価マトリックス */}
-          <dl className="l-grid l-grid--3col">
+          <dl className="l-grid l-grid--3col verdict-grid">
             {topRatings.map((r) => (
               <div key={r.label} className="m-rating">
                 <dt className="m-rating__label">

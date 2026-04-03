@@ -103,6 +103,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/watch/watch-spe
     blood_pressure: m.blood_pressure,
     sleep_score: m.sleep_score,
     max_brightness: m.max_brightness,
+    advance: m.advance,
   }))
 
   const serializedLinks = allShopLinks.map((l) => ({
@@ -221,7 +222,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/watch/watch-spe
         {/* セクション */}
         <SpecTable models={serializedModels} shopLinks={serializedLinks} />
         <DualCompare models={serializedModels} shopLinks={serializedLinks} />
-        <EvolutionTimeline />
+        <EvolutionTimeline models={serializedModels} />
         <GlossarySection productName="Apple Watch" items={GLOSSARY_ITEMS} />
         <PopularSection
           sectionTitle="目的別に人気の中古Apple Watch"

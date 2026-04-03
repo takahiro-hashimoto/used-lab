@@ -76,7 +76,9 @@ export default function PriceHistorySection({ models }: Props) {
                 aria-expanded={isOpen}
               >
                 <div className="pd-history-summary-left">
-                  <h3 className="pd-history-model-name">{model.name}</h3>
+                  <h3 className="pd-history-model-name">
+                    <a href={`/watch/${model.slug}/`} className="pd-history-model-link">{model.name}</a>
+                  </h3>
                   <span className="pd-history-model-meta">{model.year}年発売 / {model.chip}</span>
                 </div>
                 <div className="pd-history-summary-right">

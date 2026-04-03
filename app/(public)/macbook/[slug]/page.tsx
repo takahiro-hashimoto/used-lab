@@ -100,6 +100,7 @@ export default async function MacBookDetailPage({ params }: PageProps) {
   }))
   const storageNote = latestLogEntries[0]?.storage || ''
   const modelShopLinks = shopLinks.filter((l) => l.product_id === model.id)
+  const iosysShop = shops.find((s) => s.id === 1)
 
   const today = new Date()
   const dateStr = today.toISOString().split('T')[0]
@@ -130,7 +131,7 @@ export default async function MacBookDetailPage({ params }: PageProps) {
         )}
 
         <AdvanceFeatures model={model} />
-        <CompareSection model={model} allModels={allModels} shopLinks={shopLinks} specLinks={[{ href: '/macbook/macbook-spec-table/', label: '歴代MacBookスペック比較表' }]}>
+        <CompareSection model={model} allModels={allModels} shopLinks={shopLinks} fallbackIosysUrl={iosysShop?.macbook_url || undefined} specLinks={[{ href: '/macbook/macbook-spec-table/', label: '歴代MacBookスペック比較表' }]}>
           {(props) => <CompareSelector {...props} />}
         </CompareSection>
         <BenchmarkGeekbench model={model} allModels={allModels} />

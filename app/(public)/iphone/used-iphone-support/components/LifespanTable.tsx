@@ -21,7 +21,7 @@ const LIFESPAN_DATA: LifespanEntryWithModels[] = [
   {
     series: 'iPhone 16eシリーズ',
     releaseDate: '2025年2月発売',
-    models: [{ label: 'iPhone 16e', href: '/iphone/16e-se' }],
+    models: [{ label: 'iPhone 16e', href: '/iphone/16e' }],
     osEnd: '2032年2月',
     repairEnd: '2034年2月',
     iosysUrl: IOSYS_IPHONE,

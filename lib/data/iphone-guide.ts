@@ -14,7 +14,7 @@ export const GUIDE_PRICE_SLUGS = [
   '14plus',
   '15normal',
   '14pro',
-  '16e-se',
+  '16e',
 ]
 
 // ---------- スペック比較リンク ----------
@@ -109,7 +109,7 @@ export const GUIDE_MODEL_LINKS = {
     { slug: '17normal', name: 'iPhone 17', meta: '2025年9月発売 / A19 Bionic' },
     { slug: 'air', name: 'iPhone Air', meta: '2025年9月発売 / A19 pro Bionic' },
     { slug: '17e', name: 'iPhone 17e', meta: 'A19' },
-    { slug: '16e-se', name: 'iPhone16e', meta: '2025年2月発売 / A18 Bionic' },
+    { slug: '16e', name: 'iPhone16e', meta: '2025年2月発売 / A18 Bionic' },
     { slug: '16normal', name: 'iPhone 16', meta: '2024年9月発売 / A18 Bionic' },
     { slug: '16plus', name: 'iPhone 16 Plus', meta: '2024年9月発売 / A18 Bionic' },
     { slug: '15normal', name: 'iPhone15', meta: '2023年9月発売 / A16 Bionic' },

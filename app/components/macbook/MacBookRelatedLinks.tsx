@@ -1,5 +1,6 @@
 import { ReactNode } from 'react'
 import RelatedLinks from '@/app/components/RelatedLinks'
+import CrossCategoryLinks from '@/app/components/CrossCategoryLinks'
 import { MACBOOK_LINKS } from '@/lib/data/related-links'
 
 type Props = {
@@ -25,6 +26,7 @@ export default function MacBookRelatedLinks({
       sourcePath={sourcePath}
     >
       {children}
+      <CrossCategoryLinks currentCategory="/macbook/" />
     </RelatedLinks>
   )
 }

@@ -9,8 +9,8 @@ export const GUIDE_DATE_LABEL = `${GUIDE_YEAR}年${GUIDE_MONTH}月`
 
 // ---------- 中古相場セクション: 表示するモデルのslug ----------
 export const GUIDE_PRICE_SLUGS = [
-  'se2-2',
-  'se3-2',
+  'se2',
+  'se3',
   'series8',
   'series9',
   'ultra',
@@ -89,8 +89,8 @@ export const GUIDE_MODEL_LINKS = {
     { slug: 'ultra', name: 'Apple Watch Ultra', meta: '2022年9月発売 / S8' },
   ],
   se: [
-    { slug: 'se3-2', name: 'Apple Watch SE 第3世代', meta: '2025年3月発売 / S10' },
-    { slug: 'se2-2', name: 'Apple Watch SE 第2世代', meta: '2022年9月発売 / S8' },
+    { slug: 'se3', name: 'Apple Watch SE 第3世代', meta: '2025年3月発売 / S10' },
+    { slug: 'se2', name: 'Apple Watch SE 第2世代', meta: '2022年9月発売 / S8' },
     { slug: 'se', name: 'Apple Watch SE', meta: '2020年9月発売 / S5' },
   ],
 }

@@ -169,6 +169,11 @@ export default function IpadMacbookComparePage() {
                   よくある質問 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
                 </a>
               </li>
+              <li>
+                <a href="#related" className="toc-item">
+                  関連記事 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                </a>
+              </li>
             </ol>
 </div>
           <AuthorByline />
@@ -187,9 +192,6 @@ export default function IpadMacbookComparePage() {
                 まずは結論からお伝えします。MacBookとiPadはそれぞれ得意な分野が異なるため、自分の利用目的に合わせて選ぶことが大切です。以下を参考に、あなたに合ったデバイスを確認してみてください。
               </p>
               <RecommendSection />
-              <p className="m-section-desc u-mt-xl" style={{ textAlign: 'center' }}>
-                ここからは上記の結論に至った理由を、両者の違いや得意な作業を比較しながら詳しく解説していきます。
-              </p>
             </div>
           </section>
 

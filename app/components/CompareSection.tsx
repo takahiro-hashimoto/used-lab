@@ -10,6 +10,12 @@ type LinkItem = {
   label: string
 }
 
+type CompareLink = {
+  href: string
+  label: string
+  desc: string
+}
+
 type Props<T extends BaseModel> = {
   model: T
   allModels: T[]
@@ -19,19 +25,22 @@ type Props<T extends BaseModel> = {
   /** スペック比較記事へのリンク */
   specLinks?: LinkItem[]
   /** よく比較されている組み合わせリンク */
-  compareLinks?: LinkItem[]
+  compareLinks?: CompareLink[]
+  /** モデル個別URLがない場合に使うイオシスカテゴリURL */
+  fallbackIosysUrl?: string
   /** CompareSelector コンポーネント */
   children: (props: {
     currentModel: T
     allModels: T[]
     initialCompareId: number
     iosysUrl?: string
+    fallbackIosysUrl?: string
     shopLinks: ProductShopLink[]
   }) => React.ReactNode
 }
 
 export default function CompareSection<T extends BaseModel>({
-  model, allModels, shopLinks, displayName, specLinks, compareLinks, children,
+  model, allModels, shopLinks, displayName, specLinks, compareLinks, fallbackIosysUrl, children,
 }: Props<T>) {
   const name = displayName || model.model || ''
   const otherModels = allModels.filter((m) => m.id !== model.id)
@@ -56,18 +65,28 @@ export default function CompareSection<T extends BaseModel>({
           allModels,
           initialCompareId: defaultCompare.id,
           iosysUrl: iosysLink?.url,
+          fallbackIosysUrl,
           shopLinks,
         })}
 
         {compareLinks && compareLinks.length > 0 && (
-          <div className="m-callout m-callout--tip u-mt-2xl">
-            <span className="m-callout__label">よく比較されている組み合わせ</span>
-            <div className="m-callout__links">
+          <>
+            <h3 className="m-section-heading u-mt-2xl" style={{ textAlign: 'left' }}>よく比較されている組み合わせ</h3>
+            <div className="l-grid l-grid--2col" style={{ marginTop: 'var(--space-md)' }}>
               {compareLinks.map((link) => (
-                <a key={link.href} href={link.href} className="m-callout__link">{link.label}</a>
+                <a key={link.href} className="m-card m-card--shadow related-link-card related-link-card--icon m-card--hoverable" href={link.href}>
+                  <span className="related-link-card__icon m-icon-box m-icon-box--sm">
+                    <i className="fa-solid fa-scale-balanced" aria-hidden="true" />
+                  </span>
+                  <p className="related-link-card__title">{link.label}</p>
+                  <p className="related-link-card__desc">{link.desc}</p>
+                  <span className="related-link-card__arrow">
+                    <i className="fa-solid fa-chevron-right" aria-hidden="true" />
+                  </span>
+                </a>
               ))}
             </div>
-          </div>
+          </>
         )}
 
         {specLinks && specLinks.length > 0 && (

@@ -87,6 +87,7 @@ export default async function AirPodsDetailPage({ params }: PageProps) {
   }))
   const displayName = model.model ? `${model.name}（${model.model}）` : model.name
   const modelShopLinks = shopLinks.filter((l) => l.product_id === model.id)
+  const iosysShop = shops.find((s) => s.id === 1)
 
   const today = new Date()
   const dateStr = today.toISOString().split('T')[0]
@@ -116,7 +117,7 @@ export default async function AirPodsDetailPage({ params }: PageProps) {
           />
         )}
 
-        <CompareSection model={model} allModels={allModels} shopLinks={shopLinks} displayName={displayName}>
+        <CompareSection model={model} allModels={allModels} shopLinks={shopLinks} fallbackIosysUrl={iosysShop?.airpods_url || undefined} displayName={displayName}>
           {(props) => <CompareSelector {...props} />}
         </CompareSection>
         <FaqSection model={model} latestPrice={latestPrice} shopLinks={modelShopLinks} />

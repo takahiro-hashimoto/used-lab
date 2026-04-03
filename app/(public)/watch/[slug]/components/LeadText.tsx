@@ -21,34 +21,26 @@ export default function LeadText({ model, latestPrice }: Props) {
   const priceRange = calculatePriceRange(latestPrice)
   const osLife = calculateOSLifespan(model.date)
 
-  const specs: string[] = []
-  if (model.size) specs.push(model.size)
-  if (model.always_on_display) specs.push('常時表示')
-  if (model.blood_oxygen) specs.push('血中酸素')
-  if (model.cardiogram) specs.push('心電図')
-
   return (
     <section className="l-section l-section--sm section-lead" aria-label="記事の導入">
       <div className="l-container">
         <div className="lead-box">
           <p>
-            {releaseDateFormatted ? `${releaseDateFormatted}に発売された` : ''}
-            {model.model}
-            {specs.length > 0 && `（${specs.join('／')}）`}。
-            {priceRange.minPrice && (
-              <>中古相場は<strong>¥{priceRange.minPrice.toLocaleString()}〜</strong>。</>
-            )}
+            「中古の{model.model}って、今から買っても大丈夫？」——この記事では、そんな疑問を解消するために中古価格の推移や健康機能の違い、スペック比較など<strong>購入判断に必要な情報</strong>をまとめました。
           </p>
           <p>
+            {releaseDateFormatted && `${releaseDateFormatted}発売の${model.model}は`}
+            {priceRange.minPrice && (
+              <>中古<strong>¥{priceRange.minPrice.toLocaleString()}〜</strong>で手に入り、</>
+            )}
             {osLife.isSupported
-              ? <>watchOSサポートは<strong>{osLife.osEndYear}年頃</strong>までの見込み。</>
-              : <>watchOSサポートは終了済みのため、セキュリティ面に注意が必要です。</>
+              ? <>watchOSサポートも<strong>{osLife.osEndYear}年頃</strong>まで続く見込みのため、コスパよく長く使える一台です。</>
+              : <>ただしwatchOSサポートは終了済みのため、セキュリティ面には注意が必要です。</>
             }
-            今から買うべきか判断できるよう、スペック・健康機能・中古価格の情報をまとめました。
           </p>
           <p className="lead-link">
             <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-            もっと全体像から知りたい方は「<Link href="/watch">中古Apple Watch購入ガイド</Link>」をご覧ください。
+            機種選びから始めたい方は「<Link href="/watch">中古Apple Watch購入ガイド</Link>」もどうぞ。
           </p>
         </div>
       </div>

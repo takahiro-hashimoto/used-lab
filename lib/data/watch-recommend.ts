@@ -12,7 +12,7 @@ export const RECOMMEND_DATE_LABEL = `${RECOMMEND_YEAR}年${RECOMMEND_MONTH}月`
 // ---------- おすすめ機種のslug一覧 ----------
 export const RECOMMEND_SLUGS = [
   'series9',
-  'se3-2',
+  'se3',
   'ultra2',
 ]
 
@@ -57,7 +57,7 @@ export const RECOMMEND_META: Record<string, RecommendMeta> = {
     batteryLabel: '最大18時間',
     targetUser: '万能モデル<br>ダブルタップ対応',
   },
-  'se3-2': {
+  'se3': {
     label: 'コスパ重視',
     desc: 'S10チップ＋常時表示搭載の最新エントリーモデル',
     subtitle: '最新チップ搭載で入門機の概念を超えた一台',

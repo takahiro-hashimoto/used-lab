@@ -53,9 +53,7 @@ export default function RankingSection({ items, modelCount, dateDisplay }: Props
               </figure>
               <div className="price-card__info" itemProp="item" itemScope itemType="https://schema.org/Product">
                 <h3 className="price-card__name" itemProp="name">
-                  {model.iosysUrl ? (
-                    <a href={model.iosysUrl} className="price-card__link" target="_blank" rel="noopener noreferrer">{model.name}</a>
-                  ) : model.name}
+                  <a href={`/ipad/${model.slug}/`} className="price-card__link">{model.name}</a>
                 </h3>
                 <p className="price-card__meta">{model.year}年 / {model.chip}</p>
                 <meta itemProp="brand" content="Apple" />

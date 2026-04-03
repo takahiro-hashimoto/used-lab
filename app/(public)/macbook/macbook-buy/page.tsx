@@ -166,7 +166,7 @@ export default function MacBookBuyPage() {
               </li>
               <li>
                 <a href="#apple-store" className="toc-item">
-                  Appleストア <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
+              <li><a href="#related" className="toc-item">関連記事 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>                  Appleストア <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
                 </a>
               </li>
             </ol>

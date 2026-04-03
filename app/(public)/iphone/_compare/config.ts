@@ -93,7 +93,7 @@ export const COMPARE_PAGES: ComparePageConfig[] = [
   // 特殊比較
   {
     slug: 'iphone16e-se3-compare',
-    leftSlug: '16e-se',
+    leftSlug: '16e',
     rightSlug: 'se3',
     title: '中古iPhone 16eとSE(第3世代)の違いを比較｜中古で買うならどっち？',
     description: 'iPhone 16eとSE(第3世代)の違いを処理性能・カメラ・バッテリー・中古価格など6項目で比較。エントリーモデル対決を検証します。',
@@ -113,11 +113,12 @@ export function getCompareConfig(slug: string): ComparePageConfig | undefined {
 }
 
 /** モデルスラッグに関連する比較ページを取得 */
-export function getCompareLinksForModel(modelSlug: string): { href: string; label: string }[] {
+export function getCompareLinksForModel(modelSlug: string): { href: string; label: string; desc: string }[] {
   return COMPARE_PAGES
     .filter((p) => p.leftSlug === modelSlug || p.rightSlug === modelSlug)
     .map((p) => ({
       href: `/iphone/${p.slug}/`,
       label: p.title.replace(/中古|｜.*$/g, ''),
+      desc: p.description.replace(/。.*$/, ''),
     }))
 }

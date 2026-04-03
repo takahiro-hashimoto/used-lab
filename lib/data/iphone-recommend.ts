@@ -13,7 +13,7 @@ export const RECOMMEND_DATE_LABEL = `${RECOMMEND_YEAR}年${RECOMMEND_MONTH}月`
 export const RECOMMEND_SLUGS = [
   'se3',
   '14pro',
-  '16e-se',
+  '16e',
   '15normal',
   '14plus',
 ]
@@ -84,7 +84,7 @@ export const RECOMMEND_META: Record<string, RecommendMeta> = {
     batteryLabel: '○ 良好',
     targetUser: 'カメラ性能<br>高性能重視',
   },
-  '16e-se': {
+  '16e': {
     label: 'コンパクト',
     desc: '6.1インチながら軽量・A18チップ搭載のコンパクトモデル',
     subtitle: '最新チップ搭載の軽量モデル',

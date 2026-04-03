@@ -104,7 +104,8 @@ export default async function IPhoneDetailPage({ params }: PageProps) {
   }))
   const storageNote = latestLogEntries[0]?.storage || ''
   const modelShopLinks = shopLinks.filter((l) => l.product_id === model.id)
-
+  const iosysShop = shops.find((s) => s.id === 1)
+  const fallbackIosysUrl = iosysShop?.url || undefined
 
   const today = new Date()
   const dateStr = today.toISOString().split('T')[0]
@@ -115,8 +116,8 @@ export default async function IPhoneDetailPage({ params }: PageProps) {
       <AdminEditLink categoryKey="iphone" modelId={model.id} />
       <article>
         <HeroSection model={model} latestPrice={latestPrice} dateStr={dateStr} dateDisplay={dateDisplay} />
-        <LeadText model={model} latestPrice={latestPrice} />
-        <TableOfContents />
+        <LeadText model={model} />
+        <TableOfContents hasReviews={reviews.length > 0} />
         <div className="l-sections">
         <PurchaseVerdict model={model} latestPrice={latestPrice} />
         <ShopGrid shops={shops} shopLinks={modelShopLinks} model={model} />
@@ -134,7 +135,7 @@ export default async function IPhoneDetailPage({ params }: PageProps) {
         )}
 
         <AdvanceFeatures model={model} />
-        <CompareSection model={model} allModels={allModels} shopLinks={shopLinks} compareLinks={getCompareLinksForModel(model.slug)} specLinks={[{ href: '/iphone/iphone-spec-table/', label: '歴代iPhoneスペック比較表' }]}>
+        <CompareSection model={model} allModels={allModels} shopLinks={shopLinks} compareLinks={getCompareLinksForModel(model.slug)} fallbackIosysUrl={fallbackIosysUrl} specLinks={[{ href: '/iphone/iphone-spec-table/', label: '歴代iPhoneスペック比較表' }]}>
           {(props) => <CompareSelector {...props} />}
         </CompareSection>
         <BenchmarkGeekbench model={model} allModels={allModels} />

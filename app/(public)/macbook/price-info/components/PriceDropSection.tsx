@@ -42,9 +42,7 @@ export default function PriceDropSection({ items, dateDisplay }: Props) {
               </figure>
               <div className="price-card__info">
                 <h3 className="price-card__name">
-                  {model.shopUrl ? (
-                    <a href={model.shopUrl} className="price-card__link" target="_blank" rel="noopener noreferrer">{model.name.replace(/（\d{4}）/, '')}</a>
-                  ) : model.name.replace(/（\d{4}）/, '')}
+                  <a href={`/macbook/${model.slug}/`} className="price-card__link">{model.name.replace(/（\d{4}）/, '')}</a>
                 </h3>
                 <p className="price-card__meta">{model.chip} / 発売日{model.releaseDate.replace(/^(\d{4})\/0?(\d+)$/, '$1年$2月')}</p>
               </div>

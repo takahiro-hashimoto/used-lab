@@ -20,7 +20,6 @@ import {
 import {
   RECOMMEND_SLUGS,
   RECOMMEND_META,
-  RECOMMEND_COUNT_LABEL,
 } from '@/lib/data/iphone-recommend'
 import ProductCard from '@/app/components/ProductCard'
 import Breadcrumb from '@/app/components/Breadcrumb'
@@ -186,6 +185,7 @@ export default async function IPhoneGuidePage() {
               <li><a href="#where-to-buy" className="toc-item">購入先比較 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#spec-compare" className="toc-item">スペック比較 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#faq" className="toc-item">よくある質問 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
+              <li><a href="#related" className="toc-item">関連記事 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
             </ol>
 </div>
           <AuthorByline />

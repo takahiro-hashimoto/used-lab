@@ -120,6 +120,7 @@ export default async function IPadDetailPage({ params }: PageProps) {
   }))
   const storageNote = latestLogEntries[0]?.storage || ''
   const modelShopLinks = shopLinks.filter((l) => l.product_id === model.id)
+  const iosysShop = shops.find((s) => s.id === 1)
 
   const today = new Date()
   const dateStr = today.toISOString().split('T')[0]
@@ -151,7 +152,7 @@ export default async function IPadDetailPage({ params }: PageProps) {
         )}
 
         <AdvanceFeatures model={enrichedModel} />
-        <CompareSection model={enrichedModel} allModels={enrichedAllModels} shopLinks={shopLinks} specLinks={[{ href: '/ipad/ipad-spec-table/', label: '歴代iPadスペック比較表' }]}>
+        <CompareSection model={enrichedModel} allModels={enrichedAllModels} shopLinks={shopLinks} fallbackIosysUrl={iosysShop?.ipad_url || undefined} specLinks={[{ href: '/ipad/ipad-spec-table/', label: '歴代iPadスペック比較表' }]}>
           {(props) => <CompareSelector {...props} />}
         </CompareSection>
         <BenchmarkGeekbench model={enrichedModel} allModels={enrichedAllModels} />

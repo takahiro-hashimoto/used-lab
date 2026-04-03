@@ -8,6 +8,7 @@ type Props = {
   allModels: AirPodsModel[]
   initialCompareId: number
   iosysUrl?: string
+  fallbackIosysUrl?: string
   shopLinks?: ProductShopLink[]
 }
 
@@ -60,7 +61,7 @@ function getShortName(model: AirPodsModel): string {
   return model.name
 }
 
-export default function CompareSelector({ currentModel, allModels, initialCompareId, iosysUrl, shopLinks = [] }: Props) {
+export default function CompareSelector({ currentModel, allModels, initialCompareId, iosysUrl, fallbackIosysUrl, shopLinks = [] }: Props) {
   return (
     <CompareSelectorBase
       currentModel={currentModel}
@@ -68,6 +69,7 @@ export default function CompareSelector({ currentModel, allModels, initialCompar
       initialCompareId={initialCompareId}
       shopLinks={shopLinks}
       iosysUrl={iosysUrl}
+      fallbackIosysUrl={fallbackIosysUrl}
       imagePath="airpods"
       detailPath="airpods"
       imageWidth={160}

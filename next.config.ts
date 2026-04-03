@@ -44,6 +44,25 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: '/iphone/16e-se/',
+        destination: '/iphone/16e/',
+        permanent: true,
+      },
+      {
+        source: '/watch/se3-2/',
+        destination: '/watch/se3/',
+        permanent: true,
+      },
+      {
+        source: '/watch/se2-2/',
+        destination: '/watch/se2/',
+        permanent: true,
+      },
+    ]
+  },
   async headers() {
     return [
       {

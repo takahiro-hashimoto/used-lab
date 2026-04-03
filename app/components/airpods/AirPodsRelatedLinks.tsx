@@ -1,4 +1,5 @@
 import RelatedLinks from '@/app/components/RelatedLinks'
+import CrossCategoryLinks from '@/app/components/CrossCategoryLinks'
 import { AIRPODS_LINKS } from '@/lib/data/related-links'
 
 type Props = {
@@ -20,6 +21,8 @@ export default function AirPodsRelatedLinks({
       description={description}
       excludeHref={excludeHref}
       sourcePath={sourcePath}
-    />
+    >
+      <CrossCategoryLinks currentCategory="/airpods/" />
+    </RelatedLinks>
   )
 }

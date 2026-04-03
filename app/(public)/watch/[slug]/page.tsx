@@ -99,6 +99,7 @@ export default async function WatchDetailPage({ params }: PageProps) {
   }))
   const storageNote = latestLogEntries[0]?.storage || ''
   const modelShopLinks = shopLinks.filter((l) => l.product_id === model.id)
+  const iosysShop = shops.find((s) => s.id === 1)
 
   const today = new Date()
   const dateStr = today.toISOString().split('T')[0]
@@ -131,7 +132,7 @@ export default async function WatchDetailPage({ params }: PageProps) {
         )}
 
         <AdvanceFeatures model={model} />
-        <CompareSection model={model} allModels={allModels} shopLinks={shopLinks} specLinks={[{ href: '/watch/watch-spec-table/', label: '歴代Apple Watchスペック比較表' }]}>
+        <CompareSection model={model} allModels={allModels} shopLinks={shopLinks} fallbackIosysUrl={iosysShop?.watch_url || undefined} specLinks={[{ href: '/watch/watch-spec-table/', label: '歴代Apple Watchスペック比較表' }]}>
           {(props) => <CompareSelector {...props} />}
         </CompareSection>
         <Accessories model={model} />

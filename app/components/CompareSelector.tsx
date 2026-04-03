@@ -18,6 +18,8 @@ type Props = {
   allModels: { id: number; slug: string; image: string | null }[]
   initialCompareId: number
   iosysUrl?: string
+  /** モデル個別URLがない場合に使うイオシスカテゴリURL */
+  fallbackIosysUrl?: string
   shopLinks?: ShopLink[]
   imagePath: string
   detailPath: string
@@ -47,6 +49,7 @@ export default function CompareSelector({
   allModels,
   initialCompareId,
   iosysUrl,
+  fallbackIosysUrl,
   shopLinks = [],
   imagePath,
   detailPath,
@@ -65,7 +68,8 @@ export default function CompareSelector({
 
   const currentName = getCurrentName()
   const compareName = getCompareName(compareModel)
-  const compareIosysUrl = shopLinks.find((l) => l.product_id === compareModel.id && l.shop_id === 1)?.url
+  const currentIosysUrl = iosysUrl || fallbackIosysUrl
+  const compareIosysUrl = shopLinks.find((l) => l.product_id === compareModel.id && l.shop_id === 1)?.url || fallbackIosysUrl
 
   const sentinelRef = useRef<HTMLDivElement>(null)
   const tableRef = useRef<HTMLTableElement>(null)
@@ -183,8 +187,8 @@ export default function CompareSelector({
           <tr className="compare-table__action-row">
             <th></th>
             <td>
-              {iosysUrl ? (
-                <a href={iosysUrl} target="_blank" rel="noopener noreferrer nofollow" className="m-btn m-btn--primary m-btn--block">
+              {currentIosysUrl ? (
+                <a href={currentIosysUrl} target="_blank" rel="noopener noreferrer nofollow" className="m-btn m-btn--primary m-btn--block">
                   {currentName}の購入先 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
                 </a>
               ) : (

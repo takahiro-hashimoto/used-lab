@@ -10,6 +10,7 @@ const TOC_ITEMS = [
   { id: 'accessories', label: 'おすすめアクセサリー' },
   { id: 'popular', label: '目的別の人気機種' },
   { id: 'faq', label: 'よくある質問' },
+  { id: 'related', label: '関連記事' },
 ]
 
 export default function TableOfContents() {

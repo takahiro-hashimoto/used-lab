@@ -8,6 +8,7 @@ type Props = {
   allModels: IPadModel[]
   initialCompareId: number
   iosysUrl?: string
+  fallbackIosysUrl?: string
   shopLinks?: ProductShopLink[]
 }
 
@@ -84,13 +85,14 @@ function buildCompareRows(current: IPadModel, compare: IPadModel): CompareRow[] 
   ]
 }
 
-export default function CompareSelector({ currentModel, allModels, initialCompareId, iosysUrl, shopLinks = [] }: Props) {
+export default function CompareSelector({ currentModel, allModels, initialCompareId, iosysUrl, fallbackIosysUrl, shopLinks = [] }: Props) {
   return (
     <CompareSelectorBase
       currentModel={currentModel}
       allModels={allModels}
       initialCompareId={initialCompareId}
       iosysUrl={iosysUrl}
+      fallbackIosysUrl={fallbackIosysUrl}
       shopLinks={shopLinks}
       imagePath="ipad"
       detailPath="ipad"

@@ -127,6 +127,7 @@ export default async function ComparePageTemplate({ config }: Props) {
               <li><a href="#price-chart" className="toc-item">中古相場の推移 <i className="fa-solid fa-chevron-down"></i></a></li>
               <li><a href="#verdict" className="toc-item">どんな人におすすめ？ <i className="fa-solid fa-chevron-down"></i></a></li>
               <li><a href="#faq" className="toc-item">よくある質問 <i className="fa-solid fa-chevron-down"></i></a></li>
+              <li><a href="#related" className="toc-item">関連記事 <i className="fa-solid fa-chevron-down"></i></a></li>
             </ol>
 </div>
           <AuthorByline />

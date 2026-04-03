@@ -8,6 +8,7 @@ const TOC_ITEMS = [
   { id: 'compare', label: 'スペック比較' },
   { id: 'popular', label: '目的別の人気機種' },
   { id: 'faq', label: 'よくある質問' },
+  { id: 'related', label: '関連記事' },
 ]
 
 export default function TableOfContents() {

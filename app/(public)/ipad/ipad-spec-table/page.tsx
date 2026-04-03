@@ -115,6 +115,7 @@ export default async function IPadSpecTablePage() {
     antutu_gpu: m.antutu_gpu,
     antutu_mem: m.antutu_mem,
     antutu_ux: m.antutu_ux,
+    advance: m.advance,
   }))
 
   const serializedLinks = allShopLinks.map((l) => ({
@@ -201,31 +202,37 @@ export default async function IPadSpecTablePage() {
             <ol className="l-grid l-grid--3col u-list-reset">
               <li>
                 <a href="#spec-table" className="toc-item">
-                  歴代iPadのスペック比較表一覧{' '}
+                  スペック比較表{' '}
                   <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
                 </a>
               </li>
               <li>
                 <a href="#compare" className="toc-item">
-                  気になる2機種スペックを比較{' '}
+                  2機種を比較{' '}
                   <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
                 </a>
               </li>
               <li>
                 <a href="#benchmark" className="toc-item">
-                  チップ性能・処理速度を比較{' '}
+                  ベンチマーク{' '}
                   <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
                 </a>
               </li>
               <li>
                 <a href="#evolution" className="toc-item">
-                  歴代iPadの主な進化点{' '}
+                  進化の歴史{' '}
                   <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
                 </a>
               </li>
               <li>
                 <a href="#glossary" className="toc-item">
-                  iPad各機能の用語解説{' '}
+                  用語解説{' '}
+                  <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                </a>
+              </li>
+              <li>
+                <a href="#related" className="toc-item">
+                  関連記事{' '}
                   <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
                 </a>
               </li>
@@ -239,7 +246,7 @@ export default async function IPadSpecTablePage() {
         <SpecTable models={serializedModels} shopLinks={serializedLinks} />
         <DualCompare models={serializedModels} shopLinks={serializedLinks} />
         <BenchmarkSection models={serializedModels} />
-        <EvolutionTimeline />
+        <EvolutionTimeline models={serializedModels} />
         <GlossarySection productName="iPad" items={GLOSSARY_ITEMS} />
 
         {/* 目的別に人気の中古iPad */}

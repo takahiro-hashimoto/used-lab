@@ -131,6 +131,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/iphone-s
     antutu_gpu: m.antutu_gpu,
     antutu_mem: m.antutu_mem,
     antutu_ux: m.antutu_ux,
+    advance: m.advance,
   }))
 
   const serializedLinks = allShopLinks.map((l) => ({
@@ -246,6 +247,12 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/iphone-s
                   <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
                 </a>
               </li>
+              <li>
+                <a href="#related" className="toc-item">
+                  関連記事{' '}
+                  <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                </a>
+              </li>
             </ol>
 </div>
             <AuthorByline />
@@ -256,7 +263,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/iphone-s
         <SpecTable models={serializedModels} shopLinks={serializedLinks} />
         <DualCompare models={serializedModels} shopLinks={serializedLinks} />
         <BenchmarkSection models={serializedModels} />
-        <EvolutionTimeline />
+        <EvolutionTimeline models={serializedModels} />
         <GlossarySection productName="iPhone" items={GLOSSARY_ITEMS} />
 
         <PopularSection

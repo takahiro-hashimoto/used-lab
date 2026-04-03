@@ -1,4 +1,5 @@
 import RelatedLinks from '@/app/components/RelatedLinks'
+import CrossCategoryLinks from '@/app/components/CrossCategoryLinks'
 import { IPHONE_LINKS } from '@/lib/data/related-links'
 import type { RelatedLinkMeta } from '@/lib/data/related-links'
 
@@ -24,6 +25,8 @@ export default function IPhoneRelatedLinks({
       excludeHref={excludeHref}
       sourcePath={sourcePath}
       compareLinks={compareLinks}
-    />
+    >
+      <CrossCategoryLinks currentCategory="/iphone/" />
+    </RelatedLinks>
   )
 }

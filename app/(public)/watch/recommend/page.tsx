@@ -253,7 +253,7 @@ export default async function WatchRecommendPage() {
               </li>
               <li>
                 <a href="#shops" className="toc-item">
-                  おすすめショップ <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
+              <li><a href="#related" className="toc-item">関連記事 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>                  おすすめショップ <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
                 </a>
               </li>
             </ol>
@@ -315,13 +315,13 @@ export default async function WatchRecommendPage() {
               { label: 'Apple Watch SE（第1世代）', representativeSlug: 'se' },
               { label: 'Apple Watch Series 6', representativeSlug: 'series6' },
               { label: 'Apple Watch Series 7', representativeSlug: 'series7' },
-              { label: 'Apple Watch SE（第2世代）', representativeSlug: 'se2-2' },
+              { label: 'Apple Watch SE（第2世代）', representativeSlug: 'se2' },
               { label: 'Apple Watch Series 8', representativeSlug: 'series8' },
               { label: 'Apple Watch Ultra', representativeSlug: 'ultra' },
               { label: 'Apple Watch Series 9', representativeSlug: 'series9' },
               { label: 'Apple Watch Ultra 2', representativeSlug: 'ultra2' },
               { label: 'Apple Watch Series 10', representativeSlug: 'series10' },
-              { label: 'Apple Watch SE（第3世代）', representativeSlug: 'se3-2' },
+              { label: 'Apple Watch SE（第3世代）', representativeSlug: 'se3' },
               { label: 'Apple Watch Ultra 3', representativeSlug: 'ultra3' },
               { label: 'Apple Watch Series 11', representativeSlug: 'series11' },
             ]}

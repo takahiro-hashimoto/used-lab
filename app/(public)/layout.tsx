@@ -2,6 +2,7 @@ import Header from "@/app/components/Header";
 import Footer from "@/app/components/Footer";
 import SmoothScroll from "@/app/components/SmoothScroll";
 import AffiliateClickTracker from "@/app/components/AffiliateClickTracker";
+import StickyCta from "@/app/components/StickyCta";
 
 const organizationJsonLd = {
   '@context': 'https://schema.org',
@@ -55,6 +56,7 @@ export default function PublicLayout({
       <Header />
       {children}
       <Footer />
+      <StickyCta />
     </>
   );
 }

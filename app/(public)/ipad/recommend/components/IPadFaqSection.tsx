@@ -7,15 +7,13 @@ export default function IPadFaqSection() {
       answer: (
         <>
           <p>
-            {RECOMMEND_DATE_LABEL}現在、「<strong>iPad 第10世代</strong>」「<strong>iPad mini 第6世代</strong>」「
-            <strong>iPad Air 第5世代</strong>」「<strong>iPad Pro 11インチ 第3世代</strong>」「
-            <strong>iPad Pro 12.9インチ 第6世代</strong>」の{RECOMMEND_COUNT_LABEL}がおすすめです。
+            {RECOMMEND_DATE_LABEL}現在、「iPad 第11世代」「iPad mini 第7世代」「iPad Air 第5世代」「iPad Pro 11インチ 第4世代」「iPad Pro 12.9インチ 第6世代」の{RECOMMEND_COUNT_LABEL}がおすすめです。
           </p>
           <p>
-            コスパ重視なら「iPad 第10世代」（3万円台から購入可能）、携帯性重視なら「iPad mini 第6世代」
-            （片手で持てる8.3インチ）、バランス重視なら「iPad Air 第5世代」（M1チップ搭載）、
-            プロ性能なら「iPad Pro 11インチ 第3世代」（ProMotion対応）、大画面なら「iPad Pro 12.9インチ 第6世代」
-            （Liquid Retina XDR）が最適です。
+            コスパ重視なら「iPad 第11世代」（A16 Bionic搭載の入門機）、携帯性重視なら「iPad mini 第7世代」
+            （片手で持てる8.3インチ・A17 Pro搭載）、バランス重視なら「iPad Air 第5世代」（M1チップ搭載）、
+            プロ性能なら「iPad Pro 11インチ 第4世代」（M2チップ＋ProMotion対応）、大画面なら「iPad Pro 12.9インチ 第6世代」
+            （M2チップ＋Liquid Retina XDR）が最適です。
           </p>
           <p>
             いずれも2028年以降までiPadOSサポートが続く見込みで、数年単位で安心して使えます。
@@ -29,15 +27,9 @@ export default function IPadFaqSection() {
         <>
           <p>以下の3つのポイントを基準に選ぶことをおすすめします。</p>
           <ul>
-            <li>
-              <strong>iPadOSサポートが十分に残っている</strong> — 発売から約7年でサポート終了するため、2029年以降までサポートされる機種を選びましょう。
-            </li>
-            <li>
-              <strong>用途に合った十分な性能</strong> — 動画視聴やWeb閲覧ならA14 Bionic以上、イラスト制作や動画編集ならM1以上が目安です。
-            </li>
-            <li>
-              <strong>中古価格と性能のバランスが良い</strong> — 残りサポート期間と中古相場から年単価を計算し、コスパの良い機種を選びましょう。
-            </li>
+            <li>iPadOSサポートが十分に残っている — 発売から約7年でサポート終了するため、2029年以降までサポートされる機種を選びましょう。</li>
+            <li>用途に合った十分な性能 — 動画視聴やWeb閲覧ならA14 Bionic以上、イラスト制作や動画編集ならM1以上が目安です。</li>
+            <li>中古価格と性能のバランスが良い — 残りサポート期間と中古相場から年単価を計算し、コスパの良い機種を選びましょう。</li>
           </ul>
         </>
       ),
@@ -65,18 +57,10 @@ export default function IPadFaqSection() {
         <>
           <p>購入前に以下の4点を必ずチェックしましょう。</p>
           <ul>
-            <li>
-              <strong>バッテリーの劣化具合</strong> — 最大容量80%以上が目安。ショップの商品説明でバッテリー状態を確認しましょう。
-            </li>
-            <li>
-              <strong>iPadOSサポート期間</strong> — 発売から約7年がサポートの目安。iPad 第8世代以前は数年利用前提なら非推奨です。
-            </li>
-            <li>
-              <strong>ショップ保証の有無</strong> — 保証期間をチェック。イオシスなら3〜6ヶ月保証など、ショップによって異なります。
-            </li>
-            <li>
-              <strong>Wi-FiモデルかCellularモデルか</strong> — 外出先でも使うならCellularモデル推奨。Wi-Fiモデルの方が安価です。
-            </li>
+            <li>バッテリーの劣化具合 — 最大容量80%以上が目安。ショップの商品説明でバッテリー状態を確認しましょう。</li>
+            <li>iPadOSサポート期間 — 発売から約7年がサポートの目安。iPad 第9世代以前は数年利用前提なら非推奨です。</li>
+            <li>ショップ保証の有無 — 保証期間をチェック。イオシスなら3〜6ヶ月保証など、ショップによって異なります。</li>
+            <li>Wi-FiモデルかCellularモデルか — 外出先でも使うならCellularモデル推奨。Wi-Fiモデルの方が安価です。</li>
           </ul>
         </>
       ),
@@ -89,7 +73,7 @@ export default function IPadFaqSection() {
             Appleは発売から約7年でiPadOSサポートを終了する傾向があります。{RECOMMEND_YEAR}年時点でおすすめしている{RECOMMEND_COUNT_LABEL}は、いずれも<strong>2028年以降までサポートされる見込み</strong>です。
           </p>
           <p>
-            例えば、iPad 第10世代は2022年発売のため、2029年頃までサポートされる計算です。iPad Air 第5世代も2022年発売で同様に2029年頃まで使えます。
+            例えば、iPad 第11世代は2025年発売のため、2032年頃までサポートされる計算です。iPad Air 第5世代は2022年発売で2029年頃まで使えます。
           </p>
           <p>
             サポート終了後も動作はしますが、セキュリティリスクが高まり、新しいアプリが使えなくなる可能性があるため、<strong>サポート期間内での利用</strong>をおすすめします。
@@ -119,9 +103,9 @@ export default function IPadFaqSection() {
         <>
           <p>{RECOMMEND_YEAR}年現在、以下のモデルはおすすめしません。</p>
           <ul>
-            <li><strong>iPad 第7世代以前</strong> — iPadOSサポート終了済み、または終了間近でセキュリティリスクが高い</li>
-            <li><strong>ストレージ32GBモデル</strong> — アプリを数個入れるだけで容量不足に。iPadはSDカードで増設できないため致命的</li>
-            <li><strong>iPad mini 第5世代以前</strong> — サポート残が短くApple Pencil第2世代にも非対応</li>
+            <li>iPad 第9世代以前 — iPadOSサポート終了済み、または終了間近でセキュリティリスクが高い</li>
+            <li>ストレージ32GBモデル — アプリを数個入れるだけで容量不足に。iPadはSDカードで増設できないため致命的</li>
+            <li>iPad mini 第6世代以前 — サポート残が短くなっている</li>
           </ul>
           <p>
             安さに惹かれてサポート切れや低容量の端末を買うと、結果的にコスパが悪くなります。最低でも64GB以上のモデルを選びましょう。

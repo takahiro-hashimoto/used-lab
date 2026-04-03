@@ -75,7 +75,9 @@ export default function PriceHistorySection({ models }: Props) {
                 aria-expanded={isOpen}
               >
                 <div className="pd-history-summary-left">
-                  <h3 className="pd-history-model-name">{model.name.replace(/（\d{4}）/, '')} {model.chip}</h3>
+                  <h3 className="pd-history-model-name">
+                    <a href={`/macbook/${model.slug}/`} className="pd-history-model-link">{model.name.replace(/（\d{4}）/, '')} {model.chip}</a>
+                  </h3>
                   <span className="pd-history-model-meta">発売日 {model.releaseDate.replace(/^(\d{4})\/0?(\d+)$/, '$1年$2月')}</span>
                 </div>
                 <div className="pd-history-summary-right">
