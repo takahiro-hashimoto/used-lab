@@ -26,11 +26,12 @@ type Props = {
 const SHOP_NAMES: Record<number, string> = {
   1: 'イオシス',
   7: 'Amazon',
+  4: 'リコレ',
   2: 'にこスマ',
   6: 'じゃんぱら',
   3: 'ゲオ',
 }
-const SHOP_ORDER = [1, 2, 6, 3, 7]
+const SHOP_ORDER = [1, 2, 4, 6, 3, 7]
 
 export default function RecommendDetailSection({ items }: Props) {
   return (

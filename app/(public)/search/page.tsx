@@ -111,7 +111,7 @@ const PAGE_KEYWORDS: Record<string, string> = {
   '/watch/how-to-use-apple-watch/': '使い方 活用 できること 便利',
   '/airpods/': '購入ガイド 選び方 おすすめ 中古',
   '/airpods/recommend/': 'おすすめ 型落ち 狙い目 コスパ',
-  '/airpods/price/': '価格 相場 値段 中古価格 推移',
+  '/airpods/price-info/': '価格 相場 値段 中古価格 推移',
   '/airpods/airpods-find/': '探す 紛失 見つける',
 }
 

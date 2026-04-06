@@ -166,19 +166,34 @@ export function buildArticleJsonLd(opts: {
     description: opts.description,
     datePublished: opts.dateStr,
     dateModified: opts.dateStr,
+    inLanguage: 'ja',
     author: {
       '@type': 'Person',
       name: 'タカヒロ',
       url: 'https://used-lab.jp/profile/',
+      image: 'https://used-lab.jp/images/content/thumbnail/my-icon.webp',
+      jobTitle: 'Webディレクター / ガジェットブロガー',
+      description: 'IT企業でWebデザイナー、フロントエンドエンジニア、Webディレクターを経て現在はプロジェクトマネージャー。2015年からガジェットブログ「デジスタ」を運営し、300以上の製品をレビュー。GoodsPress・ITmedia等で連載・監修実績多数。',
+      knowsAbout: ['iPhone', 'iPad', 'MacBook', 'Apple Watch', 'AirPods', '中古Apple製品', 'ガジェット'],
       sameAs: [
         'https://twitter.com/takahiro_mono',
         'https://www.instagram.com/takahiro_mono',
         'https://www.youtube.com/@takahiro_mono',
+        'https://note.com/takahiro_mono',
         'https://digital-style.jp/',
         'https://nightscape.tokyo/',
+        'https://www.amazon.co.jp/shop/takahiro_mono',
+        'https://news.google.com/publications/CAAqBwgKMOzgvwsw-fvWAw?hl=ja&gl=JP&ceid=JP:ja',
       ],
     },
-    publisher: { '@type': 'Organization', name: 'ユーズドラボ' },
+    publisher: {
+      '@type': 'Organization',
+      name: 'ユーズドラボ',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://used-lab.jp/images/logo.png',
+      },
+    },
     mainEntityOfPage: { '@type': 'WebPage', '@id': opts.url },
   }
 }

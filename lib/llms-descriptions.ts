@@ -60,7 +60,7 @@ export const PAGE_DESCRIPTIONS: Record<string, string> = {
 
   // --- AirPods ---
   '/airpods/recommend/': '狙い目の型落ちモデルを解説',
-  '/airpods/price/': '歴代モデルの価格推移を独自集計',
+  '/airpods/price-info/': '歴代モデルの価格推移を独自集計',
 }
 
 /** 詳細説明（llms-full.txt 用） — 未定義の場合は簡易説明にフォールバック */

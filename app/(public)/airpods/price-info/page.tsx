@@ -102,7 +102,7 @@ export const revalidate = 86400
 // メタデータ
 // ============================================================
 
-const PAGE_URL = 'https://used-lab.jp/airpods/price/'
+const PAGE_URL = 'https://used-lab.jp/airpods/price-info/'
 
 export async function generateMetadata(): Promise<Metadata> {
   const allModels = await getAllAirPodsModels()
@@ -113,17 +113,17 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title,
     description,
-  alternates: { canonical: '/airpods/price/' },
+  alternates: { canonical: '/airpods/price-info/' },
     openGraph: {
       title,
       description,
-      url: '/airpods/price/',
-      images: [{ url: getHeroImage('/airpods/price/'), width: 1200, height: 630, alt: title }],
+      url: '/airpods/price-info/',
+      images: [{ url: getHeroImage('/airpods/price-info/'), width: 1200, height: 630, alt: title }],
     },
     twitter: {
       title,
       description,
-      images: [getHeroImage('/airpods/price/')],
+      images: [getHeroImage('/airpods/price-info/')],
     },
   }
 }
@@ -342,7 +342,7 @@ export default async function AirPodsPriceInfoPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src={getHeroImage('/airpods/price/')}
+                  src={getHeroImage('/airpods/price-info/')}
                   alt="中古AirPods価格相場"
                   className="hero-media__img"
                   width={360}
@@ -436,7 +436,7 @@ export default async function AirPodsPriceInfoPage() {
 
           <FaqSection />
           <AirPodsPopularSection />
-        <AirPodsRelatedLinks excludeHref="/airpods/price/" />
+        <AirPodsRelatedLinks excludeHref="/airpods/price-info/" />
         <ShareBox url={PAGE_URL} text={`AirPodsの中古相場一覧 | 歴代${modelCount}機種の価格推移を独自集計`} />
         </div>
       </article>

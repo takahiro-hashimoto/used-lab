@@ -5730,6 +5730,18 @@
   font-size: 0.85em;
 }
 
+.about-media-badge {
+  display: inline-block;
+  font-size: var(--font-size-xs, 0.75rem);
+  font-weight: 700;
+  color: var(--color-primary, #0071e3);
+  background: var(--color-primary-light, #e8f4fd);
+  padding: 0.15em 0.5em;
+  border-radius: 4px;
+  margin-right: 0.4em;
+  vertical-align: middle;
+}
+
 /* History section */
 
 .about-history-img {
@@ -7003,6 +7015,149 @@
     min-width: 160px;
   }
 
+}
+
+/* ── score-level-card ── */
+
+.score-level-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-xl);
+}
+@media (max-width: 768px) {
+  .score-level-cards {
+    grid-template-columns: 1fr;
+  }
+}
+.score-level-card__header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin-bottom: var(--space-md);
+}
+.score-level-card__badge {
+  display: inline-block;
+  padding: 0.25em 0.75em;
+  border-radius: var(--radius-full, 999px);
+  color: #fff;
+  font-size: var(--text-sm);
+  font-weight: 700;
+  white-space: nowrap;
+}
+.score-level-card__range {
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--color-text);
+}
+.score-level-card__chips {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-sm);
+}
+.score-level-card__chips i {
+  margin-right: 0.25em;
+}
+.score-level-card__subtitle {
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-xs);
+}
+.score-level-card__verdict {
+  font-size: var(--text-sm);
+  color: var(--color-primary);
+  margin-top: var(--space-sm);
+  font-weight: 500;
+}
+.score-level-card__verdict i {
+  margin-right: 0.25em;
+}
+
+/* ── cospa-card ── */
+
+.cospa-cards {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+.cospa-card {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-lg);
+}
+.cospa-card__rank {
+  flex-shrink: 0;
+}
+.cospa-card__body {
+  flex: 1;
+  min-width: 0;
+}
+.cospa-card__model-name {
+  font-weight: 700;
+  font-size: var(--text-lg);
+  color: var(--color-text);
+  text-decoration: none;
+}
+.cospa-card__model-name:hover {
+  color: var(--color-primary);
+}
+.cospa-card__chip {
+  display: block;
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  margin-top: 0.125em;
+}
+.cospa-card__stats {
+  display: flex;
+  gap: var(--space-xl);
+  margin-top: var(--space-sm);
+  flex-wrap: wrap;
+}
+.cospa-card__stat-label {
+  display: block;
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
+.cospa-card__stat-value {
+  font-weight: 700;
+  font-size: var(--text-base);
+}
+.cospa-card__stat-value--highlight {
+  color: var(--color-primary);
+  font-size: var(--text-lg);
+}
+.cospa-card__bar-wrapper {
+  height: 6px;
+  background: var(--color-bg-muted, #f0f0f0);
+  border-radius: 3px;
+  margin-top: var(--space-sm);
+  overflow: hidden;
+}
+.cospa-card__bar {
+  height: 100%;
+  background: var(--color-primary);
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+.cospa-card__btn {
+  margin-top: var(--space-md);
+}
+
+/* ── chip-gen-badge variants ── */
+
+.chip-gen-badge--air {
+  background: var(--color-primary);
+  color: #fff;
+  font-size: var(--text-xs);
+  padding: 0.15em 0.5em;
+  border-radius: var(--radius-full, 999px);
+}
+.chip-gen-badge--pro {
+  background: #e74c6f;
+  color: #fff;
+  font-size: var(--text-xs);
+  padding: 0.15em 0.5em;
+  border-radius: var(--radius-full, 999px);
 }
 
 /* ── media-card ── */

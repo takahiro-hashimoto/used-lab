@@ -241,7 +241,7 @@ export default async function AirPodsGuidePage() {
 
               <p className="guide-section-note">各モデルの詳細な価格推移グラフ・相場データをご覧いただけます</p>
               <div className="guide-section-cta">
-                <Link href="/airpods/price/" className="m-btn m-btn--primary m-btn--block">
+                <Link href="/airpods/price-info/" className="m-btn m-btn--primary m-btn--block">
                   <span>中古AirPodsの相場・価格推移グラフ</span>
                   <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
                 </Link>

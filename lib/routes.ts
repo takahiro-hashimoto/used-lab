@@ -180,7 +180,7 @@ export const PRODUCT_CATEGORIES: CategoryDef[] = [
     pages: [
       { path: '/airpods/', label: '中古AirPods完全購入ガイド | 選び方・相場・おすすめモデルまとめ', priority: 0.9 },
       { path: '/airpods/recommend/', label: (p) => `中古AirPodsおすすめ${p.airpodsRecCount}機種を解説。狙い目の型落ちモデルはどれ？【${p.airpodsRecDate}版】` },
-      { path: '/airpods/price/', label: (p) => `AirPodsの中古相場一覧 | 歴代${p.airpodsModelCount}機種の価格推移を独自集計【${p.airpodsPriceMonth}】` },
+      { path: '/airpods/price-info/', label: (p) => `AirPodsの中古相場一覧 | 歴代${p.airpodsModelCount}機種の価格推移を独自集計【${p.airpodsPriceMonth}】` },
       { path: '/airpods/airpods-find/', label: 'AirPodsのケースやイヤホン片方を無くした時の探し方、代替品の購入先まとめ' },
     ],
   },

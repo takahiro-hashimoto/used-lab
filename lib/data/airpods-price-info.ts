@@ -1,6 +1,6 @@
 /**
  * AirPods 中古相場一覧ページ用 設定データ
- * 配置場所: /airpods/price/
+ * 配置場所: /airpods/price-info/
  */
 
 const now = new Date()

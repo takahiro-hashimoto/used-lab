@@ -81,6 +81,7 @@ function buildDisplayFaqs(
     question: `中古${model.model}は今から購入するのあり？`,
     answer: (
       <>
+        <p>結論から言うと、「{v.verdictMain}」と言えます。</p>
         {v.descriptions.map((text, i) => (
           <p key={i}>{text}</p>
         ))}

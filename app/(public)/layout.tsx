@@ -11,11 +11,26 @@ const organizationJsonLd = {
   '@type': 'Organization',
   name: 'ユーズドラボ',
   url: 'https://used-lab.jp',
-  logo: 'https://used-lab.jp/images/logo.png',
-  description: '中古Apple製品の価格比較・スペック情報サイト',
+  logo: {
+    '@type': 'ImageObject',
+    url: 'https://used-lab.jp/images/logo.png',
+  },
+  image: 'https://used-lab.jp/images/logo.png',
+  description: '中古Apple製品の価格比較・スペック情報サイト。iPhone・iPad・MacBook・Apple Watch・AirPodsの中古相場、スペック比較、おすすめ機種を毎日更新。',
   founder: {
     '@type': 'Person',
     name: 'タカヒロ',
+    url: 'https://used-lab.jp/profile/',
+    image: 'https://used-lab.jp/images/content/thumbnail/my-icon.webp',
+    jobTitle: 'Webディレクター / ガジェットブロガー',
+    description: '2015年からガジェットブログ「デジスタ」を運営。300以上の製品レビュー実績を持ち、GoodsPress・ITmedia・ライフハッカー等で連載・監修を担当。',
+    sameAs: [
+      'https://twitter.com/takahiro_mono',
+      'https://www.instagram.com/takahiro_mono',
+      'https://www.youtube.com/@takahiro_mono',
+      'https://digital-style.jp/',
+      'https://nightscape.tokyo/',
+    ],
   },
   foundingDate: '2024-08',
   sameAs: [

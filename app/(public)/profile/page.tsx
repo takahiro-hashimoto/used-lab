@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
 import Image from 'next/image'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import HeroMeta from '@/app/components/HeroMeta'
@@ -22,21 +21,111 @@ export const metadata: Metadata = {
   },
 }
 
-const MEDIA_MENTIONS = [
+/** 受賞歴 */
+const AWARDS = [
   {
-    description: 'ライフスタイル比較メディア「Abema Choice」の記事の監修をさせていただきました。',
+    description: 'バリューコマースメディアアワード2022年上期にて、総合賞3位＆カテゴリー賞（ショッピング・オークションの部）を受賞。',
+    href: 'https://www.valuecommerce.ne.jp/award_result/2022/1h/',
+    label: 'バリューコマースメディアアワード2022年上期',
+  },
+  {
+    description: 'A8ネットのエーハチレビュー部レビューコンテストにて、ブログ賞を受賞。',
+    href: 'https://a8pr.jp/a8review/announce/?new_contest_id=202207',
+    label: 'エーハチレビュー部 2022年07月 ブログ賞',
+  },
+]
+
+/** 連載・監修実績 */
+const EDITORIAL_CREDITS = [
+  {
+    description: 'Adobe公式サイトにてAcrobat オンラインツールの記事が紹介されました。',
+    href: 'https://www.adobe.com/jp/acrobat/roc/blog/work-tip.html',
+    label: 'Adobe Acrobat みんなの仕事術',
+    type: '記事掲載',
+  },
+  {
+    description: 'ITmedia「Fav-Log」にて連載を担当しました。',
+    href: 'https://www.itmedia.co.jp/fav/articles/2303/06/news158.html',
+    label: 'ガジェットブロガーが「リモートワークで買ってよかったもの」6選 | ITmedia',
+    type: '連載',
+  },
+  {
+    description: 'IT業界向け求人サイト・レバテックのオウンドメディアにて連載を担当しました。',
+    href: 'https://levtech.jp/media/article/column/detail_249/',
+    label: 'リモートワークの生産性を向上させる最新おすすめガジェット5選 | レバテック',
+    type: '連載',
+  },
+  {
+    description: '男の隠れ家（デジタル）にて連載コーナーを担当しました。',
+    href: 'https://otokonokakurega.com/meet/ippin/77067/',
+    label: 'いま買いたいノートPCスタンドはどっち？ | 男の隠れ家',
+    type: '連載',
+  },
+  {
+    description: 'ライフスタイル比較メディア「Ameba Choice」にて記事監修を担当しました。',
     href: 'https://choice.ameba.jp/tablet/kindle/',
     label: 'Kindle端末のおすすめ人気ランキング5選！ | Amebaチョイス',
+    type: '監修',
   },
   {
-    description: '資産運用や家計の見直しなど、お金に関する総合サービス「@ネクスト」に当サイトを紹介いただきました。',
-    href: 'https://at-next.jp/',
-    label: 'お金の疑問や悩みを解決する、オールインワンサービス @next',
+    description: 'WEBメディアPicky\'s様の記事監修を担当しました。',
+    href: 'https://picky-s.jp/ipad-osusume/',
+    label: 'Appleマニアおすすめ｜どれがいい？iPad全種類の違いを徹底比較 | Picky\'s',
+    type: '監修',
   },
+  {
+    description: 'ライフハッカー様の記事監修を担当しました。',
+    href: 'https://www.lifehacker.jp/2021/11/smartwatch_recommend.html',
+    label: 'おすすめのスマートウォッチ15選 | ライフハッカー',
+    type: '監修',
+  },
+]
+
+/** 雑誌掲載・インタビュー */
+const MAGAZINE_FEATURES = [
+  {
+    description: 'GoodsPress 2024年3月号にてインタビュー記事が掲載されました。',
+    href: 'https://www.goodspress.jp/features/582669/2/',
+    label: 'iPadで趣味を遊びつくそう | GoodsPress 2024年3月号',
+  },
+  {
+    description: 'GoodsPress 2023年11月号にてインタビュー記事が掲載されました。',
+    href: 'https://www.goodspress.jp/features/565442/',
+    label: 'ガジェット好きのカバンの中身 | GoodsPress 2023年11月号',
+  },
+  {
+    description: 'GoodsPress 2022年6月号にてインタビュー記事が掲載されました。',
+    href: 'https://www.goodspress.jp/features/451918/2/',
+    label: 'ハイスペック仕事部屋拝見 | GoodsPress 2022年6月号',
+  },
+  {
+    description: 'ライター専門誌「ライターマガジン」にブログ運営のインタビュー記事が掲載されました。',
+    href: 'https://writermagazine.net/2023/05/386/',
+    label: 'ライターマガジン Vol.9 2022年7月号',
+  },
+  {
+    description: 'Incase公式サイトにてインタビュー記事が掲載されました。',
+    href: 'https://incasejapan.com/blogs/interview/apple%E8%A3%BD%E5%93%81%E5%A5%BD%E3%81%8D%E3%81%AB%E3%81%AF%E3%81%9F%E3%81%BE%E3%82%89%E3%81%AA%E3%81%84',
+    label: 'Apple製品好きにはたまらない | Incase公式',
+  },
+]
+
+/** サイト紹介（ユーズドラボが紹介された実績） */
+const SITE_MENTIONS = [
   {
     description: '中古iPhone・iPadなどを販売されている「にこスマ」に当サイトをご紹介いただきました。',
     href: 'https://www.nicosuma.com/magazine/media-info',
     label: '「にこスマ」を紹介いただいているWebメディア・ブログまとめ',
+  },
+  {
+    description: 'SUUMOのオウンドメディアに部屋を紹介いただきました。',
+    href: 'https://suumo.jp/article/oyakudachi/oyaku/chintai/fr_single/hitorigurashi_danshibeya/',
+    label: '男性の一人暮らしの部屋をおしゃれにまとめるコツ | SUUMO',
+  },
+  {
+    description: 'エックスサーバーのブログ記事にて「参考になるブロガー」として紹介いただきました。',
+    href: 'https://www.xserver.ne.jp/blog/gadget-blog-start-guide',
+    label: 'ガジェットブログの始め方を解説！ | エックスサーバー',
   },
   {
     description: 'おすすめゲーミングデバイス比較情報メディアのGameLens様に当ブログを掲載いただきました。',
@@ -56,11 +145,12 @@ const MEDIA_MENTIONS = [
 ]
 
 const SNS_LINKS = [
-  { href: 'https://twitter.com/takahiro_mono', label: 'Twitter', icon: 'fa-brands fa-x-twitter' },
+  { href: 'https://twitter.com/takahiro_mono', label: 'X（Twitter）', icon: 'fa-brands fa-x-twitter' },
   { href: 'https://www.instagram.com/takahiro_mono', label: 'Instagram', icon: 'fa-brands fa-instagram' },
   { href: 'https://www.youtube.com/@takahiro_mono', label: 'YouTube', icon: 'fa-brands fa-youtube' },
+  { href: 'https://www.threads.com/@takahiro_mono', label: 'Threads', icon: 'fa-brands fa-threads' },
   { href: 'https://note.com/takahiro_mono', label: 'note', icon: 'fa-solid fa-pen-nib' },
-  { href: 'https://airw.net/st/rank.cgi?id=Ht12s89', label: 'Airランキング', icon: 'fa-solid fa-pen-nib' },
+  { href: 'https://www.pinterest.jp/takahirogadget/', label: 'Pinterest', icon: 'fa-brands fa-pinterest' },
   { href: '/contact/', label: 'お問い合わせ', icon: 'fa-solid fa-envelope' },
 ]
 
@@ -74,11 +164,37 @@ export default function AboutPage() {
     ],
   }
 
+  const personJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: 'タカヒロ',
+    url: 'https://used-lab.jp/profile/',
+    image: 'https://used-lab.jp/images/content/thumbnail/my-icon.webp',
+    jobTitle: 'プロジェクトマネージャー / ガジェットブロガー',
+    description: 'IT企業でWebデザイナー、フロントエンドエンジニア、Webディレクターを経て現在はプロジェクトマネージャー。2015年からガジェットブログ「デジスタ」を運営し、300以上の製品レビュー実績を持つ。',
+    knowsAbout: ['iPhone', 'iPad', 'MacBook', 'Apple Watch', 'AirPods', '中古Apple製品', 'ガジェット', 'Web制作'],
+    alumniOf: { '@type': 'Organization', name: 'IT企業（Webデザイナーとしてキャリアスタート）' },
+    sameAs: [
+      'https://twitter.com/takahiro_mono',
+      'https://www.instagram.com/takahiro_mono',
+      'https://www.youtube.com/@takahiro_mono',
+      'https://note.com/takahiro_mono',
+      'https://digital-style.jp/',
+      'https://nightscape.tokyo/',
+      'https://www.amazon.co.jp/shop/takahiro_mono',
+      'https://news.google.com/publications/CAAqBwgKMOzgvwsw-fvWAw?hl=ja&gl=JP&ceid=JP:ja',
+    ],
+  }
+
   return (
     <main>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
       />
 
       <div className="hero-wrapper">
@@ -125,16 +241,18 @@ export default function AboutPage() {
               <div className="about-profile-info">
                 <ul className="about-profile-list">
                   <li><span className="about-profile-label">名前</span>タカヒロ</li>
-                  <li><span className="about-profile-label">職業</span>Webディレクター / ブロガー</li>
+                  <li><span className="about-profile-label">職業</span>プロジェクトマネージャー / ガジェットブロガー</li>
+                  <li><span className="about-profile-label">経歴</span>Webデザイナー → フロントエンドエンジニア → Webディレクター → PM</li>
                   <li><span className="about-profile-label">出身地</span>愛知県</li>
                   <li><span className="about-profile-label">居住地</span>東京都</li>
-                  <li><span className="about-profile-label">趣味</span>カメラ、旅行、ドライブ、読書</li>
+                  <li><span className="about-profile-label">ブログ歴</span>2015年12月〜（10年以上）</li>
+                  <li><span className="about-profile-label">レビュー数</span>300製品以上</li>
                 </ul>
                 <p className="about-profile-desc">
-                  都内のIT企業でWebディレクターとして働く傍ら、メディア運営を行っています。本サイトのほか、「<a href="https://digital-style.jp/" target="_blank" rel="noopener noreferrer">ガジェットブログ・デジスタ</a>」「<a href="https://nightscape.tokyo/" target="_blank" rel="noopener noreferrer">東京夜景ナビ</a>」など、複数のWebメディアを運営中です。
+                  愛知県のIT企業にWebデザイナーとして入社後、フロントエンドエンジニア、Webディレクターと複数職種を経験。現在は東京都内のIT企業でプロジェクトマネージャーとして従事しながら、複数のWebメディアを運営しています。
                 </p>
                 <p className="about-profile-desc">
-                  当サイトでは、みなさまが失敗せず、賢く中古Apple製品を選べるような情報発信を心がけています。信頼できるショップの紹介や製品レビューなど、実用的なコンテンツを通じて、後悔しないガジェット選びをお手伝いできれば幸いです！
+                  本サイトのほか、月間40〜45万PVのガジェットブログ「<a href="https://digital-style.jp/" target="_blank" rel="noopener noreferrer">デジスタ</a>」、都内200箇所以上の夜景スポットを紹介する「<a href="https://nightscape.tokyo/" target="_blank" rel="noopener noreferrer">東京夜景ナビ</a>」を運営中。Apple製品は2011年のiPhone 4sから毎年購入しており、その体験を活かして実用的なコンテンツを発信しています。
                 </p>
                 <div className="about-sns-links">
                   {SNS_LINKS.map((sns) => (
@@ -155,7 +273,100 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* メディア掲載 */}
+      {/* 受賞歴 */}
+      <section className="l-section">
+        <div className="l-container">
+          <h2 className="m-section-heading m-section-heading--lg">
+            <i className="fa-solid fa-trophy" aria-hidden="true"></i>{' '}
+            受賞歴
+          </h2>
+          <p className="m-section-desc">
+            運営メディア「デジスタ」での受賞実績
+          </p>
+
+          <div className="about-media-list">
+            {AWARDS.map((award) => (
+              <div key={award.label} className="about-media-item m-card m-card--padded m-card--sm">
+                <p className="about-media-desc">{award.description}</p>
+                <a
+                  href={award.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="about-media-link"
+                >
+                  <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                  <span>{award.label}</span>
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 連載・監修実績 */}
+      <section className="l-section">
+        <div className="l-container">
+          <h2 className="m-section-heading m-section-heading--lg">
+            <i className="fa-solid fa-pen-fancy" aria-hidden="true"></i>{' '}
+            連載・監修実績
+          </h2>
+          <p className="m-section-desc">
+            外部メディアでの連載・記事監修の実績
+          </p>
+
+          <div className="about-media-list">
+            {EDITORIAL_CREDITS.map((credit) => (
+              <div key={credit.href} className="about-media-item m-card m-card--padded m-card--sm">
+                <p className="about-media-desc">
+                  <span className="about-media-badge">{credit.type}</span>
+                  {credit.description}
+                </p>
+                <a
+                  href={credit.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="about-media-link"
+                >
+                  <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                  <span>{credit.label}</span>
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 雑誌掲載・インタビュー */}
+      <section className="l-section">
+        <div className="l-container">
+          <h2 className="m-section-heading m-section-heading--lg">
+            <i className="fa-solid fa-book-open" aria-hidden="true"></i>{' '}
+            雑誌掲載・インタビュー
+          </h2>
+          <p className="m-section-desc">
+            紙面・Webメディアでのインタビュー掲載実績
+          </p>
+
+          <div className="about-media-list">
+            {MAGAZINE_FEATURES.map((feature) => (
+              <div key={feature.href} className="about-media-item m-card m-card--padded m-card--sm">
+                <p className="about-media-desc">{feature.description}</p>
+                <a
+                  href={feature.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="about-media-link"
+                >
+                  <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                  <span>{feature.label}</span>
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* サイト紹介 */}
       <section className="l-section">
         <div className="l-container">
           <h2 className="m-section-heading m-section-heading--lg">
@@ -163,11 +374,11 @@ export default function AboutPage() {
             メディア掲載
           </h2>
           <p className="m-section-desc">
-            当サイトを紹介・掲載いただいたメディア一覧
+            当サイト・運営者を紹介いただいたメディア一覧
           </p>
 
           <div className="about-media-list">
-            {MEDIA_MENTIONS.map((media) => (
+            {SITE_MENTIONS.map((media) => (
               <div key={media.href} className="about-media-item m-card m-card--padded m-card--sm">
                 <p className="about-media-desc">{media.description}</p>
                 <a

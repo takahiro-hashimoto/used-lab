@@ -26,6 +26,7 @@ type Props = {
 const SHOP_NAMES: Record<number, string> = {
   1: 'イオシス',
   7: 'Amazon',
+  4: 'リコレ',
   2: 'にこスマ',
   6: 'じゃんぱら',
   3: 'ゲオ',

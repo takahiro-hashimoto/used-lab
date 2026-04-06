@@ -61,6 +61,11 @@ const nextConfig: NextConfig = {
         destination: '/watch/se2/',
         permanent: true,
       },
+      {
+        source: '/airpods/price/',
+        destination: '/airpods/price-info/',
+        permanent: true,
+      },
     ]
   },
   async headers() {

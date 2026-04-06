@@ -130,7 +130,7 @@ export const RECOMMEND_META: Record<string, RecommendMeta> = {
 }
 
 // ---------- ショップセクション用ショップID ----------
-export const SHOP_SECTION_IDS = [1, 3, 6, 7]
+export const SHOP_SECTION_IDS = [1, 4, 8, 3, 6, 7]
 
 // ---------- JSON-LD FAQ用データ ----------
 export const FAQ_JSONLD_ITEMS = [

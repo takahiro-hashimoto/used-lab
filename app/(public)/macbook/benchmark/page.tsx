@@ -11,6 +11,7 @@ import type { MacBookPriceLog, ProductShopLink } from '@/lib/types'
 import BenchmarkRanking from './components/BenchmarkRanking'
 import HeroMeta from '@/app/components/HeroMeta'
 import ChipGenerationCompare from './components/ChipGenerationCompare'
+import AirVsProSection from './components/AirVsProSection'
 import UseCaseGuide from './components/UseCaseGuide'
 import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
@@ -60,6 +61,26 @@ const FAQ_ITEMS = [
   {
     question: 'MacBook AirとProではどのくらいの性能差がありますか？',
     answer: '同じ世代のチップを搭載している場合、シングルコア性能はほぼ同等です。\nただしProはファンを搭載しているため、長時間の高負荷作業でもサーマルスロットリング（熱による性能低下）が起きにくく、マルチコア性能を持続的に発揮できます。\nまた、Proには上位チップ（Pro/Max）が選べるため、GPU性能に大きな差がつきます。',
+  },
+  {
+    question: 'M1とM2の体感差はどのくらいありますか？',
+    answer: 'シングルコアスコアで約10〜15%の差があります。\nWeb閲覧やOffice作業ではほぼ体感差はありませんが、アプリの起動速度や写真の書き出しなど短時間の処理で差が出ます。\nまた、M2はメディアエンジンが強化されているため、動画の書き出し速度には明確な差があります。予算重視ならM1、数年先まで見据えるならM2がおすすめです。',
+  },
+  {
+    question: 'Geekbench 6とGeekbench 5のスコアは比較できますか？',
+    answer: 'Geekbench 6と5ではテスト内容が大きく異なるため、スコアを直接比較することはできません。\nGeekbench 6はAI/ML処理やカメラ処理など現代的なワークロードを重視しており、全体的にスコアが低く出る傾向があります。\n中古MacBookを比較する際は、必ず同じバージョンのスコア同士で比較してください。本記事ではすべてGeekbench 6のスコアを使用しています。',
+  },
+  {
+    question: '中古MacBookのベンチマークスコアは新品より低くなりますか？',
+    answer: 'ベンチマークスコア自体は基本的に新品と中古で変わりません。Apple Siliconチップの性能は経年劣化しにくい設計です。\nただしバッテリーの劣化により電力供給が不安定な場合や、ストレージがほぼ満杯の場合は、間接的にパフォーマンスが低下する可能性があります。\n中古でも正常な状態であれば新品同等のスコアが出ます。',
+  },
+  {
+    question: 'MacBookのベンチマークでAnTuTuスコアは使えますか？',
+    answer: 'AnTuTuは主にiPhone・iPad・Android向けのベンチマークアプリで、macOS版は公式に提供されていません。\nMacBookの性能比較にはGeekbench 6やCinebench R23が一般的に使われます。本記事ではGeekbench 6を採用しています。\niPhoneやiPadとの性能比較がしたい場合は、Geekbenchであれば同一スケールで比較可能です。',
+  },
+  {
+    question: 'ベンチマークスコアが低くても快適に使えますか？',
+    answer: 'はい、用途次第です。Web閲覧やメール、Office作業であればM1チップ（シングルコア約2,350）でも十分快適です。\nベンチマークは最大処理能力を測るものなので、軽い作業が中心であればスコアが高い必要はありません。\n「自分の用途に必要な最低ラインを満たしているか」を基準に選ぶと、無駄なコストを抑えつつ快適に使えます。',
   },
 ]
 
@@ -232,6 +253,7 @@ export default async function BenchmarkPage() {
               <li><a href="#score-guide" className="toc-item">スコアの読み方 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#ranking" className="toc-item">総合ランキング <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#chip-compare" className="toc-item">チップ世代比較 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
+              <li><a href="#air-vs-pro" className="toc-item">Air vs Pro比較 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#chip-variant" className="toc-item">標準/Pro/Max比較 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#usecase" className="toc-item">用途別おすすめ <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#faq" className="toc-item">よくある質問 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
@@ -288,6 +310,9 @@ export default async function BenchmarkPage() {
 
           {/* チップ世代別の性能比較 */}
           <ChipGenerationCompare models={benchModels} />
+
+          {/* Air vs Pro 比較 */}
+          <AirVsProSection models={benchModels} />
 
           {/* 用途別おすすめスコアの目安 */}
           <UseCaseGuide models={benchModels} shopLinks={shopLinks} />
