@@ -530,7 +530,7 @@ export default function WatchFilterSearchApp({ models, shopLinks }: Props) {
                       )}
                     </div>
 
-                    <ResultCardActions iosysLink={iosysLink} amazonLink={amazonLink} />
+                    <ResultCardActions modelName={m.model} iosysLink={iosysLink} amazonLink={amazonLink} />
                   </div>
                 )
               })}

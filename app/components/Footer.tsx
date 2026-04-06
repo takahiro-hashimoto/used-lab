@@ -25,13 +25,51 @@ export default function Footer() {
 
           <nav className="footer-links" aria-label="フッターナビゲーション">
             <div className="footer-col">
-              <p className="footer-heading">カテゴリ</p>
+              <p className="footer-heading">中古iPhone</p>
               <ul>
-                <li><Link href="/iphone">中古iPhone</Link></li>
-                <li><Link href="/ipad">中古iPad</Link></li>
-                <li><Link href="/macbook">中古Mac</Link></li>
-                <li><Link href="/watch">中古Apple Watch</Link></li>
-                <li><Link href="/airpods">中古AirPods</Link></li>
+                <li><Link href="/iphone/">完全購入ガイド</Link></li>
+                <li><Link href="/iphone/recommend/">おすすめ機種</Link></li>
+                <li><Link href="/iphone/price-info/">中古相場価格</Link></li>
+                <li><Link href="/iphone/iphone-spec-table/">スペック比較表</Link></li>
+                <li><Link href="/iphone/used-iphone-support/">サポート期間・寿命</Link></li>
+              </ul>
+            </div>
+            <div className="footer-col">
+              <p className="footer-heading">中古iPad</p>
+              <ul>
+                <li><Link href="/ipad/">完全購入ガイド</Link></li>
+                <li><Link href="/ipad/recommend/">おすすめ機種</Link></li>
+                <li><Link href="/ipad/ipad-price-info/">中古相場価格</Link></li>
+                <li><Link href="/ipad/ipad-spec-table/">スペック比較表</Link></li>
+                <li><Link href="/ipad/used-ipad-support/">サポート期間・寿命</Link></li>
+              </ul>
+            </div>
+            <div className="footer-col">
+              <p className="footer-heading">中古MacBook</p>
+              <ul>
+                <li><Link href="/macbook/">完全購入ガイド</Link></li>
+                <li><Link href="/macbook/recommend/">おすすめ機種</Link></li>
+                <li><Link href="/macbook/price-info/">中古相場価格</Link></li>
+                <li><Link href="/macbook/macbook-spec-table/">スペック比較表</Link></li>
+                <li><Link href="/macbook/used-macbook-support/">サポート期間・寿命</Link></li>
+              </ul>
+            </div>
+            <div className="footer-col">
+              <p className="footer-heading">中古Apple Watch</p>
+              <ul>
+                <li><Link href="/watch/">完全購入ガイド</Link></li>
+                <li><Link href="/watch/recommend/">おすすめ機種</Link></li>
+                <li><Link href="/watch/watch-price-info/">中古相場価格</Link></li>
+                <li><Link href="/watch/watch-spec-table/">スペック比較表</Link></li>
+                <li><Link href="/watch/used-watch-support/">サポート期間・寿命</Link></li>
+              </ul>
+            </div>
+            <div className="footer-col">
+              <p className="footer-heading">中古AirPods</p>
+              <ul>
+                <li><Link href="/airpods/">完全購入ガイド</Link></li>
+                <li><Link href="/airpods/recommend/">おすすめ機種</Link></li>
+                <li><Link href="/airpods/price-info/">中古相場価格</Link></li>
               </ul>
             </div>
             <div className="footer-col">

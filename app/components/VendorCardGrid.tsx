@@ -1,3 +1,6 @@
+const ensureAbsoluteUrl = (url: string) =>
+  url.startsWith('http') || url === '#' ? url : `https://${url}`
+
 export type VendorCardItem = {
   name: string
   recommended?: boolean
@@ -44,7 +47,7 @@ export default function VendorCardGrid({ cards }: Props) {
             ))}
           </dl>
           <a
-            href={card.href}
+            href={ensureAbsoluteUrl(card.href)}
             className="m-btn m-btn--primary m-btn--block"
             rel="nofollow noopener noreferrer"
             target="_blank"

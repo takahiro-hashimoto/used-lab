@@ -62,7 +62,7 @@ export default function ProductCard({
           <span className="price-card__value m-price-display m-price-display--sm m-price-display--primary">{priceValue} 〜</span>
           {shopUrl && (
             <div className="price-card__cta">
-              <a href={shopUrl} className="m-btn m-btn--primary m-btn--sm" style={btnStyle} target="_blank" rel="noopener noreferrer nofollow">
+              <a href={shopUrl} className="m-btn m-btn--primary m-btn--sm" style={btnStyle} target="_blank" rel="noopener noreferrer nofollow" aria-label={`${modelName}の在庫情報を見る`}>
                 在庫情報を見る <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
               </a>
             </div>
@@ -107,12 +107,12 @@ export default function ProductCard({
             </>
           )}
           {shopUrl ? (
-            <a href={shopUrl} className="m-btn m-btn--primary m-btn--sm" style={btnStyle} target="_blank" rel="noopener noreferrer nofollow">
+            <a href={shopUrl} className="m-btn m-btn--primary m-btn--sm" style={btnStyle} target="_blank" rel="noopener noreferrer nofollow" aria-label={`${modelName}の${fallbackText}`}>
               <span>{fallbackText}</span>
               <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
             </a>
           ) : fallbackHref ? (
-            <Link href={fallbackHref} className="m-btn m-btn--primary m-btn--sm" style={btnStyle}>
+            <Link href={fallbackHref} className="m-btn m-btn--primary m-btn--sm" style={btnStyle} aria-label={`${modelName}の${fallbackText}`}>
               <span>{fallbackText}</span>
               <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
             </Link>

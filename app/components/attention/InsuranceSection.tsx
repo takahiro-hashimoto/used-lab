@@ -92,12 +92,12 @@ export default function InsuranceSection({
                   <tr>
                     <th scope="row">リンク</th>
                     <td>
-                      <a href="https://px.a8.net/svt/ejp?a8mat=35U3VZ+7QMXFM+45VK+BW0YB&a8ejpredirect=https%3A%2F%2Fmobile-hoken.com%2Flp%2Ftakumi-wp%2F" className="m-btn m-btn--primary m-btn--sm" rel="nofollow noopener" target="_blank">
+                      <a href="https://px.a8.net/svt/ejp?a8mat=35U3VZ+7QMXFM+45VK+BW0YB&a8ejpredirect=https%3A%2F%2Fmobile-hoken.com%2Flp%2Ftakumi-wp%2F" className="m-btn m-btn--primary m-btn--sm" rel="nofollow noopener" target="_blank" aria-label="モバイル保険の詳細を見る">
                         詳細を見る <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
                       </a>
                     </td>
                     <td>
-                      <a href="https://www.apple.com/jp/applecare/" className="m-btn m-btn--primary m-btn--sm" target="_blank" rel="noopener">
+                      <a href="https://www.apple.com/jp/applecare/" className="m-btn m-btn--primary m-btn--sm" target="_blank" rel="noopener" aria-label="Apple Care+の詳細を見る">
                         詳細を見る <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
                       </a>
                     </td>

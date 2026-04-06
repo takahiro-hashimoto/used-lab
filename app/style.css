@@ -1658,13 +1658,13 @@
 }
 
 .footer-inner {
-  padding: 0 var(--space-xl);
+  padding: 0;
 }
 
 .footer-main .footer-inner {
   display: grid;
   grid-template-columns: 1fr 2fr;
-  gap: var(--space-3xl);
+  gap: var(--space-2xl);
 }
 
 /* Footer Brand */
@@ -1685,8 +1685,7 @@
 }
 
 .footer-social {
-  display: flex;
-  gap: var(--space-sm);
+  gap: 12px;
 }
 
 .footer-social a {
@@ -1711,22 +1710,28 @@
 /* Footer Links */
 .footer-links {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: var(--space-xl);
 }
 
 .footer-heading {
   font-size: var(--font-size-sm);
   font-weight: 600;
-  color: white;
-  margin-bottom: var(--space-md);
+  color: #fff;
+  margin-bottom: var(--space-sm);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: .05em;
 }
 
 .footer-col ul {
   display: flex;
   flex-direction: column;
+  gap: 0;
+  line-height: 1.5;
+}
+
+.footer-social {
+  display: flex;
   gap: var(--space-sm);
 }
 
@@ -5613,8 +5618,8 @@
   border-radius: var(--radius-full);
   object-fit: cover;
   border: 2px solid var(--color-border-light);
-  width: 140px;
-  height: 140px;
+  width: 120px;
+  height: 120px;
 }
 
 .about-profile-info {
@@ -5768,8 +5773,8 @@
   }
 
   .about-profile-img {
-    width: 140px;
-    height: 140px;
+    width: 120px;
+    height: 120px;
   }
 
   .about-profile-list li {
@@ -7431,4 +7436,9 @@ ol.info-card__list {
   padding-left: 1.5em;
   line-height: 1.5;
   list-style: outside;
+}
+
+/* ---------- mobile-menu overrides ---------- */
+.mobile-menu__about-desc {
+  text-align: left;
 }

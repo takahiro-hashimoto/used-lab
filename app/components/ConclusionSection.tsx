@@ -79,7 +79,7 @@ export default function ConclusionSection({ items, heading, descriptions, gridCo
                     </div>
                   )}
                 </div>
-                <a href={`#detail-${item.slug}`} className="m-btn m-btn--primary m-btn--block u-w-full">
+                <a href={`#detail-${item.slug}`} className="m-btn m-btn--primary m-btn--block u-w-full" aria-label={`${item.displayName}の詳細を見る`}>
                   詳しく見る <i className="fa-solid fa-arrow-down" aria-hidden="true"></i>
                 </a>
               </article>

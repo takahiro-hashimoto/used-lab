@@ -156,7 +156,7 @@ export default function LifespanTable({
                     {showIosysColumn && (
                       <td>
                         {entry.iosysUrl ? (
-                          <a href={entry.iosysUrl} className="m-btn m-btn--primary m-btn--sm" target="_blank" rel="noopener noreferrer nofollow">中古価格を見る</a>
+                          <a href={entry.iosysUrl} className="m-btn m-btn--primary m-btn--sm" target="_blank" rel="noopener noreferrer nofollow" aria-label={`${entry.series}の中古価格を見る`}>中古価格を見る</a>
                         ) : (
                           <span>—</span>
                         )}

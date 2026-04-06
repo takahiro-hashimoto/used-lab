@@ -1,6 +1,9 @@
 import type { Shop } from '@/lib/types'
 import RatingMark from '@/app/components/RatingMark'
 
+const ensureAbsoluteUrl = (url: string) =>
+  url.startsWith('http') || url === '#' ? url : `https://${url}`
+
 /** Shared meta type that all category-specific meta types satisfy */
 export type ShopDetailMeta = {
   subtitle: string
@@ -126,7 +129,7 @@ export default function ShopDetailSection({ productName, items, specRows, getCta
                   {meta.ctaButtons.map((btn, i) => (
                     <a
                       key={i}
-                      href={btn.url}
+                      href={ensureAbsoluteUrl(btn.url)}
                       className="m-btn m-btn--primary"
                       rel="nofollow noopener noreferrer"
                       target="_blank"
@@ -138,7 +141,7 @@ export default function ShopDetailSection({ productName, items, specRows, getCta
               ) : (
                 <div className="recommend-card__shop-btns recommend-card__shop-btns--single">
                   <a
-                    href={getCtaUrl?.(shop) || shop.url || '#'}
+                    href={ensureAbsoluteUrl(getCtaUrl?.(shop) || shop.url || '#')}
                     className="m-btn m-btn--primary"
                     rel="nofollow noopener noreferrer"
                     target="_blank"
