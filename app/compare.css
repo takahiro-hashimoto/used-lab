@@ -142,7 +142,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: var(--space-xl);
+  gap: var(--space-md);
 }
 
 .compare-hero-vs__model {
@@ -154,10 +154,10 @@
 
 .compare-hero-vs__model img {
   border-radius: var(--radius-lg);
-  background: rgba(255, 255, 255, 0.9);
+  background: #fff;
   padding: var(--space-md);
-  width: 160px;
-  height: 160px;
+  width: 120px;
+  height: 120px;
   object-fit: contain;
 }
 
@@ -170,13 +170,13 @@
 }
 
 .compare-hero-vs__badge {
-  font-size: 1.75rem;
+  font-size: 1rem;
   font-weight: 900;
   color: var(--color-text-inverse);
-  background: rgba(255, 255, 255, 0.15);
+  background: #ffffff26;
   border-radius: var(--radius-full);
-  width: 64px;
-  height: 64px;
+  width: 48px;
+  height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;

@@ -86,7 +86,7 @@ export default function RecommendDetailSection({ items }: Props) {
                   )}
                 </figure>
                 <div className="recommend-card__info">
-                  <h4 className="recommend-card__info-title">{model.model}の基本情報</h4>
+                  <p className="recommend-card__info-title">{model.model}の基本情報</p>
                   <dl className="recommend-card__specs">
                     {releaseDate && (
                       <div className="recommend-card__spec-item">
@@ -159,9 +159,9 @@ export default function RecommendDetailSection({ items }: Props) {
               <div className="recommend-card__fit">
                 <div className="l-grid l-grid--2col l-grid--gap-lg">
                   <div className="recommend-card__fit-box recommend-card__fit-box--good">
-                    <h4>
+                    <p className="recommend-card__fit-title">
                       <i className="fa-solid fa-circle-check" aria-hidden="true"></i> こんな人におすすめ
-                    </h4>
+                    </p>
                     <ul>
                       {good.map((text, i) => (
                         <li key={i}>
@@ -171,9 +171,9 @@ export default function RecommendDetailSection({ items }: Props) {
                     </ul>
                   </div>
                   <div className="recommend-card__fit-box recommend-card__fit-box--bad">
-                    <h4>
+                    <p className="recommend-card__fit-title">
                       <i className="fa-solid fa-circle-xmark" aria-hidden="true"></i> こんな人には向かない
-                    </h4>
+                    </p>
                     <ul>
                       {bad.map((text, i) => (
                         <li key={i}>

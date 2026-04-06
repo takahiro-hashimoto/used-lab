@@ -35,7 +35,7 @@ export default function ChecklistSection({ productName, items, memoLinks }: Prop
         <div className="l-grid l-grid--2col l-grid--gap-lg">
           {items.map((item) => (
             <IconCard key={item.title} icon={item.iconClass} title={item.title}>
-              <p>{item.desc}</p>
+              {item.desc}
             </IconCard>
           ))}
         </div>

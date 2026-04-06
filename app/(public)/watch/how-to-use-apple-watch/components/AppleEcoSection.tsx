@@ -36,7 +36,7 @@ export default function AppleEcoSection() {
       </MediaCard>
 
       {/* 24. iPhoneのロック画面を解除する */}
-      <MediaCard src="/images/content/apple-watch-unlock-iphone.jpg" alt="Apple WatchでiPhoneのロックを解除する様子" title="iPhoneのロック画面を解除する">
+      <MediaCard src="" alt="Apple WatchでiPhoneのロックを解除する様子" title="iPhoneのロック画面を解除する">
         <p className="media-card__desc">
           iPhoneのFace ID（顔認証）は非常に優秀ですが、フルフェイスのヘルメットを被っていたり、サングラスをしていて認証が通りにくい場面も稀にあります。
         </p>

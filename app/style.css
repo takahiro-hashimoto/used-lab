@@ -1554,6 +1554,8 @@
   font-size: var(--font-size-xl);
   font-weight: 800;
   color: var(--color-text);
+  line-height: 1.5;
+  margin-bottom: var(--space-md);
 }
 
 .popular-card-title a {
@@ -1631,9 +1633,10 @@
 /* faq-answer p+p and strong → handled by .m-rich-text */
 
 .faq-answer ul {
-  margin-top: var(--space-sm);
+  margin: var(--space-md) 0;
   padding-left: var(--space-md);
   list-style: outside;
+  line-height: 1.5;
 }
 
 .faq-answer ul li {
@@ -2145,7 +2148,8 @@
   border-radius: var(--radius-md);
 }
 
-.recommend-card__fit-box h4 {
+.recommend-card__fit-box h4,
+.recommend-card__fit-box .recommend-card__fit-title {
   font-size: var(--font-size-sm);
   font-weight: 700;
   margin-bottom: var(--space-sm);
@@ -2687,12 +2691,54 @@
   margin-top: var(--space-xl);
 }
 
+.pencil-model-labels {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: var(--space-md);
+}
+.pencil-model-labels__title {
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  margin-right: 4px;
+}
+.pencil-model-label {
+  padding: 2px 10px;
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  line-height: 1.6;
+}
+.pencil-model-label--active {
+  background: var(--color-primary);
+  color: #fff;
+}
+.pencil-model-label--inactive {
+  background: var(--color-bg-subtle);
+  color: var(--color-text-muted);
+}
+
+.pencil-detail-item {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-sm);
+}
+
 .pencil-detail-item + .pencil-detail-item {
   margin-top: var(--space-sm);
 }
 
 .pencil-detail-item__label {
-  margin-bottom: var(--space-xs);
+  flex-shrink: 0;
+}
+
+.pencil-detail-item__label::after {
+  content: '・・・';
+  font-weight: 400;
+  color: var(--color-text-muted);
+  margin-left: var(--space-xs);
 }
 
 /* ---------- Battery Table ---------- */
@@ -3578,7 +3624,7 @@
   font-weight: 700;
   padding-bottom: var(--space-md);
   border-bottom: 1px solid var(--color-border-light);
-  margin-bottom: var(--space-lg);
+  margin-bottom: var(--space-md);
 }
 
 .summary-card__list {
@@ -3590,12 +3636,12 @@
 
 .summary-card__list li {
   counter-increment: summary-counter;
-  padding: var(--space-md) 0 var(--space-md) 2.5rem;
+  padding: var(--space-md) 0 var(--space-md) 2rem;
   border-bottom: 1px solid #f5f5f5;
   position: relative;
   font-size: var(--font-size-base);
   font-weight: 400;
-  line-height: 1.8;
+  line-height: 1.5;
 }
 
 .summary-card__list li:last-child {
@@ -3606,16 +3652,16 @@
   content: counter(summary-counter);
   position: absolute;
   left: 0;
-  top: var(--space-md);
-  width: 24px;
-  height: 24px;
+  top: 18px;
+  width: 22px;
+  height: 22px;
   background: var(--color-primary);
   color: #fff;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.75rem;
+  font-size: .65rem;
   font-weight: 700;
 }
 
@@ -3717,6 +3763,10 @@
   font-size: var(--font-size-sm);
   color: var(--color-text-secondary);
   line-height: 1.7;
+  margin-bottom: var(--space-md);
+}
+.post-check-item__desc:last-child {
+  margin-bottom: 0;
 }
 
 /* ---------- caution page: insurance ---------- */
@@ -5852,6 +5902,10 @@
   color: var(--color-primary);
 }
 
+.buy-method-card a:not(.buy-method-cta) {
+  color: var(--color-primary);
+}
+
 .buy-method-card__list {
   list-style: disc;
   padding-left: 1.4em;
@@ -6983,16 +7037,26 @@
 
 .media-card__desc {
   font-size: var(--font-size-base);
-  margin-bottom: var(--space-sm);
+  /* margin-bottom: var(--space-xs); */
+}
+
+.media-card__body a {
+  color: var(--color-primary);
 }
 
 .media-card__list {
-  /* font-size: var(--font-size-sm); */
-  /* color: var(--color-text-secondary); */
+  font-size: var(--font-size-base);
   padding-left: 0;
-  margin: var(--space-md);
-  line-height: 2;
+  margin: var(--space-sm) var(--space-md);
+  line-height: 1.3;
   list-style: outside;
+}
+
+.media-card__list li {
+  margin-bottom: var(--space-sm);
+}
+.media-card__list li:last-child {
+  margin-bottom: 0;
 }
 
 ol.media-card__list {

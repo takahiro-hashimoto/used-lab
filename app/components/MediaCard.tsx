@@ -20,17 +20,19 @@ export default function MediaCard({ src, alt, title, children, width = 240, heig
 
   return (
     <div className={`m-card m-card--shadow m-card--padded${variant}`}>
-      <div className="media-card__img-wrap">
-        <Image
-          src={src}
-          alt={alt}
-          className="media-card__img"
-          style={imgStyle}
-          width={width}
-          height={height}
-          loading="lazy"
-        />
-      </div>
+      {src && (
+        <div className="media-card__img-wrap">
+          <Image
+            src={src}
+            alt={alt}
+            className="media-card__img"
+            style={imgStyle}
+            width={width}
+            height={height}
+            loading="lazy"
+          />
+        </div>
+      )}
       <div className="media-card__body">
         <h3 className="media-card__title">{title}</h3>
         {children}

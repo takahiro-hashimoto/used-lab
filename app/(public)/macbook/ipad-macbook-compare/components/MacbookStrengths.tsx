@@ -16,14 +16,14 @@ export default function MacbookStrengths() {
         <div className="media-card__body">
           <h3 className="media-card__title">Webデザイン</h3>
           <p className="media-card__desc">
-            WebデザインもMacBookで作業するのがおすすめです。理由は以下の通りです。
+            以下の理由から、WebデザインもMacBookで作業するのがおすすめです。
           </p>
-          <ul className="media-card__list u-mt-sm">
-            <li>Webデザインに使用するアプリが豊富にあり、効率よく制作が進められる</li>
-            <li>デザイナーがよく使うフォント（ヒラギノ等）がインストール済み</li>
-            <li><strong>Retinaディスプレイの高解像度と発色の圧倒的な美しさ</strong></li>
+          <ul className="media-card__list">
+            <li>Webデザインに使うアプリが豊富で、効率よく制作が進められる</li>
+            <li>デザイナーがよく使うフォントがインストール済み</li>
+            <li>Retinaディスプレイの高解像度と発色の圧倒的な美しさ</li>
           </ul>
-          <p className="media-card__desc u-mt-sm">
+          <p className="media-card__desc">
             iPad版のFigmaやPhotoshopもありますが、フォント数がMacよりも少ないですし、複雑な作業をするには操作感が劣ります。<strong>iPadでWebデザイン関連の作業をするのは避けたほうがいい</strong>でしょう。
           </p>
         </div>
@@ -47,13 +47,12 @@ export default function MacbookStrengths() {
             プログラミングをするならMacBookを使用するのがおすすめです。理由は以下の通りです。
           </p>
           <ul className="media-card__list u-mt-sm">
-            <li>開発を行う際に必要となる「ターミナル」をすぐに使用できる</li>
-            <li>iOSアプリの開発ができる</li>
-            <li>Boot Campを使えば「Windows」もインストールできる</li>
+            <li>開発に必要な「ターミナル」がすぐに使える</li>
+            <li>iOSアプリの開発もできる</li>
+            <li>Boot Campを使えば「Windows」のインストールも可能</li>
           </ul>
-          <p className="media-card__desc u-mt-sm">
-            iPadにもプログラミング用のアプリはありますが、開発環境を整える手間などを考えると現実的な選択肢ではありません。<strong>プログラミングにはキーボードが必須</strong>なので、そういった点からもMacBookを使用したほうがベターです。
-          </p>
+          <p className="media-card__desc">iPadにもプログラミング用のアプリはありますが、開発環境を整える手間などを考えると現実的な選択肢ではありません。</p>
+          <p className="media-card__desc">また、プログラミングにはキーボードが必須なので、そういった点からもMacBookを使用したほうがベターです。</p>
         </div>
       </div>
 
@@ -74,14 +73,13 @@ export default function MacbookStrengths() {
           <p className="media-card__desc">
             本格的な動画編集をするならMacBookを使用するのがおすすめです。理由は以下の通りです。
           </p>
-          <ul className="media-card__list u-mt-sm">
+          <ul className="media-card__list">
             <li>ショートカットを駆使して効率よく作業ができる</li>
-            <li><strong>Adobe Premiere ProやFinal Cut Proなどのアプリの機能を最大限活かせる</strong></li>
+            <li>Adobe Premiere ProやFinal Cut Proなどを最大限活かせる</li>
           </ul>
-          <p className="media-card__desc u-mt-sm">
-            iPadでも動画編集はもちろん可能ですが、例えばiPad版のAdobe Premiere Proでは機能が大幅に制限されています。これはタッチスクリーンを基準にアプリケーションが作られており、その体験を損なわないためだと考えられます。
+          <p className="media-card__desc">例えばiPad版のAdobe Premiere Proでは機能が大幅に制限されています。これはタッチスクリーンを基準にアプリケーションが作られており、その体験を損なわないためだと考えられます。
           </p>
-          <p className="media-card__desc u-mt-sm">
+          <p className="media-card__desc">
             どれくらい複雑な動画を作るか次第ですが、基本的にはMacBookのほうが作業がしやすいと考えたほうがよいでしょう。
           </p>
         </div>
@@ -106,7 +104,7 @@ export default function MacbookStrengths() {
           </p>
           <ul className="media-card__list u-mt-sm">
             <li>Mac版とiPad版のエクセルではアプリのレイアウトが異なる</li>
-            <li><strong>iPad版のエクセルではマクロの実行にも制限があり、複雑な処理に向かない</strong></li>
+            <li>iPadはマクロの実行に制限があり、複雑な処理に向かない</li>
           </ul>
           <p className="media-card__desc u-mt-sm">
             簡易的な計算式を組んだりするならiPad版のエクセルでも事足りますが、仕事などで使うのであればやはりMacBookを使用するのがベターです。

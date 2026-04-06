@@ -86,9 +86,9 @@ export default function ShopDetailSection({ productName, items, specRows, getCta
             <div className="recommend-card__fit">
               <div className="l-grid l-grid--2col l-grid--gap-lg">
                 <div className="recommend-card__fit-box recommend-card__fit-box--good">
-                  <h4>
+                  <p className="recommend-card__fit-title">
                     <i className="fa-solid fa-circle-check" aria-hidden="true"></i> こんな人におすすめ
-                  </h4>
+                  </p>
                   <ul>
                     {meta.good.map((item, i) => (
                       <li key={i}>
@@ -98,9 +98,9 @@ export default function ShopDetailSection({ productName, items, specRows, getCta
                   </ul>
                 </div>
                 <div className="recommend-card__fit-box recommend-card__fit-box--bad">
-                  <h4>
+                  <p className="recommend-card__fit-title">
                     <i className="fa-solid fa-circle-xmark" aria-hidden="true"></i> こんな人には向かない
-                  </h4>
+                  </p>
                   <ul>
                     {meta.bad.map((item, i) => (
                       <li key={i}>

@@ -21,7 +21,7 @@ export default function RecommendSection() {
           <p className="media-card__desc">
             また、複雑な作業をする予定はないけれどApple Pencilにあまり魅力を感じなかった方もMacBookを選んだほうがベターです。例えばMacBook Air M1搭載モデルでできることや処理性能をiPadで代替すると購入価格も高くなるので、コスパのよい選択肢とは言えません。
           </p>
-          <ul className="media-card__list">
+          <ul className="info-card__list">
             <li><strong>プログラミング・Webデザイン・動画編集</strong>が主な利用用途</li>
             <li>細かくデータの管理を行いたい</li>
             <li>大きい画面で作業したい</li>
@@ -51,7 +51,7 @@ export default function RecommendSection() {
           <p className="media-card__desc">
             また、将来的に本格的に動画を作りたい・プログラミングをしたいといったニーズがなく、あくまでライトに動画や電子書籍の閲覧を楽しみたいといった方もiPadがおすすめです。
           </p>
-          <ul className="media-card__list">
+          <ul className="info-card__list">
             <li><strong>Apple Pencilでノートを取りたい</strong></li>
             <li><strong>Apple Pencilでイラストを描きたい</strong></li>
             <li>スマホよりも大きい画面で動画を楽しみたい</li>

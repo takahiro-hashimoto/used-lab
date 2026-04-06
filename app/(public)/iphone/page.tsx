@@ -94,7 +94,7 @@ export default async function IPhoneGuidePage() {
     getShops(),
   ])
 
-  const vendorCards = buildVendorCardsFromShops(shops, 'url', '中古iPhoneを探す', { exclude: ['rakuma'] })
+  const vendorCards = buildVendorCardsFromShops(shops, 'url', '中古iPhoneを探す', { exclude: ['rakuma', 'carrier'] })
 
   // 相場セクション用: 指定slugのモデル + 最新価格を並列取得
   const priceModels = GUIDE_PRICE_SLUGS

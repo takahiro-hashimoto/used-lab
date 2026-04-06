@@ -48,4 +48,20 @@
     word-break: break-word;
   }
 
+  .pencil-model-labels__title {
+    width: 100%;
+  }
+
+  .pencil-detail-item {
+    display: block;
+  }
+
+  .pencil-detail-item__label {
+    margin-bottom: var(--space-xs);
+  }
+
+  .pencil-detail-item__label::after {
+    display: none;
+  }
+
 }

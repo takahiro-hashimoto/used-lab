@@ -352,6 +352,25 @@ export default function StyleGuidePage() {
                 </ul>
               </div>
             </div>
+
+            <h3 className="m-sub-heading" style={{ marginTop: 'var(--space-2xl)' }}>チェックポイントカード（post-check-item）</h3>
+            <p className="m-desc-text" style={{ marginTop: 'var(--space-sm)' }}>アイコン付き見出し + 説明文のカード。用途別ガイドやチェックリストに使用。</p>
+            <div className="l-grid l-grid--2col u-mt-xl" style={{ gap: 'var(--space-lg)' }}>
+              <div className="m-card m-card--shadow m-card--padded post-check-item">
+                <h3 className="post-check-item__heading">
+                  <i className="fa-solid fa-paintbrush" aria-hidden="true"></i>
+                  post-check-item__heading
+                </h3>
+                <p className="post-check-item__desc">post-check-item__desc — アイコン付き見出しと説明文のカード。m-card--shadow m-card--padded と組み合わせて使います。</p>
+              </div>
+              <div className="m-card m-card--shadow m-card--padded post-check-item">
+                <h3 className="post-check-item__heading">
+                  <i className="fa-solid fa-pen-to-square" aria-hidden="true"></i>
+                  別のカード例
+                </h3>
+                <p className="post-check-item__desc">複数カードを並べて用途別の比較やチェックポイントを表現できます。</p>
+              </div>
+            </div>
           </div>
         </section>
 

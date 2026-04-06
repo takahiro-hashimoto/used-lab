@@ -31,27 +31,27 @@ export const GUIDE_SPEC_LINKS = [
 export const GUIDE_FAQ_ITEMS = [
   {
     question: '自分に合った中古Apple Watchの選び方は？',
-    answer: '用途や予算に応じて最適なモデルは異なります。万能モデルならSeries 9、コスパ重視ならSE 第3世代、アウトドア・バッテリー重視ならUltra 2がおすすめです。「Apple Watch機種絞り込みツール」で条件を絞り込むと、あなたに合った機種が見つかります。',
+    answer: '用途や予算に応じて最適なモデルは異なります。万能モデルならSeries 9、コスパ重視ならSE 第3世代、アウトドア・バッテリー重視ならUltra 2がおすすめです。「[Apple Watch機種絞り込みツール](/watch/watch-filter-search/)」で条件を絞り込むと、あなたに合った機種が見つかります。',
   },
   {
     question: 'Apple Watchのスペックを比較したい',
-    answer: '「歴代Apple Watchスペック比較表」で、歴代Apple Watchのスペックを並べて比較できます。チップ性能、ケースサイズ、健康センサーの対応状況などを一覧で確認できます。',
+    answer: '「[歴代Apple Watchスペック比較表](/watch/watch-spec-table/)」で、歴代Apple Watchのスペックを並べて比較できます。チップ性能、ケースサイズ、健康センサーの対応状況などを一覧で確認できます。',
   },
   {
     question: '中古Apple Watchを買うベストなタイミングはいつですか？',
-    answer: '新型Apple Watch発売直後（9〜10月）は旧モデルの価格が下がりやすい傾向があります。また、年末年始や決算期（3月）もセールが行われることが多いです。当サイトの価格推移グラフで、値下がり傾向を確認してから購入するのがおすすめです。',
+    answer: '新型Apple Watch発売直後（9〜10月）は旧モデルの価格が下がりやすい傾向があります。また、年末年始や決算期（3月）もセールが行われることが多いです。当サイトの[価格推移グラフ](/watch/watch-price-info/)で、値下がり傾向を確認してから購入するのがおすすめです。',
   },
   {
     question: 'Apple WatchのGPSモデルとCellularモデルの違いは？',
-    answer: 'GPSモデルはiPhoneと接続して使う基本モデルです。CellularモデルはiPhoneがなくても単体で通話やデータ通信が可能です。ただしCellularモデルは別途通信契約が必要で、中古価格も高めです。大半の方はGPSモデルで十分です。',
+    answer: 'GPSモデルはiPhoneと接続して使う基本モデルです。CellularモデルはiPhoneがなくても単体で通話やデータ通信が可能です。ただしCellularモデルは別途通信契約が必要で、中古価格も高めです。大半の方はGPSモデルで十分です。詳しくは「[GPSモデルとセルラーモデルの違い](/watch/gps-cellular-compare/)」をご覧ください。',
   },
   {
     question: '中古Apple Watchはどこで買うのがおすすめですか？',
-    answer: '信頼性と保証の観点から、イオシス・ゲオ・じゃんぱらなどの大手中古専門店がおすすめです。これらの店舗では動作確認済みの端末を扱い、初期不良保証も付いています。',
+    answer: '信頼性と保証の観点から、イオシス・ゲオ・じゃんぱらなどの大手中古専門店がおすすめです。これらの店舗では動作確認済みの端末を扱い、初期不良保証も付いています。詳しくは「[中古Apple Watchを安心して購入できるECサイト](/watch/watch-shop/)」をご覧ください。',
   },
   {
     question: '中古Apple Watchはいつまで使えますか？',
-    answer: 'Apple Watchは発売から約5年間watchOSアップデートのサポートを受けられます。長く使いたい場合は、発売から2〜3年以内のモデルを選ぶと安心です。',
+    answer: 'Apple Watchは発売から約5年間watchOSアップデートのサポートを受けられます。長く使いたい場合は、発売から2〜3年以内のモデルを選ぶと安心です。詳しくは「[watchOSサポート期間一覧表](/watch/used-watch-support/)」をご覧ください。',
   },
   {
     question: '中古Apple Watchのバッテリー状態は確認できますか？',

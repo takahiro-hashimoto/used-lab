@@ -190,8 +190,9 @@ export default function IpadMacbookComparePage() {
                 結論：MacとiPadそれぞれどんな方におすすめ？
               </h2>
               <p className="m-section-desc">
-                まずは結論からお伝えします。MacBookとiPadはそれぞれ得意な分野が異なるため、自分の利用目的に合わせて選ぶことが大切です。以下を参考に、あなたに合ったデバイスを確認してみてください。
+                MacBookとiPadはそれぞれ得意な分野が異なるため、自分の利用目的に合わせて選ぶことが大切。
               </p>
+              <p className="m-section-desc">以下を参考に、あなたに合ったデバイスを確認しましょう。</p>
               <RecommendSection />
             </div>
           </section>
@@ -283,9 +284,9 @@ export default function IpadMacbookComparePage() {
                     それ以外なら → MacBook
                   </h3>
                   <ul className="u-mt-sm" style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)', lineHeight: 2, paddingLeft: 'var(--space-lg)', listStyle: 'disc' }}>
-                    <li>Apple Pencilに惹かれないなら<strong>MacBookのほうが後悔が少ない</strong></li>
-                    <li>同等スペックをiPadで揃えると<strong>価格がMacBookより高くなる</strong></li>
-                    <li>iPad版アプリは<strong>機能制限されている</strong>ことが多い</li>
+                    <li>Apple Pencilに惹かれないならMacBookのほうが後悔が少ない</li>
+                    <li>同等スペックをiPadで揃えると価格がMacBookより高い</li>
+                    <li>iPad版アプリは機能制限されていることが多い</li>
                     <li>ファイル管理・マルチタスクも圧倒的に快適</li>
                   </ul>
                 </div>

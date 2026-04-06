@@ -836,7 +836,7 @@ a.header-admin-link:hover {
   align-items: center;
   width: 48px;
   height: 48px;
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: 900;
   display: flex;
 }
@@ -845,7 +845,7 @@ a.header-admin-link:hover {
   border-radius: var(--radius-lg);
   padding: var(--space-md);
   object-fit: contain;
-  background: #ffffffe6;
+  background: #fff;
   width: 120px;
   height: 120px;
 }
@@ -1356,5 +1356,4 @@ a.header-admin-link:hover {
     align-self: flex-start;
   }
 }
-
 

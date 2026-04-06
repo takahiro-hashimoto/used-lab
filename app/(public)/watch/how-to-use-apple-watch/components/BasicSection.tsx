@@ -44,7 +44,7 @@ export default function BasicSection() {
       </MediaCard>
 
       {/* 3. 経路案内で目的地へ向かう */}
-      <MediaCard src="/images/content/apple-watch-navigation.jpg" alt="Apple Watchで経路案内を使用する様子" title="経路案内で目的地へ向かう">
+      <MediaCard src="" alt="Apple Watchで経路案内を使用する様子" title="経路案内で目的地へ向かう">
         <p className="media-card__desc">
           Apple Watchは、iPhoneで目的地をセットしたり、Apple Watch越しにSiriに目的地を伝えたりすることで、経路案内を利用できます。
         </p>
@@ -77,7 +77,7 @@ export default function BasicSection() {
       </MediaCard>
 
       {/* 6. LINEやショートメッセージの中身を確認する */}
-      <MediaCard src="/images/content/apple-watch-line.jpg" alt="Apple WatchでLINEを確認する様子" title="LINEやショートメッセージの中身を確認する">
+      <MediaCard src="" alt="Apple WatchでLINEを確認する様子" title="LINEやショートメッセージの中身を確認する">
         <p className="media-card__desc">
           Apple Watchは、スマートフォンを開かなくてもLINEやメッセージの内容を確認することができます。
         </p>
@@ -103,7 +103,7 @@ export default function BasicSection() {
       </MediaCard>
 
       {/* 8. Siriでタイマーを起動する */}
-      <MediaCard src="/images/content/apple-watch-siri.jpg" alt="Apple WatchでSiriを使う様子" title="Siriでタイマーを起動する">
+      <MediaCard src="" alt="Apple WatchでSiriを使う様子" title="Siriでタイマーを起動する">
         <p className="media-card__desc">
           Apple Watchは、Siriを通じてさまざまなアプリを音声で操作することができます。
         </p>
@@ -116,7 +116,7 @@ export default function BasicSection() {
       </MediaCard>
 
       {/* 9. 電話に出る・かける */}
-      <MediaCard src="/images/content/apple-watch-call.jpg" alt="Apple Watchで電話する様子" title="電話に出る・かける">
+      <MediaCard src="" alt="Apple Watchで電話する様子" title="電話に出る・かける">
         <p className="media-card__desc">
           Apple Watchがあれば、iPhoneにかかってきた電話に出たり、Apple Watchから直接電話をかけたりすることができます。
         </p>
@@ -126,7 +126,7 @@ export default function BasicSection() {
       </MediaCard>
 
       {/* 10. iPhoneのカメラでリモート撮影する */}
-      <MediaCard src="/images/content/apple-watch-camera-remote.jpg" alt="Apple WatchでiPhoneカメラをリモート操作する様子" title="iPhoneのカメラでリモート撮影する">
+      <MediaCard src="" alt="Apple WatchでiPhoneカメラをリモート操作する様子" title="iPhoneのカメラでリモート撮影する">
         <p className="media-card__desc">
           Apple Watchがあれば、iPhoneカメラのシャッター操作を遠隔で行うことが可能です。
         </p>
@@ -139,7 +139,7 @@ export default function BasicSection() {
       </MediaCard>
 
       {/* 11. トランシーバーアプリで会話する */}
-      <MediaCard src="/images/content/apple-watch-walkie-talkie.jpg" alt="Apple Watchのトランシーバー機能" title="トランシーバーアプリで会話する">
+      <MediaCard src="" alt="Apple Watchのトランシーバー機能" title="トランシーバーアプリで会話する">
         <p className="media-card__desc">
           Apple Watchには、トランシーバー機能が搭載されており、距離が離れていても相互通話することが可能です。
         </p>
@@ -156,7 +156,7 @@ export default function BasicSection() {
       </MediaCard>
 
       {/* 12. 懐中電灯・フラッシュライトとして使う */}
-      <MediaCard src="/images/content/apple-watch-flashlight.jpg" alt="Apple Watchの懐中電灯機能" title="懐中電灯・フラッシュライトとして使う">
+      <MediaCard src="" alt="Apple Watchの懐中電灯機能" title="懐中電灯・フラッシュライトとして使う">
         <p className="media-card__desc">
           Apple Watchには、手元を照らすのに便利な3種類の懐中電灯（フラッシュライト）モードが搭載されています。
         </p>

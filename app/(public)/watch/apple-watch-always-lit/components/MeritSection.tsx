@@ -31,7 +31,7 @@ export default function MeritSection() {
               <p className="media-card__desc">
                 これが意外と不便に感じることが多くあります。例えば下記のようなシーン。
               </p>
-              <ul className="u-mb-md" style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)', lineHeight: 2, paddingLeft: 'var(--space-lg)', listStyle: 'disc' }}>
+              <ul className="u-mb-md media-card__list" style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)', lineHeight: 2, paddingLeft: 'var(--space-lg)', listStyle: 'disc' }}>
                 <li>電車でつり革に手をかけた状態で時計を見たい</li>
                 <li>会議中に来た通知をこそっと確認したい</li>
                 <li>会話を楽しんでいる最中さっと時刻を確認したい</li>

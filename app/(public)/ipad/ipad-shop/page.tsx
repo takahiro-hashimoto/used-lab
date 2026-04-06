@@ -104,7 +104,7 @@ export default async function IPadShopPage() {
     .map((key) => {
       const shop = shops.find((s) => s.shop_key === key)
       const meta = IPAD_SHOP_DETAIL_META[key]
-      if (!shop || !meta) return null
+      if (!shop || !meta || shop.ipad_url == null) return null
       return { shop, meta }
     })
     .filter((item): item is { shop: Shop; meta: (typeof IPAD_SHOP_DETAIL_META)[string] } => item != null)
@@ -254,7 +254,9 @@ export default async function IPadShopPage() {
           <FaqSection />
           <ConclusionSection />
           <IPadPopularSection />
-        <IPadRelatedLinks excludeHref={["/ipad/ipad-shop/", "/ipad/recommend/"]} />
+        <IPadRelatedLinks excludeHref={["/ipad/ipad-shop/", "/ipad/recommend/"]}>
+          <div className="m-callout m-callout--muted" style={{ marginTop: 'var(--space-3xl)' }}><span className="m-callout__label">関連</span><p className="m-callout__text"><a href="https://atam-academy.com/" target="_blank" rel="noreferrer noopener">オンラインイラスト教室アタムアカデミー｜iPadで学ぶ子供向けアート教育</a></p></div>
+        </IPadRelatedLinks>
         <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>
       </article>

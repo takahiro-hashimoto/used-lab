@@ -374,8 +374,7 @@ export default async function IPadGuidePage() {
           <section className="l-section" id="where-to-buy" aria-labelledby="heading-where-to-buy">
             <div className="l-container">
               <h2 className="m-section-heading m-section-heading--lg" id="heading-where-to-buy">中古iPadはどこで買う？ショップ比較一覧</h2>
-              <p className="m-section-desc">中古iPad販売店の比較情報。保証内容、価格、在庫の豊富さなど、</p>
-              <p className="m-section-desc">各ショップの特徴を一覧表で整理しました。</p>
+              <p className="m-section-desc">中古iPad販売店の比較情報。保証内容、価格、在庫の豊富さなど、各ショップの特徴を一覧表で整理しました。</p>
 
               <VendorCardGrid cards={vendorCards} />
 
@@ -400,8 +399,7 @@ export default async function IPadGuidePage() {
           <section className="l-section" id="usage" aria-labelledby="heading-usage">
             <div className="l-container">
               <h2 className="m-section-heading m-section-heading--lg" id="heading-usage">iPadの使い道・活用シーン</h2>
-              <p className="m-section-desc">「iPadって結局何に使えるの？」という疑問をお持ちの方へ。</p>
-              <p className="m-section-desc">iPadは動画やゲームなどのエンタメはもちろん、勉強・仕事の効率化からイラスト制作まで幅広く活躍するデバイスです。</p>
+              <p className="m-section-desc">「iPadって結局何に使えるの？」という疑問をお持ちの方へ具体的な活用シーンをご紹介。</p>
 
               <div className="l-grid l-grid--2col l-grid--gap-lg u-mb-xl">
                 <IconCard icon="fa-solid fa-film" title="エンタメ">

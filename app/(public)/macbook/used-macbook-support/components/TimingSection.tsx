@@ -10,9 +10,13 @@ const TIMING_CARDS: TimingCard[] = [
     content: (
       <>
         <p>MacBookは発売から約7年が経過すると、最新のmacOSアップデート対象から外れる可能性が非常に高くなります。</p>
-        <p>OSの更新が止まると、最新の機能が使えないだけでなく、セキュリティのリスクが高まったり、XcodeやAdobe製品などのプロ向けアプリが次第に非対応になったりと、業務に直結する支障が出てきます。</p>
+        <p>OSの更新が止まると下記のような支障が出ます。</p>
+        <ul className="media-card__list">
+          <li>最新のmacOS機能が使えなくなる</li>
+          <li>セキュリティアップデートが届かずリスクが高まる</li>
+          <li>XcodeやAdobe製品などプロ向けアプリが次第に非対応になる</li>
+        </ul>
         <p>また、Appleでは販売終了から7年経った製品を「オブソリート製品」と定義しており、この指定を受けるとAppleでの修理受付が完全に終了します。</p>
-        <p>発売から7年は、安全性と快適さを維持しながら使い続けられる「物理的な限界ライン」といえるでしょう。</p>
       </>
     ),
   },
@@ -25,10 +29,16 @@ const TIMING_CARDS: TimingCard[] = [
         <p>MacBookのバッテリーにはリチウムポリマー電池が使用されており、充電を繰り返すうちに最大容量が減少していきます。</p>
         <p>MacBookのバッテリー充放電回数は「システム情報」→「電源」から確認できます。一般的に1,000回を超えるとバッテリーの劣化が進むとされています。</p>
         <p>バッテリーの持ちが購入時の半分以下に感じたら、バッテリー交換もしくは買い替えを検討するタイミングです。</p>
-        <div className="m-callout m-callout--tip u-mt-lg">
-          <span className="m-callout__label">バッテリー状態の確認方法</span>
-          <p className="m-callout__text">Appleメニュー → 「システム設定」→「バッテリー」→「バッテリーの状態」から確認できます。</p>
-        </div>
+      </>
+    ),
+    footer: (
+      <>
+        <h3 className="caution-how-to__heading">バッテリー状態の確認方法</h3>
+        <ol className="caution-steps">
+          <li className="caution-steps__item"><span className="caution-steps__num">1</span><span>画面左上の  メニュー →「システム設定」</span></li>
+          <li className="caution-steps__item"><span className="caution-steps__num">2</span><span>「バッテリー」をクリック</span></li>
+          <li className="caution-steps__item"><span className="caution-steps__num">3</span><span>「バッテリーの状態」をクリック</span></li>
+        </ol>
       </>
     ),
   },

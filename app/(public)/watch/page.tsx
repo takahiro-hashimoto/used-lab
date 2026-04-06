@@ -64,7 +64,7 @@ export default async function WatchGuidePage() {
     getShops(),
   ])
 
-  const vendorCards = buildVendorCardsFromShops(shops, 'watch_url', '中古Apple Watchを探す')
+  const vendorCards = buildVendorCardsFromShops(shops, 'watch_url', '中古Apple Watchを探す', { exclude: ['rakuma'] })
 
   // 相場セクション用: 指定slugのモデル + 最新価格を並列取得
   const priceModels = GUIDE_PRICE_SLUGS

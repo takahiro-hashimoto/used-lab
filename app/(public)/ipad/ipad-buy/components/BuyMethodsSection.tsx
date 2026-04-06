@@ -1,6 +1,7 @@
 export default function BuyMethodsSection() {
   return (
     <section id="comparison" className="l-section">
+      <style>{`.buy-method-card a:not(.buy-method-cta){color:var(--color-primary)}`}</style>
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg">
 iPadを安く買う7つの方法
@@ -16,7 +17,7 @@ iPadを安く買う7つの方法
           {/* ── 1. Appleギフトカード × 楽天リーベイツ ── */}
           <div id="gift-rebates" className="m-card m-card--shadow buy-method-card">
             <img
-              src="https://used-lab.jp/wp-content/uploads/2025/07/ipad-sale-step-1024x569.jpg"
+              src="/images/content/photo/ipad-buy/ipad-sale-step-1024x569.jpg"
               alt="iPadを安く買う方法！ポイント二重取り編"
               className="buy-method-card__img"
               width={1024}
@@ -47,7 +48,7 @@ iPadを安く買う7つの方法
                   <div className="m-timeline__content">
                     <h4>楽天市場でAppleギフトカードを購入</h4>
                     <img
-                      src="https://used-lab.jp/wp-content/uploads/2025/07/apple-giftcard-buy-1024x576.jpg"
+                      src="/images/content/photo/ipad-buy/apple-giftcard-buy-1024x576.jpg"
                       alt="楽天市場でAppleギフトカードを購入"
                       className="m-timeline__img"
                       width={1024}
@@ -75,7 +76,7 @@ iPadを安く買う7つの方法
                   <div className="m-timeline__content">
                     <h4>AppleギフトカードをApple IDに登録</h4>
                     <img
-                      src="https://used-lab.jp/wp-content/uploads/2025/07/c167fb3e3db0bc7458bee73310400259-1024x576.jpg"
+                      src="/images/content/photo/ipad-buy/c167fb3e3db0bc7458bee73310400259-1024x576.jpg"
                       alt="AppleギフトカードをApple IDに登録"
                       className="m-timeline__img"
                       width={1024}
@@ -92,7 +93,7 @@ iPadを安く買う7つの方法
                   <div className="m-timeline__content">
                     <h4>楽天リーベイツを経由してAppleストアで買い物</h4>
                     <img
-                      src="https://used-lab.jp/wp-content/uploads/2025/07/rakuten-reabayts-1024x576.jpg"
+                      src="/images/content/photo/ipad-buy/rakuten-reabayts-1024x576.jpg"
                       alt="楽天リーベイツを経由してAppleストアで買い物"
                       className="m-timeline__img"
                       width={1024}
@@ -115,7 +116,7 @@ iPadを安く買う7つの方法
           {/* ── 2. Amazonで買う ── */}
           <div id="amazon" className="m-card m-card--shadow buy-method-card">
             <img
-              src="https://used-lab.jp/wp-content/uploads/2025/07/ipad-sale-for-amazon-1024x569.jpg"
+              src="/images/content/photo/ipad-buy/ipad-sale-for-amazon-1024x569.jpg"
               alt="iPadを安く買う方法！Amazon編"
               className="buy-method-card__img"
               width={1024}
@@ -202,7 +203,7 @@ iPadを安く買う7つの方法
           {/* ── 3. 楽天市場で買う ── */}
           <div id="rakuten" className="m-card m-card--shadow buy-method-card">
             <img
-              src="https://used-lab.jp/wp-content/uploads/2025/07/ipad-sale-for-rakuten-01-1024x569.jpg"
+              src="/images/content/photo/ipad-buy/ipad-sale-for-rakuten-01-1024x569.jpg"
               alt="iPadを安く買う方法！楽天市場編"
               className="buy-method-card__img"
               width={1024}
@@ -283,7 +284,7 @@ iPadを安く買う7つの方法
           {/* ── 4. ヤフーショッピングで買う ── */}
           <div id="yahoo" className="m-card m-card--shadow buy-method-card">
             <img
-              src="https://used-lab.jp/wp-content/uploads/2025/07/ipad-sale-yahoo-shop-1024x569.jpg"
+              src="/images/content/photo/ipad-buy/ipad-sale-yahoo-shop-1024x569.jpg"
               alt="iPadを安く買う方法！ヤフーショッピング編"
               className="buy-method-card__img"
               width={1024}
@@ -362,7 +363,7 @@ iPadを安く買う7つの方法
           {/* ── 5. 家電量販店ECサイトで買う ── */}
           <div id="electronics" className="m-card m-card--shadow buy-method-card">
             <img
-              src="https://used-lab.jp/wp-content/uploads/2025/07/ipad-sale-yamadadenki-1024x569.jpg"
+              src="/images/content/photo/ipad-buy/ipad-sale-yamadadenki-1024x569.jpg"
               alt="iPadを安く買う方法！家電量販店編"
               className="buy-method-card__img"
               width={1024}
@@ -416,7 +417,7 @@ iPadを安く買う7つの方法
           {/* ── 6. 中古ショップで買う ── */}
           <div id="used" className="m-card m-card--shadow buy-method-card">
             <img
-              src="https://used-lab.jp/wp-content/uploads/2025/07/ipad-sale-used-1024x569.jpg"
+              src="/images/content/photo/ipad-buy/ipad-sale-used-1024x569.jpg"
               alt="iPadを安く買う方法！中古ショップ編"
               className="buy-method-card__img"
               width={1024}
@@ -471,7 +472,7 @@ iPadを安く買う7つの方法
           {/* ── 7. Appleストアで買う ── */}
           <div id="apple-store" className="m-card m-card--shadow buy-method-card">
             <img
-              src="https://used-lab.jp/wp-content/uploads/2025/07/ipad-sale-apple-store-1024x569.jpg"
+              src="/images/content/photo/ipad-buy/ipad-sale-apple-store-1024x569.jpg"
               alt="iPadを安く買う方法！Appleストア編"
               className="buy-method-card__img"
               width={1024}

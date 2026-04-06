@@ -103,7 +103,7 @@ export default async function IPhoneShopPage() {
     .map((key) => {
       const shop = shops.find((s) => s.shop_key === key)
       const meta = SHOP_DETAIL_META[key]
-      if (!shop || !meta) return null
+      if (!shop || !meta || shop.url == null) return null
       return { shop, meta }
     })
     .filter((item): item is { shop: Shop; meta: (typeof SHOP_DETAIL_META)[string] } => item != null)

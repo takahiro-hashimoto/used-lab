@@ -41,7 +41,7 @@ export default function PaymentSection() {
       </MediaCard>
 
       {/* 21. PayPayや楽天ペイのQRコード決済を行う */}
-      <MediaCard src="/images/content/apple-watch-qr-payment.jpg" alt="Apple WatchでQRコード決済をする様子" title="PayPayや楽天ペイのQRコード決済を行う">
+      <MediaCard src="" alt="Apple WatchでQRコード決済をする様子" title="PayPayや楽天ペイのQRコード決済を行う">
         <p className="media-card__desc">
           Apple Watchは、SuicaやiDといった非接触型決済だけでなく、PayPayや楽天ペイなどのQRコード決済にも対応しています。
         </p>

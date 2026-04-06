@@ -103,7 +103,7 @@ export default async function WatchShopPage() {
     .map((key) => {
       const shop = shops.find((s) => s.shop_key === key)
       const meta = WATCH_SHOP_DETAIL_META[key]
-      if (!shop || !meta) return null
+      if (!shop || !meta || shop.watch_url == null) return null
       return { shop, meta }
     })
     .filter((item): item is { shop: Shop; meta: (typeof WATCH_SHOP_DETAIL_META)[string] } => item != null)

@@ -258,10 +258,7 @@ export default async function IPadFilterSearchPage() {
           description="診断に関してよくある質問をまとめました。"
           items={FAQ_ITEMS}
         />
-
-        {/* 目的別に人気の中古iPad */}
         <IPadPopularSection />
-
         <IPadRelatedLinks excludeHref={["/ipad/ipad-filter-search/", "/ipad/recommend/"]} />
         <ShareBox url="https://used-lab.jp/ipad/ipad-filter-search/" text="iPad機種診断シミュレーター｜自分に合うおすすめ中古iPadがすぐわかる【2026年版】" />
         </div>

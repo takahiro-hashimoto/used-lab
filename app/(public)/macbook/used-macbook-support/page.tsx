@@ -172,7 +172,14 @@ export default async function UsedMacbookSupportPage() {
         <TimingSection />
         <FaqSection />
         <MacBookPopularSection />
-        <MacBookRelatedLinks excludeHref={["/macbook/used-macbook-support/", "/macbook/recommend/"]} />
+        <MacBookRelatedLinks excludeHref={["/macbook/used-macbook-support/", "/macbook/recommend/"]}>
+          <div className="m-callout m-callout--muted u-mt-3xl">
+            <span className="m-callout__label">関連</span>
+            <p className="m-callout__text">
+              <a href="https://www.kaden-max.com/" target="_blank" rel="noreferrer noopener">リサイクルショップ「出張買取MAX」24時間電話受付！査定費・作業費・出張費無料</a>
+            </p>
+          </div>
+        </MacBookRelatedLinks>
         <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>
       </article>

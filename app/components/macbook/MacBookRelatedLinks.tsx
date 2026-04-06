@@ -25,8 +25,8 @@ export default function MacBookRelatedLinks({
       excludeHref={excludeHref}
       sourcePath={sourcePath}
     >
-      {children}
       <CrossCategoryLinks currentCategory="/macbook/" />
+      {children}
     </RelatedLinks>
   )
 }

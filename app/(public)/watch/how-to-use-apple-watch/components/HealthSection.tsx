@@ -41,7 +41,7 @@ export default function HealthSection() {
       </MediaCard>
 
       {/* 15. 睡眠アプリで睡眠の質をチェック */}
-      <MediaCard src="/images/content/apple-watch-sleep.jpg" alt="Apple Watchの睡眠トラッキング" title="睡眠アプリで睡眠の質をチェック">
+      <MediaCard src="" alt="Apple Watchの睡眠トラッキング" title="睡眠アプリで睡眠の質をチェック">
         <p className="media-card__desc">
           Apple Watchを装着して寝るだけで、深い睡眠やレム睡眠といった「睡眠のステージ」を詳細に記録できます。就寝前にバッテリーを80%以上まで充電しておけば、一晩の睡眠記録には十分持ちます。より詳細な分析ができる「<a href="https://apps.apple.com/jp/app/autosleep-watch%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E7%9D%A1%E7%9C%A0%E3%82%92%E8%87%AA%E5%8B%95%E3%81%A7%E8%BF%BD%E8%B7%A1%E3%81%97%E3%81%BE%E3%81%99/id1164801111" target="_blank" rel="noopener">Auto Sleep</a>」というアプリもおすすめです。
         </p>
@@ -54,7 +54,7 @@ export default function HealthSection() {
       </MediaCard>
 
       {/* 16. 転倒検出 & 緊急通報機能で万が一に備える */}
-      <MediaCard src="/images/content/apple-watch-fall-detection.jpg" alt="Apple Watchの転倒検出機能" title="転倒検出 &amp; 緊急通報機能で万が一に備える">
+      <MediaCard src="" alt="Apple Watchの転倒検出機能" title="転倒検出 &amp; 緊急通報機能で万が一に備える">
         <p className="media-card__desc">
           Apple Watchは、内蔵センサーにより着用者の激しい転倒を検知する機能を持っています。
         </p>
@@ -67,7 +67,7 @@ export default function HealthSection() {
       </MediaCard>
 
       {/* 17. 血中酸素濃度を測定する */}
-      <MediaCard src="/images/content/apple-watch-blood-oxygen.jpg" alt="Apple Watchの血中酸素濃度測定" title="血中酸素濃度を測定する">
+      <MediaCard src="" alt="Apple Watchの血中酸素濃度測定" title="血中酸素濃度を測定する">
         <p className="media-card__desc">
           血液中に取り込まれている酸素のレベル（血中酸素飽和度：SpO2）を計測する血中酸素ウェルネス機能です。
         </p>
@@ -80,7 +80,7 @@ export default function HealthSection() {
       </MediaCard>
 
       {/* 18. 電気心拍センサーで心拍数をチェック */}
-      <MediaCard src="/images/content/apple-watch-heart-rate.jpg" alt="Apple Watchの心拍センサー" title="電気心拍センサーで心拍数をチェック">
+      <MediaCard src="" alt="Apple Watchの心拍センサー" title="電気心拍センサーで心拍数をチェック">
         <p className="media-card__desc">
           Apple Watchに搭載されている電気心拍センサーは、単なる心拍数の記録に留まらない、重要な健康監視機能を提供します。
         </p>

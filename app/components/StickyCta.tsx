@@ -47,7 +47,7 @@ export default function StickyCta() {
     }
   }, [])
 
-  if (!isMobile) return null
+  if (!isMobile || !category) return null
 
   return (
     <div
