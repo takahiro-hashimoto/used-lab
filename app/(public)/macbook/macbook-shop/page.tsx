@@ -10,18 +10,21 @@ import {
 } from '@/lib/data/macbook-shop'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import ShareBox from '@/app/components/ShareBox'
+import ShopComparisonTable from '@/app/components/shop/ShopComparisonTable'
+import type { SpecRow } from '@/app/components/shop/ShopDetailSection'
 import BuyingOptionsSection from './components/BuyingOptionsSection'
 import ShopComparisonSection from './components/ShopComparisonSection'
 import RecommendByTypeSection from './components/RecommendByTypeSection'
 import ShopDetailSection from './components/ShopDetailSection'
 import FleaMarketSection from './components/FleaMarketSection'
 import ChecklistSection from './components/ChecklistSection'
-import PopularSection from './components/PopularSection'
+import MacBookPopularSection from '@/app/components/support/popular/MacBookPopularSection'
 import ConclusionSection from './components/ConclusionSection'
 import FaqSection from './components/FaqSection'
 import MacBookRelatedLinks from '@/app/components/macbook/MacBookRelatedLinks'
 import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
+import { getHeroImage } from '@/lib/data/hero-images'
 import HeroMeta from '@/app/components/HeroMeta'
 
 export const revalidate = 3600
@@ -38,17 +41,28 @@ export const metadata: Metadata = {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/macbook/macbook-shop/',
-    images: [{ url: '/images/content/thumbnail/cheap-buy.jpg', width: 1200, height: 630, alt: PAGE_TITLE }],
+    images: [{ url: getHeroImage('/macbook/macbook-shop/'), width: 1200, height: 630, alt: PAGE_TITLE }],
   },
   twitter: {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
-    images: ['/images/content/thumbnail/cheap-buy.jpg'],
+    images: [getHeroImage('/macbook/macbook-shop/')],
   },
 }
 
 export default async function MacBookShopPage() {
   const shops = await getShops()
+
+  // 比較表用: macbook_url が存在するショップを抽出
+  const comparisonShops = shops.filter((s) => s.macbook_url != null)
+  const comparisonSpecRows: SpecRow[] = [
+    { label: '価格', getValue: (s) => s.price },
+    { label: '在庫', getValue: (s) => s.stock },
+    { label: '保証期間', getValue: (s) => s.support || '-' },
+    { label: '独自保証', getValue: (s) => s.extension },
+    { label: '実物写真', getValue: (s) => s.photo },
+    { label: '配送料', getValue: (s) => s.postage },
+  ]
 
   const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/macbook/macbook-shop/page.tsx')
 
@@ -134,7 +148,7 @@ export default async function MacBookShopPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/content/thumbnail/cheap-buy.jpg"
+                  src={getHeroImage('/macbook/macbook-shop/')}
                   alt="中古MacBookの購入先イメージ"
                   className="hero-media__img"
                   width={360}
@@ -217,11 +231,28 @@ export default async function MacBookShopPage() {
           <ShopComparisonSection />
           <RecommendByTypeSection />
           <ShopDetailSection items={shopDetailItems} />
+          {/* ショップ比較表 */}
+          <section className="l-section" id="shop-table" aria-labelledby="heading-shop-table">
+            <div className="l-container">
+              <h2 className="m-section-heading m-section-heading--lg" id="heading-shop-table">
+                中古MacBook取り扱いショップ比較表
+              </h2>
+              <p className="m-section-desc">中古MacBookを取り扱うショップの保証・価格・サービスを一覧で比較できます。</p>
+              <ShopComparisonTable
+                shops={comparisonShops}
+                specRows={comparisonSpecRows}
+                caption="中古MacBook取り扱いショップ比較表"
+                getShopUrl={(s) => s.macbook_url}
+                ctaText="詳細を見る"
+              />
+            </div>
+          </section>
+
           <FleaMarketSection />
           <ChecklistSection />
           <FaqSection />
           <ConclusionSection />
-          <PopularSection />
+          <MacBookPopularSection />
         <MacBookRelatedLinks excludeHref={["/macbook/macbook-shop/", "/macbook/recommend/"]} />
         <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>

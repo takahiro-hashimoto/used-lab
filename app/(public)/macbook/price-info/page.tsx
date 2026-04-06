@@ -22,6 +22,7 @@ import FaqSection from './components/FaqSection'
 import PopularMacBook from '@/app/components/PopularMacBook'
 import MacBookRelatedLinks from '@/app/components/macbook/MacBookRelatedLinks'
 import AuthorByline from '@/app/components/AuthorByline'
+import { getHeroImage } from '@/lib/data/hero-images'
 import HeroMeta from '@/app/components/HeroMeta'
 
 // ============================================================
@@ -119,12 +120,12 @@ export async function generateMetadata(): Promise<Metadata> {
       title,
       description,
       url: '/macbook/price-info/',
-      images: [{ url: '/images/content/thumbnail/graph-image.jpg', width: 1200, height: 630, alt: title }],
+      images: [{ url: getHeroImage('/macbook/price-info/'), width: 1200, height: 630, alt: title }],
     },
     twitter: {
       title,
       description,
-      images: ['/images/content/thumbnail/graph-image.jpg'],
+      images: [getHeroImage('/macbook/price-info/')],
     },
   }
 }
@@ -348,7 +349,7 @@ export default async function MacBookPriceInfoPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/content/thumbnail/graph-image.jpg"
+                  src={getHeroImage('/macbook/price-info/')}
                   alt="中古MacBook価格相場"
                   className="hero-media__img"
                   width={360}

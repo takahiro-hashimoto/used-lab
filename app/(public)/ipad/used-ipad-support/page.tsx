@@ -6,12 +6,13 @@ import ShareBox from '@/app/components/ShareBox'
 import IPadOsSupportMatrix from './components/IPadOsSupportMatrix'
 import LifespanTable from './components/LifespanTable'
 import TimingSection from './components/TimingSection'
-import PopularSection from './components/PopularSection'
+import IPadPopularSection from '@/app/components/support/popular/IPadPopularSection'
 import FaqSection from './components/FaqSection'
 import IPadRelatedLinks from '@/app/components/ipad/IPadRelatedLinks'
 import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
+import { getHeroImage } from '@/lib/data/hero-images'
 
 export const revalidate = 3600
 
@@ -28,12 +29,12 @@ export const metadata: Metadata = {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/ipad/used-ipad-support/',
-    images: [{ url: '/images/ipad/ipad-pro-13-2.jpg', width: 1200, height: 630, alt: PAGE_TITLE }],
+    images: [{ url: getHeroImage('/ipad/used-ipad-support/'), width: 1200, height: 630, alt: PAGE_TITLE }],
   },
   twitter: {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
-    images: ['/images/ipad/ipad-pro-13-2.jpg'],
+    images: [getHeroImage('/ipad/used-ipad-support/')],
   },
 }
 
@@ -100,7 +101,7 @@ export default async function UsedIpadSupportPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/content/thumbnail/ipad-image-06.jpg"
+                  src={getHeroImage('/ipad/used-ipad-support/')}
                   alt="iPadの寿命・サポート期間イメージ"
                   className="hero-media__img"
                   width={360}
@@ -137,13 +138,13 @@ export default async function UsedIpadSupportPage() {
             <ol className="l-grid l-grid--3col u-list-reset">
               <li>
                 <a href="#support-table" className="toc-item">
-                  iPadOS別サポート機種一覧表{' '}
+                  OS別サポート機種一覧表{' '}
                   <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
                 </a>
               </li>
               <li>
                 <a href="#lifespan-table" className="toc-item">
-                  サポート期間一覧（寿命予想）{' '}
+                  サポート期間一覧{' '}
                   <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
                 </a>
               </li>
@@ -170,7 +171,7 @@ export default async function UsedIpadSupportPage() {
         <LifespanTable models={allModelsWithEnded} />
         <TimingSection />
         <FaqSection />
-        <PopularSection />
+        <IPadPopularSection />
         <IPadRelatedLinks excludeHref={["/ipad/used-ipad-support/", "/ipad/recommend/"]} />
         <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>

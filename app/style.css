@@ -2158,7 +2158,8 @@
   background: #f0faf0;
 }
 
-.recommend-card__fit-box--good h4 {
+.recommend-card__fit-box--good h4,
+.recommend-card__fit-box--good .recommend-card__fit-title {
   color: var(--color-positive);
 }
 
@@ -2166,7 +2167,8 @@
   background: #fef0f0;
 }
 
-.recommend-card__fit-box--bad h4 {
+.recommend-card__fit-box--bad h4,
+.recommend-card__fit-box--bad .recommend-card__fit-title {
   color: var(--color-negative);
 }
 
@@ -6985,10 +6987,10 @@
 }
 
 .media-card__list {
-  font-size: var(--font-size-sm);
-  color: var(--color-text-secondary);
-  padding-left: var(--space-md);
-  margin-top: var(--space-sm);
+  /* font-size: var(--font-size-sm); */
+  /* color: var(--color-text-secondary); */
+  padding-left: 0;
+  margin: var(--space-md);
   line-height: 2;
   list-style: outside;
 }
@@ -7194,3 +7196,19 @@ ol.info-card__list {
 }
 
 /* --- Feature Card / Compare → compare.css --- */
+@media (max-width: 768px) {
+  .ios-matrix tbody th,
+  .ios-matrix thead th {
+    font-size: 12px;
+    padding: 6px 4px;
+  }
+}
+
+.lead-box__list {
+  margin: var(--space-md) 0;
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+  padding-left: 1.5em;
+  line-height: 1.5;
+  list-style: outside;
+}

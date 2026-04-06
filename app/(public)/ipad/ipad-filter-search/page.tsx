@@ -11,9 +11,10 @@ import { supabase } from '@/lib/supabase'
 import IPadFilterSearchApp from './components/IPadFilterSearchApp'
 import ShareBox from '@/app/components/ShareBox'
 import IPadRelatedLinks from '@/app/components/ipad/IPadRelatedLinks'
-import PopularSection from '@/app/components/support/PopularSection'
+import IPadPopularSection from '@/app/components/support/popular/IPadPopularSection'
 import { getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
+import { getHeroImage } from '@/lib/data/hero-images'
 
 export const revalidate = 3600
 
@@ -26,12 +27,12 @@ export const metadata: Metadata = {
     title: 'iPad機種診断シミュレーター｜自分に合うおすすめ中古iPadがすぐわかる【2026年版】',
     description: '目的・予算・こだわり条件から、あなたに最適な中古iPadを無料で診断。',
     url: '/ipad/ipad-filter-search/',
-    images: [{ url: '/images/ipad/ipad-all.jpg', width: 1200, height: 630, alt: 'iPad機種診断シミュレーター' }],
+    images: [{ url: getHeroImage('/ipad/ipad-filter-search/'), width: 1200, height: 630, alt: 'iPad機種診断シミュレーター' }],
   },
   twitter: {
     title: 'iPad機種診断シミュレーター｜自分に合うおすすめ中古iPadがすぐわかる【2026年版】',
     description: '目的・予算・こだわり条件から、あなたに最適な中古iPadを無料で診断。',
-    images: ['/images/ipad/ipad-all.jpg'],
+    images: [getHeroImage('/ipad/ipad-filter-search/')],
   },
 }
 
@@ -191,7 +192,7 @@ export default async function IPadFilterSearchPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/content/thumbnail/simulator.jpg"
+                  src={getHeroImage('/ipad/ipad-filter-search/')}
                   alt="iPad機種診断シミュレーターのイメージ"
                   className="hero-media__img"
                   width={360}
@@ -259,19 +260,7 @@ export default async function IPadFilterSearchPage() {
         />
 
         {/* 目的別に人気の中古iPad */}
-        <PopularSection
-          sectionTitle="目的別に人気の中古iPad"
-          sectionDescription="目的別におすすめの機種を厳選。診断で迷った方はぜひご覧ください。"
-          imageSrc="/images/content/thumbnail/ipad-image-03.jpg"
-          imageAlt="中古iPadおすすめ5選のイメージ画像"
-          subtitle="目的別におすすめ機種を厳選！"
-          cardTitle="中古iPadおすすめ5選"
-          cardDescription="イラスト制作に最適なモデル、動画視聴に大画面モデルなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。"
-          buttonText="おすすめ5機種を見る"
-          buttonHref="/ipad/recommend"
-          secondaryButtonText="イオシスで中古iPadを探す"
-          secondaryButtonHref="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Ftablet%2Fios%2Fipad"
-        />
+        <IPadPopularSection />
 
         <IPadRelatedLinks excludeHref={["/ipad/ipad-filter-search/", "/ipad/recommend/"]} />
         <ShareBox url="https://used-lab.jp/ipad/ipad-filter-search/" text="iPad機種診断シミュレーター｜自分に合うおすすめ中古iPadがすぐわかる【2026年版】" />

@@ -23,9 +23,10 @@ import PriceDropSection from './components/PriceDropSection'
 import RankingSection from './components/RankingSection'
 import PriceHistorySection from './components/PriceHistorySection'
 import FaqSection from './components/FaqSection'
-import PopularSection from '@/app/components/support/PopularSection'
+import IPadPopularSection from '@/app/components/support/popular/IPadPopularSection'
 import AuthorByline from '@/app/components/AuthorByline'
 import HeroMeta from '@/app/components/HeroMeta'
+import { getHeroImage } from '@/lib/data/hero-images'
 
 // ============================================================
 // 型定義
@@ -124,12 +125,12 @@ export async function generateMetadata(): Promise<Metadata> {
       title,
       description,
       url: '/ipad/ipad-price-info/',
-      images: [{ url: '/images/content/thumbnail/graph-image.jpg', width: 1200, height: 630, alt: title }],
+      images: [{ url: getHeroImage('/ipad/ipad-price-info/'), width: 1200, height: 630, alt: title }],
     },
     twitter: {
       title,
       description,
-      images: ['/images/content/thumbnail/graph-image.jpg'],
+      images: [getHeroImage('/ipad/ipad-price-info/')],
     },
   }
 }
@@ -157,7 +158,7 @@ export default async function IPadPriceInfoPage() {
   for (let i = 0; i < allModels.length; i++) {
     const model = allModels[i]
     const logs = filterLast3Months(priceLogsMap.get(model.id) || [])
-    const osLife = calculateOSLifespan(model.date)
+    const osLife = calculateOSLifespan(model.date, model.last_ipados)
 
     // 価格ログから最低容量を取得
     const storageSet = new Set<number>()
@@ -365,7 +366,7 @@ export default async function IPadPriceInfoPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/content/thumbnail/graph-image.jpg"
+                  src={getHeroImage('/ipad/ipad-price-info/')}
                   alt="中古iPad価格相場"
                   className="hero-media__img"
                   width={360}
@@ -458,19 +459,7 @@ export default async function IPadPriceInfoPage() {
           <PriceHistorySection models={sortedModels} />
 
           <FaqSection />
-        <PopularSection
-          sectionTitle="目的別に人気の中古iPad"
-          sectionDescription="目的別におすすめの機種を厳選。診断で迷った方はぜひご覧ください。"
-          imageSrc="/images/content/thumbnail/ipad-image-03.jpg"
-          imageAlt="中古iPadおすすめ5選のイメージ画像"
-          subtitle="目的別におすすめ機種を厳選！"
-          cardTitle="中古iPadおすすめ5選"
-          cardDescription="イラスト制作に最適なモデル、動画視聴に大画面モデルなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。"
-          buttonText="おすすめ5機種を見る"
-          buttonHref="/ipad/recommend/"
-          secondaryButtonText="イオシスで中古iPadを探す"
-          secondaryButtonHref="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Ftablet%2Fios%2Fipad"
-        />
+        <IPadPopularSection />
         <IPadRelatedLinks excludeHref={["/ipad/ipad-price-info/", "/ipad/recommend/"]} />
         <ShareBox url={PAGE_URL} text={`iPadの中古相場一覧 | 歴代${modelCount}機種の価格推移を独自集計`} />
         </div>

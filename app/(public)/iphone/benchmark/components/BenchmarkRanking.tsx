@@ -27,10 +27,13 @@ export type BenchModel = {
 }
 
 type SortKey = 'total' | 'single' | 'multi' | 'metal' | 'antutu' | 'cospa'
-type FilterCategory = 'all' | 'pro' | 'standard'
+type FilterCategory = 'all' | 'pro' | 'standard' | 'se'
 
-function getModelCategory(model: string): 'pro' | 'standard' {
-  return model.toLowerCase().includes('pro') ? 'pro' : 'standard'
+function getModelCategory(model: string): 'pro' | 'standard' | 'se' {
+  const lower = model.toLowerCase()
+  if (lower.includes('pro')) return 'pro'
+  if (lower.includes('se') || lower.includes('16e') || lower.includes('17e')) return 'se'
+  return 'standard'
 }
 
 export default function BenchmarkRanking({ models, shopLinks }: { models: BenchModel[]; shopLinks: ProductShopLink[] }) {
@@ -81,7 +84,7 @@ export default function BenchmarkRanking({ models, shopLinks }: { models: BenchM
           <div className="spec-filter__row">
             <span className="spec-filter__label">絞り込み</span>
             <div className="spec-filter__tags">
-              {([['all', 'すべて'], ['pro', 'Pro'], ['standard', 'スタンダード']] as const).map(([key, label]) => (
+              {([['all', 'すべて'], ['pro', 'Pro'], ['standard', 'スタンダード'], ['se', 'SE（廉価版）']] as const).map(([key, label]) => (
                 <button
                   key={key}
                   className={`spec-filter__tag${filter === key ? ' is-active' : ''}`}

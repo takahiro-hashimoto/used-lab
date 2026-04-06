@@ -1147,7 +1147,7 @@ a.header-admin-link:hover {
 .lead-box__list {
   list-style: disc;
   padding-left: 1.5em;
-  margin: var(--space-sm) 0;
+  margin: var(--space-md) 0;
   font-size: var(--font-size-base);
   line-height: 2;
   color: var(--color-text-secondary);

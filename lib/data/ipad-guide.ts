@@ -115,17 +115,5 @@ export const GUIDE_MODEL_LINKS = {
   ],
 }
 
-// ---------- ショップ比較カードセクション ----------
-import { buildVendorCards } from '@/lib/data/guide-shared'
-
-export const GUIDE_VENDOR_CARDS = buildVendorCards(
-  {
-    'イオシス': 'https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Ftablet%2Fios%2Fipad',
-    'にこスマ': 'https://px.a8.net/svt/ejp?a8mat=3NCKMH+63P0JM+4O7U+BW0YB&a8ejpredirect=https%3A%2F%2Fwww.nicosuma.com%2Ftablet-top',
-    'ゲオ': 'https://px.a8.net/svt/ejp?a8mat=3TB2U4+C4ESQQ+4J34+BW0YB&a8ejpredirect=https%3A%2F%2Fec.geo-online.co.jp%2Fshop%2Fc%2Fc1060%2F',
-    'リコレ': 'https://click.linksynergy.com/deeplink?id=N*L98MVOv3Q&mid=43860&murl=https%3A%2F%2Fused.sofmap.com%2Fr%2Fcategory%2Fipad%2Fipad_linklist',
-    'じゃんぱら': 'https://www.janpara.co.jp/sale/search/result/?SSHPCODE=&OUTCLSCODE=79&KEYWORDS=iPad&x=0&y=0&CHKOUTCOM=1',
-    'Amazon整備済み品': 'https://amzn.to/3LMSAO3',
-  },
-  '中古iPadを探す',
-)
+// ショップ比較カードセクションは DB (shops テーブル) から動的生成に移行済み
+// → buildVendorCardsFromShops(shops, 'ipad_url', ...) を使用

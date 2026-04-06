@@ -51,14 +51,14 @@ function getModelCategory(model: string): string {
   if (lower.includes('pro max')) return 'promax'
   if (lower.includes('pro')) return 'pro'
   if (lower.includes('plus')) return 'plus'
-  if (lower.includes('se') || lower.includes('16e')) return 'se'
+  if (lower.includes('se') || lower.includes('16e') || lower.includes('17e')) return 'se'
   if (lower.includes('mini')) return 'mini'
   return 'standard'
 }
 
-function parseSizeInch(size: string | null): number {
-  if (!size) return 0
-  const match = size.match(/([\d.]+)/)
+function parseDisplayInch(display: string | null): number {
+  if (!display) return 0
+  const match = display.match(/([\d.]+)\s*インチ/)
   return match ? parseFloat(match[1]) : 0
 }
 
@@ -71,15 +71,10 @@ function extractScreenInch(display: string | null): string | null {
 export default function SpecTable({ models, shopLinks }: Props) {
   const [sortOrder, setSortOrder] = useState<SortOrder>('old')
   const [modelFilter, setModelFilter] = useState<FilterType>('all')
-  const [featureFilters, setFeatureFilters] = useState<Set<FeatureFilter>>(new Set())
+  const [featureFilter, setFeatureFilter] = useState<FeatureFilter | null>(null)
 
   const toggleFeature = (f: FeatureFilter) => {
-    setFeatureFilters((prev) => {
-      const next = new Set(prev)
-      if (next.has(f)) next.delete(f)
-      else next.add(f)
-      return next
-    })
+    setFeatureFilter((prev) => (prev === f ? null : f))
   }
 
   const filteredModels = useMemo(() => {
@@ -91,13 +86,13 @@ export default function SpecTable({ models, shopLinks }: Props) {
     }
 
     // サイズ・機能フィルタ
-    for (const f of featureFilters) {
-      switch (f) {
+    if (featureFilter) {
+      switch (featureFilter) {
         case 'size-sm':
-          result = result.filter((m) => { const s = parseSizeInch(m.size); return s >= 6.1 && s <= 6.3 })
+          result = result.filter((m) => { const s = parseDisplayInch(m.display); return s >= 6.1 && s <= 6.3 })
           break
         case 'size-lg':
-          result = result.filter((m) => { const s = parseSizeInch(m.size); return s >= 6.7 && s <= 6.9 })
+          result = result.filter((m) => { const s = parseDisplayInch(m.display); return s >= 6.7 && s <= 6.9 })
           break
         case 'usbc':
           result = result.filter((m) => m.port?.toLowerCase().includes('usb'))
@@ -119,7 +114,7 @@ export default function SpecTable({ models, shopLinks }: Props) {
     })
 
     return result
-  }, [models, sortOrder, modelFilter, featureFilters])
+  }, [models, sortOrder, modelFilter, featureFilter])
 
   const getShopLink = (productId: number, shopId: number) =>
     shopLinks.find((l) => l.product_id === productId && l.shop_id === shopId)
@@ -217,7 +212,7 @@ export default function SpecTable({ models, shopLinks }: Props) {
               ] as [FeatureFilter, string][]).map(([key, label]) => (
                 <button
                   key={key}
-                  className={`spec-filter__tag${featureFilters.has(key) ? ' is-active' : ''}`}
+                  className={`spec-filter__tag${featureFilter === key ? ' is-active' : ''}`}
                   onClick={() => toggleFeature(key)}
                 >
                   {label}

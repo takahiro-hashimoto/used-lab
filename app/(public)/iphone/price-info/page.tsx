@@ -20,10 +20,11 @@ const DashboardSection = dynamic(() => import('./components/DashboardSection'), 
 import PriceDropSection from './components/PriceDropSection'
 import RankingSection from './components/RankingSection'
 import PriceHistorySection from './components/PriceHistorySection'
-import PopularSection from '@/app/components/support/PopularSection'
+import IPhonePopularSection from '@/app/components/support/popular/IPhonePopularSection'
 import FaqSection from './components/FaqSection'
 import AuthorByline from '@/app/components/AuthorByline'
 import HeroMeta from '@/app/components/HeroMeta'
+import { getHeroImage } from '@/lib/data/hero-images'
 
 // ============================================================
 // 型定義
@@ -132,12 +133,12 @@ export async function generateMetadata(): Promise<Metadata> {
       title,
       description,
       url: '/iphone/price-info/',
-      images: [{ url: '/images/content/thumbnail/graph-image.jpg', width: 1200, height: 630, alt: title }],
+      images: [{ url: getHeroImage('/iphone/price-info/'), width: 1200, height: 630, alt: title }],
     },
     twitter: {
       title,
       description,
-      images: ['/images/content/thumbnail/graph-image.jpg'],
+      images: [getHeroImage('/iphone/price-info/')],
     },
   }
 }
@@ -162,7 +163,7 @@ export default async function IPhonePriceInfoPage() {
   for (let i = 0; i < allModels.length; i++) {
     const model = allModels[i]
     const logs = filterLast3Months(priceLogsMap.get(model.id) || [])
-    const osLife = calculateOSLifespan(model.date)
+    const osLife = calculateOSLifespan(model.date, model.last_ios)
 
     // 価格ログから最低容量を取得
     const storageSet = new Set<number>()
@@ -373,7 +374,7 @@ export default async function IPhonePriceInfoPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/content/thumbnail/graph-image.jpg"
+                  src={getHeroImage('/iphone/price-info/')}
                   alt="中古iPhone価格相場"
                   className="hero-media__img"
                   width={360}
@@ -467,19 +468,7 @@ export default async function IPhonePriceInfoPage() {
 
           <FaqSection />
 
-          <PopularSection
-            sectionTitle="目的別に人気の中古iPhone"
-            sectionDescription="目的別におすすめの機種を厳選。今回の記事で購入するべき機種が判断できなかった方はぜひご覧ください。"
-            imageSrc="/images/content/thumbnail/iphone-setting.webp"
-            imageAlt="中古iPhoneおすすめ5選のイメージ画像"
-            subtitle="目的別におすすめ機種を厳選！"
-            cardTitle="中古iPhoneおすすめ5選"
-            cardDescription="カメラ性能を重視する人向け、大画面で動画やSNSを楽しみたい人向けなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。"
-            buttonText="おすすめ5機種を見る"
-            buttonHref="/iphone/recommend/"
-            secondaryButtonText="イオシスで中古iPhoneを探す"
-            secondaryButtonHref="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Fsmartphone%2Fiphone"
-          />
+          <IPhonePopularSection />
         <IPhoneRelatedLinks excludeHref={["/iphone/price-info/", "/iphone/recommend/"]} />
         <ShareBox url={PAGE_URL} text={`iPhoneの中古相場一覧 | 歴代${modelCount}機種の価格推移を独自集計`} />
         </div>

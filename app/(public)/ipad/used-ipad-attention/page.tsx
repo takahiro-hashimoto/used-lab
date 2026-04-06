@@ -8,12 +8,13 @@ import PostCheckSection from '@/app/components/attention/PostCheckSection'
 import FailureSection from '@/app/components/attention/FailureSection'
 import InsuranceSection from '@/app/components/attention/InsuranceSection'
 import FaqSection from '@/app/components/attention/FaqSection'
-import PopularSection from '@/app/components/support/PopularSection'
+import IPadPopularSection from '@/app/components/support/popular/IPadPopularSection'
 import { insuranceData, faqItems, postCheckItems, failurePatterns } from './components/data'
 import IPadRelatedLinks from '@/app/components/ipad/IPadRelatedLinks'
 import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
+import { getHeroImage } from '@/lib/data/hero-images'
 
 const PAGE_TITLE = '中古iPadはやめた方がいい？購入前に確認すべき注意点まとめ'
 const PAGE_DESCRIPTION =
@@ -28,12 +29,12 @@ export const metadata: Metadata = {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/ipad/used-ipad-attention/',
-    images: [{ url: '/images/ipad/ipad-pro-13-2.jpg', width: 1200, height: 630, alt: PAGE_TITLE }],
+    images: [{ url: getHeroImage('/ipad/used-ipad-attention/'), width: 1200, height: 630, alt: PAGE_TITLE }],
   },
   twitter: {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
-    images: ['/images/ipad/ipad-pro-13-2.jpg'],
+    images: [getHeroImage('/ipad/used-ipad-attention/')],
   },
 }
 
@@ -148,7 +149,7 @@ export default function UsedIpadAttentionPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/content/thumbnail/check-list.jpg"
+                  src={getHeroImage('/ipad/used-ipad-attention/')}
                   alt="中古iPad購入時の注意点イメージ"
                   className="hero-media__img"
                   width={360}
@@ -231,19 +232,7 @@ export default function UsedIpadAttentionPage() {
           <FailureSection productName="iPad" guidePath="/ipad" failurePatterns={failurePatterns} showMemo={false} />
           <InsuranceSection {...insuranceData} />
           <FaqSection productName="iPad" faqItems={faqItems} />
-          <PopularSection
-            sectionTitle="目的別に人気の中古iPad"
-            sectionDescription="目的別におすすめの機種を厳選。診断で迷った方はぜひご覧ください。"
-            imageSrc="/images/content/thumbnail/ipad-image-03.jpg"
-            imageAlt="中古iPadおすすめ5選のイメージ画像"
-            subtitle="目的別におすすめ機種を厳選！"
-            cardTitle="中古iPadおすすめ5選"
-            cardDescription="イラスト制作に最適なモデル、動画視聴に大画面モデルなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。"
-            buttonText="おすすめ5機種を見る"
-            buttonHref="/ipad/recommend/"
-            secondaryButtonText="イオシスで中古iPadを探す"
-            secondaryButtonHref="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Ftablet%2Fios%2Fipad"
-          />
+          <IPadPopularSection />
         <IPadRelatedLinks excludeHref={["/ipad/used-ipad-attention/", "/ipad/recommend/"]} />
         <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>

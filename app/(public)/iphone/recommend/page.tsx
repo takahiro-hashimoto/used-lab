@@ -33,6 +33,7 @@ import ValueZoneChartWrapper from './components/ValueZoneChartWrapper'
 import IPhoneRelatedLinks from '@/app/components/iphone/IPhoneRelatedLinks'
 import AuthorByline from '@/app/components/AuthorByline'
 import HeroMeta from '@/app/components/HeroMeta'
+import { getHeroImage } from '@/lib/data/hero-images'
 
 export const revalidate = 3600
 
@@ -49,12 +50,12 @@ export const metadata: Metadata = {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/iphone/recommend/',
-    images: [{ url: '/images/iphone/iphone16pro.jpg', width: 1200, height: 630, alt: PAGE_TITLE }],
+    images: [{ url: getHeroImage('/iphone/recommend/'), width: 1200, height: 630, alt: PAGE_TITLE }],
   },
   twitter: {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
-    images: ['/images/iphone/iphone16pro.jpg'],
+    images: [getHeroImage('/iphone/recommend/')],
   },
 }
 
@@ -187,7 +188,7 @@ export default async function IPhoneTopPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/iphone/iphone-setting.avif"
+                  src={getHeroImage('/iphone/recommend/')}
                   alt={`中古iPhoneおすすめ${RECOMMEND_COUNT}選のイメージ`}
                   className="hero-media__img"
                   width={360}
@@ -206,19 +207,9 @@ export default async function IPhoneTopPage() {
           <div className="l-container">
             <div className="lead-box">
               <p>「中古iPhoneって、結局どれを選べばいいの？」</p>
+              <p>型落ちiPhoneの選択肢は豊富ですが、iOSサポート期間・性能・価格のバランスを考えると、おすすめできる機種は意外と限られています。</p>
               <p>
-                {RECOMMEND_DATE_LABEL}現在、型落ちiPhoneの選択肢は豊富ですが、iOSサポート期間・性能・価格のバランスを
-                考えると、おすすめできる機種は意外と限られています。
-              </p>
-              <p>
-                この記事では、{(() => {
-                  const prices = latestPrices.map(lp => calculatePriceRange(lp).minPrice).filter((p): p is number => p != null)
-                  const min = Math.min(...prices)
-                  const max = Math.max(...prices)
-                  const minMan = Math.floor(min / 10000)
-                  const maxMan = Math.floor(max / 10000)
-                  return `${minMan}万円台〜${maxMan}万円台`
-                })()}の予算別に今買っても後悔しない中古iPhone {RECOMMEND_COUNT}機種を厳選。
+                そこでこの記事では、{RECOMMEND_DATE_LABEL}のおすすめ中古iPhone {RECOMMEND_COUNT}機種を厳選。
                 それぞれの特徴と向いている人を詳しく解説します。Apple認定整備済製品との違いも紹介しているので、初めて中古iPhoneを買う方にもおすすめの内容です。
               </p>
               <p className="lead-link"><i className="fa-solid fa-arrow-right" aria-hidden="true"></i> 情報を網羅的に得たい方は「<a href="/iphone/">中古iPhone購入完全ガイド</a>」も参考にしてみてください！</p>

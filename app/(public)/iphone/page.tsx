@@ -5,6 +5,7 @@ import {
   getAllIPhoneModels,
   getLatestPriceLog,
   getAllProductShopLinksByType,
+  getShops,
 } from '@/lib/queries'
 import type { IPhoneModel, IPhonePriceLog } from '@/lib/types'
 import { formatPrice, getMinPrice, buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
@@ -14,9 +15,9 @@ import {
   GUIDE_SPEC_LINKS,
   GUIDE_FAQ_ITEMS,
   GUIDE_MODEL_LINKS,
-  GUIDE_VENDOR_CARDS,
   GUIDE_COMPARE_LINKS,
 } from '@/lib/data/iphone-guide'
+import { buildVendorCardsFromShops } from '@/lib/data/guide-shared'
 import {
   RECOMMEND_SLUGS,
   RECOMMEND_META,
@@ -38,6 +39,37 @@ const PAGE_TITLE = `中古iPhone完全購入ガイド | 選び方・相場・お
 const PAGE_DESCRIPTION = `${GUIDE_DATE_LABEL}版・中古iPhoneの完全購入ガイド。選び方のポイント、モデル別の相場、おすすめ機種をまとめて解説。失敗しない中古iPhone選びをサポートします。`
 const PAGE_URL = 'https://used-lab.jp/iphone/'
 
+const SERVICE_LINKS = [
+  {
+    title: 'Widget Club',
+    description: 'ホーム画面をお洒落にカスタマイズできる着せ替えアプリ。無料テンプレートも豊富。',
+    href: 'https://invite.widget-club.com/c/5031010/1752866/20483?u=https%3A%2F%2Fwidget-club.com%2Fja',
+    image: 'https://firebasestorage.googleapis.com/v0/b/widgetclub-c2626.appspot.com/o/banner%2Fcampaign%2Faffiliate_simple_widgetclub.png?alt=media&token=7fd84000-d257-46eb-99f0-89b2f647d926',
+    rel: 'sponsored noopener',
+  },
+  {
+    title: 'アプリポ',
+    description: 'iPhone向け無料アイコン素材サイト。ホーム画面のカスタム素材が豊富に揃っています。',
+    href: 'https://applipo.ne.jp/app/iphone-icon-change-sozai-download/',
+    image: '/images/content/thumbnail/apripo-1.webp',
+    rel: 'noopener',
+  },
+  {
+    title: '楽天モバイル',
+    description: '使った分だけ支払う段階制プラン。20GB以上は2980円で使い放題。',
+    href: 'https://hb.afl.rakuten.co.jp/hsc/4ebf9db2.7404390b.1d6c2ffe.7ec2aeb6/?link_type=hybrid_url&rafst=rmn',
+    image: 'https://hbb.afl.rakuten.co.jp/hsb/4ebf9dc9.4dc93727.1d6c2ffe.7ec2aeb6/?me_id=2101065&me_adv_id=2377896&t=pict',
+    rel: 'nofollow sponsored noopener',
+  },
+  {
+    title: 'モバイル保険',
+    description: '中古端末も補償対象。月額700円で3台まで補償、年間10万円まで修理代をカバー。',
+    href: 'https://px.a8.net/svt/ejp?a8mat=35U3VZ+7QMVW2+45VK+BW8O2',
+    image: 'https://www22.a8.net/svt/bgt?aid=191201327468&wid=001&eno=01&mid=s00000019424001056000&mc=1',
+    rel: 'nofollow sponsored noopener',
+  },
+]
+
 export const metadata: Metadata = {
   title: PAGE_TITLE,
   description: PAGE_DESCRIPTION,
@@ -46,20 +78,23 @@ export const metadata: Metadata = {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/iphone/',
-    images: [{ url: '/images/iphone/iphone16pro.jpg', width: 1200, height: 630, alt: PAGE_TITLE }],
+    images: [{ url: getHeroImage('/iphone/'), width: 1200, height: 630, alt: PAGE_TITLE }],
   },
   twitter: {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
-    images: ['/images/iphone/iphone16pro.jpg'],
+    images: [getHeroImage('/iphone/')],
   },
 }
 
 export default async function IPhoneGuidePage() {
-  const [allModels, allShopLinks] = await Promise.all([
+  const [allModels, allShopLinks, shops] = await Promise.all([
     getAllIPhoneModels(),
     getAllProductShopLinksByType('iphone'),
+    getShops(),
   ])
+
+  const vendorCards = buildVendorCardsFromShops(shops, 'url', '中古iPhoneを探す', { exclude: ['rakuma'] })
 
   // 相場セクション用: 指定slugのモデル + 最新価格を並列取得
   const priceModels = GUIDE_PRICE_SLUGS
@@ -142,7 +177,7 @@ export default async function IPhoneGuidePage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/content/thumbnail/iphone-image.jpeg"
+                  src={getHeroImage('/iphone/')}
                   alt="中古iPhone購入ガイドのイメージ"
                   className="hero-media__img"
                   width={360}
@@ -353,10 +388,8 @@ export default async function IPhoneGuidePage() {
           <section className="l-section" id="where-to-buy" aria-labelledby="heading-where-to-buy">
             <div className="l-container">
               <h2 className="m-section-heading m-section-heading--lg" id="heading-where-to-buy">中古iPhoneはどこで買う？ショップ比較一覧</h2>
-              <p className="m-section-desc">中古iPhone販売店の比較情報。保証内容、価格、在庫の豊富さなど、</p>
-              <p className="m-section-desc">各ショップの特徴を一覧表で整理しました。</p>
-
-              <VendorCardGrid cards={GUIDE_VENDOR_CARDS} />
+              <p className="m-section-desc">中古iPhone販売店の比較情報。保証内容、価格、在庫の豊富さなど、各ショップの特徴を一覧表で整理しました。</p>
+              <VendorCardGrid cards={vendorCards} />
 
               <p className="guide-section-note u-mt-2xl">各ショップの詳細やサービス内容の違いは以下の記事で解説しています。</p>
               <div className="guide-section-cta">
@@ -431,13 +464,41 @@ export default async function IPhoneGuidePage() {
             </div>
           </section>
 
+          {/* ========== 中古iPhone購入者向けサービス ========== */}
+          <section className="l-section" aria-labelledby="heading-service-links">
+            <div className="l-container">
+              <h2 className="m-section-heading m-section-heading--lg" id="heading-service-links">中古iPhone購入者向けサービス</h2>
+              <p className="m-section-desc">中古iPhoneの購入とセットで検討したいサービスをまとめました。</p>
+              <div className="l-grid l-grid--2col l-grid--gap-lg l-grid--mb-2xl">
+                {SERVICE_LINKS.map((service) => (
+                  <a
+                    key={service.title}
+                    href={service.href}
+                    target="_blank"
+                    rel={service.rel}
+                    className="m-card m-card--shadow related-link-card m-card--hoverable"
+                  >
+                    <img
+                      decoding="async"
+                      src={service.image}
+                      alt={service.title}
+                      className="related-link-card__img"
+                    />
+                    <div className="related-link-card__body">
+                      <p className="related-link-card__title">{service.title}</p>
+                      <p className="related-link-card__desc">{service.description}</p>
+                    </div>
+                  </a>
+                ))}
+              </div>
+            </div>
+          </section>
           {/* ========== よくある質問 ========== */}
           <FaqSection
             title="中古iPhoneに関するよくある質問"
             description="中古iPhoneの購入を検討している方からよく寄せられる質問をまとめました。"
             items={GUIDE_FAQ_ITEMS}
           />
-
         <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>
       </article>

@@ -29,7 +29,7 @@ function getModelCategory(model: string): string {
   if (lower.includes('pro max')) return 'promax'
   if (lower.includes('pro')) return 'pro'
   if (lower.includes('plus')) return 'plus'
-  if (lower.includes('se') || lower.includes('16e')) return 'se'
+  if (lower.includes('se') || lower.includes('16e') || lower.includes('17e')) return 'se'
   if (lower.includes('mini')) return 'mini'
   if (lower.includes('air')) return 'standard'
   return 'standard'

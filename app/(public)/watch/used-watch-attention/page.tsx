@@ -9,11 +9,12 @@ import FailureSection from '@/app/components/attention/FailureSection'
 import InsuranceSection from '@/app/components/attention/InsuranceSection'
 import FaqSection from '@/app/components/attention/FaqSection'
 import { insuranceData, faqItems, postCheckItems, failurePatterns } from './components/data'
-import PopularSection from '@/app/components/support/PopularSection'
+import WatchPopularSection from '@/app/components/support/popular/WatchPopularSection'
 import WatchRelatedLinks from '@/app/components/watch/WatchRelatedLinks'
 import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
+import { getHeroImage } from '@/lib/data/hero-images'
 
 const PAGE_TITLE = '中古Apple Watchはやめた方がいい？購入前に確認すべき注意点まとめ'
 const PAGE_DESCRIPTION =
@@ -28,12 +29,12 @@ export const metadata: Metadata = {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/watch/used-watch-attention/',
-    images: [{ url: '/images/watch/watch-10.jpg', width: 1200, height: 630, alt: PAGE_TITLE }],
+    images: [{ url: getHeroImage('/watch/used-watch-attention/'), width: 1200, height: 630, alt: PAGE_TITLE }],
   },
   twitter: {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
-    images: ['/images/watch/watch-10.jpg'],
+    images: [getHeroImage('/watch/used-watch-attention/')],
   },
 }
 
@@ -148,7 +149,7 @@ export default function UsedWatchAttentionPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/content/thumbnail/check-list.jpg"
+                  src={getHeroImage('/watch/used-watch-attention/')}
                   alt="中古Apple Watch購入時の注意点イメージ"
                   className="hero-media__img"
                   width={360}
@@ -231,19 +232,7 @@ export default function UsedWatchAttentionPage() {
           <FailureSection productName="Apple Watch" guidePath="/watch" failurePatterns={failurePatterns} showMemo={false} />
           <InsuranceSection {...insuranceData} />
           <FaqSection productName="Apple Watch" faqItems={faqItems} />
-          <PopularSection
-            sectionTitle="目的別に人気の中古Apple Watch"
-            sectionDescription="目的別におすすめの機種を厳選。診断で迷った方はぜひご覧ください。"
-            imageSrc="/images/content/thumbnail/watch-image-11.jpg"
-            imageAlt="中古Apple Watchおすすめのイメージ画像"
-            subtitle="目的別におすすめ機種を厳選！"
-            cardTitle="中古Apple Watchおすすめモデル"
-            cardDescription="健康管理重視、コスパ重視、スポーツ向けなど目的別に買うべきモデルを紹介。watchOSサポート期間やバッテリー持ちなど購入前にチェックすべき項目も網羅しています。"
-            buttonText="おすすめモデルを見る"
-            buttonHref="/watch/recommend/"
-            secondaryButtonText="イオシスで中古Apple Watchを探す"
-            secondaryButtonHref="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Fwearable%2Fapple%3Fnot%3Dpencil"
-          />
+          <WatchPopularSection />
         <WatchRelatedLinks excludeHref={["/watch/used-watch-attention/", "/watch/recommend/"]} />
         <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>

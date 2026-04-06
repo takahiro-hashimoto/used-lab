@@ -6,12 +6,13 @@ import ShareBox from '@/app/components/ShareBox'
 import WatchOsSupportMatrix from './components/WatchOsSupportMatrix'
 import LifespanTable from './components/LifespanTable'
 import TimingSection from './components/TimingSection'
-import PopularSection from './components/PopularSection'
+import WatchPopularSection from '@/app/components/support/popular/WatchPopularSection'
 import FaqSection from './components/FaqSection'
 import WatchRelatedLinks from '@/app/components/watch/WatchRelatedLinks'
 import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
+import { getHeroImage } from '@/lib/data/hero-images'
 
 export const revalidate = 3600
 
@@ -28,12 +29,12 @@ export const metadata: Metadata = {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/watch/used-watch-support/',
-    images: [{ url: '/images/watch/watch-ultra3.jpg', width: 1200, height: 630, alt: PAGE_TITLE }],
+    images: [{ url: getHeroImage('/watch/used-watch-support/'), width: 1200, height: 630, alt: PAGE_TITLE }],
   },
   twitter: {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
-    images: ['/images/watch/watch-ultra3.jpg'],
+    images: [getHeroImage('/watch/used-watch-support/')],
   },
 }
 
@@ -100,7 +101,7 @@ export default async function UsedWatchSupportPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/content/thumbnail/watch-image.jpg"
+                  src={getHeroImage('/watch/used-watch-support/')}
                   alt="Apple Watchの寿命・サポート期間イメージ"
                   className="hero-media__img"
                   width={360}
@@ -170,7 +171,7 @@ export default async function UsedWatchSupportPage() {
         <LifespanTable models={allModelsWithEnded} />
         <TimingSection />
         <FaqSection />
-        <PopularSection />
+        <WatchPopularSection />
         <WatchRelatedLinks excludeHref={["/watch/used-watch-support/", "/watch/recommend/"]} />
         <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>

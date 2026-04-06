@@ -13,6 +13,7 @@ type ChargingModel = {
   battery: string | null
   port: string | null
   magsafe: boolean
+  iosysUrl: string | null
 }
 
 type Props = {
@@ -60,7 +61,10 @@ export default function ChargingTable({ models }: Props) {
         break
     }
 
-    result.sort((a, b) => parseDate(b.date).getTime() - parseDate(a.date).getTime())
+    result.sort((a, b) => {
+      const diff = parseDate(b.date).getTime() - parseDate(a.date).getTime()
+      return diff || a.id - b.id
+    })
 
     return result
   }, [models, modelFilter, featureFilter])
@@ -165,14 +169,18 @@ export default function ChargingTable({ models }: Props) {
                       <td><BoolCell value={m.magsafe} /></td>
                       <td><BoolCell value={hasQiCharging(m)} /></td>
                       <td>
-                        <a
-                          href={`https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%3Fkeyword%3D${encodeURIComponent(m.model)}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="m-btn m-btn--primary m-btn--sm"
-                        >
-                          イオシスで探す
-                        </a>
+                        {m.iosysUrl ? (
+                          <a
+                            href={m.iosysUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="m-btn m-btn--primary m-btn--sm"
+                          >
+                            イオシスで探す
+                          </a>
+                        ) : (
+                          <span>-</span>
+                        )}
                       </td>
                     </tr>
                   ))}

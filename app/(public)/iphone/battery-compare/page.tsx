@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
-import { getAllIPhoneModels } from '@/lib/queries'
+import { getAllIPhoneModels, getAllProductShopLinksByType } from '@/lib/queries'
 import BatteryTable from './components/BatteryTable'
 import ChargingTable from './components/ChargingTable'
 import ShareBox from '@/app/components/ShareBox'
@@ -9,9 +9,10 @@ import IPhoneRelatedLinks from '@/app/components/iphone/IPhoneRelatedLinks'
 import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
-import PopularSection from '@/app/components/support/PopularSection'
+import IPhonePopularSection from '@/app/components/support/popular/IPhonePopularSection'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import FaqSection from '@/app/components/support/FaqSection'
+import { getHeroImage } from '@/lib/data/hero-images'
 
 export const revalidate = 3600
 
@@ -24,12 +25,12 @@ export const metadata: Metadata = {
     title: '歴代iPhoneのバッテリー容量比較ランキング！電池持ちがいい機種はどれ？',
     description: '歴代iPhoneのバッテリー容量を比較しランキング形式で紹介。電池持ちのいいiPhoneがひと目でわかります。',
     url: '/iphone/battery-compare/',
-    images: [{ url: '/images/content/thumbnail/iphone-battery.jpg', width: 1200, height: 630, alt: '歴代iPhoneバッテリー容量比較のイメージ' }],
+    images: [{ url: getHeroImage('/iphone/battery-compare/'), width: 1200, height: 630, alt: '歴代iPhoneバッテリー容量比較のイメージ' }],
   },
   twitter: {
     title: '歴代iPhoneのバッテリー容量比較ランキング！電池持ちがいい機種はどれ？',
     description: '歴代iPhoneのバッテリー容量を比較しランキング形式で紹介。',
-    images: ['/images/content/thumbnail/iphone-battery.jpg'],
+    images: [getHeroImage('/iphone/battery-compare/')],
   },
 }
 
@@ -57,7 +58,10 @@ const FAQ_ITEMS = [
 ]
 
 export default async function IPhoneBatteryComparePage() {
-  const allModels = await getAllIPhoneModels()
+  const [allModels, allShopLinks] = await Promise.all([
+    getAllIPhoneModels(),
+    getAllProductShopLinksByType('iphone'),
+  ])
 
   const batteryModels = allModels.map((m) => ({
     id: m.id,
@@ -69,6 +73,7 @@ export default async function IPhoneBatteryComparePage() {
     video: m.video,
     streaming: m.streaming,
     audio: m.audio,
+    iosysUrl: allShopLinks.find((l) => l.product_id === m.id && l.shop_id === 1)?.url || null,
   }))
 
   const chargingModels = allModels.map((m) => ({
@@ -80,6 +85,7 @@ export default async function IPhoneBatteryComparePage() {
     battery: m.battery,
     port: m.port,
     magsafe: m.magsafe,
+    iosysUrl: allShopLinks.find((l) => l.product_id === m.id && l.shop_id === 1)?.url || null,
   }))
 
   const breadcrumbJsonLd = {
@@ -137,7 +143,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/battery-
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/content/thumbnail/iphone-battery.jpg"
+                  src={getHeroImage('/iphone/battery-compare/')}
                   alt="歴代iPhoneバッテリー容量比較のイメージ"
                   className="hero-media__img"
                   width={360}
@@ -168,76 +174,78 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/battery-
         {/* 目次 */}
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
-            <p className="toc-title"><i className="fa-solid fa-list" aria-hidden="true"></i> タップできる目次</p>
-            <ol className="l-grid l-grid--2col u-list-reset">
-              <li>
-                <a href="#battery-ranking" className="toc-item">
-                  バッテリー容量 一覧表{' '}
-                  <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
-                </a>
-              </li>
-              <li>
-                <a href="#charging" className="toc-item">
-                  コネクタ・充電方法一覧{' '}
-                  <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
-                </a>
-              </li>
-              <li>
-                <a href="#battery-health" className="toc-item">
-                  バッテリー劣化具合の確認方法{' '}
-                  <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
-                </a>
-              </li>
-              <li>
-                <a href="#faq" className="toc-item">
-                  よくある質問{' '}
-                  <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
-                </a>
-              </li>
-            </ol>
+            <div className="toc-wrapper">
+              <p className="toc-title"><i className="fa-solid fa-list" aria-hidden="true"></i> タップできる目次</p>
+              <ol className="l-grid l-grid--2col u-list-reset">
+                <li>
+                  <a href="#battery-ranking" className="toc-item">
+                    バッテリー容量 一覧表{' '}
+                    <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="#charging" className="toc-item">
+                    コネクタ・充電方法一覧{' '}
+                    <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="#battery-health" className="toc-item">
+                    バッテリー劣化具合の確認方法{' '}
+                    <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="#faq" className="toc-item">
+                    よくある質問{' '}
+                    <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                </li>
+              </ol>
+            </div>
             <AuthorByline />
           </div>
         </nav>
         <div className="l-sections">
-        {/* バッテリー容量 一覧表 */}
-        <BatteryTable models={batteryModels} />
+          {/* バッテリー容量 一覧表 */}
+          <BatteryTable models={batteryModels} />
 
-        {/* コネクタ・充電方法一覧 */}
-        <ChargingTable models={chargingModels} />
+          {/* コネクタ・充電方法一覧 */}
+          <ChargingTable models={chargingModels} />
 
-        {/* バッテリー劣化具合の確認方法 */}
-        <section className="l-section" id="battery-health" aria-labelledby="heading-battery-health">
-          <div className="l-container">
-            <h2 className="m-section-heading m-section-heading--lg" id="heading-battery-health">
-              iPhoneのバッテリー劣化具合を確認する方法
-            </h2>
-            <p className="m-section-desc">
-              中古iPhoneを購入する際はバッテリーの劣化状態を必ず確認しましょう。
-            </p>
+          {/* バッテリー劣化具合の確認方法 */}
+          <section className="l-section" id="battery-health" aria-labelledby="heading-battery-health">
+            <div className="l-container">
+              <h2 className="m-section-heading m-section-heading--lg" id="heading-battery-health">
+                iPhoneのバッテリー劣化具合を確認する方法
+              </h2>
+              <p className="m-section-desc">
+                中古iPhoneを購入する際はバッテリーの劣化状態を必ず確認しましょう。
+              </p>
 
-            <div className="m-card m-card--shadow m-card--padded media-card--aside-footer">
-              <div className="media-card__img-wrap">
-                <Image
-                  src="/images/content/thumbnail/iphone-battery-limit.jpg"
-                  alt="iPhoneのバッテリーの状態確認画面"
-                  className="media-card__img"
-                  width={800}
-                  height={450}
-                  loading="lazy"
-                />
-              </div>
-              <div className="media-card__body">
-                <h3 className="media-card__title">バッテリー最大容量が80%を下回ったら要注意</h3>
-                <div className="media-card__desc m-rich-text">
-                  <p>iPhoneのバッテリーにはリチウムイオン電池が使用されています。このバッテリーは充電を繰り返すうちに劣化し、<strong>充電できる最大容量が減っていく</strong>性質があります。</p>
-                  <p>iPhoneの「バッテリー最大容量」が80%を下回っていると体感できるレベルでバッテリーの減りが早く感じます。</p>
-                  <p>ちなみに筆者の過去の経験からすると<strong>毎日iPhoneを充電すると2~3年でバッテリー最大容量80%を下回る</strong>傾向がありました。</p>
+              <div className="m-card m-card--shadow m-card--padded media-card--aside-footer">
+                <div className="media-card__img-wrap">
+                  <Image
+                    src="/images/content/thumbnail/iphone-battery-limit.jpg"
+                    alt="iPhoneのバッテリーの状態確認画面"
+                    className="media-card__img"
+                    width={800}
+                    height={450}
+                    loading="lazy"
+                  />
                 </div>
-              </div>
-              <div className="media-card__footer">
-                <h3 className="caution-how-to__heading">バッテリー最大容量の確認方法</h3>
-                <ol className="caution-steps">
-                  <li className="caution-steps__item">
+                <div className="media-card__body">
+                  <h3 className="media-card__title">バッテリー最大容量が80%を下回ったら要注意</h3>
+                  <div className="media-card__desc m-rich-text">
+                    <p>iPhoneのバッテリーにはリチウムイオン電池が使用されています。このバッテリーは充電を繰り返すうちに劣化し、<strong>充電できる最大容量が減っていく</strong>性質があります。</p>
+                    <p>iPhoneの「バッテリー最大容量」が80%を下回っていると体感できるレベルでバッテリーの減りが早く感じます。</p>
+                    <p>ちなみに筆者の過去の経験からすると<strong>毎日iPhoneを充電すると2~3年でバッテリー最大容量80%を下回る</strong>傾向がありました。</p>
+                  </div>
+                </div>
+                <div className="media-card__footer">
+                  <h3 className="caution-how-to__heading">バッテリー最大容量の確認方法</h3>
+                  <ol className="caution-steps">
+                    <li className="caution-steps__item">
                     <span className="caution-steps__num">1</span>
                     <span>設定アプリを開く</span>
                   </li>
@@ -269,19 +277,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/battery-
           items={FAQ_ITEMS}
         />
 
-        <PopularSection
-          sectionTitle="目的別に人気の中古iPhone"
-          sectionDescription="目的別におすすめの機種を厳選。今回の記事で購入するべき機種が判断できなかった方はぜひご覧ください。"
-          imageSrc="/images/content/thumbnail/iphone-setting.webp"
-          imageAlt="中古iPhoneおすすめ5選のイメージ画像"
-          subtitle="目的別におすすめ機種を厳選！"
-          cardTitle="中古iPhoneおすすめ5選"
-          cardDescription="カメラ性能を重視する人向け、大画面で動画やSNSを楽しみたい人向けなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。"
-          buttonText="おすすめ5機種を見る"
-          buttonHref="/iphone/recommend"
-          secondaryButtonText="イオシスで中古iPhoneを探す"
-          secondaryButtonHref="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Fsmartphone%2Fiphone"
-        />
+        <IPhonePopularSection />
 
         <IPhoneRelatedLinks excludeHref={["/iphone/battery-compare/", "/iphone/recommend/"]} />
         <ShareBox url="https://used-lab.jp/iphone/battery-compare/" text="歴代iPhoneのバッテリー容量比較ランキング！電池持ちがいい機種はどれ？" />

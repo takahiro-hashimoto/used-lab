@@ -745,6 +745,18 @@ export default function StyleGuidePage() {
                 </div>
               </div>
             </div>
+
+            <h3 className="m-sub-heading" style={{ marginTop: 'var(--space-2xl)' }}>まとめカード（summary-card）</h3>
+            <p className="m-desc-text" style={{ marginTop: 'var(--space-sm)' }}>記事末尾のまとめ・要点リストに使用。m-card と組み合わせて使う。番号付きリストが自動で丸数字になる。</p>
+            <div className="m-card m-card--shadow m-card--padded" style={{ maxWidth: 720, margin: 'var(--space-xl) auto 0' }}>
+              <h3 className="summary-card__title">購入前に確認すべき4つのポイント</h3>
+              <ol className="summary-card__list">
+                <li><strong>ネットワーク制限</strong>が「△」の端末は避けましょう。IMEIで事前に確認できます。</li>
+                <li><strong>バッテリー最大容量</strong>が80%未満の端末は避けましょう。設定アプリから確認できます。</li>
+                <li><strong>iOSサポート</strong>の残りが2年未満の端末は避けましょう。発売から約7年が目安です。</li>
+                <li><strong>SIMロック</strong>が解除できない端末は避けましょう。設定アプリから確認できます。</li>
+              </ol>
+            </div>
           </div>
         </section>
       </div>

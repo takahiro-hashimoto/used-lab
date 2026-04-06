@@ -14,6 +14,7 @@ import ChipGenerationCompare from './components/ChipGenerationCompare'
 import UseCaseGuide from './components/UseCaseGuide'
 import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
+import { getHeroImage } from '@/lib/data/hero-images'
 
 const PAGE_TITLE = 'MacBookのベンチマークを比較！全モデルの性能がわかるスコアランキング【2026年版】'
 const PAGE_DESCRIPTION =
@@ -30,12 +31,12 @@ export const metadata: Metadata = {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/macbook/benchmark/',
-    images: [{ url: '/images/content/thumbnail/macbook-image-05.jpg', width: 1200, height: 630, alt: PAGE_TITLE }],
+    images: [{ url: getHeroImage('/macbook/benchmark/'), width: 1200, height: 630, alt: PAGE_TITLE }],
   },
   twitter: {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
-    images: ['/images/content/thumbnail/macbook-image-05.jpg'],
+    images: [getHeroImage('/macbook/benchmark/')],
   },
 }
 
@@ -189,7 +190,7 @@ export default async function BenchmarkPage() {
               <div className="hero-visual">
                 <figure className="hero-media">
                   <Image
-                    src="/images/content/thumbnail/macbook-ipad.jpg"
+                    src={getHeroImage('/macbook/benchmark/')}
                     alt="MacBookベンチマーク比較のイメージ"
                     className="hero-media__img"
                     width={360}

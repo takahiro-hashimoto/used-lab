@@ -6,12 +6,13 @@ import ShareBox from '@/app/components/ShareBox'
 import IosSupportMatrix from './components/IosSupportMatrix'
 import LifespanTable from './components/LifespanTable'
 import TimingSection from './components/TimingSection'
-import PopularSection from './components/PopularSection'
+import IPhonePopularSection from '@/app/components/support/popular/IPhonePopularSection'
 import FaqSection from './components/FaqSection'
 import IPhoneRelatedLinks from '@/app/components/iphone/IPhoneRelatedLinks'
 import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
+import { getHeroImage } from '@/lib/data/hero-images'
 
 export const revalidate = 3600
 
@@ -28,12 +29,12 @@ export const metadata: Metadata = {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/iphone/used-iphone-support/',
-    images: [{ url: '/images/iphone/iphone16pro.jpg', width: 1200, height: 630, alt: PAGE_TITLE }],
+    images: [{ url: getHeroImage('/iphone/used-iphone-support/'), width: 1200, height: 630, alt: PAGE_TITLE }],
   },
   twitter: {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
-    images: ['/images/iphone/iphone16pro.jpg'],
+    images: [getHeroImage('/iphone/used-iphone-support/')],
   },
 }
 
@@ -100,7 +101,7 @@ export default async function UsedIphoneSupportPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/content/thumbnail/iphone-image-03.jpg"
+                  src={getHeroImage('/iphone/used-iphone-support/')}
                   alt="iPhoneの寿命・サポート期間イメージ"
                   className="hero-media__img"
                   width={360}
@@ -143,7 +144,7 @@ export default async function UsedIphoneSupportPage() {
               </li>
               <li>
                 <a href="#lifespan-table" className="toc-item">
-                  サポート期間一覧（寿命予想）{' '}
+                  サポート期間一覧{' '}
                   <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
                 </a>
               </li>
@@ -170,7 +171,7 @@ export default async function UsedIphoneSupportPage() {
         <LifespanTable models={allModelsWithEnded} />
         <TimingSection />
         <FaqSection />
-        <PopularSection />
+        <IPhonePopularSection />
         <IPhoneRelatedLinks excludeHref={["/iphone/used-iphone-support/", "/iphone/recommend/"]} />
         <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>

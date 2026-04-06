@@ -1,34 +1,19 @@
 import LifespanTableBase from '@/app/components/support/LifespanTable'
-import type { LifespanEntryWithHref, GlossaryGroup } from '@/app/components/support/LifespanTable'
+import type { GlossaryGroup } from '@/app/components/support/LifespanTable'
 import type { MacBookModel } from '@/lib/types'
-
-const IOSYS_MACBOOK = 'https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Fpc%2Fnotepc%2Fmacbook'
-
-const LIFESPAN_DATA: LifespanEntryWithHref[] = [
-  { series: 'MBP 14/16インチ M4（2024）', href: '/macbook/mbp-14-2024-nov', releaseDate: '2024年11月発売', osEnd: '2031年11月', repairEnd: '2033年11月', iosysUrl: IOSYS_MACBOOK },
-  { series: 'MBP 14/16インチ M3 Pro/Max（2023）', href: '/macbook/mbp-14-2023-nov', releaseDate: '2023年11月発売', osEnd: '2030年11月', repairEnd: '2032年11月', iosysUrl: IOSYS_MACBOOK },
-  { series: 'MBP 14/16インチ M2 Pro/Max（2023）', href: '/macbook/mbp-14-2023', releaseDate: '2023年2月発売', osEnd: '2030年2月', repairEnd: '2032年2月', iosysUrl: IOSYS_MACBOOK },
-  { series: 'MBP 13インチ M2（2022）', href: '/macbook/mbp-13-2022', releaseDate: '2022年6月発売', osEnd: '2029年6月', repairEnd: '2031年6月', iosysUrl: IOSYS_MACBOOK },
-  { series: 'MBP 14/16インチ M1 Pro/Max（2021）', href: '/macbook/mbp-14-2021', releaseDate: '2021年10月発売', osEnd: '2028年10月', repairEnd: '2030年10月', iosysUrl: IOSYS_MACBOOK },
-  { series: 'MBP 13インチ M1（2020）', href: '/macbook/mbp-13-2020', releaseDate: '2020年11月発売', osEnd: '2027年11月', repairEnd: '2029年11月', iosysUrl: IOSYS_MACBOOK },
-  { series: 'MBA 13/15インチ M4（2025）', href: '/macbook/mba-13-2025', releaseDate: '2025年3月発売', osEnd: '2032年3月', repairEnd: '2034年3月', iosysUrl: IOSYS_MACBOOK },
-  { series: 'MBA 13/15インチ M3（2024）', href: '/macbook/mba-13-2024', releaseDate: '2024年3月発売', osEnd: '2031年3月', repairEnd: '2033年3月', iosysUrl: IOSYS_MACBOOK },
-  { series: 'MBA 15インチ M2（2023）', href: '/macbook/mba-15-2023', releaseDate: '2023年6月発売', osEnd: '2030年6月', repairEnd: '2032年6月', iosysUrl: IOSYS_MACBOOK },
-  { series: 'MBA 13インチ M2（2022）', href: '/macbook/mba-13-2022', releaseDate: '2022年7月発売', osEnd: '2029年7月', repairEnd: '2031年7月', iosysUrl: IOSYS_MACBOOK },
-  { series: 'MBA 13インチ M1（2020）', href: '/macbook/mba-13-2020', releaseDate: '2020年11月発売', osEnd: '2027年11月', repairEnd: '2029年11月', iosysUrl: IOSYS_MACBOOK },
-]
+import { buildMacBookLifespanData } from '@/lib/utils/macbook-helpers'
 
 const GLOSSARY_GROUPS: GlossaryGroup[] = [
   {
     title: 'macOSのサポート期間について',
     label: 'macOSサポート終了のデメリット',
     intro:
-      'MacBookはiPhoneと同様に、発売から約7年が経過するとmacOSのアップデート対象外になる傾向があります。特にIntelチップ搭載モデルはApple Siliconへの移行に伴い、サポート打ち切りが早まるケースがあります。',
+      'MacBookはiPhoneと同様に、発売から約7年が経過するとmacOSのアップデート対象外になる傾向があります。なお、古いOSのMacBookを使い続けた場合のデメリットは下記の通りです。',
     items: [
       {
         term: 'セキュリティリスクが高まる',
         description:
-          'OSが更新できないと新たに発見された脆弱性に対応できず、不正アクセスやウイルス感染のリスクが高まります。',
+          'OSが更新できないと新しい脆弱性が発見されても、Appleからセキュリティアップデートが提供されなくなるため、MacBookがハッキングや不正アクセスのリスクにさらされる可能性が高くなります。',
       },
       {
         term: '新機能やアプリが利用できない',
@@ -46,7 +31,7 @@ const GLOSSARY_GROUPS: GlossaryGroup[] = [
     title: 'Appleストアの修理サポート期間について',
     label: '用語解説',
     intro:
-      'Appleストアへバッテリー交換や画面修理を依頼する場合、端末が「ビンテージ製品」や「オブソリート製品」に該当していないことが条件になります。',
+      'Appleストアへバッテリー交換や画面修理を依頼する場合、端末が「ビンテージ製品」や「オブソリート製品」に該当していないことが条件になります。修理サポート対象外になった端末は安心して使用できないので、こちらも買い替えのタイミングと言えます。',
     items: [
       {
         term: 'ビンテージ製品',
@@ -62,21 +47,10 @@ const GLOSSARY_GROUPS: GlossaryGroup[] = [
   },
 ]
 
-function extractSlug(href: string): string {
-  return href.replace(/\/$/, '').split('/').pop() || ''
-}
-
 type Props = { models: MacBookModel[] }
 
 export default function MacBookLifespanTable({ models }: Props) {
-  const slugMap = new Map(models.map(m => [m.slug, m.last_macos]))
-
-  const data = LIFESPAN_DATA.map(entry => {
-    const slug = extractSlug(entry.href)
-    const lastOs = slugMap.get(slug)
-    const osEnded = slugMap.has(slug) && lastOs != null
-    return { ...entry, osEnded }
-  })
+  const data = buildMacBookLifespanData(models)
 
   return (
     <LifespanTableBase
@@ -90,8 +64,8 @@ export default function MacBookLifespanTable({ models }: Props) {
         </>
       }
       tableCaption="MacBook機種別サポート期間・寿命予想一覧"
+      showModelsColumn
       glossaryGroups={GLOSSARY_GROUPS}
-      showIosysColumn
     />
   )
 }

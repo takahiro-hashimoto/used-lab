@@ -7,11 +7,11 @@ export default function LifestyleSection() {
     <HowtoSection
       id="lifestyle"
       title="iPadがあればできること【暮らし編】"
-      description="iPadは、普段の生活をより便利にするためにも役に立ちます。ステージマネージャーやSplit Viewなどのマルチタスク機能を活用すれば、複数のアプリを同時に使い分けることも可能。ここからは、iPadを生活に役立てる方法について8つ紹介します。"
+      description="iPadは、普段の生活をより便利にするためにも役に立ちます。ここからは、iPadを生活に役立てる方法を8つご紹介。"
     >
 
       {/* 5. ウェブブラウザで調べ物をする */}
-      <MediaCard src="/images/content/photo/ipad-split-view.jpg" alt="Split Viewで調べ物をする様子" title="ウェブブラウザで調べ物をする" height={158}>
+      <MediaCard src="/images/content/photo/ipad-web.jpg" alt="Split Viewで調べ物をする様子" title="ウェブブラウザで調べ物をする" height={158}>
         <p className="media-card__desc">
           iPadのブラウザはPC用サイトをそのまま表示できるため、スマホサイトのように何度もスクロールを繰り返す必要がありません。一度に目に入る情報量が圧倒的に多く、必要なデータに素早くアクセスできるのが最大の強みです。
         </p>
@@ -86,7 +86,7 @@ export default function LifestyleSection() {
       </MediaCard>
 
       {/* 9. スケジュールを管理する */}
-      <MediaCard src="/images/content/ipad-schedule.jpg" alt="iPadでスケジュール管理する様子" title="スケジュールを管理する">
+      <MediaCard src="/images/content/photo/ipad-calendar.jpg" alt="iPadでスケジュール管理する様子" title="スケジュールを管理する">
         <p className="media-card__desc">
           スマホでは見づらい1ヶ月の予定も、iPadなら一画面でスッキリと俯瞰できます。情報量の多さを活かしたスケジュール管理は、iPadならではの強みです。
         </p>
@@ -106,26 +106,21 @@ export default function LifestyleSection() {
       </MediaCard>
 
       {/* 10. テレビ電話をする */}
-      <MediaCard src="/images/content/photo/centerflame.webp" alt="iPadでテレビ電話をする様子" title="テレビ電話をする">
+      <MediaCard src="/images/content/photo/ipad-camera.jpg" alt="iPadでテレビ電話をする様子" title="テレビ電話をする">
         <p className="media-card__desc">
-          iPadなら画面が大きいため、スマホでは見えにくい相手の表情もハッキリ分かります。複数人での通話や、細かな反応を確認したいシーンでもコミュニケーションが非常にスムーズです。
+          iPadは画面が大きいので、相手の表情が見やすく、話しやすいのが特長です。複数人の通話でも、誰が話しているか分かりやすくなります。
         </p>
         <p className="media-card__desc">
-          多くのiPadに搭載されているセンターフレーム機能も見逃せません。
+          さらに「センターフレーム」対応のiPadなら、カメラが自動で自分を追いかけてくれるため、少し動いても画面の中心に写り続けます。
         </p>
-        <dl className="m-card vs-card u-mt-sm">
-          <dt>
-            <i className="fa-solid fa-video" aria-hidden="true"></i>
-            センターフレーム機能
-          </dt>
-          <dd>超広角フロントカメラが、動く自分を常に追いかけて自動でフレーム内に収めてくれる機能。通話中に少し動いても最適な画角を保ち続けてくれるため、手放しでのビデオ通話も快適に行えます。</dd>
-        </dl>
         <p className="media-card__desc u-mt-md">
-          手ぶらでのビデオ通話や、家族との近況報告など、iPadがあるだけでテレビ電話のストレスはぐっと軽減されるはずです。
+          手ぶらでのビデオ通話や、家族との近況報告にも使いやすく、テレビ電話のストレスを減らしてくれます。
         </p>
         <InfoCard heading="おすすめのビデオチャットアプリ">
-          <li><a href="https://apps.apple.com/jp/app/facetime/id1110145091" target="_blank" rel="noopener">FaceTime</a></li>
-          <li><a href="https://apps.apple.com/jp/app/zoom-one-platform-to-connect/id546505307" target="_blank" rel="noopener">ZOOM</a></li>
+          <p className="info-card__desc">
+            <a href="https://apps.apple.com/jp/app/facetime/id1110145091" target="_blank" rel="noopener">FaceTime</a>／
+            <a href="https://apps.apple.com/jp/app/zoom-one-platform-to-connect/id546505307" target="_blank" rel="noopener">ZOOM</a>
+          </p>
         </InfoCard>
       </MediaCard>
 
@@ -148,7 +143,7 @@ export default function LifestyleSection() {
       </MediaCard>
 
       {/* 12. フォトフレームとして使用する */}
-      <MediaCard src="/images/content/ipad-photo-frame.jpg" alt="iPadをフォトフレームとして使用する様子" title="フォトフレームとして使用する">
+      <MediaCard src="/images/content/photo/ipad-flame.jpg" alt="iPadをフォトフレームとして使用する様子" title="フォトフレームとして使用する">
         <p className="media-card__desc">
           iPadに標準搭載されている「スライドショー機能」やサードパーティ製の専用アプリを活用すれば、iPadをデジタルフォトフレームとして使うことができます。
         </p>

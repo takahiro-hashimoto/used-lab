@@ -8,6 +8,7 @@ import PopularMacBook from '@/app/components/PopularMacBook'
 import MacBookRelatedLinks from '@/app/components/macbook/MacBookRelatedLinks'
 import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
+import { getHeroImage } from '@/lib/data/hero-images'
 import HeroMeta from '@/app/components/HeroMeta'
 
 const PAGE_TITLE = 'MacBookを安く買うには？おすすめの購入先7つを比較'
@@ -23,12 +24,12 @@ export const metadata: Metadata = {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/macbook/macbook-buy/',
-    images: [{ url: '/images/macbook/macbook-air-m2.jpg', width: 1200, height: 630, alt: PAGE_TITLE }],
+    images: [{ url: getHeroImage('/macbook/macbook-buy/'), width: 1200, height: 630, alt: PAGE_TITLE }],
   },
   twitter: {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
-    images: ['/images/macbook/macbook-air-m2.jpg'],
+    images: [getHeroImage('/macbook/macbook-buy/')],
   },
 }
 
@@ -90,7 +91,7 @@ export default function MacBookBuyPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/content/thumbnail/cheap-buy.jpg"
+                  src={getHeroImage('/macbook/macbook-buy/')}
                   alt="MacBookを安く買う方法のイメージ"
                   className="hero-media__img"
                   width={360}
@@ -132,46 +133,51 @@ export default function MacBookBuyPage() {
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
             <div className="toc-wrapper">
-<p className="toc-title"><i className="fa-solid fa-list" aria-hidden="true"></i> タップできる目次</p>
-            <ol className="l-grid l-grid--3col u-list-reset">
-              <li>
-                <a href="#gift-rebates" className="toc-item">
-                  ギフトカード×リーベイツ <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
-                </a>
-              </li>
-              <li>
-                <a href="#amazon" className="toc-item">
-                  Amazonで買う <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
-                </a>
-              </li>
-              <li>
-                <a href="#rakuten" className="toc-item">
-                  楽天市場で買う <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
-                </a>
-              </li>
-              <li>
-                <a href="#yahoo" className="toc-item">
-                  ヤフーショッピング <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
-                </a>
-              </li>
-              <li>
-                <a href="#electronics" className="toc-item">
-                  家電量販店EC <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
-                </a>
-              </li>
-              <li>
-                <a href="#used" className="toc-item">
-                  中古ショップ <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
-                </a>
-              </li>
-              <li>
-                <a href="#apple-store" className="toc-item">
-              <li><a href="#related" className="toc-item">関連記事 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>                  Appleストア <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
-                </a>
-              </li>
-            </ol>
-</div>
-          <AuthorByline />
+              <p className="toc-title"><i className="fa-solid fa-list" aria-hidden="true"></i> タップできる目次</p>
+              <ol className="l-grid l-grid--3col u-list-reset">
+                <li>
+                  <a href="#gift-rebates" className="toc-item">
+                    ギフトカード×リーベイツ <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="#amazon" className="toc-item">
+                    Amazonで買う <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="#rakuten" className="toc-item">
+                    楽天市場で買う <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="#yahoo" className="toc-item">
+                    ヤフーショッピング <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="#electronics" className="toc-item">
+                    家電量販店EC <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="#used" className="toc-item">
+                    中古ショップ <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="#apple-store" className="toc-item">
+                    Appleストア <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="#related" className="toc-item">
+                    関連記事 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                </li>
+              </ol>
+            </div>
+            <AuthorByline />
           </div>
         </nav>
 

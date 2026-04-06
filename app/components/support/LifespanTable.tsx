@@ -114,8 +114,8 @@ export default function LifespanTable({
                 </tr>
               </thead>
               <tbody>
-                {data.map((entry) => (
-                  <tr key={entry.series}>
+                {data.map((entry, i) => (
+                  <tr key={`${entry.series}-${i}`}>
                     <th>
                       <div>
                         {hasHref(entry) ? (

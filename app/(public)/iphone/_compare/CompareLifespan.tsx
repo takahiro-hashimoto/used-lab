@@ -13,7 +13,7 @@ type Props = {
 }
 
 function LifespanCard({ model }: { model: IPhoneModel }) {
-  const osLife = calculateOSLifespan(model.date)
+  const osLife = calculateOSLifespan(model.date, model.last_ios)
 
   return (
     <div className="m-card m-stat-card m-stat-card--lg lifespan-card" style={{ textAlign: 'center', alignItems: 'center' }}>

@@ -53,7 +53,7 @@ const TIMING_CARDS: TimingCard[] = [
     content: (
       <>
         <p>iPhoneを使用する中で下記のように性能面の不満を感じ始めたら、買い替えを検討するタイミングといっていいでしょう。</p>
-        <ul>
+        <ul className="media-card__list">
           <li>ゲームなどをしていると処理が重く感じる</li>
           <li>発熱が頻繁に気になるようになった</li>
           <li>写真や動画の映りが微妙に感じる</li>

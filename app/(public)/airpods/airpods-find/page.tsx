@@ -8,6 +8,7 @@ import FindMethodSection from './components/FindMethodSection'
 import PurchaseMethodSection from './components/PurchaseMethodSection'
 import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
+import { getHeroImage } from '@/lib/data/hero-images'
 import HeroMeta from '@/app/components/HeroMeta'
 
 const PAGE_TITLE = 'AirPodsのケースやイヤホン片方を無くした時の探し方、代替品の購入先まとめ'
@@ -23,10 +24,12 @@ export const metadata: Metadata = {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/airpods/airpods-find/',
+    images: [{ url: getHeroImage('/airpods/airpods-find/'), width: 1200, height: 630, alt: PAGE_TITLE }],
   },
   twitter: {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
+    images: [getHeroImage('/airpods/airpods-find/')],
   },
 }
 
@@ -118,7 +121,7 @@ export default function AirpodsFindPage() {
               <div className="hero-visual">
                 <figure className="hero-media">
                   <Image
-                    src="/images/content/thumbnail/airpods-image-01.jpg"
+                    src={getHeroImage('/airpods/airpods-find/')}
                     alt="AirPodsの紛失対処法"
                     className="hero-media__img"
                     width={360}

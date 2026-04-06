@@ -29,6 +29,7 @@ import ReviewSection from '@/app/components/ReviewSection'
 import ShareBox from '@/app/components/ShareBox'
 import AdminEditLink from '@/app/components/AdminEditLink'
 import StickyCtaOverride from '@/app/components/StickyCtaOverride'
+import IPhonePopularSection from '@/app/components/support/popular/IPhonePopularSection'
 import { getCompareLinksForModel } from '@/app/(public)/iphone/_compare/config'
 
 export const revalidate = 3600
@@ -49,14 +50,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   const latestLog = await getLatestPriceLog(model.id)
   const priceRange = calculatePriceRange(latestLog)
-  const osLife = calculateOSLifespan(model.date)
+  const osLife = calculateOSLifespan(model.date, model.last_ios)
 
   // 動的に価格・チップ・サポート年数を埋め込む
   const priceText = priceRange.minPrice ? `（¥${priceRange.minPrice.toLocaleString()}〜）` : ''
   const chipText = model.cpu ? `${model.cpu}搭載` : ''
   const osText = osLife.isSupported ? `iOSサポート見込み` : 'iOSサポート終了済み'
 
-  const title = `中古${model.model} レビュー｜スペック・価格相場・いつまで使える？`
+  const title = `中古${model.model}は今買うべき？製品寿命、基本スペック、ベンチマークスコア、中古相場から解説`
   const description = `${model.model}の中古相場${priceText}や${osText}をもとに、今から中古で買うべきかを判定。${chipText ? chipText + 'の' : ''}ベンチマーク・カメラ・バッテリーを比較しながら失敗しない選び方を解説します。`
 
   return {
@@ -146,6 +147,7 @@ export default async function IPhoneDetailPage({ params }: PageProps) {
         <BenchmarkAntutu model={model} allModels={allModels} />
         <ReviewSection modelName={model.model} reviews={reviews} />
         <FaqSection model={model} latestPrice={latestPrice} shopLinks={modelShopLinks} />
+        <IPhonePopularSection />
         <RelatedArticles model={model} />
         <ShareBox url={`https://used-lab.jp/iphone/${model.slug}/`} text={`中古${model.model}は今買うべき？製品寿命、基本スペック、ベンチマークスコア、中古相場から解説`} />
         </div>

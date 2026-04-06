@@ -9,9 +9,10 @@ import ShareBox from '@/app/components/ShareBox'
 import IPhoneRelatedLinks from '@/app/components/iphone/IPhoneRelatedLinks'
 import { getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
-import PopularSection from '@/app/components/support/PopularSection'
+import IPhonePopularSection from '@/app/components/support/popular/IPhonePopularSection'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import FaqSection from '@/app/components/support/FaqSection'
+import { getHeroImage } from '@/lib/data/hero-images'
 
 export const revalidate = 3600
 
@@ -24,12 +25,12 @@ export const metadata: Metadata = {
     title: 'iPhone機種診断シミュレーター｜自分に合うおすすめ中古スマホがすぐわかる【2026年版】',
     description: '3つのステップで自分にぴったりの中古iPhoneが見つかる診断シミュレーター。',
     url: '/iphone/filter-search/',
-    images: [{ url: '/images/iphone/iphone16pro.jpg', width: 1200, height: 630, alt: 'iPhone機種診断シミュレーター' }],
+    images: [{ url: getHeroImage('/iphone/filter-search/'), width: 1200, height: 630, alt: 'iPhone機種診断シミュレーター' }],
   },
   twitter: {
     title: 'iPhone機種診断シミュレーター｜自分に合うおすすめ中古スマホがすぐわかる【2026年版】',
     description: '3つのステップで自分にぴったりの中古iPhoneが見つかる診断シミュレーター。',
-    images: ['/images/iphone/iphone16pro.jpg'],
+    images: [getHeroImage('/iphone/filter-search/')],
   },
 }
 
@@ -194,7 +195,7 @@ export default async function IPhoneFilterSearchPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/content/thumbnail/simulator.jpg"
+                  src={getHeroImage('/iphone/filter-search/')}
                   alt="iPhone機種診断シミュレーターのイメージ"
                   className="hero-media__img"
                   width={360}
@@ -224,10 +225,10 @@ export default async function IPhoneFilterSearchPage() {
           <div className="l-container">
             <div className="l-grid l-grid--3col l-grid--gap-lg">
               <IconCard icon="fa-solid fa-bullseye" title="用途で絞り込み">
-                <p>SNS・動画視聴・ゲームなど、あなたの使い方に合った機種を提案します。</p>
+                <p>SNS・動画視聴・ゲームなど、あなたの使い方に合った機種がわかる。</p>
               </IconCard>
               <IconCard icon="fa-solid fa-wallet" title="予算で絞り込み">
-                <p>ご希望の予算帯に収まる機種だけを表示。無理のない選択ができます。</p>
+                <p>希望の予算帯に収まる機種だけを表示。無理のない選択が可能。</p>
               </IconCard>
               <IconCard icon="fa-solid fa-sliders" title="こだわり条件">
                 <p>画面サイズやカメラ性能など、細かい条件でさらに絞り込めます。</p>
@@ -261,18 +262,7 @@ export default async function IPhoneFilterSearchPage() {
           items={FAQ_ITEMS}
         />
 
-        <PopularSection
-          sectionTitle="目的別に人気の中古iPhone"
-          sectionDescription="目的別におすすめの機種を厳選。診断で迷った方はぜひご覧ください。"
-          imageSrc="/images/content/thumbnail/iphone-setting.webp"
-          imageAlt="中古iPhoneおすすめ5選のイメージ画像"
-          subtitle="目的別におすすめ機種を厳選！"
-          cardTitle="中古iPhoneおすすめ5選"
-          cardDescription="カメラ性能を重視する人向け、大画面で動画やSNSを楽しみたい人向けなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。"
-          buttonText="おすすめ5機種を見る"
-          buttonHref="/iphone/recommend"
-        />
-
+        <IPhonePopularSection />
         <IPhoneRelatedLinks excludeHref={["/iphone/filter-search/", "/iphone/recommend/"]} />
         <ShareBox url="https://used-lab.jp/iphone/filter-search/" text="iPhone機種診断シミュレーター｜自分に合うおすすめ中古スマホがすぐわかる【2026年版】" />
         </div>

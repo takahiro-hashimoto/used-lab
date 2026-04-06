@@ -19,7 +19,7 @@ function formatDate(date: string | null): string {
 export default function LeadText({ model, latestPrice }: Props) {
   const releaseDateFormatted = formatDate(model.date)
   const priceRange = calculatePriceRange(latestPrice)
-  const osLife = calculateOSLifespan(model.date)
+  const osLife = calculateOSLifespan(model.date, model.last_macos)
 
   return (
     <section className="l-section l-section--sm section-lead" aria-label="記事の導入">

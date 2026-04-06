@@ -95,17 +95,5 @@ export const GUIDE_MODEL_LINKS = {
   ],
 }
 
-// ---------- ショップ比較カードセクション ----------
-import { buildVendorCards } from '@/lib/data/guide-shared'
-
-export const GUIDE_VENDOR_CARDS = buildVendorCards(
-  {
-    'イオシス': 'https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Fpc%2Fnotepc%2Fmacbook',
-    'にこスマ': 'https://px.a8.net/svt/ejp?a8mat=3NCKMH+63P0JM+4O7U+BW0YB&a8ejpredirect=https%3A%2F%2Fwww.nicosuma.com%2Fiphone',
-    'ゲオ': 'https://px.a8.net/svt/ejp?a8mat=3TB2U4+C4ESQQ+4J34+BW0YB&a8ejpredirect=https%3A%2F%2Fec.geo-online.co.jp%2Fshop%2Fgoods%2Fsearch.aspx%3Fsearch.x%3D0%26keyword%3D%26goods_code%3D%26store%3D%26tree%3D18010101%26genre_tree%3D%26capacity%3D%26price%3D%26flg%3D',
-    'リコレ': 'https://click.linksynergy.com/deeplink?id=N*L98MVOv3Q&mid=43860&murl=https%3A%2F%2Fused.sofmap.com%2Fr%2Fcategory%2Fmac%2Fselect_mac%3Ftop_topic_mac',
-    'じゃんぱら': 'https://www.janpara.co.jp/sale/search/result/?OUTCLSCODE=4',
-    'Amazon整備済み品': 'https://amzn.to/3YBqrRz',
-  },
-  '中古MacBookを探す',
-)
+// ショップ比較カードセクションは DB (shops テーブル) から動的生成に移行済み
+// → buildVendorCardsFromShops(shops, 'macbook_url', ...) を使用

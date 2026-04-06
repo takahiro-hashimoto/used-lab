@@ -18,8 +18,8 @@ export { formatReleaseDate, formatPrice } from './shared-helpers'
 /**
  * OS寿命計算（リリース年+7年）macOS基準
  */
-export function calculateOSLifespan(date: string | null) {
-  return calculateOSLifespanGeneric(date, 7)
+export function calculateOSLifespan(date: string | null, lastOs: string | null = null) {
+  return calculateOSLifespanGeneric(date, 7, lastOs)
 }
 
 /**
@@ -59,6 +59,74 @@ export function calculatePriceRange(log: MacBookPriceLog | null): {
       { name: log.min1_shop_name || '楽天', min: log.min1_price, max: log.max1_price },
     ],
   }
+}
+
+// --- サポート期間一覧データ生成 ---
+
+import type { LifespanEntryWithModels } from '@/app/components/support/LifespanTable'
+
+/** モデル名からプロダクトライン（Pro / Air）を抽出 */
+function getProductLine(modelName: string): string {
+  if (modelName.includes('Pro')) return 'MacBook Pro'
+  return 'MacBook Air'
+}
+
+const LINE_ORDER = ['MacBook Pro', 'MacBook Air']
+
+/**
+ * DBモデル配列からサポート期間一覧テーブル用データを生成
+ * グルーピング: プロダクトライン + リリース年 + リリース月（同年に複数回発売があるため）
+ */
+export function buildMacBookLifespanData(models: MacBookModel[]): LifespanEntryWithModels[] {
+  const groups = new Map<string, { line: string; year: number; month: number; models: MacBookModel[] }>()
+
+  for (const m of models) {
+    if (!m.date) continue
+    const line = getProductLine(m.model)
+    const year = getReleaseYear(m.date)
+    const month = getReleaseMonth(m.date)
+    if (year === 0) continue
+
+    const key = `${line}_${year}_${month}`
+    const existing = groups.get(key)
+    if (existing) {
+      existing.models.push(m)
+    } else {
+      groups.set(key, { line, year, month, models: [m] })
+    }
+  }
+
+  const entries: LifespanEntryWithModels[] = []
+  for (const group of groups.values()) {
+    const osEndYear = group.year + 7
+    const repairEndYear = group.year + 9
+    const osEnded = group.models.every(m => m.last_macos != null)
+
+    entries.push({
+      series: `${group.line} ${group.year}`,
+      releaseDate: `${group.year}年${group.month}月発売`,
+      models: group.models.map(m => ({
+        label: m.shortname || m.model,
+        href: `/macbook/${m.slug}`,
+      })),
+      osEnd: `${osEndYear}年${group.month}月`,
+      repairEnd: `${repairEndYear}年${group.month}月`,
+      osEnded,
+    })
+  }
+
+  // プロダクトライン順 → リリース年月降順
+  entries.sort((a, b) => {
+    const lineA = LINE_ORDER.indexOf(a.series.replace(/ \d{4}$/, ''))
+    const lineB = LINE_ORDER.indexOf(b.series.replace(/ \d{4}$/, ''))
+    if (lineA !== lineB) return lineA - lineB
+    const [yearA, monthA] = a.releaseDate.match(/(\d{4})年(\d+)月/)?.slice(1).map(Number) || [0, 0]
+    const [yearB, monthB] = b.releaseDate.match(/(\d{4})年(\d+)月/)?.slice(1).map(Number) || [0, 0]
+    if (yearA !== yearB) return yearB - yearA
+    return monthB - monthA
+  })
+
+  return entries
 }
 
 // --- 購入判定ロジック（MacBook版：PHP版から移植） ---
@@ -275,7 +343,7 @@ export function generateFaqsForJsonLd(
 ): { question: string; answer: string }[] {
   const faqs: { question: string; answer: string }[] = []
   const v = getVerdict(model, latestPrice)
-  const osLife = calculateOSLifespan(model.date)
+  const osLife = calculateOSLifespan(model.date, model.last_macos)
 
   faqs.push({
     question: `中古${model.model}は今から購入するのはあり？`,

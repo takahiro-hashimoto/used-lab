@@ -18,8 +18,8 @@ export { formatReleaseDate, formatPrice } from './shared-helpers'
 /**
  * OS寿命計算（リリース年+7年）
  */
-export function calculateOSLifespan(date: string | null) {
-  return calculateOSLifespanGeneric(date, 7)
+export function calculateOSLifespan(date: string | null, lastOs: string | null = null) {
+  return calculateOSLifespanGeneric(date, 7, lastOs)
 }
 
 /**
@@ -79,7 +79,7 @@ export function getUserSuitability(model: IPhoneModel): {
 }[] {
   const antutuTotal = (model.antutu_cpu || 0) + (model.antutu_gpu || 0) +
                       (model.antutu_mem || 0) + (model.antutu_ux || 0)
-  const osLife = calculateOSLifespan(model.date)
+  const osLife = calculateOSLifespan(model.date, model.last_ios)
 
   return [
     {
@@ -125,7 +125,7 @@ export function generateFaqsForJsonLd(
 ): { question: string; answer: string }[] {
   const faqs: { question: string; answer: string }[] = []
   const v = getVerdict(model, latestPrice)
-  const osLife = calculateOSLifespan(model.date)
+  const osLife = calculateOSLifespan(model.date, model.last_ios)
 
   // Q1: 購入判定
   faqs.push({
@@ -203,6 +203,119 @@ export function getAdvanceFeaturesList(model: IPhoneModel): string[] {
   }
 
   return [...new Set(features)]
+}
+
+// --- サポート期間一覧データ生成 ---
+
+import type { LifespanEntryWithModels } from '@/app/components/support/LifespanTable'
+
+/**
+ * モデル名からシリーズグループキーを抽出
+ * iPhone17 Pro Max → "17", iPhone16e → "16e", iPhone SE 第3世代 → "SE3", iPhone Air → "Air"
+ */
+function getSeriesKey(modelName: string): string {
+  // iPhone SE 第N世代
+  const seMatch = modelName.match(/iPhone\s*SE\s*第(\d)世代/)
+  if (seMatch) return `SE${seMatch[1]}`
+  // iPhone Air
+  if (/iPhone\s*Air/i.test(modelName)) return 'Air'
+  // iPhone16e など末尾e付き
+  const eMatch = modelName.match(/iPhone\s*(\d+e)/i)
+  if (eMatch) return eMatch[1]
+  // iPhone17 / iPhone 17 Pro / iPhone16 Pro Max
+  const numMatch = modelName.match(/iPhone\s*(\d+)/i)
+  if (numMatch) return numMatch[1]
+  return modelName
+}
+
+/**
+ * グループキーからシリーズ表示名を生成
+ */
+function getSeriesName(key: string): string {
+  if (key.startsWith('SE')) {
+    const gen = key.replace('SE', '')
+    return `iPhone SE（第${gen}世代）`
+  }
+  return `iPhone ${key}シリーズ`
+}
+
+/** シリーズキーからソート用の数値を取得（大きいほど新しい） */
+function getSeriesSortOrder(key: string): number {
+  if (key.startsWith('SE')) return parseInt(key.replace('SE', ''), 10) * 0.1
+  if (key === 'Air') return 0
+  const num = parseInt(key, 10)
+  return isNaN(num) ? 0 : num
+}
+
+/**
+ * DBモデル配列からサポート期間一覧テーブル用データを生成
+ * グルーピング: リリース年月（同時発売モデルを1シリーズにまとめる）
+ */
+export function buildIPhoneLifespanData(models: IPhoneModel[]): LifespanEntryWithModels[] {
+  // まずリリース年月でグルーピング
+  const dateGroups = new Map<string, IPhoneModel[]>()
+  for (const m of models) {
+    if (!m.date) continue
+    const year = getReleaseYear(m.date)
+    const month = getReleaseMonth(m.date)
+    if (year === 0) continue
+    const key = `${year}_${month}`
+    const existing = dateGroups.get(key)
+    if (existing) existing.push(m)
+    else dateGroups.set(key, [m])
+  }
+
+  const entries: LifespanEntryWithModels[] = []
+  for (const [dateKey, groupModels] of dateGroups) {
+    const [yearStr, monthStr] = dateKey.split('_')
+    const year = parseInt(yearStr, 10)
+    const month = parseInt(monthStr, 10)
+
+    // 同じ年月でもSEと数字シリーズは分ける
+    const subGroups = new Map<string, IPhoneModel[]>()
+    for (const m of groupModels) {
+      const sk = getSeriesKey(m.model)
+      // Airは同時期の数字シリーズに統合
+      const normalizedKey = sk === 'Air'
+        ? (Array.from(new Set(groupModels.map(gm => getSeriesKey(gm.model)))).find(k => /^\d+$/.test(k)) || sk)
+        : sk
+      const existing = subGroups.get(normalizedKey)
+      if (existing) existing.push(m)
+      else subGroups.set(normalizedKey, [m])
+    }
+
+    for (const [seriesKey, seriesModels] of subGroups) {
+      const osEndYear = year + 7
+      const repairEndYear = year + 9
+      const osEnded = seriesModels.every(m => m.last_ios != null)
+
+      entries.push({
+        series: getSeriesName(seriesKey),
+        releaseDate: `${year}年${month}月発売`,
+        models: seriesModels.map(m => ({
+          label: m.model,
+          href: `/iphone/${m.slug}`,
+        })),
+        osEnd: `${osEndYear}年${month}月`,
+        repairEnd: `${repairEndYear}年${month}月`,
+        osEnded,
+      })
+    }
+  }
+
+  // リリース年月降順
+  entries.sort((a, b) => {
+    const [yearA, monthA] = a.releaseDate.match(/(\d{4})年(\d+)月/)?.slice(1).map(Number) || [0, 0]
+    const [yearB, monthB] = b.releaseDate.match(/(\d{4})年(\d+)月/)?.slice(1).map(Number) || [0, 0]
+    if (yearA !== yearB) return yearB - yearA
+    if (monthA !== monthB) return monthB - monthA
+    // 同年月内: 数字シリーズ→SE順
+    const orderA = getSeriesSortOrder(getSeriesKey(a.models[0]?.label || ''))
+    const orderB = getSeriesSortOrder(getSeriesKey(b.models[0]?.label || ''))
+    return orderB - orderA
+  })
+
+  return entries
 }
 
 // --- 購入判定ロジック（PHP版から移植） ---

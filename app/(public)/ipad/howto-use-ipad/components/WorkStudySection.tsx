@@ -7,7 +7,7 @@ export default function WorkStudySection() {
     <HowtoSection
       id="work"
       title="iPadがあればできること【仕事・勉強編】"
-      description={<>iPadは、仕事や勉強のジャンルでも大活躍するデバイスです。M1・M2チップ以降のモデルならUSB-Cによる高速データ転送にも対応しており、外部ストレージとの連携もスムーズ。<br />この章では、iPadを使って仕事・勉強を効率化するための利用方法を6つ紹介します。</>}
+      description={<>iPadは、仕事や勉強のジャンルでも大活躍するデバイスです。iPadで仕事・勉強を効率化する利用方法を6つ紹介します。</>}
     >
 
       {/* 13. ノートを取る */}
@@ -15,13 +15,9 @@ export default function WorkStudySection() {
         <p className="media-card__desc">
           iPadはApple Pencilとセットで使うことで、ノートとして活用することができます。iPadをデジタルノートとして使う上で欠かせないアプリといえばGoodnotes 5。
         </p>
-        <InfoCard>
-          <li>シンプルで使いやすいUI</li>
-          <li>さまざまな種類のペンで手書き入力ができる</li>
-          <li>画像を自由に挿入できる</li>
-          <li>クラウド保存したデータは他のデバイスからも参照できる</li>
-          <li>ファイル検索の精度が高い</li>
-        </InfoCard>
+        <p className="media-card__desc">
+          操作はシンプルで使いやすく、さまざまな種類のペンで手書き入力が可能です。画像を自由に挿入できるうえ、クラウド保存したデータは他のデバイスからも参照できます。さらにファイル検索の精度が高く、必要なノートをすぐに見つけられるのも魅力です。
+        </p>
         <p className="media-card__desc u-mt-md">
           iPadをメモ帳や、授業用ノートに使いたいという方はぜひインストールしてみてください。
         </p>
@@ -66,7 +62,7 @@ export default function WorkStudySection() {
       </MediaCard>
 
       {/* 16. 子供の知育や学習ツールに使う */}
-      <MediaCard src="/images/content/ipad-kids-learning.jpg" alt="iPadで子供が知育アプリを使う様子" title="子供の知育や学習ツールに使う">
+      <MediaCard src="/images/content/photo/ipad-children.jpg" alt="iPadで子供が知育アプリを使う様子" title="子供の知育や学習ツールに使う">
         <p className="media-card__desc">
           iPadは知育・学習ツールが非常に充実しており、算数やひらがなの自宅学習に活用するご家庭が増えています。
         </p>

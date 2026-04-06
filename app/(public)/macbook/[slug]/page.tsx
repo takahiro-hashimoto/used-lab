@@ -23,7 +23,7 @@ import CompareSection from '@/app/components/CompareSection'
 import CompareSelector from './components/CompareSelector'
 import BenchmarkGeekbench from './components/BenchmarkGeekbench'
 import Accessories from './components/Accessories'
-import PopularSection from '@/app/components/support/PopularSection'
+import MacBookPopularSection from '@/app/components/support/popular/MacBookPopularSection'
 import FaqSection from './components/FaqSection'
 import PopularMacBook from '@/app/components/PopularMacBook'
 import MacBookRelatedLinks from '@/app/components/macbook/MacBookRelatedLinks'
@@ -49,13 +49,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   const latestLog = await getLatestMacBookPriceLog(model.id)
   const priceRange = calculatePriceRange(latestLog)
-  const osLife = calculateOSLifespan(model.date)
+  const osLife = calculateOSLifespan(model.date, model.last_macos)
 
   const priceText = priceRange.minPrice ? `（¥${priceRange.minPrice.toLocaleString()}〜）` : ''
   const chipText = model.cpu ? `${model.cpu}搭載` : ''
   const osText = osLife.isSupported ? `macOSサポート見込み` : 'macOSサポート終了済み'
 
-  const title = `中古${model.model} レビュー｜スペック・価格相場・いつまで使える？`
+  const title = `中古${model.model}は今買うべき？製品寿命、基本スペック、中古相場から解説`
   const description = `${model.model}の中古相場${priceText}や${osText}をもとに、今から中古で買うべきかを判定。${chipText ? chipText + 'の' : ''}Geekbenchスコア・拡張性を比較しながら失敗しない選び方を解説します。`
 
   return {
@@ -141,19 +141,6 @@ export default async function MacBookDetailPage({ params }: PageProps) {
         <BenchmarkGeekbench model={model} allModels={allModels} />
         <Accessories model={model} />
         <FaqSection model={model} latestPrice={latestPrice} shopLinks={modelShopLinks} />
-        <PopularSection
-          sectionTitle="目的別に人気の中古MacBook"
-          sectionDescription="目的別におすすめの機種を厳選。今回の記事で購入するべき機種が判断できなかった方はぜひご覧ください。"
-          imageSrc="/images/content/thumbnail/macbook-image-04.jpg"
-          imageAlt="中古MacBookおすすめ5選のイメージ画像"
-          subtitle="目的別におすすめ機種を厳選！"
-          cardTitle="中古MacBookおすすめ5選"
-          cardDescription="クリエイティブ作業向け、コスパ重視の人向けなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。"
-          buttonText="おすすめ5機種を見る"
-          buttonHref="/macbook/recommend/"
-          secondaryButtonText="イオシスで中古MacBookを探す"
-          secondaryButtonHref="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Fpc%2Fnotepc%2Fmacbook"
-        />
         <PopularMacBook />
         <MacBookRelatedLinks excludeHref={[`/macbook/${model.slug}/`, "/macbook/recommend/"]} />
         <ShareBox url={`https://used-lab.jp/macbook/${model.slug}/`} text={`中古${model.model}は今買うべき？製品寿命、基本スペック、ベンチマークスコア、中古相場から解説`} />

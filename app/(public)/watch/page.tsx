@@ -6,6 +6,7 @@ import {
   getAllWatchModels,
   getLatestWatchPriceLog,
   getAllProductShopLinksByType,
+  getShops,
 } from '@/lib/queries'
 import type { WatchModel, WatchPriceLog } from '@/lib/types'
 import { formatPrice, getMinPrice, buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
@@ -15,8 +16,8 @@ import {
   GUIDE_SPEC_LINKS,
   GUIDE_FAQ_ITEMS,
   GUIDE_MODEL_LINKS,
-  GUIDE_VENDOR_CARDS,
 } from '@/lib/data/watch-guide'
+import { buildVendorCardsFromShops } from '@/lib/data/guide-shared'
 import {
   RECOMMEND_SLUGS,
   RECOMMEND_META,
@@ -47,20 +48,23 @@ export const metadata: Metadata = {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/watch/',
-    images: [{ url: '/images/watch/watch-9.jpg', width: 1200, height: 630, alt: PAGE_TITLE }],
+    images: [{ url: getHeroImage('/watch/'), width: 1200, height: 630, alt: PAGE_TITLE }],
   },
   twitter: {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
-    images: ['/images/watch/watch-9.jpg'],
+    images: [getHeroImage('/watch/')],
   },
 }
 
 export default async function WatchGuidePage() {
-  const [allModels, allShopLinks] = await Promise.all([
+  const [allModels, allShopLinks, shops] = await Promise.all([
     getAllWatchModels(),
     getAllProductShopLinksByType('watch'),
+    getShops(),
   ])
+
+  const vendorCards = buildVendorCardsFromShops(shops, 'watch_url', '中古Apple Watchを探す')
 
   // 相場セクション用: 指定slugのモデル + 最新価格を並列取得
   const priceModels = GUIDE_PRICE_SLUGS
@@ -144,7 +148,7 @@ export default async function WatchGuidePage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/content/thumbnail/apple-watch-image.jpg"
+                  src={getHeroImage('/watch/')}
                   alt="中古Apple Watch購入ガイドのイメージ"
                   className="hero-media__img"
                   width={360}
@@ -198,6 +202,8 @@ export default async function WatchGuidePage() {
 
           {/* ========== 絞り込みツール ========== */}
           <PopularSection
+            sectionId="filter-tool"
+            headingId="heading-filter-tool"
             sectionTitle="条件に合うApple Watchを絞り込む"
             sectionDescription="予算・ケースサイズ・健康センサー・バッテリー持ちなど、ご自身の条件を選ぶことで候補を絞り込めます。"
             imageSrc="/images/content/thumbnail/simulator.jpg"
@@ -358,7 +364,7 @@ export default async function WatchGuidePage() {
               <p className="m-section-desc">中古Apple Watch販売店の比較情報。保証内容、価格、在庫の豊富さなど、</p>
               <p className="m-section-desc">各ショップの特徴を一覧表で整理しました。</p>
 
-              <VendorCardGrid cards={GUIDE_VENDOR_CARDS} />
+              <VendorCardGrid cards={vendorCards} />
 
               <p className="guide-section-note u-mt-2xl">各ショップの詳細やサービス内容の違いは以下の記事で解説しています。</p>
               <div className="guide-section-cta">

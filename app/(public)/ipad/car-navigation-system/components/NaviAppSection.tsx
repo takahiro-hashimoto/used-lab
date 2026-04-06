@@ -23,43 +23,43 @@ export default function NaviAppSection() {
             </thead>
             <tbody>
               <tr>
-                <td><strong>ロゴ</strong></td>
+                <th>ロゴ</th>
                 <td><Image src="/images/content/thumbnail/google-map.jpg" alt="Googleマップのロゴ" width={80} height={40} style={{ objectFit: 'contain', border: '1px solid var(--color-border-light)', borderRadius: 'var(--radius-sm)' }} /></td>
                 <td><Image src="/images/content/thumbnail/car-navi-app.png" alt="Yahoo!カーナビのロゴ" width={80} height={40} style={{ objectFit: 'contain', border: '1px solid var(--color-border-light)', borderRadius: 'var(--radius-sm)' }} /></td>
                 <td><Image src="/images/content/thumbnail/navitime.png" alt="カーナビタイムのロゴ" width={80} height={40} style={{ objectFit: 'contain', border: '1px solid var(--color-border-light)', borderRadius: 'var(--radius-sm)' }} /></td>
               </tr>
               <tr>
-                <td><strong>料金</strong></td>
+                <th>料金</th>
                 <td>無料</td>
                 <td>無料</td>
                 <td>月額600円（税込）</td>
               </tr>
               <tr>
-                <td><strong>オフライン地図</strong></td>
+                <th>オフライン地図</th>
                 <td>対応</td>
                 <td>非対応</td>
                 <td>対応</td>
               </tr>
               <tr>
-                <td><strong>渋滞情報</strong></td>
+                <th>渋滞情報</th>
                 <td>リアルタイム</td>
                 <td>VICS + プローブ</td>
                 <td>リアルタイム</td>
               </tr>
               <tr>
-                <td><strong>音声案内</strong></td>
+                <th>音声案内</th>
                 <td>シンプル</td>
                 <td>詳細（交差点名読み上げ）</td>
                 <td>詳細</td>
               </tr>
               <tr>
-                <td><strong>速度制限表示</strong></td>
+                <th>速度制限表示</th>
                 <td>一部対応</td>
                 <td>対応</td>
                 <td>対応</td>
               </tr>
               <tr>
-                <td><strong>おすすめ度</strong></td>
+                <th>おすすめ度</th>
                 <td>★★★★★</td>
                 <td>★★★★★</td>
                 <td>★★★★☆</td>

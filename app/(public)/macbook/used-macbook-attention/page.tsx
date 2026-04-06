@@ -13,6 +13,7 @@ import { insuranceData, faqItems, postCheckItems, failurePatterns } from './comp
 import MacBookRelatedLinks from '@/app/components/macbook/MacBookRelatedLinks'
 import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
+import { getHeroImage } from '@/lib/data/hero-images'
 import HeroMeta from '@/app/components/HeroMeta'
 
 const PAGE_TITLE = '中古MacBookはやめた方がいい？購入前に確認すべき注意点まとめ'
@@ -28,12 +29,12 @@ export const metadata: Metadata = {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/macbook/used-macbook-attention/',
-    images: [{ url: '/images/macbook/mbp-14-2024-nov.jpg', width: 1200, height: 630, alt: PAGE_TITLE }],
+    images: [{ url: getHeroImage('/macbook/used-macbook-attention/'), width: 1200, height: 630, alt: PAGE_TITLE }],
   },
   twitter: {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
-    images: ['/images/macbook/mbp-14-2024-nov.jpg'],
+    images: [getHeroImage('/macbook/used-macbook-attention/')],
   },
 }
 
@@ -148,7 +149,7 @@ export default function UsedMacBookAttentionPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/content/thumbnail/check-list.jpg"
+                  src={getHeroImage('/macbook/used-macbook-attention/')}
                   alt="中古MacBook購入時の注意点イメージ"
                   className="hero-media__img"
                   width={360}
@@ -185,7 +186,7 @@ export default function UsedMacBookAttentionPage() {
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
             <div className="toc-wrapper">
-<p className="toc-title"><i className="fa-solid fa-list" aria-hidden="true"></i> タップできる目次</p>
+            <p className="toc-title"><i className="fa-solid fa-list" aria-hidden="true"></i> タップできる目次</p>
             <ol className="l-grid l-grid--3col u-list-reset">
               <li>
                 <a href="#pre-check" className="toc-item">
@@ -218,7 +219,7 @@ export default function UsedMacBookAttentionPage() {
                 </a>
               </li>
             </ol>
-</div>
+          </div>
           <AuthorByline />
           </div>
         </nav>
@@ -232,8 +233,8 @@ export default function UsedMacBookAttentionPage() {
           <InsuranceSection {...insuranceData} />
           <FaqSection productName="MacBook" faqItems={faqItems} />
           <PopularMacBook />
-        <MacBookRelatedLinks excludeHref={["/macbook/used-macbook-attention/", "/macbook/recommend/"]} />
-        <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
+          <MacBookRelatedLinks excludeHref={["/macbook/used-macbook-attention/", "/macbook/recommend/"]} />
+          <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>
       </article>
     </main>

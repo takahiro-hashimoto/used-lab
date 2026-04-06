@@ -46,7 +46,7 @@ export default function PreCheckSection() {
               MacBookはAppleによるmacOSサポートが終了すると、セキュリティアップデートが受けられなくなります。業務でMacBookを使う場合、サポート切れのOSはセキュリティポリシー上使用が禁止されるケースもあります。
             </p>
             <p>
-              MacBookのmacOSサポート期間は約7年が目安です。ただし、Intel MacからApple Siliconへの移行期にあたるモデルはサポートが短くなる可能性もあります。
+              MacBookのmacOSサポート期間は約9年が目安です。ただし、Intel MacからApple Siliconへの移行期にあたるモデルはサポートが短くなる可能性もあります。
             </p>
             <p>
               「今使える」と「今後も使える」は別です。安さより<strong>「あと何年使えるか」で判断</strong>しましょう。
@@ -111,6 +111,10 @@ export default function PreCheckSection() {
               MacBookの<strong>バッテリー交換費用はApple公式で21,800円〜37,800円</strong>と高額のため、劣化した端末を安く買っても結果的に割高になることがあります。
             </p>
           </div>
+          <p className="lead-link">
+              <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
+              <a href="https://support.apple.com/ja-jp/mac-laptops/repair?services=service">MacBookのサービスと修理 | Apple公式サイト</a>
+          </p>
         </MediaCard>
 
         {/* 4. キーボード・トラックパッドの不具合 */}

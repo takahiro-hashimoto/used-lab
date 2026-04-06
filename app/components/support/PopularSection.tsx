@@ -74,7 +74,7 @@ export default function PopularSection({
                 {buttonText} <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
               </a>
               {secondaryButtonHref && secondaryButtonText && (
-                <a className="m-btn m-btn--secondary" href={secondaryButtonHref} target="_blank" rel="noopener noreferrer">
+                <a className="m-btn m-btn--secondary" href={secondaryButtonHref} target="_blank" rel="nofollow noopener noreferrer">
                   {secondaryButtonText} <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
                 </a>
               )}

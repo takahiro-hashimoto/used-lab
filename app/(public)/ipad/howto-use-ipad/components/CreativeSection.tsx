@@ -7,11 +7,11 @@ export default function CreativeSection() {
     <HowtoSection
       id="creative"
       title="iPadがあればできること【クリエイティブ編】"
-      description={<>iPadはクリエイティブな活動とも、相性が良いデバイスです。特にM4チップ搭載のiPad ProはTandem OLEDディスプレイによる圧倒的な色精度を誇り、Apple Pencil Proの触覚フィードバックと合わせてプロレベルの制作環境を実現します。<br />最後にこの章では、iPadのクリエイティブな利用方法を5つ紹介します。</>}
+      description={<>iPadはクリエイティブな活動とも、相性が良いデバイスです。最後にこの章では、iPadのクリエイティブな利用方法を5つ紹介します。</>}
     >
 
       {/* 19. 動画編集をする */}
-      <MediaCard src="/images/content/ipad-video-editing.jpg" alt="iPadで動画編集する様子" title="動画編集をする">
+      <MediaCard src="/images/content/photo/ipad-movie.jpg" alt="iPadで動画編集する様子" title="動画編集をする">
         <p className="media-card__desc">
           iPadは映像編集デバイスとしても非常に優秀です。スマホでは厄介な「テロップの位置調整」や「細かなトリミング」も、iPadの大画面なら誤操作のストレスなく進められます。
         </p>
@@ -85,20 +85,20 @@ export default function CreativeSection() {
       {/* 23(番外). カメラでテザー撮影する */}
       <MediaCard src="/images/content/photo/shooting-camera.jpg" alt="カメラでテザー撮影する様子" title="カメラでテザー撮影する">
         <p className="media-card__desc">
-          iPadはカメラのテザー撮影にも使用することができます。テザー撮影とはカメラとタブレットやPCをつないでリアルタイムに写真をチェックしながら撮影する手法で、下記のようなメリットがあります。
+          iPadはカメラのテザー撮影にも使えます。テザー撮影とは、カメラとタブレットやPCをつないで、撮った写真をその場で確認しながら進める撮影方法です。
         </p>
-        <InfoCard>
-          <li>ピンボケに気付きやすい</li>
-          <li>明るさを調整しやすい</li>
-          <li>iPadに直接写真が保存されるから編集効率が上がる</li>
-        </InfoCard>
+        <p className="media-card__desc">
+          大きな画面で確認できるため、ピンボケや露出のミスに気づきやすく、撮影中に明るさの調整もしやすくなります。さらにiPadに直接写真を保存できるので、撮影後の選別や編集までスムーズに進められます。
+        </p>
         <p className="media-card__desc u-mt-md">
           ノートPCでもテザー撮影はできるのですが、どうしても機動性がいまいち。iPadなら、どこでも身軽にテザー撮影を行うことができるので、外で写真を撮る方なんかに特におすすめです。
         </p>
         <InfoCard heading="おすすめのテザー撮影用アプリ">
-          <li><a href="https://apps.apple.com/jp/app/imaging-edge-mobile/id489191124" target="_blank" rel="noopener">SONY Imaging Edge</a></li>
-          <li><a href="https://apps.apple.com/jp/app/fujifilm-camera-remote/id793063045" target="_blank" rel="noopener">FUJIFILM Camera Remote</a></li>
-          <li><a href="https://www.captureone.com/ja/products/capture-one-for-ipad" target="_blank" rel="noopener">Capture One for iPad</a></li>
+          <p className="info-card__desc">
+            <a href="https://apps.apple.com/jp/app/imaging-edge-mobile/id489191124" target="_blank" rel="noopener">SONY Imaging Edge</a>／
+            <a href="https://apps.apple.com/jp/app/fujifilm-camera-remote/id793063045" target="_blank" rel="noopener">FUJIFILM Camera Remote</a>／
+            <a href="https://www.captureone.com/ja/products/capture-one-for-ipad" target="_blank" rel="noopener">Capture One for iPad</a>
+          </p>
         </InfoCard>
       </MediaCard>
 

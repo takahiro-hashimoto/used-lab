@@ -27,7 +27,7 @@ import CompareSelector from './components/CompareSelector'
 import BenchmarkGeekbench from './components/BenchmarkGeekbench'
 import BenchmarkAntutu from './components/BenchmarkAntutu'
 import FaqSection from './components/FaqSection'
-import PopularSection from '@/app/components/support/PopularSection'
+import IPadPopularSection from '@/app/components/support/popular/IPadPopularSection'
 import AccessorySection from './components/AccessorySection'
 import ReviewSection from '@/app/components/ReviewSection'
 import IPadRelatedLinks from '@/app/components/ipad/IPadRelatedLinks'
@@ -53,13 +53,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   const latestLog = await getLatestIPadPriceLog(model.id)
   const priceRange = calculatePriceRange(latestLog)
-  const osLife = calculateOSLifespan(model.date)
+  const osLife = calculateOSLifespan(model.date, model.last_ipados)
 
   const priceText = priceRange.minPrice ? `（¥${priceRange.minPrice.toLocaleString()}〜）` : ''
   const chipText = model.cpu ? `${model.cpu}搭載` : ''
   const osText = osLife.isSupported ? `iPadOSサポート見込み` : 'iPadOSサポート終了済み'
 
-  const title = `中古${model.model} レビュー｜スペック・価格相場・いつまで使える？`
+  const title = `中古${model.model}は今買うべき？製品寿命、基本スペック、中古相場から解説`
   const description = `${model.model}の中古相場${priceText}や${osText}をもとに、今から中古で買うべきかを判定。${chipText ? chipText + 'の' : ''}ベンチマーク・描画性能・Apple Pencil対応を比較しながら失敗しない選び方を解説します。`
 
   return {
@@ -164,19 +164,7 @@ export default async function IPadDetailPage({ params }: PageProps) {
         <AccessorySection model={enrichedModel} accessories={accessoryLookup.get(model.id) || []} />
         <ReviewSection modelName={enrichedModel.model} reviews={reviews} />
         <FaqSection model={enrichedModel} latestPrice={latestPrice} shopLinks={modelShopLinks} />
-        <PopularSection
-          sectionTitle="目的別に人気の中古iPad"
-          sectionDescription="目的別におすすめの機種を厳選。今回の記事で購入するべき機種が判断できなかった方はぜひご覧ください。"
-          imageSrc="/images/content/thumbnail/ipad-image-03.jpg"
-          imageAlt="中古iPadおすすめ5選のイメージ画像"
-          subtitle="目的別におすすめ機種を厳選！"
-          cardTitle="中古iPadおすすめ5選"
-          cardDescription="動画視聴やイラスト制作を重視する人向け、大画面で作業したい人向けなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。"
-          buttonText="おすすめ5機種を見る"
-          buttonHref="/ipad/recommend/"
-          secondaryButtonText="イオシスで中古iPadを探す"
-          secondaryButtonHref="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Ftablet%2Fios%2Fipad"
-        />
+        <IPadPopularSection />
         <IPadRelatedLinks excludeHref={`/ipad/${enrichedModel.slug}/`} />
         <ShareBox url={`https://used-lab.jp/ipad/${enrichedModel.slug}/`} text={`中古${enrichedModel.model}は今買うべき？製品寿命、基本スペック、ベンチマークスコア、中古相場から解説`} />
         </div>

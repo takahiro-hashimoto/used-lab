@@ -14,6 +14,7 @@ type BatteryModel = {
   video: string | null
   streaming: string | null
   audio: string | null
+  iosysUrl: string | null
 }
 
 type Props = {
@@ -51,16 +52,30 @@ export default function BatteryTable({ models }: Props) {
       result = result.filter((m) => getModelCategory(m.model) === modelFilter)
     }
 
+    const compareDateDesc = (a: BatteryModel, b: BatteryModel) =>
+      parseDate(b.date).getTime() - parseDate(a.date).getTime()
+    const compareDateAsc = (a: BatteryModel, b: BatteryModel) =>
+      parseDate(a.date).getTime() - parseDate(b.date).getTime()
+    const compareId = (a: BatteryModel, b: BatteryModel) => a.id - b.id
+
     result.sort((a, b) => {
       switch (sortOrder) {
         case 'new':
-          return parseDate(b.date).getTime() - parseDate(a.date).getTime()
+          return compareDateDesc(a, b) || compareId(a, b)
         case 'old':
-          return parseDate(a.date).getTime() - parseDate(b.date).getTime()
+          return compareDateAsc(a, b) || compareId(a, b)
         case 'battery-desc':
-          return parseBatteryMah(b.battery) - parseBatteryMah(a.battery)
+          return (
+            parseBatteryMah(b.battery) - parseBatteryMah(a.battery) ||
+            compareDateDesc(a, b) ||
+            compareId(a, b)
+          )
         case 'battery-asc':
-          return parseBatteryMah(a.battery) - parseBatteryMah(b.battery)
+          return (
+            parseBatteryMah(a.battery) - parseBatteryMah(b.battery) ||
+            compareDateAsc(a, b) ||
+            compareId(a, b)
+          )
       }
     })
 
@@ -173,14 +188,18 @@ export default function BatteryTable({ models }: Props) {
                       <td>{m.streaming || '-'}</td>
                       <td>{m.audio || '-'}</td>
                       <td>
-                        <a
-                          href={`https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%3Fkeyword%3D${encodeURIComponent(m.model)}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="m-btn m-btn--primary m-btn--sm"
-                        >
-                          イオシスで探す
-                        </a>
+                        {m.iosysUrl ? (
+                          <a
+                            href={m.iosysUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="m-btn m-btn--primary m-btn--sm"
+                          >
+                            イオシスで探す
+                          </a>
+                        ) : (
+                          <span>-</span>
+                        )}
                       </td>
                     </tr>
                   ))}

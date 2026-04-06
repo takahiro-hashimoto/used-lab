@@ -13,9 +13,10 @@ import IPhoneRelatedLinks from '@/app/components/iphone/IPhoneRelatedLinks'
 import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
-import PopularSection from '@/app/components/support/PopularSection'
+import IPhonePopularSection from '@/app/components/support/popular/IPhonePopularSection'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import FaqSection from '@/app/components/support/FaqSection'
+import { getHeroImage } from '@/lib/data/hero-images'
 
 export const revalidate = 86400
 
@@ -28,12 +29,12 @@ export const metadata: Metadata = {
     title: '中古iPhoneのストレージ容量はどれがいい？用途別おすすめ容量まとめ',
     description: '中古iPhoneのストレージ容量の選び方を用途別に解説。歴代モデルの容量ラインナップも一覧で確認できます。',
     url: '/iphone/storage-guide/',
-    images: [{ url: '/images/content/thumbnail/used-iphone-ios-support.jpg', width: 1200, height: 630, alt: '中古iPhoneストレージ容量ガイドのイメージ' }],
+    images: [{ url: getHeroImage('/iphone/storage-guide/'), width: 1200, height: 630, alt: '中古iPhoneストレージ容量ガイドのイメージ' }],
   },
   twitter: {
     title: '中古iPhoneのストレージ容量はどれがいい？用途別おすすめ容量まとめ',
     description: '中古iPhoneのストレージ容量の選び方を用途別に解説。歴代モデルの容量ラインナップも一覧で確認できます。',
-    images: ['/images/content/thumbnail/used-iphone-ios-support.jpg'],
+    images: [getHeroImage('/iphone/storage-guide/')],
   },
 }
 
@@ -173,7 +174,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/storage-
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/content/thumbnail/used-iphone-ios-support.jpg"
+                  src={getHeroImage('/iphone/storage-guide/')}
                   alt="中古iPhoneストレージ容量ガイドのイメージ"
                   className="hero-media__img"
                   width={360}
@@ -465,19 +466,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/storage-
           items={FAQ_ITEMS}
         />
 
-        <PopularSection
-          sectionTitle="目的別に人気の中古iPhone"
-          sectionDescription="目的別におすすめの機種を厳選。容量だけでなくスペック全体を見て選びたい方はぜひご覧ください。"
-          imageSrc="/images/content/thumbnail/iphone-setting.webp"
-          imageAlt="中古iPhoneおすすめ5選のイメージ画像"
-          subtitle="目的別におすすめ機種を厳選！"
-          cardTitle="中古iPhoneおすすめ5選"
-          cardDescription="カメラ性能を重視する人向け、大画面で動画やSNSを楽しみたい人向けなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。"
-          buttonText="おすすめ5機種を見る"
-          buttonHref="/iphone/recommend"
-          secondaryButtonText="イオシスで中古iPhoneを探す"
-          secondaryButtonHref="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Fsmartphone%2Fiphone"
-        />
+        <IPhonePopularSection />
 
         <IPhoneRelatedLinks excludeHref={["/iphone/storage-guide/", "/iphone/recommend/"]} />
         <ShareBox url="https://used-lab.jp/iphone/storage-guide/" text="中古iPhoneのストレージ容量はどれがいい？用途別おすすめ容量まとめ" />

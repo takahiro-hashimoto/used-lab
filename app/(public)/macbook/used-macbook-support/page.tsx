@@ -6,11 +6,12 @@ import ShareBox from '@/app/components/ShareBox'
 import MacOsSupportMatrix from './components/MacOsSupportMatrix'
 import LifespanTable from './components/LifespanTable'
 import TimingSection from './components/TimingSection'
-import PopularSection from './components/PopularSection'
+import MacBookPopularSection from '@/app/components/support/popular/MacBookPopularSection'
 import FaqSection from './components/FaqSection'
 import MacBookRelatedLinks from '@/app/components/macbook/MacBookRelatedLinks'
 import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
+import { getHeroImage } from '@/lib/data/hero-images'
 import HeroMeta from '@/app/components/HeroMeta'
 
 export const revalidate = 3600
@@ -28,12 +29,12 @@ export const metadata: Metadata = {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/macbook/used-macbook-support/',
-    images: [{ url: '/images/macbook/mbp-14-2024-nov.jpg', width: 1200, height: 630, alt: PAGE_TITLE }],
+    images: [{ url: getHeroImage('/macbook/used-macbook-support/'), width: 1200, height: 630, alt: PAGE_TITLE }],
   },
   twitter: {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
-    images: ['/images/macbook/mbp-14-2024-nov.jpg'],
+    images: [getHeroImage('/macbook/used-macbook-support/')],
   },
 }
 
@@ -100,7 +101,7 @@ export default async function UsedMacbookSupportPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/content/thumbnail/macbook-image-03.jpg"
+                  src={getHeroImage('/macbook/used-macbook-support/')}
                   alt="MacBookの寿命・サポート期間イメージ"
                   className="hero-media__img"
                   width={360}
@@ -170,7 +171,7 @@ export default async function UsedMacbookSupportPage() {
         <LifespanTable models={allModelsWithEnded} />
         <TimingSection />
         <FaqSection />
-        <PopularSection />
+        <MacBookPopularSection />
         <MacBookRelatedLinks excludeHref={["/macbook/used-macbook-support/", "/macbook/recommend/"]} />
         <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>

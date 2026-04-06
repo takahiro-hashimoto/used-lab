@@ -40,8 +40,6 @@ type Props = {
 
 type SortOrder = 'old' | 'new'
 type FilterType = 'all' | 'series' | 'se' | 'ultra'
-type FeatureFilter = 'always_on' | 'fast_charge'
-
 function getModelCategory(model: string): string {
   const lower = model.toLowerCase()
   if (lower.includes('ultra')) return 'ultra'
@@ -52,13 +50,6 @@ function getModelCategory(model: string): string {
 export default function SpecTable({ models, shopLinks }: Props) {
   const [sortOrder, setSortOrder] = useState<SortOrder>('old')
   const [modelFilter, setModelFilter] = useState<FilterType>('all')
-  const [featureFilters, setFeatureFilters] = useState<FeatureFilter[]>([])
-
-  const toggleFeature = (f: FeatureFilter) => {
-    setFeatureFilters((prev) =>
-      prev.includes(f) ? prev.filter((v) => v !== f) : [...prev, f]
-    )
-  }
 
   const filteredModels = useMemo(() => {
     let result = [...models]
@@ -66,14 +57,6 @@ export default function SpecTable({ models, shopLinks }: Props) {
     // 機種別フィルタ
     if (modelFilter !== 'all') {
       result = result.filter((m) => getModelCategory(m.model) === modelFilter)
-    }
-
-    // 機能フィルタ
-    if (featureFilters.includes('always_on')) {
-      result = result.filter((m) => m.always_on_display)
-    }
-    if (featureFilters.includes('fast_charge')) {
-      result = result.filter((m) => m.fast_charge)
     }
 
     // 並び替え
@@ -84,7 +67,7 @@ export default function SpecTable({ models, shopLinks }: Props) {
     })
 
     return result
-  }, [models, sortOrder, modelFilter, featureFilters])
+  }, [models, sortOrder, modelFilter])
 
   const getShopLink = (productId: number, shopId: number) =>
     shopLinks.find((l) => l.product_id === productId && l.shop_id === shopId)
@@ -164,18 +147,6 @@ export default function SpecTable({ models, shopLinks }: Props) {
                   {label}
                 </button>
               ))}
-              <button
-                className={`spec-filter__tag${featureFilters.includes('always_on') ? ' is-active' : ''}`}
-                onClick={() => toggleFeature('always_on')}
-              >
-                常時点灯あり
-              </button>
-              <button
-                className={`spec-filter__tag${featureFilters.includes('fast_charge') ? ' is-active' : ''}`}
-                onClick={() => toggleFeature('fast_charge')}
-              >
-                急速充電あり
-              </button>
             </div>
           </div>
         </div>

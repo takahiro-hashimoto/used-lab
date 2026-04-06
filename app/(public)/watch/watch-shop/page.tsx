@@ -10,19 +10,22 @@ import {
 } from '@/lib/data/watch-shop'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import ShareBox from '@/app/components/ShareBox'
+import ShopComparisonTable from '@/app/components/shop/ShopComparisonTable'
+import type { SpecRow } from '@/app/components/shop/ShopDetailSection'
 import BuyingOptionsSection from './components/BuyingOptionsSection'
 import ShopComparisonSection from './components/ShopComparisonSection'
 import RecommendByTypeSection from './components/RecommendByTypeSection'
 import ShopDetailSection from './components/ShopDetailSection'
 import FleaMarketSection from './components/FleaMarketSection'
 import ChecklistSection from './components/ChecklistSection'
-import PopularSection from './components/PopularSection'
+import WatchPopularSection from '@/app/components/support/popular/WatchPopularSection'
 import ConclusionSection from './components/ConclusionSection'
 import FaqSection from './components/FaqSection'
 import WatchRelatedLinks from '@/app/components/watch/WatchRelatedLinks'
 import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
+import { getHeroImage } from '@/lib/data/hero-images'
 
 export const revalidate = 3600
 
@@ -38,17 +41,29 @@ export const metadata: Metadata = {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/watch/watch-shop/',
-    images: [{ url: '/images/content/thumbnail/cheap-buy.jpg', width: 1200, height: 630, alt: PAGE_TITLE }],
+    images: [{ url: getHeroImage('/watch/watch-shop/'), width: 1200, height: 630, alt: PAGE_TITLE }],
   },
   twitter: {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
-    images: ['/images/content/thumbnail/cheap-buy.jpg'],
+    images: [getHeroImage('/watch/watch-shop/')],
   },
 }
 
 export default async function WatchShopPage() {
   const shops = await getShops()
+
+  // 比較表用: watch_url が存在するショップを抽出
+  const comparisonShops = shops.filter((s) => s.watch_url != null)
+  const comparisonSpecRows: SpecRow[] = [
+    { label: '価格', getValue: (s) => s.price },
+    { label: '在庫', getValue: (s) => s.stock },
+    { label: '保証期間', getValue: (s) => s.support || '-' },
+    { label: '独自保証', getValue: (s) => s.extension },
+    { label: '実物写真', getValue: (s) => s.photo },
+    { label: 'バッテリー表示', getValue: (s) => s.battery },
+    { label: '配送料', getValue: (s) => s.postage },
+  ]
 
   const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/watch/watch-shop/page.tsx')
 
@@ -134,7 +149,7 @@ export default async function WatchShopPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/content/thumbnail/cheap-buy.jpg"
+                  src={getHeroImage('/watch/watch-shop/')}
                   alt="中古Apple Watchの購入先イメージ"
                   className="hero-media__img"
                   width={360}
@@ -217,11 +232,28 @@ export default async function WatchShopPage() {
           <ShopComparisonSection />
           <RecommendByTypeSection />
           <ShopDetailSection items={shopDetailItems} />
+          {/* ショップ比較表 */}
+          <section className="l-section" id="shop-table" aria-labelledby="heading-shop-table">
+            <div className="l-container">
+              <h2 className="m-section-heading m-section-heading--lg" id="heading-shop-table">
+                中古Apple Watch取り扱いショップ比較表
+              </h2>
+              <p className="m-section-desc">中古Apple Watchを取り扱うショップの保証・価格・サービスを一覧で比較できます。</p>
+              <ShopComparisonTable
+                shops={comparisonShops}
+                specRows={comparisonSpecRows}
+                caption="中古Apple Watch取り扱いショップ比較表"
+                getShopUrl={(s) => s.watch_url}
+                ctaText="詳細を見る"
+              />
+            </div>
+          </section>
+
           <FleaMarketSection />
           <ChecklistSection />
           <FaqSection />
           <ConclusionSection />
-          <PopularSection />
+          <WatchPopularSection />
         <WatchRelatedLinks excludeHref={["/watch/watch-shop/", "/watch/recommend/"]} />
         <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>

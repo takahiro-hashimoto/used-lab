@@ -11,7 +11,7 @@ export default function PaymentSection() {
     >
 
       {/* 19. Suicaの改札を通る */}
-      <MediaCard src="/images/content/apple-watch-suica.jpg" alt="Apple WatchでSuicaを使う様子" title="Suicaの改札を通る">
+      <MediaCard src="/images/content/photo/suica.jpg" alt="Apple WatchでSuicaを使う様子" title="Suicaの改札を通る">
         <p className="media-card__desc">
           Apple WatchはFeliCaチップを搭載しているため、Suicaや各種電子決済（Apple Pay）を利用できます。
         </p>

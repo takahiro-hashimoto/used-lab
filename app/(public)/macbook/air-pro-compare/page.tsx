@@ -15,6 +15,7 @@ import { getAllMacBookModels, getLatestMacBookPriceLog } from '@/lib/queries'
 import type { MacBookPriceLog } from '@/lib/types'
 import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
+import { getHeroImage } from '@/lib/data/hero-images'
 
 const PAGE_TITLE = 'MacBook AirとProどっちがいい？違いと選び方をやさしく解説'
 const PAGE_DESCRIPTION =
@@ -29,12 +30,12 @@ export const metadata: Metadata = {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/macbook/air-pro-compare/',
-    images: [{ url: '/images/content/thumbnail/macbook-image-05.jpg', width: 1200, height: 630, alt: PAGE_TITLE }],
+    images: [{ url: getHeroImage('/macbook/air-pro-compare/'), width: 1200, height: 630, alt: PAGE_TITLE }],
   },
   twitter: {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
-    images: ['/images/content/thumbnail/macbook-image-05.jpg'],
+    images: [getHeroImage('/macbook/air-pro-compare/')],
   },
 }
 
@@ -109,7 +110,7 @@ export default async function AirProComparePage() {
               <div className="hero-visual">
                 <figure className="hero-media">
                   <Image
-                    src="/images/content/thumbnail/macbook-image-04.jpg"
+                    src={getHeroImage('/macbook/air-pro-compare/')}
                     alt="MacBook AirとProの比較イメージ"
                     className="hero-media__img"
                     width={360}

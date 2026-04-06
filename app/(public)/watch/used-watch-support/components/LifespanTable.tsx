@@ -1,25 +1,7 @@
 import LifespanTableBase from '@/app/components/support/LifespanTable'
-import type { LifespanEntryWithHref, GlossaryGroup } from '@/app/components/support/LifespanTable'
+import type { GlossaryGroup } from '@/app/components/support/LifespanTable'
 import type { WatchModel } from '@/lib/types'
-
-const IOSYS_BASE = 'https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Fwearable%2Fapplewatch%2F'
-
-const LIFESPAN_DATA: LifespanEntryWithHref[] = [
-  { series: 'Apple Watch Series 11', href: '/watch/series11', releaseDate: '2025年9月発売', osEnd: '2030年9月', repairEnd: '2032年9月', iosysUrl: `${IOSYS_BASE}series11` },
-  { series: 'Apple Watch Ultra 3', href: '/watch/ultra3', releaseDate: '2025年9月発売', osEnd: '2030年9月', repairEnd: '2032年9月', iosysUrl: `${IOSYS_BASE}ultra3` },
-  { series: 'Apple Watch SE 3', href: '/watch/se3', releaseDate: '2025年9月発売', osEnd: '2030年9月', repairEnd: '2032年9月', iosysUrl: `${IOSYS_BASE}se3` },
-  { series: 'Apple Watch Series 10', href: '/watch/series10', releaseDate: '2024年9月発売', osEnd: '2029年9月', repairEnd: '2031年9月', iosysUrl: `${IOSYS_BASE}series10` },
-  { series: 'Apple Watch Ultra 2', href: '/watch/ultra2', releaseDate: '2023年9月発売', osEnd: '2028年9月', repairEnd: '2030年9月', iosysUrl: `${IOSYS_BASE}ultra2` },
-  { series: 'Apple Watch Series 9', href: '/watch/series9', releaseDate: '2023年9月発売', osEnd: '2028年9月', repairEnd: '2030年9月', iosysUrl: `${IOSYS_BASE}series9` },
-  { series: 'Apple Watch Ultra', href: '/watch/ultra', releaseDate: '2022年9月発売', osEnd: '2027年9月', repairEnd: '2029年9月', iosysUrl: `${IOSYS_BASE}ultra` },
-  { series: 'Apple Watch Series 8', href: '/watch/series8', releaseDate: '2022年9月発売', osEnd: '2027年9月', repairEnd: '2029年9月', iosysUrl: `${IOSYS_BASE}series8` },
-  { series: 'Apple Watch SE（第2世代）', href: '/watch/se2', releaseDate: '2022年9月発売', osEnd: '2027年9月', repairEnd: '2029年9月', iosysUrl: `${IOSYS_BASE}se2` },
-  { series: 'Apple Watch Series 7', href: '/watch/series7', releaseDate: '2021年10月発売', osEnd: '2026年10月', repairEnd: '2028年10月', iosysUrl: `${IOSYS_BASE}series7` },
-  { series: 'Apple Watch Series 6', href: '/watch/series6', releaseDate: '2020年9月発売', osEnd: '2025年9月', repairEnd: '2027年9月', iosysUrl: `${IOSYS_BASE}series6` },
-  { series: 'Apple Watch SE（第1世代）', href: '/watch/se', releaseDate: '2020年9月発売', osEnd: '2025年9月', repairEnd: '2027年9月', iosysUrl: `${IOSYS_BASE}se` },
-  { series: 'Apple Watch Series 5', href: '/watch/series5', releaseDate: '2019年9月発売', osEnd: '2024年9月', repairEnd: '2026年9月', iosysUrl: `${IOSYS_BASE}series5` },
-  { series: 'Apple Watch Series 4', href: '/watch/series4', releaseDate: '2018年9月発売', osEnd: '2023年9月', repairEnd: '2025年9月', iosysUrl: `${IOSYS_BASE}series4` },
-]
+import { buildWatchLifespanData } from '@/lib/utils/watch-helpers'
 
 const GLOSSARY_GROUPS: GlossaryGroup[] = [
   {
@@ -65,21 +47,10 @@ const GLOSSARY_GROUPS: GlossaryGroup[] = [
   },
 ]
 
-function extractSlug(href: string): string {
-  return href.replace(/\/$/, '').split('/').pop() || ''
-}
-
 type Props = { models: WatchModel[] }
 
 export default function WatchLifespanTable({ models }: Props) {
-  const slugMap = new Map(models.map(m => [m.slug, m.last_watchos]))
-
-  const data = LIFESPAN_DATA.map(entry => {
-    const slug = extractSlug(entry.href)
-    const lastOs = slugMap.get(slug)
-    const osEnded = slugMap.has(slug) && lastOs != null
-    return { ...entry, osEnded }
-  })
+  const data = buildWatchLifespanData(models)
 
   return (
     <LifespanTableBase
@@ -94,7 +65,6 @@ export default function WatchLifespanTable({ models }: Props) {
       }
       tableCaption="Apple Watch機種別サポート期間・寿命予想一覧"
       glossaryGroups={GLOSSARY_GROUPS}
-      showIosysColumn
     />
   )
 }

@@ -1,152 +1,7 @@
 import LifespanTableBase from '@/app/components/support/LifespanTable'
-import type { LifespanEntryWithModels, GlossaryGroup } from '@/app/components/support/LifespanTable'
+import type { GlossaryGroup } from '@/app/components/support/LifespanTable'
 import type { IPadModel } from '@/lib/types'
-
-const IOSYS_IPAD = 'https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Ftablet%2Fios%2Fipad'
-
-const LIFESPAN_DATA: LifespanEntryWithModels[] = [
-  {
-    series: 'iPad Pro 2025モデル',
-    releaseDate: '2025年10月発売',
-    models: [
-      { label: 'iPad Pro 11 第6世代', href: '/ipad/pro11-6' },
-      { label: 'iPad Pro 13 第2世代', href: '/ipad/pro13-2' },
-    ],
-    osEnd: '2032年10月',
-    repairEnd: '2034年10月',
-    iosysUrl: IOSYS_IPAD,
-  },
-  {
-    series: 'iPad Pro 2024モデル',
-    releaseDate: '2024年5月発売',
-    models: [
-      { label: 'iPad Pro 11 第5世代', href: '/ipad/pro11-5' },
-      { label: 'iPad Pro 13 第1世代', href: '/ipad/pro13-1' },
-    ],
-    osEnd: '2031年5月',
-    repairEnd: '2033年5月',
-    iosysUrl: IOSYS_IPAD,
-  },
-  {
-    series: 'iPad Pro 2022モデル',
-    releaseDate: '2022年10月発売',
-    models: [
-      { label: 'iPad Pro 11 第4世代', href: '/ipad/pro11-4' },
-      { label: 'iPad Pro 12.9 第6世代', href: '/ipad/pro12-6' },
-    ],
-    osEnd: '2029年10月',
-    repairEnd: '2031年10月',
-    iosysUrl: IOSYS_IPAD,
-  },
-  {
-    series: 'iPad Pro 2021モデル',
-    releaseDate: '2021年5月発売',
-    models: [
-      { label: 'iPad Pro 11 第3世代', href: '/ipad/pro11-3' },
-      { label: 'iPad Pro 12.9 第5世代', href: '/ipad/pro12-5' },
-    ],
-    osEnd: '2028年5月',
-    repairEnd: '2030年5月',
-    iosysUrl: IOSYS_IPAD,
-  },
-  {
-    series: 'iPad Pro 2020モデル',
-    releaseDate: '2020年3月発売',
-    models: [
-      { label: 'iPad Pro 11 第2世代', href: '/ipad/pro11-2' },
-      { label: 'iPad Pro 12.9 第4世代', href: '/ipad/pro12-4' },
-    ],
-    osEnd: '2027年3月',
-    repairEnd: '2029年3月',
-    iosysUrl: IOSYS_IPAD,
-  },
-  {
-    series: 'iPad Air 2025モデル',
-    releaseDate: '2025年3月発売',
-    models: [
-      { label: 'iPad Air 11 第7世代', href: '/ipad/air-7-11' },
-      { label: 'iPad Air 13 第7世代', href: '/ipad/air-7-13' },
-    ],
-    osEnd: '2032年3月',
-    repairEnd: '2034年3月',
-    iosysUrl: IOSYS_IPAD,
-  },
-  {
-    series: 'iPad Air 2024モデル',
-    releaseDate: '2024年5月発売',
-    models: [
-      { label: 'iPad Air 11 第6世代', href: '/ipad/air-6-11' },
-      { label: 'iPad Air 13 第6世代', href: '/ipad/air-6-13' },
-    ],
-    osEnd: '2031年5月',
-    repairEnd: '2033年5月',
-    iosysUrl: IOSYS_IPAD,
-  },
-  {
-    series: 'iPad Air 2022モデル',
-    releaseDate: '2022年3月発売',
-    models: [{ label: 'iPad Air 第5世代', href: '/ipad/air-5' }],
-    osEnd: '2029年3月',
-    repairEnd: '2031年3月',
-    iosysUrl: IOSYS_IPAD,
-  },
-  {
-    series: 'iPad Air 2020モデル',
-    releaseDate: '2020年9月発売',
-    models: [{ label: 'iPad Air 第4世代', href: '/ipad/air-4' }],
-    osEnd: '2027年9月',
-    repairEnd: '2029年9月',
-    iosysUrl: IOSYS_IPAD,
-  },
-  {
-    series: 'iPad 2025モデル',
-    releaseDate: '2025年3月発売',
-    models: [{ label: 'iPad 第11世代', href: '/ipad/normal-11' }],
-    osEnd: '2032年3月',
-    repairEnd: '2034年3月',
-    iosysUrl: IOSYS_IPAD,
-  },
-  {
-    series: 'iPad 2022モデル',
-    releaseDate: '2022年10月発売',
-    models: [{ label: 'iPad 第10世代', href: '/ipad/normal-10' }],
-    osEnd: '2029年10月',
-    repairEnd: '2031年10月',
-    iosysUrl: IOSYS_IPAD,
-  },
-  {
-    series: 'iPad 2021モデル',
-    releaseDate: '2021年9月発売',
-    models: [{ label: 'iPad 第9世代', href: '/ipad/normal-9' }],
-    osEnd: '2028年9月',
-    repairEnd: '2030年9月',
-    iosysUrl: IOSYS_IPAD,
-  },
-  {
-    series: 'iPad mini 2024モデル',
-    releaseDate: '2024年10月発売',
-    models: [{ label: 'iPad mini 第7世代', href: '/ipad/mini-7' }],
-    osEnd: '2031年10月',
-    repairEnd: '2033年10月',
-    iosysUrl: IOSYS_IPAD,
-  },
-  {
-    series: 'iPad mini 2021モデル',
-    releaseDate: '2021年9月発売',
-    models: [{ label: 'iPad mini 第6世代', href: '/ipad/mini-6' }],
-    osEnd: '2028年9月',
-    repairEnd: '2030年9月',
-    iosysUrl: IOSYS_IPAD,
-  },
-  {
-    series: 'iPad mini 2019モデル',
-    releaseDate: '2019年3月発売',
-    models: [{ label: 'iPad mini 第5世代', href: '/ipad/mini-5' }],
-    osEnd: '2026年3月',
-    repairEnd: '2028年3月',
-    iosysUrl: IOSYS_IPAD,
-  },
-]
+import { buildIPadLifespanData } from '@/lib/utils/ipad-helpers'
 
 const GLOSSARY_GROUPS: GlossaryGroup[] = [
   {
@@ -192,21 +47,10 @@ const GLOSSARY_GROUPS: GlossaryGroup[] = [
   },
 ]
 
-function extractSlug(href: string): string {
-  return href.replace(/\/$/, '').split('/').pop() || ''
-}
-
 type Props = { models: IPadModel[] }
 
 export default function IPadLifespanTable({ models }: Props) {
-  const slugMap = new Map(models.map(m => [m.slug, m.last_ipados]))
-
-  const data = LIFESPAN_DATA.map(entry => {
-    const slugs = entry.models.map(m => extractSlug(m.href))
-    const matched = slugs.filter(s => slugMap.has(s))
-    const osEnded = matched.length > 0 && matched.every(s => slugMap.get(s) != null)
-    return { ...entry, osEnded }
-  })
+  const data = buildIPadLifespanData(models)
 
   return (
     <LifespanTableBase
@@ -222,7 +66,6 @@ export default function IPadLifespanTable({ models }: Props) {
       tableCaption="iPad機種別サポート期間・寿命予想一覧"
       showModelsColumn
       glossaryGroups={GLOSSARY_GROUPS}
-      showIosysColumn
     />
   )
 }

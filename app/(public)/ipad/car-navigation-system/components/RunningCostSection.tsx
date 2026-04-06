@@ -33,7 +33,7 @@ export default function RunningCostSection() {
               </thead>
               <tbody>
                 <tr>
-                  <td><strong>ロゴ</strong></td>
+                  <th>ロゴ</th>
                   <td>
                     <a href="https://povo.jp/" target="_blank" rel="noopener noreferrer">
                       <Image src="/images/mvno/povo.jpg" alt="povo2.0のロゴ" width={80} height={40} style={{ objectFit: 'contain' }} />
@@ -51,46 +51,46 @@ export default function RunningCostSection() {
                   </td>
                 </tr>
                 <tr>
-                  <td><strong>回線</strong></td>
+                  <th>回線</th>
                   <td>au</td>
                   <td>docomo / au</td>
                   <td>楽天</td>
                 </tr>
                 <tr>
-                  <td><strong>プラン</strong></td>
+                  <th>プラン</th>
                   <td>1GB（7日間）</td>
                   <td>2GB</td>
                   <td>〜3GB</td>
                 </tr>
                 <tr>
-                  <td><strong>月額（税込）</strong></td>
+                  <th>月額（税込）</th>
                   <td>390円</td>
                   <td>440円</td>
                   <td>1,078円</td>
                 </tr>
                 <tr>
-                  <td><strong>eSIM対応</strong></td>
+                  <th>eSIM対応</th>
                   <td>○</td>
                   <td>○</td>
                   <td>○</td>
                 </tr>
                 <tr>
-                  <td><strong>特徴</strong></td>
+                  <th>特徴</th>
                   <td>基本料0円で必要な時だけトッピング</td>
                   <td>データ専用eSIMが業界最安水準</td>
                   <td>段階制で3GB超は無制限（3,278円）</td>
                 </tr>
                 <tr>
-                  <td><strong>おすすめ度</strong></td>
+                  <th>おすすめ度</th>
                   <td>★★★★★</td>
                   <td>★★★★★</td>
                   <td>★★★★☆</td>
                 </tr>
                 <tr>
-                  <td><strong>リンク</strong></td>
-                  <td><a href="https://povo.jp/" target="_blank" rel="noopener noreferrer" className="m-btn m-btn--primary m-btn--sm">サービス詳細を見る</a></td>
-                  <td><a href="https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3731104&pid=892528273" target="_blank" rel="noopener noreferrer" className="m-btn m-btn--primary m-btn--sm">サービス詳細を見る</a></td>
-                  <td><a href="https://hb.afl.rakuten.co.jp/hgc/258cf4cc.6d6fceff.258cf4cd.200f7802/?pc=https%3A%2F%2Fwww.rakuten.ne.jp%2Fgold%2Frakutenmobile-store%2Fproduct%2Frakuten-certified%2F&link_type=hybrid_url&ut=eyJwYWdlIjoidXJsIiwidHlwZSI6Imh5YnJpZF91cmwiLCJjb2wiOjF9" target="_blank" rel="noopener noreferrer" className="m-btn m-btn--primary m-btn--sm">サービス詳細を見る</a></td>
+                  <th>リンク</th>
+                  <td><a href="https://povo.jp/" target="_blank" rel="noopener noreferrer nofollow" className="m-btn m-btn--primary m-btn--sm">サービス詳細を見る</a></td>
+                  <td><a href="https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3731104&pid=892528273" target="_blank" rel="nofollow noopener noreferrer" className="m-btn m-btn--primary m-btn--sm">サービス詳細を見る</a></td>
+                  <td><a href="https://hb.afl.rakuten.co.jp/hgc/258cf4cc.6d6fceff.258cf4cd.200f7802/?pc=https%3A%2F%2Fwww.rakuten.ne.jp%2Fgold%2Frakutenmobile-store%2Fproduct%2Frakuten-certified%2F&link_type=hybrid_url&ut=eyJwYWdlIjoidXJsIiwidHlwZSI6Imh5YnJpZF91cmwiLCJjb2wiOjF9" target="_blank" rel="noopener noreferrer nofollow" className="m-btn m-btn--primary m-btn--sm">サービス詳細を見る</a></td>
                 </tr>
               </tbody>
             </table>

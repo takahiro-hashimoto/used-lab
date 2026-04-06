@@ -19,9 +19,10 @@ const DashboardSection = dynamic(() => import('./components/DashboardSection'), 
 import PriceDropSection from './components/PriceDropSection'
 import RankingSection from './components/RankingSection'
 import PriceHistorySection from './components/PriceHistorySection'
-import PopularSection from '@/app/components/support/PopularSection'
+import AirPodsPopularSection from '@/app/components/support/popular/AirPodsPopularSection'
 import FaqSection from './components/FaqSection'
 import AuthorByline from '@/app/components/AuthorByline'
+import { getHeroImage } from '@/lib/data/hero-images'
 import HeroMeta from '@/app/components/HeroMeta'
 
 // ============================================================
@@ -117,12 +118,12 @@ export async function generateMetadata(): Promise<Metadata> {
       title,
       description,
       url: '/airpods/price/',
-      images: [{ url: '/images/airpods/mtjv3j:a.jpg', width: 1200, height: 630, alt: title }],
+      images: [{ url: getHeroImage('/airpods/price/'), width: 1200, height: 630, alt: title }],
     },
     twitter: {
       title,
       description,
-      images: ['/images/airpods/mtjv3j:a.jpg'],
+      images: [getHeroImage('/airpods/price/')],
     },
   }
 }
@@ -341,7 +342,7 @@ export default async function AirPodsPriceInfoPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/content/thumbnail/airpods-image-03.jpg"
+                  src={getHeroImage('/airpods/price/')}
                   alt="中古AirPods価格相場"
                   className="hero-media__img"
                   width={360}
@@ -434,19 +435,7 @@ export default async function AirPodsPriceInfoPage() {
           <PriceHistorySection models={sortedModels} />
 
           <FaqSection />
-          <PopularSection
-            sectionTitle="目的別に人気の中古AirPods"
-            sectionDescription="目的別におすすめの機種を厳選。今回の記事で購入するべき機種が判断できなかった方はぜひご覧ください。"
-            imageSrc="/images/content/airpods-desk.webp"
-            imageAlt="中古AirPodsおすすめのイメージ画像"
-            subtitle="目的別におすすめ機種を厳選！"
-            cardTitle="中古AirPodsおすすめモデル"
-            cardDescription="ノイキャン重視、コスパ重視の人向けなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。"
-            buttonText="おすすめモデルを見る"
-            buttonHref="/airpods/recommend/"
-            secondaryButtonText="イオシスで中古AirPodsを探す"
-            secondaryButtonHref="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Faudiovisual"
-          />
+          <AirPodsPopularSection />
         <AirPodsRelatedLinks excludeHref="/airpods/price/" />
         <ShareBox url={PAGE_URL} text={`AirPodsの中古相場一覧 | 歴代${modelCount}機種の価格推移を独自集計`} />
         </div>

@@ -1,8 +1,8 @@
-import PopularSectionBase from '@/app/components/support/PopularSection'
+import PopularSection from '@/app/components/support/PopularSection'
 
-export default function PopularSection() {
+export default function IPhonePopularSection() {
   return (
-    <PopularSectionBase
+    <PopularSection
       sectionTitle="目的別に人気の中古iPhone"
       sectionDescription="目的別におすすめの機種を厳選。今回の記事で購入するべき機種が判断できなかった方はぜひご覧ください。"
       imageSrc="/images/content/thumbnail/iphone-setting.webp"

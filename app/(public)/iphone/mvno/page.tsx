@@ -11,12 +11,13 @@ import Breadcrumb from '@/app/components/Breadcrumb'
 import FaqSection from '@/app/components/support/FaqSection'
 import ShareBox from '@/app/components/ShareBox'
 import IPhoneRelatedLinks from '@/app/components/iphone/IPhoneRelatedLinks'
-import PopularSection from '@/app/components/support/PopularSection'
+import IPhonePopularSection from '@/app/components/support/popular/IPhonePopularSection'
 import MvnoDiagnosis from './components/MvnoDiagnosis'
 import type { DiagnosisProvider } from './components/MvnoDiagnosis'
 import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
+import { getHeroImage } from '@/lib/data/hero-images'
 
 export const revalidate = 3600
 
@@ -63,12 +64,12 @@ export const metadata: Metadata = {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/iphone/mvno/',
-    images: [{ url: '/images/content/thumbnail/sim.webp', width: 1200, height: 630, alt: PAGE_TITLE }],
+    images: [{ url: getHeroImage('/iphone/mvno/'), width: 1200, height: 630, alt: PAGE_TITLE }],
   },
   twitter: {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
-    images: ['/images/content/thumbnail/sim.webp'],
+    images: [getHeroImage('/iphone/mvno/')],
   },
 }
 
@@ -199,7 +200,7 @@ export default async function MvnoPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/content/thumbnail/sim.webp"
+                  src={getHeroImage('/iphone/mvno/')}
                   alt="SIMカードをスマートフォンに挿入するイメージ"
                   className="hero-media__img"
                   width={360}
@@ -788,19 +789,7 @@ export default async function MvnoPage() {
           items={FAQ_ITEMS}
         />
 
-        <PopularSection
-            sectionTitle="目的別に人気の中古iPhone"
-            sectionDescription="目的別におすすめの機種を厳選。相場だけでなくスペック全体を見て選びたい方はぜひご覧ください。"
-            imageSrc="/images/content/thumbnail/iphone-setting.webp"
-            imageAlt="中古iPhoneおすすめ5選のイメージ画像"
-            subtitle="目的別におすすめ機種を厳選！"
-            cardTitle="中古iPhoneおすすめ5選"
-            cardDescription="カメラ性能を重視する人向け、大画面で動画やSNSを楽しみたい人向けなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。"
-            buttonText="おすすめ5機種を見る"
-            buttonHref="/iphone/recommend/"
-            secondaryButtonText="イオシスで中古iPhoneを探す"
-            secondaryButtonHref="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Fsmartphone%2Fiphone"
-          />
+        <IPhonePopularSection />
         <IPhoneRelatedLinks excludeHref={["/iphone/mvno/", "/iphone/recommend/"]} />
         <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>

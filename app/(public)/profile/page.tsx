@@ -60,6 +60,7 @@ const SNS_LINKS = [
   { href: 'https://www.instagram.com/takahiro_mono', label: 'Instagram', icon: 'fa-brands fa-instagram' },
   { href: 'https://www.youtube.com/@takahiro_mono', label: 'YouTube', icon: 'fa-brands fa-youtube' },
   { href: 'https://note.com/takahiro_mono', label: 'note', icon: 'fa-solid fa-pen-nib' },
+  { href: 'https://airw.net/st/rank.cgi?id=Ht12s89', label: 'Airランキング', icon: 'fa-solid fa-pen-nib' },
   { href: '/contact/', label: 'お問い合わせ', icon: 'fa-solid fa-envelope' },
 ]
 

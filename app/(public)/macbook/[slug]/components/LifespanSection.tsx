@@ -6,7 +6,7 @@ type Props = {
 }
 
 export default function LifespanSection({ model }: Props) {
-  const osLife = calculateOSLifespan(model.date)
+  const osLife = calculateOSLifespan(model.date, model.last_macos)
   const repairLife = calculateRepairLifespan(model.date)
 
   if (osLife.releaseYear === 0) return null

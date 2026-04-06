@@ -53,7 +53,7 @@ export default function EntertainmentSection() {
       </MediaCard>
 
       {/* 3. ゲームを楽しむ */}
-      <MediaCard src="/images/content/ipad-gaming.jpg" alt="iPadでゲームを楽しむ様子" title="ゲームを楽しむ">
+      <MediaCard src="/images/content/photo/ipad-game.jpg" alt="iPadでゲームを楽しむ様子" title="ゲームを楽しむ">
         <p className="media-card__desc">
           繊細なグラフィックや美しい色彩を堪能したいなら、iPadの大画面は外せません。
         </p>

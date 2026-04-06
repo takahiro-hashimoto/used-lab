@@ -7,9 +7,7 @@ export default function IPhoneFaqSection() {
       answer: (
         <>
           <p>
-            {RECOMMEND_DATE_LABEL}現在、「<strong>iPhone SE 第3世代</strong>」「<strong>iPhone14 Pro</strong>」「
-            <strong>iPhone 16e</strong>」「<strong>iPhone15</strong>」「<strong>iPhone14 Plus</strong>
-            」の{RECOMMEND_COUNT_LABEL}がおすすめです。
+            {RECOMMEND_DATE_LABEL}現在、「iPhone SE 第3世代」「iPhone14 Pro」「iPhone 16e」「iPhone15」「iPhone14 Plus」の{RECOMMEND_COUNT_LABEL}がおすすめです。
           </p>
           <p>
             予算重視なら「iPhone SE 第3世代」（2万円台から購入可能）、性能重視なら「iPhone14 Pro」
@@ -52,7 +50,7 @@ export default function IPhoneFaqSection() {
             <li>トラブル時のサポート体制が整っている</li>
           </ul>
           <p>
-            具体的には、<strong>イオシス</strong>（在庫豊富・3〜6ヶ月保証）、<strong>にこスマ</strong>（1年保証・初心者向け）、<strong>ゲオ</strong>（在庫数豊富）などが信頼性が高くおすすめです。
+            具体的には、イオシス（在庫豊富・3〜6ヶ月保証）、にこスマ（1年保証・初心者向け）、ゲオ（在庫数豊富）などが信頼性が高くおすすめです。
           </p>
           <p>メルカリやヤフオクなどの個人売買は保証がないため、初心者には推奨しません。</p>
         </>
@@ -91,7 +89,7 @@ export default function IPhoneFaqSection() {
             例えば、iPhone SE 第3世代は2021年発売のため、2028年頃まで約7年間使えます。iPhone15は2023年発売のため、2030年頃までサポートされる計算です。
           </p>
           <p>
-            サポート終了後も動作はしますが、セキュリティリスクが高まり、新しいアプリが使えなくなる可能性があるため、<strong>サポート期間内での利用</strong>をおすすめします。
+            サポート終了後も動作はしますが、セキュリティリスクが高まり、新しいアプリが使えなくなる可能性があるため、サポート期間内での利用をおすすめします。
           </p>
         </>
       ),
@@ -101,7 +99,7 @@ export default function IPhoneFaqSection() {
       answer: (
         <>
           <p>
-            Apple認定整備済製品はAppleが検品・部品交換・クリーニングを行い、新品同様の状態で販売する製品です。<strong>バッテリーと外装が新品に交換済み</strong>で1年間のApple保証が付きます。
+            Apple認定整備済製品はAppleが検品・部品交換・クリーニングを行い、新品同様の状態で販売する製品です。バッテリーと外装が新品に交換済みで、1年間のApple保証が付きます。
           </p>
           <p>
             一方、中古iPhoneはショップや個人から購入する使用済み端末で、バッテリーや外装の状態は個体差があります。価格は整備済製品より安いことが多く、機種の選択肢も豊富です。
@@ -117,15 +115,15 @@ export default function IPhoneFaqSection() {
       answer: (
         <>
           <p>
-            {RECOMMEND_YEAR}年現在、以下のモデルはおすすめしません。
+            {RECOMMEND_YEAR}年現在、以下に該当するモデルはおすすめしません。
           </p>
           <ul>
-            <li><strong>iPhone 11以前</strong> — iOSサポート終了済み、または終了間近でセキュリティリスクが高い</li>
-            <li><strong>iPhone 12 mini</strong> — バッテリー容量が少なく、日常利用で充電が1日持たないケースが多い</li>
-            <li><strong>バッテリー80%未満の端末</strong> — 交換費用を含めると割高になる可能性あり</li>
+            <li><strong>iOSサポートが終了済み、または終了間近のモデル</strong> — セキュリティリスクが高く、新しいアプリが使えなくなる可能性がある</li>
+            <li><strong>バッテリー容量が極端に少ないモデル</strong> — 日常利用で充電が1日持たないケースが多い</li>
+            <li><strong>バッテリー最大容量80%未満の端末</strong> — 交換費用を含めると割高になる可能性あり</li>
           </ul>
           <p>
-            安さに惹かれてサポート切れの端末を買うと、アプリが使えなくなったり買い替えが必要になるため、結果的にコスパが悪くなります。
+            安さに惹かれてサポート切れの端末を買うと、アプリが使えなくなったり買い替えが必要になるため、結果的にコスパが悪くなります。当サイトのiOSサポート期間一覧表で対応状況を確認してから購入しましょう。
           </p>
         </>
       ),

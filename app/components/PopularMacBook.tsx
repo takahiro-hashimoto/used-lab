@@ -29,7 +29,7 @@ export default function PopularMacBook() {
               <a href="/macbook/recommend/" className="m-btn m-btn--primary">
                 おすすめモデルを見る <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
               </a>
-              <a className="m-btn m-btn--secondary" href="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Fpc%2Fnotepc%2Fmacbook" target="_blank" rel="noopener noreferrer">
+              <a className="m-btn m-btn--secondary" href="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Fpc%2Fnotepc%2Fmacbook" target="_blank" rel="nofollow noopener noreferrer">
                 イオシスで中古MacBookを探す <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
               </a>
             </div>

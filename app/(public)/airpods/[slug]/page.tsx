@@ -20,7 +20,7 @@ import BasicSpecs from './components/BasicSpecs'
 import PriceChartSection from '@/app/components/PriceChartSection'
 import CompareSection from '@/app/components/CompareSection'
 import CompareSelector from './components/CompareSelector'
-import PopularSection from '@/app/components/support/PopularSection'
+import AirPodsPopularSection from '@/app/components/support/popular/AirPodsPopularSection'
 import FaqSection from './components/FaqSection'
 import AirPodsRelatedLinks from '@/app/components/airpods/AirPodsRelatedLinks'
 import ShareBox from '@/app/components/ShareBox'
@@ -43,7 +43,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const model = await getAirPodsModelBySlug(slug)
   if (!model) return {}
   const displayName = model.model ? `${model.name}（${model.model}）` : model.name
-  const title = `中古${displayName}は今買うべき？サポート期間、基本スペック、中古相場から解説`
+  const title = `中古${displayName}は今買うべき？製品寿命、基本スペック、中古相場から解説`
   const description = `${displayName}の中古相場やスペックをもとに、今から中古で買うべきかを判定。音質・ノイズキャンセリング・バッテリーを比較しながら失敗しない選び方を解説します。`
   return {
     title,
@@ -125,19 +125,7 @@ export default async function AirPodsDetailPage({ params }: PageProps) {
           {(props) => <CompareSelector {...props} />}
         </CompareSection>
         <FaqSection model={model} latestPrice={latestPrice} shopLinks={modelShopLinks} />
-        <PopularSection
-          sectionTitle="目的別に人気の中古AirPods"
-          sectionDescription="目的別におすすめの機種を厳選。今回の記事で購入するべき機種が判断できなかった方はぜひご覧ください。"
-          imageSrc="/images/content/airpods-desk.webp"
-          imageAlt="中古AirPodsおすすめのイメージ画像"
-          subtitle="目的別におすすめ機種を厳選！"
-          cardTitle="中古AirPodsおすすめモデル"
-          cardDescription="ノイキャン重視、コスパ重視の人向けなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。"
-          buttonText="おすすめモデルを見る"
-          buttonHref="/airpods/recommend/"
-          secondaryButtonText="イオシスで中古AirPodsを探す"
-          secondaryButtonHref="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Faudiovisual"
-        />
+        <AirPodsPopularSection />
         <AirPodsRelatedLinks excludeHref={`/airpods/${model.slug}/`} />
         <ShareBox url={`https://used-lab.jp/airpods/${model.slug}/`} text={`中古${model.name}（${model.model}）は今買うべき？サポート期間、基本スペック、中古相場から解説`} />
         </div>

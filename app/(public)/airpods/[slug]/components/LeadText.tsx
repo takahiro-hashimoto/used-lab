@@ -14,7 +14,7 @@ export default function LeadText({ model }: Props) {
       <div className="l-container">
         <div className="lead-box">
           <p>
-            「中古の{model.name}って、今から買っても大丈夫？」——この記事では、そんな疑問を解消するために中古価格の推移や他モデルとの違いなど<strong>購入判断に必要な情報</strong>をまとめました。
+            「中古の{model.name}って、今から買っても大丈夫？」この記事では、そんな疑問を解消するために中古価格の推移や他モデルとの違いなど<strong>購入判断に必要な情報</strong>をまとめました。
           </p>
           {releaseDateFormatted && (
             <p>{releaseDateFormatted}発売の{model.name}（{model.model}）が今どれくらいの価格で手に入るのか、チェックしてみてください。</p>

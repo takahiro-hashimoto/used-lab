@@ -1,132 +1,14 @@
 import LifespanTableBase from '@/app/components/support/LifespanTable'
-import type { LifespanEntryWithModels, GlossaryGroup } from '@/app/components/support/LifespanTable'
+import type { GlossaryGroup } from '@/app/components/support/LifespanTable'
 import type { IPhoneModel } from '@/lib/types'
-
-const IOSYS_IPHONE = 'https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Fsmartphone%2Fiphone'
-
-const LIFESPAN_DATA: LifespanEntryWithModels[] = [
-  {
-    series: 'iPhone 17シリーズ',
-    releaseDate: '2025年9月発売',
-    models: [
-      { label: 'iPhone 17', href: '/iphone/17normal' },
-      { label: 'iPhone 17 Pro', href: '/iphone/17pro' },
-      { label: 'iPhone 17 Pro Max', href: '/iphone/17promax' },
-      { label: 'iPhone Air', href: '/iphone/air' },
-    ],
-    osEnd: '2032年9月',
-    repairEnd: '2034年9月',
-    iosysUrl: IOSYS_IPHONE,
-  },
-  {
-    series: 'iPhone 16eシリーズ',
-    releaseDate: '2025年2月発売',
-    models: [{ label: 'iPhone 16e', href: '/iphone/16e' }],
-    osEnd: '2032年2月',
-    repairEnd: '2034年2月',
-    iosysUrl: IOSYS_IPHONE,
-  },
-  {
-    series: 'iPhone 16シリーズ',
-    releaseDate: '2024年9月発売',
-    models: [
-      { label: 'iPhone 16', href: '/iphone/16normal' },
-      { label: 'iPhone 16 Plus', href: '/iphone/16plus' },
-      { label: 'iPhone 16 Pro', href: '/iphone/16pro' },
-      { label: 'iPhone 16 Pro Max', href: '/iphone/16promax' },
-    ],
-    osEnd: '2031年9月',
-    repairEnd: '2033年9月',
-    iosysUrl: IOSYS_IPHONE,
-  },
-  {
-    series: 'iPhone 15シリーズ',
-    releaseDate: '2023年9月発売',
-    models: [
-      { label: 'iPhone 15', href: '/iphone/15normal' },
-      { label: 'iPhone 15 Plus', href: '/iphone/15plus' },
-      { label: 'iPhone 15 Pro', href: '/iphone/15pro' },
-      { label: 'iPhone 15 Pro Max', href: '/iphone/15promax' },
-    ],
-    osEnd: '2030年9月',
-    repairEnd: '2032年9月',
-    iosysUrl: IOSYS_IPHONE,
-  },
-  {
-    series: 'iPhone 14シリーズ',
-    releaseDate: '2022年9月発売',
-    models: [
-      { label: 'iPhone 14', href: '/iphone/14normal' },
-      { label: 'iPhone 14 Plus', href: '/iphone/14plus' },
-      { label: 'iPhone 14 Pro', href: '/iphone/14pro' },
-      { label: 'iPhone 14 Pro Max', href: '/iphone/14promax' },
-    ],
-    osEnd: '2029年9月',
-    repairEnd: '2031年9月',
-    iosysUrl: IOSYS_IPHONE,
-  },
-  {
-    series: 'iPhone SE（第3世代）',
-    releaseDate: '2022年3月発売',
-    models: [{ label: 'iPhone SE 第3世代', href: '/iphone/se3' }],
-    osEnd: '2029年3月',
-    repairEnd: '2031年3月',
-    iosysUrl: IOSYS_IPHONE,
-  },
-  {
-    series: 'iPhone 13シリーズ',
-    releaseDate: '2021年9月発売',
-    models: [
-      { label: 'iPhone 13', href: '/iphone/13normal' },
-      { label: 'iPhone 13 mini', href: '/iphone/13mini' },
-      { label: 'iPhone 13 Pro', href: '/iphone/13pro' },
-      { label: 'iPhone 13 Pro Max', href: '/iphone/13promax' },
-    ],
-    osEnd: '2028年9月',
-    repairEnd: '2030年9月',
-    iosysUrl: IOSYS_IPHONE,
-  },
-  {
-    series: 'iPhone 12シリーズ',
-    releaseDate: '2020年11月発売',
-    models: [
-      { label: 'iPhone 12', href: '/iphone/12normal' },
-      { label: 'iPhone 12 mini', href: '/iphone/12mini' },
-      { label: 'iPhone 12 Pro', href: '/iphone/12pro' },
-      { label: 'iPhone 12 Pro Max', href: '/iphone/12promax' },
-    ],
-    osEnd: '2027年11月',
-    repairEnd: '2029年11月',
-    iosysUrl: IOSYS_IPHONE,
-  },
-  {
-    series: 'iPhone SE（第2世代）',
-    releaseDate: '2020年4月発売',
-    models: [{ label: 'iPhone SE 第2世代', href: '/iphone/se2' }],
-    osEnd: '2027年4月',
-    repairEnd: '2029年4月',
-    iosysUrl: IOSYS_IPHONE,
-  },
-  {
-    series: 'iPhone 11シリーズ',
-    releaseDate: '2019年9月発売',
-    models: [
-      { label: 'iPhone 11', href: '/iphone/11normal' },
-      { label: 'iPhone 11 Pro', href: '/iphone/11pro' },
-      { label: 'iPhone 11 Pro Max', href: '/iphone/11promax' },
-    ],
-    osEnd: '2026年9月',
-    repairEnd: '2028年9月',
-    iosysUrl: IOSYS_IPHONE,
-  },
-]
+import { buildIPhoneLifespanData } from '@/lib/utils/iphone-helpers'
 
 const GLOSSARY_GROUPS: GlossaryGroup[] = [
   {
     title: 'iOSのサポート期間について',
     label: 'iOSサポート終了のデメリット',
     intro:
-      '前述した通り、発売から7年以上が経過しているiPhoneはサポート終了となり、最新iOSへのアップデートができなくなるのが過去の傾向。iOSサポート対象外になったiPhoneを使い続けると下記のデメリットが出てくるのが注意点です。',
+      '発売から7年以上が経過しているiPhoneはサポート終了となり、最新iOSへのアップデートができなくなるのが過去の傾向。iOSサポート対象外になったiPhoneを使い続けると下記のデメリットが出てくるのが注意点です。',
     items: [
       {
         term: '進化したウィルスや不正行為に対応出来ない',
@@ -165,21 +47,10 @@ const GLOSSARY_GROUPS: GlossaryGroup[] = [
   },
 ]
 
-function extractSlug(href: string): string {
-  return href.replace(/\/$/, '').split('/').pop() || ''
-}
-
 type Props = { models: IPhoneModel[] }
 
 export default function IPhoneLifespanTable({ models }: Props) {
-  const slugMap = new Map(models.map(m => [m.slug, m.last_ios]))
-
-  const data = LIFESPAN_DATA.map(entry => {
-    const slugs = entry.models.map(m => extractSlug(m.href))
-    const matched = slugs.filter(s => slugMap.has(s))
-    const osEnded = matched.length > 0 && matched.every(s => slugMap.get(s) != null)
-    return { ...entry, osEnded }
-  })
+  const data = buildIPhoneLifespanData(models)
 
   return (
     <LifespanTableBase
@@ -187,15 +58,12 @@ export default function IPhoneLifespanTable({ models }: Props) {
       sectionTitle="iPhoneのサポート期間一覧（寿命予想）"
       sectionDescription={
         <>
-          過去の傾向をもとに、OSサポート期間は発売から約7年、修理受付期間は販売終了から約9年を目安として算出した予測値です。
-          <br />
-          実際の期間はAppleの公式発表をご確認ください。
+          過去の傾向をもとに、機種別のiOSサポート期間予測をまとめました。実際の期間はAppleの公式発表をご確認ください。
         </>
       }
       tableCaption="iPhone機種別サポート期間・寿命予想一覧"
       showModelsColumn
       glossaryGroups={GLOSSARY_GROUPS}
-      showIosysColumn
     />
   )
 }

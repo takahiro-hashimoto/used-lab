@@ -105,8 +105,9 @@ export default function PreCheckSection() {
               </ol>
 
               <div className="price-table-wrap">
+              <h3 className="caution-how-to__heading">バッテリー交換費用の目安</h3>
+
                 <table className="m-table">
-                  <caption>バッテリー交換費用の目安</caption>
                   <thead>
                     <tr>
                       <th scope="col">交換先</th>

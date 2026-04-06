@@ -221,7 +221,7 @@ export function calculateRepairLifespan(date: string | null): {
 }
 
 /** OS/ファームウェアサポート寿命計算 */
-export function calculateOSLifespan(date: string | null, supportYears: number = 7): {
+export function calculateOSLifespan(date: string | null, supportYears: number = 7, lastOs: string | null = null): {
   releaseYear: number
   osEndYear: number
   remainingYears: number
@@ -230,6 +230,11 @@ export function calculateOSLifespan(date: string | null, supportYears: number = 
   const releaseYear = getReleaseYear(date)
   if (releaseYear === 0) {
     return { releaseYear: 0, osEndYear: 0, remainingYears: 0, isSupported: false }
+  }
+  // lastOsが設定されていればサポート終了確定
+  if (lastOs) {
+    const osEndYear = releaseYear + supportYears
+    return { releaseYear, osEndYear, remainingYears: 0, isSupported: false }
   }
   const osEndYear = releaseYear + supportYears
   const currentYear = new Date().getFullYear()

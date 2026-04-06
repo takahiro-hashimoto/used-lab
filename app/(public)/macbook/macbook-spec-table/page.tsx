@@ -30,6 +30,7 @@ import PopularMacBook from '@/app/components/PopularMacBook'
 import MacBookRelatedLinks from '@/app/components/macbook/MacBookRelatedLinks'
 import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
+import { getHeroImage } from '@/lib/data/hero-images'
 import HeroMeta from '@/app/components/HeroMeta'
 
 export const revalidate = 3600
@@ -43,12 +44,12 @@ export const metadata: Metadata = {
     title: '歴代MacBookスペック比較表！Air・Proの性能差や違いがすぐわかる',
     description: '歴代MacBook Air・Proのスペック比較表一覧です。チップ性能やディスプレイ、ポート構成の違いを一目で確認できます。',
     url: '/macbook/macbook-spec-table/',
-    images: [{ url: '/images/macbook/mba-13-2025.jpg', width: 1200, height: 630, alt: '歴代MacBookスペック比較表のイメージ' }],
+    images: [{ url: getHeroImage('/macbook/macbook-spec-table/'), width: 1200, height: 630, alt: '歴代MacBookスペック比較表のイメージ' }],
   },
   twitter: {
     title: '歴代MacBookスペック比較表！Air・Proの性能差や違いがすぐわかる',
     description: '歴代MacBook Air・Proのスペック比較表一覧です。チップ性能やディスプレイ、ポート構成の違いを一目で確認できます。',
-    images: ['/images/macbook/mba-13-2025.jpg'],
+    images: [getHeroImage('/macbook/macbook-spec-table/')],
   },
 }
 
@@ -156,7 +157,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/macbook/macbook
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/content/thumbnail/macbook-user.jpg"
+                  src={getHeroImage('/macbook/macbook-spec-table/')}
                   alt="歴代MacBookスペック比較表のイメージ"
                   className="hero-media__img"
                   width={360}

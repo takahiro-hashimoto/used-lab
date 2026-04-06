@@ -23,7 +23,7 @@ import AdvanceFeatures from './components/AdvanceFeatures'
 import CompareSection from '@/app/components/CompareSection'
 import CompareSelector from './components/CompareSelector'
 import Accessories from './components/Accessories'
-import PopularSection from '@/app/components/support/PopularSection'
+import WatchPopularSection from '@/app/components/support/popular/WatchPopularSection'
 import FaqSection from './components/FaqSection'
 import WatchRelatedLinks from '@/app/components/watch/WatchRelatedLinks'
 import ShareBox from '@/app/components/ShareBox'
@@ -48,13 +48,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   const latestLog = await getLatestWatchPriceLog(model.id)
   const priceRange = calculatePriceRange(latestLog)
-  const osLife = calculateOSLifespan(model.date)
+  const osLife = calculateOSLifespan(model.date, model.last_watchos)
 
   const priceText = priceRange.minPrice ? `（¥${priceRange.minPrice.toLocaleString()}〜）` : ''
   const sizeText = model.size ? `${model.size}` : ''
   const osText = osLife.isSupported ? `watchOSサポート見込み` : 'watchOSサポート終了済み'
 
-  const title = `中古${model.model} レビュー｜スペック・価格相場・いつまで使える？`
+  const title = `中古${model.model}は今買うべき？製品寿命、基本スペック、中古相場から解説`
   const description = `${model.model}の中古相場${priceText}や${osText}をもとに、今から中古で買うべきかを判定。${sizeText ? sizeText + '・' : ''}健康機能・バッテリー持ちを比較しながら失敗しない選び方を解説します。`
 
   return {
@@ -141,19 +141,7 @@ export default async function WatchDetailPage({ params }: PageProps) {
         </CompareSection>
         <Accessories model={model} />
         <FaqSection model={model} latestPrice={latestPrice} shopLinks={modelShopLinks} />
-        <PopularSection
-          sectionTitle="目的別に人気の中古Apple Watch"
-          sectionDescription="目的別におすすめの機種を厳選。今回の記事で購入するべき機種が判断できなかった方はぜひご覧ください。"
-          imageSrc="/images/content/thumbnail/watch-image-08.jpg"
-          imageAlt="中古Apple Watchおすすめ3選のイメージ画像"
-          subtitle="目的別におすすめ機種を厳選！"
-          cardTitle="中古Apple Watchおすすめ3選"
-          cardDescription="健康管理を重視する人向け、コスパ重視の人向けなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。"
-          buttonText="おすすめ3機種を見る"
-          buttonHref="/watch/recommend/"
-          secondaryButtonText="イオシスで中古Apple Watchを探す"
-          secondaryButtonHref="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Fwearable%2Fapple%3Fnot%3Dpencil"
-        />
+        <WatchPopularSection />
         <WatchRelatedLinks excludeHref={[`/watch/${model.slug}/`, "/watch/recommend/"]} />
         <ShareBox url={`https://used-lab.jp/watch/${model.slug}/`} text={`中古${model.model}は今買うべき？製品寿命、基本スペック、中古相場から解説`} />
         </div>

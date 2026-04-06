@@ -74,7 +74,7 @@ function buildDisplayFaqs(
 ): { question: string; answer: ReactNode }[] {
   const faqs: { question: string; answer: ReactNode }[] = []
   const v = getVerdict(model, latestPrice)
-  const osLife = calculateOSLifespan(model.date)
+  const osLife = calculateOSLifespan(model.date, model.last_ipados)
 
   // Q1: 購入判定
   faqs.push({

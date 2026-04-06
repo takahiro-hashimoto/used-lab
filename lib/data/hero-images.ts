@@ -80,3 +80,4 @@ export const HERO_IMAGES: Record<string, string> = {
 export function getHeroImage(path: string): string {
   return HERO_IMAGES[path] ?? '/images/content/thumbnail/check-list.jpg'
 }
+

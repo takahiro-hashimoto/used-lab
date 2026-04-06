@@ -54,7 +54,7 @@ MacBookを安く買う7つの方法
                       height={576}
                       loading="lazy"
                     />
-                    <p>Apple製品をお得に買うための第一歩は、楽天市場で「Appleギフトカード」を購入することです。</p>
+                    <p>Apple製品をお得に買うための第一歩は、楽天市場で「<a href="https://hb.afl.rakuten.co.jp/hgc/2b438bef.163112e7.2b438bf0.c161de07/?pc=https%3A%2F%2Fevent.rakuten.co.jp%2Fcomputer%2Fitunes%2F&amp;link_type=text&amp;ut=eyJwYWdlIjoidXJsIiwidHlwZSI6InRleHQiLCJjb2wiOjF9" target="_blank" rel="nofollow noreferrer noopener">Appleギフトカード</a>」を購入することです。</p>
                     <p>他でも買えますが、楽天を使う最大のメリットはポイント還元率。SPU（スーパーポイントアップ）や買いまわりイベントを組み合わせることで、驚くほどポイントが貯まります。</p>
                     <p>カードは1,500円から50,000円まで、1円単位で指定可能。Apple製品はもちろん、サブスクの支払いにも使えます。</p>
                     <p>上記は「楽天SPU6倍」と「5と0のつく日」に購入した際の画面です。これだけで4,500円分のポイント還元。実質的な割引額として考えるとかなり大きいですよね。</p>
@@ -96,7 +96,7 @@ MacBookを安く買う7つの方法
                       height={576}
                       loading="lazy"
                     />
-                    <p>あとはネットショップまとめサイトの楽天リーベイツを経由してApple公式ストアへ進み、チャージしたAppleギフトで買い物をするだけ。</p>
+                    <p>あとはネットショップまとめサイトの<a href="https://www.rebates.jp/referrer?referrerid=ksDHCQqoohw%3D" target="_blank" rel="noreferrer noopener nofollow">楽天リーべイツ</a>を経由してApple公式ストアへ進み、チャージしたAppleギフトで買い物をするだけ。</p>
                     <p>このフローを挟むことで、下記のような還元率でポイントをゲットできます。</p>
                     <ul className="buy-method-card__list u-mt-md">
                       <li>通常時期：1〜2％</li>

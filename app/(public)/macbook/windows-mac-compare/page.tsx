@@ -9,6 +9,7 @@ import PopularMacBook from '@/app/components/PopularMacBook'
 import MacBookRelatedLinks from '@/app/components/macbook/MacBookRelatedLinks'
 import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
+import { getHeroImage } from '@/lib/data/hero-images'
 import HeroMeta from '@/app/components/HeroMeta'
 
 const PAGE_TITLE = 'MacとWindowsどっちがいい？両者の違いとどんな人におすすめかをやさしく解説'
@@ -24,12 +25,12 @@ export const metadata: Metadata = {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/macbook/windows-mac-compare/',
-    images: [{ url: '/images/macbook/mba-13-2024.jpg', width: 1200, height: 630, alt: PAGE_TITLE }],
+    images: [{ url: getHeroImage('/macbook/windows-mac-compare/'), width: 1200, height: 630, alt: PAGE_TITLE }],
   },
   twitter: {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
-    images: ['/images/macbook/mba-13-2024.jpg'],
+    images: [getHeroImage('/macbook/windows-mac-compare/')],
   },
 }
 
@@ -92,7 +93,7 @@ export default function WindowsMacComparePage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/content/thumbnail/macbook-image-06.jpg"
+                  src={getHeroImage('/macbook/windows-mac-compare/')}
                   alt="MacとWindowsの比較イメージ"
                   className="hero-media__img"
                   width={360}

@@ -49,7 +49,6 @@ export const WATCH_SHOP_DETAIL_META: Record<string, WatchShopDetailMeta> = {
     bad: [
       '送料640円(税込)がかかる',
       '個別の実物写真が掲載されていない',
-      'バッテリー最大容量が表示されていない',
     ],
     ctaLabel: 'イオシスで中古Apple Watchを探す',
   },
@@ -91,7 +90,6 @@ export const WATCH_SHOP_DETAIL_META: Record<string, WatchShopDetailMeta> = {
     bad: [
       'Apple Watchの在庫数がやや少なめ',
       '個別の実物写真が掲載されていない',
-      'バッテリー最大容量が表示されていない',
       '送料550円（3千円以上で無料）',
     ],
     ctaLabel: 'リコレで中古Apple Watchを探す',
@@ -155,7 +153,6 @@ export const WATCH_SHOP_DETAIL_META: Record<string, WatchShopDetailMeta> = {
     bad: [
       '出品者によって品質にバラツキがある',
       '個別の実物写真が掲載されていない',
-      'バッテリー最大容量が表示されていない',
     ],
     ctaLabel: 'Amazon整備済み品で中古Apple Watchを探す',
   },

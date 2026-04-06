@@ -18,8 +18,8 @@ export { formatReleaseDate, formatPrice } from './shared-helpers'
 /**
  * OS寿命計算（リリース年+7年）
  */
-export function calculateOSLifespan(date: string | null) {
-  return calculateOSLifespanGeneric(date, 7)
+export function calculateOSLifespan(date: string | null, lastOs: string | null = null) {
+  return calculateOSLifespanGeneric(date, 7, lastOs)
 }
 
 /**
@@ -134,6 +134,76 @@ export function buildAccessoryLookup(
   }
 
   return lookup
+}
+
+// --- サポート期間一覧データ生成 ---
+
+import type { LifespanEntryWithModels } from '@/app/components/support/LifespanTable'
+
+/** モデル名からプロダクトライン（iPad Pro / iPad Air / iPad mini / iPad）を抽出 */
+function getProductLine(modelName: string): string {
+  if (modelName.startsWith('iPad Pro')) return 'iPad Pro'
+  if (modelName.startsWith('iPad Air')) return 'iPad Air'
+  if (modelName.startsWith('iPad mini')) return 'iPad mini'
+  return 'iPad'
+}
+
+const LINE_ORDER = ['iPad Pro', 'iPad Air', 'iPad', 'iPad mini']
+
+/**
+ * DBモデル配列からサポート期間一覧テーブル用データを生成
+ * グルーピング: プロダクトライン + リリース年
+ */
+export function buildIPadLifespanData(models: IPadModel[]): LifespanEntryWithModels[] {
+  const groups = new Map<string, { line: string; year: number; month: number; models: IPadModel[] }>()
+
+  for (const m of models) {
+    if (!m.date) continue
+    const line = getProductLine(m.model)
+    const year = getReleaseYear(m.date)
+    const month = getReleaseMonth(m.date)
+    if (year === 0) continue
+
+    const key = `${line}_${year}`
+    const existing = groups.get(key)
+    if (existing) {
+      existing.models.push(m)
+    } else {
+      groups.set(key, { line, year, month, models: [m] })
+    }
+  }
+
+  const entries: LifespanEntryWithModels[] = []
+  for (const group of groups.values()) {
+    const osEndYear = group.year + 7
+    const repairEndYear = group.year + 9
+    const osEnded = group.models.every(m => m.last_ipados != null)
+
+    entries.push({
+      series: `${group.line} ${group.year}モデル`,
+      releaseDate: `${group.year}年${group.month}月発売`,
+      models: group.models.map(m => ({
+        label: m.model,
+        href: `/ipad/${m.slug}`,
+      })),
+      osEnd: `${osEndYear}年${group.month}月`,
+      repairEnd: `${repairEndYear}年${group.month}月`,
+      osEnded,
+    })
+  }
+
+  // プロダクトライン順 → リリース年降順
+  entries.sort((a, b) => {
+    const lineA = LINE_ORDER.indexOf(a.series.replace(/ \d{4}モデル$/, ''))
+    const lineB = LINE_ORDER.indexOf(b.series.replace(/ \d{4}モデル$/, ''))
+    if (lineA !== lineB) return lineA - lineB
+    // 年降順: series から年を抽出
+    const yearA = parseInt(a.series.match(/(\d{4})モデル/)?.[1] || '0', 10)
+    const yearB = parseInt(b.series.match(/(\d{4})モデル/)?.[1] || '0', 10)
+    return yearB - yearA
+  })
+
+  return entries
 }
 
 // --- 購入判定ロジック（iPad版：PHP版から移植） ---
@@ -325,7 +395,7 @@ export function generateFaqsForJsonLd(
 ): { question: string; answer: string }[] {
   const faqs: { question: string; answer: string }[] = []
   const v = getVerdict(model, latestPrice)
-  const osLife = calculateOSLifespan(model.date)
+  const osLife = calculateOSLifespan(model.date, model.last_ipados)
 
   faqs.push({
     question: `中古${model.model}は今から購入するのはあり？`,

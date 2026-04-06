@@ -39,6 +39,7 @@ const ValueZoneChart = dynamic(() => import('@/app/components/ValueZoneChart'), 
 import IPadRelatedLinks from '@/app/components/ipad/IPadRelatedLinks'
 import AuthorByline from '@/app/components/AuthorByline'
 import HeroMeta from '@/app/components/HeroMeta'
+import { getHeroImage } from '@/lib/data/hero-images'
 
 export const revalidate = 3600
 
@@ -55,12 +56,12 @@ export const metadata: Metadata = {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/ipad/recommend/',
-    images: [{ url: '/images/ipad/ipad-air-5.jpg', width: 1200, height: 630, alt: PAGE_TITLE }],
+    images: [{ url: getHeroImage('/ipad/recommend/'), width: 1200, height: 630, alt: PAGE_TITLE }],
   },
   twitter: {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
-    images: ['/images/ipad/ipad-air-5.jpg'],
+    images: [getHeroImage('/ipad/recommend/')],
   },
 }
 
@@ -200,7 +201,7 @@ export default async function IPadRecommendPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/content/thumbnail/ipad-image-03.jpg"
+                  src={getHeroImage('/ipad/recommend/')}
                   alt={`中古iPadおすすめ${RECOMMEND_COUNT}選のイメージ`}
                   className="hero-media__img"
                   width={360}

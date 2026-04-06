@@ -36,7 +36,7 @@ export default function KeyboardCompareSection() {
             <tbody>
               {compareData.map((row) => (
                 <tr key={row.label}>
-                  <td><strong>{row.label}</strong></td>
+                  <th>{row.label}</th>
                   <td>{row.magic}</td>
                   <td>{row.smart}</td>
                 </tr>
@@ -55,7 +55,7 @@ export default function KeyboardCompareSection() {
                 alt="Magic Keyboardのイメージ"
                 width={400}
                 height={300}
-                className="media-card__img"
+                className=""
                 loading="lazy"
               />
             </figure>
@@ -86,14 +86,14 @@ export default function KeyboardCompareSection() {
                 alt="Smart Keyboard Folioのイメージ"
                 width={400}
                 height={300}
-                className="media-card__img"
+                className=""
                 loading="lazy"
               />
             </figure>
             <div className="media-card__body">
               <h3 className="media-card__title">Smart Keyboard Folioがおすすめな人</h3>
               <p className="media-card__desc">
-                軽さとコスパを重視する人向け。<strong>持ち運びが多い人や、たまにキーボードを使う程度</strong>の人に最適です。
+                トラックパッド非搭載で軽さとコスパを重視する人向け。<strong>持ち運びが多い人や、たまにキーボードを使う程度</strong>の人に最適です。
               </p>
               <div className="m-card info-card">
                 <p className="info-card__heading">

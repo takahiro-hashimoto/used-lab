@@ -27,7 +27,7 @@ function getKeySpecs(model: IPhoneModel): { label: string; value: string }[] {
   if (model.display) specs.push({ label: '画面', value: model.display })
   if (model.image_sensor) specs.push({ label: 'カメラ', value: model.image_sensor })
   if (model.battery) specs.push({ label: 'バッテリー', value: model.battery })
-  const osLife = calculateOSLifespan(model.date)
+  const osLife = calculateOSLifespan(model.date, model.last_ios)
   if (osLife.osEndYear > 0) specs.push({ label: 'iOS', value: `${osLife.osEndYear}年頃まで` })
   return specs
 }

@@ -37,27 +37,24 @@ export default function FleaMarketSection() {
           </div>
         </div>
 
-        <div className="m-card m-card--shadow m-card--padded post-check-item">
-          <h3 className="post-check-item__heading"><i className="fa-solid fa-user-check" aria-hidden="true"></i>向いている人・向いていない人</h3>
-          <div className="l-grid l-grid--2col l-grid--gap-lg">
-            <div className="recommend-card__fit-box recommend-card__fit-box--good">
-              <h4><i className="fa-solid fa-circle-check" aria-hidden="true"></i> 向いている人</h4>
-              <ul>
-                <li><i className="fa-solid fa-check" aria-hidden="true"></i> 中古iPadの購入経験がある</li>
-                <li><i className="fa-solid fa-check" aria-hidden="true"></i> 赤ロム・バッテリー状態を自分で判断できる</li>
-                <li><i className="fa-solid fa-check" aria-hidden="true"></i> Apple Pencil対応やWi-Fi/Cellularの違いを理解している</li>
-                <li><i className="fa-solid fa-check" aria-hidden="true"></i> トラブルが起きても自己対応できる</li>
-              </ul>
-            </div>
-            <div className="recommend-card__fit-box recommend-card__fit-box--bad">
-              <h4><i className="fa-solid fa-circle-xmark" aria-hidden="true"></i> 向いていない人</h4>
-              <ul>
-                <li><i className="fa-solid fa-xmark" aria-hidden="true"></i> 初めて中古iPadを買う人</li>
-                <li><i className="fa-solid fa-xmark" aria-hidden="true"></i> 保証や返品対応を重視したい人</li>
-                <li><i className="fa-solid fa-xmark" aria-hidden="true"></i> 機種や状態の判断に自信がない人</li>
-                <li><i className="fa-solid fa-xmark" aria-hidden="true"></i> Apple Pencil対応などの確認が不安な人</li>
-              </ul>
-            </div>
+        <div className="l-grid l-grid--2col l-grid--gap-lg u-mt-xl">
+          <div className="recommend-card__fit-box recommend-card__fit-box--good">
+            <p className="recommend-card__fit-title"><i className="fa-solid fa-circle-check" aria-hidden="true"></i> 向いている人</p>
+            <ul>
+              <li><i className="fa-solid fa-check" aria-hidden="true"></i> 中古iPadの購入経験がある</li>
+              <li><i className="fa-solid fa-check" aria-hidden="true"></i> 赤ロム・バッテリー状態を自分で判断できる</li>
+              <li><i className="fa-solid fa-check" aria-hidden="true"></i> Apple Pencil対応やWi-Fi/Cellularの違いを理解している</li>
+              <li><i className="fa-solid fa-check" aria-hidden="true"></i> トラブルが起きても自己対応できる</li>
+            </ul>
+          </div>
+          <div className="recommend-card__fit-box recommend-card__fit-box--bad">
+            <p className="recommend-card__fit-title"><i className="fa-solid fa-circle-xmark" aria-hidden="true"></i> 向いていない人</p>
+            <ul>
+              <li><i className="fa-solid fa-xmark" aria-hidden="true"></i> 初めて中古iPadを買う人</li>
+              <li><i className="fa-solid fa-xmark" aria-hidden="true"></i> 保証や返品対応を重視したい人</li>
+              <li><i className="fa-solid fa-xmark" aria-hidden="true"></i> 機種や状態の判断に自信がない人</li>
+              <li><i className="fa-solid fa-xmark" aria-hidden="true"></i> Apple Pencil対応などの確認が不安な人</li>
+            </ul>
           </div>
         </div>
       </div>

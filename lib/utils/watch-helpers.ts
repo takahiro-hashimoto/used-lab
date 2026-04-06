@@ -16,8 +16,8 @@ export { formatReleaseDate, formatPrice } from './shared-helpers'
 /**
  * OS寿命計算（リリース年+5年）watchOS基準
  */
-export function calculateOSLifespan(date: string | null) {
-  return calculateOSLifespanGeneric(date, 5)
+export function calculateOSLifespan(date: string | null, lastOs: string | null = null) {
+  return calculateOSLifespanGeneric(date, 5, lastOs)
 }
 
 /**
@@ -76,6 +76,48 @@ export function calculatePriceRange(log: WatchPriceLog | null): {
     { name: 'ゲオ', min: log.geo_min, max: log.geo_max },
     { name: 'じゃんぱら', min: log.janpara_min, max: log.janpara_max },
   ])
+}
+
+// --- サポート期間一覧データ生成 ---
+
+import type { LifespanEntryWithHref } from '@/app/components/support/LifespanTable'
+
+/**
+ * DBモデル配列からサポート期間一覧テーブル用データを生成
+ * Watch: 1モデル=1行、グルーピング不要。OS+5年、修理+7年。
+ */
+export function buildWatchLifespanData(models: WatchModel[]): LifespanEntryWithHref[] {
+  const entries: LifespanEntryWithHref[] = []
+
+  for (const m of models) {
+    if (!m.date) continue
+    const year = getReleaseYear(m.date)
+    const month = getReleaseMonth(m.date)
+    if (year === 0) continue
+
+    const osEndYear = year + 5
+    const repairEndYear = year + 7
+    const osEnded = m.last_watchos != null
+
+    entries.push({
+      series: m.model,
+      href: `/watch/${m.slug}`,
+      releaseDate: `${year}年${month}月発売`,
+      osEnd: `${osEndYear}年${month}月`,
+      repairEnd: `${repairEndYear}年${month}月`,
+      osEnded,
+    })
+  }
+
+  // リリース年月降順
+  entries.sort((a, b) => {
+    const [yearA, monthA] = a.releaseDate.match(/(\d{4})年(\d+)月/)?.slice(1).map(Number) || [0, 0]
+    const [yearB, monthB] = b.releaseDate.match(/(\d{4})年(\d+)月/)?.slice(1).map(Number) || [0, 0]
+    if (yearA !== yearB) return yearB - yearA
+    return monthB - monthA
+  })
+
+  return entries
 }
 
 // --- 購入判定ロジック（Watch版：PHP版から移植） ---
@@ -250,7 +292,7 @@ export function generateFaqsForJsonLd(
 ): { question: string; answer: string }[] {
   const faqs: { question: string; answer: string }[] = []
   const v = getVerdict(model, latestPrice)
-  const osLife = calculateOSLifespan(model.date)
+  const osLife = calculateOSLifespan(model.date, model.last_watchos)
 
   faqs.push({
     question: `中古${model.model}は今から購入するのはあり？`,

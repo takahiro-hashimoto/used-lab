@@ -8,7 +8,8 @@ import IPhoneRelatedLinks from '@/app/components/iphone/IPhoneRelatedLinks'
 import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
-import PopularSection from '@/app/components/support/PopularSection'
+import IPhonePopularSection from '@/app/components/support/popular/IPhonePopularSection'
+import { getHeroImage } from '@/lib/data/hero-images'
 
 const PAGE_TITLE = '意外と良い選択肢？ネットワーク制限△の中古iPhone・iPadを買うメリット・デメリットを解説'
 const PAGE_DESCRIPTION =
@@ -50,12 +51,12 @@ export const metadata: Metadata = {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/iphone/network-limit/',
-    images: [{ url: '/images/content/thumbnail/iphone-image-02.jpg', width: 1200, height: 630, alt: PAGE_TITLE }],
+    images: [{ url: getHeroImage('/iphone/network-limit/'), width: 1200, height: 630, alt: PAGE_TITLE }],
   },
   twitter: {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
-    images: ['/images/content/thumbnail/iphone-image-02.jpg'],
+    images: [getHeroImage('/iphone/network-limit/')],
   },
 }
 
@@ -107,7 +108,7 @@ export default function NetworkLimitPage() {
               <div className="hero-visual">
                 <figure className="hero-media">
                   <Image
-                    src="/images/content/thumbnail/iphone-image-02.jpg"
+                    src={getHeroImage('/iphone/network-limit/')}
                     alt="ネットワーク制限△の中古iPhone解説イメージ"
                     className="hero-media__img"
                     width={360}
@@ -399,19 +400,7 @@ export default function NetworkLimitPage() {
             items={FAQ_ITEMS}
           />
 
-          <PopularSection
-            sectionTitle="目的別に人気の中古iPhone"
-            sectionDescription="目的別におすすめの機種を厳選。今回の記事で購入するべき機種が判断できなかった方はぜひご覧ください。"
-            imageSrc="/images/content/thumbnail/iphone-setting.webp"
-            imageAlt="中古iPhoneおすすめ5選のイメージ画像"
-            subtitle="目的別におすすめ機種を厳選！"
-            cardTitle="中古iPhoneおすすめ5選"
-            cardDescription="カメラ性能を重視する人向け、大画面で動画やSNSを楽しみたい人向けなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。"
-            buttonText="おすすめ5機種を見る"
-            buttonHref="/iphone/recommend/"
-            secondaryButtonText="イオシスで中古iPhoneを探す"
-            secondaryButtonHref="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Fsmartphone%2Fiphone"
-          />
+          <IPhonePopularSection />
 
           <IPhoneRelatedLinks excludeHref={["/iphone/network-limit/", "/iphone/recommend/"]} />
           <ShareBox url={PAGE_URL} text={PAGE_TITLE} />

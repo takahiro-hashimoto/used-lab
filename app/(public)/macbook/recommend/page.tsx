@@ -35,6 +35,7 @@ const ValueZoneChart = dynamic(() => import('@/app/components/ValueZoneChart'), 
   loading: () => <div style={{ height: '300px' }} />,
 })
 import AuthorByline from '@/app/components/AuthorByline'
+import { getHeroImage } from '@/lib/data/hero-images'
 import HeroMeta from '@/app/components/HeroMeta'
 
 export const revalidate = 3600
@@ -52,12 +53,12 @@ export const metadata: Metadata = {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/macbook/recommend/',
-    images: [{ url: '/images/macbook/mba-13-2024.jpg', width: 1200, height: 630, alt: PAGE_TITLE }],
+    images: [{ url: getHeroImage('/macbook/recommend/'), width: 1200, height: 630, alt: PAGE_TITLE }],
   },
   twitter: {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
-    images: ['/images/macbook/mba-13-2024.jpg'],
+    images: [getHeroImage('/macbook/recommend/')],
   },
 }
 
@@ -190,7 +191,7 @@ export default async function MacBookRecommendPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/content/thumbnail/macbook-image-04.jpg"
+                  src={getHeroImage('/macbook/recommend/')}
                   alt={`中古MacBookおすすめ${RECOMMEND_COUNT}選のイメージ`}
                   className="hero-media__img"
                   width={360}
@@ -226,46 +227,51 @@ export default async function MacBookRecommendPage() {
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
             <div className="toc-wrapper">
-<p className="toc-title"><i className="fa-solid fa-list" aria-hidden="true"></i> タップできる目次</p>
-            <ol className="l-grid l-grid--3col u-list-reset">
-              <li>
-                <a href="#conclusion" className="toc-item">
-                  結論：選ぶべき{RECOMMEND_COUNT_LABEL} <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
-                </a>
-              </li>
-              <li>
-                <a href="#criteria" className="toc-item">
-                  選んだ判断基準 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
-                </a>
-              </li>
-              <li>
-                <a href="#value-zone" className="toc-item">
-                  お得ゾーンとは？ <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
-                </a>
-              </li>
-              <li>
-                <a href="#detail" className="toc-item">
-                  おすすめ{RECOMMEND_COUNT_LABEL}の詳細 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
-                </a>
-              </li>
-              <li>
-                <a href="#compare" className="toc-item">
-                  スペック比較表 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
-                </a>
-              </li>
-              <li>
-                <a href="#checklist" className="toc-item">
-                  購入前の最終チェック <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
-                </a>
-              </li>
-              <li>
-                <a href="#shops" className="toc-item">
-              <li><a href="#related" className="toc-item">関連記事 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>                  おすすめショップ <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
-                </a>
-              </li>
-            </ol>
-</div>
-          <AuthorByline />
+              <p className="toc-title"><i className="fa-solid fa-list" aria-hidden="true"></i> タップできる目次</p>
+              <ol className="l-grid l-grid--3col u-list-reset">
+                <li>
+                  <a href="#conclusion" className="toc-item">
+                    結論：選ぶべき{RECOMMEND_COUNT_LABEL} <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="#criteria" className="toc-item">
+                    選んだ判断基準 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="#value-zone" className="toc-item">
+                    お得ゾーンとは？ <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="#detail" className="toc-item">
+                    おすすめ{RECOMMEND_COUNT_LABEL}の詳細 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="#compare" className="toc-item">
+                    スペック比較表 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="#checklist" className="toc-item">
+                    購入前の最終チェック <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="#shops" className="toc-item">
+                    おすすめショップ <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="#related" className="toc-item">
+                    関連記事 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                </li>
+              </ol>
+            </div>
+            <AuthorByline />
           </div>
         </nav>
 

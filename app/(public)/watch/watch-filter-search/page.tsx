@@ -9,9 +9,10 @@ import WatchFilterSearchApp from './components/WatchFilterSearchApp'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import FaqSection from '@/app/components/support/FaqSection'
 import ShareBox from '@/app/components/ShareBox'
-import PopularSection from '@/app/components/support/PopularSection'
+import WatchPopularSection from '@/app/components/support/popular/WatchPopularSection'
 import WatchRelatedLinks from '@/app/components/watch/WatchRelatedLinks'
 import { getGitDateForFile } from '@/lib/utils/shared-helpers'
+import { getHeroImage } from '@/lib/data/hero-images'
 import HeroMeta from '@/app/components/HeroMeta'
 
 export const revalidate = 3600
@@ -25,12 +26,12 @@ export const metadata: Metadata = {
     title: 'Apple Watch機種診断シミュレーター｜自分に合うおすすめ中古アップルウォッチがすぐわかる【2026年版】',
     description: '目的・予算・こだわり条件から、あなたに最適な中古Apple Watchを無料で診断。',
     url: '/watch/watch-filter-search/',
-    images: [{ url: '/images/watch/watch-ultra2.jpg', width: 1200, height: 630, alt: 'Apple Watch機種診断シミュレーター' }],
+    images: [{ url: getHeroImage('/watch/watch-filter-search/'), width: 1200, height: 630, alt: 'Apple Watch機種診断シミュレーター' }],
   },
   twitter: {
     title: 'Apple Watch機種診断シミュレーター｜自分に合うおすすめ中古アップルウォッチがすぐわかる【2026年版】',
     description: '目的・予算・こだわり条件から、あなたに最適な中古Apple Watchを無料で診断。',
-    images: ['/images/watch/watch-ultra2.jpg'],
+    images: [getHeroImage('/watch/watch-filter-search/')],
   },
 }
 
@@ -189,7 +190,7 @@ export default async function WatchFilterSearchPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/content/thumbnail/simulator.jpg"
+                  src={getHeroImage('/watch/watch-filter-search/')}
                   alt="Apple Watch機種診断シミュレーターのイメージ"
                   className="hero-media__img"
                   width={360}
@@ -256,19 +257,7 @@ export default async function WatchFilterSearchPage() {
           items={FAQ_ITEMS}
         />
 
-        <PopularSection
-          sectionTitle="目的別に人気の中古Apple Watch"
-          sectionDescription="目的別におすすめの機種を厳選。今回の記事で購入するべき機種が判断できなかった方はぜひご覧ください。"
-          imageSrc="/images/content/thumbnail/watch-image-08.jpg"
-          imageAlt="中古Apple Watchおすすめ3選のイメージ画像"
-          subtitle="目的別におすすめ機種を厳選！"
-          cardTitle="中古Apple Watchおすすめ3選"
-          cardDescription="健康管理を重視する人向け、コスパ重視の人向けなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。"
-          buttonText="おすすめ3機種を見る"
-          buttonHref="/watch/recommend/"
-          secondaryButtonText="イオシスで中古Apple Watchを探す"
-          secondaryButtonHref="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Fwearable%2Fapple%3Fnot%3Dpencil"
-        />
+        <WatchPopularSection />
         <WatchRelatedLinks excludeHref={["/watch/watch-filter-search/", "/watch/recommend/"]} />
         <ShareBox url="https://used-lab.jp/watch/watch-filter-search/" text="Apple Watch機種診断シミュレーター｜自分に合うおすすめ中古アップルウォッチがすぐわかる【2026年版】" />
         </div>

@@ -93,7 +93,7 @@ export default function CompareTableSection({ items }: Props) {
                 <tr>
                   <th scope="row">iPadOSの寿命</th>
                   {items.map(({ model }) => {
-                    const osLife = calculateOSLifespan(model.date)
+                    const osLife = calculateOSLifespan(model.date, model.last_ipados)
                     return (
                       <td key={model.id}>
                         {osLife.osEndYear}年頃まで

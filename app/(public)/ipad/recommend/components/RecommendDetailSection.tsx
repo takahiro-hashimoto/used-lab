@@ -30,6 +30,7 @@ const SHOP_NAMES: Record<number, string> = {
   6: 'じゃんぱら',
   3: 'ゲオ',
 }
+const SHOP_ORDER = [1, 2, 6, 3, 7]
 
 export default function RecommendDetailSection({ items }: Props) {
   return (
@@ -48,11 +49,13 @@ export default function RecommendDetailSection({ items }: Props) {
         {items.map((item) => {
           const { model, latestPrice, shopLinks, fallbackShops, label, subtitle, description, good, bad } = item
           const priceRange = calculatePriceRange(latestPrice)
-          const osLife = calculateOSLifespan(model.date)
+          const osLife = calculateOSLifespan(model.date, model.last_ipados)
           const releaseDate = formatReleaseDate(model.date)
           const annualCost = calculateAnnualCost(priceRange.minPrice, osLife.remainingYears)
 
-          const displayLinks = buildDisplayLinks(shopLinks, fallbackShops, SHOP_NAMES)
+          const displayLinks = buildDisplayLinks(shopLinks, fallbackShops, SHOP_NAMES).sort(
+            (a, b) => SHOP_ORDER.indexOf(a.shop_id) - SHOP_ORDER.indexOf(b.shop_id)
+          )
 
           return (
             <div key={model.id} className="m-card m-card--shadow recommend-card" id={`detail-${model.slug}`}>

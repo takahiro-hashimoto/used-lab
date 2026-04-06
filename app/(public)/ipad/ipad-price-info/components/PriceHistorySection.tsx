@@ -105,7 +105,7 @@ export default function PriceHistorySection({ models }: Props) {
                   {monthlySummary.length > 0 && (
                     <div className="u-mt-lg u-mb-xl">
                       <h4 className="pd-history-subtitle">月別平均価格</h4>
-                      <div className="l-grid l-grid--3col l-grid--gap-lg">
+                      <div className="l-grid l-grid--4col l-grid--gap-lg">
                         {monthlySummary.map((ms) => (
                           <div key={ms.month} className="m-card m-card--sm m-stat-card monthly-card">
                             <p className="m-stat-card__label">{ms.label}</p>

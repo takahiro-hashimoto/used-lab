@@ -5,6 +5,7 @@ import {
   getAllAirPodsModels,
   getLatestAirPodsPriceLog,
   getAllProductShopLinksByType,
+  getShops,
 } from '@/lib/queries'
 import type { AirPodsModel, AirPodsPriceLog } from '@/lib/types'
 import { formatPrice, buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
@@ -14,8 +15,8 @@ import {
   GUIDE_SPEC_LINKS,
   GUIDE_FAQ_ITEMS,
   GUIDE_MODEL_LINKS,
-  GUIDE_VENDOR_CARDS,
 } from '@/lib/data/airpods-guide'
+import { buildVendorCardsFromShops } from '@/lib/data/guide-shared'
 import {
   RECOMMEND_SLUGS,
   RECOMMEND_META,
@@ -45,12 +46,12 @@ export const metadata: Metadata = {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/airpods/',
-    images: [{ url: '/images/airpods/mtjv3j:a.jpg', width: 1200, height: 630, alt: PAGE_TITLE }],
+    images: [{ url: getHeroImage('/airpods/'), width: 1200, height: 630, alt: PAGE_TITLE }],
   },
   twitter: {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
-    images: ['/images/airpods/mtjv3j:a.jpg'],
+    images: [getHeroImage('/airpods/')],
   },
 }
 
@@ -65,10 +66,16 @@ function getAirPodsMinPrice(price: AirPodsPriceLog | null): string {
 }
 
 export default async function AirPodsGuidePage() {
-  const [allModels, allShopLinks] = await Promise.all([
+  const [allModels, allShopLinks, shops] = await Promise.all([
     getAllAirPodsModels(),
     getAllProductShopLinksByType('airpods'),
+    getShops(),
   ])
+
+  const vendorCards = buildVendorCardsFromShops(shops, 'airpods_url', '中古AirPodsを探す', {
+    exclude: ['rakuma'],
+    priorityOrder: ['iosys', 'eearphone'],
+  })
 
   // 相場セクション用: 指定slugのモデル + 最新価格を並列取得
   const priceModels = GUIDE_PRICE_SLUGS
@@ -158,7 +165,7 @@ export default async function AirPodsGuidePage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/content/thumbnail/airpods-image-01.jpg"
+                  src={getHeroImage('/airpods/')}
                   alt="中古AirPods購入ガイドのイメージ"
                   className="hero-media__img"
                   width={360}
@@ -338,7 +345,7 @@ export default async function AirPodsGuidePage() {
               <p className="m-section-desc">中古AirPods販売店の比較情報。保証内容、価格、在庫の豊富さなど、</p>
               <p className="m-section-desc">各ショップの特徴を一覧表で整理しました。</p>
 
-              <VendorCardGrid cards={GUIDE_VENDOR_CARDS} />
+              <VendorCardGrid cards={vendorCards} />
             </div>
           </section>
 

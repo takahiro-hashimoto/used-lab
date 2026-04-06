@@ -31,7 +31,7 @@ import CompareFaq from './CompareFaq'
 import CompareVerdict from './CompareVerdict'
 import CompareRelated from './CompareRelated'
 import ShareBox from '@/app/components/ShareBox'
-import PopularSection from '@/app/components/support/PopularSection'
+import IPhonePopularSection from '@/app/components/support/popular/IPhonePopularSection'
 import IPhoneRelatedLinks from '@/app/components/iphone/IPhoneRelatedLinks'
 import AuthorByline from '@/app/components/AuthorByline'
 
@@ -128,10 +128,8 @@ export default async function ComparePageTemplate({ config }: Props) {
               <li><a href="#life" className="toc-item">iOSサポート <i className="fa-solid fa-chevron-down"></i></a></li>
               <li><a href="#price-chart" className="toc-item">中古相場の推移 <i className="fa-solid fa-chevron-down"></i></a></li>
               <li><a href="#verdict" className="toc-item">どんな人におすすめ？ <i className="fa-solid fa-chevron-down"></i></a></li>
-              <li><a href="#faq" className="toc-item">よくある質問 <i className="fa-solid fa-chevron-down"></i></a></li>
-              <li><a href="#related" className="toc-item">関連記事 <i className="fa-solid fa-chevron-down"></i></a></li>
             </ol>
-</div>
+          </div>
           <AuthorByline />
           </div>
         </nav>
@@ -245,19 +243,7 @@ export default async function ComparePageTemplate({ config }: Props) {
           />
 
           {/* 目的別に人気の中古iPhone */}
-          <PopularSection
-            sectionTitle="目的別に人気の中古iPhone"
-            sectionDescription="目的別におすすめの機種を厳選。今回の記事で購入するべき機種が判断できなかった方はぜひご覧ください。"
-            imageSrc="/images/content/thumbnail/iphone-setting.webp"
-            imageAlt="中古iPhoneおすすめ5選のイメージ画像"
-            subtitle="目的別におすすめ機種を厳選！"
-            cardTitle="中古iPhoneおすすめ5選"
-            cardDescription="カメラ性能を重視する人向け、大画面で動画やSNSを楽しみたい人向けなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。"
-            buttonText="おすすめ5機種を見る"
-            buttonHref="/iphone/recommend"
-            secondaryButtonText="イオシスで中古iPhoneを探す"
-            secondaryButtonHref="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Fsmartphone%2Fiphone"
-          />
+          <IPhonePopularSection />
           <IPhoneRelatedLinks excludeHref={["/iphone/battery-compare/", "/iphone/recommend/"]} />
 
           <ShareBox

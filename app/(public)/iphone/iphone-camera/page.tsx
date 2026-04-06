@@ -10,7 +10,8 @@ import IPhoneRelatedLinks from '@/app/components/iphone/IPhoneRelatedLinks'
 import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
-import PopularSection from '@/app/components/support/PopularSection'
+import IPhonePopularSection from '@/app/components/support/popular/IPhonePopularSection'
+import { getHeroImage } from '@/lib/data/hero-images'
 
 export const revalidate = 3600
 
@@ -27,12 +28,12 @@ export const metadata: Metadata = {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/iphone/iphone-camera/',
-    images: [{ url: '/images/iphone/iphone16pro.jpg', width: 1200, height: 630, alt: PAGE_TITLE }],
+    images: [{ url: getHeroImage('/iphone/iphone-camera/'), width: 1200, height: 630, alt: PAGE_TITLE }],
   },
   twitter: {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
-    images: ['/images/iphone/iphone16pro.jpg'],
+    images: [getHeroImage('/iphone/iphone-camera/')],
   },
 }
 
@@ -128,7 +129,7 @@ export default async function IPhoneCameraPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/content/thumbnail/iphone-camera.jpg"
+                  src={getHeroImage('/iphone/iphone-camera/')}
                   alt="iPhoneカメラ性能比較イメージ"
                   className="hero-media__img"
                   width={360}
@@ -164,30 +165,32 @@ export default async function IPhoneCameraPage() {
 
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
-            <p className="toc-title"><i className="fa-solid fa-list" aria-hidden="true"></i> タップできる目次</p>
-            <ol className="l-grid l-grid--2col u-list-reset">
-              <li>
-                <a href="#camera-comparison" className="toc-item">
-                  カメラ性能 比較表 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
-                </a>
-              </li>
-              <li>
-                <a href="#camera-features" className="toc-item">
-                  カメラ機能の解説 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
-                </a>
-              </li>
-              <li>
-                <a href="#popular" className="toc-item">
-                  人気の中古iPhone <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
-                </a>
-              </li>
-              <li>
-                <a href="#faq" className="toc-item">
-                  よくある質問 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
-                </a>
-              </li>
-            </ol>
-          <AuthorByline />
+            <div className="toc-wrapper">
+              <p className="toc-title"><i className="fa-solid fa-list" aria-hidden="true"></i> タップできる目次</p>
+              <ol className="l-grid l-grid--2col u-list-reset">
+                <li>
+                  <a href="#camera-comparison" className="toc-item">
+                    カメラ性能 比較表 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="#camera-features" className="toc-item">
+                    カメラ機能の解説 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="#popular" className="toc-item">
+                    人気の中古iPhone <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="#faq" className="toc-item">
+                    よくある質問 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                  </a>
+                </li>
+              </ol>
+            </div>
+            <AuthorByline />
           </div>
         </nav>
 
@@ -522,19 +525,7 @@ export default async function IPhoneCameraPage() {
           ]}
         />
 
-        <PopularSection
-          sectionTitle="目的別に人気の中古iPhone"
-          sectionDescription="目的別におすすめの機種を厳選。今回の記事で購入するべき機種が判断できなかった方はぜひご覧ください。"
-          imageSrc="/images/content/thumbnail/iphone-setting.webp"
-          imageAlt="中古iPhoneおすすめ5選のイメージ画像"
-          subtitle="目的別におすすめ機種を厳選！"
-          cardTitle="中古iPhoneおすすめ5選"
-          cardDescription="カメラ性能を重視する人向け、大画面で動画やSNSを楽しみたい人向けなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。"
-          buttonText="おすすめ5機種を見る"
-          buttonHref="/iphone/recommend"
-          secondaryButtonText="イオシスで中古iPhoneを探す"
-          secondaryButtonHref="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Fsmartphone%2Fiphone"
-        />
+        <IPhonePopularSection />
 
         <IPhoneRelatedLinks excludeHref={["/iphone/iphone-camera/", "/iphone/recommend/"]} />
         <ShareBox url={PAGE_URL} text={PAGE_TITLE} />

@@ -9,7 +9,7 @@ const TIMING_CARDS: TimingCard[] = [
     imgAlt: 'MacBookのイメージ',
     content: (
       <>
-        <p>これまで解説した通り、MacBookは発売から約7年が経過すると、最新のmacOSアップデート対象から外れる可能性が非常に高くなります。</p>
+        <p>MacBookは発売から約7年が経過すると、最新のmacOSアップデート対象から外れる可能性が非常に高くなります。</p>
         <p>OSの更新が止まると、最新の機能が使えないだけでなく、セキュリティのリスクが高まったり、XcodeやAdobe製品などのプロ向けアプリが次第に非対応になったりと、業務に直結する支障が出てきます。</p>
         <p>また、Appleでは販売終了から7年経った製品を「オブソリート製品」と定義しており、この指定を受けるとAppleでの修理受付が完全に終了します。</p>
         <p>発売から7年は、安全性と快適さを維持しながら使い続けられる「物理的な限界ライン」といえるでしょう。</p>
@@ -25,7 +25,7 @@ const TIMING_CARDS: TimingCard[] = [
         <p>MacBookのバッテリーにはリチウムポリマー電池が使用されており、充電を繰り返すうちに最大容量が減少していきます。</p>
         <p>MacBookのバッテリー充放電回数は「システム情報」→「電源」から確認できます。一般的に1,000回を超えるとバッテリーの劣化が進むとされています。</p>
         <p>バッテリーの持ちが購入時の半分以下に感じたら、バッテリー交換もしくは買い替えを検討するタイミングです。</p>
-        <div className="m-callout m-callout--tip">
+        <div className="m-callout m-callout--tip u-mt-lg">
           <span className="m-callout__label">バッテリー状態の確認方法</span>
           <p className="m-callout__text">Appleメニュー → 「システム設定」→「バッテリー」→「バッテリーの状態」から確認できます。</p>
         </div>
@@ -39,7 +39,7 @@ const TIMING_CARDS: TimingCard[] = [
     content: (
       <>
         <p>MacBookを使用する中で下記のような不満を感じ始めたら、買い替えを検討するタイミングです。</p>
-        <ul>
+        <ul className="media-card__list">
           <li>動画編集や書き出しに時間がかかるようになった</li>
           <li>複数アプリの同時起動でもたつくことが増えた</li>
           <li>ファンの音が常に気になる（Intel Macの場合）</li>

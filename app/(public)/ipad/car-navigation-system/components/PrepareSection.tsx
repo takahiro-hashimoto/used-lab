@@ -32,7 +32,7 @@ export default function PrepareSection() {
               </p>
               <p className="lead-link u-mt-sm">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                <a href="/ipad/recommend/">おすすめの中古iPad5選び</a>
+                <a href="/ipad/recommend/">おすすめの中古iPadまとめ</a>
               </p>
             </div>
           </div>
@@ -58,7 +58,7 @@ export default function PrepareSection() {
               </p>
               <p className="lead-link u-mt-sm">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                <a href="https://amzn.to/4bFbYKv" target="_blank" rel="noopener noreferrer">AmazonでiPad対応の車載ホルダーを探す</a>
+                <a href="https://amzn.to/4bFbYKv" target="_blank" rel="noopener noreferrer nofollow">AmazonでiPad対応の車載ホルダーを探す</a>
               </p>
             </div>
           </div>
@@ -85,7 +85,7 @@ export default function PrepareSection() {
               </p>
               <p className="lead-link u-mt-sm">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                <a href="https://amzn.to/4tgOz8f" target="_blank" rel="noopener noreferrer">Amazonでシガーソケット充電器を探す</a>
+                <a href="https://amzn.to/4tgOz8f" target="_blank" rel="noopener noreferrer nofollow">Amazonでシガーソケット充電器を探す</a>
               </p>
             </div>
           </div>

@@ -15,6 +15,7 @@ import PopularMacBook from '@/app/components/PopularMacBook'
 import MacBookRelatedLinks from '@/app/components/macbook/MacBookRelatedLinks'
 import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
+import { getHeroImage } from '@/lib/data/hero-images'
 import HeroMeta from '@/app/components/HeroMeta'
 
 export const revalidate = 86400
@@ -28,12 +29,12 @@ export const metadata: Metadata = {
     title: '中古MacBookのストレージ容量はどれがいい？用途別おすすめ容量まとめ',
     description: '中古MacBookのストレージ容量の選び方を用途別に解説。歴代モデルの容量ラインナップも一覧で確認できます。',
     url: '/macbook/storage-guide/',
-    images: [{ url: '/images/content/thumbnail/macbook-image-05.jpg', width: 1200, height: 630, alt: '中古MacBookストレージ容量ガイドのイメージ' }],
+    images: [{ url: getHeroImage('/macbook/storage-guide/'), width: 1200, height: 630, alt: '中古MacBookストレージ容量ガイドのイメージ' }],
   },
   twitter: {
     title: '中古MacBookのストレージ容量はどれがいい？用途別おすすめ容量まとめ',
     description: '中古MacBookのストレージ容量の選び方を解説。',
-    images: ['/images/content/thumbnail/macbook-image-05.jpg'],
+    images: [getHeroImage('/macbook/storage-guide/')],
   },
 }
 
@@ -205,7 +206,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/macbook/storage
             </div>
             <div className="hero-visual">
               <figure className="hero-media">
-                <Image src="/images/content/thumbnail/macbook-image-05.jpg" alt="中古MacBookストレージ容量ガイドのイメージ" className="hero-media__img" width={360} height={360} priority sizes="(max-width: 768px) 100vw, 360px" />
+                <Image src={getHeroImage('/macbook/storage-guide/')} alt="中古MacBookストレージ容量ガイドのイメージ" className="hero-media__img" width={360} height={360} priority sizes="(max-width: 768px) 100vw, 360px" />
               </figure>
             </div>
           </div>

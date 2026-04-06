@@ -47,7 +47,7 @@ export default function RecommendDetailSection({ items }: Props) {
         {items.map((item) => {
           const { model, latestPrice, shopLinks, fallbackShops, label, subtitle, description, good, bad } = item
           const priceRange = calculatePriceRange(latestPrice)
-          const osLife = calculateOSLifespan(model.date)
+          const osLife = calculateOSLifespan(model.date, model.last_macos)
           const releaseDate = formatReleaseDate(model.date)
           const annualCost = calculateAnnualCost(priceRange.minPrice, osLife.remainingYears)
 

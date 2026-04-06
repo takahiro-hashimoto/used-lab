@@ -7,9 +7,7 @@ export default function MacBookFaqSection() {
       answer: (
         <>
           <p>
-            {RECOMMEND_DATE_LABEL}現在、「<strong>MacBook Air 13インチ M2（2022）</strong>」「<strong>MacBook Air 13インチ M3（2024）</strong>」「
-            <strong>MacBook Air 15インチ M3（2024）</strong>」「<strong>MacBook Pro 14インチ M3（2023）</strong>
-            」の{RECOMMEND_COUNT_LABEL}がおすすめです。
+            {RECOMMEND_DATE_LABEL}現在、「MacBook Air 13インチ M2（2022）」「MacBook Air 13インチ M3（2024）」「MacBook Air 15インチ M3（2024）」「MacBook Pro 14インチ M3（2023）」の{RECOMMEND_COUNT_LABEL}がおすすめです。
           </p>
           <p>
             コスパ重視なら「MacBook Air 13インチ M2」（中古価格が最も手頃）、長期利用なら「MacBook Air 13インチ M3」
@@ -51,7 +49,7 @@ export default function MacBookFaqSection() {
             <li>トラブル時のサポート体制が整っている</li>
           </ul>
           <p>
-            具体的には、<strong>イオシス</strong>（在庫豊富・3ヶ月保証）、<strong>ゲオ</strong>（在庫数豊富）、<strong>じゃんぱら</strong>（品質重視）などが信頼性が高くおすすめです。
+            具体的には、イオシス（在庫豊富・3ヶ月保証）、ゲオ（在庫数豊富）、じゃんぱら（品質重視）などが信頼性が高くおすすめです。
           </p>
           <p>メルカリやヤフオクなどの個人売買は保証がないため、初心者には推奨しません。</p>
         </>
@@ -84,13 +82,13 @@ export default function MacBookFaqSection() {
       answer: (
         <>
           <p>
-            Appleは発売から約7年でmacOSサポートを終了する傾向があります。{RECOMMEND_YEAR}年時点でおすすめしている{RECOMMEND_COUNT_LABEL}は、いずれも<strong>2029〜2031年頃までサポートされる見込み</strong>です。
+            Appleは発売から約7年でmacOSサポートを終了する傾向があります。当サイトでおすすめしている機種は、いずれもサポートに十分な余裕があるモデルだけを厳選しています。
           </p>
           <p>
-            例えば、MacBook Air M2（2022）は2029年頃まで、MacBook Air M3（2024）は2031年頃までサポートされる計算です。
+            各モデルの具体的なサポート終了予測は、当サイトのmacOSサポート期間一覧表で確認できます。
           </p>
           <p>
-            サポート終了後も動作はしますが、セキュリティリスクが高まり、新しいアプリが使えなくなる可能性があるため、<strong>サポート期間内での利用</strong>をおすすめします。
+            サポート終了後も動作はしますが、セキュリティリスクが高まり、新しいアプリが使えなくなる可能性があるため、サポート期間内での利用をおすすめします。
           </p>
         </>
       ),

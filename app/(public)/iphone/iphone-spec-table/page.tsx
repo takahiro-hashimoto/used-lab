@@ -9,7 +9,7 @@ import BenchmarkSection from './components/BenchmarkSection'
 import EvolutionTimeline from './components/EvolutionTimeline'
 import GlossarySection from '@/app/components/GlossarySection'
 import HeroMeta from '@/app/components/HeroMeta'
-import PopularSection from '@/app/components/support/PopularSection'
+import IPhonePopularSection from '@/app/components/support/popular/IPhonePopularSection'
 
 const GLOSSARY_ITEMS = [
   { title: 'CPU', icon: 'fa-solid fa-microchip', desc: 'iPhoneの頭脳にあたるチップで、全体的な処理速度や電力効率に大きく影響。A16やA17 Proなどの世代ごとに性能が進化。' },
@@ -36,6 +36,7 @@ import IPhoneRelatedLinks from '@/app/components/iphone/IPhoneRelatedLinks'
 import ShareBox from '@/app/components/ShareBox'
 import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
+import { getHeroImage } from '@/lib/data/hero-images'
 
 export const revalidate = 3600
 
@@ -48,12 +49,12 @@ export const metadata: Metadata = {
     title: '歴代iPhoneスペック比較表！気になる機種の性能差や違いがわかる',
     description: '2019年以降に発売された歴代iPhoneのスペック比較表一覧です。iPhoneの機能がどのようにアップデートされてきたのか確認するのにご活用ください。',
     url: '/iphone/iphone-spec-table/',
-    images: [{ url: '/images/iphone/iphone16pro.jpg', width: 1200, height: 630, alt: '歴代iPhoneスペック比較表のイメージ' }],
+    images: [{ url: getHeroImage('/iphone/iphone-spec-table/'), width: 1200, height: 630, alt: '歴代iPhoneスペック比較表のイメージ' }],
   },
   twitter: {
     title: '歴代iPhoneスペック比較表！気になる機種の性能差や違いがわかる',
     description: '2019年以降に発売された歴代iPhoneのスペック比較表一覧です。',
-    images: ['/images/iphone/iphone16pro.jpg'],
+    images: [getHeroImage('/iphone/iphone-spec-table/')],
   },
 }
 
@@ -179,7 +180,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/iphone-s
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/content/thumbnail/iphone-compare.jpg"
+                  src={getHeroImage('/iphone/iphone-spec-table/')}
                   alt="歴代iPhoneスペック比較表のイメージ"
                   className="hero-media__img"
                   width={360}
@@ -219,31 +220,31 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/iphone-s
             <ol className="l-grid l-grid--3col u-list-reset">
               <li>
                 <a href="#spec-table" className="toc-item">
-                  歴代iPhoneのスペック比較表一覧{' '}
+                  スペック比較表{' '}
                   <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
                 </a>
               </li>
               <li>
                 <a href="#compare" className="toc-item">
-                  気になる2機種スペックを比較{' '}
+                  2機種のスペック比較{' '}
                   <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
                 </a>
               </li>
               <li>
                 <a href="#benchmark" className="toc-item">
-                  チップ性能・処理速度を比較{' '}
+                  チップ性能・処理速度{' '}
                   <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
                 </a>
               </li>
               <li>
                 <a href="#evolution" className="toc-item">
-                  歴代iPhoneの主な進化点{' '}
+                  歴代iPhoneの進化点{' '}
                   <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
                 </a>
               </li>
               <li>
                 <a href="#glossary" className="toc-item">
-                  iPhone各機能の用語解説{' '}
+                  用語解説{' '}
                   <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
                 </a>
               </li>
@@ -266,19 +267,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/iphone-s
         <EvolutionTimeline models={serializedModels} />
         <GlossarySection productName="iPhone" items={GLOSSARY_ITEMS} />
 
-        <PopularSection
-          sectionTitle="目的別に人気の中古iPhone"
-          sectionDescription="目的別におすすめの機種を厳選。今回の記事で購入するべき機種が判断できなかった方はぜひご覧ください。"
-          imageSrc="/images/content/thumbnail/iphone-setting.webp"
-          imageAlt="中古iPhoneおすすめ5選のイメージ画像"
-          subtitle="目的別におすすめ機種を厳選！"
-          cardTitle="中古iPhoneおすすめ5選"
-          cardDescription="カメラ性能を重視する人向け、大画面で動画やSNSを楽しみたい人向けなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。"
-          buttonText="おすすめ5機種を見る"
-          buttonHref="/iphone/recommend/"
-          secondaryButtonText="イオシスで中古iPhoneを探す"
-          secondaryButtonHref="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Fsmartphone%2Fiphone"
-        />
+        <IPhonePopularSection />
         {/* 関連記事 */}
         <IPhoneRelatedLinks excludeHref={["/iphone/iphone-spec-table/", "/iphone/recommend/"]} />
         <ShareBox url="https://used-lab.jp/iphone/iphone-spec-table/" text="歴代iPhoneスペック比較表！気になる機種の性能差や違いがわかる" />

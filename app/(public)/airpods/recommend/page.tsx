@@ -29,6 +29,7 @@ import ChecklistSection from '@/app/components/ChecklistSection'
 import ShopSection from '@/app/components/ShopSection'
 import AirPodsFaqSection from './components/AirPodsFaqSection'
 import AuthorByline from '@/app/components/AuthorByline'
+import { getHeroImage } from '@/lib/data/hero-images'
 import HeroMeta from '@/app/components/HeroMeta'
 
 export const revalidate = 3600
@@ -46,12 +47,12 @@ export const metadata: Metadata = {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/airpods/recommend/',
-    images: [{ url: '/images/airpods/mtjv3j:a.jpg', width: 1200, height: 630, alt: PAGE_TITLE }],
+    images: [{ url: getHeroImage('/airpods/recommend/'), width: 1200, height: 630, alt: PAGE_TITLE }],
   },
   twitter: {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
-    images: ['/images/airpods/mtjv3j:a.jpg'],
+    images: [getHeroImage('/airpods/recommend/')],
   },
 }
 
@@ -198,7 +199,7 @@ export default async function AirPodsRecommendPage() {
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/content/thumbnail/airpods-image-02.jpg"
+                  src={getHeroImage('/airpods/recommend/')}
                   alt={`中古AirPodsおすすめ${RECOMMEND_COUNT}選のイメージ`}
                   className="hero-media__img"
                   width={360}

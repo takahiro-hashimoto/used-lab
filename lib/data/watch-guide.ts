@@ -95,17 +95,5 @@ export const GUIDE_MODEL_LINKS = {
   ],
 }
 
-// ---------- ショップ比較カードセクション ----------
-import { buildVendorCards } from '@/lib/data/guide-shared'
-
-export const GUIDE_VENDOR_CARDS = buildVendorCards(
-  {
-    'イオシス': 'https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Fwearable%2Fapple%3Fnot%3Dpencil',
-    'にこスマ': 'https://px.a8.net/svt/ejp?a8mat=3NCKMH+63P0JM+4O7U+BW0YB&a8ejpredirect=https%3A%2F%2Fwww.nicosuma.com%2Fiphone',
-    'ゲオ': 'https://px.a8.net/svt/ejp?a8mat=3TB2U4+C4ESQQ+4J34+BW0YB&a8ejpredirect=https%3A%2F%2Fec.geo-online.co.jp%2Fshop%2Fgoods%2Fsearch.aspx%3Fsearch.x%3D0%26tree%3D1214',
-    'リコレ': 'https://click.linksynergy.com/deeplink?id=N*L98MVOv3Q&mid=43860&murl=https%3A%2F%2Fused.sofmap.com%2Fr%2Fcategory%2Fwtc%3Fcategories1%255B%255D%3Dwtc%26categories2%255B%255D%3Dapple-watch',
-    'じゃんぱら': 'https://www.janpara.co.jp/sale/search/result/?KEYWORDS=apple+watch&ORDER=1',
-    'Amazon整備済み品': 'https://amzn.to/4djok9E',
-  },
-  '中古Apple Watchを探す',
-)
+// ショップ比較カードセクションは DB (shops テーブル) から動的生成に移行済み
+// → buildVendorCardsFromShops(shops, 'watch_url', ...) を使用

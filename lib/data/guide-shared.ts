@@ -3,93 +3,60 @@
 // ============================================================
 
 import type { VendorCardItem } from '@/app/components/VendorCardGrid'
+import type { Shop } from '@/lib/types'
 
-// ---------- ショップ比較カード: 共通ベースデータ ----------
-type VendorCardBase = Omit<VendorCardItem, 'href' | 'ctaText'>
+// ---------- DB shops → VendorCardItem 変換 ----------
 
-const VENDOR_CARD_BASES: VendorCardBase[] = [
-  {
-    name: 'イオシス',
-    recommended: true,
-    tag: '保証延長サービス',
-    specs: [
-      { label: '価格', value: '◎' },
-      { label: '保証期間', value: '3ヶ月' },
-      { label: '赤ロム保証', value: '永久保証' },
-      { label: 'バッテリー保証', value: '×' },
-      { label: '実物写真', value: '×' },
-      { label: '配送料', value: '640円' },
-    ],
-  },
-  {
-    name: 'にこスマ',
-    tag: 'にこスマあんしん保険',
-    specs: [
-      { label: '価格', value: '○' },
-      { label: '保証期間', value: '1年間' },
-      { label: '赤ロム保証', value: '永久保証' },
-      { label: 'バッテリー保証', value: '○' },
-      { label: '実物写真', value: '○' },
-      { label: '配送料', value: '無料' },
-    ],
-  },
-  {
-    name: 'ゲオ',
-    tag: 'ゲオ中古モバイル保証',
-    specs: [
-      { label: '価格', value: '○' },
-      { label: '保証期間', value: '30日間' },
-      { label: '赤ロム保証', value: '永久保証' },
-      { label: 'バッテリー保証', value: '○' },
-      { label: '実物写真', value: '○' },
-      { label: '配送料', value: '550円' },
-    ],
-  },
-  {
-    name: 'リコレ',
-    tag: 'ビック月額スマホ保証',
-    specs: [
-      { label: '価格', value: '○' },
-      { label: '保証期間', value: '30日間' },
-      { label: '赤ロム保証', value: '3年間' },
-      { label: 'バッテリー保証', value: '○' },
-      { label: '実物写真', value: '○' },
-      { label: '配送料', value: '550円' },
-    ],
-  },
-  {
-    name: 'じゃんぱら',
-    tag: 'じゃんぱらあんしん保証',
-    specs: [
-      { label: '価格', value: '○' },
-      { label: '保証期間', value: '3ヶ月' },
-      { label: '赤ロム保証', value: '永久保証' },
-      { label: 'バッテリー保証', value: '○' },
-      { label: '実物写真', value: '○' },
-      { label: '配送料', value: '770円' },
-    ],
-  },
-  {
-    name: 'Amazon整備済み品',
-    specs: [
-      { label: '価格', value: '○' },
-      { label: '保証期間', value: '3ヶ月' },
-      { label: '赤ロム保証', value: '出品者による' },
-      { label: 'バッテリー保証', value: '×' },
-      { label: '実物写真', value: '×' },
-      { label: '配送料', value: '無料' },
-    ],
-  },
-]
+type ProductUrlKey = 'url' | 'ipad_url' | 'watch_url' | 'macbook_url' | 'airpods_url'
 
-/** 共通ベースデータに製品固有のURL・CTAテキストを付与してカード配列を生成 */
-export function buildVendorCards(
-  urls: Record<string, string>,
+/** Shop レコードから VendorCardGrid 用のスペック配列を組み立てる */
+function buildSpecsFromShop(shop: Shop): { label: string; value: string }[] {
+  return [
+    { label: '価格', value: shop.price || '–' },
+    { label: '保証期間', value: shop.support || '–' },
+    { label: '赤ロム保証', value: shop.block || '–' },
+    { label: 'バッテリー保証', value: shop.battery || '×' },
+    { label: '実物写真', value: shop.photo || '×' },
+    { label: '配送料', value: shop.postage || '–' },
+  ]
+}
+
+type BuildOptions = {
+  /** 非表示にする shop_key の配列 */
+  exclude?: string[]
+  /** 先頭に並べたい shop_key の配列（指定順で先頭に、残りは元の並び順） */
+  priorityOrder?: string[]
+}
+
+/**
+ * DB の shops 配列から VendorCardItem[] を生成する。
+ * urlKey で指定した列が NULL でないショップだけを返す。
+ */
+export function buildVendorCardsFromShops(
+  shops: Shop[],
+  urlKey: ProductUrlKey,
   ctaText: string,
+  options?: BuildOptions,
 ): VendorCardItem[] {
-  return VENDOR_CARD_BASES.map((base) => ({
-    ...base,
-    href: urls[base.name] ?? '',
+  const { exclude = [], priorityOrder = [] } = options ?? {}
+
+  let filtered = shops.filter((s) => s[urlKey] != null && !exclude.includes(s.shop_key))
+
+  if (priorityOrder.length > 0) {
+    const priorityMap = new Map(priorityOrder.map((key, i) => [key, i]))
+    filtered = [...filtered].sort((a, b) => {
+      const pa = priorityMap.get(a.shop_key) ?? Infinity
+      const pb = priorityMap.get(b.shop_key) ?? Infinity
+      return pa - pb
+    })
+  }
+
+  return filtered.map((s) => ({
+    name: s.shop,
+    recommended: s.shop_key === 'iosys',
+    tag: s.extension_name || undefined,
+    specs: buildSpecsFromShop(s),
+    href: s[urlKey]!,
     ctaText,
   }))
 }

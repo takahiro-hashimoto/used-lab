@@ -15,7 +15,8 @@ import IPadRelatedLinks from '@/app/components/ipad/IPadRelatedLinks'
 import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
-import PopularSection from '@/app/components/support/PopularSection'
+import { getHeroImage } from '@/lib/data/hero-images'
+import IPadPopularSection from '@/app/components/support/popular/IPadPopularSection'
 
 export const revalidate = 86400
 
@@ -28,12 +29,12 @@ export const metadata: Metadata = {
     title: '中古iPadのストレージ容量はどれがいい？用途別おすすめ容量まとめ',
     description: '中古iPadのストレージ容量の選び方を用途別に解説。歴代モデルの容量ラインナップも一覧で確認できます。',
     url: '/ipad/storage-guide/',
-    images: [{ url: '/images/content/thumbnail/ipad-image-09.jpg', width: 1200, height: 630, alt: '中古iPadストレージ容量ガイドのイメージ' }],
+    images: [{ url: getHeroImage('/ipad/storage-guide/'), width: 1200, height: 630, alt: '中古iPadストレージ容量ガイドのイメージ' }],
   },
   twitter: {
     title: '中古iPadのストレージ容量はどれがいい？用途別おすすめ容量まとめ',
     description: '中古iPadのストレージ容量の選び方を用途別に解説。歴代モデルの容量ラインナップも一覧で確認できます。',
-    images: ['/images/content/thumbnail/ipad-image-09.jpg'],
+    images: [getHeroImage('/ipad/storage-guide/')],
   },
 }
 
@@ -167,7 +168,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/ipad/storage-gu
             <div className="hero-visual">
               <figure className="hero-media">
                 <Image
-                  src="/images/content/thumbnail/ipad-image-09.jpg"
+                  src={getHeroImage('/ipad/storage-guide/')}
                   alt="中古iPadストレージ容量ガイドのイメージ"
                   className="hero-media__img"
                   width={360}
@@ -455,19 +456,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/ipad/storage-gu
           items={FAQ_ITEMS}
         />
 
-        <PopularSection
-          sectionTitle="目的別に人気の中古iPad"
-          sectionDescription="目的別におすすめの機種を厳選。容量だけでなくスペック全体を見て選びたい方はぜひご覧ください。"
-          imageSrc="/images/content/thumbnail/ipad-image-06.jpg"
-          imageAlt="中古iPadおすすめのイメージ画像"
-          subtitle="目的別におすすめ機種を厳選！"
-          cardTitle="中古iPadおすすめ機種"
-          cardDescription="イラスト制作向け、動画視聴向け、勉強・ノート用途向けなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。"
-          buttonText="おすすめ機種を見る"
-          buttonHref="/ipad/recommend"
-          secondaryButtonText="イオシスで中古iPadを探す"
-          secondaryButtonHref="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Ftablet%2Fios%2Fipad"
-        />
+        <IPadPopularSection />
 
         <IPadRelatedLinks excludeHref={["/ipad/storage-guide/", "/ipad/recommend/"]} />
         <ShareBox url="https://used-lab.jp/ipad/storage-guide/" text="中古iPadのストレージ容量はどれがいい？用途別おすすめ容量まとめ" />
