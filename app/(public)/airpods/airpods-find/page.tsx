@@ -212,13 +212,6 @@ export default function AirpodsFindPage() {
             </div>
           </section>
 
-          {/* h2: よくある質問 */}
-          <FaqSection
-            title="AirPodsの紛失に関するよくある質問"
-            description="AirPodsを紛失した際によくある疑問をまとめました。"
-            items={FAQ_ITEMS}
-          />
-
           {/* h2: まとめ */}
           <section className="l-section" id="summary" aria-labelledby="heading-summary">
             <div className="l-container">
@@ -226,26 +219,25 @@ export default function AirpodsFindPage() {
                 AirPodsのケースやイヤホン片方を無くした時の対処法 まとめ
               </h2>
               <p className="m-section-desc">
-                AirPodsの紛失時の探し方と代替品の購入先を紹介しました。
+                AirPodsのケースやイヤホン片方を無くした時の探し方や代替品の購入先をまとめました。
               </p>
-
-              <div className="lead-box">
-                <p>
-                  AirPodsを紛失してしまった場合、<strong>充電が切れる前に位置情報の当たりをつけたり、紛失モードに切り替える</strong>のが大事です。手元にAirPodsがないことに気がついたら、すぐに捜索を開始しましょう。
-                </p>
-                <p>
-                  残念ながらケースやイヤホンを発見できなかった場合は、Appleで欠けたパーツを取り寄せたり、中古品を購入することで再びAirPodsを使用できるようになります。
-                </p>
-                <p>
-                  特に<strong>eイヤホン</strong>は片耳やケース単体の取り扱いが豊富で、プロによる品質チェック済みのため安心して購入できます。
-                </p>
-                <p className="lead-link">
-                  <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                  中古AirPodsの購入を検討中の方は「<a href="/airpods">中古AirPods完全購入ガイド</a>」をご覧ください。
-                </p>
+              <div className="m-card m-card--shadow m-card--padded" style={{ maxWidth: 720, margin: 'var(--space-xl) auto 0' }}>
+                <h3 className="summary-card__title">AirPods紛失時の3つのポイント</h3>
+                <ol className="summary-card__list">
+                  <li><strong>まずは「探す」アプリで捜索</strong>：充電が切れる前に位置情報の当たりをつけたり、紛失モードに切り替えることが大事です。</li>
+                  <li><strong>すぐに行動を開始する</strong>：手元にAirPodsがないことに気がついたら、今回紹介した内容を実践してすぐに捜索を開始しましょう。</li>
+                  <li><strong>見つからない場合は代替品を購入</strong>：Appleで欠けたパーツを取り寄せたり、eイヤホンなどで中古品を購入することで再びAirPodsを使用できます。</li>
+                </ol>
               </div>
             </div>
           </section>
+
+          {/* h2: よくある質問 */}
+          <FaqSection
+            title="AirPodsの紛失に関するよくある質問"
+            description="AirPodsを紛失した際によくある疑問をまとめました。"
+            items={FAQ_ITEMS}
+          />
 
           <AirPodsRelatedLinks excludeHref="/airpods/airpods-find/" />
           <ShareBox url={PAGE_URL} text={PAGE_TITLE} />

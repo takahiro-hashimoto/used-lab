@@ -399,6 +399,7 @@
   vertical-align: middle;
   font-size: var(--font-size-sm);
   white-space: nowrap;
+  background: #fff;
   line-height: 1.4;
 }
 
@@ -7072,9 +7073,9 @@ ol.media-card__list {
 
 .media-card__img-grid img {
   width: 100%;
+  height: auto;
   border-radius: var(--radius-md);
-  object-fit: cover;
-  aspect-ratio: 16 / 10;
+  border: 1px solid var(--color-border-light);
 }
 
 .media-card__img-grid figcaption {
@@ -7162,7 +7163,7 @@ ol.media-card__list {
   }
 
   .media-card__img-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 

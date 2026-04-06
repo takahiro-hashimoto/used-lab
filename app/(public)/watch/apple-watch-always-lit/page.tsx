@@ -189,7 +189,7 @@ export default function AppleWatchAlwaysLitPage() {
                 </a>
               </li>
             </ol>
-</div>
+          </div>
           <AuthorByline />
           </div>
         </nav>

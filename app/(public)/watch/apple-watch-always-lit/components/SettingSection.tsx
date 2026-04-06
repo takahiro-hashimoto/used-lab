@@ -14,7 +14,7 @@ export default function SettingSection() {
 
           {/* Apple Watchから設定を変える */}
           <div className="m-card m-card--shadow m-card--padded">
-            <div className="media-card__body">
+            
               <h3 className="media-card__title">Apple Watchから設定を変える</h3>
               <p className="media-card__desc">
                 Apple Watch本体から設定する場合は、下記3ステップを行います。
@@ -30,12 +30,10 @@ export default function SettingSection() {
                   <li>「<strong>常にオン</strong>」の設定をOFFにする</li>
                 </ol>
               </div>
-            </div>
           </div>
 
           {/* iPhoneから設定を変える */}
           <div className="m-card m-card--shadow m-card--padded">
-            <div className="media-card__body">
               <h3 className="media-card__title">iPhoneから設定を変える</h3>
               <p className="media-card__desc">
                 iPhoneから設定する場合は、Apple Watchのアプリを開き、下記3ステップを行います。
@@ -51,7 +49,7 @@ export default function SettingSection() {
                   <li>「<strong>常にオン</strong>」をタップして設定をOFFにする</li>
                 </ol>
               </div>
-            </div>
+          
           </div>
 
         </div>

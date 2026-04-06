@@ -141,16 +141,23 @@ export default function DemeritSection() {
 
           {/* 3. 有機ELディスプレイの焼き付きリスク */}
           <div className="m-card m-card--shadow m-card--padded">
+            <div className="media-card__img-wrap">
+              <img
+                src="/images/content/photo/apple-watch-face.jpg"
+                alt="Apple Watchの文字盤（常時点灯時）"
+                className="media-card__img"
+                width={800}
+                height={450}
+                loading="lazy"
+              />
+            </div>
             <div className="media-card__body">
               <h3 className="media-card__title">有機ELディスプレイの焼き付きリスク</h3>
               <p className="media-card__desc">
-                Apple Watchは<strong>有機EL（OLED）ディスプレイ</strong>を採用しています。有機ELは同じ画像を長時間表示し続けると、画面に残像が残る「焼き付き」が発生する可能性があります。
+                Apple Watchの画面は<strong>有機EL（OLED）</strong>製です。同じ画像を長時間映し続けると、残像がうっすら残る「焼き付き」が起きることがあり、常時点灯ではそのリスクがやや高まります。
               </p>
               <p className="media-card__desc">
-                常時点灯モデルでは画面が常に表示されているため、理論上は焼き付きのリスクがゼロではありません。
-              </p>
-              <p className="media-card__desc">
-                ただしAppleは焼き付きを防ぐために、常時点灯時に<strong>輝度を下げる</strong>・<strong>秒針や一部の表示要素を非表示にする</strong>などの対策を行っています。実際に筆者が数年間常時点灯で使い続けた限りでは、目に見える焼き付きは発生していません。
+                ただしAppleは<strong>待機中の明るさを自動で下げる</strong>・<strong>秒針などを非表示にする</strong>といった対策を行っており、筆者も数年間常時点灯で使っていますが<strong>焼き付きは一度も発生していません。</strong>
               </p>
               <div className="m-card info-card">
                 <p className="info-card__heading">
