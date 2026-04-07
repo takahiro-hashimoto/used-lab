@@ -65,9 +65,14 @@ export default function StickyCta() {
         backdropFilter: 'blur(12px)',
         WebkitBackdropFilter: 'blur(12px)',
         borderTop: '1px solid var(--color-border-light)',
-        transform: visible ? 'translateY(0)' : 'translateY(100%)',
+        transform: visible
+          ? 'translate3d(0,0,0)'
+          : 'translate3d(0,100%,0)',
         opacity: visible ? 1 : 0,
         transition: 'transform 0.3s ease, opacity 0.3s ease',
+        willChange: 'transform',
+        backfaceVisibility: 'hidden',
+        WebkitBackfaceVisibility: 'hidden',
       }}
     >
       <a
