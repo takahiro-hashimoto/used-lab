@@ -400,6 +400,11 @@ ul {
   letter-spacing: -0.02em;
 }
 
+.m-logo img {
+  width: 170px;
+  height: auto;
+}
+
 /* Navigation */
 .global-nav {
   flex: 1;
@@ -1226,6 +1231,10 @@ a.header-admin-link:hover {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
+  }
+
+  .m-logo img {
+    width: 140px;
   }
 
   .header-actions {
