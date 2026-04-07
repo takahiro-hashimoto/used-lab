@@ -12,7 +12,10 @@
     "fetch-prices:iphone": "tsx scripts/fetch-prices.ts iphone",
     "fetch-prices:ipad": "tsx scripts/fetch-prices.ts ipad",
     "fetch-prices:watch": "tsx scripts/fetch-prices.ts watch",
-    "fetch-prices:airpods": "tsx scripts/fetch-prices.ts airpods"
+    "fetch-prices:airpods": "tsx scripts/fetch-prices.ts airpods",
+    "check-links": "tsx scripts/check-links.ts",
+    "check-links:local": "tsx scripts/check-links.ts --local",
+    "check-links:internal": "tsx scripts/check-links.ts --internal-only"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.5.1",
@@ -41,6 +44,7 @@
     "dotenv": "^17.3.1",
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
+    "linkinator": "^7.6.1",
     "tsx": "^4.21.0",
     "typescript": "^5"
   }
