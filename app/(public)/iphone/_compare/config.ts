@@ -92,6 +92,13 @@ export const COMPARE_PAGES: ComparePageConfig[] = [
   },
   // 特殊比較
   {
+    slug: '16e-17e-compare',
+    leftSlug: '16e',
+    rightSlug: '17e',
+    title: 'iPhone 16eと17eどっちがいい？違いと選び方をやさしく解説',
+    description: 'iPhone 16eと17eの違いをチップ・モデム・カメラ・ストレージ・充電・操作性の6項目で比較。',
+  },
+  {
     slug: 'iphone16e-se3-compare',
     leftSlug: '16e',
     rightSlug: 'se3',

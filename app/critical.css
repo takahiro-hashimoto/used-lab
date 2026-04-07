@@ -1226,11 +1226,6 @@ a.header-admin-link:hover {
     position: static;
   }
 
-  .mobile-menu,
-  .mobile-menu-backdrop {
-    top: 0;
-  }
-
   .header-inner {
     justify-content: center;
     align-items: center;

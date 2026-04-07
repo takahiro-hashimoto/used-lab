@@ -43,6 +43,7 @@ export const GUIDE_COMPARE_LINKS = [
   { href: '/iphone/iphone14pro-15pro-compare/', title: 'iPhone 14 Pro vs 15 Pro', desc: 'Pro同士の世代間比較' },
   { href: '/iphone/iphone13pro-14pro-compare/', title: 'iPhone 13 Pro vs 14 Pro', desc: 'Pro同士の世代間比較' },
   // 特殊
+  { href: '/iphone/16e-17e-compare/', title: 'iPhone 16e vs 17e', desc: 'eシリーズ世代間比較' },
   { href: '/iphone/iphone16e-se3-compare/', title: 'iPhone 16e vs SE(第3世代)', desc: 'エントリーモデル対決' },
   { href: '/iphone/iphone16plus-air-compare/', title: 'iPhone 16 Plus vs Air', desc: '大画面＆軽量モデル対決' },
 ] as const
