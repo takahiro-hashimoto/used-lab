@@ -256,7 +256,7 @@ export default async function WatchGuidePage() {
               <p className="m-section-desc">トラブルを避けるためにも一度確認しておきましょう。</p>
 
               <div className="glossary-box glossary-box--numbered m-card m-card--shadow">
-                <ol className="glossary-list">
+                <dl className="glossary-list">
                   <div className="glossary-item">
                     <dt className="glossary-item-title">watchOSのサポート期間（端末の寿命）</dt>
                     <dd className="glossary-item-desc">
@@ -301,7 +301,7 @@ export default async function WatchGuidePage() {
                       ケースやディスプレイの傷は価格に影響します。Apple Watchは日常的に腕に着けるため、傷がつきやすい製品です。自分が許容できる状態をあらかじめ決めておくと選びやすくなります。
                     </dd>
                   </div>
-                </ol>
+                </dl>
               </div>
 
               <p className="guide-section-note">さらに詳しい確認方法やフリマサイトでの注意点などは以下の記事にまとめています。</p>

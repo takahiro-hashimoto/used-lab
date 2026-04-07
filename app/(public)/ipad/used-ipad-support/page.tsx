@@ -14,7 +14,7 @@ import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helper
 import HeroMeta from '@/app/components/HeroMeta'
 import { getHeroImage } from '@/lib/data/hero-images'
 
-export const revalidate = 3600
+export const revalidate = 86400
 
 const PAGE_TITLE = 'iPadはいつまで使える？機種別のサポート期間目安まとめ。買い替えるべき3つのタイミングも解説。'
 const PAGE_DESCRIPTION =

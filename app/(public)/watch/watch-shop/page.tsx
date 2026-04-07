@@ -226,6 +226,11 @@ export default async function WatchShopPage() {
                   購入前のチェックリスト <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
                 </a>
               </li>
+              <li>
+                <a href="#faq" className="toc-item">
+                  よくある質問 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                </a>
+              </li>
             </ol>
 </div>
           <AuthorByline />

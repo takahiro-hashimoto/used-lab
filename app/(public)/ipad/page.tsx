@@ -254,7 +254,7 @@ export default async function IPadGuidePage() {
               <p className="m-section-desc">特に初めて中古タブレットを買う方は、トラブルを避けるためにも一度確認しておくことをおすすめします。</p>
 
               <div className="glossary-box glossary-box--numbered m-card m-card--shadow">
-                <ol className="glossary-list">
+                <dl className="glossary-list">
                   <div className="glossary-item">
                     <dt className="glossary-item-title">iPadOSのサポート期間（端末の寿命）</dt>
                     <dd className="glossary-item-desc">
@@ -313,7 +313,7 @@ export default async function IPadGuidePage() {
                       中古品はメーカー保証が切れていることが多いため、販売店独自の保証内容が安心材料になります。
                     </dd>
                   </div>
-                </ol>
+                </dl>
               </div>
 
               <p className="guide-section-note">さらに詳しい確認方法や、フリマサイトでの注意点などは以下の記事にまとめています。</p>

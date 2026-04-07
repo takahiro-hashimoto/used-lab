@@ -67,13 +67,19 @@ export default function LifestyleSection() {
         <p className="media-card__desc">
           さらに、アプリ版には紙の新聞にはない便利な機能が備わっており、情報収集の効率が劇的に向上します。
         </p>
-        <dl className="m-card vs-card u-mt-sm">
-          <dt>速報プッシュ通知</dt>
-          <dd>重要ニュースをリアルタイムで受信。翌朝の朝刊を待つことなく、常に最新情報をいち早くキャッチできます。</dd>
-          <dt>キーワード登録機能</dt>
-          <dd>興味のある業界や企業を登録すれば、関連記事を自動で抽出。膨大な紙面から探す手間を省きます。</dd>
-          <dt>紙面ビューアー機能</dt>
-          <dd>実際の紙面と同じレイアウトで閲覧が可能。iPadの画面を活かして全体を俯瞰できます。</dd>
+        <dl className="glossary-box m-card u-mt-sm">
+          <div className="glossary-item">
+            <dt className="glossary-item-title">速報プッシュ通知</dt>
+            <dd className="glossary-item-desc">重要ニュースをリアルタイムで受信。翌朝の朝刊を待つことなく、常に最新情報をいち早くキャッチできます。</dd>
+          </div>
+          <div className="glossary-item">
+            <dt className="glossary-item-title">キーワード登録機能</dt>
+            <dd className="glossary-item-desc">興味のある業界や企業を登録すれば、関連記事を自動で抽出。膨大な紙面から探す手間を省きます。</dd>
+          </div>
+          <div className="glossary-item">
+            <dt className="glossary-item-title">紙面ビューアー機能</dt>
+            <dd className="glossary-item-desc">実際の紙面と同じレイアウトで閲覧が可能。iPadの画面を活かして全体を俯瞰できます。</dd>
+          </div>
         </dl>
         <p className="media-card__desc u-mt-md">
           もし、現在紙の新聞を購読されているなら、この機会にiPadでの「スマートな購読スタイル」に切り替えてみてはいかがでしょうか。
@@ -90,11 +96,15 @@ export default function LifestyleSection() {
         <p className="media-card__desc">
           スマホでは見づらい1ヶ月の予定も、iPadなら一画面でスッキリと俯瞰できます。情報量の多さを活かしたスケジュール管理は、iPadならではの強みです。
         </p>
-        <dl className="m-card vs-card u-mt-sm">
-          <dt>FirstSeedCalendar</dt>
-          <dd>日本企業が開発した、シンプルかつ高機能な定番アプリ。カスタマイズ性が高く、自分好みの見やすいカレンダーを作れます。</dd>
-          <dt>Planner for iPad</dt>
-          <dd>Apple Pencilでの手書きに特化したアプリ。付箋やスタンプでデコレーションもできるため、本物のシステム手帳のような感覚で楽しめます。</dd>
+        <dl className="glossary-box m-card u-mt-sm">
+          <div className="glossary-item">
+            <dt className="glossary-item-title">FirstSeedCalendar</dt>
+            <dd className="glossary-item-desc">日本企業が開発した、シンプルかつ高機能な定番アプリ。カスタマイズ性が高く、自分好みの見やすいカレンダーを作れます。</dd>
+          </div>
+          <div className="glossary-item">
+            <dt className="glossary-item-title">Planner for iPad</dt>
+            <dd className="glossary-item-desc">Apple Pencilでの手書きに特化したアプリ。付箋やスタンプでデコレーションもできるため、本物のシステム手帳のような感覚で楽しめます。</dd>
+          </div>
         </dl>
         <p className="media-card__desc u-mt-md">
           「予定を確認する」だけでなく、iPadなら「予定を書き込む楽しさ」まで味わえるようになります。

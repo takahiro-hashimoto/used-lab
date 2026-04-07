@@ -1,6 +1,10 @@
 import PopularSection from '@/app/components/support/PopularSection'
+import { getShops } from '@/lib/queries'
 
-export default function WatchPopularSection() {
+export default async function WatchPopularSection() {
+  const shops = await getShops()
+  const iosys = shops.find(s => s.id === 1)
+
   return (
     <PopularSection
       sectionTitle="目的別に人気の中古Apple Watch"
@@ -13,7 +17,7 @@ export default function WatchPopularSection() {
       buttonText="おすすめ3機種を見る"
       buttonHref="/watch/recommend/"
       secondaryButtonText="イオシスで中古Apple Watchを探す"
-      secondaryButtonHref="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Fwearable%2Fapple%3Fnot%3Dpencil"
+      secondaryButtonHref={iosys?.watch_url ?? '#'}
     />
   )
 }

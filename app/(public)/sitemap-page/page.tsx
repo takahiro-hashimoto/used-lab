@@ -29,7 +29,7 @@ import { SHOP_PAGE_DATE_LABEL as MACBOOK_SHOP_DATE } from '@/lib/data/macbook-sh
 import { SHOP_PAGE_DATE_LABEL as WATCH_SHOP_DATE } from '@/lib/data/watch-shop'
 import HeroMeta from '@/app/components/HeroMeta'
 
-export const revalidate = 3600
+export const revalidate = 86400
 
 const PAGE_TITLE = 'サイトマップ'
 const PAGE_DESCRIPTION = 'ユーズドラボの全ページ一覧。中古iPhone・iPad・MacBook・Apple Watch・AirPodsの製品別ページをまとめて確認できます。'

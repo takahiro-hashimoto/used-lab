@@ -25,7 +25,7 @@ export const GUIDE_SPEC_LINKS = [
   { href: '/ipad/accessories-summary/', icon: 'fa-keyboard', title: 'Magic Keyboard 型番・対応一覧', desc: '歴代iPadに対応するMagic Keyboard・Smart Keyboardの型番と対応機種を一覧で紹介。' },
   { href: '/ipad/wifi-cellular/', icon: 'fa-wifi', title: 'Wi-Fi vs Cellularモデル比較', desc: 'Wi-FiモデルとCellularモデルの違い、選び方のポイントを解説。' },
   { href: '/macbook/ipad-macbook-compare/', icon: 'fa-laptop', title: 'iPad vs MacBook 徹底比較', desc: 'iPadとMacBookの違いを用途別に比較。どちらを選ぶべきか迷っている方必見。' },
-  { href: '/ipad/storage-guide/', icon: 'fa-hard-drive', title: 'ストレージ容量ガイド', desc: '用途別のおすすめ容量と歴代モデルの容量ラインナップをまとめています。' },
+  { href: '/ipad/storage-guide/', icon: 'fa-hard-drive', title: 'iPadストレージ容量ガイド', desc: '用途別のおすすめ容量と歴代モデルの容量ラインナップをまとめています。' },
   { href: '/ipad/benchmark/', icon: 'fa-ranking-star', title: '歴代iPadベンチマーク比較', desc: 'Geekbench 6・AnTuTuスコアで歴代iPadの性能をランキング形式で比較。' },
 ] as const
 
@@ -69,7 +69,7 @@ export const GUIDE_FAQ_ITEMS = [
   },
   {
     question: 'iPadのストレージ容量はどれを選ぶべき？',
-    answer: 'Web閲覧・動画視聴・ノートアプリがメインなら64GBでも運用可能です。写真やイラスト、アプリを多く入れるなら128GB以上、動画編集やゲームを本格的に楽しむなら256GB以上がおすすめです。iPadはストレージの後から増設ができないため、迷ったら1段階上の容量を選んでおくと後悔しにくくなります。詳しくは「[ストレージ容量ガイド](/ipad/storage-guide/)」をご覧ください。',
+    answer: 'Web閲覧・動画視聴・ノートアプリがメインなら64GBでも運用可能です。写真やイラスト、アプリを多く入れるなら128GB以上、動画編集やゲームを本格的に楽しむなら256GB以上がおすすめです。iPadはストレージの後から増設ができないため、迷ったら1段階上の容量を選んでおくと後悔しにくくなります。詳しくは「[iPadストレージ容量ガイド](/ipad/storage-guide/)」をご覧ください。',
   },
   {
     question: 'メルカリやヤフオクで中古iPadを買っても大丈夫？',

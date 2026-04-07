@@ -17,13 +17,19 @@ export default function HealthSection() {
         <p className="media-card__desc">
           これは、以下の3つの活動目標を自動的に記録し、達成度をリングで視覚化します。リングの進捗をチェックすることで、運動時間が少なかったら一駅歩いて帰宅、消費カロリーが少なかったら食事量をセーブといった調整がしやすくなります。
         </p>
-        <dl className="m-card vs-card u-mt-sm">
-          <dt>ムーブ（赤）消費カロリー</dt>
-          <dd>アクティブな活動による消費カロリー</dd>
-          <dt>エクササイズ（緑）運動時間</dt>
-          <dd>早歩き以上の運動をした時間</dd>
-          <dt>スタンド（青）立ち時間</dt>
-          <dd>1時間ごとに立ち上がった回数</dd>
+        <dl className="glossary-box m-card u-mt-sm">
+          <div className="glossary-item">
+            <dt className="glossary-item-title">ムーブ（赤）消費カロリー</dt>
+            <dd className="glossary-item-desc">アクティブな活動による消費カロリー</dd>
+          </div>
+          <div className="glossary-item">
+            <dt className="glossary-item-title">エクササイズ（緑）運動時間</dt>
+            <dd className="glossary-item-desc">早歩き以上の運動をした時間</dd>
+          </div>
+          <div className="glossary-item">
+            <dt className="glossary-item-title">スタンド（青）立ち時間</dt>
+            <dd className="glossary-item-desc">1時間ごとに立ち上がった回数</dd>
+          </div>
         </dl>
       </MediaCard>
 

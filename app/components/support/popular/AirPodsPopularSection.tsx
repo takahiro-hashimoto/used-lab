@@ -1,6 +1,10 @@
 import PopularSection from '@/app/components/support/PopularSection'
+import { getShops } from '@/lib/queries'
 
-export default function AirPodsPopularSection() {
+export default async function AirPodsPopularSection() {
+  const shops = await getShops()
+  const iosys = shops.find(s => s.id === 1)
+
   return (
     <PopularSection
       sectionTitle="目的別に人気の中古AirPods"
@@ -13,7 +17,7 @@ export default function AirPodsPopularSection() {
       buttonText="おすすめモデルを見る"
       buttonHref="/airpods/recommend/"
       secondaryButtonText="イオシスで中古AirPodsを探す"
-      secondaryButtonHref="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3QSY+ZFU+BW8O2&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Faudio%2Fairpods"
+      secondaryButtonHref={iosys?.airpods_url ?? '#'}
     />
   )
 }

@@ -69,7 +69,7 @@ export default function NaviAppSection() {
         </div>
 
         <div className="glossary-box m-card m-card--shadow u-mt-xl">
-          <ol className="glossary-list">
+          <dl className="glossary-list">
             <div className="glossary-item">
               <dt className="glossary-item-title">
                 <a href="https://apps.apple.com/jp/app/google-maps/id585027354" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-primary)' }}>Googleマップ</a>
@@ -94,7 +94,7 @@ export default function NaviAppSection() {
                 月額600円（税込）の有料アプリですが、<strong>オフライン地図・詳細な音声案内・速度制限表示</strong>など車載カーナビに匹敵する機能を備えています。ルート検索の精度が高く、高速道路の料金表示やガソリンスタンド検索など、ドライブに便利な機能が充実。本格的にiPadをカーナビ化したい方におすすめです。
               </dd>
             </div>
-          </ol>
+          </dl>
         </div>
       </div>
     </section>

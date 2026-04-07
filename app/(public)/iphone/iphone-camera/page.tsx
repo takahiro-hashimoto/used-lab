@@ -13,7 +13,7 @@ import HeroMeta from '@/app/components/HeroMeta'
 import IPhonePopularSection from '@/app/components/support/popular/IPhonePopularSection'
 import { getHeroImage } from '@/lib/data/hero-images'
 
-export const revalidate = 3600
+export const revalidate = 86400
 
 const PAGE_TITLE = 'iPhoneのカメラ性能の違いは何？歴代モデルの機能を比較'
 const PAGE_DESCRIPTION =

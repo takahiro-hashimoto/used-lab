@@ -22,8 +22,8 @@ export const GUIDE_SPEC_LINKS = [
   { href: '/iphone/iphone-spec-table/', icon: 'fa-table-cells', title: '歴代iPhoneスペック比較表', desc: 'CPU、ディスプレイ、重量、端子など、歴代iPhoneの全スペックを網羅した一覧表。' },
   { href: '/iphone/used-iphone-support/', icon: 'fa-shield-halved', title: 'iOSサポート期間一覧表', desc: '各モデルのサポート終了予測を解説。「いつまで使えるか」の目安がわかります。' },
   { href: '/iphone/iphone-camera/', icon: 'fa-camera', title: 'iPhoneカメラ性能比較表', desc: '歴代iPhoneのカメラ性能の違いや搭載されている撮影モードをを徹底解説。' },
-  { href: '/iphone/battery-compare/', icon: 'fa-battery-full', title: 'バッテリー性能比較ランキング', desc: '動画再生時間、音楽再生時間、バッテリー容量(mAh)を一覧表で比較できます。' },
-  { href: '/iphone/storage-guide/', icon: 'fa-hard-drive', title: 'ストレージ容量ガイド', desc: '用途別のおすすめ容量と歴代モデルの容量ラインナップをまとめています。' },
+  { href: '/iphone/battery-compare/', icon: 'fa-battery-full', title: 'iPhoneバッテリー性能比較ランキング', desc: '動画再生時間、音楽再生時間、バッテリー容量(mAh)を一覧表で比較できます。' },
+  { href: '/iphone/storage-guide/', icon: 'fa-hard-drive', title: 'iPhoneストレージ容量ガイド', desc: '用途別のおすすめ容量と歴代モデルの容量ラインナップをまとめています。' },
   { href: '/iphone/benchmark/', icon: 'fa-ranking-star', title: '歴代iPhoneベンチマーク比較', desc: 'Geekbench 6・AnTuTuスコアで歴代iPhoneの性能をランキング形式で比較。' },
 ] as const
 

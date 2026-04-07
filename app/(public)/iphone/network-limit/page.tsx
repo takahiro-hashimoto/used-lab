@@ -10,6 +10,7 @@ import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helper
 import HeroMeta from '@/app/components/HeroMeta'
 import IPhonePopularSection from '@/app/components/support/popular/IPhonePopularSection'
 import { getHeroImage } from '@/lib/data/hero-images'
+import { getShops } from '@/lib/queries'
 
 const PAGE_TITLE = '意外と良い選択肢？ネットワーク制限△の中古iPhone・iPadを買うメリット・デメリットを解説'
 const PAGE_DESCRIPTION =
@@ -60,7 +61,12 @@ export const metadata: Metadata = {
   },
 }
 
-export default function NetworkLimitPage() {
+export default async function NetworkLimitPage() {
+  const shops = await getShops()
+  const shopUrlMap: Record<number, string> = {}
+  for (const s of shops) {
+    if (s.url) shopUrlMap[s.id] = s.url
+  }
   const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/network-limit/page.tsx')
 
   const breadcrumbJsonLd = {
@@ -228,9 +234,9 @@ export default function NetworkLimitPage() {
               <div className="recommend-card__fit u-mt-xl">
                 <div className="l-grid l-grid--2col l-grid--gap-lg">
                   <div className="recommend-card__fit-box recommend-card__fit-box--good">
-                    <h4>
+                    <p>
                       <i className="fa-solid fa-circle-check" aria-hidden="true"></i> こんな人におすすめ
-                    </h4>
+                    </p>
                     <ul>
                       <li><i className="fa-solid fa-check" aria-hidden="true"></i> とにかく安く中古端末を手に入れたい（同スペック比で5,000〜10,000円安い）</li>
                       <li><i className="fa-solid fa-check" aria-hidden="true"></i> 赤ロム永久保証のECサイトで購入できる</li>
@@ -239,9 +245,9 @@ export default function NetworkLimitPage() {
                     </ul>
                   </div>
                   <div className="recommend-card__fit-box recommend-card__fit-box--bad">
-                    <h4>
+                    <p>
                       <i className="fa-solid fa-circle-xmark" aria-hidden="true"></i> こんな人には向かない
-                    </h4>
+                    </p>
                     <ul>
                       <li><i className="fa-solid fa-xmark" aria-hidden="true"></i> 赤ロム化のリスクを一切取りたくない</li>
                       <li><i className="fa-solid fa-xmark" aria-hidden="true"></i> 万が一の交換手続きが面倒に感じる</li>
@@ -301,7 +307,7 @@ export default function NetworkLimitPage() {
                     <div className="m-spec-row"><dt>実物写真</dt><dd><RatingMark mark="×" size="sm" /></dd></div>
                     <div className="m-spec-row"><dt>配送料</dt><dd>640円</dd></div>
                   </dl>
-                  <a href="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Fsmartphone%2Fiphone" className="m-btn m-btn--primary m-btn--block" rel="nofollow noopener noreferrer" target="_blank">中古iPhoneを探す <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+                  <a href={shopUrlMap[1] ?? '#'} className="m-btn m-btn--primary m-btn--block" rel="nofollow noopener noreferrer" target="_blank">中古iPhoneを探す <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
                 </article>
 
                 <article className="m-card m-card--shadow m-vendor-card">
@@ -317,7 +323,7 @@ export default function NetworkLimitPage() {
                     <div className="m-spec-row"><dt>実物写真</dt><dd><RatingMark mark="◯" size="sm" /></dd></div>
                     <div className="m-spec-row"><dt>配送料</dt><dd><span className="m-spec-row__free">無料</span></dd></div>
                   </dl>
-                  <a href="https://px.a8.net/svt/ejp?a8mat=3NCKMH+63P0JM+4O7U+BW0YB&a8ejpredirect=https%3A%2F%2Fwww.nicosuma.com%2Fiphone" className="m-btn m-btn--primary m-btn--block" rel="nofollow noopener noreferrer" target="_blank">中古iPhoneを探す <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+                  <a href={shopUrlMap[2] ?? '#'} className="m-btn m-btn--primary m-btn--block" rel="nofollow noopener noreferrer" target="_blank">中古iPhoneを探す <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
                 </article>
 
                 <article className="m-card m-card--shadow m-vendor-card">
@@ -333,7 +339,7 @@ export default function NetworkLimitPage() {
                     <div className="m-spec-row"><dt>実物写真</dt><dd><RatingMark mark="◯" size="sm" /></dd></div>
                     <div className="m-spec-row"><dt>配送料</dt><dd>550円</dd></div>
                   </dl>
-                  <a href="https://px.a8.net/svt/ejp?a8mat=3TB2U4+C4ESQQ+4J34+BW0YB&a8ejpredirect=https%3A%2F%2Fec.geo-online.co.jp%2Fshop%2Fc%2Fc1001%2F" className="m-btn m-btn--primary m-btn--block" rel="nofollow noopener noreferrer" target="_blank">中古iPhoneを探す <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+                  <a href={shopUrlMap[3] ?? '#'} className="m-btn m-btn--primary m-btn--block" rel="nofollow noopener noreferrer" target="_blank">中古iPhoneを探す <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
                 </article>
 
                 <article className="m-card m-card--shadow m-vendor-card">
@@ -349,7 +355,7 @@ export default function NetworkLimitPage() {
                     <div className="m-spec-row"><dt>実物写真</dt><dd><RatingMark mark="◯" size="sm" /></dd></div>
                     <div className="m-spec-row"><dt>配送料</dt><dd>550円</dd></div>
                   </dl>
-                  <a href="https://click.linksynergy.com/deeplink?id=N*L98MVOv3Q&mid=43860&murl=https%3A%2F%2Fused.sofmap.com%2Fr%2Fcategory%2Fiphone%2Fiphone_linklist" className="m-btn m-btn--primary m-btn--block" rel="nofollow noopener noreferrer" target="_blank">中古iPhoneを探す <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+                  <a href={shopUrlMap[4] ?? '#'} className="m-btn m-btn--primary m-btn--block" rel="nofollow noopener noreferrer" target="_blank">中古iPhoneを探す <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
                 </article>
 
                 <article className="m-card m-card--shadow m-vendor-card">
@@ -365,7 +371,7 @@ export default function NetworkLimitPage() {
                     <div className="m-spec-row"><dt>実物写真</dt><dd><RatingMark mark="◯" size="sm" /></dd></div>
                     <div className="m-spec-row"><dt>配送料</dt><dd>770円</dd></div>
                   </dl>
-                  <a href="https://www.janpara.co.jp/" className="m-btn m-btn--primary m-btn--block" rel="nofollow noopener noreferrer" target="_blank">中古iPhoneを探す <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+                  <a href={shopUrlMap[6] ?? '#'} className="m-btn m-btn--primary m-btn--block" rel="nofollow noopener noreferrer" target="_blank">中古iPhoneを探す <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
                 </article>
 
                 <article className="m-card m-card--shadow m-vendor-card">
@@ -380,7 +386,7 @@ export default function NetworkLimitPage() {
                     <div className="m-spec-row"><dt>実物写真</dt><dd><RatingMark mark="×" size="sm" /></dd></div>
                     <div className="m-spec-row"><dt>配送料</dt><dd><span className="m-spec-row__free">無料</span></dd></div>
                   </dl>
-                  <a href="https://amzn.to/4ePUzhA" className="m-btn m-btn--primary m-btn--block" rel="nofollow noopener noreferrer" target="_blank">中古iPhoneを探す <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+                  <a href={shopUrlMap[7] ?? '#'} className="m-btn m-btn--primary m-btn--block" rel="nofollow noopener noreferrer" target="_blank">中古iPhoneを探す <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
                 </article>
               </div>
 

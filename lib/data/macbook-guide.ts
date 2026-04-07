@@ -23,7 +23,7 @@ export const GUIDE_SPEC_LINKS = [
   { href: '/macbook/used-macbook-support/', icon: 'fa-shield-halved', title: 'macOSサポート期間一覧表', desc: '各モデルのサポート終了予測を解説。「いつまで使えるか」の目安がわかります。' },
   { href: '/macbook/used-macbook-attention/', icon: 'fa-triangle-exclamation', title: '中古MacBookの注意点と選び方', desc: '購入前に確認すべきポイントや失敗しないためのチェックリストをまとめています。' },
   { href: '/macbook/macbook-shop/', icon: 'fa-store', title: '中古MacBookを買えるおすすめECサイト', desc: '各ショップの保証内容・価格帯・特徴を比較。安心して購入できるお店を紹介。' },
-  { href: '/macbook/storage-guide/', icon: 'fa-hard-drive', title: 'ストレージ容量ガイド', desc: '用途別のおすすめ容量と歴代モデルの容量ラインナップをまとめています。' },
+  { href: '/macbook/storage-guide/', icon: 'fa-hard-drive', title: 'MacBookストレージ容量ガイド', desc: '用途別のおすすめ容量と歴代モデルの容量ラインナップをまとめています。' },
 { href: '/macbook/benchmark/', icon: 'fa-ranking-star', title: '歴代MacBookベンチマーク比較', desc: 'Geekbench 6スコアで歴代MacBookの性能をランキング形式で比較。チップ世代別の進化や用途別おすすめも。' },
 ] as const
 
@@ -59,7 +59,7 @@ export const GUIDE_FAQ_ITEMS = [
   },
   {
     question: 'ストレージ容量はどれくらい必要ですか？',
-    answer: 'Web閲覧・事務作業メインなら256GBで十分です。写真や動画を扱うなら512GB以上がおすすめです。MacBookはストレージの後から増設ができないため、用途に合った容量を最初に選ぶことが重要です。詳しくは「[ストレージ容量ガイド](/macbook/storage-guide/)」をご覧ください。',
+    answer: 'Web閲覧・事務作業メインなら256GBで十分です。写真や動画を扱うなら512GB以上がおすすめです。MacBookはストレージの後から増設ができないため、用途に合った容量を最初に選ぶことが重要です。詳しくは「[MacBookストレージ容量ガイド](/macbook/storage-guide/)」をご覧ください。',
   },
 ]
 

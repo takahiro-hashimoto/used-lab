@@ -1,6 +1,6 @@
 type SummaryChecklistItem = {
   label: string
-  text: string
+  text: React.ReactNode
 }
 
 type Props = {

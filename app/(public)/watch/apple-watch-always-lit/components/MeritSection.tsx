@@ -63,17 +63,15 @@ export default function MeritSection() {
               <p className="media-card__desc">
                 常時点灯モデルであれば常に文字盤が表示されるため、腕元のアクセントとして機能します。ファッション性も重視したい方には<strong>常時点灯ディスプレイのApple Watch</strong>がおすすめです。
               </p>
-              <dl className="m-card vs-card u-mt-sm">
-                <dt>
-                  <i className="fa-solid fa-circle-check" aria-hidden="true" style={{ color: 'var(--color-primary)' }}></i>
-                  常時点灯あり
-                </dt>
-                <dd>常に画面が表示されるのでファッションの一部として機能する</dd>
-                <dt>
-                  <i className="fa-solid fa-circle-xmark" aria-hidden="true" style={{ color: 'var(--color-text-tertiary)' }}></i>
-                  常時点灯なし
-                </dt>
-                <dd>基本画面が真っ暗なのでファッション性はイマイチ</dd>
+              <dl className="glossary-box m-card u-mt-sm">
+                <div className="glossary-item">
+                  <dt className="glossary-item-title">常時点灯あり</dt>
+                  <dd className="glossary-item-desc">常に画面が表示されるのでファッションの一部として機能する</dd>
+                </div>
+                <div className="glossary-item">
+                  <dt className="glossary-item-title">常時点灯なし</dt>
+                  <dd className="glossary-item-desc">基本画面が真っ暗なのでファッション性はイマイチ</dd>
+                </div>
               </dl>
             </div>
           </div>
@@ -98,17 +96,15 @@ export default function MeritSection() {
               <p className="media-card__desc">
                 そのため、手を持ち上げたときには輝度が低い状態から高い状態へふわっと切り替わります。この切り替えのエフェクトが非常に心地よく、日常のちょっとした満足感につながります。
               </p>
-              <dl className="m-card vs-card u-mt-sm">
-                <dt>
-                  <i className="fa-solid fa-circle-check" aria-hidden="true" style={{ color: 'var(--color-primary)' }}></i>
-                  常時点灯あり
-                </dt>
-                <dd>ふわっと明るく画面が切り替わる</dd>
-                <dt>
-                  <i className="fa-solid fa-circle-xmark" aria-hidden="true" style={{ color: 'var(--color-text-tertiary)' }}></i>
-                  常時点灯なし
-                </dt>
-                <dd>真っ暗な画面から一気に画面が明るくなる</dd>
+              <dl className="glossary-box m-card u-mt-sm">
+                <div className="glossary-item">
+                  <dt className="glossary-item-title">常時点灯あり</dt>
+                  <dd className="glossary-item-desc">ふわっと明るく画面が切り替わる</dd>
+                </div>
+                <div className="glossary-item">
+                  <dt className="glossary-item-title">常時点灯なし</dt>
+                  <dd className="glossary-item-desc">真っ暗な画面から一気に画面が明るくなる</dd>
+                </div>
               </dl>
             </div>
           </div>

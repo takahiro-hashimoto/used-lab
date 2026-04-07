@@ -14,7 +14,7 @@ export default function PreCheckSection() {
         <MediaCard
           src="/images/content/photo/used-iphone-network-restriction.jpg"
           alt="IMEI確認のイメージ"
-          title="ネットワーク制限が「△」なら避ける"
+          title="ネットワーク制限の状態を必ず確認する"
           width={800}
           height={450}
           aside
@@ -35,7 +35,7 @@ export default function PreCheckSection() {
                 </li>
                 <li className="caution-steps__item">
                   <span className="caution-steps__num">3</span>
-                  <span>判定が「○」であることを確認（「△」「×」は避ける）</span>
+                  <span>判定が「○」または「△」であることを確認（「×」は避ける）</span>
                 </li>
               </ol>
 
@@ -73,7 +73,8 @@ export default function PreCheckSection() {
               端末そのものが使えなくなるリスクがあるため、最優先で確認してください。
             </p>
             <p>
-              「△」は「今使える」ではなく「将来止まる可能性がある状態」です。購入後に「×」になっても自己責任になるケースが多く、「△」は安いですが、それは「リスクを買っている」ということを理解しましょう。
+              「△」は「将来×になる可能性がある状態」ですが、<strong>赤ロム永久保証付きの中古ショップで購入すれば、万が一×になっても交換・返金対応を受けられます。</strong>相場より安く購入できるため、コストを抑えたい方には有力な選択肢です。
+              詳しくは<a href="/iphone/network-limit/">ネットワーク制限△のメリット・デメリット解説</a>をご覧ください。
             </p>
           </div>
         </MediaCard>

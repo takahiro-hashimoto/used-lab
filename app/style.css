@@ -7432,32 +7432,6 @@ ol.info-card__list {
   }
 }
 
-/* ── vs-card ── */
-/* Comparison card using dl/dt/dd with CSS dashed separators */
-
-.vs-card {
-  padding: var(--space-lg);
-}
-
-.vs-card dt {
-  font-weight: 700;
-}
-
-.vs-card dt i {
-  margin-right: var(--space-xs);
-}
-
-.vs-card dd {
-  margin: 0;
-  margin-top: var(--space-xs);
-}
-
-.vs-card dt + dd + dt {
-  margin-top: var(--space-md);
-  padding-top: var(--space-md);
-  border-top: 1px dashed var(--color-border-light);
-}
-
 /* --- SP: guide-recommend を price-card に統一 --- */
 @media (max-width: 768px) {
   .sp-hidden {

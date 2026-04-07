@@ -16,7 +16,7 @@ import { getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
 import { getHeroImage } from '@/lib/data/hero-images'
 
-export const revalidate = 3600
+export const revalidate = 86400
 
 export const metadata: Metadata = {
   title: 'iPad機種診断シミュレーター｜選び方がわからなくてもどれを買うべきかわかる【2026年版】',

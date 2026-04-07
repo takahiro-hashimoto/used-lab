@@ -163,13 +163,19 @@ export default function BasicSection() {
         <p className="media-card__desc u-mt-sm">
           これらのモードは、コントロールセンターから簡単に切り替えが可能です。暗闇での安全確保から、夜間の作業まで、様々なシーンで役立ちます。
         </p>
-        <dl className="m-card vs-card u-mt-sm">
-          <dt>白く点灯</dt>
-          <dd>暗闘の道や手元作業、停電時の補助照明に。一般的な懐中電灯として使えます。</dd>
-          <dt>白く点滅</dt>
-          <dd>夜間のランニングやウォーキング時に、周囲に存在を知らせるセーフティーライトとして活用。</dd>
-          <dt>赤く点灯</dt>
-          <dd>視界を妨げずに手元を確認したい時に。天体観測や家族を起こしたくない場面で便利。</dd>
+        <dl className="glossary-box m-card u-mt-sm">
+          <div className="glossary-item">
+            <dt className="glossary-item-title">白く点灯</dt>
+            <dd className="glossary-item-desc">暗闘の道や手元作業、停電時の補助照明に。一般的な懐中電灯として使えます。</dd>
+          </div>
+          <div className="glossary-item">
+            <dt className="glossary-item-title">白く点滅</dt>
+            <dd className="glossary-item-desc">夜間のランニングやウォーキング時に、周囲に存在を知らせるセーフティーライトとして活用。</dd>
+          </div>
+          <div className="glossary-item">
+            <dt className="glossary-item-title">赤く点灯</dt>
+            <dd className="glossary-item-desc">視界を妨げずに手元を確認したい時に。天体観測や家族を起こしたくない場面で便利。</dd>
+          </div>
         </dl>
       </MediaCard>
 

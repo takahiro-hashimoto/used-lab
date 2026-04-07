@@ -184,8 +184,18 @@ export default function AppleWatchAlwaysLitPage() {
                 </a>
               </li>
               <li>
+                <a href="#summary" className="toc-item">
+                  まとめ <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                </a>
+              </li>
+              <li>
                 <a href="#faq" className="toc-item">
                   よくある質問 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                </a>
+              </li>
+              <li>
+                <a href="#related" className="toc-item">
+                  関連記事 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
                 </a>
               </li>
             </ol>
@@ -201,6 +211,25 @@ export default function AppleWatchAlwaysLitPage() {
           <SettingSection />
           <TipsSection />
           <SpecTableSection />
+
+          {/* まとめ */}
+          <section className="l-section" id="summary" aria-labelledby="heading-summary">
+            <div className="l-container">
+              <h2 className="m-section-heading m-section-heading--lg" id="heading-summary">まとめ</h2>
+              <p className="m-section-desc">常時点灯（常時表示ディスプレイ）について押さえておきたいポイントをまとめました。</p>
+              <div className="m-card m-card--shadow m-card--padded">
+                <h3 className="summary-card__title">Apple Watch常時点灯のポイント</h3>
+                <ol className="summary-card__list">
+                  <li><strong>常時点灯は時刻確認がラク</strong>になる最大のメリット。手首を上げなくても時間がわかる。</li>
+                  <li><strong>バッテリー消費が増える</strong>のが最大のデメリット。1日の使用で10〜20%ほど多く消耗する傾向。</li>
+                  <li><strong>設定でオン/オフ切替可能</strong>。バッテリー優先なら常時点灯をオフにするのも有効な選択。</li>
+                  <li><strong>Series 5以降のモデルが対応</strong>。SEシリーズは非対応なので、購入時に要確認。</li>
+                  <li><strong>中古で買うなら常時点灯の有無で価格差</strong>がある。必要性を見極めてからモデルを選ぶのがおすすめ。</li>
+                </ol>
+              </div>
+            </div>
+          </section>
+
           <AlwaysLitFaqSection />
           <WatchPopularSection />
         <WatchRelatedLinks excludeHref={["/watch/apple-watch-always-lit/", "/watch/recommend/"]} />

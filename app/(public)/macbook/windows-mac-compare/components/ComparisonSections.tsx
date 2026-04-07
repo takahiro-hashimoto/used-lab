@@ -199,17 +199,15 @@ export default function ComparisonSections() {
             WindowsPCはメーカーごとにキー配列が異なる場合がありますが、Macは全モデルで配列が統一されています。買い替えても違和感なく使えるのはMacのメリットです。
           </p>
 
-          <dl className="m-card vs-card u-mt-sm">
-            <dt>
-              <i className="fa-brands fa-apple" aria-hidden="true"></i>
-              Macの修飾キー
-            </dt>
-            <dd>Command、Option、Control</dd>
-            <dt>
-              <i className="fa-brands fa-windows" aria-hidden="true"></i>
-              Windowsの修飾キー
-            </dt>
-            <dd>Windows、Alt、Control</dd>
+          <dl className="glossary-box m-card u-mt-sm">
+            <div className="glossary-item">
+              <dt className="glossary-item-title">Macの修飾キー</dt>
+              <dd className="glossary-item-desc">Command、Option、Control</dd>
+            </div>
+            <div className="glossary-item">
+              <dt className="glossary-item-title">Windowsの修飾キー</dt>
+              <dd className="glossary-item-desc">Windows、Alt、Control</dd>
+            </div>
           </dl>
         </div>
       </div>

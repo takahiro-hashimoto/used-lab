@@ -250,7 +250,7 @@ export default async function MacBookGuidePage() {
               <p className="m-section-desc">特に初めて中古Macを買う方は、トラブルを避けるためにも一度確認しておくことをおすすめします。</p>
 
               <div className="glossary-box glossary-box--numbered m-card m-card--shadow">
-                <ol className="glossary-list">
+                <dl className="glossary-list">
                   <div className="glossary-item">
                     <dt className="glossary-item-title">macOSのサポート期間（端末の寿命）</dt>
                     <dd className="glossary-item-desc">
@@ -288,7 +288,7 @@ export default async function MacBookGuidePage() {
                       天板やパームレストの傷は価格に影響します。MacBookはアルミ筐体のため小傷がつきやすい製品です。自分が許容できる状態をあらかじめ決めておくと選びやすくなります。
                     </dd>
                   </div>
-                </ol>
+                </dl>
               </div>
 
               <p className="guide-section-note">さらに詳しい確認方法やフリマサイトでの注意点などは以下の記事にまとめています。</p>

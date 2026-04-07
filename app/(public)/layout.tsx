@@ -79,7 +79,7 @@ export default async function PublicLayout({
       />
       <SmoothScroll />
       <AffiliateClickTracker />
-      <StickyCtaProvider categoryUrls={categoryUrls}>
+      <StickyCtaProvider categoryUrls={categoryUrls} defaultUrl={iosys?.url ?? '#'}>
         <Header />
         {children}
         <Footer />

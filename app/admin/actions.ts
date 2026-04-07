@@ -2,9 +2,26 @@
 
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
-import { revalidatePath } from 'next/cache'
+import { revalidateTag } from 'next/cache'
 import { supabaseAdmin } from '@/lib/supabase-admin'
+import { CATEGORY_CACHE_TAGS, CACHE_TAGS } from '@/lib/queries'
 import { CATEGORIES, type CategoryConfig, type FieldDef } from './field-definitions'
+
+/** キャッシュタグを完全に無効化するヘルパー */
+function purgeTag(tag: string) {
+  revalidateTag(tag, 'max')
+}
+
+/** カテゴリに関連するキャッシュタグを無効化 + ショップ系の共通タグも無効化 */
+function revalidateCategory(categoryKey: string) {
+  const tags = CATEGORY_CACHE_TAGS[categoryKey] || []
+  for (const tag of tags) {
+    purgeTag(tag)
+  }
+  // ショップリンクは全カテゴリ共通で使われるため常に無効化
+  purgeTag(CACHE_TAGS.shops)
+  purgeTag(CACHE_TAGS.shopLinks)
+}
 
 // ============================================================
 // 認証
@@ -134,7 +151,7 @@ export async function createModel(categoryKey: string, formData: FormData) {
     return { error: `保存に失敗しました: ${error.message}` }
   }
 
-  revalidatePath('/', 'layout')
+  revalidateCategory(categoryKey)
   redirect(`/admin/${categoryKey}`)
 }
 
@@ -153,7 +170,7 @@ export async function updateModel(categoryKey: string, id: number, formData: For
     return { error: `更新に失敗しました: ${error.message}` }
   }
 
-  revalidatePath('/', 'layout')
+  revalidateCategory(categoryKey)
   redirect(`/admin/${categoryKey}`)
 }
 
@@ -218,7 +235,7 @@ export async function updateAccessoryCompatibility(
     }
   }
 
-  revalidatePath('/', 'layout')
+  purgeTag(CACHE_TAGS.ipadAccessories)
 }
 
 // ============================================================
@@ -291,7 +308,8 @@ export async function updateProductShopLinks(
     }
   }
 
-  revalidatePath('/', 'layout')
+  purgeTag(CACHE_TAGS.shops)
+  purgeTag(CACHE_TAGS.shopLinks)
 }
 
 // ============================================================
@@ -353,7 +371,7 @@ export async function createNewsItem(formData: FormData) {
     return { error: `保存に失敗しました: ${error.message}` }
   }
 
-  revalidatePath('/', 'layout')
+  purgeTag(CACHE_TAGS.news)
   redirect('/admin/news')
 }
 
@@ -376,7 +394,7 @@ export async function updateNewsItem(id: number, formData: FormData) {
     return { error: `更新に失敗しました: ${error.message}` }
   }
 
-  revalidatePath('/', 'layout')
+  purgeTag(CACHE_TAGS.news)
   redirect('/admin/news')
 }
 
@@ -391,7 +409,7 @@ export async function deleteNewsItem(id: number) {
     return { error: `削除に失敗しました: ${error.message}` }
   }
 
-  revalidatePath('/', 'layout')
+  purgeTag(CACHE_TAGS.news)
   redirect('/admin/news')
 }
 
@@ -415,7 +433,7 @@ export async function setPublish(
 
   if (error) return { error: `更新に失敗しました: ${error.message}` }
 
-  revalidatePath('/', 'layout')
+  revalidateCategory(categoryKey)
   return {}
 }
 

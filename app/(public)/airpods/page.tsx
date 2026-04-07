@@ -257,7 +257,7 @@ export default async function AirPodsGuidePage() {
               <p className="m-section-desc">特に初めて中古イヤホンを買う方は、トラブルを避けるためにも一度確認しておくことをおすすめします。</p>
 
               <div className="glossary-box glossary-box--numbered m-card m-card--shadow">
-                <ol className="glossary-list">
+                <dl className="glossary-list">
                   <div className="glossary-item">
                     <dt className="glossary-item-title">ファームウェアサポート期間</dt>
                     <dd className="glossary-item-desc">
@@ -288,7 +288,7 @@ export default async function AirPodsGuidePage() {
                       傷や汚れの程度は価格に影響します。カナル型の場合はイヤーチップの劣化もチェック。交換用チップは別途購入可能です。
                     </dd>
                   </div>
-                </ol>
+                </dl>
               </div>
             </div>
           </section>

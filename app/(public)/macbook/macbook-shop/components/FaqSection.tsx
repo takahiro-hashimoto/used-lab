@@ -20,12 +20,6 @@ export default function FaqSection() {
           ))}
         </div>
 
-        <div className="m-callout m-callout--muted u-mt-2xl">
-          <span className="m-callout__label">関連</span>
-          <p className="m-callout__text">
-            <a href="https://prorea.jp/programming/columns/recommend-programming-school-commuting/" target="_blank" rel="noreferrer noopener">通学型おすすめプログラミングスクール比較12選！挫折せず続けるならオフラインがおすすめ</a>
-          </p>
-        </div>
       </div>
     </section>
   )

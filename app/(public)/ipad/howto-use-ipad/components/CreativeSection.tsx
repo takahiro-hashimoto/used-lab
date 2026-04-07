@@ -67,11 +67,15 @@ export default function CreativeSection() {
         <p className="media-card__desc">
           iPadとApple Pencilの組み合わせは、3Dプリンター用のデータ作成とも非常に相性が良いです。PCのCADソフトは習得に時間がかかりますが、iPadなら直感的な操作でアイデアを素早く形にできます。
         </p>
-        <dl className="m-card vs-card u-mt-sm">
-          <dt>Shapr3D</dt>
-          <dd>Apple Pencilに最適化された3DCADアプリ。図面を描くような感覚で精密なモデリングが可能で、3Dプリンター用の出力もスムーズに行えます。</dd>
-          <dt>Nomad Sculpt</dt>
-          <dd>粘土をこねるように造形できるスカルプトアプリ。フィギュアなどの有機的な形状作りに最適で、ペン先でなぞるだけで直感的なディテールの作り込みが可能です。</dd>
+        <dl className="glossary-box m-card u-mt-sm">
+          <div className="glossary-item">
+            <dt className="glossary-item-title">Shapr3D</dt>
+            <dd className="glossary-item-desc">Apple Pencilに最適化された3DCADアプリ。図面を描くような感覚で精密なモデリングが可能で、3Dプリンター用の出力もスムーズに行えます。</dd>
+          </div>
+          <div className="glossary-item">
+            <dt className="glossary-item-title">Nomad Sculpt</dt>
+            <dd className="glossary-item-desc">粘土をこねるように造形できるスカルプトアプリ。フィギュアなどの有機的な形状作りに最適で、ペン先でなぞるだけで直感的なディテールの作り込みが可能です。</dd>
+          </div>
         </dl>
         <p className="media-card__desc u-mt-md">
           作成したモデルをAR（拡張現実）で実寸表示し、プリント前にサイズ感を確認できるのもiPadならではの強み。趣味の造形から実用パーツ作成まで、3Dプリンターをフル活用したい方にとってiPadは最強のパートナーになります。

@@ -1,6 +1,10 @@
 import PopularSection from '@/app/components/support/PopularSection'
+import { getShops } from '@/lib/queries'
 
-export default function IPadPopularSection() {
+export default async function IPadPopularSection() {
+  const shops = await getShops()
+  const iosys = shops.find(s => s.id === 1)
+
   return (
     <PopularSection
       sectionTitle="目的別に人気の中古iPad"
@@ -13,7 +17,7 @@ export default function IPadPopularSection() {
       buttonText="おすすめ5機種を見る"
       buttonHref="/ipad/recommend/"
       secondaryButtonText="イオシスで中古iPadを探す"
-      secondaryButtonHref="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Ftablet%2Fios%2Fipad"
+      secondaryButtonHref={iosys?.ipad_url ?? '#'}
     />
   )
 }

@@ -1,4 +1,9 @@
-export default function PopularMacBook() {
+import { getShops } from '@/lib/queries'
+
+export default async function PopularMacBook() {
+  const shops = await getShops()
+  const iosys = shops.find(s => s.id === 1)
+
   return (
     <section className="l-section" id="popular" aria-labelledby="heading-popular">
       <div className="l-container">
@@ -14,8 +19,8 @@ export default function PopularMacBook() {
               src="/images/content/thumbnail/macbook-image-04.jpg"
               alt="中古MacBookおすすめのイメージ画像"
               className="popular-card-img"
-              width={400}
-              height={500}
+              width={1000}
+              height={1250}
               loading="lazy"
             />
           </figure>
@@ -29,9 +34,11 @@ export default function PopularMacBook() {
               <a href="/macbook/recommend/" className="m-btn m-btn--primary">
                 おすすめモデルを見る <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
               </a>
-              <a className="m-btn m-btn--secondary" href="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fitems%2Fpc%2Fnotepc%2Fmacbook" target="_blank" rel="nofollow noopener noreferrer">
-                イオシスで中古MacBookを探す <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
-              </a>
+              {iosys?.macbook_url && (
+                <a className="m-btn m-btn--secondary" href={iosys.macbook_url} target="_blank" rel="nofollow noopener noreferrer">
+                  イオシスで中古MacBookを探す <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                </a>
+              )}
             </div>
           </div>
         </div>

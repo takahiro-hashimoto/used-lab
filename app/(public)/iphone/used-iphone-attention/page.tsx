@@ -249,7 +249,7 @@ export default function UsedIphoneAttentionPage() {
               <SummaryChecklist
                 title="購入前に確認すべき4つのポイント"
                 items={[
-                  { label: 'ネットワーク制限', text: 'が「△」の端末は避けましょう。IMEIで事前に確認できます。' },
+                  { label: 'ネットワーク制限', text: <>は必ずIMEIで事前に確認。「△」でも<a href="/iphone/network-limit/">赤ロム保証付きショップ</a>なら安心です。</> },
                   { label: 'バッテリー最大容量', text: 'が80%未満の端末は避けましょう。設定アプリから確認できます。' },
                   { label: 'iOSサポート', text: 'の残りが2年未満の端末は避けましょう。発売から約7年が目安です。' },
                   { label: 'SIMロック', text: 'が解除できない端末は避けましょう。設定アプリから確認できます。' },

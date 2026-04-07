@@ -50,8 +50,8 @@ export default function PopularSection({
                 src={imageSrc}
                 alt={imageAlt}
                 className="popular-card-img"
-                width={400}
-                height={500}
+                width={1200}
+                height={1500}
                 loading="lazy"
               />
             ) : (
@@ -59,8 +59,8 @@ export default function PopularSection({
                 src={imageSrc}
                 alt={imageAlt}
                 className="popular-card-img"
-                width={400}
-                height={500}
+                width={1200}
+                height={1500}
                 loading="lazy"
               />
             )}

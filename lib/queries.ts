@@ -10,102 +10,162 @@ import type {
 } from './types'
 
 // ============================================================
+// キャッシュタグ定数
+// ============================================================
+export const CACHE_TAGS = {
+  iphoneModels: 'iphone-models',
+  ipadModels: 'ipad-models',
+  watchModels: 'watch-models',
+  macbookModels: 'macbook-models',
+  airpodsModels: 'airpods-models',
+  iphonePriceLogs: 'iphone-price-logs',
+  ipadPriceLogs: 'ipad-price-logs',
+  watchPriceLogs: 'watch-price-logs',
+  macbookPriceLogs: 'macbook-price-logs',
+  airpodsPriceLogs: 'airpods-price-logs',
+  shops: 'shops',
+  shopLinks: 'shop-links',
+  mvno: 'mvno',
+  news: 'news',
+  ipadAccessories: 'ipad-accessories',
+} as const
+
+/** カテゴリキー → 関連キャッシュタグのマッピング */
+export const CATEGORY_CACHE_TAGS: Record<string, string[]> = {
+  iphone: [CACHE_TAGS.iphoneModels, CACHE_TAGS.iphonePriceLogs],
+  ipad: [CACHE_TAGS.ipadModels, CACHE_TAGS.ipadPriceLogs, CACHE_TAGS.ipadAccessories],
+  watch: [CACHE_TAGS.watchModels, CACHE_TAGS.watchPriceLogs],
+  macbook: [CACHE_TAGS.macbookModels, CACHE_TAGS.macbookPriceLogs],
+  airpods: [CACHE_TAGS.airpodsModels, CACHE_TAGS.airpodsPriceLogs],
+  'ipad-accessories': [CACHE_TAGS.ipadAccessories],
+  news: [CACHE_TAGS.news],
+}
+
+// ============================================================
 // ファクトリ関数
 // ============================================================
 
 /**
- * モデルテーブル用の共通クエリを生成
+ * モデルテーブル用の共通クエリを生成（キャッシュ付き）
  * @param activeField 現役判定カラム — NULL なら現役と判断（指定なしの場合フィルタなし）
  */
-function createModelQueries<T>(table: string, activeField?: string) {
+function createModelQueries<T>(table: string, tag: string, activeField?: string) {
   return {
-    async getBySlug(slug: string): Promise<T | null> {
-      const { data, error } = await supabase
-        .from(table)
-        .select('*')
-        .eq('slug', slug)
-        .eq('show', 1)
-        .single()
-      if (error || !data) return null
-      return data as T
-    },
-
-    async getAll(): Promise<T[]> {
-      let query = supabase.from(table).select('*').eq('show', 1)
-      if (activeField) query = query.is(activeField, null)
-      const { data, error } = await query.order('id', { ascending: true })
-      if (error || !data) return []
-      return data as T[]
-    },
-
-    /** activeFieldフィルタなしで全モデルを取得（サポート終了モデル含む） */
-    async getAllIncludingEnded(): Promise<T[]> {
-      const { data, error } = await supabase.from(table).select('*').order('id', { ascending: true })
-      if (error || !data) return []
-      return data as T[]
-    },
-
-    async getAllSlugs(): Promise<string[]> {
-      let query = supabase.from(table).select('slug').eq('show', 1)
-      if (activeField) query = query.is(activeField, null)
-      const { data, error } = await query
-      if (error || !data) return []
-      return data.map((d) => d.slug)
-    },
-  }
-}
-
-/** 価格ログテーブル用の共通クエリを生成 */
-function createPriceLogQueries<T extends { model_id: number }>(table: string) {
-  return {
-    async getByModelId(modelId: number): Promise<T[]> {
-      const { data, error } = await supabase
-        .from(table)
-        .select('*')
-        .eq('model_id', modelId)
-        .order('logged_at', { ascending: true })
-      if (error || !data) return []
-      return data as T[]
-    },
-
-    async getLatest(modelId: number): Promise<T | null> {
-      const { data, error } = await supabase
-        .from(table)
-        .select('*')
-        .eq('model_id', modelId)
-        .order('logged_at', { ascending: false })
-        .limit(1)
-        .maybeSingle()
-      if (error || !data) return null
-      return data as T
-    },
-
-    /** 複数モデルの価格ログを一括取得し、model_id ごとにグループ化して返す（自動ページネーション） */
-    async getAllByModelIds(modelIds: number[]): Promise<Map<number, T[]>> {
-      if (modelIds.length === 0) return new Map()
-      const PAGE_SIZE = 1000
-      const allRows: T[] = []
-      let from = 0
-      while (true) {
+    getBySlug: unstable_cache(
+      async (slug: string): Promise<T | null> => {
         const { data, error } = await supabase
           .from(table)
           .select('*')
-          .in('model_id', modelIds)
+          .eq('slug', slug)
+          .eq('show', 1)
+          .single()
+        if (error || !data) return null
+        return data as T
+      },
+      [`${table}-by-slug`],
+      { revalidate: 3600, tags: [tag] }
+    ),
+
+    getAll: unstable_cache(
+      async (): Promise<T[]> => {
+        let query = supabase.from(table).select('*').eq('show', 1)
+        if (activeField) query = query.is(activeField, null)
+        const { data, error } = await query.order('id', { ascending: true })
+        if (error || !data) return []
+        return data as T[]
+      },
+      [`${table}-all`],
+      { revalidate: 3600, tags: [tag] }
+    ),
+
+    /** activeFieldフィルタなしで全モデルを取得（サポート終了モデル含む） */
+    getAllIncludingEnded: unstable_cache(
+      async (): Promise<T[]> => {
+        const { data, error } = await supabase.from(table).select('*').order('id', { ascending: true })
+        if (error || !data) return []
+        return data as T[]
+      },
+      [`${table}-all-including-ended`],
+      { revalidate: 3600, tags: [tag] }
+    ),
+
+    getAllSlugs: unstable_cache(
+      async (): Promise<string[]> => {
+        let query = supabase.from(table).select('slug').eq('show', 1)
+        if (activeField) query = query.is(activeField, null)
+        const { data, error } = await query
+        if (error || !data) return []
+        return data.map((d) => d.slug)
+      },
+      [`${table}-slugs`],
+      { revalidate: 3600, tags: [tag] }
+    ),
+  }
+}
+
+/** 価格ログテーブル用の共通クエリを生成（キャッシュ付き） */
+function createPriceLogQueries<T extends { model_id: number }>(table: string, tag: string) {
+  return {
+    getByModelId: unstable_cache(
+      async (modelId: number): Promise<T[]> => {
+        const { data, error } = await supabase
+          .from(table)
+          .select('*')
+          .eq('model_id', modelId)
           .order('logged_at', { ascending: true })
-          .range(from, from + PAGE_SIZE - 1)
-        if (error || !data || data.length === 0) break
-        allRows.push(...(data as T[]))
-        if (data.length < PAGE_SIZE) break
-        from += PAGE_SIZE
-      }
-      const map = new Map<number, T[]>()
-      for (const row of allRows) {
-        const arr = map.get(row.model_id) || []
-        arr.push(row)
-        map.set(row.model_id, arr)
-      }
-      return map
-    },
+        if (error || !data) return []
+        return data as T[]
+      },
+      [`${table}-by-model`],
+      { revalidate: 86400, tags: [tag] }
+    ),
+
+    getLatest: unstable_cache(
+      async (modelId: number): Promise<T | null> => {
+        const { data, error } = await supabase
+          .from(table)
+          .select('*')
+          .eq('model_id', modelId)
+          .order('logged_at', { ascending: false })
+          .limit(1)
+          .maybeSingle()
+        if (error || !data) return null
+        return data as T
+      },
+      [`${table}-latest`],
+      { revalidate: 86400, tags: [tag] }
+    ),
+
+    /** 複数モデルの価格ログを一括取得し、model_id ごとにグループ化して返す（自動ページネーション） */
+    getAllByModelIds: unstable_cache(
+      async (modelIds: number[]): Promise<Map<number, T[]>> => {
+        if (modelIds.length === 0) return new Map()
+        const PAGE_SIZE = 1000
+        const allRows: T[] = []
+        let from = 0
+        while (true) {
+          const { data, error } = await supabase
+            .from(table)
+            .select('*')
+            .in('model_id', modelIds)
+            .order('logged_at', { ascending: true })
+            .range(from, from + PAGE_SIZE - 1)
+          if (error || !data || data.length === 0) break
+          allRows.push(...(data as T[]))
+          if (data.length < PAGE_SIZE) break
+          from += PAGE_SIZE
+        }
+        const map = new Map<number, T[]>()
+        for (const row of allRows) {
+          const arr = map.get(row.model_id) || []
+          arr.push(row)
+          map.set(row.model_id, arr)
+        }
+        return map
+      },
+      [`${table}-by-model-ids`],
+      { revalidate: 86400, tags: [tag] }
+    ),
   }
 }
 
@@ -113,21 +173,21 @@ function createPriceLogQueries<T extends { model_id: number }>(table: string) {
 // 各製品のクエリインスタンス
 // ============================================================
 
-const iPhoneModels = createModelQueries<IPhoneModel>('iphone_models', 'last_ios')
-const iPhonePriceLogs = createPriceLogQueries<IPhonePriceLog>('iphone_price_logs')
+const iPhoneModels = createModelQueries<IPhoneModel>('iphone_models', CACHE_TAGS.iphoneModels, 'last_ios')
+const iPhonePriceLogs = createPriceLogQueries<IPhonePriceLog>('iphone_price_logs', CACHE_TAGS.iphonePriceLogs)
 
-const iPadModels = createModelQueries<IPadModel>('ipad_models', 'last_ipados')
-const iPadPriceLogs = createPriceLogQueries<IPadPriceLog>('ipad_price_logs')
+const iPadModels = createModelQueries<IPadModel>('ipad_models', CACHE_TAGS.ipadModels, 'last_ipados')
+const iPadPriceLogs = createPriceLogQueries<IPadPriceLog>('ipad_price_logs', CACHE_TAGS.ipadPriceLogs)
 
-const watchModels = createModelQueries<WatchModel>('watch_models', 'last_watchos')
-const watchPriceLogs = createPriceLogQueries<WatchPriceLog>('watch_price_logs')
+const watchModels = createModelQueries<WatchModel>('watch_models', CACHE_TAGS.watchModels, 'last_watchos')
+const watchPriceLogs = createPriceLogQueries<WatchPriceLog>('watch_price_logs', CACHE_TAGS.watchPriceLogs)
 
-const macBookModels = createModelQueries<MacBookModel>('macbook_models', 'last_macos')
-const macBookPriceLogs = createPriceLogQueries<MacBookPriceLog>('macbook_price_logs')
+const macBookModels = createModelQueries<MacBookModel>('macbook_models', CACHE_TAGS.macbookModels, 'last_macos')
+const macBookPriceLogs = createPriceLogQueries<MacBookPriceLog>('macbook_price_logs', CACHE_TAGS.macbookPriceLogs)
 
 // AirPods には「最終対応OS」がないためフィルタなし（全件表示）
-const airPodsModels = createModelQueries<AirPodsModel>('airpods_models')
-const airPodsPriceLogs = createPriceLogQueries<AirPodsPriceLog>('airpods_price_logs')
+const airPodsModels = createModelQueries<AirPodsModel>('airpods_models', CACHE_TAGS.airpodsModels)
+const airPodsPriceLogs = createPriceLogQueries<AirPodsPriceLog>('airpods_price_logs', CACHE_TAGS.airpodsPriceLogs)
 
 // ============================================================
 // 名前付きエクスポート（後方互換）
@@ -152,41 +212,53 @@ export const getLatestIPadPriceLog = iPadPriceLogs.getLatest
 export const getAllIPadPriceLogsByModelIds = iPadPriceLogs.getAllByModelIds
 
 // iPad Accessories
-export async function getAllIPadAccessories(): Promise<IPadAccessory[]> {
-  const { data, error } = await supabase
-    .from('ipad_accessories')
-    .select('*')
-    .order('display_order', { ascending: true })
-  if (error || !data) return []
-  return data as IPadAccessory[]
-}
+export const getAllIPadAccessories = unstable_cache(
+  async (): Promise<IPadAccessory[]> => {
+    const { data, error } = await supabase
+      .from('ipad_accessories')
+      .select('*')
+      .order('display_order', { ascending: true })
+    if (error || !data) return []
+    return data as IPadAccessory[]
+  },
+  ['ipad-accessories-all'],
+  { revalidate: 3600, tags: [CACHE_TAGS.ipadAccessories] }
+)
 
-export async function getAllIPadAccessoryCompatibility(): Promise<IPadAccessoryCompatibility[]> {
-  const { data, error } = await supabase
-    .from('ipad_accessory_compatibility')
-    .select('*')
-  if (error || !data) return []
-  return data as IPadAccessoryCompatibility[]
-}
+export const getAllIPadAccessoryCompatibility = unstable_cache(
+  async (): Promise<IPadAccessoryCompatibility[]> => {
+    const { data, error } = await supabase
+      .from('ipad_accessory_compatibility')
+      .select('*')
+    if (error || !data) return []
+    return data as IPadAccessoryCompatibility[]
+  },
+  ['ipad-accessory-compatibility-all'],
+  { revalidate: 3600, tags: [CACHE_TAGS.ipadAccessories] }
+)
 
-export async function getIPadAccessoriesByModelId(modelId: number): Promise<IPadAccessory[]> {
-  const { data, error } = await supabase
-    .from('ipad_accessory_compatibility')
-    .select('accessory_id')
-    .eq('ipad_model_id', modelId)
-  if (error || !data) return []
+export const getIPadAccessoriesByModelId = unstable_cache(
+  async (modelId: number): Promise<IPadAccessory[]> => {
+    const { data, error } = await supabase
+      .from('ipad_accessory_compatibility')
+      .select('accessory_id')
+      .eq('ipad_model_id', modelId)
+    if (error || !data) return []
 
-  const accessoryIds = data.map((d) => d.accessory_id)
-  if (accessoryIds.length === 0) return []
+    const accessoryIds = data.map((d) => d.accessory_id)
+    if (accessoryIds.length === 0) return []
 
-  const { data: accessories, error: accErr } = await supabase
-    .from('ipad_accessories')
-    .select('*')
-    .in('id', accessoryIds)
-    .order('display_order', { ascending: true })
-  if (accErr || !accessories) return []
-  return accessories as IPadAccessory[]
-}
+    const { data: accessories, error: accErr } = await supabase
+      .from('ipad_accessories')
+      .select('*')
+      .in('id', accessoryIds)
+      .order('display_order', { ascending: true })
+    if (accErr || !accessories) return []
+    return accessories as IPadAccessory[]
+  },
+  ['ipad-accessories-by-model'],
+  { revalidate: 3600, tags: [CACHE_TAGS.ipadAccessories] }
+)
 
 // Watch
 export const getWatchModelBySlug = watchModels.getBySlug
@@ -223,66 +295,86 @@ export const getAllAirPodsPriceLogsByModelIds = airPodsPriceLogs.getAllByModelId
 // ============================================================
 
 /** 全プラン取得 */
-export async function getMvnoPlans(): Promise<MvnoPlan[]> {
-  const { data, error } = await supabase
-    .from('mvno_plans')
-    .select('*')
-    .order('provider_slug', { ascending: true })
-    .order('display_order', { ascending: true })
-  if (error || !data) return []
-  return data as MvnoPlan[]
-}
+export const getMvnoPlans = unstable_cache(
+  async (): Promise<MvnoPlan[]> => {
+    const { data, error } = await supabase
+      .from('mvno_plans')
+      .select('*')
+      .order('provider_slug', { ascending: true })
+      .order('display_order', { ascending: true })
+    if (error || !data) return []
+    return data as MvnoPlan[]
+  },
+  ['mvno-plans-all'],
+  { revalidate: 3600, tags: [CACHE_TAGS.mvno] }
+)
 
 /** 事業者スラッグでプラン取得 */
-export async function getMvnoPlansByProvider(providerSlug: string): Promise<MvnoPlan[]> {
-  const { data, error } = await supabase
-    .from('mvno_plans')
-    .select('*')
-    .eq('provider_slug', providerSlug)
-    .order('display_order', { ascending: true })
-  if (error || !data) return []
-  return data as MvnoPlan[]
-}
+export const getMvnoPlansByProvider = unstable_cache(
+  async (providerSlug: string): Promise<MvnoPlan[]> => {
+    const { data, error } = await supabase
+      .from('mvno_plans')
+      .select('*')
+      .eq('provider_slug', providerSlug)
+      .order('display_order', { ascending: true })
+    if (error || !data) return []
+    return data as MvnoPlan[]
+  },
+  ['mvno-plans-by-provider'],
+  { revalidate: 3600, tags: [CACHE_TAGS.mvno] }
+)
 
 /** provider_slug の一覧を取得（重複なし） */
-export async function getMvnoProviderSlugs(): Promise<string[]> {
-  const { data, error } = await supabase
-    .from('mvno_plans')
-    .select('provider_slug')
-  if (error || !data) return []
-  return [...new Set(data.map((d) => d.provider_slug))]
-}
+export const getMvnoProviderSlugs = unstable_cache(
+  async (): Promise<string[]> => {
+    const { data, error } = await supabase
+      .from('mvno_plans')
+      .select('provider_slug')
+    if (error || !data) return []
+    return [...new Set(data.map((d) => d.provider_slug))]
+  },
+  ['mvno-provider-slugs'],
+  { revalidate: 3600, tags: [CACHE_TAGS.mvno] }
+)
 
 // ============================================================
 // MVNO 事業者（mvno_providers テーブル）
 // ============================================================
 
 /** 公開中の事業者を表示順で取得 */
-export async function getMvnoProviders(): Promise<MvnoProvider[]> {
-  const { data, error } = await supabase
-    .from('mvno_providers')
-    .select('*')
-    .eq('is_published', true)
-    .order('display_order', { ascending: true })
-  if (error || !data) return []
-  return data as MvnoProvider[]
-}
+export const getMvnoProviders = unstable_cache(
+  async (): Promise<MvnoProvider[]> => {
+    const { data, error } = await supabase
+      .from('mvno_providers')
+      .select('*')
+      .eq('is_published', true)
+      .order('display_order', { ascending: true })
+    if (error || !data) return []
+    return data as MvnoProvider[]
+  },
+  ['mvno-providers'],
+  { revalidate: 3600, tags: [CACHE_TAGS.mvno] }
+)
 
 // ============================================================
 // 共通クエリ（製品横断）
 // ============================================================
 
 /** 価格データの最終更新日を取得（YYYY-MM-DD） */
-export async function getLatestPriceUpdateDate(): Promise<string | null> {
-  const { data, error } = await supabase
-    .from('iphone_price_logs')
-    .select('logged_at')
-    .order('logged_at', { ascending: false })
-    .limit(1)
-    .maybeSingle()
-  if (error || !data) return null
-  return data.logged_at.substring(0, 10)
-}
+export const getLatestPriceUpdateDate = unstable_cache(
+  async (): Promise<string | null> => {
+    const { data, error } = await supabase
+      .from('iphone_price_logs')
+      .select('logged_at')
+      .order('logged_at', { ascending: false })
+      .limit(1)
+      .maybeSingle()
+    if (error || !data) return null
+    return data.logged_at.substring(0, 10)
+  },
+  ['latest-price-update-date'],
+  { revalidate: 86400, tags: [CACHE_TAGS.iphonePriceLogs] }
+)
 
 export const getShops = unstable_cache(
   async (): Promise<Shop[]> => {
@@ -294,7 +386,7 @@ export const getShops = unstable_cache(
     return data as Shop[]
   },
   ['shops'],
-  { revalidate: 3600 } // 1時間キャッシュ
+  { revalidate: 3600, tags: [CACHE_TAGS.shops] }
 )
 
 export async function getProductShopLinks(
@@ -326,7 +418,7 @@ const getCachedShopLinksByType = unstable_cache(
     return data as ProductShopLink[]
   },
   ['shop-links'],
-  { revalidate: 3600 } // 1時間キャッシュ
+  { revalidate: 3600, tags: [CACHE_TAGS.shopLinks] }
 )
 
 // ============================================================

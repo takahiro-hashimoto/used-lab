@@ -285,7 +285,7 @@ export default async function IPhoneGuidePage() {
               <p className="m-section-desc">特に初めて中古スマホを買う方は、トラブルを避けるためにも一度確認しておくことをおすすめします。</p>
 
               <div className="glossary-box glossary-box--numbered m-card m-card--shadow">
-                <ol className="glossary-list">
+                <dl className="glossary-list">
                   <div className="glossary-item">
                     <dt className="glossary-item-title">iOSのサポート期間（端末の寿命）</dt>
                     <dd className="glossary-item-desc">
@@ -327,7 +327,7 @@ export default async function IPhoneGuidePage() {
                       傷や使用感は価格に影響します。自分が許容できる状態をあらかじめ決めておくと選びやすくなります。
                     </dd>
                   </div>
-                </ol>
+                </dl>
               </div>
 
               <p className="guide-section-note">さらに詳しい確認方法や、フリマサイトでの注意点などは以下の記事にまとめています。</p>

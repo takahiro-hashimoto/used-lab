@@ -4,9 +4,6 @@ import { useState, useEffect } from 'react'
 import { usePathname } from 'next/navigation'
 import { useStickyCtaContext } from './StickyCtaContext'
 
-const DEFAULT_URL =
-  'https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2F'
-
 const CATEGORY_LABELS: Record<string, string> = {
   iphone: 'イオシスで中古iPhoneを探す',
   ipad: 'イオシスで中古iPadを探す',
@@ -24,10 +21,10 @@ export default function StickyCta() {
   const [visible, setVisible] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
   const pathname = usePathname()
-  const { categoryUrls, overrideUrl } = useStickyCtaContext()
+  const { categoryUrls, defaultUrl, overrideUrl } = useStickyCtaContext()
 
   const category = getCategoryFromPath(pathname)
-  const href = overrideUrl || (category && categoryUrls[category]) || DEFAULT_URL
+  const href = overrideUrl || (category && categoryUrls[category]) || defaultUrl
   const label = overrideUrl
     ? 'イオシスで最安値の価格を見る'
     : (category && CATEGORY_LABELS[category]) || 'イオシスで中古Apple製品を探す'

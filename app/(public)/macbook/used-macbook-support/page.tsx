@@ -14,7 +14,7 @@ import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helper
 import { getHeroImage } from '@/lib/data/hero-images'
 import HeroMeta from '@/app/components/HeroMeta'
 
-export const revalidate = 3600
+export const revalidate = 86400
 
 const PAGE_TITLE = 'MacBookはいつまで使える？各機種ごとの寿命や買い替えのタイミングを解説'
 const PAGE_DESCRIPTION =

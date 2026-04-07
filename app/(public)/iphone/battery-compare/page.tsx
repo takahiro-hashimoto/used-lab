@@ -14,7 +14,7 @@ import Breadcrumb from '@/app/components/Breadcrumb'
 import FaqSection from '@/app/components/support/FaqSection'
 import { getHeroImage } from '@/lib/data/hero-images'
 
-export const revalidate = 3600
+export const revalidate = 86400
 
 export const metadata: Metadata = {
   title: '歴代iPhoneのバッテリー容量比較ランキング！電池持ちがいい機種はどれ？',

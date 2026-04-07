@@ -41,21 +41,19 @@ export default function RecommendSection() {
               デザイナーやプログラマーなどクリエイティブ系の職業の方や、これからクリエイティブ系の仕事を目指す学生の方にはMacがおすすめです。
             </p>
 
-            <dl className="m-card vs-card u-mt-sm">
-              <dt>
-                <i className="fa-solid fa-palette" aria-hidden="true"></i>
-                デザイナーにMacが親しまれる理由
-              </dt>
-              <dd>
-                標準搭載フォントが豊富でDTP主流フォントも最初から使える。ディスプレイの色再現性が高く、印刷物の仕上がりをイメージしやすい。周りにMacユーザーが多くデータの受け渡しがしやすい。
-              </dd>
-              <dt>
-                <i className="fa-solid fa-code" aria-hidden="true"></i>
-                プログラマーにMacが親しまれる理由
-              </dt>
-              <dd>
-                UNIXコマンドがすぐに使え開発環境を整えやすい。iPhoneアプリ開発に必須の「Xcode」が使えるのはMacのみ。トラックパッドの操作性が高く作業が捗る。
-              </dd>
+            <dl className="glossary-box m-card u-mt-sm">
+              <div className="glossary-item">
+                <dt className="glossary-item-title">デザイナーにMacが親しまれる理由</dt>
+                <dd className="glossary-item-desc">
+                  標準搭載フォントが豊富でDTP主流フォントも最初から使える。ディスプレイの色再現性が高く、印刷物の仕上がりをイメージしやすい。周りにMacユーザーが多くデータの受け渡しがしやすい。
+                </dd>
+              </div>
+              <div className="glossary-item">
+                <dt className="glossary-item-title">プログラマーにMacが親しまれる理由</dt>
+                <dd className="glossary-item-desc">
+                  UNIXコマンドがすぐに使え開発環境を整えやすい。iPhoneアプリ開発に必須の「Xcode」が使えるのはMacのみ。トラックパッドの操作性が高く作業が捗る。
+                </dd>
+              </div>
             </dl>
 
             <p className="popular-card-desc u-mt-sm">

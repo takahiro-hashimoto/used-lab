@@ -141,6 +141,8 @@ export default async function ComparePageTemplate({ config }: Props) {
             modelR={modelR}
             priceL={latestL}
             priceR={latestR}
+            iosysUrlL={iosysUrlL}
+            iosysUrlR={iosysUrlR}
           />
 
           {/* 1. 基本スペック */}

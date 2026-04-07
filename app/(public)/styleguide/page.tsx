@@ -489,6 +489,11 @@ export default function StyleGuidePage() {
                 </span>
                 <p className="m-callout__text">控えめなスタイル。注釈やメモに。</p>
               </div>
+
+              <div className="m-callout m-callout--muted">
+                <span className="m-callout__label">関連</span>
+                <p className="m-callout__text"><a href="#">m-callout--muted：外部リンクなど関連コンテンツへの誘導に。</a></p>
+              </div>
             </div>
           </div>
         </section>

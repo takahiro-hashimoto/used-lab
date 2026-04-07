@@ -38,7 +38,7 @@ import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import { getHeroImage } from '@/lib/data/hero-images'
 
-export const revalidate = 3600
+export const revalidate = 86400
 
 export const metadata: Metadata = {
   title: '歴代iPhoneスペック比較表！気になる機種の性能差や違いがわかる',
@@ -269,7 +269,15 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/iphone-s
 
         <IPhonePopularSection />
         {/* 関連記事 */}
-        <IPhoneRelatedLinks excludeHref={["/iphone/iphone-spec-table/", "/iphone/recommend/"]} />
+        <IPhoneRelatedLinks excludeHref={["/iphone/iphone-spec-table/", "/iphone/recommend/"]}>
+          <div className="m-callout m-callout--muted u-mt-2xl">
+            <span className="m-callout__label">関連</span>
+            <p className="m-callout__text">
+              <a href="https://prodig.co.jp/blogs/column/iphone-history-model-selection" target="_blank" rel="noreferrer noopener">歴代iPhoneの歴史と進化｜モデル選びのポイントも解説</a>
+            </p>
+          </div>
+        </IPhoneRelatedLinks>
+
         <ShareBox url="https://used-lab.jp/iphone/iphone-spec-table/" text="歴代iPhoneスペック比較表！気になる機種の性能差や違いがわかる" />
         </div>
       </article>

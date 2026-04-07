@@ -15,7 +15,7 @@ import HeroMeta from '@/app/components/HeroMeta'
 import { getHeroImage } from '@/lib/data/hero-images'
 import IPadPopularSection from '@/app/components/support/popular/IPadPopularSection'
 
-export const revalidate = 3600
+export const revalidate = 86400
 
 const PAGE_TITLE = 'iPadのキーボードどれが使える？Magic Keyboard全型番と対応モデル一覧'
 const PAGE_DESCRIPTION =

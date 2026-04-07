@@ -225,6 +225,11 @@ export default async function MacBookShopPage() {
                   購入前のチェックリスト <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
                 </a>
               </li>
+              <li>
+                <a href="#faq" className="toc-item">
+                  よくある質問 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                </a>
+              </li>
             </ol>
 </div>
           <AuthorByline />
@@ -260,7 +265,14 @@ export default async function MacBookShopPage() {
           <FaqSection />
           <ConclusionSection />
           <MacBookPopularSection />
-        <MacBookRelatedLinks excludeHref={["/macbook/macbook-shop/", "/macbook/recommend/"]} />
+        <MacBookRelatedLinks excludeHref={["/macbook/macbook-shop/", "/macbook/recommend/"]}>
+          <div className="m-callout m-callout--muted u-mt-2xl">
+            <span className="m-callout__label">関連</span>
+            <p className="m-callout__text">
+              <a href="https://prorea.jp/programming/columns/recommend-programming-school-commuting/" target="_blank" rel="noreferrer noopener">通学型おすすめプログラミングスクール比較12選！挫折せず続けるならオフラインがおすすめ</a>
+            </p>
+          </div>
+        </MacBookRelatedLinks>
         <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>
       </article>

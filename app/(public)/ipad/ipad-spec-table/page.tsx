@@ -31,7 +31,7 @@ import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helper
 import HeroMeta from '@/app/components/HeroMeta'
 import { getHeroImage } from '@/lib/data/hero-images'
 
-export const revalidate = 3600
+export const revalidate = 86400
 
 export const metadata: Metadata = {
   title: '歴代iPadスペック比較表！各世代の性能の違いがすぐわかる',
@@ -181,7 +181,7 @@ export default async function IPadSpecTablePage() {
         <section className="l-section l-section--sm section-lead" aria-label="記事の導入">
           <div className="l-container">
             <div className="lead-box">
-              <p>iPadはPro・Air・mini・無印と多くのラインナップがあり、世代ごとにスペックが異なります。こんな悩みをお持ちの方も多いのではないでしょうか。</p>
+              <p>iPadはPro・Air・mini・無印と多くのラインナップがあり、世代ごとにスペックが異なります。購入を検討中の方の中にはこんな悩みをお持ちの方も多いのではないでしょうか。</p>
               <ul className="lead-box__list">
                 <li>自分の用途にはどのiPadが合うのかわからない…</li>
                 <li>型落ちiPadでも十分なスペックなのか知りたい!</li>

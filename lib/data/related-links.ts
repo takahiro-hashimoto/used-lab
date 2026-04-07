@@ -45,6 +45,7 @@ export const IPAD_LINKS: RelatedLinkMeta[] = [
   { href: '/ipad/car-navigation-system/', title: 'iPadカーナビ化の方法と注意点', desc: 'メリットと注意点を解説' },
   { href: '/ipad/ipad-filter-search/', title: 'iPad機種診断ツール', desc: '質問に答えるだけで最適な機種がわかる' },
   { href: '/macbook/ipad-macbook-compare/', title: 'iPadとMacBookどっちがいい？【徹底比較】', desc: '両デバイスの違いと選び方を解説' },
+  { href: '/iphone/network-limit/', title: 'ネットワーク制限△の端末は買って大丈夫？', desc: 'メリット・デメリットを解説' },
 ]
 
 /** Apple Watch サブページ一覧 */
