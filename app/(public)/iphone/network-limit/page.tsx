@@ -3,12 +3,10 @@ import Image from 'next/image'
 import RatingMark from '@/app/components/RatingMark'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import FaqSection from '@/app/components/support/FaqSection'
-import ShareBox from '@/app/components/ShareBox'
-import IPhoneRelatedLinks from '@/app/components/iphone/IPhoneRelatedLinks'
+import IPhoneArticleFooter from '@/app/components/iphone/IPhoneArticleFooter'
 import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
-import IPhonePopularSection from '@/app/components/support/popular/IPhonePopularSection'
 import { getHeroImage } from '@/lib/data/hero-images'
 import { getShops } from '@/lib/queries'
 
@@ -406,10 +404,11 @@ export default async function NetworkLimitPage() {
             items={FAQ_ITEMS}
           />
 
-          <IPhonePopularSection />
-
-          <IPhoneRelatedLinks excludeHref={["/iphone/network-limit/", "/iphone/recommend/"]} />
-          <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
+          <IPhoneArticleFooter
+            pageUrl={PAGE_URL}
+            pageTitle={PAGE_TITLE}
+            excludeHref={["/iphone/network-limit/", "/iphone/recommend/"]}
+          />
         </div>
       </article>
     </main>

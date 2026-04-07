@@ -1,15 +1,13 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Breadcrumb from '@/app/components/Breadcrumb'
-import ShareBox from '@/app/components/ShareBox'
+import WatchArticleFooter from '@/app/components/watch/WatchArticleFooter'
 import MeritSection from './components/MeritSection'
 import DemeritSection from './components/DemeritSection'
 import SettingSection from './components/SettingSection'
 import TipsSection from './components/TipsSection'
 import SpecTableSection from './components/SpecTableSection'
 import AlwaysLitFaqSection, { FAQ_ITEMS } from './components/AlwaysLitFaqSection'
-import WatchPopularSection from '@/app/components/support/popular/WatchPopularSection'
-import WatchRelatedLinks from '@/app/components/watch/WatchRelatedLinks'
 import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
@@ -231,9 +229,7 @@ export default function AppleWatchAlwaysLitPage() {
           </section>
 
           <AlwaysLitFaqSection />
-          <WatchPopularSection />
-        <WatchRelatedLinks excludeHref={["/watch/apple-watch-always-lit/", "/watch/recommend/"]} />
-        <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
+          <WatchArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/watch/apple-watch-always-lit/", "/watch/recommend/"]} />
         </div>
       </article>
     </main>

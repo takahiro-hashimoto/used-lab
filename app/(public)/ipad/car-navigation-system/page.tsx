@@ -1,15 +1,13 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Breadcrumb from '@/app/components/Breadcrumb'
-import ShareBox from '@/app/components/ShareBox'
 import MeritSection from './components/MeritSection'
 import CautionSection from './components/CautionSection'
 import PrepareSection from './components/PrepareSection'
 import NaviAppSection from './components/NaviAppSection'
 import RunningCostSection from './components/RunningCostSection'
 import FaqSection from '@/app/components/support/FaqSection'
-import IPadRelatedLinks from '@/app/components/ipad/IPadRelatedLinks'
-import IPadPopularSection from '@/app/components/support/popular/IPadPopularSection'
+import IPadArticleFooter from '@/app/components/ipad/IPadArticleFooter'
 import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
@@ -280,9 +278,7 @@ export default function CarNavigationSystemPage() {
             ]}
           />
 
-        <IPadPopularSection />
-        <IPadRelatedLinks excludeHref={["/ipad/car-navigation-system/", "/ipad/recommend/"]} />
-        <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
+        <IPadArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/ipad/car-navigation-system/", "/ipad/recommend/"]} />
         </div>
       </article>
     </main>

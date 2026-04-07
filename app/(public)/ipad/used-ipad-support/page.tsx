@@ -2,13 +2,11 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import { getAllIPadModels, getAllIPadModelsIncludingEnded } from '@/lib/queries'
 import Breadcrumb from '@/app/components/Breadcrumb'
-import ShareBox from '@/app/components/ShareBox'
 import IPadOsSupportMatrix from './components/IPadOsSupportMatrix'
 import LifespanTable from './components/LifespanTable'
 import TimingSection from './components/TimingSection'
-import IPadPopularSection from '@/app/components/support/popular/IPadPopularSection'
 import FaqSection from './components/FaqSection'
-import IPadRelatedLinks from '@/app/components/ipad/IPadRelatedLinks'
+import IPadArticleFooter from '@/app/components/ipad/IPadArticleFooter'
 import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
@@ -171,9 +169,7 @@ export default async function UsedIpadSupportPage() {
         <LifespanTable models={allModelsWithEnded} />
         <TimingSection />
         <FaqSection />
-        <IPadPopularSection />
-        <IPadRelatedLinks excludeHref={["/ipad/used-ipad-support/", "/ipad/recommend/"]} />
-        <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
+        <IPadArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/ipad/used-ipad-support/", "/ipad/recommend/"]} />
         </div>
       </article>
     </main>

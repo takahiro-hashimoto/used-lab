@@ -10,13 +10,11 @@ import {
 } from '@/lib/queries'
 import type { IPadPriceLog } from '@/lib/types'
 import StorageTable, { type StorageModel } from './components/StorageTable'
-import ShareBox from '@/app/components/ShareBox'
-import IPadRelatedLinks from '@/app/components/ipad/IPadRelatedLinks'
+import IPadArticleFooter from '@/app/components/ipad/IPadArticleFooter'
 import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
 import { getHeroImage } from '@/lib/data/hero-images'
-import IPadPopularSection from '@/app/components/support/popular/IPadPopularSection'
 
 export const revalidate = 86400
 
@@ -456,10 +454,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/ipad/storage-gu
           items={FAQ_ITEMS}
         />
 
-        <IPadPopularSection />
-
-        <IPadRelatedLinks excludeHref={["/ipad/storage-guide/", "/ipad/recommend/"]} />
-        <ShareBox url="https://used-lab.jp/ipad/storage-guide/" text="中古iPadのストレージ容量はどれがいい？用途別おすすめ容量まとめ" />
+        <IPadArticleFooter pageUrl="https://used-lab.jp/ipad/storage-guide/" pageTitle="中古iPadのストレージ容量はどれがいい？用途別おすすめ容量まとめ" excludeHref={["/ipad/storage-guide/", "/ipad/recommend/"]} />
         </div>
       </article>
     </main>

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Breadcrumb from '@/app/components/Breadcrumb'
-import ShareBox from '@/app/components/ShareBox'
+import WatchArticleFooter from '@/app/components/watch/WatchArticleFooter'
 import PreCheckSection from './components/PreCheckSection'
 import RouteSection from './components/RouteSection'
 import PostCheckSection from '@/app/components/attention/PostCheckSection'
@@ -9,8 +9,6 @@ import FailureSection from '@/app/components/attention/FailureSection'
 import InsuranceSection from '@/app/components/attention/InsuranceSection'
 import FaqSection from '@/app/components/attention/FaqSection'
 import { insuranceData, faqItems, postCheckItems, failurePatterns } from './components/data'
-import WatchPopularSection from '@/app/components/support/popular/WatchPopularSection'
-import WatchRelatedLinks from '@/app/components/watch/WatchRelatedLinks'
 import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
@@ -232,9 +230,7 @@ export default function UsedWatchAttentionPage() {
           <FailureSection productName="Apple Watch" guidePath="/watch" failurePatterns={failurePatterns} showMemo={false} />
           <InsuranceSection {...insuranceData} />
           <FaqSection productName="Apple Watch" faqItems={faqItems} />
-          <WatchPopularSection />
-        <WatchRelatedLinks excludeHref={["/watch/used-watch-attention/", "/watch/recommend/"]} />
-        <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
+          <WatchArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/watch/used-watch-attention/", "/watch/recommend/"]} />
         </div>
       </article>
     </main>

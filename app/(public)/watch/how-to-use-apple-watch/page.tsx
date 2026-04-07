@@ -1,13 +1,11 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Breadcrumb from '@/app/components/Breadcrumb'
-import ShareBox from '@/app/components/ShareBox'
+import WatchArticleFooter from '@/app/components/watch/WatchArticleFooter'
 import BasicSection from './components/BasicSection'
 import HealthSection from './components/HealthSection'
 import PaymentSection from './components/PaymentSection'
 import AppleEcoSection from './components/AppleEcoSection'
-import WatchPopularSection from '@/app/components/support/popular/WatchPopularSection'
-import WatchRelatedLinks from '@/app/components/watch/WatchRelatedLinks'
 import FaqSection from '@/app/components/support/FaqSection'
 import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
@@ -219,12 +217,7 @@ export default function HowToUseAppleWatchPage() {
           />
 
 
-        <WatchPopularSection />
-
-        <WatchRelatedLinks excludeHref={["/watch/how-to-use-apple-watch/", "/watch/recommend/"]} />
-
-        {/* シェアボックス */}
-        <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
+        <WatchArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/watch/how-to-use-apple-watch/", "/watch/recommend/"]} />
         </div>
       </article>
     </main>

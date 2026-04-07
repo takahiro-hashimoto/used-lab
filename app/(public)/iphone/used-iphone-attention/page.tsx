@@ -1,15 +1,13 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Breadcrumb from '@/app/components/Breadcrumb'
-import ShareBox from '@/app/components/ShareBox'
+import IPhoneArticleFooter from '@/app/components/iphone/IPhoneArticleFooter'
 import PreCheckSection from './components/PreCheckSection'
 import RouteSection from './components/RouteSection'
 import PostCheckSection from '@/app/components/attention/PostCheckSection'
 import FailureSection from '@/app/components/attention/FailureSection'
 import InsuranceSection from '@/app/components/attention/InsuranceSection'
 import FaqSection from '@/app/components/attention/FaqSection'
-import IPhoneRelatedLinks from '@/app/components/iphone/IPhoneRelatedLinks'
-import IPhonePopularSection from '@/app/components/support/popular/IPhonePopularSection'
 import SummaryChecklist from '@/app/components/SummaryChecklist'
 import { insuranceData, faqItems, postCheckItems, failurePatterns } from './components/data'
 import AuthorByline from '@/app/components/AuthorByline'
@@ -259,9 +257,11 @@ export default function UsedIphoneAttentionPage() {
           </section>
 
           <FaqSection productName="iPhone" faqItems={faqItems} />
-          <IPhonePopularSection />
-        <IPhoneRelatedLinks excludeHref={["/iphone/used-iphone-attention/", "/iphone/recommend/"]} />
-        <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
+          <IPhoneArticleFooter
+            pageUrl={PAGE_URL}
+            pageTitle={PAGE_TITLE}
+            excludeHref={["/iphone/used-iphone-attention/", "/iphone/recommend/"]}
+          />
         </div>
       </article>
     </main>

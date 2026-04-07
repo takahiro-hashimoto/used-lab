@@ -1,12 +1,10 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Breadcrumb from '@/app/components/Breadcrumb'
-import ShareBox from '@/app/components/ShareBox'
+import MacBookArticleFooter from '@/app/components/macbook/MacBookArticleFooter'
 import ComparisonTable from './components/ComparisonTable'
 import ComparisonSections from './components/ComparisonSections'
 import SummarySection from './components/SummarySection'
-import PopularMacBook from '@/app/components/PopularMacBook'
-import MacBookRelatedLinks from '@/app/components/macbook/MacBookRelatedLinks'
 import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import { getHeroImage } from '@/lib/data/hero-images'
@@ -246,10 +244,7 @@ export default function WindowsMacComparePage() {
 
           {/* h2: まとめセクション */}
           <SummarySection />
-        <PopularMacBook />
-        <MacBookRelatedLinks excludeHref={["/macbook/windows-mac-compare/", "/macbook/recommend/"]} />
-        {/* シェアボックス */}
-        <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
+        <MacBookArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/macbook/windows-mac-compare/", "/macbook/recommend/"]} />
         </div>
       </article>
     </main>

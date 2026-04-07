@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Breadcrumb from '@/app/components/Breadcrumb'
-import ShareBox from '@/app/components/ShareBox'
+import MacBookArticleFooter from '@/app/components/macbook/MacBookArticleFooter'
 import ComparisonTable from './components/ComparisonTable'
 import HeroMeta from '@/app/components/HeroMeta'
 import ComparisonSections from './components/ComparisonSections'
@@ -10,7 +10,6 @@ import UseCaseSection from './components/UseCaseSection'
 import PriceCompareSection from './components/PriceCompareSection'
 import FaqSection from './components/FaqSection'
 import SummarySection from './components/SummarySection'
-import MacBookRelatedLinks from '@/app/components/macbook/MacBookRelatedLinks'
 import { getAllMacBookModels, getLatestMacBookPriceLog } from '@/lib/queries'
 import type { MacBookPriceLog } from '@/lib/types'
 import AuthorByline from '@/app/components/AuthorByline'
@@ -246,8 +245,7 @@ export default async function AirProComparePage() {
           {/* まとめ */}
           <SummarySection />
 
-          <MacBookRelatedLinks excludeHref={["/macbook/air-pro-compare/", "/macbook/recommend/"]} />
-          <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
+          <MacBookArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/macbook/air-pro-compare/", "/macbook/recommend/"]} />
         </div>
       </article>
     </main>

@@ -20,7 +20,7 @@ import {
   FAQ_JSONLD_ITEMS,
 } from '@/lib/data/macbook-recommend'
 import Breadcrumb from '@/app/components/Breadcrumb'
-import ShareBox from '@/app/components/ShareBox'
+import MacBookArticleFooter from '@/app/components/macbook/MacBookArticleFooter'
 import ConclusionSection from '@/app/components/ConclusionSection'
 import CriteriaSection from '@/app/components/CriteriaSection'
 import RecommendDetailSection from './components/RecommendDetailSection'
@@ -28,7 +28,6 @@ import CompareTableSection from './components/CompareTableSection'
 import ChecklistSection from '@/app/components/ChecklistSection'
 import ShopSection from '@/app/components/ShopSection'
 import MacBookFaqSection from './components/MacBookFaqSection'
-import MacBookRelatedLinks from '@/app/components/macbook/MacBookRelatedLinks'
 import dynamic from 'next/dynamic'
 
 const ValueZoneChart = dynamic(() => import('@/app/components/ValueZoneChart'), {
@@ -384,8 +383,7 @@ export default async function MacBookRecommendPage() {
             shopDetailLink={{ href: '/macbook/macbook-shop/', label: '中古MacBookのおすすめショップ比較' }}
           />
           <MacBookFaqSection />
-        <MacBookRelatedLinks heading="MacBook選びをもっと深掘りする" description="購入先の比較や相場チェックなど、MacBook選びに役立つ記事をまとめました。" excludeHref="/macbook/recommend/" />
-        <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
+        <MacBookArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref="/macbook/recommend/" hidePopular relatedHeading="MacBook選びをもっと深掘りする" relatedDescription="購入先の比較や相場チェックなど、MacBook選びに役立つ記事をまとめました。" />
         </div>
       </article>
     </main>

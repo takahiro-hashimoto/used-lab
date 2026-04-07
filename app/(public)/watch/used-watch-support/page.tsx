@@ -2,13 +2,11 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import { getAllWatchModels, getAllWatchModelsIncludingEnded } from '@/lib/queries'
 import Breadcrumb from '@/app/components/Breadcrumb'
-import ShareBox from '@/app/components/ShareBox'
+import WatchArticleFooter from '@/app/components/watch/WatchArticleFooter'
 import WatchOsSupportMatrix from './components/WatchOsSupportMatrix'
 import LifespanTable from './components/LifespanTable'
 import TimingSection from './components/TimingSection'
-import WatchPopularSection from '@/app/components/support/popular/WatchPopularSection'
 import FaqSection from './components/FaqSection'
-import WatchRelatedLinks from '@/app/components/watch/WatchRelatedLinks'
 import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
@@ -171,9 +169,7 @@ export default async function UsedWatchSupportPage() {
         <LifespanTable models={allModelsWithEnded} />
         <TimingSection />
         <FaqSection />
-        <WatchPopularSection />
-        <WatchRelatedLinks excludeHref={["/watch/used-watch-support/", "/watch/recommend/"]} />
-        <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
+        <WatchArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/watch/used-watch-support/", "/watch/recommend/"]} />
         </div>
       </article>
     </main>

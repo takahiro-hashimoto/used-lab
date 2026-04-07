@@ -3,9 +3,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import FaqSection from '@/app/components/support/FaqSection'
-import PopularMacBook from '@/app/components/PopularMacBook'
-import MacBookRelatedLinks from '@/app/components/macbook/MacBookRelatedLinks'
-import ShareBox from '@/app/components/ShareBox'
+import MacBookArticleFooter from '@/app/components/macbook/MacBookArticleFooter'
 import { getAllMacBookModels, getAllMacBookPriceLogsByModelIds, getAllProductShopLinksByType } from '@/lib/queries'
 import type { MacBookPriceLog, ProductShopLink } from '@/lib/types'
 import BenchmarkRanking from './components/BenchmarkRanking'
@@ -324,9 +322,7 @@ export default async function BenchmarkPage() {
             items={FAQ_ITEMS}
           />
 
-          <PopularMacBook />
-          <MacBookRelatedLinks excludeHref={["/macbook/benchmark/", "/macbook/recommend/"]} />
-          <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
+          <MacBookArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/macbook/benchmark/", "/macbook/recommend/"]} />
         </div>
       </article>
     </main>

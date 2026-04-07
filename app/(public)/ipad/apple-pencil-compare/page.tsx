@@ -3,14 +3,12 @@ import Image from 'next/image'
 import { getAllIPadModels, getAllProductShopLinksByType, getAllIPadAccessories, getAllIPadAccessoryCompatibility } from '@/lib/queries'
 import { buildAccessoryLookup, getPencilTextFromAccessories } from '@/lib/utils/ipad-helpers'
 import Breadcrumb from '@/app/components/Breadcrumb'
-import ShareBox from '@/app/components/ShareBox'
 import PencilCompatTable from './components/PencilCompatTable'
 import PencilSpecTable from './components/PencilSpecTable'
 import PencilDetailSection from './components/PencilDetailSection'
 import PencilGuideSection from './components/PencilGuideSection'
 import FaqSection from '@/app/components/support/FaqSection'
-import IPadRelatedLinks from '@/app/components/ipad/IPadRelatedLinks'
-import IPadPopularSection from '@/app/components/support/popular/IPadPopularSection'
+import IPadArticleFooter from '@/app/components/ipad/IPadArticleFooter'
 import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
@@ -249,12 +247,7 @@ export default async function ApplePencilComparePage() {
             ]}
           />
 
-          {/* 目的別に人気の中古iPad */}
-          <IPadPopularSection />
-
-        <IPadRelatedLinks excludeHref={["/ipad/apple-pencil-compare/", "/ipad/recommend/"]} />
-
-        <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
+          <IPadArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/ipad/apple-pencil-compare/", "/ipad/recommend/"]} />
         </div>
       </article>
     </main>

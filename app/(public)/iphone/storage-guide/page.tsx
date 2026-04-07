@@ -8,12 +8,10 @@ import {
 } from '@/lib/queries'
 import type { IPhonePriceLog } from '@/lib/types'
 import StorageTable, { type StorageModel } from './components/StorageTable'
-import ShareBox from '@/app/components/ShareBox'
-import IPhoneRelatedLinks from '@/app/components/iphone/IPhoneRelatedLinks'
+import IPhoneArticleFooter from '@/app/components/iphone/IPhoneArticleFooter'
 import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
-import IPhonePopularSection from '@/app/components/support/popular/IPhonePopularSection'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import FaqSection from '@/app/components/support/FaqSection'
 import { getHeroImage } from '@/lib/data/hero-images'
@@ -466,10 +464,11 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/storage-
           items={FAQ_ITEMS}
         />
 
-        <IPhonePopularSection />
-
-        <IPhoneRelatedLinks excludeHref={["/iphone/storage-guide/", "/iphone/recommend/"]} />
-        <ShareBox url="https://used-lab.jp/iphone/storage-guide/" text="中古iPhoneのストレージ容量はどれがいい？用途別おすすめ容量まとめ" />
+        <IPhoneArticleFooter
+          pageUrl="https://used-lab.jp/iphone/storage-guide/"
+          pageTitle="中古iPhoneのストレージ容量はどれがいい？用途別おすすめ容量まとめ"
+          excludeHref={["/iphone/storage-guide/", "/iphone/recommend/"]}
+        />
         </div>
       </article>
     </main>

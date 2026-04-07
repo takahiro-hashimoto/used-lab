@@ -23,13 +23,11 @@ import CompareSection from '@/app/components/CompareSection'
 import CompareSelector from './components/CompareSelector'
 import BenchmarkGeekbench from './components/BenchmarkGeekbench'
 import BenchmarkAntutu from './components/BenchmarkAntutu'
-import RelatedArticles from './components/RelatedArticles'
+import IPhoneArticleFooter from '@/app/components/iphone/IPhoneArticleFooter'
 import FaqSection from './components/FaqSection'
 import ReviewSection from '@/app/components/ReviewSection'
-import ShareBox from '@/app/components/ShareBox'
 import AdminEditLink from '@/app/components/AdminEditLink'
 import StickyCtaOverride from '@/app/components/StickyCtaOverride'
-import IPhonePopularSection from '@/app/components/support/popular/IPhonePopularSection'
 import { getCompareLinksForModel } from '@/app/(public)/iphone/_compare/config'
 
 export const revalidate = 3600
@@ -147,9 +145,13 @@ export default async function IPhoneDetailPage({ params }: PageProps) {
         <BenchmarkAntutu model={model} allModels={allModels} />
         <ReviewSection modelName={model.model} reviews={reviews} />
         <FaqSection model={model} latestPrice={latestPrice} shopLinks={modelShopLinks} />
-        <IPhonePopularSection />
-        <RelatedArticles model={model} />
-        <ShareBox url={`https://used-lab.jp/iphone/${model.slug}/`} text={`中古${model.model}は今買うべき？製品寿命、基本スペック、ベンチマークスコア、中古相場から解説`} />
+        <IPhoneArticleFooter
+          pageUrl={`https://used-lab.jp/iphone/${model.slug}/`}
+          pageTitle={`中古${model.model}は今買うべき？製品寿命、基本スペック、ベンチマークスコア、中古相場から解説`}
+          excludeHref={`/iphone/${model.slug}/`}
+          relatedHeading="iPhone選びのヒントになる記事"
+          relatedDescription="iPhone選びをサポートする記事をまとめました。"
+        />
         </div>
       </article>
     </main>

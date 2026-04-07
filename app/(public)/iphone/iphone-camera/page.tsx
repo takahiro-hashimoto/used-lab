@@ -1,16 +1,14 @@
 import type { Metadata } from 'next'
 import { getAllIPhoneModels, getAllProductShopLinksByType } from '@/lib/queries'
 import Breadcrumb from '@/app/components/Breadcrumb'
-import ShareBox from '@/app/components/ShareBox'
+import IPhoneArticleFooter from '@/app/components/iphone/IPhoneArticleFooter'
 import CameraComparisonTable from './components/CameraComparisonTable'
 import CameraFeatureCard from './components/CameraFeatureCard'
 import FaqSection from '@/app/components/support/FaqSection'
 import Image from 'next/image'
-import IPhoneRelatedLinks from '@/app/components/iphone/IPhoneRelatedLinks'
 import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
-import IPhonePopularSection from '@/app/components/support/popular/IPhonePopularSection'
 import { getHeroImage } from '@/lib/data/hero-images'
 
 export const revalidate = 86400
@@ -523,10 +521,11 @@ export default async function IPhoneCameraPage() {
           ]}
         />
 
-        <IPhonePopularSection />
-
-        <IPhoneRelatedLinks excludeHref={["/iphone/iphone-camera/", "/iphone/recommend/"]} />
-        <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
+        <IPhoneArticleFooter
+          pageUrl={PAGE_URL}
+          pageTitle={PAGE_TITLE}
+          excludeHref={["/iphone/iphone-camera/", "/iphone/recommend/"]}
+        />
         </div>
       </article>
     </main>

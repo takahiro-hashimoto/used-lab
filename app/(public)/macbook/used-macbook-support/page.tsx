@@ -2,13 +2,11 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import { getAllMacBookModels, getAllMacBookModelsIncludingEnded } from '@/lib/queries'
 import Breadcrumb from '@/app/components/Breadcrumb'
-import ShareBox from '@/app/components/ShareBox'
+import MacBookArticleFooter from '@/app/components/macbook/MacBookArticleFooter'
 import MacOsSupportMatrix from './components/MacOsSupportMatrix'
 import LifespanTable from './components/LifespanTable'
 import TimingSection from './components/TimingSection'
-import MacBookPopularSection from '@/app/components/support/popular/MacBookPopularSection'
 import FaqSection from './components/FaqSection'
-import MacBookRelatedLinks from '@/app/components/macbook/MacBookRelatedLinks'
 import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import { getHeroImage } from '@/lib/data/hero-images'
@@ -171,16 +169,14 @@ export default async function UsedMacbookSupportPage() {
         <LifespanTable models={allModelsWithEnded} />
         <TimingSection />
         <FaqSection />
-        <MacBookPopularSection />
-        <MacBookRelatedLinks excludeHref={["/macbook/used-macbook-support/", "/macbook/recommend/"]}>
+        <MacBookArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/macbook/used-macbook-support/", "/macbook/recommend/"]}>
           <div className="m-callout m-callout--muted u-mt-3xl">
             <span className="m-callout__label">関連</span>
             <p className="m-callout__text">
               <a href="https://www.kaden-max.com/" target="_blank" rel="noreferrer noopener">リサイクルショップ「出張買取MAX」24時間電話受付！査定費・作業費・出張費無料</a>
             </p>
           </div>
-        </MacBookRelatedLinks>
-        <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
+        </MacBookArticleFooter>
         </div>
       </article>
     </main>

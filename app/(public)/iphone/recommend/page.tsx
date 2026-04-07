@@ -21,7 +21,6 @@ import {
   FAQ_JSONLD_ITEMS,
 } from '@/lib/data/iphone-recommend'
 import Breadcrumb from '@/app/components/Breadcrumb'
-import ShareBox from '@/app/components/ShareBox'
 import ConclusionSection from '@/app/components/ConclusionSection'
 import CriteriaSection from '@/app/components/CriteriaSection'
 import RecommendDetailSection from './components/RecommendDetailSection'
@@ -30,7 +29,7 @@ import ChecklistSection from '@/app/components/ChecklistSection'
 import ShopSection from '@/app/components/ShopSection'
 import IPhoneFaqSection from './components/IPhoneFaqSection'
 import ValueZoneChartWrapper from './components/ValueZoneChartWrapper'
-import IPhoneRelatedLinks from '@/app/components/iphone/IPhoneRelatedLinks'
+import IPhoneArticleFooter from '@/app/components/iphone/IPhoneArticleFooter'
 import AuthorByline from '@/app/components/AuthorByline'
 import HeroMeta from '@/app/components/HeroMeta'
 import { getHeroImage } from '@/lib/data/hero-images'
@@ -377,12 +376,7 @@ export default async function IPhoneTopPage() {
             shopDetailLink={{ href: '/iphone/iphone-shop/', label: '中古iPhoneのおすすめショップ比較' }}
           />
           <IPhoneFaqSection />
-          <IPhoneRelatedLinks
-            heading="iPhone選びをもっと深掘りする"
-            description="購入先の比較や相場チェックなど、iPhone選びに役立つ記事をまとめました。"
-            excludeHref="/iphone/recommend/"
-          />
-        <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
+          <IPhoneArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref="/iphone/recommend/" hidePopular relatedHeading="iPhone選びをもっと深掘りする" relatedDescription="購入先の比較や相場チェックなど、iPhone選びに役立つ記事をまとめました。" />
         </div>
       </article>
     </main>

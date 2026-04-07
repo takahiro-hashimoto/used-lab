@@ -20,7 +20,7 @@ import {
   FAQ_JSONLD_ITEMS,
 } from '@/lib/data/watch-recommend'
 import Breadcrumb from '@/app/components/Breadcrumb'
-import ShareBox from '@/app/components/ShareBox'
+import WatchArticleFooter from '@/app/components/watch/WatchArticleFooter'
 import ConclusionSection from '@/app/components/ConclusionSection'
 import CriteriaSection from '@/app/components/CriteriaSection'
 import RecommendDetailSection from './components/RecommendDetailSection'
@@ -28,7 +28,6 @@ import CompareTableSection from './components/CompareTableSection'
 import ChecklistSection from '@/app/components/ChecklistSection'
 import ShopSection from '@/app/components/ShopSection'
 import WatchFaqSection from './components/WatchFaqSection'
-import WatchRelatedLinks from '@/app/components/watch/WatchRelatedLinks'
 import dynamic from 'next/dynamic'
 
 const ValueZoneChart = dynamic(() => import('@/app/components/ValueZoneChart'), {
@@ -379,8 +378,7 @@ export default async function WatchRecommendPage() {
             shopDetailLink={{ href: '/watch/watch-shop/', label: '中古Apple Watchのおすすめショップ比較' }}
           />
           <WatchFaqSection />
-        <WatchRelatedLinks heading="Apple Watch選びをもっと深掘りする" description="購入先の比較や相場チェックなど、Apple Watch選びに役立つ記事をまとめました。" excludeHref="/watch/recommend/" />
-        <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
+        <WatchArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref="/watch/recommend/" hidePopular relatedHeading="Apple Watch選びをもっと深掘りする" relatedDescription="購入先の比較や相場チェックなど、Apple Watch選びに役立つ記事をまとめました。" />
         </div>
       </article>
     </main>

@@ -9,8 +9,7 @@ import DualCompare from './components/DualCompare'
 import BenchmarkSection from './components/BenchmarkSection'
 import EvolutionTimeline from './components/EvolutionTimeline'
 import GlossarySection from '@/app/components/GlossarySection'
-import IPadRelatedLinks from '@/app/components/ipad/IPadRelatedLinks'
-import IPadPopularSection from '@/app/components/support/popular/IPadPopularSection'
+import IPadArticleFooter from '@/app/components/ipad/IPadArticleFooter'
 
 const GLOSSARY_ITEMS = [
   { title: 'CPU', icon: 'fa-solid fa-microchip', desc: 'iPadの処理性能を決める中核チップ。AシリーズやMシリーズが搭載され、Mシリーズはパソコン並の高性能を誇る。' },
@@ -25,7 +24,6 @@ const GLOSSARY_ITEMS = [
   { title: 'Apple Pencil', icon: 'fa-solid fa-pen-nib', desc: <>iPad専用のスタイラスペン。手書きメモやイラスト制作、PDFへの注釈などに活用。第1〜第3世代があり、対応機種や充電方式が異なる。詳しくは「<Link href="/ipad/apple-pencil-compare/">Apple Pencilの違いを比較</Link>」を参照。</> },
   { title: '外付けキーボード', icon: 'fa-solid fa-keyboard', desc: <>iPad専用のMagic KeyboardやSmart Keyboardなどが対応。タイピング作業や資料作成が快適になり、ラップトップのように使える。詳しくは「<Link href="/ipad/accessories-summary/#kb-16">iPadのMagic Keyboard 型番一覧</Link>」を参照。</> },
 ]
-import ShareBox from '@/app/components/ShareBox'
 import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
@@ -250,12 +248,7 @@ export default async function IPadSpecTablePage() {
         <EvolutionTimeline models={serializedModels} />
         <GlossarySection productName="iPad" items={GLOSSARY_ITEMS} />
 
-        {/* 目的別に人気の中古iPad */}
-        <IPadPopularSection />
-
-        <IPadRelatedLinks excludeHref={["/ipad/ipad-spec-table/", "/ipad/recommend/"]} />
-
-        <ShareBox url="https://used-lab.jp/ipad/ipad-spec-table/" text="歴代iPadスペック比較表！各世代の性能の違いがすぐわかる" />
+        <IPadArticleFooter pageUrl="https://used-lab.jp/ipad/ipad-spec-table/" pageTitle="歴代iPadスペック比較表！各世代の性能の違いがすぐわかる" excludeHref={["/ipad/ipad-spec-table/", "/ipad/recommend/"]} />
         </div>
       </article>
     </main>

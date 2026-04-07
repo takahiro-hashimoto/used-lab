@@ -1,11 +1,9 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Breadcrumb from '@/app/components/Breadcrumb'
-import ShareBox from '@/app/components/ShareBox'
 import BuyMethodsSection from './components/BuyMethodsSection'
 import ConclusionSection from './components/ConclusionSection'
-import PopularMacBook from '@/app/components/PopularMacBook'
-import MacBookRelatedLinks from '@/app/components/macbook/MacBookRelatedLinks'
+import MacBookArticleFooter from '@/app/components/macbook/MacBookArticleFooter'
 import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import { getHeroImage } from '@/lib/data/hero-images'
@@ -188,9 +186,7 @@ export default function MacBookBuyPage() {
 
           <BuyMethodsSection />
 
-        <PopularMacBook />
-        <MacBookRelatedLinks excludeHref={["/macbook/macbook-buy/", "/macbook/recommend/"]} />
-        <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
+        <MacBookArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/macbook/macbook-buy/", "/macbook/recommend/"]} />
         </div>
       </article>
     </main>

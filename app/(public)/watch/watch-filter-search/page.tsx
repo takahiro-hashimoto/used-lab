@@ -8,9 +8,7 @@ import { supabase } from '@/lib/supabase'
 import WatchFilterSearchApp from './components/WatchFilterSearchApp'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import FaqSection from '@/app/components/support/FaqSection'
-import ShareBox from '@/app/components/ShareBox'
-import WatchPopularSection from '@/app/components/support/popular/WatchPopularSection'
-import WatchRelatedLinks from '@/app/components/watch/WatchRelatedLinks'
+import WatchArticleFooter from '@/app/components/watch/WatchArticleFooter'
 import { getGitDateForFile } from '@/lib/utils/shared-helpers'
 import { getHeroImage } from '@/lib/data/hero-images'
 import HeroMeta from '@/app/components/HeroMeta'
@@ -259,9 +257,7 @@ export default async function WatchFilterSearchPage() {
           items={FAQ_ITEMS}
         />
 
-        <WatchPopularSection />
-        <WatchRelatedLinks excludeHref={["/watch/watch-filter-search/", "/watch/recommend/"]} />
-        <ShareBox url="https://used-lab.jp/watch/watch-filter-search/" text="Apple Watch機種診断シミュレーター｜自分に合うおすすめ中古アップルウォッチがすぐわかる【2026年版】" />
+        <WatchArticleFooter pageUrl="https://used-lab.jp/watch/watch-filter-search/" pageTitle="Apple Watch機種診断シミュレーター｜自分に合うおすすめ中古アップルウォッチがすぐわかる【2026年版】" excludeHref={["/watch/watch-filter-search/", "/watch/recommend/"]} />
         </div>
       </article>
     </main>

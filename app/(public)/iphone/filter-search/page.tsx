@@ -5,11 +5,9 @@ import type { IPhonePriceLog } from '@/lib/types'
 import IconCard from '@/app/components/IconCard'
 import { supabase } from '@/lib/supabase'
 import FilterSearchApp from './components/FilterSearchApp'
-import ShareBox from '@/app/components/ShareBox'
-import IPhoneRelatedLinks from '@/app/components/iphone/IPhoneRelatedLinks'
+import IPhoneArticleFooter from '@/app/components/iphone/IPhoneArticleFooter'
 import { getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
-import IPhonePopularSection from '@/app/components/support/popular/IPhonePopularSection'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import FaqSection from '@/app/components/support/FaqSection'
 import { getHeroImage } from '@/lib/data/hero-images'
@@ -264,9 +262,11 @@ export default async function IPhoneFilterSearchPage() {
           items={FAQ_ITEMS}
         />
 
-        <IPhonePopularSection />
-        <IPhoneRelatedLinks excludeHref={["/iphone/filter-search/", "/iphone/recommend/"]} />
-        <ShareBox url="https://used-lab.jp/iphone/filter-search/" text="iPhone機種診断シミュレーター｜自分に合うおすすめ中古スマホがすぐわかる【2026年版】" />
+        <IPhoneArticleFooter
+          pageUrl="https://used-lab.jp/iphone/filter-search/"
+          pageTitle="iPhone機種診断シミュレーター｜自分に合うおすすめ中古スマホがすぐわかる【2026年版】"
+          excludeHref={["/iphone/filter-search/", "/iphone/recommend/"]}
+        />
         </div>
       </article>
     </main>

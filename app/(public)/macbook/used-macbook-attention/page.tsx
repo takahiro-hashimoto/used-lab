@@ -1,8 +1,7 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Breadcrumb from '@/app/components/Breadcrumb'
-import ShareBox from '@/app/components/ShareBox'
-import PopularMacBook from '@/app/components/PopularMacBook'
+import MacBookArticleFooter from '@/app/components/macbook/MacBookArticleFooter'
 import PreCheckSection from './components/PreCheckSection'
 import RouteSection from './components/RouteSection'
 import PostCheckSection from '@/app/components/attention/PostCheckSection'
@@ -10,7 +9,6 @@ import FailureSection from '@/app/components/attention/FailureSection'
 import InsuranceSection from '@/app/components/attention/InsuranceSection'
 import FaqSection from '@/app/components/attention/FaqSection'
 import { insuranceData, faqItems, postCheckItems, failurePatterns } from './components/data'
-import MacBookRelatedLinks from '@/app/components/macbook/MacBookRelatedLinks'
 import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import { getHeroImage } from '@/lib/data/hero-images'
@@ -232,9 +230,7 @@ export default function UsedMacBookAttentionPage() {
           <FailureSection productName="MacBook" guidePath="/macbook" failurePatterns={failurePatterns} showMemo={false} />
           <InsuranceSection {...insuranceData} />
           <FaqSection productName="MacBook" faqItems={faqItems} />
-          <PopularMacBook />
-          <MacBookRelatedLinks excludeHref={["/macbook/used-macbook-attention/", "/macbook/recommend/"]} />
-          <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
+          <MacBookArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/macbook/used-macbook-attention/", "/macbook/recommend/"]} />
         </div>
       </article>
     </main>

@@ -9,10 +9,9 @@ import {
   SHOP_FAQ_ITEMS,
 } from '@/lib/data/iphone-shop'
 import Breadcrumb from '@/app/components/Breadcrumb'
-import ShareBox from '@/app/components/ShareBox'
 import ShopComparisonTable from '@/app/components/shop/ShopComparisonTable'
 import type { SpecRow } from '@/app/components/shop/ShopDetailSection'
-import IPhoneRelatedLinks from '@/app/components/iphone/IPhoneRelatedLinks'
+import IPhoneArticleFooter from '@/app/components/iphone/IPhoneArticleFooter'
 import BuyingOptionsSection from './components/BuyingOptionsSection'
 import SelectionCriteriaSection from './components/SelectionCriteriaSection'
 import ShopComparisonSection from './components/ShopComparisonSection'
@@ -20,7 +19,6 @@ import RecommendByTypeSection from './components/RecommendByTypeSection'
 import ShopDetailSection from './components/ShopDetailSection'
 import FleaMarketSection from './components/FleaMarketSection'
 import ChecklistSection from './components/ChecklistSection'
-import IPhonePopularSection from '@/app/components/support/popular/IPhonePopularSection'
 import FaqSection from './components/FaqSection'
 import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
@@ -263,24 +261,21 @@ export default async function IPhoneShopPage() {
           <FleaMarketSection />
           <ChecklistSection />
           <FaqSection />
-          <IPhonePopularSection />
-        <IPhoneRelatedLinks excludeHref={["/iphone/iphone-shop/", "/iphone/recommend/"]} />
-
-        <section className="l-section l-section--sm" aria-label="関連リンク">
-          <div className="l-container">
-            <div className="m-callout m-callout--muted">
-              <span className="m-callout__label">関連</span>
-              <p className="m-callout__text">
-                <a href="https://smapple-tenjin.com/">iPhone修理福岡 ならスマップル天神店</a><br />
-                <a href="https://smapple-omiya.com/">iPhone修理大宮 ならスマップル大宮店</a><br />
-                <a href="https://smapple-sendai.com/">iPhone修理仙台 スマップル仙台店</a><br />
-                <a href="https://www.a-sas.ne.jp/" target="_blank" rel="noreferrer noopener">【誰でもスマホ】 携帯ブラックでも契約できる格安SIM</a>
-              </p>
+          <IPhoneArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/iphone/iphone-shop/", "/iphone/recommend/"]}>
+          <section className="l-section l-section--sm" aria-label="関連リンク">
+            <div className="l-container">
+              <div className="m-callout m-callout--muted">
+                <span className="m-callout__label">関連</span>
+                <p className="m-callout__text">
+                  <a href="https://smapple-tenjin.com/">iPhone修理福岡 ならスマップル天神店</a><br />
+                  <a href="https://smapple-omiya.com/">iPhone修理大宮 ならスマップル大宮店</a><br />
+                  <a href="https://smapple-sendai.com/">iPhone修理仙台 スマップル仙台店</a><br />
+                  <a href="https://www.a-sas.ne.jp/" target="_blank" rel="noreferrer noopener">【誰でもスマホ】 携帯ブラックでも契約できる格安SIM</a>
+                </p>
+              </div>
             </div>
-          </div>
-        </section>
-
-        <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
+          </section>
+        </IPhoneArticleFooter>
         </div>
       </article>
     </main>

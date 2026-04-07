@@ -1,11 +1,9 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Breadcrumb from '@/app/components/Breadcrumb'
-import ShareBox from '@/app/components/ShareBox'
+import WatchArticleFooter from '@/app/components/watch/WatchArticleFooter'
 import BuyMethodsSection from './components/BuyMethodsSection'
 import ConclusionSection from './components/ConclusionSection'
-import WatchPopularSection from '@/app/components/support/popular/WatchPopularSection'
-import WatchRelatedLinks from '@/app/components/watch/WatchRelatedLinks'
 import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
@@ -187,17 +185,14 @@ export default function AppleWatchBuyPage() {
         {/* セクション */}
         <div className="l-sections" itemProp="articleBody">
           <BuyMethodsSection />
-        <WatchPopularSection />
-
-        <WatchRelatedLinks excludeHref={["/watch/apple-watch-buy/", "/watch/recommend/"]}>
+        <WatchArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/watch/apple-watch-buy/", "/watch/recommend/"]}>
           <div className="m-callout m-callout--muted u-mt-xl">
             <span className="m-callout__label">関連</span>
             <p className="m-callout__text">
               <a href="https://selectra.jp/%E3%82%B9%E3%83%88%E3%83%AA%E3%83%BC%E3%83%9F%E3%83%B3%E3%82%B0/%E3%83%97%E3%83%AD%E3%83%90%E3%82%A4%E3%83%80%E3%83%BC/%E3%82%A2%E3%83%9E%E3%82%BE%E3%83%B3%E3%83%97%E3%83%A9%E3%82%A4%E3%83%A0/sale" target="_blank" rel="noreferrer noopener">Amazonセール最新情報｜セールはいつ？プライムデーなど年間スケジュールをチェック</a>
             </p>
           </div>
-        </WatchRelatedLinks>
-        <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
+        </WatchArticleFooter>
         </div>
       </article>
     </main>

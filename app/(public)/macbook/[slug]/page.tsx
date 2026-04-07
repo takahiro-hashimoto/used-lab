@@ -23,11 +23,8 @@ import CompareSection from '@/app/components/CompareSection'
 import CompareSelector from './components/CompareSelector'
 import BenchmarkGeekbench from './components/BenchmarkGeekbench'
 import Accessories from './components/Accessories'
-import MacBookPopularSection from '@/app/components/support/popular/MacBookPopularSection'
 import FaqSection from './components/FaqSection'
-import PopularMacBook from '@/app/components/PopularMacBook'
-import MacBookRelatedLinks from '@/app/components/macbook/MacBookRelatedLinks'
-import ShareBox from '@/app/components/ShareBox'
+import MacBookArticleFooter from '@/app/components/macbook/MacBookArticleFooter'
 import AdminEditLink from '@/app/components/AdminEditLink'
 import StickyCtaOverride from '@/app/components/StickyCtaOverride'
 
@@ -141,9 +138,7 @@ export default async function MacBookDetailPage({ params }: PageProps) {
         <BenchmarkGeekbench model={model} allModels={allModels} />
         <Accessories model={model} />
         <FaqSection model={model} latestPrice={latestPrice} shopLinks={modelShopLinks} />
-        <PopularMacBook />
-        <MacBookRelatedLinks excludeHref={[`/macbook/${model.slug}/`, "/macbook/recommend/"]} />
-        <ShareBox url={`https://used-lab.jp/macbook/${model.slug}/`} text={`中古${model.model}は今買うべき？製品寿命、基本スペック、ベンチマークスコア、中古相場から解説`} />
+        <MacBookArticleFooter pageUrl={`https://used-lab.jp/macbook/${model.slug}/`} pageTitle={`中古${model.model}は今買うべき？製品寿命、基本スペック、ベンチマークスコア、中古相場から解説`} excludeHref={[`/macbook/${model.slug}/`, "/macbook/recommend/"]} />
         </div>
       </article>
     </main>

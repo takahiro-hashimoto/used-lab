@@ -3,17 +3,15 @@ import Image from 'next/image'
 import { getAllIPadModels, getAllIPadAccessories, getAllIPadAccessoryCompatibility } from '@/lib/queries'
 import { buildAccessoryLookup } from '@/lib/utils/ipad-helpers'
 import Breadcrumb from '@/app/components/Breadcrumb'
-import ShareBox from '@/app/components/ShareBox'
 import KeyboardCompatTable from './components/KeyboardCompatTable'
 import KeyboardListSection from './components/KeyboardListSection'
 import KeyboardCompareSection from './components/KeyboardCompareSection'
 import FaqSection from '@/app/components/support/FaqSection'
-import IPadRelatedLinks from '@/app/components/ipad/IPadRelatedLinks'
+import IPadArticleFooter from '@/app/components/ipad/IPadArticleFooter'
 import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
 import { getHeroImage } from '@/lib/data/hero-images'
-import IPadPopularSection from '@/app/components/support/popular/IPadPopularSection'
 
 export const revalidate = 86400
 
@@ -245,11 +243,7 @@ export default async function AccessoriesSummaryPage() {
             ]}
           />
 
-          <IPadPopularSection />
-
-        <IPadRelatedLinks excludeHref={["/ipad/accessories-summary/", "/ipad/recommend/"]} />
-
-        <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
+          <IPadArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/ipad/accessories-summary/", "/ipad/recommend/"]} />
         </div>
       </article>
     </main>

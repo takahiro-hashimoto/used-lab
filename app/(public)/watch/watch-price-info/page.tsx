@@ -10,7 +10,7 @@ import { calculateOSLifespan } from '@/lib/utils/watch-helpers'
 import { filterLast3Months } from '@/lib/utils/shared-helpers'
 import { PRICE_INFO_UPDATE_MONTH, CHART_COLORS, FAQ_ITEMS } from '@/lib/data/watch-price-info'
 import Breadcrumb from '@/app/components/Breadcrumb'
-import ShareBox from '@/app/components/ShareBox'
+import WatchArticleFooter from '@/app/components/watch/WatchArticleFooter'
 import dynamic from 'next/dynamic'
 
 const DashboardSection = dynamic(() => import('./components/DashboardSection'), {
@@ -19,9 +19,7 @@ const DashboardSection = dynamic(() => import('./components/DashboardSection'), 
 import PriceDropSection from './components/PriceDropSection'
 import RankingSection from './components/RankingSection'
 import PriceHistorySection from './components/PriceHistorySection'
-import WatchPopularSection from '@/app/components/support/popular/WatchPopularSection'
 import FaqSection from './components/FaqSection'
-import WatchRelatedLinks from '@/app/components/watch/WatchRelatedLinks'
 import AuthorByline from '@/app/components/AuthorByline'
 import HeroMeta from '@/app/components/HeroMeta'
 import { getHeroImage } from '@/lib/data/hero-images'
@@ -446,9 +444,7 @@ export default async function WatchPriceInfoPage() {
           <PriceHistorySection models={sortedModels} />
 
           <FaqSection />
-          <WatchPopularSection />
-        <WatchRelatedLinks excludeHref={["/watch/watch-price-info/", "/watch/recommend/"]} />
-        <ShareBox url={PAGE_URL} text={`Apple Watchの中古相場一覧 | 歴代${modelCount}機種の価格推移を独自集計`} />
+          <WatchArticleFooter pageUrl={PAGE_URL} pageTitle={`Apple Watchの中古相場一覧 | 歴代${modelCount}機種の価格推移を独自集計`} excludeHref={["/watch/watch-price-info/", "/watch/recommend/"]} />
         </div>
       </article>
     </main>

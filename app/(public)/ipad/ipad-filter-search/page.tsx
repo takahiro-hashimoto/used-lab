@@ -9,9 +9,7 @@ import IconCard from '@/app/components/IconCard'
 import type { IPadPriceLog } from '@/lib/types'
 import { supabase } from '@/lib/supabase'
 import IPadFilterSearchApp from './components/IPadFilterSearchApp'
-import ShareBox from '@/app/components/ShareBox'
-import IPadRelatedLinks from '@/app/components/ipad/IPadRelatedLinks'
-import IPadPopularSection from '@/app/components/support/popular/IPadPopularSection'
+import IPadArticleFooter from '@/app/components/ipad/IPadArticleFooter'
 import { getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
 import { getHeroImage } from '@/lib/data/hero-images'
@@ -260,9 +258,7 @@ export default async function IPadFilterSearchPage() {
           description="診断に関してよくある質問をまとめました。"
           items={FAQ_ITEMS}
         />
-        <IPadPopularSection />
-        <IPadRelatedLinks excludeHref={["/ipad/ipad-filter-search/", "/ipad/recommend/"]} />
-        <ShareBox url="https://used-lab.jp/ipad/ipad-filter-search/" text="iPad機種診断シミュレーター｜自分に合うおすすめ中古iPadがすぐわかる【2026年版】" />
+        <IPadArticleFooter pageUrl="https://used-lab.jp/ipad/ipad-filter-search/" pageTitle="iPad機種診断シミュレーター｜自分に合うおすすめ中古iPadがすぐわかる【2026年版】" excludeHref={["/ipad/ipad-filter-search/", "/ipad/recommend/"]} />
         </div>
       </article>
     </main>

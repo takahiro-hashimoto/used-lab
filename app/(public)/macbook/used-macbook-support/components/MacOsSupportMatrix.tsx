@@ -256,11 +256,8 @@ export default function MacOsSupportMatrix({ models }: Props) {
         <h2 className="m-section-heading m-section-heading--lg" id="heading-support-table">
           macOS別サポート機種一覧表
         </h2>
-        <p className="m-section-desc">
-          MacBook機種ごとに、どのmacOSバージョンに対応しているかを一覧でまとめました。
-          <br />
-          お使いの機種がいつまでサポートされるかの目安としてご活用ください。
-        </p>
+        <p className="m-section-desc">MacBook機種ごとに、どのmacOSバージョンに対応しているかを一覧でまとめました。</p>
+        <p className="m-section-desc">お使いの機種がサポート対象になっているか判断するのにご活用ください。</p>
 
         <p className="m-section-heading m-section-heading--sm">MacBook Pro / Air macOS対応状況一覧</p>
 
@@ -272,7 +269,7 @@ export default function MacOsSupportMatrix({ models }: Props) {
         <Legend />
 
         <p className="m-footnote">
-          ※ 各macOSサポート状況は<a href="https://support.apple.com/ja-jp/102861" target="_blank" rel="noopener noreferrer">Apple公式サイト</a>から引用しています。
+          ※ 各macOSサポート状況は<a href="https://support.apple.com/ja-jp/122867" target="_blank" rel="noopener noreferrer">Apple公式サイト</a>から引用しています。
           {footnotes.map((fn, i) => (
             <Fragment key={fn.label}>
               <br />

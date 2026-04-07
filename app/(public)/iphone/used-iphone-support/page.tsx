@@ -2,13 +2,11 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import { getAllIPhoneModels, getAllIPhoneModelsIncludingEnded } from '@/lib/queries'
 import Breadcrumb from '@/app/components/Breadcrumb'
-import ShareBox from '@/app/components/ShareBox'
+import IPhoneArticleFooter from '@/app/components/iphone/IPhoneArticleFooter'
 import IosSupportMatrix from './components/IosSupportMatrix'
 import LifespanTable from './components/LifespanTable'
 import TimingSection from './components/TimingSection'
-import IPhonePopularSection from '@/app/components/support/popular/IPhonePopularSection'
 import FaqSection from './components/FaqSection'
-import IPhoneRelatedLinks from '@/app/components/iphone/IPhoneRelatedLinks'
 import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
@@ -171,9 +169,11 @@ export default async function UsedIphoneSupportPage() {
         <LifespanTable models={allModelsWithEnded} />
         <TimingSection />
         <FaqSection />
-        <IPhonePopularSection />
-        <IPhoneRelatedLinks excludeHref={["/iphone/used-iphone-support/", "/iphone/recommend/"]} />
-        <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
+        <IPhoneArticleFooter
+          pageUrl={PAGE_URL}
+          pageTitle={PAGE_TITLE}
+          excludeHref={["/iphone/used-iphone-support/", "/iphone/recommend/"]}
+        />
         </div>
       </article>
     </main>

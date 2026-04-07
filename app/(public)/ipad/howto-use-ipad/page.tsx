@@ -1,14 +1,12 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Breadcrumb from '@/app/components/Breadcrumb'
-import ShareBox from '@/app/components/ShareBox'
 import EntertainmentSection from './components/EntertainmentSection'
 import LifestyleSection from './components/LifestyleSection'
 import WorkStudySection from './components/WorkStudySection'
 import CreativeSection from './components/CreativeSection'
 import FaqSection from './components/FaqSection'
-import IPadRelatedLinks from '@/app/components/ipad/IPadRelatedLinks'
-import IPadPopularSection from '@/app/components/support/popular/IPadPopularSection'
+import IPadArticleFooter from '@/app/components/ipad/IPadArticleFooter'
 import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
@@ -258,11 +256,7 @@ export default function HowtoUseIpadPage() {
           {/* セクション: よくある質問 */}
           <FaqSection />
 
-          {/* 目的別に人気の中古iPad */}
-          <IPadPopularSection />
-
-        <IPadRelatedLinks excludeHref={["/ipad/howto-use-ipad/", "/ipad/recommend/"]} />
-        <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
+          <IPadArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/ipad/howto-use-ipad/", "/ipad/recommend/"]} />
         </div>
       </article>
     </main>

@@ -9,7 +9,7 @@ import {
   MACBOOK_SHOP_FAQ_ITEMS,
 } from '@/lib/data/macbook-shop'
 import Breadcrumb from '@/app/components/Breadcrumb'
-import ShareBox from '@/app/components/ShareBox'
+import MacBookArticleFooter from '@/app/components/macbook/MacBookArticleFooter'
 import ShopComparisonTable from '@/app/components/shop/ShopComparisonTable'
 import type { SpecRow } from '@/app/components/shop/ShopDetailSection'
 import BuyingOptionsSection from './components/BuyingOptionsSection'
@@ -19,10 +19,8 @@ import RecommendByTypeSection from './components/RecommendByTypeSection'
 import ShopDetailSection from './components/ShopDetailSection'
 import FleaMarketSection from './components/FleaMarketSection'
 import ChecklistSection from './components/ChecklistSection'
-import MacBookPopularSection from '@/app/components/support/popular/MacBookPopularSection'
 import ConclusionSection from './components/ConclusionSection'
 import FaqSection from './components/FaqSection'
-import MacBookRelatedLinks from '@/app/components/macbook/MacBookRelatedLinks'
 import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import { getHeroImage } from '@/lib/data/hero-images'
@@ -264,16 +262,14 @@ export default async function MacBookShopPage() {
           <ChecklistSection />
           <FaqSection />
           <ConclusionSection />
-          <MacBookPopularSection />
-        <MacBookRelatedLinks excludeHref={["/macbook/macbook-shop/", "/macbook/recommend/"]}>
+        <MacBookArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/macbook/macbook-shop/", "/macbook/recommend/"]}>
           <div className="m-callout m-callout--muted u-mt-2xl">
             <span className="m-callout__label">関連</span>
             <p className="m-callout__text">
               <a href="https://prorea.jp/programming/columns/recommend-programming-school-commuting/" target="_blank" rel="noreferrer noopener">通学型おすすめプログラミングスクール比較12選！挫折せず続けるならオフラインがおすすめ</a>
             </p>
           </div>
-        </MacBookRelatedLinks>
-        <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
+        </MacBookArticleFooter>
         </div>
       </article>
     </main>

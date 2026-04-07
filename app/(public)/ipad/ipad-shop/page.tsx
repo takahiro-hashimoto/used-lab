@@ -9,7 +9,6 @@ import {
   IPAD_SHOP_FAQ_ITEMS,
 } from '@/lib/data/ipad-shop'
 import Breadcrumb from '@/app/components/Breadcrumb'
-import ShareBox from '@/app/components/ShareBox'
 import ShopComparisonTable from '@/app/components/shop/ShopComparisonTable'
 import type { SpecRow } from '@/app/components/shop/ShopDetailSection'
 import BuyingOptionsSection from './components/BuyingOptionsSection'
@@ -19,10 +18,9 @@ import RecommendByTypeSection from './components/RecommendByTypeSection'
 import ShopDetailSection from './components/ShopDetailSection'
 import FleaMarketSection from './components/FleaMarketSection'
 import ChecklistSection from './components/ChecklistSection'
-import IPadPopularSection from '@/app/components/support/popular/IPadPopularSection'
 import ConclusionSection from './components/ConclusionSection'
 import FaqSection from './components/FaqSection'
-import IPadRelatedLinks from '@/app/components/ipad/IPadRelatedLinks'
+import IPadArticleFooter from '@/app/components/ipad/IPadArticleFooter'
 import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
@@ -265,11 +263,9 @@ export default async function IPadShopPage() {
           <ChecklistSection />
           <FaqSection />
           <ConclusionSection />
-          <IPadPopularSection />
-        <IPadRelatedLinks excludeHref={["/ipad/ipad-shop/", "/ipad/recommend/"]}>
+        <IPadArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/ipad/ipad-shop/", "/ipad/recommend/"]}>
           <div className="m-callout m-callout--muted" style={{ marginTop: 'var(--space-3xl)' }}><span className="m-callout__label">関連</span><p className="m-callout__text"><a href="https://atam-academy.com/" target="_blank" rel="noreferrer noopener">オンラインイラスト教室アタムアカデミー｜iPadで学ぶ子供向けアート教育</a></p></div>
-        </IPadRelatedLinks>
-        <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
+        </IPadArticleFooter>
         </div>
       </article>
     </main>

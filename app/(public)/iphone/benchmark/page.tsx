@@ -3,15 +3,13 @@ import Link from 'next/link'
 import Image from 'next/image'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import FaqSection from '@/app/components/support/FaqSection'
-import ShareBox from '@/app/components/ShareBox'
 import HeroMeta from '@/app/components/HeroMeta'
 import { getAllIPhoneModels, getAllIPhonePriceLogsByModelIds, getAllProductShopLinksByType } from '@/lib/queries'
 import type { IPhonePriceLog, ProductShopLink } from '@/lib/types'
 import BenchmarkRanking from './components/BenchmarkRanking'
 import ChipGenerationCompare from './components/ChipGenerationCompare'
 import UseCaseGuide from './components/UseCaseGuide'
-import IPhoneRelatedLinks from '@/app/components/iphone/IPhoneRelatedLinks'
-import IPhonePopularSection from '@/app/components/support/popular/IPhonePopularSection'
+import IPhoneArticleFooter from '@/app/components/iphone/IPhoneArticleFooter'
 import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import { getHeroImage } from '@/lib/data/hero-images'
@@ -264,9 +262,11 @@ export default async function BenchmarkPage() {
             items={FAQ_ITEMS}
           />
 
-          <IPhonePopularSection />
-          <IPhoneRelatedLinks excludeHref={["/iphone/benchmark/", "/iphone/recommend/"]} />
-          <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
+          <IPhoneArticleFooter
+            pageUrl={PAGE_URL}
+            pageTitle={PAGE_TITLE}
+            excludeHref={["/iphone/benchmark/", "/iphone/recommend/"]}
+          />
         </div>
       </article>
     </main>

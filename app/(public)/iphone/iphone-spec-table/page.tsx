@@ -9,7 +9,7 @@ import BenchmarkSection from './components/BenchmarkSection'
 import EvolutionTimeline from './components/EvolutionTimeline'
 import GlossarySection from '@/app/components/GlossarySection'
 import HeroMeta from '@/app/components/HeroMeta'
-import IPhonePopularSection from '@/app/components/support/popular/IPhonePopularSection'
+import IPhoneArticleFooter from '@/app/components/iphone/IPhoneArticleFooter'
 
 const GLOSSARY_ITEMS = [
   { title: 'CPU', icon: 'fa-solid fa-microchip', desc: 'iPhoneの頭脳にあたるチップで、全体的な処理速度や電力効率に大きく影響。A16やA17 Proなどの世代ごとに性能が進化。' },
@@ -32,8 +32,6 @@ const GLOSSARY_ITEMS = [
   { title: 'Apple ProRAW', icon: 'fa-solid fa-image', desc: '多くの情報を保持したRAW形式で撮影可能。高精度な編集に対応し、プロ仕様の仕上がりに。' },
   { title: 'Apple ProRes', icon: 'fa-solid fa-video', desc: '高画質な映像を記録できるフォーマット。豊かな階調と高い編集耐性が特徴。' },
 ]
-import IPhoneRelatedLinks from '@/app/components/iphone/IPhoneRelatedLinks'
-import ShareBox from '@/app/components/ShareBox'
 import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import { getHeroImage } from '@/lib/data/hero-images'
@@ -267,18 +265,18 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/iphone-s
         <EvolutionTimeline models={serializedModels} />
         <GlossarySection productName="iPhone" items={GLOSSARY_ITEMS} />
 
-        <IPhonePopularSection />
-        {/* 関連記事 */}
-        <IPhoneRelatedLinks excludeHref={["/iphone/iphone-spec-table/", "/iphone/recommend/"]}>
+        <IPhoneArticleFooter
+          pageUrl="https://used-lab.jp/iphone/iphone-spec-table/"
+          pageTitle="歴代iPhoneスペック比較表！気になる機種の性能差や違いがわかる"
+          excludeHref={["/iphone/iphone-spec-table/", "/iphone/recommend/"]}
+        >
           <div className="m-callout m-callout--muted u-mt-2xl">
             <span className="m-callout__label">関連</span>
             <p className="m-callout__text">
               <a href="https://prodig.co.jp/blogs/column/iphone-history-model-selection" target="_blank" rel="noreferrer noopener">歴代iPhoneの歴史と進化｜モデル選びのポイントも解説</a>
             </p>
           </div>
-        </IPhoneRelatedLinks>
-
-        <ShareBox url="https://used-lab.jp/iphone/iphone-spec-table/" text="歴代iPhoneスペック比較表！気になる機種の性能差や違いがわかる" />
+        </IPhoneArticleFooter>
         </div>
       </article>
     </main>

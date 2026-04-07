@@ -9,7 +9,7 @@ import {
   WATCH_SHOP_FAQ_ITEMS,
 } from '@/lib/data/watch-shop'
 import Breadcrumb from '@/app/components/Breadcrumb'
-import ShareBox from '@/app/components/ShareBox'
+import WatchArticleFooter from '@/app/components/watch/WatchArticleFooter'
 import ShopComparisonTable from '@/app/components/shop/ShopComparisonTable'
 import type { SpecRow } from '@/app/components/shop/ShopDetailSection'
 import BuyingOptionsSection from './components/BuyingOptionsSection'
@@ -19,10 +19,8 @@ import RecommendByTypeSection from './components/RecommendByTypeSection'
 import ShopDetailSection from './components/ShopDetailSection'
 import FleaMarketSection from './components/FleaMarketSection'
 import ChecklistSection from './components/ChecklistSection'
-import WatchPopularSection from '@/app/components/support/popular/WatchPopularSection'
 import ConclusionSection from './components/ConclusionSection'
 import FaqSection from './components/FaqSection'
-import WatchRelatedLinks from '@/app/components/watch/WatchRelatedLinks'
 import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
@@ -265,9 +263,7 @@ export default async function WatchShopPage() {
           <ChecklistSection />
           <FaqSection />
           <ConclusionSection />
-          <WatchPopularSection />
-        <WatchRelatedLinks excludeHref={["/watch/watch-shop/", "/watch/recommend/"]} />
-        <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
+          <WatchArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/watch/watch-shop/", "/watch/recommend/"]} />
         </div>
       </article>
     </main>

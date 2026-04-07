@@ -27,11 +27,9 @@ import CompareSelector from './components/CompareSelector'
 import BenchmarkGeekbench from './components/BenchmarkGeekbench'
 import BenchmarkAntutu from './components/BenchmarkAntutu'
 import FaqSection from './components/FaqSection'
-import IPadPopularSection from '@/app/components/support/popular/IPadPopularSection'
 import AccessorySection from './components/AccessorySection'
 import ReviewSection from '@/app/components/ReviewSection'
-import IPadRelatedLinks from '@/app/components/ipad/IPadRelatedLinks'
-import ShareBox from '@/app/components/ShareBox'
+import IPadArticleFooter from '@/app/components/ipad/IPadArticleFooter'
 import AdminEditLink from '@/app/components/AdminEditLink'
 import StickyCtaOverride from '@/app/components/StickyCtaOverride'
 
@@ -164,9 +162,7 @@ export default async function IPadDetailPage({ params }: PageProps) {
         <AccessorySection model={enrichedModel} accessories={accessoryLookup.get(model.id) || []} />
         <ReviewSection modelName={enrichedModel.model} reviews={reviews} />
         <FaqSection model={enrichedModel} latestPrice={latestPrice} shopLinks={modelShopLinks} />
-        <IPadPopularSection />
-        <IPadRelatedLinks excludeHref={`/ipad/${enrichedModel.slug}/`} />
-        <ShareBox url={`https://used-lab.jp/ipad/${enrichedModel.slug}/`} text={`中古${enrichedModel.model}は今買うべき？製品寿命、基本スペック、ベンチマークスコア、中古相場から解説`} />
+        <IPadArticleFooter pageUrl={`https://used-lab.jp/ipad/${enrichedModel.slug}/`} pageTitle={`中古${enrichedModel.model}は今買うべき？製品寿命、基本スペック、ベンチマークスコア、中古相場から解説`} excludeHref={`/ipad/${enrichedModel.slug}/`} />
         </div>
       </article>
     </main>

@@ -10,8 +10,6 @@ import { calculateOSLifespan } from '@/lib/utils/iphone-helpers'
 import { filterLast3Months } from '@/lib/utils/shared-helpers'
 import { PRICE_INFO_UPDATE_MONTH, CHART_COLORS, FAQ_ITEMS } from '@/lib/data/iphone-price-info'
 import Breadcrumb from '@/app/components/Breadcrumb'
-import ShareBox from '@/app/components/ShareBox'
-import IPhoneRelatedLinks from '@/app/components/iphone/IPhoneRelatedLinks'
 import dynamic from 'next/dynamic'
 
 const DashboardSection = dynamic(() => import('./components/DashboardSection'), {
@@ -20,7 +18,7 @@ const DashboardSection = dynamic(() => import('./components/DashboardSection'), 
 import PriceDropSection from './components/PriceDropSection'
 import RankingSection from './components/RankingSection'
 import PriceHistorySection from './components/PriceHistorySection'
-import IPhonePopularSection from '@/app/components/support/popular/IPhonePopularSection'
+import IPhoneArticleFooter from '@/app/components/iphone/IPhoneArticleFooter'
 import FaqSection from './components/FaqSection'
 import AuthorByline from '@/app/components/AuthorByline'
 import HeroMeta from '@/app/components/HeroMeta'
@@ -468,9 +466,11 @@ export default async function IPhonePriceInfoPage() {
 
           <FaqSection />
 
-          <IPhonePopularSection />
-        <IPhoneRelatedLinks excludeHref={["/iphone/price-info/", "/iphone/recommend/"]} />
-        <ShareBox url={PAGE_URL} text={`iPhoneの中古相場一覧 | 歴代${modelCount}機種の価格推移を独自集計`} />
+          <IPhoneArticleFooter
+            pageUrl={PAGE_URL}
+            pageTitle={`iPhoneの中古相場一覧 | 歴代${modelCount}機種の価格推移を独自集計`}
+            excludeHref={["/iphone/price-info/", "/iphone/recommend/"]}
+          />
         </div>
       </article>
     </main>

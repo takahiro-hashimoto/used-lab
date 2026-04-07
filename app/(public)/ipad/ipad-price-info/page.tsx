@@ -12,8 +12,7 @@ import { calculateOSLifespan, buildAccessoryLookup, getPencilTextFromAccessories
 import { filterLast3Months } from '@/lib/utils/shared-helpers'
 import { PRICE_INFO_UPDATE_MONTH, CHART_COLORS, FAQ_ITEMS } from '@/lib/data/ipad-price-info'
 import Breadcrumb from '@/app/components/Breadcrumb'
-import ShareBox from '@/app/components/ShareBox'
-import IPadRelatedLinks from '@/app/components/ipad/IPadRelatedLinks'
+import IPadArticleFooter from '@/app/components/ipad/IPadArticleFooter'
 import dynamic from 'next/dynamic'
 
 const DashboardSection = dynamic(() => import('./components/DashboardSection'), {
@@ -23,7 +22,6 @@ import PriceDropSection from './components/PriceDropSection'
 import RankingSection from './components/RankingSection'
 import PriceHistorySection from './components/PriceHistorySection'
 import FaqSection from './components/FaqSection'
-import IPadPopularSection from '@/app/components/support/popular/IPadPopularSection'
 import AuthorByline from '@/app/components/AuthorByline'
 import HeroMeta from '@/app/components/HeroMeta'
 import { getHeroImage } from '@/lib/data/hero-images'
@@ -459,9 +457,7 @@ export default async function IPadPriceInfoPage() {
           <PriceHistorySection models={sortedModels} />
 
           <FaqSection />
-        <IPadPopularSection />
-        <IPadRelatedLinks excludeHref={["/ipad/ipad-price-info/", "/ipad/recommend/"]} />
-        <ShareBox url={PAGE_URL} text={`iPadの中古相場一覧 | 歴代${modelCount}機種の価格推移を独自集計`} />
+        <IPadArticleFooter pageUrl={PAGE_URL} pageTitle={`iPadの中古相場一覧 | 歴代${modelCount}機種の価格推移を独自集計`} excludeHref={["/ipad/ipad-price-info/", "/ipad/recommend/"]} />
         </div>
       </article>
     </main>

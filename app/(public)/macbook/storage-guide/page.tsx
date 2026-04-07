@@ -10,9 +10,7 @@ import {
 } from '@/lib/queries'
 import type { MacBookPriceLog } from '@/lib/types'
 import StorageTable, { type StorageModel } from './components/StorageTable'
-import ShareBox from '@/app/components/ShareBox'
-import PopularMacBook from '@/app/components/PopularMacBook'
-import MacBookRelatedLinks from '@/app/components/macbook/MacBookRelatedLinks'
+import MacBookArticleFooter from '@/app/components/macbook/MacBookArticleFooter'
 import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import { getHeroImage } from '@/lib/data/hero-images'
@@ -380,9 +378,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/macbook/storage
           items={FAQ_ITEMS}
         />
 
-        <PopularMacBook />
-        <MacBookRelatedLinks excludeHref={["/macbook/storage-guide/", "/macbook/recommend/"]} />
-        <ShareBox url="https://used-lab.jp/macbook/storage-guide/" text="中古MacBookのストレージ容量はどれがいい？用途別おすすめ容量まとめ" />
+        <MacBookArticleFooter pageUrl="https://used-lab.jp/macbook/storage-guide/" pageTitle="中古MacBookのストレージ容量はどれがいい？用途別おすすめ容量まとめ" excludeHref={["/macbook/storage-guide/", "/macbook/recommend/"]} />
         </div>
       </article>
     </main>

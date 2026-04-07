@@ -1,16 +1,14 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Breadcrumb from '@/app/components/Breadcrumb'
-import ShareBox from '@/app/components/ShareBox'
 import PreCheckSection from './components/PreCheckSection'
 import RouteSection from './components/RouteSection'
 import PostCheckSection from '@/app/components/attention/PostCheckSection'
 import FailureSection from '@/app/components/attention/FailureSection'
 import InsuranceSection from '@/app/components/attention/InsuranceSection'
 import FaqSection from '@/app/components/attention/FaqSection'
-import IPadPopularSection from '@/app/components/support/popular/IPadPopularSection'
 import { insuranceData, faqItems, postCheckItems, failurePatterns } from './components/data'
-import IPadRelatedLinks from '@/app/components/ipad/IPadRelatedLinks'
+import IPadArticleFooter from '@/app/components/ipad/IPadArticleFooter'
 import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
@@ -232,9 +230,7 @@ export default function UsedIpadAttentionPage() {
           <FailureSection productName="iPad" guidePath="/ipad" failurePatterns={failurePatterns} showMemo={false} />
           <InsuranceSection {...insuranceData} />
           <FaqSection productName="iPad" faqItems={faqItems} />
-          <IPadPopularSection />
-        <IPadRelatedLinks excludeHref={["/ipad/used-ipad-attention/", "/ipad/recommend/"]} />
-        <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
+          <IPadArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/ipad/used-ipad-attention/", "/ipad/recommend/"]} />
         </div>
       </article>
     </main>

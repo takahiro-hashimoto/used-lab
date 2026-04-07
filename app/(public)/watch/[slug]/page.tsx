@@ -23,10 +23,8 @@ import AdvanceFeatures from './components/AdvanceFeatures'
 import CompareSection from '@/app/components/CompareSection'
 import CompareSelector from './components/CompareSelector'
 import Accessories from './components/Accessories'
-import WatchPopularSection from '@/app/components/support/popular/WatchPopularSection'
+import WatchArticleFooter from '@/app/components/watch/WatchArticleFooter'
 import FaqSection from './components/FaqSection'
-import WatchRelatedLinks from '@/app/components/watch/WatchRelatedLinks'
-import ShareBox from '@/app/components/ShareBox'
 import AdminEditLink from '@/app/components/AdminEditLink'
 import StickyCtaOverride from '@/app/components/StickyCtaOverride'
 
@@ -141,9 +139,7 @@ export default async function WatchDetailPage({ params }: PageProps) {
         </CompareSection>
         <Accessories model={model} />
         <FaqSection model={model} latestPrice={latestPrice} shopLinks={modelShopLinks} />
-        <WatchPopularSection />
-        <WatchRelatedLinks excludeHref={[`/watch/${model.slug}/`, "/watch/recommend/"]} />
-        <ShareBox url={`https://used-lab.jp/watch/${model.slug}/`} text={`中古${model.model}は今買うべき？製品寿命、基本スペック、中古相場から解説`} />
+        <WatchArticleFooter pageUrl={`https://used-lab.jp/watch/${model.slug}/`} pageTitle={`中古${model.model}は今買うべき？製品寿命、基本スペック、中古相場から解説`} excludeHref={[`/watch/${model.slug}/`, "/watch/recommend/"]} />
         </div>
       </article>
     </main>

@@ -8,7 +8,6 @@ import type { MacBookModel, MacBookPriceLog } from '@/lib/types'
 import { filterLast3Months } from '@/lib/utils/shared-helpers'
 import { PRICE_INFO_UPDATE_MONTH, CHART_COLORS, FAQ_ITEMS } from '@/lib/data/macbook-price-info'
 import Breadcrumb from '@/app/components/Breadcrumb'
-import ShareBox from '@/app/components/ShareBox'
 import dynamic from 'next/dynamic'
 
 const DashboardSection = dynamic(() => import('./components/DashboardSection'), {
@@ -19,8 +18,7 @@ import RankingSection from './components/RankingSection'
 import PriceHistorySection from './components/PriceHistorySection'
 import Image from 'next/image'
 import FaqSection from './components/FaqSection'
-import PopularMacBook from '@/app/components/PopularMacBook'
-import MacBookRelatedLinks from '@/app/components/macbook/MacBookRelatedLinks'
+import MacBookArticleFooter from '@/app/components/macbook/MacBookArticleFooter'
 import AuthorByline from '@/app/components/AuthorByline'
 import { getHeroImage } from '@/lib/data/hero-images'
 import HeroMeta from '@/app/components/HeroMeta'
@@ -442,9 +440,7 @@ export default async function MacBookPriceInfoPage() {
           <PriceHistorySection models={sortedModels} />
 
           <FaqSection />
-          <PopularMacBook />
-          <MacBookRelatedLinks excludeHref={["/macbook/price-info/", "/macbook/recommend/"]} />
-          <ShareBox url={PAGE_URL} text={`MacBookの中古相場一覧 | 歴代${modelCount}機種の価格推移を独自集計`} />
+          <MacBookArticleFooter pageUrl={PAGE_URL} pageTitle={`MacBookの中古相場一覧 | 歴代${modelCount}機種の価格推移を独自集計`} excludeHref={["/macbook/price-info/", "/macbook/recommend/"]} />
         </div>
       </article>
     </main>

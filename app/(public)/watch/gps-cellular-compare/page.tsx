@@ -1,13 +1,11 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Breadcrumb from '@/app/components/Breadcrumb'
-import ShareBox from '@/app/components/ShareBox'
+import WatchArticleFooter from '@/app/components/watch/WatchArticleFooter'
 import RecommendSection from './components/RecommendSection'
 import ComparisonDetails from './components/ComparisonDetails'
 import FaqSection, { FAQ_ITEMS } from './components/FaqSection'
 import AuthorByline from '@/app/components/AuthorByline'
-import WatchPopularSection from '@/app/components/support/popular/WatchPopularSection'
-import WatchRelatedLinks from '@/app/components/watch/WatchRelatedLinks'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
 import { getHeroImage } from '@/lib/data/hero-images'
@@ -204,11 +202,7 @@ export default function GpsCellularComparePage() {
           {/* h2: よくある質問 */}
           <FaqSection />
 
-          <WatchPopularSection />
-
-        <WatchRelatedLinks excludeHref={["/watch/gps-cellular-compare/", "/watch/recommend/"]} />
-        {/* シェアボックス */}
-        <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
+          <WatchArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/watch/gps-cellular-compare/", "/watch/recommend/"]} />
         </div>
       </article>
     </main>

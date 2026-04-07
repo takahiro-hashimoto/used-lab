@@ -4,12 +4,10 @@ import Image from 'next/image'
 import { getAllIPhoneModels, getAllProductShopLinksByType } from '@/lib/queries'
 import BatteryTable from './components/BatteryTable'
 import ChargingTable from './components/ChargingTable'
-import ShareBox from '@/app/components/ShareBox'
-import IPhoneRelatedLinks from '@/app/components/iphone/IPhoneRelatedLinks'
+import IPhoneArticleFooter from '@/app/components/iphone/IPhoneArticleFooter'
 import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
-import IPhonePopularSection from '@/app/components/support/popular/IPhonePopularSection'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import FaqSection from '@/app/components/support/FaqSection'
 import { getHeroImage } from '@/lib/data/hero-images'
@@ -277,10 +275,11 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/battery-
           items={FAQ_ITEMS}
         />
 
-        <IPhonePopularSection />
-
-        <IPhoneRelatedLinks excludeHref={["/iphone/battery-compare/", "/iphone/recommend/"]} />
-        <ShareBox url="https://used-lab.jp/iphone/battery-compare/" text="歴代iPhoneのバッテリー容量比較ランキング！電池持ちがいい機種はどれ？" />
+        <IPhoneArticleFooter
+          pageUrl="https://used-lab.jp/iphone/battery-compare/"
+          pageTitle="歴代iPhoneのバッテリー容量比較ランキング！電池持ちがいい機種はどれ？"
+          excludeHref={["/iphone/battery-compare/", "/iphone/recommend/"]}
+        />
         </div>
       </article>
     </main>

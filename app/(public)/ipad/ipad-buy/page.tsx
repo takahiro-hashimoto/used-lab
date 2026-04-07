@@ -1,11 +1,9 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Breadcrumb from '@/app/components/Breadcrumb'
-import ShareBox from '@/app/components/ShareBox'
 import BuyMethodsSection from './components/BuyMethodsSection'
 import ConclusionSection from './components/ConclusionSection'
-import IPadRelatedLinks from '@/app/components/ipad/IPadRelatedLinks'
-import IPadPopularSection from '@/app/components/support/popular/IPadPopularSection'
+import IPadArticleFooter from '@/app/components/ipad/IPadArticleFooter'
 import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
@@ -188,9 +186,7 @@ export default function IPadBuyPage() {
 
           <BuyMethodsSection />
 
-        <IPadPopularSection />
-        <IPadRelatedLinks excludeHref={["/ipad/ipad-buy/", "/ipad/recommend/"]} />
-        <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
+        <IPadArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/ipad/ipad-buy/", "/ipad/recommend/"]} />
         </div>
       </article>
     </main>

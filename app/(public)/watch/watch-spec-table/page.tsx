@@ -23,9 +23,7 @@ const GLOSSARY_ITEMS = [
   { title: '高度計', icon: 'fa-solid fa-mountain', desc: 'リアルタイムでの高度変化を記録できる高度計を内蔵しており、登山やハイキングなどのアクティビティで活用されている。' },
 ]
 import Breadcrumb from '@/app/components/Breadcrumb'
-import ShareBox from '@/app/components/ShareBox'
-import WatchPopularSection from '@/app/components/support/popular/WatchPopularSection'
-import WatchRelatedLinks from '@/app/components/watch/WatchRelatedLinks'
+import WatchArticleFooter from '@/app/components/watch/WatchArticleFooter'
 import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
@@ -225,9 +223,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/watch/watch-spe
         <DualCompare models={serializedModels} shopLinks={serializedLinks} />
         <EvolutionTimeline models={serializedModels} />
         <GlossarySection productName="Apple Watch" items={GLOSSARY_ITEMS} />
-        <WatchPopularSection />
-        <WatchRelatedLinks excludeHref={["/watch/watch-spec-table/", "/watch/recommend/"]} />
-        <ShareBox url="https://used-lab.jp/watch/watch-spec-table/" text="歴代Apple Watchスペック比較表！各世代の性能の違いがすぐわかる" />
+        <WatchArticleFooter pageUrl="https://used-lab.jp/watch/watch-spec-table/" pageTitle="歴代Apple Watchスペック比較表！各世代の性能の違いがすぐわかる" excludeHref={["/watch/watch-spec-table/", "/watch/recommend/"]} />
         </div>
       </article>
     </main>

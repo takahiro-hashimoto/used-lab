@@ -1017,6 +1017,19 @@ a.header-admin-link:hover {
   aspect-ratio: 1 / 1;
   object-fit: contain;
   max-width: 240px;
+  background: linear-gradient(
+    100deg,
+    hsl(0 0% 88%) 30%,
+    hsl(0 0% 95%) 50%,
+    hsl(0 0% 88%) 70%
+  );
+  background-size: 200% 100%;
+  animation: hero-shimmer 1.6s ease-in-out infinite;
+}
+
+@keyframes hero-shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
 }
 
 .hero-media__img--padded {

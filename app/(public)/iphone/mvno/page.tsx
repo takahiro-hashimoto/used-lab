@@ -9,9 +9,7 @@ import {
 } from '@/lib/data/iphone-mvno'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import FaqSection from '@/app/components/support/FaqSection'
-import ShareBox from '@/app/components/ShareBox'
-import IPhoneRelatedLinks from '@/app/components/iphone/IPhoneRelatedLinks'
-import IPhonePopularSection from '@/app/components/support/popular/IPhonePopularSection'
+import IPhoneArticleFooter from '@/app/components/iphone/IPhoneArticleFooter'
 import MvnoDiagnosis from './components/MvnoDiagnosis'
 import type { DiagnosisProvider } from './components/MvnoDiagnosis'
 import AuthorByline from '@/app/components/AuthorByline'
@@ -789,9 +787,11 @@ export default async function MvnoPage() {
           items={FAQ_ITEMS}
         />
 
-        <IPhonePopularSection />
-        <IPhoneRelatedLinks excludeHref={["/iphone/mvno/", "/iphone/recommend/"]} />
-        <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
+        <IPhoneArticleFooter
+          pageUrl={PAGE_URL}
+          pageTitle={PAGE_TITLE}
+          excludeHref={["/iphone/mvno/", "/iphone/recommend/"]}
+        />
         </div>
       </article>
     </main>

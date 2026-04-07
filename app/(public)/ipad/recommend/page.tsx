@@ -23,7 +23,6 @@ import {
   FAQ_JSONLD_ITEMS,
 } from '@/lib/data/ipad-recommend'
 import Breadcrumb from '@/app/components/Breadcrumb'
-import ShareBox from '@/app/components/ShareBox'
 import ConclusionSection from '@/app/components/ConclusionSection'
 import CriteriaSection from '@/app/components/CriteriaSection'
 import RecommendDetailSection from './components/RecommendDetailSection'
@@ -36,7 +35,7 @@ import dynamic from 'next/dynamic'
 const ValueZoneChart = dynamic(() => import('@/app/components/ValueZoneChart'), {
   loading: () => <div style={{ height: '300px' }} />,
 })
-import IPadRelatedLinks from '@/app/components/ipad/IPadRelatedLinks'
+import IPadArticleFooter from '@/app/components/ipad/IPadArticleFooter'
 import AuthorByline from '@/app/components/AuthorByline'
 import HeroMeta from '@/app/components/HeroMeta'
 import { getHeroImage } from '@/lib/data/hero-images'
@@ -405,8 +404,7 @@ export default async function IPadRecommendPage() {
             shopDetailLink={{ href: '/ipad/ipad-shop/', label: '中古iPadのおすすめショップ比較' }}
           />
           <IPadFaqSection />
-        <IPadRelatedLinks heading="iPad選びをもっと深掘りする" description="購入先の比較や相場チェックなど、iPad選びに役立つ記事をまとめました。" excludeHref="/ipad/recommend/" />
-        <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
+        <IPadArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref="/ipad/recommend/" hidePopular relatedHeading="iPad選びをもっと深掘りする" relatedDescription="購入先の比較や相場チェックなど、iPad選びに役立つ記事をまとめました。" />
         </div>
       </article>
     </main>

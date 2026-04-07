@@ -1,15 +1,13 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Breadcrumb from '@/app/components/Breadcrumb'
-import ShareBox from '@/app/components/ShareBox'
+import MacBookArticleFooter from '@/app/components/macbook/MacBookArticleFooter'
 import FaqSection from './components/FaqSection'
 import ComparisonBasics from './components/ComparisonBasics'
 import MacbookStrengths from './components/MacbookStrengths'
 import IpadStrengths from './components/IpadStrengths'
 import NoDifference from './components/NoDifference'
 import RecommendSection from './components/RecommendSection'
-import PopularMacBook from '@/app/components/PopularMacBook'
-import MacBookRelatedLinks from '@/app/components/macbook/MacBookRelatedLinks'
 import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import { getHeroImage } from '@/lib/data/hero-images'
@@ -295,18 +293,14 @@ export default function IpadMacbookComparePage() {
             </div>
           </section>
         <FaqSection />
-        <PopularMacBook />
-        <MacBookRelatedLinks excludeHref={["/macbook/ipad-macbook-compare/", "/macbook/recommend/"]}>
+        <MacBookArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/macbook/ipad-macbook-compare/", "/macbook/recommend/"]}>
           <div className="m-callout m-callout--muted u-mt-2xl">
             <span className="m-callout__label">関連</span>
             <p className="m-callout__text">
               <a href="https://japan-design.jp/" target="_blank" rel="noreferrer noopener">日本デザイン｜WEBデザインの知りたい！知りたかった！が見つかる情報サイト</a>
             </p>
           </div>
-        </MacBookRelatedLinks>
-
-        {/* シェアボックス */}
-        <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
+        </MacBookArticleFooter>
         </div>
       </article>
     </main>
