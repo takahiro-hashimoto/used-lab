@@ -67,7 +67,6 @@ const PAGE_KEYWORDS: Record<string, string> = {
   '/iphone/benchmark/': 'ベンチマーク スコア 性能 Geekbench',
   '/iphone/mvno/': '格安SIM MVNO 通信 回線 セット',
   '/iphone/network-limit/': 'ネットワーク制限 赤ロム 白ロム',
-  '/iphone/16e-17e-compare/': '比較 違い SE',
   '/ipad/': '購入ガイド 選び方 相場 おすすめ 中古',
   '/ipad/recommend/': 'おすすめ 型落ち 狙い目 コスパ',
   '/ipad/used-ipad-attention/': '注意点 やめた方がいい 購入前 確認 中古',

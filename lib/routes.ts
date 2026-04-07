@@ -100,7 +100,6 @@ export const PRODUCT_CATEGORIES: CategoryDef[] = [
       { path: '/iphone/iphone16-16pro-compare/', label: '中古iPhone 16と16 Proの違いを比較｜中古で買うならどっち？' },
       { path: '/iphone/iphone16e-se3-compare/', label: '中古iPhone 16eとSE(第3世代)の違いを比較｜中古で買うならどっち？' },
       { path: '/iphone/iphone16plus-air-compare/', label: '中古iPhone 16 PlusとiPhone Airの違いを比較｜買うならどっち？' },
-      { path: '/iphone/16e-17e-compare/', label: 'iPhone 16eと17eどっちがいい？違いと選び方をやさしく解説' },
     ],
   },
   {

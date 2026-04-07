@@ -29,7 +29,7 @@ import CompareLifespan from './CompareLifespan'
 import ComparePriceChart from './ComparePriceChart'
 import CompareFaq from './CompareFaq'
 import CompareVerdict from './CompareVerdict'
-import CompareRelated from './CompareRelated'
+import { getRelatedComparePages } from './config'
 import ShareBox from '@/app/components/ShareBox'
 import IPhonePopularSection from '@/app/components/support/popular/IPhonePopularSection'
 import IPhoneRelatedLinks from '@/app/components/iphone/IPhoneRelatedLinks'
@@ -244,7 +244,10 @@ export default async function ComparePageTemplate({ config }: Props) {
 
           {/* 目的別に人気の中古iPhone */}
           <IPhonePopularSection />
-          <IPhoneRelatedLinks excludeHref={["/iphone/battery-compare/", "/iphone/recommend/"]} />
+          <IPhoneRelatedLinks
+            excludeHref={[`/iphone/${config.slug}/`, "/iphone/recommend/"]}
+            compareLinks={getRelatedComparePages(config.slug)}
+          />
 
           <ShareBox
             url={`https://used-lab.jp/iphone/${config.slug}/`}
