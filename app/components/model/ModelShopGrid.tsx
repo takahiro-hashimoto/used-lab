@@ -29,6 +29,9 @@ function SpecValue({ value }: { value: string | null }) {
   return <>{value}</>
 }
 
+const ensureAbsoluteUrl = (url: string) =>
+  url.startsWith('http') || url === '#' ? url : url.startsWith('//') ? `https:${url}` : `https://${url}`
+
 const EXCLUDED_SHOP_IDS = [5, 15]
 const RECOMMENDED_SHOP_ID = 1 // イオシス
 
@@ -93,7 +96,7 @@ export default function ModelShopGrid({
                   ))}
                 </dl>
                 <a
-                  href={url}
+                  href={ensureAbsoluteUrl(url)}
                   className="m-btn m-btn--primary m-btn--block"
                   rel="nofollow noopener noreferrer"
                   target="_blank"

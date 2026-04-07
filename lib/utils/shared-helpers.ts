@@ -50,10 +50,10 @@ export function buildFallbackShops(
 
 /** プロトコルなしURLに https:// を補完 */
 function normalizeUrl(url: string): string {
-  if (url && !url.startsWith('http://') && !url.startsWith('https://')) {
-    return `https://${url}`
-  }
-  return url
+  if (!url) return url
+  if (url.startsWith('http://') || url.startsWith('https://')) return url
+  if (url.startsWith('//')) return `https:${url}`
+  return `https://${url}`
 }
 
 /**
@@ -172,7 +172,7 @@ export function buildArticleJsonLd(opts: {
       name: 'タカヒロ',
       url: 'https://used-lab.jp/profile/',
       image: 'https://used-lab.jp/images/content/thumbnail/my-icon.webp',
-      jobTitle: 'Webディレクター / ガジェットブロガー',
+      jobTitle: 'Webディレクター / ブロガー',
       description: 'IT企業でWebデザイナー、フロントエンドエンジニア、Webディレクターを経て現在はプロジェクトマネージャー。2015年からガジェットブログ「デジスタ」を運営し、300以上の製品をレビュー。GoodsPress・ITmedia等で連載・監修実績多数。',
       knowsAbout: ['iPhone', 'iPad', 'MacBook', 'Apple Watch', 'AirPods', '中古Apple製品', 'ガジェット'],
       sameAs: [

@@ -14,8 +14,8 @@ export default function RecommendByTypeSection() {
             <i className="fa-solid fa-shield-halved" aria-hidden="true"></i> 安全重視・初めて中古iPhoneを買う人
           </h3>
           <div className="media-card__desc m-rich-text">
-            <p>中古に不安がある、失敗したくない、知識はあまりない人。検品済みで保証があり、赤ロムの心配がほぼありません。初めてなら「安さ」より「戻れるかどうか」を基準に選ぶべきです。</p>
-            <p className="lead-link">&rarr; 中古スマホ専門店 or キャリア認定中古</p>
+            <p>中古に不安がある方や、失敗したくないという方は<strong>中古スマホ専門店</strong>か<strong>キャリア認定中古</strong>がおすすめです。</p>
+            <p>検品済みで保証がついており、赤ロムの心配がほぼありません。初めてなら「安さ」より「返品できるかどうか」を基準に選びましょう。</p>
           </div>
         </div>
 
@@ -25,8 +25,8 @@ export default function RecommendByTypeSection() {
             <i className="fa-solid fa-tags" aria-hidden="true"></i> 価格重視・ある程度知識がある人
           </h3>
           <div className="media-card__desc m-rich-text">
-            <p>中古iPhoneの相場感があり、多少の条件確認は自分でできる人。フリマより安全でありながら、セールや在庫次第で価格が下がりやすく、最低限の保証もあります。「安い＝フリマ」ではありません。</p>
-            <p className="lead-link">&rarr; 中古スマホ専門店（価格重視店） or Amazon整備済み</p>
+            <p>中古iPhoneの相場感があり、自分で状態を確認できる方は<strong>中古スマホ専門店（価格重視店）</strong>や<strong>Amazon整備済み品</strong>を検討してみましょう。</p>
+            <p>フリマより安全でありながら、セールや在庫次第でお手頃な価格になることがあります。最低限の保証もついているので、「安い＝フリマ」と決めつけず、価格と保証のバランスで選ぶのがポイントです。</p>
           </div>
         </div>
 
@@ -36,8 +36,8 @@ export default function RecommendByTypeSection() {
             <i className="fa-solid fa-gem" aria-hidden="true"></i> 掘り出し物を狙いたい人（上級者向け）
           </h3>
           <div className="media-card__desc m-rich-text">
-            <p>バッテリー状態・赤ロム・モデル寿命を自分で判断できる人。リスクを理解していることが前提です。初心者には向きません。安い理由を理解できないなら、手を出すべきではありません。</p>
-            <p className="lead-link">&rarr; フリマアプリ・個人売買</p>
+            <p>自分で商品の状態を見極められる上級者の方は、<strong>フリマアプリ</strong>や<strong>個人売買</strong>を検討してみるのもありです。</p>
+            <p>専門店で買うよりもお手頃な価格で手に入る可能性があります。ただし、保証がなくリスクが高い点には注意しましょう。バッテリー状態・赤ロム・モデル寿命を自分で判断できることが前提です。</p>
           </div>
         </div>
       </div>

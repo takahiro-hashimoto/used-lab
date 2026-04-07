@@ -56,7 +56,7 @@ export function buildVendorCardsFromShops(
     recommended: s.shop_key === 'iosys',
     tag: s.extension_name && s.extension_name !== '-' ? s.extension_name : undefined,
     specs: buildSpecsFromShop(s),
-    href: s[urlKey]!.startsWith('http') ? s[urlKey]! : `https://${s[urlKey]!}`,
+    href: s[urlKey]!.startsWith('http') ? s[urlKey]! : s[urlKey]!.startsWith('//') ? `https:${s[urlKey]!}` : `https://${s[urlKey]!}`,
     ctaText,
   }))
 }

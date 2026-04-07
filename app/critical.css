@@ -573,6 +573,8 @@ a.header-admin-link:hover {
   bottom: 0;
   right: 0;
   overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
   transform: translateX(100%);
 }
 
@@ -1218,6 +1220,15 @@ a.header-admin-link:hover {
   .hero--top .hero-inner {
     height: 70vw;
     min-height: 0;
+  }
+
+  .site-header {
+    position: static;
+  }
+
+  .mobile-menu,
+  .mobile-menu-backdrop {
+    top: 0;
   }
 
   .header-inner {

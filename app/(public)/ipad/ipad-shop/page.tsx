@@ -13,6 +13,7 @@ import ShareBox from '@/app/components/ShareBox'
 import ShopComparisonTable from '@/app/components/shop/ShopComparisonTable'
 import type { SpecRow } from '@/app/components/shop/ShopDetailSection'
 import BuyingOptionsSection from './components/BuyingOptionsSection'
+import SelectionCriteriaSection from './components/SelectionCriteriaSection'
 import ShopComparisonSection from './components/ShopComparisonSection'
 import RecommendByTypeSection from './components/RecommendByTypeSection'
 import ShopDetailSection from './components/ShopDetailSection'
@@ -211,13 +212,18 @@ export default async function IPadShopPage() {
                 </a>
               </li>
               <li>
+                <a href="#criteria" className="toc-item">
+                  選び方6つのポイント <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                </a>
+              </li>
+              <li>
                 <a href="#flea-market" className="toc-item">
                   フリマは大丈夫？ <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
                 </a>
               </li>
               <li>
                 <a href="#checklist" className="toc-item">
-                  失敗しないチェックポイント <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                  購入前のチェックリスト <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
                 </a>
               </li>
             </ol>
@@ -249,6 +255,7 @@ export default async function IPadShopPage() {
             </div>
           </section>
 
+          <SelectionCriteriaSection />
           <FleaMarketSection />
           <ChecklistSection />
           <FaqSection />

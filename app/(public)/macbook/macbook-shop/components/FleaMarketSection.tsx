@@ -38,7 +38,7 @@ export default function FleaMarketSection() {
         </div>
 
         <div className="l-grid l-grid--2col l-grid--gap-lg u-mt-xl">
-          <div className="recommend-card__fit-box recommend-card__fit-box--good">
+          <div className="m-card m-card--shadow recommend-card__fit-box recommend-card__fit-box--good">
             <p className="recommend-card__fit-title"><i className="fa-solid fa-circle-check" aria-hidden="true"></i> 向いている人</p>
             <ul>
               <li><i className="fa-solid fa-check" aria-hidden="true"></i> 中古MacBookの購入経験がある</li>
@@ -47,7 +47,7 @@ export default function FleaMarketSection() {
               <li><i className="fa-solid fa-check" aria-hidden="true"></i> トラブルが起きても自己対応できる</li>
             </ul>
           </div>
-          <div className="recommend-card__fit-box recommend-card__fit-box--bad">
+          <div className="m-card m-card--shadow recommend-card__fit-box recommend-card__fit-box--bad">
             <p className="recommend-card__fit-title"><i className="fa-solid fa-circle-xmark" aria-hidden="true"></i> 向いていない人</p>
             <ul>
               <li><i className="fa-solid fa-xmark" aria-hidden="true"></i> 初めて中古MacBookを買う人</li>

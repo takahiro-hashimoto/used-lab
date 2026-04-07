@@ -1,5 +1,5 @@
 const ensureAbsoluteUrl = (url: string) =>
-  url.startsWith('http') || url === '#' ? url : `https://${url}`
+  url.startsWith('http') || url === '#' ? url : url.startsWith('//') ? `https:${url}` : `https://${url}`
 
 export type VendorCardItem = {
   name: string

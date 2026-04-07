@@ -371,7 +371,7 @@ export default async function MvnoPage() {
               まずは「セット契約」の定義を明確にしておきましょう。
             </p>
 
-            <div className="m-card m-card--shadow m-card--padded">
+            <div className="m-card m-card--shadow m-card--padded post-check-item">
               <h3 className="post-check-item__heading">
                 「セット契約」の定義
               </h3>
@@ -388,7 +388,7 @@ export default async function MvnoPage() {
               </div>
             </div>
 
-            <div className="m-card m-card--shadow m-card--padded u-mt-xl">
+            <div className="m-card m-card--shadow m-card--padded post-check-item u-mt-xl">
               <h3 className="post-check-item__heading">
                 キャリアショップとの違い
               </h3>
@@ -402,7 +402,7 @@ export default async function MvnoPage() {
               </div>
             </div>
 
-            <div className="m-card m-card--shadow m-card--padded u-mt-xl">
+            <div className="m-card m-card--shadow m-card--padded post-check-item u-mt-xl">
               <h3 className="post-check-item__heading">
                 正直に言うと、最安とは限らない
               </h3>
@@ -741,7 +741,7 @@ export default async function MvnoPage() {
               以下のようなケースでは、端末と回線を分けて検討したほうが合理的です。
             </p>
 
-            <div className="m-card m-card--shadow m-card--padded">
+            <div className="m-card m-card--shadow m-card--padded post-check-item">
               <h3 className="post-check-item__heading">欲しい機種が明確に決まっている場合</h3>
               <div className="media-card__desc">
                 <p>「iPhone 13 Proの256GB、シエラブルーが欲しい」など、機種・容量・カラーまで決まっている場合、セット契約の在庫では見つからない可能性が高いです。</p>
@@ -749,7 +749,7 @@ export default async function MvnoPage() {
               </div>
             </div>
 
-            <div className="m-card m-card--shadow m-card--padded u-mt-xl">
+            <div className="m-card m-card--shadow m-card--padded post-check-item u-mt-xl">
               <h3 className="post-check-item__heading">価格を最優先にしたい場合</h3>
               <div className="media-card__desc">
                 <p>中古スマホ専門店では、セールや在庫処分で大幅に値下げされることがあります。セット契約の端末価格と比較して、数千円〜1万円以上の差がつくこともあります。</p>
@@ -757,14 +757,14 @@ export default async function MvnoPage() {
               </div>
             </div>
 
-            <div className="m-card m-card--shadow m-card--padded u-mt-xl">
+            <div className="m-card m-card--shadow m-card--padded post-check-item u-mt-xl">
               <h3 className="post-check-item__heading">すでに使いたい格安SIMが決まっている場合</h3>
               <div className="media-card__desc">
                 <p>「mineoを使いたい」「IIJmioのギガプランがいい」など、すでに使いたい格安SIMが決まっていて、その事業者が中古端末を扱っていない場合は、端末は別で調達するしかありません。</p>
               </div>
             </div>
 
-            <div className="m-card m-card--shadow m-card--padded u-mt-xl">
+            <div className="m-card m-card--shadow m-card--padded post-check-item u-mt-xl">
               <h3 className="post-check-item__heading">長期保証を重視する場合</h3>
               <div className="media-card__desc">
                 <p>セット契約の保証期間は8日〜90日程度が多いです。一方、中古スマホ専門店では3ヶ月〜6ヶ月の保証がついていることもあります。</p>
@@ -772,7 +772,7 @@ export default async function MvnoPage() {
               </div>
             </div>
 
-            <div className="m-card m-card--shadow m-card--padded u-mt-xl">
+            <div className="m-card m-card--shadow m-card--padded post-check-item u-mt-xl">
               <h3 className="post-check-item__heading">端末の状態を細かく確認したい場合</h3>
               <div className="media-card__desc">
                 <p>中古スマホ専門店の店頭なら、実機を手に取って傷や状態を確認できます。セット契約はオンライン申し込みが基本のため、届くまで実物を確認できません。</p>

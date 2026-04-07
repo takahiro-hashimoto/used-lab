@@ -2,7 +2,7 @@ import type { Shop } from '@/lib/types'
 import RatingMark from '@/app/components/RatingMark'
 
 const ensureAbsoluteUrl = (url: string) =>
-  url.startsWith('http') || url === '#' ? url : `https://${url}`
+  url.startsWith('http') || url === '#' ? url : url.startsWith('//') ? `https:${url}` : `https://${url}`
 
 /** Shared meta type that all category-specific meta types satisfy */
 export type ShopDetailMeta = {

@@ -6126,6 +6126,18 @@
   color: #fff;
 }
 
+.buy-method-cta-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-sm);
+  margin-top: var(--space-lg);
+}
+
+.buy-method-cta-group .buy-method-cta {
+  margin: 0;
+}
+
 /* ============================================================
    Top Page
    ============================================================ */
@@ -6655,15 +6667,9 @@
   display: inline-block;
 }
 
-.storage-quick-card__price {
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: #dc2626;
-  margin-bottom: 0.5rem;
-}
 
 .storage-quick-card__desc {
-  font-size: 0.9rem;
+  font-size: 1rem;
   margin-bottom: 0.75rem;
   color: var(--color-text-secondary, #555);
 }
@@ -6678,7 +6684,7 @@
 }
 
 .storage-quick-card__list li {
-  font-size: 0.85rem;
+  font-size: 1rem;
   padding-left: 1.2em;
   position: relative;
 }

@@ -1,7 +1,7 @@
 export default function BuyMethodsSection() {
   return (
     <section id="comparison" className="l-section">
-      <style>{`.buy-method-card a:not(.buy-method-cta){color:var(--color-primary)}`}</style>
+      <style>{`.buy-method-card a:not(.buy-method-cta){color:var(--color-primary)}.buy-method-cta-group{display:flex;flex-wrap:wrap;justify-content:center;gap:var(--space-sm);margin-top:var(--space-lg)}.buy-method-cta-group .buy-method-cta{margin:0}`}</style>
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg">
 iPadを安く買う7つの方法
@@ -55,7 +55,7 @@ iPadを安く買う7つの方法
                       height={576}
                       loading="lazy"
                     />
-                    <p>Apple製品をお得に買うための第一歩は、楽天市場で「Appleギフトカード」を購入することです。</p>
+                    <p>Apple製品をお得に買うための第一歩は、楽天市場で「<a href="https://hb.afl.rakuten.co.jp/hgc/2b438bef.163112e7.2b438bf0.c161de07/?pc=https%3A%2F%2Fevent.rakuten.co.jp%2Fcomputer%2Fitunes%2F&amp;link_type=text&amp;ut=eyJwYWdlIjoidXJsIiwidHlwZSI6InRleHQiLCJjb2wiOjF9" target="_blank" rel="nofollow noreferrer noopener">Appleギフトカード</a>」を購入することです。</p>
                     <p>他でも買えますが、楽天を使う最大のメリットはポイント還元率。SPU（スーパーポイントアップ）や買いまわりイベントを組み合わせることで、驚くほどポイントが貯まります。</p>
                     <p>カードは1,500円から50,000円まで、1円単位で指定可能。Apple製品はもちろん、サブスクの支払いにも使えます。</p>
                     <p>上記は「楽天SPU6倍」と「5と0のつく日」に購入した際の画面です。これだけで4,500円分のポイント還元。実質的な割引額として考えるとかなり大きいですよね。</p>
@@ -100,7 +100,7 @@ iPadを安く買う7つの方法
                       height={576}
                       loading="lazy"
                     />
-                    <p>あとはネットショップまとめサイトの楽天リーベイツを経由してApple公式ストアへ進み、チャージしたAppleギフトで買い物をするだけ。</p>
+                    <p>あとはネットショップまとめサイトの<a href="https://www.rebates.jp/referrer?referrerid=ksDHCQqoohw%3D" target="_blank" rel="noreferrer noopener nofollow">楽天リーベイツ</a>を経由してApple公式ストアへ進み、チャージしたAppleギフトで買い物をするだけ。</p>
                     <p>このフローを挟むことで、下記のような還元率でポイントをゲットできます。</p>
                     <ul className="buy-method-card__list u-mt-md">
                       <li>通常時期：1〜2％</li>
@@ -109,6 +109,14 @@ iPadを安く買う7つの方法
                     <p className="u-mt-sm">発売して間もないアイテムは対象外になるデメリットもありますが、多くの商品がポイント還元の対象なので、こちらも忘れずに実施しましょう！</p>
                   </div>
                 </div>
+              </div>
+              <div className="buy-method-cta-group">
+                <a href="https://www.rebates.jp/referrer?referrerid=ksDHCQqoohw%3D" className="buy-method-cta" target="_blank" rel="nofollow noopener noreferrer">
+                  <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> 楽天リーベイツを見る
+                </a>
+                <a href="https://hb.afl.rakuten.co.jp/hgc/2b438bef.163112e7.2b438bf0.c161de07/?pc=https%3A%2F%2Fevent.rakuten.co.jp%2Fcomputer%2Fitunes%2F&amp;link_type=text&amp;ut=eyJwYWdlIjoidXJsIiwidHlwZSI6InRleHQiLCJjb2wiOjF9" className="buy-method-cta" target="_blank" rel="nofollow noopener noreferrer">
+                  <i className="fa-solid fa-gift" aria-hidden="true"></i> Appleギフトカードを購入
+                </a>
               </div>
             </div>
           </div>
@@ -353,7 +361,7 @@ iPadを安く買う7つの方法
                   <p>iPadが直接値引きになるケースは少ないですが、セール時にはポイント還元率もアップするので、活かさない手はありません。</p>
                   <p>おすすめは超PayPay祭。ショップ買い周りでポイント還元率が最大22.5％になるので、欲しい物のまとめ買いで実質購入金額をぐっと抑えましょう。</p>
                 </div>
-                <a href="//ck.jp.ap.valuecommerce.com/servlet/referral?sid=3726980&amp;pid=890771492&amp;vc_url=https%3A%2F%2Fshopping.yahoo.co.jp%2Fsearch%3Fp%3Dipad" className="buy-method-cta" target="_blank" rel="nofollow noopener noreferrer">
+                <a href="https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3726980&amp;pid=890771492&amp;vc_url=https%3A%2F%2Fshopping.yahoo.co.jp%2Fsearch%3Fp%3Dipad" className="buy-method-cta" target="_blank" rel="nofollow noopener noreferrer">
                   <i className="fa-solid fa-cart-shopping" aria-hidden="true"></i> ヤフーショッピングでiPadを購入
                 </a>
               </div>
@@ -408,7 +416,7 @@ iPadを安く買う7つの方法
                 <p>安心して購入できるという観点は家電量販店ECサイトはとても魅力的な購入先でありますが、ポイント還元率は1%のみの場合がほとんどで他のルートに比べるとやや劣る印象です。</p>
                 <p>iPadを安く買おうと思うとあまり魅力的な条件ではないため、他の方法を検討したほうがよいでしょう。</p>
               </div>
-              <a href="//ck.jp.ap.valuecommerce.com/servlet/referral?sid=3726980&amp;pid=891872675&amp;vc_url=https%3A%2F%2Fwww.yamada-denkiweb.com%2Fsearch%2FiPad%2F%3Fcategory%3Dall%26searchbox%3D1" className="buy-method-cta" target="_blank" rel="nofollow noopener noreferrer">
+              <a href="https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3726980&amp;pid=891872675&amp;vc_url=https%3A%2F%2Fwww.yamada-denkiweb.com%2Fsearch%2FiPad%2F%3Fcategory%3Dall%26searchbox%3D1" className="buy-method-cta" target="_blank" rel="nofollow noopener noreferrer">
                 <i className="fa-solid fa-store" aria-hidden="true"></i> ヤマダ電機で購入する
               </a>
             </div>

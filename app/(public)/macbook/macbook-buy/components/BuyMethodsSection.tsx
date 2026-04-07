@@ -1,7 +1,7 @@
 export default function BuyMethodsSection() {
   return (
     <section id="comparison" className="l-section">
-      <style>{`.buy-method-card a:not(.buy-method-cta){color:var(--color-primary)}`}</style>
+      <style>{`.buy-method-card a:not(.buy-method-cta){color:var(--color-primary)}.buy-method-cta-group{display:flex;flex-wrap:wrap;justify-content:center;gap:var(--space-sm);margin-top:var(--space-lg)}.buy-method-cta-group .buy-method-cta{margin:0}`}</style>
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg">
 MacBookを安く買う7つの方法
@@ -106,6 +106,14 @@ MacBookを安く買う7つの方法
                     <p className="u-mt-sm">発売して間もないアイテムは対象外になるデメリットもありますが、多くの商品がポイント還元の対象なので、こちらも忘れずに実施しましょう！</p>
                   </div>
                 </div>
+              </div>
+              <div className="buy-method-cta-group">
+                <a href="https://www.rebates.jp/referrer?referrerid=ksDHCQqoohw%3D" className="buy-method-cta" target="_blank" rel="nofollow noopener noreferrer">
+                  <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> 楽天リーベイツを見る
+                </a>
+                <a href="https://hb.afl.rakuten.co.jp/hgc/2b438bef.163112e7.2b438bf0.c161de07/?pc=https%3A%2F%2Fevent.rakuten.co.jp%2Fcomputer%2Fitunes%2F&amp;link_type=text&amp;ut=eyJwYWdlIjoidXJsIiwidHlwZSI6InRleHQiLCJjb2wiOjF9" className="buy-method-cta" target="_blank" rel="nofollow noopener noreferrer">
+                  <i className="fa-solid fa-gift" aria-hidden="true"></i> Appleギフトカードを購入
+                </a>
               </div>
             </div>
           </div>
@@ -350,7 +358,7 @@ MacBookを安く買う7つの方法
                   <p>MacBookが直接値引きになるケースは少ないですが、セール時にはポイント還元率もアップするので、活かさない手はありません。</p>
                   <p>おすすめは超PayPay祭。ショップ買い周りでポイント還元率が最大22.5％になるので、欲しい物のまとめ買いで実質購入金額をぐっと抑えましょう。</p>
                 </div>
-                <a href="//ck.jp.ap.valuecommerce.com/servlet/referral?sid=3676517&amp;pid=889103170&amp;vc_url=https%3A%2F%2Fshopping.yahoo.co.jp%2Fsearch%3Fp%3Dmacbook" className="buy-method-cta" target="_blank" rel="nofollow noopener noreferrer">
+                <a href="https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3676517&amp;pid=889103170&amp;vc_url=https%3A%2F%2Fshopping.yahoo.co.jp%2Fsearch%3Fp%3Dmacbook" className="buy-method-cta" target="_blank" rel="nofollow noopener noreferrer">
                   <i className="fa-solid fa-cart-shopping" aria-hidden="true"></i> ヤフーショッピングでMacBookを購入
                 </a>
               </div>
@@ -405,7 +413,7 @@ MacBookを安く買う7つの方法
                 <p>安心して購入できるという観点は家電量販店ECサイトはとても魅力的な購入先でありますが、ポイント還元率は1%のみの場合がほとんどで他のルートに比べるとやや劣る印象です。</p>
                 <p>MacBookを安く買おうと思うとあまり魅力的な条件ではないため、他の方法を検討したほうがよいでしょう。</p>
               </div>
-              <a href="//ck.jp.ap.valuecommerce.com/servlet/referral?sid=3726980&amp;pid=891872675&amp;vc_url=https%3A%2F%2Fwww.yamada-denkiweb.com%2Fsearch%3Fq%3Dmacbook" className="buy-method-cta" target="_blank" rel="nofollow noopener noreferrer">
+              <a href="https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3726980&amp;pid=891872675&amp;vc_url=https%3A%2F%2Fwww.yamada-denkiweb.com%2Fsearch%3Fq%3Dmacbook" className="buy-method-cta" target="_blank" rel="nofollow noopener noreferrer">
                 <i className="fa-solid fa-store" aria-hidden="true"></i> ヤマダ電機で購入する
               </a>
             </div>
@@ -414,11 +422,11 @@ MacBookを安く買う7つの方法
           {/* ── 6. 中古ショップで買う ── */}
           <div id="used" className="m-card m-card--shadow buy-method-card">
             <img
-              src="/images/content/photo/use-macbook.jpg"
+              src="/images/content/photo/macbook-buy/macbook-sale-07.jpg"
               alt="MacBookを安く買う方法！中古ショップ編"
               className="buy-method-card__img"
-              width={1200}
-              height={800}
+              width={1196}
+              height={664}
               loading="lazy"
             />
             <div className="buy-method-card__body">
@@ -469,11 +477,11 @@ MacBookを安く買う7つの方法
           {/* ── 7. Appleストアで買う ── */}
           <div id="apple-store" className="m-card m-card--shadow buy-method-card">
             <img
-              src="/images/content/photo/apple-store.jpg"
+              src="/images/content/photo/macbook-buy/macbook-sale-06.jpg"
               alt="MacBookを安く買う方法！Appleストア編"
               className="buy-method-card__img"
-              width={1200}
-              height={795}
+              width={1196}
+              height={664}
               loading="lazy"
             />
             <div className="buy-method-card__body">

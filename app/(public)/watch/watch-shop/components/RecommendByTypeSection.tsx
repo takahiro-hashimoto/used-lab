@@ -12,22 +12,22 @@ export default function RecommendByTypeSection() {
 
         <div className="u-mt-xl">
           <IconCard icon="fa-solid fa-shield-halved" title="安全重視・初めて中古Apple Watchを買う人">
-            <p>中古に不安がある、失敗したくない、知識はあまりない人。検品済みで保証があり、バッテリー劣化やケースの傷の心配が少ないです。毎日肌に触れるデバイスだからこそ、「安さ」より「状態の確実さ」を基準に選ぶべきです。</p>
-            <p className="lead-link">&rarr; 中古専門店 or Apple認定整備済製品</p>
+            <p>中古に不安がある方や、失敗したくないという方は<strong>中古専門店</strong>か<strong>Apple認定整備済製品</strong>がおすすめです。</p>
+            <p>検品済みで保証がついており、バッテリー劣化やケースの傷の心配が少ないです。毎日肌に触れるデバイスだからこそ、「安さ」より「状態の確実さ」を基準に選びましょう。</p>
           </IconCard>
         </div>
 
         <div className="u-mt-lg">
           <IconCard icon="fa-solid fa-tags" title="価格重視・ある程度知識がある人">
-            <p>中古Apple Watchの相場感があり、ケースサイズやGPS/Cellularの違いを理解している人。セールや在庫次第で価格が下がりやすく、最低限の保証もあります。</p>
-            <p className="lead-link">&rarr; 中古専門店（価格重視店） or Amazon整備済み</p>
+            <p>中古Apple Watchの相場感があり、ケースサイズやGPS/Cellularの違いを理解している方は、<strong>中古専門店（価格重視店）</strong>や<strong>Amazon整備済み品</strong>を検討してみましょう。</p>
+            <p>セールや在庫次第でお手頃な価格になることがあり、最低限の保証もついています。価格と安心感のバランスで選ぶのがポイントです。</p>
           </IconCard>
         </div>
 
         <div className="u-mt-lg">
           <IconCard icon="fa-solid fa-gem" title="掘り出し物を狙いたい人（上級者向け）">
-            <p>バッテリー状態・モデル寿命・watchOSサポート・GPS/Cellularの違いを自分で判断できる人。リスクを理解していることが前提です。初心者には向きません。</p>
-            <p className="lead-link">&rarr; フリマアプリ・個人売買</p>
+            <p>バッテリー状態やwatchOSサポート、GPS/Cellularの違いを自分で判断できる上級者の方は、<strong>フリマアプリ</strong>や<strong>個人売買</strong>を検討してみるのもありです。</p>
+            <p>専門店で買うよりもお手頃な価格で手に入る可能性があります。ただし、保証がなくリスクが高い点には注意しましょう。</p>
           </IconCard>
         </div>
       </div>

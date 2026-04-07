@@ -1,5 +1,8 @@
 import type { Shop } from '@/lib/types'
 
+const ensureAbsoluteUrl = (url: string) =>
+  url.startsWith('http') || url === '#' ? url : url.startsWith('//') ? `https:${url}` : `https://${url}`
+
 type ShopItem = {
   shop: Shop
   url: string
@@ -77,7 +80,7 @@ export default function ShopSection({ items, productName, description, specRows 
                   ))}
                 </dl>
                 <a
-                  href={url}
+                  href={ensureAbsoluteUrl(url)}
                   className="m-btn m-btn--primary m-btn--block"
                   rel="nofollow noopener noreferrer"
                   target="_blank"

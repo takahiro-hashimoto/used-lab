@@ -25,8 +25,8 @@ export default function WatchRelatedLinks({
       excludeHref={excludeHref}
       sourcePath={sourcePath}
     >
-      {children}
       <CrossCategoryLinks currentCategory="/watch/" />
+      {children}
     </RelatedLinks>
   )
 }

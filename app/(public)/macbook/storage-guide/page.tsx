@@ -114,40 +114,6 @@ export default async function StorageGuidePage() {
     }
   })
 
-  // 容量カテゴリ別の価格レンジを算出
-  type StoragePriceRange = { min: number; max: number; count: number }
-  const storagePriceMap = new Map<string, StoragePriceRange>()
-
-  for (const m of storageModels) {
-    if (m.avgMin == null || !m.storageLabel) continue
-    let storageGb = 0
-    if (m.storageLabel.includes('TB')) {
-      storageGb = parseFloat(m.storageLabel) * 1024
-    } else {
-      storageGb = parseInt(m.storageLabel, 10) || 0
-    }
-
-    let category: string
-    if (storageGb <= 256) category = '256GB'
-    else if (storageGb <= 512) category = '512GB'
-    else if (storageGb <= 1024) category = '1TB'
-    else category = '2TB'
-
-    const existing = storagePriceMap.get(category)
-    if (existing) {
-      existing.min = Math.min(existing.min, m.avgMin)
-      existing.max = Math.max(existing.max, m.avgMin)
-      existing.count++
-    } else {
-      storagePriceMap.set(category, { min: m.avgMin, max: m.avgMin, count: 1 })
-    }
-  }
-
-  function getPriceLabel(category: string): string | null {
-    const range = storagePriceMap.get(category)
-    if (!range) return null
-    return `中古相場 ¥${range.min.toLocaleString()}〜`
-  }
 
   const breadcrumbJsonLd = {
     '@context': 'https://schema.org',
@@ -297,9 +263,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/macbook/storage
                   <span className="storage-quick-card__capacity">256GB</span>
                   <span className="storage-quick-card__label storage-quick-card__label--caution">最低限</span>
                 </div>
-                {getPriceLabel('256GB') && (
-                  <p className="storage-quick-card__price">{getPriceLabel('256GB')}</p>
-                )}
+
                 <p className="storage-quick-card__desc">Web閲覧・Office・メール中心のライトユーザー向け。開発やクリエイティブ用途には厳しい。</p>
                 <ul className="storage-quick-card__list">
                   <li>macOS+標準アプリで約30〜40GB占有</li>
@@ -314,9 +278,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/macbook/storage
                   <span className="storage-quick-card__capacity">512GB</span>
                   <span className="storage-quick-card__label storage-quick-card__label--recommend">おすすめ</span>
                 </div>
-                {getPriceLabel('512GB') && (
-                  <p className="storage-quick-card__price">{getPriceLabel('512GB')}</p>
-                )}
+
                 <p className="storage-quick-card__desc">2026年の標準的な容量。多くのユーザーにとってバランスが良く、長期間快適に使える。</p>
                 <ul className="storage-quick-card__list">
                   <li>一般的なアプリ+写真管理に十分</li>
@@ -331,9 +293,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/macbook/storage
                   <span className="storage-quick-card__capacity">1TB</span>
                   <span className="storage-quick-card__label storage-quick-card__label--good">安心</span>
                 </div>
-                {getPriceLabel('1TB') && (
-                  <p className="storage-quick-card__price">{getPriceLabel('1TB')}</p>
-                )}
+
                 <p className="storage-quick-card__desc">開発者・クリエイターに最適。複数の開発環境や大量のメディアファイルを扱える。</p>
                 <ul className="storage-quick-card__list">
                   <li>Xcode+Docker+複数SDKも余裕</li>
@@ -348,9 +308,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/macbook/storage
                   <span className="storage-quick-card__capacity">2TB〜</span>
                   <span className="storage-quick-card__label storage-quick-card__label--pro">プロ向け</span>
                 </div>
-                {getPriceLabel('2TB') && (
-                  <p className="storage-quick-card__price">{getPriceLabel('2TB')}</p>
-                )}
+
                 <p className="storage-quick-card__desc">映像制作・大規模開発など、大量のデータを扱うプロフェッショナル向け。</p>
                 <ul className="storage-quick-card__list">
                   <li>8K動画・ProRes素材を大量保存</li>

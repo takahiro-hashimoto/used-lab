@@ -22,7 +22,7 @@ const organizationJsonLd = {
     name: 'タカヒロ',
     url: 'https://used-lab.jp/profile/',
     image: 'https://used-lab.jp/images/content/thumbnail/my-icon.webp',
-    jobTitle: 'Webディレクター / ガジェットブロガー',
+    jobTitle: 'Webディレクター / ブロガー',
     description: '2015年からガジェットブログ「デジスタ」を運営。300以上の製品レビュー実績を持ち、GoodsPress・ITmedia・ライフハッカー等で連載・監修を担当。',
     sameAs: [
       'https://twitter.com/takahiro_mono',
