@@ -94,6 +94,15 @@ export default function IPhoneTimingSection() {
       sectionTitle="iPhoneを買い替えるべき4つのタイミング"
       sectionDescription="ここからはiPhoneを買い替えるべきタイミングを4つに分けて解説していきます。"
       cards={TIMING_CARDS}
+      afterContent={
+        <div className="m-callout m-callout--tip u-mt-2xl">
+          <span className="m-callout__label">memo</span>
+          <p className="m-callout__text">
+            買い替えを決めたら、購入前の注意点もあわせてチェックしておきましょう。
+            <Link href="/iphone/used-iphone-attention/">中古iPhoneの注意点まとめ</Link>で詳しく解説しています。
+          </p>
+        </div>
+      }
     />
   )
 }

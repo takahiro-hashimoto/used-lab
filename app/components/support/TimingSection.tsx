@@ -13,11 +13,12 @@ type Props = {
   sectionTitle: string
   sectionDescription: string
   cards: TimingCard[]
+  afterContent?: ReactNode
 }
 
 export type { TimingCard }
 
-export default function TimingSection({ sectionTitle, sectionDescription, cards }: Props) {
+export default function TimingSection({ sectionTitle, sectionDescription, cards, afterContent }: Props) {
   return (
     <section className="l-section" id="timing" aria-labelledby="heading-timing">
       <div className="l-container">
@@ -40,6 +41,7 @@ export default function TimingSection({ sectionTitle, sectionDescription, cards 
             {card.content}
           </MediaCard>
         ))}
+        {afterContent}
       </div>
     </section>
   )

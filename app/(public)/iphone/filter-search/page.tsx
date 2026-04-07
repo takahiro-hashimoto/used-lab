@@ -224,13 +224,13 @@ export default async function IPhoneFilterSearchPage() {
         <section className="l-section l-section--no-pt" aria-label="診断の特徴">
           <div className="l-container">
             <div className="l-grid l-grid--3col l-grid--gap-lg">
-              <IconCard icon="fa-solid fa-bullseye" title="用途で絞り込み">
+              <IconCard icon="fa-solid fa-bullseye" title="用途で絞り込み" as="p">
                 <p>SNS・動画視聴・ゲームなど、あなたの使い方に合った機種がわかる。</p>
               </IconCard>
-              <IconCard icon="fa-solid fa-wallet" title="予算で絞り込み">
+              <IconCard icon="fa-solid fa-wallet" title="予算で絞り込み" as="p">
                 <p>希望の予算帯に収まる機種だけを表示。無理のない選択が可能。</p>
               </IconCard>
-              <IconCard icon="fa-solid fa-sliders" title="こだわり条件">
+              <IconCard icon="fa-solid fa-sliders" title="こだわり条件" as="p">
                 <p>画面サイズやカメラ性能など、細かい条件でさらに絞り込めます。</p>
               </IconCard>
             </div>
@@ -239,7 +239,9 @@ export default async function IPhoneFilterSearchPage() {
         <div className="l-sections">
         {/* 診断フィルター + 結果 */}
         <FilterSearchApp models={modelsData} shopLinks={shopLinksData} />
+        </div>
 
+        <div className="l-sections">
         {/* 診断ロジック説明 */}
         <section className="l-section" aria-labelledby="heading-logic">
           <div className="l-container">

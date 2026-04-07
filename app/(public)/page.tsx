@@ -17,11 +17,11 @@ import { placeholder } from '@/lib/placeholder'
 export const revalidate = 3600
 
 export const metadata: Metadata = {
-  title: 'Apple製品の中古品・整備済品を安く買えるECサイト・おすすめ機種を解説 | ユーズドラボ',
+  title: '中古Apple製品のおすすめ機種・賢い選び方・安く買う方法を解説 | ユーズドラボ',
   description: '中古iPhone・iPad・MacBook・Apple Watch・AirPodsの価格推移・スペック比較・おすすめ機種を毎日更新。中古Apple製品選びに必要な情報をワンストップで提供します。',
   alternates: { canonical: '/' },
   openGraph: {
-    title: 'Apple製品の中古品・整備済品を安く買えるECサイト・おすすめ機種を解説 | ユーズドラボ',
+    title: '中古Apple製品のおすすめ機種・賢い選び方・安く買う方法を解説 | ユーズドラボ',
     description: '中古iPhone・iPad・MacBook・Apple Watch・AirPodsの価格推移・スペック比較・おすすめ機種を毎日更新。',
     url: '/',
   },

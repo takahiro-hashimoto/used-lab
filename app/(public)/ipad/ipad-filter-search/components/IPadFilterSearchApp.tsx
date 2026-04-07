@@ -86,13 +86,12 @@ const PURPOSE_OPTIONS: PurposeOption<PurposeKey>[] = [
 // 予算オプション（STEP 2）
 // ============================================================
 
-type BudgetKey = 'any' | 'under30k' | '30k_50k' | '50k_80k' | '80k_120k' | 'over120k'
+type BudgetKey = 'any' | 'under50k' | '50k_80k' | '80k_120k' | 'over120k'
 
 const BUDGET_OPTIONS: BudgetOption<BudgetKey>[] = [
   { key: 'any', label: '指定なし', desc: '予算を気にせずベストな機種を探す' },
-  { key: 'under30k', label: '3万円以下', desc: 'とにかく安く。最低限使えればOK' },
-  { key: '30k_50k', label: '3〜5万円', desc: 'コスパ重視。バランスの良い一台を探したい' },
-  { key: '50k_80k', label: '5〜8万円', desc: '性能にも妥協したくない方向け' },
+  { key: 'under50k', label: '5万円以下', desc: 'とにかく安く。最低限使えればOK' },
+  { key: '50k_80k', label: '5〜8万円', desc: 'コスパ重視。バランスの良い一台を探したい' },
   { key: '80k_120k', label: '8〜12万円', desc: 'ハイスペック寄りの機種も視野に入れたい' },
   { key: 'over120k', label: '12万円以上', desc: '予算に余裕あり。最高性能の機種が欲しい' },
 ]
@@ -286,8 +285,7 @@ export default function IPadFilterSearchApp({ models, shopLinks }: Props) {
         const avg = getAvgPrice(m)
         if (avg === null) return false
         switch (budget) {
-          case 'under30k': return avg <= 30000
-          case '30k_50k': return avg >= 30000 && avg <= 50000
+          case 'under50k': return avg <= 50000
           case '50k_80k': return avg >= 50000 && avg <= 80000
           case '80k_120k': return avg >= 80000 && avg <= 120000
           case 'over120k': return avg >= 120000

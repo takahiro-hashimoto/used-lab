@@ -208,16 +208,22 @@ export default function RecommendDetailSection({ items }: Props) {
               <SpecToggle>
                 <table className="recommend-card__specs-table">
                   <tbody>
-                    <SpecCategory title="基本スペック" />
+                    <SpecCategory title="基本情報" />
                     <SpecRows items={[
+                      { label: '発売日', value: releaseDate },
+                      { label: '公式サイト', value: model.official ? <a href={model.official} target="_blank" rel="noopener noreferrer">{model.model}の技術仕様</a> : null },
                       { label: 'ケースサイズ', value: model.size },
                       { label: '素材', value: model.material },
                       { label: 'ストレージ', value: model.strage },
-                      { label: 'バッテリー', value: model.battery },
-                      { label: '耐水性能', value: model.water_resistance },
                       { label: '最大輝度', value: model.max_brightness },
                     ]} />
-                    <SpecCategory title="ヘルスケア" />
+                    <SpecCategory title="バッテリー・耐久" />
+                    <SpecRows items={[
+                      { label: 'バッテリー', value: model.battery },
+                      { label: '急速充電', value: <BoolValue value={model.fast_charge} /> },
+                      { label: '耐水性能', value: model.water_resistance },
+                    ]} />
+                    <SpecCategory title="ヘルスケア・センサー" />
                     <SpecRows items={[
                       { label: '血中酸素', value: <BoolValue value={model.blood_oxygen} /> },
                       { label: '心電図', value: <BoolValue value={model.cardiogram} /> },
@@ -229,17 +235,11 @@ export default function RecommendDetailSection({ items }: Props) {
                     <SpecCategory title="機能" />
                     <SpecRows items={[
                       { label: '常時表示', value: <BoolValue value={model.always_on_display} /> },
-                      { label: '急速充電', value: <BoolValue value={model.fast_charge} /> },
                       { label: '事故衝突検知', value: <BoolValue value={model.accident_detection} /> },
                       { label: '転倒検出', value: <BoolValue value={model.fall_detection} /> },
                       { label: 'ダブルタップ', value: <BoolValue value={model.double_tap} /> },
                       { label: '日本語入力', value: <BoolValue value={model.japanese_input} /> },
                       { label: '高度計', value: <BoolValue value={model.altimeter} /> },
-                    ]} />
-                    <SpecCategory title="その他" />
-                    <SpecRows items={[
-                      { label: '発売日', value: releaseDate },
-                      { label: '公式サイト', value: model.official ? <a href={model.official} target="_blank" rel="noopener noreferrer">{model.model}の技術仕様</a> : null },
                     ]} />
                   </tbody>
                 </table>

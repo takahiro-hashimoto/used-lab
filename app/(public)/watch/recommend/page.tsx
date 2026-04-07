@@ -376,6 +376,7 @@ export default async function WatchRecommendPage() {
               { label: '実物写真', field: 'photo' },
               { label: '配送料', field: 'postage' },
             ]}
+            shopDetailLink={{ href: '/watch/watch-shop/', label: '中古Apple Watchのおすすめショップ比較' }}
           />
           <WatchFaqSection />
         <WatchRelatedLinks heading="Apple Watch選びをもっと深掘りする" description="購入先の比較や相場チェックなど、Apple Watch選びに役立つ記事をまとめました。" excludeHref="/watch/recommend/" />

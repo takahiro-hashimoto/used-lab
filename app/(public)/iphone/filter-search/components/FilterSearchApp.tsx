@@ -94,12 +94,11 @@ const PURPOSE_OPTIONS: PurposeOption<PurposeKey>[] = [
 // 予算オプション（STEP 2）
 // ============================================================
 
-type BudgetKey = 'any' | 'under20k' | 'under30k' | 'under50k' | 'under80k' | 'over80k'
+type BudgetKey = 'any' | 'under30k' | 'under50k' | 'under80k' | 'over80k'
 
 const BUDGET_OPTIONS: BudgetOption<BudgetKey>[] = [
   { key: 'any', label: '指定なし', desc: '予算を気にせずベストな機種を探す' },
-  { key: 'under20k', label: '2万円以下', desc: 'とにかく安く。最低限使えればOK' },
-  { key: 'under30k', label: '3万円以下', desc: '安さ重視だけど、ある程度快適に使いたい' },
+  { key: 'under30k', label: '3万円以下', desc: 'とにかく安く。最低限使えればOK' },
   { key: 'under50k', label: '5万円以下', desc: 'コスパ重視。バランスの良い一台を探したい' },
   { key: 'under80k', label: '8万円以下', desc: 'ハイスペック寄りの機種も視野に入れたい' },
   { key: 'over80k', label: '8万円以上', desc: '予算に余裕あり。最高性能の機種が欲しい' },
@@ -292,7 +291,6 @@ export default function FilterSearchApp({ models, shopLinks }: Props) {
     // ========== 予算フィルタ ==========
     if (budget !== 'any') {
       const maxBudget: Record<string, number> = {
-        under20k: 20000,
         under30k: 30000,
         under50k: 50000,
         under80k: 80000,

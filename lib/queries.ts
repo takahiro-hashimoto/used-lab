@@ -24,6 +24,7 @@ function createModelQueries<T>(table: string, activeField?: string) {
         .from(table)
         .select('*')
         .eq('slug', slug)
+        .eq('show', 1)
         .single()
       if (error || !data) return null
       return data as T
@@ -45,7 +46,7 @@ function createModelQueries<T>(table: string, activeField?: string) {
     },
 
     async getAllSlugs(): Promise<string[]> {
-      let query = supabase.from(table).select('slug')
+      let query = supabase.from(table).select('slug').eq('show', 1)
       if (activeField) query = query.is(activeField, null)
       const { data, error } = await query
       if (error || !data) return []

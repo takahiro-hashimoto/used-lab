@@ -34,7 +34,7 @@ export default function CompareHero({ modelL, modelR, slug }: Props) {
         <div className="hero-inner hero-inner--compare l-container">
           <div className="hero-content">
             <h1 className="hero-title">
-              {modelL.model}と{shortR}中古で買うならどっち？2機種の違いを比較
+              中古{modelL.model}と{shortR}の違いを比較｜中古で買うならどっち？
             </h1>
             <HeroMeta dateStr="2026-03-31" dateDisplay="2026年3月31日" />
           </div>

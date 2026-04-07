@@ -211,20 +211,33 @@ export default function RecommendDetailSection({ items }: Props) {
               <SpecToggle>
                 <table className="recommend-card__specs-table">
                   <tbody>
-                    <SpecCategory title="サイズ・重量" />
+                    <SpecCategory title="基本情報" />
                     <SpecRows items={[
+                      { label: '発売日', value: releaseDate },
+                      { label: '公式サイト', value: model.official ? <a href={model.official} target="_blank" rel="noopener noreferrer">{model.model}の技術仕様</a> : null },
                       { label: 'サイズ', value: model.size },
                       { label: '重量', value: model.weight },
-                    ]} />
-                    <SpecCategory title="ボディ" />
-                    <SpecRows items={[
                       { label: 'カラー', value: model.color },
                       { label: 'ストレージ', value: model.strage },
-                      { label: 'RAM', value: model.ram },
+                    ]} />
+                    <SpecCategory title="バッテリー・充電" />
+                    <SpecRows items={[
+                      { label: 'バッテリー', value: model.battery },
+                      { label: 'MagSafe', value: <BoolValue value={model.magsafe} /> },
+                    ]} />
+                    <SpecCategory title="ポート・入出力" />
+                    <SpecRows items={[
                       { label: 'ポート', value: model.port },
                       { label: 'HDMI', value: <BoolValue value={model.hdmi} /> },
                       { label: 'SDカードスロット', value: <BoolValue value={model.slot} /> },
-                      { label: 'MagSafe', value: <BoolValue value={model.magsafe} /> },
+                    ]} />
+                    <SpecCategory title="機能" />
+                    <SpecRows items={[
+                      { label: 'Apple Intelligence', value: <BoolValue value={model.apple_intelligence} /> },
+                      { label: 'カメラ', value: model.camera },
+                      { label: 'センターフレーム', value: <BoolValue value={model.center_frame} /> },
+                      { label: 'スピーカー', value: model.speaker },
+                      { label: 'ファン', value: <BoolValue value={model.fan} /> },
                     ]} />
                     <SpecCategory title="ディスプレイ" />
                     <SpecRows items={[
@@ -233,23 +246,13 @@ export default function RecommendDetailSection({ items }: Props) {
                       { label: '輝度', value: model.luminance },
                       { label: 'ProMotion', value: <BoolValue value={model.promotion} /> },
                     ]} />
-                    <SpecCategory title="CPU・ベンチマークスコア" />
+                    <SpecCategory title="処理性能" />
                     <SpecRows items={[
                       { label: 'CPU', value: model.cpu },
+                      { label: 'RAM', value: model.ram },
                       { label: 'GeekBench シングル', value: model.score_single?.toLocaleString() ?? null },
                       { label: 'GeekBench マルチ', value: model.score_multi?.toLocaleString() ?? null },
                       { label: 'GeekBench Metal', value: model.score_metal?.toLocaleString() ?? null },
-                    ]} />
-                    <SpecCategory title="その他" />
-                    <SpecRows items={[
-                      { label: '発売日', value: releaseDate },
-                      { label: 'Apple Intelligence', value: <BoolValue value={model.apple_intelligence} /> },
-                      { label: 'カメラ', value: model.camera },
-                      { label: 'スピーカー', value: model.speaker },
-                      { label: 'ファン', value: <BoolValue value={model.fan} /> },
-                      { label: 'センターフレーム', value: <BoolValue value={model.center_frame} /> },
-                      { label: 'バッテリー', value: model.battery },
-                      { label: '公式サイト', value: model.official ? <a href={model.official} target="_blank" rel="noopener noreferrer">{model.model}の技術仕様</a> : null },
                     ]} />
                   </tbody>
                 </table>

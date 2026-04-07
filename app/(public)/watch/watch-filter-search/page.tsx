@@ -18,18 +18,18 @@ import HeroMeta from '@/app/components/HeroMeta'
 export const revalidate = 3600
 
 export const metadata: Metadata = {
-  title: 'Apple Watch機種診断シミュレーター｜自分に合うおすすめ中古アップルウォッチがすぐわかる【2026年版】',
+  title: 'Apple Watch機種診断シミュレーター｜選び方がわからなくてもどれを買うべきかわかる【2026年版】',
   description:
     '目的・予算・こだわり条件から、あなたに最適な中古Apple Watchを無料で診断。Apple Watch SE〜Ultra 3まで全機種のデータベースから最適な1台を提案します。',
   alternates: { canonical: '/watch/watch-filter-search/' },
   openGraph: {
-    title: 'Apple Watch機種診断シミュレーター｜自分に合うおすすめ中古アップルウォッチがすぐわかる【2026年版】',
+    title: 'Apple Watch機種診断シミュレーター｜選び方がわからなくてもどれを買うべきかわかる【2026年版】',
     description: '目的・予算・こだわり条件から、あなたに最適な中古Apple Watchを無料で診断。',
     url: '/watch/watch-filter-search/',
     images: [{ url: getHeroImage('/watch/watch-filter-search/'), width: 1200, height: 630, alt: 'Apple Watch機種診断シミュレーター' }],
   },
   twitter: {
-    title: 'Apple Watch機種診断シミュレーター｜自分に合うおすすめ中古アップルウォッチがすぐわかる【2026年版】',
+    title: 'Apple Watch機種診断シミュレーター｜選び方がわからなくてもどれを買うべきかわかる【2026年版】',
     description: '目的・予算・こだわり条件から、あなたに最適な中古Apple Watchを無料で診断。',
     images: [getHeroImage('/watch/watch-filter-search/')],
   },
@@ -219,13 +219,13 @@ export default async function WatchFilterSearchPage() {
         <section className="l-section l-section--no-pt" aria-label="診断の特徴">
           <div className="l-container">
             <div className="l-grid l-grid--3col l-grid--gap-lg">
-              <IconCard icon="fa-solid fa-bolt" title="かんたん30秒診断">
+              <IconCard icon="fa-solid fa-bolt" title="かんたん30秒診断" as="p">
                 <p>質問に答えるだけで、あなたに最適なApple Watchを自動でシミュレーション。難しい知識は不要です。</p>
               </IconCard>
-              <IconCard icon="fa-solid fa-yen-sign" title="リアルタイム価格表示">
+              <IconCard icon="fa-solid fa-yen-sign" title="リアルタイム価格表示" as="p">
                 <p>イオシス・ゲオ・じゃんぱらの中古価格を毎日更新。最安値がすぐにわかります。</p>
               </IconCard>
-              <IconCard icon="fa-solid fa-check-double" title={`全${totalModels}機種を網羅`}>
+              <IconCard icon="fa-solid fa-check-double" title={`全${totalModels}機種を網羅`} as="p">
                 <p>Apple Watch SE〜Ultra 3まで、現在中古市場で流通する全モデルを比較・診断できます。</p>
               </IconCard>
             </div>
@@ -234,7 +234,9 @@ export default async function WatchFilterSearchPage() {
         <div className="l-sections">
         {/* 診断フィルター + 結果 */}
         <WatchFilterSearchApp models={modelsData} shopLinks={shopLinksData} />
+        </div>
 
+        <div className="l-sections">
         {/* 診断ロジック説明 */}
         <section className="l-section" aria-labelledby="heading-logic">
           <div className="l-container">

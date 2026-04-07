@@ -13,11 +13,17 @@ type SpecRowDef = {
   field: 'price' | 'support' | 'block' | 'battery' | 'photo' | 'postage'
 }
 
+type ShopDetailLink = {
+  href: string
+  label: string
+}
+
 type Props = {
   items: ShopItem[]
   productName: string
   description: string
   specRows: SpecRowDef[]
+  shopDetailLink?: ShopDetailLink
 }
 
 import RatingMark from '@/app/components/RatingMark'
@@ -37,7 +43,7 @@ function SpecValue({ value }: { value: string | null }) {
 
 const RECOMMENDED_SHOP_ID = 1
 
-export default function ShopSection({ items, productName, description, specRows }: Props) {
+export default function ShopSection({ items, productName, description, specRows, shopDetailLink }: Props) {
   if (items.length === 0) return null
 
   return (
@@ -92,6 +98,15 @@ export default function ShopSection({ items, productName, description, specRows 
             )
           })}
         </div>
+
+        {shopDetailLink && (
+          <div className="m-callout m-callout--tip u-mt-2xl">
+            <span className="m-callout__label">memo</span>
+            <p className="m-callout__text">
+              各ショップの特徴や口コミ・評判は<span><a href={shopDetailLink.href}>{shopDetailLink.label}</a></span>で詳しく解説しています
+            </p>
+          </div>
+        )}
       </div>
     </section>
   )

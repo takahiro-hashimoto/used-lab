@@ -215,24 +215,31 @@ export default function RecommendDetailSection({ items }: Props) {
               <SpecToggle>
                 <table className="recommend-card__specs-table">
                   <tbody>
-                    <SpecCategory title="サイズ・重量" />
+                    <SpecCategory title="基本情報" />
                     <SpecRows items={[
+                      { label: '発売日', value: releaseDate },
+                      { label: '公式サイト', value: model.official ? <a href={model.official} target="_blank" rel="noopener noreferrer">{model.model}の技術仕様</a> : null },
                       { label: 'サイズ', value: model.size },
                       { label: '重量', value: model.weight },
-                    ]} />
-
-                    <SpecCategory title="ボディ" />
-                    <SpecRows items={[
                       { label: 'カラー', value: model.color },
                       { label: 'ストレージ', value: model.strage },
+                    ]} />
+
+                    <SpecCategory title="バッテリー・充電" />
+                    <SpecRows items={[
                       { label: 'バッテリー', value: model.battery },
                       { label: '充電端子', value: model.port },
                       { label: 'MagSafe充電', value: <BoolValue value={model.magsafe} /> },
-                      { label: 'アクションボタン', value: <BoolValue value={model.action_button} /> },
-                      { label: 'カメラコントロール', value: <BoolValue value={model.camera_control} /> },
+                    ]} />
+
+                    <SpecCategory title="機能" />
+                    <SpecRows items={[
                       { label: '認証機能', value: model.certification },
                       { label: 'SIM', value: model.sim },
+                      { label: 'アクションボタン', value: <BoolValue value={model.action_button} /> },
+                      { label: 'カメラコントロール', value: <BoolValue value={model.camera_control} /> },
                       { label: '事故衝突検知', value: <BoolValue value={model.accident_detection} /> },
+                      { label: 'Apple Intelligence', value: <BoolValue value={model.apple_intelligence} /> },
                     ]} />
 
                     <SpecCategory title="ディスプレイ" />
@@ -243,7 +250,7 @@ export default function RecommendDetailSection({ items }: Props) {
                       { label: 'Dynamic Island', value: <BoolValue value={model.dynamic_island} /> },
                     ]} />
 
-                    <SpecCategory title="CPU・ベンチマークスコア" />
+                    <SpecCategory title="処理性能" />
                     <SpecRows items={[
                       { label: 'CPU', value: model.cpu },
                       { label: 'RAM', value: model.ram },
@@ -272,12 +279,6 @@ export default function RecommendDetailSection({ items }: Props) {
                       { label: 'Apple ProRes', value: <BoolValue value={model.apple_prores} /> },
                     ]} />
 
-                    <SpecCategory title="その他" />
-                    <SpecRows items={[
-                      { label: '発売日', value: releaseDate },
-                      { label: 'Apple Intelligence', value: <BoolValue value={model.apple_intelligence} /> },
-                      { label: '公式サイト', value: model.official ? <a href={model.official} target="_blank" rel="noopener noreferrer">{model.model}の技術仕様</a> : null },
-                    ]} />
                   </tbody>
                 </table>
               </SpecToggle>

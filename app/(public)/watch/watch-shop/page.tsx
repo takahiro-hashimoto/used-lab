@@ -30,7 +30,7 @@ import { getHeroImage } from '@/lib/data/hero-images'
 
 export const revalidate = 3600
 
-const PAGE_TITLE = `中古Apple Watchはどこで買う？ECサイト・ショップのおすすめを紹介【${SHOP_PAGE_DATE_LABEL}】`
+const PAGE_TITLE = `中古Apple Watchを買うならどこ？ECサイト・ショップのおすすめを紹介【${SHOP_PAGE_DATE_LABEL}】`
 const PAGE_DESCRIPTION = `中古Apple Watchを買うならどこがおすすめ？信頼できるECサイト・ショップを保証・価格・品質の観点から徹底比較。最適な購入先を紹介します【${SHOP_PAGE_DATE_LABEL}】`
 const PAGE_URL = 'https://used-lab.jp/watch/watch-shop/'
 
@@ -75,7 +75,7 @@ export default async function WatchShopPage() {
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
       { '@type': 'ListItem', position: 2, name: '中古Apple Watch完全購入ガイド', item: 'https://used-lab.jp/watch/' },
-      { '@type': 'ListItem', position: 3, name: '中古Apple Watchはどこで買う？' },
+      { '@type': 'ListItem', position: 3, name: '中古Apple Watchを買うならどこ？' },
     ],
   }
 
@@ -130,7 +130,7 @@ export default async function WatchShopPage() {
         <Breadcrumb
           items={[
             { label: '中古Apple Watch完全購入ガイド', href: '/watch' },
-            { label: '中古Apple Watchはどこで買う？' },
+            { label: '中古Apple Watchを買うならどこ？' },
           ]}
         />
 

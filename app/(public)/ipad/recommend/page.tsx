@@ -402,6 +402,7 @@ export default async function IPadRecommendPage() {
               { label: '実物写真', field: 'photo' },
               { label: '配送料', field: 'postage' },
             ]}
+            shopDetailLink={{ href: '/ipad/ipad-shop/', label: '中古iPadのおすすめショップ比較' }}
           />
           <IPadFaqSection />
         <IPadRelatedLinks heading="iPad選びをもっと深掘りする" description="購入先の比較や相場チェックなど、iPad選びに役立つ記事をまとめました。" excludeHref="/ipad/recommend/" />

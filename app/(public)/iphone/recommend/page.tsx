@@ -374,6 +374,7 @@ export default async function IPhoneTopPage() {
               { label: '実物写真', field: 'photo' },
               { label: '配送料', field: 'postage' },
             ]}
+            shopDetailLink={{ href: '/iphone/iphone-shop/', label: '中古iPhoneのおすすめショップ比較' }}
           />
           <IPhoneFaqSection />
           <IPhoneRelatedLinks

@@ -216,18 +216,27 @@ export default function RecommendDetailSection({ items }: Props) {
               <SpecToggle>
                 <table className="recommend-card__specs-table">
                   <tbody>
-                    <SpecCategory title="サイズ・重量" />
+                    <SpecCategory title="基本情報" />
                     <SpecRows items={[
+                      { label: '発売日', value: releaseDate },
+                      { label: '公式サイト', value: model.official ? <a href={model.official} target="_blank" rel="noopener noreferrer">{model.model}の技術仕様</a> : null },
                       { label: 'サイズ', value: model.size },
                       { label: '重量', value: model.weight },
-                    ]} />
-                    <SpecCategory title="ボディ" />
-                    <SpecRows items={[
                       { label: 'カラー', value: model.color },
                       { label: 'ストレージ', value: model.strage },
+                    ]} />
+                    <SpecCategory title="バッテリー・充電" />
+                    <SpecRows items={[
                       { label: '充電端子', value: model.port },
+                    ]} />
+                    <SpecCategory title="機能" />
+                    <SpecRows items={[
                       { label: '認証機能', value: model.certification },
                       { label: 'SIM', value: model.sim },
+                      { label: 'Apple Intelligence', value: <BoolValue value={model.apple_intelligence} /> },
+                      { label: 'Apple Pencil', value: model.pencil },
+                      { label: 'キーボード', value: model.keyboard },
+                      { label: 'スピーカー', value: model.speaker },
                     ]} />
                     <SpecCategory title="ディスプレイ" />
                     <SpecRows items={[
@@ -236,7 +245,7 @@ export default function RecommendDetailSection({ items }: Props) {
                       { label: 'ディスプレイタイプ', value: model.display_type },
                       { label: 'ProMotion', value: <BoolValue value={model.promotion} /> },
                     ]} />
-                    <SpecCategory title="CPU・ベンチマークスコア" />
+                    <SpecCategory title="処理性能" />
                     <SpecRows items={[
                       { label: 'CPU', value: model.cpu },
                       { label: 'RAM', value: model.ram },
@@ -254,15 +263,6 @@ export default function RecommendDetailSection({ items }: Props) {
                       { label: 'インカメラ', value: model.in_camera },
                       { label: 'LiDAR', value: <BoolValue value={model.lidar} /> },
                       { label: 'センターフレーム', value: <BoolValue value={model.center_frame} /> },
-                    ]} />
-                    <SpecCategory title="その他" />
-                    <SpecRows items={[
-                      { label: '発売日', value: releaseDate },
-                      { label: 'Apple Intelligence', value: <BoolValue value={model.apple_intelligence} /> },
-                      { label: 'スピーカー', value: model.speaker },
-                      { label: 'Apple Pencil', value: model.pencil },
-                      { label: 'キーボード', value: model.keyboard },
-                      { label: '公式サイト', value: model.official ? <a href={model.official} target="_blank" rel="noopener noreferrer">{model.model}の技術仕様</a> : null },
                     ]} />
                   </tbody>
                 </table>

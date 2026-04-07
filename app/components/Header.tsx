@@ -14,7 +14,7 @@ type NavItem = {
 
 const NAV_ITEMS: NavItem[] = [
   {
-    href: '/iphone', label: '中古iPhone',
+    href: '/iphone/', label: '中古iPhone',
     children: [
       { href: '/iphone/', label: '中古iPhone 購入完全ガイド' },
       { href: '/iphone/recommend/', label: '中古iPhone おすすめ機種' },
@@ -24,7 +24,7 @@ const NAV_ITEMS: NavItem[] = [
     ],
   },
   {
-    href: '/ipad', label: '中古iPad',
+    href: '/ipad/', label: '中古iPad',
     children: [
       { href: '/ipad/', label: '中古iPad 購入完全ガイド' },
       { href: '/ipad/recommend/', label: '中古iPad おすすめ機種' },
@@ -34,7 +34,7 @@ const NAV_ITEMS: NavItem[] = [
     ],
   },
   {
-    href: '/watch', label: '中古Apple Watch',
+    href: '/watch/', label: '中古Apple Watch',
     children: [
       { href: '/watch/', label: '中古Apple Watch 購入完全ガイド' },
       { href: '/watch/recommend/', label: '中古Apple Watch おすすめ機種' },
@@ -44,7 +44,7 @@ const NAV_ITEMS: NavItem[] = [
     ],
   },
   {
-    href: '/macbook', label: '中古MacBook',
+    href: '/macbook/', label: '中古MacBook',
     children: [
       { href: '/macbook/', label: '中古MacBook 購入完全ガイド' },
       { href: '/macbook/recommend/', label: '中古MacBook おすすめ機種' },
@@ -54,15 +54,15 @@ const NAV_ITEMS: NavItem[] = [
     ],
   },
   {
-    href: '/airpods', label: '中古AirPods',
+    href: '/airpods/', label: '中古AirPods',
     children: [
       { href: '/airpods/', label: '中古AirPods 購入完全ガイド' },
       { href: '/airpods/recommend/', label: '中古AirPods おすすめ機種' },
       { href: '/airpods/price-info/', label: '中古AirPods 価格相場' },
     ],
   },
-  { href: '/contact', label: 'お問い合わせ' },
-  { href: '/profile', label: '運営者情報' },
+  { href: '/contact/', label: 'お問い合わせ' },
+  { href: '/profile/', label: '運営者情報' },
 ]
 
 export default function Header() {
@@ -164,7 +164,7 @@ export default function Header() {
             <i className="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
           </button>
           {process.env.NODE_ENV === 'development' && (
-            <Link href="/admin" className="header-admin-link" title="管理画面">
+            <Link href="/admin/" className="header-admin-link" title="管理画面">
               <i className="fa-solid fa-gear" aria-hidden="true"></i>
             </Link>
           )}

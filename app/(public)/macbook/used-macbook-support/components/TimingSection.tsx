@@ -71,6 +71,15 @@ export default function MacBookTimingSection() {
       sectionTitle="MacBookを買い替えるべき3つのタイミング"
       sectionDescription="ここからはMacBookを買い替えるべきタイミングを3つに分けて解説していきます。"
       cards={TIMING_CARDS}
+      afterContent={
+        <div className="m-callout m-callout--tip u-mt-2xl">
+          <span className="m-callout__label">memo</span>
+          <p className="m-callout__text">
+            買い替えを決めたら、購入前の注意点もあわせてチェックしておきましょう。
+            <Link href="/macbook/used-macbook-attention/">中古MacBookの注意点まとめ</Link>で詳しく解説しています。
+          </p>
+        </div>
+      }
     />
   )
 }

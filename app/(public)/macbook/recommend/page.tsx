@@ -381,6 +381,7 @@ export default async function MacBookRecommendPage() {
               { label: '実物写真', field: 'photo' },
               { label: '配送料', field: 'postage' },
             ]}
+            shopDetailLink={{ href: '/macbook/macbook-shop/', label: '中古MacBookのおすすめショップ比較' }}
           />
           <MacBookFaqSection />
         <MacBookRelatedLinks heading="MacBook選びをもっと深掘りする" description="購入先の比較や相場チェックなど、MacBook選びに役立つ記事をまとめました。" excludeHref="/macbook/recommend/" />
