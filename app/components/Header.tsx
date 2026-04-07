@@ -71,10 +71,22 @@ export default function Header() {
   const [openAccordion, setOpenAccordion] = useState<string | null>(null)
   const [searchQuery, setSearchQuery] = useState('')
   const [isMounted, setIsMounted] = useState(false)
+  const [menuTop, setMenuTop] = useState<number>(56)
+  const headerRef = useRef<HTMLElement>(null)
   const searchInputRef = useRef<HTMLInputElement>(null)
   const router = useRouter()
 
   useEffect(() => { setIsMounted(true) }, [])
+
+  useEffect(() => {
+    const el = headerRef.current
+    if (!el) return
+    const observer = new ResizeObserver(() => {
+      setMenuTop(el.getBoundingClientRect().height)
+    })
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
 
   useEffect(() => {
     const isLocked = isMenuOpen || isSearchOpen
@@ -118,7 +130,7 @@ export default function Header() {
   }
 
   return (
-    <header className="site-header">
+    <header className="site-header" ref={headerRef}>
       <div className="header-inner">
         <Link href="/" className="m-logo">
           <Image
@@ -201,11 +213,13 @@ export default function Header() {
           <div
             className={`mobile-menu-backdrop${isMenuOpen ? ' is-open' : ''}`}
             onClick={() => setIsMenuOpen(false)}
+            style={{ top: menuTop }}
           />
           <nav
             className={`mobile-menu${isMenuOpen ? ' is-open' : ''}`}
             id="mobileMenu"
             aria-label="モバイルナビゲーション"
+            style={{ top: menuTop }}
           >
             <ul className="mobile-nav-list">
               {NAV_ITEMS.map((item) => (

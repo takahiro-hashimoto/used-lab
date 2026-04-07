@@ -624,10 +624,6 @@ a.header-admin-link:hover {
   padding: var(--space-sm) 0 var(--space-md);
 }
 
-.mobile-nav-list ul li:last-child a {
-  padding-left: 0;
-}
-
 /* Mobile Nav Accordion */
 .mobile-nav-accordion__trigger {
   width: 100%;
