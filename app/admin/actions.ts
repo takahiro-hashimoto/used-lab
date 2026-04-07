@@ -395,6 +395,30 @@ export async function deleteNewsItem(id: number) {
   redirect('/admin/news')
 }
 
+// ============================================================
+// 公開・非公開切り替え
+// ============================================================
+
+/** show カラムを 0/1 で更新し、キャッシュを再検証 */
+export async function setPublish(
+  categoryKey: string,
+  id: number,
+  show: 0 | 1
+): Promise<{ error?: string }> {
+  const config = getCategoryConfig(categoryKey)
+  if (!config) return { error: 'カテゴリが見つかりません' }
+
+  const { error } = await supabaseAdmin
+    .from(config.table)
+    .update({ show })
+    .eq('id', id)
+
+  if (error) return { error: `更新に失敗しました: ${error.message}` }
+
+  revalidatePath('/', 'layout')
+  return {}
+}
+
 export async function getModelCount(categoryKey: string): Promise<number> {
   const config = getCategoryConfig(categoryKey)
   if (!config) return 0

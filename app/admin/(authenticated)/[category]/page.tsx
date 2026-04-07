@@ -32,6 +32,7 @@ export default async function AdminCategoryPage({ params }: PageProps) {
               {config.listColumns.map((col) => (
                 <th key={col}>{col}</th>
               ))}
+              <th>公開</th>
               <th>操作</th>
             </tr>
           </thead>
@@ -50,6 +51,20 @@ export default async function AdminCategoryPage({ params }: PageProps) {
                       {String(model[col] ?? '-')}
                     </td>
                   ))}
+                  {'show' in model && (
+                    <td>
+                      <span style={{
+                        padding: '0.2rem 0.6rem',
+                        borderRadius: '999px',
+                        fontSize: '0.7rem',
+                        fontWeight: 600,
+                        background: model.show === 1 ? '#dcfce7' : '#f1f5f9',
+                        color: model.show === 1 ? '#16a34a' : '#64748b',
+                      }}>
+                        {model.show === 1 ? '公開' : '非公開'}
+                      </span>
+                    </td>
+                  )}
                   <td>
                     <Link href={`/admin/${category}/${model.id}`} className="admin-table__link">
                       編集

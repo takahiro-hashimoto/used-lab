@@ -30,7 +30,7 @@ function createModelQueries<T>(table: string, activeField?: string) {
     },
 
     async getAll(): Promise<T[]> {
-      let query = supabase.from(table).select('*')
+      let query = supabase.from(table).select('*').eq('show', 1)
       if (activeField) query = query.is(activeField, null)
       const { data, error } = await query.order('id', { ascending: true })
       if (error || !data) return []

@@ -9,6 +9,7 @@ import {
 import AdminForm from '../../../components/AdminForm'
 import CompatibilityEditor from '../../../components/CompatibilityEditor'
 import ShopLinksEditor from '../../../components/ShopLinksEditor'
+import PublishToggleButton from '../../../components/PublishToggleButton'
 
 type PageProps = {
   params: Promise<{ category: string; id: string }>
@@ -60,9 +61,18 @@ export default async function AdminEditModelPage({ params }: PageProps) {
           <i className={`fa-solid ${config.icon}`} aria-hidden="true" />{' '}
           {String(modelData.model || modelData.name || `ID: ${numericId}`)} を編集
         </h1>
-        <Link href={`/admin/${category}/new?${duplicateParams.toString()}`} className="admin-btn admin-btn--secondary">
-          <i className="fa-regular fa-copy" aria-hidden="true" /> このページを複製
-        </Link>
+        <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+          {'show' in modelData && (
+            <PublishToggleButton
+              categoryKey={category}
+              id={numericId}
+              initialShow={Number(modelData.show ?? 0)}
+            />
+          )}
+          <Link href={`/admin/${category}/new?${duplicateParams.toString()}`} className="admin-btn admin-btn--secondary">
+            <i className="fa-regular fa-copy" aria-hidden="true" /> このページを複製
+          </Link>
+        </div>
       </div>
       <AdminForm
         fields={config.fields}
