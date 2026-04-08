@@ -15,8 +15,9 @@ import HeroMeta from '@/app/components/HeroMeta'
 import { getHeroImage } from '@/lib/data/hero-images'
 
 const PAGE_TITLE = '中古iPadはやめた方がいい？購入前に確認すべき注意点まとめ'
+const CURRENT_YEAR = new Date().getFullYear()
 const PAGE_DESCRIPTION =
-  '中古iPadはやめた方がいい？バッテリー劣化・iPadOSサポート切れ・アクセサリ非対応など、購入前に確認すべき注意点を徹底解説。失敗しない中古iPad選びのポイントを2026年最新情報でまとめました。'
+  `中古iPadはやめた方がいい？バッテリー劣化・iPadOSサポート切れ・アクセサリ非対応など、購入前に確認すべき注意点を徹底解説。失敗しない中古iPad選びのポイントを${CURRENT_YEAR}年最新情報でまとめました。`
 const PAGE_URL = 'https://used-lab.jp/ipad/used-ipad-attention/'
 
 export const metadata: Metadata = {

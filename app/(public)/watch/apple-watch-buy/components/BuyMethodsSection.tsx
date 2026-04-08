@@ -175,7 +175,7 @@ Apple Watchを安く買う7つの方法
                 </div>
                 <div className="m-card m-table-card u-mt-md">
                   <div className="m-table-scroll">
-                    <table className="m-table m-table--center">
+                    <table className="m-table m-table--center m-table--no-sticky">
                       <thead>
                         <tr><th>時期</th><th>セール名</th></tr>
                       </thead>
@@ -260,7 +260,7 @@ Apple Watchを安く買う7つの方法
                 </div>
                 <div className="m-card m-table-card u-mt-md">
                   <div className="m-table-scroll">
-                    <table className="m-table">
+                    <table className="m-table m-table--no-sticky">
                       <thead>
                         <tr><th>キャンペーン名</th><th>内容</th><th>開催頻度</th></tr>
                       </thead>
@@ -341,7 +341,7 @@ Apple Watchを安く買う7つの方法
                 </div>
                 <div className="m-card m-table-card u-mt-md">
                   <div className="m-table-scroll">
-                    <table className="m-table">
+                    <table className="m-table m-table--no-sticky">
                       <thead>
                         <tr><th>キャンペーン名</th><th>内容</th><th>開催頻度</th></tr>
                       </thead>

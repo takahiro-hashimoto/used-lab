@@ -75,7 +75,7 @@ export default function BenchmarkAntutu({ model, allModels }: Props) {
 
         {/* ベンチマーク比較テーブル */}
         <StickyTableWrapper className="m-card m-card--shadow m-table-card">
-          <table className="m-table">
+          <table className="m-table m-table--sticky-col">
             <caption className="visually-hidden">iPadモデル別 Antutu Benchmark v10 スコア比較</caption>
             <thead>
               <tr>

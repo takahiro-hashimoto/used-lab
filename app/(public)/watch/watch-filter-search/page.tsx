@@ -15,19 +15,21 @@ import HeroMeta from '@/app/components/HeroMeta'
 
 export const revalidate = 86400
 
+const CURRENT_YEAR = new Date().getFullYear()
+
 export const metadata: Metadata = {
-  title: 'Apple Watch機種診断シミュレーター｜選び方がわからなくてもどれを買うべきかわかる【2026年版】',
+  title: `Apple Watch機種診断シミュレーター｜選び方がわからなくてもどれを買うべきかわかる【${CURRENT_YEAR}年版】`,
   description:
     '目的・予算・こだわり条件から、あなたに最適な中古Apple Watchを無料で診断。Apple Watch SE〜Ultra 3まで全機種のデータベースから最適な1台を提案します。',
   alternates: { canonical: '/watch/watch-filter-search/' },
   openGraph: {
-    title: 'Apple Watch機種診断シミュレーター｜選び方がわからなくてもどれを買うべきかわかる【2026年版】',
+    title: `Apple Watch機種診断シミュレーター｜選び方がわからなくてもどれを買うべきかわかる【${CURRENT_YEAR}年版】`,
     description: '目的・予算・こだわり条件から、あなたに最適な中古Apple Watchを無料で診断。',
     url: '/watch/watch-filter-search/',
     images: [{ url: getHeroImage('/watch/watch-filter-search/'), width: 1200, height: 630, alt: 'Apple Watch機種診断シミュレーター' }],
   },
   twitter: {
-    title: 'Apple Watch機種診断シミュレーター｜選び方がわからなくてもどれを買うべきかわかる【2026年版】',
+    title: `Apple Watch機種診断シミュレーター｜選び方がわからなくてもどれを買うべきかわかる【${CURRENT_YEAR}年版】`,
     description: '目的・予算・こだわり条件から、あなたに最適な中古Apple Watchを無料で診断。',
     images: [getHeroImage('/watch/watch-filter-search/')],
   },
@@ -257,7 +259,7 @@ export default async function WatchFilterSearchPage() {
           items={FAQ_ITEMS}
         />
 
-        <WatchArticleFooter pageUrl="https://used-lab.jp/watch/watch-filter-search/" pageTitle="Apple Watch機種診断シミュレーター｜自分に合うおすすめ中古アップルウォッチがすぐわかる【2026年版】" excludeHref={["/watch/watch-filter-search/", "/watch/recommend/"]} />
+        <WatchArticleFooter pageUrl="https://used-lab.jp/watch/watch-filter-search/" pageTitle="Apple Watch機種診断シミュレーター｜自分に合うおすすめ中古アップルウォッチがすぐわかる【${CURRENT_YEAR}年版】" excludeHref={["/watch/watch-filter-search/", "/watch/recommend/"]} />
         </div>
       </article>
     </main>

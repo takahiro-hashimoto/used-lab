@@ -91,7 +91,7 @@ export default function BenchmarkRanking({ models, shopLinks }: { models: BenchM
 
         <div className="m-card m-card--shadow m-table-card">
           <div className="m-table-scroll">
-            <table className="m-table bench-ranking-table">
+            <table className="m-table m-table--sticky-col bench-ranking-table">
               <caption className="visually-hidden">歴代iPad Geekbench 6 ベンチマークランキング</caption>
               <thead>
                 <tr>

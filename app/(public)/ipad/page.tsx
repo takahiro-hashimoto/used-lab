@@ -253,27 +253,27 @@ export default async function IPadGuidePage() {
               <p className="m-section-desc">中古iPadを購入する際に確認しておきたい8つのポイントをまとめました。</p>
               <p className="m-section-desc">特に初めて中古タブレットを買う方は、トラブルを避けるためにも一度確認しておくことをおすすめします。</p>
 
-              <div className="glossary-box glossary-box--numbered m-card m-card--shadow">
+              <div className="glossary-box m-card m-card--shadow u-mb-2xl">
                 <dl className="glossary-list">
                   <div className="glossary-item">
                     <dt className="glossary-item-title">iPadOSのサポート期間（端末の寿命）</dt>
                     <dd className="glossary-item-desc">
                       iPadOSサポート期間の目安は発売から6〜7年ほど。古すぎる機種は購入してすぐにサポート外になるリスクがあるので注意。
-                      <br />詳細：<Link href="/ipad/used-ipad-support/">中古iPadの寿命とサポート期間の目安</Link>
+                      <div className="u-mt-sm">詳細：<Link href="/ipad/used-ipad-support/">中古iPadの寿命とサポート期間の目安</Link></div>
                     </dd>
                   </div>
                   <div className="glossary-item">
                     <dt className="glossary-item-title">Wi-FiモデルかCellularモデルか</dt>
                     <dd className="glossary-item-desc">
                       iPadにはWi-Fi専用モデルとCellular対応モデルがあります。外出先で単体で通信したい場合はCellularモデルを選びましょう。
-                      <br />詳細：<Link href="/ipad/wifi-cellular/">Wi-FiモデルとCellularモデルの違い</Link>
+                      <div className="u-mt-sm">詳細：<Link href="/ipad/wifi-cellular/">Wi-FiモデルとCellularモデルの違い</Link></div>
                     </dd>
                   </div>
                   <div className="glossary-item">
                     <dt className="glossary-item-title">Apple Pencilの対応世代</dt>
                     <dd className="glossary-item-desc">
                       Apple Pencilは世代ごとに対応モデルや機能が異なります。購入前に互換性とやりたいことが実現できるかを確認しましょう。
-                      <br />詳細：<Link href="/ipad/apple-pencil-compare/">Apple Pencil対応比較表</Link>
+                      <div className="u-mt-sm">詳細：<Link href="/ipad/apple-pencil-compare/">Apple Pencil対応比較表</Link></div>
                     </dd>
                   </div>
                   <div className="glossary-item">
@@ -304,7 +304,7 @@ export default async function IPadGuidePage() {
                     <dt className="glossary-item-title">ネットワーク利用制限（Cellularモデル）</dt>
                     <dd className="glossary-item-desc">
                       Cellularモデルの中古iPadには、前の所有者の分割払い状況によって通信が制限される「赤ロム」のリスクがあります。赤ロム永久保証付きのショップを選べば安心です。
-                      <br />詳細：<Link href="/iphone/network-limit/">ネットワーク制限△のメリット・デメリットを解説</Link>
+                      <div className="u-mt-sm">詳細：<Link href="/iphone/network-limit/">ネットワーク制限△のメリット・デメリットを解説</Link></div>
                     </dd>
                   </div>
                   <div className="glossary-item">

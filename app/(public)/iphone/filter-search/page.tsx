@@ -14,19 +14,21 @@ import { getHeroImage } from '@/lib/data/hero-images'
 
 export const revalidate = 86400
 
+const CURRENT_YEAR = new Date().getFullYear()
+
 export const metadata: Metadata = {
-  title: 'iPhone機種診断シミュレーター｜自分に合うおすすめ中古スマホがすぐわかる【2026年版】',
+  title: `iPhone機種診断シミュレーター｜自分に合うおすすめ中古スマホがすぐわかる【${CURRENT_YEAR}年版】`,
   description:
     '3つのステップで自分にぴったりの中古iPhoneが見つかる診断シミュレーター。用途・予算・こだわり条件を選ぶだけで最適な機種を提案します。',
   alternates: { canonical: '/iphone/filter-search/' },
   openGraph: {
-    title: 'iPhone機種診断シミュレーター｜自分に合うおすすめ中古スマホがすぐわかる【2026年版】',
+    title: `iPhone機種診断シミュレーター｜自分に合うおすすめ中古スマホがすぐわかる【${CURRENT_YEAR}年版】`,
     description: '3つのステップで自分にぴったりの中古iPhoneが見つかる診断シミュレーター。',
     url: '/iphone/filter-search/',
     images: [{ url: getHeroImage('/iphone/filter-search/'), width: 1200, height: 630, alt: 'iPhone機種診断シミュレーター' }],
   },
   twitter: {
-    title: 'iPhone機種診断シミュレーター｜自分に合うおすすめ中古スマホがすぐわかる【2026年版】',
+    title: `iPhone機種診断シミュレーター｜自分に合うおすすめ中古スマホがすぐわかる【${CURRENT_YEAR}年版】`,
     description: '3つのステップで自分にぴったりの中古iPhoneが見つかる診断シミュレーター。',
     images: [getHeroImage('/iphone/filter-search/')],
   },
@@ -264,7 +266,7 @@ export default async function IPhoneFilterSearchPage() {
 
         <IPhoneArticleFooter
           pageUrl="https://used-lab.jp/iphone/filter-search/"
-          pageTitle="iPhone機種診断シミュレーター｜自分に合うおすすめ中古スマホがすぐわかる【2026年版】"
+          pageTitle="iPhone機種診断シミュレーター｜自分に合うおすすめ中古スマホがすぐわかる【${CURRENT_YEAR}年版】"
           excludeHref={["/iphone/filter-search/", "/iphone/recommend/"]}
         />
         </div>

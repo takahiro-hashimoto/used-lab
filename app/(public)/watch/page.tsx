@@ -255,13 +255,13 @@ export default async function WatchGuidePage() {
               <p className="m-section-desc">中古Apple Watchを購入する際に確認しておきたい6つのポイントをまとめました。</p>
               <p className="m-section-desc">トラブルを避けるためにも一度確認しておきましょう。</p>
 
-              <div className="glossary-box glossary-box--numbered m-card m-card--shadow">
+              <div className="glossary-box m-card m-card--shadow u-mb-2xl">
                 <dl className="glossary-list">
                   <div className="glossary-item">
                     <dt className="glossary-item-title">watchOSのサポート期間（端末の寿命）</dt>
                     <dd className="glossary-item-desc">
                       OSサポート期間の目安は発売から約5年。古すぎるモデルは購入してすぐにサポート外になるリスクがあるので注意。
-                      <br />詳細：<Link href="/watch/used-watch-support/">中古Apple Watchの寿命とサポート期間の目安</Link>
+                      <div className="u-mt-sm">詳細：<Link href="/watch/used-watch-support/">中古Apple Watchの寿命とサポート期間の目安</Link></div>
                     </dd>
                   </div>
                   <div className="glossary-item">
@@ -292,7 +292,7 @@ export default async function WatchGuidePage() {
                     <dt className="glossary-item-title">GPSモデルかセルラーモデルか</dt>
                     <dd className="glossary-item-desc">
                       GPSモデルはiPhoneが近くにある前提で動作し、セルラーモデルはApple Watch単体で通話やデータ通信が可能です。常にiPhoneを持ち歩くならGPSモデルで十分。セルラーは別途キャリア契約が必要です。
-                      <br />詳細：<Link href="/watch/gps-cellular-compare/">GPSモデルとセルラーモデルの違い</Link>
+                      <div className="u-mt-sm">詳細：<Link href="/watch/gps-cellular-compare/">GPSモデルとセルラーモデルの違い</Link></div>
                     </dd>
                   </div>
                   <div className="glossary-item">

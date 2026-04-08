@@ -23,6 +23,7 @@ import {
   RECOMMEND_COUNT_LABEL,
 } from '@/lib/data/airpods-recommend'
 import ProductCard from '@/app/components/ProductCard'
+import PopularSection from '@/app/components/support/PopularSection'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import FaqSection from '@/app/components/support/FaqSection'
 import ShareBox from '@/app/components/ShareBox'
@@ -201,12 +202,12 @@ export default async function AirPodsGuidePage() {
             <div className="toc-wrapper">
 <p className="toc-title"><i className="fa-solid fa-list" aria-hidden="true"></i> タップできる目次</p>
             <ol className="l-grid l-grid--3col u-list-reset">
+              <li><a href="#filter-tool" className="toc-item">機種診断 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#market-price" className="toc-item">最新相場 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#caution" className="toc-item">注意点 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#recommended" className="toc-item">目的別 おすすめ機種 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#where-to-buy" className="toc-item">購入先比較 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#spec-compare" className="toc-item">関連記事 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
-              <li><a href="#faq" className="toc-item">よくある質問 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
             </ol>
 </div>
           <AuthorByline />
@@ -214,6 +215,21 @@ export default async function AirPodsGuidePage() {
         </nav>
 
         <div className="l-sections" itemProp="articleBody">
+
+          {/* ========== 絞り込みツール ========== */}
+          <PopularSection
+            sectionTitle="条件に合うAirPodsを絞り込む"
+            sectionDescription="用途・予算・こだわり条件など、ご自身の条件を選ぶことで候補を絞り込めます。"
+            imageSrc="/images/content/thumbnail/simulator.jpg"
+            imageAlt="AirPods機種絞り込みツール"
+            subtitle="条件にチェックを打つだけ！"
+            cardTitle="AirPods機種絞り込みツール"
+            cardDescription="ノイキャン重視、運動用、通話メインなどの希望や予算金額などにチェックを打つだけであなたにぴったり合うAirPodsをシミュレーションすることができます。"
+            buttonText="機種診断スタート"
+            buttonHref="/airpods/airpods-filter-search/"
+            sectionId="filter-tool"
+            headingId="filter-tool"
+          />
 
           {/* ========== 中古AirPodsの最新相場 ========== */}
           <section className="l-section" id="market-price" aria-labelledby="heading-market-price">
@@ -256,7 +272,7 @@ export default async function AirPodsGuidePage() {
               <p className="m-section-desc">中古AirPodsを購入する際に確認しておきたい5つのポイントをまとめました。</p>
               <p className="m-section-desc">特に初めて中古イヤホンを買う方は、トラブルを避けるためにも一度確認しておくことをおすすめします。</p>
 
-              <div className="glossary-box glossary-box--numbered m-card m-card--shadow">
+              <div className="glossary-box m-card m-card--shadow u-mb-2xl">
                 <dl className="glossary-list">
                   <div className="glossary-item">
                     <dt className="glossary-item-title">ファームウェアサポート期間</dt>

@@ -42,15 +42,16 @@
 .m-section-heading--lg {
   font-size: var(--font-size-2xl);
   font-weight: 800;
-  margin-bottom: var(--space-sm);
+  margin-bottom: var(--space-md);
 }
 
 /* --- m-section-desc --- */
 .m-section-desc {
   text-align: center;
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-base);
   color: var(--color-text-muted);
   line-height: 1.8;
+  margin-bottom: var(--font-size-xs);
 }
 
 .m-section-desc + :not(.m-section-desc) {
@@ -438,6 +439,21 @@
   text-align: left;
 }
 
+/* --- m-table--sticky-col: PC+SP sticky first column --- */
+.m-table--sticky-col thead th:first-child,
+.m-table--sticky-col tbody th[scope="row"],
+.m-table--sticky-col tbody th:first-child,
+.m-table--sticky-col tbody td:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  background: #fff;
+}
+
+.m-table--sticky-col thead th:first-child {
+  z-index: 3;
+}
+
 .m-table tbody td img {
   object-fit: contain;
   width: auto;
@@ -484,8 +500,13 @@
 
 /* .m-table-scroll → use .m-scroll-x */
 .m-table-scroll {
+  position: relative;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
+}
+
+.m-table-scroll::after {
+  display: none;
 }
 
 /* --- Compare Table overrides --- */
@@ -689,14 +710,14 @@
   display: flex;
   align-items: center;
   gap: var(--space-sm);
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-base);
   line-height: 1.7;
   color: var(--color-text);
 }
 
 .m-check-list__item i {
   color: var(--color-primary);
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-base);
   flex-shrink: 0;
 }
 
@@ -706,7 +727,7 @@
 
 /* --- m-rich-text --- */
 .m-rich-text p {
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-base);
   color: var(--color-text);
   line-height: 1.5;
 }
@@ -1619,7 +1640,7 @@
   font-size: var(--font-size-base);
   font-weight: 700;
   color: var(--color-text);
-  margin-bottom: var(--space-lg);
+  margin-bottom: var(--space-md);
 }
 
 .faq-question::before {
@@ -4092,6 +4113,10 @@
     max-width: 70%;
   }
 
+  .recommend-card__info {
+    padding: 0;
+  }
+
   .recommend-card__specs {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -4415,6 +4440,7 @@
     overflow-x: auto;
   }
 
+  /* --- SP default: sticky first column --- */
   .m-table {
     min-width: 600px;
   }
@@ -4424,12 +4450,42 @@
     position: sticky;
     left: 0;
     z-index: 2;
-    background: #fff;
+    width: 1%;
   }
 
   .m-table thead th:first-child {
-    background: var(--color-bg-dark);
     z-index: 3;
+  }
+
+  .m-table-card .m-table thead th:first-child,
+  .m-table-card .m-table tbody td:first-child,
+  .m-table-card .m-table tbody th:first-child {
+    position: sticky;
+    left: 0;
+    z-index: 2;
+    width: 1%;
+  }
+
+  .m-table-card .m-table thead th:first-child {
+    z-index: 3;
+  }
+
+  /* --- SP: no-sticky (2-col tables) --- */
+  .m-table--no-sticky {
+    min-width: 0;
+  }
+
+  .m-table--no-sticky thead th:first-child,
+  .m-table--no-sticky tbody th[scope="row"] {
+    position: static;
+    width: auto;
+  }
+
+  .m-table-card .m-table--no-sticky thead th:first-child,
+  .m-table-card .m-table--no-sticky tbody td:first-child,
+  .m-table-card .m-table--no-sticky tbody th:first-child {
+    position: static;
+    width: auto;
   }
 
   .price-summary {
@@ -4516,7 +4572,7 @@
   }
 
   .footer-col a {
-    font-size: var(--font-size-base);
+    font-size: var(--font-size-sm);
   }
 
   .footer-heading {
@@ -5901,7 +5957,7 @@
 
 /* ---------- buy-method cards ---------- */
 .buy-method-card {
-  padding: var(--space-xl) var(--space-xl) var(--space-2xl);
+  padding: var(--space-lg);
   overflow: hidden;
 }
 
@@ -5952,7 +6008,7 @@
 }
 
 .buy-method-card__text {
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-base);
   line-height: 2;
   color: var(--color-text-secondary);
 }
@@ -5982,7 +6038,7 @@
 }
 
 .buy-method-card__list li + li {
-  margin-top: 4px;
+  margin-top: 8px;
 }
 
 /* ---------- merit-demerit boxes ---------- */
@@ -6057,7 +6113,7 @@
 
 .merit-box li,
 .demerit-box li {
-  margin-top: 4px;
+  margin-top: 8px;
 }
 
 /* ---------- timeline steps (generic) ---------- */
@@ -6676,6 +6732,15 @@
 @media (max-width: 767px) {
   .storage-tags {
     flex-wrap: nowrap;
+  }
+  .icloud-step-img {
+    width: 100% !important;
+  }
+  .m-callout {
+    padding: var(--space-md);
+  }
+  .m-callout--tip {
+    padding-top: var(--space-lg);
   }
 }
 
@@ -7461,9 +7526,9 @@ ol.info-card__list {
 .lead-box__list {
   margin: var(--space-md) 0;
   font-size: var(--font-size-base);
-  color: var(--color-text-secondary);
+  color: var(--color-text-primary);
   padding-left: 1.5em;
-  line-height: 1.5;
+  line-height: 1.8;
   list-style: outside;
 }
 

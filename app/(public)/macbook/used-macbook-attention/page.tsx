@@ -15,8 +15,9 @@ import { getHeroImage } from '@/lib/data/hero-images'
 import HeroMeta from '@/app/components/HeroMeta'
 
 const PAGE_TITLE = '中古MacBookはやめた方がいい？購入前に確認すべき注意点まとめ'
+const CURRENT_YEAR = new Date().getFullYear()
 const PAGE_DESCRIPTION =
-  '中古MacBookはやめた方がいい？macOSサポート切れ・バッテリー劣化・キーボード不具合・スペック不足など、購入前に確認すべき注意点を徹底解説。失敗しない中古MacBook選びのポイントを2026年最新情報でまとめました。'
+  `中古MacBookはやめた方がいい？macOSサポート切れ・バッテリー劣化・キーボード不具合・スペック不足など、購入前に確認すべき注意点を徹底解説。失敗しない中古MacBook選びのポイントを${CURRENT_YEAR}年最新情報でまとめました。`
 const PAGE_URL = 'https://used-lab.jp/macbook/used-macbook-attention/'
 
 export const metadata: Metadata = {

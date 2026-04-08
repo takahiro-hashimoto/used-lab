@@ -244,7 +244,7 @@ export default function IpadMacbookComparePage() {
                 MacBook・iPadで差があまりない作業
               </h2>
               <p className="m-section-desc">
-                ここまでMacBookとiPadそれぞれの得意な作業を解説しましたが、両デバイスであまり差がない作業もあるので、以下で詳しく説明します。
+                MacBookとiPad、両デバイスであまり差がない作業を3つご紹介します。
               </p>
               <NoDifference />
             </div>

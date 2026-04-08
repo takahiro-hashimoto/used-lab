@@ -125,6 +125,8 @@ export const PRODUCT_CATEGORIES: CategoryDef[] = [
       { path: '/ipad/ipad-buy/', label: 'iPadを安く買うには？おすすめの購入先7つを比較' },
       { path: '/ipad/storage-guide/', label: '中古iPadのストレージ容量はどれがいい？用途別おすすめ容量まとめ' },
       { path: '/ipad/benchmark/', label: '歴代iPadのベンチマーク比較ランキング｜Geekbench 6 & AnTuTuスコアで性能が一目でわかる' },
+      { path: '/ipad/ipad-mini-6-review/', label: 'iPad mini 第6世代 長期使用レビュー！3年間使用してきて分かったメリット・デメリットまとめ' },
+      { path: '/ipad/review-ipad-pro-11-m4/', label: 'iPad Pro 11インチ M4モデルを買って感じたメリット・デメリットまとめ' },
     ],
   },
   {
@@ -181,6 +183,8 @@ export const PRODUCT_CATEGORIES: CategoryDef[] = [
       { path: '/airpods/recommend/', label: (p) => `中古AirPodsおすすめ${p.airpodsRecCount}機種を解説。狙い目の型落ちモデルはどれ？【${p.airpodsRecDate}版】` },
       { path: '/airpods/price-info/', label: (p) => `AirPodsの中古相場一覧 | 歴代${p.airpodsModelCount}機種の価格推移を独自集計【${p.airpodsPriceMonth}】` },
       { path: '/airpods/airpods-find/', label: 'AirPodsのケースやイヤホン片方を無くした時の探し方、代替品の購入先まとめ' },
+      { path: '/airpods/airpods-filter-search/', label: 'AirPods機種診断シミュレーター｜自分に合うおすすめイヤホンがすぐわかる【2026年版】' },
+      { path: '/airpods/used-airpods-attention/', label: '中古AirPodsはやめた方がいい？注意点とリスクを8つ解説' },
     ],
   },
 ]

@@ -8,6 +8,7 @@ import {
   getAllAirPodsModels,
 } from '@/lib/queries'
 import Breadcrumb from '@/app/components/Breadcrumb'
+import GuideModelLinks from '@/app/components/GuideModelLinks'
 import { resolveCategories, type LabelParams } from '@/lib/routes'
 import { GUIDE_DATE_LABEL as IPHONE_GUIDE_DATE } from '@/lib/data/iphone-guide'
 import { GUIDE_DATE_LABEL as IPAD_GUIDE_DATE } from '@/lib/data/ipad-guide'
@@ -91,12 +92,19 @@ export default async function SitemapPage() {
 
   const categories = resolveCategories(labelParams)
 
-  const modelsByCategory: Record<string, { slug: string; name: string }[]> = {
-    iphone: iPhoneModels.map((m) => ({ slug: m.slug, name: m.model })),
-    ipad: iPadModels.map((m) => ({ slug: m.slug, name: m.model })),
-    macbook: macBookModels.map((m) => ({ slug: m.slug, name: m.model })),
-    watch: watchModels.map((m) => ({ slug: m.slug, name: m.model })),
-    airpods: airPodsModels.map((m) => ({ slug: m.slug, name: m.name })),
+  const toMeta = (m: { date: string | null; cpu: string | null }) => {
+    const parts: string[] = []
+    if (m.date) parts.push(`${m.date}発売`)
+    if (m.cpu) parts.push(m.cpu)
+    return parts.join(' / ') || ''
+  }
+
+  const modelsByCategory: Record<string, { slug: string; name: string; meta: string }[]> = {
+    iphone: iPhoneModels.map((m) => ({ slug: m.slug, name: m.model, meta: toMeta(m) })),
+    ipad: iPadModels.map((m) => ({ slug: m.slug, name: m.model, meta: toMeta(m) })),
+    macbook: macBookModels.map((m) => ({ slug: m.slug, name: m.model, meta: toMeta(m) })),
+    watch: watchModels.map((m) => ({ slug: m.slug, name: m.model, meta: toMeta(m) })),
+    airpods: airPodsModels.map((m) => ({ slug: m.slug, name: m.name, meta: toMeta(m) })),
   }
 
   const breadcrumbJsonLd = {
@@ -127,7 +135,7 @@ export default async function SitemapPage() {
           <div className="hero-content">
             <h1 className="hero-title">サイトマップ</h1>
             <p className="hero-description">ユーズドラボの記事ページ一覧をご紹介します。</p>
-            <HeroMeta dateStr="2026-03-20" dateDisplay="2026年3月20日" />
+            <HeroMeta dateStr="2026-03-20" dateDisplay="2026年3月20日" hideAdNotice />
           </div>
         </div>
       </header>
@@ -157,18 +165,12 @@ export default async function SitemapPage() {
               </ul>
 
               {models.length > 0 && (
-                <>
-                  <h3 className="m-sub-heading">モデル別ページ</h3>
-                  <ul className="l-grid l-grid--3col sitemap-model-grid">
-                    {models.map((model) => (
-                      <li key={model.slug}>
-                        <Link href={`${cat.basePath}/${model.slug}/`} className="sitemap-model-link">
-                          {model.name}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </>
+                <GuideModelLinks
+                  basePath={cat.basePath}
+                  heading="モデル別ページ"
+                  headingClassName="m-sub-heading"
+                  categories={[{ label: '', items: models }]}
+                />
               )}
             </div>
           </section>

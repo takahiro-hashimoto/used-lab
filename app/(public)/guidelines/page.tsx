@@ -290,7 +290,7 @@ export default function GuidelinesPage() {
           <div className="hero-content">
             <h1 className="hero-title">コンテンツ制作・運営ポリシー</h1>
             <p className="hero-description">ユーズドラボのコンテンツ制作フローや信頼性の担保についてご紹介します。</p>
-            <HeroMeta dateStr="2026-03-20" dateDisplay="2026年3月20日" />
+            <HeroMeta dateStr="2026-03-20" dateDisplay="2026年3月20日" hideAdNotice />
           </div>
         </div>
       </header>

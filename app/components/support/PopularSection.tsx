@@ -2,7 +2,7 @@ import Image from 'next/image'
 
 type Props = {
   sectionTitle: string
-  sectionDescription: string
+  sectionDescription: React.ReactNode
   imageSrc: string
   imageAlt: string
   subtitle: string
@@ -40,7 +40,11 @@ export default function PopularSection({
         <h2 className="m-section-heading m-section-heading--lg" id={headingId}>
           {sectionTitle}
         </h2>
-        <p className="m-section-desc">{sectionDescription}</p>
+        {typeof sectionDescription === 'string' ? (
+          <p className="m-section-desc">{sectionDescription}</p>
+        ) : (
+          sectionDescription
+        )}
 
         <div className="m-card m-card--shadow popular-card">
           <figure className="popular-card-figure">

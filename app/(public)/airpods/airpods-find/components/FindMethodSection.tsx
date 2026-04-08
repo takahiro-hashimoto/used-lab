@@ -105,7 +105,7 @@ export default function FindMethodSection() {
               <p>
                 パソコンから<a href="https://www.icloud.com/" target="_blank" rel="noopener noreferrer">iCloud</a>へログインします。
               </p>
-              <Image className="u-mt-md" src="/images/content/photo/icloud-01.jpg" alt="iCloudログイン画面" width={800} height={450} loading="lazy" style={{ width: '50%', height: 'auto', borderRadius: 'var(--radius-md)', border: '1px solid var(--color-border-light)' }} />
+              <Image className="u-mt-md icloud-step-img" src="/images/content/photo/icloud-01.jpg" alt="iCloudログイン画面" width={800} height={450} loading="lazy" style={{ width: '50%', height: 'auto', borderRadius: 'var(--radius-md)', border: '1px solid var(--color-border-light)' }} />
             </div>
           </div>
           <div className="m-timeline__item">
@@ -113,7 +113,7 @@ export default function FindMethodSection() {
             <div className="m-timeline__content">
               <h4>「探す」アプリを開く</h4>
               <p>管理画面の中にある「探す」アプリをクリックします。</p>
-              <Image className="u-mt-md" src="/images/content/photo/icloud-02.jpg" alt="iCloudの探すアプリ" width={800} height={450} loading="lazy" style={{ width: '50%', height: 'auto', borderRadius: 'var(--radius-md)', border: '1px solid var(--color-border-light)' }} />
+              <Image className="u-mt-md icloud-step-img" src="/images/content/photo/icloud-02.jpg" alt="iCloudの探すアプリ" width={800} height={450} loading="lazy" style={{ width: '50%', height: 'auto', borderRadius: 'var(--radius-md)', border: '1px solid var(--color-border-light)' }} />
             </div>
           </div>
           <div className="m-timeline__item">
@@ -121,7 +121,7 @@ export default function FindMethodSection() {
             <div className="m-timeline__content">
               <h4>デバイスの中からAirPodsを選択</h4>
               <p>所有しているApple製品の中からAirPodsを選択し、位置をチェックします。</p>
-              <Image className="u-mt-md" src="/images/content/photo/icloud-03.jpg" alt="AirPodsの位置を確認" width={800} height={450} loading="lazy" style={{ width: '50%', height: 'auto', borderRadius: 'var(--radius-md)', border: '1px solid var(--color-border-light)' }} />
+              <Image className="u-mt-md icloud-step-img" src="/images/content/photo/icloud-03.jpg" alt="AirPodsの位置を確認" width={800} height={450} loading="lazy" style={{ width: '50%', height: 'auto', borderRadius: 'var(--radius-md)', border: '1px solid var(--color-border-light)' }} />
             </div>
           </div>
         </div>

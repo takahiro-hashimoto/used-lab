@@ -68,6 +68,8 @@ export const AIRPODS_LINKS: RelatedLinkMeta[] = [
   { href: '/airpods/recommend/', title: 'おすすめ中古AirPods', desc: '用途に合った狙い目モデルを厳選紹介' },
   { href: '/airpods/price-info/', title: '中古AirPods相場・価格推移', desc: '主要モデルの相場と値動きをチェック' },
   { href: '/airpods/airpods-find/', title: 'AirPodsの探し方ガイド', desc: '紛失時の対処法と購入方法を解説' },
+  { href: '/airpods/airpods-filter-search/', title: 'AirPods機種診断ツール', desc: '質問に答えるだけで最適なモデルがわかる' },
+  { href: '/airpods/used-airpods-attention/', title: '中古AirPodsの注意点8つ', desc: '購入前に知っておきたいリスクと対策' },
 ]
 
 /** MacBook サブページ一覧 */

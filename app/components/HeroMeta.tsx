@@ -2,9 +2,10 @@ type Props = {
   dateStr: string
   dateDisplay: string
   withItemProp?: boolean
+  hideAdNotice?: boolean
 }
 
-export default function HeroMeta({ dateStr, dateDisplay, withItemProp = false }: Props) {
+export default function HeroMeta({ dateStr, dateDisplay, withItemProp = false, hideAdNotice = false }: Props) {
   return (
     <div className="hero-meta">
       <span>
@@ -16,7 +17,7 @@ export default function HeroMeta({ dateStr, dateDisplay, withItemProp = false }:
           {dateDisplay}
         </time>
       </span>
-      <span>当記事のリンクには広告が含まれています</span>
+      {!hideAdNotice && <span>当記事のリンクには広告が含まれています</span>}
       {withItemProp && <meta itemProp="datePublished" content={dateStr} />}
     </div>
   )

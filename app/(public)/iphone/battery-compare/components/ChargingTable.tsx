@@ -130,7 +130,7 @@ export default function ChargingTable({ models }: Props) {
         ) : (
           <div className="m-card m-card--shadow m-table-card">
             <div className="m-table-scroll">
-              <table className="m-table battery-table">
+              <table className="m-table m-table--sticky-col battery-table">
                 <caption className="visually-hidden">歴代iPhoneコネクタ・充電方法一覧</caption>
                 <thead>
                   <tr>

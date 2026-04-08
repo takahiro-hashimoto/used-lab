@@ -61,6 +61,7 @@ export const PAGE_DESCRIPTIONS: Record<string, string> = {
   // --- AirPods ---
   '/airpods/recommend/': '狙い目の型落ちモデルを解説',
   '/airpods/price-info/': '歴代モデルの価格推移を独自集計',
+  '/airpods/used-airpods-attention/': '購入前に確認すべき注意点とリスク8つ',
 }
 
 /** 詳細説明（llms-full.txt 用） — 未定義の場合は簡易説明にフォールバック */
@@ -98,4 +99,7 @@ export const PAGE_DESCRIPTIONS_FULL: Record<string, string> = {
   '/macbook/used-macbook-attention/': 'バッテリー・キーボード・ディスプレイなど購入前の確認ポイント',
   '/macbook/used-macbook-support/': 'macOS対応状況と各機種の寿命・買い替えタイミング',
   '/macbook/ipad-macbook-compare/': '用途別にどちらが適しているかを解説',
+
+  // --- AirPods ---
+  '/airpods/used-airpods-attention/': 'コピー品・並行輸入品・バッテリー劣化・アクティベーションロックなど購入前の確認ポイント',
 }

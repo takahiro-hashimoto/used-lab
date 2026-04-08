@@ -284,13 +284,13 @@ export default async function IPhoneGuidePage() {
               <p className="m-section-desc">中古iPhoneを購入する際に確認しておきたい6つのポイントをまとめました。</p>
               <p className="m-section-desc">特に初めて中古スマホを買う方は、トラブルを避けるためにも一度確認しておくことをおすすめします。</p>
 
-              <div className="glossary-box glossary-box--numbered m-card m-card--shadow">
+              <div className="glossary-box m-card m-card--shadow u-mb-2xl">
                 <dl className="glossary-list">
                   <div className="glossary-item">
                     <dt className="glossary-item-title">iOSのサポート期間（端末の寿命）</dt>
                     <dd className="glossary-item-desc">
                       iPhoneのiOSサポート期間の目安は発売から7年ほど。古すぎる機種は購入してすぐにiOSサポート外になるリスクがあるので注意。
-                      <br />詳細：<Link href="/iphone/used-iphone-support/">中古iPhoneの寿命とサポート期間の目安</Link>
+                      <div className="u-mt-sm">詳細：<Link href="/iphone/used-iphone-support/">中古iPhoneの寿命とサポート期間の目安</Link></div>
                     </dd>
                   </div>
                   <div className="glossary-item">
@@ -404,7 +404,7 @@ export default async function IPhoneGuidePage() {
           {/* ========== 格安SIM セット購入バナー ========== */}
           <PopularSection
             sectionTitle="中古iPhone&格安SIMをまとめて乗り換え"
-            sectionDescription="中古iPhoneと通信回線をまとめて契約できる格安SIM業者を比較。端末選びから回線契約まで一度に済ませたい方におすすめです。"
+            sectionDescription={<><p className="m-section-desc">中古iPhoneと通信回線をまとめて契約できる格安SIM業者を比較。</p><p className="m-section-desc">端末選びから回線契約まで一度に済ませたい方におすすめです。</p></>}
             imageSrc="/images/content/thumbnail/sim.webp"
             imageAlt="中古iPhoneの購入と通信契約が一緒にできる格安SIM業者まとめ"
             subtitle="回線契約と端末購入を一度に！"

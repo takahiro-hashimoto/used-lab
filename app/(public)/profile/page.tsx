@@ -209,7 +209,7 @@ export default function AboutPage() {
           <div className="hero-content">
             <h1 className="hero-title">運営者情報</h1>
             <p className="hero-description">ユーズドラボの運営者タカヒロのプロフィールや、サイト開設の経緯についてご紹介します。</p>
-            <HeroMeta dateStr="2026-03-20" dateDisplay="2026年3月20日" />
+            <HeroMeta dateStr="2026-03-20" dateDisplay="2026年3月20日" hideAdNotice />
           </div>
         </div>
       </header>

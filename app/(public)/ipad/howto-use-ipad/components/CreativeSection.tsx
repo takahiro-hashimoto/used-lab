@@ -98,11 +98,9 @@ export default function CreativeSection() {
           ノートPCでもテザー撮影はできるのですが、どうしても機動性がいまいち。iPadなら、どこでも身軽にテザー撮影を行うことができるので、外で写真を撮る方なんかに特におすすめです。
         </p>
         <InfoCard heading="おすすめのテザー撮影用アプリ">
-          <p className="info-card__desc">
-            <a href="https://apps.apple.com/jp/app/imaging-edge-mobile/id489191124" target="_blank" rel="noopener">SONY Imaging Edge</a>／
-            <a href="https://apps.apple.com/jp/app/fujifilm-camera-remote/id793063045" target="_blank" rel="noopener">FUJIFILM Camera Remote</a>／
-            <a href="https://www.captureone.com/ja/products/capture-one-for-ipad" target="_blank" rel="noopener">Capture One for iPad</a>
-          </p>
+          <li><a href="https://apps.apple.com/jp/app/imaging-edge-mobile/id489191124" target="_blank" rel="noopener">SONY Imaging Edge</a></li>
+          <li><a href="https://apps.apple.com/jp/app/fujifilm-camera-remote/id793063045" target="_blank" rel="noopener">FUJIFILM Camera Remote</a></li>
+          <li><a href="https://www.captureone.com/ja/products/capture-one-for-ipad" target="_blank" rel="noopener">Capture One for iPad</a></li>
         </InfoCard>
       </MediaCard>
 

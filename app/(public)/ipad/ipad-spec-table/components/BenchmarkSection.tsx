@@ -144,7 +144,7 @@ export default function BenchmarkSection({ models }: Props) {
             {/* テーブル */}
             <div className="m-card m-card--shadow m-table-card">
               <div className="m-table-scroll">
-              <table className="m-table bench-table">
+              <table className="m-table m-table--sticky-col bench-table">
                 <caption className="visually-hidden">iPadモデル別 Antutu Benchmark v10 スコア比較</caption>
                 <thead>
                   <tr>

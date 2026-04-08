@@ -249,13 +249,13 @@ export default async function MacBookGuidePage() {
               <p className="m-section-desc">中古MacBookを購入する際に確認しておきたい6つのポイントをまとめました。</p>
               <p className="m-section-desc">特に初めて中古Macを買う方は、トラブルを避けるためにも一度確認しておくことをおすすめします。</p>
 
-              <div className="glossary-box glossary-box--numbered m-card m-card--shadow">
+              <div className="glossary-box m-card m-card--shadow u-mb-2xl">
                 <dl className="glossary-list">
                   <div className="glossary-item">
                     <dt className="glossary-item-title">macOSのサポート期間（端末の寿命）</dt>
                     <dd className="glossary-item-desc">
                       MacBookのmacOSサポート期間の目安は発売から約7年。Intelモデルは既にサポートが終了しているものが多いため、Appleシリコン（M1以降）搭載モデルを選びましょう。
-                      <br />詳細：<Link href="/macbook/used-macbook-support/">中古MacBookの寿命とサポート期間の目安</Link>
+                      <div className="u-mt-sm">詳細：<Link href="/macbook/used-macbook-support/">中古MacBookの寿命とサポート期間の目安</Link></div>
                     </dd>
                   </div>
                   <div className="glossary-item">

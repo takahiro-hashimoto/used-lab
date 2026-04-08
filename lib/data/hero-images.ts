@@ -10,7 +10,9 @@ export const HERO_IMAGES: Record<string, string> = {
   '/airpods/': '/images/content/thumbnail/airpods-image-01.jpg',
   '/airpods/airpods-find/': '/images/content/thumbnail/airpods-image-01.jpg',
   '/airpods/price-info/': '/images/content/thumbnail/airpods-image-03.jpg',
+  '/airpods/airpods-filter-search/': '/images/content/thumbnail/simulator.jpg',
   '/airpods/recommend/': '/images/content/thumbnail/airpods-image-02.jpg',
+  '/airpods/used-airpods-attention/': '/images/content/thumbnail/check-list.jpg',
 
   // ── iPhone ──
   '/iphone/': '/images/content/thumbnail/iphone-image.jpeg',
@@ -36,11 +38,13 @@ export const HERO_IMAGES: Record<string, string> = {
   '/ipad/car-navigation-system/': '/images/content/thumbnail/ipad-image-10.jpg',
   '/ipad/howto-use-ipad/': '/images/content/thumbnail/ipad-lightroom.jpg',
   '/ipad/ipad-buy/': '/images/content/thumbnail/cheap-buy.jpg',
+  '/ipad/ipad-mini-6-review/': '/images/content/thumbnail/ipad-image-03.jpg',
   '/ipad/ipad-filter-search/': '/images/content/thumbnail/simulator.jpg',
   '/ipad/ipad-price-info/': '/images/content/thumbnail/graph-image.jpg',
   '/ipad/ipad-shop/': '/images/content/thumbnail/cheap-buy.jpg',
   '/ipad/ipad-spec-table/': '/images/content/thumbnail/ipad-image-11.jpg',
   '/ipad/recommend/': '/images/content/thumbnail/ipad-image-03.jpg',
+  '/ipad/review-ipad-pro-11-m4/': '/images/content/thumbnail/ipad-image-12.jpg',
   '/ipad/storage-guide/': '/images/content/thumbnail/ipad-image-09.jpg',
   '/ipad/used-ipad-attention/': '/images/content/thumbnail/check-list.jpg',
   '/ipad/used-ipad-support/': '/images/content/thumbnail/ipad-image-06.jpg',

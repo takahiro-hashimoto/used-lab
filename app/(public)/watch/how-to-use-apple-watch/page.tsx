@@ -86,7 +86,7 @@ export default function HowToUseAppleWatchPage() {
           <div className="hero-inner l-container">
             <div className="hero-content">
               <h1 className="hero-title" itemProp="headline">
-                アップルウォッチのできること25選！【初心者向け】
+                アップルウォッチのできること25選！便利な機能や使い方がわかる【初心者向け】
               </h1>
               <HeroMeta dateStr={dateStr} dateDisplay={dateDisplay} withItemProp />
             </div>

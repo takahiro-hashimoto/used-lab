@@ -51,7 +51,7 @@ export default function PrivacyPolicyPage() {
           <div className="hero-content">
             <h1 className="hero-title">プライバシーポリシー・免責事項</h1>
             <p className="hero-description">{PAGE_DESCRIPTION}</p>
-            <HeroMeta dateStr="2026-03-20" dateDisplay="2026年3月20日" />
+            <HeroMeta dateStr="2026-03-20" dateDisplay="2026年3月20日" hideAdNotice />
           </div>
         </div>
       </header>

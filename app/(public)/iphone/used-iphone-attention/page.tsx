@@ -15,9 +15,10 @@ import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helper
 import HeroMeta from '@/app/components/HeroMeta'
 import { getHeroImage } from '@/lib/data/hero-images'
 
-const PAGE_TITLE = '中古iPhoneはやめた方がいい？購入前に確認すべき注意点まとめ【2026年版】'
+const CURRENT_YEAR = new Date().getFullYear()
+const PAGE_TITLE = `中古iPhoneはやめた方がいい？購入前に確認すべき注意点まとめ【${CURRENT_YEAR}年版】`
 const PAGE_DESCRIPTION =
-  '中古iPhoneはやめた方がいい？バッテリー劣化・赤ロム・アクティベーションロックなど、購入前に確認すべき注意点を徹底解説。失敗しない中古iPhone選びのポイントを2026年最新情報でまとめました。'
+  `中古iPhoneはやめた方がいい？バッテリー劣化・赤ロム・アクティベーションロックなど、購入前に確認すべき注意点を徹底解説。失敗しない中古iPhone選びのポイントを${CURRENT_YEAR}年最新情報でまとめました。`
 const PAGE_URL = 'https://used-lab.jp/iphone/used-iphone-attention/'
 
 export const metadata: Metadata = {

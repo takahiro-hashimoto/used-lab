@@ -49,7 +49,7 @@ export default function ContactPage() {
           <div className="hero-content">
             <h1 className="hero-title">お問い合わせ</h1>
             <p className="hero-description">{PAGE_DESCRIPTION}</p>
-            <HeroMeta dateStr="2026-03-20" dateDisplay="2026年3月20日" />
+            <HeroMeta dateStr="2026-03-20" dateDisplay="2026年3月20日" hideAdNotice />
           </div>
         </div>
       </header>

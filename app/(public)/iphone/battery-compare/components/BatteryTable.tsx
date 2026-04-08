@@ -143,7 +143,7 @@ export default function BatteryTable({ models }: Props) {
         ) : (
           <div className="m-card m-card--shadow m-table-card">
             <div className="m-table-scroll">
-              <table className="m-table battery-table">
+              <table className="m-table m-table--sticky-col battery-table">
                 <caption className="visually-hidden">歴代iPhoneバッテリー容量比較表</caption>
                 <thead>
                   <tr>

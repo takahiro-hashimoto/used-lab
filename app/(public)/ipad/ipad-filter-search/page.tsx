@@ -16,19 +16,21 @@ import { getHeroImage } from '@/lib/data/hero-images'
 
 export const revalidate = 86400
 
+const CURRENT_YEAR = new Date().getFullYear()
+
 export const metadata: Metadata = {
-  title: 'iPad機種診断シミュレーター｜選び方がわからなくてもどれを買うべきかわかる【2026年版】',
+  title: `iPad機種診断シミュレーター｜選び方がわからなくてもどれを買うべきかわかる【${CURRENT_YEAR}年版】`,
   description:
     '目的・予算・こだわり条件から、あなたに最適な中古iPadを無料で診断。iPad mini〜iPad Pro 13インチまで全機種のデータベースから最適な1台を提案します。',
   alternates: { canonical: '/ipad/ipad-filter-search/' },
   openGraph: {
-    title: 'iPad機種診断シミュレーター｜選び方がわからなくてもどれを買うべきかわかる【2026年版】',
+    title: `iPad機種診断シミュレーター｜選び方がわからなくてもどれを買うべきかわかる【${CURRENT_YEAR}年版】`,
     description: '目的・予算・こだわり条件から、あなたに最適な中古iPadを無料で診断。',
     url: '/ipad/ipad-filter-search/',
     images: [{ url: getHeroImage('/ipad/ipad-filter-search/'), width: 1200, height: 630, alt: 'iPad機種診断シミュレーター' }],
   },
   twitter: {
-    title: 'iPad機種診断シミュレーター｜選び方がわからなくてもどれを買うべきかわかる【2026年版】',
+    title: `iPad機種診断シミュレーター｜選び方がわからなくてもどれを買うべきかわかる【${CURRENT_YEAR}年版】`,
     description: '目的・予算・こだわり条件から、あなたに最適な中古iPadを無料で診断。',
     images: [getHeroImage('/ipad/ipad-filter-search/')],
   },
@@ -258,7 +260,7 @@ export default async function IPadFilterSearchPage() {
           description="診断に関してよくある質問をまとめました。"
           items={FAQ_ITEMS}
         />
-        <IPadArticleFooter pageUrl="https://used-lab.jp/ipad/ipad-filter-search/" pageTitle="iPad機種診断シミュレーター｜自分に合うおすすめ中古iPadがすぐわかる【2026年版】" excludeHref={["/ipad/ipad-filter-search/", "/ipad/recommend/"]} />
+        <IPadArticleFooter pageUrl="https://used-lab.jp/ipad/ipad-filter-search/" pageTitle="iPad機種診断シミュレーター｜自分に合うおすすめ中古iPadがすぐわかる【${CURRENT_YEAR}年版】" excludeHref={["/ipad/ipad-filter-search/", "/ipad/recommend/"]} />
         </div>
       </article>
     </main>
