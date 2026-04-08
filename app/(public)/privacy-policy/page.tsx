@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import HeroMeta from '@/app/components/HeroMeta'
+import { getGitDateForFile } from '@/lib/utils/shared-helpers'
 
 const PAGE_TITLE = 'プライバシーポリシー・免責事項'
 const PAGE_DESCRIPTION =
@@ -23,6 +24,7 @@ export const metadata: Metadata = {
 }
 
 export default function PrivacyPolicyPage() {
+  const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/privacy-policy/page.tsx')
   const breadcrumbJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -51,7 +53,7 @@ export default function PrivacyPolicyPage() {
           <div className="hero-content">
             <h1 className="hero-title">プライバシーポリシー・免責事項</h1>
             <p className="hero-description">{PAGE_DESCRIPTION}</p>
-            <HeroMeta dateStr="2026-03-20" dateDisplay="2026年3月20日" hideAdNotice />
+            <HeroMeta dateStr={dateStr} dateDisplay={dateDisplay} hideAdNotice />
           </div>
         </div>
       </header>

@@ -29,6 +29,7 @@ import { SHOP_PAGE_DATE_LABEL as IPAD_SHOP_DATE } from '@/lib/data/ipad-shop'
 import { SHOP_PAGE_DATE_LABEL as MACBOOK_SHOP_DATE } from '@/lib/data/macbook-shop'
 import { SHOP_PAGE_DATE_LABEL as WATCH_SHOP_DATE } from '@/lib/data/watch-shop'
 import HeroMeta from '@/app/components/HeroMeta'
+import { getGitDateForFile } from '@/lib/utils/shared-helpers'
 
 export const revalidate = 86400
 
@@ -51,6 +52,7 @@ export const metadata: Metadata = {
 }
 
 export default async function SitemapPage() {
+  const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/sitemap-page/page.tsx')
   const [iPhoneModels, iPadModels, watchModels, macBookModels, airPodsModels] = await Promise.all([
     getAllIPhoneModels(),
     getAllIPadModels(),
@@ -135,7 +137,7 @@ export default async function SitemapPage() {
           <div className="hero-content">
             <h1 className="hero-title">サイトマップ</h1>
             <p className="hero-description">ユーズドラボの記事ページ一覧をご紹介します。</p>
-            <HeroMeta dateStr="2026-03-20" dateDisplay="2026年3月20日" hideAdNotice />
+            <HeroMeta dateStr={dateStr} dateDisplay={dateDisplay} hideAdNotice />
           </div>
         </div>
       </header>

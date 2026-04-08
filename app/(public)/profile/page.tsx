@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import HeroMeta from '@/app/components/HeroMeta'
+import { getGitDateForFile } from '@/lib/utils/shared-helpers'
 
 const PAGE_TITLE = '運営者情報'
 const PAGE_DESCRIPTION = 'ユーズドラボの運営者タカヒロのプロフィールや、サイト開設の経緯についてご紹介します。'
@@ -155,6 +156,7 @@ const SNS_LINKS = [
 ]
 
 export default function AboutPage() {
+  const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/profile/page.tsx')
   const breadcrumbJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -209,7 +211,7 @@ export default function AboutPage() {
           <div className="hero-content">
             <h1 className="hero-title">運営者情報</h1>
             <p className="hero-description">ユーズドラボの運営者タカヒロのプロフィールや、サイト開設の経緯についてご紹介します。</p>
-            <HeroMeta dateStr="2026-03-20" dateDisplay="2026年3月20日" hideAdNotice />
+            <HeroMeta dateStr={dateStr} dateDisplay={dateDisplay} hideAdNotice />
           </div>
         </div>
       </header>

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import HeroMeta from '@/app/components/HeroMeta'
+import { getGitDateForFile } from '@/lib/utils/shared-helpers'
 
 const PAGE_TITLE = 'お問い合わせ'
 const PAGE_DESCRIPTION = 'ユーズドラボへのお問い合わせはこちらのフォームからお送りください。'
@@ -21,6 +22,7 @@ export const metadata: Metadata = {
 }
 
 export default function ContactPage() {
+  const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/contact/page.tsx')
   const breadcrumbJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -49,7 +51,7 @@ export default function ContactPage() {
           <div className="hero-content">
             <h1 className="hero-title">お問い合わせ</h1>
             <p className="hero-description">{PAGE_DESCRIPTION}</p>
-            <HeroMeta dateStr="2026-03-20" dateDisplay="2026年3月20日" hideAdNotice />
+            <HeroMeta dateStr={dateStr} dateDisplay={dateDisplay} hideAdNotice />
           </div>
         </div>
       </header>
