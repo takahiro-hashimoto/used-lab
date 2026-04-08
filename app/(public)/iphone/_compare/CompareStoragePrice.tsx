@@ -106,8 +106,7 @@ export default function CompareStoragePrice({
         {desc && <p className="m-section-desc">{desc}</p>}
 
         <div className="m-card m-card--shadow" style={{ padding: 0, overflow: 'visible' }}>
-          <div className="m-table-scroll">
-            <table className={`m-table m-table--center ${styles.table}`}>
+            <table className={`m-table m-table--center ${styles.table}`} style={{ minWidth: 0 }}>
               <thead>
                 <tr>
                   <th scope="col" style={{ position: 'static' }}>容量</th>
@@ -146,7 +145,6 @@ export default function CompareStoragePrice({
                 })}
               </tbody>
             </table>
-          </div>
         </div>
 
         <div className="m-callout m-callout--tip u-mt-2xl">

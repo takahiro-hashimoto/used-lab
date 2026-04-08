@@ -27,10 +27,10 @@ export default function FleaMarketSection() {
             <p>個人間売買では以下のようなリスクが発生する可能性があります。</p>
             <p>これらのリスクについては、購入前に必ず理解しておく必要があります。</p>
             <ul className="media-card__list">
-              <li><strong>ネットワーク利用制限（赤ロム）</strong>の可能性</li>
-              <li><strong>バッテリーが大きく劣化</strong>している場合がある</li>
-              <li><strong>保証・返品対応</strong>が基本的にない</li>
-              <li><strong>アクティベーションロック</strong>など初期設定トラブル</li>
+              <li>ネットワーク利用制限（赤ロム）の可能性</li>
+              <li>バッテリーが大きく劣化している場合がある</li>
+              <li>保証・返品対応が基本的にない</li>
+              <li>アクティベーションロックなど初期設定トラブル</li>
             </ul>
           </div>
         </div>

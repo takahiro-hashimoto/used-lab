@@ -81,8 +81,7 @@ export default function CompareBenchmark({ id, title, desc, modelL, modelR, name
 
         {/* ベンチマーク比較テーブル */}
         <div className="m-card m-card--shadow m-table-card">
-          <div className="m-table-scroll">
-            <table className="m-table bench-table">
+            <table className="m-table bench-table" style={{ minWidth: 0 }}>
               <caption className="visually-hidden">
                 {nameL}と{nameR}のGeekbench 6スコア比較
               </caption>
@@ -137,7 +136,6 @@ export default function CompareBenchmark({ id, title, desc, modelL, modelR, name
                 })}
               </tbody>
             </table>
-          </div>
         </div>
 
 

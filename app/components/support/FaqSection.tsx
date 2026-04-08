@@ -56,9 +56,15 @@ export default function FaqSection({ title, description, items, children }: Prop
             <div key={item.question} className="m-card faq-item">
               <h3 className="faq-question">{item.question}</h3>
               <div className="faq-answer m-rich-text m-rich-text--muted">
-                {item.answer.split('\n').map((paragraph, i) => (
-                  <p key={i}>{parseLinks(paragraph)}</p>
-                ))}
+                {item.answer.includes('<') ? (
+                  item.answer.split('\n').map((paragraph, i) => (
+                    <p key={i} dangerouslySetInnerHTML={{ __html: paragraph }} />
+                  ))
+                ) : (
+                  item.answer.split('\n').map((paragraph, i) => (
+                    <p key={i}>{parseLinks(paragraph)}</p>
+                  ))
+                )}
               </div>
             </div>
           ))}

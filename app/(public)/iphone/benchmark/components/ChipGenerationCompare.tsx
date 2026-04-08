@@ -27,9 +27,8 @@ export default function ChipGenerationCompare({ models }: { models: BenchModel[]
           各チップ世代の平均ベンチマークスコアを比較。世代が上がるごとにどのくらい性能が向上しているかが一目でわかります。
         </p>
 
-        <div className="m-card m-card--shadow m-table-card">
-          <div className="m-table-scroll">
-            <table className="m-table chip-gen-table">
+        <div className="m-card m-card--shadow m-table-card" style={{ overflowX: 'visible' }}>
+            <table className="m-table chip-gen-table" style={{ minWidth: 0 }}>
               <caption className="visually-hidden">Apple チップ世代別 平均ベンチマークスコア比較</caption>
               <thead>
                 <tr>
@@ -67,7 +66,6 @@ export default function ChipGenerationCompare({ models }: { models: BenchModel[]
                 })}
               </tbody>
             </table>
-          </div>
         </div>
         <p className="m-table-note">※ 前世代比はシングルコアスコアの平均値で算出。同一世代内のPro/無印を含む平均値です。</p>
       </div>

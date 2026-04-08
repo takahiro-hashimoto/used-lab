@@ -68,11 +68,11 @@ export default function ShopDetailSection({ productName, items, specRows, getCta
                   loading="lazy"
                 />
               </figure>
-              <div className="recommend-card__info" style={{ background: 'var(--color-primary-light)', borderRadius: 'var(--radius-md)' }}>
+              <div className="recommend-card__shop">
                 <p className="recommend-card__info-title">{shop.shop}の特徴</p>
                 <dl className="recommend-card__specs">
                   {specRows.map((row) => (
-                    <div key={row.label} className="recommend-card__spec-item" style={{ display: 'flex' }}>
+                    <div key={row.label} className="recommend-card__spec-item">
                       <dt>{row.label}</dt>
                       <dd><SpecValue value={row.getValue(shop)} /></dd>
                     </div>

@@ -146,7 +146,9 @@ export default async function IPhoneCameraPage() {
           <div className="l-container">
             <div className="lead-box">
               <p>
-                毎年進化を遂げるiPhoneシリーズの中でも、ユーザーの関心が特に高いのが<strong>カメラ性能</strong>です。
+                毎年進化を遂げるiPhoneシリーズの中でも、ユーザーの関心が特に高いのがカメラ性能です。
+              </p>
+              <p>
                 48MPセンサーや光学5倍ズーム、4K動画撮影など進化は目覚ましいですが「各モデルにどんな違いがあるのかわからない」という方も多いのではないでしょうか。
               </p>
               <p>本記事では、歴代iPhoneのカメラ性能を一覧で比較しつつ、アクションモード・LiDARスキャナ・マクロ撮影モードなどの各機能をわかりやすく解説します。</p>

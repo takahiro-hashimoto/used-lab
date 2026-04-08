@@ -98,9 +98,8 @@ export default function BenchmarkRanking({ models, shopLinks }: { models: BenchM
         </div>
 
         {/* ランキングテーブル */}
-        <div className="m-card m-card--shadow m-table-card">
-          <div className="m-table-scroll">
-            <table className="m-table m-table--sticky-col bench-ranking-table">
+        <div className="m-card m-card--shadow m-table-card" style={{ overflowX: 'visible' }}>
+            <table className="m-table m-table--sticky-col bench-ranking-table" style={{ minWidth: 0 }}>
               <caption className="visually-hidden">歴代iPhone Geekbench 6 ベンチマークランキング</caption>
               <thead>
                 <tr>
@@ -153,7 +152,6 @@ export default function BenchmarkRanking({ models, shopLinks }: { models: BenchM
                 })}
               </tbody>
             </table>
-          </div>
         </div>
 
         <div className="m-callout m-callout--tip u-mt-2xl">

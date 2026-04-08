@@ -108,7 +108,10 @@ export default function WifiCellularPage() {
           <div className="l-container">
             <div className="lead-box">
               <p>
-                プライベートからビジネスまで幅広く使うことができるAppleのiPadシリーズ。いざ購入しようと思うと「Wi-Fiモデルとセルラーモデルどっちを買ったほうがいいの？」と疑問を感じる方も多いのではないでしょうか。
+                プライベートからビジネスまで幅広く使うことができるAppleのiPadシリーズ。
+              </p>
+              <p>
+                いざ購入しようと思うと「Wi-Fiモデルとセルラーモデルどっちを買ったほうがいいの？」と疑問を感じる方も多いのではないでしょうか。
               </p>
               <p>
                 そこで本記事では両者の主な違いを比較した上で、Wi-Fiモデルとセルラーモデルがそれぞれどんな方にオススメなのかを解説します！
@@ -251,7 +254,7 @@ export default function WifiCellularPage() {
                     <p className="media-card__desc">
                       セルラーモデルは4G LTEや5Gのモバイル回線に対応しているため、SIMカードやeSIMを設定すればWi-Fiがない場所でも単体で通信できます。通勤中の電車内やカフェなど、Wi-Fiスポットが見つからない環境でもすぐにインターネットを利用できるのが大きなメリットです。
                     </p>
-                    <div className="glossary-box">
+                    <div className="m-card glossary-box">
                       <dl className="glossary-list">
                         <div className="glossary-item">
                           <dt className="glossary-item-title">Cellularモデル</dt>
@@ -286,7 +289,7 @@ export default function WifiCellularPage() {
                     <p className="media-card__desc">
                       中古iPadを購入する際にも、この白いアンテナラインの有無を確認すれば、Wi-Fiモデルかセルラーモデルかをすぐに判別できます。フリマアプリで購入するときには写真でチェックしておきましょう。
                     </p>
-                    <div className="glossary-box">
+                    <div className="m-card glossary-box">
                       <dl className="glossary-list">
                         <div className="glossary-item">
                           <dt className="glossary-item-title">Cellularモデル</dt>
@@ -321,7 +324,7 @@ export default function WifiCellularPage() {
                     <p className="media-card__desc">
                       GPS機能があると下記のようなアプリをiPadから利用することが可能です。
                     </p>
-                    <ul className="info-card__list">
+                    <ul className="media-card__list">
                       <li>Googleマップ、Yahoo!カーナビなどマップ情報を活用したアプリ</li>
                       <li>ポケモンGO、ドラクエウォークなど位置情報を活用したアプリ</li>
                       <li>Strava、YAMAPなどアウトドア系のルート記録アプリ</li>
@@ -401,9 +404,9 @@ export default function WifiCellularPage() {
                     <p className="media-card__desc">
                       また、iPadの<strong>ワイファイモデルとセルラーモデルの価格差は約2万円ほどある</strong>ので、浮いたお金をMagic Keyboardや保護フィルムなどの周辺機器・アクセサリー購入費用に当てれば充実したデジタルライフのスタートを切れるはず。
                     </p>
-                    <div className="glossary-box">
+                    <div className="m-card glossary-box">
                       <p className="glossary-item-title">こんな方におすすめ</p>
-                      <ul className="info-card__list">
+                      <ul className="glossary-box__list">
                         <li>使用シーンはほぼ自宅やオフィスに限定される</li>
                         <li>外でiPadを使用する際はスマホのテザリングで十分</li>
                         <li>なるべく安くiPadを購入したい</li>
@@ -435,9 +438,9 @@ export default function WifiCellularPage() {
                     <p className="media-card__desc">
                       特に<strong>iPadをカーナビ代わりに使用したい</strong>場合はGPS機能を搭載して位置情報を正確につかめるセルラーモデルが必須になります。
                     </p>
-                    <div className="glossary-box">
+                    <div className="m-card glossary-box">
                       <p className="glossary-item-title">こんな方におすすめ</p>
-                      <ul className="info-card__list">
+                      <ul className="glossary-box__list">
                         <li>外出して使用する頻度が多い方（ビジネス用途）</li>
                         <li>iPadをカーナビとして使いたい</li>
                         <li>位置情報を使用するアプリをiPadで楽しみたい</li>

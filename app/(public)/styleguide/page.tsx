@@ -770,6 +770,126 @@ export default function StyleGuidePage() {
               </div>
             </div>
 
+            <h3 className="m-sub-heading" style={{ marginTop: 'var(--space-2xl)' }}>メディアカード内リスト（media-card__list）</h3>
+            <p className="m-desc-text" style={{ marginTop: 'var(--space-sm)' }}>MediaCard 内で箇条書き・番号付きリストを表示する。ul で disc、ol で decimal。</p>
+            <div className="m-card m-card--shadow m-card--padded" style={{ maxWidth: 720, margin: 'var(--space-xl) auto 0' }}>
+              <h3 className="media-card__title">ul（箇条書き）</h3>
+              <ul className="media-card__list">
+                <li><strong>なるべく安く購入したい</strong></li>
+                <li>月額の通信費用をかけたくない</li>
+                <li>iPhoneが常に手元にある生活スタイル</li>
+              </ul>
+              <h3 className="media-card__title" style={{ marginTop: 'var(--space-lg)' }}>ol（番号付き）</h3>
+              <ol className="media-card__list">
+                <li>ネットワーク制限を確認する</li>
+                <li>バッテリー最大容量を確認する</li>
+                <li>iOSサポート期間を確認する</li>
+              </ol>
+            </div>
+
+            <h3 className="m-sub-heading" style={{ marginTop: 'var(--space-2xl)' }}>glossary-box 内リスト（glossary-box__list）</h3>
+            <p className="m-desc-text" style={{ marginTop: 'var(--space-sm)' }}>glossary-box 内で箇条書きリストを表示する。「こんな方におすすめ」などの用途。</p>
+            <div className="m-card glossary-box" style={{ maxWidth: 720, margin: 'var(--space-xl) auto 0' }}>
+              <p className="glossary-item-title">こんな方におすすめ</p>
+              <ul className="glossary-box__list">
+                <li>外出して使用する頻度が多い方（ビジネス用途）</li>
+                <li>iPadをカーナビとして使いたい</li>
+                <li>位置情報を使用するアプリをiPadで楽しみたい</li>
+              </ul>
+            </div>
+
+            <h3 className="m-sub-heading" style={{ marginTop: 'var(--space-2xl)' }}>インフォカード（info-card）</h3>
+            <p className="m-desc-text" style={{ marginTop: 'var(--space-sm)' }}>アイコン付きタイトル＋シンプルなリンクリスト。おすすめアプリ紹介などに使用。</p>
+            <div className="m-card info-card" style={{ maxWidth: 720, margin: 'var(--space-xl) auto 0' }}>
+              <p className="info-card__heading">
+                <i className="fa-solid fa-chevron-circle-right" aria-hidden="true"></i>
+                おすすめの新聞アプリ
+              </p>
+              <ul className="info-card__list">
+                <li><a href="#">日本経済新聞 電子版</a></li>
+                <li><a href="#">読売新聞オンライン</a></li>
+                <li><a href="#">朝日新聞デジタル</a></li>
+              </ul>
+            </div>
+
+            <h3 className="m-sub-heading" style={{ marginTop: 'var(--space-2xl)' }}>ショップ特徴カード（recommend-card__shop）</h3>
+            <p className="m-desc-text" style={{ marginTop: 'var(--space-sm)' }}>ショップ詳細ページで使用。背景色付きのスペック一覧。dt は固定幅 7em で dd が揃う。</p>
+            <div style={{ maxWidth: 720, margin: 'var(--space-xl) auto 0' }}>
+              <div className="recommend-card__shop">
+                <p className="recommend-card__info-title">イオシスの特徴</p>
+                <dl className="recommend-card__specs">
+                  <div className="recommend-card__spec-item">
+                    <dt>保証</dt>
+                    <dd>3ヶ月〜6ヶ月</dd>
+                  </div>
+                  <div className="recommend-card__spec-item">
+                    <dt>赤ロム保証</dt>
+                    <dd>永久保証</dd>
+                  </div>
+                  <div className="recommend-card__spec-item">
+                    <dt>送料</dt>
+                    <dd>640円（税込）</dd>
+                  </div>
+                </dl>
+              </div>
+            </div>
+
+            <h3 className="m-sub-heading" style={{ marginTop: 'var(--space-2xl)' }}>メディアカード（media-card）</h3>
+            <p className="m-desc-text" style={{ marginTop: 'var(--space-sm)' }}>画像＋テキストの縦積みカード。m-card と組み合わせて使う。</p>
+            <div className="m-card m-card--shadow m-card--padded" style={{ maxWidth: 720, margin: 'var(--space-xl) auto 0' }}>
+              <div className="media-card__img-wrap">
+                <img src="/images/content/photo/ipad-wifi-01.webp" alt="サンプル画像" className="media-card__img" width={800} height={450} loading="lazy" />
+              </div>
+              <div className="media-card__body">
+                <h3 className="media-card__title">メディアカードのタイトル</h3>
+                <p className="media-card__desc">説明文が入ります。画像の下にタイトルと本文が続く縦積みレイアウトです。</p>
+                <p className="media-card__desc">複数の段落も配置でき、p 同士は margin-bottom で間隔が空きます。</p>
+                <ul className="media-card__list">
+                  <li>リスト項目A</li>
+                  <li>リスト項目B</li>
+                  <li>リスト項目C</li>
+                </ul>
+              </div>
+            </div>
+
+            <h3 className="m-sub-heading" style={{ marginTop: 'var(--space-2xl)' }}>メディアカード横並び（media-card--aside）</h3>
+            <p className="m-desc-text" style={{ marginTop: 'var(--space-sm)' }}>画像とテキストを横並びにするバリエーション。画像は 320px 固定、1:1 比率。SPでは縦積みになる。</p>
+            <div className="m-card m-card--shadow m-card--padded media-card--aside" style={{ maxWidth: 720, margin: 'var(--space-xl) auto 0' }}>
+              <div className="media-card__img-wrap">
+                <img src="/images/content/photo/ipad-wifi-01.webp" alt="サンプル画像" className="media-card__img" width={320} height={320} loading="lazy" />
+              </div>
+              <div className="media-card__body">
+                <h3 className="media-card__title">横並びメディアカード</h3>
+                <p className="media-card__desc">画像が左、テキストが右に配置されます。商品紹介やショップ詳細などに使用します。</p>
+              </div>
+            </div>
+
+            <h3 className="m-sub-heading" style={{ marginTop: 'var(--space-2xl)' }}>メリット・デメリットボックス（merit-box / demerit-box）</h3>
+            <p className="m-desc-text" style={{ marginTop: 'var(--space-sm)' }}>メリットと注意点を横並びで表示。merit-demerit でラップし、merit-box と demerit-box を並べる。</p>
+            <div className="merit-demerit" style={{ maxWidth: 720, margin: 'var(--space-xl) auto 0' }}>
+              <div className="merit-box">
+                <p className="merit-box__title">
+                  <i className="fa-solid fa-circle-check" aria-hidden="true"></i>
+                  メリット3つ
+                </p>
+                <ul>
+                  <li>赤ロム永久保証で安心</li>
+                  <li>全品動作確認済み</li>
+                  <li>送料無料キャンペーン実施中</li>
+                </ul>
+              </div>
+              <div className="demerit-box">
+                <p className="demerit-box__title">
+                  <i className="fa-solid fa-circle-xmark" aria-hidden="true"></i>
+                  注意点2つ
+                </p>
+                <ul>
+                  <li>在庫が流動的で売り切れやすい</li>
+                  <li>実店舗での受け取り不可</li>
+                </ul>
+              </div>
+            </div>
+
             <h3 className="m-sub-heading" style={{ marginTop: 'var(--space-2xl)' }}>まとめカード（summary-card）</h3>
             <p className="m-desc-text" style={{ marginTop: 'var(--space-sm)' }}>記事末尾のまとめ・要点リストに使用。m-card と組み合わせて使う。番号付きリストが自動で丸数字になる。</p>
             <div className="m-card m-card--shadow m-card--padded" style={{ maxWidth: 720, margin: 'var(--space-xl) auto 0' }}>

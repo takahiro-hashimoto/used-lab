@@ -178,7 +178,7 @@ iPadを安く買う7つの方法
                 </div>
                 <div className="m-card m-table-card u-mt-md">
                   <div className="m-table-scroll">
-                    <table className="m-table m-table--center m-table--no-sticky">
+                    <table className="m-table m-table--center">
                       <thead>
                         <tr><th>時期</th><th>セール名</th></tr>
                       </thead>
@@ -263,7 +263,7 @@ iPadを安く買う7つの方法
                 </div>
                 <div className="m-card m-table-card u-mt-md">
                   <div className="m-table-scroll">
-                    <table className="m-table m-table--no-sticky">
+                    <table className="m-table">
                       <thead>
                         <tr><th>キャンペーン名</th><th>内容</th><th>開催頻度</th></tr>
                       </thead>
@@ -344,7 +344,7 @@ iPadを安く買う7つの方法
                 </div>
                 <div className="m-card m-table-card u-mt-md">
                   <div className="m-table-scroll">
-                    <table className="m-table m-table--no-sticky">
+                    <table className="m-table">
                       <thead>
                         <tr><th>キャンペーン名</th><th>内容</th><th>開催頻度</th></tr>
                       </thead>

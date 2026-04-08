@@ -710,8 +710,8 @@ export default async function MvnoPage() {
                 )}
 
                 {/* CTA */}
-                <div className="recommend-card__shops">
-                  <div className="recommend-card__shop-btns recommend-card__shop-btns--single">
+                <div className="recommend-card__infos">
+                  <div className="recommend-card__info-btns recommend-card__info-btns--single">
                     <a
                       href={db.official_url}
                       target="_blank"

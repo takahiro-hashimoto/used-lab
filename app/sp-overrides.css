@@ -64,4 +64,52 @@
     display: none;
   }
 
+  .ifd-result-card__specs dt {
+    width: 100px;
+  }
+
+  .ifd-result-card__specs div {
+    font-size: var(--font-size-base);
+  }
+
+  .ifd-feature-tag {
+    font-size: var(--font-size-sm);
+  }
+
+  .ifd-result-card__actions .m-btn {
+    font-size: var(--font-size-md);
+  }
+
+  .ifd-result-card__price-label {
+    font-size: var(--font-size-sm);
+  }
+
+  .ifd-tag {
+    font-size: var(--font-size-sm);
+  }
+
+  .camera-feature-card__body {
+    padding: var(--space-lg);
+  }
+
+  .faq-item {
+    padding: var(--space-md);
+  }
+
+  .upgrade-card {
+    padding: var(--space-md);
+  }
+
+  .recommend-card__infos {
+    padding: var(--space-sm) var(--space-md) var(--space-md);
+  }
+
+  .recommend-card__info-btns {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .recommend-card__shop-btns {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
 }

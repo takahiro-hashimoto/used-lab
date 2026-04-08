@@ -232,7 +232,7 @@ export default async function NetworkLimitPage() {
               <div className="recommend-card__fit u-mt-xl">
                 <div className="l-grid l-grid--2col l-grid--gap-lg">
                   <div className="recommend-card__fit-box recommend-card__fit-box--good">
-                    <p>
+                    <p className="recommend-card__fit-title">
                       <i className="fa-solid fa-circle-check" aria-hidden="true"></i> こんな人におすすめ
                     </p>
                     <ul>
@@ -243,7 +243,7 @@ export default async function NetworkLimitPage() {
                     </ul>
                   </div>
                   <div className="recommend-card__fit-box recommend-card__fit-box--bad">
-                    <p>
+                    <p className="recommend-card__fit-title">
                       <i className="fa-solid fa-circle-xmark" aria-hidden="true"></i> こんな人には向かない
                     </p>
                     <ul>
@@ -255,7 +255,7 @@ export default async function NetworkLimitPage() {
                 </div>
               </div>
 
-              <div className="m-card m-card--padded u-mt-md" style={{ border: 'none' }}>
+              <div className="m-card m-card--shadow m-card--padded u-mt-md">
                 <h3 className="m-sub-heading m-sub-heading--no-mt">ネットワーク制限△のスマホはどれくらい安い？</h3>
                 <p className="u-mt-md" style={{ fontSize: 'var(--font-size-base)', color: 'var(--color-text-secondary)', lineHeight: 1.8 }}>
                   実際にネットワーク制限△と通常の中古iPhoneの価格を比較してみると、同スペック・同ランクの製品で5,000円ほどお手頃な場合が多いようです。

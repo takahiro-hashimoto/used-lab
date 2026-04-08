@@ -123,7 +123,7 @@ export default function UseCaseGuide({ models, shopLinks }: Props) {
                       )}
                     </div>
                     {iosysUrl && (
-                      <a href={iosysUrl} target="_blank" rel="noopener noreferrer" className="m-btn m-btn--primary m-btn--sm">
+                      <a href={iosysUrl} target="_blank" rel="noopener noreferrer" className="m-btn m-btn--primary">
                         <span>在庫情報を見る</span>
                         <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
                       </a>

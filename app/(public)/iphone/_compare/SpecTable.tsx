@@ -49,8 +49,7 @@ export default function SpecTable({ specs, modelL, modelR, nameL, nameR }: Props
     <>
       {/* PC版: 通常テーブル */}
       <div className={`m-card m-card--shadow ${s.pc}`} style={{ padding: 0, overflow: 'visible' }}>
-        <div className="m-table-scroll">
-          <table className="m-table m-table--center">
+          <table className="m-table m-table--center" style={{ minWidth: 0 }}>
             <thead>
               <tr>
                 <th scope="col" style={{ position: 'static' }}>項目</th>
@@ -74,7 +73,6 @@ export default function SpecTable({ specs, modelL, modelR, nameL, nameR }: Props
               ))}
             </tbody>
           </table>
-        </div>
       </div>
 
       {/* SP版: カード風レイアウト */}

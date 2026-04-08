@@ -1013,7 +1013,7 @@ a.header-admin-link:hover {
 }
 
 .hero-media__img {
-  border-radius: var(--radius-xl);
+  border-radius: var(--radius-lg);
   filter: drop-shadow(rgba(0, 0, 0, 0.3) 0px 20px 60px);
   aspect-ratio: 1 / 1;
   object-fit: contain;
@@ -1308,17 +1308,17 @@ a.header-admin-link:hover {
 }
 
 .lead-box__list {
-  list-style: disc;
-  padding-left: 1.5em;
   margin: var(--space-md) 0;
   font-size: var(--font-size-base);
-  line-height: 2;
-  color: var(--color-text-secondary);
+  color: var(--color-text-primary);
+  padding-left: 1.5em;
+  line-height: 1.5;
+  list-style: outside;
 }
 
 .section-lead .lead-link {
   margin-top: var(--space-md);
-  color: var(--color-text-secondary);
+  color: var(--color-text-primary);
 }
 
 .section-lead .lead-link i {
@@ -1327,7 +1327,17 @@ a.header-admin-link:hover {
   margin-right: 2px;
 }
 
-.lead-link a,
+.lead-link a {
+  color: #2563eb;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.lead-link a:hover {
+  opacity: 0.8;
+}
+
 .glossary-box .glossary-item-desc a {
   color: #2563eb;
   font-weight: 600;
@@ -1335,7 +1345,6 @@ a.header-admin-link:hover {
   text-underline-offset: 2px;
 }
 
-.lead-link a:hover,
 .glossary-box .glossary-item-desc a:hover {
   opacity: 0.8;
 }

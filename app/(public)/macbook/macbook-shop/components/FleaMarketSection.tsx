@@ -27,12 +27,12 @@ export default function FleaMarketSection() {
             <p>個人間売買では以下のようなリスクが発生する可能性があります。</p>
             <p>MacBookならではのリスクとして、キーボードやディスプレイの劣化は仕事の生産性に直結します。</p>
             <ul className="media-card__list">
-              <li><strong>キーボードのテカリ・ヘタリ</strong>で打鍵感が悪い</li>
-              <li><strong>ディスプレイのコーティング剥がれ</strong>（ステインゲート問題）</li>
-              <li><strong>バッテリーの充放電回数</strong>が多く持ちが悪い</li>
-              <li><strong>保証・返品対応</strong>が基本的にない</li>
-              <li><strong>アクティベーションロック</strong>の解除忘れ</li>
-              <li><strong>macOSサポート</strong>が終了間近のモデルを購入してしまう</li>
+              <li>キーボードのテカリ・ヘタリで打鍵感が悪い</li>
+              <li>ディスプレイのコーティング剥がれ（ステインゲート問題）</li>
+              <li>バッテリーの充放電回数が多く持ちが悪い</li>
+              <li>保証・返品対応が基本的にない</li>
+              <li>アクティベーションロックの解除忘れ</li>
+              <li>macOSサポートが終了間近のモデルを購入してしまう</li>
             </ul>
           </div>
         </div>

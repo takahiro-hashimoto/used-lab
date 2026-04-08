@@ -180,8 +180,8 @@ export default function RecommendDetailSection({ items }: Props) {
               </div>
 
               {displayLinks.length > 0 && (
-                <div className="recommend-card__shops">
-                  <div className="recommend-card__shop-btns">
+                <div className="recommend-card__infos">
+                  <div className="recommend-card__info-btns">
                     {displayLinks.map((link) => (
                       <a
                         key={link.shop_id}
