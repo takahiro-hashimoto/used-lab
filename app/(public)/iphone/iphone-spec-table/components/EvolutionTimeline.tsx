@@ -47,7 +47,7 @@ export default function EvolutionTimeline({ models }: Props) {
     // 全モデル共通
     if (advance?.all_models?.features?.length) {
       columns.push({
-        category: advance.all_models.description || '全モデル共通',
+        category: 'シリーズ共通',
         models: [] as { name: string; slug: string }[],
         items: advance.all_models.features,
       })
@@ -56,7 +56,7 @@ export default function EvolutionTimeline({ models }: Props) {
     // 無印モデルのみ
     if (advance?.standard_only?.features?.length) {
       columns.push({
-        category: advance.standard_only.description || '無印モデルのみ',
+        category: 'スタンダードモデルのみ',
         models: standardModels.map((m) => ({ name: m.model, slug: m.slug })),
         items: advance.standard_only.features,
       })
@@ -65,7 +65,7 @@ export default function EvolutionTimeline({ models }: Props) {
     // Proモデルのみ
     if (advance?.pro_only?.features?.length) {
       columns.push({
-        category: advance.pro_only.description || 'Proモデルのみ',
+        category: 'プロモデルのみ',
         models: proModels.map((m) => ({ name: m.model, slug: m.slug })),
         items: advance.pro_only.features,
       })

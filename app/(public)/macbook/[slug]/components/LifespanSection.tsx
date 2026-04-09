@@ -49,7 +49,7 @@ export default function LifespanSection({ model }: Props) {
               )}
             </p>
             <p className="m-stat-card__note">
-              Apple正規店でのバッテリー交換や画面ひび割れ修理が可能な期間の目安。
+              Apple正規店でバッテリー交換や画面ひび割れ修理ができる期間。
             </p>
           </div>
         </div>

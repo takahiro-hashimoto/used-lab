@@ -70,7 +70,6 @@ export default function PopularSection({
             )}
           </figure>
           <div className="popular-card-body">
-            <p className="popular-card-subtitle">{subtitle}</p>
             <p className="popular-card-title">{cardTitle}</p>
             <p className="popular-card-desc">{cardDescription}</p>
             <div className="popular-card-buttons">

@@ -61,7 +61,7 @@ export default function Footer() {
                 <li><Link href="/watch/recommend/">中古Apple Watchおすすめ機種</Link></li>
                 <li><Link href="/watch/watch-price-info/">中古Apple Watchの相場価格</Link></li>
                 <li><Link href="/watch/watch-spec-table/">Apple Watchスペック比較表</Link></li>
-                <li><Link href="/watch/used-watch-support/">Apple Watchのサポート期間・寿命</Link></li>
+                <li><Link href="/watch/used-watch-support/">Apple Watchのサポート期間</Link></li>
               </ul>
             </div>
             <div className="footer-col">

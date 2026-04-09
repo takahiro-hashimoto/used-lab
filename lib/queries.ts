@@ -136,36 +136,33 @@ function createPriceLogQueries<T extends { model_id: number }>(table: string, ta
       { revalidate: 86400, tags: [tag] }
     ),
 
-    /** 複数モデルの価格ログを一括取得し、model_id ごとにグループ化して返す（自動ページネーション） */
-    getAllByModelIds: unstable_cache(
-      async (modelIds: number[]): Promise<Record<number, T[]>> => {
-        if (modelIds.length === 0) return {}
-        const PAGE_SIZE = 1000
-        const allRows: T[] = []
-        let from = 0
-        while (true) {
-          const { data, error } = await supabase
-            .from(table)
-            .select('*')
-            .in('model_id', modelIds)
-            .order('logged_at', { ascending: true })
-            .range(from, from + PAGE_SIZE - 1)
-          if (error || !data || data.length === 0) break
-          allRows.push(...(data as T[]))
-          if (data.length < PAGE_SIZE) break
-          from += PAGE_SIZE
-        }
-        const record: Record<number, T[]> = {}
-        for (const row of allRows) {
-          const arr = record[row.model_id] || []
-          arr.push(row)
-          record[row.model_id] = arr
-        }
-        return record
-      },
-      [`${table}-by-model-ids`],
-      { revalidate: 86400, tags: [tag] }
-    ),
+    /** 複数モデルの価格ログを一括取得し、model_id ごとにグループ化して返す（自動ページネーション）
+     *  データ量が2MBを超える場合があるためunstable_cacheは使わず、ページレベルのrevalidateに委ねる */
+    getAllByModelIds: async (modelIds: number[]): Promise<Record<number, T[]>> => {
+      if (modelIds.length === 0) return {}
+      const PAGE_SIZE = 1000
+      const allRows: T[] = []
+      let from = 0
+      while (true) {
+        const { data, error } = await supabase
+          .from(table)
+          .select('*')
+          .in('model_id', modelIds)
+          .order('logged_at', { ascending: true })
+          .range(from, from + PAGE_SIZE - 1)
+        if (error || !data || data.length === 0) break
+        allRows.push(...(data as T[]))
+        if (data.length < PAGE_SIZE) break
+        from += PAGE_SIZE
+      }
+      const record: Record<number, T[]> = {}
+      for (const row of allRows) {
+        const arr = record[row.model_id] || []
+        arr.push(row)
+        record[row.model_id] = arr
+      }
+      return record
+    },
   }
 }
 

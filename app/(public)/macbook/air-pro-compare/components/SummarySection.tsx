@@ -25,7 +25,6 @@ export default async function SummarySection() {
             />
           </figure>
           <div className="popular-card-body">
-            <p className="popular-card-subtitle">目的別におすすめ機種を厳選！</p>
             <h3 className="popular-card-title">中古MacBookおすすめモデル</h3>
             <div className="popular-card-buttons">
               <a href="/macbook/recommend/" className="m-btn m-btn--primary">
