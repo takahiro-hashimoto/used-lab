@@ -77,9 +77,9 @@ export default function SpecTable({ specs, modelL, modelR, nameL, nameR }: Props
 
       {/* SP版: カード風レイアウト */}
       <div className={`m-card m-card--shadow ${s.sp}`} style={{ padding: 0, overflow: 'hidden' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', background: 'var(--color-bg-dark)', color: 'var(--color-text-inverse)', fontWeight: 700, fontSize: 'var(--font-size-base)', borderRadius: 'var(--radius-sm) var(--radius-sm) 0 0' }}>
-          <div style={{ textAlign: 'center', padding: 'var(--space-xs) var(--space-md)' }}>{nameL}</div>
-          <div style={{ textAlign: 'center', padding: 'var(--space-xs) var(--space-md)' }}>{nameR}</div>
+        <div className={s.spHeader}>
+          <div>{nameL}</div>
+          <div>{nameR}</div>
         </div>
         {results.map(({ spec, result }) => (
           <div key={spec.key} className={s.spRow}>

@@ -126,23 +126,21 @@ export default function RecommendDetailSection({ items }: Props) {
                   </dl>
                   {(priceRange.minPrice || priceRange.maxPrice) && (
                     <div className="recommend-card__price-card">
-                      <div className="recommend-card__price-header">
-                        <span>
+                      <p className="recommend-card__price-line">
+                        <span className="recommend-card__price-header">
                           <i className="fa-solid fa-tag" aria-hidden="true"></i> 中古相場（税込）
                         </span>
-                        <span className="recommend-card__price-date">
-                          {new Date().toLocaleDateString('ja-JP', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\//g, '/')} 時点
+                        <span className="recommend-card__price-range m-price-display m-price-display--sm">
+                          &yen;<strong>{priceRange.minPrice?.toLocaleString()}</strong>
+                          {priceRange.maxPrice && (
+                            <> ~ &yen;<strong>{priceRange.maxPrice.toLocaleString()}</strong></>
+                          )}
                         </span>
-                      </div>
-                      <p className="recommend-card__price-range m-price-display m-price-display--sm">
-                        &yen;<strong>{priceRange.minPrice?.toLocaleString()}</strong>
-                        {priceRange.maxPrice && (
-                          <> ~ &yen;<strong>{priceRange.maxPrice.toLocaleString()}</strong></>
-                        )}
                       </p>
-                      {latestPrice?.storage && annualCost && (
+                      {latestPrice?.storage && (
                         <p className="recommend-card__price-note">
-                          {model.model}（{latestPrice.storage}）　実質年単価 約{formatPrice(annualCost)}/年
+                          <span>{model.model}（{latestPrice.storage}）の場合</span>
+                          <span>最終更新日：{new Date().toLocaleDateString('ja-JP', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\//g, '/')}</span>
                         </p>
                       )}
                     </div>

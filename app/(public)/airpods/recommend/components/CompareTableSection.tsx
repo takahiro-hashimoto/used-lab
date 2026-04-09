@@ -166,8 +166,8 @@ export default function CompareTableSection({ items }: Props) {
 
         {/* 関連リンクカード */}
         <div className="l-grid l-grid--3col l-grid--gap-lg u-mt-2xl">
-          <Link href="/airpods/airpods-spec-table/" className="m-card m-card--shadow related-link-card related-link-card--icon">
-            <span className="related-link-card__icon related-link-card__icon--blue">
+          <Link href="/airpods/airpods-spec-table/" className="m-card m-card--shadow related-link-card related-link-card--icon m-card--hoverable">
+            <span className="related-link-card__icon related-link-card__icon--blue m-icon-box m-icon-box--sm">
               <i className="fa-solid fa-table-cells" aria-hidden="true"></i>
             </span>
             <p className="related-link-card__title">スペック比較表</p>
@@ -176,8 +176,8 @@ export default function CompareTableSection({ items }: Props) {
               <i className="fa-solid fa-chevron-right" aria-hidden="true"></i>
             </span>
           </Link>
-          <Link href="/airpods/used-airpods-support/" className="m-card m-card--shadow related-link-card related-link-card--icon">
-            <span className="related-link-card__icon">
+          <Link href="/airpods/used-airpods-support/" className="m-card m-card--shadow related-link-card related-link-card--icon m-card--hoverable">
+            <span className="related-link-card__icon m-icon-box m-icon-box--sm">
               <i className="fa-solid fa-clock-rotate-left" aria-hidden="true"></i>
             </span>
             <p className="related-link-card__title">サポート期間一覧</p>
@@ -186,8 +186,8 @@ export default function CompareTableSection({ items }: Props) {
               <i className="fa-solid fa-chevron-right" aria-hidden="true"></i>
             </span>
           </Link>
-          <Link href="/airpods/used-airpods-attention/" className="m-card m-card--shadow related-link-card related-link-card--icon">
-            <span className="related-link-card__icon">
+          <Link href="/airpods/used-airpods-attention/" className="m-card m-card--shadow related-link-card related-link-card--icon m-card--hoverable">
+            <span className="related-link-card__icon m-icon-box m-icon-box--sm">
               <i className="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>
             </span>
             <p className="related-link-card__title">購入時の注意点</p>
