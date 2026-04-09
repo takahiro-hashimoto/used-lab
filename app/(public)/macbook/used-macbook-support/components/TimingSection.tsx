@@ -11,7 +11,7 @@ const TIMING_CARDS: TimingCard[] = [
       <>
         <p>MacBookは発売から約7年が経過すると、最新のmacOSアップデート対象から外れる可能性が非常に高くなります。</p>
         <p>OSの更新が止まると下記のような支障が出ます。</p>
-        <ul className="media-card__list">
+        <ul className="media-card__list u-mb-md">
           <li>最新のmacOS機能が使えなくなる</li>
           <li>セキュリティアップデートが届かずリスクが高まる</li>
           <li>XcodeやAdobe製品などプロ向けアプリが次第に非対応になる</li>
@@ -49,7 +49,7 @@ const TIMING_CARDS: TimingCard[] = [
     content: (
       <>
         <p>MacBookを使用する中で下記のような不満を感じ始めたら、買い替えを検討するタイミングです。</p>
-        <ul className="media-card__list">
+        <ul className="media-card__list u-mb-md">
           <li>動画編集や書き出しに時間がかかるようになった</li>
           <li>複数アプリの同時起動でもたつくことが増えた</li>
           <li>ファンの音が常に気になる（Intel Macの場合）</li>

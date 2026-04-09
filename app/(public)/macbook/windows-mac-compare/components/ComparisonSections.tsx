@@ -144,9 +144,9 @@ export default function ComparisonSections() {
             PCゲームを楽しみたいならWindowsを選びましょう。理由は大きく2つあります。
           </p>
 
-          <ul className="media-card__list u-mt-sm">
-            <li><strong>Windows対応のゲームソフトがMacに比べて圧倒的に多い</strong></li>
-            <li><strong>WindowsはGPUやグラフィックボードを独自に拡張しやすい</strong>が、Macでは難しい</li>
+          <ul className="media-card__list">
+            <li>Windows対応のゲームソフトがMacに比べて圧倒的に多い</li>
+            <li>WindowsはGPUやグラフィックボードを独自に拡張しやすいが、Macでは難しい</li>
           </ul>
 
           <p className="media-card__desc u-mt-sm">

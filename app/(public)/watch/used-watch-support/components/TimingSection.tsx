@@ -11,7 +11,7 @@ const TIMING_CARDS: TimingCard[] = [
       <>
         <p>Apple Watchは発売から約5年が経過すると、最新のwatchOSアップデート対象から外れる可能性が非常に高くなります。</p>
         <p>OSの更新が止まると下記のような支障が出ます。</p>
-        <ul className="media-card__list">
+        <ul className="media-card__list u-mb-md">
           <li>最新の健康管理・フィットネス機能が使えなくなる</li>
           <li>セキュリティアップデートが届かずリスクが高まる</li>
         </ul>
@@ -27,7 +27,7 @@ const TIMING_CARDS: TimingCard[] = [
     content: (
       <>
         <p>Apple Watchは毎世代ヘルスケア・フィットネス関連の機能が大幅に進化しています。特に近年は下記のような機能が追加されています。</p>
-        <ul className="media-card__list">
+        <ul className="media-card__list u-mb-md">
           <li>血圧測定機能（Series 11〜）</li>
           <li>睡眠時無呼吸の検出（Series 10〜）</li>
           <li>ダブルタップジェスチャー（Series 9〜）</li>

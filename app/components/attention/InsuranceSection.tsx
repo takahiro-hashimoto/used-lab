@@ -13,9 +13,8 @@ export default function InsuranceSection({
           中古{productName}でも入れる保険
         </h2>
         <p className="m-section-desc">
-          中古{productName}は<strong>Apple Care+に加入できません</strong>（新品購入から30日以内が条件のため）。
+          中古{productName}はApple Care+に加入できないため、代わりに中古端末でも加入できる保険サービスを検討しましょう。
         </p>
-        <p className="m-section-desc">代わりに、中古端末でも加入できる保険サービスを検討しましょう。</p>
 
         {/* モバイル保険カード */}
         <div className="m-card m-card--shadow m-card--padded media-card--aside-footer insurance-card">

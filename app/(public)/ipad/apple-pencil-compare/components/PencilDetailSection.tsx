@@ -101,19 +101,19 @@ export default function PencilDetailSection() {
 
         <div className="pencil-detail-list">
           {DETAILS.map((d) => (
-            <div key={d.id} id={d.id} className="m-card m-card--shadow popular-card">
-              <figure className="popular-card-figure">
+            <div key={d.id} id={d.id} className="m-card m-card--shadow m-card--padded media-card--aside">
+              <div className="media-card__img-wrap">
                 <Image
                   src={d.image}
                   alt={d.title}
                   width={240}
                   height={160}
                   loading="lazy"
-                  className="popular-card-img"
+                  className="media-card__img"
                 />
-              </figure>
-              <div className="popular-card-body">
-                <p className="popular-card-title">{d.title}</p>
+              </div>
+              <div className="media-card__body">
+                <h3 className="media-card__title">{d.title}</h3>
                 {d.items.map((item, i) => (
                   <div key={i} className="pencil-detail-item">
                     {item.label && <p className="pencil-detail-item__label"><strong>{item.label}</strong></p>}
@@ -141,3 +141,4 @@ export default function PencilDetailSection() {
     </section>
   )
 }
+

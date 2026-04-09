@@ -7,7 +7,7 @@ export default function CreativeSection() {
     <HowtoSection
       id="creative"
       title="iPadがあればできること【クリエイティブ編】"
-      description={<>iPadはクリエイティブな活動とも、相性が良いデバイスです。最後にこの章では、iPadのクリエイティブな利用方法を5つ紹介します。</>}
+      description={<>iPadはクリエイティブな活動とも、相性が良いデバイスです。最後にiPadのクリエイティブな利用方法を5つ紹介します。</>}
     >
 
       {/* 19. 動画編集をする */}

@@ -18,7 +18,7 @@ export default function MacbookStrengths() {
           <p className="media-card__desc">
             以下の理由から、WebデザインもMacBookで作業するのがおすすめです。
           </p>
-          <ul className="media-card__list">
+          <ul className="media-card__list u-mb-md">
             <li>Webデザインに使うアプリが豊富で、効率よく制作が進められる</li>
             <li>デザイナーがよく使うフォントがインストール済み</li>
             <li>Retinaディスプレイの高解像度と発色の圧倒的な美しさ</li>
@@ -46,7 +46,7 @@ export default function MacbookStrengths() {
           <p className="media-card__desc">
             プログラミングをするならMacBookを使用するのがおすすめです。理由は以下の通りです。
           </p>
-          <ul className="media-card__list u-mt-sm">
+          <ul className="media-card__list u-mb-md">
             <li>開発に必要な「ターミナル」がすぐに使える</li>
             <li>iOSアプリの開発もできる</li>
             <li>Boot Campを使えば「Windows」のインストールも可能</li>
@@ -73,7 +73,7 @@ export default function MacbookStrengths() {
           <p className="media-card__desc">
             本格的な動画編集をするならMacBookを使用するのがおすすめです。理由は以下の通りです。
           </p>
-          <ul className="media-card__list">
+          <ul className="media-card__list u-mb-md">
             <li>ショートカットを駆使して効率よく作業ができる</li>
             <li>Adobe Premiere ProやFinal Cut Proなどを最大限活かせる</li>
           </ul>
@@ -102,7 +102,7 @@ export default function MacbookStrengths() {
           <p className="media-card__desc">
             エクセルを使って複雑な計算や処理を行う場合にはMacBookがおすすめです。理由は以下の通りです。
           </p>
-          <ul className="media-card__list u-mt-sm">
+          <ul className="media-card__list u-mb-md">
             <li>Mac版とiPad版のエクセルではアプリのレイアウトが異なる</li>
             <li>iPadはマクロの実行に制限があり、複雑な処理に向かない</li>
           </ul>

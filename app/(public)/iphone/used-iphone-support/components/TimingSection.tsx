@@ -11,7 +11,7 @@ const TIMING_CARDS: TimingCard[] = [
       <>
         <p>iPhoneは発売から約7年が経過すると、最新のiOSアップデート対象から外れる可能性が非常に高くなります。</p>
         <p>OSの更新が止まると下記のような支障が出ます。</p>
-        <ul className="media-card__list">
+        <ul className="media-card__list u-mb-md">
           <li>セキュリティアップデートが届かずリスクが高まる</li>
           <li>LINEや金融系アプリなどが次第に非対応になる</li>
           <li>最新のiOS機能が使えなくなる</li>
@@ -58,7 +58,7 @@ const TIMING_CARDS: TimingCard[] = [
     content: (
       <>
         <p>iPhoneを使用する中で下記のように性能面の不満を感じ始めたら、買い替えを検討するタイミングといっていいでしょう。</p>
-        <ul className="media-card__list">
+        <ul className="media-card__list u-mb-md">
           <li>ゲームなどをしていると処理が重く感じる</li>
           <li>発熱が頻繁に気になるようになった</li>
           <li>写真や動画の映りが微妙に感じる</li>

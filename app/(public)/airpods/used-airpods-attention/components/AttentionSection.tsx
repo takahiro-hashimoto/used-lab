@@ -8,7 +8,7 @@ export default function AttentionSection() {
         <h2 className="m-section-heading m-section-heading--lg" id="heading-attention">
           中古AirPodsを購入する際の注意点8つ
         </h2>
-        <p className="m-section-desc">中古AirPodsをお店で購入する場合もメルカリやヤフオクなどで個人から購入する場合もどちらにも該当する内容なので、しっかり確認していきましょう。</p>
+        <p className="m-section-desc">バッテリーの劣化や衛生面、充電端子の違いなど、中古AirPods購入前に確認しておきたいポイントを解説します。</p>
 
         {/* 1. コピー品 */}
         <MediaCard
@@ -96,7 +96,7 @@ export default function AttentionSection() {
             <p>
               AirPods Proシリーズはシリコン製のイヤーチップが取り外し可能で、<strong>Appleの純正イヤーチップに交換すれば衛生的に使用できます</strong>。イヤーチップは2セット（税込980円〜）で購入可能です。
             </p>
-            <ul className="media-card__list">
+            <ul className="media-card__list u-mb-md">
               <li>AirPods Pro系はイヤーチップを新品に交換する</li>
               <li>本体やケースは柔らかい布やアルコールシートで清掃する</li>
               <li>スピーカーメッシュ部分は乾いた綿棒で耳垢を除去する</li>
@@ -165,15 +165,10 @@ export default function AttentionSection() {
         >
           <div className="media-card__desc m-rich-text">
             <p>
-              中古市場では同じモデルでも<strong>Lightning版とUSB-C版が混在して販売されている</strong>ため、購入前に必ず充電端子を確認しましょう。
+              AirPodsは同じモデルでもLightning版とUSB-C版が混在して販売されている商品があります。そのため、購入前に必ず充電端子を確認しましょう。
             </p>
-            <ul className="media-card__list">
-              <li>AirPods Pro 2にはLightning版（MQD83J/A）とUSB-C版（MTJV3J/A）がある</li>
-              <li>AirPods（第3世代）にもLightning版とUSB-C版が存在する</li>
-              <li>手持ちの充電ケーブルとの互換性を事前に確認する</li>
-            </ul>
             <p>
-              Lightning版は価格が安い傾向にありますが、iPhoneもUSB-Cに移行しているため、充電環境の統一を重視するならUSB-Cモデルを選びましょう。
+              Lightning版は価格が安い傾向にありますが、iPhoneもUSB-Cに移行しているため、充電環境の統一を重視するならUSB-Cモデルがおすすめです。
             </p>
           </div>
         </MediaCard>

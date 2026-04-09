@@ -335,24 +335,6 @@ export default function StyleGuidePage() {
               </div>
             </div>
 
-            {/* Media Card */}
-            <h3 className="m-sub-heading" style={{ marginTop: 'var(--space-2xl)' }}>メディアカード（media-card）</h3>
-            <div className="m-card m-card--shadow m-card--padded" style={{ marginTop: 'var(--space-md)' }}>
-              <div className="media-card__img-wrap">
-                <div style={{ width: 240, height: 160, background: 'var(--color-bg-subtle)', borderRadius: 'var(--radius-sm)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <i className="fa-solid fa-image" style={{ fontSize: 32, color: 'var(--color-text-muted)' }} aria-hidden="true"></i>
-                </div>
-              </div>
-              <div className="media-card__body">
-                <h3 className="media-card__title">media-card__title</h3>
-                <p className="media-card__desc">media-card__desc — 記事ページのカード型セクションで使用。画像 + テキストの横並びレイアウト。</p>
-                <ul className="media-card__list" style={{ marginTop: 'var(--space-sm)' }}>
-                  <li>media-card__list の項目1</li>
-                  <li>media-card__list の項目2</li>
-                </ul>
-              </div>
-            </div>
-
             <h3 className="m-sub-heading" style={{ marginTop: 'var(--space-2xl)' }}>チェックポイントカード（post-check-item）</h3>
             <p className="m-desc-text" style={{ marginTop: 'var(--space-sm)' }}>アイコン付き見出し + 説明文のカード。用途別ガイドやチェックリストに使用。</p>
             <div className="l-grid l-grid--2col u-mt-xl" style={{ gap: 'var(--space-lg)' }}>

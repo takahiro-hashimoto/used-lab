@@ -19,7 +19,7 @@ export default function IpadStrengths() {
             iPadの強力な武器のひとつが<strong>Apple Pencilを利用できる</strong>という点です。Apple Pencilがあれば授業のノートを取ったり、手書きでメモを取るのが簡単に行えます。
           </p>
           <p className="media-card__desc">iPadでノートを取れるメリットはさらに下記のような点も。</p>
-          <ul className="media-card__list">
+          <ul className="media-card__list u-mb-md">
             <li>メモした内容をPDF化して共有できる</li>
             <li>ペンの色や太さなどを自由に調整できる</li>
             <li>タグ付けやリンクの挿入も可能</li>
@@ -69,7 +69,7 @@ export default function IpadStrengths() {
         <div className="media-card__body">
           <h3 className="media-card__title">写真編集</h3>
           <p className="media-card__desc">写真の編集はiPadのほうが向いています。理由は以下の通りです。</p>
-          <ul className="media-card__list">
+          <ul className="media-card__list u-mb-md">
             <li>明るさ・色味などのパラメータ調整はタッチ操作のほうが便利</li>
             <li>携帯性に優れており、場所を選ばずに編集できる</li>
           </ul>

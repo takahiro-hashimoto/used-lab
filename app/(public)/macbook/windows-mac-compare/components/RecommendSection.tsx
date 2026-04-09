@@ -14,14 +14,14 @@ export default function RecommendSection() {
           <div className="m-card m-card--shadow m-card--padded">
             <h3 className="popular-card-title">Windowsがおすすめな人</h3>
             <div className="m-card u-mt-sm" style={{ padding: 'var(--space-lg)' }}>
-              <ul style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)', lineHeight: 2, paddingLeft: 'var(--space-lg)', listStyle: 'disc' }}>
+              <ul className="info-card__list">
                 <li>Officeツールの使用頻度が高いビジネス職の人</li>
                 <li>豊富な選択肢の中からパソコンを選びたい人</li>
                 <li>パソコンのカスタマイズを自由に行いたい人</li>
                 <li>ゲームプレイを楽しみたい人</li>
               </ul>
             </div>
-            <p className="popular-card-desc u-mt-sm">
+            <p className="media-card__desc u-mt-sm">
               仕事でOfficeツールをよく使ったり、一緒に仕事をする人にWindowsユーザーが多い場合はWindows PCを選ぶとファイル共有などで困ることが少ないです。目的と予算に合ったパソコンを選びやすく、購入後のカスタマイズの幅が広いのも魅力。<strong>ゲーミングPCが欲しい場合は対応ソフトが圧倒的に多いWindows PC一択</strong>です。
             </p>
           </div>
@@ -30,14 +30,14 @@ export default function RecommendSection() {
           <div className="m-card m-card--shadow m-card--padded">
             <h3 className="popular-card-title">Macがおすすめな人</h3>
             <div className="m-card u-mt-sm" style={{ padding: 'var(--space-lg)' }}>
-              <ul style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)', lineHeight: 2, paddingLeft: 'var(--space-lg)', listStyle: 'disc' }}>
+              <ul className="info-card__list">
                 <li>デザイナーやプログラマーなどの職業の人</li>
                 <li>シンプルな使い勝手のパソコンが欲しい人</li>
                 <li>パソコン選びに自信がなく、無難なPCが欲しい人</li>
                 <li>iPhoneやiPadなどApple製品をお持ちの方</li>
               </ul>
             </div>
-            <p className="popular-card-desc u-mt-sm">
+            <p className="media-card__desc u-mt-sm">
               デザイナーやプログラマーなどクリエイティブ系の職業の方や、これからクリエイティブ系の仕事を目指す学生の方にはMacがおすすめです。
             </p>
 
@@ -56,7 +56,7 @@ export default function RecommendSection() {
               </div>
             </dl>
 
-            <p className="popular-card-desc u-mt-sm">
+            <p className="media-card__desc u-mt-sm">
               またMacBookは製品ラインナップが絞られており、一番安価なMacBook Airを購入してもそこそこハイスペックなモデルです。<strong>パソコン選びに自信がなく失敗しない一台がほしい方</strong>にもおすすめ。ある程度のスペックがあるので、後から動画編集などの重い作業を始めたくなっても買い替えなしで対応できます。
             </p>
           </div>

@@ -16,10 +16,7 @@ export default async function ShopSection() {
           中古AirPodsを買うのにおすすめのECサイト
         </h2>
         <p className="m-section-desc">
-          中古AirPods販売店の比較情報。保証内容、価格、在庫の豊富さなど、
-        </p>
-        <p className="m-section-desc">
-          各ショップの特徴を一覧表で整理しました。
+          保証内容や価格、在庫の豊富さなど、中古AirPods販売店の特徴を一覧表で比較しました。
         </p>
 
         <VendorCardGrid cards={vendorCards} />

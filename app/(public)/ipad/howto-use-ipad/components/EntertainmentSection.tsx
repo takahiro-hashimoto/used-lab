@@ -65,7 +65,7 @@ export default function EntertainmentSection() {
         </p>
         <InfoCard heading="おすすめのゲームアプリ">
           <li><a href="https://genshin.hoyoverse.com/ja" rel="nofollow noopener" target="_blank">原神</a></li>
-          <li>三国志真戦</li>
+          <li><a href="https://apps.apple.com/jp/app/%E4%B8%89%E5%9C%8B%E5%BF%97-%E7%9C%9F%E6%88%A6/id1524742294" rel="nofollow noopener" target="_blank">三国志真戦</a></li>
           <li><a href="https://apps.apple.com/jp/app/%E3%83%9E%E3%83%AA%E3%82%AA%E3%82%AB%E3%83%BC%E3%83%88-%E3%83%84%E3%82%A2%E3%83%BC/id1293634699" rel="nofollow noopener" target="_blank">マリオカートツアー</a></li>
         </InfoCard>
       </MediaCard>

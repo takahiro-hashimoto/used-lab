@@ -17,7 +17,7 @@ export default function SummarySection() {
                 <i className="fa-brands fa-windows" aria-hidden="true" style={{ marginRight: 'var(--space-xs)' }}></i>
                 Windowsが向いている人
               </h3>
-              <ul className="u-mt-sm" style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)', lineHeight: 2, paddingLeft: 'var(--space-lg)', listStyle: 'disc' }}>
+              <ul className="info-card__list">
                 <li>予算や用途に合わせて柔軟に選びたい</li>
                 <li>Officeやビジネスソフトを多用する</li>
                 <li>PCゲームを楽しみたい</li>
@@ -32,7 +32,7 @@ export default function SummarySection() {
                 <i className="fa-brands fa-apple" aria-hidden="true" style={{ marginRight: 'var(--space-xs)' }}></i>
                 Macが向いている人
               </h3>
-              <ul className="u-mt-sm" style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)', lineHeight: 2, paddingLeft: 'var(--space-lg)', listStyle: 'disc' }}>
+              <ul className="info-card__list">
                 <li>長時間バッテリーで持ち運びたい</li>
                 <li>iPhone・iPadと連携して使いたい</li>
                 <li>デザイン・動画編集・プログラミング用途</li>

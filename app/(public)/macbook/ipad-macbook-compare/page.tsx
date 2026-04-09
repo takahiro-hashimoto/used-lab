@@ -267,8 +267,8 @@ export default function IpadMacbookComparePage() {
                     <i className="fa-solid fa-tablet-screen-button" aria-hidden="true" style={{ marginRight: 'var(--space-xs)' }}></i>
                     Apple Pencilに惹かれたら → iPad
                   </h3>
-                  <ul className="u-mt-sm" style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)', lineHeight: 2, paddingLeft: 'var(--space-lg)', listStyle: 'disc' }}>
-                    <li><strong>Apple Pencilが使える</strong>のがiPad最大の武器</li>
+                  <ul className="info-card__list">
+                    <li>Apple Pencilが使えるのがiPad最大の武器</li>
                     <li>ノート・イラスト・写真編集との相性が抜群</li>
                     <li>タッチ操作で直感的に扱える</li>
                     <li>携帯性が高く場所を選ばない</li>
@@ -281,7 +281,7 @@ export default function IpadMacbookComparePage() {
                     <i className="fa-solid fa-laptop" aria-hidden="true" style={{ marginRight: 'var(--space-xs)' }}></i>
                     それ以外なら → MacBook
                   </h3>
-                  <ul className="u-mt-sm" style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)', lineHeight: 2, paddingLeft: 'var(--space-lg)', listStyle: 'disc' }}>
+                  <ul className="info-card__list">
                     <li>Apple Pencilに惹かれないならMacBookのほうが後悔が少ない</li>
                     <li>同等スペックをiPadで揃えると価格がMacBookより高い</li>
                     <li>iPad版アプリは機能制限されていることが多い</li>

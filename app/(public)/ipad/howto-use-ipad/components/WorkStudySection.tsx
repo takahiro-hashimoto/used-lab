@@ -98,10 +98,10 @@ export default function WorkStudySection() {
         <p className="media-card__desc">
           Mac上のデータにiPadからリアルタイムで書き込みができる「連携マークアップ」も非常に便利な機能です。Macへ画像を転送する手間を省き、iPadのペン操作を活かして直感的に編集を行えます。
         </p>
-        <InfoCard>
+        <ul className="media-card__list">
           <li>サムネイル作成：写真に手書きテキストを加え、味のある画像に仕上げる</li>
           <li>デザイン修正：資料やデザイン案に、手書きで直接指示を書き込む</li>
-        </InfoCard>
+        </ul>
         <p className="media-card__desc u-mt-md">
           Macの大きな画面で作業しつつ、iPadを「高機能な液タブ」のように併用できるこの連携は、クリエイティブな作業効率を劇的に高めてくれます。
         </p>

@@ -74,7 +74,7 @@ export default function BenchmarkSection({ models }: Props) {
               </div>
               <div className="m-card m-card--shadow" style={{ padding: 'var(--space-lg, 20px)' }}>
                 <p className="glossary-item-title">マルチスコア</p>
-                <p className="glossary-item-desc">複数のCPUコアを同時に使ったときの処理能力でゲームや動画編集などの重たい作業に効果を発揮する</p>
+                <p className="glossary-item-desc">複数のCPUコアを同時に使ったときの処理能力でゲームや動画編集などの重たい作業に効果を発揮</p>
               </div>
               <div className="m-card m-card--shadow" style={{ padding: 'var(--space-lg, 20px)' }}>
                 <p className="glossary-item-title">メタルスコア</p>

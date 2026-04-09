@@ -127,10 +127,8 @@ export default function LifestyleSection() {
           手ぶらでのビデオ通話や、家族との近況報告にも使いやすく、テレビ電話のストレスを減らしてくれます。
         </p>
         <InfoCard heading="おすすめのビデオチャットアプリ">
-          <p className="info-card__desc">
-            <a href="https://apps.apple.com/jp/app/facetime/id1110145091" target="_blank" rel="noopener">FaceTime</a>／
-            <a href="https://apps.apple.com/jp/app/zoom-one-platform-to-connect/id546505307" target="_blank" rel="noopener">ZOOM</a>
-          </p>
+          <li><a href="https://apps.apple.com/jp/app/facetime/id1110145091" target="_blank" rel="noopener">FaceTime</a></li>
+          <li><a href="https://apps.apple.com/jp/app/zoom-one-platform-to-connect/id546505307" target="_blank" rel="noopener">ZOOM</a></li>
         </InfoCard>
       </MediaCard>
 

@@ -9,7 +9,6 @@ import RecommendSection from './components/RecommendSection'
 import UseCaseSection from './components/UseCaseSection'
 import PriceCompareSection from './components/PriceCompareSection'
 import FaqSection from './components/FaqSection'
-import SummarySection from './components/SummarySection'
 import { getAllMacBookModels, getLatestMacBookPriceLog } from '@/lib/queries'
 import type { MacBookPriceLog } from '@/lib/types'
 import AuthorByline from '@/app/components/AuthorByline'
@@ -242,8 +241,6 @@ export default async function AirProComparePage() {
           {/* FAQ */}
           <FaqSection />
 
-          {/* まとめ */}
-          <SummarySection />
 
           <MacBookArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/macbook/air-pro-compare/", "/macbook/recommend/"]} />
         </div>

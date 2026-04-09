@@ -403,7 +403,7 @@ export default async function IPadGuidePage() {
 
               <div className="l-grid l-grid--2col l-grid--gap-lg u-mb-xl">
                 <IconCard icon="fa-solid fa-film" title="エンタメ">
-                  <ul style={{ paddingLeft: 'var(--space-lg)', listStyle: 'disc', lineHeight: 2, fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)' }}>
+                  <ul className="media-card__list">
                     <li>大画面での動画視聴（Netflix・Amazon Prime Video・YouTube）</li>
                     <li>電子書籍・マンガ（Kindle・楽天kobo）</li>
                     <li>ゲーム（原神など高グラフィックタイトルに対応）</li>
@@ -411,7 +411,7 @@ export default async function IPadGuidePage() {
                   </ul>
                 </IconCard>
                 <IconCard icon="fa-solid fa-palette" title="クリエイティブ">
-                  <ul style={{ paddingLeft: 'var(--space-lg)', listStyle: 'disc', lineHeight: 2, fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)' }}>
+                  <ul className="media-card__list">
                     <li>Apple Pencilを使ったイラスト制作（Procreate・CLIP STUDIO PAINT）</li>
                     <li>写真編集・RAW現像（Lightroom・Snapseed）</li>
                     <li>動画編集（LumaFusion・iMovie）</li>
@@ -419,7 +419,7 @@ export default async function IPadGuidePage() {
                   </ul>
                 </IconCard>
                 <IconCard icon="fa-solid fa-graduation-cap" title="勉強・仕事">
-                  <ul style={{ paddingLeft: 'var(--space-lg)', listStyle: 'disc', lineHeight: 2, fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)' }}>
+                  <ul className="media-card__list">
                     <li>手書きノート（GoodNotes・Notability）</li>
                     <li>PDFへの書き込み・教科書のデジタル化</li>
                     <li>Split Viewを使ったながら勉強・マルチタスク</li>
@@ -428,7 +428,7 @@ export default async function IPadGuidePage() {
                   </ul>
                 </IconCard>
                 <IconCard icon="fa-solid fa-house" title="暮らし・その他">
-                  <ul style={{ paddingLeft: 'var(--space-lg)', listStyle: 'disc', lineHeight: 2, fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)' }}>
+                  <ul className="media-card__list">
                     <li><Link href="/ipad/car-navigation-system/" style={{ color: 'var(--color-primary)' }}>カーナビ代わり</Link>に大画面で地図表示</li>
                     <li>レシピを見ながら料理</li>
                     <li>スマートホームの操作パネル（HomeKit）</li>

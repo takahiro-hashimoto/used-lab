@@ -43,10 +43,10 @@ export default function TipsSection() {
                   <i className="fa-solid fa-gear" aria-hidden="true"></i>
                   設定方法
                 </p>
-                <ol className="media-card__list">
-                  <li>Apple Watchで「<strong>設定App</strong>」を開く</li>
-                  <li>「<strong>アクセシビリティ</strong>」→「<strong>AssistiveTouch</strong>」をタップ</li>
-                  <li>「<strong>AssistiveTouch</strong>」をタップしてオンに切り替える</li>
+                <ol className="info-card__list">
+                  <li>Apple Watchで「設定App」を開く</li>
+                  <li>「アクセシビリティ」→「AssistiveTouch」をタップ</li>
+                  <li>「AssistiveTouch」をタップしてオンに切り替える</li>
                 </ol>
               </div>
             </div>
@@ -77,10 +77,10 @@ export default function TipsSection() {
                   <i className="fa-solid fa-gear" aria-hidden="true"></i>
                   設定方法
                 </p>
-                <ol className="media-card__list">
-                  <li>iPhoneのホーム画面にある「<strong>Watchアプリ</strong>」を開く</li>
-                  <li>「<strong>一般</strong>」→「<strong>画面をスリープ解除</strong>」をタップ</li>
-                  <li>「<strong>70秒間スリープ解除</strong>」にチェックを入れる</li>
+                <ol className="info-card__list">
+                  <li>iPhoneのホーム画面にある「Watchアプリ」を開く</li>
+                  <li>「一般」→「画面をスリープ解除」をタップ</li>
+                  <li>「70秒間スリープ解除」にチェックを入れる</li>
                 </ol>
               </div>
             </div>

@@ -380,13 +380,12 @@ export default async function WatchGuidePage() {
           <section className="l-section" id="usage" aria-labelledby="heading-usage">
             <div className="l-container">
               <h2 className="m-section-heading m-section-heading--lg" id="heading-usage">Apple Watchのできること・活用シーン</h2>
-              <p className="m-section-desc">「Apple Watchって何ができるの？」という疑問をお持ちの方へ。</p>
-              <p className="m-section-desc">Apple Watchは通知や決済などの日常機能に加え、健康管理やApple製品との連携まで幅広く活躍するデバイスです。</p>
+              <p className="m-section-desc">「Apple Watchって何ができるの？」という疑問をお持ちの方へ具体例をご紹介します。</p>
 
               <div className="l-grid l-grid--2col l-grid--gap-lg u-mb-xl">
                 <IconCard icon="fa-solid fa-clock" title="基本機能">
-                  <ul style={{ paddingLeft: 'var(--space-lg)', listStyle: 'disc', lineHeight: 2, fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)' }}>
-                    <li>iPhoneの通知確認・LINEやメッセージの閲覧</li>
+                  <ul className="media-card__list">
+                    <li>iPhoneの通知確認・LINEメッセージの閲覧</li>
                     <li>電話の発着信・Siriでのタイマー操作</li>
                     <li>経路案内（徒歩ナビ）・振動アラーム</li>
                     <li>文字盤カスタマイズ・バンド交換</li>
@@ -394,23 +393,23 @@ export default async function WatchGuidePage() {
                   </ul>
                 </IconCard>
                 <IconCard icon="fa-solid fa-heart-pulse" title="健康・フィットネス">
-                  <ul style={{ paddingLeft: 'var(--space-lg)', listStyle: 'disc', lineHeight: 2, fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)' }}>
+                  <ul className="media-card__list">
                     <li>フィットネスアプリで1日の活動量を管理</li>
-                    <li>ワークアウト（ランニング・ウォーキング・水泳など）</li>
+                    <li>ワークアウト（ランニング・ウォーキングなど）</li>
                     <li>睡眠トラッキング・睡眠の質チェック</li>
                     <li>心拍数モニタリング・心電図（ECG）</li>
                     <li>血中酸素濃度（SpO2）測定・転倒検出</li>
                   </ul>
                 </IconCard>
                 <IconCard icon="fa-solid fa-credit-card" title="決済・電子マネー">
-                  <ul style={{ paddingLeft: 'var(--space-lg)', listStyle: 'disc', lineHeight: 2, fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)' }}>
+                  <ul className="media-card__list">
                     <li>Suica・PASMOで改札をタッチ通過</li>
                     <li>Apple Payでコンビニ・店舗の電子決済</li>
                     <li>PayPay・楽天ペイなどQRコード決済</li>
                   </ul>
                 </IconCard>
                 <IconCard icon="fa-brands fa-apple" title="Apple製品連携">
-                  <ul style={{ paddingLeft: 'var(--space-lg)', listStyle: 'disc', lineHeight: 2, fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)' }}>
+                  <ul className="media-card__list">
                     <li>「iPhoneを探す」で遠隔から音を鳴らす</li>
                     <li>置き忘れ防止通知</li>
                     <li>iPhone・MacBookのロック解除</li>

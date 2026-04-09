@@ -12,7 +12,7 @@ const TIMING_CARDS: TimingCard[] = [
       <>
         <p>これまで解説した通り、iPadは発売から約7年が経過すると、最新のiPadOSアップデート対象から外れる可能性が非常に高くなります。</p>
         <p>OSの更新が止まると下記のような支障が出ます。</p>
-        <ul className="media-card__list">
+        <ul className="media-card__list u-mb-md">
           <li>最新のiPadOS機能が使えなくなる</li>
           <li>セキュリティアップデートが届かずリスクが高まる</li>
           <li>主要アプリが次第に非対応になり使えなくなる</li>
@@ -41,7 +41,7 @@ const TIMING_CARDS: TimingCard[] = [
     content: (
       <>
         <p>iPadを使用する中で下記のような不満を感じ始めたら、買い替えを検討するタイミングです。</p>
-        <ul>
+        <ul className="media-card__list u-mb-md">
           <li>Apple Pencilでのイラスト作成や動画編集が重く感じる</li>
           <li>マルチタスク（Split View等）の切り替えがもたつく</li>
           <li>ゲームプレイ中にカクつきや発熱が気になる</li>

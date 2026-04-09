@@ -319,18 +319,21 @@ export default function WifiCellularPage() {
                   <div className="media-card__body">
                     <h3 className="media-card__title">GPS機能搭載</h3>
                     <p className="media-card__desc">
-                      正確な位置情報を特定するGPS機能はセルラーモデルのみに搭載されています。iPadをカーナビ代わりに使いたい方や、登山・サイクリングなどでルート記録を残したい方にとっては欠かせない機能です。
+                      正確な位置情報を特定するGPS機能はセルラーモデルのみに搭載されています。
                     </p>
                     <p className="media-card__desc">
                       GPS機能があると下記のようなアプリをiPadから利用することが可能です。
                     </p>
-                    <ul className="media-card__list">
+                    <ul className="media-card__list u-mb-md">
                       <li>Googleマップ、Yahoo!カーナビなどマップ情報を活用したアプリ</li>
                       <li>ポケモンGO、ドラクエウォークなど位置情報を活用したアプリ</li>
                       <li>Strava、YAMAPなどアウトドア系のルート記録アプリ</li>
                     </ul>
                     <p className="media-card__desc">
-                      ちなみにWi-FiモデルのiPadでもネット接続をすれば位置情報を取得することは可能です。ただし、Wi-Fiの電波強度を元に位置を推定する仕組みのため、GPS機能を搭載したセルラーモデルと比較すると精度がやや劣ります。特に屋外や移動中はズレが大きくなるので注意が必要です。
+                      ちなみにWi-FiモデルのiPadでもネット接続をすれば位置情報を取得することは可能。
+                    </p>
+                    <p className="media-card__desc">
+                      ただし、Wi-Fiの電波強度を元に位置を推定する仕組みのため、GPS機能を搭載したセルラーモデルと比較すると精度がやや劣ります。特に屋外や移動中はズレが大きくなるので注意が必要です。
                     </p>
                     <p className="lead-link">
                       <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
