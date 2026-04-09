@@ -74,7 +74,7 @@ export default async function BenchmarkPage() {
   const benchModels = allModels
     .filter((m) => m.score_single != null && m.score_multi != null && m.score_metal != null)
     .map((m) => {
-      const logs = priceLogsMap.get(m.id) || []
+      const logs = priceLogsMap[m.id] || []
       let latestLog: IPhonePriceLog | null = null
       for (const log of logs) {
         if (!latestLog || log.logged_at > latestLog.logged_at) latestLog = log

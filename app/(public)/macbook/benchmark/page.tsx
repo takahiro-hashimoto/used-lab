@@ -103,7 +103,7 @@ export default async function BenchmarkPage() {
   const benchModels: BenchModelEntry[] = []
 
   for (const m of allModels) {
-    const logs = priceLogsMap.get(m.id) || []
+    const logs = priceLogsMap[m.id] || []
     let latestLog: MacBookPriceLog | null = null
     for (const log of logs) {
       if (!latestLog || log.logged_at > latestLog.logged_at) latestLog = log

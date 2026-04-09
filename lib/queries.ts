@@ -138,8 +138,8 @@ function createPriceLogQueries<T extends { model_id: number }>(table: string, ta
 
     /** 複数モデルの価格ログを一括取得し、model_id ごとにグループ化して返す（自動ページネーション） */
     getAllByModelIds: unstable_cache(
-      async (modelIds: number[]): Promise<Map<number, T[]>> => {
-        if (modelIds.length === 0) return new Map()
+      async (modelIds: number[]): Promise<Record<number, T[]>> => {
+        if (modelIds.length === 0) return {}
         const PAGE_SIZE = 1000
         const allRows: T[] = []
         let from = 0
@@ -155,13 +155,13 @@ function createPriceLogQueries<T extends { model_id: number }>(table: string, ta
           if (data.length < PAGE_SIZE) break
           from += PAGE_SIZE
         }
-        const map = new Map<number, T[]>()
+        const record: Record<number, T[]> = {}
         for (const row of allRows) {
-          const arr = map.get(row.model_id) || []
+          const arr = record[row.model_id] || []
           arr.push(row)
-          map.set(row.model_id, arr)
+          record[row.model_id] = arr
         }
-        return map
+        return record
       },
       [`${table}-by-model-ids`],
       { revalidate: 86400, tags: [tag] }

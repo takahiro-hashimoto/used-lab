@@ -83,7 +83,7 @@ export default async function StorageGuidePage() {
   const priceLogsMap = await getAllIPhonePriceLogsByModelIds(allModels.map((m) => m.id))
 
   const storageModels: StorageModel[] = allModels.map((m) => {
-    const logs = priceLogsMap.get(m.id) || []
+    const logs = priceLogsMap[m.id] || []
 
     // 最新のログを取得
     let latestLog: IPhonePriceLog | null = null

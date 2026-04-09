@@ -147,7 +147,7 @@ export default async function AirPodsPriceInfoPage() {
 
   for (let i = 0; i < allModels.length; i++) {
     const model = allModels[i]
-    const logs = filterLast3Months(priceLogsMap.get(model.id) || [])
+    const logs = filterLast3Months(priceLogsMap[model.id] || [])
 
     // AirPodsにはstorageフィールドがないためスキップ
 

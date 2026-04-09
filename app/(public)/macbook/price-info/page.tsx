@@ -144,7 +144,7 @@ export default async function MacBookPriceInfoPage() {
   const modelsData: ModelData[] = []
 
   for (const model of allModels) {
-    const logs = filterLast3Months(priceLogsMap.get(model.id) || [])
+    const logs = filterLast3Months(priceLogsMap[model.id] || [])
 
     // 最小容量をログから取得
     const storageSet = new Set<number>()

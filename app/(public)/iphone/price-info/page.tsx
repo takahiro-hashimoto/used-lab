@@ -160,7 +160,7 @@ export default async function IPhonePriceInfoPage() {
 
   for (let i = 0; i < allModels.length; i++) {
     const model = allModels[i]
-    const logs = filterLast3Months(priceLogsMap.get(model.id) || [])
+    const logs = filterLast3Months(priceLogsMap[model.id] || [])
     const osLife = calculateOSLifespan(model.date, model.last_ios)
 
     // 価格ログから最低容量を取得
