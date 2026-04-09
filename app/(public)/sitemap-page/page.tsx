@@ -94,10 +94,11 @@ export default async function SitemapPage() {
 
   const categories = resolveCategories(labelParams)
 
-  const toMeta = (m: { date: string | null; cpu: string | null }) => {
+  const toMeta = (m: { date: string | null; cpu?: string | null; chip?: string | null }) => {
     const parts: string[] = []
     if (m.date) parts.push(`${m.date}発売`)
     if (m.cpu) parts.push(m.cpu)
+    else if (m.chip) parts.push(m.chip)
     return parts.join(' / ') || ''
   }
 
