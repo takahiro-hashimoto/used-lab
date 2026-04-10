@@ -228,7 +228,7 @@ export default async function NetworkLimitPage() {
                 わざわざネットワーク制限△を買うメリットなんてないと思う方も多いでしょう。しかし、実は魅力的な点も。
               </p>
 
-              <div className="recommend-card__fit u-mt-xl">
+              <div className="u-mb-xl">
                 <div className="l-grid l-grid--2col l-grid--gap-lg">
                   <div className="recommend-card__fit-box recommend-card__fit-box--good">
                     <p className="recommend-card__fit-title">
