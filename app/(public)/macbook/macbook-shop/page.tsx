@@ -21,7 +21,6 @@ import FleaMarketSection from './components/FleaMarketSection'
 import ChecklistSection from './components/ChecklistSection'
 import ConclusionSection from './components/ConclusionSection'
 import FaqSection from './components/FaqSection'
-import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import { getHeroImage } from '@/lib/data/hero-images'
 import HeroMeta from '@/app/components/HeroMeta'
@@ -107,6 +106,7 @@ export default async function MacBookShopPage() {
     .filter((item): item is { shop: Shop; meta: (typeof MACBOOK_SHOP_DETAIL_META)[string] } => item != null)
 
   return (
+    <>
     <main>
       <article itemScope itemType="https://schema.org/Article">
         <script
@@ -230,12 +230,11 @@ export default async function MacBookShopPage() {
               </li>
             </ol>
 </div>
-          <AuthorByline />
           </div>
         </nav>
 
         {/* セクション */}
-        <div className="l-sections" itemProp="articleBody">
+        <div className="l-sections">
           <BuyingOptionsSection />
           <ShopComparisonSection />
           <RecommendByTypeSection />
@@ -262,16 +261,17 @@ export default async function MacBookShopPage() {
           <ChecklistSection />
           <FaqSection />
           <ConclusionSection />
-        <MacBookArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/macbook/macbook-shop/", "/macbook/recommend/"]}>
-          <div className="m-callout m-callout--muted u-mt-2xl">
-            <span className="m-callout__label">関連</span>
-            <p className="m-callout__text">
-              <a href="https://prorea.jp/programming/columns/recommend-programming-school-commuting/" target="_blank" rel="noreferrer noopener">通学型おすすめプログラミングスクール比較12選！挫折せず続けるならオフラインがおすすめ</a>
-            </p>
-          </div>
-        </MacBookArticleFooter>
         </div>
       </article>
     </main>
+    <MacBookArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/macbook/macbook-shop/", "/macbook/recommend/"]}>
+          <div className="m-callout m-callout--muted u-mt-2xl">
+            <span className="m-callout__label">関連</span>
+            <p className="m-callout__text">
+              <a href="https://prorea.jp/programming/columns/recommend-programming-school-commuting/" target="_blank" rel="noopener noreferrer" aria-label="通学型おすすめプログラミングスクール比較12選！挫折せず続けるならオフラインがおすすめ（新しいタブで開く）">通学型おすすめプログラミングスクール比較12選！挫折せず続けるならオフラインがおすすめ</a>
+            </p>
+          </div>
+        </MacBookArticleFooter>
+    </>
   )
 }

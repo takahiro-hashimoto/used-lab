@@ -21,7 +21,6 @@ import FleaMarketSection from './components/FleaMarketSection'
 import ChecklistSection from './components/ChecklistSection'
 import ConclusionSection from './components/ConclusionSection'
 import FaqSection from './components/FaqSection'
-import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
 import { getHeroImage } from '@/lib/data/hero-images'
@@ -108,6 +107,7 @@ export default async function WatchShopPage() {
     .filter((item): item is { shop: Shop; meta: (typeof WATCH_SHOP_DETAIL_META)[string] } => item != null)
 
   return (
+    <>
     <main>
       <article itemScope itemType="https://schema.org/Article">
         <script
@@ -231,12 +231,11 @@ export default async function WatchShopPage() {
               </li>
             </ol>
 </div>
-          <AuthorByline />
           </div>
         </nav>
 
         {/* セクション */}
-        <div className="l-sections" itemProp="articleBody">
+        <div className="l-sections">
           <BuyingOptionsSection />
           <ShopComparisonSection />
           <RecommendByTypeSection />
@@ -263,9 +262,10 @@ export default async function WatchShopPage() {
           <ChecklistSection />
           <FaqSection />
           <ConclusionSection />
-          <WatchArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/watch/watch-shop/", "/watch/recommend/"]} />
         </div>
       </article>
     </main>
+    <WatchArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/watch/watch-shop/", "/watch/recommend/"]} />
+    </>
   )
 }

@@ -133,6 +133,7 @@ export default function ShopDetailSection({ productName, items, specRows, getCta
                       className="m-btn m-btn--primary"
                       rel="nofollow noopener noreferrer"
                       target="_blank"
+                      aria-label={`${btn.label}（新しいタブで開く）`}
                     >
                       {btn.label} <i className="fa-solid fa-chevron-right" aria-hidden="true"></i>
                     </a>
@@ -145,6 +146,7 @@ export default function ShopDetailSection({ productName, items, specRows, getCta
                     className="m-btn m-btn--primary"
                     rel="nofollow noopener noreferrer"
                     target="_blank"
+                    aria-label={`${shop.shop}で探す（新しいタブで開く）`}
                   >
                     {shop.shop}で探す <i className="fa-solid fa-chevron-right" aria-hidden="true"></i>
                   </a>

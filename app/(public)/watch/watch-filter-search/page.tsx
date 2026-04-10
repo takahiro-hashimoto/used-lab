@@ -154,6 +154,7 @@ export default async function WatchFilterSearchPage() {
     const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/watch/watch-filter-search/page.tsx')
 
   return (
+    <>
     <main>
       <article>
         <script
@@ -259,9 +260,10 @@ export default async function WatchFilterSearchPage() {
           items={FAQ_ITEMS}
         />
 
-        <WatchArticleFooter pageUrl="https://used-lab.jp/watch/watch-filter-search/" pageTitle="Apple Watch機種診断シミュレーター｜自分に合うおすすめ中古アップルウォッチがすぐわかる【${CURRENT_YEAR}年版】" excludeHref={["/watch/watch-filter-search/", "/watch/recommend/"]} />
         </div>
       </article>
     </main>
+    <WatchArticleFooter pageUrl="https://used-lab.jp/watch/watch-filter-search/" pageTitle="Apple Watch機種診断シミュレーター｜自分に合うおすすめ中古アップルウォッチがすぐわかる【${CURRENT_YEAR}年版】" excludeHref={["/watch/watch-filter-search/", "/watch/recommend/"]} />
+    </>
   )
 }

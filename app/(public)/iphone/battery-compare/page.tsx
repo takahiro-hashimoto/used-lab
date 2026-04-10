@@ -5,7 +5,6 @@ import { getAllIPhoneModels, getAllProductShopLinksByType } from '@/lib/queries'
 import BatteryTable from './components/BatteryTable'
 import ChargingTable from './components/ChargingTable'
 import IPhoneArticleFooter from '@/app/components/iphone/IPhoneArticleFooter'
-import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
 import Breadcrumb from '@/app/components/Breadcrumb'
@@ -106,6 +105,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/battery-
   })
 
   return (
+    <>
     <main>
       <article>
         <script
@@ -201,7 +201,6 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/battery-
                 </li>
               </ol>
             </div>
-            <AuthorByline />
           </div>
         </nav>
         <div className="l-sections">
@@ -275,13 +274,14 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/battery-
           items={FAQ_ITEMS}
         />
 
-        <IPhoneArticleFooter
+</div>
+      </article>
+    </main>
+    <IPhoneArticleFooter
           pageUrl="https://used-lab.jp/iphone/battery-compare/"
           pageTitle="歴代iPhoneのバッテリー容量比較ランキング！電池持ちがいい機種はどれ？"
           excludeHref={["/iphone/battery-compare/", "/iphone/recommend/"]}
         />
-        </div>
-      </article>
-    </main>
+    </>
   )
 }

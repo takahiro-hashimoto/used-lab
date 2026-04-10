@@ -11,7 +11,6 @@ import {
 import type { IPadPriceLog } from '@/lib/types'
 import StorageTable, { type StorageModel } from './components/StorageTable'
 import IPadArticleFooter from '@/app/components/ipad/IPadArticleFooter'
-import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
 import { getHeroImage } from '@/lib/data/hero-images'
@@ -138,6 +137,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/ipad/storage-gu
 
 
   return (
+    <>
     <main>
       <article>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
@@ -237,7 +237,6 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/ipad/storage-gu
               </li>
             </ol>
 </div>
-            <AuthorByline />
           </div>
         </nav>
 
@@ -454,9 +453,12 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/ipad/storage-gu
           items={FAQ_ITEMS}
         />
 
-        <IPadArticleFooter pageUrl="https://used-lab.jp/ipad/storage-guide/" pageTitle="中古iPadのストレージ容量はどれがいい？用途別おすすめ容量まとめ" excludeHref={["/ipad/storage-guide/", "/ipad/recommend/"]} />
+
+
         </div>
       </article>
     </main>
+    <IPadArticleFooter pageUrl="https://used-lab.jp/ipad/storage-guide/" pageTitle="中古iPadのストレージ容量はどれがいい？用途別おすすめ容量まとめ" excludeHref={["/ipad/storage-guide/", "/ipad/recommend/"]} />
+    </>
   )
 }

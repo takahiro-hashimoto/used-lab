@@ -19,10 +19,10 @@ export default function ComparisonSections() {
             OSはアプリケーションを動かすための基本ソフトウェアです。OSが異なるため、対応ソフトや操作性などさまざまな箇所に違いが出てきます。
           </p>
           <p className="media-card__desc u-mt-sm">
-            <strong>Windows</strong>はMicrosoft社が開発。DELL、富士通、LENOVOなど多くのメーカーからPCが販売されており、対応アプリの豊富さや製品の選択肢の多さが強みです。
+            WindowsはMicrosoft社が開発。DELL、富士通、LENOVOなど多くのメーカーからPCが販売されており、対応アプリの豊富さや製品の選択肢の多さが強みです。
           </p>
           <p className="media-card__desc u-mt-sm">
-            <strong>Mac</strong>はApple社が開発したmacOSを搭載。OSとハードウェアをすべてApple社が手掛けており、Apple製品同士のスムーズな連携と直感的なUI設計が人気の理由です。
+            MacはApple社が開発したmacOSを搭載。OSとハードウェアをすべてApple社が手掛けており、Apple製品同士のスムーズな連携と直感的なUI設計が人気の理由です。
           </p>
         </div>
       </div>
@@ -49,7 +49,7 @@ export default function ComparisonSections() {
             ただし職種単位で見ると割合は変わり、<strong>デザイナーやエンジニアなどクリエイティブ系の職種やIT企業ではMacのシェアが高い</strong>傾向にあります。近年はiPhoneユーザーがMacにも興味を持つケースが増え、個人利用のシェアも緩やかに伸びています。
           </p>
           <p className="media-card__desc u-mt-sm">
-            シェアが高いOSを選ぶと<strong>周囲に同じOSのユーザーが多く操作を教えてもらいやすい</strong>ほか、対応ソフトやアクセサリーも豊富です。職場や学校の環境も判断材料にしましょう。
+            シェアが高いOSを選ぶと周囲に同じOSのユーザーが多く操作を教えてもらいやすいほか、対応ソフトやアクセサリーも豊富です。職場や学校の環境も判断材料にしましょう。
           </p>
         </div>
       </div>
@@ -277,7 +277,7 @@ export default function ComparisonSections() {
             Macは旧モデルでも中古市場での人気が高く、<strong>購入から数年経っても比較的高い価格で売却できる</strong>のが大きな魅力です。下取りに出せば少ない追加費用で新しいMacに買い替えられるため、長い目で見るとコスパのよい選択と言えます。
           </p>
           <p className="media-card__desc u-mt-sm">
-            Windowsはハイスペックモデルでも中古だと値段が下がりやすい傾向があります。メーカーやモデルが多いぶん需要が分散し、特定の機種に人気が集中しにくいことが理由のひとつです。逆に言えば、<strong>新品にこだわらなければお手頃価格で高性能なWindows PCを手に入れるチャンス</strong>もあります。
+            Windowsはハイスペックモデルでも中古だと値段が下がりやすい傾向があります。メーカーやモデルが多いぶん需要が分散し、特定の機種に人気が集中しにくいことが理由のひとつです。逆に言えば、新品にこだわらなければお手頃価格で高性能なWindows PCを手に入れるチャンスもあります。
           </p>
           <p className="media-card__desc u-mt-sm">
             パソコンの買い替えサイクルまで考慮すると、初期費用だけでなくリセールバリューも含めた「実質コスト」で比較するのが賢い選び方です。
@@ -303,7 +303,7 @@ export default function ComparisonSections() {
             「Macはウイルスに強い」とよく言われますが、<strong>近年はMacを標的にしたマルウェアやフィッシング詐欺も増加</strong>しています。かつてはシェアの低さゆえに狙われにくかっただけです。
           </p>
           <p className="media-card__desc u-mt-sm">
-            macOSにはGatekeeper・XProtect・FileVaultなどのセキュリティ機能が標準で備わっており、初期状態でも一定の安全性があります。WindowsもWindows Defenderの性能が大幅に向上していますが、<strong>シェアが高い分だけ攻撃対象にされやすい</strong>ため、ウイルス対策ソフトを追加するユーザーも多いです。
+            macOSにはGatekeeper・XProtect・FileVaultなどのセキュリティ機能が標準で備わっており、初期状態でも一定の安全性があります。WindowsもWindows Defenderの性能が大幅に向上していますが、シェアが高い分だけ攻撃対象にされやすいため、ウイルス対策ソフトを追加するユーザーも多いです。
           </p>
           <p className="media-card__desc u-mt-sm">
             どちらのOSでも、OSやアプリを常に最新版に保つことが最も重要なセキュリティ対策です。
@@ -355,7 +355,7 @@ export default function ComparisonSections() {
             OSサポート期間も異なります。macOSは発売から約6〜7年間アップデートが提供されますが、Windowsはバージョンにより変動します。Windows 10は2025年10月にサポート終了予定で、Windows 11にはハードウェア要件を満たす必要があります。
           </p>
           <p className="media-card__desc u-mt-sm">
-            どちらのOSでも<strong>購入時のスペックに余裕を持たせる</strong>ことが寿命を延ばすコツです。
+            どちらのOSでも購入時のスペックに余裕を持たせることが寿命を延ばすコツです。
           </p>
         </div>
       </div>
@@ -378,7 +378,7 @@ export default function ComparisonSections() {
             MacはApple Store内の「Genius Bar」で専門スタッフに直接相談でき、電話やチャットサポートも充実。<strong>サポートが一元化されている</strong>のは初心者にとって安心です。AppleCare+に加入すれば修理費用も大幅に抑えられます。
           </p>
           <p className="media-card__desc u-mt-sm">
-            WindowsはOSサポートがMicrosoft、ハードウェアは各メーカーと問い合わせ先が分かれます。大手メーカーは手厚いサポートがありますが、格安モデルでは限定的な場合も。<strong>メーカーのサポート体制や保証内容を確認した上で購入</strong>しましょう。
+            WindowsはOSサポートがMicrosoft、ハードウェアは各メーカーと問い合わせ先が分かれます。大手メーカーは手厚いサポートがありますが、格安モデルでは限定的な場合も。メーカーのサポート体制や保証内容を確認した上で購入しましょう。
           </p>
         </div>
       </div>
@@ -404,7 +404,7 @@ export default function ComparisonSections() {
             WindowsはIntel・AMD・Qualcommなど複数メーカーのCPUから選択可能。ハイエンドのIntel Core UltraやAMD Ryzenは、マルチコア性能やGPU拡張性でMacを上回る場面もあります。
           </p>
           <p className="media-card__desc u-mt-sm">
-            <strong>日常作業や動画編集ではApple Siliconのコスパが非常に高く</strong>、3Dレンダリングなど特殊な用途ではWindows＋高性能GPUが有利です。
+            日常作業や動画編集ではApple Siliconのコスパが非常に高く、3Dレンダリングなど特殊な用途ではWindows＋高性能GPUが有利です。
           </p>
           <p className="lead-link u-mt-sm">
             <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}

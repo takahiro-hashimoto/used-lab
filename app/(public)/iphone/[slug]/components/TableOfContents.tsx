@@ -1,5 +1,3 @@
-import AuthorByline from '@/app/components/AuthorByline'
-
 const BASE_ITEMS = [
   { id: 'buy-now', label: '今から買うのはあり？' },
   { id: 'shops', label: 'おすすめ購入サイト' },
@@ -24,6 +22,7 @@ export default function TableOfContents({ hasReviews }: Props) {
     : [...BASE_ITEMS]
 
   return (
+    <>
     <nav className="l-section l-section--no-pt" aria-label="目次">
       <div className="l-container">
         <div className="toc-wrapper">
@@ -44,8 +43,8 @@ export default function TableOfContents({ hasReviews }: Props) {
             ))}
           </ol>
         </div>
-        <AuthorByline />
       </div>
     </nav>
+    </>
   )
 }

@@ -196,9 +196,10 @@ export default async function HomePage() {
                     loading="lazy"
                   />
                   <p className="top-about-card__name">タカヒロ</p>
+                  <p className="top-about-card__role">ガジェットブロガー</p>
                 </div>
                 <p className="top-about-card__desc">
-                  都内のIT企業でWebディレクターとして働く傍ら、メディア運営を行っています。中古Apple製品選びに役立つ情報を発信しています。
+                  2011年のiPhone 4sから毎年Apple製品を購入し続けているガジェットブロガー。姉妹サイトのガジェットブログ「デジスタ」では300製品以上をレビュー、最高月間PVは60万。GoodsPress誌インタビュー掲載、ITmedia「Fav-Log」連載など多数のメディア実績あり。
                 </p>
                 <Link href="/profile/" className="top-about-card__text-link">
                   運営者情報を見る <i className="fa-solid fa-chevron-right" aria-hidden="true"></i>

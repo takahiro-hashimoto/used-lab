@@ -112,4 +112,23 @@
     grid-template-columns: repeat(2, 1fr);
   }
 
+  .price-details-card .l-grid--3col {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  #geekbench .l-grid--3col {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .related-link-card__img {
+    width: 80px;
+    height: auto;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  .breadcrumb .l-container {
+    padding: var(--space-md) var(--space-md) 0;
+  }
+
 }

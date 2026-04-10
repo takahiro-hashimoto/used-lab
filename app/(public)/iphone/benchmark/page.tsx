@@ -10,7 +10,6 @@ import BenchmarkRanking from './components/BenchmarkRanking'
 import ChipGenerationCompare from './components/ChipGenerationCompare'
 import UseCaseGuide from './components/UseCaseGuide'
 import IPhoneArticleFooter from '@/app/components/iphone/IPhoneArticleFooter'
-import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import { getHeroImage } from '@/lib/data/hero-images'
 
@@ -126,6 +125,7 @@ export default async function BenchmarkPage() {
   })
 
   return (
+    <>
     <main>
       <article itemScope itemType="https://schema.org/Article">
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
@@ -199,7 +199,6 @@ export default async function BenchmarkPage() {
               <li><a href="#faq" className="toc-item">よくある質問 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#related" className="toc-item">関連記事 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>            </ol>
 </div>
-          <AuthorByline />
           </div>
         </nav>
 
@@ -262,13 +261,15 @@ export default async function BenchmarkPage() {
             items={FAQ_ITEMS}
           />
 
-          <IPhoneArticleFooter
+
+        </div>
+      </article>
+    </main>
+    <IPhoneArticleFooter
             pageUrl={PAGE_URL}
             pageTitle={PAGE_TITLE}
             excludeHref={["/iphone/benchmark/", "/iphone/recommend/"]}
           />
-        </div>
-      </article>
-    </main>
+    </>
   )
 }

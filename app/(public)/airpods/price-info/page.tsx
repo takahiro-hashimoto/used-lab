@@ -316,8 +316,9 @@ export default async function AirPodsPriceInfoPage() {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
         />
-
         <div className="hero-wrapper">
+
+
         {/* パンくず */}
         <Breadcrumb
           items={[
@@ -337,7 +338,7 @@ export default async function AirPodsPriceInfoPage() {
               <h1 className="hero-title" itemProp="headline">
                 AirPodsの中古相場一覧 | 歴代{modelCount}機種の価格推移を独自集計【{PRICE_INFO_UPDATE_MONTH}】
               </h1>
-              <HeroMeta dateStr={dateStr} dateDisplay={dateDisplay} withItemProp />
+              <HeroMeta dateStr={dateStr} dateDisplay={dateDisplay} withItemProp showAuthor />
             </div>
             <div className="hero-visual">
               <figure className="hero-media">
@@ -410,10 +411,8 @@ export default async function AirPodsPriceInfoPage() {
               </li>
             </ol>
 </div>
-          <AuthorByline />
           </div>
         </nav>
-
         {/* セクション */}
         <div className="l-sections" itemProp="articleBody">
           <DashboardSection
@@ -437,7 +436,13 @@ export default async function AirPodsPriceInfoPage() {
           <FaqSection />
           <AirPodsPopularSection />
         <AirPodsRelatedLinks excludeHref="/airpods/price-info/" />
-        <ShareBox url={PAGE_URL} text={`AirPodsの中古相場一覧 | 歴代${modelCount}機種の価格推移を独自集計`} />
+        <div className="l-section l-section--sm">
+          <div className="l-container">
+            <AuthorByline />
+          </div>
+        </div>
+
+                <ShareBox url={PAGE_URL} text={`AirPodsの中古相場一覧 | 歴代${modelCount}機種の価格推移を独自集計`} />
         </div>
       </article>
     </main>

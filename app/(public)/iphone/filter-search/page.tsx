@@ -160,6 +160,7 @@ export default async function IPhoneFilterSearchPage() {
     const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/filter-search/page.tsx')
 
   return (
+    <>
     <main>
       <article>
         <script
@@ -264,13 +265,14 @@ export default async function IPhoneFilterSearchPage() {
           items={FAQ_ITEMS}
         />
 
-        <IPhoneArticleFooter
+</div>
+      </article>
+    </main>
+    <IPhoneArticleFooter
           pageUrl="https://used-lab.jp/iphone/filter-search/"
           pageTitle="iPhone機種診断シミュレーター｜自分に合うおすすめ中古スマホがすぐわかる【${CURRENT_YEAR}年版】"
           excludeHref={["/iphone/filter-search/", "/iphone/recommend/"]}
         />
-        </div>
-      </article>
-    </main>
+    </>
   )
 }

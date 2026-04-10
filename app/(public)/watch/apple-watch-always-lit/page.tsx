@@ -8,7 +8,6 @@ import SettingSection from './components/SettingSection'
 import TipsSection from './components/TipsSection'
 import SpecTableSection from './components/SpecTableSection'
 import AlwaysLitFaqSection, { FAQ_ITEMS } from './components/AlwaysLitFaqSection'
-import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
 import { getHeroImage } from '@/lib/data/hero-images'
@@ -72,6 +71,7 @@ export default function AppleWatchAlwaysLitPage() {
   }
 
   return (
+    <>
     <main>
       <article itemScope itemType="https://schema.org/Article">
         <script
@@ -198,7 +198,6 @@ export default function AppleWatchAlwaysLitPage() {
               </li>
             </ol>
           </div>
-          <AuthorByline />
           </div>
         </nav>
 
@@ -229,9 +228,10 @@ export default function AppleWatchAlwaysLitPage() {
           </section>
 
           <AlwaysLitFaqSection />
-          <WatchArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/watch/apple-watch-always-lit/", "/watch/recommend/"]} />
         </div>
       </article>
     </main>
+    <WatchArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/watch/apple-watch-always-lit/", "/watch/recommend/"]} />
+    </>
   )
 }

@@ -22,7 +22,6 @@ import PriceDropSection from './components/PriceDropSection'
 import RankingSection from './components/RankingSection'
 import PriceHistorySection from './components/PriceHistorySection'
 import FaqSection from './components/FaqSection'
-import AuthorByline from '@/app/components/AuthorByline'
 import HeroMeta from '@/app/components/HeroMeta'
 import { getHeroImage } from '@/lib/data/hero-images'
 
@@ -324,6 +323,7 @@ export default async function IPadPriceInfoPage() {
   }
 
   return (
+    <>
     <main>
       <article itemScope itemType="https://schema.org/Article">
         <script
@@ -432,7 +432,6 @@ export default async function IPadPriceInfoPage() {
               </li>
             </ol>
 </div>
-          <AuthorByline />
           </div>
         </nav>
 
@@ -457,9 +456,12 @@ export default async function IPadPriceInfoPage() {
           <PriceHistorySection models={sortedModels} />
 
           <FaqSection />
-        <IPadArticleFooter pageUrl={PAGE_URL} pageTitle={`iPadの中古相場一覧 | 歴代${modelCount}機種の価格推移を独自集計`} excludeHref={["/ipad/ipad-price-info/", "/ipad/recommend/"]} />
+
+
         </div>
       </article>
     </main>
+    <IPadArticleFooter pageUrl={PAGE_URL} pageTitle={`iPadの中古相場一覧 | 歴代${modelCount}機種の価格推移を独自集計`} excludeHref={["/ipad/ipad-price-info/", "/ipad/recommend/"]} />
+    </>
   )
 }

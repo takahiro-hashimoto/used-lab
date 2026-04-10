@@ -9,7 +9,6 @@ import PencilDetailSection from './components/PencilDetailSection'
 import PencilGuideSection from './components/PencilGuideSection'
 import FaqSection from '@/app/components/support/FaqSection'
 import IPadArticleFooter from '@/app/components/ipad/IPadArticleFooter'
-import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
 import { getHeroImage } from '@/lib/data/hero-images'
@@ -87,6 +86,7 @@ export default async function ApplePencilComparePage() {
   })
 
   return (
+    <>
     <main>
       <article itemScope itemType="https://schema.org/Article">
         <script
@@ -189,7 +189,6 @@ export default async function ApplePencilComparePage() {
               </li>
             </ol>
 </div>
-          <AuthorByline />
           </div>
         </nav>
 
@@ -247,9 +246,12 @@ export default async function ApplePencilComparePage() {
             ]}
           />
 
-          <IPadArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/ipad/apple-pencil-compare/", "/ipad/recommend/"]} />
+
+
         </div>
       </article>
     </main>
+    <IPadArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/ipad/apple-pencil-compare/", "/ipad/recommend/"]} />
+    </>
   )
 }

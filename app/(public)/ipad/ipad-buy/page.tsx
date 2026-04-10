@@ -4,7 +4,6 @@ import Breadcrumb from '@/app/components/Breadcrumb'
 import BuyMethodsSection from './components/BuyMethodsSection'
 import ConclusionSection from './components/ConclusionSection'
 import IPadArticleFooter from '@/app/components/ipad/IPadArticleFooter'
-import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
 import { getHeroImage } from '@/lib/data/hero-images'
@@ -53,6 +52,7 @@ export default function IPadBuyPage() {
   })
 
   return (
+    <>
     <main>
       <article itemScope itemType="https://schema.org/Article">
         <script
@@ -175,7 +175,6 @@ export default function IPadBuyPage() {
                 </li>
               </ol>
             </div>
-            <AuthorByline />
           </div>
         </nav>
 
@@ -186,9 +185,12 @@ export default function IPadBuyPage() {
 
           <BuyMethodsSection />
 
-        <IPadArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/ipad/ipad-buy/", "/ipad/recommend/"]} />
+
+
         </div>
       </article>
     </main>
+    <IPadArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/ipad/ipad-buy/", "/ipad/recommend/"]} />
+    </>
   )
 }

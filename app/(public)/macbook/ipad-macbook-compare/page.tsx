@@ -8,7 +8,6 @@ import MacbookStrengths from './components/MacbookStrengths'
 import IpadStrengths from './components/IpadStrengths'
 import NoDifference from './components/NoDifference'
 import RecommendSection from './components/RecommendSection'
-import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import { getHeroImage } from '@/lib/data/hero-images'
 import HeroMeta from '@/app/components/HeroMeta'
@@ -58,6 +57,7 @@ export default function IpadMacbookComparePage() {
   })
 
   return (
+    <>
     <main>
       <article itemScope itemType="https://schema.org/Article">
         <script
@@ -175,7 +175,6 @@ export default function IpadMacbookComparePage() {
               </li>
             </ol>
 </div>
-          <AuthorByline />
           </div>
         </nav>
 
@@ -293,7 +292,10 @@ export default function IpadMacbookComparePage() {
             </div>
           </section>
         <FaqSection />
-        <MacBookArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/macbook/ipad-macbook-compare/", "/macbook/recommend/"]}>
+        </div>
+      </article>
+    </main>
+    <MacBookArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/macbook/ipad-macbook-compare/", "/macbook/recommend/"]}>
           <div className="m-callout m-callout--muted u-mt-2xl">
             <span className="m-callout__label">関連</span>
             <p className="m-callout__text">
@@ -301,8 +303,6 @@ export default function IpadMacbookComparePage() {
             </p>
           </div>
         </MacBookArticleFooter>
-        </div>
-      </article>
-    </main>
+    </>
   )
 }

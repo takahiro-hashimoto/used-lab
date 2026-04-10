@@ -8,7 +8,6 @@ import KeyboardListSection from './components/KeyboardListSection'
 import KeyboardCompareSection from './components/KeyboardCompareSection'
 import FaqSection from '@/app/components/support/FaqSection'
 import IPadArticleFooter from '@/app/components/ipad/IPadArticleFooter'
-import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
 import { getHeroImage } from '@/lib/data/hero-images'
@@ -110,6 +109,7 @@ export default async function AccessoriesSummaryPage() {
   })
 
   return (
+    <>
     <main>
       <article itemScope itemType="https://schema.org/Article">
         <script
@@ -202,7 +202,6 @@ export default async function AccessoriesSummaryPage() {
               </li>
             </ol>
 </div>
-          <AuthorByline />
           </div>
         </nav>
 
@@ -243,9 +242,12 @@ export default async function AccessoriesSummaryPage() {
             ]}
           />
 
-          <IPadArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/ipad/accessories-summary/", "/ipad/recommend/"]} />
+
+
         </div>
       </article>
     </main>
+    <IPadArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/ipad/accessories-summary/", "/ipad/recommend/"]} />
+    </>
   )
 }

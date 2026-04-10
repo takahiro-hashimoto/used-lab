@@ -24,7 +24,6 @@ const GLOSSARY_ITEMS = [
   { title: 'Apple Pencil', icon: 'fa-solid fa-pen-nib', desc: <>iPad専用のスタイラスペン。手書きメモやイラスト制作、PDFへの注釈などに活用。第1〜第3世代があり、対応機種や充電方式が異なる。詳しくは「<Link href="/ipad/apple-pencil-compare/">Apple Pencilの違いを比較</Link>」を参照。</> },
   { title: '外付けキーボード', icon: 'fa-solid fa-keyboard', desc: <>iPad専用のMagic KeyboardやSmart Keyboardなどが対応。タイピング作業や資料作成が快適になり、ラップトップのように使える。詳しくは「<Link href="/ipad/accessories-summary/#kb-16">iPadのMagic Keyboard 型番一覧</Link>」を参照。</> },
 ]
-import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
 import { getHeroImage } from '@/lib/data/hero-images'
@@ -125,6 +124,7 @@ export default async function IPadSpecTablePage() {
   }))
 
   return (
+    <>
     <main>
       <article>
         <script
@@ -237,7 +237,6 @@ export default async function IPadSpecTablePage() {
               </li>
             </ol>
 </div>
-            <AuthorByline />
           </div>
         </nav>
         <div className="l-sections">
@@ -248,9 +247,12 @@ export default async function IPadSpecTablePage() {
         <EvolutionTimeline models={serializedModels} />
         <GlossarySection productName="iPad" items={GLOSSARY_ITEMS} />
 
-        <IPadArticleFooter pageUrl="https://used-lab.jp/ipad/ipad-spec-table/" pageTitle="歴代iPadスペック比較表！各世代の性能の違いがすぐわかる" excludeHref={["/ipad/ipad-spec-table/", "/ipad/recommend/"]} />
+
+
         </div>
       </article>
     </main>
+    <IPadArticleFooter pageUrl="https://used-lab.jp/ipad/ipad-spec-table/" pageTitle="歴代iPadスペック比較表！各世代の性能の違いがすぐわかる" excludeHref={["/ipad/ipad-spec-table/", "/ipad/recommend/"]} />
+    </>
   )
 }

@@ -6,7 +6,6 @@ import CameraComparisonTable from './components/CameraComparisonTable'
 import CameraFeatureCard from './components/CameraFeatureCard'
 import FaqSection from '@/app/components/support/FaqSection'
 import Image from 'next/image'
-import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
 import { getHeroImage } from '@/lib/data/hero-images'
@@ -91,6 +90,7 @@ export default async function IPhoneCameraPage() {
   }))
 
   return (
+    <>
     <main>
       <article itemScope itemType="https://schema.org/Article">
         <script
@@ -188,7 +188,6 @@ export default async function IPhoneCameraPage() {
                 </li>
               </ol>
             </div>
-            <AuthorByline />
           </div>
         </nav>
 
@@ -523,13 +522,15 @@ export default async function IPhoneCameraPage() {
           ]}
         />
 
-        <IPhoneArticleFooter
+
+        </div>
+      </article>
+    </main>
+    <IPhoneArticleFooter
           pageUrl={PAGE_URL}
           pageTitle={PAGE_TITLE}
           excludeHref={["/iphone/iphone-camera/", "/iphone/recommend/"]}
         />
-        </div>
-      </article>
-    </main>
+    </>
   )
 }

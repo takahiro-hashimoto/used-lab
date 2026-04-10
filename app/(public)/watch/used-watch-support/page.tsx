@@ -7,7 +7,6 @@ import WatchOsSupportMatrix from './components/WatchOsSupportMatrix'
 import LifespanTable from './components/LifespanTable'
 import TimingSection from './components/TimingSection'
 import FaqSection from './components/FaqSection'
-import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
 import { getHeroImage } from '@/lib/data/hero-images'
@@ -63,6 +62,7 @@ export default async function UsedWatchSupportPage() {
   })
 
   return (
+    <>
     <main>
       <article>
         <script
@@ -160,7 +160,6 @@ export default async function UsedWatchSupportPage() {
               </li>
             </ol>
             </div>
-          <AuthorByline />
           </div>
         </nav>
         <div className="l-sections">
@@ -169,9 +168,10 @@ export default async function UsedWatchSupportPage() {
         <LifespanTable models={allModelsWithEnded} />
         <TimingSection />
         <FaqSection />
-        <WatchArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/watch/used-watch-support/", "/watch/recommend/"]} />
         </div>
       </article>
     </main>
+    <WatchArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/watch/used-watch-support/", "/watch/recommend/"]} />
+    </>
   )
 }

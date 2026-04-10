@@ -97,14 +97,15 @@ export default function AirpodsFindPage() {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
         />
-
         <div className="hero-wrapper">
-          <Breadcrumb
-            items={[
-              { label: '中古AirPods完全購入ガイド', href: '/airpods' },
-              { label: 'AirPodsの紛失対処法' },
-            ]}
-          />
+
+
+        <Breadcrumb
+          items={[
+            { label: '中古AirPods完全購入ガイド', href: '/airpods' },
+            { label: 'AirPodsの紛失対処法' },
+          ]}
+        />
 
           <header className="hero">
             <div className="hero-bg" aria-hidden="true">
@@ -116,7 +117,7 @@ export default function AirpodsFindPage() {
                 <h1 className="hero-title" itemProp="headline">
                   AirPodsのケースやイヤホン片方を無くした時の探し方、代替品の購入先まとめ
                 </h1>
-                <HeroMeta dateStr={dateStr} dateDisplay={dateDisplay} withItemProp />
+                <HeroMeta dateStr={dateStr} dateDisplay={dateDisplay} withItemProp showAuthor />
               </div>
               <div className="hero-visual">
                 <figure className="hero-media">
@@ -179,10 +180,8 @@ export default function AirpodsFindPage() {
               </li>
             </ol>
 </div>
-          <AuthorByline />
           </div>
         </nav>
-
         {/* 記事本文 */}
         <div className="l-sections" id="content" itemProp="articleBody">
 
@@ -240,7 +239,13 @@ export default function AirpodsFindPage() {
           />
 
           <AirPodsRelatedLinks excludeHref="/airpods/airpods-find/" />
-          <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
+        <div className="l-section l-section--sm">
+          <div className="l-container">
+            <AuthorByline />
+          </div>
+        </div>
+
+                  <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>
       </article>
     </main>

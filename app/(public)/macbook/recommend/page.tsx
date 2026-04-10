@@ -33,7 +33,6 @@ import dynamic from 'next/dynamic'
 const ValueZoneChart = dynamic(() => import('@/app/components/ValueZoneChart'), {
   loading: () => <div style={{ height: '300px' }} />,
 })
-import AuthorByline from '@/app/components/AuthorByline'
 import { getHeroImage } from '@/lib/data/hero-images'
 import HeroMeta from '@/app/components/HeroMeta'
 
@@ -150,6 +149,7 @@ export default async function MacBookRecommendPage() {
     .filter((item): item is { shop: (typeof shops)[number]; url: string } => item != null)
 
   return (
+    <>
     <main>
       <article itemScope itemType="https://schema.org/Article">
         <script
@@ -270,7 +270,6 @@ export default async function MacBookRecommendPage() {
                 </li>
               </ol>
             </div>
-            <AuthorByline />
           </div>
         </nav>
 
@@ -383,9 +382,10 @@ export default async function MacBookRecommendPage() {
             shopDetailLink={{ href: '/macbook/macbook-shop/', label: '中古MacBookのおすすめショップ比較' }}
           />
           <MacBookFaqSection />
-        <MacBookArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref="/macbook/recommend/" hidePopular relatedHeading="MacBook選びをもっと深掘りする" relatedDescription="購入先の比較や相場チェックなど、MacBook選びに役立つ記事をまとめました。" />
         </div>
       </article>
     </main>
+    <MacBookArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref="/macbook/recommend/" hidePopular relatedHeading="MacBook選びをもっと深掘りする" relatedDescription="購入先の比較や相場チェックなど、MacBook選びに役立つ記事をまとめました。" />
+    </>
   )
 }

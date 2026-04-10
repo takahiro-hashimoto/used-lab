@@ -20,7 +20,6 @@ import RankingSection from './components/RankingSection'
 import PriceHistorySection from './components/PriceHistorySection'
 import IPhoneArticleFooter from '@/app/components/iphone/IPhoneArticleFooter'
 import FaqSection from './components/FaqSection'
-import AuthorByline from '@/app/components/AuthorByline'
 import HeroMeta from '@/app/components/HeroMeta'
 import { getHeroImage } from '@/lib/data/hero-images'
 
@@ -332,6 +331,7 @@ export default async function IPhonePriceInfoPage() {
   }
 
   return (
+    <>
     <main>
       <article itemScope itemType="https://schema.org/Article">
         <script
@@ -440,7 +440,6 @@ export default async function IPhonePriceInfoPage() {
               </li>
             </ol>
 </div>
-          <AuthorByline />
           </div>
         </nav>
 
@@ -466,13 +465,14 @@ export default async function IPhonePriceInfoPage() {
 
           <FaqSection />
 
-          <IPhoneArticleFooter
+        </div>
+      </article>
+    </main>
+    <IPhoneArticleFooter
             pageUrl={PAGE_URL}
             pageTitle={`iPhoneの中古相場一覧 | 歴代${modelCount}機種の価格推移を独自集計`}
             excludeHref={["/iphone/price-info/", "/iphone/recommend/"]}
           />
-        </div>
-      </article>
-    </main>
+    </>
   )
 }

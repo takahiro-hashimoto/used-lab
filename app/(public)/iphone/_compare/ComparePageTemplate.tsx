@@ -128,9 +128,13 @@ export default async function ComparePageTemplate({ config }: Props) {
               <li><a href="#verdict" className="toc-item">どんな人におすすめ？ <i className="fa-solid fa-chevron-down"></i></a></li>
             </ol>
           </div>
-          <AuthorByline />
           </div>
         </nav>
+        <div className="l-section l-section--no-pt">
+          <div className="l-container">
+            <AuthorByline />
+          </div>
+        </div>
 
         <div className="l-sections">
           {/* 2機種サマリー */}

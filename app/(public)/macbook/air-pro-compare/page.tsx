@@ -11,7 +11,6 @@ import PriceCompareSection from './components/PriceCompareSection'
 import FaqSection from './components/FaqSection'
 import { getAllMacBookModels, getLatestMacBookPriceLog } from '@/lib/queries'
 import type { MacBookPriceLog } from '@/lib/types'
-import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import { getHeroImage } from '@/lib/data/hero-images'
 
@@ -74,6 +73,7 @@ export default async function AirProComparePage() {
   })
 
   return (
+    <>
     <main>
       <article itemScope itemType="https://schema.org/Article">
         <script
@@ -209,7 +209,6 @@ export default async function AirProComparePage() {
               </li>
             </ol>
 </div>
-          <AuthorByline />
           </div>
         </nav>
 
@@ -242,9 +241,10 @@ export default async function AirProComparePage() {
           <FaqSection />
 
 
-          <MacBookArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/macbook/air-pro-compare/", "/macbook/recommend/"]} />
         </div>
       </article>
     </main>
+    <MacBookArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/macbook/air-pro-compare/", "/macbook/recommend/"]} />
+    </>
   )
 }

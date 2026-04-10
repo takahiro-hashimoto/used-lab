@@ -9,7 +9,6 @@ import FailureSection from '@/app/components/attention/FailureSection'
 import InsuranceSection from '@/app/components/attention/InsuranceSection'
 import FaqSection from '@/app/components/attention/FaqSection'
 import { insuranceData, faqItems, postCheckItems, failurePatterns } from './components/data'
-import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import { getHeroImage } from '@/lib/data/hero-images'
 import HeroMeta from '@/app/components/HeroMeta'
@@ -108,6 +107,7 @@ export default function UsedMacBookAttentionPage() {
   }
 
   return (
+    <>
     <main>
       <article itemScope itemType="https://schema.org/Article">
         <script
@@ -219,7 +219,6 @@ export default function UsedMacBookAttentionPage() {
               </li>
             </ol>
           </div>
-          <AuthorByline />
           </div>
         </nav>
 
@@ -231,9 +230,10 @@ export default function UsedMacBookAttentionPage() {
           <FailureSection productName="MacBook" guidePath="/macbook" failurePatterns={failurePatterns} showMemo={false} />
           <InsuranceSection {...insuranceData} />
           <FaqSection productName="MacBook" faqItems={faqItems} />
-          <MacBookArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/macbook/used-macbook-attention/", "/macbook/recommend/"]} />
         </div>
       </article>
     </main>
+    <MacBookArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/macbook/used-macbook-attention/", "/macbook/recommend/"]} />
+    </>
   )
 }

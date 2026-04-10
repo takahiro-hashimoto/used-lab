@@ -122,19 +122,22 @@ export default function SpecTable({ models, shopLinks }: Props) {
         </p>
 
         {/* フィルターUI */}
-        <div className="u-mb-xl" aria-label="絞り込み">
+        <fieldset className="u-mb-xl">
+          <legend className="visually-hidden">テーブルの絞り込み</legend>
           <div className="spec-filter__row">
             <span className="spec-filter__label">並び替え</span>
             <div className="spec-filter__tags">
               <button
                 className={`spec-filter__tag${sortOrder === 'old' ? ' is-active' : ''}`}
                 onClick={() => setSortOrder('old')}
+                aria-pressed={sortOrder === 'old'}
               >
                 発売日が古い順
               </button>
               <button
                 className={`spec-filter__tag${sortOrder === 'new' ? ' is-active' : ''}`}
                 onClick={() => setSortOrder('new')}
+                aria-pressed={sortOrder === 'new'}
               >
                 発売日が新しい順
               </button>
@@ -152,13 +155,14 @@ export default function SpecTable({ models, shopLinks }: Props) {
                   key={key}
                   className={`spec-filter__tag${modelFilter === key ? ' is-active' : ''}`}
                   onClick={() => setModelFilter(key)}
+                  aria-pressed={modelFilter === key}
                 >
                   {label}
                 </button>
               ))}
             </div>
           </div>
-        </div>
+        </fieldset>
 
         {/* テーブル */}
         {filteredModels.length === 0 ? (
@@ -210,7 +214,7 @@ export default function SpecTable({ models, shopLinks }: Props) {
                       return (
                         <td key={m.id}>
                           {link ? (
-                            <a href={link.url} className="m-btn m-btn--primary m-btn--sm" rel="nofollow noopener noreferrer" target="_blank">
+                            <a href={link.url} className="m-btn m-btn--primary m-btn--sm" rel="nofollow noopener noreferrer" target="_blank" aria-label={`${m.shortname || m.model}をイオシスで探す（新しいタブで開く）`}>
                               中古価格を見る
                             </a>
                           ) : '-'}
@@ -226,7 +230,7 @@ export default function SpecTable({ models, shopLinks }: Props) {
                       return (
                         <td key={m.id}>
                           {link ? (
-                            <a href={link.url} className="m-btn m-btn--amazon m-btn--sm" rel="nofollow noopener noreferrer" target="_blank">
+                            <a href={link.url} className="m-btn m-btn--amazon m-btn--sm" rel="nofollow noopener noreferrer" target="_blank" aria-label={`${m.shortname || m.model}をAmazonで探す（新しいタブで開く）`}>
                               中古価格を見る
                             </a>
                           ) : '-'}

@@ -156,6 +156,7 @@ export default async function IPadFilterSearchPage() {
     const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/ipad/ipad-filter-search/page.tsx')
 
   return (
+    <>
     <main>
       <article>
         <script
@@ -260,9 +261,12 @@ export default async function IPadFilterSearchPage() {
           description="診断に関してよくある質問をまとめました。"
           items={FAQ_ITEMS}
         />
-        <IPadArticleFooter pageUrl="https://used-lab.jp/ipad/ipad-filter-search/" pageTitle="iPad機種診断シミュレーター｜自分に合うおすすめ中古iPadがすぐわかる【${CURRENT_YEAR}年版】" excludeHref={["/ipad/ipad-filter-search/", "/ipad/recommend/"]} />
+
+
         </div>
       </article>
     </main>
+    <IPadArticleFooter pageUrl="https://used-lab.jp/ipad/ipad-filter-search/" pageTitle="iPad機種診断シミュレーター｜自分に合うおすすめ中古iPadがすぐわかる【${CURRENT_YEAR}年版】" excludeHref={["/ipad/ipad-filter-search/", "/ipad/recommend/"]} />
+    </>
   )
 }

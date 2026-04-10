@@ -4,7 +4,6 @@ import Breadcrumb from '@/app/components/Breadcrumb'
 import BuyMethodsSection from './components/BuyMethodsSection'
 import ConclusionSection from './components/ConclusionSection'
 import MacBookArticleFooter from '@/app/components/macbook/MacBookArticleFooter'
-import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import { getHeroImage } from '@/lib/data/hero-images'
 import HeroMeta from '@/app/components/HeroMeta'
@@ -53,6 +52,7 @@ export default function MacBookBuyPage() {
   })
 
   return (
+    <>
     <main>
       <article itemScope itemType="https://schema.org/Article">
         <script
@@ -175,7 +175,6 @@ export default function MacBookBuyPage() {
                 </li>
               </ol>
             </div>
-            <AuthorByline />
           </div>
         </nav>
 
@@ -186,9 +185,10 @@ export default function MacBookBuyPage() {
 
           <BuyMethodsSection />
 
-        <MacBookArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/macbook/macbook-buy/", "/macbook/recommend/"]} />
         </div>
       </article>
     </main>
+    <MacBookArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/macbook/macbook-buy/", "/macbook/recommend/"]} />
+    </>
   )
 }

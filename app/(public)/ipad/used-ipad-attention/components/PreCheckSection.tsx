@@ -47,7 +47,7 @@ export default function PreCheckSection() {
           aside
           footer={
             <>
-              <h3 className="caution-how-to__heading">バッテリー交換費用の目安</h3>
+              <p className="caution-how-to__heading">バッテリー交換費用の目安</p>
               <div className="price-table-wrap">
                 <table className="m-table">
                   <thead>

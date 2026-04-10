@@ -21,7 +21,6 @@ import ChecklistSection from './components/ChecklistSection'
 import ConclusionSection from './components/ConclusionSection'
 import FaqSection from './components/FaqSection'
 import IPadArticleFooter from '@/app/components/ipad/IPadArticleFooter'
-import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
 import { getHeroImage } from '@/lib/data/hero-images'
@@ -109,6 +108,7 @@ export default async function IPadShopPage() {
     .filter((item): item is { shop: Shop; meta: (typeof IPAD_SHOP_DETAIL_META)[string] } => item != null)
 
   return (
+    <>
     <main>
       <article itemScope itemType="https://schema.org/Article">
         <script
@@ -231,12 +231,11 @@ export default async function IPadShopPage() {
               </li>
             </ol>
           </div>
-          <AuthorByline />
           </div>
         </nav>
 
         {/* セクション */}
-        <div className="l-sections" itemProp="articleBody">
+        <div className="l-sections">
           <BuyingOptionsSection />
           <ShopComparisonSection />
           <RecommendByTypeSection />
@@ -263,11 +262,14 @@ export default async function IPadShopPage() {
           <ChecklistSection />
           <FaqSection />
           <ConclusionSection />
-        <IPadArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/ipad/ipad-shop/", "/ipad/recommend/"]}>
-          <div className="m-callout m-callout--muted" style={{ marginTop: 'var(--space-3xl)' }}><span className="m-callout__label">関連</span><p className="m-callout__text"><a href="https://atam-academy.com/" target="_blank" rel="noreferrer noopener">オンラインイラスト教室アタムアカデミー｜iPadで学ぶ子供向けアート教育</a></p></div>
-        </IPadArticleFooter>
+
+
         </div>
       </article>
     </main>
+    <IPadArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/ipad/ipad-shop/", "/ipad/recommend/"]}>
+          <div className="m-callout m-callout--muted" style={{ marginTop: 'var(--space-3xl)' }}><span className="m-callout__label">関連</span><p className="m-callout__text"><a href="https://atam-academy.com/" target="_blank" rel="noopener noreferrer" aria-label="オンラインイラスト教室アタムアカデミー｜iPadで学ぶ子供向けアート教育（新しいタブで開く）">オンラインイラスト教室アタムアカデミー｜iPadで学ぶ子供向けアート教育</a></p></div>
+        </IPadArticleFooter>
+    </>
   )
 }

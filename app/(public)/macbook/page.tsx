@@ -29,6 +29,7 @@ import VendorCardGrid from '@/app/components/VendorCardGrid'
 import GuideModelLinks from '@/app/components/GuideModelLinks'
 import { getHeroImage } from '@/lib/data/hero-images'
 import AuthorByline from '@/app/components/AuthorByline'
+import ContinuousAside from '@/app/components/ContinuousAside'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
 
@@ -112,6 +113,7 @@ export default async function MacBookGuidePage() {
   }
 
   return (
+    <>
     <main>
       <article itemScope itemType="https://schema.org/Article">
         <script
@@ -146,7 +148,7 @@ export default async function MacBookGuidePage() {
               <h1 className="hero-title" itemProp="headline">
                 中古MacBook完全購入ガイド | 選び方・相場・おすすめモデルまとめ【{GUIDE_DATE_LABEL}版】
               </h1>
-              <HeroMeta dateStr={dateStr} dateDisplay={dateDisplay} withItemProp />
+              <HeroMeta dateStr={dateStr} dateDisplay={dateDisplay} withItemProp showAuthor />
             </div>
             <div className="hero-visual">
               <figure className="hero-media">
@@ -197,11 +199,9 @@ export default async function MacBookGuidePage() {
               <li><a href="#related" className="toc-item">関連記事 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
             </ol>
 </div>
-          <AuthorByline />
           </div>
         </nav>
-
-        <div className="l-sections" itemProp="articleBody">
+        <div className="l-sections">
 
           {/* ========== 中古MacBookの最新相場 ========== */}
           <section className="l-section" id="market-price" aria-labelledby="heading-market-price">
@@ -452,9 +452,17 @@ export default async function MacBookGuidePage() {
             items={GUIDE_FAQ_ITEMS}
           />
 
-        <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>
       </article>
     </main>
+    <ContinuousAside>
+      <div className="l-section l-section--sm">
+        <div className="l-container">
+          <AuthorByline />
+        </div>
+      </div>
+      <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
+    </ContinuousAside>
+    </>
   )
 }

@@ -23,13 +23,13 @@ export default function ComparisonSections() {
             <strong>MacBook Airはファンレス設計</strong>のため、動作中も完全に無音です。Web閲覧や事務作業など日常的な用途では快適ですが、動画書き出しのような高負荷の処理を長時間続けると、チップの発熱を逃がしきれず処理速度が低下する（サーマルスロットリング）ことがあります。
           </p>
           <p className="media-card__desc u-mt-md">
-            一方<strong>MacBook Proはファンを搭載</strong>しているため、高負荷が続いても冷却を維持し、チップ本来の性能を長時間発揮できます。ただし、普段使いではファンが回ることはほぼなく静かです。
+            一方MacBook Proはファンを搭載しているため、高負荷が続いても冷却を維持し、チップ本来の性能を長時間発揮できます。ただし、普段使いではファンが回ることはほぼなく静かです。
           </p>
           <ul className="media-card__list u-mt-md">
-            <li>4K動画の書き出し・レンダリング → <strong>Pro有利</strong></li>
-            <li>Xcodeでの大規模ビルド → <strong>Pro有利</strong></li>
-            <li>Web閲覧・事務作業・SNS → <strong>差なし</strong></li>
-            <li>写真編集・軽い動画カット → <strong>差なし</strong></li>
+            <li>4K動画の書き出し・レンダリング → Pro有利</li>
+            <li>Xcodeでの大規模ビルド → Pro有利</li>
+            <li>Web閲覧・事務作業・SNS → 差なし</li>
+            <li>写真編集・軽い動画カット → 差なし</li>
           </ul>
         </div>
       </div>
@@ -40,10 +40,10 @@ export default function ComparisonSections() {
           <Image src="/images/content/photo/m2.webp" alt="チップ性能の違い" style={imgStyle} loading="lazy" width={800} height={450} />
           <h3 className="popular-card-title">チップ性能の違い</h3>
           <p className="media-card__desc u-mt-md">
-            MacBook Airには各世代の<strong>無印チップ（M1、M2、M3、M4）</strong>が搭載されます。MacBook Proは無印チップに加えて<strong>Pro / Maxチップ</strong>を選択でき、CPU・GPUのコア数が多くメモリ帯域幅も広い上位構成が選べます。
+            MacBook Airには各世代の無印チップ（M1、M2、M3、M4）が搭載されます。MacBook Proは無印チップに加えてPro / Maxチップを選択でき、CPU・GPUのコア数が多くメモリ帯域幅も広い上位構成が選べます。
           </p>
           <p className="media-card__desc u-mt-md">
-            同じM4チップ同士であればAirとProの基本性能は同等です。Proを選ぶ意味があるのは、<strong>Pro/Maxチップが必要な作業をする場合</strong>か、<strong>ファンによる持続性能が重要な場合</strong>です。各チップの違いは以下の通りです。
+            同じM4チップ同士であればAirとProの基本性能は同等です。Proを選ぶ意味があるのは、<strong>Pro/Maxチップが必要な作業をする場合か、ファンによる持続性能が重要な場合</strong>です。各チップの違いは以下の通りです。
           </p>
 
           <div className="m-table-card u-mt-lg">
@@ -85,7 +85,7 @@ export default function ComparisonSections() {
           <Image src="/images/content/photo/macbook-peep-prevention-filter-front-02.jpg" alt="ディスプレイの違い" style={imgStyle} loading="lazy" width={800} height={450} />
           <h3 className="popular-card-title">ディスプレイの違い</h3>
           <p className="media-card__desc u-mt-md">
-            MacBook Airは<strong>Liquid Retinaディスプレイ（60Hz）</strong>を搭載。十分に美しい画面ですが、リフレッシュレートは標準的な60Hzです。
+            MacBook AirはLiquid Retinaディスプレイ（60Hz）を搭載。十分に美しい画面ですが、リフレッシュレートは標準的な60Hzです。
           </p>
           <p className="media-card__desc u-mt-md">
             MacBook Pro（14/16インチ）は<strong>Liquid Retina XDRディスプレイ（ProMotion 120Hz）</strong>を搭載。スクロールやアニメーションが非常になめらかで、HDRコンテンツの表示にも対応。輝度も最大1,600ニトと高く、屋外での作業でも見やすいです。
@@ -130,12 +130,12 @@ export default function ComparisonSections() {
           <Image src="/images/content/photo/review-macbook-14inch-2021-sdcard-slot.jpg" alt="ポート・拡張性の違い" style={imgStyle} loading="lazy" width={800} height={450} />
           <h3 className="popular-card-title">ポート・拡張性の違い</h3>
           <p className="media-card__desc u-mt-md">
-            MacBook Airは<strong>USB-Cポート×2 + MagSafe充電</strong>のシンプルな構成。外付けディスプレイやSDカード、有線LANなどを使いたい場合はUSBハブが必要です。
+            MacBook AirはUSB-Cポート×2 + MagSafe充電のシンプルな構成。外付けディスプレイやSDカード、有線LANなどを使いたい場合はUSBハブが必要です。
           </p>
           <p className="media-card__desc u-mt-md">
             MacBook Pro（14/16インチ）は<strong>USB-C×3 + HDMI + SDカードスロット + MagSafe</strong>を備えており、ハブなしで多くのデバイスを接続可能です。プロジェクターや外部モニターにHDMIケーブル一本で繋がるのは特に便利です。
           </p>
-          <ul className="media-card__list">
+          <ul className="media-card__list u-mt-md">
             <li>カメラのSDカードを直接読み込んで写真を取り込む</li>
             <li>会議室のプロジェクターにHDMIで接続</li>
             <li>外部ディスプレイ+外付けストレージを同時接続</li>
@@ -149,7 +149,7 @@ export default function ComparisonSections() {
           <Image src="/images/content/photo/desk-tour-2025-entire-image.jpg" alt="外部ディスプレイの接続台数" style={imgStyle} loading="lazy" width={800} height={450} />
           <h3 className="popular-card-title">外部ディスプレイの接続台数</h3>
           <p className="media-card__desc u-mt-md">
-            MacBook Airは<strong>M1/M2モデルで最大1台</strong>、M3/M4モデルではクラムシェルモード（本体を閉じた状態）時に<strong>最大2台</strong>の外部ディスプレイに対応します。ただし、本体ディスプレイを開いた状態では1台までという制限があります。
+            MacBook AirはM1/M2モデルで最大1台、M3/M4モデルではクラムシェルモード（本体を閉じた状態）時に最大2台の外部ディスプレイに対応します。ただし、本体ディスプレイを開いた状態では1台までという制限があります。
           </p>
           <p className="media-card__desc u-mt-md">
             MacBook Proは<strong>M4 Proで最大2台、M4 Maxで最大4台</strong>の外部ディスプレイに同時接続が可能です。本体ディスプレイを開いたまま複数の外部モニターを使えるため、マルチモニター環境を構築したい方にはProが圧倒的に有利です。
@@ -207,7 +207,7 @@ export default function ComparisonSections() {
             MacBook Air 13インチは<strong>約1.24kg</strong>と非常に軽量で、カバンに入れても負担になりません。15インチでも約1.51kgと、持ち運びを重視する方にはAirが最適です。
           </p>
           <p className="media-card__desc u-mt-md">
-            MacBook Pro 14インチは<strong>約1.55kg</strong>、16インチは<strong>約2.14kg</strong>。Airより重くなりますが、バッテリー持続時間はProの方が長く、14インチで最大17時間、16インチで最大24時間と大容量です。
+            MacBook Pro 14インチは約1.55kg、16インチは約2.14kg。Airより重くなりますが、バッテリー持続時間はProの方が長く、14インチで最大17時間、16インチで最大24時間と大容量です。
           </p>
 
           <div className="m-table-card u-mt-lg">

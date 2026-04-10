@@ -8,7 +8,6 @@ import NaviAppSection from './components/NaviAppSection'
 import RunningCostSection from './components/RunningCostSection'
 import FaqSection from '@/app/components/support/FaqSection'
 import IPadArticleFooter from '@/app/components/ipad/IPadArticleFooter'
-import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
 import { getHeroImage } from '@/lib/data/hero-images'
@@ -58,6 +57,7 @@ export default function CarNavigationSystemPage() {
   })
 
   return (
+    <>
     <main>
       <article itemScope itemType="https://schema.org/Article">
         <script
@@ -175,7 +175,6 @@ export default function CarNavigationSystemPage() {
               </li>
             </ol>
 </div>
-          <AuthorByline />
           </div>
         </nav>
 
@@ -278,9 +277,12 @@ export default function CarNavigationSystemPage() {
             ]}
           />
 
-        <IPadArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/ipad/car-navigation-system/", "/ipad/recommend/"]} />
+
+
         </div>
       </article>
     </main>
+    <IPadArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/ipad/car-navigation-system/", "/ipad/recommend/"]} />
+    </>
   )
 }

@@ -55,9 +55,10 @@ export default function RecommendDetailSection({ items }: Props) {
             : null
 
           const displayLinks = buildDisplayLinks(shopLinks, fallbackShops, SHOP_NAMES)
+          const iosysLink = displayLinks.find((l) => l.shop_id === 1)
 
           return (
-            <div key={model.id} className="m-card m-card--shadow recommend-card" id={`detail-${model.slug}`}>
+            <article key={model.id} className="m-card m-card--shadow recommend-card" id={`detail-${model.slug}`}>
               <div className="recommend-card__header">
                 <h3>
                   <i className="fa-solid fa-headphones" aria-hidden="true"></i>{' '}
@@ -86,7 +87,7 @@ export default function RecommendDetailSection({ items }: Props) {
                   )}
                 </figure>
                 <div className="recommend-card__info">
-                  <p className="recommend-card__info-title">{model.name}の基本情報</p>
+                  <h4 className="recommend-card__info-title">{model.name}の基本情報</h4>
                   <dl className="recommend-card__specs">
                     {releaseDate && (
                       <div className="recommend-card__spec-item">
@@ -152,9 +153,9 @@ export default function RecommendDetailSection({ items }: Props) {
               <div className="recommend-card__fit">
                 <div className="l-grid l-grid--2col l-grid--gap-lg">
                   <div className="recommend-card__fit-box recommend-card__fit-box--good">
-                    <p className="recommend-card__fit-title">
+                    <h5 className="recommend-card__fit-title">
                       <i className="fa-solid fa-circle-check" aria-hidden="true"></i> こんな人におすすめ
-                    </p>
+                    </h5>
                     <ul>
                       {good.map((text, i) => (
                         <li key={i}>
@@ -164,9 +165,9 @@ export default function RecommendDetailSection({ items }: Props) {
                     </ul>
                   </div>
                   <div className="recommend-card__fit-box recommend-card__fit-box--bad">
-                    <p className="recommend-card__fit-title">
+                    <h5 className="recommend-card__fit-title">
                       <i className="fa-solid fa-circle-xmark" aria-hidden="true"></i> こんな人には向かない
-                    </p>
+                    </h5>
                     <ul>
                       {bad.map((text, i) => (
                         <li key={i}>
@@ -188,6 +189,7 @@ export default function RecommendDetailSection({ items }: Props) {
                         className="m-btn m-btn--primary"
                         rel="nofollow noopener noreferrer"
                         target="_blank"
+                        aria-label={`${model.name}を${link.shopName}で探す（新しいタブで開く）`}
                       >
                         {link.shopName}で探す{' '}
                         <i className="fa-solid fa-chevron-right" aria-hidden="true"></i>
@@ -210,7 +212,7 @@ export default function RecommendDetailSection({ items }: Props) {
                     <SpecCategory title="基本情報" />
                     <SpecRows items={[
                       { label: '発売日', value: releaseDate },
-                      { label: '公式サイト', value: model.official ? <a href={model.official} target="_blank" rel="noopener noreferrer">{model.name}の技術仕様</a> : null },
+                      { label: '公式サイト', value: model.official ? <a href={model.official} target="_blank" rel="noopener noreferrer" aria-label={`${model.name}の技術仕様（新しいタブで開く）`}>{model.name}の技術仕様</a> : null },
                       { label: '装着タイプ', value: model.type },
                       { label: '装着感', value: model.fit },
                       { label: '操作方法', value: model.control },
@@ -233,8 +235,22 @@ export default function RecommendDetailSection({ items }: Props) {
                     ]} />
                   </tbody>
                 </table>
+                {iosysLink && (
+                  <div className="recommend-card__specs-cta">
+                    <a
+                      href={iosysLink.url}
+                      className="m-btn m-btn--primary"
+                      rel="nofollow noopener noreferrer"
+                      target="_blank"
+                      aria-label={`イオシスで${model.name}を探す（新しいタブで開く）`}
+                    >
+                      イオシスで{model.name}を探す{' '}
+                      <i className="fa-solid fa-chevron-right" aria-hidden="true"></i>
+                    </a>
+                  </div>
+                )}
               </SpecToggle>
-            </div>
+            </article>
           )
         })}
       </div>

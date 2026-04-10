@@ -24,7 +24,6 @@ const GLOSSARY_ITEMS = [
 ]
 import Breadcrumb from '@/app/components/Breadcrumb'
 import WatchArticleFooter from '@/app/components/watch/WatchArticleFooter'
-import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
 import { getHeroImage } from '@/lib/data/hero-images'
@@ -114,6 +113,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/watch/watch-spe
 
 
   return (
+    <>
     <main>
       <article>
         <script
@@ -214,7 +214,6 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/watch/watch-spe
               </li>
             </ol>
 </div>
-            <AuthorByline />
           </div>
         </nav>
         <div className="l-sections">
@@ -223,9 +222,10 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/watch/watch-spe
         <DualCompare models={serializedModels} shopLinks={serializedLinks} />
         <EvolutionTimeline models={serializedModels} />
         <GlossarySection productName="Apple Watch" items={GLOSSARY_ITEMS} />
-        <WatchArticleFooter pageUrl="https://used-lab.jp/watch/watch-spec-table/" pageTitle="歴代Apple Watchスペック比較表！各世代の性能の違いがすぐわかる" excludeHref={["/watch/watch-spec-table/", "/watch/recommend/"]} />
         </div>
       </article>
     </main>
+    <WatchArticleFooter pageUrl="https://used-lab.jp/watch/watch-spec-table/" pageTitle="歴代Apple Watchスペック比較表！各世代の性能の違いがすぐわかる" excludeHref={["/watch/watch-spec-table/", "/watch/recommend/"]} />
+    </>
   )
 }

@@ -9,7 +9,6 @@ import {
 import type { IPhonePriceLog } from '@/lib/types'
 import StorageTable, { type StorageModel } from './components/StorageTable'
 import IPhoneArticleFooter from '@/app/components/iphone/IPhoneArticleFooter'
-import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
 import Breadcrumb from '@/app/components/Breadcrumb'
@@ -137,6 +136,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/storage-
   })
 
   return (
+    <>
     <main>
       <article>
         <script
@@ -243,7 +243,6 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/storage-
               </li>
             </ol>
 </div>
-            <AuthorByline />
           </div>
         </nav>
 
@@ -464,13 +463,14 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/storage-
           items={FAQ_ITEMS}
         />
 
-        <IPhoneArticleFooter
+        </div>
+      </article>
+    </main>
+    <IPhoneArticleFooter
           pageUrl="https://used-lab.jp/iphone/storage-guide/"
           pageTitle="中古iPhoneのストレージ容量はどれがいい？用途別おすすめ容量まとめ"
           excludeHref={["/iphone/storage-guide/", "/iphone/recommend/"]}
         />
-        </div>
-      </article>
-    </main>
+    </>
   )
 }

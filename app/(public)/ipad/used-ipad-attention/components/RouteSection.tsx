@@ -25,7 +25,7 @@ export default function RouteSection() {
               iPadの個人取引では<strong>バッテリー状態の詐称、アクティベーションロック未解除、付属品（Apple Pencil・キーボード）の動作不良</strong>などのトラブルが多発します。特にiPadはバッテリー最大容量が本体で確認できないため、出品者の自己申告を信じるしかありません。
             </p>
             <p>
-              「<strong>安い＝自己責任の範囲が広い</strong>」ということを理解した上で利用しましょう。
+              「安い＝自己責任の範囲が広い」ということを理解した上で利用しましょう。
             </p>
           </div>
         </MediaCard>
@@ -46,7 +46,7 @@ export default function RouteSection() {
               <strong>表記ランク（A/B/Cなど）の基準はショップごとに異なります。</strong>特にiPadは画面が大きいため、小さな傷でも目立ちやすく、「Bランク」の状態に差が出やすいです。
             </p>
             <p>
-              また、iPadは<strong>モデル名が非常にわかりにくい</strong>（「iPad Air 第4世代」と「iPad Air 第5世代」の見た目はほぼ同じ）ため、型番（モデル番号）まで確認することをおすすめします。
+              また、iPadはモデル名が非常にわかりにくい（「iPad Air 第4世代」と「iPad Air 第5世代」の見た目はほぼ同じ）ため、型番（モデル番号）まで確認することをおすすめします。
             </p>
           </div>
         </MediaCard>

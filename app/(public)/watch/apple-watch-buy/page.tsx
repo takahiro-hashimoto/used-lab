@@ -4,7 +4,6 @@ import Breadcrumb from '@/app/components/Breadcrumb'
 import WatchArticleFooter from '@/app/components/watch/WatchArticleFooter'
 import BuyMethodsSection from './components/BuyMethodsSection'
 import ConclusionSection from './components/ConclusionSection'
-import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
 import { getHeroImage } from '@/lib/data/hero-images'
@@ -53,6 +52,7 @@ export default function AppleWatchBuyPage() {
   })
 
   return (
+    <>
     <main>
       <article itemScope itemType="https://schema.org/Article">
         <script
@@ -175,7 +175,6 @@ export default function AppleWatchBuyPage() {
                 </li>
               </ol>
             </div>
-            <AuthorByline />
           </div>
         </nav>
 
@@ -185,7 +184,10 @@ export default function AppleWatchBuyPage() {
         {/* セクション */}
         <div className="l-sections" itemProp="articleBody">
           <BuyMethodsSection />
-        <WatchArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/watch/apple-watch-buy/", "/watch/recommend/"]}>
+        </div>
+      </article>
+    </main>
+    <WatchArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/watch/apple-watch-buy/", "/watch/recommend/"]}>
           <div className="m-callout m-callout--muted u-mt-xl">
             <span className="m-callout__label">関連</span>
             <p className="m-callout__text">
@@ -193,8 +195,6 @@ export default function AppleWatchBuyPage() {
             </p>
           </div>
         </WatchArticleFooter>
-        </div>
-      </article>
-    </main>
+    </>
   )
 }

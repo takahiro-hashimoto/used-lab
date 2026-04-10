@@ -107,6 +107,7 @@ export default async function WatchDetailPage({ params }: PageProps) {
   const iosysModelLink = modelShopLinks.find((l) => l.shop_id === 1)
 
   return (
+    <>
     <main>
       {iosysModelLink?.url && <StickyCtaOverride href={iosysModelLink.url} />}
       <AdminEditLink categoryKey="watch" modelId={model.id} />
@@ -139,9 +140,10 @@ export default async function WatchDetailPage({ params }: PageProps) {
         </CompareSection>
         <Accessories model={model} />
         <FaqSection model={model} latestPrice={latestPrice} shopLinks={modelShopLinks} />
-        <WatchArticleFooter pageUrl={`https://used-lab.jp/watch/${model.slug}/`} pageTitle={`中古${model.model}は今買うべき？製品寿命、基本スペック、中古相場から解説`} excludeHref={[`/watch/${model.slug}/`, "/watch/recommend/"]} />
         </div>
       </article>
     </main>
+    <WatchArticleFooter pageUrl={`https://used-lab.jp/watch/${model.slug}/`} pageTitle={`中古${model.model}は今買うべき？製品寿命、基本スペック、中古相場から解説`} excludeHref={[`/watch/${model.slug}/`, "/watch/recommend/"]} />
+    </>
   )
 }

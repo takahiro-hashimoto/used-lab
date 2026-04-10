@@ -7,7 +7,6 @@ import WorkStudySection from './components/WorkStudySection'
 import CreativeSection from './components/CreativeSection'
 import FaqSection from './components/FaqSection'
 import IPadArticleFooter from '@/app/components/ipad/IPadArticleFooter'
-import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
 import { getHeroImage } from '@/lib/data/hero-images'
@@ -121,6 +120,7 @@ export default function HowtoUseIpadPage() {
   }
 
   return (
+    <>
     <main>
       <article itemScope itemType="https://schema.org/Article">
         <script
@@ -234,7 +234,6 @@ export default function HowtoUseIpadPage() {
               </li>
             </ol>
 </div>
-          <AuthorByline />
           </div>
         </nav>
 
@@ -256,9 +255,12 @@ export default function HowtoUseIpadPage() {
           {/* セクション: よくある質問 */}
           <FaqSection />
 
-          <IPadArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/ipad/howto-use-ipad/", "/ipad/recommend/"]} />
+
+
         </div>
       </article>
     </main>
+    <IPadArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/ipad/howto-use-ipad/", "/ipad/recommend/"]} />
+    </>
   )
 }

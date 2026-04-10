@@ -4,7 +4,6 @@ import Breadcrumb from '@/app/components/Breadcrumb'
 import MeritSection from './components/MeritSection'
 import DemeritSection from './components/DemeritSection'
 import IPadArticleFooter from '@/app/components/ipad/IPadArticleFooter'
-import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
 import { getHeroImage } from '@/lib/data/hero-images'
@@ -54,6 +53,7 @@ export default function ReviewIpadPro11M4Page() {
   })
 
   return (
+    <>
     <main>
       <article itemScope itemType="https://schema.org/Article">
         <script
@@ -156,7 +156,6 @@ export default function ReviewIpadPro11M4Page() {
               </li>
             </ol>
 </div>
-          <AuthorByline />
           </div>
         </nav>
 
@@ -292,9 +291,12 @@ export default function ReviewIpadPro11M4Page() {
             </div>
           </section>
 
-          <IPadArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/ipad/review-ipad-pro-11-m4/", "/ipad/recommend/"]} />
+
+
         </div>
       </article>
     </main>
+    <IPadArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/ipad/review-ipad-pro-11-m4/", "/ipad/recommend/"]} />
+    </>
   )
 }

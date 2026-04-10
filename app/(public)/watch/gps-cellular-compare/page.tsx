@@ -5,7 +5,6 @@ import WatchArticleFooter from '@/app/components/watch/WatchArticleFooter'
 import RecommendSection from './components/RecommendSection'
 import ComparisonDetails from './components/ComparisonDetails'
 import FaqSection, { FAQ_ITEMS } from './components/FaqSection'
-import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
 import { getHeroImage } from '@/lib/data/hero-images'
@@ -66,6 +65,7 @@ export default function GpsCellularComparePage() {
   }
 
   return (
+    <>
     <main>
       <article itemScope itemType="https://schema.org/Article">
         <script
@@ -167,7 +167,6 @@ export default function GpsCellularComparePage() {
                 </li>
               </ol>
             </div>
-            <AuthorByline />
           </div>
         </nav>
 
@@ -202,9 +201,10 @@ export default function GpsCellularComparePage() {
           {/* h2: よくある質問 */}
           <FaqSection />
 
-          <WatchArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/watch/gps-cellular-compare/", "/watch/recommend/"]} />
         </div>
       </article>
     </main>
+    <WatchArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/watch/gps-cellular-compare/", "/watch/recommend/"]} />
+    </>
   )
 }

@@ -19,7 +19,6 @@ import PriceHistorySection from './components/PriceHistorySection'
 import Image from 'next/image'
 import FaqSection from './components/FaqSection'
 import MacBookArticleFooter from '@/app/components/macbook/MacBookArticleFooter'
-import AuthorByline from '@/app/components/AuthorByline'
 import { getHeroImage } from '@/lib/data/hero-images'
 import HeroMeta from '@/app/components/HeroMeta'
 
@@ -309,6 +308,7 @@ export default async function MacBookPriceInfoPage() {
   }
 
   return (
+    <>
     <main>
       <article itemScope itemType="https://schema.org/Article">
         <script
@@ -415,7 +415,6 @@ export default async function MacBookPriceInfoPage() {
               </li>
             </ol>
 </div>
-          <AuthorByline />
           </div>
         </nav>
 
@@ -440,9 +439,10 @@ export default async function MacBookPriceInfoPage() {
           <PriceHistorySection models={sortedModels} />
 
           <FaqSection />
-          <MacBookArticleFooter pageUrl={PAGE_URL} pageTitle={`MacBookの中古相場一覧 | 歴代${modelCount}機種の価格推移を独自集計`} excludeHref={["/macbook/price-info/", "/macbook/recommend/"]} />
         </div>
       </article>
     </main>
+    <MacBookArticleFooter pageUrl={PAGE_URL} pageTitle={`MacBookの中古相場一覧 | 歴代${modelCount}機種の価格推移を独自集計`} excludeHref={["/macbook/price-info/", "/macbook/recommend/"]} />
+    </>
   )
 }

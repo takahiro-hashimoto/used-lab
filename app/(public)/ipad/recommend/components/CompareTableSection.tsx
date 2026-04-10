@@ -39,7 +39,7 @@ export default function CompareTableSection({ items }: Props) {
                   <th scope="col">項目</th>
                   {items.map(({ model }) => (
                     <th key={model.id} scope="col">
-                      <strong>{model.model}</strong>
+                      {model.model}
                     </th>
                   ))}
                 </tr>
@@ -149,6 +149,7 @@ export default function CompareTableSection({ items }: Props) {
                             className="m-btn m-btn--primary m-btn--sm"
                             rel="nofollow noopener noreferrer"
                             target="_blank"
+                            aria-label={`${model.model}をイオシスで探す（新しいタブで開く）`}
                           >
                             在庫を見る
                           </a>

@@ -114,6 +114,7 @@ export default async function IPhoneDetailPage({ params }: PageProps) {
   const iosysModelLink = modelShopLinks.find((l) => l.shop_id === 1)
 
   return (
+    <>
     <main>
       {iosysModelLink?.url && <StickyCtaOverride href={iosysModelLink.url} />}
       <AdminEditLink categoryKey="iphone" modelId={model.id} />
@@ -145,15 +146,17 @@ export default async function IPhoneDetailPage({ params }: PageProps) {
         <BenchmarkAntutu model={model} allModels={allModels} />
         <ReviewSection modelName={model.model} reviews={reviews} />
         <FaqSection model={model} latestPrice={latestPrice} shopLinks={modelShopLinks} />
-        <IPhoneArticleFooter
+
+        </div>
+      </article>
+    </main>
+    <IPhoneArticleFooter
           pageUrl={`https://used-lab.jp/iphone/${model.slug}/`}
           pageTitle={`中古${model.model}は今買うべき？製品寿命、基本スペック、ベンチマークスコア、中古相場から解説`}
           excludeHref={`/iphone/${model.slug}/`}
           relatedHeading="iPhone選びのヒントになる記事"
           relatedDescription="iPhone選びをサポートする記事をまとめました。"
         />
-        </div>
-      </article>
-    </main>
+    </>
   )
 }

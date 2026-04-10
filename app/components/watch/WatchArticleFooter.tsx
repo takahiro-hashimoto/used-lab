@@ -2,6 +2,8 @@ import { ReactNode } from 'react'
 import WatchPopularSection from '@/app/components/support/popular/WatchPopularSection'
 import WatchRelatedLinks from '@/app/components/watch/WatchRelatedLinks'
 import ShareBox from '@/app/components/ShareBox'
+import ContinuousAside from '@/app/components/ContinuousAside'
+import AuthorByline from '@/app/components/AuthorByline'
 
 type Props = {
   pageUrl: string
@@ -27,7 +29,7 @@ export default function WatchArticleFooter({
   children,
 }: Props) {
   return (
-    <>
+    <ContinuousAside>
       {!hidePopular && <WatchPopularSection />}
       <WatchRelatedLinks
         excludeHref={excludeHref}
@@ -36,7 +38,12 @@ export default function WatchArticleFooter({
       >
         {children}
       </WatchRelatedLinks>
+      <div className="l-section l-section--sm">
+        <div className="l-container">
+          <AuthorByline />
+        </div>
+      </div>
       <ShareBox url={pageUrl} text={pageTitle} />
-    </>
+    </ContinuousAside>
   )
 }

@@ -10,7 +10,6 @@ import InsuranceSection from '@/app/components/attention/InsuranceSection'
 import FaqSection from '@/app/components/attention/FaqSection'
 import SummaryChecklist from '@/app/components/SummaryChecklist'
 import { insuranceData, faqItems, postCheckItems, failurePatterns } from './components/data'
-import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
 import { getHeroImage } from '@/lib/data/hero-images'
@@ -109,6 +108,7 @@ export default function UsedIphoneAttentionPage() {
   }
 
   return (
+    <>
     <main>
       <article itemScope itemType="https://schema.org/Article">
         <script
@@ -220,7 +220,6 @@ export default function UsedIphoneAttentionPage() {
               </li>
             </ol>
 </div>
-          <AuthorByline />
           </div>
         </nav>
 
@@ -258,13 +257,14 @@ export default function UsedIphoneAttentionPage() {
           </section>
 
           <FaqSection productName="iPhone" faqItems={faqItems} />
-          <IPhoneArticleFooter
+        </div>
+      </article>
+    </main>
+    <IPhoneArticleFooter
             pageUrl={PAGE_URL}
             pageTitle={PAGE_TITLE}
             excludeHref={["/iphone/used-iphone-attention/", "/iphone/recommend/"]}
           />
-        </div>
-      </article>
-    </main>
+    </>
   )
 }

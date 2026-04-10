@@ -59,11 +59,31 @@ function resolveLinkTitle(path: string): string {
   return path
 }
 
-/** 動的ラベル（関数）のページ向けフォールバックタイトル */
+/** 動的ラベル（関数）のページ向け静的タイトル */
+const STATIC_TITLES: Record<string, string> = {
+  '/iphone/': '中古iPhone完全購入ガイド',
+  '/iphone/recommend/': '中古iPhoneおすすめ機種',
+  '/iphone/iphone-shop/': '中古iPhoneおすすめショップ',
+  '/iphone/price-info/': 'iPhoneの中古相場一覧',
+  '/iphone/mvno/': '中古iPhoneと格安SIMセット購入ガイド',
+  '/ipad/': '中古iPad完全購入ガイド',
+  '/ipad/recommend/': '中古iPadおすすめ機種',
+  '/ipad/ipad-shop/': '中古iPadおすすめショップ',
+  '/ipad/ipad-price-info/': 'iPadの中古相場一覧',
+  '/macbook/': '中古MacBook完全購入ガイド',
+  '/macbook/recommend/': '中古MacBookおすすめ機種',
+  '/macbook/macbook-shop/': '中古MacBookおすすめショップ',
+  '/watch/': '中古Apple Watch完全購入ガイド',
+  '/watch/recommend/': '中古Apple Watchおすすめ機種',
+  '/watch/watch-shop/': '中古Apple Watchおすすめショップ',
+  '/watch/watch-price-info/': 'Apple Watchの中古相場一覧',
+  '/airpods/recommend/': '中古AirPodsおすすめ機種',
+  '/airpods/price-info/': 'AirPodsの中古相場一覧',
+}
+
 function getStaticTitleFallback(path: string, categoryId: string): string {
+  if (STATIC_TITLES[path]) return STATIC_TITLES[path]
   const label = CATEGORY_LABEL_MAP[categoryId] ?? categoryId
-  const desc = PAGE_DESCRIPTIONS[path]
-  if (desc) return `中古${label} - ${desc}`
   return `中古${label}情報`
 }
 
@@ -101,12 +121,11 @@ export async function buildLlmsTxt(): Promise<string> {
     for (const page of cat.pages) {
       const desc = PAGE_DESCRIPTIONS[page.path] ?? ''
       const title = resolveLinkTitle(page.path)
-      const shortTitle = desc
-        ? desc
-        : typeof page.label === 'string'
-          ? page.label
-          : label
-      lines.push(`- [${shortTitle}](${BASE_URL}${page.path}): ${desc || shortTitle}`)
+      if (desc) {
+        lines.push(`- [${title}](${BASE_URL}${page.path}): ${desc}`)
+      } else {
+        lines.push(`- [${title}](${BASE_URL}${page.path})`)
+      }
     }
     lines.push('')
   }
@@ -199,12 +218,11 @@ export async function buildLlmsFullTxt(): Promise<string> {
       const desc =
         PAGE_DESCRIPTIONS_FULL[page.path] ?? PAGE_DESCRIPTIONS[page.path] ?? ''
       const title = resolveLinkTitle(page.path)
-      const shortTitle = desc
-        ? desc
-        : typeof page.label === 'string'
-          ? page.label
-          : label
-      lines.push(`- [${shortTitle}](${BASE_URL}${page.path}): ${desc || shortTitle}`)
+      if (desc) {
+        lines.push(`- [${title}](${BASE_URL}${page.path}): ${desc}`)
+      } else {
+        lines.push(`- [${title}](${BASE_URL}${page.path})`)
+      }
     }
     lines.push('')
   }

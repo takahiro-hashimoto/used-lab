@@ -15,16 +15,16 @@ export default function ShopComparisonSection() {
             <table className="m-table m-table--center">
               <thead>
                 <tr>
-                  <th>比較項目</th>
-                  <th>中古専門店</th>
-                  <th>Apple認定整備済</th>
-                  <th>ECモール</th>
-                  <th>フリマアプリ</th>
+                  <th scope="col">比較項目</th>
+                  <th scope="col">中古専門店</th>
+                  <th scope="col">Apple認定整備済</th>
+                  <th scope="col">ECモール</th>
+                  <th scope="col">フリマアプリ</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td><strong>安さ</strong></td>
+                  <th scope="row">安さ</th>
                   <td>
                     <RatingMark mark="◎" /><br />
                     <span className="text-sm text-muted">最安値クラス</span>
@@ -43,7 +43,7 @@ export default function ShopComparisonSection() {
                   </td>
                 </tr>
                 <tr>
-                  <td><strong>安全性</strong></td>
+                  <th scope="row">安全性</th>
                   <td>
                     <RatingMark mark="◎" /><br />
                     <span className="text-sm text-muted">検品体制あり</span>
@@ -62,7 +62,7 @@ export default function ShopComparisonSection() {
                   </td>
                 </tr>
                 <tr>
-                  <td><strong>保証</strong></td>
+                  <th scope="row">保証</th>
                   <td>
                     <RatingMark mark="○" /><br />
                     <span className="text-sm text-muted">ショップ独自保証</span>
@@ -81,7 +81,7 @@ export default function ShopComparisonSection() {
                   </td>
                 </tr>
                 <tr>
-                  <td><strong>初心者向きか</strong></td>
+                  <th scope="row">初心者向きか</th>
                   <td>
                     <RatingMark mark="◎" /><br />
                     <span className="text-sm text-muted">おすすめ</span>

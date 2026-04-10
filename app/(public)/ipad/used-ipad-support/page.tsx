@@ -7,7 +7,6 @@ import LifespanTable from './components/LifespanTable'
 import TimingSection from './components/TimingSection'
 import FaqSection from './components/FaqSection'
 import IPadArticleFooter from '@/app/components/ipad/IPadArticleFooter'
-import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
 import { getHeroImage } from '@/lib/data/hero-images'
@@ -63,6 +62,7 @@ export default async function UsedIpadSupportPage() {
   })
 
   return (
+    <>
     <main>
       <article>
         <script
@@ -160,7 +160,6 @@ export default async function UsedIpadSupportPage() {
               </li>
             </ol>
             </div>
-          <AuthorByline />
           </div>
         </nav>
         <div className="l-sections">
@@ -169,9 +168,12 @@ export default async function UsedIpadSupportPage() {
         <LifespanTable models={allModelsWithEnded} />
         <TimingSection />
         <FaqSection />
-        <IPadArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/ipad/used-ipad-support/", "/ipad/recommend/"]} />
+
+
         </div>
       </article>
     </main>
+    <IPadArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/ipad/used-ipad-support/", "/ipad/recommend/"]} />
+    </>
   )
 }

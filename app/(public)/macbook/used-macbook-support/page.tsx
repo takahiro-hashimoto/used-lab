@@ -7,7 +7,6 @@ import MacOsSupportMatrix from './components/MacOsSupportMatrix'
 import LifespanTable from './components/LifespanTable'
 import TimingSection from './components/TimingSection'
 import FaqSection from './components/FaqSection'
-import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import { getHeroImage } from '@/lib/data/hero-images'
 import HeroMeta from '@/app/components/HeroMeta'
@@ -63,6 +62,7 @@ export default async function UsedMacbookSupportPage() {
   })
 
   return (
+    <>
     <main>
       <article>
         <script
@@ -160,7 +160,6 @@ export default async function UsedMacbookSupportPage() {
               </li>
             </ol>
             </div>
-          <AuthorByline />
           </div>
         </nav>
         <div className="l-sections">
@@ -169,7 +168,10 @@ export default async function UsedMacbookSupportPage() {
         <LifespanTable models={allModelsWithEnded} />
         <TimingSection />
         <FaqSection />
-        <MacBookArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/macbook/used-macbook-support/", "/macbook/recommend/"]}>
+        </div>
+      </article>
+    </main>
+    <MacBookArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/macbook/used-macbook-support/", "/macbook/recommend/"]}>
           <div className="m-callout m-callout--muted u-mt-3xl">
             <span className="m-callout__label">関連</span>
             <p className="m-callout__text">
@@ -177,8 +179,6 @@ export default async function UsedMacbookSupportPage() {
             </p>
           </div>
         </MacBookArticleFooter>
-        </div>
-      </article>
-    </main>
+    </>
   )
 }

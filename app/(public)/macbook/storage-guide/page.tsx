@@ -11,7 +11,6 @@ import {
 import type { MacBookPriceLog } from '@/lib/types'
 import StorageTable, { type StorageModel } from './components/StorageTable'
 import MacBookArticleFooter from '@/app/components/macbook/MacBookArticleFooter'
-import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import { getHeroImage } from '@/lib/data/hero-images'
 import HeroMeta from '@/app/components/HeroMeta'
@@ -144,6 +143,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/macbook/storage
 
 
   return (
+    <>
     <main>
       <article>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
@@ -202,7 +202,6 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/macbook/storage
               <li><a href="#faq" className="toc-item">よくある質問 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#related" className="toc-item">関連記事 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>            </ol>
 </div>
-            <AuthorByline />
           </div>
         </nav>
 
@@ -378,9 +377,10 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/macbook/storage
           items={FAQ_ITEMS}
         />
 
-        <MacBookArticleFooter pageUrl="https://used-lab.jp/macbook/storage-guide/" pageTitle="中古MacBookのストレージ容量はどれがいい？用途別おすすめ容量まとめ" excludeHref={["/macbook/storage-guide/", "/macbook/recommend/"]} />
         </div>
       </article>
     </main>
+    <MacBookArticleFooter pageUrl="https://used-lab.jp/macbook/storage-guide/" pageTitle="中古MacBookのストレージ容量はどれがいい？用途別おすすめ容量まとめ" excludeHref={["/macbook/storage-guide/", "/macbook/recommend/"]} />
+    </>
   )
 }

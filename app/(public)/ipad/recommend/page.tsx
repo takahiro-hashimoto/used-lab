@@ -36,7 +36,6 @@ const ValueZoneChart = dynamic(() => import('@/app/components/ValueZoneChart'), 
   loading: () => <div style={{ height: '300px' }} />,
 })
 import IPadArticleFooter from '@/app/components/ipad/IPadArticleFooter'
-import AuthorByline from '@/app/components/AuthorByline'
 import HeroMeta from '@/app/components/HeroMeta'
 import { getHeroImage } from '@/lib/data/hero-images'
 
@@ -160,6 +159,7 @@ export default async function IPadRecommendPage() {
     .filter((item): item is { shop: (typeof shops)[number]; url: string } => item != null)
 
   return (
+    <>
     <main>
       <article itemScope itemType="https://schema.org/Article">
         <script
@@ -285,7 +285,6 @@ export default async function IPadRecommendPage() {
               </li>
             </ol>
 </div>
-          <AuthorByline />
           </div>
         </nav>
 
@@ -404,9 +403,12 @@ export default async function IPadRecommendPage() {
             shopDetailLink={{ href: '/ipad/ipad-shop/', label: '中古iPadのおすすめショップ比較' }}
           />
           <IPadFaqSection />
-        <IPadArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref="/ipad/recommend/" hidePopular relatedHeading="iPad選びをもっと深掘りする" relatedDescription="購入先の比較や相場チェックなど、iPad選びに役立つ記事をまとめました。" />
+
+
         </div>
       </article>
     </main>
+    <IPadArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref="/ipad/recommend/" hidePopular relatedHeading="iPad選びをもっと深掘りする" relatedDescription="購入先の比較や相場チェックなど、iPad選びに役立つ記事をまとめました。" />
+    </>
   )
 }

@@ -4,6 +4,7 @@ import { BenchBar } from '@/app/components/spec-table-utils'
 type SpecModel = {
   id: number
   model: string
+  slug: string
   shortname: string | null
   score_single: number | null
   score_multi: number | null
@@ -41,7 +42,9 @@ function BenchTable({ models, caption, maxSingle, maxMulti, maxMetal }: {
         <tbody>
           {models.map((m) => (
             <tr key={m.id}>
-              <th scope="row" className="bench-table__sticky">{m.shortname || m.model}</th>
+              <th scope="row" className="bench-table__sticky">
+                <Link href={`/macbook/${m.slug}/`}>{m.shortname || m.model}</Link>
+              </th>
               <td><BenchBar value={m.score_single!} maxValue={maxSingle} color="#e74c6f" /></td>
               <td><BenchBar value={m.score_multi!} maxValue={maxMulti} color="#f0a030" /></td>
               <td><BenchBar value={m.score_metal!} maxValue={maxMetal} color="var(--color-primary, #2589d0)" /></td>

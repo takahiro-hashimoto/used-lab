@@ -28,16 +28,16 @@ export default function ShopComparisonTable({ shops, specRows, caption, getShopU
           {caption && <caption className="visually-hidden">{caption}</caption>}
           <thead>
             <tr>
-              <th>比較項目</th>
+              <th scope="col">比較項目</th>
               {shops.map((s) => (
-                <th key={s.id}>{s.shop}</th>
+                <th key={s.id} scope="col">{s.shop}</th>
               ))}
             </tr>
           </thead>
           <tbody>
             {specRows.map((row) => (
               <tr key={row.label}>
-                <td><strong>{row.label}</strong></td>
+                <th scope="row">{row.label}</th>
                 {shops.map((s) => (
                   <td key={s.id}>{renderValue(row.getValue(s))}</td>
                 ))}
@@ -45,13 +45,13 @@ export default function ShopComparisonTable({ shops, specRows, caption, getShopU
             ))}
             {getShopUrl && (
               <tr>
-                <td><strong>リンク</strong></td>
+                <th scope="row">リンク</th>
                 {shops.map((s) => {
                   const url = getShopUrl(s)
                   return (
                     <td key={s.id}>
                       {url ? (
-                        <a href={url} className="m-btn m-btn--primary m-btn--sm" target="_blank" rel="noopener noreferrer nofollow">
+                        <a href={url} className="m-btn m-btn--primary m-btn--sm" target="_blank" rel="noopener noreferrer nofollow" aria-label={`${s.shop}で探す（新しいタブで開く）`}>
                           {ctaText}
                         </a>
                       ) : (

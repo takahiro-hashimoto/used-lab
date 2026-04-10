@@ -147,7 +147,7 @@ ul {
 
 /* --- l-section --- */
 .l-section {
-  padding: var(--space-3xl) 0;
+  padding: var(--space-2xl) 0;
 }
 
 .l-section--sm {
@@ -169,6 +169,15 @@ ul {
 
 .l-sections > :nth-child(even) {
   background-color: transparent;
+}
+
+/* main内セクション数が奇数の場合、asideのパターンを反転 */
+.l-sections--flip > :nth-child(odd) {
+  background-color: transparent;
+}
+
+.l-sections--flip > :nth-child(even) {
+  background-color: var(--color-bg-subtle);
 }
 
 /* --- l-grid --- */
@@ -1107,14 +1116,9 @@ a.header-admin-link:hover {
 }
 
 /* ---------- breadcrumb ---------- */
-.breadcrumb {
-  background: var(--color-bg);
-  border-bottom: 1px solid var(--color-border-light);
-}
 
 .breadcrumb .l-container {
-  padding-top: var(--space-md);
-  padding-bottom: 0;
+  padding: var(--space-md) 0 0;
 }
 
 .breadcrumb-list {
@@ -1298,7 +1302,7 @@ a.header-admin-link:hover {
   max-width: 960px;
   padding: var(--space-lg);
   border-radius: var(--radius-lg);
-  background: linear-gradient(-45deg, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 0.03) 25%, rgba(0, 0, 0, 0.03) 50%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0.03) 75%, rgba(0, 0, 0, 0.03)) 0px 0px / 6px 6px;
+  background: linear-gradient(-45deg, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 0.02) 25%, rgba(0, 0, 0, 0.02) 50%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0.02) 75%, rgba(0, 0, 0, 0.02)) 0px 0px / 6px 6px;
   margin: 0px auto;
 }
 
@@ -1442,10 +1446,6 @@ a.header-admin-link:hover {
 /* ==========================================
    Author Byline (above-the-fold)
    ========================================== */
-.author-byline {
-  margin-top: var(--space-2xl);
-}
-
 .author-byline__card {
   display: flex;
   align-items: flex-start;

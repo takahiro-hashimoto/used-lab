@@ -26,7 +26,6 @@ const GLOSSARY_ITEMS = [
   { title: '外部ディスプレイ接続台数', icon: 'fa-solid fa-desktop', desc: '同時に接続できる外部モニターの台数。M1/M2は最大1台、M3以降やPro/Maxチップでは2〜4台に対応。デュアルモニター環境を作りたい方はチップの対応台数を必ず確認。' },
 ]
 import MacBookArticleFooter from '@/app/components/macbook/MacBookArticleFooter'
-import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import { getHeroImage } from '@/lib/data/hero-images'
 import HeroMeta from '@/app/components/HeroMeta'
@@ -119,6 +118,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/macbook/macbook
 
 
   return (
+    <>
     <main>
       <article>
         <script
@@ -231,7 +231,6 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/macbook/macbook
               </li>
             </ol>
 </div>
-            <AuthorByline />
           </div>
         </nav>
         <div className="l-sections">
@@ -241,9 +240,10 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/macbook/macbook
         <BenchmarkSection models={serializedModels} />
         <EvolutionTimeline models={serializedModels} />
         <GlossarySection productName="MacBook" items={GLOSSARY_ITEMS} />
-        <MacBookArticleFooter pageUrl="https://used-lab.jp/macbook/macbook-spec-table/" pageTitle="歴代MacBookスペック比較表！Air・Proの性能差や違いがすぐわかる" excludeHref={["/macbook/macbook-spec-table/", "/macbook/recommend/"]} />
         </div>
       </article>
     </main>
+    <MacBookArticleFooter pageUrl="https://used-lab.jp/macbook/macbook-spec-table/" pageTitle="歴代MacBookスペック比較表！Air・Proの性能差や違いがすぐわかる" excludeHref={["/macbook/macbook-spec-table/", "/macbook/recommend/"]} />
+    </>
   )
 }

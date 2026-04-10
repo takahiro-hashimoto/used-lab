@@ -107,6 +107,7 @@ export default async function MacBookDetailPage({ params }: PageProps) {
   const iosysModelLink = modelShopLinks.find((l) => l.shop_id === 1)
 
   return (
+    <>
     <main>
       {iosysModelLink?.url && <StickyCtaOverride href={iosysModelLink.url} />}
       <AdminEditLink categoryKey="macbook" modelId={model.id} />
@@ -138,9 +139,10 @@ export default async function MacBookDetailPage({ params }: PageProps) {
         <BenchmarkGeekbench model={model} allModels={allModels} />
         <Accessories model={model} />
         <FaqSection model={model} latestPrice={latestPrice} shopLinks={modelShopLinks} />
-        <MacBookArticleFooter pageUrl={`https://used-lab.jp/macbook/${model.slug}/`} pageTitle={`中古${model.model}は今買うべき？製品寿命、基本スペック、ベンチマークスコア、中古相場から解説`} excludeHref={[`/macbook/${model.slug}/`, "/macbook/recommend/"]} />
         </div>
       </article>
     </main>
+    <MacBookArticleFooter pageUrl={`https://used-lab.jp/macbook/${model.slug}/`} pageTitle={`中古${model.model}は今買うべき？製品寿命、基本スペック、ベンチマークスコア、中古相場から解説`} excludeHref={[`/macbook/${model.slug}/`, "/macbook/recommend/"]} />
+    </>
   )
 }

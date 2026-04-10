@@ -32,7 +32,6 @@ const GLOSSARY_ITEMS = [
   { title: 'Apple ProRAW', icon: 'fa-solid fa-image', desc: '多くの情報を保持したRAW形式で撮影可能。高精度な編集に対応し、プロ仕様の仕上がりに。' },
   { title: 'Apple ProRes', icon: 'fa-solid fa-video', desc: '高画質な映像を記録できるフォーマット。豊かな階調と高い編集耐性が特徴。' },
 ]
-import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import { getHeroImage } from '@/lib/data/hero-images'
 
@@ -142,6 +141,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/iphone-s
 
 
   return (
+    <>
     <main>
       <article itemScope itemType="https://schema.org/Article">
         <script
@@ -254,7 +254,6 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/iphone-s
               </li>
             </ol>
 </div>
-            <AuthorByline />
           </div>
         </nav>
         <div className="l-sections" itemProp="articleBody">
@@ -265,7 +264,10 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/iphone-s
         <EvolutionTimeline models={serializedModels} />
         <GlossarySection productName="iPhone" items={GLOSSARY_ITEMS} />
 
-        <IPhoneArticleFooter
+        </div>
+      </article>
+    </main>
+    <IPhoneArticleFooter
           pageUrl="https://used-lab.jp/iphone/iphone-spec-table/"
           pageTitle="歴代iPhoneスペック比較表！気になる機種の性能差や違いがわかる"
           excludeHref={["/iphone/iphone-spec-table/", "/iphone/recommend/"]}
@@ -277,8 +279,6 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/iphone-s
             </p>
           </div>
         </IPhoneArticleFooter>
-        </div>
-      </article>
-    </main>
+    </>
   )
 }

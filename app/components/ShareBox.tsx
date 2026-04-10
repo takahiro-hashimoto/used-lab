@@ -32,7 +32,7 @@ export default function ShareBox({ url, text }: Props) {
   const hatenaUrl = `https://b.hatena.ne.jp/entry/s/${url.replace('https://', '')}`
 
   return (
-    <aside className="l-section l-section--sm" aria-label="SNSシェア">
+    <div className="l-section l-section--sm">
       <div className="l-container">
         <div className="share-box u-text-center">
           <p className="share-box__lead">
@@ -82,6 +82,6 @@ export default function ShareBox({ url, text }: Props) {
           </div>
         </div>
       </div>
-    </aside>
+    </div>
   )
 }

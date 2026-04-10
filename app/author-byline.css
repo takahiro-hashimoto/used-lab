@@ -1,7 +1,4 @@
 /* ---------- author-byline ---------- */
-.author-byline {
-  margin-top: var(--space-2xl);
-}
 
 .author-byline__card {
   display: flex;

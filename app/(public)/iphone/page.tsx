@@ -30,6 +30,7 @@ import VendorCardGrid from '@/app/components/VendorCardGrid'
 import GuideModelLinks from '@/app/components/GuideModelLinks'
 import { getHeroImage } from '@/lib/data/hero-images'
 import AuthorByline from '@/app/components/AuthorByline'
+import ContinuousAside from '@/app/components/ContinuousAside'
 import HeroMeta from '@/app/components/HeroMeta'
 import PopularSection from '@/app/components/support/PopularSection'
 
@@ -142,6 +143,7 @@ export default async function IPhoneGuidePage() {
   }
 
   return (
+    <>
     <main>
       <article itemScope itemType="https://schema.org/Article">
         <script
@@ -172,7 +174,7 @@ export default async function IPhoneGuidePage() {
                 中古iPhone完全購入ガイド
                 選び方・相場・おすすめモデルまとめ【{GUIDE_DATE_LABEL}版】
               </h1>
-              <HeroMeta dateStr={dateStr} dateDisplay={dateDisplay} withItemProp />
+              <HeroMeta dateStr={dateStr} dateDisplay={dateDisplay} withItemProp showAuthor />
             </div>
             <div className="hero-visual">
               <figure className="hero-media">
@@ -223,11 +225,9 @@ export default async function IPhoneGuidePage() {
               <li><a href="#faq" className="toc-item">よくある質問 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
             </ol>
             </div>
-          <AuthorByline />
           </div>
         </nav>
-
-        <div className="l-sections" itemProp="articleBody">
+        <div className="l-sections">
 
           {/* ========== 絞り込みツール ========== */}
           <PopularSection
@@ -422,7 +422,7 @@ export default async function IPhoneGuidePage() {
               <h2 className="m-section-heading m-section-heading--lg" id="heading-spec-compare">中古iPhoneのデータ・スペック比較ガイド</h2>
               <p className="m-section-desc">カメラ性能、バッテリー寿命、サポート期間など、機種選びに役立つ詳細なスペック比較記事をまとめました。</p>
 
-              <div className="l-grid l-grid--2col l-grid--gap-lg l-grid--mb-2xl">
+              <div className="l-grid l-grid--2col l-grid--gap-lg u-mb-2xl">
                 {GUIDE_SPEC_LINKS.map((link) => (
                   <Link key={link.href} href={link.href} className="m-card m-card--shadow related-link-card m-card--hoverable">
                     <Image src={getHeroImage(link.href)} alt={link.title} className="related-link-card__img" width={400} height={300} loading="lazy" />
@@ -450,7 +450,7 @@ export default async function IPhoneGuidePage() {
               <div className="guide-model-links">
                 <h3 className="guide-model-links__heading">2機種比較</h3>
                 <p className="guide-model-links__desc">気になる2機種の違いをスペック・カメラ・バッテリー・中古価格で徹底比較。</p>
-                <div className="l-grid l-grid--3col l-grid--gap-md u-mb-2xl">
+                <div className="l-grid l-grid--3col l-grid--gap-md">
                   {GUIDE_COMPARE_LINKS.map((link) => (
                     <Link key={link.href} href={link.href} className="guide-model-item m-card">
                       <span className="guide-model-item__name">
@@ -469,7 +469,7 @@ export default async function IPhoneGuidePage() {
             <div className="l-container">
               <h2 className="m-section-heading m-section-heading--lg" id="heading-service-links">中古iPhone購入者向けサービス</h2>
               <p className="m-section-desc">中古iPhoneの購入とセットで検討したいサービスをまとめました。</p>
-              <div className="l-grid l-grid--2col l-grid--gap-lg l-grid--mb-2xl">
+              <div className="l-grid l-grid--2col l-grid--gap-lg">
                 {SERVICE_LINKS.map((service) => (
                   <a
                     key={service.title}
@@ -477,6 +477,7 @@ export default async function IPhoneGuidePage() {
                     target="_blank"
                     rel={service.rel}
                     className="m-card m-card--shadow related-link-card m-card--hoverable"
+                    aria-label={`${service.title}（新しいタブで開く）`}
                   >
                     <img
                       decoding="async"
@@ -499,9 +500,17 @@ export default async function IPhoneGuidePage() {
             description="中古iPhoneの購入を検討している方からよく寄せられる質問をまとめました。"
             items={GUIDE_FAQ_ITEMS}
           />
-        <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>
       </article>
     </main>
+    <ContinuousAside>
+      <div className="l-section l-section--sm">
+        <div className="l-container">
+          <AuthorByline />
+        </div>
+      </div>
+      <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
+    </ContinuousAside>
+    </>
   )
 }

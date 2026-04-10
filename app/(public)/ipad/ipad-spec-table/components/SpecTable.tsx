@@ -32,6 +32,7 @@ type SpecModel = {
   pencil: string | null
   keyboard: string | null
   speaker: string | null
+  last_ipados: string | null
 }
 
 type Props = {
@@ -55,10 +56,16 @@ function formatCameraLens(camera: string | null): string {
   return camera.includes('/') ? 'デュアルレンズ' : 'シングルレンズ'
 }
 
-/** SIMのカッコ以降を削除 */
-function formatSim(sim: string | null): string {
-  if (!sim) return '-'
-  return sim.replace(/[（(].+$/, '').trim()
+/** OSサポート終了目安を算出（発売から7年） */
+function formatOsSupport(date: string | null, lastOs: string | null): string {
+  if (lastOs) {
+    // last_ipadosが設定済み → サポート終了済み
+    return `終了（${lastOs}）`
+  }
+  if (!date) return '-'
+  const y = parseInt(date.split('-')[0], 10)
+  if (isNaN(y)) return '-'
+  return `${y + 7}年頃まで`
 }
 
 function getModelCategory(model: string): string {
@@ -121,25 +128,23 @@ export default function SpecTable({ models, shopLinks }: Props) {
   const SPEC_ROWS: { label: string; render: (m: SpecModel) => React.ReactNode }[] = [
     { label: 'サイズ', render: (m) => extractScreenInch(m.display) || '-' },
     { label: '発売日', render: (m) => formatDate(m.date) },
-    { label: 'CPU', render: (m) => m.cpu ? <TextCell value={m.cpu} /> : '-' },
-    { label: 'RAM', render: (m) => m.ram || '-' },
+    { label: 'OSサポート目安', render: (m) => formatOsSupport(m.date, m.last_ipados) },
+    { label: 'チップ', render: (m) => m.cpu ? <TextCell value={m.cpu} /> : '-' },
+    { label: 'メモリ', render: (m) => m.ram || '-' },
     { label: '重量', render: (m) => m.weight || '-' },
-    { label: 'ストレージ', render: (m) => formatStorageRange(m.strage) },
-    { label: 'コネクター', render: (m) => m.port ? <PortCell value={m.port} /> : '-' },
-    { label: 'バッテリー容量', render: (m) => m.battery || '-' },
-    { label: 'ディスプレイ種類', render: (m) => m.display_type ? <TextCell value={m.display_type} /> : '-' },
-    { label: '解像度', render: (m) => m.resolution ? <TextCell value={m.resolution} /> : '-' },
-    { label: 'インカメラ', render: (m) => formatCameraLens(m.front_camera) },
+    { label: 'バッテリー', render: (m) => m.battery || '-' },
+    { label: 'ポート', render: (m) => m.port ? <PortCell value={m.port} /> : '-' },
+    { label: '認証', render: (m) => m.certification ? <TextCell value={m.certification} /> : '-' },
     { label: '外カメラ', render: (m) => formatCameraLens(m.in_camera) },
+    { label: 'ディスプレイ', render: (m) => m.display_type ? <TextCell value={m.display_type} /> : '-' },
     { label: 'Apple Intelligence', render: (m) => <BoolCell value={m.apple_intelligence} /> },
-    { label: 'ProMotion', render: (m) => <BoolCell value={m.promotion} /> },
     { label: 'センターフレーム', render: (m) => <BoolCell value={m.center_frame} /> },
-    { label: 'LiDARスキャン', render: (m) => <BoolCell value={m.lidar} /> },
+    { label: 'ProMotion', render: (m) => <BoolCell value={m.promotion} /> },
+    { label: 'LiDAR機能', render: (m) => <BoolCell value={m.lidar} /> },
+    { label: 'オーディオ', render: (m) => m.speaker ? <TextCell value={m.speaker} /> : '-' },
     { label: 'Apple Pencil', render: (m) => m.pencil ? <TextCell value={m.pencil} /> : '-' },
     { label: '純正キーボード', render: (m) => <BoolCell value={!!m.keyboard} /> },
-    { label: 'スピーカー', render: (m) => m.speaker ? <TextCell value={m.speaker} /> : '-' },
-    { label: 'SIM', render: (m) => formatSim(m.sim) },
-    { label: '認証', render: (m) => m.certification ? <TextCell value={m.certification} /> : '-' },
+    { label: 'ストレージ', render: (m) => formatStorageRange(m.strage) },
   ]
 
   return (
@@ -153,19 +158,22 @@ export default function SpecTable({ models, shopLinks }: Props) {
         </p>
 
         {/* フィルターUI */}
-        <div className="u-mb-xl" aria-label="絞り込み">
+        <fieldset className="u-mb-xl">
+          <legend className="visually-hidden">テーブルの絞り込み</legend>
           <div className="spec-filter__row">
             <span className="spec-filter__label">並び替え</span>
             <div className="spec-filter__tags">
               <button
                 className={`spec-filter__tag${sortOrder === 'old' ? ' is-active' : ''}`}
                 onClick={() => setSortOrder('old')}
+                aria-pressed={sortOrder === 'old'}
               >
                 発売日が古い順
               </button>
               <button
                 className={`spec-filter__tag${sortOrder === 'new' ? ' is-active' : ''}`}
                 onClick={() => setSortOrder('new')}
+                aria-pressed={sortOrder === 'new'}
               >
                 発売日が新しい順
               </button>
@@ -185,6 +193,7 @@ export default function SpecTable({ models, shopLinks }: Props) {
                   key={key}
                   className={`spec-filter__tag${modelFilter === key ? ' is-active' : ''}`}
                   onClick={() => setModelFilter(key)}
+                  aria-pressed={modelFilter === key}
                 >
                   {label}
                 </button>
@@ -205,13 +214,14 @@ export default function SpecTable({ models, shopLinks }: Props) {
                   key={key}
                   className={`spec-filter__tag${pencilFilter === key ? ' is-active' : ''}`}
                   onClick={() => setPencilFilter(key)}
+                  aria-pressed={pencilFilter === key}
                 >
                   {label}
                 </button>
               ))}
             </div>
           </div>
-        </div>
+        </fieldset>
 
         {/* テーブル */}
         {filteredModels.length === 0 ? (
@@ -263,7 +273,7 @@ export default function SpecTable({ models, shopLinks }: Props) {
                       return (
                         <td key={m.id}>
                           {link ? (
-                            <a href={link.url} className="m-btn m-btn--primary m-btn--sm" rel="nofollow noopener noreferrer" target="_blank">
+                            <a href={link.url} className="m-btn m-btn--primary m-btn--sm" rel="nofollow noopener noreferrer" target="_blank" aria-label={`${m.model}をイオシスで探す（新しいタブで開く）`}>
                               中古価格を見る
                             </a>
                           ) : '-'}
@@ -279,7 +289,7 @@ export default function SpecTable({ models, shopLinks }: Props) {
                       return (
                         <td key={m.id}>
                           {link ? (
-                            <a href={link.url} className="m-btn m-btn--amazon m-btn--sm" rel="nofollow noopener noreferrer" target="_blank">
+                            <a href={link.url} className="m-btn m-btn--amazon m-btn--sm" rel="nofollow noopener noreferrer" target="_blank" aria-label={`${m.model}をAmazonで探す（新しいタブで開く）`}>
                               中古価格を見る
                             </a>
                           ) : '-'}

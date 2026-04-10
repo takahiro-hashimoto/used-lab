@@ -33,7 +33,6 @@ import dynamic from 'next/dynamic'
 const ValueZoneChart = dynamic(() => import('@/app/components/ValueZoneChart'), {
   loading: () => <div style={{ height: '300px' }} />,
 })
-import AuthorByline from '@/app/components/AuthorByline'
 import HeroMeta from '@/app/components/HeroMeta'
 import { getHeroImage } from '@/lib/data/hero-images'
 
@@ -143,6 +142,7 @@ export default async function WatchRecommendPage() {
     .filter((item): item is { shop: (typeof shops)[number]; url: string } => item != null)
 
   return (
+    <>
     <main>
       <article itemScope itemType="https://schema.org/Article">
         <script
@@ -263,7 +263,6 @@ export default async function WatchRecommendPage() {
                 </li>
               </ol>
             </div>
-            <AuthorByline />
           </div>
         </nav>
 
@@ -378,9 +377,10 @@ export default async function WatchRecommendPage() {
             shopDetailLink={{ href: '/watch/watch-shop/', label: '中古Apple Watchのおすすめショップ比較' }}
           />
           <WatchFaqSection />
-        <WatchArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref="/watch/recommend/" hidePopular relatedHeading="Apple Watch選びをもっと深掘りする" relatedDescription="購入先の比較や相場チェックなど、Apple Watch選びに役立つ記事をまとめました。" />
         </div>
       </article>
     </main>
+    <WatchArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref="/watch/recommend/" hidePopular relatedHeading="Apple Watch選びをもっと深掘りする" relatedDescription="購入先の比較や相場チェックなど、Apple Watch選びに役立つ記事をまとめました。" />
+    </>
   )
 }

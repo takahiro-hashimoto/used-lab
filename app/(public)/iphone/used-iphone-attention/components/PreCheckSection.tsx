@@ -91,7 +91,7 @@ export default function PreCheckSection() {
           aside
           footer={
             <>
-              <h3 className="caution-how-to__heading">確認方法</h3>
+              <p className="caution-how-to__heading">確認方法</p>
               <ol className="caution-steps">
                 <li className="caution-steps__item">
                   <span className="caution-steps__num">1</span>
@@ -107,8 +107,8 @@ export default function PreCheckSection() {
                 </li>
               </ol>
 
+              <p className="caution-how-to__heading">バッテリー交換費用の目安</p>
               <div className="price-table-wrap">
-              <h3 className="caution-how-to__heading">バッテリー交換費用の目安</h3>
 
                 <table className="m-table">
                   <thead>

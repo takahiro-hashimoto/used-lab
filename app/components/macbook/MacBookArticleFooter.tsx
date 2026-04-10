@@ -2,6 +2,8 @@ import { ReactNode } from 'react'
 import MacBookPopularSection from '@/app/components/support/popular/MacBookPopularSection'
 import MacBookRelatedLinks from '@/app/components/macbook/MacBookRelatedLinks'
 import ShareBox from '@/app/components/ShareBox'
+import ContinuousAside from '@/app/components/ContinuousAside'
+import AuthorByline from '@/app/components/AuthorByline'
 
 type Props = {
   pageUrl: string
@@ -23,7 +25,7 @@ export default function MacBookArticleFooter({
   children,
 }: Props) {
   return (
-    <>
+    <ContinuousAside>
       {!hidePopular && <MacBookPopularSection />}
       <MacBookRelatedLinks
         excludeHref={excludeHref}
@@ -32,7 +34,12 @@ export default function MacBookArticleFooter({
       >
         {children}
       </MacBookRelatedLinks>
+      <div className="l-section l-section--sm">
+        <div className="l-container">
+          <AuthorByline />
+        </div>
+      </div>
       <ShareBox url={pageUrl} text={pageTitle} />
-    </>
+    </ContinuousAside>
   )
 }

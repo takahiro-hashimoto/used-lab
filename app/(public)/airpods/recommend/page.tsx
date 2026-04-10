@@ -173,8 +173,9 @@ export default async function AirPodsRecommendPage() {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
         />
-
         <div className="hero-wrapper">
+
+
         {/* パンくず */}
         <Breadcrumb
           items={[
@@ -194,7 +195,7 @@ export default async function AirPodsRecommendPage() {
               <h1 className="hero-title" itemProp="headline">
                 {PAGE_TITLE}
               </h1>
-              <HeroMeta dateStr={dateStr} dateDisplay={dateDisplay} withItemProp />
+              <HeroMeta dateStr={dateStr} dateDisplay={dateDisplay} withItemProp showAuthor />
             </div>
             <div className="hero-visual">
               <figure className="hero-media">
@@ -269,10 +270,8 @@ export default async function AirPodsRecommendPage() {
               </li>
             </ol>
 </div>
-          <AuthorByline />
           </div>
         </nav>
-
         {/* セクション */}
         <div className="l-sections" itemProp="articleBody">
           <ConclusionSection
@@ -360,7 +359,13 @@ export default async function AirPodsRecommendPage() {
           />
           <AirPodsFaqSection />
         <AirPodsRelatedLinks excludeHref="/airpods/recommend/" />
-        <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
+        <div className="l-section l-section--sm">
+          <div className="l-container">
+            <AuthorByline />
+          </div>
+        </div>
+
+                <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>
       </article>
     </main>

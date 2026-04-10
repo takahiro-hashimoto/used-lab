@@ -32,6 +32,7 @@ import ProductCard from '@/app/components/ProductCard'
 import { getHeroImage } from '@/lib/data/hero-images'
 import PopularSection from '@/app/components/support/PopularSection'
 import AuthorByline from '@/app/components/AuthorByline'
+import ContinuousAside from '@/app/components/ContinuousAside'
 import HeroMeta from '@/app/components/HeroMeta'
 
 export const revalidate = 3600
@@ -112,6 +113,7 @@ export default async function WatchGuidePage() {
   }
 
   return (
+    <>
     <main>
       <article itemScope itemType="https://schema.org/Article">
         <script
@@ -143,7 +145,7 @@ export default async function WatchGuidePage() {
                 中古Apple Watch完全購入ガイド
                 選び方・相場・おすすめモデルまとめ【{GUIDE_DATE_LABEL}版】
               </h1>
-              <HeroMeta dateStr={dateStr} dateDisplay={dateDisplay} withItemProp />
+              <HeroMeta dateStr={dateStr} dateDisplay={dateDisplay} withItemProp showAuthor />
             </div>
             <div className="hero-visual">
               <figure className="hero-media">
@@ -194,11 +196,9 @@ export default async function WatchGuidePage() {
               <li><a href="#faq" className="toc-item">よくある質問 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
             </ol>
 </div>
-          <AuthorByline />
           </div>
         </nav>
-
-        <div className="l-sections" itemProp="articleBody">
+        <div className="l-sections">
 
           {/* ========== 絞り込みツール ========== */}
           <PopularSection
@@ -466,9 +466,17 @@ export default async function WatchGuidePage() {
             items={GUIDE_FAQ_ITEMS}
           />
 
-        <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>
       </article>
     </main>
+    <ContinuousAside>
+      <div className="l-section l-section--sm">
+        <div className="l-container">
+          <AuthorByline />
+        </div>
+      </div>
+      <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
+    </ContinuousAside>
+    </>
   )
 }

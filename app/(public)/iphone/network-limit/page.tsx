@@ -4,7 +4,6 @@ import RatingMark from '@/app/components/RatingMark'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import FaqSection from '@/app/components/support/FaqSection'
 import IPhoneArticleFooter from '@/app/components/iphone/IPhoneArticleFooter'
-import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
 import { getHeroImage } from '@/lib/data/hero-images'
@@ -85,6 +84,7 @@ export default async function NetworkLimitPage() {
   })
 
   return (
+    <>
     <main>
       <article itemScope itemType="https://schema.org/Article">
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
@@ -172,7 +172,6 @@ export default async function NetworkLimitPage() {
               </li>
             </ol>
 </div>
-          <AuthorByline />
           </div>
         </nav>
 
@@ -404,13 +403,15 @@ export default async function NetworkLimitPage() {
             items={FAQ_ITEMS}
           />
 
-          <IPhoneArticleFooter
+
+        </div>
+      </article>
+    </main>
+    <IPhoneArticleFooter
             pageUrl={PAGE_URL}
             pageTitle={PAGE_TITLE}
             excludeHref={["/iphone/network-limit/", "/iphone/recommend/"]}
           />
-        </div>
-      </article>
-    </main>
+    </>
   )
 }

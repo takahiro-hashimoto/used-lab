@@ -58,8 +58,8 @@ export default function BenchmarkSection({ models }: Props) {
 
         {/* Geekbench */}
         {geekbenchModels.length > 0 && (
-          <div id="geekbench">
-            <h3 className="m-section-heading m-section-heading--md" style={{ textAlign: 'left' }}>
+          <section id="geekbench" aria-labelledby="heading-geekbench">
+            <h3 className="m-section-heading m-section-heading--md" id="heading-geekbench" style={{ textAlign: 'left' }}>
               Geekbench スコア一覧
             </h3>
             <p className="m-section-desc" style={{ textAlign: 'left' }}>
@@ -108,13 +108,13 @@ export default function BenchmarkSection({ models }: Props) {
               </table>
               </div>
             </div>
-          </div>
+          </section>
         )}
 
         {/* Antutu */}
         {antutuModels.length > 0 && (
-          <div id="antutu" className="u-mt-3xl">
-            <h3 className="m-section-heading m-section-heading--md" style={{ textAlign: 'left' }}>
+          <section id="antutu" className="u-mt-3xl" aria-labelledby="heading-antutu">
+            <h3 className="m-section-heading m-section-heading--md" id="heading-antutu" style={{ textAlign: 'left' }}>
               Antutu スコア一覧
             </h3>
             <p className="m-section-desc" style={{ textAlign: 'left' }}>
@@ -174,7 +174,7 @@ export default function BenchmarkSection({ models }: Props) {
               </table>
               </div>
             </div>
-          </div>
+          </section>
         )}
 
         <div className="m-callout m-callout--tip u-mt-2xl">

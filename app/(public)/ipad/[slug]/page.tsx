@@ -128,6 +128,7 @@ export default async function IPadDetailPage({ params }: PageProps) {
   const iosysModelLink = modelShopLinks.find((l) => l.shop_id === 1)
 
   return (
+    <>
     <main>
       {iosysModelLink?.url && <StickyCtaOverride href={iosysModelLink.url} />}
       <AdminEditLink categoryKey="ipad" modelId={model.id} />
@@ -162,9 +163,12 @@ export default async function IPadDetailPage({ params }: PageProps) {
         <AccessorySection model={enrichedModel} accessories={accessoryLookup.get(model.id) || []} />
         <ReviewSection modelName={enrichedModel.model} reviews={reviews} />
         <FaqSection model={enrichedModel} latestPrice={latestPrice} shopLinks={modelShopLinks} />
-        <IPadArticleFooter pageUrl={`https://used-lab.jp/ipad/${enrichedModel.slug}/`} pageTitle={`中古${enrichedModel.model}は今買うべき？製品寿命、基本スペック、ベンチマークスコア、中古相場から解説`} excludeHref={`/ipad/${enrichedModel.slug}/`} />
-        </div>
+
+
+</div>
       </article>
     </main>
+    <IPadArticleFooter pageUrl={`https://used-lab.jp/ipad/${enrichedModel.slug}/`} pageTitle={`中古${enrichedModel.model}は今買うべき？製品寿命、基本スペック、ベンチマークスコア、中古相場から解説`} excludeHref={`/ipad/${enrichedModel.slug}/`} />
+    </>
   )
 }

@@ -11,7 +11,6 @@ import HeroMeta from '@/app/components/HeroMeta'
 import ChipGenerationCompare from './components/ChipGenerationCompare'
 import AirVsProSection from './components/AirVsProSection'
 import UseCaseGuide from './components/UseCaseGuide'
-import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import { getHeroImage } from '@/lib/data/hero-images'
 
@@ -180,6 +179,7 @@ export default async function BenchmarkPage() {
   }
 
   return (
+    <>
     <main>
       <article itemScope itemType="https://schema.org/Article">
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
@@ -257,7 +257,6 @@ export default async function BenchmarkPage() {
               <li><a href="#faq" className="toc-item">よくある質問 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
             </ol>
 </div>
-          <AuthorByline />
           </div>
         </nav>
 
@@ -322,9 +321,10 @@ export default async function BenchmarkPage() {
             items={FAQ_ITEMS}
           />
 
-          <MacBookArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/macbook/benchmark/", "/macbook/recommend/"]} />
         </div>
       </article>
     </main>
+    <MacBookArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/macbook/benchmark/", "/macbook/recommend/"]} />
+    </>
   )
 }

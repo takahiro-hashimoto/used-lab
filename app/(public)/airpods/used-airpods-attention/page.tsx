@@ -87,15 +87,16 @@ export default function UsedAirpodsAttentionPage() {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
         />
-
         <div className="hero-wrapper">
-          {/* パンくず */}
-          <Breadcrumb
-            items={[
-              { label: '中古AirPods完全購入ガイド', href: '/airpods' },
-              { label: '中古AirPodsの注意点' },
-            ]}
-          />
+
+
+        {/* パンくず */}
+        <Breadcrumb
+          items={[
+            { label: '中古AirPods完全購入ガイド', href: '/airpods' },
+            { label: '中古AirPodsの注意点' },
+          ]}
+        />
 
           {/* Hero */}
           <header className="hero">
@@ -108,7 +109,7 @@ export default function UsedAirpodsAttentionPage() {
                 <h1 className="hero-title" itemProp="headline">
                   中古AirPodsはやめた方がいい？注意点とリスクを8つ解説
                 </h1>
-                <HeroMeta dateStr={dateStr} dateDisplay={dateDisplay} withItemProp />
+                <HeroMeta dateStr={dateStr} dateDisplay={dateDisplay} withItemProp showAuthor />
               </div>
               <div className="hero-visual">
                 <figure className="hero-media">
@@ -189,10 +190,8 @@ export default function UsedAirpodsAttentionPage() {
               </li>
             </ol>
 </div>
-          <AuthorByline />
           </div>
         </nav>
-
         {/* セクション */}
         <div className="l-sections" id="content" itemProp="articleBody">
           <AttentionSection />
@@ -231,7 +230,13 @@ export default function UsedAirpodsAttentionPage() {
 
           <FaqSection productName="AirPods" faqItems={faqItems} />
           <AirPodsRelatedLinks excludeHref={['/airpods/used-airpods-attention/']} />
-          <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
+        <div className="l-section l-section--sm">
+          <div className="l-container">
+            <AuthorByline />
+          </div>
+        </div>
+
+                  <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>
       </article>
     </main>

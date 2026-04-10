@@ -7,7 +7,6 @@ import IosSupportMatrix from './components/IosSupportMatrix'
 import LifespanTable from './components/LifespanTable'
 import TimingSection from './components/TimingSection'
 import FaqSection from './components/FaqSection'
-import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
 import { getHeroImage } from '@/lib/data/hero-images'
@@ -63,6 +62,7 @@ export default async function UsedIphoneSupportPage() {
   })
 
   return (
+    <>
     <main>
       <article>
         <script
@@ -160,7 +160,6 @@ export default async function UsedIphoneSupportPage() {
               </li>
             </ol>
             </div>
-          <AuthorByline />
           </div>
         </nav>
         <div className="l-sections">
@@ -169,13 +168,14 @@ export default async function UsedIphoneSupportPage() {
         <LifespanTable models={allModelsWithEnded} />
         <TimingSection />
         <FaqSection />
-        <IPhoneArticleFooter
+        </div>
+      </article>
+    </main>
+    <IPhoneArticleFooter
           pageUrl={PAGE_URL}
           pageTitle={PAGE_TITLE}
           excludeHref={["/iphone/used-iphone-support/", "/iphone/recommend/"]}
         />
-        </div>
-      </article>
-    </main>
+    </>
   )
 }

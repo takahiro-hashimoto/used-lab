@@ -25,6 +25,7 @@ import FaqSection from './components/FaqSection'
 import AirPodsRelatedLinks from '@/app/components/airpods/AirPodsRelatedLinks'
 import ShareBox from '@/app/components/ShareBox'
 import AdminEditLink from '@/app/components/AdminEditLink'
+import AuthorByline from '@/app/components/AuthorByline'
 import StickyCtaOverride from '@/app/components/StickyCtaOverride'
 
 export const revalidate = 3600
@@ -127,6 +128,11 @@ export default async function AirPodsDetailPage({ params }: PageProps) {
         <FaqSection model={model} latestPrice={latestPrice} shopLinks={modelShopLinks} />
         <AirPodsPopularSection />
         <AirPodsRelatedLinks excludeHref={`/airpods/${model.slug}/`} />
+        <div className="l-section l-section--sm">
+          <div className="l-container">
+            <AuthorByline />
+          </div>
+        </div>
         <ShareBox url={`https://used-lab.jp/airpods/${model.slug}/`} text={`中古${model.name}（${model.model}）は今買うべき？サポート期間、基本スペック、中古相場から解説`} />
         </div>
       </article>

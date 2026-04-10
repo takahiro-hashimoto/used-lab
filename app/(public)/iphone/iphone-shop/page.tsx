@@ -20,7 +20,6 @@ import ShopDetailSection from './components/ShopDetailSection'
 import FleaMarketSection from './components/FleaMarketSection'
 import ChecklistSection from './components/ChecklistSection'
 import FaqSection from './components/FaqSection'
-import AuthorByline from '@/app/components/AuthorByline'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
 import { getHeroImage } from '@/lib/data/hero-images'
@@ -108,6 +107,7 @@ export default async function IPhoneShopPage() {
     .filter((item): item is { shop: Shop; meta: (typeof SHOP_DETAIL_META)[string] } => item != null)
 
   return (
+    <>
     <main>
       <article itemScope itemType="https://schema.org/Article">
         <script
@@ -230,12 +230,11 @@ export default async function IPhoneShopPage() {
               </li>
             </ol>
 </div>
-          <AuthorByline />
           </div>
         </nav>
 
         {/* セクション */}
-        <div className="l-sections" itemProp="articleBody">
+        <div className="l-sections">
           <BuyingOptionsSection />
           <ShopComparisonSection />
           <RecommendByTypeSection />
@@ -261,7 +260,11 @@ export default async function IPhoneShopPage() {
           <FleaMarketSection />
           <ChecklistSection />
           <FaqSection />
-          <IPhoneArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/iphone/iphone-shop/", "/iphone/recommend/"]}>
+
+        </div>
+      </article>
+    </main>
+    <IPhoneArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/iphone/iphone-shop/", "/iphone/recommend/"]}>
           <section className="l-section l-section--sm" aria-label="関連リンク">
             <div className="l-container">
               <div className="m-callout m-callout--muted">
@@ -270,14 +273,12 @@ export default async function IPhoneShopPage() {
                   <a href="https://smapple-tenjin.com/">iPhone修理福岡 ならスマップル天神店</a><br />
                   <a href="https://smapple-omiya.com/">iPhone修理大宮 ならスマップル大宮店</a><br />
                   <a href="https://smapple-sendai.com/">iPhone修理仙台 スマップル仙台店</a><br />
-                  <a href="https://www.a-sas.ne.jp/" target="_blank" rel="noreferrer noopener">【誰でもスマホ】 携帯ブラックでも契約できる格安SIM</a>
+                  <a href="https://www.a-sas.ne.jp/" target="_blank" rel="noopener noreferrer" aria-label="【誰でもスマホ】携帯ブラックでも契約できる格安SIM（新しいタブで開く）">【誰でもスマホ】 携帯ブラックでも契約できる格安SIM</a>
                 </p>
               </div>
             </div>
           </section>
         </IPhoneArticleFooter>
-        </div>
-      </article>
-    </main>
+    </>
   )
 }

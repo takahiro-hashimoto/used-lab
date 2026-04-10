@@ -30,7 +30,6 @@ import ShopSection from '@/app/components/ShopSection'
 import IPhoneFaqSection from './components/IPhoneFaqSection'
 import ValueZoneChartWrapper from './components/ValueZoneChartWrapper'
 import IPhoneArticleFooter from '@/app/components/iphone/IPhoneArticleFooter'
-import AuthorByline from '@/app/components/AuthorByline'
 import HeroMeta from '@/app/components/HeroMeta'
 import { getHeroImage } from '@/lib/data/hero-images'
 
@@ -147,6 +146,7 @@ export default async function IPhoneTopPage() {
     .filter((item): item is { shop: (typeof shops)[number]; url: string } => item != null)
 
   return (
+    <>
     <main>
       <article itemScope itemType="https://schema.org/Article">
         <script
@@ -264,7 +264,6 @@ export default async function IPhoneTopPage() {
               </li>
             </ol>
 </div>
-          <AuthorByline />
           </div>
         </nav>
 
@@ -376,9 +375,11 @@ export default async function IPhoneTopPage() {
             shopDetailLink={{ href: '/iphone/iphone-shop/', label: '中古iPhoneのおすすめショップ比較' }}
           />
           <IPhoneFaqSection />
-          <IPhoneArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref="/iphone/recommend/" hidePopular relatedHeading="iPhone選びをもっと深掘りする" relatedDescription="購入先の比較や相場チェックなど、iPhone選びに役立つ記事をまとめました。" />
+
         </div>
       </article>
     </main>
+    <IPhoneArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref="/iphone/recommend/" hidePopular relatedHeading="iPhone選びをもっと深掘りする" relatedDescription="購入先の比較や相場チェックなど、iPhone選びに役立つ記事をまとめました。" />
+    </>
   )
 }
