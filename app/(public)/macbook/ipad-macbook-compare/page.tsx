@@ -286,6 +286,7 @@ export default function IpadMacbookComparePage() {
                     <li>iPad版アプリは機能制限されていることが多い</li>
                     <li>ファイル管理・マルチタスクも圧倒的に快適</li>
                   </ul>
+                  <p className="media-card__desc u-mt-lg">MacBookを選ぶなら<a href="/macbook/recommend/">おすすめの中古MacBook</a>で機種を確認しましょう。</p>
                 </div>
               </div>
 

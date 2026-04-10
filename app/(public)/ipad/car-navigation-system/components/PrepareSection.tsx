@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 export default function PrepareSection() {
   return (
     <section className="l-section" id="prepare" aria-labelledby="heading-prepare">
@@ -23,7 +25,7 @@ export default function PrepareSection() {
               />
             </div>
             <div className="media-card__body">
-              <h3 className="media-card__title"><a href="/ipad/recommend/">iPad本体（セルラーモデル）</a></h3>
+              <h3 className="media-card__title"><Link href="/ipad/recommend/">iPad本体（セルラーモデル）</Link></h3>
               <p className="media-card__desc">
                 カーナビとして使うなら<strong>GPS機能を搭載したセルラーモデルが必須</strong>です。Wi-FiモデルはGPS非搭載のため、正確な位置情報を取得できません。
               </p>
@@ -32,7 +34,7 @@ export default function PrepareSection() {
               </p>
               <p className="lead-link u-mt-sm">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                <a href="/ipad/recommend/">おすすめの中古iPadまとめ</a>
+                <Link href="/ipad/recommend/">おすすめの中古iPadまとめ</Link>
               </p>
             </div>
           </div>

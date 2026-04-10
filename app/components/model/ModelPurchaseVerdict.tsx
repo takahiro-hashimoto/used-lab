@@ -1,3 +1,4 @@
+import { ReactNode } from 'react'
 import RatingMark from '@/app/components/RatingMark'
 
 type RatingItem = {
@@ -15,6 +16,7 @@ type SuitabilityItem = {
 type Props = {
   modelName: string
   description: string
+  children?: ReactNode
   verdict: {
     rank: string
     verdictMain: string
@@ -31,6 +33,7 @@ export type { RatingItem, SuitabilityItem }
 export default function ModelPurchaseVerdict({
   modelName,
   description,
+  children,
   verdict: v,
   topRatings,
   suitIcons,
@@ -83,6 +86,7 @@ export default function ModelPurchaseVerdict({
             ))}
           </dl>
         </div>
+        {children}
       </div>
     </section>
   )

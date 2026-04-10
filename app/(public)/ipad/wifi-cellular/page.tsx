@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import Image from 'next/image'
 import RatingMark from '@/app/components/RatingMark'
 import Breadcrumb from '@/app/components/Breadcrumb'
@@ -118,8 +119,9 @@ export default function WifiCellularPage() {
               </p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                もっと全体像から知りたい方は「<a href="/ipad">中古iPad購入ガイド</a>」をご覧ください。
+                もっと全体像から知りたい方は「<Link href="/ipad/">中古iPad購入ガイド</Link>」をご覧ください。
               </p>
+
             </div>
           </div>
         </section>
@@ -128,7 +130,7 @@ export default function WifiCellularPage() {
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
             <div className="toc-wrapper">
-<p className="toc-title"><i className="fa-solid fa-list" aria-hidden="true"></i> タップできる目次</p>
+            <p className="toc-title"><i className="fa-solid fa-list" aria-hidden="true"></i> タップできる目次</p>
             <ol className="l-grid l-grid--3col u-list-reset">
               <li>
                 <a href="#conclusion" className="toc-item">
@@ -336,7 +338,7 @@ export default function WifiCellularPage() {
                     </p>
                     <p className="lead-link">
                       <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                      <a href="/ipad/car-navigation-system">iPadをカーナビとして使う方法と注意点</a>
+                      <Link href="/ipad/car-navigation-system/">iPadをカーナビとして使う方法と注意点</Link>
                     </p>
                   </div>
                 </div>

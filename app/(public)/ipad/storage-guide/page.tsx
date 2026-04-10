@@ -188,7 +188,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/ipad/storage-gu
               <p>本記事では、<strong>用途別のおすすめ容量の目安と歴代iPadの容量ラインナップ</strong>をまとめました。「何GBにすればいいかわからない」という方はぜひ参考にしてみてください。</p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                情報を網羅的に得たい方は「<Link href="/ipad">中古iPad購入完全ガイド</Link>」も参考にしてみてください！
+                情報を網羅的に得たい方は「<Link href="/ipad/">中古iPad購入完全ガイド</Link>」も参考にしてみてください！
               </p>
             </div>
           </div>
@@ -198,7 +198,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/ipad/storage-gu
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
             <div className="toc-wrapper">
-<p className="toc-title"><i className="fa-solid fa-list" aria-hidden="true"></i> タップできる目次</p>
+            <p className="toc-title"><i className="fa-solid fa-list" aria-hidden="true"></i> タップできる目次</p>
             <ol className="l-grid l-grid--3col u-list-reset">
               <li>
                 <a href="#storage-points" className="toc-item">
@@ -420,7 +420,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/ipad/storage-gu
               </div>
               <div className="media-card__footer">
                 <h3 className="caution-how-to__heading">ストレージ使用量の確認方法</h3>
-                <ol className="caution-steps">
+                <ol className="caution-steps u-mb-lg">
                   <li className="caution-steps__item">
                     <span className="caution-steps__num">1</span>
                     <span>設定アプリを開く</span>
@@ -438,6 +438,9 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/ipad/storage-gu
                   <ul className="caution-links-box__list">
                     <li>
                       <Link href="/ipad/used-ipad-attention/"><i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> 中古iPadの注意点と選び方まとめ</Link>
+                    </li>
+                    <li>
+                      <Link href="/ipad/recommend/"><i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> おすすめ中古iPad機種まとめ【目的別】</Link>
                     </li>
                   </ul>
                 </div>

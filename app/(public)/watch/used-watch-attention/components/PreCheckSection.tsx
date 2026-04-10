@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import MediaCard from '@/app/components/MediaCard'
 
 export default function PreCheckSection() {
@@ -31,7 +32,7 @@ export default function PreCheckSection() {
             </p>
             <p className="lead-link">
               <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-              <a href="/watch/used-watch-support">機種別watchOSサポート期間一覧</a>
+              <Link href="/watch/used-watch-support/">機種別watchOSサポート期間一覧</Link>
             </p>
           </div>
         </MediaCard>
@@ -156,7 +157,7 @@ export default function PreCheckSection() {
             </p>
             <p className="lead-link">
               <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-              <a href="/watch/gps-cellular-compare/">GPSモデルとセルラーモデルの違い比較</a>
+              <Link href="/watch/gps-cellular-compare/">GPSモデルとセルラーモデルの違い比較</Link>
             </p>
           </div>
         </MediaCard>

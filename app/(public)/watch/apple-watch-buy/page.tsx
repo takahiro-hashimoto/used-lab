@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import Image from 'next/image'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import WatchArticleFooter from '@/app/components/watch/WatchArticleFooter'
@@ -121,7 +122,7 @@ export default function AppleWatchBuyPage() {
               </p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                中古Apple Watchの選び方から知りたい方は「<a href="/watch/">中古Apple Watch購入ガイド</a>」をご覧ください。
+                中古Apple Watchの選び方から知りたい方は「<Link href="/watch/">中古Apple Watch購入ガイド</Link>」をご覧ください。
               </p>
             </div>
           </div>
@@ -187,7 +188,7 @@ export default function AppleWatchBuyPage() {
         </div>
       </article>
     </main>
-    <WatchArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/watch/apple-watch-buy/", "/watch/recommend/"]}>
+    <WatchArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/watch/apple-watch-buy/"]}>
           <div className="m-callout m-callout--muted u-mt-xl">
             <span className="m-callout__label">関連</span>
             <p className="m-callout__text">

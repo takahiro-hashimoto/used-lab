@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import type { WatchModel } from '@/lib/types'
 import { calculateOSLifespan, calculateRepairLifespan } from '@/lib/utils/watch-helpers'
 
@@ -80,7 +81,7 @@ export default function LifespanSection({ model }: Props) {
         <div className="m-callout m-callout--tip u-mt-2xl">
           <span className="m-callout__label">memo</span>
           <p className="m-callout__text">
-            サポート期間を確認したい方は「<a href="/watch/used-watch-support/">Apple Watchはいつまで使える？機種別の寿命一覧</a>」もあわせてご覧ください。
+            サポート期間を確認したい方は「<Link href="/watch/used-watch-support/">Apple Watchはいつまで使える？機種別の寿命一覧</Link>」もあわせてご覧ください。
           </p>
         </div>
       </div>

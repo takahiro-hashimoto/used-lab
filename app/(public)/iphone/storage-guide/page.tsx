@@ -427,7 +427,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/storage-
               </div>
               <div className="media-card__footer">
                 <h3 className="caution-how-to__heading">ストレージ使用量の確認方法</h3>
-                <ol className="caution-steps">
+                <ol className="caution-steps u-mb-lg">
                   <li className="caution-steps__item">
                     <span className="caution-steps__num">1</span>
                     <span>設定アプリを開く</span>
@@ -448,6 +448,9 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/storage-
                     </li>
                     <li>
                       <Link href="/iphone/battery-compare/"><i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> 歴代iPhoneのバッテリー容量比較ランキング</Link>
+                    </li>
+                    <li>
+                      <Link href="/iphone/recommend/"><i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> 中古iPhoneのおすすめ機種5選</Link>
                     </li>
                   </ul>
                 </div>

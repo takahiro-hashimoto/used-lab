@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 type EvolutionStep = {
   title: string
   slug: string
@@ -126,6 +128,11 @@ export default function EvolutionTimeline() {
 
         <TimelineSection heading="歴代MacBook Air Mシリーズの進化した点" steps={AIR_STEPS}  />
         <TimelineSection heading="歴代MacBook Pro Mシリーズの進化した点" steps={PRO_STEPS}  />
+
+        <div className="m-callout m-callout--tip u-mt-2xl">
+          <span className="m-callout__label">memo</span>
+          <p className="m-callout__text">各シリーズの進化がわかったら、<Link href="/macbook/recommend/">おすすめ中古MacBookまとめ</Link>で用途別の狙い目モデルも確認してみてください。</p>
+        </div>
       </div>
     </section>
   )

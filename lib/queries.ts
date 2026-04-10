@@ -81,7 +81,7 @@ function createModelQueries<T>(table: string, tag: string, activeField?: string)
     /** activeFieldフィルタなしで全モデルを取得（サポート終了モデル含む） */
     getAllIncludingEnded: unstable_cache(
       async (): Promise<T[]> => {
-        const { data, error } = await supabase.from(table).select('*').order('id', { ascending: true })
+        const { data, error } = await supabase.from(table).select('*').eq('show', 1).order('id', { ascending: true })
         if (error || !data) return []
         return data as T[]
       },

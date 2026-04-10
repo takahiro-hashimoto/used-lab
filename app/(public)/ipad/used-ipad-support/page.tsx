@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import Image from 'next/image'
 import { getAllIPadModels, getAllIPadModelsIncludingEnded } from '@/lib/queries'
 import Breadcrumb from '@/app/components/Breadcrumb'
@@ -13,7 +14,7 @@ import { getHeroImage } from '@/lib/data/hero-images'
 
 export const revalidate = 86400
 
-const PAGE_TITLE = 'iPadはいつまで使える？機種別のサポート期間目安まとめ。買い替えるべき3つのタイミングも解説。'
+const PAGE_TITLE = 'iPadはいつまで使える？機種別のサポート期間目安と買い換えるタイミングまとめ'
 const PAGE_DESCRIPTION =
   'iPadの寿命とサポート期間を機種別に一覧で紹介。iPadOSアップデート終了時期の目安や、買い替えるべき3つのタイミングもわかりやすく解説します。'
 const PAGE_URL = 'https://used-lab.jp/ipad/used-ipad-support/'
@@ -92,7 +93,7 @@ export default async function UsedIpadSupportPage() {
           <div className="hero-inner l-container">
             <div className="hero-content">
               <h1 className="hero-title">
-                iPadはいつまで使える？機種別のサポート期間目安まとめ
+                iPadはいつまで使える？機種別のサポート期間目安と買い換えるタイミングまとめ
               </h1>
               <HeroMeta dateStr={dateStr} dateDisplay={dateDisplay} />
             </div>
@@ -122,8 +123,9 @@ export default async function UsedIpadSupportPage() {
               <p>記事後半には<strong>iPadを買い替えるべき3つのタイミング</strong>も解説。お手持ちのiPadの寿命や買い替え時期がすっきりわかるので、ぜひチェックしてみてください！</p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                もっと全体像から知りたい方は「<a href="/ipad">中古iPad購入ガイド</a>」をご覧ください。
+                もっと全体像から知りたい方は「<Link href="/ipad/">中古iPad購入ガイド</Link>」をご覧ください。
               </p>
+
             </div>
           </div>
         </section>

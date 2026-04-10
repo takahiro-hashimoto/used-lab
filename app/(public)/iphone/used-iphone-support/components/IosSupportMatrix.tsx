@@ -177,7 +177,6 @@ export default function IosSupportMatrix({ models }: Props) {
                 <tr key={device.name}>
                   <th>
                     {device.name}
-                    <small>{device.releaseYear}年発売</small>
                   </th>
                   {IOS_VERSIONS.map((ios) => {
                     const status = getCellStatus(device, ios)

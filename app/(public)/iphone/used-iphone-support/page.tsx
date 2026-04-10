@@ -13,7 +13,7 @@ import { getHeroImage } from '@/lib/data/hero-images'
 
 export const revalidate = 86400
 
-const PAGE_TITLE = 'iPhoneはいつまで使える？機種別のサポート期間目安まとめ。買い替えるべき4つのタイミングも解説。'
+const PAGE_TITLE = 'iPhoneはいつまで使える？機種別のサポート期間目安と買い換えタイミングまとめ'
 const PAGE_DESCRIPTION =
   'iPhoneの寿命とサポート期間を機種別に一覧で紹介。iOSアップデート終了時期の目安や、買い替えるべき4つのタイミングもわかりやすく解説します。'
 const PAGE_URL = 'https://used-lab.jp/iphone/used-iphone-support/'
@@ -92,7 +92,7 @@ export default async function UsedIphoneSupportPage() {
           <div className="hero-inner l-container">
             <div className="hero-content">
               <h1 className="hero-title">
-                iPhoneはいつまで使える？機種別のサポート期間目安まとめ
+                iPhoneはいつまで使える？機種別のサポート期間目安と買い換えタイミングまとめ
               </h1>
               <HeroMeta dateStr={dateStr} dateDisplay={dateDisplay} />
             </div>

@@ -153,7 +153,6 @@ function MatrixTable({
                     <tr key={device.name}>
                       <th>
                         {device.name}
-                        <small>{device.releaseYear}年発売</small>
                       </th>
                       {MACOS_VERSIONS.map((os) => {
                         const status = getCellStatus(device, os)

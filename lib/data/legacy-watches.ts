@@ -10,7 +10,7 @@ export type LegacyWatch = {
 }
 
 export const LEGACY_WATCHES: LegacyWatch[] = [
-  { name: 'Apple Watch Series 1', releaseYear: 2016, lastWatchOs: 'watchOS 6' },
-  { name: 'Apple Watch Series 2', releaseYear: 2016, lastWatchOs: 'watchOS 6' },
-  { name: 'Apple Watch Series 3', releaseYear: 2017, lastWatchOs: 'watchOS 8' },
+  { name: 'Apple Watch 1', releaseYear: 2016, lastWatchOs: 'watchOS 6' },
+  { name: 'Apple Watch 2', releaseYear: 2016, lastWatchOs: 'watchOS 6' },
+  { name: 'Apple Watch 3', releaseYear: 2017, lastWatchOs: 'watchOS 8' },
 ]

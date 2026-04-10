@@ -374,7 +374,7 @@ ul {
 .u-mt-md  { margin-top:    var(--space-md);  }
 .u-mt-lg  { margin-top:    var(--space-lg);  }
 .u-mt-xl  { margin-top:    var(--space-xl);  }
-.u-mt-2xl { margin-top:    var(--space-2xl); }
+.u-mt-2xl { margin-top:    var(--space-2xl) !important; }
 .u-mt-3xl { margin-top:    var(--space-3xl); }
 .u-mb-xs  { margin-bottom: var(--space-xs);  }
 .u-mb-sm  { margin-bottom: var(--space-sm);  }

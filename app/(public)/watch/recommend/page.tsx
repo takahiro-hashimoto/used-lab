@@ -19,6 +19,7 @@ import {
   SHOP_SECTION_IDS,
   FAQ_JSONLD_ITEMS,
 } from '@/lib/data/watch-recommend'
+import Link from 'next/link'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import WatchArticleFooter from '@/app/components/watch/WatchArticleFooter'
 import ConclusionSection from '@/app/components/ConclusionSection'
@@ -210,7 +211,7 @@ export default async function WatchRecommendPage() {
                 この記事では、今買っても後悔しない中古Apple Watch {RECOMMEND_COUNT}機種を厳選し、それぞれの特徴と向いている人を
                 詳しく解説します。
               </p>
-              <p className="lead-link"><i className="fa-solid fa-arrow-right" aria-hidden="true"></i> 情報を網羅的に得たい方は「<a href="/watch/">中古Apple Watch購入完全ガイド</a>」も参考にしてみてください！</p>
+              <p className="lead-link"><i className="fa-solid fa-arrow-right" aria-hidden="true"></i> 情報を網羅的に得たい方は「<Link href="/watch/">中古Apple Watch購入完全ガイド</Link>」も参考にしてみてください！</p>
             </div>
           </div>
         </section>

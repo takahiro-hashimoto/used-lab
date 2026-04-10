@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import IconCard from '@/app/components/IconCard'
 
 export default function ChecklistSection() {
@@ -43,8 +44,8 @@ export default function ChecklistSection() {
           <span className="m-callout__label">memo</span>
           <p className="m-callout__text">
             各モデルのサポート終了時期や注意点は
-            <a href="/watch/used-watch-attention/">中古Apple Watch購入時の注意点まとめ</a>、
-            <a href="/watch/used-watch-support/">watchOSのサポート期間一覧</a>で詳しく解説しています
+            <Link href="/watch/used-watch-attention/">中古Apple Watch購入時の注意点まとめ</Link>、
+            <Link href="/watch/used-watch-support/">watchOSのサポート期間一覧</Link>で詳しく解説しています
           </p>
         </div>
       </div>

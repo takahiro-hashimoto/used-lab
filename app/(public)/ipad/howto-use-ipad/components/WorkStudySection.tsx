@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import MediaCard from '@/app/components/MediaCard'
 import InfoCard from '@/app/components/InfoCard'
 import HowtoSection from '@/app/components/HowtoSection'
@@ -36,7 +37,7 @@ export default function WorkStudySection() {
           アプリは標準搭載の「Pages」や「Numbers」がおすすめ。洗練されたテンプレートが揃っており、手軽に見栄えの良い資料を仕上げられます。もちろん、Microsoft OfficeやGoogleドキュメントといった定番ツールも利用可能。用途に合わせて柔軟にツールを選べるのがiPadの強みです。
         </p>
         <p className="media-card__desc">
-          なお、歴代iPadの純正キーボード対応状況は「<a href="/ipad/accessories-summary/">iPadアクセサリー対応機種一覧</a>」で詳しく紹介しています。
+          なお、歴代iPadの純正キーボード対応状況は「<Link href="/ipad/accessories-summary/">iPadアクセサリー対応機種一覧</Link>」で詳しく紹介しています。
         </p>
         <InfoCard heading="おすすめの資料作成アプリ">
           <li><a href="https://apps.apple.com/jp/app/pages/id361309726" target="_blank" rel="noopener">Pages</a></li>

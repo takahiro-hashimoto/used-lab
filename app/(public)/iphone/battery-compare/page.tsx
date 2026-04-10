@@ -241,7 +241,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/battery-
                 </div>
                 <div className="media-card__footer">
                   <h3 className="caution-how-to__heading">バッテリー最大容量の確認方法</h3>
-                  <ol className="caution-steps">
+                  <ol className="caution-steps u-mb-lg">
                     <li className="caution-steps__item">
                     <span className="caution-steps__num">1</span>
                     <span>設定アプリを開く</span>

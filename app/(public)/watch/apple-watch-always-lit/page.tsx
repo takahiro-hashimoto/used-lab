@@ -186,16 +186,6 @@ export default function AppleWatchAlwaysLitPage() {
                   まとめ <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
                 </a>
               </li>
-              <li>
-                <a href="#faq" className="toc-item">
-                  よくある質問 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
-                </a>
-              </li>
-              <li>
-                <a href="#related" className="toc-item">
-                  関連記事 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
-                </a>
-              </li>
             </ol>
           </div>
           </div>
@@ -212,7 +202,7 @@ export default function AppleWatchAlwaysLitPage() {
           {/* まとめ */}
           <section className="l-section" id="summary" aria-labelledby="heading-summary">
             <div className="l-container">
-              <h2 className="m-section-heading m-section-heading--lg" id="heading-summary">まとめ</h2>
+              <h2 className="m-section-heading m-section-heading--lg" id="heading-summary">Apple Watch常時点灯のメリット・デメリット まとめ</h2>
               <p className="m-section-desc">常時点灯（常時表示ディスプレイ）について押さえておきたいポイントをまとめました。</p>
               <div className="m-card m-card--shadow m-card--padded">
                 <h3 className="summary-card__title">Apple Watch常時点灯のポイント</h3>
@@ -231,7 +221,7 @@ export default function AppleWatchAlwaysLitPage() {
         </div>
       </article>
     </main>
-    <WatchArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/watch/apple-watch-always-lit/", "/watch/recommend/"]} />
+    <WatchArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/watch/apple-watch-always-lit/"]} />
     </>
   )
 }

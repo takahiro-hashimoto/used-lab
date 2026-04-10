@@ -204,7 +204,7 @@ export default function GpsCellularComparePage() {
         </div>
       </article>
     </main>
-    <WatchArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/watch/gps-cellular-compare/", "/watch/recommend/"]} />
+    <WatchArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/watch/gps-cellular-compare/"]} />
     </>
   )
 }

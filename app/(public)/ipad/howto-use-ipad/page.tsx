@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import Image from 'next/image'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import EntertainmentSection from './components/EntertainmentSection'
@@ -190,7 +191,7 @@ export default function HowtoUseIpadPage() {
               </p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                iPadの選び方から知りたい方は「<a href="/ipad">中古iPad購入ガイド</a>」をご覧ください。
+                iPadの選び方から知りたい方は「<Link href="/ipad/">中古iPad購入ガイド</Link>」をご覧ください。
               </p>
             </div>
           </div>

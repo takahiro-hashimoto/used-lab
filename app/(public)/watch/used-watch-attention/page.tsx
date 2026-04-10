@@ -232,7 +232,7 @@ export default function UsedWatchAttentionPage() {
         </div>
       </article>
     </main>
-    <WatchArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/watch/used-watch-attention/", "/watch/recommend/"]} />
+    <WatchArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/watch/used-watch-attention/"]} />
     </>
   )
 }

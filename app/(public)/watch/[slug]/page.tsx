@@ -143,7 +143,7 @@ export default async function WatchDetailPage({ params }: PageProps) {
         </div>
       </article>
     </main>
-    <WatchArticleFooter pageUrl={`https://used-lab.jp/watch/${model.slug}/`} pageTitle={`中古${model.model}は今買うべき？製品寿命、基本スペック、中古相場から解説`} excludeHref={[`/watch/${model.slug}/`, "/watch/recommend/"]} />
+    <WatchArticleFooter pageUrl={`https://used-lab.jp/watch/${model.slug}/`} pageTitle={`中古${model.model}は今買うべき？製品寿命、基本スペック、中古相場から解説`} excludeHref={[`/watch/${model.slug}/`]} />
     </>
   )
 }

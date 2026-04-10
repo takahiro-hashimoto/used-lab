@@ -22,7 +22,7 @@ export default function PreCheckSection() {
           footer={
             <>
               <h3 className="caution-how-to__heading">確認方法</h3>
-              <ol className="caution-steps">
+              <ol className="caution-steps u-mb-lg">
                 <li className="caution-steps__item">
                   <span className="caution-steps__num">1</span>
                   <span>
@@ -92,7 +92,7 @@ export default function PreCheckSection() {
           footer={
             <>
               <p className="caution-how-to__heading">確認方法</p>
-              <ol className="caution-steps">
+              <ol className="caution-steps u-mb-lg">
                 <li className="caution-steps__item">
                   <span className="caution-steps__num">1</span>
                   <span>「設定」アプリを開く</span>
@@ -179,7 +179,7 @@ export default function PreCheckSection() {
           footer={
             <>
               <h3 className="caution-how-to__heading">確認方法</h3>
-              <ol className="caution-steps">
+              <ol className="caution-steps u-mb-lg">
                 <li className="caution-steps__item">
                   <span className="caution-steps__num">1</span>
                   <span>「設定」→「一般」→「情報」を開く</span>

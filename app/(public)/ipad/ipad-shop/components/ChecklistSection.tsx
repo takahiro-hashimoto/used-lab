@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import IconCard from '@/app/components/IconCard'
 
 export default function ChecklistSection() {
@@ -43,8 +44,8 @@ export default function ChecklistSection() {
           <span className="m-callout__label">memo</span>
           <p className="m-callout__text">
             各モデルのサポート終了時期や注意点は
-            <a href="/ipad/used-ipad-attention/">中古iPad購入時の注意点まとめ</a>、
-            <a href="/ipad/used-ipad-support/">iPadOSのサポート期間一覧</a>で詳しく解説しています
+            <Link href="/ipad/used-ipad-attention/">中古iPad購入時の注意点まとめ</Link>、
+            <Link href="/ipad/used-ipad-support/">iPadOSのサポート期間一覧</Link>で詳しく解説しています
           </p>
         </div>
       </div>

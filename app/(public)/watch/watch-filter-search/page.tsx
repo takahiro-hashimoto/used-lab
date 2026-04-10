@@ -263,7 +263,7 @@ export default async function WatchFilterSearchPage() {
         </div>
       </article>
     </main>
-    <WatchArticleFooter pageUrl="https://used-lab.jp/watch/watch-filter-search/" pageTitle="Apple Watch機種診断シミュレーター｜自分に合うおすすめ中古アップルウォッチがすぐわかる【${CURRENT_YEAR}年版】" excludeHref={["/watch/watch-filter-search/", "/watch/recommend/"]} />
+    <WatchArticleFooter pageUrl="https://used-lab.jp/watch/watch-filter-search/" pageTitle="Apple Watch機種診断シミュレーター｜自分に合うおすすめ中古アップルウォッチがすぐわかる【${CURRENT_YEAR}年版】" excludeHref={["/watch/watch-filter-search/"]} />
     </>
   )
 }

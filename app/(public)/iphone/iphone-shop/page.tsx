@@ -265,7 +265,7 @@ export default async function IPhoneShopPage() {
       </article>
     </main>
     <IPhoneArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/iphone/iphone-shop/", "/iphone/recommend/"]}>
-          <section className="l-section l-section--sm" aria-label="関連リンク">
+          <section className="u-mt-2xl" aria-label="関連リンク">
             <div className="l-container">
               <div className="m-callout m-callout--muted">
                 <span className="m-callout__label">関連</span>

@@ -36,7 +36,7 @@ const TIMING_CARDS: TimingCard[] = [
         <p>
           これらの機能に魅力を感じた場合は、買い替えの良いタイミングです。
           各世代の機能差が気になる方は
-          <Link href="/watch/watch-spec-table">歴代Apple Watchのスペック比較</Link>
+          <Link href="/watch/watch-spec-table/">歴代Apple Watchのスペック比較</Link>
           をチェックしてみてください。
         </p>
       </>

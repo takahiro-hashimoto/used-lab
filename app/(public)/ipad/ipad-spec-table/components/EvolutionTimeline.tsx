@@ -228,6 +228,12 @@ export default function EvolutionTimeline({ models }: Props) {
             </div>
           ))}
         </div>
+        <div className="m-callout m-callout--tip u-mt-2xl">
+          <span className="m-callout__label">memo</span>
+          <p className="m-callout__text">
+            各シリーズの進化がわかったら、<Link href="/ipad/recommend/">おすすめ中古iPad機種まとめ</Link>で用途別の狙い目モデルも確認してみてください。
+          </p>
+        </div>
       </div>
     </section>
   )

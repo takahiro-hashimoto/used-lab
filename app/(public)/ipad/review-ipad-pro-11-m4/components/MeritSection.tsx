@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 export default function MeritSection() {
   return (
     <div className="u-mt-2xl" style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-xl)' }}>
@@ -16,7 +18,7 @@ export default function MeritSection() {
         <div className="media-card__body">
           <h3 className="media-card__title">①快適で広々としたモデリング環境</h3>
           <p className="media-card__desc">
-            冒頭でも書いた通り、これまでは<a href="/ipad/ipad-mini-6-review/">iPad mini（第6世代）</a>でモデリングを行ってきました。しかし8.3インチという画面サイズでは、モデリングソフトの使用中に一部のコマンドパネルが省略されてしまうなど、作業にストレスを感じる場面がありました。
+            冒頭でも書いた通り、これまでは<Link href="/ipad/ipad-mini-6-review/">iPad mini（第6世代）</Link>でモデリングを行ってきました。しかし8.3インチという画面サイズでは、モデリングソフトの使用中に一部のコマンドパネルが省略されてしまうなど、作業にストレスを感じる場面がありました。
           </p>
           <p className="media-card__desc u-mt-sm">
             その点、<strong>11インチの大画面</strong>は必要なパネルがしっかり表示され、作業スペースにもゆとりが生まれます。このおかげでモデリングの効率が想像以上に向上しました。
@@ -98,7 +100,7 @@ export default function MeritSection() {
           </p>
           <p className="lead-link u-mt-sm">
             <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-            <a href="/ipad/ipad-spec-table/">歴代iPadのスペック比較表</a>
+            <Link href="/ipad/ipad-spec-table/">歴代iPadのスペック比較表</Link>
           </p>
         </div>
       </div>
@@ -125,7 +127,7 @@ export default function MeritSection() {
           </p>
           <p className="lead-link u-mt-sm">
             <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-            <a href="/ipad/apple-pencil-compare/">Apple Pencilの違いを比較！</a>
+            <Link href="/ipad/apple-pencil-compare/">Apple Pencilの違いを比較！</Link>
           </p>
         </div>
       </div>

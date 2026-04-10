@@ -17,7 +17,7 @@ const PAGE_URL = 'https://used-lab.jp/iphone/network-limit/'
 const FAQ_ITEMS = [
   {
     question: 'ネットワーク制限△の端末が赤ロムになる確率はどれくらい？',
-    answer: '人気中古ECショップのイオシスが発信している情報では、2021〜2022年の2年間に販売したネットワーク制限△の端末が赤ロムになった確率は0.15%でした。ここまで低い確率なら過度に不安になる必要はなさそうです。',
+    answer: '人気中古ECショップのイオシスが発信している情報では、2021〜2022年の2年間に販売したネットワーク制限△の端末が赤ロムになった確率は0.15%でした。ここまで低い確率なら過度に不安になる必要はなさそうです。\n<a href="https://px.a8.net/svt/ejp?a8mat=3TJB56+6S3SCI+ZFU+BW0YB&a8ejpredirect=https%3A%2F%2Fiosys.co.jp%2Fspecial%2Fnetwork_sankaku" rel="nofollow">ネットワーク利用制限▲って？ | 中古スマホ販売の【イオシス】</a>',
   },
   {
     question: 'ネットワーク制限○△×はどうやって判定するの？',

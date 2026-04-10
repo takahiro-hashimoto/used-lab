@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import MediaCard from '@/app/components/MediaCard'
 import InfoCard from '@/app/components/InfoCard'
 import HowtoSection from '@/app/components/HowtoSection'
@@ -53,7 +54,7 @@ export default function CreativeSection() {
           注意したいのが、書き心地を左右する「リフレッシュレート」の違いです。<strong>120Hz駆動に対応したiPad Proは、60HzのiPad Airなどと比べてペン先の遅延が圧倒的に少なく</strong>、より紙に近い滑らかな描き心地を実現しています。
         </p>
         <p className="media-card__desc">
-          なおiPadによって対応しているApple Pencilは異なります。<a href="/ipad/apple-pencil-compare/">Apple Pencilの違い</a>などの情報もチェックして自分に合う機種を選びましょう。
+          なおiPadによって対応しているApple Pencilは異なります。<Link href="/ipad/apple-pencil-compare/">Apple Pencilの違い</Link>などの情報もチェックして自分に合う機種を選びましょう。
         </p>
         <InfoCard heading="おすすめのイラストアプリ">
           <li><a href="https://medibangpaint.com/" target="_blank" rel="noopener">MediBang Paint</a></li>

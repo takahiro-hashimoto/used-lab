@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import type { AirPodsModel } from '@/lib/types'
 import { getVerdict, calculateFirmwareLifespan } from '@/lib/utils/airpods-helpers'
 import ModelPurchaseVerdict from '@/app/components/model/ModelPurchaseVerdict'
@@ -30,6 +31,11 @@ export default function PurchaseVerdict({ model }: Props) {
         { icon: 'fa-solid fa-microchip', label: '搭載チップ', value: model.chip || '-' },
       ]}
       suitIcons={SUIT_ICONS}
-    />
+    >
+      <div className="m-callout m-callout--tip u-mt-xl">
+        <span className="m-callout__label">おすすめ</span>
+        <p className="m-callout__text">他のモデルと迷っている方は<Link href="/airpods/recommend/">おすすめ中古AirPodsまとめ【目的別】</Link>も参考にしてください。予算・用途別に狙い目モデルを厳選しています。</p>
+      </div>
+    </ModelPurchaseVerdict>
   )
 }

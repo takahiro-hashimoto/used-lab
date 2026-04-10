@@ -171,7 +171,7 @@ export default async function UsedWatchSupportPage() {
         </div>
       </article>
     </main>
-    <WatchArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/watch/used-watch-support/", "/watch/recommend/"]} />
+    <WatchArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/watch/used-watch-support/"]} />
     </>
   )
 }

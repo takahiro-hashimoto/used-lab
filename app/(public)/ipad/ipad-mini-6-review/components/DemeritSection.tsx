@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 export default function DemeritSection() {
   return (
     <div className="u-mt-2xl" style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-xl)' }}>
@@ -78,7 +80,7 @@ export default function DemeritSection() {
           </p>
           <p className="lead-link u-mt-sm">
             <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-            <a href="/ipad/storage-guide/">中古iPadのストレージ容量はどれがいい？用途別おすすめ容量まとめ</a>
+            <Link href="/ipad/storage-guide/">中古iPadのストレージ容量はどれがいい？用途別おすすめ容量まとめ</Link>
           </p>
         </div>
       </div>

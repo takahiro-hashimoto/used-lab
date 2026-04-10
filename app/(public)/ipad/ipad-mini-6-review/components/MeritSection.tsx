@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 export default function MeritSection() {
   return (
     <div className="u-mt-2xl" style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-xl)' }}>
@@ -52,7 +54,7 @@ export default function MeritSection() {
           </p>
           <p className="lead-link u-mt-sm">
             <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-            <a href="/ipad/car-navigation-system/">iPadをカーナビ化するメリットが凄い！</a>
+            <Link href="/ipad/car-navigation-system/">iPadをカーナビ化するメリットが凄い！</Link>
           </p>
         </div>
       </div>
@@ -87,7 +89,7 @@ export default function MeritSection() {
           </p>
           <p className="lead-link u-mt-sm">
             <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-            <a href="/ipad/apple-pencil-compare/">Apple Pencilの違いを比較！あなたにぴったりのアップルペンシルがわかる</a>
+            <Link href="/ipad/apple-pencil-compare/">Apple Pencilの違いを比較！あなたにぴったりのアップルペンシルがわかる</Link>
           </p>
         </div>
       </div>

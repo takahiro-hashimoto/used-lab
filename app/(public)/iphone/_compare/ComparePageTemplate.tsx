@@ -31,7 +31,6 @@ import CompareFaq from './CompareFaq'
 import CompareVerdict from './CompareVerdict'
 import { getRelatedComparePages } from './config'
 import IPhoneArticleFooter from '@/app/components/iphone/IPhoneArticleFooter'
-import AuthorByline from '@/app/components/AuthorByline'
 
 type Props = {
   config: ComparePageConfig
@@ -81,6 +80,7 @@ export default async function ComparePageTemplate({ config }: Props) {
 
 
   return (
+    <>
     <main>
       <script
         type="application/ld+json"
@@ -130,12 +130,6 @@ export default async function ComparePageTemplate({ config }: Props) {
           </div>
           </div>
         </nav>
-        <div className="l-section l-section--no-pt">
-          <div className="l-container">
-            <AuthorByline />
-          </div>
-        </div>
-
         <div className="l-sections">
           {/* 2機種サマリー */}
           <CompareSummary
@@ -246,15 +240,15 @@ export default async function ComparePageTemplate({ config }: Props) {
             latestR={latestR}
           />
 
-          {/* 目的別に人気の中古iPhone */}
-          <IPhoneArticleFooter
-            pageUrl={`https://used-lab.jp/iphone/${config.slug}/`}
-            pageTitle={config.title}
-            excludeHref={[`/iphone/${config.slug}/`, "/iphone/recommend/"]}
-            compareLinks={getRelatedComparePages(config.slug)}
-          />
         </div>
       </article>
     </main>
+    <IPhoneArticleFooter
+      pageUrl={`https://used-lab.jp/iphone/${config.slug}/`}
+      pageTitle={config.title}
+      excludeHref={[`/iphone/${config.slug}/`, "/iphone/recommend/"]}
+      compareLinks={getRelatedComparePages(config.slug)}
+    />
+    </>
   )
 }

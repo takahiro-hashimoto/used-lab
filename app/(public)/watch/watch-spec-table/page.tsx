@@ -225,7 +225,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/watch/watch-spe
         </div>
       </article>
     </main>
-    <WatchArticleFooter pageUrl="https://used-lab.jp/watch/watch-spec-table/" pageTitle="歴代Apple Watchスペック比較表！各世代の性能の違いがすぐわかる" excludeHref={["/watch/watch-spec-table/", "/watch/recommend/"]} />
+    <WatchArticleFooter pageUrl="https://used-lab.jp/watch/watch-spec-table/" pageTitle="歴代Apple Watchスペック比較表！各世代の性能の違いがすぐわかる" excludeHref={["/watch/watch-spec-table/"]} />
     </>
   )
 }

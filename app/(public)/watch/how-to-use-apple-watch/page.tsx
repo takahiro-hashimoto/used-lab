@@ -206,7 +206,7 @@ export default function HowToUseAppleWatchPage() {
               },
               {
                 question: 'Apple Watchは中古で買っても大丈夫？',
-                answer: 'はい、中古でも十分活用できます。\nただし、アクティベーションロックが解除されていること、バッテリーの最大容量が80%以上あることを確認しましょう。詳しい選び方は中古Apple Watch購入ガイドをご覧ください。',
+                answer: 'はい、中古でも十分活用できます。\nただし、アクティベーションロックが解除されていること、バッテリーの最大容量が80%以上あることを確認しましょう。詳しい選び方は[おすすめ中古Apple Watch5選](/watch/recommend/)もご覧ください。',
               },
               {
                 question: 'GPSモデルとGPS + Cellularモデルの違いは？',
@@ -219,7 +219,7 @@ export default function HowToUseAppleWatchPage() {
         </div>
       </article>
     </main>
-    <WatchArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/watch/how-to-use-apple-watch/", "/watch/recommend/"]} />
+    <WatchArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/watch/how-to-use-apple-watch/"]} />
     </>
   )
 }

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import Image from 'next/image'
 import { getShops } from '@/lib/queries'
 import type { Shop } from '@/lib/types'
@@ -177,7 +178,7 @@ export default async function WatchShopPage() {
               </p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                もっと全体像から知りたい方は「<a href="/watch/">中古Apple Watch購入ガイド</a>」をご覧ください。
+                もっと全体像から知りたい方は「<Link href="/watch/">中古Apple Watch購入ガイド</Link>」をご覧ください。
               </p>
             </div>
           </div>
@@ -265,7 +266,7 @@ export default async function WatchShopPage() {
         </div>
       </article>
     </main>
-    <WatchArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/watch/watch-shop/", "/watch/recommend/"]} />
+    <WatchArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/watch/watch-shop/"]} />
     </>
   )
 }

@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 export default function CautionSection() {
   return (
     <div className="u-mt-2xl" style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-xl)' }}>
@@ -23,7 +25,7 @@ export default function CautionSection() {
           </p>
           <p className="lead-link">
             <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-            両モデルの違いは「<a href="/ipad/wifi-cellular/">iPadはWi-Fiモデルとセルラーモデルどっちがおすすめ？</a>」で詳しく解説しています。
+            両モデルの違いは「<Link href="/ipad/wifi-cellular/">iPadはWi-Fiモデルとセルラーモデルどっちがおすすめ？</Link>」で詳しく解説しています。
           </p>
         </div>
       </div>

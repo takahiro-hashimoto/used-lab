@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import Image from 'next/image'
 import {
   getAllIPadModels,
@@ -232,7 +233,7 @@ export default async function IPadRecommendPage() {
                 })()}の予算別に今買っても後悔しない中古iPad {RECOMMEND_COUNT}機種を厳選。
                 イラスト制作・動画視聴・勉強用など用途別に特徴と向いている人を詳しく解説します。Apple認定整備済製品との違いも紹介しています。
               </p>
-              <p className="lead-link"><i className="fa-solid fa-arrow-right" aria-hidden="true"></i> 情報を網羅的に得たい方は「<a href="/ipad/">中古iPad購入完全ガイド</a>」も参考にしてみてください！</p>
+              <p className="lead-link"><i className="fa-solid fa-arrow-right" aria-hidden="true"></i> 情報を網羅的に得たい方は「<Link href="/ipad/">中古iPad購入完全ガイド</Link>」も参考にしてみてください！</p>
             </div>
           </div>
         </section>

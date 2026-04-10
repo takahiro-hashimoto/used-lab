@@ -36,49 +36,49 @@ export default function ConclusionSection() {
                 </thead>
                 <tbody>
                   <tr>
-                    <td><a href="#gift-rebates"><strong>ギフトカード×リーベイツ</strong></a></td>
+                    <td><a href="#gift-rebates">ギフトカード×リーベイツ</a></td>
                     <td>★★☆☆☆</td>
                     <td>★★★★★</td>
                     <td>SPU + リーベイツ</td>
                     <td>ポイント二重取りで最安</td>
                   </tr>
                   <tr>
-                    <td><a href="#amazon"><strong>Amazon</strong></a></td>
+                    <td><a href="#amazon">Amazon</a></td>
                     <td>★★★★☆</td>
                     <td>★★★☆☆</td>
                     <td>1%〜</td>
                     <td>セール割引 + 正規代理店</td>
                   </tr>
                   <tr>
-                    <td><a href="#rakuten"><strong>楽天市場</strong></a></td>
+                    <td><a href="#rakuten">楽天市場</a></td>
                     <td>★★★★☆</td>
                     <td>★★★☆☆</td>
                     <td>1〜14倍</td>
                     <td>楽天経済圏なら高還元</td>
                   </tr>
                   <tr>
-                    <td><a href="#yahoo"><strong>ヤフーショッピング</strong></a></td>
+                    <td><a href="#yahoo">ヤフーショッピング</a></td>
                     <td>★★★★☆</td>
                     <td>★★★☆☆</td>
                     <td>最大22.5%</td>
                     <td>PayPay経済圏向け</td>
                   </tr>
                   <tr>
-                    <td><a href="#electronics"><strong>家電量販店EC</strong></a></td>
+                    <td><a href="#electronics">家電量販店EC</a></td>
                     <td>★★★★☆</td>
                     <td>★★☆☆☆</td>
                     <td>1%程度</td>
                     <td>正規代理店で安心</td>
                   </tr>
                   <tr>
-                    <td><a href="#used"><strong>中古ショップ</strong></a></td>
+                    <td><a href="#used">中古ショップ</a></td>
                     <td>★★★★☆</td>
                     <td>★★★★☆</td>
                     <td>-</td>
                     <td>型落ち品が格安で買える</td>
                   </tr>
                   <tr>
-                    <td><a href="#apple-store"><strong>Appleストア</strong></a></td>
+                    <td><a href="#apple-store">Appleストア</a></td>
                     <td>★★★★★</td>
                     <td>★☆☆☆☆</td>
                     <td>なし</td>

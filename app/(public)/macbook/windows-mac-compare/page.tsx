@@ -84,7 +84,7 @@ export default function WindowsMacComparePage() {
           <div className="hero-inner l-container">
             <div className="hero-content">
               <h1 className="hero-title" itemProp="headline">
-                MacとWindowsどっちがいい？両者の違いとおすすめをやさしく解説
+                MacとWindowsどっちがいい？両者の違いをやさしく解説。
               </h1>
               <HeroMeta dateStr={dateStr} dateDisplay={dateDisplay} withItemProp />
             </div>

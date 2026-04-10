@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import MediaCard from '@/app/components/MediaCard'
 import InfoCard from '@/app/components/InfoCard'
 import HowtoSection from '@/app/components/HowtoSection'
@@ -22,7 +23,7 @@ export default function BasicSection() {
           通常の時計とは違い、いつまでも飽きが来ないのが大きな魅力と言えます。
         </p>
         <p className="media-card__desc">
-          なお、文字盤のデザインを最大限に楽しみたい場合は、<a href="/watch/apple-watch-always-lit/">常時点灯</a>に対応したApple Watchを購入するのがおすすめです。
+          なお、文字盤のデザインを最大限に楽しみたい場合は、<Link href="/watch/apple-watch-always-lit/">常時点灯</Link>に対応したApple Watchを購入するのがおすすめです。
         </p>
         <p className="media-card__desc">
           <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
@@ -41,6 +42,7 @@ export default function BasicSection() {
         <p className="media-card__desc">
           これにより、いつまでも飽きが来ずに楽しめるのがApple Watchの大きなメリットです。
         </p>
+        <p className="lead-link"><i className="fa-solid fa-arrow-right" aria-hidden="true"></i> <a href="https://digital-style.jp/apple-watch-accessories" target="_blank" rel="noopener noreferrer">Apple Watchのおすすめバンド・アクセサリーまとめ</a></p>
       </MediaCard>
 
       {/* 3. 経路案内で目的地へ向かう */}

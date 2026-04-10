@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { useState, useMemo } from 'react'
 import { parseDate, formatDate } from '@/app/components/spec-table-utils'
 import RatingMark from '@/app/components/RatingMark'
@@ -99,7 +100,7 @@ export default function PencilCompatTable({ models, shopLinks }: Props) {
           各iPadがどのApple Pencilに対応しているかを一覧表にまとめました。
         </p>
         <p className="m-section-desc">
-          もっと詳しく各機種を比較したい方は「<a href="/ipad/ipad-spec-table">iPad スペック比較</a>」もご覧ください。
+          もっと詳しく各機種を比較したい方は「<Link href="/ipad/ipad-spec-table/">iPad スペック比較</Link>」もご覧ください。
         </p>
 
         {/* フィルターUI */}

@@ -98,7 +98,7 @@ type Props = {
 export default function WatchOsSupportMatrix({ models }: Props) {
   const legacyRows = legacyToDeviceRows(LEGACY_WATCHES)
   const dbRows = dbToDeviceRows(models)
-  const allDevices = [...legacyRows, ...dbRows]
+  const allDevices = [...legacyRows, ...dbRows].sort((a, b) => a.releaseYear - b.releaseYear)
 
   return (
     <section className="l-section" id="support-table" aria-labelledby="heading-support-table">
@@ -133,7 +133,6 @@ export default function WatchOsSupportMatrix({ models }: Props) {
                 <tr key={device.name}>
                   <th>
                     {device.name}
-                    <small>{device.releaseYear}年発売</small>
                   </th>
                   {WATCHOS_VERSIONS.map((os) => {
                     const status = getCellStatus(device, os)

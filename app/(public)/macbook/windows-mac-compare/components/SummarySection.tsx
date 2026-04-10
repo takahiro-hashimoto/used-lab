@@ -39,8 +39,10 @@ export default function SummarySection() {
                 <li>選択肢が多すぎると迷ってしまう</li>
                 <li>リセールバリュー重視で長く使いたい</li>
               </ul>
+              <p className="media-card__desc u-mt-lg">Macを選んだ方は<a href="/macbook/recommend/">おすすめの中古MacBook</a>もあわせてご覧ください。</p>
             </div>
           </div>
+
         </div>
       </section>
     </>

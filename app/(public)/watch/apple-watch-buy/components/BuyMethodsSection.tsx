@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 export default function BuyMethodsSection() {
   return (
     <section id="comparison" className="l-section">
@@ -468,9 +470,9 @@ Apple Watchを安く買う7つの方法
               <div className="buy-method-card__text">
                 <p>中古Apple Watchは購入先によって保証内容や価格が大きく異なります。失敗しないためにも、当サイトの購入ガイドでおすすめショップやモデル別の価格比較をチェックしてみてください。</p>
               </div>
-              <a href="/watch/" className="buy-method-cta">
+              <Link href="/watch/" className="buy-method-cta">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i> 中古Apple Watch購入ガイドを見る
-              </a>
+              </Link>
             </div>
           </div>
 

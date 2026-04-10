@@ -92,7 +92,7 @@ export default async function UsedMacbookSupportPage() {
           <div className="hero-inner l-container">
             <div className="hero-content">
               <h1 className="hero-title">
-                MacBookはいつまで使える？各機種ごとの寿命や買い替えタイミング
+                MacBookはいつまで使える？各機種ごとの寿命や買い替えタイミングを解説
               </h1>
               <HeroMeta dateStr={dateStr} dateDisplay={dateDisplay} />
             </div>

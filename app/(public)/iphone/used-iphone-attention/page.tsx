@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import Image from 'next/image'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import IPhoneArticleFooter from '@/app/components/iphone/IPhoneArticleFooter'
@@ -238,10 +239,7 @@ export default function UsedIphoneAttentionPage() {
                 中古iPhoneを買う際の注意点 まとめ
               </h2>
               <p className="m-section-desc">
-                中古iPhoneは注意点を知らないと危険ですが、見るべきポイントは限られています。
-              </p>
-              <p className="m-section-desc">
-                この記事で解説した内容を押さえておけば、大きな失敗は避けられます。
+                中古iPhoneの注意点は多く見えますが、事前にチェックすべきポイントは4つだけです。この4点を確認しておけば、購入後の大きなトラブルはほぼ防げます。機種選びで迷っている方は、<Link href="/iphone/recommend/">おすすめiPhone5選</Link>もあわせてご覧ください。
               </p>
 
               <SummaryChecklist

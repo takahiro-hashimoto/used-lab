@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import Image from 'next/image'
 import {
   getAllWatchModels,
@@ -375,7 +376,11 @@ export default async function WatchPriceInfoPage() {
               </p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                情報を網羅的に得たい方は「<a href="/watch/">中古Apple Watch購入完全ガイド</a>」も参考にしてみてください！
+                情報を網羅的に得たい方は「<Link href="/watch/">中古Apple Watch購入完全ガイド</Link>」も参考にしてみてください！
+              </p>
+              <p className="lead-link">
+                <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
+                どのモデルを買うか迷っている方は「<Link href="/watch/watch-filter-search/">Apple Watch機種診断ツール</Link>」をお試しください。
               </p>
             </div>
           </div>
@@ -408,6 +413,11 @@ export default async function WatchPriceInfoPage() {
                 </a>
               </li>
               <li>
+                <a href="#pd-method" className="toc-item">
+                  中古相場価格の算出方法 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                </a>
+              </li>
+              <li>
                 <a href="#pd-faq" className="toc-item">
                   よくある質問 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
                 </a>
@@ -419,6 +429,41 @@ export default async function WatchPriceInfoPage() {
 
         {/* セクション */}
         <div className="l-sections" itemProp="articleBody">
+
+          {/* 算出方法 */}
+          <section className="l-section l-section--sm" id="pd-method">
+            <div className="l-container">
+              <h2 className="m-section-heading m-section-heading--lg">中古相場価格の算出方法</h2>
+              <p className="m-section-desc">独自に算出した相場価格のロジックを紹介します。</p>
+              <div className="l-grid l-grid--3col l-grid--gap-lg">
+                <div className="m-card m-card--shadow m-card--padded post-check-item">
+                  <p className="post-check-item__heading">
+                    <i className="fa-solid fa-database" aria-hidden="true"></i>1. データ収集
+                  </p>
+                  <div className="media-card__desc m-rich-text">
+                    <p>イオシス・ゲオ・じゃんぱらの3店舗から最安値・最高値を毎日自動取得。中古Apple Watchの取引量が多い主要ショップを対象とすることで、市場全体の動向を反映した価格データを収集しています。</p>
+                  </div>
+                </div>
+                <div className="m-card m-card--shadow m-card--padded post-check-item">
+                  <p className="post-check-item__heading">
+                    <i className="fa-solid fa-filter" aria-hidden="true"></i>2. 対象条件
+                  </p>
+                  <div className="media-card__desc m-rich-text">
+                    <p>機種ごとに最小サイズ・GPSモデルを対象としています。サイズやセルラー有無による価格差をなくし、モデル間の純粋な価格差を比較しやすくするためです。</p>
+                  </div>
+                </div>
+                <div className="m-card m-card--shadow m-card--padded post-check-item">
+                  <p className="post-check-item__heading">
+                    <i className="fa-solid fa-chart-line" aria-hidden="true"></i>3. 相場算出
+                  </p>
+                  <div className="media-card__desc m-rich-text">
+                    <p>3店舗の最安値平均と最高値平均の中間値を相場価格としています。1店舗だけの特売や在庫処分による極端な価格変動に左右されにくい、安定した相場を算出できます。</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
           <DashboardSection
             modelsData={modelsData}
             initialSelected={initialSelected}
@@ -441,7 +486,7 @@ export default async function WatchPriceInfoPage() {
         </div>
       </article>
     </main>
-    <WatchArticleFooter pageUrl={PAGE_URL} pageTitle={`Apple Watchの中古相場一覧 | 歴代${modelCount}機種の価格推移を独自集計`} excludeHref={["/watch/watch-price-info/", "/watch/recommend/"]} />
+    <WatchArticleFooter pageUrl={PAGE_URL} pageTitle={`Apple Watchの中古相場一覧 | 歴代${modelCount}機種の価格推移を独自集計`} excludeHref={["/watch/watch-price-info/"]} />
     </>
   )
 }

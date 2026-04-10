@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import MediaCard from '@/app/components/MediaCard'
 
 export default function PreCheckSection() {
@@ -32,7 +33,7 @@ export default function PreCheckSection() {
             </p>
             <p className="lead-link">
               <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-              <a href="/ipad/used-ipad-support">機種別iPadOSサポート期間一覧</a>
+              <Link href="/ipad/used-ipad-support/">機種別iPadOSサポート期間一覧</Link>
             </p>
           </div>
         </MediaCard>
@@ -128,11 +129,11 @@ export default function PreCheckSection() {
             </p>
             <p className="lead-link">
               <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-              <a href="/ipad/apple-pencil-compare/">Apple Pencil機能比較&amp;モデル別対応表</a>
+              <Link href="/ipad/apple-pencil-compare/">Apple Pencil機能比較&モデル別対応表</Link>
             </p>
             <p className="lead-link">
               <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-              <a href="/ipad/accessories-summary/">iPad用Magic Keyboard型番一覧</a>
+              <Link href="/ipad/accessories-summary/">iPad用Magic Keyboard型番一覧</Link>
             </p>
           </div>
         </MediaCard>

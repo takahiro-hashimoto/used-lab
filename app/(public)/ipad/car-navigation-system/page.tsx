@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import Image from 'next/image'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import MeritSection from './components/MeritSection'
@@ -114,14 +115,14 @@ export default function CarNavigationSystemPage() {
             <div className="lead-box">
               <p>「カーナビの地図が古くなって、旅行先で困った経験はありませんか？」</p>
               <p>
-                マップの更新にはディーラーに頼むと2〜3万円の費用がかかることも。そこでおすすめなのが<strong>iPad miniをカーナビ代わりに使う方法</strong>です。
+                マップの更新にはディーラーに頼むと2〜3万円の費用がかかることも。そこでおすすめなのが<strong>iPadをカーナビ代わりに使う方法</strong>です。
               </p>
               <p>
                 本記事では<strong>まず結論（メリット・注意点の概要）をお伝え</strong>したうえで、iPadカーナビ化の具体的なメリット5つと注意点2つを実体験をもとに詳しく解説します。
               </p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                中古iPadの選び方全般は「<a href="/ipad">中古iPad完全購入ガイド</a>」をご覧ください。
+                中古iPadの選び方全般は「<Link href="/ipad/">中古iPad完全購入ガイド</Link>」をご覧ください。
               </p>
             </div>
           </div>

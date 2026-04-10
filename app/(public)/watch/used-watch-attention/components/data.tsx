@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import type { FaqItem, CheckItem, FailurePattern, InsuranceProps } from '@/app/components/attention/types'
 
 export const insuranceData: InsuranceProps = {
@@ -29,7 +30,7 @@ export const faqItems: FaqItem[] = [
           iPhoneを常に持ち歩くならGPSモデルで十分です。iPhoneなしで通話やメッセージを使いたい場合はセルラーモデルを選びましょう。
         </p>
         <p>
-          ただし、セルラーモデルはキャリアのウォッチナンバー契約（月額385円〜）が別途必要です。格安SIM（MVNO）ではウォッチプランに対応していないケースがほとんどのため、利用キャリアの対応状況を事前に確認してください。詳しくは「<a href="/watch/gps-cellular-compare/">GPSモデルとセルラーモデルの違い比較</a>」で解説しています。
+          ただし、セルラーモデルはキャリアのウォッチナンバー契約（月額385円〜）が別途必要です。格安SIM（MVNO）ではウォッチプランに対応していないケースがほとんどのため、利用キャリアの対応状況を事前に確認してください。詳しくは「<Link href="/watch/gps-cellular-compare/">GPSモデルとセルラーモデルの違い比較</Link>」で解説しています。
         </p>
       </>
     ),

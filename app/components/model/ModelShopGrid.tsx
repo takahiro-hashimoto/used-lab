@@ -32,7 +32,7 @@ function SpecValue({ value }: { value: string | null }) {
 const ensureAbsoluteUrl = (url: string) =>
   url.startsWith('http') || url === '#' ? url : url.startsWith('//') ? `https:${url}` : `https://${url}`
 
-const EXCLUDED_SHOP_IDS = [5, 15]
+const EXCLUDED_SHOP_IDS = [5, 12, 15]
 const RECOMMENDED_SHOP_ID = 1 // イオシス
 
 export default function ModelShopGrid({

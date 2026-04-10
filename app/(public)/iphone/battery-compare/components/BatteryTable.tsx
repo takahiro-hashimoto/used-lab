@@ -147,7 +147,7 @@ export default function BatteryTable({ models }: Props) {
                 <caption className="visually-hidden">歴代iPhoneバッテリー容量比較表</caption>
                 <thead>
                   <tr>
-                    {sortOrder === 'battery-desc' && <th scope="col" className="bench-ranking-table__rank">順位</th>}
+                    {sortOrder === 'battery-desc' && <th scope="col">順位</th>}
                     <th scope="col">モデル／発売時期</th>
                     <th scope="col">容量</th>
                     <th scope="col">ビデオ再生</th>
@@ -160,7 +160,7 @@ export default function BatteryTable({ models }: Props) {
                   {filteredModels.map((m, i) => (
                     <tr key={m.id}>
                       {sortOrder === 'battery-desc' && (
-                        <td className="bench-ranking-table__rank-cell">
+                        <td>
                           <span className={`bench-rank${i < 3 ? ` bench-rank--${i + 1}` : ''}`}>{i + 1}</span>
                         </td>
                       )}

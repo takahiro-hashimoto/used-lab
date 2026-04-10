@@ -58,7 +58,7 @@ export default function MacBookLifespanTable({ models }: Props) {
       sectionTitle="MacBookのサポート期間一覧（寿命予想）"
       sectionDescription={
         <>
-          過去の傾向をもとに、OSサポート期間は発売から約7年、修理受付期間は販売終了から約9年を目安として算出した予測値です。
+          過去の傾向をもとに、OSサポート期間と修理受付期間の目安を紹介します。
           <br />
           実際の期間はAppleの公式発表をご確認ください。
         </>

@@ -14,6 +14,7 @@ export default function ConclusionSection() {
             <li><strong>最安値を狙いたい</strong>ならフリマアプリも選択肢。ただしバッテリー・キーボードの状態は自己責任です。</li>
           </ol>
           <p className="m-desc-text" style={{ marginTop: 'var(--space-md)' }}>MacBookは仕事のメインマシンになることが多く、不具合は生産性に直結します。迷っているなら保証・返品に対応した「専門店」か「Apple整備済」を選べば失敗しにくいです。</p>
+          <p className="m-desc-text" style={{ marginTop: 'var(--space-sm)' }}>購入先が決まったら、<a href="/macbook/recommend/">おすすめの中古MacBook</a>で機種を選びましょう。</p>
         </div>
       </div>
     </section>

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import Image from 'next/image'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import MeritSection from './components/MeritSection'
@@ -124,7 +125,7 @@ export default async function IpadMini6ReviewPage() {
               </p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                iPadの選び方から知りたい方は「<a href="/ipad">中古iPad購入ガイド</a>」をご覧ください。
+                iPadの選び方から知りたい方は「<Link href="/ipad/">中古iPad購入ガイド</Link>」をご覧ください。
               </p>
             </div>
           </div>
@@ -186,7 +187,7 @@ export default async function IpadMini6ReviewPage() {
                 </div>
                 <div className="media-card__body">
                   <p className="media-card__desc">
-                    まずは<a href="/ipad/mini-5/" style={{ color: 'var(--color-primary)' }}>iPad mini 5</a>から<a href="/ipad/mini-6/" style={{ color: 'var(--color-primary)' }}>iPad mini 6</a>が進化した点をざっと振り返ります。前機種から2年半ぶりのアップデートということでかなり盛りだくさんの内容となっています。
+                    まずは<Link href="/ipad/mini-5/" style={{ color: 'var(--color-primary)' }}>iPad mini 5</Link>から<Link href="/ipad/mini-6/" style={{ color: 'var(--color-primary)' }}>iPad mini 6</Link>が進化した点をざっと振り返ります。前機種から2年半ぶりのアップデートということでかなり盛りだくさんの内容となっています。
                   </p>
                   <div className="m-card info-card u-mt-sm">
                     <p className="info-card__heading">
@@ -280,7 +281,7 @@ export default async function IpadMini6ReviewPage() {
                   中古市場での価格もかなり手頃になっていますし、iPadOSのサポート期間にもまだ余裕があります。
                 </p>
                 <p>
-                  <span className="marker-yellow">どこにでも持ち運べる、高性能なミニタブレットが欲しい</span>という方は「<a href="/ipad/ipad-spec-table/">iPad スペック比較表</a>」や「<a href="/ipad/ipad-price-info/">iPad 中古価格の相場</a>」なども参考にしながら購入を検討してみてください！
+                  <span className="marker-yellow">どこにでも持ち運べる、高性能なミニタブレットが欲しい</span>という方は「<Link href="/ipad/ipad-spec-table/">iPad スペック比較表</Link>」や「<Link href="/ipad/ipad-price-info/">iPad 中古価格の相場</Link>」なども参考にしながら購入を検討してみてください！
                 </p>
                 {iosysLink?.url && (
                   <p className="lead-link">
