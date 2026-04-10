@@ -403,11 +403,6 @@ export default async function WatchPriceInfoPage() {
                 </a>
               </li>
               <li>
-                <a href="#popular" className="toc-item">
-                  目的別の人気機種 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
-                </a>
-              </li>
-              <li>
                 <a href="#pd-history" className="toc-item">
                   価格推移データ <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
                 </a>

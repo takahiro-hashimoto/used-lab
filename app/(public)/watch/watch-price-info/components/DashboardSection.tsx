@@ -163,6 +163,7 @@ export default function DashboardSection({ modelsData, initialSelected, seriesGr
                 className={`pd-chip${selectedModels.includes(m.id) ? ' is-selected' : ''}`}
                 data-series={getModelSeries(m.name)}
                 onClick={() => toggleModel(m.id)}
+                aria-pressed={selectedModels.includes(m.id)}
               >
                 {m.name}
               </button>

@@ -114,6 +114,7 @@ export default async function IPadSpecTablePage() {
     antutu_mem: m.antutu_mem,
     antutu_ux: m.antutu_ux,
     advance: m.advance,
+    last_ipados: m.last_ipados,
   }))
 
   const serializedLinks = allShopLinks.map((l) => ({

@@ -960,14 +960,20 @@ a.header-admin-link:hover {
 }
 
 .hero-meta {
-  align-items: center;
-  gap: var(--space-xs) var(--space-sm);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
   font-size: var(--font-size-sm);
   color: #ffff;
-  flex-wrap: wrap;
   margin-top: 16px;
   line-height: 1.2;
+}
+
+.hero-meta__row {
   display: flex;
+  gap: var(--space-sm);
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .hero-meta i {

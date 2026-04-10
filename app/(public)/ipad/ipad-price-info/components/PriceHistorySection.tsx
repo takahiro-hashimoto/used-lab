@@ -70,18 +70,20 @@ export default function PriceHistorySection({ models }: Props) {
 
           return (
             <div key={model.id} className="pd-history-model">
-              <button
-                className="pd-history-summary"
-                onClick={() => setOpenId(isOpen ? null : model.id)}
-                aria-expanded={isOpen}
-              >
+              <div className="pd-history-summary">
                 <div className="pd-history-summary-left">
                   <h3 className="pd-history-model-name">
                     <a href={`/ipad/${model.slug}/`} className="pd-history-model-link">{model.name}</a>
                   </h3>
                   <span className="pd-history-model-meta">{model.year}年発売 / {model.chip}</span>
                 </div>
-                <div className="pd-history-summary-right">
+                <button
+                  className="pd-history-summary-right"
+                  onClick={() => setOpenId(isOpen ? null : model.id)}
+                  aria-expanded={isOpen}
+                  aria-controls={`pd-history-content-${model.id}`}
+                  aria-label={`${model.name}の価格推移を${isOpen ? '閉じる' : '開く'}`}
+                >
                   <div className="pd-history-summary-price">
                     <span className="pd-history-price-range">
                       <small className="pd-history-price-range__label">中古相場（{model.storage}）</small>
@@ -96,11 +98,11 @@ export default function PriceHistorySection({ models }: Props) {
                     </span>
                   </div>
                   <i className={`fa-solid fa-chevron-down pd-history-toggle${isOpen ? ' is-open' : ''}`} aria-hidden="true"></i>
-                </div>
-              </button>
+                </button>
+              </div>
 
               {isOpen && (
-                <div className="pd-history-content">
+                <div className="pd-history-content" id={`pd-history-content-${model.id}`}>
                   {/* 月別サマリー */}
                   {monthlySummary.length > 0 && (
                     <div className="u-mt-lg u-mb-xl">

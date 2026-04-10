@@ -241,15 +241,15 @@ export default function AboutPage() {
                 />
               </div>
               <div className="about-profile-info">
-                <ul className="about-profile-list">
-                  <li><span className="about-profile-label">名前</span>タカヒロ</li>
-                  <li><span className="about-profile-label">職業</span>プロジェクトマネージャー / ガジェットブロガー</li>
-                  <li><span className="about-profile-label">経歴</span>Webデザイナー → フロントエンドエンジニア → Webディレクター → PM</li>
-                  <li><span className="about-profile-label">出身地</span>愛知県</li>
-                  <li><span className="about-profile-label">居住地</span>東京都</li>
-                  <li><span className="about-profile-label">ブログ歴</span>2015年12月〜（10年以上）</li>
-                  <li><span className="about-profile-label">レビュー数</span>300製品以上</li>
-                </ul>
+                <dl className="about-profile-list">
+                  <div><dt className="about-profile-label">名前</dt><dd>タカヒロ</dd></div>
+                  <div><dt className="about-profile-label">職業</dt><dd>プロジェクトマネージャー / ガジェットブロガー</dd></div>
+                  <div><dt className="about-profile-label">経歴</dt><dd>Webデザイナー → フロントエンドエンジニア → Webディレクター → PM</dd></div>
+                  <div><dt className="about-profile-label">出身地</dt><dd>愛知県</dd></div>
+                  <div><dt className="about-profile-label">居住地</dt><dd>東京都</dd></div>
+                  <div><dt className="about-profile-label">ブログ歴</dt><dd>2015年12月〜（10年以上）</dd></div>
+                  <div><dt className="about-profile-label">レビュー数</dt><dd>300製品以上</dd></div>
+                </dl>
                 <p className="about-profile-desc">
                   愛知県のIT企業にWebデザイナーとして入社後、フロントエンドエンジニア、Webディレクターと複数職種を経験。現在は東京都内のIT企業でプロジェクトマネージャーとして従事しながら、複数のWebメディアを運営しています。
                 </p>
@@ -286,9 +286,9 @@ export default function AboutPage() {
             運営メディア「デジスタ」での受賞実績
           </p>
 
-          <div className="about-media-list">
+          <ul className="about-media-list">
             {AWARDS.map((award) => (
-              <div key={award.label} className="about-media-item m-card m-card--padded m-card--sm">
+              <li key={award.label} className="about-media-item m-card m-card--padded m-card--sm">
                 <p className="about-media-desc">{award.description}</p>
                 <a
                   href={award.href}
@@ -299,9 +299,9 @@ export default function AboutPage() {
                   <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
                   <span>{award.label}</span>
                 </a>
-              </div>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       </section>
 
@@ -316,9 +316,9 @@ export default function AboutPage() {
             外部メディアでの連載・記事監修の実績
           </p>
 
-          <div className="about-media-list">
+          <ul className="about-media-list">
             {EDITORIAL_CREDITS.map((credit) => (
-              <div key={credit.href} className="about-media-item m-card m-card--padded m-card--sm">
+              <li key={credit.href} className="about-media-item m-card m-card--padded m-card--sm">
                 <p className="about-media-desc">
                   <span className="about-media-badge">{credit.type}</span>
                   {credit.description}
@@ -332,9 +332,9 @@ export default function AboutPage() {
                   <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
                   <span>{credit.label}</span>
                 </a>
-              </div>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       </section>
 
@@ -349,9 +349,9 @@ export default function AboutPage() {
             紙面・Webメディアでのインタビュー掲載実績
           </p>
 
-          <div className="about-media-list">
+          <ul className="about-media-list">
             {MAGAZINE_FEATURES.map((feature) => (
-              <div key={feature.href} className="about-media-item m-card m-card--padded m-card--sm">
+              <li key={feature.href} className="about-media-item m-card m-card--padded m-card--sm">
                 <p className="about-media-desc">{feature.description}</p>
                 <a
                   href={feature.href}
@@ -362,9 +362,9 @@ export default function AboutPage() {
                   <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
                   <span>{feature.label}</span>
                 </a>
-              </div>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       </section>
 
@@ -379,9 +379,9 @@ export default function AboutPage() {
             当サイト・運営者を紹介いただいたメディア一覧
           </p>
 
-          <div className="about-media-list">
+          <ul className="about-media-list">
             {SITE_MENTIONS.map((media) => (
-              <div key={media.href} className="about-media-item m-card m-card--padded m-card--sm">
+              <li key={media.href} className="about-media-item m-card m-card--padded m-card--sm">
                 <p className="about-media-desc">{media.description}</p>
                 <a
                   href={media.href}
@@ -392,9 +392,9 @@ export default function AboutPage() {
                   <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
                   <span>{media.label}</span>
                 </a>
-              </div>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       </section>
 

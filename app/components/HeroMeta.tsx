@@ -8,30 +8,32 @@ type Props = {
   showAuthor?: boolean
 }
 
-export default function HeroMeta({ dateStr, dateDisplay, withItemProp = false, hideAdNotice = false, showAuthor = false }: Props) {
+export default function HeroMeta({ dateStr, dateDisplay, withItemProp = false, hideAdNotice = false, showAuthor = true }: Props) {
   return (
     <div className="hero-meta">
-      <span>
-        <i className="fa-regular fa-clock" aria-hidden="true"></i> 更新日:{' '}
-        <time
-          dateTime={dateStr}
-          {...(withItemProp ? { itemProp: 'dateModified' } : {})}
-        >
-          {dateDisplay}
-        </time>
-      </span>
-      {showAuthor && (
+      <div className="hero-meta__row">
         <span>
-          <i className="fa-regular fa-user" aria-hidden="true"></i>{' '}
-          <Link
-            href="/profile/"
-            rel="author"
-            {...(withItemProp ? { itemProp: 'author' } : {})}
+          <i className="fa-regular fa-clock" aria-hidden="true"></i> 更新日:{' '}
+          <time
+            dateTime={dateStr}
+            {...(withItemProp ? { itemProp: 'dateModified' } : {})}
           >
-            タカヒロ / ガジェットブロガー
-          </Link>
+            {dateDisplay}
+          </time>
         </span>
-      )}
+        {showAuthor && (
+          <span>
+            <i className="fa-regular fa-user" aria-hidden="true"></i> 著者:
+            <Link
+              href="/profile/"
+              rel="author"
+              {...(withItemProp ? { itemProp: 'author' } : {})}
+            >
+              タカヒロ
+            </Link>
+          </span>
+        )}
+      </div>
       {!hideAdNotice && <span>当記事のリンクには広告が含まれています</span>}
       {withItemProp && <meta itemProp="datePublished" content={dateStr} />}
     </div>

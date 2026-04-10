@@ -404,11 +404,6 @@ export default async function MacBookPriceInfoPage() {
                 </a>
               </li>
               <li>
-                <a href="#popular" className="toc-item">
-                  目的別の人気機種 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
-                </a>
-              </li>
-              <li>
                 <a href="#pd-faq" className="toc-item">
                   よくある質問 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
                 </a>
