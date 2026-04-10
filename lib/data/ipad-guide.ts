@@ -27,6 +27,8 @@ export const GUIDE_SPEC_LINKS = [
   { href: '/macbook/ipad-macbook-compare/', icon: 'fa-laptop', title: 'iPad vs MacBook 徹底比較', desc: 'iPadとMacBookの違いを用途別に比較。どちらを選ぶべきか迷っている方必見。' },
   { href: '/ipad/storage-guide/', icon: 'fa-hard-drive', title: 'iPadストレージ容量ガイド', desc: '用途別のおすすめ容量と歴代モデルの容量ラインナップをまとめています。' },
   { href: '/ipad/benchmark/', icon: 'fa-ranking-star', title: '歴代iPadベンチマーク比較', desc: 'Geekbench 6・AnTuTuスコアで歴代iPadの性能をランキング形式で比較。' },
+  { href: '/ipad/ipad-mini-6-review/', icon: 'fa-star', title: 'iPad mini 第6世代 長期使用レビュー', desc: '3年間使用して分かったメリット・デメリットをまとめたレビュー記事。' },
+  { href: '/ipad/review-ipad-pro-11-m4/', icon: 'fa-star', title: 'iPad Pro 11インチ M4レビュー', desc: '実際に買って感じたメリット・デメリットをまとめたレビュー記事。' },
 ] as const
 
 // ---------- FAQ ----------

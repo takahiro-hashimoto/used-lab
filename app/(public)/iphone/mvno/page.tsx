@@ -572,7 +572,7 @@ export default async function MvnoPage() {
             </p>
 
             {providerCards.map(({ db, meta, plans: providerPlans }) => (
-              <div key={db.provider_slug} className="m-card m-card--shadow recommend-card" id={db.provider_slug}>
+              <article key={db.provider_slug} className="m-card m-card--shadow recommend-card" id={db.provider_slug}>
                 {/* Header */}
                 <div className="recommend-card__header">
                   <h3>{db.provider_name}</h3>
@@ -722,7 +722,7 @@ export default async function MvnoPage() {
                     </a>
                   </div>
                 </div>
-              </div>
+              </article>
             ))}
           </div>
         </section>

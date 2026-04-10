@@ -43,14 +43,14 @@ const PAGE_URL = 'https://used-lab.jp/iphone/'
 const SERVICE_LINKS = [
   {
     title: 'Widget Club',
-    description: 'ホーム画面をお洒落にカスタマイズできる着せ替えアプリ。無料テンプレートも豊富。',
+    description: 'ホーム画面をカスタマイズできる着せ替えアプリ。無料テンプレートも豊富。',
     href: 'https://invite.widget-club.com/c/5031010/1752866/20483?u=https%3A%2F%2Fwidget-club.com%2Fja',
     image: 'https://firebasestorage.googleapis.com/v0/b/widgetclub-c2626.appspot.com/o/banner%2Fcampaign%2Faffiliate_simple_widgetclub.png?alt=media&token=7fd84000-d257-46eb-99f0-89b2f647d926',
     rel: 'sponsored noopener',
   },
   {
     title: 'アプリポ',
-    description: 'iPhone向け無料アイコン素材サイト。ホーム画面のカスタム素材が豊富に揃っています。',
+    description: 'ホーム画面のカスタム素材が豊富に揃っている無料アイコン素材サイト。',
     href: 'https://applipo.ne.jp/app/iphone-icon-change-sozai-download/',
     image: '/images/content/thumbnail/apripo-1.webp',
     rel: 'noopener',

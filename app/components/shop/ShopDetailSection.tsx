@@ -52,7 +52,7 @@ export default function ShopDetailSection({ productName, items, specRows, getCta
         <p className="m-section-desc">各購入先の特徴をおすすめ順に一つずつ詳細に説明していきます。</p>
 
         {items.map(({ shop, meta }) => (
-          <div key={shop.id} className="m-card m-card--shadow recommend-card" id={`detail-${shop.shop_key}`}>
+          <article key={shop.id} className="m-card m-card--shadow recommend-card" id={`detail-${shop.shop_key}`}>
             <div className="recommend-card__header">
               <h3>
                 <i className="fa-solid fa-store" aria-hidden="true"></i> {shop.shop}
@@ -154,7 +154,7 @@ export default function ShopDetailSection({ productName, items, specRows, getCta
               )}
             </div>
             {renderExtra?.(shop.shop_key)}
-          </div>
+          </article>
         ))}
       </div>
     </section>

@@ -189,7 +189,7 @@ export default function CompareSelector({
             <td>
               {currentIosysUrl ? (
                 <a href={currentIosysUrl} target="_blank" rel="noopener noreferrer nofollow" className="m-btn m-btn--primary m-btn--block">
-                  {currentName}の購入先 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                  中古価格を見る <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
                 </a>
               ) : (
                 <a href="#shops" className="m-btn m-btn--primary m-btn--block">
@@ -200,7 +200,7 @@ export default function CompareSelector({
             <td>
               {compareIosysUrl ? (
                 <a href={compareIosysUrl} target="_blank" rel="noopener noreferrer nofollow" className="m-btn m-btn--primary m-btn--block">
-                  {compareName}の購入先 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                  中古価格を見る <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
                 </a>
               ) : (
                 <a href={`/${detailPath}/${compareModel.slug}`} className="m-btn m-btn--primary m-btn--block">

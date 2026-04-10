@@ -170,10 +170,6 @@ export default function ValueZoneChart({
             ))}
           </div>
 
-          <div className="vz__axis">
-            <span>← 安い・サポート短い</span>
-            <span>高い・サポート長い →</span>
-          </div>
         </div>
       </div>
     </section>

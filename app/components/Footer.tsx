@@ -51,7 +51,7 @@ export default function Footer() {
                 <li><Link href="/macbook/recommend/">中古MacBookおすすめ機種</Link></li>
                 <li><Link href="/macbook/price-info/">中古MacBookの相場価格</Link></li>
                 <li><Link href="/macbook/macbook-spec-table/">MacBookスペック比較表</Link></li>
-                <li><Link href="/macbook/used-macbook-support/">MacBookのサポート期間・寿命</Link></li>
+                <li><Link href="/macbook/used-macbook-support/">MacBookのサポート期間</Link></li>
               </ul>
             </div>
             <div className="footer-col">
@@ -88,7 +88,7 @@ export default function Footer() {
 
       <div className="footer-bottom">
         <div className="footer-inner l-container">
-          <p className="copyright">&copy; {new Date().getFullYear()} ユーズドラボ All Rights Reserved.</p>
+          <p className="copyright">&copy; 2024–{new Date().getFullYear()} ユーズドラボ All Rights Reserved.</p>
         </div>
       </div>
     </footer>

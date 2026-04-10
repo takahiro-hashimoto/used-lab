@@ -92,14 +92,11 @@ export default function BenchmarkAntutu({ model, allModels }: Props) {
                 const mTotal = getAntutuTotal(m)
                 const isCurrent = m.id === model.id
                 return (
-                  <tr key={m.id} className={isCurrent ? 'm-table-highlight' : undefined}>
-                    <td>
-                      {isCurrent && (
-                        <span className="m-badge m-badge--primary m-table-this-badge">この機種</span>
-                      )}
-                      {' '}{m.model}
+                  <tr key={m.id}>
+                    <td className={isCurrent ? 'm-table-highlight' : undefined}>
+                      {m.model}
                     </td>
-                    <td>
+                    <td className={isCurrent ? 'm-table-highlight' : undefined}>
                       <span
                         className="bench-bar"
                         style={{
@@ -110,7 +107,7 @@ export default function BenchmarkAntutu({ model, allModels }: Props) {
                         {mTotal.toLocaleString()}
                       </span>
                     </td>
-                    <td>
+                    <td className={isCurrent ? 'm-table-highlight' : undefined}>
                       <span
                         className="bench-bar"
                         style={{
@@ -121,7 +118,7 @@ export default function BenchmarkAntutu({ model, allModels }: Props) {
                         {m.antutu_cpu?.toLocaleString() || '-'}
                       </span>
                     </td>
-                    <td>
+                    <td className={isCurrent ? 'm-table-highlight' : undefined}>
                       <span
                         className="bench-bar"
                         style={{
@@ -132,7 +129,7 @@ export default function BenchmarkAntutu({ model, allModels }: Props) {
                         {m.antutu_gpu?.toLocaleString() || '-'}
                       </span>
                     </td>
-                    <td>
+                    <td className={isCurrent ? 'm-table-highlight' : undefined}>
                       <span
                         className="bench-bar"
                         style={{
@@ -143,7 +140,7 @@ export default function BenchmarkAntutu({ model, allModels }: Props) {
                         {m.antutu_mem?.toLocaleString() || '-'}
                       </span>
                     </td>
-                    <td>
+                    <td className={isCurrent ? 'm-table-highlight' : undefined}>
                       <span
                         className="bench-bar"
                         style={{

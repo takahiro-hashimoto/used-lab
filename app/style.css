@@ -356,7 +356,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: var(--space-sm) 0;
+  padding: var(--space-xs) 0;
   border-bottom: 1px dashed var(--color-border-light);
 }
 
@@ -512,7 +512,7 @@
 }
 
 .m-table-highlight {
-  background: var(--color-primary-light);
+  background: #fff6e5 !important;
 }
 
 .m-table-this-badge {
@@ -745,21 +745,20 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-xs);
-  margin-bottom: 16px;
 }
 
 .m-check-list__item {
   display: flex;
   align-items: center;
   gap: var(--space-sm);
-  font-size: var(--font-size-base);
+  font-size: var(--font-size-md);
   line-height: 1.7;
   color: var(--color-text);
 }
 
 .m-check-list__item i {
   color: var(--color-primary);
-  font-size: var(--font-size-base);
+  font-size: var(--font-size-md);
   flex-shrink: 0;
 }
 
@@ -769,7 +768,7 @@
 
 /* --- m-rich-text --- */
 .m-rich-text p {
-  font-size: var(--font-size-base);
+  font-size: var(--font-size-md);
   color: var(--color-text);
   line-height: 1.5;
 }
@@ -935,6 +934,7 @@
 .m-vendor-card--recommended {
   border: 2px solid var(--color-primary) !important;
   box-shadow: 0 4px 16px rgba(37, 99, 235, 0.12) !important;
+  display: none !important;
 }
 
 .m-vendor-card__badge {
@@ -1527,8 +1527,9 @@
     color: var(--color-text-inverse);
   }
 
-  .m-table-highlight .bench-table__sticky {
-    background: var(--color-highlight-bg, #fffbeb);
+  .m-table-highlight .bench-table__sticky,
+  .bench-table__sticky.m-table-highlight {
+    background: #fff6e5 !important;
   }
 }
 
@@ -1760,7 +1761,7 @@
 .footer-main .footer-inner {
   display: grid;
   grid-template-columns: 1fr 2fr;
-  gap: var(--space-2xl);
+  gap: var(--space-3xl);
 }
 
 /* Footer Brand */
@@ -2925,6 +2926,7 @@ fieldset.u-mb-xl {
 
 .pencil-detail-item__label {
   flex-shrink: 0;
+  margin-bottom: var(--space-xs) !important;
 }
 
 .pencil-detail-item__label::after {
@@ -3546,7 +3548,7 @@ fieldset.u-mb-xl {
 .price-card__meta {
   font-size: var(--font-size-xs);
   color: var(--color-text-muted);
-  margin-top: 2px;
+  line-height: 1.5;
 }
 
 .price-card__price {
@@ -3806,6 +3808,7 @@ fieldset.u-mb-xl {
   color: var(--color-text);
   font-weight: 700;
   display: block;
+  line-height: 1.4;
 }
 
 .guide-model-item__meta {
@@ -7500,6 +7503,10 @@ fieldset.u-mb-xl {
   aspect-ratio: 16 / 9;
   object-fit: cover;
   display: block;
+}
+
+#detail-findmy .media-card__img {
+  border: 1px solid var(--color-border-light);
 }
 
 .media-card__body {

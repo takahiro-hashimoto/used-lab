@@ -6,7 +6,7 @@ const GUIDES = [
     recommendation: 'Apple Pencil Pro',
     amazonUrl: 'https://www.amazon.co.jp/dp/B0D3J71RM7?tag=and-and-22',
     reason: 'バレルロールでブラシの角度を直感的にコントロールでき、スクイーズでツールパレットを即座に呼び出せます。筆圧感知も搭載しており、繊細な線画から大胆な塗りまで対応可能です。',
-    forWhom: 'クリエイティブな作業を本格的に行いたい人におすすめ',
+    forWhom: 'クリエイティブな作業を行いたい人におすすめ',
   },
   {
     id: 'guide-note',
@@ -24,7 +24,7 @@ const GUIDES = [
     recommendation: 'Apple Pencil（USB-C）',
     amazonUrl: 'https://www.amazon.co.jp/dp/B0CSWDP9F7?tag=and-and-22',
     reason: '最も手頃な価格で購入できるApple Pencilです。筆圧感知やダブルタップは非搭載ですが、傾き検知には対応しており、基本的な手書きやマークアップには十分な性能です。',
-    forWhom: '価格重視で最低限の機能があれば十分という方におすすめ',
+    forWhom: '最低限の機能があれば十分という方におすすめ',
   },
   {
     id: 'guide-old',

@@ -72,14 +72,11 @@ export default function BenchmarkGeekbench({ model, allModels }: Props) {
               {sorted.map((m) => {
                 const isCurrent = m.id === model.id
                 return (
-                  <tr key={m.id} className={isCurrent ? 'm-table-highlight' : undefined}>
-                    <td>
-                      {isCurrent && (
-                        <span className="m-badge m-badge--primary m-table-this-badge">この機種</span>
-                      )}
-                      {' '}{m.model}
+                  <tr key={m.id}>
+                    <td className={isCurrent ? 'm-table-highlight' : undefined}>
+                      {m.model}
                     </td>
-                    <td>
+                    <td className={isCurrent ? 'm-table-highlight' : undefined}>
                       <span
                         className="bench-bar"
                         style={{
@@ -90,7 +87,7 @@ export default function BenchmarkGeekbench({ model, allModels }: Props) {
                         {m.score_single?.toLocaleString() || '-'}
                       </span>
                     </td>
-                    <td>
+                    <td className={isCurrent ? 'm-table-highlight' : undefined}>
                       <span
                         className="bench-bar"
                         style={{
@@ -101,7 +98,7 @@ export default function BenchmarkGeekbench({ model, allModels }: Props) {
                         {m.score_multi?.toLocaleString() || '-'}
                       </span>
                     </td>
-                    <td>
+                    <td className={isCurrent ? 'm-table-highlight' : undefined}>
                       <span
                         className="bench-bar"
                         style={{

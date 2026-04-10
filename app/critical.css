@@ -773,7 +773,7 @@ a.header-admin-link:hover {
 
 /* ── トップページ専用ヒーロー ── */
 .hero--top {
-  height: 20vw;
+  height: 16vw;
   min-height: 0;
   padding: 0;
   background: none;

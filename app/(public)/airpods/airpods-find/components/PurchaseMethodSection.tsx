@@ -71,7 +71,7 @@ export default function PurchaseMethodSection() {
         <p className="m-body-text u-mt-sm">
           Appleストアでは費用が高く、フリマでは品質に不安が残る。そこでおすすめなのが、イヤホン専門店の<strong>eイヤホン</strong>で欠けたパーツを買う方法です。
         </p>
-        <ul className="u-mt-lg" style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)', lineHeight: 2, paddingLeft: 'var(--space-lg)', listStyle: 'disc' }}>
+        <ul className="media-card__list u-mt-lg">
           <li>AirPodsの片耳 or ケースのみの買取りを行っているため、<strong>豊富な選択肢</strong>から欠けたパーツを購入可能</li>
           <li>中古品なので<strong>価格が安く</strong>、状態の評価もプロが正しく行っている</li>
           <li><strong>AmazonPay</strong>に対応しているので支払いが簡単</li>
