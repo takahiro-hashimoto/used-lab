@@ -238,7 +238,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/macbook/macbook
         <SpecTable models={serializedModels} shopLinks={serializedLinks} />
         <DualCompare models={serializedModels} shopLinks={serializedLinks} />
         <BenchmarkSection models={serializedModels} />
-        <EvolutionTimeline models={serializedModels} />
+        <EvolutionTimeline />
         <GlossarySection productName="MacBook" items={GLOSSARY_ITEMS} />
         </div>
       </article>
