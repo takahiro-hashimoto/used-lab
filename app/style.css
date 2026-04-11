@@ -1880,7 +1880,7 @@
 
 .top-news-card .news-list {
   flex: 1;
-  max-height: 20em;
+  max-height: 27em;
   overflow-y: auto;
 }
 

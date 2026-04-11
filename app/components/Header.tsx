@@ -5,7 +5,6 @@ import Image from 'next/image'
 import { useState, useEffect, useRef } from 'react'
 import { createPortal } from 'react-dom'
 import { useRouter } from 'next/navigation'
-
 type NavItem = {
   href: string
   label: string
@@ -16,49 +15,66 @@ const NAV_ITEMS: NavItem[] = [
   {
     href: '/iphone/', label: '中古iPhone',
     children: [
-      { href: '/iphone/', label: '中古iPhone 購入完全ガイド' },
-      { href: '/iphone/recommend/', label: '中古iPhone おすすめ機種' },
-      { href: '/iphone/price-info/', label: '中古iPhone 価格相場' },
-      { href: '/iphone/iphone-spec-table/', label: 'iPhone スペック比較表' },
-      { href: '/iphone/used-iphone-support/', label: 'iPhone サポート期間・寿命' },
+      { href: '/iphone/', label: '中古iPhoneの選び方ガイド' },
+      { href: '/iphone/recommend/', label: '中古iPhoneおすすめ機種' },
+      { href: '/iphone/filter-search/', label: 'iPhone機種診断ツール' },
+      { href: '/iphone/price-info/', label: '中古iPhoneの相場価格' },
+      { href: '/iphone/iphone-spec-table/', label: 'iPhoneスペック比較表' },
+      { href: '/iphone/used-iphone-support/', label: 'iPhoneのサポート期間・寿命' },
+      { href: '/iphone/iphone-shop/', label: '中古iPhoneの購入先比較' },
+      { href: '/iphone/iphone-camera/', label: 'iPhoneカメラ性能比較' },
+      { href: '/iphone/battery-compare/', label: 'iPhoneバッテリー容量比較' },
+      { href: '/iphone/benchmark/', label: 'iPhoneベンチマーク比較' },
     ],
   },
   {
     href: '/ipad/', label: '中古iPad',
     children: [
-      { href: '/ipad/', label: '中古iPad 購入完全ガイド' },
-      { href: '/ipad/recommend/', label: '中古iPad おすすめ機種' },
-      { href: '/ipad/ipad-price-info/', label: '中古iPad 価格相場' },
-      { href: '/ipad/ipad-spec-table/', label: 'iPad スペック比較表' },
-      { href: '/ipad/used-ipad-support/', label: 'iPad サポート期間・寿命' },
+      { href: '/ipad/', label: '中古iPadの選び方ガイド' },
+      { href: '/ipad/recommend/', label: '中古iPadおすすめ機種' },
+      { href: '/ipad/ipad-filter-search/', label: 'iPad機種診断ツール' },
+      { href: '/ipad/ipad-price-info/', label: '中古iPadの相場価格' },
+      { href: '/ipad/apple-pencil-compare/', label: 'Apple Pencil互換性比較' },
+      { href: '/ipad/wifi-cellular/', label: 'Wi-Fiとセルラーの違い' },
+      { href: '/ipad/ipad-spec-table/', label: 'iPadスペック比較表' },
+      { href: '/ipad/used-ipad-support/', label: 'iPadのサポート期間・寿命' },
+      { href: '/ipad/ipad-shop/', label: '中古iPadの購入先比較' },
+      { href: '/ipad/benchmark/', label: 'iPadベンチマーク比較' },
     ],
   },
   {
     href: '/watch/', label: '中古Apple Watch',
     children: [
-      { href: '/watch/', label: '中古Apple Watch 購入完全ガイド' },
-      { href: '/watch/recommend/', label: '中古Apple Watch おすすめ機種' },
-      { href: '/watch/watch-price-info/', label: '中古Apple Watch 価格相場' },
-      { href: '/watch/watch-spec-table/', label: 'Apple Watch スペック比較表' },
-      { href: '/watch/used-watch-support/', label: 'Apple Watch サポート期間・寿命' },
+      { href: '/watch/', label: '中古Apple Watch選び方ガイド' },
+      { href: '/watch/recommend/', label: '中古Apple Watchおすすめ機種' },
+      { href: '/watch/watch-filter-search/', label: 'Apple Watch機種診断ツール' },
+      { href: '/watch/watch-price-info/', label: '中古Apple Watchの相場価格' },
+      { href: '/watch/gps-cellular-compare/', label: 'GPSとセルラーの違い' },
+      { href: '/watch/watch-spec-table/', label: 'Apple Watchスペック比較表' },
+      { href: '/watch/used-watch-support/', label: 'Apple Watchのサポート期間' },
+      { href: '/watch/watch-shop/', label: '中古Apple Watchの購入先比較' },
     ],
   },
   {
     href: '/macbook/', label: '中古MacBook',
     children: [
-      { href: '/macbook/', label: '中古MacBook 購入完全ガイド' },
-      { href: '/macbook/recommend/', label: '中古MacBook おすすめ機種' },
-      { href: '/macbook/price-info/', label: '中古MacBook 価格相場' },
-      { href: '/macbook/macbook-spec-table/', label: 'MacBook スペック比較表' },
-      { href: '/macbook/used-macbook-support/', label: 'MacBook サポート期間・寿命' },
+      { href: '/macbook/', label: '中古MacBookの選び方ガイド' },
+      { href: '/macbook/recommend/', label: '中古MacBookおすすめ機種' },
+      { href: '/macbook/price-info/', label: '中古MacBookの相場価格' },
+      { href: '/macbook/air-pro-compare/', label: 'MacBook Air vs Pro比較' },
+      { href: '/macbook/macbook-spec-table/', label: 'MacBookスペック比較表' },
+      { href: '/macbook/benchmark/', label: 'MacBookベンチマーク比較' },
+      { href: '/macbook/used-macbook-support/', label: 'MacBookのサポート期間' },
+      { href: '/macbook/macbook-shop/', label: '中古MacBookの購入先比較' },
     ],
   },
   {
     href: '/airpods/', label: '中古AirPods',
     children: [
-      { href: '/airpods/', label: '中古AirPods 購入完全ガイド' },
-      { href: '/airpods/recommend/', label: '中古AirPods おすすめ機種' },
-      { href: '/airpods/price-info/', label: '中古AirPods 価格相場' },
+      { href: '/airpods/', label: '中古AirPodsの選び方ガイド' },
+      { href: '/airpods/recommend/', label: '中古AirPodsおすすめ機種' },
+      { href: '/airpods/price-info/', label: '中古AirPodsの相場価格' },
+      { href: '/airpods/used-airpods-attention/', label: '中古AirPodsの注意点' },
     ],
   },
   { href: '/contact/', label: 'お問い合わせ' },
@@ -72,6 +88,7 @@ export default function Header() {
   const [searchQuery, setSearchQuery] = useState('')
   const [isMounted, setIsMounted] = useState(false)
   const [menuTop, setMenuTop] = useState<number>(56)
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null)
   const headerRef = useRef<HTMLElement>(null)
   const searchInputRef = useRef<HTMLInputElement>(null)
   const router = useRouter()
@@ -146,8 +163,28 @@ export default function Header() {
         <nav className="global-nav" id="globalNav" aria-label="メインナビゲーション">
           <ul className="nav-list">
             {NAV_ITEMS.map((item) => (
-              <li key={item.href} className="nav-item">
+              <li
+                key={item.href}
+                className={`nav-item${item.children ? ' nav-item--has-dropdown' : ''}${openDropdown === item.href ? ' nav-item--open' : ''}`}
+                onMouseEnter={() => item.children && setOpenDropdown(item.href)}
+                onMouseLeave={() => setOpenDropdown(null)}
+              >
                 <Link href={item.href}>{item.label}</Link>
+                {item.children && (
+                  <div className="nav-dropdown">
+                    <ul className="nav-dropdown__list">
+                      {item.children.map((child) => (
+                        <li key={child.href}>
+                          <Link
+                            href={child.href}
+                            className="nav-dropdown__link"
+                            onClick={() => setOpenDropdown(null)}
+                          >{child.label}</Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
               </li>
             ))}
           </ul>
