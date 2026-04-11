@@ -232,6 +232,30 @@ export default async function ComparePageTemplate({ config }: Props) {
             iosysUrlR={iosysUrlR}
           />
 
+          {/* 2機種比較 関連リンク */}
+          {getRelatedComparePages(config.slug).length > 0 && (
+            <section className="l-section" aria-label="2機種比較の関連記事">
+              <div className="l-container">
+                <h2 className="m-section-heading m-section-heading--md u-mb-md" style={{ textAlign: 'left' }}>
+                  2機種比較
+                </h2>
+                <div className="l-grid l-grid--2col l-grid--gap-lg">
+                  {getRelatedComparePages(config.slug).map((item) => (
+                    <a
+                      key={item.href}
+                      href={item.href}
+                      className="m-card m-card--shadow m-card--hoverable"
+                      style={{ padding: 'var(--space-md) var(--space-lg)', display: 'block', textDecoration: 'none' }}
+                    >
+                      <p className="related-link-card__title">{item.title}</p>
+                      <p className="related-link-card__desc">{item.desc}</p>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </section>
+          )}
+
           {/* 11. FAQ */}
           <CompareFaq
             modelL={modelL}
@@ -247,7 +271,6 @@ export default async function ComparePageTemplate({ config }: Props) {
       pageUrl={`https://used-lab.jp/iphone/${config.slug}/`}
       pageTitle={config.title}
       excludeHref={[`/iphone/${config.slug}/`, "/iphone/recommend/"]}
-      compareLinks={getRelatedComparePages(config.slug)}
     />
     </>
   )
