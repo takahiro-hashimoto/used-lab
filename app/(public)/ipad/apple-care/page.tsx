@@ -248,7 +248,7 @@ export default function IpadAppleCarePage() {
                     </table>
                   </div>
                 </div>
-                <p class="m-footnote u-mt-sm">※2026年4月時点の料金です。実際の価格は公式サイトをご確認ください</p>
+                <p className="m-footnote u-mt-sm">※2026年4月時点の料金です。実際の価格は公式サイトをご確認ください</p>
                 </div>
 
                 {/* 修理費用 */}
@@ -298,7 +298,7 @@ export default function IpadAppleCarePage() {
                       </table>
                     </div>
                   </div>
-                  <p class="m-footnote u-mt-sm">※2026年4月時点の料金です。実際の価格は公式サイトをご確認ください</p>
+                  <p className="m-footnote u-mt-sm">※2026年4月時点の料金です。実際の価格は公式サイトをご確認ください</p>
                 </div>
               </div>
             </section>
