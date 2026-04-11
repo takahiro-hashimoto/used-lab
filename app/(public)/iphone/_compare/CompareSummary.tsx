@@ -4,6 +4,7 @@
 
 import Image from 'next/image'
 import type { IPhoneModel, IPhonePriceLog } from '@/lib/types'
+import type { RelatedLinkMeta } from '@/lib/data/related-links'
 import { calcAvgPriceRange } from './helpers'
 import { calculateOSLifespan } from '@/lib/utils/iphone-helpers'
 import s from './CompareSummary.module.css'
@@ -18,6 +19,8 @@ type Props = {
   /** イオシスURL */
   iosysUrlL?: string | null
   iosysUrlR?: string | null
+  /** 2機種比較関連リンク */
+  compareLinks?: RelatedLinkMeta[]
 }
 
 /** モデルの主要スペックをラベル・値ペアで返す */
@@ -93,7 +96,7 @@ function getRecommendFor(
   return recs
 }
 
-export default function CompareSummary({ modelL, modelR, priceL, priceR, heading, iosysUrlL, iosysUrlR }: Props) {
+export default function CompareSummary({ modelL, modelR, priceL, priceR, heading, iosysUrlL, iosysUrlR, compareLinks }: Props) {
   const rangeL = calcAvgPriceRange(priceL)
   const rangeR = calcAvgPriceRange(priceR)
   const recsL = getRecommendFor(modelL, modelR, rangeL.avg, rangeR.avg)
@@ -125,6 +128,27 @@ export default function CompareSummary({ modelL, modelR, priceL, priceR, heading
             iosysUrl={iosysUrlR}
           />
         </div>
+
+        {compareLinks && compareLinks.length > 0 && (
+          <div className="u-mt-2xl">
+            <h3 className="m-section-heading m-section-heading--md u-mb-md" style={{ textAlign: 'left' }}>
+              2機種比較
+            </h3>
+            <div className="l-grid l-grid--2col l-grid--gap-lg">
+              {compareLinks.map((item) => (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  className="m-card m-card--shadow m-card--hoverable"
+                  style={{ padding: 'var(--space-md) var(--space-lg)', display: 'block', textDecoration: 'none' }}
+                >
+                  <p className="related-link-card__title">{item.title}</p>
+                  <p className="related-link-card__desc">{item.desc}</p>
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </section>
   )
