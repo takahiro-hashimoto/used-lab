@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { Suspense } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import {
@@ -10,11 +11,11 @@ import {
   getLatestPriceUpdateDate,
 } from '@/lib/queries'
 import { PRODUCT_CATEGORIES } from '@/lib/routes'
-import { getPublishedNews } from '@/app/admin/actions'
 import IconCard from '@/app/components/IconCard'
 import { placeholder } from '@/lib/placeholder'
+import NewsSection from '@/app/(public)/_components/NewsSection'
 
-export const revalidate = 3600
+export const revalidate = 300
 
 export const metadata: Metadata = {
   title: '中古Apple製品のおすすめ機種・賢い選び方・安く買う方法を解説 | ユーズドラボ',
@@ -38,13 +39,12 @@ const CATEGORY_IMAGE_BASE: Record<string, string> = {
 
 export default async function HomePage() {
   // 全モデル＋新着情報＋価格更新日を並列取得
-  const [iPhoneModels, iPadModels, macBookModels, watchModels, airPodsModels, newsItems, latestPriceDate] = await Promise.all([
+  const [iPhoneModels, iPadModels, macBookModels, watchModels, airPodsModels, latestPriceDate] = await Promise.all([
     getAllIPhoneModels(),
     getAllIPadModels(),
     getAllMacBookModels(),
     getAllWatchModels(),
     getAllAirPodsModels(),
-    getPublishedNews(),
     getLatestPriceUpdateDate(),
   ])
 
@@ -89,12 +89,12 @@ export default async function HomePage() {
         <div className="hero--top__overlay" aria-hidden="true" />
         <div className="hero-inner">
           <div className="hero-content hero-content--center">
-            <p className="hero-title hero-title--top">
+            <h1 className="hero-title hero-title--top">
               中古Apple製品を賢く選ぶ。
-            </p>
-            <h1 className="hero-subtitle--top">
-              中古Apple製品のおすすめ機種・賢い選び方・安く買う方法を解説
             </h1>
+            <p className="hero-subtitle--top">
+              中古Apple製品のおすすめ機種・賢い選び方・安く買う方法を解説
+            </p>
             {priceUpdateLabel && (
               <p className="hero-freshness">
                 <i className="fa-solid fa-rotate" aria-hidden="true"></i>
@@ -164,23 +164,14 @@ export default async function HomePage() {
         <div className="l-container">
           <div className="top-bottom-grid">
             {/* 新着情報 */}
-            <div className="top-news-card m-card m-card--shadow m-card--padded">
-              <h2 className="top-card-heading">新着情報</h2>
-              {newsItems.length > 0 ? (
-                <dl className="news-list">
-                  {newsItems.map((item) => (
-                    <div key={item.id} className="news-list__item">
-                      <dt className="news-list__date">
-                        <time dateTime={item.date}>{item.date.replace(/-/g, '.')}</time>
-                      </dt>
-                      <dd className="news-list__content" dangerouslySetInnerHTML={{ __html: item.content }} />
-                    </div>
-                  ))}
-                </dl>
-              ) : (
-                <p className="news-list__empty">新着情報はありません</p>
-              )}
-            </div>
+            <Suspense fallback={
+              <div className="top-news-card m-card m-card--shadow m-card--padded">
+                <h2 className="top-card-heading">新着情報</h2>
+                <p className="news-list__empty">読み込み中...</p>
+              </div>
+            }>
+              <NewsSection />
+            </Suspense>
 
             {/* 運営者情報 */}
             <div className="top-about-card m-card m-card--shadow m-card--padded">

@@ -61,6 +61,10 @@ export const GUIDE_FAQ_ITEMS = [
     question: 'ストレージ容量はどれくらい必要ですか？',
     answer: 'Web閲覧・事務作業メインなら256GBで十分です。写真や動画を扱うなら512GB以上がおすすめです。MacBookはストレージの後から増設ができないため、用途に合った容量を最初に選ぶことが重要です。詳しくは「[MacBookストレージ容量ガイド](/macbook/storage-guide/)」をご覧ください。',
   },
+  {
+    question: '中古MacBookでもApple Care+に加入できますか？',
+    answer: 'できません。Apple Care+ for Macは新品購入から1年以内にのみ加入できますが、中古MacBookは対象外です。詳しくは「[MacBookにApple Care+は必要？](/macbook/apple-care/)」で解説しています。',
+  },
 ]
 
 // ---------- 歴代MacBook個別記事リンク ----------

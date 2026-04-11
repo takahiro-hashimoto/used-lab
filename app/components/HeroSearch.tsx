@@ -16,8 +16,10 @@ export default function HeroSearch() {
 
   return (
     <form onSubmit={handleSubmit} className="hero-search">
+      <label htmlFor="hero-search-input" className="visually-hidden">記事を検索</label>
       <i className="fa-solid fa-magnifying-glass hero-search__icon" aria-hidden="true" />
       <input
+        id="hero-search-input"
         ref={inputRef}
         type="search"
         className="hero-search__input"

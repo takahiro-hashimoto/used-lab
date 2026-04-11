@@ -13,9 +13,11 @@ type CompareRow = {
 
 type ShopLink = { product_id: number; shop_id: number; url: string }
 
-type Props = {
-  currentModel: { id: number; slug: string; image: string | null }
-  allModels: { id: number; slug: string; image: string | null }[]
+type BaseModel = { id: number; slug: string; image: string | null }
+
+type Props<T extends BaseModel> = {
+  currentModel: T
+  allModels: T[]
   initialCompareId: number
   iosysUrl?: string
   /** モデル個別URLがない場合に使うイオシスカテゴリURL */
@@ -26,10 +28,10 @@ type Props = {
   imageWidth?: number
   imageHeight?: number
   getCurrentName: () => string
-  getCompareName: (model: any) => string
-  getOptionLabel: (model: any) => string
-  getCaption: (current: any, compare: any) => string
-  buildRows: (current: any, compare: any) => CompareRow[]
+  getCompareName: (model: T) => string
+  getOptionLabel: (model: T) => string
+  getCaption: (current: T, compare: T) => string
+  buildRows: (current: T, compare: T) => CompareRow[]
 }
 
 function CellValue({ value }: { value: string }) {
@@ -44,7 +46,7 @@ function CellValue({ value }: { value: string }) {
   return <>{normalized}</>
 }
 
-export default function CompareSelector({
+export default function CompareSelector<T extends BaseModel>({
   currentModel,
   allModels,
   initialCompareId,
@@ -60,7 +62,7 @@ export default function CompareSelector({
   getOptionLabel,
   getCaption,
   buildRows,
-}: Props) {
+}: Props<T>) {
   const [compareId, setCompareId] = useState(initialCompareId)
   const compareModel = useMemo(() => allModels.find((m) => m.id === compareId) || allModels[0], [allModels, compareId])
   const rows = useMemo(() => buildRows(currentModel, compareModel), [currentModel, compareModel, buildRows])

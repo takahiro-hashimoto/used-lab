@@ -883,6 +883,26 @@ export default function StyleGuidePage() {
                 <li><strong>SIMロック</strong>が解除できない端末は避けましょう。設定アプリから確認できます。</li>
               </ol>
             </div>
+
+            <h3 className="m-sub-heading" style={{ marginTop: 'var(--space-2xl)' }}>まとめカード dl版（summary-card__dl）</h3>
+            <p className="m-desc-text" style={{ marginTop: 'var(--space-sm)' }}>dt（見出し）＋dd（補足テキスト）で構成する記述リスト形式。各項目に番号バッジが自動付与される。</p>
+            <div className="m-card m-card--shadow m-card--padded" style={{ maxWidth: 720, margin: 'var(--space-xl) auto 0' }}>
+              <h3 className="summary-card__title">この記事のポイント</h3>
+              <dl className="summary-card__dl">
+                <div>
+                  <dt className="summary-card__dt">見出しテキストが入ります</dt>
+                  <dd className="summary-card__dd">dtに対応する補足説明。1〜2文程度でポイントを簡潔にまとめる。</dd>
+                </div>
+                <div>
+                  <dt className="summary-card__dt">2つ目の見出しテキスト</dt>
+                  <dd className="summary-card__dd">dtに対応する補足説明。1〜2文程度でポイントを簡潔にまとめる。</dd>
+                </div>
+                <div>
+                  <dt className="summary-card__dt">3つ目の見出しテキスト</dt>
+                  <dd className="summary-card__dd">dtに対応する補足説明。1〜2文程度でポイントを簡潔にまとめる。</dd>
+                </div>
+              </dl>
+            </div>
           </div>
         </section>
       </div>

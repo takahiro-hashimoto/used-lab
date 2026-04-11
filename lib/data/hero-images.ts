@@ -29,10 +29,12 @@ export const HERO_IMAGES: Record<string, string> = {
   '/iphone/storage-guide/': '/images/content/thumbnail/used-iphone-ios-support.jpg',
   '/iphone/used-iphone-attention/': '/images/content/thumbnail/check-list.jpg',
   '/iphone/used-iphone-support/': '/images/content/thumbnail/iphone-image-03.jpg',
+  '/iphone/apple-care/': '/images/content/thumbnail/apple-care.jpg',
 
   // ── iPad ──
   '/ipad/': '/images/content/thumbnail/ipad-all.jpg',
   '/ipad/accessories-summary/': '/images/content/thumbnail/ipad-keyboard.jpg',
+  '/ipad/apple-care/': '/images/content/thumbnail/apple-care.jpg',
   '/ipad/apple-pencil-compare/': '/images/content/thumbnail/ipad-image-07.jpg',
   '/ipad/benchmark/': '/images/content/thumbnail/ipad-image-12.jpg',
   '/ipad/car-navigation-system/': '/images/content/thumbnail/ipad-image-10.jpg',
@@ -64,6 +66,7 @@ export const HERO_IMAGES: Record<string, string> = {
   '/macbook/used-macbook-attention/': '/images/content/thumbnail/check-list.jpg',
   '/macbook/used-macbook-support/': '/images/content/thumbnail/macbook-image-03.jpg',
   '/macbook/windows-mac-compare/': '/images/content/thumbnail/macbook-image-06.jpg',
+  '/macbook/apple-care/': '/images/content/thumbnail/apple-care.jpg',
 
   // ── Apple Watch ──
   '/watch/': '/images/content/thumbnail/apple-watch-image.jpg',
@@ -78,6 +81,7 @@ export const HERO_IMAGES: Record<string, string> = {
   '/watch/watch-price-info/': '/images/content/thumbnail/graph-image.jpg',
   '/watch/watch-shop/': '/images/content/thumbnail/cheap-buy.jpg',
   '/watch/watch-spec-table/': '/images/content/thumbnail/watch-image-02.jpg',
+  '/watch/apple-care/': '/images/content/thumbnail/apple-care.jpg',
 }
 
 /** ルートからヒーロー画像パスを取得。未登録ならフォールバック画像を返す */

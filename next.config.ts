@@ -5,23 +5,12 @@ const withBundleAnalyzer = bundleAnalyzer({
   enabled: process.env.ANALYZE === 'true',
 });
 
+// CSP は middleware.ts で nonce 付きで設定するためここでは除外
 const securityHeaders = [
   { key: 'X-DNS-Prefetch-Control', value: 'on' },
   { key: 'X-Content-Type-Options', value: 'nosniff' },
   { key: 'Referrer-Policy', value: 'origin-when-cross-origin' },
   { key: 'X-Frame-Options', value: 'DENY' },
-  {
-    key: 'Content-Security-Policy',
-    value: [
-      "default-src 'self'",
-      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://cdn.jsdelivr.net https://www.clarity.ms",
-      "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
-      "font-src 'self' https://fonts.gstatic.com",
-      "img-src 'self' data: https://*.supabase.co https://placehold.co https://*.rakuten.co.jp https://*.a8.net https://firebasestorage.googleapis.com",
-      "connect-src 'self' https://*.supabase.co https://www.google-analytics.com https://www.googletagmanager.com https://www.clarity.ms",
-      "frame-src https://www.youtube.com https://docs.google.com",
-    ].join('; '),
-  },
 ]
 
 const nextConfig: NextConfig = {
@@ -66,6 +55,11 @@ const nextConfig: NextConfig = {
         destination: '/airpods/price-info/',
         permanent: true,
       },
+      {
+        source: '/iphone/ipad-mini-6-review/',
+        destination: '/ipad/ipad-mini-6-review/',
+        permanent: true,
+      },
     ]
   },
   async headers() {
@@ -92,7 +86,7 @@ const nextConfig: NextConfig = {
       {
         source: '/images/:path*',
         headers: [
-          { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
+          { key: 'Cache-Control', value: 'public, max-age=604800, stale-while-revalidate=86400' },
         ],
       },
       {

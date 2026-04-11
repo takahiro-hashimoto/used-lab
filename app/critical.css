@@ -773,11 +773,11 @@ a.header-admin-link:hover {
 
 /* ── トップページ専用ヒーロー ── */
 .hero--top {
-  height: 16vw;
+  background: 0 0;
+  justify-content: center;
+  height: 20vw;
   min-height: 0;
   padding: 0;
-  background: none;
-  justify-content: center;
 }
 
 .hero--top::before {
@@ -962,9 +962,9 @@ a.header-admin-link:hover {
 .hero-meta {
   display: flex;
   flex-direction: column;
-  gap: var(--space-xs);
+  gap: var(--space-sm);
   font-size: var(--font-size-sm);
-  color: #ffff;
+  color: #fff;
   margin-top: 16px;
   line-height: 1.2;
 }

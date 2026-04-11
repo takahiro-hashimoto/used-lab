@@ -5,9 +5,9 @@
   "scripts": {
     "dev": "concurrently -n next,css \"next dev\" \"npm run watch:css\"",
     "dev:next": "next dev",
-    "watch:css": "chokidar \"app/style.css\" \"app/search.css\" \"app/sp-overrides.css\" -c \"npm run build:css\" --initial",
+    "watch:css": "chokidar \"app/style.css\" \"app/search.css\" \"app/sp-overrides.css\" -c \"npm run build:css && npx tsx scripts/hash-assets.ts\" --initial",
     "build:css": "cat app/style.css app/search.css app/sp-overrides.css | csso --output public/css/non-critical.min.css",
-    "build": "npm run build:css && tsx scripts/check-sitemap-coverage.ts && next build",
+    "build": "npm run build:css && tsx scripts/hash-assets.ts && tsx scripts/check-sitemap-coverage.ts && next build",
     "start": "next start",
     "lint": "eslint",
     "fetch-prices": "tsx scripts/fetch-prices.ts",

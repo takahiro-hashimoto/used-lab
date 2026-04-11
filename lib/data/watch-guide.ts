@@ -69,6 +69,10 @@ export const GUIDE_FAQ_ITEMS = [
     question: 'Apple Watchのケース素材（アルミ・ステンレス・チタン）の違いは？',
     answer: 'アルミニウムは軽量で価格が手頃なエントリー素材です。ステンレススチールはアルミより重厚感があり傷に強く、サファイアクリスタルガラスを搭載。チタニウムはUltraシリーズに採用されており、軽さと耐久性を両立しています。中古市場ではアルミモデルが最も流通量が多く、ステンレスやチタンは希少なぶん価格も高めです。',
   },
+  {
+    question: '中古Apple WatchでもApple Care+に加入できますか？',
+    answer: 'できません。Apple Care+はApple Watchの購入から30日以内にのみ加入できるため、中古品への加入は対象外です。詳しくは「[Apple WatchにApple Care+は必要？](/watch/apple-care/)」で解説しています。',
+  },
 ]
 
 // ---------- 歴代Apple Watch個別記事リンク ----------

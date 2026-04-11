@@ -85,6 +85,10 @@ export const GUIDE_FAQ_ITEMS = [
     question: 'ネットワーク利用制限△の中古iPhoneは買っても大丈夫？',
     answer: 'ネットワーク利用制限△は、前の所有者の分割払いが完了していない状態を示します。△でも通常利用は可能ですが、価格が安い分リスクもあるため、心配な方は○（制限なし）の端末を選ぶのが安心です。詳しくは「[ネットワーク制限△のメリット・デメリット](/iphone/network-limit/)」で解説しています。',
   },
+  {
+    question: '中古iPhoneでもApple Care+に加入できますか？',
+    answer: 'できません。Apple Care+はiPhoneの購入から30日以内にのみ加入できるため、中古品への加入は対象外です。詳しくは「[iPhoneにApple Care+は必要？](/iphone/apple-care/)」で解説しています。',
+  },
 ]
 
 // ---------- 歴代iPhone個別記事リンク ----------

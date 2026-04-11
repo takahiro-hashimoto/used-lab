@@ -25,6 +25,7 @@ export const IPHONE_LINKS: RelatedLinkMeta[] = [
   { href: '/iphone/used-iphone-attention/', title: '中古iPhone購入前の注意点まとめ', desc: '購入前に知っておきたいチェックポイント' },
   { href: '/iphone/filter-search/', title: 'iPhone機種診断ツール', desc: '質問に答えるだけで最適な機種がわかる' },
   { href: '/iphone/network-limit/', title: 'ネットワーク制限△のiPhoneは買って大丈夫？', desc: 'メリット・デメリットを解説' },
+  { href: '/iphone/apple-care/', title: 'iPhoneにApple Care+は必要？', desc: 'コスパの観点から加入しなくていい理由を解説' },
 ]
 
 /** iPad サブページ一覧 */
@@ -40,6 +41,7 @@ export const IPAD_LINKS: RelatedLinkMeta[] = [
   { href: '/ipad/storage-guide/', title: 'iPadストレージ容量の選び方ガイド', desc: '用途別のおすすめ容量と中古価格を比較' },
   { href: '/ipad/used-ipad-support/', title: '中古iPadはいつまで使える？【サポート期間】', desc: '機種別のサポート期間目安まとめ' },
   { href: '/ipad/used-ipad-attention/', title: '中古iPad購入前の注意点まとめ', desc: '購入前に知っておきたいチェックポイント' },
+  { href: '/ipad/apple-care/', title: 'iPadにApple Care+は必要？', desc: 'コスパの観点から加入しなくていい理由を解説' },
   { href: '/ipad/howto-use-ipad/', title: 'iPadの便利な使い道22選【活用術】', desc: '生活が変わる活用法を紹介' },
   { href: '/ipad/ipad-buy/', title: 'iPadを安く買う方法7選', desc: '7つの購入先を比較して紹介' },
   { href: '/ipad/car-navigation-system/', title: 'iPadカーナビ化の方法と注意点', desc: 'メリットと注意点を解説' },
@@ -60,6 +62,7 @@ export const WATCH_LINKS: RelatedLinkMeta[] = [
   { href: '/watch/apple-watch-always-lit/', title: 'Apple Watch常時表示ディスプレイは必要？', desc: 'メリット・デメリットを解説' },
   { href: '/watch/apple-watch-buy/', title: 'Apple Watchを安く買う方法5選', desc: 'おすすめの購入先を紹介' },
   { href: '/watch/watch-filter-search/', title: 'Apple Watch機種診断ツール', desc: '質問に答えるだけで最適な機種がわかる' },
+  { href: '/watch/apple-care/', title: 'Apple WatchにApple Care+は必要？', desc: 'コスパの観点から加入しなくていい理由を解説' },
 ]
 
 /** AirPods サブページ一覧 */
@@ -85,4 +88,5 @@ export const MACBOOK_LINKS: RelatedLinkMeta[] = [
   { href: '/macbook/macbook-buy/', title: 'MacBookを安く買う方法7選', desc: 'おすすめの購入先を紹介' },
   { href: '/macbook/ipad-macbook-compare/', title: 'iPad vs MacBookの違い【用途別比較】', desc: 'どちらを選ぶべきか用途別に解説' },
   { href: '/macbook/windows-mac-compare/', title: 'Windows vs Macの違い【徹底比較】', desc: 'どちらが自分に合うか比較' },
+  { href: '/macbook/apple-care/', title: 'MacBookにApple Care+は必要？', desc: 'コスパの観点から加入しなくていい理由を解説' },
 ]
