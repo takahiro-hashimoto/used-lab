@@ -676,6 +676,7 @@ export default function WatchAppleCarePage() {
             {/* ── FAQ ── */}
             <FaqSection
               title="Apple Care+ for Apple Watchのよくある質問"
+              description=""
               items={[
                 {
                   question: 'Apple Care+を2年一括払いした後、保証期間内にApple Watchを買い替えた場合、次の製品に引き継げますか？',
