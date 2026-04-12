@@ -7828,3 +7828,10 @@ ol.info-card__list {
   padding: var(--space-sm);
   background: #fff;
 }
+
+/* モバイル保険列のハイライト */
+.ins-tabs__highlight {
+  background: var(--color-primary-light, #e8f0fe);
+  font-weight: 700;
+  color: var(--color-primary);
+}

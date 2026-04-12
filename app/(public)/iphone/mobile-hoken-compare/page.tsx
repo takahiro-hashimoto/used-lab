@@ -477,13 +477,13 @@ export default function MobileHokenComparePage() {
                     <div className="media-card__body">
                       <h3 className="media-card__title">① 月々の保険料と補償内容のバランスが良い</h3>
                       <p className="media-card__desc">
-                        モバイル保険の月額保険料と補償内容はシンプルで明快。月額700円で主端末は年間10万円まで修理代を全額補償、副端末は年間3万円まで補償されます。
+                        モバイル保険の月額保険料はわずか<strong>700円</strong>。主端末は年間10万円まで修理代を全額補償し、副端末も年間3万円まで補償されます。
                       </p>
                       <p className="media-card__desc">
-                        モバイル保険に2年間加入した場合の保険料は<strong>16,800円でApple Care+よりも1万円以上お手頃</strong>です。年間10万円の補償が受けられれば画面割れ・水没・全損といった深刻なトラブルが発生しても問題なく、<span className="u-marker">免責金額なしで修理費用が全額補償される点もApple Care+にはない強みです</span>。
+                        2年間の保険料は<strong>16,800円</strong>で、Apple Care+（ProMax：34,800円〜）と比べると<span className="u-marker">約半額以下</span>です。
                       </p>
                       <p className="media-card__desc">
-                        保険料・補償内容・修理が発生する確率のバランスを考えると、モバイル保険の方がコスパが良いといえるでしょう。
+                        さらに大きな違いが<strong>免責金額</strong>。Apple Care+は修理のたびに3,700円〜の自己負担が発生しますが、モバイル保険は免責金額ゼロで修理費用が全額補償されます。下の表で機種ごとに比較できます。
                       </p>
                       <InsuranceCostTabs />
                     </div>
@@ -504,8 +504,8 @@ export default function MobileHokenComparePage() {
                       </p>
                       <ul className="m-check-list u-mt-sm">
                         <li><i className="fa-solid fa-check" aria-hidden="true"></i> 主端末 → 年間100,000円まで修理代を補償</li>
-                        <li><i className="fa-solid fa-check" aria-hidden="true"></i> 副端末 → 年間30,000円まで修理代を補償</li>
-                        <li><i className="fa-solid fa-check" aria-hidden="true"></i> 補償対象：スマートフォン・タブレット・スマートウォッチ・ノートPC・携帯ゲーム機・モバイルルーターなど</li>
+                        <li><i className="fa-solid fa-check" aria-hidden="true"></i> 副端末（2台）→ 各年間30,000円まで修理代を補償</li>
+                        <li><i className="fa-solid fa-check" aria-hidden="true"></i> 補償対象デバイス：スマートフォン / タブレット / スマートウォッチ / ノートPC / 携帯ゲーム機 / モバイルルーターなど</li>
                       </ul>
                       <p className="media-card__desc u-mt-sm">
                         iPhone・iPad・MacBookそれぞれにApple Care+を加入した場合と比べると、よりお手頃な保険であることが際立ちます。また、<span className="u-marker">家族が持っているスマートフォンなども保証の対象にできる</span>ので、「3台も補償対象にしたい端末がない」という状況にも陥りにくいです。
