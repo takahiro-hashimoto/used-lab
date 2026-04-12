@@ -43,8 +43,8 @@ type Props = {
 }
 
 type SortOrder = 'old' | 'new'
-type FilterType = 'all' | 'promax' | 'pro' | 'plus' | 'standard' | 'se' | 'mini'
-type FeatureFilter = 'size-sm' | 'size-lg' | 'usbc' | 'camera-control' | 'magsafe'
+type FilterType = 'all' | 'pro-family' | 'standard-family' | 'se-family'
+type FeatureFilter = 'size-lg' | 'size-sm' | 'size-xs'
 
 function getModelCategory(model: string): string {
   const lower = model.toLowerCase()
@@ -82,26 +82,27 @@ export default function SpecTable({ models, shopLinks }: Props) {
 
     // 機種別フィルタ
     if (modelFilter !== 'all') {
-      result = result.filter((m) => getModelCategory(m.model) === modelFilter)
+      const cat = getModelCategory
+      if (modelFilter === 'pro-family') {
+        result = result.filter((m) => ['promax', 'pro'].includes(cat(m.model)))
+      } else if (modelFilter === 'standard-family') {
+        result = result.filter((m) => ['plus', 'standard', 'mini'].includes(cat(m.model)))
+      } else if (modelFilter === 'se-family') {
+        result = result.filter((m) => ['se'].includes(cat(m.model)))
+      }
     }
 
-    // サイズ・機能フィルタ
+    // サイズフィルタ
     if (featureFilter) {
       switch (featureFilter) {
-        case 'size-sm':
-          result = result.filter((m) => { const s = parseDisplayInch(m.display); return s >= 6.1 && s <= 6.3 })
-          break
         case 'size-lg':
           result = result.filter((m) => { const s = parseDisplayInch(m.display); return s >= 6.7 && s <= 6.9 })
           break
-        case 'usbc':
-          result = result.filter((m) => m.port?.toLowerCase().includes('usb'))
+        case 'size-sm':
+          result = result.filter((m) => { const s = parseDisplayInch(m.display); return s >= 6.1 && s <= 6.3 })
           break
-        case 'camera-control':
-          result = result.filter((m) => m.camera_control)
-          break
-        case 'magsafe':
-          result = result.filter((m) => m.magsafe)
+        case 'size-xs':
+          result = result.filter((m) => { const s = parseDisplayInch(m.display); return s > 0 && s < 6.1 })
           break
       }
     }
@@ -186,12 +187,9 @@ export default function SpecTable({ models, shopLinks }: Props) {
             <div className="spec-filter__tags">
               {([
                 ['all', 'すべて'],
-                ['promax', 'Pro Max'],
-                ['pro', 'Pro'],
-                ['plus', 'Plus'],
-                ['standard', '無印'],
-                ['se', 'SE'],
-                ['mini', 'mini'],
+                ['pro-family', 'Pro'],
+                ['standard-family', 'スタンダード'],
+                ['se-family', 'SE・廉価モデル'],
               ] as [FilterType, string][]).map(([key, label]) => (
                 <button
                   key={key}
@@ -205,14 +203,12 @@ export default function SpecTable({ models, shopLinks }: Props) {
             </div>
           </div>
           <div className="spec-filter__row">
-            <span className="spec-filter__label">機能別</span>
+            <span className="spec-filter__label">サイズ別</span>
             <div className="spec-filter__tags">
               {([
-                ['size-sm', '6.1~6.3型'],
                 ['size-lg', '6.7~6.9型'],
-                ['usbc', 'USB-C'],
-                ['camera-control', 'カメラコントロール'],
-                ['magsafe', 'MagSafe'],
+                ['size-sm', '6.1~6.3型'],
+                ['size-xs', '6.1型以下'],
               ] as [FeatureFilter, string][]).map(([key, label]) => (
                 <button
                   key={key}

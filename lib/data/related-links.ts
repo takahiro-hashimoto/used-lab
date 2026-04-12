@@ -72,6 +72,7 @@ export const AIRPODS_LINKS: RelatedLinkMeta[] = [
   { href: '/airpods/airpods-find/', title: 'AirPodsの探し方ガイド', desc: '紛失時の対処法と購入方法を解説' },
   { href: '/airpods/airpods-filter-search/', title: 'AirPods機種診断ツール', desc: '質問に答えるだけで最適なモデルがわかる' },
   { href: '/airpods/used-airpods-attention/', title: '中古AirPodsの注意点8つ', desc: '購入前に知っておきたいリスクと対策' },
+  { href: '/airpods/airpods-buy/', title: 'AirPodsを安く買う方法8選', desc: 'おすすめの購入先を比較して紹介' },
 ]
 
 /** MacBook サブページ一覧 */

@@ -62,6 +62,7 @@ export const PAGE_DESCRIPTIONS: Record<string, string> = {
   '/airpods/recommend/': '狙い目の型落ちモデルを解説',
   '/airpods/price-info/': '歴代モデルの価格推移を独自集計',
   '/airpods/used-airpods-attention/': '購入前に確認すべき注意点とリスク8つ',
+  '/airpods/airpods-buy/': '7つの購入先を比較してお得な買い方を解説',
 }
 
 /** 詳細説明（llms-full.txt 用） — 未定義の場合は簡易説明にフォールバック */

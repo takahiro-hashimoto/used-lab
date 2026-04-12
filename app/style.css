@@ -119,34 +119,15 @@
   line-height: 1.5;
 }
 
-.glossary-grid__desc {
+.accessory-card__desc,
+.glossary-grid__desc,
+.guide-recommend__desc,
+.m-timeline__content p,
+.pd-history-seo p,
+.related-link-card__desc {
   font-size: var(--font-size-md);
   color: var(--color-text-secondary);
-  line-height: 1.8;
-}
-
-.guide-recommend__desc {
-  font-size: var(--font-size-md);
-  color: var(--color-text-secondary);
-  line-height: 1.8;
-}
-
-.pd-history-seo p {
-  font-size: var(--font-size-md);
-  color: var(--color-text-secondary);
-  line-height: 1.8;
-}
-
-.m-timeline__content p {
-  font-size: var(--font-size-md);
-  color: var(--color-text-secondary);
-  line-height: 1.8;
-}
-
-.accessory-card__desc {
-  font-size: var(--font-size-md);
-  color: var(--color-text-secondary);
-  line-height: 1.8;
+  line-height: 1.6;
 }
 
 .about-profile-desc {
@@ -162,9 +143,6 @@
 }
 
 .related-link-card__desc {
-  font-size: var(--font-size-sm);
-  color: var(--color-text-secondary);
-  line-height: 1.5;
   margin-top: var(--space-xs);
 }
 
@@ -404,6 +382,11 @@
   color: var(--color-text-secondary);
 }
 
+/* --- u-shrink --- */
+.u-shrink {
+  width: 1%;
+}
+
 /* --- u-marker --- */
 .u-marker {
   font-weight: 700;
@@ -458,7 +441,6 @@
   font-weight: 500;
   color: var(--color-text-secondary);
   text-align: left;
-  width: 1%;
   white-space: nowrap;
   background: var(--color-bg);
 }

@@ -112,6 +112,7 @@ const PAGE_KEYWORDS: Record<string, string> = {
   '/airpods/recommend/': 'おすすめ 型落ち 狙い目 コスパ',
   '/airpods/price-info/': '価格 相場 値段 中古価格 推移',
   '/airpods/airpods-find/': '探す 紛失 見つける',
+  '/airpods/airpods-buy/': '安く買う 購入 セール お得',
 }
 
 /** モデルのスペック情報からキーワードを生成 */

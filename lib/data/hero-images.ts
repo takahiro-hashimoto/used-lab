@@ -13,6 +13,7 @@ export const HERO_IMAGES: Record<string, string> = {
   '/airpods/airpods-filter-search/': '/images/content/thumbnail/simulator.jpg',
   '/airpods/recommend/': '/images/content/thumbnail/airpods-image-02.jpg',
   '/airpods/used-airpods-attention/': '/images/content/thumbnail/check-list.jpg',
+  '/airpods/airpods-buy/': '/images/content/thumbnail/cheap-buy.jpg',
 
   // ── iPhone ──
   '/iphone/': '/images/content/thumbnail/iphone-image.jpeg',

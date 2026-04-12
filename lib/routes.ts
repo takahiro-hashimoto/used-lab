@@ -189,6 +189,7 @@ export const PRODUCT_CATEGORIES: CategoryDef[] = [
       { path: '/airpods/airpods-find/', label: 'AirPodsのケースやイヤホン片方を無くした時の探し方、代替品の購入先まとめ' },
       { path: '/airpods/airpods-filter-search/', label: 'AirPods機種診断シミュレーター｜自分に合うおすすめイヤホンがすぐわかる【2026年版】' },
       { path: '/airpods/used-airpods-attention/', label: '中古AirPodsはやめた方がいい？注意点とリスクを8つ解説' },
+      { path: '/airpods/airpods-buy/', label: 'AirPodsを安く買う方法7選【2026年】おすすめ購入先を比較' },
     ],
   },
 ]

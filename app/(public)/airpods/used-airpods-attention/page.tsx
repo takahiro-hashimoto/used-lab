@@ -133,10 +133,9 @@ export default function UsedAirpodsAttentionPage() {
           <div className="l-container">
             <div className="lead-box">
               <p className="u-mb-md">iPhoneとの連携や音質の高さが魅力のApple AirPodsシリーズ。購入を検討している方の中には下記のようなことを考えている方もいると思います。</p>
-              <ul className="m-check-list">
+              <ul className="m-check-list u-mb-md">
                 <li><i className="fa-solid fa-check" aria-hidden="true"></i> 少しでもお手頃に買いたいから中古AirPodsを購入してみようかな？</li>
                 <li><i className="fa-solid fa-check" aria-hidden="true"></i> 中古のAirPodsって買っても後悔しない？</li>
-
               </ul>
               <p>
                 結論からいうと、中古AirPodsの購入はコスパの良い選択肢です。ただ、<strong>8つの点に注意しないと買ったことを後悔する可能性</strong>があります。

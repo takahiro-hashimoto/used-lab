@@ -22,6 +22,7 @@ export const GUIDE_SPEC_LINKS = [
   { href: '/airpods/recommend/', icon: 'fa-ranking-star', title: '中古AirPodsおすすめモデル', desc: '用途別おすすめモデルを厳選。ノイキャン重視・オープン型・コスパ重視の3機種を紹介。' },
   { href: '/airpods/airpods-find/', icon: 'fa-magnifying-glass', title: 'AirPodsを紛失した時の対処法', desc: 'ケースやイヤホン片方を無くした時の探し方と、代替品の購入先をまとめて紹介。' },
   { href: '/airpods/used-airpods-attention/', icon: 'fa-triangle-exclamation', title: '中古AirPodsの注意点8つ', desc: 'コピー品・並行輸入品・バッテリー劣化など、購入前に知っておきたいリスクと対策。' },
+  { href: '/airpods/airpods-buy/', icon: 'fa-tags', title: 'AirPodsを安く買う方法8選', desc: 'Amazon・楽天・コストコ・中古ショップなど8つの購入先を比較してお得な買い方を紹介。' },
 ] as const
 
 // ---------- FAQ ----------

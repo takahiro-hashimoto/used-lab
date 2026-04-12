@@ -6,9 +6,8 @@ export default function SummarySection() {
           <h2 className="m-section-heading m-section-heading--lg" id="heading-summary">
             MacとWindowsどっちがいい？まとめ
           </h2>
-          <p className="m-section-desc">
-            両者の特徴を一言でまとめると以下のとおり。どちらが優れているかではなく、自分の使い方に合ったOSを選ぶことが重要です。
-          </p>
+          <p className="m-section-desc">両者の特徴を一言でまとめると以下のとおり。</p>
+          <p className="m-section-desc">どちらが優れているかではなく、自分の使い方に合ったOSを選ぶことが重要です。</p>
 
           <div className="l-grid l-grid--2col u-mt-xl" style={{ gap: 'var(--space-lg)' }}>
             {/* Windows */}
