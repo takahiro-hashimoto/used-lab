@@ -45,27 +45,18 @@ export default function FaqSection() {
         <h2 className="m-section-heading m-section-heading--lg" id="heading-faq">
           よくある質問
         </h2>
-        <div className="faq-list" itemScope itemType="https://schema.org/FAQPage">
+        <div className="faq-list">
           {faqItems.map((item) => (
             <div
               key={item.question}
               className="m-card m-card--shadow faq-item"
-              itemScope
-              itemProp="mainEntity"
-              itemType="https://schema.org/Question"
             >
-              <h3 className="faq-question" itemProp="name">
+              <h3 className="faq-question">
                 {item.question}
               </h3>
-              <div
-                className="faq-answer m-rich-text m-rich-text--muted"
-                itemScope
-                itemProp="acceptedAnswer"
-                itemType="https://schema.org/Answer"
-                aria-label={item.answer.replace(/<[^>]*>/g, '').replace(/\n/g, ' ')}
-              >
+              <div className="faq-answer m-rich-text m-rich-text--muted">
                 {item.answer.split('\n').map((paragraph, i) => (
-                  <p key={i} itemProp={i === 0 ? 'text' : undefined} dangerouslySetInnerHTML={{ __html: paragraph }} />
+                  <p key={i} dangerouslySetInnerHTML={{ __html: paragraph }} />
                 ))}
               </div>
             </div>
