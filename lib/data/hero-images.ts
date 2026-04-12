@@ -31,6 +31,7 @@ export const HERO_IMAGES: Record<string, string> = {
   '/iphone/used-iphone-attention/': '/images/content/thumbnail/check-list.jpg',
   '/iphone/used-iphone-support/': '/images/content/thumbnail/iphone-image-03.jpg',
   '/iphone/apple-care/': '/images/content/thumbnail/apple-care.jpg',
+  '/iphone/mobile-hoken-compare/': '/images/content/thumbnail/apple-care.jpg',
 
   // ── iPad ──
   '/ipad/': '/images/content/thumbnail/ipad-all.jpg',

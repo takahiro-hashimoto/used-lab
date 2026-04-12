@@ -199,7 +199,7 @@ export default async function IPhoneGuidePage() {
             <div className="lead-box">
               <p>「新品は高すぎて手が出ない、でも中古は失敗しそうで怖い...」そんな悩みはありませんか？</p>
               <p>
-                本ページではあなたが納得して中古iPhoneを選べるよう、<strong>{GUIDE_DATE_LABEL}の最新相場や後悔しないための判断基準</strong>を解説します。
+                本ページではあなたが納得して中古iPhoneを選べるよう、<strong>{GUIDE_DATE_LABEL}の最新相場や後悔しないための判断基準</strong>を解説します。整備済品との違いや、SIMフリー・SIMロック端末の見分け方もあわせてカバーしています。
               </p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
@@ -318,13 +318,25 @@ export default async function IPhoneGuidePage() {
                   <div className="glossary-item">
                     <dt className="glossary-item-title">ショップの動作保証</dt>
                     <dd className="glossary-item-desc">
-                      中古品はメーカー保証が切れていることが多いため、販売店独自の保証内容が安心材料になります。
+                      中古品はメーカー保証が切れていることが多いため、<strong>動作確認済みの証明</strong>や販売店独自の保証内容が安心材料になります。
                     </dd>
                   </div>
                   <div className="glossary-item">
                     <dt className="glossary-item-title">外装状態・ランク表記</dt>
                     <dd className="glossary-item-desc">
                       傷や使用感は価格に影響します。自分が許容できる状態をあらかじめ決めておくと選びやすくなります。
+                    </dd>
+                  </div>
+                  <div className="glossary-item">
+                    <dt className="glossary-item-title">SIMロック・SIMフリーの確認</dt>
+                    <dd className="glossary-item-desc">
+                      SIMロック解除済み（SIMフリー）の端末であれば、どのキャリアのSIMも利用できます。格安SIMへの乗り換えを検討している場合は特に重要なポイントです。
+                    </dd>
+                  </div>
+                  <div className="glossary-item">
+                    <dt className="glossary-item-title">ストレージ容量（128GB以上が目安）</dt>
+                    <dd className="glossary-item-desc">
+                      アプリや写真・動画が増えやすい現代では、128GB以上を選ぶと安心です。256GBとの価格差が小さい場合は、大きい容量を選んでおくのがおすすめです。
                     </dd>
                   </div>
                 </dl>
@@ -391,7 +403,7 @@ export default async function IPhoneGuidePage() {
               <p className="m-section-desc">中古iPhone販売店の比較情報。保証内容、価格、在庫の豊富さなど、各ショップの特徴を一覧表で整理しました。</p>
               <VendorCardGrid cards={vendorCards} />
 
-              <p className="guide-section-note u-mt-2xl">各ショップの詳細やサービス内容の違いは以下の記事で解説しています。</p>
+              <p className="guide-section-note u-mt-2xl">古いiPhoneの下取り・売却に対応したショップも多く、各ショップの詳細やサービス内容の違いは以下の記事で解説しています。</p>
               <div className="guide-section-cta">
                 <Link href="/iphone/iphone-shop/" className="m-btn m-btn--primary m-btn--block">
                   <span>中古iPhoneを安心して購入できるECサイト</span>
@@ -404,7 +416,7 @@ export default async function IPhoneGuidePage() {
           {/* ========== 格安SIM セット購入バナー ========== */}
           <PopularSection
             sectionTitle="中古iPhone&格安SIMをまとめて乗り換え"
-            sectionDescription={<><p className="m-section-desc">中古iPhoneと通信回線をまとめて契約できる格安SIM業者を比較。</p><p className="m-section-desc">端末選びから回線契約まで一度に済ませたい方におすすめです。</p></>}
+            sectionDescription={<><p className="m-section-desc">中古iPhoneと通信回線をまとめて契約できる格安SIM業者を比較。MNP乗り換えにも対応しています。</p><p className="m-section-desc">端末選びから回線契約まで一度に済ませたい方におすすめです。</p></>}
             imageSrc="/images/content/thumbnail/sim.webp"
             imageAlt="中古iPhoneの購入と通信契約が一緒にできる格安SIM業者まとめ"
             subtitle="回線契約と端末購入を一度に！"
@@ -420,7 +432,7 @@ export default async function IPhoneGuidePage() {
           <section className="l-section" id="spec-compare" aria-labelledby="heading-spec-compare">
             <div className="l-container">
               <h2 className="m-section-heading m-section-heading--lg" id="heading-spec-compare">中古iPhoneのデータ・スペック比較ガイド</h2>
-              <p className="m-section-desc">カメラ性能、バッテリー寿命、サポート期間など、機種選びに役立つ詳細なスペック比較記事をまとめました。</p>
+              <p className="m-section-desc">カメラ性能、バッテリー寿命、防水・防塵（IP規格）、サポート期間など、機種選びに役立つ詳細なスペック比較記事をまとめました。</p>
 
               <div className="l-grid l-grid--2col l-grid--gap-lg u-mb-2xl">
                 {GUIDE_SPEC_LINKS.map((link) => (

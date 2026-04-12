@@ -25,6 +25,7 @@ export const GUIDE_SPEC_LINKS = [
   { href: '/iphone/battery-compare/', icon: 'fa-battery-full', title: 'iPhoneバッテリー性能比較ランキング', desc: '動画再生時間、音楽再生時間、バッテリー容量(mAh)を一覧表で比較できます。' },
   { href: '/iphone/storage-guide/', icon: 'fa-hard-drive', title: 'iPhoneストレージ容量ガイド', desc: '用途別のおすすめ容量と歴代モデルの容量ラインナップをまとめています。' },
   { href: '/iphone/benchmark/', icon: 'fa-ranking-star', title: '歴代iPhoneベンチマーク比較', desc: 'Geekbench 6・AnTuTuスコアで歴代iPhoneの性能をランキング形式で比較。' },
+  { href: '/iphone/mobile-hoken-compare/', icon: 'fa-shield-halved', title: 'Apple Care+よりモバイル保険がコスパ高い理由', desc: '月額700円で3台まで補償できるモバイル保険とApple Care+を徹底比較。' },
 ] as const
 
 // ---------- 2機種比較リンク ----------

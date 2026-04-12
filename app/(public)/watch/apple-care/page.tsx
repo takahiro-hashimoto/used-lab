@@ -636,6 +636,12 @@ export default function WatchAppleCarePage() {
                     </div>
                   </div>
                 </div>
+                <div className="m-callout m-callout--tip u-mt-xl">
+                  <span className="m-callout__label">関連記事</span>
+                  <p>
+                    Apple Care+とモバイル保険をさらに詳しく比較したい方は「<a href="/iphone/mobile-hoken-compare/" style={{ color: 'var(--color-primary)' }}>知らないと損！Apple Care+よりもモバイル保険に加入した方がコスパが高い理由</a>」をご覧ください。
+                  </p>
+                </div>
               </div>
             </section>
 

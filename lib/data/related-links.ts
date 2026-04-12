@@ -26,6 +26,7 @@ export const IPHONE_LINKS: RelatedLinkMeta[] = [
   { href: '/iphone/filter-search/', title: 'iPhone機種診断ツール', desc: '質問に答えるだけで最適な機種がわかる' },
   { href: '/iphone/network-limit/', title: 'ネットワーク制限△のiPhoneは買って大丈夫？', desc: 'メリット・デメリットを解説' },
   { href: '/iphone/apple-care/', title: 'iPhoneにApple Care+は必要？', desc: 'コスパの観点から加入しなくていい理由を解説' },
+  { href: '/iphone/mobile-hoken-compare/', title: 'Apple Care+よりモバイル保険がコスパ高い理由', desc: '月額700円・3台補償のモバイル保険とApple Care+を徹底比較' },
 ]
 
 /** iPad サブページ一覧 */
