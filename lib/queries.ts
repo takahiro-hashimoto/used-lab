@@ -59,8 +59,8 @@ function createModelQueries<T>(table: string, tag: string, activeField?: string)
           .eq('slug', slug)
           .eq('show', 1)
           .single()
-        if (error || !data) return null
-        return data as T
+        if (error) throw new Error(`getBySlug(${table}, ${slug}): ${error.message}`)
+        return (data ?? null) as T | null
       },
       [`${table}-by-slug`],
       { revalidate: 3600, tags: [tag] }
@@ -71,8 +71,8 @@ function createModelQueries<T>(table: string, tag: string, activeField?: string)
         let query = supabase.from(table).select('*').eq('show', 1)
         if (activeField) query = query.is(activeField, null)
         const { data, error } = await query.order('id', { ascending: true })
-        if (error || !data) return []
-        return data as T[]
+        if (error) throw new Error(`getAll(${table}): ${error.message}`)
+        return (data ?? []) as T[]
       },
       [`${table}-all`],
       { revalidate: 3600, tags: [tag] }
@@ -82,8 +82,8 @@ function createModelQueries<T>(table: string, tag: string, activeField?: string)
     getAllIncludingEnded: unstable_cache(
       async (): Promise<T[]> => {
         const { data, error } = await supabase.from(table).select('*').eq('show', 1).order('id', { ascending: true })
-        if (error || !data) return []
-        return data as T[]
+        if (error) throw new Error(`getAllIncludingEnded(${table}): ${error.message}`)
+        return (data ?? []) as T[]
       },
       [`${table}-all-including-ended`],
       { revalidate: 3600, tags: [tag] }
@@ -94,8 +94,8 @@ function createModelQueries<T>(table: string, tag: string, activeField?: string)
         let query = supabase.from(table).select('slug').eq('show', 1)
         if (activeField) query = query.is(activeField, null)
         const { data, error } = await query
-        if (error || !data) return []
-        return data.map((d) => d.slug)
+        if (error) throw new Error(`getAllSlugs(${table}): ${error.message}`)
+        return (data ?? []).map((d) => d.slug)
       },
       [`${table}-slugs`],
       { revalidate: 3600, tags: [tag] }
@@ -113,8 +113,8 @@ function createPriceLogQueries<T extends { model_id: number }>(table: string, ta
           .select('*')
           .eq('model_id', modelId)
           .order('logged_at', { ascending: true })
-        if (error || !data) return []
-        return data as T[]
+        if (error) throw new Error(`getByModelId(${table}, ${modelId}): ${error.message}`)
+        return (data ?? []) as T[]
       },
       [`${table}-by-model`],
       { revalidate: 86400, tags: [tag] }
@@ -129,8 +129,8 @@ function createPriceLogQueries<T extends { model_id: number }>(table: string, ta
           .order('logged_at', { ascending: false })
           .limit(1)
           .maybeSingle()
-        if (error || !data) return null
-        return data as T
+        if (error) throw new Error(`getLatest(${table}, ${modelId}): ${error.message}`)
+        return (data ?? null) as T | null
       },
       [`${table}-latest`],
       { revalidate: 86400, tags: [tag] }
@@ -215,8 +215,8 @@ export const getAllIPadAccessories = unstable_cache(
       .from('ipad_accessories')
       .select('*')
       .order('display_order', { ascending: true })
-    if (error || !data) return []
-    return data as IPadAccessory[]
+    if (error) throw new Error(`getAllIPadAccessories: ${error.message}`)
+    return (data ?? []) as IPadAccessory[]
   },
   ['ipad-accessories-all'],
   { revalidate: 3600, tags: [CACHE_TAGS.ipadAccessories] }
@@ -227,8 +227,8 @@ export const getAllIPadAccessoryCompatibility = unstable_cache(
     const { data, error } = await supabase
       .from('ipad_accessory_compatibility')
       .select('*')
-    if (error || !data) return []
-    return data as IPadAccessoryCompatibility[]
+    if (error) throw new Error(`getAllIPadAccessoryCompatibility: ${error.message}`)
+    return (data ?? []) as IPadAccessoryCompatibility[]
   },
   ['ipad-accessory-compatibility-all'],
   { revalidate: 3600, tags: [CACHE_TAGS.ipadAccessories] }
@@ -240,9 +240,9 @@ export const getIPadAccessoriesByModelId = unstable_cache(
       .from('ipad_accessory_compatibility')
       .select('accessory_id')
       .eq('ipad_model_id', modelId)
-    if (error || !data) return []
+    if (error) throw new Error(`getIPadAccessoriesByModelId(compat, ${modelId}): ${error.message}`)
 
-    const accessoryIds = data.map((d) => d.accessory_id)
+    const accessoryIds = (data ?? []).map((d) => d.accessory_id)
     if (accessoryIds.length === 0) return []
 
     const { data: accessories, error: accErr } = await supabase
@@ -250,8 +250,8 @@ export const getIPadAccessoriesByModelId = unstable_cache(
       .select('*')
       .in('id', accessoryIds)
       .order('display_order', { ascending: true })
-    if (accErr || !accessories) return []
-    return accessories as IPadAccessory[]
+    if (accErr) throw new Error(`getIPadAccessoriesByModelId(accessories, ${modelId}): ${accErr.message}`)
+    return (accessories ?? []) as IPadAccessory[]
   },
   ['ipad-accessories-by-model'],
   { revalidate: 3600, tags: [CACHE_TAGS.ipadAccessories] }
@@ -299,8 +299,8 @@ export const getMvnoPlans = unstable_cache(
       .select('*')
       .order('provider_slug', { ascending: true })
       .order('display_order', { ascending: true })
-    if (error || !data) return []
-    return data as MvnoPlan[]
+    if (error) throw new Error(`getMvnoPlans: ${error.message}`)
+    return (data ?? []) as MvnoPlan[]
   },
   ['mvno-plans-all'],
   { revalidate: 3600, tags: [CACHE_TAGS.mvno] }
@@ -314,8 +314,8 @@ export const getMvnoPlansByProvider = unstable_cache(
       .select('*')
       .eq('provider_slug', providerSlug)
       .order('display_order', { ascending: true })
-    if (error || !data) return []
-    return data as MvnoPlan[]
+    if (error) throw new Error(`getMvnoPlansByProvider(${providerSlug}): ${error.message}`)
+    return (data ?? []) as MvnoPlan[]
   },
   ['mvno-plans-by-provider'],
   { revalidate: 3600, tags: [CACHE_TAGS.mvno] }
@@ -327,8 +327,8 @@ export const getMvnoProviderSlugs = unstable_cache(
     const { data, error } = await supabase
       .from('mvno_plans')
       .select('provider_slug')
-    if (error || !data) return []
-    return [...new Set(data.map((d) => d.provider_slug))]
+    if (error) throw new Error(`getMvnoProviderSlugs: ${error.message}`)
+    return [...new Set((data ?? []).map((d) => d.provider_slug))]
   },
   ['mvno-provider-slugs'],
   { revalidate: 3600, tags: [CACHE_TAGS.mvno] }
@@ -346,8 +346,8 @@ export const getMvnoProviders = unstable_cache(
       .select('*')
       .eq('is_published', true)
       .order('display_order', { ascending: true })
-    if (error || !data) return []
-    return data as MvnoProvider[]
+    if (error) throw new Error(`getMvnoProviders: ${error.message}`)
+    return (data ?? []) as MvnoProvider[]
   },
   ['mvno-providers'],
   { revalidate: 3600, tags: [CACHE_TAGS.mvno] }
@@ -366,8 +366,8 @@ export const getLatestPriceUpdateDate = unstable_cache(
       .order('logged_at', { ascending: false })
       .limit(1)
       .maybeSingle()
-    if (error || !data) return null
-    return data.logged_at.substring(0, 10)
+    if (error) throw new Error(`getLatestPriceUpdateDate: ${error.message}`)
+    return data ? data.logged_at.substring(0, 10) : null
   },
   ['latest-price-update-date'],
   { revalidate: 86400, tags: [CACHE_TAGS.iphonePriceLogs] }
@@ -379,8 +379,8 @@ export const getShops = unstable_cache(
       .from('shops')
       .select('*')
       .order('id', { ascending: true })
-    if (error || !data) return []
-    return data as Shop[]
+    if (error) throw new Error(`getShops: ${error.message}`)
+    return (data ?? []) as Shop[]
   },
   ['shops'],
   { revalidate: 3600, tags: [CACHE_TAGS.shops] }
@@ -411,8 +411,8 @@ const getCachedShopLinksByType = unstable_cache(
       .from('product_shop_links')
       .select('*')
       .eq('product_type', productType)
-    if (error || !data) return []
-    return data as ProductShopLink[]
+    if (error) throw new Error(`getCachedShopLinksByType(${productType}): ${error.message}`)
+    return (data ?? []) as ProductShopLink[]
   },
   ['shop-links'],
   { revalidate: 3600, tags: [CACHE_TAGS.shopLinks] }
