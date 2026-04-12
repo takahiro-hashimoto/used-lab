@@ -4525,6 +4525,7 @@ fieldset.u-mb-xl {
   .guide-recommend__name {
     font-size: var(--font-size-base);
     font-weight: 700;
+    line-height: 1.4;
   }
 
   .guide-recommend__specs {

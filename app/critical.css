@@ -1243,7 +1243,7 @@ a.header-admin-link:hover {
   .hero-inner {
     gap: var(--space-lg);
     text-align: left;
-    padding: 0 var(--space-md);
+    padding: 0 var(--space-sm) !important;
     grid-template-columns: 1fr;
   }
 
