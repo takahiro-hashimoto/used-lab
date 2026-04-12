@@ -131,7 +131,7 @@ export default function WatchOsSupportMatrix({ models }: Props) {
             <tbody>
               {allDevices.map((device) => (
                 <tr key={device.name}>
-                  <th>
+                  <th className="u-shrink">
                     {device.name}
                   </th>
                   {WATCHOS_VERSIONS.map((os) => {

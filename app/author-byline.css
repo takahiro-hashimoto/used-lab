@@ -52,9 +52,9 @@
 }
 
 .author-byline__desc {
-  font-size: var(--font-size-sm);
-  line-height: 1.8;
+  font-size: var(--font-size-md);
   color: var(--color-text);
+  line-height: 1.8;
 }
 
 .author-byline__link {

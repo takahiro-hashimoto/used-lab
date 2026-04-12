@@ -176,7 +176,7 @@ function MatrixTable({
               </tr>
               {group.rows.map((device) => (
                 <tr key={device.name}>
-                  <th>
+                  <th className="u-shrink">
                     {device.name}
                   </th>
                   {IPADOS_VERSIONS.map((os) => {

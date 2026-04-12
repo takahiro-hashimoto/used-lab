@@ -231,16 +231,16 @@ export default function AboutPage() {
 
           <div className="about-profile m-card m-card--shadow m-card--padded">
             <div className="about-profile-inner">
-              <div className="about-profile-avatar">
-                <Image
-                  src="/images/content/thumbnail/my-icon.webp"
-                  alt="タカヒロ"
-                  width={200}
-                  height={200}
-                  className="about-profile-img"
-                />
-              </div>
-              <div className="about-profile-info">
+              <div className="about-profile-top">
+                <div className="about-profile-avatar">
+                  <Image
+                    src="/images/content/thumbnail/my-icon.webp"
+                    alt="タカヒロ"
+                    width={200}
+                    height={200}
+                    className="about-profile-img"
+                  />
+                </div>
                 <dl className="about-profile-list">
                   <div><dt className="about-profile-label">名前</dt><dd>タカヒロ</dd></div>
                   <div><dt className="about-profile-label">職業</dt><dd>プロジェクトマネージャー / ガジェットブロガー</dd></div>
@@ -250,25 +250,27 @@ export default function AboutPage() {
                   <div><dt className="about-profile-label">ブログ歴</dt><dd>2015年12月〜（10年以上）</dd></div>
                   <div><dt className="about-profile-label">レビュー数</dt><dd>300製品以上</dd></div>
                 </dl>
+              </div>
+              <div>
                 <p className="about-profile-desc">
                   愛知県のIT企業にWebデザイナーとして入社後、フロントエンドエンジニア、Webディレクターと複数職種を経験。現在は東京都内のIT企業でプロジェクトマネージャーとして従事しながら、複数のWebメディアを運営しています。
                 </p>
                 <p className="about-profile-desc">
                   本サイトのほか、月間40〜45万PVのガジェットブログ「<a href="https://digital-style.jp/" target="_blank" rel="noopener noreferrer">デジスタ</a>」、都内200箇所以上の夜景スポットを紹介する「<a href="https://nightscape.tokyo/" target="_blank" rel="noopener noreferrer">東京夜景ナビ</a>」を運営中。Apple製品は2011年のiPhone 4sから毎年購入しており、その体験を活かして実用的なコンテンツを発信しています。
                 </p>
-                <div className="about-sns-links">
-                  {SNS_LINKS.map((sns) => (
-                    <a
-                      key={sns.href}
-                      href={sns.href}
-                      {...(sns.href.startsWith('/') ? {} : { target: '_blank', rel: 'noopener noreferrer' })}
-                      className="about-sns-link"
-                    >
-                      <i className={sns.icon} aria-hidden="true"></i>
-                      <span>{sns.label}</span>
-                    </a>
-                  ))}
-                </div>
+              </div>
+              <div className="about-sns-links">
+                {SNS_LINKS.map((sns) => (
+                  <a
+                    key={sns.href}
+                    href={sns.href}
+                    {...(sns.href.startsWith('/') ? {} : { target: '_blank', rel: 'noopener noreferrer' })}
+                    className="about-sns-link"
+                  >
+                    <i className={sns.icon} aria-hidden="true"></i>
+                    <span>{sns.label}</span>
+                  </a>
+                ))}
               </div>
             </div>
           </div>
