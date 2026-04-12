@@ -59,8 +59,12 @@ function createModelQueries<T>(table: string, tag: string, activeField?: string)
           .eq('slug', slug)
           .eq('show', 1)
           .single()
-        if (error) throw new Error(`getBySlug(${table}, ${slug}): ${error.message}`)
-        return (data ?? null) as T | null
+        // PGRST116 = "0 rows" → 正常な「見つからない」ケースなのでnullを返す
+        if (error) {
+          if (error.code === 'PGRST116') return null
+          throw new Error(`getBySlug(${table}, ${slug}): ${error.message}`)
+        }
+        return data as T
       },
       [`${table}-by-slug`],
       { revalidate: 3600, tags: [tag] }
