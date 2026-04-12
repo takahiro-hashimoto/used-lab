@@ -7,6 +7,7 @@ import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helper
 import HeroMeta from '@/app/components/HeroMeta'
 import { getHeroImage } from '@/lib/data/hero-images'
 import RatingMark from '@/app/components/RatingMark'
+import InsuranceCostTabs from './InsuranceCostTabs'
 
 const PAGE_TITLE = '知らないと損！Apple Care+よりもモバイル保険に加入した方がコスパが高い理由を解説'
 const PAGE_DESCRIPTION =
@@ -484,36 +485,7 @@ export default function MobileHokenComparePage() {
                       <p className="media-card__desc">
                         保険料・補償内容・修理が発生する確率のバランスを考えると、モバイル保険の方がコスパが良いといえるでしょう。
                       </p>
-                      <div className="m-table-card u-mt-sm">
-                        <div className="m-table-scroll">
-                          <table className="m-table m-table--center">
-                            <thead>
-                              <tr>
-                                <th></th>
-                                <th>Apple Care+（iPhone 15 Pro Max）</th>
-                                <th>モバイル保険</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <th>2年間の保険料</th>
-                                <td>34,800円</td>
-                                <td>16,800円</td>
-                              </tr>
-                              <tr>
-                                <th>修理の自己負担</th>
-                                <td>3,700円〜/回</td>
-                                <td>なし（全額補償）</td>
-                              </tr>
-                              <tr>
-                                <th>年間補償上限</th>
-                                <td>制限なし（回数制限あり）</td>
-                                <td>主端末10万円</td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
+                      <InsuranceCostTabs />
                     </div>
                   </div>
 
