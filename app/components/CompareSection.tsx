@@ -56,9 +56,9 @@ export default function CompareSection<T extends BaseModel>({
         <h2 className="m-section-heading m-section-heading--lg" id="heading-compare">
           {name}とその他機種のスペック比較
         </h2>
-        <p className="m-section-desc">
-          {name}とその他のモデルのスペック比較表を用意しました。各シリーズごとの違いを確認するのにご活用ください。
-        </p>
+        
+        <p className="m-section-desc">{name}とその他のモデルのスペック比較表を用意しました。</p>
+        <p className="m-section-desc">各シリーズごとの違いを確認するのにご活用ください。</p>
 
         {children({
           currentModel: model,
