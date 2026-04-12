@@ -78,6 +78,7 @@ export const PRODUCT_CATEGORIES: CategoryDef[] = [
       { path: '/iphone/recommend/', label: (p) => `中古iPhoneおすすめ機種${p.iphoneRecCount}選｜目的別に狙い目モデルを解説【${p.iphoneRecDate}版】` },
       { path: '/iphone/used-iphone-attention/', label: '中古iPhoneはやめた方がいい？購入前に確認すべき注意点まとめ【2026年版】' },
       { path: '/iphone/apple-care/', label: 'iPhoneを買ったらアップルケアに入るべき？必要ではない理由5つを解説' },
+      { path: '/iphone/mobile-hoken-compare/', label: '知らないと損！Apple Care+よりもモバイル保険に加入した方がコスパが高い理由' },
       { path: '/iphone/used-iphone-support/', label: 'iPhoneはいつまで使える？機種別のサポート期間目安まとめ' },
       { path: '/iphone/iphone-shop/', label: (p) => `中古iPhoneを買うならどこ？ECサイト・ショップのおすすめを紹介【${p.iphoneShopDate}】` },
       { path: '/iphone/iphone-spec-table/', label: '歴代iPhoneスペック比較表！気になる機種の性能差や違いがわかる' },
