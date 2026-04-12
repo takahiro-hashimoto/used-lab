@@ -5,7 +5,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { BenchBar } from '@/app/components/spec-table-utils'
 import type { ProductShopLink } from '@/lib/types'
-import { getTotal, getCospa, getIosysUrl } from '@/lib/utils/benchmark-helpers'
+import { getTotal, getIosysUrl } from '@/lib/utils/benchmark-helpers'
 
 export type BenchModel = {
   id: number
@@ -24,7 +24,6 @@ export type BenchModel = {
   chipVariant: string | null
 }
 
-type SortKey = 'total' | 'single' | 'multi' | 'metal' | 'cospa'
 type FilterCategory = 'all' | 'pro' | 'air'
 
 function getModelCategory(model: string): 'air' | 'pro' {
@@ -33,20 +32,11 @@ function getModelCategory(model: string): 'air' | 'pro' {
 
 
 export default function BenchmarkRanking({ models, shopLinks }: { models: BenchModel[]; shopLinks: ProductShopLink[] }) {
-  const [sortKey, setSortKey] = useState<SortKey>('total')
   const [filter, setFilter] = useState<FilterCategory>('all')
 
   const filtered = filter === 'all' ? models : models.filter((m) => getModelCategory(m.model) === filter)
 
-  const sorted = [...filtered].sort((a, b) => {
-    switch (sortKey) {
-      case 'single': return b.score_single - a.score_single
-      case 'multi': return b.score_multi - a.score_multi
-      case 'metal': return b.score_metal - a.score_metal
-      case 'cospa': return getCospa(b) - getCospa(a)
-      default: return getTotal(b) - getTotal(a)
-    }
-  })
+  const sorted = [...filtered].sort((a, b) => getTotal(b) - getTotal(a))
 
   const maxSingle = Math.max(...models.map((m) => m.score_single))
   const maxMulti = Math.max(...models.map((m) => m.score_multi))
@@ -60,22 +50,8 @@ export default function BenchmarkRanking({ models, shopLinks }: { models: BenchM
         </h2>
         <p className="m-section-desc">Geekbench 6のスコアで歴代MacBookの性能を比較。中古最安価格も併記しているのでコスパ重視の方にもおすすめです。</p>
 
-        {/* フィルター・ソート */}
+        {/* フィルター */}
         <div className="u-mb-xl" aria-label="絞り込み">
-          <div className="spec-filter__row">
-            <span className="spec-filter__label">並び替え</span>
-            <div className="spec-filter__tags">
-              {([['total', '総合'], ['single', 'シングル'], ['multi', 'マルチ'], ['metal', 'Metal'], ['cospa', 'コスパ']] as const).map(([key, label]) => (
-                <button
-                  key={key}
-                  className={`spec-filter__tag${sortKey === key ? ' is-active' : ''}`}
-                  onClick={() => setSortKey(key)}
-                >
-                  {label}
-                </button>
-              ))}
-            </div>
-          </div>
           <div className="spec-filter__row">
             <span className="spec-filter__label">絞り込み</span>
             <div className="spec-filter__tags">
@@ -154,7 +130,7 @@ export default function BenchmarkRanking({ models, shopLinks }: { models: BenchM
         <div className="m-callout m-callout--tip u-mt-2xl">
           <span className="m-callout__label">memo</span>
           <p className="m-callout__text">
-            <strong>「コスパ」は総合スコア÷中古最安価格で算出。</strong>性能あたりの価格が安いモデルほど上位に表示されます。予算を重視する方はコスパ順で並び替えてみてください。
+            ランキングはGeekbench 6の総合スコア（シングル＋マルチ＋Metal）の合計で算出しています。
           </p>
         </div>
       </div>

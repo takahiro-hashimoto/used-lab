@@ -42,7 +42,7 @@ function BenchTable({ models, caption, maxSingle, maxMulti, maxMetal }: {
         <tbody>
           {models.map((m) => (
             <tr key={m.id}>
-              <th scope="row" className="bench-table__sticky">
+              <th scope="row" className="bench-table__sticky u-shrink">
                 <Link href={`/macbook/${m.slug}/`}>{m.shortname || m.model}</Link>
               </th>
               <td><BenchBar value={m.score_single!} maxValue={maxSingle} color="#e74c6f" /></td>

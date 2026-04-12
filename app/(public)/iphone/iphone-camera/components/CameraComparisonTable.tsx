@@ -43,7 +43,7 @@ function getModelCategory(model: string): string {
   return 'standard'
 }
 
-type FilterType = 'all' | 'promax' | 'pro' | 'plus' | 'standard' | 'se' | 'mini'
+type FilterType = 'all' | 'pro-family' | 'standard-family' | 'se-family'
 
 export default function CameraComparisonTable({ models, shopLinks }: Props) {
   const [sortOrder, setSortOrder] = useState<SortOrder>('old')
@@ -53,7 +53,14 @@ export default function CameraComparisonTable({ models, shopLinks }: Props) {
     let result = [...models]
 
     if (modelFilter !== 'all') {
-      result = result.filter((m) => getModelCategory(m.model) === modelFilter)
+      const cat = getModelCategory
+      if (modelFilter === 'pro-family') {
+        result = result.filter((m) => ['promax', 'pro'].includes(cat(m.model)))
+      } else if (modelFilter === 'standard-family') {
+        result = result.filter((m) => ['plus', 'standard', 'mini'].includes(cat(m.model)))
+      } else if (modelFilter === 'se-family') {
+        result = result.filter((m) => ['se'].includes(cat(m.model)))
+      }
     }
 
     result.sort((a, b) => {
@@ -137,12 +144,9 @@ export default function CameraComparisonTable({ models, shopLinks }: Props) {
             <div className="spec-filter__tags">
               {([
                 ['all', 'すべて'],
-                ['promax', 'Pro Max'],
-                ['pro', 'Pro'],
-                ['plus', 'Plus'],
-                ['standard', '無印'],
-                ['se', 'SE'],
-                ['mini', 'mini'],
+                ['pro-family', 'Pro'],
+                ['standard-family', 'スタンダード'],
+                ['se-family', '廉価モデル'],
               ] as [FilterType, string][]).map(([key, label]) => (
                 <button
                   key={key}

@@ -94,7 +94,7 @@ export default function BenchmarkAntutu({ model, allModels }: Props) {
                 const isCurrent = m.id === model.id
                 return (
                   <tr key={m.id}>
-                    <th scope="row" className={isCurrent ? 'bench-table__sticky m-table-highlight' : 'bench-table__sticky'}>
+                    <th scope="row" className={isCurrent ? 'bench-table__sticky u-shrink m-table-highlight' : 'bench-table__sticky u-shrink'}>
                       {m.model}
                     </th>
                     <td className={isCurrent ? 'm-table-highlight' : undefined}>

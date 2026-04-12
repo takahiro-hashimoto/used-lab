@@ -189,7 +189,7 @@ export default function SpecTable({ models, shopLinks }: Props) {
                 ['all', 'すべて'],
                 ['pro-family', 'Pro'],
                 ['standard-family', 'スタンダード'],
-                ['se-family', 'SE・廉価モデル'],
+                ['se-family', '廉価モデル'],
               ] as [FilterType, string][]).map(([key, label]) => (
                 <button
                   key={key}

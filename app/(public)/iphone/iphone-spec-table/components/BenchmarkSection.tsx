@@ -98,7 +98,7 @@ export default function BenchmarkSection({ models }: Props) {
                 <tbody>
                   {geekbenchModels.map((m) => (
                     <tr key={m.id}>
-                      <th scope="row" className="bench-table__sticky">{m.model}</th>
+                      <th scope="row" className="bench-table__sticky u-shrink">{m.model}</th>
                       <td><BenchBar value={m.score_single!} maxValue={maxSingle} color="#e74c6f" /></td>
                       <td><BenchBar value={m.score_multi!} maxValue={maxMulti} color="#f0a030" /></td>
                       <td><BenchBar value={m.score_metal!} maxValue={maxMetal} color="var(--color-primary, #2589d0)" /></td>
@@ -161,7 +161,7 @@ export default function BenchmarkSection({ models }: Props) {
                     const total = (m.antutu_cpu || 0) + (m.antutu_gpu || 0) + (m.antutu_mem || 0) + (m.antutu_ux || 0)
                     return (
                       <tr key={m.id}>
-                        <th scope="row" className="bench-table__sticky">{m.model}</th>
+                        <th scope="row" className="bench-table__sticky u-shrink">{m.model}</th>
                         <td><BenchBar value={total} maxValue={maxAntutuTotal} color="var(--color-primary, #2589d0)" /></td>
                         <td><BenchBar value={m.antutu_cpu!} maxValue={maxAntutuCpu} color="#e74c6f" /></td>
                         <td><BenchBar value={m.antutu_gpu!} maxValue={maxAntutuGpu} color="#34a853" /></td>

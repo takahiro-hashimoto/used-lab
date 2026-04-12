@@ -22,7 +22,7 @@ type Props = {
 }
 
 type SortOrder = 'new' | 'old' | 'battery-desc' | 'battery-asc'
-type FilterType = 'all' | 'promax' | 'pro' | 'plus' | 'standard' | 'se' | 'mini'
+type FilterType = 'all' | 'pro-family' | 'standard-family' | 'se-family'
 
 function getModelCategory(model: string): string {
   const lower = model.toLowerCase()
@@ -49,7 +49,14 @@ export default function BatteryTable({ models }: Props) {
     let result = [...models]
 
     if (modelFilter !== 'all') {
-      result = result.filter((m) => getModelCategory(m.model) === modelFilter)
+      const cat = getModelCategory
+      if (modelFilter === 'pro-family') {
+        result = result.filter((m) => ['promax', 'pro'].includes(cat(m.model)))
+      } else if (modelFilter === 'standard-family') {
+        result = result.filter((m) => ['plus', 'standard', 'mini'].includes(cat(m.model)))
+      } else if (modelFilter === 'se-family') {
+        result = result.filter((m) => ['se'].includes(cat(m.model)))
+      }
     }
 
     const compareDateDesc = (a: BatteryModel, b: BatteryModel) =>
@@ -118,12 +125,9 @@ export default function BatteryTable({ models }: Props) {
             <div className="spec-filter__tags">
               {([
                 ['all', 'すべて'],
-                ['promax', 'ProMax'],
-                ['pro', 'Pro'],
-                ['plus', 'Plus'],
-                ['standard', '無印'],
-                ['se', 'SE'],
-                ['mini', 'mini'],
+                ['pro-family', 'Pro'],
+                ['standard-family', 'スタンダード'],
+                ['se-family', '廉価モデル'],
               ] as [FilterType, string][]).map(([key, label]) => (
                 <button
                   key={key}
