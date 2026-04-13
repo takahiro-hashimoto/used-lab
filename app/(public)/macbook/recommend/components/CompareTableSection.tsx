@@ -32,7 +32,7 @@ export default function CompareTableSection({ items }: Props) {
 
         <div className="m-card m-card--shadow m-table-card">
           <div className="m-table-scroll">
-            <table className="m-table">
+            <table className="m-table m-table--center">
               <caption className="visually-hidden">おすすめ中古MacBook{RECOMMEND_COUNT_LABEL}のスペック比較表</caption>
               <thead>
                 <tr>
