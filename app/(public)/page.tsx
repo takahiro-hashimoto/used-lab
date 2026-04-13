@@ -221,37 +221,7 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
-
-      {/* ── おすすめ記事ピックアップ ── */}
-      <section className="l-section">
-        <div className="l-container">
-          <h2 className="m-section-heading m-section-heading--lg">おすすめ記事</h2>
-          <div className="l-grid l-grid--3col l-grid--gap-lg u-mt-xl">
-            <Link href="/iphone/mobile-hoken-compare/" className="top-article-card m-card m-card--shadow">
-              <div className="top-article-card__body">
-                <span className="top-article-card__label">iPhone保険</span>
-                <h3 className="top-article-card__title">Apple Care+よりモバイル保険がコスパ高い理由</h3>
-                <p className="top-article-card__desc">月額700円・3台補償・免責ゼロ。AppleCare+と徹底比較して解説。</p>
-              </div>
-            </Link>
-            <Link href="/iphone/apple-care/" className="top-article-card m-card m-card--shadow">
-              <div className="top-article-card__body">
-                <span className="top-article-card__label">Apple Care+</span>
-                <h3 className="top-article-card__title">iPhoneにApple Care+は必要？</h3>
-                <p className="top-article-card__desc">コスパの観点から加入しなくていい理由をわかりやすく解説。</p>
-              </div>
-            </Link>
-            <Link href="/iphone/used-iphone-attention/" className="top-article-card m-card m-card--shadow">
-              <div className="top-article-card__body">
-                <span className="top-article-card__label">購入ガイド</span>
-                <h3 className="top-article-card__title">中古iPhone購入前の注意点まとめ</h3>
-                <p className="top-article-card__desc">購入前に知っておきたいチェックポイントをまとめて解説。</p>
-              </div>
-            </Link>
-          </div>
-        </div>
-      </section>
-      </div>
+</div>
     </main>
   )
 }

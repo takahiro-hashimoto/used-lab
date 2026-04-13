@@ -66,7 +66,10 @@ export default function ChipGenerationCompare({ models }: { models: BenchModel[]
           チップ世代別の性能比較（M1 → M2 → M3 → M4）
         </h2>
         <p className="m-section-desc">
-          各チップ世代の平均ベンチマークスコアを比較。世代が上がるごとにどのくらい性能が向上しているかが一目でわかります。
+          各チップ世代の平均ベンチマークスコアを比較。
+        </p>
+        <p className="m-section-desc">
+          世代が上がるごとにどのくらい性能が向上しているかが一目でわかります。
         </p>
 
         {/* 世代別平均スコア比較テーブル */}

@@ -65,7 +65,10 @@ export default function AirVsProSection({ models }: { models: BenchModel[] }) {
           MacBook Air vs Pro ベンチマーク比較
         </h2>
         <p className="m-section-desc">
-          同じ世代の標準チップを搭載したMacBook AirとProのベンチマークスコアを比較します。ファン搭載の有無が持続性能にどう影響するかがわかります。
+          同じ世代の標準チップを搭載したMacBook AirとProのベンチマークスコアを比較します。
+        </p>
+        <p className="m-section-desc">
+          ファン搭載の有無が持続性能にどう影響するかがわかります。
         </p>
 
         <div className="m-card m-card--shadow m-table-card">

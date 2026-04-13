@@ -6,6 +6,7 @@ import "./critical.css";
 import { CSS_NON_CRITICAL, CSS_FONTAWESOME } from "@/lib/asset-hashes";
 
 const GTM_ID = 'GTM-5RVN7KJZ';
+const IS_PROD = process.env.NEXT_PUBLIC_ENV === 'production';
 
 const inter = Inter({
   subsets: ["latin"],
@@ -55,21 +56,25 @@ export default async function RootLayout({
         <Script id="css-loader" nonce={nonce} strategy="afterInteractive" dangerouslySetInnerHTML={{
           __html: `['${CSS_NON_CRITICAL}','${CSS_FONTAWESOME}'].forEach(function(h){var l=document.createElement('link');l.rel='stylesheet';l.href=h;document.head.appendChild(l)});`,
         }} />
-        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        {IS_PROD && <link rel="dns-prefetch" href="https://www.googletagmanager.com" />}
         <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
-        <Script id="gtm-init" nonce={nonce} strategy="lazyOnload" dangerouslySetInnerHTML={{
-          __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${GTM_ID}');`,
-        }} />
+        {IS_PROD && (
+          <Script id="gtm-init" nonce={nonce} strategy="lazyOnload" dangerouslySetInnerHTML={{
+            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${GTM_ID}');`,
+          }} />
+        )}
       </head>
       <body>
-        <noscript>
-          <iframe
-            src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
-            height="0"
-            width="0"
-            style={{ display: 'none', visibility: 'hidden' }}
-          />
-        </noscript>
+        {IS_PROD && (
+          <noscript>
+            <iframe
+              src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+              height="0"
+              width="0"
+              style={{ display: 'none', visibility: 'hidden' }}
+            />
+          </noscript>
+        )}
         {children}
       </body>
     </html>

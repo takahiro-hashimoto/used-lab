@@ -48,7 +48,8 @@ export default function BenchmarkRanking({ models, shopLinks }: { models: BenchM
         <h2 className="m-section-heading m-section-heading--lg" id="heading-ranking">
           歴代MacBook ベンチマーク総合ランキング
         </h2>
-        <p className="m-section-desc">Geekbench 6のスコアで歴代MacBookの性能を比較。中古最安価格も併記しているのでコスパ重視の方にもおすすめです。</p>
+        <p className="m-section-desc">Geekbench 6のスコアで歴代MacBookの性能を比較。</p>
+        <p className="m-section-desc">中古最安価格も併記しているのでコスパ重視の方にもおすすめです。</p>
 
         {/* フィルター */}
         <div className="u-mb-xl" aria-label="絞り込み">
