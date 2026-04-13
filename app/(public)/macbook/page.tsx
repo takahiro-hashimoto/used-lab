@@ -64,6 +64,7 @@ export default async function MacBookGuidePage() {
   ])
 
   const vendorCards = buildVendorCardsFromShops(shops, 'macbook_url', '中古MacBookを探す', { exclude: ['rakuma'] })
+    .map((card) => ({ ...card, specs: card.specs.filter((s) => s.label !== 'バッテリー保証') }))
 
   // 相場セクション用: 指定slugのモデル + 最新価格を並列取得
   const priceModels = GUIDE_PRICE_SLUGS

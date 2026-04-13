@@ -65,6 +65,7 @@ export default async function IPadGuidePage() {
   ])
 
   const vendorCards = buildVendorCardsFromShops(shops, 'ipad_url', '中古iPadを探す', { exclude: ['rakuma'] })
+    .map((card) => ({ ...card, specs: card.specs.filter((s) => s.label !== 'バッテリー保証') }))
 
   // 相場セクション用: 指定slugのモデル + 最新価格を並列取得
   const priceModels = GUIDE_PRICE_SLUGS
