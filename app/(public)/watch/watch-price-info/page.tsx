@@ -378,10 +378,7 @@ export default async function WatchPriceInfoPage() {
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
                 情報を網羅的に得たい方は「<Link href="/watch/">中古Apple Watch購入完全ガイド</Link>」も参考にしてみてください！
               </p>
-              <p className="lead-link">
-                <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                どのモデルを買うか迷っている方は「<Link href="/watch/watch-filter-search/">Apple Watch機種診断ツール</Link>」をお試しください。
-              </p>
+
             </div>
           </div>
         </section>

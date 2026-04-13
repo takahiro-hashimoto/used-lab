@@ -5042,6 +5042,14 @@ fieldset.u-mb-xl {
   margin: 0;
 }
 
+.pd-history-model-link {
+  color: var(--color-primary);
+}
+
+.pd-history-model-link:hover {
+  text-decoration: underline;
+}
+
 .pd-history-model-meta {
   font-size: var(--font-size-xs);
   color: var(--color-text-muted);
