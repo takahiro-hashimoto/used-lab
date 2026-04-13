@@ -1901,6 +1901,7 @@
   font-size: var(--font-size-xs);
   color: var(--color-text-muted);
   font-variant-numeric: tabular-nums;
+  line-height: 1.5;
 }
 
 .news-list__content {
@@ -2255,6 +2256,10 @@
 .recommend-card__shop .recommend-card__spec-item dt {
   width: 7em;
   flex-shrink: 0;
+}
+
+.recommend-card__shop .recommend-card__spec-item dd {
+  font-size: var(--font-size-sm);
 }
 
 .recommend-card__spec-item dd {
