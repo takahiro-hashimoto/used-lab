@@ -10,7 +10,6 @@ type Props = {
 
 const specRows: SpecRow[] = [
   { label: '保証期間', getValue: (s) => s.support },
-  { label: 'バッテリー保証', getValue: (s) => s.battery },
   { label: '実物写真', getValue: (s) => s.photo },
   { label: '配送料', getValue: (s) => s.postage },
 ]
@@ -26,7 +25,7 @@ export default function ShopGrid({ shops, shopLinks, model }: Props) {
       shopLinks={shopLinks}
       modelName={model.model}
       ctaLabel={ctaLabel}
-      description="バッテリー保証"
+      description="実物写真"
       specRows={specRows}
       memoLink={{ href: '/macbook/macbook-shop/', text: '中古MacBookはどこで買う？おすすめECサイトまとめ' }}
     />

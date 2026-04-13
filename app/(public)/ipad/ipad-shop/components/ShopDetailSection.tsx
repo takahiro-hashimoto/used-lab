@@ -9,7 +9,6 @@ const specRows: SpecRow[] = [
   { label: '独自保証', getValue: (s) => s.extension },
   { label: '赤ロム保証', getValue: (s) => s.block || '-' },
   { label: '実物写真', getValue: (s) => s.photo },
-  { label: 'バッテリー表示', getValue: (s) => s.battery },
   { label: '配送料', getValue: (s) => s.postage },
 ]
 

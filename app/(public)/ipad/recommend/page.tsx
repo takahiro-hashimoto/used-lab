@@ -397,7 +397,6 @@ export default async function IPadRecommendPage() {
               { label: '価格', field: 'price' },
               { label: '保証期間', field: 'support' },
               { label: '赤ロム保証', field: 'block' },
-              { label: 'バッテリー保証', field: 'battery' },
               { label: '実物写真', field: 'photo' },
               { label: '配送料', field: 'postage' },
             ]}

@@ -11,7 +11,6 @@ type Props = {
 const specRows: SpecRow[] = [
   { label: '保証期間', getValue: (s) => s.support },
   { label: '赤ロム保証', getValue: (s) => s.block },
-  { label: 'バッテリー保証', getValue: (s) => s.battery },
   { label: '実物写真', getValue: (s) => s.photo },
   { label: '配送料', getValue: (s) => s.postage },
 ]
