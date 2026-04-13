@@ -4,9 +4,9 @@ import { useState } from 'react'
 
 const TABS = [
   { id: 'price', label: '料金\n比較' },
-  { id: 'promax', label: 'ProMax\n修理費' },
-  { id: 'pro', label: 'Pro\n修理費' },
-  { id: 'standard', label: '無印\n修理費' },
+  { id: 'pro', label: '17 Pro\n修理費' },
+  { id: 'standard', label: '17\n修理費' },
+  { id: 'e', label: '17e\n修理費' },
 ] as const
 
 type TabId = (typeof TABS)[number]['id']
@@ -41,8 +41,8 @@ export default function InsuranceCostTabs() {
             <thead>
               <tr>
                 <th></th>
-                <th>AppleCare+<br />（Pro / ProMax）</th>
-                <th>AppleCare+<br />（無印 / Plus）</th>
+                <th>AppleCare+<br />（Pro）</th>
+                <th>AppleCare+<br />（17 / 17e）</th>
                 <th>モバイル保険</th>
               </tr>
             </thead>
@@ -70,49 +70,7 @@ export default function InsuranceCostTabs() {
         </div>
       </div>
 
-      {/* パネル: ProMax 修理費比較 */}
-      <div id="ins-panel-promax" role="tabpanel" hidden={active !== 'promax'} className="ins-tabs__panel">
-        <div className="m-table-scroll">
-          <table className="m-table m-table--center">
-            <thead>
-              <tr>
-                <th></th>
-                <th>AppleCare+<br />未加入</th>
-                <th>AppleCare+<br />加入済み</th>
-                <th>モバイル保険</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th>画面のひび割れ</th>
-                <td>56,800円</td>
-                <td>3,700円</td>
-                <td className="ins-tabs__highlight">0円</td>
-              </tr>
-              <tr>
-                <th>背面ガラスの損傷</th>
-                <td>29,800円</td>
-                <td>3,700円</td>
-                <td className="ins-tabs__highlight">0円</td>
-              </tr>
-              <tr>
-                <th>バッテリー交換</th>
-                <td>15,800円</td>
-                <td>0円</td>
-                <td className="ins-tabs__highlight">0円</td>
-              </tr>
-              <tr>
-                <th>背面カメラ修理</th>
-                <td>38,800円</td>
-                <td>12,900円</td>
-                <td className="ins-tabs__highlight">0円</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      {/* パネル: Pro 修理費比較 */}
+      {/* パネル: iPhone 17 Pro 修理費比較 */}
       <div id="ins-panel-pro" role="tabpanel" hidden={active !== 'pro'} className="ins-tabs__panel">
         <div className="m-table-scroll">
           <table className="m-table m-table--center">
@@ -126,8 +84,8 @@ export default function InsuranceCostTabs() {
             </thead>
             <tbody>
               <tr>
-                <th>画面のひび割れ</th>
-                <td>50,800円</td>
+                <th>画面の損傷</th>
+                <td>53,800円</td>
                 <td>3,700円</td>
                 <td className="ins-tabs__highlight">0円</td>
               </tr>
@@ -138,14 +96,14 @@ export default function InsuranceCostTabs() {
                 <td className="ins-tabs__highlight">0円</td>
               </tr>
               <tr>
-                <th>バッテリー交換</th>
-                <td>15,800円</td>
+                <th>バッテリー修理</th>
+                <td>19,400円</td>
                 <td>0円</td>
                 <td className="ins-tabs__highlight">0円</td>
               </tr>
               <tr>
-                <th>背面カメラ修理</th>
-                <td>32,800円</td>
+                <th>背面カメラの損傷</th>
+                <td>40,800円</td>
                 <td>12,900円</td>
                 <td className="ins-tabs__highlight">0円</td>
               </tr>
@@ -154,7 +112,7 @@ export default function InsuranceCostTabs() {
         </div>
       </div>
 
-      {/* パネル: 無印 修理費比較 */}
+      {/* パネル: iPhone 17 修理費比較 */}
       <div id="ins-panel-standard" role="tabpanel" hidden={active !== 'standard'} className="ins-tabs__panel">
         <div className="m-table-scroll">
           <table className="m-table m-table--center">
@@ -168,26 +126,68 @@ export default function InsuranceCostTabs() {
             </thead>
             <tbody>
               <tr>
-                <th>画面のひび割れ</th>
-                <td>42,800円</td>
+                <th>画面の損傷</th>
+                <td>53,800円</td>
                 <td>3,700円</td>
                 <td className="ins-tabs__highlight">0円</td>
               </tr>
               <tr>
                 <th>背面ガラスの損傷</th>
-                <td>29,800円</td>
+                <td>25,900円</td>
                 <td>3,700円</td>
                 <td className="ins-tabs__highlight">0円</td>
               </tr>
               <tr>
-                <th>バッテリー交換</th>
+                <th>バッテリー修理</th>
                 <td>15,800円</td>
                 <td>0円</td>
                 <td className="ins-tabs__highlight">0円</td>
               </tr>
               <tr>
-                <th>背面カメラ修理</th>
-                <td>23,800円</td>
+                <th>背面カメラの損傷</th>
+                <td>25,600円</td>
+                <td>12,900円</td>
+                <td className="ins-tabs__highlight">0円</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {/* パネル: iPhone 17e 修理費比較 */}
+      <div id="ins-panel-e" role="tabpanel" hidden={active !== 'e'} className="ins-tabs__panel">
+        <div className="m-table-scroll">
+          <table className="m-table m-table--center">
+            <thead>
+              <tr>
+                <th></th>
+                <th>AppleCare+<br />未加入</th>
+                <th>AppleCare+<br />加入済み</th>
+                <th>モバイル保険</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>画面の損傷</th>
+                <td>38,800円</td>
+                <td>3,700円</td>
+                <td className="ins-tabs__highlight">0円</td>
+              </tr>
+              <tr>
+                <th>背面ガラスの損傷</th>
+                <td>25,900円</td>
+                <td>3,700円</td>
+                <td className="ins-tabs__highlight">0円</td>
+              </tr>
+              <tr>
+                <th>バッテリー修理</th>
+                <td>15,800円</td>
+                <td>0円</td>
+                <td className="ins-tabs__highlight">0円</td>
+              </tr>
+              <tr>
+                <th>背面カメラの損傷</th>
+                <td>21,800円</td>
                 <td>12,900円</td>
                 <td className="ins-tabs__highlight">0円</td>
               </tr>

@@ -6,14 +6,18 @@ interface StickyCtaContextType {
   categoryUrls: Record<string, string>
   defaultUrl: string
   overrideUrl: string | null
+  overrideLabel: string | null
   setOverrideUrl: (url: string | null) => void
+  setOverrideLabel: (label: string | null) => void
 }
 
 const StickyCtaContext = createContext<StickyCtaContextType>({
   categoryUrls: {},
   defaultUrl: '#',
   overrideUrl: null,
+  overrideLabel: null,
   setOverrideUrl: () => {},
+  setOverrideLabel: () => {},
 })
 
 export function StickyCtaProvider({
@@ -26,8 +30,9 @@ export function StickyCtaProvider({
   children: ReactNode
 }) {
   const [overrideUrl, setOverrideUrl] = useState<string | null>(null)
+  const [overrideLabel, setOverrideLabel] = useState<string | null>(null)
   return (
-    <StickyCtaContext.Provider value={{ categoryUrls, defaultUrl, overrideUrl, setOverrideUrl }}>
+    <StickyCtaContext.Provider value={{ categoryUrls, defaultUrl, overrideUrl, overrideLabel, setOverrideUrl, setOverrideLabel }}>
       {children}
     </StickyCtaContext.Provider>
   )

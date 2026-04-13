@@ -65,9 +65,10 @@ const SERVICE_LINKS = [
   {
     title: 'モバイル保険',
     description: '中古端末も補償対象。月額700円で3台まで補償、年間10万円まで修理代をカバー。',
-    href: 'https://px.a8.net/svt/ejp?a8mat=35U3VZ+7QMVW2+45VK+BW8O2',
+    href: '/iphone/mobile-hoken-compare/',
     image: 'https://www22.a8.net/svt/bgt?aid=191201327468&wid=001&eno=01&mid=s00000019424001056000&mc=1',
-    rel: 'nofollow sponsored noopener',
+    rel: 'noopener',
+    target: '_self',
   },
 ]
 
@@ -432,7 +433,7 @@ export default async function IPhoneGuidePage() {
           <section className="l-section" id="spec-compare" aria-labelledby="heading-spec-compare">
             <div className="l-container">
               <h2 className="m-section-heading m-section-heading--lg" id="heading-spec-compare">中古iPhoneのデータ・スペック比較ガイド</h2>
-              <p className="m-section-desc">カメラ性能、バッテリー寿命、防水・防塵（IP規格）、サポート期間など、機種選びに役立つ詳細なスペック比較記事をまとめました。</p>
+              <p className="m-section-desc">サポート期間、カメラ性能、バッテリー寿命など、機種選びに役立つスペック比較記事をまとめました。</p>
 
               <div className="l-grid l-grid--2col l-grid--gap-lg u-mb-2xl">
                 {GUIDE_SPEC_LINKS.map((link) => (
@@ -486,10 +487,10 @@ export default async function IPhoneGuidePage() {
                   <a
                     key={service.title}
                     href={service.href}
-                    target="_blank"
+                    target={service.target ?? '_blank'}
                     rel={service.rel}
                     className="m-card m-card--shadow related-link-card m-card--hoverable"
-                    aria-label={`${service.title}（新しいタブで開く）`}
+                    aria-label={service.title}
                   >
                     <img
                       decoding="async"

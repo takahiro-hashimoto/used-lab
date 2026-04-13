@@ -238,12 +238,12 @@ export default function MacbookAppleCarePage() {
                           <tr>
                             <th>MacBook Air 15インチ</th>
                             <td>12,800円</td>
-                            <td>24,800円</td>
+                            <td>29,800円</td>
                           </tr>
                           <tr>
                             <th>MacBook Air 13インチ</th>
                             <td>10,800円</td>
-                            <td>29,800円</td>
+                            <td>24,800円</td>
                           </tr>
                         </tbody>
                       </table>

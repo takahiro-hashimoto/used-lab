@@ -21,13 +21,14 @@ export default function StickyCta() {
   const [visible, setVisible] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
   const pathname = usePathname()
-  const { categoryUrls, defaultUrl, overrideUrl } = useStickyCtaContext()
+  const { categoryUrls, defaultUrl, overrideUrl, overrideLabel } = useStickyCtaContext()
 
   const category = getCategoryFromPath(pathname)
   const href = overrideUrl || (category && categoryUrls[category]) || defaultUrl
-  const label = overrideUrl
-    ? 'イオシスで最安値の価格を見る'
-    : (category && CATEGORY_LABELS[category]) || 'イオシスで中古Apple製品を探す'
+  const label = overrideLabel
+    || (overrideUrl ? 'イオシスで最安値の価格を見る' : null)
+    || (category && CATEGORY_LABELS[category])
+    || 'イオシスで中古Apple製品を探す'
 
   useEffect(() => {
     const mq = window.matchMedia('(max-width: 767px)')

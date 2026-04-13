@@ -8,6 +8,7 @@ import HeroMeta from '@/app/components/HeroMeta'
 import { getHeroImage } from '@/lib/data/hero-images'
 import RatingMark from '@/app/components/RatingMark'
 import InsuranceCostTabs from './InsuranceCostTabs'
+import StickyCtaOverride from './StickyCtaOverride'
 
 const PAGE_TITLE = '知らないと損！Apple Care+よりもモバイル保険に加入した方がコスパが高い理由を解説'
 const PAGE_DESCRIPTION =
@@ -95,6 +96,7 @@ export default function MobileHokenComparePage() {
 
   return (
     <>
+      <StickyCtaOverride />
       <main>
         <article itemScope itemType="https://schema.org/Article">
           <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
@@ -210,15 +212,19 @@ export default function MobileHokenComparePage() {
                   Apple Care+の主なサービス内容
                 </h2>
                 <p className="m-section-desc">
-                  新しく買ったApple製品には製品購入後1年間のハードウェア製品限定保証と90日間の無償テクニカルサポートがついています。それに加え、さらに端末が故障したときの保証を手厚くするために用意されているのがApple Care+です。
+                  まずは簡単にApple Care+の主なサービス内容をご紹介します。
                 </p>
 
                 <div className="m-card m-card--shadow m-card--padded u-mt-2xl">
+                  <div className="media-card__img-wrap">
+                    <img src="/images/content/photo/apple-store.jpg" alt="Apple Store" className="media-card__img" width={1200} height={800} loading="lazy" />
+                  </div>
                   <div className="media-card__body">
-                    <h3 className="media-card__title">Apple Care+の主なサービス内容</h3>
+                    <h3 className="media-card__title">Apple Care+の概要</h3>
+                    <p>新しく買ったApple製品には製品購入後1年間のハードウェア製品限定保証と90日間の無償テクニカルサポートがついています。それに加え、さらに端末が故障したときの保証を手厚くするために用意されているのがApple Care+です。</p>
                     <div className="m-table-card u-mt-sm">
                       <div className="m-table-scroll">
-                        <table className="m-table m-table--center">
+                        <table className="m-table">
                           <tbody>
                             <tr>
                               <th>料金</th>
@@ -242,86 +248,6 @@ export default function MobileHokenComparePage() {
                     </div>
                   </div>
                 </div>
-
-                <div className="m-card m-card--shadow m-card--padded u-mt-2xl">
-                  <div className="media-card__body">
-                    <h3 className="media-card__title">iPhone 15シリーズのApple Care+料金</h3>
-                    <p className="media-card__desc">
-                      料金は一括払いの方がお得になっており約27,000円〜34,800円、各種修理がお手頃に実施できるのが特徴です。そこそこ高額な料金ですが、修理代金は全額保証してもらえるわけではありません。
-                    </p>
-                    <div className="m-table-card u-mt-sm">
-                      <div className="m-table-scroll">
-                        <table className="m-table m-table--center">
-                          <thead>
-                            <tr>
-                              <th></th>
-                              <th>月払い</th>
-                              <th>2年一括</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <th>iPhone 15 Pro / Pro Max</th>
-                              <td>1,740円</td>
-                              <td>34,800円</td>
-                            </tr>
-                            <tr>
-                              <th>iPhone 15 Plus / iPhone 14 Plus</th>
-                              <td>1,540円</td>
-                              <td>31,800円</td>
-                            </tr>
-                            <tr>
-                              <th>iPhone 15 / iPhone 14</th>
-                              <td>1,540円</td>
-                              <td>26,800円</td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="m-card m-card--shadow m-card--padded u-mt-2xl">
-                  <div className="media-card__body">
-                    <h3 className="media-card__title">iPhone 15 Pro Maxの修理費用（Apple Care+加入時・未加入時）</h3>
-                    <div className="m-table-card u-mt-sm">
-                      <div className="m-table-scroll">
-                        <table className="m-table m-table--center">
-                          <thead>
-                            <tr>
-                              <th></th>
-                              <th>Apple Care+未加入</th>
-                              <th>Apple Care+加入済み</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <th>画面のひび割れ</th>
-                              <td>56,800円</td>
-                              <td>3,700円</td>
-                            </tr>
-                            <tr>
-                              <th>背面ガラスの損傷</th>
-                              <td>29,800円</td>
-                              <td>3,700円</td>
-                            </tr>
-                            <tr>
-                              <th>バッテリー交換</th>
-                              <td>15,800円</td>
-                              <td>0円</td>
-                            </tr>
-                            <tr>
-                              <th>背面カメラ修理</th>
-                              <td>38,800円</td>
-                              <td>12,900円</td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
-                  </div>
-                </div>
               </div>
             </section>
 
@@ -332,15 +258,22 @@ export default function MobileHokenComparePage() {
                   モバイル保険の主なサービス内容
                 </h2>
                 <p className="m-section-desc">
-                  モバイル保険は、さくら少額短期保険株式会社が提供するスマホ保険です。月額700円で主端末1台・副端末2台を補償でき、免責金額なしで修理費用を全額補償してくれるのが大きな強み。Apple Care+と比べると料金のお手頃さや守備範囲の広さが際立ちます。
+                  まずはモバイル保険の主なサービス内容を簡単にご紹介していきます。
                 </p>
 
                 <div className="m-card m-card--shadow m-card--padded u-mt-2xl">
+                  <div className="media-card__img-wrap">
+                    <img src="/images/content/photo/mobile-hoken.jpg" alt="モバイル保険" className="media-card__img" width={1200} height={800} loading="lazy" />
+                  </div>
                   <div className="media-card__body">
-                    <h3 className="media-card__title">モバイル保険の主なサービス内容</h3>
+                    <h3 className="media-card__title">モバイル保険の概要</h3>
+
+                    <p>モバイル保険は、さくら少額短期保険株式会社が提供するスマホ保険です。月額700円で主端末1台・副端末2台を補償でき、免責金額なしで修理費用を全額補償してくれるのが大きな強み。Apple Care+やキャリア保険（docomo・au・ソフトバンクの端末補償）と比べると、料金のお手頃さや守備範囲の広さが際立ちます。</p>
+                    <p className="u-mt-sm"><a href="https://px.a8.net/svt/ejp?a8mat=35U3VZ+7QMVW2+45VK+5YRHE" rel="nofollow noopener" target="_blank" style={{ color: 'var(--color-primary)' }}>モバイル保険の公式サイトを見る <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" style={{ fontSize: '0.75em' }}></i></a></p>
+
                     <div className="m-table-card u-mt-sm">
                       <div className="m-table-scroll">
-                        <table className="m-table m-table--center">
+                        <table className="m-table">
                           <tbody>
                             <tr>
                               <th>料金</th>
@@ -348,7 +281,10 @@ export default function MobileHokenComparePage() {
                             </tr>
                             <tr>
                               <th>加入条件</th>
-                              <td>購入から1年未満の端末（販売店の保証が3ヶ月以上あれば中古品もOK）</td>
+                              <td>
+                                購入から1年未満の端末、メーカー・キャリア保証が有効な端末<br />
+                                法人運営の販売店での購入に限る。家族・知人・オークション等からの購入は登録不可
+                              </td>
                             </tr>
                             <tr>
                               <th>補償期間</th>
@@ -357,6 +293,14 @@ export default function MobileHokenComparePage() {
                             <tr>
                               <th>免責金額</th>
                               <td>なし（修理費用を全額補償）</td>
+                            </tr>
+                            <tr>
+                              <th>副端末の免責期間</th>
+                              <td>追加登録時の初回のみ30日間（免責期間中の事故は補償対象外）</td>
+                            </tr>
+                            <tr>
+                              <th>修理不能・盗難時の補償上限</th>
+                              <td>主端末：25,000円 / 副端末：7,500円</td>
                             </tr>
                             <tr>
                               <th>サポート内容</th>
@@ -377,9 +321,7 @@ export default function MobileHokenComparePage() {
                 <h2 className="m-section-heading m-section-heading--lg" id="heading-compare">
                   モバイル保険とApple Care+を徹底比較
                 </h2>
-                <p className="m-section-desc">
-                  AppleCare+とモバイル保険のサービス概要を簡単に説明してきましたが、両者の違いをもう少し細かく比較表に落とし込むとこんな形になります。
-                </p>
+                <p className="m-section-desc">AppleCare+とモバイル保険の違いを比較表に落とし込むと下記のようにまとめることができます。</p>
 
                 <div className="m-card m-card--shadow m-card--padded u-mt-2xl">
                   <div className="m-table-card">
@@ -401,7 +343,7 @@ export default function MobileHokenComparePage() {
                           <tr>
                             <th>加入タイミング</th>
                             <td>購入から30日以内</td>
-                            <td>購入から1年未満</td>
+                            <td>購入から1年未満<br />メーカー・キャリア保証が有効な間</td>
                           </tr>
                           <tr>
                             <th>保証端末数</th>
@@ -411,7 +353,7 @@ export default function MobileHokenComparePage() {
                           <tr>
                             <th>中古品の保証</th>
                             <td><RatingMark mark="×" size="sm" /></td>
-                            <td><RatingMark mark="◯" size="sm" /></td>
+                            <td><RatingMark mark="◯" size="sm" /><br /><small>法人運営店舗での購入に限る</small></td>
                           </tr>
                           <tr>
                             <th>保証期間</th>
@@ -480,10 +422,13 @@ export default function MobileHokenComparePage() {
                         モバイル保険の月額保険料はわずか<strong>700円</strong>。主端末は年間10万円まで修理代を全額補償し、副端末も年間3万円まで補償されます。
                       </p>
                       <p className="media-card__desc">
-                        2年間の保険料は<strong>16,800円</strong>で、Apple Care+（ProMax：34,800円〜）と比べると<span className="u-marker">約半額以下</span>です。
+                        2年間の保険料は<strong>16,800円</strong>で、Apple Care+（Pro：34,800円〜）と比べると<span className="u-marker">約半額以下</span>です。
                       </p>
                       <p className="media-card__desc">
-                        さらに大きな違いが<strong>免責金額</strong>。Apple Care+は修理のたびに3,700円〜の自己負担が発生しますが、モバイル保険は免責金額ゼロで修理費用が全額補償されます。下の表で機種ごとに比較できます。
+                        さらに大きな違いが<strong>免責金額</strong>。Apple Care+は修理のたびに3,700円〜の自己負担が発生しますが、モバイル保険は免責金額ゼロで修理費用が全額補償されます。
+                      </p>
+                      <p className="media-card__desc">
+                        たとえばiPhone 17の<strong>画面割れ</strong>（画面の損傷）が発生した場合、Apple Care+未加入なら<strong>53,800円</strong>、加入済みでも<strong>3,700円</strong>の自己負担が発生します。一方モバイル保険なら<strong>自己負担ゼロ</strong>で修理できるため、1回の修理だけで2年分の保険料（16,800円）を大幅に上回るリスクをカバーできます。機種ごとの詳細は下の表で確認できます。
                       </p>
                       <InsuranceCostTabs />
                     </div>
@@ -537,10 +482,10 @@ export default function MobileHokenComparePage() {
                     <div className="media-card__body">
                       <h3 className="media-card__title">④ 中古端末も保証対象にできる</h3>
                       <p className="media-card__desc">
-                        Apple Care+の加入期限はデバイス購入後30日までとなっており、実質中古端末を買った場合は加入することができません。
+                        Apple Care+の加入期限はデバイス購入後30日までとなっており、実質中古端末を買った場合は加入することができません。画面割れや水没といった事故への備えがないまま使い続けることになってしまいます。
                       </p>
                       <p className="media-card__desc">
-                        それに対してモバイル保険は、<span className="u-marker">法人が運営している販売店（オンラインショップを含む）で購入し、その時点において3カ月以上の製品保証が確認できる中古端末</span>であれば保険に加入することができます。Apple製品は高価なので格安SIM（MVNO）やSIMフリー端末として中古iPhoneを購入する方も多く、「Apple Care+に入れないから保険をあきらめていた」という方にとってこの点はとても魅力的です。
+                        それに対してモバイル保険は、<span className="u-marker">法人が運営している販売店（オンラインショップを含む）で購入した中古端末</span>であれば保険に加入することができます（家族・知人・フリマアプリ・オークション等からの購入は対象外）。Apple製品は高価なので格安SIM（MVNO）やSIMフリー端末として中古iPhoneを購入する方も多く、「Apple Care+に入れないから保険をあきらめていた」という方にとってこの点はとても魅力的です。
                       </p>
                     </div>
                   </div>
@@ -620,24 +565,18 @@ export default function MobileHokenComparePage() {
                 <h2 className="m-section-heading m-section-heading--lg" id="heading-summary">
                   モバイル保険とApple Care+の比較 まとめ
                 </h2>
-                <p className="m-section-desc">
-                  Apple Care+とモバイル保険の良い点・イマイチな点を解説してきました。両者の保険を全く同じ条件で比較することはできませんが、それぞれ下記のような方におすすめです。
-                </p>
+                <p className="m-section-desc">Apple Care+とモバイル保険の良い点・イマイチな点を解説してきました。最後にこの記事の要点をまとめます。</p>
 
                 <div className="m-card m-card--shadow m-card--padded u-mt-2xl">
-                  <dl className="summary-card__dl">
-                    <div>
-                      <dt className="summary-card__dt">モバイル保険がおすすめの方</dt>
-                      <dd className="summary-card__dd">お手頃な保険料で複数端末を補償したい方 / 中古端末に補償をかけたい方 / 修理費用を全額補償してほしい方 / 機種変更のたびに再契約が面倒に感じる方</dd>
-                    </div>
-                    <div>
-                      <dt className="summary-card__dt">Apple Care+がおすすめの方</dt>
-                      <dd className="summary-card__dd">保険料が高くても一つ一つの端末を手厚く保証したい方 / バッテリー無料交換サービスを受けたい方 / エクスプレス交換サービスを利用したい方 / 盗難・紛失にも幅広く備えたい方</dd>
-                    </div>
-                  </dl>
-                  <p className="media-card__desc u-mt-sm">
-                    月々の保険料の安さ・保証範囲の広さなどを鑑みると<span className="u-marker">モバイル保険のほうがコスパが高い</span>というのが本記事の結論。途中解約も月単位でいつでも可能なので気軽に試しやすく、「Apple Care+は魅力的だけど保険料がネック…」という方にはぜひ検討してほしいスマホ保険です。
-                  </p>
+                  <h3 className="summary-card__title">この記事のまとめ</h3>
+                  <ol className="summary-card__list">
+                    <li><strong>月額700円</strong>でiPhone・iPad・スマートウォッチなど最大3台を補償できるのがモバイル保険の最大の強み。Apple Care+（月1,540円〜）より大幅に安い。</li>
+                    <li><strong>免責金額ゼロ</strong>で修理費を全額補償。Apple Care+は修理のたびに3,700円〜の自己負担が発生する。</li>
+                    <li><strong>中古端末も加入可能</strong>（法人運営の販売店での購入に限る）。Apple Care+は新品購入後30日以内しか加入できない。</li>
+                    <li><strong>補償期間は無制限</strong>。Apple Care+は2年間（延長可）で終了するが、モバイル保険は加入している限りずっと続く。</li>
+                    <li>一方、<strong>バッテリー交換・エクスプレス交換・海外保証</strong>が必要ならApple Care+に優位性がある。</li>
+                    <li>コスパ重視・複数端末を持っている方には<strong>モバイル保険がおすすめ</strong>。途中解約も月単位でいつでも可能なので気軽に試せる。</li>
+                  </ol>
                 </div>
 
                 {/* モバイル保険カード */}
