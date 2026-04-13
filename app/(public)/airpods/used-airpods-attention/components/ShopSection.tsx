@@ -7,7 +7,7 @@ export default async function ShopSection() {
   const vendorCards = buildVendorCardsFromShops(shops, 'airpods_url', '中古AirPodsの在庫を見る', {
     exclude: ['rakuma'],
     priorityOrder: ['iosys', 'eearphone'],
-  })
+  }).map((card) => ({ ...card, specs: card.specs.filter((s) => s.label !== 'バッテリー保証' && s.label !== '赤ロム保証') }))
 
   return (
     <section className="l-section" id="shops" aria-labelledby="heading-shops">
