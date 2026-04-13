@@ -70,14 +70,17 @@ export default function PriceHistorySection({ models }: Props) {
 
           return (
             <div key={model.id} className="pd-history-model">
-              <div className="pd-history-summary">
+              <div
+                className="pd-history-summary"
+                onClick={() => setOpenId(isOpen ? null : model.id)}
+              >
                 <div className="pd-history-summary-left">
                   <h3 className="pd-history-model-name">{model.name}</h3>
                   <span className="pd-history-model-meta">{model.year}年発売 / {model.chip}</span>
                 </div>
                 <button
                   className="pd-history-summary-right"
-                  onClick={() => setOpenId(isOpen ? null : model.id)}
+                  onClick={(e) => { e.stopPropagation(); setOpenId(isOpen ? null : model.id) }}
                   aria-expanded={isOpen}
                   aria-controls={`pd-history-content-${model.id}`}
                   aria-label={`${model.name}の価格推移を${isOpen ? '閉じる' : '開く'}`}
