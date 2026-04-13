@@ -103,15 +103,15 @@ html {
 body {
   font-family: var(--font-family);
   font-size: var(--font-size-base);
-  line-height: 1.8;
   color: var(--color-text);
   background: var(--color-bg);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
-  display: flex;
   flex-direction: column;
   min-height: 100vh;
+  line-height: 1.7;
+  display: flex;
+  overflow-x: hidden;
 }
 
 main {
