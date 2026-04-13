@@ -12,15 +12,16 @@ const BASE_URL = 'https://used-lab.jp'
 
 const siteNavigationJsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'ItemList',
-  itemListElement: [
-    { '@type': 'SiteNavigationElement', position: 1, name: '中古iPhone', url: `${BASE_URL}/iphone/` },
-    { '@type': 'SiteNavigationElement', position: 2, name: '中古iPad', url: `${BASE_URL}/ipad/` },
-    { '@type': 'SiteNavigationElement', position: 3, name: '中古Apple Watch', url: `${BASE_URL}/watch/` },
-    { '@type': 'SiteNavigationElement', position: 4, name: '中古MacBook', url: `${BASE_URL}/macbook/` },
-    { '@type': 'SiteNavigationElement', position: 5, name: '中古AirPods', url: `${BASE_URL}/airpods/` },
-    { '@type': 'SiteNavigationElement', position: 6, name: 'お問い合わせ', url: `${BASE_URL}/contact/` },
-    { '@type': 'SiteNavigationElement', position: 7, name: '運営者情報', url: `${BASE_URL}/profile/` },
+  '@type': 'SiteNavigationElement',
+  name: ['中古iPhone', '中古iPad', '中古Apple Watch', '中古MacBook', '中古AirPods', 'お問い合わせ', '運営者情報'],
+  url: [
+    `${BASE_URL}/iphone/`,
+    `${BASE_URL}/ipad/`,
+    `${BASE_URL}/watch/`,
+    `${BASE_URL}/macbook/`,
+    `${BASE_URL}/airpods/`,
+    `${BASE_URL}/contact/`,
+    `${BASE_URL}/profile/`,
   ],
 }
 
