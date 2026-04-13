@@ -53,7 +53,7 @@ export function buildVendorCardsFromShops(
 
   return filtered.map((s) => ({
     name: s.shop,
-    recommended: s.shop_key === 'iosys',
+    recommended: false,
     tag: s.extension_name && s.extension_name !== '-' ? s.extension_name : undefined,
     specs: buildSpecsFromShop(s),
     href: s[urlKey]!.startsWith('http') ? s[urlKey]! : s[urlKey]!.startsWith('//') ? `https:${s[urlKey]!}` : `https://${s[urlKey]!}`,
