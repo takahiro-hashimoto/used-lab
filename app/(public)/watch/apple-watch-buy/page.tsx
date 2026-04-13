@@ -179,11 +179,9 @@ export default function AppleWatchBuyPage() {
           </div>
         </nav>
 
-        {/* 結論（比較表） */}
-        <ConclusionSection />
-
-        {/* セクション */}
+        {/* 結論・セクション */}
         <div className="l-sections" itemProp="articleBody">
+          <ConclusionSection />
           <BuyMethodsSection />
         </div>
       </article>
