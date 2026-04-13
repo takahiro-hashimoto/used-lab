@@ -8,6 +8,22 @@ import { CSS_NON_CRITICAL, CSS_FONTAWESOME } from "@/lib/asset-hashes";
 const GTM_ID = 'GTM-5RVN7KJZ';
 const IS_PROD = process.env.NEXT_PUBLIC_ENV === 'production';
 
+const BASE_URL = 'https://used-lab.jp'
+
+const siteNavigationJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  itemListElement: [
+    { '@type': 'SiteNavigationElement', position: 1, name: '中古iPhone', url: `${BASE_URL}/iphone/` },
+    { '@type': 'SiteNavigationElement', position: 2, name: '中古iPad', url: `${BASE_URL}/ipad/` },
+    { '@type': 'SiteNavigationElement', position: 3, name: '中古Apple Watch', url: `${BASE_URL}/watch/` },
+    { '@type': 'SiteNavigationElement', position: 4, name: '中古MacBook', url: `${BASE_URL}/macbook/` },
+    { '@type': 'SiteNavigationElement', position: 5, name: '中古AirPods', url: `${BASE_URL}/airpods/` },
+    { '@type': 'SiteNavigationElement', position: 6, name: 'お問い合わせ', url: `${BASE_URL}/contact/` },
+    { '@type': 'SiteNavigationElement', position: 7, name: '運営者情報', url: `${BASE_URL}/profile/` },
+  ],
+}
+
 const inter = Inter({
   subsets: ["latin"],
   weight: ["400", "700"],
@@ -51,6 +67,7 @@ export default async function RootLayout({
   return (
     <html lang="ja" className={inter.variable}>
       <head>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(siteNavigationJsonLd) }} />
         <link rel="preload" href={CSS_NON_CRITICAL} as="style" />
         <link rel="preload" href={CSS_FONTAWESOME} as="style" />
         <Script id="css-loader" nonce={nonce} strategy="afterInteractive" dangerouslySetInnerHTML={{

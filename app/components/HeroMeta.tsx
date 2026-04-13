@@ -26,7 +26,7 @@ export default function HeroMeta({ dateStr, dateDisplay, withItemProp = false, h
             <i className="fa-regular fa-user" aria-hidden="true"></i> 著者:
             <Link
               href="/profile/"
-              rel="author"
+              rel="author nofollow"
               {...(withItemProp ? { itemProp: 'author' } : {})}
             >
               タカヒロ
