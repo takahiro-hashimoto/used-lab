@@ -5648,6 +5648,17 @@ fieldset.u-mb-xl {
     align-items: center;
     gap: var(--space-xs);
   }
+
+  .ifd-sticky-bar__inner {
+    gap: 20px;
+  }
+
+  .post-check-item__heading {
+    font-size: var(--font-size-lg);
+    font-weight: 800;
+    color: var(--color-text);
+    margin-bottom: var(--space-md);
+  }
 }
 
 /* --- Responsive (480px) --- */
