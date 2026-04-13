@@ -1886,7 +1886,6 @@
 }
 
 .news-list__item {
-  display: flex;
   align-items: baseline;
   gap: var(--space-md);
   padding: var(--space-sm) 0;
@@ -1922,6 +1921,20 @@
 .news-list__empty {
   font-size: var(--font-size-sm);
   color: var(--color-text-muted);
+}
+
+.news-list__more {
+  margin-top: 0.75rem;
+  text-align: center;
+}
+
+.news-list__more a {
+  font-size: var(--font-size-sm);
+  color: var(--color-primary);
+}
+
+.news-list__more a:hover {
+  text-decoration: underline;
 }
 
 /* -- 運営者情報カード -- */
