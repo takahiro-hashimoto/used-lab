@@ -5592,6 +5592,7 @@ fieldset.u-mb-xl {
   display: flex;
   align-items: center;
   gap: var(--space-xs);
+  white-space: nowrap;
 }
 
 .ifd-sticky-bar__count i {

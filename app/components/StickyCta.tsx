@@ -45,7 +45,7 @@ export default function StickyCta() {
     }
   }, [])
 
-  if (!isMobile || !category) return null
+  if (!isMobile || !category || pathname.includes('/filter-search')) return null
 
   return (
     <div
