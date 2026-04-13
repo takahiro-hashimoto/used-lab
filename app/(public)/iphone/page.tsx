@@ -46,14 +46,14 @@ const SERVICE_LINKS = [
     description: 'ホーム画面をカスタマイズできる着せ替えアプリ。無料テンプレートも豊富。',
     href: 'https://invite.widget-club.com/c/5031010/1752866/20483?u=https%3A%2F%2Fwidget-club.com%2Fja',
     image: 'https://firebasestorage.googleapis.com/v0/b/widgetclub-c2626.appspot.com/o/banner%2Fcampaign%2Faffiliate_simple_widgetclub.png?alt=media&token=7fd84000-d257-46eb-99f0-89b2f647d926',
-    rel: 'sponsored noopener',
+    rel: 'nofollow sponsored noopener',
   },
   {
     title: 'アプリポ',
     description: 'ホーム画面のカスタム素材が豊富に揃っている無料アイコン素材サイト。',
     href: 'https://applipo.ne.jp/app/iphone-icon-change-sozai-download/',
     image: '/images/content/thumbnail/apripo-1.webp',
-    rel: 'noopener',
+    rel: 'nofollow noopener',
   },
   {
     title: '楽天モバイル',
@@ -465,7 +465,7 @@ export default async function IPhoneGuidePage() {
                 <p className="guide-model-links__desc">気になる2機種の違いをスペック・カメラ・バッテリー・中古価格で徹底比較。</p>
                 <div className="l-grid l-grid--3col l-grid--gap-md">
                   {GUIDE_COMPARE_LINKS.map((link) => (
-                    <Link key={link.href} href={link.href} className="guide-model-item m-card">
+                    <Link key={link.href} href={link.href} rel="nofollow" className="guide-model-item m-card">
                       <span className="guide-model-item__name">
                         {link.title}
                       </span>
