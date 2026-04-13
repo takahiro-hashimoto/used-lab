@@ -922,7 +922,6 @@
 .m-vendor-card--recommended {
   border: 2px solid var(--color-primary) !important;
   box-shadow: 0 4px 16px rgba(37, 99, 235, 0.12) !important;
-  display: none !important;
 }
 
 .m-vendor-card__badge {
