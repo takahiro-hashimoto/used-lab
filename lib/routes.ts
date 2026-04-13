@@ -196,6 +196,7 @@ export const PRODUCT_CATEGORIES: CategoryDef[] = [
 ]
 
 export const UTILITY_PAGES: PageDef[] = [
+  { path: '/news/', label: '新着情報', priority: 0.5, changeFrequency: 'weekly' },
   { path: '/search/', label: '記事を検索', priority: 0.3, changeFrequency: 'monthly' },
   { path: '/sitemap-page/', label: 'サイトマップ', priority: 0.3, changeFrequency: 'monthly' },
   { path: '/contact/', label: 'お問い合わせ', priority: 0.3, changeFrequency: 'yearly' },
