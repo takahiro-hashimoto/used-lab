@@ -10,6 +10,8 @@ import HeroMeta from '@/app/components/HeroMeta'
 import { getHeroImage } from '@/lib/data/hero-images'
 import { getIPadModelBySlug, getAllProductShopLinksByType } from '@/lib/queries'
 
+export const revalidate = false
+
 const PAGE_TITLE = 'iPad mini 第6世代 長期使用レビュー！3年間使用してきて分かったメリット・デメリットまとめ'
 const PAGE_DESCRIPTION =
   'iPad mini（第6世代）を約3年間使い続けて分かったリアルなメリット・デメリットを解説。8.3インチディスプレイ、USB-C、Apple Pencil 2対応など進化点と、バッテリーやストレージの弱点を正直にレビューします。'

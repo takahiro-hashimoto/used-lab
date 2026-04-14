@@ -13,6 +13,8 @@ import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helper
 import HeroMeta from '@/app/components/HeroMeta'
 import { getHeroImage } from '@/lib/data/hero-images'
 
+export const revalidate = false
+
 const PAGE_TITLE = 'iPadをカーナビ化するメリットが凄い！地図が古くなる問題をすっきり解消'
 const PAGE_DESCRIPTION =
   'iPadをカーナビ代わりに使うメリット5つと注意点2つを実体験をもとに解説。常に最新の地図・渋滞情報・大画面・直感操作など、車載カーナビにはない利点をわかりやすく紹介します。'

@@ -3,6 +3,9 @@ import Image from 'next/image'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import HeroMeta from '@/app/components/HeroMeta'
 import { getGitDateForFile } from '@/lib/utils/shared-helpers'
+import { getHeroImage } from '@/lib/data/hero-images'
+
+export const revalidate = false
 
 const PAGE_TITLE = '運営者情報'
 const PAGE_DESCRIPTION = 'ユーズドラボの運営者タカヒロのプロフィールや、サイト開設の経緯についてご紹介します。'
@@ -15,10 +18,12 @@ export const metadata: Metadata = {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/profile/',
+    images: [{ url: getHeroImage('/profile/'), width: 1200, height: 630, alt: PAGE_TITLE }],
   },
   twitter: {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
+    images: [getHeroImage('/profile/')],
   },
 }
 

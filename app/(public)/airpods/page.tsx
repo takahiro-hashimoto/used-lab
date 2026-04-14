@@ -113,6 +113,7 @@ export default async function AirPodsGuidePage() {
     headline: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     dateStr,
+    dateModified: new Date().toISOString().split('T')[0],
     url: PAGE_URL,
   })
 

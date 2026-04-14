@@ -9,6 +9,8 @@ import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helper
 import HeroMeta from '@/app/components/HeroMeta'
 import { getHeroImage } from '@/lib/data/hero-images'
 
+export const revalidate = false
+
 const PAGE_TITLE = 'Apple Watch セルラーモデルのできることを解説！GPSモデルとの違いがわかる'
 const PAGE_DESCRIPTION =
   'Apple WatchのGPSモデルとセルラーモデルの違いを徹底比較。単体でできること・ランニングコスト・素材・デザインなど5つの違いを解説し、どちらを選ぶべきか結論ファーストでお伝えします。'

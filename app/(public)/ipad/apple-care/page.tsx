@@ -8,6 +8,8 @@ import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helper
 import HeroMeta from '@/app/components/HeroMeta'
 import { getHeroImage } from '@/lib/data/hero-images'
 
+export const revalidate = false
+
 const PAGE_TITLE = 'iPadを買ったらアップルケアに入るべき？必要ではない理由5つを解説'
 const PAGE_DESCRIPTION =
   'iPadを買ったときにApple Care+は必要？料金・修理費用・バッテリー交換条件を整理した上で、コスパの観点から加入しなくていい理由を5つ解説します。'

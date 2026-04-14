@@ -14,8 +14,9 @@ import { PRODUCT_CATEGORIES } from '@/lib/routes'
 import IconCard from '@/app/components/IconCard'
 import { placeholder } from '@/lib/placeholder'
 import NewsSection from '@/app/(public)/_components/NewsSection'
+import { getHeroImage } from '@/lib/data/hero-images'
 
-export const revalidate = 300
+export const revalidate = 3600
 
 export const metadata: Metadata = {
   title: '中古Apple製品のおすすめ機種・賢い選び方・安く買う方法を解説 | ユーズドラボ',
@@ -25,6 +26,7 @@ export const metadata: Metadata = {
     title: '中古Apple製品のおすすめ機種・賢い選び方・安く買う方法を解説 | ユーズドラボ',
     description: '中古iPhone・iPad・MacBook・Apple Watch・AirPodsの価格推移・スペック比較・おすすめ機種を毎日更新。',
     url: '/',
+    images: [{ url: getHeroImage('/'), width: 1200, height: 630, alt: '中古Apple製品のおすすめ機種・賢い選び方・安く買う方法を解説 | ユーズドラボ' }],
   },
 }
 

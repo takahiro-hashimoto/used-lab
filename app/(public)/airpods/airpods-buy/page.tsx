@@ -9,6 +9,8 @@ import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helper
 import HeroMeta from '@/app/components/HeroMeta'
 import { getHeroImage } from '@/lib/data/hero-images'
 
+export const revalidate = false
+
 const PAGE_TITLE = 'AirPods安く買うには？主要な購入先8つを比較'
 const PAGE_DESCRIPTION =
   'AirPodsを安く買う方法を徹底解説。Apple公式・Amazon・楽天・ヤフーショッピング・家電量販店・コストコ・中古ショップなど8つの購入先を比較し、最安で手に入れるコツを紹介します。'

@@ -13,6 +13,8 @@ import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helper
 import HeroMeta from '@/app/components/HeroMeta'
 import { getHeroImage } from '@/lib/data/hero-images'
 
+export const revalidate = false
+
 const PAGE_TITLE = '中古Apple Watchはやめた方がいい？購入前に確認すべき注意点まとめ'
 const PAGE_DESCRIPTION =
   '中古Apple Watchはやめた方がいい？watchOSサポート切れ・バッテリー劣化・ペアリング解除漏れなど、購入前に確認すべき注意点を徹底解説。失敗しない中古Apple Watch選びのポイントを2026年最新情報でまとめました。'

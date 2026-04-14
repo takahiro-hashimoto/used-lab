@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import HeroMeta from '@/app/components/HeroMeta'
 import { getGitDateForFile } from '@/lib/utils/shared-helpers'
+import { getHeroImage } from '@/lib/data/hero-images'
 
 const PAGE_TITLE = 'お問い合わせ'
 const PAGE_DESCRIPTION = 'ユーズドラボへのお問い合わせはこちらのフォームからお送りください。'
@@ -14,10 +15,12 @@ export const metadata: Metadata = {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/contact/',
+    images: [{ url: getHeroImage('/contact/'), width: 1200, height: 630, alt: PAGE_TITLE }],
   },
   twitter: {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
+    images: [getHeroImage('/contact/')],
   },
 }
 

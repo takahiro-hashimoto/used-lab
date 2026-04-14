@@ -6,6 +6,11 @@
 // ============================================================
 
 export const HERO_IMAGES: Record<string, string> = {
+  // ── トップ・共通 ──
+  '/': '/images/content/thumbnail/iphone-image.jpeg',
+  '/profile/': '/images/content/thumbnail/iphone-image.jpeg',
+  '/sitemap-page/': '/images/content/thumbnail/iphone-image.jpeg',
+
   // ── AirPods ──
   '/airpods/': '/images/content/thumbnail/airpods-image-01.jpg',
   '/airpods/airpods-find/': '/images/content/thumbnail/airpods-image-01.jpg',

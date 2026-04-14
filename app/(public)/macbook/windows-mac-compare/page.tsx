@@ -9,6 +9,8 @@ import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helper
 import { getHeroImage } from '@/lib/data/hero-images'
 import HeroMeta from '@/app/components/HeroMeta'
 
+export const revalidate = false
+
 const PAGE_TITLE = 'MacとWindowsどっちがいい？両者の違いとどんな人におすすめかをやさしく解説'
 const PAGE_DESCRIPTION =
   'MacとWindowsの違いをわかりやすく比較。操作性・対応ソフト・コスパ・用途別のおすすめポイントを初心者向けにやさしく解説します。どっちを選ぶべきか迷っている方に最適なガイドです。'

@@ -12,6 +12,8 @@ import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helper
 import HeroMeta from '@/app/components/HeroMeta'
 import { getHeroImage } from '@/lib/data/hero-images'
 
+export const revalidate = false
+
 const PAGE_TITLE = 'Apple Watchの常時点灯はいらない？使ってみてわかったメリット・デメリットまとめ'
 const PAGE_DESCRIPTION =
   'Apple Watchの常時点灯（常時表示ディスプレイ）は本当に必要？実際に使ってわかったメリット・デメリットを徹底解説。バッテリーへの影響やオフにする設定方法、常時点灯なしモデルとの違いまで2026年最新情報でまとめました。'

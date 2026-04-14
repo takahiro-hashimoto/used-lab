@@ -157,6 +157,7 @@ export function buildArticleJsonLd(opts: {
   headline: string
   description: string
   dateStr: string
+  dateModified?: string
   url: string
 }) {
   return {
@@ -165,7 +166,7 @@ export function buildArticleJsonLd(opts: {
     headline: opts.headline,
     description: opts.description,
     datePublished: opts.dateStr,
-    dateModified: opts.dateStr,
+    dateModified: opts.dateModified ?? opts.dateStr,
     inLanguage: 'ja',
     author: {
       '@type': 'Person',

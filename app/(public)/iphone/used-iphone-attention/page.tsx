@@ -15,6 +15,8 @@ import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helper
 import HeroMeta from '@/app/components/HeroMeta'
 import { getHeroImage } from '@/lib/data/hero-images'
 
+export const revalidate = false
+
 const CURRENT_YEAR = new Date().getFullYear()
 const PAGE_TITLE = `中古iPhoneはやめた方がいい？購入前に確認すべき注意点まとめ【${CURRENT_YEAR}年版】`
 const PAGE_DESCRIPTION =

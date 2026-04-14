@@ -11,6 +11,8 @@ import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helper
 import HeroMeta from '@/app/components/HeroMeta'
 import { getHeroImage } from '@/lib/data/hero-images'
 
+export const revalidate = false
+
 const PAGE_TITLE = 'アップルウォッチのできること25選！便利な機能や使い方がわかる【初心者向け】'
 const PAGE_DESCRIPTION =
   'Apple Watchの便利な機能・使い方を25個厳選して紹介。基本機能・健康管理・決済・Apple製品連携など、Apple Watchがあれば生活が変わる活用法を初心者にもわかりやすく解説します。'

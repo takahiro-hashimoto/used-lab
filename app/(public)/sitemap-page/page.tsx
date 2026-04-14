@@ -30,6 +30,7 @@ import { SHOP_PAGE_DATE_LABEL as MACBOOK_SHOP_DATE } from '@/lib/data/macbook-sh
 import { SHOP_PAGE_DATE_LABEL as WATCH_SHOP_DATE } from '@/lib/data/watch-shop'
 import HeroMeta from '@/app/components/HeroMeta'
 import { getGitDateForFile } from '@/lib/utils/shared-helpers'
+import { getHeroImage } from '@/lib/data/hero-images'
 
 export const revalidate = 86400
 
@@ -44,10 +45,12 @@ export const metadata: Metadata = {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/sitemap-page/',
+    images: [{ url: getHeroImage('/sitemap-page/'), width: 1200, height: 630, alt: PAGE_TITLE }],
   },
   twitter: {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
+    images: [getHeroImage('/sitemap-page/')],
   },
 }
 

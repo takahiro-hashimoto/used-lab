@@ -9,6 +9,8 @@ import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helper
 import HeroMeta from '@/app/components/HeroMeta'
 import { getHeroImage } from '@/lib/data/hero-images'
 
+export const revalidate = false
+
 const PAGE_TITLE = 'iPadはWi-Fiモデルとセルラーモデルどっちがおすすめ？両者の違い4つを比較'
 const PAGE_DESCRIPTION =
   'iPadのWi-Fiモデルとセルラーモデルの違いを4つのポイントで徹底比較。価格差・通信方式・GPS・リセールバリューなど、どちらを選ぶべきか用途別におすすめモデルを解説します。'

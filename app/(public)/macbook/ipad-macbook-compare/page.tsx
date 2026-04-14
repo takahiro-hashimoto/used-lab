@@ -12,6 +12,8 @@ import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helper
 import { getHeroImage } from '@/lib/data/hero-images'
 import HeroMeta from '@/app/components/HeroMeta'
 
+export const revalidate = false
+
 const PAGE_TITLE = 'MacBookとiPadどっちを買うのがおすすめ？両者の違いと使い勝手を比較'
 const PAGE_DESCRIPTION =
   'MacBookとiPadはどっちを買うべき？作業効率・携帯性・価格・用途別に両者の違いをわかりやすく比較。あなたの使い方にぴったりな1台が見つかるガイドです。'

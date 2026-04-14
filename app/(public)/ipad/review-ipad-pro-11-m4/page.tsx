@@ -9,6 +9,8 @@ import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helper
 import HeroMeta from '@/app/components/HeroMeta'
 import { getHeroImage } from '@/lib/data/hero-images'
 
+export const revalidate = false
+
 const PAGE_TITLE = 'iPad Pro 11インチ M4モデルを買って感じたメリット・デメリットまとめ'
 const PAGE_DESCRIPTION =
   'iPad Pro 11インチ（M4）を実際に購入し使い込んで感じたメリット5つとデメリット3つを正直にレビュー。3Dモデリングやクリエイティブ作業での実力、LiDARセンサーの使い勝手、導入コストまで詳しく解説します。'

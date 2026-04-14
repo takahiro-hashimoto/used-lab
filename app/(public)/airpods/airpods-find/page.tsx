@@ -11,6 +11,8 @@ import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helper
 import { getHeroImage } from '@/lib/data/hero-images'
 import HeroMeta from '@/app/components/HeroMeta'
 
+export const revalidate = false
+
 const PAGE_TITLE = 'AirPodsのケースやイヤホン片方を無くした時の探し方、代替品の購入先まとめ'
 const PAGE_DESCRIPTION =
   'AirPodsのケースやイヤホン片方を紛失した際の探し方を「探す」アプリ・iCloudの手順で解説。見つからない場合の代替品の購入先（Appleストア・メルカリ・eイヤホン）も比較して紹介します。'

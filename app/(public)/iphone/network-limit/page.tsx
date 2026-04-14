@@ -9,6 +9,8 @@ import HeroMeta from '@/app/components/HeroMeta'
 import { getHeroImage } from '@/lib/data/hero-images'
 import { getShops } from '@/lib/queries'
 
+export const revalidate = false
+
 const PAGE_TITLE = '意外と良い選択肢？ネットワーク制限△の中古iPhone・iPadを買うメリット・デメリットを解説'
 const PAGE_DESCRIPTION =
   'ネットワーク制限△の中古iPhone・iPadは買っても大丈夫？赤ロムリスクや○△×の違い、メリット・デメリットをわかりやすく解説。赤ロム永久保証付きの安心ショップも紹介します。'

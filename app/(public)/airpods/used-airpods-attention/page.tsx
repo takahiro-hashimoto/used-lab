@@ -14,6 +14,8 @@ import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helper
 import HeroMeta from '@/app/components/HeroMeta'
 import { getHeroImage } from '@/lib/data/hero-images'
 
+export const revalidate = false
+
 const PAGE_TITLE = '中古AirPodsはやめた方がいい？注意点とリスクを8つ解説'
 const PAGE_DESCRIPTION =
   '中古AirPodsはやめた方がいい？コピー品・並行輸入品・バッテリー劣化・衛生面・充電端子の違いなど、購入前に確認すべき注意点を8つ解説。失敗しない中古AirPods選びのポイントとおすすめの購入先をまとめました。'

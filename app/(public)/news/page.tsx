@@ -4,6 +4,9 @@ import HeroMeta from '@/app/components/HeroMeta'
 import { getGitDateForFile } from '@/lib/utils/shared-helpers'
 import { getPublishedNews } from '@/app/admin/actions'
 import { sanitizeHtml } from '@/lib/sanitize'
+import { getHeroImage } from '@/lib/data/hero-images'
+
+export const revalidate = 3600
 
 const PAGE_TITLE = '新着情報'
 const PAGE_DESCRIPTION = 'ユーズドラボの新着情報・お知らせの一覧です。サイトの更新情報やご案内をまとめています。'
@@ -16,10 +19,12 @@ export const metadata: Metadata = {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/news/',
+    images: [{ url: getHeroImage('/news/'), width: 1200, height: 630, alt: PAGE_TITLE }],
   },
   twitter: {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
+    images: [getHeroImage('/news/')],
   },
 }
 

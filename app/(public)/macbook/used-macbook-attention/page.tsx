@@ -13,6 +13,8 @@ import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helper
 import { getHeroImage } from '@/lib/data/hero-images'
 import HeroMeta from '@/app/components/HeroMeta'
 
+export const revalidate = false
+
 const PAGE_TITLE = '中古MacBookはやめた方がいい？購入前に確認すべき注意点まとめ'
 const CURRENT_YEAR = new Date().getFullYear()
 const PAGE_DESCRIPTION =

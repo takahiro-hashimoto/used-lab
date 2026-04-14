@@ -5,7 +5,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: ['/admin/', '/api/', '/llms.txt', '/llms-full.txt'],
+      disallow: ['/admin/', '/api/'],
     },
     sitemap: 'https://used-lab.jp/sitemap.xml',
   }

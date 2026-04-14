@@ -9,6 +9,8 @@ import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helper
 import HeroMeta from '@/app/components/HeroMeta'
 import { getHeroImage } from '@/lib/data/hero-images'
 
+export const revalidate = false
+
 const PAGE_TITLE = 'Apple Watchを安く買うには？おすすめの購入先7つを比較'
 const PAGE_DESCRIPTION =
   'Apple Watchを安く買う方法を徹底解説。Apple認定整備済製品・中古ショップ・ECモール・家電量販店など7つの購入先を価格・保証・ポイント還元で比較し、最安で手に入れるコツを紹介します。'

@@ -10,6 +10,8 @@ import RatingMark from '@/app/components/RatingMark'
 import InsuranceCostTabs from './InsuranceCostTabs'
 import StickyCtaOverride from './StickyCtaOverride'
 
+export const revalidate = false
+
 const PAGE_TITLE = '知らないと損！Apple Care+よりもモバイル保険に加入した方がコスパが高い理由を解説'
 const PAGE_DESCRIPTION =
   'Apple Care+とモバイル保険を徹底比較。月額700円で3台まで補償できるモバイル保険がコスパ面で優れている理由や、逆にApple Care+が有利なケースをわかりやすく解説します。'

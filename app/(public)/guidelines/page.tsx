@@ -3,6 +3,9 @@ import Link from 'next/link'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import HeroMeta from '@/app/components/HeroMeta'
 import { getGitDateForFile } from '@/lib/utils/shared-helpers'
+import { getHeroImage } from '@/lib/data/hero-images'
+
+export const revalidate = false
 
 const PAGE_TITLE = 'コンテンツ制作・運営ポリシー'
 const PAGE_DESCRIPTION =
@@ -16,10 +19,12 @@ export const metadata: Metadata = {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     url: '/guidelines/',
+    images: [{ url: getHeroImage('/guidelines/'), width: 1200, height: 630, alt: PAGE_TITLE }],
   },
   twitter: {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
+    images: [getHeroImage('/guidelines/')],
   },
 }
 

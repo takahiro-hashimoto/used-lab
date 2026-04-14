@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import { getCompareConfig } from '../_compare/config'
 import ComparePageTemplate from '../_compare/ComparePageTemplate'
 
+export const revalidate = false
+
 const SLUG = 'iphone14pro-15pro-compare'
 
 const config = getCompareConfig(SLUG)!

@@ -12,6 +12,8 @@ import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helper
 import HeroMeta from '@/app/components/HeroMeta'
 import { getHeroImage } from '@/lib/data/hero-images'
 
+export const revalidate = false
+
 const PAGE_TITLE = 'iPadがあればできること・便利な使い道 22選【生活が変わる】'
 const PAGE_DESCRIPTION =
   'iPadの便利な使い道を22個厳選して紹介。動画視聴・ノート・イラスト・読書・仕事効率化など、iPadがあれば生活が変わる活用法を初心者にもわかりやすく解説します。'

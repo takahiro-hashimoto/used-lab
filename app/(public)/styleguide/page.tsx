@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
 
+export const revalidate = false
+
 export const metadata: Metadata = {
   title: 'Style Guide',
   robots: { index: false, follow: false, googleBot: { index: false, follow: false } },
