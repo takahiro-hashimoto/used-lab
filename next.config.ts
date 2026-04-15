@@ -96,7 +96,7 @@ const nextConfig: NextConfig = {
         ],
       },
       {
-        source: '/_next/image**',
+        source: '/_next/image*',
         headers: [
           { key: 'Cache-Control', value: 'public, max-age=86400, stale-while-revalidate=604800' },
         ],
