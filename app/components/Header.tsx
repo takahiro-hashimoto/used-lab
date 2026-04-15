@@ -98,8 +98,8 @@ export default function Header() {
   useEffect(() => {
     const el = headerRef.current
     if (!el) return
-    const observer = new ResizeObserver(() => {
-      setMenuTop(el.getBoundingClientRect().height)
+    const observer = new ResizeObserver((entries) => {
+      setMenuTop(entries[0].borderBoxSize[0].blockSize)
     })
     observer.observe(el)
     return () => observer.disconnect()

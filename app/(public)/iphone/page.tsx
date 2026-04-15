@@ -498,6 +498,8 @@ export default async function IPhoneGuidePage() {
                       src={service.image}
                       alt={service.title}
                       className="related-link-card__img"
+                      width={120}
+                      height={90}
                     />
                     <div className="related-link-card__body">
                       <p className="related-link-card__title">{service.title}</p>
