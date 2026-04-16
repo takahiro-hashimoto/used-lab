@@ -5,12 +5,26 @@
 
 import { execSync } from 'child_process'
 import type { Shop, ProductShopLink, FallbackShop, BasePriceLog } from '@/lib/types'
+import { PAGE_DATES } from '@/lib/data/page-dates'
 
 /**
- * 指定ファイルの git 最終コミット日を取得
- * 相場ページ以外の更新日表示に使用（相場ページは毎日更新のため new Date() を使用）
+ * 静的ページの最終更新日を返す
+ * lib/data/page-dates.ts に日付が登録されていればそれを使用（手動管理）。
+ * 未登録の場合は git 最終コミット日にフォールバックする。
+ * 中古相場ページは毎日更新のため new Date() を直接使用すること。
  */
 export function getGitDateForFile(filePath: string): { dateStr: string; dateDisplay: string } {
+  // 手動管理の日付を優先
+  const manualDate = PAGE_DATES[filePath]
+  if (manualDate) {
+    const date = new Date(manualDate)
+    return {
+      dateStr: manualDate,
+      dateDisplay: date.toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' }),
+    }
+  }
+
+  // フォールバック: git 最終コミット日
   try {
     const result = execSync(`git log -1 --format=%aI -- "${filePath}"`, { encoding: 'utf-8' }).trim()
     if (result) {
