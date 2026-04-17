@@ -4,6 +4,7 @@ import Script from "next/script";
 import { headers } from "next/headers";
 import "./critical.css";
 import { CSS_NON_CRITICAL, CSS_FONTAWESOME } from "@/lib/asset-hashes";
+import NavigationProgressBar from "@/app/components/NavigationProgressBar";
 
 const GTM_ID = 'GTM-5RVN7KJZ';
 const IS_PROD = process.env.NEXT_PUBLIC_ENV === 'production';
@@ -93,6 +94,7 @@ export default async function RootLayout({
             />
           </noscript>
         )}
+        <NavigationProgressBar />
         {children}
       </body>
     </html>
