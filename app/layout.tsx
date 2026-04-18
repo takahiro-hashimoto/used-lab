@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import Script from "next/script";
+import { headers } from "next/headers";
 import "./critical.css";
 import { CSS_NON_CRITICAL, CSS_FONTAWESOME } from "@/lib/asset-hashes";
 import NavigationProgressBar from "@/app/components/NavigationProgressBar";
@@ -59,24 +60,25 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const nonce = (await headers()).get('x-nonce') ?? ''
   return (
     <html lang="ja" className={inter.variable}>
       <head>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(siteNavigationJsonLd) }} />
         <link rel="preload" href={CSS_NON_CRITICAL} as="style" />
         <link rel="preload" href={CSS_FONTAWESOME} as="style" />
-        <Script id="css-loader" strategy="afterInteractive" dangerouslySetInnerHTML={{
+        <Script id="css-loader" nonce={nonce} strategy="afterInteractive" dangerouslySetInnerHTML={{
           __html: `['${CSS_NON_CRITICAL}','${CSS_FONTAWESOME}'].forEach(function(h){var l=document.createElement('link');l.rel='stylesheet';l.href=h;document.head.appendChild(l)});`,
         }} />
         {IS_PROD && <link rel="dns-prefetch" href="https://www.googletagmanager.com" />}
         <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
         {IS_PROD && (
-          <Script id="gtm-init" strategy="lazyOnload" dangerouslySetInnerHTML={{
+          <Script id="gtm-init" nonce={nonce} strategy="lazyOnload" dangerouslySetInnerHTML={{
             __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${GTM_ID}');`,
           }} />
         )}
