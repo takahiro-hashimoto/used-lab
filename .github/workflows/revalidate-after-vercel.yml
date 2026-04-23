@@ -1,0 +1,32 @@
+name: Vercelデプロイ後キャッシュ再検証
+
+on:
+  deployment_status:
+
+jobs:
+  revalidate:
+    if: >
+      github.event.deployment_status.state == 'success' &&
+      contains(github.event.deployment_status.environment, 'Production')
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Revalidate Next.js caches
+        env:
+          DEPLOYMENT_URL: ${{ github.event.deployment_status.target_url }}
+          REVALIDATE_SECRET: ${{ secrets.REVALIDATE_SECRET }}
+        run: |
+          if [ -z "$DEPLOYMENT_URL" ]; then
+            echo "deployment_status.target_url is empty"
+            exit 1
+          fi
+
+          if [ -z "$REVALIDATE_SECRET" ]; then
+            echo "GitHub secret REVALIDATE_SECRET is missing"
+            exit 1
+          fi
+
+          curl --fail --silent --show-error \
+            -X POST "${DEPLOYMENT_URL%/}/api/revalidate-all" \
+            -H "Authorization: Bearer ${REVALIDATE_SECRET}"

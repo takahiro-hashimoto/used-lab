@@ -380,6 +380,46 @@ export const getLatestPriceUpdateDate = unstable_cache(
   { revalidate: 86400, tags: [CACHE_TAGS.iphonePriceLogs] }
 )
 
+/** カテゴリ別に価格データの最終更新日を取得（YYYY-MM-DD） */
+export const getLatestPriceDatesPerCategory = unstable_cache(
+  async (): Promise<Record<string, string | null>> => {
+    const entries: [string, string][] = [
+      ['iphone_price_logs', 'iphone'],
+      ['ipad_price_logs', 'ipad'],
+      ['watch_price_logs', 'watch'],
+      ['macbook_price_logs', 'macbook'],
+      ['airpods_price_logs', 'airpods'],
+    ]
+
+    const results = await Promise.all(
+      entries.map(async ([table, category]) => {
+        const { data, error } = await supabase
+          .from(table)
+          .select('logged_at')
+          .order('logged_at', { ascending: false })
+          .limit(1)
+          .maybeSingle()
+
+        if (error) return [category, null] as const
+        return [category, data ? (data.logged_at as string).substring(0, 10) : null] as const
+      })
+    )
+
+    return Object.fromEntries(results)
+  },
+  ['latest-price-dates-per-category'],
+  {
+    revalidate: 86400,
+    tags: [
+      CACHE_TAGS.iphonePriceLogs,
+      CACHE_TAGS.ipadPriceLogs,
+      CACHE_TAGS.watchPriceLogs,
+      CACHE_TAGS.macbookPriceLogs,
+      CACHE_TAGS.airpodsPriceLogs,
+    ],
+  }
+)
+
 export const getShops = unstable_cache(
   async (): Promise<Shop[]> => {
     const { data, error } = await supabase
