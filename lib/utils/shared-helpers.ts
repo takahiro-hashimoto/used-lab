@@ -3,45 +3,23 @@
  * 全製品タイプで共有する汎用ユーティリティ
  */
 
-import { execSync } from 'child_process'
 import type { Shop, ProductShopLink, FallbackShop, BasePriceLog } from '@/lib/types'
 import { PAGE_DATES } from '@/lib/data/page-dates'
 
+const SITE_LAUNCH_DATE = '2024-08-01'
+
 /**
- * 静的ページの最終更新日を返す
- * lib/data/page-dates.ts に日付が登録されていればそれを使用（手動管理）。
- * 未登録の場合は git 最終コミット日にフォールバックする。
- * 中古相場ページは毎日更新のため new Date() を直接使用すること。
+ * 静的ページの最終更新日を返す。
+ * lib/data/page-dates.ts に登録された日付を使用（手動管理）。
+ * 未登録の場合はサイト開設日にフォールバック。
+ * ページを更新したら page-dates.ts の日付も更新すること。
  */
 export function getGitDateForFile(filePath: string): { dateStr: string; dateDisplay: string } {
-  // 手動管理の日付を優先
-  const manualDate = PAGE_DATES[filePath]
-  if (manualDate) {
-    const date = new Date(manualDate)
-    return {
-      dateStr: manualDate,
-      dateDisplay: date.toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' }),
-    }
-  }
-
-  // フォールバック: git 最終コミット日
-  try {
-    const result = execSync(`git log -1 --format=%aI -- "${filePath}"`, { encoding: 'utf-8' }).trim()
-    if (result) {
-      const date = new Date(result)
-      const dateStr = date.toISOString().split('T')[0]
-      const dateDisplay = date.toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' })
-      return { dateStr, dateDisplay }
-    }
-  } catch {
-    // git が利用できない場合はフォールバック
-  }
-  // git unavailable (CI without history, etc.) — use site launch date instead of today
-  // to avoid misleading "updated today" in sitemaps/structured data
-  const fallback = new Date('2024-08-01')
+  const dateStr = PAGE_DATES[filePath] ?? SITE_LAUNCH_DATE
+  const date = new Date(dateStr)
   return {
-    dateStr: '2024-08-01',
-    dateDisplay: fallback.toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' }),
+    dateStr,
+    dateDisplay: date.toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' }),
   }
 }
 

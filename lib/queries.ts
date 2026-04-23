@@ -482,21 +482,23 @@ export async function getIPhoneReviewsBySlug(modelSlug: string): Promise<Product
 // 関連記事リンク クリック数
 // ============================================================
 
-/** 指定ページから発生した関連記事クリック数を取得 */
-export async function getRelatedLinkClicks(
-  sourcePath: string
-): Promise<Record<string, number>> {
-  const { data, error } = await supabase
-    .from('related_link_clicks')
-    .select('dest_path, click_count')
-    .eq('source_path', sourcePath)
-  if (error || !data) return {}
-  const map: Record<string, number> = {}
-  for (const row of data) {
-    map[row.dest_path] = row.click_count
-  }
-  return map
-}
+/** 指定ページから発生した関連記事クリック数を取得（1時間キャッシュ） */
+export const getRelatedLinkClicks = unstable_cache(
+  async (sourcePath: string): Promise<Record<string, number>> => {
+    const { data, error } = await supabase
+      .from('related_link_clicks')
+      .select('dest_path, click_count')
+      .eq('source_path', sourcePath)
+    if (error || !data) return {}
+    const map: Record<string, number> = {}
+    for (const row of data) {
+      map[row.dest_path] = row.click_count
+    }
+    return map
+  },
+  ['related-link-clicks'],
+  { revalidate: 3600, tags: ['related-link-clicks'] }
+)
 
 export async function getIPadReviewsBySlug(modelSlug: string): Promise<ProductReview[]> {
   const { data, error } = await supabase

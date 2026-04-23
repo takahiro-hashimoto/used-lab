@@ -1,5 +1,17 @@
 import { NextRequest, NextResponse } from 'next/server'
 
+// CSP は静的定義（nonce 不要 — layout.tsx がインラインスクリプトを持たないため）
+// 'unsafe-inline' は GTM が注入するカスタム HTML タグのインラインスクリプト対応
+const CSP = [
+  "default-src 'self'",
+  "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://cdn.jsdelivr.net https://www.clarity.ms",
+  "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+  "font-src 'self' https://fonts.gstatic.com",
+  "img-src 'self' data: https://*.supabase.co https://placehold.co https://*.rakuten.co.jp https://*.a8.net https://firebasestorage.googleapis.com",
+  "connect-src 'self' https://*.supabase.co https://www.google-analytics.com https://www.googletagmanager.com https://www.clarity.ms",
+  "frame-src https://www.youtube.com https://docs.google.com",
+].join('; ')
+
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl
 
@@ -19,23 +31,8 @@ export function proxy(request: NextRequest) {
     }
   }
 
-  // CSP ヘッダーを付与
-  const nonce = Buffer.from(crypto.randomUUID()).toString('base64')
-  const csp = [
-    "default-src 'self'",
-    `script-src 'self' 'nonce-${nonce}' https://www.googletagmanager.com https://cdn.jsdelivr.net https://www.clarity.ms`,
-    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
-    "font-src 'self' https://fonts.gstatic.com",
-    "img-src 'self' data: https://*.supabase.co https://placehold.co https://*.rakuten.co.jp https://*.a8.net https://firebasestorage.googleapis.com",
-    "connect-src 'self' https://*.supabase.co https://www.google-analytics.com https://www.googletagmanager.com https://www.clarity.ms",
-    "frame-src https://www.youtube.com https://docs.google.com",
-  ].join('; ')
-
-  const requestHeaders = new Headers(request.headers)
-  requestHeaders.set('x-nonce', nonce)
-
-  const response = NextResponse.next({ request: { headers: requestHeaders } })
-  response.headers.set('Content-Security-Policy', csp)
+  const response = NextResponse.next()
+  response.headers.set('Content-Security-Policy', CSP)
 
   return response
 }
