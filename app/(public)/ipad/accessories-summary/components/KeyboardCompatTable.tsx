@@ -3,7 +3,6 @@
 import { useState, useMemo } from 'react'
 import { parseDate, formatDate } from '@/app/components/spec-table-utils'
 import RatingMark from '@/app/components/RatingMark'
-import type { IPadAccessory } from '@/lib/types'
 
 type KeyboardModel = {
   id: number

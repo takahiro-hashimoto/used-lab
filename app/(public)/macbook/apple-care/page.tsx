@@ -315,7 +315,7 @@ export default function MacbookAppleCarePage() {
                   {/* 理由①: 損益分岐点 */}
                   <div className="m-card m-card--shadow m-card--padded">
                     <div className="media-card__img-wrap">
-                      <img src="/images/content/photo/macbook-image.jpg" alt="MacBookのイメージ" className="media-card__img" width={800} height={450} loading="lazy" />
+                      <Image src="/images/content/photo/macbook-image.jpg" alt="MacBookのイメージ" className="media-card__img" width={800} height={450} sizes="(max-width: 768px) 100vw, 800px" />
                     </div>
                     <div className="media-card__body">
                       <h3 className="media-card__title">① 3年間で修理が必要になる確率は低い</h3>
@@ -377,7 +377,7 @@ export default function MacbookAppleCarePage() {
                   {/* 理由②: バッテリー無償交換のハードル */}
                   <div className="m-card m-card--shadow m-card--padded" id="battery">
                     <div className="media-card__img-wrap">
-                      <img src="/images/content/photo/review-macbook-14inch-2021-magsafe-port.jpg" alt="MacBookのバッテリー残量イメージ" className="media-card__img" width={800} height={450} loading="lazy" />
+                      <Image src="/images/content/photo/review-macbook-14inch-2021-magsafe-port.jpg" alt="MacBookのバッテリー残量イメージ" className="media-card__img" width={800} height={450} sizes="(max-width: 768px) 100vw, 800px" />
                     </div>
                     <div className="media-card__body">
                       <h3 className="media-card__title">② バッテリー無償交換はハードルが高い</h3>
@@ -396,7 +396,7 @@ export default function MacbookAppleCarePage() {
                   {/* 理由③: 修理費用は無料にはならない */}
                   <div className="m-card m-card--shadow m-card--padded" id="repair-cost">
                     <div className="media-card__img-wrap">
-                      <img src="/images/content/photo/macbook-edit.webp" alt="MacBookの修理イメージ" className="media-card__img" width={800} height={450} loading="lazy" />
+                      <Image src="/images/content/photo/macbook-edit.webp" alt="MacBookの修理イメージ" className="media-card__img" width={800} height={450} sizes="(max-width: 768px) 100vw, 800px" />
                     </div>
                     <div className="media-card__body">
                       <h3 className="media-card__title">③ 修理費用は無料にはならない</h3>
@@ -415,7 +415,7 @@ export default function MacbookAppleCarePage() {
                   {/* 理由④: 自然故障は1年間無償対応 */}
                   <div className="m-card m-card--shadow m-card--padded" id="warranty">
                     <div className="media-card__img-wrap">
-                      <img src="/images/content/photo/use-macbook.jpg" alt="MacBookを日常使用するイメージ" className="media-card__img" width={800} height={450} loading="lazy" />
+                      <Image src="/images/content/photo/use-macbook.jpg" alt="MacBookを日常使用するイメージ" className="media-card__img" width={800} height={450} sizes="(max-width: 768px) 100vw, 800px" />
                     </div>
                     <div className="media-card__body">
                       <h3 className="media-card__title">④ 自然故障は購入後1年間は無償対応済み</h3>
@@ -469,7 +469,7 @@ export default function MacbookAppleCarePage() {
                   {/* 理由⑤: 代替保険がある */}
                   <div className="m-card m-card--shadow m-card--padded">
                     <div className="media-card__img-wrap">
-                      <img src="/images/content/photo/macbook-peep-prevention-filter-front-02.jpg" alt="MacBookを使うイメージ" className="media-card__img" width={800} height={450} loading="lazy" />
+                      <Image src="/images/content/photo/macbook-peep-prevention-filter-front-02.jpg" alt="MacBookを使うイメージ" className="media-card__img" width={800} height={450} sizes="(max-width: 768px) 100vw, 800px" />
                     </div>
                     <div className="media-card__body">
                       <h3 className="media-card__title">⑤ コスパに優れた代替保険サービスがある</h3>
@@ -500,7 +500,7 @@ export default function MacbookAppleCarePage() {
 
                   <div className="m-card m-card--shadow m-card--padded">
                     <div className="media-card__img-wrap">
-                      <img src="/images/content/photo/review-macbook-14inch-2021-sdcard-slot.jpg" alt="MacBook Proを使用するイメージ" className="media-card__img" width={800} height={450} loading="lazy" />
+                      <Image src="/images/content/photo/review-macbook-14inch-2021-sdcard-slot.jpg" alt="MacBook Proを使用するイメージ" className="media-card__img" width={800} height={450} sizes="(max-width: 768px) 100vw, 800px" />
                     </div>
                     <div className="media-card__body">
                       <h3 className="media-card__title">MacBook Pro（高額モデル）を外出先でヘビー使用する人</h3>
@@ -515,7 +515,7 @@ export default function MacbookAppleCarePage() {
 
                   <div className="m-card m-card--shadow m-card--padded">
                     <div className="media-card__img-wrap">
-                      <img src="/images/content/photo/mx-keys-mini-for-mac-use-03-1024x683.webp" alt="飲み物の近くでMacBookを使うイメージ" className="media-card__img" width={800} height={450} loading="lazy" />
+                      <Image src="/images/content/photo/mx-keys-mini-for-mac-use-03-1024x683.webp" alt="飲み物の近くでMacBookを使うイメージ" className="media-card__img" width={800} height={450} sizes="(max-width: 768px) 100vw, 800px" />
                     </div>
                     <div className="media-card__body">
                       <h3 className="media-card__title">液体をこぼす頻度が高い環境で使う人</h3>
@@ -527,7 +527,7 @@ export default function MacbookAppleCarePage() {
 
                   <div className="m-card m-card--shadow m-card--padded">
                     <div className="media-card__img-wrap">
-                      <img src="/images/content/photo/iphone-broken.jpg" alt="iPhoneの画面がひび割れする様子" className="media-card__img" width={800} height={450} loading="lazy" />
+                      <Image src="/images/content/photo/iphone-broken.jpg" alt="iPhoneの画面がひび割れする様子" className="media-card__img" width={800} height={450} sizes="(max-width: 768px) 100vw, 800px" />
                     </div>
                     <div className="media-card__body">
                       <h3 className="media-card__title">過去にPCや電子機器を破損させた経験がある人</h3>
@@ -647,7 +647,7 @@ export default function MacbookAppleCarePage() {
                 <div className="m-callout m-callout--tip u-mt-xl">
                   <span className="m-callout__label">関連記事</span>
                   <p>
-                    Apple Care+とモバイル保険をさらに詳しく比較したい方は「<a href="/iphone/mobile-hoken-compare/" style={{ color: 'var(--color-primary)' }}>知らないと損！Apple Care+よりもモバイル保険に加入した方がコスパが高い理由</a>」をご覧ください。
+                    Apple Care+とモバイル保険をさらに詳しく比較したい方は「<Link href="/iphone/mobile-hoken-compare/" style={{ color: 'var(--color-primary)' }}>知らないと損！Apple Care+よりもモバイル保険に加入した方がコスパが高い理由</Link>」をご覧ください。
                   </p>
                 </div>
               </div>
@@ -668,7 +668,7 @@ export default function MacbookAppleCarePage() {
 
                 <div className="m-card m-card--shadow m-card--padded u-mt-2xl">
                   <div className="media-card__img-wrap">
-                    <img src="/images/content/photo/review-macbook-14inch-2021-summary.jpg" alt="中古MacBookを使うイメージ" className="media-card__img" width={800} height={450} loading="lazy" />
+                    <Image src="/images/content/photo/review-macbook-14inch-2021-summary.jpg" alt="中古MacBookを使うイメージ" className="media-card__img" width={800} height={450} sizes="(max-width: 768px) 100vw, 800px" />
                   </div>
                   <div className="media-card__body">
                     <h3 className="media-card__title">新品＋Apple Care+より、中古MacBookの方がコスパが高いことも</h3>

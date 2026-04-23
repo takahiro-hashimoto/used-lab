@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import type { FaqItem, CheckItem, FailurePattern, InsuranceProps } from '@/app/components/attention/types'
 
 export const insuranceData: InsuranceProps = {
@@ -29,7 +30,7 @@ export const faqItems: FaqItem[] = [
           「△」は現時点では使えますが、将来「×」になるリスクがあります。前の所有者が分割払いを滞納したり、端末が盗難届けの対象になった場合に通信できなくなります。
         </p>
         <p>
-          ただし、<strong>赤ロム永久保証付きの中古ショップで購入すれば、万が一×になっても交換・返金してもらえるためリスクはほぼありません。</strong>相場より安く買えるメリットもあるので、コストを抑えたい方は検討する価値があります。詳しくは<a href="/iphone/network-limit/">こちらの記事</a>で解説しています。
+          ただし、<strong>赤ロム永久保証付きの中古ショップで購入すれば、万が一×になっても交換・返金してもらえるためリスクはほぼありません。</strong>相場より安く買えるメリットもあるので、コストを抑えたい方は検討する価値があります。詳しくは<Link href="/iphone/network-limit/">こちらの記事</Link>で解説しています。
         </p>
       </>
     ),

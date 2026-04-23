@@ -21,7 +21,6 @@ export default function PopularSection({
   sectionDescription,
   imageSrc,
   imageAlt,
-  subtitle,
   cardTitle,
   cardDescription,
   buttonText,

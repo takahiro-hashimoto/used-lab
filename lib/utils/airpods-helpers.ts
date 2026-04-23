@@ -3,9 +3,7 @@ import {
   getReleaseYear,
   getReleaseMonth,
   formatReleaseDate,
-  formatPrice,
   filterLast3Months as filterLast3MonthsGeneric,
-  calculateRepairLifespan,
   calculateOSLifespan as calculateOSLifespanGeneric,
   aggregateDailyPrices as aggregateDailyPricesGeneric,
   calculatePriceRange as calculatePriceRangeGeneric,
@@ -191,7 +189,6 @@ export function generateFaqsForJsonLd(
   model: AirPodsModel,
 ): { question: string; answer: string }[] {
   const faqs: { question: string; answer: string }[] = []
-  const v = getVerdict(model)
   const fwLife = calculateFirmwareLifespan(model.date)
 
   faqs.push({

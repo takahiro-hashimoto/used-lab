@@ -3,6 +3,7 @@
  * lifespan-card (m-stat-card) パターンで2モデル並列表示
  */
 
+import Link from 'next/link'
 import type { IPhoneModel } from '@/lib/types'
 import { calculateOSLifespan } from '@/lib/utils/iphone-helpers'
 import { getShortName } from './helpers'
@@ -57,7 +58,7 @@ export default function CompareLifespan({ modelL, modelR }: Props) {
         <div className="m-callout m-callout--tip">
           <span className="m-callout__label">memo</span>
           <p className="m-callout__text">
-            中古iPhoneのiOSサポート期間について詳しく知りたい方は「<a href="/iphone/used-iphone-support/">中古iPhoneのiOSサポートはいつまで？</a>」をご覧ください。
+            中古iPhoneのiOSサポート期間について詳しく知りたい方は「<Link href="/iphone/used-iphone-support/">中古iPhoneのiOSサポートはいつまで？</Link>」をご覧ください。
           </p>
         </div>
       </div>

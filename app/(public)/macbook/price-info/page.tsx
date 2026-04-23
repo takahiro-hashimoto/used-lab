@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import type { Metadata } from 'next'
 import {
   getAllMacBookModels,
@@ -5,7 +6,6 @@ import {
   getAllProductShopLinksByType,
 } from '@/lib/queries'
 import type { MacBookModel, MacBookPriceLog } from '@/lib/types'
-import { filterLast3Months } from '@/lib/utils/shared-helpers'
 import { PRICE_INFO_UPDATE_MONTH, CHART_COLORS, FAQ_ITEMS } from '@/lib/data/macbook-price-info'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import dynamic from 'next/dynamic'
@@ -21,6 +21,7 @@ import FaqSection from './components/FaqSection'
 import MacBookArticleFooter from '@/app/components/macbook/MacBookArticleFooter'
 import { getHeroImage } from '@/lib/data/hero-images'
 import HeroMeta from '@/app/components/HeroMeta'
+import { get90DaysAgo } from '@/lib/utils/shared-helpers'
 
 // ============================================================
 // 型定義
@@ -137,13 +138,13 @@ export default async function MacBookPriceInfoPage() {
     getAllProductShopLinksByType('macbook'),
   ])
 
-  const priceLogsMap = await getAllMacBookPriceLogsByModelIds(allModels.map((m) => m.id))
+  const priceLogsMap = await getAllMacBookPriceLogsByModelIds(allModels.map((m) => m.id), get90DaysAgo())
 
   let colorIndex = 0
   const modelsData: ModelData[] = []
 
   for (const model of allModels) {
-    const logs = filterLast3Months(priceLogsMap[model.id] || [])
+    const logs = priceLogsMap[model.id] || []
 
     // 最小容量をログから取得
     const storageSet = new Set<number>()
@@ -371,7 +372,7 @@ export default async function MacBookPriceInfoPage() {
               </p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                情報を網羅的に得たい方は「<a href="/macbook/">中古MacBook購入完全ガイド</a>」も参考にしてみてください！
+                情報を網羅的に得たい方は「<Link href="/macbook/">中古MacBook購入完全ガイド</Link>」も参考にしてみてください！
               </p>
             </div>
           </div>

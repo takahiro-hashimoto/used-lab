@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Breadcrumb from '@/app/components/Breadcrumb'
@@ -147,7 +148,7 @@ export default function UsedAirpodsAttentionPage() {
               </p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                中古AirPodsの全体像を把握したい方は「<a href="/airpods">中古AirPods完全購入ガイド</a>」をご覧ください。
+                中古AirPodsの全体像を把握したい方は「<Link href="/airpods/">中古AirPods完全購入ガイド</Link>」をご覧ください。
               </p>
             </div>
           </div>

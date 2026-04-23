@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import {
@@ -211,7 +212,7 @@ export default async function IPhoneTopPage() {
                 そこでこの記事では、{RECOMMEND_DATE_LABEL}のおすすめ中古iPhone {RECOMMEND_COUNT}機種を厳選。
                 それぞれの特徴と向いている人を詳しく解説します。Apple認定整備済製品との違いも紹介しているので、初めて中古iPhoneを買う方にもおすすめの内容です。
               </p>
-              <p className="lead-link"><i className="fa-solid fa-arrow-right" aria-hidden="true"></i> 情報を網羅的に得たい方は「<a href="/iphone/">中古iPhone購入完全ガイド</a>」も参考にしてみてください！</p>
+              <p className="lead-link"><i className="fa-solid fa-arrow-right" aria-hidden="true"></i> 情報を網羅的に得たい方は「<Link href="/iphone/">中古iPhone購入完全ガイド</Link>」も参考にしてみてください！</p>
             </div>
           </div>
         </section>

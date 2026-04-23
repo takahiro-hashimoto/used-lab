@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 
 export default function BuyMethodsSection() {
   return (
@@ -18,13 +19,14 @@ iPadを安く買う7つの方法
         <div className="l-grid l-grid--1col" style={{ gap: 'var(--space-xl)' }}>
           {/* ── 1. Appleギフトカード × 楽天リーベイツ ── */}
           <div id="gift-rebates" className="m-card m-card--shadow buy-method-card">
-            <img
+            <Image
               src="/images/content/photo/ipad-buy/ipad-sale-step-1024x569.jpg"
               alt="iPadを安く買う方法！ポイント二重取り編"
               className="buy-method-card__img"
               width={1024}
               height={569}
-              loading="lazy"
+              priority
+              sizes="(max-width: 768px) 100vw, 800px"
             />
             <div className="buy-method-card__body">
               <h3 className="buy-method-card__title">Appleギフトカード × 楽天リーベイツ</h3>
@@ -49,13 +51,13 @@ iPadを安く買う7つの方法
                   <div className="m-timeline__number">1</div>
                   <div className="m-timeline__content">
                     <h4>楽天市場でAppleギフトカードを購入</h4>
-                    <img
+                    <Image
                       src="/images/content/photo/ipad-buy/apple-giftcard-buy-1024x576.jpg"
                       alt="楽天市場でAppleギフトカードを購入"
                       className="m-timeline__img"
                       width={1024}
                       height={576}
-                      loading="lazy"
+                      sizes="(max-width: 768px) 100vw, 720px"
                     />
                     <p>Apple製品をお得に買うための第一歩は、楽天市場で「<a href="https://hb.afl.rakuten.co.jp/hgc/2b438bef.163112e7.2b438bf0.c161de07/?pc=https%3A%2F%2Fevent.rakuten.co.jp%2Fcomputer%2Fitunes%2F&amp;link_type=text&amp;ut=eyJwYWdlIjoidXJsIiwidHlwZSI6InRleHQiLCJjb2wiOjF9" target="_blank" rel="nofollow noreferrer noopener">Appleギフトカード</a>」を購入することです。</p>
                     <p>他でも買えますが、楽天を使う最大のメリットはポイント還元率。SPU（スーパーポイントアップ）や買いまわりイベントを組み合わせることで、驚くほどポイントが貯まります。</p>
@@ -77,13 +79,13 @@ iPadを安く買う7つの方法
                   <div className="m-timeline__number">2</div>
                   <div className="m-timeline__content">
                     <h4>AppleギフトカードをApple IDに登録</h4>
-                    <img
+                    <Image
                       src="/images/content/photo/ipad-buy/c167fb3e3db0bc7458bee73310400259-1024x576.jpg"
                       alt="AppleギフトカードをApple IDに登録"
                       className="m-timeline__img"
                       width={1024}
                       height={576}
-                      loading="lazy"
+                      sizes="(max-width: 768px) 100vw, 720px"
                     />
                     <p>楽天市場でAppleギフトカードを購入すると、数分後にメールが届きます。</p>
                     <p>送られてきたコードをタップして案内に従って操作していけば、ギフトカードの購入金額がApple IDの残高に追加されます。</p>
@@ -94,13 +96,13 @@ iPadを安く買う7つの方法
                   <div className="m-timeline__number">3</div>
                   <div className="m-timeline__content">
                     <h4>楽天リーベイツを経由してAppleストアで買い物</h4>
-                    <img
+                    <Image
                       src="/images/content/photo/ipad-buy/rakuten-reabayts-1024x576.jpg"
                       alt="楽天リーベイツを経由してAppleストアで買い物"
                       className="m-timeline__img"
                       width={1024}
                       height={576}
-                      loading="lazy"
+                      sizes="(max-width: 768px) 100vw, 720px"
                     />
                     <p>あとはネットショップまとめサイトの<a href="https://www.rebates.jp/referrer?referrerid=ksDHCQqoohw%3D" target="_blank" rel="noreferrer noopener nofollow">楽天リーベイツ</a>を経由してApple公式ストアへ進み、チャージしたAppleギフトで買い物をするだけ。</p>
                     <p>このフローを挟むことで、下記のような還元率でポイントをゲットできます。</p>
@@ -125,13 +127,13 @@ iPadを安く買う7つの方法
 
           {/* ── 2. Amazonで買う ── */}
           <div id="amazon" className="m-card m-card--shadow buy-method-card">
-            <img
+            <Image
               src="/images/content/photo/ipad-buy/ipad-sale-for-amazon-1024x569.jpg"
               alt="iPadを安く買う方法！Amazon編"
               className="buy-method-card__img"
               width={1024}
               height={569}
-              loading="lazy"
+              sizes="(max-width: 768px) 100vw, 800px"
             />
             <div className="buy-method-card__body">
               <h3 className="buy-method-card__title">Amazonで買う</h3>
@@ -212,13 +214,13 @@ iPadを安く買う7つの方法
 
           {/* ── 3. 楽天市場で買う ── */}
           <div id="rakuten" className="m-card m-card--shadow buy-method-card">
-            <img
+            <Image
               src="/images/content/photo/ipad-buy/ipad-sale-for-rakuten-01-1024x569.jpg"
               alt="iPadを安く買う方法！楽天市場編"
               className="buy-method-card__img"
               width={1024}
               height={569}
-              loading="lazy"
+              sizes="(max-width: 768px) 100vw, 800px"
             />
             <div className="buy-method-card__body">
               <h3 className="buy-method-card__title">楽天市場で買う</h3>
@@ -293,13 +295,13 @@ iPadを安く買う7つの方法
 
           {/* ── 4. ヤフーショッピングで買う ── */}
           <div id="yahoo" className="m-card m-card--shadow buy-method-card">
-            <img
+            <Image
               src="/images/content/photo/ipad-buy/ipad-sale-yahoo-shop-1024x569.jpg"
               alt="iPadを安く買う方法！ヤフーショッピング編"
               className="buy-method-card__img"
               width={1024}
               height={569}
-              loading="lazy"
+              sizes="(max-width: 768px) 100vw, 800px"
             />
             <div className="buy-method-card__body">
               <h3 className="buy-method-card__title">ヤフーショッピングで買う</h3>
@@ -372,13 +374,13 @@ iPadを安く買う7つの方法
 
           {/* ── 5. 家電量販店ECサイトで買う ── */}
           <div id="electronics" className="m-card m-card--shadow buy-method-card">
-            <img
+            <Image
               src="/images/content/photo/ipad-buy/ipad-sale-yamadadenki-1024x569.jpg"
               alt="iPadを安く買う方法！家電量販店編"
               className="buy-method-card__img"
               width={1024}
               height={569}
-              loading="lazy"
+              sizes="(max-width: 768px) 100vw, 800px"
             />
             <div className="buy-method-card__body">
               <h3 className="buy-method-card__title">家電量販店ECサイトで買う</h3>
@@ -426,13 +428,13 @@ iPadを安く買う7つの方法
 
           {/* ── 6. 中古ショップで買う ── */}
           <div id="used" className="m-card m-card--shadow buy-method-card">
-            <img
+            <Image
               src="/images/content/photo/ipad-buy/ipad-sale-used-1024x569.jpg"
               alt="iPadを安く買う方法！中古ショップ編"
               className="buy-method-card__img"
               width={1024}
               height={569}
-              loading="lazy"
+              sizes="(max-width: 768px) 100vw, 800px"
             />
             <div className="buy-method-card__body">
               <h3 className="buy-method-card__title">中古ショップで買う</h3>
@@ -481,13 +483,13 @@ iPadを安く買う7つの方法
 
           {/* ── 7. Appleストアで買う ── */}
           <div id="apple-store" className="m-card m-card--shadow buy-method-card">
-            <img
+            <Image
               src="/images/content/photo/ipad-buy/ipad-sale-apple-store-1024x569.jpg"
               alt="iPadを安く買う方法！Appleストア編"
               className="buy-method-card__img"
               width={1024}
               height={569}
-              loading="lazy"
+              sizes="(max-width: 768px) 100vw, 800px"
             />
             <div className="buy-method-card__body">
               <h3 className="buy-method-card__title">Appleストアで買う</h3>

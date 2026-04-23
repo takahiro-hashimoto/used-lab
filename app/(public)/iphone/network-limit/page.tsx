@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import RatingMark from '@/app/components/RatingMark'
@@ -140,7 +141,7 @@ export default async function NetworkLimitPage() {
               </p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                中古iPhoneの全体像を把握したい方は「<a href="/iphone">中古iPhone完全購入ガイド</a>」をご覧ください。
+                中古iPhoneの全体像を把握したい方は「<Link href="/iphone">中古iPhone完全購入ガイド</Link>」をご覧ください。
               </p>
             </div>
           </div>
@@ -392,7 +393,7 @@ export default async function NetworkLimitPage() {
               <div className="m-callout m-callout--tip u-mt-xl">
                 <span className="m-callout__label">memo</span>
                 <p>
-                  各ショップの特徴や選び方を詳しく知りたい方は「<a href="/iphone/iphone-shop/" style={{ color: 'var(--color-primary)' }}>中古iPhoneはどこで買うのが正解？おすすめサイト・ショップ比較</a>」をご覧ください。
+                  各ショップの特徴や選び方を詳しく知りたい方は「<Link href="/iphone/iphone-shop/" style={{ color: 'var(--color-primary)' }}>中古iPhoneはどこで買うのが正解？おすすめサイト・ショップ比較</Link>」をご覧ください。
                 </p>
               </div>
             </div>

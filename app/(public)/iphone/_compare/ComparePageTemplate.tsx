@@ -3,6 +3,7 @@
  * 各ルートの page.tsx から config を受け取って全セクションを描画
  */
 
+import Link from 'next/link'
 import '@/app/compare.css'
 import { notFound } from 'next/navigation'
 import type { IPhoneModel, IPhonePriceLog } from '@/lib/types'
@@ -106,7 +107,7 @@ export default async function ComparePageTemplate({ config }: Props) {
               </p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                情報を網羅的に得たい方は「<a href="/iphone/">中古iPhone購入完全ガイド</a>」も参考にしてみてください！
+                情報を網羅的に得たい方は「<Link href="/iphone/">中古iPhone購入完全ガイド</Link>」も参考にしてみてください！
               </p>
             </div>
           </div>

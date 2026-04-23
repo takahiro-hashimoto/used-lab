@@ -27,10 +27,6 @@ function getFeatureValue(model: IPadModel, key: string): string {
   return String(val).replace(/<br\s*\/?>/g, '\n')
 }
 
-function getAntutuTotal(m: IPadModel): string {
-  const t = (m.antutu_cpu || 0) + (m.antutu_gpu || 0) + (m.antutu_mem || 0) + (m.antutu_ux || 0)
-  return t > 0 ? t.toLocaleString() : '-'
-}
 
 function formatStorage(strage: string | null): string {
   if (!strage) return '-'

@@ -5,10 +5,8 @@ import {
   formatReleaseDate,
   formatPrice,
   filterLast3Months as filterLast3MonthsGeneric,
-  calculateRepairLifespan,
   calculateOSLifespan as calculateOSLifespanGeneric,
   aggregateDailyPrices as aggregateDailyPricesGeneric,
-  calculatePriceRange as calculatePriceRangeGeneric,
 } from './shared-helpers'
 
 // Re-export shared functions that have the same signature

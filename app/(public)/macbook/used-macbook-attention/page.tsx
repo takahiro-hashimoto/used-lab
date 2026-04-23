@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Breadcrumb from '@/app/components/Breadcrumb'
@@ -177,7 +178,7 @@ export default function UsedMacBookAttentionPage() {
               </p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                中古MacBookの全体像を把握したい方は「<a href="/macbook">中古MacBook完全購入ガイド</a>」をご覧ください。
+                中古MacBookの全体像を把握したい方は「<Link href="/macbook">中古MacBook完全購入ガイド</Link>」をご覧ください。
               </p>
             </div>
           </div>

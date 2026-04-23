@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import {
@@ -6,7 +7,7 @@ import {
   getAllProductShopLinksByType,
   getLatestAirPodsPriceLog,
 } from '@/lib/queries'
-import type { AirPodsModel, AirPodsPriceLog } from '@/lib/types'
+import type { AirPodsModel } from '@/lib/types'
 import { buildFallbackShops, buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import {
   RECOMMEND_DATE_LABEL,
@@ -227,7 +228,7 @@ export default async function AirPodsRecommendPage() {
                 この記事では、今買っても後悔しない中古AirPods {RECOMMEND_COUNT}機種を厳選し、それぞれの特徴と向いている人を
                 詳しく解説します。
               </p>
-              <p className="lead-link"><i className="fa-solid fa-arrow-right" aria-hidden="true"></i> 情報を網羅的に得たい方は「<a href="/watch/">中古Apple Watch購入完全ガイド</a>」も参考にしてみてください！</p>
+              <p className="lead-link"><i className="fa-solid fa-arrow-right" aria-hidden="true"></i> 情報を網羅的に得たい方は「<Link href="/airpods/">中古AirPods購入完全ガイド</Link>」も参考にしてみてください！</p>
             </div>
           </div>
         </section>

@@ -47,6 +47,7 @@ export default function NavigationProgressBar() {
 
     if (timerRef.current) clearTimeout(timerRef.current);
 
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setPhase('completing');
     timerRef.current = setTimeout(() => {
       setPhase('fading');

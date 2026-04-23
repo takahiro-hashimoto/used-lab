@@ -109,7 +109,7 @@ export default function PreCheckSection() {
             </p>
             <p className="lead-link">
               <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-              <a href="/iphone/network-limit/">ネットワーク制限△の中古iPhone・iPadを買うメリット・デメリット</a>
+              <Link href="/iphone/network-limit/">ネットワーク制限△の中古iPhone・iPadを買うメリット・デメリット</Link>
             </p>
           </div>
         </MediaCard>

@@ -13,7 +13,7 @@ export default function ConclusionSection() {
             <li><strong>価格重視・知識あり</strong>ならECモールがおすすめ。ポイント還元で実質価格を抑えられます。</li>
             <li><strong>最安値を狙いたい</strong>ならフリマアプリも選択肢。ただし赤ロム・バッテリー劣化は自己責任です。</li>
           </ol>
-          <p className="m-desc-text" style={{ marginTop: 'var(--space-md)' }}>迷っている時点では「専門店」か「Apple整備済」を選ぶのが無難です。保証・返品に対応しており、失敗しても"戻れる選択肢"が残ります。</p>
+          <p className="m-desc-text" style={{ marginTop: 'var(--space-md)' }}>迷っている時点では「専門店」か「Apple整備済」を選ぶのが無難です。保証・返品に対応しており、失敗しても&ldquo;戻れる選択肢&rdquo;が残ります。</p>
         </div>
       </div>
     </section>

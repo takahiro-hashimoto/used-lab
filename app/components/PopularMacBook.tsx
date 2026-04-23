@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { getShops } from '@/lib/queries'
 
 export default async function PopularMacBook() {
@@ -30,9 +31,9 @@ export default async function PopularMacBook() {
               コスパ重視、クリエイティブ向け、持ち運び重視など目的別に買うべきモデルを紹介。チップ性能やメモリ、バッテリー持ち、macOSサポート期間など購入前にチェックすべき項目も網羅しています。
             </p>
             <div className="popular-card-buttons">
-              <a href="/macbook/recommend/" className="m-btn m-btn--primary">
+              <Link href="/macbook/recommend/" className="m-btn m-btn--primary">
                 おすすめモデルを見る <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
-              </a>
+              </Link>
               {iosys?.macbook_url && (
                 <a className="m-btn m-btn--secondary" href={iosys.macbook_url} target="_blank" rel="nofollow noopener noreferrer">
                   イオシスで中古MacBookを探す <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>

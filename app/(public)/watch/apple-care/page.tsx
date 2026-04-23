@@ -315,7 +315,7 @@ export default function WatchAppleCarePage() {
                   {/* 理由1: 損益分岐点 */}
                   <div className="m-card m-card--shadow m-card--padded">
                     <div className="media-card__img-wrap">
-                      <img src="/images/content/photo/apple-watch-face.jpg" alt="Apple Watchの画面イメージ" className="media-card__img" width={800} height={450} loading="lazy" />
+                      <Image src="/images/content/photo/apple-watch-face.jpg" alt="Apple Watchの画面イメージ" className="media-card__img" width={800} height={450} sizes="(max-width: 768px) 100vw, 800px" />
                     </div>
                     <div className="media-card__body">
                       <h3 className="media-card__title">① 2年間で画面を割る確率は低い</h3>
@@ -374,7 +374,7 @@ export default function WatchAppleCarePage() {
                   {/* 理由2: バッテリー無償交換のハードル */}
                   <div className="m-card m-card--shadow m-card--padded" id="battery">
                     <div className="media-card__img-wrap">
-                      <img src="/images/content/photo/torras-flasheye-review-4.jpg" alt="Apple Watchの充電イメージ" className="media-card__img" width={800} height={450} loading="lazy" />
+                      <Image src="/images/content/photo/torras-flasheye-review-4.jpg" alt="Apple Watchの充電イメージ" className="media-card__img" width={800} height={450} sizes="(max-width: 768px) 100vw, 800px" />
                     </div>
                     <div className="media-card__body">
                       <h3 className="media-card__title">② バッテリー無償交換はハードルが高い</h3>
@@ -393,7 +393,7 @@ export default function WatchAppleCarePage() {
                   {/* 理由3: 修理費用は無料にはならない */}
                   <div className="m-card m-card--shadow m-card--padded" id="repair-cost">
                     <div className="media-card__img-wrap">
-                      <img src="/images/content/photo/apple-watch-unlock-macbook.jpg" alt="Apple Watchを使用する様子" className="media-card__img" width={800} height={450} loading="lazy" />
+                      <Image src="/images/content/photo/apple-watch-unlock-macbook.jpg" alt="Apple Watchを使用する様子" className="media-card__img" width={800} height={450} sizes="(max-width: 768px) 100vw, 800px" />
                     </div>
                     <div className="media-card__body">
                       <h3 className="media-card__title">③ 修理費用は無料にはならない</h3>
@@ -412,7 +412,7 @@ export default function WatchAppleCarePage() {
                   {/* 理由4: 自然故障は1年間無償対応 */}
                   <div className="m-card m-card--shadow m-card--padded" id="warranty">
                     <div className="media-card__img-wrap">
-                      <img src="/images/content/photo/apple-watch-image-1-1.jpg" alt="Apple Watchを日常使用するイメージ" className="media-card__img" width={800} height={450} loading="lazy" />
+                      <Image src="/images/content/photo/apple-watch-image-1-1.jpg" alt="Apple Watchを日常使用するイメージ" className="media-card__img" width={800} height={450} sizes="(max-width: 768px) 100vw, 800px" />
                     </div>
                     <div className="media-card__body">
                       <h3 className="media-card__title">④ 自然故障は購入後1年間は無償対応済み</h3>
@@ -466,7 +466,7 @@ export default function WatchAppleCarePage() {
                   {/* 理由5: 代替保険がある */}
                   <div className="m-card m-card--shadow m-card--padded">
                     <div className="media-card__img-wrap">
-                      <img src="/images/content/photo/used-lab-image.jpg" alt="Apple Watchを使うイメージ" className="media-card__img" width={800} height={450} loading="lazy" />
+                      <Image src="/images/content/photo/used-lab-image.jpg" alt="Apple Watchを使うイメージ" className="media-card__img" width={800} height={450} sizes="(max-width: 768px) 100vw, 800px" />
                     </div>
                     <div className="media-card__body">
                       <h3 className="media-card__title">⑤ コスパに優れた代替保険サービスがある</h3>
@@ -497,7 +497,7 @@ export default function WatchAppleCarePage() {
 
                   <div className="m-card m-card--shadow m-card--padded">
                     <div className="media-card__img-wrap">
-                      <img src="/images/content/photo/G0uLO0EbcAA9rwj.webp" alt="Apple Watch Ultraのイメージ" className="media-card__img" width={800} height={450} loading="lazy" />
+                      <Image src="/images/content/photo/G0uLO0EbcAA9rwj.webp" alt="Apple Watch Ultraのイメージ" className="media-card__img" width={800} height={450} sizes="(max-width: 768px) 100vw, 800px" />
                     </div>
                     <div className="media-card__body">
                       <h3 className="media-card__title">Apple Watch Ultra（高額モデル）をアウトドア・スポーツでヘビー使用する人</h3>
@@ -512,7 +512,7 @@ export default function WatchAppleCarePage() {
 
                   <div className="m-card m-card--shadow m-card--padded">
                     <div className="media-card__img-wrap">
-                      <img src="/images/content/photo/ipad-children.jpg" alt="子どもがタブレットを触る様子" className="media-card__img" width={800} height={450} loading="lazy" />
+                      <Image src="/images/content/photo/ipad-children.jpg" alt="子どもがタブレットを触る様子" className="media-card__img" width={800} height={450} sizes="(max-width: 768px) 100vw, 800px" />
                     </div>
                     <div className="media-card__body">
                       <h3 className="media-card__title">子どもに持たせる予定がある人</h3>
@@ -524,7 +524,7 @@ export default function WatchAppleCarePage() {
 
                   <div className="m-card m-card--shadow m-card--padded">
                     <div className="media-card__img-wrap">
-                      <img src="/images/content/photo/iphone-broken.jpg" alt="画面がひび割れたiPhone" className="media-card__img" width={800} height={450} loading="lazy" />
+                      <Image src="/images/content/photo/iphone-broken.jpg" alt="画面がひび割れたiPhone" className="media-card__img" width={800} height={450} sizes="(max-width: 768px) 100vw, 800px" />
                     </div>
                     <div className="media-card__body">
                       <h3 className="media-card__title">過去にスマホ・ウェアラブルを破損させた経験がある人</h3>
@@ -641,7 +641,7 @@ export default function WatchAppleCarePage() {
                 <div className="m-callout m-callout--tip u-mt-xl">
                   <span className="m-callout__label">関連記事</span>
                   <p>
-                    Apple Care+とモバイル保険をさらに詳しく比較したい方は「<a href="/iphone/mobile-hoken-compare/" style={{ color: 'var(--color-primary)' }}>知らないと損！Apple Care+よりもモバイル保険に加入した方がコスパが高い理由</a>」をご覧ください。
+                    Apple Care+とモバイル保険をさらに詳しく比較したい方は「<Link href="/iphone/mobile-hoken-compare/" style={{ color: 'var(--color-primary)' }}>知らないと損！Apple Care+よりもモバイル保険に加入した方がコスパが高い理由</Link>」をご覧ください。
                   </p>
                 </div>
               </div>
@@ -662,7 +662,7 @@ export default function WatchAppleCarePage() {
 
                 <div className="m-card m-card--shadow m-card--padded u-mt-2xl">
                   <div className="media-card__img-wrap">
-                    <img src="/images/content/photo/apple-watch-image-1-1.jpg" alt="Apple Watchのイメージ" className="media-card__img" width={800} height={450} loading="lazy" />
+                    <Image src="/images/content/photo/apple-watch-image-1-1.jpg" alt="Apple Watchのイメージ" className="media-card__img" width={800} height={450} sizes="(max-width: 768px) 100vw, 800px" />
                   </div>
                   <div className="media-card__body">
                     <h3 className="media-card__title">新品＋Apple Care+より、中古Apple Watchの方がコスパが高いことも</h3>

@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import MediaCard from '@/app/components/MediaCard'
 
 export default function PreCheckSection() {
@@ -53,7 +54,7 @@ export default function PreCheckSection() {
             </p>
             <p className="lead-link">
               <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-              <a href="/macbook/used-macbook-support">機種別macOSサポート期間一覧</a>
+              <Link href="/macbook/used-macbook-support">機種別macOSサポート期間一覧</Link>
             </p>
           </div>
         </MediaCard>

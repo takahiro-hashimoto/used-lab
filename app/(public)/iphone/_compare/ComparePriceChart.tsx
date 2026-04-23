@@ -3,6 +3,7 @@
  * DashboardSection風のインタラクティブチャート + 価格サマリー
  */
 
+import Link from 'next/link'
 import type { IPhoneModel, IPhonePriceLog } from '@/lib/types'
 import { filterLast3Months } from '@/lib/utils/iphone-helpers'
 import { calcAvgPriceRange, getShortName } from './helpers'
@@ -104,7 +105,7 @@ export default function ComparePriceChart({ modelL, modelR, priceLogsL, priceLog
         <div className="m-callout m-callout--tip u-mt-2xl">
           <span className="m-callout__label">memo</span>
           <p className="m-callout__text">
-            全モデルの中古相場を比較したい方は「<a href="/iphone/price-info/">iPhoneの中古相場一覧・価格推移</a>」をご覧ください。
+            全モデルの中古相場を比較したい方は「<Link href="/iphone/price-info/">iPhoneの中古相場一覧・価格推移</Link>」をご覧ください。
           </p>
         </div>
       </div>

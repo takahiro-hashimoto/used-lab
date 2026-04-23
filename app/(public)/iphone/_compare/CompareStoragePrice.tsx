@@ -3,6 +3,7 @@
  * 各容量ごとに最新ログの平均最安値を算出し、2モデルを並べて比較
  */
 
+import Link from 'next/link'
 import type { IPhoneModel, IPhonePriceLog } from '@/lib/types'
 import styles from './CompareStoragePrice.module.css'
 
@@ -150,7 +151,7 @@ export default function CompareStoragePrice({
         <div className="m-callout m-callout--tip u-mt-2xl">
           <span className="m-callout__label">memo</span>
           <p className="m-callout__text">
-            ストレージ容量の選び方は「<a href="/iphone/storage-guide/">iPhoneストレージ容量ガイド</a>」を参考にしてください。
+            ストレージ容量の選び方は「<Link href="/iphone/storage-guide/">iPhoneストレージ容量ガイド</Link>」を参考にしてください。
           </p>
         </div>
       </div>

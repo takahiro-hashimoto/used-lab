@@ -10,7 +10,7 @@ import BenchmarkRanking from './components/BenchmarkRanking'
 import ChipGenerationCompare from './components/ChipGenerationCompare'
 import UseCaseGuide from './components/UseCaseGuide'
 import IPhoneArticleFooter from '@/app/components/iphone/IPhoneArticleFooter'
-import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
+import { buildArticleJsonLd, getGitDateForFile , get90DaysAgo } from '@/lib/utils/shared-helpers'
 import { getHeroImage } from '@/lib/data/hero-images'
 
 const PAGE_TITLE = 'iPhoneのベンチマークを比較！全モデルの性能がわかるスコアランキング【2026年版】'
@@ -63,7 +63,7 @@ export default async function BenchmarkPage() {
     getAllIPhoneModels(),
     getAllProductShopLinksByType('iphone'),
   ])
-  const priceLogsMap = await getAllIPhonePriceLogsByModelIds(allModels.map((m) => m.id))
+  const priceLogsMap = await getAllIPhonePriceLogsByModelIds(allModels.map((m) => m.id), get90DaysAgo())
 
   // ベンチマークデータがあるモデルのみ抽出
   const benchModels = allModels

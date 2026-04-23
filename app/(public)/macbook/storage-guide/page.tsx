@@ -11,7 +11,7 @@ import {
 import type { MacBookPriceLog } from '@/lib/types'
 import StorageTable, { type StorageModel } from './components/StorageTable'
 import MacBookArticleFooter from '@/app/components/macbook/MacBookArticleFooter'
-import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
+import { buildArticleJsonLd, getGitDateForFile , get90DaysAgo } from '@/lib/utils/shared-helpers'
 import { getHeroImage } from '@/lib/data/hero-images'
 import HeroMeta from '@/app/components/HeroMeta'
 
@@ -74,7 +74,7 @@ export default async function StorageGuidePage() {
     getAllProductShopLinksByType('macbook'),
   ])
 
-  const priceLogsMap = await getAllMacBookPriceLogsByModelIds(allModels.map((m) => m.id))
+  const priceLogsMap = await getAllMacBookPriceLogsByModelIds(allModels.map((m) => m.id), get90DaysAgo())
 
   const storageModels: StorageModel[] = allModels.map((m) => {
     const logs = priceLogsMap[m.id] || []

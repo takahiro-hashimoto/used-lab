@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import {
@@ -5,8 +6,7 @@ import {
   getAllAirPodsPriceLogsByModelIds,
   getAllProductShopLinksByType,
 } from '@/lib/queries'
-import type { AirPodsModel, AirPodsPriceLog, ProductShopLink } from '@/lib/types'
-import { filterLast3Months } from '@/lib/utils/shared-helpers'
+import type { AirPodsPriceLog } from '@/lib/types'
 import { PRICE_INFO_UPDATE_MONTH, CHART_COLORS, FAQ_ITEMS } from '@/lib/data/airpods-price-info'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import AirPodsRelatedLinks from '@/app/components/airpods/AirPodsRelatedLinks'
@@ -24,6 +24,7 @@ import FaqSection from './components/FaqSection'
 import AuthorByline from '@/app/components/AuthorByline'
 import { getHeroImage } from '@/lib/data/hero-images'
 import HeroMeta from '@/app/components/HeroMeta'
+import { get90DaysAgo } from '@/lib/utils/shared-helpers'
 
 // ============================================================
 // 型定義
@@ -139,7 +140,7 @@ export default async function AirPodsPriceInfoPage() {
   ])
 
   // 全モデルの価格ログを1回のバルククエリで一括取得
-  const priceLogsMap = await getAllAirPodsPriceLogsByModelIds(allModels.map((m) => m.id))
+  const priceLogsMap = await getAllAirPodsPriceLogsByModelIds(allModels.map((m) => m.id), get90DaysAgo())
 
   // ModelData構築
   let colorIndex = 0
@@ -147,7 +148,7 @@ export default async function AirPodsPriceInfoPage() {
 
   for (let i = 0; i < allModels.length; i++) {
     const model = allModels[i]
-    const logs = filterLast3Months(priceLogsMap[model.id] || [])
+    const logs = priceLogsMap[model.id] || []
 
     // AirPodsにはstorageフィールドがないためスキップ
 
@@ -244,7 +245,6 @@ export default async function AirPodsPriceInfoPage() {
 
   const modelCount = modelsData.length
   const cheapestModel = rankingData[0]
-  const cheapestPrice = cheapestModel ? cheapestModel.currentPrice.toLocaleString() : '---'
 
   const today = new Date()
   const dateStr = today.toISOString().split('T')[0]
@@ -367,7 +367,7 @@ export default async function AirPodsPriceInfoPage() {
               </p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                情報を網羅的に得たい方は「<a href="/airpods/">中古AirPods購入完全ガイド</a>」も参考にしてみてください！
+                情報を網羅的に得たい方は「<Link href="/airpods/">中古AirPods購入完全ガイド</Link>」も参考にしてみてください！
               </p>
             </div>
           </div>
@@ -453,7 +453,6 @@ export default async function AirPodsPriceInfoPage() {
           <DashboardSection
             modelsData={modelsData}
             initialSelected={initialSelected}
-            seriesGroups={seriesGroups}
           />
 
           {priceDropRanking.length > 0 && (

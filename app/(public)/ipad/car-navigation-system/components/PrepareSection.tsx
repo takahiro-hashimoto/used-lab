@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 
 export default function PrepareSection() {
@@ -15,14 +16,12 @@ export default function PrepareSection() {
 
           <div className="m-card m-card--shadow m-card--padded media-card--aside">
             <div className="media-card__img-wrap">
-              <img
+              <Image
                 src="/images/content/thumbnail/ipad-image-11.jpg"
                 alt="iPad miniのセルラーモデル"
                 className="media-card__img"
                 width={240}
-                height={160}
-                loading="lazy"
-              />
+                height={160} sizes="(max-width: 480px) 100vw, 240px" />
             </div>
             <div className="media-card__body">
               <h3 className="media-card__title"><Link href="/ipad/recommend/">iPad本体（セルラーモデル）</Link></h3>
@@ -41,14 +40,12 @@ export default function PrepareSection() {
 
           <div className="m-card m-card--shadow m-card--padded media-card--aside">
             <div className="media-card__img-wrap">
-              <img
+              <Image
                 src="/images/content/thumbnail/mount-holder.jpg"
                 alt="車載ホルダーにiPadを設置した様子"
                 className="media-card__img"
                 width={240}
-                height={160}
-                loading="lazy"
-              />
+                height={160} sizes="(max-width: 480px) 100vw, 240px" />
             </div>
             <div className="media-card__body">
               <h3 className="media-card__title">車載ホルダー（タブレットマウント）</h3>
@@ -67,15 +64,13 @@ export default function PrepareSection() {
 
           <div className="m-card m-card--shadow m-card--padded media-card--aside">
             <div className="media-card__img-wrap">
-              <img
+              <Image
                 src="/images/content/thumbnail/anker-charger.jpg"
                 alt="シガーソケット充電器でiPadを充電"
                 className="media-card__img"
                 style={{ border: '1px solid var(--color-border-light)' }}
                 width={240}
-                height={160}
-                loading="lazy"
-              />
+                height={160} sizes="(max-width: 480px) 100vw, 240px" />
             </div>
             <div className="media-card__body">
               <h3 className="media-card__title">シガーソケット充電器</h3>
@@ -94,15 +89,13 @@ export default function PrepareSection() {
 
           <div className="m-card m-card--shadow m-card--padded media-card--aside">
             <div className="media-card__img-wrap">
-              <img
+              <Image
                 src="/images/content/thumbnail/car-navi-app.png"
                 alt="iPadでカーナビアプリを操作する様子"
                 className="media-card__img"
                 style={{ border: '1px solid var(--color-border-light)' }}
                 width={240}
-                height={160}
-                loading="lazy"
-              />
+                height={160} sizes="(max-width: 480px) 100vw, 240px" />
             </div>
             <div className="media-card__body">
               <h3 className="media-card__title">カーナビアプリ</h3>
@@ -117,14 +110,12 @@ export default function PrepareSection() {
 
           <div className="m-card m-card--shadow m-card--padded media-card--aside">
             <div className="media-card__img-wrap">
-              <img
+              <Image
                 src="/images/content/thumbnail/used-iphone-simlock.jpg"
                 alt="iPadにSIMカードを挿入"
                 className="media-card__img"
                 width={240}
-                height={160}
-                loading="lazy"
-              />
+                height={160} sizes="(max-width: 480px) 100vw, 240px" />
             </div>
             <div className="media-card__body">
               <h3 className="media-card__title">SIMカード（格安SIM）</h3>

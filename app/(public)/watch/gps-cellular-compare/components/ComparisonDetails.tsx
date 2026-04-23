@@ -1,17 +1,16 @@
+import Image from 'next/image'
 export default function ComparisonDetails() {
   return (
     <div className="u-mt-2xl" style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-xl)' }}>
       {/* ①Apple Watch単体で出来る範囲 — フルサイズ画像 */}
       <div id="standalone" className="m-card m-card--shadow m-card--padded">
         <div className="media-card__img-wrap">
-          <img
+          <Image
             src="/images/content/photo/ipad-wifi-04.webp"
             alt="Apple Watch単体で通信している様子"
             className="media-card__img"
             width={720}
-            height={400}
-            loading="lazy"
-          />
+            height={400} sizes="(max-width: 768px) 100vw, 720px" priority />
         </div>
         <div className="media-card__body">
           <h3 className="media-card__title">①Apple Watch単体で出来る範囲</h3>
@@ -110,14 +109,12 @@ export default function ComparisonDetails() {
       {/* ②ランニングコスト — フルサイズ画像 */}
       <div id="running-cost" className="m-card m-card--shadow m-card--padded">
         <div className="media-card__img-wrap">
-          <img
+          <Image
             src="/images/content/photo/nomad-stratos-band0008.jpg"
             alt="Apple Watchのセルラー通信にかかるランニングコストのイメージ"
             className="media-card__img"
             width={720}
-            height={400}
-            loading="lazy"
-          />
+            height={400} sizes="(max-width: 768px) 100vw, 720px" />
         </div>
         <div className="media-card__body">
           <h3 className="media-card__title">②ランニングコスト</h3>
@@ -187,14 +184,12 @@ export default function ComparisonDetails() {
       <div id="material" className="m-card m-card--shadow m-card--padded">
         <div className="media-card--aside">
           <div className="media-card__img-wrap">
-            <img
+            <Image
               src="/images/content/thumbnail/apple-watch-type.jpg"
               alt="Apple Watchのアルミニウム・ステンレス・チタニウム素材"
               className="media-card__img"
               width={240}
-              height={160}
-              loading="lazy"
-            />
+              height={160} sizes="(max-width: 480px) 100vw, 240px" />
           </div>
           <div className="media-card__body">
             <h3 className="media-card__title">③選べる素材の種類</h3>
@@ -249,14 +244,12 @@ export default function ComparisonDetails() {
       <div id="price-diff" className="m-card m-card--shadow m-card--padded">
         <div className="media-card--aside">
           <div className="media-card__img-wrap">
-            <img
+            <Image
               src="/images/content/thumbnail/apple-watch-image.jpg"
               alt="Apple Watch GPSモデルとセルラーモデルの価格差イメージ"
               className="media-card__img"
               width={240}
-              height={160}
-              loading="lazy"
-            />
+              height={160} sizes="(max-width: 480px) 100vw, 240px" />
           </div>
           <div className="media-card__body">
             <h3 className="media-card__title">④本体価格の差</h3>
@@ -304,14 +297,12 @@ export default function ComparisonDetails() {
       <div id="battery" className="m-card m-card--shadow m-card--padded">
         <div className="media-card--aside">
           <div className="media-card__img-wrap">
-            <img
+            <Image
               src="/images/content/thumbnail/watch-charge.jpg"
               alt="Apple Watchのバッテリー残量表示"
               className="media-card__img"
               width={240}
-              height={160}
-              loading="lazy"
-            />
+              height={160} sizes="(max-width: 480px) 100vw, 240px" />
           </div>
           <div className="media-card__body">
             <h3 className="media-card__title">⑤バッテリー持ちの違い</h3>
@@ -332,14 +323,12 @@ export default function ComparisonDetails() {
       <div id="digital-crown" className="m-card m-card--shadow m-card--padded">
         <div className="media-card--aside">
           <div className="media-card__img-wrap">
-            <img
+            <Image
               src="/images/content/thumbnail/digital-crown.jpg"
               alt="セルラーモデルのデジタルクラウンにある赤いリング"
               className="media-card__img"
               width={240}
-              height={160}
-              loading="lazy"
-            />
+              height={160} sizes="(max-width: 480px) 100vw, 240px" />
           </div>
           <div className="media-card__body">
             <h3 className="media-card__title">⑥デジタルクラウンのデザイン</h3>
@@ -357,14 +346,12 @@ export default function ComparisonDetails() {
       <div id="family-sharing" className="m-card m-card--shadow m-card--padded">
         <div className="media-card--aside">
           <div className="media-card__img-wrap">
-            <img
+            <Image
               src="/images/content/thumbnail/watch-image-07.jpg"
               alt="Apple Watchのファミリー共有で子どもと連絡を取るイメージ"
               className="media-card__img"
               width={240}
-              height={160}
-              loading="lazy"
-            />
+              height={160} sizes="(max-width: 480px) 100vw, 240px" />
           </div>
           <div className="media-card__body">
             <h3 className="media-card__title">⑦ファミリー共有</h3>

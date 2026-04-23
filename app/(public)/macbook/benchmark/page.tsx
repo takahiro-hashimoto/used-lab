@@ -11,7 +11,7 @@ import HeroMeta from '@/app/components/HeroMeta'
 import ChipGenerationCompare from './components/ChipGenerationCompare'
 import AirVsProSection from './components/AirVsProSection'
 import UseCaseGuide from './components/UseCaseGuide'
-import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
+import { buildArticleJsonLd, getGitDateForFile , get90DaysAgo } from '@/lib/utils/shared-helpers'
 import { getHeroImage } from '@/lib/data/hero-images'
 
 const PAGE_TITLE = 'MacBookのベンチマークを比較！全モデルの性能がわかるスコアランキング【2026年版】'
@@ -88,7 +88,7 @@ export default async function BenchmarkPage() {
     getAllMacBookModels(),
     getAllProductShopLinksByType('macbook'),
   ])
-  const priceLogsMap = await getAllMacBookPriceLogsByModelIds(allModels.map((m) => m.id))
+  const priceLogsMap = await getAllMacBookPriceLogsByModelIds(allModels.map((m) => m.id), get90DaysAgo())
 
   // ベンチマークデータをチップバリアント別に展開
   // benchmarks (JSON) がある場合はチップごとに別エントリ化、なければ従来の score_* を使用

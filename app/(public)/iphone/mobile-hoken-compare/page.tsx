@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Breadcrumb from '@/app/components/Breadcrumb'
@@ -153,7 +154,7 @@ export default function MobileHokenComparePage() {
                 </p>
                 <p className="lead-link">
                   <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                  中古iPhoneの選び方は「<a href="/iphone">中古iPhone完全購入ガイド</a>」もご覧ください。
+                  中古iPhoneの選び方は「<Link href="/iphone">中古iPhone完全購入ガイド</Link>」もご覧ください。
                 </p>
               </div>
             </div>
@@ -219,7 +220,7 @@ export default function MobileHokenComparePage() {
 
                 <div className="m-card m-card--shadow m-card--padded u-mt-2xl">
                   <div className="media-card__img-wrap">
-                    <img src="/images/content/photo/apple-store.jpg" alt="Apple Store" className="media-card__img" width={1200} height={800} loading="lazy" />
+                    <Image src="/images/content/photo/apple-store.jpg" alt="Apple Store" className="media-card__img" width={1200} height={800} sizes="(max-width: 768px) 100vw, 800px" />
                   </div>
                   <div className="media-card__body">
                     <h3 className="media-card__title">Apple Care+の概要</h3>
@@ -265,7 +266,7 @@ export default function MobileHokenComparePage() {
 
                 <div className="m-card m-card--shadow m-card--padded u-mt-2xl">
                   <div className="media-card__img-wrap">
-                    <img src="/images/content/photo/mobile-hoken.jpg" alt="モバイル保険" className="media-card__img" width={1200} height={800} loading="lazy" />
+                    <Image src="/images/content/photo/mobile-hoken.jpg" alt="モバイル保険" className="media-card__img" width={1200} height={800} sizes="(max-width: 768px) 100vw, 800px" />
                   </div>
                   <div className="media-card__body">
                     <h3 className="media-card__title">モバイル保険の概要</h3>
@@ -416,7 +417,7 @@ export default function MobileHokenComparePage() {
                   {/* ① 保険料と補償のバランス */}
                   <div className="m-card m-card--shadow m-card--padded">
                     <div className="media-card__img-wrap">
-                      <img src="/images/content/photo/mobile-hoken/iphone13-mini-use.jpg" alt="iPhoneを使用する様子" className="media-card__img" width={800} height={450} loading="lazy" />
+                      <Image src="/images/content/photo/mobile-hoken/iphone13-mini-use.jpg" alt="iPhoneを使用する様子" className="media-card__img" width={800} height={450} sizes="(max-width: 768px) 100vw, 800px" />
                     </div>
                     <div className="media-card__body">
                       <h3 className="media-card__title">① 月々の保険料と補償内容のバランスが良い</h3>
@@ -439,7 +440,7 @@ export default function MobileHokenComparePage() {
                   {/* ② 一契約で3台 */}
                   <div className="m-card m-card--shadow m-card--padded">
                     <div className="media-card__img-wrap">
-                      <img src="/images/content/photo/mobile-hoken/ipad-image.avif" alt="iPadとiPhone" className="media-card__img" width={800} height={450} loading="lazy" />
+                      <Image src="/images/content/photo/mobile-hoken/ipad-image.avif" alt="iPadとiPhone" className="media-card__img" width={800} height={450} sizes="(max-width: 768px) 100vw, 800px" />
                     </div>
                     <div className="media-card__body">
                       <h3 className="media-card__title">② 一契約で3台の端末を補償できる</h3>
@@ -463,7 +464,7 @@ export default function MobileHokenComparePage() {
                   {/* ③ 機種変更時の対応 */}
                   <div className="m-card m-card--shadow m-card--padded">
                     <div className="media-card__img-wrap">
-                      <img src="/images/content/photo/mobile-hoken/compare-iphone.jpg" alt="iPhoneを2台手に持つ様子" className="media-card__img" width={800} height={450} loading="lazy" />
+                      <Image src="/images/content/photo/mobile-hoken/compare-iphone.jpg" alt="iPhoneを2台手に持つ様子" className="media-card__img" width={800} height={450} sizes="(max-width: 768px) 100vw, 800px" />
                     </div>
                     <div className="media-card__body">
                       <h3 className="media-card__title">③ 機種変更時の対応が楽</h3>
@@ -479,7 +480,7 @@ export default function MobileHokenComparePage() {
                   {/* ④ 中古端末も対象 */}
                   <div className="m-card m-card--shadow m-card--padded">
                     <div className="media-card__img-wrap">
-                      <img src="/images/content/photo/mobile-hoken/apple-watch-image-1-1.jpg" alt="iPadを手に持つ様子" className="media-card__img" width={800} height={450} loading="lazy" />
+                      <Image src="/images/content/photo/mobile-hoken/apple-watch-image-1-1.jpg" alt="iPadを手に持つ様子" className="media-card__img" width={800} height={450} sizes="(max-width: 768px) 100vw, 800px" />
                     </div>
                     <div className="media-card__body">
                       <h3 className="media-card__title">④ 中古端末も保証対象にできる</h3>
@@ -511,7 +512,7 @@ export default function MobileHokenComparePage() {
                   {/* バッテリー交換 */}
                   <div className="m-card m-card--shadow m-card--padded">
                     <div className="media-card__img-wrap">
-                      <img src="/images/content/photo/mobile-hoken/anker-3in1-stand-image-02.jpg" alt="Apple Watchを手に持つ様子" className="media-card__img" width={800} height={450} loading="lazy" />
+                      <Image src="/images/content/photo/mobile-hoken/anker-3in1-stand-image-02.jpg" alt="Apple Watchを手に持つ様子" className="media-card__img" width={800} height={450} sizes="(max-width: 768px) 100vw, 800px" />
                     </div>
                     <div className="media-card__body">
                       <h3 className="media-card__title">バッテリー交換が無料で依頼できる</h3>
@@ -528,7 +529,7 @@ export default function MobileHokenComparePage() {
                   {/* 盗難・紛失 */}
                   <div className="m-card m-card--shadow m-card--padded">
                     <div className="media-card__img-wrap">
-                      <img src="/images/content/photo/mobile-hoken/incase-arc-daypack-wear-02.jpg" alt="バッグを背負う様子" className="media-card__img" width={800} height={450} loading="lazy" />
+                      <Image src="/images/content/photo/mobile-hoken/incase-arc-daypack-wear-02.jpg" alt="バッグを背負う様子" className="media-card__img" width={800} height={450} sizes="(max-width: 768px) 100vw, 800px" />
                     </div>
                     <div className="media-card__body">
                       <h3 className="media-card__title">盗難・紛失のケアが厚い</h3>
@@ -544,7 +545,7 @@ export default function MobileHokenComparePage() {
                   {/* エクスプレス交換 */}
                   <div className="m-card m-card--shadow m-card--padded">
                     <div className="media-card__img-wrap">
-                      <img src="/images/content/photo/mobile-hoken/ipad-mini-use-outdoor-02.jpg" alt="iPadを操作する様子" className="media-card__img" width={800} height={450} loading="lazy" />
+                      <Image src="/images/content/photo/mobile-hoken/ipad-mini-use-outdoor-02.jpg" alt="iPadを操作する様子" className="media-card__img" width={800} height={450} sizes="(max-width: 768px) 100vw, 800px" />
                     </div>
                     <div className="media-card__body">
                       <h3 className="media-card__title">エクスプレス交換サービスがある</h3>

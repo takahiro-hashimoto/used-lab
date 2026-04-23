@@ -10,7 +10,6 @@ import {
 } from '@/lib/queries'
 import type { IPadModel, IPadPriceLog, ProductShopLink } from '@/lib/types'
 import { calculateOSLifespan, buildAccessoryLookup, getPencilTextFromAccessories } from '@/lib/utils/ipad-helpers'
-import { filterLast3Months } from '@/lib/utils/shared-helpers'
 import { PRICE_INFO_UPDATE_MONTH, CHART_COLORS, FAQ_ITEMS } from '@/lib/data/ipad-price-info'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import IPadArticleFooter from '@/app/components/ipad/IPadArticleFooter'
@@ -25,6 +24,7 @@ import PriceHistorySection from './components/PriceHistorySection'
 import FaqSection from './components/FaqSection'
 import HeroMeta from '@/app/components/HeroMeta'
 import { getHeroImage } from '@/lib/data/hero-images'
+import { get90DaysAgo } from '@/lib/utils/shared-helpers'
 
 // ============================================================
 // 型定義
@@ -147,7 +147,7 @@ export default async function IPadPriceInfoPage() {
   const accessoryLookup = buildAccessoryLookup(allAccessories, allCompatibility)
 
   // 全モデルの価格ログを1回のバルククエリで一括取得
-  const priceLogsMap = await getAllIPadPriceLogsByModelIds(allModels.map((m) => m.id))
+  const priceLogsMap = await getAllIPadPriceLogsByModelIds(allModels.map((m) => m.id), get90DaysAgo())
 
   // ModelData構築
   let colorIndex = 0
@@ -155,7 +155,7 @@ export default async function IPadPriceInfoPage() {
 
   for (let i = 0; i < allModels.length; i++) {
     const model = allModels[i]
-    const logs = filterLast3Months(priceLogsMap[model.id] || [])
+    const logs = priceLogsMap[model.id] || []
     const osLife = calculateOSLifespan(model.date, model.last_ipados)
 
     // 価格ログから最低容量を取得

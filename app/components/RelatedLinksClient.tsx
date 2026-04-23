@@ -29,6 +29,13 @@ export default function RelatedLinksClient({
   children,
 }: Props) {
   function handleClick(destPath: string) {
+    try {
+      const key = `rel:${sourcePath}:${destPath}`
+      if (sessionStorage.getItem(key)) return
+      sessionStorage.setItem(key, '1')
+    } catch {
+      // sessionStorage unavailable (private browsing etc.) — send anyway
+    }
     if (typeof navigator?.sendBeacon === 'function') {
       navigator.sendBeacon(
         '/api/related-click',

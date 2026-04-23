@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import MediaCard from '@/app/components/MediaCard'
 
 export default function RouteSection() {
@@ -45,7 +46,7 @@ export default function RouteSection() {
               ただし、<strong>表記ランク（A/B/Cなど）の基準はショップごとに異なります。</strong>MacBookは天板やパームレストの傷が目立ちやすく、同じ「Bランク」でも見た目の印象に差があることを理解しておきましょう。
             </p>
             <p>
-              また、MacBookは同じモデル名でもメモリ・ストレージ構成が複数あるため、スペック表記を必ず確認してください。「MacBook Air M2」とだけ書かれていても、8GB/256GBと16GB/512GBでは価格も使い勝手も大きく異なります。ストレージ選びに迷ったら「<a href="/macbook/storage-guide/">ストレージ容量ガイド</a>」も参考にしてください。
+              また、MacBookは同じモデル名でもメモリ・ストレージ構成が複数あるため、スペック表記を必ず確認してください。「MacBook Air M2」とだけ書かれていても、8GB/256GBと16GB/512GBでは価格も使い勝手も大きく異なります。ストレージ選びに迷ったら「<Link href="/macbook/storage-guide/">ストレージ容量ガイド</Link>」も参考にしてください。
             </p>
           </div>
         </MediaCard>

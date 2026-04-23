@@ -61,7 +61,6 @@ export default function ShopSection({ items, productName, description, specRows,
 
         <div className="l-grid l-grid--3col l-grid--gap-lg">
           {items.map(({ shop, url }) => {
-            const isRecommended = shop.id === RECOMMENDED_SHOP_ID
             return (
               <article
                 key={shop.id}

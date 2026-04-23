@@ -141,19 +141,22 @@ function createPriceLogQueries<T extends { model_id: number }>(table: string, ta
     ),
 
     /** 複数モデルの価格ログを一括取得し、model_id ごとにグループ化して返す（自動ページネーション）
-     *  データ量が2MBを超える場合があるためunstable_cacheは使わず、ページレベルのrevalidateに委ねる */
-    getAllByModelIds: async (modelIds: number[]): Promise<Record<number, T[]>> => {
+     *  データ量が2MBを超える場合があるためunstable_cacheは使わず、ページレベルのrevalidateに委ねる
+     *  @param since YYYY-MM-DD形式の日付文字列。指定するとその日以降のログのみ取得（Supabase側で絞り込み） */
+    getAllByModelIds: async (modelIds: number[], since?: string): Promise<Record<number, T[]>> => {
       if (modelIds.length === 0) return {}
       const PAGE_SIZE = 1000
       const allRows: T[] = []
       let from = 0
       while (true) {
-        const { data, error } = await supabase
+        let query = supabase
           .from(table)
           .select('*')
           .in('model_id', modelIds)
           .order('logged_at', { ascending: true })
           .range(from, from + PAGE_SIZE - 1)
+        if (since) query = query.gte('logged_at', since)
+        const { data, error } = await query
         if (error || !data || data.length === 0) break
         allRows.push(...(data as T[]))
         if (data.length < PAGE_SIZE) break

@@ -5,12 +5,12 @@ import Breadcrumb from '@/app/components/Breadcrumb'
 import FaqSection from '@/app/components/support/FaqSection'
 import HeroMeta from '@/app/components/HeroMeta'
 import { getAllIPadModels, getAllIPadPriceLogsByModelIds, getAllProductShopLinksByType } from '@/lib/queries'
-import type { IPadPriceLog, ProductShopLink } from '@/lib/types'
+import type { IPadPriceLog } from '@/lib/types'
 import BenchmarkRanking from './components/BenchmarkRanking'
 import ChipGenerationCompare from './components/ChipGenerationCompare'
 import UseCaseGuide from './components/UseCaseGuide'
 import IPadArticleFooter from '@/app/components/ipad/IPadArticleFooter'
-import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
+import { buildArticleJsonLd, getGitDateForFile , get90DaysAgo } from '@/lib/utils/shared-helpers'
 import { getHeroImage } from '@/lib/data/hero-images'
 
 const PAGE_TITLE = 'iPadのベンチマークを比較！全モデルの性能がわかるスコアランキング【2026年版】'
@@ -67,7 +67,7 @@ export default async function BenchmarkPage() {
     getAllIPadModels(),
     getAllProductShopLinksByType('ipad'),
   ])
-  const priceLogsMap = await getAllIPadPriceLogsByModelIds(allModels.map((m) => m.id))
+  const priceLogsMap = await getAllIPadPriceLogsByModelIds(allModels.map((m) => m.id), get90DaysAgo())
 
   const benchModels = allModels
     .filter((m) => m.score_single != null && m.score_multi != null && m.score_metal != null)

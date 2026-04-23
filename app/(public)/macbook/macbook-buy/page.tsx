@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Breadcrumb from '@/app/components/Breadcrumb'
@@ -123,7 +124,7 @@ export default function MacBookBuyPage() {
               </p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                中古MacBookの選び方から知りたい方は「<a href="/macbook/">中古MacBook購入ガイド</a>」をご覧ください。
+                中古MacBookの選び方から知りたい方は「<Link href="/macbook/">中古MacBook購入ガイド</Link>」をご覧ください。
               </p>
             </div>
           </div>

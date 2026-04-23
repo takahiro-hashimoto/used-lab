@@ -11,7 +11,7 @@ import {
 import type { IPadPriceLog } from '@/lib/types'
 import StorageTable, { type StorageModel } from './components/StorageTable'
 import IPadArticleFooter from '@/app/components/ipad/IPadArticleFooter'
-import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
+import { buildArticleJsonLd, getGitDateForFile , get90DaysAgo } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
 import { getHeroImage } from '@/lib/data/hero-images'
 
@@ -79,7 +79,7 @@ export default async function StorageGuidePage() {
   ])
 
   // StorageTable用データ: モデル情報 + PriceLogの最安価格を統合
-  const priceLogsMap = await getAllIPadPriceLogsByModelIds(allModels.map((m) => m.id))
+  const priceLogsMap = await getAllIPadPriceLogsByModelIds(allModels.map((m) => m.id), get90DaysAgo())
 
   const storageModels: StorageModel[] = allModels.map((m) => {
     const logs = priceLogsMap[m.id] || []

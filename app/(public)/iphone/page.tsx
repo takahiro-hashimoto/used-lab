@@ -313,7 +313,7 @@ export default async function IPhoneGuidePage() {
                       支払い状況の問題で通信が制限される端末があります。利用制限の状態や、保証の有無は事前にチェックしましょう。
                       <p className="lead-link u-mt-xs">
                         <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                        <a href="/iphone/network-limit/">ネットワーク制限△のメリット・デメリットを解説</a>
+                        <Link href="/iphone/network-limit/">ネットワーク制限△のメリット・デメリットを解説</Link>
                       </p>
                     </dd>
                   </div>

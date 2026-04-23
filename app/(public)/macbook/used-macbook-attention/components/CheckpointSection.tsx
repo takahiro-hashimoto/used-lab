@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import RatingMark from '@/app/components/RatingMark'
 
 export default function CheckpointSection() {
@@ -41,7 +42,7 @@ export default function CheckpointSection() {
           </div>
           <p className="checkpoint-card__link">
             <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-            <a href="/macbook/macbook-spec-table/#benchmark">MacBookの処理性能比較（ベンチマークスコア）</a>
+            <Link href="/macbook/macbook-spec-table/#benchmark">MacBookの処理性能比較（ベンチマークスコア）</Link>
           </p>
         </div>
 
@@ -84,7 +85,7 @@ export default function CheckpointSection() {
           </p>
           <p className="checkpoint-card__link">
             <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-            <a href="/macbook/used-macbook-support/">MacBookのmacOSサポート期間一覧</a>
+            <Link href="/macbook/used-macbook-support/">MacBookのmacOSサポート期間一覧</Link>
           </p>
         </div>
 
@@ -121,7 +122,7 @@ export default function CheckpointSection() {
           </p>
           <p className="checkpoint-card__link">
             <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-            <a href="/macbook/macbook-spec-table/#spec-table">MacBookのスペック比較一覧</a>
+            <Link href="/macbook/macbook-spec-table/#spec-table">MacBookのスペック比較一覧</Link>
           </p>
         </div>
 
@@ -132,7 +133,7 @@ export default function CheckpointSection() {
             冷却ファン
           </h3>
           <p className="checkpoint-card__text">
-            PCの熱暴走を防ぐのに重要な冷却ファンはProモデルのみに搭載されています。高負荷がかかる作業が多いならProモデルがおすすめです。AirとProの違いは「<a href="/macbook/air-pro-compare/">MacBook AirとProの比較ガイド</a>」で詳しく解説しています。
+            PCの熱暴走を防ぐのに重要な冷却ファンはProモデルのみに搭載されています。高負荷がかかる作業が多いならProモデルがおすすめです。AirとProの違いは「<Link href="/macbook/air-pro-compare/">MacBook AirとProの比較ガイド</Link>」で詳しく解説しています。
           </p>
           <div className="checkpoint-card__table-wrap">
             <table className="m-table">

@@ -1,17 +1,16 @@
+import Image from 'next/image'
 export default function MeritSection() {
   return (
     <div className="u-mt-2xl" style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-xl)' }}>
       {/* ①マップを更新する必要がない */}
       <div id="merit-map" className="m-card m-card--shadow m-card--padded">
         <div className="media-card__img-wrap">
-          <img
+          <Image
             src="/images/content/photo/ipad-car-navi-old-02.webp"
             alt="iPad miniをカーナビ化した様子"
             className="media-card__img"
             width={240}
-            height={160}
-            loading="lazy"
-          />
+            height={160} sizes="(max-width: 480px) 100vw, 240px" />
         </div>
         <div className="media-card__body">
           <h3 className="media-card__title">①マップを更新する必要がない</h3>
@@ -30,14 +29,12 @@ export default function MeritSection() {
       {/* ②渋滞情報の精度もすばらしい */}
       <div id="merit-traffic" className="m-card m-card--shadow m-card--padded">
         <div className="media-card__img-wrap">
-          <img
+          <Image
             src="/images/content/photo/ipad-car-navi-01.webp"
             alt="iPadカーナビの渋滞情報表示"
             className="media-card__img"
             width={240}
-            height={160}
-            loading="lazy"
-          />
+            height={160} sizes="(max-width: 480px) 100vw, 240px" />
         </div>
         <div className="media-card__body">
           <h3 className="media-card__title">②渋滞情報の精度もすばらしい</h3>
@@ -57,14 +54,12 @@ export default function MeritSection() {
       {/* ③画面が大きくてみやすい */}
       <div id="merit-display" className="m-card m-card--shadow m-card--padded">
         <div className="media-card__img-wrap">
-          <img
+          <Image
             src="/images/content/photo/compare-ipad-size-1.webp"
             alt="iPadの画面サイズ比較"
             className="media-card__img"
             width={240}
-            height={160}
-            loading="lazy"
-          />
+            height={160} sizes="(max-width: 480px) 100vw, 240px" />
         </div>
         <div className="media-card__body">
           <h3 className="media-card__title">③画面が大きくてみやすい</h3>
@@ -80,14 +75,12 @@ export default function MeritSection() {
       {/* ④直感的な操作ができる */}
       <div id="merit-ui" className="m-card m-card--shadow m-card--padded">
         <div className="media-card__img-wrap">
-          <img
+          <Image
             src="/images/content/photo/ipad-car-navi-05.webp"
             alt="iPadで地図アプリをタッチ操作する様子"
             className="media-card__img"
             width={240}
-            height={160}
-            loading="lazy"
-          />
+            height={160} sizes="(max-width: 480px) 100vw, 240px" />
         </div>
         <div className="media-card__body">
           <h3 className="media-card__title">④直感的な操作ができる</h3>
@@ -103,14 +96,12 @@ export default function MeritSection() {
       {/* ⑤音楽や動画の再生もしやすい */}
       <div id="merit-media" className="m-card m-card--shadow m-card--padded">
         <div className="media-card__img-wrap">
-          <img
+          <Image
             src="/images/content/photo/ipad-car-navi-02.webp"
             alt="iPadで音楽アプリを再生する様子"
             className="media-card__img"
             width={240}
-            height={160}
-            loading="lazy"
-          />
+            height={160} sizes="(max-width: 480px) 100vw, 240px" />
         </div>
         <div className="media-card__body">
           <h3 className="media-card__title">⑤音楽や動画の再生もしやすい</h3>

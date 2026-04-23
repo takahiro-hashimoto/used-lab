@@ -145,7 +145,7 @@ function calculateDailyTableData(dailyData: DailyDataType): DailyRow[] {
 }
 
 export default function PriceChartSection({
-  dailyData, modelName, latestMinMaxPairs, latestDate, storageNote, shopDescription, priceListLink,
+  dailyData, modelName, latestMinMaxPairs, storageNote, shopDescription, priceListLink,
 }: Props) {
   const range = calculateAvgPriceRange(latestMinMaxPairs)
   const trendChanges = calculateTrendChanges(dailyData)

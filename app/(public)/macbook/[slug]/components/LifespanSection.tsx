@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import type { MacBookModel } from '@/lib/types'
 import { calculateOSLifespan, calculateRepairLifespan } from '@/lib/utils/macbook-helpers'
 
@@ -80,7 +81,7 @@ export default function LifespanSection({ model }: Props) {
         <div className="m-callout m-callout--tip u-mt-2xl">
           <span className="m-callout__label">memo</span>
           <p className="m-callout__text">
-            サポート期間を確認したい方は「<a href="/macbook/used-macbook-support/">MacBookはいつまで使える？各機種ごとの寿命一覧</a>」もあわせてご覧ください。
+            サポート期間を確認したい方は「<Link href="/macbook/used-macbook-support/">MacBookはいつまで使える？各機種ごとの寿命一覧</Link>」もあわせてご覧ください。
           </p>
         </div>
       </div>

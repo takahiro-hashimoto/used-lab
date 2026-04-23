@@ -8,7 +8,6 @@ import {
 } from '@/lib/queries'
 import type { WatchModel, WatchPriceLog, ProductShopLink } from '@/lib/types'
 import { calculateOSLifespan } from '@/lib/utils/watch-helpers'
-import { filterLast3Months } from '@/lib/utils/shared-helpers'
 import { PRICE_INFO_UPDATE_MONTH, CHART_COLORS, FAQ_ITEMS } from '@/lib/data/watch-price-info'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import WatchArticleFooter from '@/app/components/watch/WatchArticleFooter'
@@ -23,6 +22,7 @@ import PriceHistorySection from './components/PriceHistorySection'
 import FaqSection from './components/FaqSection'
 import HeroMeta from '@/app/components/HeroMeta'
 import { getHeroImage } from '@/lib/data/hero-images'
+import { get90DaysAgo } from '@/lib/utils/shared-helpers'
 
 // ============================================================
 // 型定義
@@ -138,7 +138,7 @@ export default async function WatchPriceInfoPage() {
   ])
 
   // 全モデルの価格ログを1回のバルククエリで一括取得
-  const priceLogsMap = await getAllWatchPriceLogsByModelIds(allModels.map((m) => m.id))
+  const priceLogsMap = await getAllWatchPriceLogsByModelIds(allModels.map((m) => m.id), get90DaysAgo())
 
   // ModelData構築
   let colorIndex = 0
@@ -146,7 +146,7 @@ export default async function WatchPriceInfoPage() {
 
   for (let i = 0; i < allModels.length; i++) {
     const model = allModels[i]
-    const logs = filterLast3Months(priceLogsMap[model.id] || [])
+    const logs = priceLogsMap[model.id] || []
     const osLife = calculateOSLifespan(model.date, model.last_watchos)
 
     // 価格ログから最低容量を取得

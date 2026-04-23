@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Breadcrumb from '@/app/components/Breadcrumb'
@@ -135,7 +136,7 @@ export default async function AirProComparePage() {
               </p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                おすすめモデルを知りたい方は「<a href="/macbook/recommend">中古MacBookおすすめモデル</a>」もあわせてご覧ください。
+                おすすめモデルを知りたい方は「<Link href="/macbook/recommend">中古MacBookおすすめモデル</Link>」もあわせてご覧ください。
               </p>
             </div>
           </div>

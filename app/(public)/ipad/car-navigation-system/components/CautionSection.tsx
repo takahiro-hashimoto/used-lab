@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 
 export default function CautionSection() {
@@ -6,14 +7,12 @@ export default function CautionSection() {
       {/* ①セルラーモデルのiPadが必須 */}
       <div id="caution-cellular" className="m-card m-card--shadow m-card--padded">
         <div className="media-card__img-wrap">
-          <img
+          <Image
             src="/images/content/photo/ipad-wifi-01.webp"
             alt="iPadのセルラーモデル"
             className="media-card__img"
             width={240}
-            height={160}
-            loading="lazy"
-          />
+            height={160} sizes="(max-width: 480px) 100vw, 240px" />
         </div>
         <div className="media-card__body">
           <h3 className="media-card__title">①セルラーモデルのiPadが必須</h3>
@@ -33,14 +32,12 @@ export default function CautionSection() {
       {/* ②車載ホルダー選びは慎重に */}
       <div id="caution-holder" className="m-card m-card--shadow m-card--padded">
         <div className="media-card__img-wrap">
-          <img
+          <Image
             src="/images/content/photo/ipad-car-navi-03.webp"
             alt="車載ホルダーにiPadを設置した様子"
             className="media-card__img"
             width={240}
-            height={160}
-            loading="lazy"
-          />
+            height={160} sizes="(max-width: 480px) 100vw, 240px" />
         </div>
         <div className="media-card__body">
           <h3 className="media-card__title">②車載ホルダー選びは慎重に</h3>

@@ -179,7 +179,7 @@ export default function UsedIphoneAttentionPage() {
               </p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                中古iPhoneの全体像を把握したい方は「<a href="/iphone">中古iPhone完全購入ガイド</a>」をご覧ください。
+                中古iPhoneの全体像を把握したい方は「<Link href="/iphone">中古iPhone完全購入ガイド</Link>」をご覧ください。
               </p>
             </div>
           </div>
@@ -247,7 +247,7 @@ export default function UsedIphoneAttentionPage() {
               <SummaryChecklist
                 title="購入前に確認すべき4つのポイント"
                 items={[
-                  { label: 'ネットワーク制限', text: <>は必ずIMEIで事前に確認。「△」でも<a href="/iphone/network-limit/">赤ロム保証付きショップ</a>なら安心です。</> },
+                  { label: 'ネットワーク制限', text: <>は必ずIMEIで事前に確認。「△」でも<Link href="/iphone/network-limit/">赤ロム保証付きショップ</Link>なら安心です。</> },
                   { label: 'バッテリー最大容量', text: 'が80%未満の端末は避けましょう。設定アプリから確認できます。' },
                   { label: 'iOSサポート', text: 'の残りが2年未満の端末は避けましょう。発売から約7年が目安です。' },
                   { label: 'SIMロック', text: 'が解除できない端末は避けましょう。設定アプリから確認できます。' },

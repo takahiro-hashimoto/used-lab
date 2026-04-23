@@ -7,7 +7,6 @@ import type { ModelData } from '../page'
 type Props = {
   modelsData: ModelData[]
   initialSelected: number[]
-  seriesGroups: Record<string, number[]>
 }
 
 const MAX_SELECT = 4
@@ -18,7 +17,7 @@ function getModelSeries(name: string): string {
   return 'Standard'
 }
 
-export default function DashboardSection({ modelsData, initialSelected, seriesGroups }: Props) {
+export default function DashboardSection({ modelsData, initialSelected }: Props) {
   const [selectedModels, setSelectedModels] = useState<number[]>(initialSelected)
   const [timeRange, setTimeRange] = useState(30)
   const chartRef = useRef<HTMLCanvasElement>(null)

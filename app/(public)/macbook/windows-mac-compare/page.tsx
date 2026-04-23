@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Breadcrumb from '@/app/components/Breadcrumb'
@@ -120,7 +121,7 @@ export default function WindowsMacComparePage() {
               </p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                中古MacBookの購入を検討中の方は「<a href="/macbook">中古MacBook完全購入ガイド</a>」もあわせてご覧ください。
+                中古MacBookの購入を検討中の方は「<Link href="/macbook">中古MacBook完全購入ガイド</Link>」もあわせてご覧ください。
               </p>
             </div>
           </div>

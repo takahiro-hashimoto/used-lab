@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import { getMvnoPlans, getMvnoProviders } from '@/lib/queries'
@@ -225,7 +226,7 @@ export default async function MvnoPage() {
                 このページでは、<strong>中古iPhoneの端末販売がある格安SIM業者{mvnoProviders.length}社</strong>の料金プランと端末販売の特徴を比較しています。
                 それぞれの強みや注意点を把握して、あなたに最適な組み合わせを見つけてください。
               </p>
-              <p className="lead-link"><i className="fa-solid fa-arrow-right" aria-hidden="true"></i> 情報を網羅的に得たい方は「<a href="/iphone/">中古iPhone購入完全ガイド</a>」も参考にしてみてください！</p>
+              <p className="lead-link"><i className="fa-solid fa-arrow-right" aria-hidden="true"></i> 情報を網羅的に得たい方は「<Link href="/iphone/">中古iPhone購入完全ガイド</Link>」も参考にしてみてください！</p>
             </div>
           </div>
         </section>

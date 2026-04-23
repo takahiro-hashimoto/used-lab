@@ -3,26 +3,26 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import StickyTableWrapper from '@/app/components/StickyTableWrapper'
+import type { CompareCategory } from '@/app/components/spec-table-utils'
 import type { ProductShopLink } from '@/lib/types'
 
-type CompareCategory = {
-  title: string
-  rows: { label: string; get: (m: any) => React.ReactNode }[]
+type DualCompareModel = {
+  id: number; model: string; slug: string; image: string | null; shortname?: string | null
 }
 
-type Props = {
-  models: { id: number; model: string; slug: string; image: string | null; shortname?: string | null }[]
+type Props<T extends DualCompareModel> = {
+  models: T[]
   shopLinks: ProductShopLink[]
   productName: string
   imagePath: string
   detailPath: string
-  categories: CompareCategory[]
+  categories: CompareCategory<T>[]
   defaultIndexA?: number
   defaultIndexB?: number
-  getOptionLabel?: (m: any) => string
+  getOptionLabel?: (m: T) => string
 }
 
-export default function DualCompare({
+export default function DualCompare<T extends DualCompareModel>({
   models,
   shopLinks,
   productName,
@@ -32,7 +32,7 @@ export default function DualCompare({
   defaultIndexA = 4,
   defaultIndexB = 5,
   getOptionLabel,
-}: Props) {
+}: Props<T>) {
   const defaultA = models.length > defaultIndexA ? models[defaultIndexA].id : models[0]?.id || 0
   const defaultB = models.length > defaultIndexB ? models[defaultIndexB].id : models[1]?.id || 0
 
@@ -48,7 +48,7 @@ export default function DualCompare({
   const linkA = getIosysLink(modelA.id)
   const linkB = getIosysLink(modelB.id)
 
-  const optionLabel = getOptionLabel || ((m: any) => m.shortname || m.model)
+  const optionLabel = getOptionLabel || ((m: T) => m.shortname || m.model)
 
   return (
     <section className="l-section" id="compare" aria-labelledby="heading-compare">

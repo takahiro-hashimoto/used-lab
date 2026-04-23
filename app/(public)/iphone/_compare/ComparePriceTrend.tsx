@@ -3,6 +3,7 @@
  * 直近30日・90日の中古相場推移から購入タイミングを判断する
  */
 
+import Link from 'next/link'
 import type { IPhoneModel, IPhonePriceLog } from '@/lib/types'
 import { getShortName } from './helpers'
 import styles from './ComparePriceTrend.module.css'
@@ -237,7 +238,7 @@ export default function ComparePriceTrend({
           <span className="m-callout__label">memo</span>
           <p className="m-callout__text">
             最新の中古相場の推移は「
-            <a href="/iphone/price-info/">中古iPhone相場ダッシュボード</a>
+            <Link href="/iphone/price-info/">中古iPhone相場ダッシュボード</Link>
             」で確認できます。
           </p>
         </div>

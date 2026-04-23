@@ -15,7 +15,7 @@ type Props = {
   cards: CriteriaCard[]
 }
 
-export default function CriteriaSection({ recommendCount, recommendCountLabel, descriptions, cards }: Props) {
+export default function CriteriaSection({ recommendCountLabel, descriptions, cards }: Props) {
   return (
     <section className="l-section" id="criteria" aria-labelledby="heading-criteria">
       <div className="l-container">

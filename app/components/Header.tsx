@@ -93,6 +93,7 @@ export default function Header() {
   const searchInputRef = useRef<HTMLInputElement>(null)
   const router = useRouter()
 
+  // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => { setIsMounted(true) }, [])
 
   useEffect(() => {

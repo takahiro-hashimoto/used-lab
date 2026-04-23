@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { placeholder } from '@/lib/placeholder'
 import type { AirPodsModel, AirPodsPriceLog, ProductShopLink, FallbackShop } from '@/lib/types'
-import { formatPrice, formatReleaseDate, buildDisplayLinks } from '@/lib/utils/shared-helpers'
+import { formatReleaseDate, buildDisplayLinks } from '@/lib/utils/shared-helpers'
 import { calculatePriceRange, calculateFirmwareLifespan } from '@/lib/utils/airpods-helpers'
 import { RECOMMEND_DATE_LABEL, RECOMMEND_COUNT_LABEL } from '@/lib/data/airpods-recommend'
 import SpecToggle from '@/app/components/SpecToggle'
@@ -50,10 +50,6 @@ export default function RecommendDetailSection({ items }: Props) {
           const priceRange = calculatePriceRange(latestPrice)
           const fwLife = calculateFirmwareLifespan(model.date)
           const releaseDate = formatReleaseDate(model.date)
-          const annualCost = priceRange.minPrice && fwLife.remainingYears > 0
-            ? Math.round(priceRange.minPrice / fwLife.remainingYears)
-            : null
-
           const displayLinks = buildDisplayLinks(shopLinks, fallbackShops, SHOP_NAMES)
           const iosysLink = displayLinks.find((l) => l.shop_id === 1)
 

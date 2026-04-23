@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Breadcrumb from '@/app/components/Breadcrumb'
@@ -123,7 +124,7 @@ export default function IpadMacbookComparePage() {
               </p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                中古PCやタブレットの購入を検討中の方は「<a href="/macbook">中古MacBook完全購入ガイド</a>」や「<a href="/ipad">中古iPad完全購入ガイド</a>」もあわせてご覧ください。
+                中古PCやタブレットの購入を検討中の方は「<Link href="/macbook">中古MacBook完全購入ガイド</Link>」や「<Link href="/ipad">中古iPad完全購入ガイド</Link>」もあわせてご覧ください。
               </p>
             </div>
           </div>
@@ -288,7 +289,7 @@ export default function IpadMacbookComparePage() {
                     <li>iPad版アプリは機能制限されていることが多い</li>
                     <li>ファイル管理・マルチタスクも圧倒的に快適</li>
                   </ul>
-                  <p className="media-card__desc u-mt-lg">MacBookを選ぶなら<a href="/macbook/recommend/">おすすめの中古MacBook</a>で機種を確認しましょう。</p>
+                  <p className="media-card__desc u-mt-lg">MacBookを選ぶなら<Link href="/macbook/recommend/">おすすめの中古MacBook</Link>で機種を確認しましょう。</p>
                 </div>
               </div>
 

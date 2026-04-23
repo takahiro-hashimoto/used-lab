@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import {
@@ -7,7 +8,6 @@ import {
 } from '@/lib/queries'
 import type { IPhoneModel, IPhonePriceLog, ProductShopLink } from '@/lib/types'
 import { calculateOSLifespan } from '@/lib/utils/iphone-helpers'
-import { filterLast3Months } from '@/lib/utils/shared-helpers'
 import { PRICE_INFO_UPDATE_MONTH, CHART_COLORS, FAQ_ITEMS } from '@/lib/data/iphone-price-info'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import dynamic from 'next/dynamic'
@@ -22,6 +22,7 @@ import IPhoneArticleFooter from '@/app/components/iphone/IPhoneArticleFooter'
 import FaqSection from './components/FaqSection'
 import HeroMeta from '@/app/components/HeroMeta'
 import { getHeroImage } from '@/lib/data/hero-images'
+import { get90DaysAgo } from '@/lib/utils/shared-helpers'
 
 // ============================================================
 // 型定義
@@ -151,7 +152,7 @@ export default async function IPhonePriceInfoPage() {
   ])
 
   // 全モデルの価格ログを1回のバルククエリで一括取得
-  const priceLogsMap = await getAllIPhonePriceLogsByModelIds(allModels.map((m) => m.id))
+  const priceLogsMap = await getAllIPhonePriceLogsByModelIds(allModels.map((m) => m.id), get90DaysAgo())
 
   // ModelData構築
   let colorIndex = 0
@@ -159,7 +160,7 @@ export default async function IPhonePriceInfoPage() {
 
   for (let i = 0; i < allModels.length; i++) {
     const model = allModels[i]
-    const logs = filterLast3Months(priceLogsMap[model.id] || [])
+    const logs = priceLogsMap[model.id] || []
     const osLife = calculateOSLifespan(model.date, model.last_ios)
 
     // 価格ログから最低容量を取得
@@ -396,7 +397,7 @@ export default async function IPhonePriceInfoPage() {
               </p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                情報を網羅的に得たい方は「<a href="/iphone/">中古iPhone購入完全ガイド</a>」も参考にしてみてください！
+                情報を網羅的に得たい方は「<Link href="/iphone/">中古iPhone購入完全ガイド</Link>」も参考にしてみてください！
               </p>
             </div>
           </div>
@@ -507,7 +508,14 @@ export default async function IPhonePriceInfoPage() {
             pageUrl={PAGE_URL}
             pageTitle={`iPhoneの中古相場一覧 | 歴代${modelCount}機種の価格推移を独自集計`}
             excludeHref={["/iphone/price-info/", "/iphone/recommend/"]}
-          />
+          >
+            <div className="m-callout m-callout--muted u-mt-2xl">
+              <span className="m-callout__label">関連</span>
+              <p className="m-callout__text">
+                <a href="https://kikinzokukaitori.jp/gold/" target="_blank" rel="noreferrer noopener">金・貴金属の買取｜手数料無料で相場限界の査定・高価買取｜買取本舗七福神</a>
+              </p>
+            </div>
+          </IPhoneArticleFooter>
     </>
   )
 }

@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import type { Shop } from '@/lib/types'
 import RatingMark from '@/app/components/RatingMark'
 
@@ -60,13 +61,11 @@ export default function ShopDetailSection({ productName, items, specRows, getCta
             </div>
             <div className="recommend-card__overview">
               <figure className="recommend-card__image">
-                <img
+                <Image
                   src={imageOverrides?.[shop.shop_key]?.src ?? `/images/shop/${shop.shop_key}-thumb.jpg`}
                   alt={imageOverrides?.[shop.shop_key]?.alt ?? `${shop.shop}公式サイトのスクリーンショット`}
                   width={300}
-                  height={400}
-                  loading="lazy"
-                />
+                  height={400} sizes="(max-width: 480px) 100vw, 300px" />
               </figure>
               <div className="recommend-card__shop">
                 <p className="recommend-card__info-title">{shop.shop}の特徴</p>

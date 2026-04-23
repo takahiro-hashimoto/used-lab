@@ -19,13 +19,13 @@ function toFilePath(routePath: string): string {
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://used-lab.jp'
 
-  // 全製品のスラッグを並列取得
+  // 全製品のスラッグを並列取得（DB失敗時は空配列にフォールバック）
   const [iPhoneSlugs, iPadSlugs, watchSlugs, macBookSlugs, airPodsSlugs] = await Promise.all([
-    getAllIPhoneSlugs(),
-    getAllIPadSlugs(),
-    getAllWatchSlugs(),
-    getAllMacBookSlugs(),
-    getAllAirPodsSlugs(),
+    getAllIPhoneSlugs().catch(() => [] as string[]),
+    getAllIPadSlugs().catch(() => [] as string[]),
+    getAllWatchSlugs().catch(() => [] as string[]),
+    getAllMacBookSlugs().catch(() => [] as string[]),
+    getAllAirPodsSlugs().catch(() => [] as string[]),
   ])
 
   // 静的ページ（lib/routes.ts から一元取得、git の最終コミット日を使用）

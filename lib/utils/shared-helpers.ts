@@ -36,10 +36,12 @@ export function getGitDateForFile(filePath: string): { dateStr: string; dateDisp
   } catch {
     // git が利用できない場合はフォールバック
   }
-  const today = new Date()
+  // git unavailable (CI without history, etc.) — use site launch date instead of today
+  // to avoid misleading "updated today" in sitemaps/structured data
+  const fallback = new Date('2024-08-01')
   return {
-    dateStr: today.toISOString().split('T')[0],
-    dateDisplay: today.toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' }),
+    dateStr: '2024-08-01',
+    dateDisplay: fallback.toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' }),
   }
 }
 
@@ -132,6 +134,13 @@ export function getMinPrice(price: BasePriceLog | null): string {
   )
   if (mins.length === 0) return '-'
   return formatPrice(Math.min(...mins))
+}
+
+/** Supabase クエリの since パラメータ用に「90日前」の YYYY-MM-DD 文字列を返す */
+export function get90DaysAgo(): string {
+  const d = new Date()
+  d.setDate(d.getDate() - 90)
+  return d.toISOString().substring(0, 10)
 }
 
 /** 直近3ヶ月分のログを抽出（任意のPriceLog型に対応） */

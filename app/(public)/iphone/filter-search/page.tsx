@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import { getAllIPhoneModels, getAllProductShopLinksByType } from '@/lib/queries'
@@ -41,15 +42,15 @@ const FAQ_ITEMS = [
   },
   {
     question: '診断結果に表示される価格は正確ですか？',
-    answer: '価格は主要な中古ショップの参考価格です。実際の価格は在庫状況や端末の状態により変動しますので、必ずショップサイトで最新価格をご確認ください。各モデルの価格推移は「<a href="/iphone/price-info/">歴代iPhoneの中古相場と価格推移</a>」で確認できます。',
+    answer: '価格は主要な中古ショップの参考価格です。実際の価格は在庫状況や端末の状態により変動しますので、必ずショップサイトで最新価格をご確認ください。各モデルの価格推移は「<Link href="/iphone/price-info/">歴代iPhoneの中古相場と価格推移</Link>」で確認できます。',
   },
   {
     question: '診断で提案された機種以外も検討すべきですか？',
-    answer: '診断結果はあくまで目安です。条件を変更して再診断したり、「<a href="/iphone/recommend/">おすすめ中古iPhone5選</a>」ページも合わせて参考にすることで、より納得のいく選択ができます。',
+    answer: '診断結果はあくまで目安です。条件を変更して再診断したり、「<Link href="/iphone/recommend/">おすすめ中古iPhone5選</Link>」ページも合わせて参考にすることで、より納得のいく選択ができます。',
   },
   {
     question: '中古iPhoneを購入する際に注意すべき点は？',
-    answer: 'バッテリーの最大容量、SIMロックの有無、ネットワーク利用制限（赤ロム）の確認が重要です。詳しくは「<a href="/iphone/used-iphone-attention/">中古iPhone購入の注意点</a>」ページをご覧ください。',
+    answer: 'バッテリーの最大容量、SIMロックの有無、ネットワーク利用制限（赤ロム）の確認が重要です。詳しくは「<Link href="/iphone/used-iphone-attention/">中古iPhone購入の注意点</Link>」ページをご覧ください。',
   },
 ]
 
@@ -216,7 +217,7 @@ export default async function IPhoneFilterSearchPage() {
             <div className="lead-box">
               <p>「どのiPhoneを買えばいいかわからない…」そんな悩みを解決する<strong>iPhone機種診断ツール</strong>です。</p>
               <p>最新のiPhoneから型落ちの人気モデルまで、あなたの使用目的・予算・こだわり条件に合わせて最適な中古iPhoneを無料で診断。<strong>30機種のデータベース</strong>から、あなたにぴったりの1台を見つけましょう。</p>
-              <p className="lead-link"><i className="fa-solid fa-arrow-right" aria-hidden="true"></i> 情報を網羅的に得たい方は「<a href="/iphone/">中古iPhone購入完全ガイド</a>」も参考にしてみてください！</p>
+              <p className="lead-link"><i className="fa-solid fa-arrow-right" aria-hidden="true"></i> 情報を網羅的に得たい方は「<Link href="/iphone/">中古iPhone購入完全ガイド</Link>」も参考にしてみてください！</p>
             </div>
           </div>
         </section>

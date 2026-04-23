@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import { getAllIPhoneModels, getAllIPhoneModelsIncludingEnded } from '@/lib/queries'
@@ -122,7 +123,7 @@ export default async function UsedIphoneSupportPage() {
               <p>記事後半には<strong>iPhoneを買い替えるべき4つのタイミング</strong>も解説。お手持ちのiPhoneの寿命や買い替え時期がすっきりわかるので、ぜひチェックしてみてください！</p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                もっと全体像から知りたい方は「<a href="/iphone">中古iPhone購入ガイド</a>」をご覧ください。
+                もっと全体像から知りたい方は「<Link href="/iphone">中古iPhone購入ガイド</Link>」をご覧ください。
               </p>
             </div>
           </div>

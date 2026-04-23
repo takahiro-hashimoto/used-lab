@@ -5,7 +5,6 @@ import {
   formatReleaseDate,
   formatPrice,
   filterLast3Months as filterLast3MonthsGeneric,
-  calculateRepairLifespan,
   calculateOSLifespan as calculateOSLifespanGeneric,
   aggregateDailyPrices as aggregateDailyPricesGeneric,
   calculatePriceRange as calculatePriceRangeGeneric,

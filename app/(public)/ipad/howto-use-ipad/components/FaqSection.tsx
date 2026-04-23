@@ -18,7 +18,7 @@ export default function FaqSection() {
             <h3 className="faq-question">iPadはノートPC代わりになりますか？</h3>
             <div className="faq-answer m-rich-text m-rich-text--muted">
               <p>
-                iPadとノートPCに使用されてるOSは別物で、使用できるアプリの数や幅に違いがあるため完全に代用することは難しいです。詳しく知りたい方は「<a href="/macbook/ipad-macbook-compare/">MacBookとiPadどっちを買うおすすめ？</a>」をご覧ください。
+                iPadとノートPCに使用されてるOSは別物で、使用できるアプリの数や幅に違いがあるため完全に代用することは難しいです。詳しく知りたい方は「<Link href="/macbook/ipad-macbook-compare/">MacBookとiPadどっちを買うおすすめ？</Link>」をご覧ください。
               </p>
             </div>
           </div>

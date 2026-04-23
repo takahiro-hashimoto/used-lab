@@ -1,17 +1,16 @@
+import Image from 'next/image'
 export default function RecommendSection() {
   return (
     <div className="card-grid-2 u-mt-2xl">
       {/* GPSモデルがおすすめな人 */}
       <div id="recommend-gps" className="m-card m-card--shadow m-card--padded">
         <div className="media-card__img-wrap">
-          <img
+          <Image
             src="/images/content/photo/used-lab-image.jpg"
             alt="GPSモデルがおすすめな人"
             className="media-card__img"
             width={800}
-            height={450}
-            loading="lazy"
-          />
+            height={450} sizes="(max-width: 768px) 100vw, 800px" />
         </div>
         <div className="media-card__body">
           <h3 className="media-card__title">GPSモデルがおすすめな人</h3>
@@ -31,14 +30,12 @@ export default function RecommendSection() {
       {/* セルラーモデルがおすすめな人 */}
       <div id="recommend-cellular" className="m-card m-card--shadow m-card--padded">
         <div className="media-card__img-wrap">
-          <img
+          <Image
             src="/images/content/photo/apple-watch-workout.jpg"
             alt="セルラーモデルがおすすめな人"
             className="media-card__img"
             width={800}
-            height={450}
-            loading="lazy"
-          />
+            height={450} sizes="(max-width: 768px) 100vw, 800px" />
         </div>
         <div className="media-card__body">
           <h3 className="media-card__title">セルラーモデルがおすすめな人</h3>

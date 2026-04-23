@@ -1,3 +1,4 @@
+import Link from 'next/link'
 export default function SummarySection() {
   return (
     <>
@@ -38,7 +39,7 @@ export default function SummarySection() {
                 <li>選択肢が多すぎると迷ってしまう</li>
                 <li>リセールバリュー重視で長く使いたい</li>
               </ul>
-              <p className="media-card__desc u-mt-lg">Macを選んだ方は<a href="/macbook/recommend/">おすすめの中古MacBook</a>もあわせてご覧ください。</p>
+              <p className="media-card__desc u-mt-lg">Macを選んだ方は<Link href="/macbook/recommend/">おすすめの中古MacBook</Link>もあわせてご覧ください。</p>
             </div>
           </div>
 

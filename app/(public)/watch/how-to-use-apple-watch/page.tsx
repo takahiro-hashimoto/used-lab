@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Breadcrumb from '@/app/components/Breadcrumb'
@@ -124,7 +125,7 @@ export default function HowToUseAppleWatchPage() {
               </p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                Apple Watchの選び方から知りたい方は「<a href="/watch">中古Apple Watch購入ガイド</a>」をご覧ください。
+                Apple Watchの選び方から知りたい方は「<Link href="/watch">中古Apple Watch購入ガイド</Link>」をご覧ください。
               </p>
             </div>
           </div>
