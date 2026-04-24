@@ -16,7 +16,7 @@ export default function ContinuousAside({ children }: { children: ReactNode }) {
   }, [])
 
   return (
-    <aside ref={ref} className="l-sections">
+    <aside ref={ref} className="l-sections deferred-render deferred-render--article-footer">
       {children}
     </aside>
   )

@@ -375,16 +375,19 @@ export default async function AirPodsPriceInfoPage() {
 
           <PriceHistorySection models={sortedModels} />
 
-          <FaqSection />
-          <AirPodsPopularSection />
-        <AirPodsRelatedLinks excludeHref="/airpods/price-info/" />
-        <div className="l-section l-section--sm">
-          <div className="l-container">
-            <AuthorByline />
+          <div className="deferred-render">
+            <FaqSection />
           </div>
-        </div>
-
-                <ShareBox url={PAGE_URL} text={`AirPodsの中古相場一覧 | 歴代${modelCount}機種の価格推移を独自集計`} />
+          <div className="deferred-render deferred-render--article-footer">
+            <AirPodsPopularSection />
+            <AirPodsRelatedLinks excludeHref="/airpods/price-info/" />
+            <div className="l-section l-section--sm">
+              <div className="l-container">
+                <AuthorByline />
+              </div>
+            </div>
+            <ShareBox url={PAGE_URL} text={`AirPodsの中古相場一覧 | 歴代${modelCount}機種の価格推移を独自集計`} />
+          </div>
         </div>
       </article>
     </main>

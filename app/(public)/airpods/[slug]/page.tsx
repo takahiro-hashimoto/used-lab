@@ -127,15 +127,19 @@ export default async function AirPodsDetailPage({ params }: PageProps) {
         <CompareSection model={model} allModels={allModels} shopLinks={shopLinks} fallbackIosysUrl={iosysShop?.airpods_url || undefined} displayName={displayName}>
           {(props) => <CompareSelector {...props} />}
         </CompareSection>
-        <FaqSection model={model} latestPrice={latestPrice} shopLinks={modelShopLinks} />
-        <AirPodsPopularSection />
-        <AirPodsRelatedLinks excludeHref={`/airpods/${model.slug}/`} />
-        <div className="l-section l-section--sm">
-          <div className="l-container">
-            <AuthorByline />
-          </div>
+        <div className="deferred-render">
+          <FaqSection model={model} latestPrice={latestPrice} shopLinks={modelShopLinks} />
         </div>
-        <ShareBox url={`https://used-lab.jp/airpods/${model.slug}/`} text={`中古${model.name}（${model.model}）は今買うべき？サポート期間、基本スペック、中古相場から解説`} />
+        <div className="deferred-render deferred-render--article-footer">
+          <AirPodsPopularSection />
+          <AirPodsRelatedLinks excludeHref={`/airpods/${model.slug}/`} />
+          <div className="l-section l-section--sm">
+            <div className="l-container">
+              <AuthorByline />
+            </div>
+          </div>
+          <ShareBox url={`https://used-lab.jp/airpods/${model.slug}/`} text={`中古${model.name}（${model.model}）は今買うべき？サポート期間、基本スペック、中古相場から解説`} />
+        </div>
         </div>
       </article>
     </main>

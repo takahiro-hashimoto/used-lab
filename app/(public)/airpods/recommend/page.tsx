@@ -358,15 +358,18 @@ export default async function AirPodsRecommendPage() {
               { label: '配送料', field: 'postage' },
             ]}
           />
-          <AirPodsFaqSection />
-        <AirPodsRelatedLinks excludeHref="/airpods/recommend/" />
-        <div className="l-section l-section--sm">
-          <div className="l-container">
-            <AuthorByline />
+          <div className="deferred-render">
+            <AirPodsFaqSection />
           </div>
-        </div>
-
-                <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
+          <div className="deferred-render deferred-render--article-footer">
+            <AirPodsRelatedLinks excludeHref="/airpods/recommend/" />
+            <div className="l-section l-section--sm">
+              <div className="l-container">
+                <AuthorByline />
+              </div>
+            </div>
+            <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
+          </div>
         </div>
       </article>
     </main>

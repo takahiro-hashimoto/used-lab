@@ -8,6 +8,7 @@ type Props = {
   description: string
   items: FaqItem[]
   children?: React.ReactNode
+  className?: string
 }
 
 export type { FaqItem }
@@ -29,7 +30,7 @@ function parseFaqAnswer(text: string): React.ReactNode[] {
   })
 }
 
-export default function FaqSection({ title, description, items, children }: Props) {
+export default function FaqSection({ title, description, items, children, className }: Props) {
   const faqJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
@@ -44,7 +45,7 @@ export default function FaqSection({ title, description, items, children }: Prop
   }
 
   return (
-    <section className="l-section" id="faq" aria-labelledby="heading-faq">
+    <section className={`l-section${className ? ` ${className}` : ''}`} id="faq" aria-labelledby="heading-faq">
       <div className="l-container">
         <script
           type="application/ld+json"

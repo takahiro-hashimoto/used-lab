@@ -435,6 +435,7 @@ export default async function MacBookGuidePage() {
             title="中古MacBookに関するよくある質問"
             description="中古MacBookの購入を検討している方からよく寄せられる質問をまとめました。"
             items={GUIDE_FAQ_ITEMS}
+            className="deferred-render"
           />
 
         </div>

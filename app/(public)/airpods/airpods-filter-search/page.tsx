@@ -241,9 +241,12 @@ export default async function AirPodsFilterSearchPage() {
           title="AirPods機種診断に関するよくある質問"
           description="診断に関してよくある質問をまとめました。"
           items={FAQ_ITEMS}
+          className="deferred-render"
         />
 
-        <AirPodsRelatedLinks excludeHref={["/airpods/airpods-filter-search/", "/airpods/recommend/"]} />
+        <div className="deferred-render deferred-render--article-footer">
+          <AirPodsRelatedLinks excludeHref={["/airpods/airpods-filter-search/", "/airpods/recommend/"]} />
+        </div>
         </div>
       </article>
     </main>

@@ -180,6 +180,22 @@ ul {
   background-color: var(--color-bg-subtle);
 }
 
+/* SSR HTMLは維持したまま、画面外コンテンツの初期描画だけを後回しにする */
+@supports (content-visibility: auto) {
+  .deferred-render {
+    content-visibility: auto;
+    contain-intrinsic-size: 1px var(--deferred-intrinsic-size, 1200px);
+  }
+
+  .deferred-render--article-footer {
+    --deferred-intrinsic-size: 1800px;
+  }
+
+  .deferred-render--footer {
+    --deferred-intrinsic-size: 720px;
+  }
+}
+
 /* --- l-grid --- */
 .l-grid {
   gap: var(--space-md);
@@ -1605,4 +1621,3 @@ a.header-admin-link:hover {
     align-self: flex-start;
   }
 }
-

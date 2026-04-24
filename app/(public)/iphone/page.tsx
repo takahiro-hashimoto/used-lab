@@ -513,6 +513,7 @@ export default async function IPhoneGuidePage() {
             title="中古iPhoneに関するよくある質問"
             description="中古iPhoneの購入を検討している方からよく寄せられる質問をまとめました。"
             items={GUIDE_FAQ_ITEMS}
+            className="deferred-render"
           />
         </div>
       </article>

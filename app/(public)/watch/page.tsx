@@ -463,6 +463,7 @@ export default async function WatchGuidePage() {
             title="中古Apple Watchに関するよくある質問"
             description="中古Apple Watchの購入を検討している方からよく寄せられる質問をまとめました。"
             items={GUIDE_FAQ_ITEMS}
+            className="deferred-render"
           />
 
         </div>

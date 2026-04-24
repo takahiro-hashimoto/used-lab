@@ -230,15 +230,16 @@ export default function UsedAirpodsAttentionPage() {
             </div>
           </section>
 
-          <FaqSection productName="AirPods" faqItems={faqItems} />
-          <AirPodsRelatedLinks excludeHref={['/airpods/used-airpods-attention/']} />
-        <div className="l-section l-section--sm">
-          <div className="l-container">
-            <AuthorByline />
+          <FaqSection productName="AirPods" faqItems={faqItems} className="deferred-render" />
+          <div className="deferred-render deferred-render--article-footer">
+            <AirPodsRelatedLinks excludeHref={['/airpods/used-airpods-attention/']} />
+            <div className="l-section l-section--sm">
+              <div className="l-container">
+                <AuthorByline />
+              </div>
+            </div>
+            <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
           </div>
-        </div>
-
-                  <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>
       </article>
     </main>

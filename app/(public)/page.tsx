@@ -162,7 +162,7 @@ export default async function HomePage() {
       </section>
 
       {/* ── 新着情報 + 運営者情報（2カラム） ── */}
-      <section className="l-section">
+      <section className="l-section deferred-render">
         <div className="l-container">
           <div className="top-bottom-grid">
             {/* 新着情報 */}

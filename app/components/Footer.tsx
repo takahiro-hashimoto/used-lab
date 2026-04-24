@@ -3,7 +3,7 @@ import { PRODUCT_CATEGORIES, FOOTER_LINKS, UTILITY_FOOTER_LINKS } from '@/lib/ro
 
 export default function Footer() {
   return (
-    <footer className="site-footer">
+    <footer className="site-footer deferred-render deferred-render--footer">
       <div className="footer-main">
         <div className="footer-inner l-container">
           <div className="footer-brand">

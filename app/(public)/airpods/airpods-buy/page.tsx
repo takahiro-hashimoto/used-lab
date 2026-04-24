@@ -186,7 +186,7 @@ export default function AirPodsBuyPage() {
         </div>
       </article>
     </main>
-    <div className="l-section l-container" id="related">
+    <div className="l-section l-container deferred-render deferred-render--article-footer" id="related">
       <AirPodsRelatedLinks excludeHref={["/airpods/airpods-buy/"]} />
     </div>
     </>

@@ -239,16 +239,18 @@ export default function AirpodsFindPage() {
             title="AirPodsの紛失に関するよくある質問"
             description="AirPodsを紛失した際によくある疑問をまとめました。"
             items={FAQ_ITEMS}
+            className="deferred-render"
           />
 
-          <AirPodsRelatedLinks excludeHref="/airpods/airpods-find/" />
-        <div className="l-section l-section--sm">
-          <div className="l-container">
-            <AuthorByline />
+          <div className="deferred-render deferred-render--article-footer">
+            <AirPodsRelatedLinks excludeHref="/airpods/airpods-find/" />
+            <div className="l-section l-section--sm">
+              <div className="l-container">
+                <AuthorByline />
+              </div>
+            </div>
+            <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
           </div>
-        </div>
-
-                  <ShareBox url={PAGE_URL} text={PAGE_TITLE} />
         </div>
       </article>
     </main>
