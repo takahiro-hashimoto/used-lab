@@ -113,6 +113,7 @@ export default async function IPhoneTopPage() {
     return {
       model,
       latestPrice: latestPrices[i],
+      updatedDateStr: latestPrices[i]?.logged_at?.substring(0, 10) ?? dateStr,
       shopLinks: modelShopLinks,
       fallbackShops,
       label: meta?.label || '',

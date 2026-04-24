@@ -10,6 +10,7 @@ import { getHeroImage } from '@/lib/data/hero-images'
 import RatingMark from '@/app/components/RatingMark'
 import InsuranceCostTabs from './InsuranceCostTabs'
 import StickyCtaOverride from './StickyCtaOverride'
+import ContentImage from '../../../components/ContentImage'
 
 export const revalidate = false
 
@@ -586,8 +587,7 @@ export default function MobileHokenComparePage() {
                 <div className="m-card m-card--shadow m-card--padded media-card--aside-footer insurance-card u-mt-xl">
                   <div className="media-card__img-wrap" style={{ minWidth: 0 }}>
                     <a href="https://px.a8.net/svt/ejp?a8mat=35U3VZ+7QMVW2+45VK+5YRHE" rel="nofollow noopener" target="_blank" style={{ display: 'block' }}>
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
+                      <ContentImage
                         loading="lazy"
                         decoding="async"
                         className="insurance-card__banner"

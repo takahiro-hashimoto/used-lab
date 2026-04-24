@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import ContentImage from '../../../../components/ContentImage'
 
 export default function DemeritSection() {
   return (
@@ -6,7 +7,7 @@ export default function DemeritSection() {
       {/* ①中古市場でも依然として高価 */}
       <div className="m-card m-card--shadow m-card--padded">
         <div className="media-card__img-wrap">
-          <img
+          <ContentImage
             src="/images/content/photo/review/ipad-11-pro-m4-6.webp"
             alt="iPad Pro 11インチ M4の価格"
             className="media-card__img"
@@ -33,7 +34,7 @@ export default function DemeritSection() {
       {/* ②周辺機器の買い替えコストが発生する */}
       <div className="m-card m-card--shadow m-card--padded">
         <div className="media-card__img-wrap">
-          <img
+          <ContentImage
             src="/images/content/photo/review/ipad-11-pro-m4-7.webp"
             alt="iPad Proの周辺機器"
             className="media-card__img"
@@ -56,7 +57,7 @@ export default function DemeritSection() {
       {/* ③M4の性能をフルに活かせる場面は限定的 */}
       <div className="m-card m-card--shadow m-card--padded">
         <div className="media-card__img-wrap">
-          <img
+          <ContentImage
             src="/images/content/photo/review/ipad-11-pro-m4-8.webp"
             alt="iPad Pro 11インチ M4の性能"
             className="media-card__img"

@@ -162,7 +162,7 @@ async function main() {
   console.log('🚀 ベンチマークデータの投入を開始...\n')
 
   // まずカラムが存在するか確認（存在しなければSupabase Dashboard/SQLエディタで事前に追加が必要）
-  const { data: testRow, error: testError } = await supabase
+  const { error: testError } = await supabase
     .from('macbook_models')
     .select('id, benchmarks')
     .limit(1)

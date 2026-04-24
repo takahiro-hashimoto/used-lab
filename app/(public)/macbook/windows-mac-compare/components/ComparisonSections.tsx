@@ -1,11 +1,12 @@
 import Link from 'next/link'
+import ContentImage from '../../../../components/ContentImage'
 export default function ComparisonSections() {
   return (
     <div className="u-mt-2xl" style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-xl)' }}>
       {/* OSの違い */}
       <div id="os" className="m-card m-card--shadow m-card--padded">
         <div className="media-card__img-wrap">
-          <img
+          <ContentImage
             src="/images/content/photo/apple-watch-unlock-macbook.jpg"
             alt="Apple WatchでMacBookをロック解除する様子"
             className="media-card__img"
@@ -31,7 +32,7 @@ export default function ComparisonSections() {
       {/* シェアの違い */}
       <div id="share" className="m-card m-card--shadow m-card--padded">
         <div className="media-card__img-wrap">
-          <img
+          <ContentImage
             src="/images/content/photo/macboook-share.jpg"
             alt="WindowsとMacのシェア比較"
             className="media-card__img"
@@ -58,7 +59,7 @@ export default function ComparisonSections() {
       {/* 製品数・価格帯の違い */}
       <div id="price" className="m-card m-card--shadow m-card--padded">
         <div className="media-card__img-wrap">
-          <img
+          <ContentImage
             src="/images/content/photo/ipad-mini-macbook.jpg"
             alt="MacBookとiPad"
             className="media-card__img"
@@ -81,7 +82,7 @@ export default function ComparisonSections() {
       {/* カスタマイズ性・自由度の違い */}
       <div id="customize" className="m-card m-card--shadow m-card--padded">
         <div className="media-card__img-wrap">
-          <img
+          <ContentImage
             src="/images/content/photo/pc-custmize_motherboard.webp"
             alt="パソコンのカスタマイズ"
             className="media-card__img"
@@ -104,7 +105,7 @@ export default function ComparisonSections() {
       {/* 対応ソフト・アプリの違い */}
       <div id="apps" className="m-card m-card--shadow m-card--padded">
         <div className="media-card__img-wrap">
-          <img
+          <ContentImage
             src="/images/content/photo/macbook-peep-prevention-filter-front-02.jpg"
             alt="対応アプリの違い"
             className="media-card__img"
@@ -130,7 +131,7 @@ export default function ComparisonSections() {
       {/* ゲームプレイについての違い */}
       <div id="game" className="m-card m-card--shadow m-card--padded">
         <div className="media-card__img-wrap">
-          <img
+          <ContentImage
             src="/images/content/photo/game-pc.webp"
             alt="パソコンゲームのイメージ"
             className="media-card__img"
@@ -159,7 +160,7 @@ export default function ComparisonSections() {
       {/* マウス・トラックパッドの操作性の違い */}
       <div id="operation" className="m-card m-card--shadow m-card--padded">
         <div className="media-card__img-wrap">
-          <img
+          <ContentImage
             src="/images/content/photo/use-trackpad.webp"
             alt="Macのトラックパッド操作"
             className="media-card__img"
@@ -182,7 +183,7 @@ export default function ComparisonSections() {
       {/* キーボードの違い */}
       <div id="keyboard" className="m-card m-card--shadow m-card--padded">
         <div className="media-card__img-wrap">
-          <img
+          <ContentImage
             src="/images/content/photo/mx-keys-mini-for-mac-use-03-1024x683.webp"
             alt="キーボードの違い"
             className="media-card__img"
@@ -216,7 +217,7 @@ export default function ComparisonSections() {
       {/* デザインの違い */}
       <div id="design" className="m-card m-card--shadow m-card--padded">
         <div className="media-card__img-wrap">
-          <img
+          <ContentImage
             src="/images/content/photo/review-macbook-14inch-2021-logo.jpg"
             alt="Macのデザイン"
             className="media-card__img"
@@ -239,7 +240,7 @@ export default function ComparisonSections() {
       {/* データ連携・共有 */}
       <div id="data" className="m-card m-card--shadow m-card--padded">
         <div className="media-card__img-wrap">
-          <img
+          <ContentImage
             src="/images/content/photo/Anker-620-MagGo-Phone-Grip-glip-02-1024x683.webp"
             alt="Macのデータ連携"
             className="media-card__img"
@@ -262,7 +263,7 @@ export default function ComparisonSections() {
       {/* リセールバリューの違い */}
       <div id="resale" className="m-card m-card--shadow m-card--padded">
         <div className="media-card__img-wrap">
-          <img
+          <ContentImage
             src="/images/content/photo/iosis-macbook.webp"
             alt="Macのリセールバリュー"
             className="media-card__img"
@@ -289,7 +290,7 @@ export default function ComparisonSections() {
       {/* セキュリティ・ウイルス対策の違い */}
       <div id="security" className="m-card m-card--shadow m-card--padded">
         <div className="media-card__img-wrap">
-          <img
+          <ContentImage
             src="/images/content/photo/macbook-edit.webp"
             alt="セキュリティのイメージ"
             className="media-card__img"
@@ -315,7 +316,7 @@ export default function ComparisonSections() {
       {/* バッテリー持ち・省電力性の違い */}
       <div id="battery" className="m-card m-card--shadow m-card--padded">
         <div className="media-card__img-wrap">
-          <img
+          <ContentImage
             src="/images/content/photo/macbook-image.jpg"
             alt="MacBookのバッテリー"
             className="media-card__img"
@@ -338,7 +339,7 @@ export default function ComparisonSections() {
       {/* 寿命・耐用年数の違い */}
       <div id="lifespan" className="m-card m-card--shadow m-card--padded">
         <div className="media-card__img-wrap">
-          <img
+          <ContentImage
             src="/images/content/photo/review-macbook-14inch-2021-summary.jpg"
             alt="MacBook Proの外観"
             className="media-card__img"
@@ -364,7 +365,7 @@ export default function ComparisonSections() {
       {/* サポート体制の違い */}
       <div id="support" className="m-card m-card--shadow m-card--padded">
         <div className="media-card__img-wrap">
-          <img
+          <ContentImage
             src="/images/content/photo/apple-store.jpg"
             alt="Apple Storeの外観"
             className="media-card__img"
@@ -387,7 +388,7 @@ export default function ComparisonSections() {
       {/* Apple Silicon（Mチップ）と性能面の違い */}
       <div id="chip" className="m-card m-card--shadow m-card--padded">
         <div className="media-card__img-wrap">
-          <img
+          <ContentImage
             src="/images/content/photo/m2.webp"
             alt="Apple Silicon M2チップ"
             className="media-card__img"

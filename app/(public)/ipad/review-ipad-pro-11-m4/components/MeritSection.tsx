@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import ContentImage from '../../../../components/ContentImage'
 
 export default function MeritSection() {
   return (
@@ -6,7 +7,7 @@ export default function MeritSection() {
       {/* ①快適で広々としたモデリング環境 */}
       <div className="m-card m-card--shadow m-card--padded">
         <div className="media-card__img-wrap">
-          <img
+          <ContentImage
             src="/images/content/photo/review/ipad-11-pro-m4-1.webp"
             alt="iPad Pro 11インチでモデリングする様子"
             className="media-card__img"
@@ -32,7 +33,7 @@ export default function MeritSection() {
       {/* ②LiDARスキャンセンサーを搭載 */}
       <div className="m-card m-card--shadow m-card--padded">
         <div className="media-card__img-wrap">
-          <img
+          <ContentImage
             src="/images/content/photo/review/ipad-11-pro-m4-2.webp"
             alt="iPad Pro限定のLiDARスキャンセンサー"
             className="media-card__img"
@@ -58,7 +59,7 @@ export default function MeritSection() {
       {/* ③数値以上の恩恵を感じる「薄さ」 */}
       <div className="m-card m-card--shadow m-card--padded">
         <div className="media-card__img-wrap">
-          <img
+          <ContentImage
             src="/images/content/photo/review/ipad-11-pro-m4-3.webp"
             alt="薄さが際立つiPad Pro 11インチ（M4）"
             className="media-card__img"
@@ -81,7 +82,7 @@ export default function MeritSection() {
       {/* ④重いデータも難なくこなすM4チップのパワー */}
       <div className="m-card m-card--shadow m-card--padded">
         <div className="media-card__img-wrap">
-          <img
+          <ContentImage
             src="/images/content/photo/review/ipad-11-pro-m4-4.webp"
             alt="iPad Pro 11インチM4で作業する様子"
             className="media-card__img"
@@ -108,7 +109,7 @@ export default function MeritSection() {
       {/* ⑤Apple Pencil Proによる操作性の向上 */}
       <div className="m-card m-card--shadow m-card--padded">
         <div className="media-card__img-wrap">
-          <img
+          <ContentImage
             src="/images/content/photo/review/ipad-11-pro-m4-5.webp"
             alt="Apple Pencil Proで作業する様子"
             className="media-card__img"

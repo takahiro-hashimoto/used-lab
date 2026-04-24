@@ -1,4 +1,5 @@
 'use client'
+import ContentImage from '../../../../components/ContentImage'
 
 import { useState, useMemo } from 'react'
 import Link from 'next/link'
@@ -149,7 +150,7 @@ export default function ChargingTable({ models }: Props) {
                         <div className="battery-table__model-inner">
                           <div className="battery-table__img-wrap">
                             {m.image && (
-                              <img
+                              <ContentImage
                                 src={`/images/iphone/${m.image}`}
                                 alt={m.model}
                                 loading="lazy"

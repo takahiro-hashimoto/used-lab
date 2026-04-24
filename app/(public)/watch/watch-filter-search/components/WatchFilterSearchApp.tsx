@@ -1,4 +1,5 @@
 'use client'
+import ContentImage from '../../../../components/ContentImage'
 
 import { useState, useMemo } from 'react'
 import Link from 'next/link'
@@ -484,7 +485,7 @@ export default function WatchFilterSearchApp({ models, shopLinks }: Props) {
                     <div className="ifd-result-card__header">
                       <div className="ifd-result-card__img-wrap">
                         {m.image && (
-                          <img
+                          <ContentImage
                             src={`/images/watch/${m.image}`}
                             alt={m.model}
                             loading="lazy"

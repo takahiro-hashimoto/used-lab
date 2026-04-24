@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import ContentImage from '../../../../components/ContentImage'
 
 export default function MeritSection() {
   return (
@@ -6,7 +7,7 @@ export default function MeritSection() {
       {/* ①コンパクトだけど見やすいディスプレイ */}
       <div className="m-card m-card--shadow m-card--padded">
         <div className="media-card__img-wrap">
-          <img
+          <ContentImage
             src="/images/content/photo/review/ipad-mini-6-01.webp"
             alt="iPad mini 6と5の画面比較"
             className="media-card__img"
@@ -32,7 +33,7 @@ export default function MeritSection() {
       {/* ②カーナビ化するのにも絶妙なサイズ感 */}
       <div className="m-card m-card--shadow m-card--padded">
         <div className="media-card__img-wrap">
-          <img
+          <ContentImage
             src="/images/content/photo/review/ipad-mini-6-02.webp"
             alt="iPad miniをカーナビとして使用する様子"
             className="media-card__img"
@@ -62,7 +63,7 @@ export default function MeritSection() {
       {/* ③Apple Pencil 2対応なのが嬉しい */}
       <div className="m-card m-card--shadow m-card--padded">
         <div className="media-card__img-wrap">
-          <img
+          <ContentImage
             src="/images/content/photo/review/ipad-mini-6-03.webp"
             alt="iPad mini 6でイラストを書く様子"
             className="media-card__img"
@@ -97,7 +98,7 @@ export default function MeritSection() {
       {/* ④USB-Cポート搭載で充電のしやすさがアップ */}
       <div className="m-card m-card--shadow m-card--padded">
         <div className="media-card__img-wrap">
-          <img
+          <ContentImage
             src="/images/content/photo/review/ipad-mini-6-04.webp"
             alt="iPad mini 6とUSB-Cケーブル"
             className="media-card__img"
@@ -123,7 +124,7 @@ export default function MeritSection() {
       {/* ⑤MagSafe対応アクセサリーも使える */}
       <div className="m-card m-card--shadow m-card--padded">
         <div className="media-card__img-wrap">
-          <img
+          <ContentImage
             src="/images/content/photo/review/ipad-mini-6-05.webp"
             alt="iPad mini 6とMagSafeスタンドで作業する様子"
             className="media-card__img"
@@ -149,7 +150,7 @@ export default function MeritSection() {
       {/* ⑥日常のブラウジングやSNSはサクサク */}
       <div className="m-card m-card--shadow m-card--padded">
         <div className="media-card__img-wrap">
-          <img
+          <ContentImage
             src="/images/content/photo/review/ipad-mini-6-06.webp"
             alt="iPad mini 6を使用する様子"
             className="media-card__img"

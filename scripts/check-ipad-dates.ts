@@ -9,7 +9,7 @@ const supabase = createClient(supabaseUrl, supabaseKey)
 
 async function check() {
   // model_id=1 (iPad 第9世代) のデータを確認
-  const { data, error } = await supabase
+  const { data } = await supabase
     .from('ipad_price_logs')
     .select('id, model_id, model_name, logged_at')
     .eq('model_id', 1)

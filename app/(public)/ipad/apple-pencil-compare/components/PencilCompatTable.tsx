@@ -1,4 +1,5 @@
 'use client'
+import ContentImage from '../../../../components/ContentImage'
 
 import Link from 'next/link'
 import { useState, useMemo } from 'react'
@@ -170,7 +171,7 @@ export default function PencilCompatTable({ models, shopLinks }: Props) {
                     {filteredModels.map((m) => (
                       <td key={m.id}>
                         {m.image && (
-                          <img
+                          <ContentImage
                             src={`/images/ipad/${m.image}`}
                             alt={m.model}
                             width={50}

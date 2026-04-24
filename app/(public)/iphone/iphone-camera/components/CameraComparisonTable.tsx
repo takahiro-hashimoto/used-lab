@@ -1,4 +1,5 @@
 'use client'
+import ContentImage from '../../../../components/ContentImage'
 
 import Link from 'next/link'
 import { useState, useMemo } from 'react'
@@ -81,7 +82,7 @@ export default function CameraComparisonTable({ models, shopLinks }: Props) {
       label: 'イメージ',
       render: (m) => (
         m.image ? (
-          <img
+          <ContentImage
             src={`/images/iphone/${m.image}`}
             alt={m.model}
             width={50}

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
+import ContentImage from '../../components/ContentImage'
 import {
   getAllIPhoneModels,
   getLatestPriceLog,
@@ -125,11 +126,11 @@ export default async function IPhoneGuidePage() {
     ],
   }
 
-    const articleJsonLd = buildArticleJsonLd({
+  const articleJsonLd = buildArticleJsonLd({
     headline: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     dateStr,
-    dateModified: new Date().toISOString().split('T')[0],
+    dateModified: dateStr,
     url: PAGE_URL,
   })
 
@@ -490,7 +491,7 @@ export default async function IPhoneGuidePage() {
                     className="m-card m-card--shadow related-link-card m-card--hoverable"
                     aria-label={service.title}
                   >
-                    <img
+                    <ContentImage
                       decoding="async"
                       src={service.image}
                       alt={service.title}

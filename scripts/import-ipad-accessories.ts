@@ -13,30 +13,6 @@ import { getSupabase } from './lib/supabase-client'
 
 const supabase = getSupabase()
 
-// WordPress iPad_ID → Supabase ipad_models.id マッピング
-const WP_TO_SUPABASE_IPAD_ID: Record<number, number> = {
-  10: 1,   // iPad 第9世代
-  11: 2,   // iPad 第10世代
-  12: 3,   // iPad 第11世代
-  20: 4,   // iPad mini 第5世代
-  21: 5,   // iPad mini 第6世代
-  22: 6,   // iPad mini 第7世代
-  30: 7,   // iPad Air 第4世代
-  31: 8,   // iPad Air 第5世代
-  32: 9,   // iPad Air 11 第6世代
-  33: 10,  // iPad Air 13 第6世代
-  34: 11,  // iPad Air 11 第7世代
-  35: 12,  // iPad Air 13 第7世代
-  40: 13,  // iPad Pro 11 第2世代
-  41: 14,  // iPad Pro 11 第3世代
-  42: 15,  // iPad Pro 11 第4世代
-  43: 16,  // iPad Pro 11 第5世代
-  50: 18,  // iPad Pro 12.9 第4世代
-  51: 19,  // iPad Pro 12.9 第5世代
-  52: 20,  // iPad Pro 12.9 第6世代
-  53: 21,  // iPad Pro 13 第1世代
-}
-
 // Pencil の短縮ラベル（検証時のテキスト復元用）
 function getPencilShortLabel(name: string): string {
   if (name.includes('第1世代')) return '第1世代'
@@ -284,10 +260,6 @@ async function main() {
     const hasKeyboard = keyboards.length > 0
 
     // 比較
-    const pencilMatch = (pencilText || null) === (model.pencil || null)
-      || (pencilText && model.pencil && model.pencil.includes(pencilText))
-      || (pencilText && model.pencil) // 新テーブルにデータがある場合は詳細比較はスキップ
-
     if (!pencilText && model.pencil) {
       console.warn(`  ⚠️ ${model.model}: pencil 旧="${model.pencil}" → 新=null（対応データなし）`)
       mismatchCount++

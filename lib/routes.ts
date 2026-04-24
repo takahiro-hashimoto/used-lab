@@ -43,6 +43,7 @@ export type PageDef = {
   label: string | ((p: LabelParams) => string)
   priority?: number        // default: 0.8
   changeFrequency?: ChangeFreq  // default: 'weekly'
+  includeInSitemap?: boolean
 }
 
 export type CategoryDef = {
@@ -197,7 +198,7 @@ export const PRODUCT_CATEGORIES: CategoryDef[] = [
 
 export const UTILITY_PAGES: PageDef[] = [
   { path: '/news/', label: '新着情報', priority: 0.5, changeFrequency: 'weekly' },
-  { path: '/search/', label: '記事を検索', priority: 0.3, changeFrequency: 'monthly' },
+  { path: '/search/', label: '記事を検索', priority: 0.3, changeFrequency: 'monthly', includeInSitemap: false },
   { path: '/sitemap-page/', label: 'サイトマップ', priority: 0.3, changeFrequency: 'monthly' },
   { path: '/contact/', label: 'お問い合わせ', priority: 0.3, changeFrequency: 'yearly' },
   { path: '/profile/', label: '運営者情報', priority: 0.3, changeFrequency: 'yearly' },
@@ -271,11 +272,13 @@ export function getAllStaticRoutes(): { path: string; priority: number; changeFr
     })),
   )
 
-  const utilityPages = UTILITY_PAGES.map((page) => ({
-    path: page.path,
-    priority: page.priority ?? 0.8,
-    changeFrequency: (page.changeFrequency ?? 'weekly') as ChangeFreq,
-  }))
+  const utilityPages = UTILITY_PAGES
+    .filter((page) => page.includeInSitemap !== false)
+    .map((page) => ({
+      path: page.path,
+      priority: page.priority ?? 0.8,
+      changeFrequency: (page.changeFrequency ?? 'weekly') as ChangeFreq,
+    }))
 
   return [topPage, ...productPages, ...utilityPages]
 }

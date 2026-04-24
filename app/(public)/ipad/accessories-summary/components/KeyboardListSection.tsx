@@ -1,4 +1,5 @@
 'use client'
+import ContentImage from '../../../../components/ContentImage'
 
 type SerializedAccessory = {
   id: number
@@ -63,7 +64,7 @@ export default function KeyboardListSection({ models, keyboardAccessories }: Pro
                 <div className="keyboard-list__header">
                   {kb.image && (
                     <figure className="keyboard-list__figure">
-                      <img
+                      <ContentImage
                         src={`/images/ipad/${kb.image}`}
                         alt={kb.name}
                         width={100}

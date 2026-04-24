@@ -7,6 +7,7 @@ import IPadArticleFooter from '@/app/components/ipad/IPadArticleFooter'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
 import { getHeroImage } from '@/lib/data/hero-images'
+import ContentImage from '../../../components/ContentImage'
 
 export const revalidate = false
 
@@ -183,7 +184,7 @@ export default function IpadAppleCarePage() {
                 <div className="m-card m-card--shadow m-card--padded u-mt-2xl">
                   <div className="media-card--aside">
                     <div className="media-card__img-wrap">
-                      <img
+                      <ContentImage
                         alt="Apple Care+ for iPadの概要イメージ"
                         className="media-card__img"
                         width={240}
@@ -567,8 +568,7 @@ export default function IpadAppleCarePage() {
                 <div className="m-card m-card--shadow m-card--padded media-card--aside-footer insurance-card u-mt-xl">
                   <div className="media-card__img-wrap" style={{ minWidth: 0 }}>
                     <a href="https://px.a8.net/svt/ejp?a8mat=35U3VZ+7QMVW2+45VK+691UP" rel="nofollow noopener" target="_blank" style={{ display: 'block' }}>
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
+                      <ContentImage
                         loading="lazy"
                         decoding="async"
                         className="insurance-card__banner"

@@ -109,11 +109,11 @@ export default async function AirPodsGuidePage() {
     ],
   }
 
-    const articleJsonLd = buildArticleJsonLd({
+  const articleJsonLd = buildArticleJsonLd({
     headline: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     dateStr,
-    dateModified: new Date().toISOString().split('T')[0],
+    dateModified: dateStr,
     url: PAGE_URL,
   })
 

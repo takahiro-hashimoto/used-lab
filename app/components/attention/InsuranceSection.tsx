@@ -1,4 +1,5 @@
 import type { InsuranceProps } from './types'
+import ContentImage from '../ContentImage'
 
 export default function InsuranceSection({
   productName,
@@ -20,8 +21,7 @@ export default function InsuranceSection({
         <div className="m-card m-card--shadow m-card--padded media-card--aside-footer insurance-card">
           <div className="media-card__img-wrap" style={{ minWidth: 0 }}>
             <a href="https://px.a8.net/svt/ejp?a8mat=35U3VZ+7QMVW2+45VK+691UP" rel="nofollow" style={{ display: 'block' }}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
+              <ContentImage
                 loading="lazy"
                 decoding="async"
                 className="insurance-card__banner"

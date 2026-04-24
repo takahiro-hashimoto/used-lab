@@ -2,7 +2,7 @@
  * 静的ページの最終更新日を手動管理するファイル
  *
  * ページを更新したときにここの日付を変更してください（YYYY-MM-DD形式）。
- * 中古相場価格ページは毎日 new Date() で自動更新されるため、ここには含まれていません。
+ * 動的詳細ページも sitemap のフォールバック更新日に使うため、テンプレートの日付を管理します。
  */
 export const PAGE_DATES: Record<string, string> = {
   // ── カテゴリTOP ──────────────────────────────────────────────
@@ -37,6 +37,7 @@ export const PAGE_DATES: Record<string, string> = {
   'app/(public)/iphone/iphone-spec-table/page.tsx':   '2026-04-10',
   'app/(public)/iphone/recommend/page.tsx':           '2026-04-10',
   'app/(public)/iphone/_compare/ComparePageTemplate.tsx': '2026-04-12',
+  'app/(public)/iphone/[slug]/page.tsx':              '2026-04-11',
 
   // ── iPad ──────────────────────────────────────────────────────
   'app/(public)/ipad/apple-care/page.tsx':            '2026-04-14',
@@ -56,6 +57,7 @@ export const PAGE_DATES: Record<string, string> = {
   'app/(public)/ipad/ipad-filter-search/page.tsx':    '2026-04-11',
   'app/(public)/ipad/apple-pencil-compare/page.tsx':  '2026-04-11',
   'app/(public)/ipad/accessories-summary/page.tsx':   '2026-04-11',
+  'app/(public)/ipad/[slug]/page.tsx':                '2026-04-11',
 
   // ── MacBook ───────────────────────────────────────────────────
   'app/(public)/macbook/apple-care/page.tsx':         '2026-04-14',
@@ -70,6 +72,7 @@ export const PAGE_DATES: Record<string, string> = {
   'app/(public)/macbook/macbook-spec-table/page.tsx': '2026-04-10',
   'app/(public)/macbook/used-macbook-support/page.tsx': '2026-04-11',
   'app/(public)/macbook/macbook-shop/page.tsx':       '2026-04-10',
+  'app/(public)/macbook/[slug]/page.tsx':             '2026-04-11',
 
   // ── Apple Watch ───────────────────────────────────────────────
   'app/(public)/watch/apple-care/page.tsx':           '2026-04-14',
@@ -78,6 +81,7 @@ export const PAGE_DATES: Record<string, string> = {
   'app/(public)/watch/gps-cellular-compare/page.tsx': '2026-04-14',
   'app/(public)/watch/apple-watch-buy/page.tsx':      '2026-04-14',
   'app/(public)/watch/apple-watch-always-lit/page.tsx': '2026-04-14',
+  'app/(public)/watch/[slug]/page.tsx':               '2026-04-11',
   'app/(public)/watch/recommend/page.tsx':            '2026-04-11',
   'app/(public)/watch/watch-filter-search/page.tsx':  '2026-04-11',
   'app/(public)/watch/used-watch-support/page.tsx':   '2026-04-11',
@@ -90,4 +94,5 @@ export const PAGE_DATES: Record<string, string> = {
   'app/(public)/airpods/airpods-buy/page.tsx':        '2026-04-14',
   'app/(public)/airpods/recommend/page.tsx':          '2026-04-13',
   'app/(public)/airpods/airpods-filter-search/page.tsx': '2026-04-08',
+  'app/(public)/airpods/[slug]/page.tsx':             '2026-04-11',
 }

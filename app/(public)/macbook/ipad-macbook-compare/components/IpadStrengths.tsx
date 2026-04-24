@@ -1,10 +1,11 @@
+import ContentImage from '../../../../components/ContentImage'
 export default function IpadStrengths() {
   return (
     <div className="u-mt-2xl" style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-xl)' }}>
       {/* ノートを取る */}
       <div id="note-taking" className="m-card m-card--shadow m-card--padded media-card--aside">
         <div className="media-card__img-wrap">
-          <img
+          <ContentImage
             src="/images/content/thumbnail/ipad-image-12.jpg"
             alt="iPadとApple Pencilでノートを取る様子"
             className="media-card__img"
@@ -31,7 +32,7 @@ export default function IpadStrengths() {
       {/* イラストを描く */}
       <div id="illustration" className="m-card m-card--shadow m-card--padded media-card--aside">
         <div className="media-card__img-wrap">
-          <img
+          <ContentImage
             src="/images/content/thumbnail/ipad-illust.jpg"
             alt="iPadでイラストを描く様子"
             className="media-card__img"
@@ -57,7 +58,7 @@ export default function IpadStrengths() {
       {/* 写真編集 */}
       <div id="photo-editing" className="m-card m-card--shadow m-card--padded media-card--aside">
         <div className="media-card__img-wrap">
-          <img
+          <ContentImage
             src="/images/content/thumbnail/ipad-image-01.jpg"
             alt="iPadで写真編集をする様子"
             className="media-card__img"
@@ -82,7 +83,7 @@ export default function IpadStrengths() {
       {/* 電子書籍の閲覧 */}
       <div id="ebook" className="m-card m-card--shadow m-card--padded media-card--aside">
         <div className="media-card__img-wrap">
-          <img
+          <ContentImage
             src="/images/content/thumbnail/ipad-image-02.jpg"
             alt="iPadで電子書籍を読む様子"
             className="media-card__img"

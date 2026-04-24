@@ -1,3 +1,4 @@
+import ContentImage from '../../../../components/ContentImage'
 export default function TipsSection() {
   return (
     <section className="l-section" id="tips" aria-labelledby="heading-tips">
@@ -55,7 +56,7 @@ export default function TipsSection() {
           {/* 2. 少しだけ長く点灯させる */}
           <div className="m-card m-card--shadow m-card--padded">
             <div className="media-card__img-wrap">
-              <img
+              <ContentImage
                 src="/images/content/photo/mens-leather-belt-02.webp"
                 alt="Apple Watchのスリープ解除時間設定画面"
                 className="media-card__img"

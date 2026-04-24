@@ -32,6 +32,7 @@ import ReviewSection from '@/app/components/ReviewSection'
 import IPadArticleFooter from '@/app/components/ipad/IPadArticleFooter'
 import AdminEditLink from '@/app/components/AdminEditLink'
 import StickyCtaOverride from '@/app/components/StickyCtaOverride'
+import { resolveLastUpdatedDate } from '@/lib/utils/shared-helpers'
 
 export const revalidate = 3600
 
@@ -121,9 +122,10 @@ export default async function IPadDetailPage({ params }: PageProps) {
   const modelShopLinks = shopLinks.filter((l) => l.product_id === model.id)
   const iosysShop = shops.find((s) => s.id === 1)
 
-  const today = new Date()
-  const dateStr = today.toISOString().split('T')[0]
-  const dateDisplay = today.toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' })
+  const { dateStr, dateDisplay } = resolveLastUpdatedDate({
+    preferredDateStr: latestPrice?.logged_at?.substring(0, 10),
+    fallbackFilePath: 'app/(public)/ipad/[slug]/page.tsx',
+  })
 
   const iosysModelLink = modelShopLinks.find((l) => l.shop_id === 1)
 
