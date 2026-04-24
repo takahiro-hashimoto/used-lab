@@ -29,7 +29,7 @@ import AuthorByline from '@/app/components/AuthorByline'
 import StickyCtaOverride from '@/app/components/StickyCtaOverride'
 import { resolveLastUpdatedDate } from '@/lib/utils/shared-helpers'
 
-export const revalidate = 3600
+export const revalidate = 86400
 
 type PageProps = {
   params: Promise<{ slug: string }>

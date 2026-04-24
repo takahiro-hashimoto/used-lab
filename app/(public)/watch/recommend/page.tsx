@@ -37,7 +37,7 @@ const ValueZoneChart = dynamic(() => import('@/app/components/ValueZoneChart'), 
 import HeroMeta from '@/app/components/HeroMeta'
 import { getHeroImage } from '@/lib/data/hero-images'
 
-export const revalidate = 3600
+export const revalidate = 86400
 
 const PAGE_TITLE = `中古Apple Watchのおすすめ${RECOMMEND_COUNT}機種を解説。狙い目の型落ちモデルはどれ？【${RECOMMEND_DATE_LABEL}版】`
 const PAGE_DESCRIPTION =

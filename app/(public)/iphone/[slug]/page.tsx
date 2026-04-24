@@ -31,7 +31,7 @@ import StickyCtaOverride from '@/app/components/StickyCtaOverride'
 import { getCompareLinksForModel } from '@/app/(public)/iphone/_compare/config'
 import { resolveLastUpdatedDate } from '@/lib/utils/shared-helpers'
 
-export const revalidate = 3600
+export const revalidate = 86400
 
 type PageProps = {
   params: Promise<{ slug: string }>
