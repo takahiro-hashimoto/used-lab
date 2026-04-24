@@ -58,6 +58,11 @@ export const metadata: Metadata = {
   },
 }
 
+function getSizeLabel(model: WatchModel): string {
+  if (!model.size) return ''
+  return model.size.split('/')[0]
+}
+
 export default async function WatchGuidePage() {
   const [allModels, allShopLinks, shops] = await Promise.all([
     getAllWatchModels(),
@@ -103,13 +108,6 @@ export default async function WatchGuidePage() {
     url: PAGE_URL,
   })
 
-
-  /** モデルのサイズラベル */
-  function getSizeLabel(model: WatchModel): string {
-    if (!model.size) return ''
-    const first = model.size.split('/')[0]
-    return first
-  }
 
   return (
     <>

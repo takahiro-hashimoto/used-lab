@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest",
     "dev": "concurrently -n next,css \"next dev\" \"npm run watch:css\"",
     "dev:next": "next dev",
     "watch:css": "chokidar \"app/style.css\" \"app/search.css\" \"app/sp-overrides.css\" -c \"npm run build:css && node scripts/hash-assets.mjs\" --initial",
@@ -51,6 +53,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@vitest/coverage-v8": "^4.1.5",
     "chokidar-cli": "^3.0.0",
     "concurrently": "^9.2.1",
     "csso-cli": "^4.0.2",
@@ -59,6 +62,7 @@
     "eslint-config-next": "16.1.6",
     "linkinator": "^7.6.1",
     "tsx": "^4.21.0",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vitest": "^4.1.5"
   }
 }

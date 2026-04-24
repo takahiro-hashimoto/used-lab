@@ -63,7 +63,7 @@ export default async function ComparePageTemplate({ config }: Props) {
   const shortL = getShortName(modelL)
   const shortR = getShortName(modelR)
 
-  const { dateStr } = getGitDateForFile(`app/(public)/iphone/${config.slug}/page.tsx`)
+  const { dateStr, dateDisplay } = getGitDateForFile(`app/(public)/iphone/${config.slug}/page.tsx`)
 
     // JSON-LD
   const breadcrumbJsonLd = buildBreadcrumbJsonLd([
@@ -92,7 +92,7 @@ export default async function ComparePageTemplate({ config }: Props) {
       />
 
       <article>
-        <CompareHero modelL={modelL} modelR={modelR} slug={config.slug} />
+        <CompareHero modelL={modelL} modelR={modelR} slug={config.slug} dateStr={dateStr} dateDisplay={dateDisplay} />
 
         {/* イントロ */}
         <section className="l-section l-section--sm section-lead">

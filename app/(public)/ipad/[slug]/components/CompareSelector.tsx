@@ -2,6 +2,7 @@
 
 import CompareSelectorBase from '@/app/components/CompareSelector'
 import type { IPadModel, ProductShopLink } from '@/lib/types'
+import { formatReleaseDate } from '@/lib/utils/shared-helpers'
 
 type Props = {
   currentModel: IPadModel
@@ -38,14 +39,6 @@ function formatStorage(strage: string | null): string {
 function formatKeyboard(keyboard: string | null): string {
   if (!keyboard) return '-'
   return keyboard.replace(/\s*\/\s*/g, '\n')
-}
-
-function formatReleaseDate(date: string | null): string {
-  if (!date) return '-'
-  const parts = date.split('/')
-  if (parts.length >= 3) return `${parts[0]}年${parts[1]}月${parts[2]}日`
-  if (parts.length >= 2) return `${parts[0]}年${parts[1]}月`
-  return date
 }
 
 function buildCompareRows(current: IPadModel, compare: IPadModel): CompareRow[] {

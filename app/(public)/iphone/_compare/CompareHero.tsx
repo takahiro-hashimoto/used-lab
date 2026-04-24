@@ -12,9 +12,11 @@ type Props = {
   modelL: IPhoneModel
   modelR: IPhoneModel
   slug: string
+  dateStr: string
+  dateDisplay: string
 }
 
-export default function CompareHero({ modelL, modelR }: Props) {
+export default function CompareHero({ modelL, modelR, dateStr, dateDisplay }: Props) {
   const shortR = getShortName(modelR)
 
   return (
@@ -36,7 +38,7 @@ export default function CompareHero({ modelL, modelR }: Props) {
             <h1 className="hero-title">
               中古{modelL.model}と{shortR}の違いを比較｜中古で買うならどっち？
             </h1>
-            <HeroMeta dateStr="2026-03-31" dateDisplay="2026年3月31日" />
+            <HeroMeta dateStr={dateStr} dateDisplay={dateDisplay} />
           </div>
 
           {/* VS ビジュアル */}

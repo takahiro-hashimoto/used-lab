@@ -57,6 +57,11 @@ export const metadata: Metadata = {
   },
 }
 
+function getStorageLabel(model: IPadModel): string {
+  if (!model.strage) return ''
+  return model.strage.split('/')[0]
+}
+
 export default async function IPadGuidePage() {
   const [allModels, allShopLinks, shops] = await Promise.all([
     getAllIPadModels(),
@@ -101,13 +106,6 @@ export default async function IPadGuidePage() {
     dateModified: dateStr,
     url: PAGE_URL,
   })
-
-  /** モデルのストレージラベル */
-  function getStorageLabel(model: IPadModel): string {
-    if (!model.strage) return ''
-    const first = model.strage.split('/')[0]
-    return first
-  }
 
   return (
     <>

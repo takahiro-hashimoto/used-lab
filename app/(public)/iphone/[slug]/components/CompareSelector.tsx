@@ -2,6 +2,7 @@
 
 import CompareSelectorBase from '@/app/components/CompareSelector'
 import type { IPhoneModel, ProductShopLink } from '@/lib/types'
+import { formatReleaseDate } from '@/lib/utils/shared-helpers'
 
 type Props = {
   currentModel: IPhoneModel
@@ -25,14 +26,6 @@ function getFeatureValue(model: IPhoneModel, key: string): string {
   if (val === false || val === '×') return '×'
   if (val == null) return '-'
   return String(val).replace(/<br\s*\/?>/g, '\n')
-}
-
-function formatReleaseDate(date: string | null): string {
-  if (!date) return '-'
-  const parts = date.split('/')
-  if (parts.length >= 3) return `${parts[0]}年${parts[1]}月${parts[2]}日`
-  if (parts.length >= 2) return `${parts[0]}年${parts[1]}月`
-  return date
 }
 
 function buildCompareRows(current: IPhoneModel, compare: IPhoneModel): CompareRow[] {
