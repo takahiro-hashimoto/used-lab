@@ -1,7 +1,9 @@
 'use client'
 
 import { useState, useRef, useEffect, useCallback } from 'react'
-import Script from 'next/script'
+import { Chart as ChartClass, CategoryScale, LinearScale, PointElement, LineElement, LineController, Tooltip } from 'chart.js'
+
+ChartClass.register(CategoryScale, LinearScale, PointElement, LineElement, LineController, Tooltip)
 
 export type ChartModelData = {
   name: string
@@ -22,10 +24,6 @@ export default function ComparePriceChartClient({ models }: Props) {
 
   const updateChart = useCallback(() => {
     if (!chartRef.current) return
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const ChartJS = (window as unknown as Record<string, any>).Chart as typeof import('chart.js').Chart | undefined
-    if (!ChartJS) return
-
     if (chartInstanceRef.current) {
       (chartInstanceRef.current as { destroy: () => void }).destroy()
     }
@@ -68,7 +66,7 @@ export default function ComparePriceChartClient({ models }: Props) {
       })
     }
 
-    chartInstanceRef.current = new ChartJS(ctx, {
+    chartInstanceRef.current = new ChartClass(ctx, {
       type: 'line',
       data: { labels, datasets },
       options: {
@@ -119,11 +117,6 @@ export default function ComparePriceChartClient({ models }: Props) {
 
   return (
     <>
-      <Script
-        src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"
-        strategy="lazyOnload"
-        onLoad={() => updateChart()}
-      />
       {/* グラフエリア */}
       <div className="pd-chart-area">
         <div className="pd-chart-area__header">

@@ -4,7 +4,6 @@ import Script from "next/script";
 import "./critical.css";
 import { CSS_NON_CRITICAL, CSS_FONTAWESOME } from "@/lib/asset-hashes";
 import NavigationProgressBar from "@/app/components/NavigationProgressBar";
-import AsyncStylesheets from "@/app/components/AsyncStylesheets";
 
 const GTM_ID = 'GTM-5RVN7KJZ';
 const IS_PROD = process.env.NEXT_PUBLIC_ENV === 'production';
@@ -69,15 +68,12 @@ export default function RootLayout({
     <html lang="ja" className={inter.variable}>
       <head>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(siteNavigationJsonLd) }} />
-        {/* preload: start downloading non-blocking CSS immediately */}
+        {/* preload starts download; stylesheet applies CSS at initial render with near-zero blocking time */}
         <link rel="preload" href={CSS_NON_CRITICAL} as="style" />
         <link rel="preload" href={CSS_FONTAWESOME} as="style" />
-        <noscript>
-          <link rel="stylesheet" href={CSS_NON_CRITICAL} />
-          <link rel="stylesheet" href={CSS_FONTAWESOME} />
-        </noscript>
+        <link rel="stylesheet" href={CSS_NON_CRITICAL} />
+        <link rel="stylesheet" href={CSS_FONTAWESOME} />
         {IS_PROD && <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="" />}
-        <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
         {IS_PROD && (
           <Script id="gtm" strategy="afterInteractive">{`
             (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -100,7 +96,6 @@ export default function RootLayout({
             />
           </noscript>
         )}
-        <AsyncStylesheets hrefs={[CSS_NON_CRITICAL, CSS_FONTAWESOME]} />
         <NavigationProgressBar />
         {children}
       </body>

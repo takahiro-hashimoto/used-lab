@@ -1,11 +1,11 @@
 'use client'
 
 import { useState, useRef, useEffect, useCallback, useMemo } from 'react'
-import Script from 'next/script'
-import type { Chart as ChartClass, ChartDataset, TooltipItem } from 'chart.js'
+import { Chart as ChartClass, CategoryScale, LinearScale, PointElement, LineElement, LineController, Tooltip } from 'chart.js'
+import type { ChartDataset, TooltipItem } from 'chart.js'
 import type { ModelData } from '../page'
 
-type WindowWithChart = Window & { Chart?: typeof ChartClass }
+ChartClass.register(CategoryScale, LinearScale, PointElement, LineElement, LineController, Tooltip)
 
 type Props = {
   modelsData: ModelData[]
@@ -38,9 +38,6 @@ export default function DashboardSection({ modelsData, initialSelected }: Props)
 
   const updateChart = useCallback(() => {
     if (!chartRef.current) return
-    const ChartJS = (window as WindowWithChart).Chart
-    if (!ChartJS) return
-
     chartInstanceRef.current?.destroy()
 
     const ctx = chartRef.current.getContext('2d')
@@ -77,7 +74,7 @@ export default function DashboardSection({ modelsData, initialSelected }: Props)
       })
     }
 
-    chartInstanceRef.current = new ChartJS(ctx, {
+    chartInstanceRef.current = new ChartClass(ctx, {
       type: 'line',
       data: { labels, datasets },
       options: {
@@ -124,12 +121,6 @@ export default function DashboardSection({ modelsData, initialSelected }: Props)
     .filter((m): m is ModelData => m != null)
 
   return (
-    <>
-      <Script
-        src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"
-        strategy="lazyOnload"
-        onLoad={() => updateChart()}
-      />
     <section className="l-section" id="pd-dashboard" aria-labelledby="pd-dashboard-title">
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg" id="pd-dashboard-title">
@@ -213,6 +204,5 @@ export default function DashboardSection({ modelsData, initialSelected }: Props)
         </div>
       </div>
     </section>
-    </>
   )
 }

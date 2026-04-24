@@ -10,9 +10,9 @@ const organizationJsonLd = {
   url: 'https://used-lab.jp',
   logo: {
     '@type': 'ImageObject',
-    url: 'https://used-lab.jp/images/logo.png',
+    url: 'https://used-lab.jp/images/logo.svg',
   },
-  image: 'https://used-lab.jp/images/logo.png',
+  image: 'https://used-lab.jp/images/logo.svg',
   description: '中古Apple製品の価格比較・スペック情報サイト。iPhone・iPad・MacBook・Apple Watch・AirPodsの中古相場、スペック比較、おすすめ機種を毎日更新。',
   founder: {
     '@type': 'Person',
