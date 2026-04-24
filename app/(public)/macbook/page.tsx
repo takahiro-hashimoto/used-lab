@@ -7,7 +7,7 @@ import {
   getAllProductShopLinksByType,
   getShops,
 } from '@/lib/queries'
-import type { MacBookModel, MacBookPriceLog } from '@/lib/types'
+import type { MacBookModel } from '@/lib/types'
 import {
   GUIDE_DATE_LABEL,
   GUIDE_PRICE_SLUGS,
@@ -71,18 +71,15 @@ export default async function MacBookGuidePage() {
     .map((slug) => allModels.find((m) => m.slug === slug))
     .filter((m): m is MacBookModel => m != null)
 
-  const latestPrices = await Promise.all(
-    priceModels.map((m) => getLatestMacBookPriceLog(m.id))
-  )
-
   // おすすめ機種セクション用
   const recommendModels = RECOMMEND_SLUGS
     .map((slug) => allModels.find((m) => m.slug === slug))
     .filter((m): m is MacBookModel => m != null)
 
-  const recommendPrices = await Promise.all(
-    recommendModels.map((m) => getLatestMacBookPriceLog(m.id))
-  )
+  const [latestPrices, recommendPrices] = await Promise.all([
+    Promise.all(priceModels.map((m) => getLatestMacBookPriceLog(m.id))),
+    Promise.all(recommendModels.map((m) => getLatestMacBookPriceLog(m.id))),
+  ])
 
   const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/macbook/page.tsx')
 

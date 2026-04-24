@@ -5,7 +5,6 @@
 
 import Link from 'next/link'
 import type { IPhoneModel, IPhonePriceLog } from '@/lib/types'
-import { getShortName } from './helpers'
 import styles from './ComparePriceTrend.module.css'
 
 type Props = {
@@ -212,9 +211,6 @@ export default function ComparePriceTrend({
   const logs30R = logsWithinDays(priceLogsR, 30)
 
   if (logs30L.length < 7 && logs30R.length < 7) return null
-
-  const shortL = getShortName(modelL)
-  const shortR = getShortName(modelR)
 
   return (
     <section className="l-section" id="timing" aria-labelledby="heading-timing">

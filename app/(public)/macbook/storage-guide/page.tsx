@@ -141,7 +141,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/macbook/storage
         <div className="hero-wrapper">
         <Breadcrumb
           items={[
-            { label: '中古MacBook完全購入ガイド', href: '/macbook' },
+            { label: '中古MacBook完全購入ガイド', href: '/macbook/' },
             { label: 'ストレージ容量ガイド' },
           ]}
         />
@@ -172,7 +172,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/macbook/storage
               <p>本記事では、<strong>用途別のおすすめ容量の目安、歴代MacBookの容量ラインナップ、そして中古最安価格</strong>をまとめました。</p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                情報を網羅的に得たい方は「<Link href="/macbook">中古MacBook購入完全ガイド</Link>」も参考にしてみてください！
+                情報を網羅的に得たい方は「<Link href="/macbook/">中古MacBook購入完全ガイド</Link>」も参考にしてみてください！
               </p>
             </div>
           </div>

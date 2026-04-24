@@ -127,7 +127,7 @@ export default async function WatchShopPage() {
         {/* パンくず */}
         <Breadcrumb
           items={[
-            { label: '中古Apple Watch完全購入ガイド', href: '/watch' },
+            { label: '中古Apple Watch完全購入ガイド', href: '/watch/' },
             { label: '中古Apple Watchを買うならどこ？' },
           ]}
         />

@@ -9,8 +9,8 @@ import {
   getAllProductShopLinksByType,
   getShops,
 } from '@/lib/queries'
-import type { IPadModel, IPadPriceLog } from '@/lib/types'
-import { formatPrice, getMinPrice, buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
+import type { IPadModel } from '@/lib/types'
+import { getMinPrice, buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import {
   GUIDE_DATE_LABEL,
   GUIDE_PRICE_SLUGS,
@@ -72,18 +72,15 @@ export default async function IPadGuidePage() {
     .map((slug) => allModels.find((m) => m.slug === slug))
     .filter((m): m is IPadModel => m != null)
 
-  const latestPrices = await Promise.all(
-    priceModels.map((m) => getLatestIPadPriceLog(m.id))
-  )
-
   // おすすめ機種セクション用（/ipad/recommend/ と同じデータソース）
   const recommendModels = RECOMMEND_SLUGS
     .map((slug) => allModels.find((m) => m.slug === slug))
     .filter((m): m is IPadModel => m != null)
 
-  const recommendPrices = await Promise.all(
-    recommendModels.map((m) => getLatestIPadPriceLog(m.id))
-  )
+  const [latestPrices, recommendPrices] = await Promise.all([
+    Promise.all(priceModels.map((m) => getLatestIPadPriceLog(m.id))),
+    Promise.all(recommendModels.map((m) => getLatestIPadPriceLog(m.id))),
+  ])
 
   const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/ipad/page.tsx')
 

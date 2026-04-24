@@ -167,7 +167,7 @@ export default async function IPhoneTopPage() {
         {/* パンくず */}
         <Breadcrumb
           items={[
-            { label: '中古iPhone完全購入ガイド', href: '/iphone' },
+            { label: '中古iPhone完全購入ガイド', href: '/iphone/' },
             { label: `中古iPhoneおすすめ${RECOMMEND_COUNT}選` },
           ]}
         />

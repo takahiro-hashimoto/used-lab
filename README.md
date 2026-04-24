@@ -50,6 +50,36 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
+## Development Scripts
+
+### Build
+
+```bash
+npm run build           # full build: CSS + sitemap check + lint + next build
+npm run build:checks    # pre-build checks only (sitemap + lint); faster than full build
+```
+
+### Verify
+
+| Command | When to use |
+|---|---|
+| `npm run verify` | Standard entry point — runs everything below |
+| `npm run verify:required` | Before deploy — sitemap coverage must pass |
+| `npm run verify:price-info` | After editing price-info helpers or pages |
+| `npm run verify:seo` | After adding/removing pages or internal links |
+| `npm run verify:full` | PR review, release — required + price-info + seo |
+
+**Standard entry point: `npm run verify`** (= `verify:full`)
+
+### When to run what
+
+- **Daily development**: `npm run build:checks` (fast, catches lint + sitemap before commit)
+- **price-info changes**: add `npm run verify:price-info`
+- **PR / release**: `npm run verify:full`
+- **SEO audit**: `npm run verify:seo` (requires live site or local server)
+
+See [`docs/PRICE_INFO_CHECKLIST.md`](docs/PRICE_INFO_CHECKLIST.md) for price-info page operation details.
+
 ## Cache Revalidation
 
 Vercel creates a new deployment on every Git push, so static assets are replaced automatically.

@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useMemo } from 'react'
+import Image from 'next/image'
 import Link from 'next/link'
 import {
   formatPrice,
@@ -450,10 +451,11 @@ export default function AirPodsFilterSearchApp({ models, shopLinks }: Props) {
                     <div className="ifd-result-card__header">
                       <div className="ifd-result-card__img-wrap">
                         {m.image && (
-                          <img
+                          <Image
                             src={`/images/airpods/${m.image}`}
                             alt={m.name}
-                            loading="lazy"
+                            width={80}
+                            height={80}
                           />
                         )}
                       </div>

@@ -1,10 +1,8 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
-import { getAllAirPodsModels, getAllProductShopLinksByType } from '@/lib/queries'
-import type { AirPodsPriceLog } from '@/lib/types'
+import { getAllAirPodsModels, getAllProductShopLinksByType, getLatestAirPodsPriceLogsForModels } from '@/lib/queries'
 import IconCard from '@/app/components/IconCard'
-import { supabase } from '@/lib/supabase'
 import AirPodsFilterSearchApp from './components/FilterSearchApp'
 import AirPodsRelatedLinks from '@/app/components/airpods/AirPodsRelatedLinks'
 import { getGitDateForFile } from '@/lib/utils/shared-helpers'
@@ -60,20 +58,9 @@ export default async function AirPodsFilterSearchPage() {
     getAllProductShopLinksByType('airpods'),
   ])
 
-  // 各モデルの最新価格を取得
-  const { data: allPriceLogs } = await supabase
-    .from('airpods_price_logs')
-    .select('*')
-    .order('logged_at', { ascending: false })
-
-  const latestPriceMap = new Map<number, AirPodsPriceLog>()
-  if (allPriceLogs) {
-    for (const log of allPriceLogs as AirPodsPriceLog[]) {
-      if (!latestPriceMap.has(log.model_id)) {
-        latestPriceMap.set(log.model_id, log)
-      }
-    }
-  }
+  const allModelIds = allModels.map((m) => m.id)
+  const latestPriceByModel = await getLatestAirPodsPriceLogsForModels(allModelIds)
+  const latestPriceMap = new Map(Object.entries(latestPriceByModel).map(([k, v]) => [Number(k), v]))
 
   // クライアントコンポーネントに渡すデータを準備
   const modelsData = allModels.map((m) => {
@@ -166,7 +153,7 @@ export default async function AirPodsFilterSearchPage() {
         {/* パンくず */}
         <Breadcrumb
           items={[
-            { label: '中古AirPods購入完全ガイド', href: '/airpods' },
+            { label: '中古AirPods購入完全ガイド', href: '/airpods/' },
             { label: 'AirPods機種診断' },
           ]}
         />
@@ -206,7 +193,7 @@ export default async function AirPodsFilterSearchPage() {
           <div className="l-container">
             <div className="lead-box">
               <p>「どのAirPodsを買えばいいかわからない...」そんな悩みを解決する<strong>AirPods機種診断ツール</strong>です。</p>
-              <p>最新のAirPods 4やAirPods Pro 2から型落ちの人気モデルまで、あなたの使用目的・予算・こだわり条件に合わせて最適な<Link href="/airpods">中古AirPods</Link>を無料で診断。<strong>{totalModels}モデルのデータベース</strong>から、あなたにぴったりの1台を見つけましょう。</p>
+              <p>最新のAirPods 4やAirPods Pro 2から型落ちの人気モデルまで、あなたの使用目的・予算・こだわり条件に合わせて最適な<Link href="/airpods/">中古AirPods</Link>を無料で診断。<strong>{totalModels}モデルのデータベース</strong>から、あなたにぴったりの1台を見つけましょう。</p>
               <p className="lead-link"><i className="fa-solid fa-arrow-right" aria-hidden="true"></i> 情報を網羅的に得たい方は「<Link href="/airpods/">中古AirPods購入完全ガイド</Link>」も参考にしてみてください！</p>
             </div>
           </div>

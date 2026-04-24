@@ -71,7 +71,7 @@ export default function AirPodsBuyPage() {
         {/* パンくず */}
         <Breadcrumb
           items={[
-            { label: '中古AirPods完全購入ガイド', href: '/airpods' },
+            { label: '中古AirPods完全購入ガイド', href: '/airpods/' },
             { label: 'AirPodsを安く買う方法8選' },
           ]}
         />

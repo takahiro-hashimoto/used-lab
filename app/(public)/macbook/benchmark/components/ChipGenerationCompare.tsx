@@ -89,10 +89,6 @@ export default function ChipGenerationCompare({ models }: { models: BenchModel[]
               <tbody>
                 {generations.map((gen, i) => {
                   const prev = i > 0 ? generations[i - 1] : null
-                  const singlePct = (gen.avgSingle / maxSingle) * 100
-                  const multiPct = (gen.avgMulti / maxMulti) * 100
-                  const metalPct = (gen.avgMetal / maxMetal) * 100
-
                   return (
                     <tr key={gen.chip}>
                       <th scope="row" className="chip-gen-table__chip">

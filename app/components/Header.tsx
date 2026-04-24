@@ -157,7 +157,7 @@ export default function Header() {
             width={180}
             height={30}
             priority
-            sizes="(max-width: 768px) 100vw, 360px"
+            sizes="180px"
           />
         </Link>
 

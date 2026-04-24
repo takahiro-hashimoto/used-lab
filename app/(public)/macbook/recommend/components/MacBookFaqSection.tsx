@@ -1,4 +1,4 @@
-import { RECOMMEND_DATE_LABEL, RECOMMEND_YEAR, RECOMMEND_COUNT_LABEL } from '@/lib/data/macbook-recommend'
+import { RECOMMEND_DATE_LABEL, RECOMMEND_COUNT_LABEL } from '@/lib/data/macbook-recommend'
 
 export default function MacBookFaqSection() {
   const faqs = [

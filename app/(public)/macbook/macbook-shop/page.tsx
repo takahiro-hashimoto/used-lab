@@ -127,7 +127,7 @@ export default async function MacBookShopPage() {
         {/* パンくず */}
         <Breadcrumb
           items={[
-            { label: '中古MacBook完全購入ガイド', href: '/macbook' },
+            { label: '中古MacBook完全購入ガイド', href: '/macbook/' },
             { label: '中古MacBookを買うならどこ？' },
           ]}
         />

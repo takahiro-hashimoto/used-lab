@@ -143,7 +143,7 @@ export default function HowtoUseIpadPage() {
         {/* パンくず */}
         <Breadcrumb
           items={[
-            { label: '中古iPad完全購入ガイド', href: '/ipad' },
+            { label: '中古iPad完全購入ガイド', href: '/ipad/' },
             { label: 'iPadの便利な使い道 22選' },
           ]}
         />

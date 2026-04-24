@@ -88,7 +88,7 @@ export default function GpsCellularComparePage() {
         {/* パンくず */}
         <Breadcrumb
           items={[
-            { label: '中古Apple Watch完全購入ガイド', href: '/watch' },
+            { label: '中古Apple Watch完全購入ガイド', href: '/watch/' },
             { label: 'GPSモデルとセルラーモデルの違い' },
           ]}
         />
@@ -136,7 +136,7 @@ export default function GpsCellularComparePage() {
               </p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                中古Apple Watchの選び方全般は「<Link href="/watch">中古Apple Watch完全購入ガイド</Link>」をご覧ください。
+                中古Apple Watchの選び方全般は「<Link href="/watch/">中古Apple Watch完全購入ガイド</Link>」をご覧ください。
               </p>
             </div>
           </div>

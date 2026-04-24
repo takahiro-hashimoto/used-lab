@@ -41,8 +41,6 @@ function SpecValue({ value }: { value: string | null }) {
   return <>{value}</>
 }
 
-const RECOMMENDED_SHOP_ID = 1
-
 export default function ShopSection({ items, productName, description, specRows, shopDetailLink }: Props) {
   if (items.length === 0) return null
 

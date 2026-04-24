@@ -129,7 +129,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/watch/watch-spe
         {/* パンくず */}
         <Breadcrumb
           items={[
-            { label: '中古Apple Watch完全購入ガイド', href: '/watch' },
+            { label: '中古Apple Watch完全購入ガイド', href: '/watch/' },
             { label: '歴代Apple Watchスペック比較表' },
           ]}
         />
@@ -176,7 +176,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/watch/watch-spe
               <p>本記事では<strong>歴代Apple Watchの主要スペックを一覧表で比較</strong>し、進化ポイントをわかりやすくまとめました。Apple Watchを購入する際の参考にしてみてください！</p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                もっと全体像から知りたい方は「<Link href="/watch">中古Apple Watch購入ガイド</Link>」をご覧ください。
+                もっと全体像から知りたい方は「<Link href="/watch/">中古Apple Watch購入ガイド</Link>」をご覧ください。
               </p>
             </div>
           </div>

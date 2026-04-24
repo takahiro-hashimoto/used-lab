@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { placeholder } from '@/lib/placeholder'
 import type { WatchModel, WatchPriceLog, ProductShopLink, FallbackShop } from '@/lib/types'
-import { formatPrice, formatReleaseDate, buildDisplayLinks, calculateAnnualCost } from '@/lib/utils/shared-helpers'
+import { formatReleaseDate, buildDisplayLinks } from '@/lib/utils/shared-helpers'
 import { calculatePriceRange, calculateOSLifespan } from '@/lib/utils/watch-helpers'
 import { RECOMMEND_DATE_LABEL, RECOMMEND_COUNT_LABEL } from '@/lib/data/watch-recommend'
 import SpecToggle from '@/app/components/SpecToggle'
@@ -50,7 +50,6 @@ export default function RecommendDetailSection({ items }: Props) {
           const priceRange = calculatePriceRange(latestPrice)
           const osLife = calculateOSLifespan(model.date, model.last_watchos)
           const releaseDate = formatReleaseDate(model.date)
-          const annualCost = calculateAnnualCost(priceRange.minPrice, osLife.remainingYears)
 
           const displayLinks = buildDisplayLinks(shopLinks, fallbackShops, SHOP_NAMES)
           const iosysLink = displayLinks.find((l) => l.shop_id === 1)

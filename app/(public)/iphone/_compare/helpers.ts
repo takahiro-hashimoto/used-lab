@@ -4,7 +4,7 @@
  */
 
 import type { IPhoneModel } from '@/lib/types'
-import type { CompareType, SpecDefinition } from './spec-definitions'
+import type { SpecDefinition } from './spec-definitions'
 
 export type ComparisonResult = {
   label: string

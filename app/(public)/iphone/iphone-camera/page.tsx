@@ -107,7 +107,7 @@ export default async function IPhoneCameraPage() {
         {/* パンくず */}
         <Breadcrumb
           items={[
-            { label: '中古iPhone完全購入ガイド', href: '/iphone' },
+            { label: '中古iPhone完全購入ガイド', href: '/iphone/' },
             { label: 'iPhoneカメラ性能比較' },
           ]}
         />
@@ -156,7 +156,7 @@ export default async function IPhoneCameraPage() {
               <p>型落ちの中古iPhoneでも十分なカメラ性能を持つモデルは多いので、あなたの撮影スタイルに最適な1台を見つける参考にしてみてください。</p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                もっと全体像から知りたい方は「<Link href="/iphone">中古iPhone完全購入ガイド</Link>」をご覧ください。
+                もっと全体像から知りたい方は「<Link href="/iphone/">中古iPhone完全購入ガイド</Link>」をご覧ください。
               </p>
             </div>
           </div>

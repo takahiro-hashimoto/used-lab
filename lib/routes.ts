@@ -70,7 +70,7 @@ export const PRODUCT_CATEGORIES: CategoryDef[] = [
   {
     id: 'iphone',
     label: 'iPhone',
-    icon: 'fa-mobile-screen',
+    icon: 'fa-mobile-screen-button',
     desc: '中古iPhoneの選び方・おすすめ機種・スペック比較・中古相場など、購入に役立つ記事をまとめています。',
     basePath: '/iphone',
     pages: [
@@ -203,6 +203,58 @@ export const UTILITY_PAGES: PageDef[] = [
   { path: '/profile/', label: '運営者情報', priority: 0.3, changeFrequency: 'yearly' },
   { path: '/guidelines/', label: 'ガイドライン', priority: 0.3, changeFrequency: 'yearly' },
   { path: '/privacy-policy/', label: 'プライバシーポリシー', priority: 0.3, changeFrequency: 'yearly' },
+]
+
+// ---------- フッターナビゲーション ----------
+
+export const FOOTER_LINKS: Record<string, { href: string; label: string }[]> = {
+  iphone: [
+    { href: '/iphone/', label: '中古iPhoneの選び方ガイド' },
+    { href: '/iphone/recommend/', label: '中古iPhoneおすすめ機種' },
+    { href: '/iphone/filter-search/', label: 'iPhone機種診断ツール' },
+    { href: '/iphone/price-info/', label: '中古iPhoneの相場価格' },
+    { href: '/iphone/iphone-spec-table/', label: 'iPhoneスペック比較表' },
+    { href: '/iphone/iphone-shop/', label: '中古iPhone購入先比較' },
+  ],
+  ipad: [
+    { href: '/ipad/', label: '中古iPadの選び方ガイド' },
+    { href: '/ipad/recommend/', label: '中古iPadおすすめ機種' },
+    { href: '/ipad/ipad-filter-search/', label: 'iPad機種診断ツール' },
+    { href: '/ipad/ipad-price-info/', label: '中古iPadの相場価格' },
+    { href: '/ipad/ipad-spec-table/', label: 'iPadスペック比較表' },
+    { href: '/ipad/ipad-shop/', label: '中古iPad購入先比較' },
+  ],
+  macbook: [
+    { href: '/macbook/', label: '中古MacBookの選び方ガイド' },
+    { href: '/macbook/recommend/', label: '中古MacBookおすすめ機種' },
+    { href: '/macbook/price-info/', label: '中古MacBookの相場価格' },
+    { href: '/macbook/macbook-spec-table/', label: 'MacBookスペック比較表' },
+    { href: '/macbook/air-pro-compare/', label: 'MacBook Air vs Pro比較' },
+    { href: '/macbook/macbook-shop/', label: '中古MacBook購入先比較' },
+  ],
+  watch: [
+    { href: '/watch/', label: '中古Apple Watch選び方ガイド' },
+    { href: '/watch/recommend/', label: '中古Apple Watchおすすめ機種' },
+    { href: '/watch/watch-filter-search/', label: 'Apple Watch機種診断ツール' },
+    { href: '/watch/watch-price-info/', label: '中古Apple Watchの相場価格' },
+    { href: '/watch/watch-spec-table/', label: 'Apple Watchスペック比較表' },
+    { href: '/watch/watch-shop/', label: '中古Apple Watch購入先比較' },
+  ],
+  airpods: [
+    { href: '/airpods/', label: '中古AirPodsの選び方ガイド' },
+    { href: '/airpods/recommend/', label: '中古AirPodsおすすめ機種' },
+    { href: '/airpods/airpods-filter-search/', label: 'AirPods機種診断ツール' },
+    { href: '/airpods/price-info/', label: '中古AirPodsの相場価格' },
+    { href: '/airpods/airpods-buy/', label: 'AirPodsを安く買う方法' },
+  ],
+}
+
+export const UTILITY_FOOTER_LINKS: { href: string; label: string }[] = [
+  { href: '/profile/', label: 'ユーズドラボについて' },
+  { href: '/contact/', label: 'お問い合わせ' },
+  { href: '/guidelines/', label: 'コンテンツ制作ポリシー' },
+  { href: '/privacy-policy/', label: 'プライバシーポリシー' },
+  { href: '/sitemap-page/', label: 'サイトマップ' },
 ]
 
 // ---------- ヘルパー ----------

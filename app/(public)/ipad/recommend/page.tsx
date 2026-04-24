@@ -10,7 +10,7 @@ import {
   getAllIPadAccessories,
   getAllIPadAccessoryCompatibility,
 } from '@/lib/queries'
-import type { IPadModel, IPadPriceLog } from '@/lib/types'
+import type { IPadModel } from '@/lib/types'
 import { buildFallbackShops, buildBreadcrumbJsonLd, buildArticleJsonLd, buildFaqJsonLd, formatPrice, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import { buildAccessoryLookup, getPencilTextFromAccessories, getKeyboardTextFromAccessories, calculatePriceRange } from '@/lib/utils/ipad-helpers'
 import {
@@ -180,7 +180,7 @@ export default async function IPadRecommendPage() {
         {/* パンくず */}
         <Breadcrumb
           items={[
-            { label: '中古iPad完全購入ガイド', href: '/ipad' },
+            { label: '中古iPad完全購入ガイド', href: '/ipad/' },
             { label: `中古iPadおすすめ${RECOMMEND_COUNT}選` },
           ]}
         />

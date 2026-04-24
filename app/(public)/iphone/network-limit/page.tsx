@@ -95,7 +95,7 @@ export default async function NetworkLimitPage() {
         <div className="hero-wrapper">
           <Breadcrumb
             items={[
-              { label: '中古iPhone完全購入ガイド', href: '/iphone' },
+              { label: '中古iPhone完全購入ガイド', href: '/iphone/' },
               { label: 'ネットワーク制限△のメリット・デメリット' },
             ]}
           />
@@ -141,7 +141,7 @@ export default async function NetworkLimitPage() {
               </p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                中古iPhoneの全体像を把握したい方は「<Link href="/iphone">中古iPhone完全購入ガイド</Link>」をご覧ください。
+                中古iPhoneの全体像を把握したい方は「<Link href="/iphone/">中古iPhone完全購入ガイド</Link>」をご覧ください。
               </p>
             </div>
           </div>

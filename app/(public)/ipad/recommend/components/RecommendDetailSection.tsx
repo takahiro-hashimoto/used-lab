@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { placeholder } from '@/lib/placeholder'
 import type { IPadModel, IPadPriceLog, ProductShopLink, FallbackShop } from '@/lib/types'
-import { formatPrice, formatReleaseDate, buildDisplayLinks, calculateAnnualCost } from '@/lib/utils/shared-helpers'
+import { formatReleaseDate, buildDisplayLinks } from '@/lib/utils/shared-helpers'
 import { calculatePriceRange, calculateOSLifespan } from '@/lib/utils/ipad-helpers'
 import { RECOMMEND_DATE_LABEL, RECOMMEND_COUNT_LABEL } from '@/lib/data/ipad-recommend'
 import SpecToggle from '@/app/components/SpecToggle'
@@ -52,7 +52,6 @@ export default function RecommendDetailSection({ items }: Props) {
           const priceRange = calculatePriceRange(latestPrice)
           const osLife = calculateOSLifespan(model.date, model.last_ipados)
           const releaseDate = formatReleaseDate(model.date)
-          const annualCost = calculateAnnualCost(priceRange.minPrice, osLife.remainingYears)
 
           const displayLinks = buildDisplayLinks(shopLinks, fallbackShops, SHOP_NAMES).sort(
             (a, b) => SHOP_ORDER.indexOf(a.shop_id) - SHOP_ORDER.indexOf(b.shop_id)

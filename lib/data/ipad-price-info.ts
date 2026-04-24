@@ -3,9 +3,6 @@
  * 配置場所: /ipad/ipad-price-info/
  */
 
-const now = new Date()
-export const PRICE_INFO_UPDATE_MONTH = `${now.getFullYear()}年${now.getMonth() + 1}月`
-
 /** チャートカラー（最大12色） */
 export const CHART_COLORS = [
   '#3b82f6', '#10b981', '#f59e0b', '#ef4444',

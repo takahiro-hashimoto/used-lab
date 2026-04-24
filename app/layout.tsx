@@ -4,7 +4,7 @@ import Script from "next/script";
 import "./critical.css";
 import { CSS_NON_CRITICAL, CSS_FONTAWESOME } from "@/lib/asset-hashes";
 import NavigationProgressBar from "@/app/components/NavigationProgressBar";
-import AsyncCssLoader from "@/app/components/AsyncCssLoader";
+import AsyncStylesheets from "@/app/components/AsyncStylesheets";
 
 const GTM_ID = 'GTM-5RVN7KJZ';
 const IS_PROD = process.env.NEXT_PUBLIC_ENV === 'production';
@@ -69,15 +69,20 @@ export default function RootLayout({
     <html lang="ja" className={inter.variable}>
       <head>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(siteNavigationJsonLd) }} />
+        {/* preload: start downloading non-blocking CSS immediately */}
         <link rel="preload" href={CSS_NON_CRITICAL} as="style" />
         <link rel="preload" href={CSS_FONTAWESOME} as="style" />
-        {IS_PROD && <link rel="dns-prefetch" href="https://www.googletagmanager.com" />}
+        {IS_PROD && <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="" />}
         <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
         {IS_PROD && (
-          <Script
-            src={`https://www.googletagmanager.com/gtm.js?id=${GTM_ID}`}
-            strategy="lazyOnload"
-          />
+          <Script id="gtm" strategy="afterInteractive">{`
+            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;
+            f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','${GTM_ID}');
+          `}</Script>
         )}
       </head>
       <body>
@@ -91,7 +96,7 @@ export default function RootLayout({
             />
           </noscript>
         )}
-        <AsyncCssLoader hrefs={[CSS_NON_CRITICAL, CSS_FONTAWESOME]} />
+        <AsyncStylesheets hrefs={[CSS_NON_CRITICAL, CSS_FONTAWESOME]} />
         <NavigationProgressBar />
         {children}
       </body>

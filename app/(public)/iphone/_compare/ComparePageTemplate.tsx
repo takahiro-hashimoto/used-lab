@@ -6,7 +6,6 @@
 import Link from 'next/link'
 import '@/app/compare.css'
 import { notFound } from 'next/navigation'
-import type { IPhoneModel, IPhonePriceLog } from '@/lib/types'
 import {
   getIPhoneModelBySlug,
   getPriceLogsByModelId,
@@ -64,7 +63,7 @@ export default async function ComparePageTemplate({ config }: Props) {
   const shortL = getShortName(modelL)
   const shortR = getShortName(modelR)
 
-  const { dateStr, dateDisplay } = getGitDateForFile(`app/(public)/iphone/${config.slug}/page.tsx`)
+  const { dateStr } = getGitDateForFile(`app/(public)/iphone/${config.slug}/page.tsx`)
 
     // JSON-LD
   const breadcrumbJsonLd = buildBreadcrumbJsonLd([

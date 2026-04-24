@@ -73,7 +73,7 @@ export default function WindowsMacComparePage() {
         {/* パンくず */}
         <Breadcrumb
           items={[
-            { label: '中古MacBook完全購入ガイド', href: '/macbook' },
+            { label: '中古MacBook完全購入ガイド', href: '/macbook/' },
             { label: 'MacとWindowsの違い' },
           ]}
         />
@@ -121,7 +121,7 @@ export default function WindowsMacComparePage() {
               </p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                中古MacBookの購入を検討中の方は「<Link href="/macbook">中古MacBook完全購入ガイド</Link>」もあわせてご覧ください。
+                中古MacBookの購入を検討中の方は「<Link href="/macbook/">中古MacBook完全購入ガイド</Link>」もあわせてご覧ください。
               </p>
             </div>
           </div>

@@ -14,7 +14,7 @@ type Props = {
   slug: string
 }
 
-export default function CompareHero({ modelL, modelR, slug }: Props) {
+export default function CompareHero({ modelL, modelR }: Props) {
   const shortR = getShortName(modelR)
 
   return (

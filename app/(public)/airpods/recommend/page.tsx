@@ -180,7 +180,7 @@ export default async function AirPodsRecommendPage() {
         {/* パンくず */}
         <Breadcrumb
           items={[
-            { label: '中古AirPods完全ガイド', href: '/airpods' },
+            { label: '中古AirPods完全ガイド', href: '/airpods/' },
             { label: `中古AirPodsおすすめ${RECOMMEND_COUNT}選` },
           ]}
         />

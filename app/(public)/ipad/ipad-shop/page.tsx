@@ -128,7 +128,7 @@ export default async function IPadShopPage() {
         {/* パンくず */}
         <Breadcrumb
           items={[
-            { label: '中古iPad完全購入ガイド', href: '/ipad' },
+            { label: '中古iPad完全購入ガイド', href: '/ipad/' },
             { label: '中古iPadを買うならどこ？' },
           ]}
         />

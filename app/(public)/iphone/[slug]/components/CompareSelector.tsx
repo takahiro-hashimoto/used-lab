@@ -27,19 +27,6 @@ function getFeatureValue(model: IPhoneModel, key: string): string {
   return String(val).replace(/<br\s*\/?>/g, '\n')
 }
 
-function getAntutuTotal(m: IPhoneModel): string {
-  const t = (m.antutu_cpu || 0) + (m.antutu_gpu || 0) + (m.antutu_mem || 0) + (m.antutu_ux || 0)
-  return t > 0 ? t.toLocaleString() : '-'
-}
-
-function getBatteryLife(m: IPhoneModel): string {
-  const parts: string[] = []
-  if (m.video) parts.push(`ビデオ再生：${m.video}`)
-  if (m.streaming) parts.push(`ストリーミング：${m.streaming}`)
-  if (m.audio) parts.push(`音楽再生：${m.audio}`)
-  return parts.length > 0 ? parts.join('\n') : '-'
-}
-
 function formatReleaseDate(date: string | null): string {
   if (!date) return '-'
   const parts = date.split('/')

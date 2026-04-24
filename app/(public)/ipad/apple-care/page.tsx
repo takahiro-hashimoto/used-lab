@@ -68,7 +68,7 @@ export default function IpadAppleCarePage() {
           <div className="hero-wrapper">
             <Breadcrumb
               items={[
-                { label: '中古iPad完全購入ガイド', href: '/ipad' },
+                { label: '中古iPad完全購入ガイド', href: '/ipad/' },
                 { label: 'アップルケアは必要？' },
               ]}
             />

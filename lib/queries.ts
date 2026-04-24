@@ -140,6 +140,32 @@ function createPriceLogQueries<T extends { model_id: number }>(table: string, ta
       { revalidate: 86400, tags: [tag] }
     ),
 
+    /** 複数モデルの最新価格ログを一括取得し、model_id → 最新ログのマップで返す（過去30日分のみ取得） */
+    getLatestForModels: unstable_cache(
+      async (modelIds: number[]): Promise<Record<number, T>> => {
+        if (modelIds.length === 0) return {}
+        const thirtyDaysAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000)
+          .toISOString()
+          .substring(0, 10)
+        const { data, error } = await supabase
+          .from(table)
+          .select('*')
+          .in('model_id', modelIds)
+          .gte('logged_at', thirtyDaysAgo)
+          .order('logged_at', { ascending: false })
+        if (error) throw new Error(`getLatestForModels(${table}): ${error.message}`)
+        const map: Record<number, T> = {}
+        for (const row of (data ?? []) as T[]) {
+          if (!(row.model_id in map)) {
+            map[row.model_id] = row
+          }
+        }
+        return map
+      },
+      [`${table}-latest-for-models`],
+      { revalidate: 86400, tags: [tag] }
+    ),
+
     /** 複数モデルの価格ログを一括取得し、model_id ごとにグループ化して返す（自動ページネーション）
      *  データ量が2MBを超える場合があるためunstable_cacheは使わず、ページレベルのrevalidateに委ねる
      *  @param since YYYY-MM-DD形式の日付文字列。指定するとその日以降のログのみ取得（Supabase側で絞り込み） */
@@ -205,6 +231,7 @@ export const getAllIPhoneSlugs = iPhoneModels.getAllSlugs
 export const getPriceLogsByModelId = iPhonePriceLogs.getByModelId
 export const getLatestPriceLog = iPhonePriceLogs.getLatest
 export const getAllIPhonePriceLogsByModelIds = iPhonePriceLogs.getAllByModelIds
+export const getLatestIPhonePriceLogsForModels = iPhonePriceLogs.getLatestForModels
 
 // iPad
 export const getIPadModelBySlug = iPadModels.getBySlug
@@ -214,6 +241,7 @@ export const getAllIPadSlugs = iPadModels.getAllSlugs
 export const getIPadPriceLogsByModelId = iPadPriceLogs.getByModelId
 export const getLatestIPadPriceLog = iPadPriceLogs.getLatest
 export const getAllIPadPriceLogsByModelIds = iPadPriceLogs.getAllByModelIds
+export const getLatestIPadPriceLogsForModels = iPadPriceLogs.getLatestForModels
 
 // iPad Accessories
 export const getAllIPadAccessories = unstable_cache(
@@ -272,6 +300,7 @@ export const getAllWatchSlugs = watchModels.getAllSlugs
 export const getWatchPriceLogsByModelId = watchPriceLogs.getByModelId
 export const getLatestWatchPriceLog = watchPriceLogs.getLatest
 export const getAllWatchPriceLogsByModelIds = watchPriceLogs.getAllByModelIds
+export const getLatestWatchPriceLogsForModels = watchPriceLogs.getLatestForModels
 
 // MacBook
 export const getMacBookModelBySlug = macBookModels.getBySlug
@@ -281,6 +310,7 @@ export const getAllMacBookSlugs = macBookModels.getAllSlugs
 export const getMacBookPriceLogsByModelId = macBookPriceLogs.getByModelId
 export const getLatestMacBookPriceLog = macBookPriceLogs.getLatest
 export const getAllMacBookPriceLogsByModelIds = macBookPriceLogs.getAllByModelIds
+export const getLatestMacBookPriceLogsForModels = macBookPriceLogs.getLatestForModels
 
 // AirPods
 export const getAirPodsModelBySlug = airPodsModels.getBySlug
@@ -289,6 +319,7 @@ export const getAllAirPodsSlugs = airPodsModels.getAllSlugs
 export const getAirPodsPriceLogsByModelId = airPodsPriceLogs.getByModelId
 export const getLatestAirPodsPriceLog = airPodsPriceLogs.getLatest
 export const getAllAirPodsPriceLogsByModelIds = airPodsPriceLogs.getAllByModelIds
+export const getLatestAirPodsPriceLogsForModels = airPodsPriceLogs.getLatestForModels
 
 // ============================================================
 // 共通クエリ（製品横断）

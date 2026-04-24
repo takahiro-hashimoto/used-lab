@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import type { ModelData } from '../page'
 
 type Props = {
@@ -31,12 +32,12 @@ export default function PriceDropSection({ items, dateDisplay }: Props) {
             <li key={model.id} className="price-card m-card m-card--shadow">
               <figure className="price-card__img">
                 {model.image && (
-                  <img
+                  <Image
                     src={`/images/airpods/${model.image}`}
                     alt={model.name}
                     width={80}
                     height={80}
-                    loading="lazy"
+
                   />
                 )}
               </figure>

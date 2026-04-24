@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import type { ProductShopLink } from '@/lib/types'
 
 type BaseModel = {
@@ -74,7 +75,7 @@ export default function CompareSection<T extends BaseModel>({
             <h3 className="m-section-heading u-mt-2xl" style={{ textAlign: 'left' }}>よく比較されている組み合わせ</h3>
             <div className="l-grid l-grid--2col" style={{ marginTop: 'var(--space-md)' }}>
               {compareLinks.map((link) => (
-                <a key={link.href} className="m-card m-card--shadow related-link-card related-link-card--icon m-card--hoverable" href={link.href}>
+                <Link key={link.href} className="m-card m-card--shadow related-link-card related-link-card--icon m-card--hoverable" href={link.href}>
                   <span className="related-link-card__icon m-icon-box m-icon-box--sm">
                     <i className="fa-solid fa-scale-balanced" aria-hidden="true" />
                   </span>
@@ -83,7 +84,7 @@ export default function CompareSection<T extends BaseModel>({
                   <span className="related-link-card__arrow">
                     <i className="fa-solid fa-chevron-right" aria-hidden="true" />
                   </span>
-                </a>
+                </Link>
               ))}
             </div>
           </>
@@ -96,7 +97,7 @@ export default function CompareSection<T extends BaseModel>({
               {specLinks.map((link, i) => (
                 <span key={link.href}>
                   {i > 0 && ''}
-                  スペックを比較したい方は「<a href={link.href}>{link.label}</a>」もあわせてご覧ください。
+                  スペックを比較したい方は「<Link href={link.href}>{link.label}</Link>」もあわせてご覧ください。
                 </span>
               ))}
             </p>

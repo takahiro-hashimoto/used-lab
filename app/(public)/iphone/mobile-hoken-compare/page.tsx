@@ -108,7 +108,7 @@ export default function MobileHokenComparePage() {
           <div className="hero-wrapper">
             <Breadcrumb
               items={[
-                { label: '中古iPhone完全購入ガイド', href: '/iphone' },
+                { label: '中古iPhone完全購入ガイド', href: '/iphone/' },
                 { label: 'Apple Care+よりモバイル保険がコスパ高い理由' },
               ]}
             />
@@ -154,7 +154,7 @@ export default function MobileHokenComparePage() {
                 </p>
                 <p className="lead-link">
                   <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                  中古iPhoneの選び方は「<Link href="/iphone">中古iPhone完全購入ガイド</Link>」もご覧ください。
+                  中古iPhoneの選び方は「<Link href="/iphone/">中古iPhone完全購入ガイド</Link>」もご覧ください。
                 </p>
               </div>
             </div>

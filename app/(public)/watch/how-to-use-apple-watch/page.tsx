@@ -75,7 +75,7 @@ export default function HowToUseAppleWatchPage() {
         {/* パンくず */}
         <Breadcrumb
           items={[
-            { label: '中古Apple Watch完全購入ガイド', href: '/watch' },
+            { label: '中古Apple Watch完全購入ガイド', href: '/watch/' },
             { label: 'Apple Watchのできること25選' },
           ]}
         />
@@ -125,7 +125,7 @@ export default function HowToUseAppleWatchPage() {
               </p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                Apple Watchの選び方から知りたい方は「<Link href="/watch">中古Apple Watch購入ガイド</Link>」をご覧ください。
+                Apple Watchの選び方から知りたい方は「<Link href="/watch/">中古Apple Watch購入ガイド</Link>」をご覧ください。
               </p>
             </div>
           </div>

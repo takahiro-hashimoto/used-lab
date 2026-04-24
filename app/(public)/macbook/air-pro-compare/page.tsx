@@ -89,7 +89,7 @@ export default async function AirProComparePage() {
         <div className="hero-wrapper">
           <Breadcrumb
             items={[
-              { label: '中古MacBook完全購入ガイド', href: '/macbook' },
+              { label: '中古MacBook完全購入ガイド', href: '/macbook/' },
               { label: 'MacBook AirとProの違い' },
             ]}
           />

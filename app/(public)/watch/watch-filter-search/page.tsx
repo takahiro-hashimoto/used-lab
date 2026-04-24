@@ -1,10 +1,8 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
-import { getAllWatchModels, getAllProductShopLinksByType } from '@/lib/queries'
-import type { WatchPriceLog } from '@/lib/types'
+import { getAllWatchModels, getAllProductShopLinksByType, getLatestWatchPriceLogsForModels } from '@/lib/queries'
 import IconCard from '@/app/components/IconCard'
-import { supabase } from '@/lib/supabase'
 import WatchFilterSearchApp from './components/WatchFilterSearchApp'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import FaqSection from '@/app/components/support/FaqSection'
@@ -64,20 +62,9 @@ export default async function WatchFilterSearchPage() {
     getAllProductShopLinksByType('watch'),
   ])
 
-  // 各モデルの最新価格を取得
-  const { data: allPriceLogs } = await supabase
-    .from('watch_price_logs')
-    .select('*')
-    .order('logged_at', { ascending: false })
-
-  const latestPriceMap = new Map<number, WatchPriceLog>()
-  if (allPriceLogs) {
-    for (const log of allPriceLogs as WatchPriceLog[]) {
-      if (!latestPriceMap.has(log.model_id)) {
-        latestPriceMap.set(log.model_id, log)
-      }
-    }
-  }
+  const allModelIds = allModels.map((m) => m.id)
+  const latestPriceByModel = await getLatestWatchPriceLogsForModels(allModelIds)
+  const latestPriceMap = new Map(Object.entries(latestPriceByModel).map(([k, v]) => [Number(k), v]))
 
   const modelsData = allModels.map((m) => {
     const price = latestPriceMap.get(m.id)
@@ -170,7 +157,7 @@ export default async function WatchFilterSearchPage() {
         {/* パンくず */}
         <Breadcrumb
           items={[
-            { label: '中古Apple Watch購入完全ガイド', href: '/watch' },
+            { label: '中古Apple Watch購入完全ガイド', href: '/watch/' },
             { label: 'Apple Watch機種診断' },
           ]}
         />
@@ -210,7 +197,7 @@ export default async function WatchFilterSearchPage() {
           <div className="l-container">
             <div className="lead-box">
               <p>「どのApple Watchを買えばいいかわからない...」そんな悩みを解決する<strong>Apple Watch機種診断ツール</strong>です。</p>
-              <p>最新のSeries 11やUltra 3から型落ちの人気モデルまで、あなたの使用目的・予算・こだわり条件に合わせて最適な<Link href="/watch">中古Apple Watch</Link>を無料で診断。<strong>{totalModels}機種のデータベース</strong>から、あなたにぴったりの1台を見つけましょう。</p>
+              <p>最新のSeries 11やUltra 3から型落ちの人気モデルまで、あなたの使用目的・予算・こだわり条件に合わせて最適な<Link href="/watch/">中古Apple Watch</Link>を無料で診断。<strong>{totalModels}機種のデータベース</strong>から、あなたにぴったりの1台を見つけましょう。</p>
               <p className="lead-link"><i className="fa-solid fa-arrow-right" aria-hidden="true"></i> 情報を網羅的に得たい方は「<Link href="/watch/">中古Apple Watch完全購入ガイド</Link>」も参考にしてみてください！</p>
             </div>
           </div>

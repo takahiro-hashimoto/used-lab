@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import Image from 'next/image'
 import type { BenchModel } from './BenchmarkRanking'
 import type { ProductShopLink } from '@/lib/types'
 import { type UseCaseItem, findBestMatch, getIosysUrl } from '@/lib/utils/benchmark-helpers'

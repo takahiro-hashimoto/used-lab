@@ -1,13 +1,15 @@
 'use client'
 
-import { useState, useRef, useEffect, useCallback } from 'react'
+import { useState, useRef, useEffect, useCallback, useMemo } from 'react'
 import Script from 'next/script'
+import type { Chart as ChartClass, ChartDataset, TooltipItem } from 'chart.js'
 import type { ModelData } from '../page'
+
+type WindowWithChart = Window & { Chart?: typeof ChartClass }
 
 type Props = {
   modelsData: ModelData[]
   initialSelected: number[]
-  seriesGroups: Record<string, number[]>
 }
 
 const MAX_SELECT = 4
@@ -26,11 +28,13 @@ function shortenModelName(name: string): string {
     .replace('インチ', '')
 }
 
-export default function DashboardSection({ modelsData, initialSelected, seriesGroups }: Props) {
+export default function DashboardSection({ modelsData, initialSelected }: Props) {
   const [selectedModels, setSelectedModels] = useState<number[]>(initialSelected)
   const [timeRange, setTimeRange] = useState(30)
   const chartRef = useRef<HTMLCanvasElement>(null)
-  const chartInstanceRef = useRef<unknown>(null)
+  const chartInstanceRef = useRef<InstanceType<typeof ChartClass> | null>(null)
+
+  const modelsMap = useMemo(() => new Map(modelsData.map((m) => [m.id, m])), [modelsData])
 
   const toggleModel = (id: number) => {
     setSelectedModels((prev) => {
@@ -42,41 +46,29 @@ export default function DashboardSection({ modelsData, initialSelected, seriesGr
 
   const updateChart = useCallback(() => {
     if (!chartRef.current) return
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const ChartJS = (window as unknown as Record<string, any>).Chart as typeof import('chart.js').Chart | undefined
+    const ChartJS = (window as WindowWithChart).Chart
     if (!ChartJS) return
 
-    if (chartInstanceRef.current) {
-      (chartInstanceRef.current as { destroy: () => void }).destroy()
-    }
+    chartInstanceRef.current?.destroy()
 
     const ctx = chartRef.current.getContext('2d')
     if (!ctx) return
 
     if (selectedModels.length === 0) return
 
-    const datasets: {
-      label: string
-      data: number[]
-      borderColor: string
-      backgroundColor: string
-      borderWidth: number
-      tension: number
-      pointRadius: number
-      pointHoverRadius: number
-    }[] = []
+    const datasets: ChartDataset<'line', number[]>[] = []
     let labels: string[] = []
 
     for (const id of selectedModels) {
-      const m = modelsData.find((x) => x.id === id)
+      const m = modelsMap.get(id)
       if (!m || m.prices.length === 0) continue
 
       const filtered = m.prices.slice(-timeRange)
 
       if (labels.length === 0 && filtered.length > 0) {
         labels = filtered.map((p) => {
-          const d = new Date(p.date)
-          return `${d.getMonth() + 1}/${d.getDate()}`
+          const [, mm, dd] = p.date.split('-')
+          return `${Number(mm)}/${Number(dd)}`
         })
       }
 
@@ -105,11 +97,9 @@ export default function DashboardSection({ modelsData, initialSelected, seriesGr
             backgroundColor: '#1e293b',
             padding: 10,
             cornerRadius: 6,
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            itemSort: (a: any, b: any) => (b.parsed?.y ?? 0) - (a.parsed?.y ?? 0),
+            itemSort: (a: TooltipItem<'line'>, b: TooltipItem<'line'>) => (b.parsed?.y ?? 0) - (a.parsed?.y ?? 0),
             callbacks: {
-              // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              label: (c: any) =>
+              label: (c: TooltipItem<'line'>) =>
                 `${c.dataset.label}: ¥${c.parsed.y?.toLocaleString() ?? '-'}`,
             },
           },
@@ -127,14 +117,10 @@ export default function DashboardSection({ modelsData, initialSelected, seriesGr
         },
       },
     })
-  }, [selectedModels, timeRange, modelsData])
+  }, [selectedModels, timeRange, modelsMap])
 
   useEffect(() => {
-    return () => {
-      if (chartInstanceRef.current) {
-        (chartInstanceRef.current as { destroy: () => void }).destroy()
-      }
-    }
+    return () => { chartInstanceRef.current?.destroy() }
   }, [])
 
   useEffect(() => {
@@ -142,7 +128,7 @@ export default function DashboardSection({ modelsData, initialSelected, seriesGr
   }, [updateChart])
 
   const selectedModelData = selectedModels
-    .map((id) => modelsData.find((m) => m.id === id))
+    .map((id) => modelsMap.get(id))
     .filter((m): m is ModelData => m != null)
 
   return (

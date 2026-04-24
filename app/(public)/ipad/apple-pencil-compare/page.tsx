@@ -103,7 +103,7 @@ export default async function ApplePencilComparePage() {
         {/* パンくず */}
         <Breadcrumb
           items={[
-            { label: '中古iPad完全購入ガイド', href: '/ipad' },
+            { label: '中古iPad完全購入ガイド', href: '/ipad/' },
             { label: 'Apple Pencilの違いを比較' },
           ]}
         />

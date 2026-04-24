@@ -62,7 +62,6 @@ export default function PriceHistorySection({ models }: Props) {
           const firstPrice = model.prices[0].avg
           const lastPrice = model.prices[model.prices.length - 1].avg
           const totalChange = lastPrice - firstPrice
-          const totalChangePercent = firstPrice > 0 ? Math.round((totalChange / firstPrice) * 1000) / 10 : 0
           const isOpen = openId === model.id
 
           const reversedPrices = [...model.prices].reverse()

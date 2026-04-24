@@ -5,7 +5,7 @@ import Breadcrumb from '@/app/components/Breadcrumb'
 import FaqSection from '@/app/components/support/FaqSection'
 import HeroMeta from '@/app/components/HeroMeta'
 import { getAllIPhoneModels, getAllIPhonePriceLogsByModelIds, getAllProductShopLinksByType } from '@/lib/queries'
-import type { IPhonePriceLog, ProductShopLink } from '@/lib/types'
+import type { IPhonePriceLog } from '@/lib/types'
 import BenchmarkRanking from './components/BenchmarkRanking'
 import ChipGenerationCompare from './components/ChipGenerationCompare'
 import UseCaseGuide from './components/UseCaseGuide'
@@ -129,7 +129,7 @@ export default async function BenchmarkPage() {
         <div className="hero-wrapper">
           <Breadcrumb
             items={[
-              { label: '中古iPhone完全購入ガイド', href: '/iphone' },
+              { label: '中古iPhone完全購入ガイド', href: '/iphone/' },
               { label: 'ベンチマーク比較' },
             ]}
           />
@@ -176,7 +176,7 @@ export default async function BenchmarkPage() {
               </p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                情報を網羅的に得たい方は「<Link href="/iphone">中古iPhone購入完全ガイド</Link>」も参考にしてみてください！
+                情報を網羅的に得たい方は「<Link href="/iphone/">中古iPhone購入完全ガイド</Link>」も参考にしてみてください！
               </p>
             </div>
           </div>

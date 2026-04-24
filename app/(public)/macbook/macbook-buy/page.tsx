@@ -71,7 +71,7 @@ export default function MacBookBuyPage() {
         {/* パンくず */}
         <Breadcrumb
           items={[
-            { label: '中古MacBook完全購入ガイド', href: '/macbook' },
+            { label: '中古MacBook完全購入ガイド', href: '/macbook/' },
             { label: 'MacBookを安く買うには？' },
           ]}
         />

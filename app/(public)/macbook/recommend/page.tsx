@@ -8,7 +8,7 @@ import {
   getAllProductShopLinksByType,
   getLatestMacBookPriceLog,
 } from '@/lib/queries'
-import type { MacBookModel, MacBookPriceLog } from '@/lib/types'
+import type { MacBookModel } from '@/lib/types'
 import { buildFallbackShops, buildBreadcrumbJsonLd, buildArticleJsonLd, buildFaqJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import {
   RECOMMEND_DATE_LABEL,
@@ -170,7 +170,7 @@ export default async function MacBookRecommendPage() {
         {/* パンくず */}
         <Breadcrumb
           items={[
-            { label: '中古MacBook完全購入ガイド', href: '/macbook' },
+            { label: '中古MacBook完全購入ガイド', href: '/macbook/' },
             { label: `中古MacBookおすすめ${RECOMMEND_COUNT}選` },
           ]}
         />

@@ -169,7 +169,7 @@ export default function CameraFeatureCard({ id, title, description, detail, supp
           </button>
           {modelsOpen && (
             <div className="camera-feature-card__models-list">
-              {supportedModels.models.map((name, i) => (
+              {supportedModels.models.map((name) => (
                 <span key={name} className="camera-feature-card__model-text">
                   {name}
                 </span>

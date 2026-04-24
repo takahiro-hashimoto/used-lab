@@ -129,7 +129,7 @@ export default function UsedWatchAttentionPage() {
         {/* パンくず */}
         <Breadcrumb
           items={[
-            { label: '中古Apple Watch完全購入ガイド', href: '/watch' },
+            { label: '中古Apple Watch完全購入ガイド', href: '/watch/' },
             { label: '中古Apple Watchの注意点' },
           ]}
         />
@@ -177,7 +177,7 @@ export default function UsedWatchAttentionPage() {
               </p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                中古Apple Watchの全体像を把握したい方は「<Link href="/watch">中古Apple Watch完全購入ガイド</Link>」をご覧ください。
+                中古Apple Watchの全体像を把握したい方は「<Link href="/watch/">中古Apple Watch完全購入ガイド</Link>」をご覧ください。
               </p>
             </div>
           </div>

@@ -21,7 +21,7 @@ export default function LeadText({ model }: Props) {
           )}
           <p className="lead-link">
             <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-            機種選びから始めたい方は「<Link href="/airpods">中古AirPods購入ガイド</Link>」もどうぞ。
+            機種選びから始めたい方は「<Link href="/airpods/">中古AirPods購入ガイド</Link>」もどうぞ。
           </p>
         </div>
       </div>

@@ -68,7 +68,7 @@ export default function MacbookAppleCarePage() {
           <div className="hero-wrapper">
             <Breadcrumb
               items={[
-                { label: '中古MacBook完全購入ガイド', href: '/macbook' },
+                { label: '中古MacBook完全購入ガイド', href: '/macbook/' },
                 { label: 'アップルケアは必要？' },
               ]}
             />

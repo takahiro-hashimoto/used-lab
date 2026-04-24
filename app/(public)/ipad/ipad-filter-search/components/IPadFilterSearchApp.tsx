@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useMemo } from 'react'
+import Image from 'next/image'
 import Link from 'next/link'
 import {
   formatPrice,
@@ -163,14 +164,6 @@ function formatPort(port: string | null): string {
   if (port.toLowerCase().includes('usb')) return 'USB-C'
   if (port.toLowerCase().includes('lightning')) return 'Lightning'
   return port
-}
-
-function getCameraConfig(frontCamera: string | null): string {
-  if (!frontCamera) return '-'
-  const hasWide = frontCamera.includes('広角')
-  const hasUltraWide = frontCamera.includes('超広角')
-  if (hasWide && hasUltraWide) return '広角+超広角（2眼）'
-  return '広角（1眼）'
 }
 
 function getFeatureTags(m: FilterModel): string[] {
@@ -587,10 +580,11 @@ export default function IPadFilterSearchApp({ models, shopLinks }: Props) {
                     <div className="ifd-result-card__header">
                       <div className="ifd-result-card__img-wrap">
                         {m.image && (
-                          <img
+                          <Image
                             src={`/images/ipad/${m.image}`}
                             alt={m.model}
-                            loading="lazy"
+                            width={80}
+                            height={80}
                           />
                         )}
                       </div>

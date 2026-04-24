@@ -1,14 +1,18 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { cache } from 'react'
 import Image from 'next/image'
 import {
   getAllWatchModels,
   getAllWatchPriceLogsByModelIds,
   getAllProductShopLinksByType,
 } from '@/lib/queries'
-import type { WatchModel, WatchPriceLog, ProductShopLink } from '@/lib/types'
+import type { WatchPriceLog } from '@/lib/types'
 import { calculateOSLifespan } from '@/lib/utils/watch-helpers'
-import { PRICE_INFO_UPDATE_MONTH, CHART_COLORS, FAQ_ITEMS } from '@/lib/data/watch-price-info'
+import { calcAvgFromShops, calcPriceStats, buildPageDates, buildDailyPrices, buildRankingData, buildPriceDropRanking, buildInitialSelected, type PriceEntry } from '@/lib/utils/price-info-helpers'
+import { buildPriceInfoTitle, buildPriceInfoMetadata, PRICE_INFO_UPDATE_MONTH } from '@/lib/utils/price-info-meta'
+import { buildBreadcrumbJsonLd, buildWebApplicationJsonLd, buildFaqJsonLd } from '@/lib/utils/price-info-jsonld'
+import { CHART_COLORS, FAQ_ITEMS } from '@/lib/data/watch-price-info'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import WatchArticleFooter from '@/app/components/watch/WatchArticleFooter'
 import dynamic from 'next/dynamic'
@@ -48,12 +52,7 @@ export type ModelData = {
   priceChangePercent: number
 }
 
-export type PriceEntry = {
-  date: string
-  min: number
-  max: number
-  avg: number
-}
+export type { PriceEntry }
 
 // ============================================================
 // ヘルパー関数
@@ -71,13 +70,7 @@ function calcAvgPriceFromLog(log: WatchPriceLog): PriceEntry | null {
   if (log.geo_max && log.geo_max > 0) maxPrices.push(log.geo_max)
   if (log.janpara_max && log.janpara_max > 0) maxPrices.push(log.janpara_max)
 
-  if (minPrices.length === 0 || maxPrices.length === 0) return null
-
-  const avgMin = Math.round(minPrices.reduce((a, b) => a + b, 0) / minPrices.length / 100) * 100
-  const avgMax = Math.round(maxPrices.reduce((a, b) => a + b, 0) / maxPrices.length / 100) * 100
-  const avg = Math.round((avgMin + avgMax) / 2 / 100) * 100
-
-  return { date: log.logged_at.substring(0, 10), min: avgMin, max: avgMax, avg }
+  return calcAvgFromShops(minPrices, maxPrices, log.logged_at.substring(0, 10))
 }
 
 function getModelSeries(name: string): string {
@@ -103,28 +96,14 @@ export const revalidate = 86400
 
 const PAGE_URL = 'https://used-lab.jp/watch/watch-price-info/'
 
-export async function generateMetadata(): Promise<Metadata> {
-  const allModels = await getAllWatchModels()
-  const modelCount = allModels.length
-  const title = `Apple Watchの中古相場一覧 | 歴代${modelCount}機種の価格推移を独自集計【${PRICE_INFO_UPDATE_MONTH}】`
-  const description = `中古Apple Watch${modelCount}機種の価格相場を毎日更新。価格推移グラフ、最安値ランキングを掲載。イオシス・ゲオ・じゃんぱらの実売価格を集計。`
+const getModels = cache(getAllWatchModels)
 
-  return {
-    title,
-    description,
-  alternates: { canonical: '/watch/watch-price-info/' },
-    openGraph: {
-      title,
-      description,
-      url: '/watch/watch-price-info/',
-      images: [{ url: getHeroImage('/watch/watch-price-info/'), width: 1200, height: 630, alt: title }],
-    },
-    twitter: {
-      title,
-      description,
-      images: [getHeroImage('/watch/watch-price-info/')],
-    },
-  }
+export async function generateMetadata(): Promise<Metadata> {
+  const allModels = await getModels()
+  const modelCount = allModels.length
+  const title = buildPriceInfoTitle('Apple Watch', modelCount, PRICE_INFO_UPDATE_MONTH)
+  const description = `中古Apple Watch${modelCount}機種の価格相場を毎日更新。価格推移グラフ、最安値ランキングを掲載。イオシス・ゲオ・じゃんぱらの実売価格を集計。`
+  return buildPriceInfoMetadata({ title, description, canonicalPath: '/watch/watch-price-info/', heroImageUrl: getHeroImage('/watch/watch-price-info/') })
 }
 
 // ============================================================
@@ -133,12 +112,18 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function WatchPriceInfoPage() {
   const [allModels, allShopLinks] = await Promise.all([
-    getAllWatchModels(),
+    getModels(),
     getAllProductShopLinksByType('watch'),
   ])
 
   // 全モデルの価格ログを1回のバルククエリで一括取得
   const priceLogsMap = await getAllWatchPriceLogsByModelIds(allModels.map((m) => m.id), get90DaysAgo())
+
+  // ショップURLの O(1) 参照用 Map (shop_id=1: iosys)
+  const iosysUrlMap = new Map<number, string>()
+  for (const l of allShopLinks) {
+    if (l.shop_id === 1) iosysUrlMap.set(l.product_id, l.url)
+  }
 
   // ModelData構築
   let colorIndex = 0
@@ -163,32 +148,11 @@ export default async function WatchPriceInfoPage() {
         : `${Math.min(...storageSet)}GB`
       : null
 
-    // 価格エントリ算出（日毎に集約）
-    const dayMap = new Map<string, PriceEntry>()
-    for (const log of logs) {
-      const entry = calcAvgPriceFromLog(log)
-      if (!entry) continue
-      dayMap.set(entry.date, entry)
-    }
-    const prices = [...dayMap.values()].sort((a, b) => a.date.localeCompare(b.date))
+    const prices = buildDailyPrices(logs.map(calcAvgPriceFromLog))
 
     if (prices.length === 0) continue
 
-    const currentPrice = prices[prices.length - 1].avg
-
-    // 30日前との価格差
-    let oldPrice = prices[0].avg
-    const thirtyDaysAgo = new Date()
-    thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30)
-    const cutoffStr = thirtyDaysAgo.toISOString().substring(0, 10)
-    for (const p of prices) {
-      if (p.date >= cutoffStr) {
-        oldPrice = p.avg
-        break
-      }
-    }
-    const priceChange = currentPrice - oldPrice
-    const priceChangePercent = oldPrice > 0 ? Math.round((priceChange / oldPrice) * 1000) / 10 : 0
+    const { currentPrice, priceChange, priceChangePercent } = calcPriceStats(prices)
 
     const releaseYear = model.date ? model.date.split('/')[0] : ''
     const releaseMonth = model.date ? model.date.split('/')[1] : ''
@@ -206,7 +170,7 @@ export default async function WatchPriceInfoPage() {
       supportUntil: osLife.osEndYear > 0 ? `${osLife.osEndYear}年頃` : '-',
       color: CHART_COLORS[colorIndex % CHART_COLORS.length],
       image: model.image || '',
-      iosysUrl: allShopLinks.find((link) => link.product_id === model.id && link.shop_id === 1)?.url || '',
+      iosysUrl: iosysUrlMap.get(model.id) ?? '',
       prices,
       currentPrice,
       priceChange,
@@ -215,14 +179,8 @@ export default async function WatchPriceInfoPage() {
     colorIndex++
   }
 
-  // ランキング用（価格安い順）
-  const rankingData = [...modelsData].sort((a, b) => a.currentPrice - b.currentPrice)
-
-  // 値下がりランキング（price_changeがマイナスで大きい順）
-  const priceDropRanking = modelsData
-    .filter((m) => m.priceChange < 0)
-    .sort((a, b) => a.priceChange - b.priceChange)
-    .slice(0, 10)
+  const rankingData = buildRankingData(modelsData)
+  const priceDropRanking = buildPriceDropRanking(modelsData)
 
   // シリーズグループ
   const seriesGroups: Record<string, number[]> = {
@@ -235,13 +193,7 @@ export default async function WatchPriceInfoPage() {
     if (seriesGroups[series]) seriesGroups[series].push(m.id)
   }
 
-  // 初期選択（各シリーズから1機種ずつ、最大2）
-  const initialSelected: number[] = []
-  for (const ids of Object.values(seriesGroups)) {
-    if (ids.length > 0 && initialSelected.length < 2) {
-      initialSelected.push(ids[0])
-    }
-  }
+  const initialSelected = buildInitialSelected(seriesGroups)
 
   // ソート済みモデル（シリーズ順→新しい年順）
   const sortedModels = [...modelsData].sort((a, b) => {
@@ -253,62 +205,21 @@ export default async function WatchPriceInfoPage() {
 
   const modelCount = modelsData.length
   const cheapestModel = rankingData[0]
-  const cheapestPrice = cheapestModel ? cheapestModel.currentPrice.toLocaleString() : '---'
 
-  const today = new Date()
-  const dateStr = today.toISOString().split('T')[0]
-  const dateDisplay = today.toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' })
+  const { dateStr, dateDisplay, dateModified } = buildPageDates(modelsData)
 
   // JSON-LD
-  const breadcrumbJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
-      { '@type': 'ListItem', position: 2, name: '中古Apple Watch完全購入ガイド', item: 'https://used-lab.jp/watch/' },
-      { '@type': 'ListItem', position: 3, name: 'Apple Watchの中古相場一覧' },
-    ],
-  }
-
-  const webAppJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'WebApplication',
+  const breadcrumbJsonLd = buildBreadcrumbJsonLd('中古Apple Watch完全購入ガイド', 'https://used-lab.jp/watch/', 'Apple Watchの中古相場一覧')
+  const webAppJsonLd = buildWebApplicationJsonLd({
     name: '中古Apple Watch価格比較ダッシュボード',
     description: `中古Apple Watch${modelCount}機種の価格相場を毎日更新。価格推移グラフ、最安値ランキングを掲載。`,
     url: PAGE_URL,
-    applicationCategory: 'UtilitiesApplication',
-    operatingSystem: 'Web',
-    offers: {
-      '@type': 'AggregateOffer',
-      priceCurrency: 'JPY',
-      lowPrice: cheapestModel?.currentPrice ?? 0,
-      highPrice: rankingData[rankingData.length - 1]?.currentPrice ?? 0,
-      offerCount: modelCount,
-    },
-    author: {
-      '@type': 'Person',
-      name: 'タカヒロ',
-      url: 'https://used-lab.jp/profile/',
-      sameAs: [
-        'https://twitter.com/takahiro_mono',
-        'https://www.instagram.com/takahiro_mono',
-        'https://www.youtube.com/@takahiro_mono',
-        'https://digital-style.jp/',
-        'https://nightscape.tokyo/',
-      ],
-    },
-    dateModified: new Date().toISOString(),
-  }
-
-  const faqJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: FAQ_ITEMS.map((item) => ({
-      '@type': 'Question',
-      name: item.question,
-      acceptedAnswer: { '@type': 'Answer', text: item.answer },
-    })),
-  }
+    modelCount,
+    lowestPrice: cheapestModel?.currentPrice ?? 0,
+    highestPrice: rankingData[rankingData.length - 1]?.currentPrice ?? 0,
+    dateModified,
+  })
+  const faqJsonLd = buildFaqJsonLd(FAQ_ITEMS)
 
   return (
     <>
@@ -331,7 +242,7 @@ export default async function WatchPriceInfoPage() {
         {/* パンくず */}
         <Breadcrumb
           items={[
-            { label: '中古Apple Watch完全購入ガイド', href: '/watch' },
+            { label: '中古Apple Watch完全購入ガイド', href: '/watch/' },
             { label: 'Apple Watchの中古相場一覧' },
           ]}
         />
@@ -464,7 +375,6 @@ export default async function WatchPriceInfoPage() {
           <DashboardSection
             modelsData={modelsData}
             initialSelected={initialSelected}
-            seriesGroups={seriesGroups}
           />
 
           {priceDropRanking.length > 0 && (

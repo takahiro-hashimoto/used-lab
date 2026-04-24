@@ -8,8 +8,8 @@ import {
   getAllProductShopLinksByType,
   getShops,
 } from '@/lib/queries'
-import type { WatchModel, WatchPriceLog } from '@/lib/types'
-import { formatPrice, getMinPrice, buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
+import type { WatchModel } from '@/lib/types'
+import { getMinPrice, buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import {
   GUIDE_DATE_LABEL,
   GUIDE_PRICE_SLUGS,
@@ -73,18 +73,15 @@ export default async function WatchGuidePage() {
     .map((slug) => allModels.find((m) => m.slug === slug))
     .filter((m): m is WatchModel => m != null)
 
-  const latestPrices = await Promise.all(
-    priceModels.map((m) => getLatestWatchPriceLog(m.id))
-  )
-
   // おすすめ機種セクション用
   const recommendModels = RECOMMEND_SLUGS
     .map((slug) => allModels.find((m) => m.slug === slug))
     .filter((m): m is WatchModel => m != null)
 
-  const recommendPrices = await Promise.all(
-    recommendModels.map((m) => getLatestWatchPriceLog(m.id))
-  )
+  const [latestPrices, recommendPrices] = await Promise.all([
+    Promise.all(priceModels.map((m) => getLatestWatchPriceLog(m.id))),
+    Promise.all(recommendModels.map((m) => getLatestWatchPriceLog(m.id))),
+  ])
 
   const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/watch/page.tsx')
 

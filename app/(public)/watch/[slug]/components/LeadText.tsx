@@ -40,7 +40,7 @@ export default function LeadText({ model, latestPrice }: Props) {
           </p>
           <p className="lead-link">
             <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-            機種選びから始めたい方は「<Link href="/watch">中古Apple Watch購入ガイド</Link>」もどうぞ。
+            機種選びから始めたい方は「<Link href="/watch/">中古Apple Watch購入ガイド</Link>」もどうぞ。
           </p>
         </div>
       </div>

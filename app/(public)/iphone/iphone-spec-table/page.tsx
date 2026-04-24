@@ -157,7 +157,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/iphone-s
         {/* パンくず */}
         <Breadcrumb
           items={[
-            { label: '中古iPhone完全購入ガイド', href: '/iphone' },
+            { label: '中古iPhone完全購入ガイド', href: '/iphone/' },
             { label: '歴代iPhoneスペック比較表' },
           ]}
         />
@@ -204,7 +204,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/iphone-s
               <p>本記事では<strong>歴代iPhoneの主要スペックを一覧表で比較</strong>し、進化ポイントをわかりやすくまとめました。新たなiPhoneを購入する際の参考にしてみてください！</p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                もっと全体像から知りたい方は「<Link href="/iphone">中古iPhone購入ガイド</Link>」をご覧ください。
+                もっと全体像から知りたい方は「<Link href="/iphone/">中古iPhone購入ガイド</Link>」をご覧ください。
               </p>
             </div>
           </div>

@@ -7,7 +7,7 @@ import {
   getAllProductShopLinksByType,
   getLatestWatchPriceLog,
 } from '@/lib/queries'
-import type { WatchModel, WatchPriceLog } from '@/lib/types'
+import type { WatchModel } from '@/lib/types'
 import { buildFallbackShops, buildBreadcrumbJsonLd, buildArticleJsonLd, buildFaqJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import {
   RECOMMEND_DATE_LABEL,
@@ -163,7 +163,7 @@ export default async function WatchRecommendPage() {
         {/* パンくず */}
         <Breadcrumb
           items={[
-            { label: '中古Apple Watch完全購入ガイド', href: '/watch' },
+            { label: '中古Apple Watch完全購入ガイド', href: '/watch/' },
             { label: `中古Apple Watchおすすめ${RECOMMEND_COUNT}選` },
           ]}
         />

@@ -26,7 +26,7 @@ Apple Watchを安く買う7つの方法
               width={1024}
               height={569}
               sizes="(max-width: 768px) 100vw, 800px"
-            priority
+              loading="lazy"
             />
             <div className="buy-method-card__body">
               <h3 className="buy-method-card__title">Appleギフトカード × 楽天リーベイツ</h3>

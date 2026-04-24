@@ -128,7 +128,7 @@ export default async function IPhoneShopPage() {
         {/* パンくず */}
         <Breadcrumb
           items={[
-            { label: '中古iPhone完全購入ガイド', href: '/iphone' },
+            { label: '中古iPhone完全購入ガイド', href: '/iphone/' },
             { label: '中古iPhoneを買うならどこ？' },
           ]}
         />

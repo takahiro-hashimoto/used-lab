@@ -131,7 +131,7 @@ export default function UsedIphoneAttentionPage() {
         {/* パンくず */}
         <Breadcrumb
           items={[
-            { label: '中古iPhone完全購入ガイド', href: '/iphone' },
+            { label: '中古iPhone完全購入ガイド', href: '/iphone/' },
             { label: '中古iPhoneの注意点' },
           ]}
         />
@@ -179,7 +179,7 @@ export default function UsedIphoneAttentionPage() {
               </p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                中古iPhoneの全体像を把握したい方は「<Link href="/iphone">中古iPhone完全購入ガイド</Link>」をご覧ください。
+                中古iPhoneの全体像を把握したい方は「<Link href="/iphone/">中古iPhone完全購入ガイド</Link>」をご覧ください。
               </p>
             </div>
           </div>

@@ -69,7 +69,7 @@ export default function HeroSection({ model, dateStr, dateDisplay }: Props) {
                 </Link>
               </li>
               <li className="breadcrumb-item">
-                <Link href="/airpods">中古AirPods完全ガイド</Link>
+                <Link href="/airpods/">中古AirPods完全ガイド</Link>
               </li>
               <li className="breadcrumb-item" aria-current="page">{model.name}（{model.model}）</li>
             </ol>

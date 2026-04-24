@@ -80,7 +80,7 @@ export default async function IpadMini6ReviewPage() {
         {/* パンくず */}
         <Breadcrumb
           items={[
-            { label: '中古iPad完全購入ガイド', href: '/ipad' },
+            { label: '中古iPad完全購入ガイド', href: '/ipad/' },
             { label: 'iPad mini 6 長期レビュー' },
           ]}
         />

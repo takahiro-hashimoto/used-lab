@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from 'react'
 import StickyTableWrapper from '@/app/components/StickyTableWrapper'
-import { parseDate, formatDate, BoolCell, TextCell } from '@/app/components/spec-table-utils'
+import { parseDate, formatDate, BoolCell } from '@/app/components/spec-table-utils'
 import type { ProductShopLink } from '@/lib/types'
 
 type SpecModel = {

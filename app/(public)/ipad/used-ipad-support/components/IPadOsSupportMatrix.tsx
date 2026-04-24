@@ -71,18 +71,6 @@ function legacyToDeviceRows(legacyList: LegacyIPad[]): DeviceRow[] {
 }
 
 /* ------------------------------------------------------------------
-   DB機種 → DeviceRow に変換（個別表示・グルーピングなし）
-   DB名をそのまま表示名として使用する
-   ------------------------------------------------------------------ */
-function dbToDeviceRows(models: IPadModel[]): DeviceRow[] {
-  return models.map((m) => ({
-    name: m.model,
-    releaseYear: getReleaseYear(m.date),
-    lastVersionNum: m.last_ipados ? parseVersionNum(m.last_ipados) : null,
-  }))
-}
-
-/* ------------------------------------------------------------------
    DB機種をカテゴリーで分類するヘルパー
    - "iPad Pro ..." → pro
    - "iPad Air ..." → air

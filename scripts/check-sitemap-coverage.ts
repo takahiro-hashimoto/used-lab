@@ -13,7 +13,8 @@
  */
 
 import { readdirSync, statSync } from 'fs'
-import { join, relative } from 'path'
+import { join, relative, dirname } from 'path'
+import { fileURLToPath } from 'url'
 import { getAllStaticRoutes } from '../lib/routes'
 
 // ---------- 除外リスト ----------
@@ -22,7 +23,7 @@ const EXCLUDED = new Set(['/styleguide/'])
 
 // ---------- ファイルシステムからルート収集 ----------
 
-const APP_DIR = join(__dirname, '..', 'app', '(public)')
+const APP_DIR = join(dirname(fileURLToPath(import.meta.url)), '..', 'app', '(public)')
 
 function collectPageRoutes(dir: string, routes: string[] = []): string[] {
   for (const entry of readdirSync(dir)) {
@@ -48,6 +49,7 @@ function collectPageRoutes(dir: string, routes: string[] = []): string[] {
 
 // ---------- メイン ----------
 
+console.log('[build:checks] Checking sitemap coverage...')
 const fsRoutes = collectPageRoutes(APP_DIR)
 const registeredPaths = new Set(getAllStaticRoutes().map((r) => r.path))
 

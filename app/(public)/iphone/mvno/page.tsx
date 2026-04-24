@@ -2,10 +2,8 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import { getMvnoPlans, getMvnoProviders } from '@/lib/queries'
-import type { MvnoProvider } from '@/lib/types'
 import {
   MVNO_PAGE_DATE_LABEL,
-  MVNO_PROVIDERS,
   getProviderMeta,
 } from '@/lib/data/iphone-mvno'
 import Breadcrumb from '@/app/components/Breadcrumb'
@@ -178,7 +176,7 @@ export default async function MvnoPage() {
         {/* パンくず */}
         <Breadcrumb
           items={[
-            { label: '中古iPhone完全購入ガイド', href: '/iphone' },
+            { label: '中古iPhone完全購入ガイド', href: '/iphone/' },
             { label: '格安SIM×中古iPhone' },
           ]}
         />

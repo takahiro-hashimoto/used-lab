@@ -120,7 +120,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/battery-
         {/* パンくず */}
         <Breadcrumb
           items={[
-            { label: '中古iPhone完全購入ガイド', href: '/iphone' },
+            { label: '中古iPhone完全購入ガイド', href: '/iphone/' },
             { label: '歴代iPhoneバッテリー容量比較' },
           ]}
         />
@@ -163,7 +163,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/battery-
               <p>本記事では、<strong>歴代iPhoneのバッテリー容量・連続使用時間（ビデオ再生／オーディオ再生／ストリーミング再生）の目安を一覧表で紹介</strong>。大容量バッテリー搭載モデルや省電力設計の機種を知りたい方はぜひチェックしてみてください！</p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                情報を網羅的に得たい方は「<Link href="/iphone">中古iPhone購入完全ガイド</Link>」も参考にしてみてください！
+                情報を網羅的に得たい方は「<Link href="/iphone/">中古iPhone購入完全ガイド</Link>」も参考にしてみてください！
               </p>
             </div>
           </div>

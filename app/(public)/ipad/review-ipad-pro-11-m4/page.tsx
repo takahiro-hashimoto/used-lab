@@ -72,7 +72,7 @@ export default function ReviewIpadPro11M4Page() {
         {/* パンくず */}
         <Breadcrumb
           items={[
-            { label: '中古iPad完全購入ガイド', href: '/ipad' },
+            { label: '中古iPad完全購入ガイド', href: '/ipad/' },
             { label: 'iPad Pro 11インチ M4 レビュー' },
           ]}
         />

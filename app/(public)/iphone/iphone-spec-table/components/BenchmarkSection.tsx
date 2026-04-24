@@ -157,7 +157,7 @@ export default function BenchmarkSection({ models }: Props) {
                   </tr>
                 </thead>
                 <tbody>
-                  {antutuModels.map((m, i) => {
+                  {antutuModels.map((m) => {
                     const total = (m.antutu_cpu || 0) + (m.antutu_gpu || 0) + (m.antutu_mem || 0) + (m.antutu_ux || 0)
                     return (
                       <tr key={m.id}>

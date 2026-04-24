@@ -68,7 +68,7 @@ export default function WatchAppleCarePage() {
           <div className="hero-wrapper">
             <Breadcrumb
               items={[
-                { label: '中古Apple Watch完全購入ガイド', href: '/watch' },
+                { label: '中古Apple Watch完全購入ガイド', href: '/watch/' },
                 { label: 'アップルケアは必要？' },
               ]}
             />

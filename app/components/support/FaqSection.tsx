@@ -12,13 +12,18 @@ type Props = {
 
 export type { FaqItem }
 
-/** [text](url) 形式のリンクをReactノードに変換 */
-function parseLinks(text: string): React.ReactNode[] {
-  const parts = text.split(/(\[[^\]]+\]\([^)]+\))/)
+/** [text](url) と <a href="...">text</a> の両形式をReactノードに変換 */
+function parseFaqAnswer(text: string): React.ReactNode[] {
+  const parts = text.split(/(\[[^\]]+\]\([^)]+\)|<a [^>]+>[^<]*<\/a>)/)
   return parts.map((part, i) => {
-    const match = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/)
-    if (match) {
-      return <a key={i} href={match[2]}>{match[1]}</a>
+    const mdMatch = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/)
+    if (mdMatch) return <a key={i} href={mdMatch[2]}>{mdMatch[1]}</a>
+
+    const htmlMatch = part.match(/^<a ([^>]+)>([^<]*)<\/a>$/)
+    if (htmlMatch) {
+      const href = (htmlMatch[1].match(/href="([^"]*)"/) ?? [])[1] ?? '#'
+      const rel = (htmlMatch[1].match(/rel="([^"]*)"/) ?? [])[1]
+      return <a key={i} href={href} rel={rel}>{htmlMatch[2]}</a>
     }
     return part
   })
@@ -56,15 +61,9 @@ export default function FaqSection({ title, description, items, children }: Prop
             <div key={item.question} className="m-card faq-item">
               <h3 className="faq-question">{item.question}</h3>
               <div className="faq-answer m-rich-text m-rich-text--muted">
-                {item.answer.includes('<') ? (
-                  item.answer.split('\n').map((paragraph, i) => (
-                    <p key={i} dangerouslySetInnerHTML={{ __html: paragraph }} />
-                  ))
-                ) : (
-                  item.answer.split('\n').map((paragraph, i) => (
-                    <p key={i}>{parseLinks(paragraph)}</p>
-                  ))
-                )}
+                {item.answer.split('\n').map((paragraph, i) => (
+                  <p key={i}>{parseFaqAnswer(paragraph)}</p>
+                ))}
               </div>
             </div>
           ))}

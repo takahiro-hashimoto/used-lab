@@ -10,7 +10,7 @@ export default function ComparisonDetails() {
             alt="Apple Watch単体で通信している様子"
             className="media-card__img"
             width={720}
-            height={400} sizes="(max-width: 768px) 100vw, 720px" priority />
+            height={400} sizes="(max-width: 768px) 100vw, 720px" />
         </div>
         <div className="media-card__body">
           <h3 className="media-card__title">①Apple Watch単体で出来る範囲</h3>

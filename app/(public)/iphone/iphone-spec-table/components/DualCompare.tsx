@@ -52,14 +52,6 @@ type Props = {
   shopLinks: ProductShopLink[]
 }
 
-function getBatteryLife(m: SpecModel): string {
-  const parts: string[] = []
-  if (m.video) parts.push(`ビデオ再生：${m.video}`)
-  if (m.streaming) parts.push(`ストリーミング：${m.streaming}`)
-  if (m.audio) parts.push(`音楽再生：${m.audio}`)
-  return parts.length > 0 ? parts.join('\n') : '-'
-}
-
 function formatReleaseDate(date: string | null): string {
   if (!date) return '-'
   const parts = date.split('/')

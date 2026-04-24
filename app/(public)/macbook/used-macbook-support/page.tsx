@@ -37,7 +37,7 @@ export const metadata: Metadata = {
 }
 
 export default async function UsedMacbookSupportPage() {
-  const [allModels, allModelsWithEnded] = await Promise.all([
+  const [, allModelsWithEnded] = await Promise.all([
     getAllMacBookModels(),
     getAllMacBookModelsIncludingEnded(),
   ])
@@ -79,7 +79,7 @@ export default async function UsedMacbookSupportPage() {
         {/* パンくず */}
         <Breadcrumb
           items={[
-            { label: '中古MacBook完全購入ガイド', href: '/macbook' },
+            { label: '中古MacBook完全購入ガイド', href: '/macbook/' },
             { label: 'MacBookはいつまで使える？' },
           ]}
         />
@@ -123,7 +123,7 @@ export default async function UsedMacbookSupportPage() {
               <p>記事後半には<strong>MacBookを買い替えるべき3つのタイミング</strong>も解説。お手持ちのMacBookの寿命や買い替え時期がすっきりわかるので、ぜひチェックしてみてください！</p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                もっと全体像から知りたい方は「<Link href="/macbook">中古MacBook購入ガイド</Link>」をご覧ください。
+                もっと全体像から知りたい方は「<Link href="/macbook/">中古MacBook購入ガイド</Link>」をご覧ください。
               </p>
             </div>
           </div>

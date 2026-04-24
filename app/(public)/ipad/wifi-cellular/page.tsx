@@ -71,7 +71,7 @@ export default function WifiCellularPage() {
         {/* パンくず */}
         <Breadcrumb
           items={[
-            { label: '中古iPad完全購入ガイド', href: '/ipad' },
+            { label: '中古iPad完全購入ガイド', href: '/ipad/' },
             { label: 'Wi-Fiモデルとセルラーモデルの比較' },
           ]}
         />

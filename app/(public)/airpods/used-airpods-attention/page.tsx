@@ -96,7 +96,7 @@ export default function UsedAirpodsAttentionPage() {
         {/* パンくず */}
         <Breadcrumb
           items={[
-            { label: '中古AirPods完全購入ガイド', href: '/airpods' },
+            { label: '中古AirPods完全購入ガイド', href: '/airpods/' },
             { label: '中古AirPodsの注意点' },
           ]}
         />

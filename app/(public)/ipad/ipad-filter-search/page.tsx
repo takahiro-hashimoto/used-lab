@@ -3,11 +3,9 @@ import Link from 'next/link'
 import Image from 'next/image'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import FaqSection from '@/app/components/support/FaqSection'
-import { getAllIPadModels, getAllProductShopLinksByType, getAllIPadAccessories, getAllIPadAccessoryCompatibility } from '@/lib/queries'
+import { getAllIPadModels, getAllProductShopLinksByType, getAllIPadAccessories, getAllIPadAccessoryCompatibility, getLatestIPadPriceLogsForModels } from '@/lib/queries'
 import { buildAccessoryLookup, getPencilTextFromAccessories, getKeyboardTextFromAccessories } from '@/lib/utils/ipad-helpers'
 import IconCard from '@/app/components/IconCard'
-import type { IPadPriceLog } from '@/lib/types'
-import { supabase } from '@/lib/supabase'
 import IPadFilterSearchApp from './components/IPadFilterSearchApp'
 import IPadArticleFooter from '@/app/components/ipad/IPadArticleFooter'
 import { getGitDateForFile } from '@/lib/utils/shared-helpers'
@@ -68,20 +66,9 @@ export default async function IPadFilterSearchPage() {
   ])
   const accessoryLookup = buildAccessoryLookup(allAccessories, allCompatibility)
 
-  // 各モデルの最新価格を取得
-  const { data: allPriceLogs } = await supabase
-    .from('ipad_price_logs')
-    .select('*')
-    .order('logged_at', { ascending: false })
-
-  const latestPriceMap = new Map<number, IPadPriceLog>()
-  if (allPriceLogs) {
-    for (const log of allPriceLogs as IPadPriceLog[]) {
-      if (!latestPriceMap.has(log.model_id)) {
-        latestPriceMap.set(log.model_id, log)
-      }
-    }
-  }
+  const allModelIds = allModels.map((m) => m.id)
+  const latestPriceByModel = await getLatestIPadPriceLogsForModels(allModelIds)
+  const latestPriceMap = new Map(Object.entries(latestPriceByModel).map(([k, v]) => [Number(k), v]))
 
   const modelsData = allModels.map((m) => {
     const price = latestPriceMap.get(m.id)
@@ -172,7 +159,7 @@ export default async function IPadFilterSearchPage() {
         {/* パンくず */}
         <Breadcrumb
           items={[
-            { label: '中古iPad購入完全ガイド', href: '/ipad' },
+            { label: '中古iPad購入完全ガイド', href: '/ipad/' },
             { label: 'iPad機種診断' },
           ]}
         />

@@ -37,7 +37,7 @@ export const metadata: Metadata = {
 }
 
 export default async function UsedIpadSupportPage() {
-  const [allModels, allModelsWithEnded] = await Promise.all([
+  const [, allModelsWithEnded] = await Promise.all([
     getAllIPadModels(),
     getAllIPadModelsIncludingEnded(),
   ])
@@ -79,7 +79,7 @@ export default async function UsedIpadSupportPage() {
         {/* パンくず */}
         <Breadcrumb
           items={[
-            { label: '中古iPad完全購入ガイド', href: '/ipad' },
+            { label: '中古iPad完全購入ガイド', href: '/ipad/' },
             { label: 'iPadはいつまで使える？' },
           ]}
         />

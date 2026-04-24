@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import type { ModelData } from '../page'
 
 type Props = {
@@ -42,12 +43,12 @@ export default function RankingSection({ items, modelCount, dateDisplay }: Props
               <meta itemProp="position" content={String(rank + 1)} />
               <figure className="price-card__img">
                 {model.image && (
-                  <img
+                  <Image
                     src={`/images/macbook/${model.image}`}
                     alt={model.name}
                     width={80}
                     height={80}
-                    loading="lazy"
+
                   />
                 )}
               </figure>

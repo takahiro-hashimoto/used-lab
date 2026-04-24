@@ -105,7 +105,7 @@ export default function AirpodsFindPage() {
 
         <Breadcrumb
           items={[
-            { label: '中古AirPods完全購入ガイド', href: '/airpods' },
+            { label: '中古AirPods完全購入ガイド', href: '/airpods/' },
             { label: 'AirPodsの紛失対処法' },
           ]}
         />

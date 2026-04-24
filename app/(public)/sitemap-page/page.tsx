@@ -20,10 +20,7 @@ import { RECOMMEND_DATE_LABEL as IPAD_REC_DATE, RECOMMEND_COUNT as IPAD_REC_COUN
 import { RECOMMEND_DATE_LABEL as MACBOOK_REC_DATE, RECOMMEND_COUNT as MACBOOK_REC_COUNT } from '@/lib/data/macbook-recommend'
 import { RECOMMEND_DATE_LABEL as WATCH_REC_DATE, RECOMMEND_COUNT as WATCH_REC_COUNT } from '@/lib/data/watch-recommend'
 import { RECOMMEND_DATE_LABEL as AIRPODS_REC_DATE, RECOMMEND_COUNT as AIRPODS_REC_COUNT } from '@/lib/data/airpods-recommend'
-import { PRICE_INFO_UPDATE_MONTH as IPHONE_PRICE_MONTH } from '@/lib/data/iphone-price-info'
-import { PRICE_INFO_UPDATE_MONTH as IPAD_PRICE_MONTH } from '@/lib/data/ipad-price-info'
-import { PRICE_INFO_UPDATE_MONTH as WATCH_PRICE_MONTH } from '@/lib/data/watch-price-info'
-import { PRICE_INFO_UPDATE_MONTH as AIRPODS_PRICE_MONTH } from '@/lib/data/airpods-price-info'
+import { PRICE_INFO_UPDATE_MONTH } from '@/lib/utils/price-info-meta'
 import { SHOP_PAGE_DATE_LABEL as IPHONE_SHOP_DATE } from '@/lib/data/iphone-shop'
 import { SHOP_PAGE_DATE_LABEL as IPAD_SHOP_DATE } from '@/lib/data/ipad-shop'
 import { SHOP_PAGE_DATE_LABEL as MACBOOK_SHOP_DATE } from '@/lib/data/macbook-shop'
@@ -81,10 +78,10 @@ export default async function SitemapPage() {
     watchRecCount: WATCH_REC_COUNT,
     airpodsRecDate: AIRPODS_REC_DATE,
     airpodsRecCount: AIRPODS_REC_COUNT,
-    iphonePriceMonth: IPHONE_PRICE_MONTH,
-    ipadPriceMonth: IPAD_PRICE_MONTH,
-    watchPriceMonth: WATCH_PRICE_MONTH,
-    airpodsPriceMonth: AIRPODS_PRICE_MONTH,
+    iphonePriceMonth: PRICE_INFO_UPDATE_MONTH,
+    ipadPriceMonth: PRICE_INFO_UPDATE_MONTH,
+    watchPriceMonth: PRICE_INFO_UPDATE_MONTH,
+    airpodsPriceMonth: PRICE_INFO_UPDATE_MONTH,
     iphoneShopDate: IPHONE_SHOP_DATE,
     ipadShopDate: IPAD_SHOP_DATE,
     macbookShopDate: MACBOOK_SHOP_DATE,

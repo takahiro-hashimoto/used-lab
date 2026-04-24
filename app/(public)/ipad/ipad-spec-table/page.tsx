@@ -141,7 +141,7 @@ export default async function IPadSpecTablePage() {
         {/* パンくず */}
         <Breadcrumb
           items={[
-            { label: '中古iPad完全購入ガイド', href: '/ipad' },
+            { label: '中古iPad完全購入ガイド', href: '/ipad/' },
             { label: '歴代iPadスペック比較表' },
           ]}
         />

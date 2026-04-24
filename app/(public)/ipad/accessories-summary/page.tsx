@@ -126,7 +126,7 @@ export default async function AccessoriesSummaryPage() {
         {/* パンくず */}
         <Breadcrumb
           items={[
-            { label: '中古iPad完全購入ガイド', href: '/ipad' },
+            { label: '中古iPad完全購入ガイド', href: '/ipad/' },
             { label: 'iPadのキーボードどれが使える？Magic Keyboard全型番と対応モデル一覧' },
           ]}
         />

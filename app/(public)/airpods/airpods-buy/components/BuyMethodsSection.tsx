@@ -18,7 +18,7 @@ export default function BuyMethodsSection() {
         <div className="l-grid l-grid--1col" style={{ gap: 'var(--space-xl)' }}>
           {/* ── 1. Appleギフトカード × 楽天リーベイツ ── */}
           <div id="gift-rebates" className="m-card m-card--shadow buy-method-card">
-            <Image src="/images/content/photo/airpods-buy/airpods-cheap-apple.jpg" alt="AirPodsを安く買う方法！ポイント二重取り編" className="buy-method-card__img" width={1024} height={569} sizes="(max-width: 768px) 100vw, 800px" priority />
+            <Image src="/images/content/photo/airpods-buy/airpods-cheap-apple.jpg" alt="AirPodsを安く買う方法！ポイント二重取り編" className="buy-method-card__img" width={1024} height={569} sizes="(max-width: 768px) 100vw, 800px" loading="lazy" />
             <div className="buy-method-card__body">
               <h3 className="buy-method-card__title">Appleギフトカード × 楽天リーベイツ</h3>
               <div className="buy-method-card__rating">

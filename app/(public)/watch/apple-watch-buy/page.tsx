@@ -71,7 +71,7 @@ export default function AppleWatchBuyPage() {
         {/* パンくず */}
         <Breadcrumb
           items={[
-            { label: '中古Apple Watch完全購入ガイド', href: '/watch' },
+            { label: '中古Apple Watch完全購入ガイド', href: '/watch/' },
             { label: 'Apple Watchを安く買うには？' },
           ]}
         />

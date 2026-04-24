@@ -130,7 +130,7 @@ export default function UsedMacBookAttentionPage() {
         {/* パンくず */}
         <Breadcrumb
           items={[
-            { label: '中古MacBook完全購入ガイド', href: '/macbook' },
+            { label: '中古MacBook完全購入ガイド', href: '/macbook/' },
             { label: '中古MacBookの注意点' },
           ]}
         />
@@ -178,7 +178,7 @@ export default function UsedMacBookAttentionPage() {
               </p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                中古MacBookの全体像を把握したい方は「<Link href="/macbook">中古MacBook完全購入ガイド</Link>」をご覧ください。
+                中古MacBookの全体像を把握したい方は「<Link href="/macbook/">中古MacBook完全購入ガイド</Link>」をご覧ください。
               </p>
             </div>
           </div>

@@ -25,7 +25,7 @@ iPadを安く買う7つの方法
               className="buy-method-card__img"
               width={1024}
               height={569}
-              priority
+              loading="lazy"
               sizes="(max-width: 768px) 100vw, 800px"
             />
             <div className="buy-method-card__body">
