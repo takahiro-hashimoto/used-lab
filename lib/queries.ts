@@ -457,7 +457,10 @@ export const getShops = unstable_cache(
       .from('shops')
       .select('*')
       .order('id', { ascending: true })
-    if (error) throw new Error(`getShops: ${error.message}`)
+    if (error) {
+      console.warn(`[queries] getShops failed, falling back to empty list: ${error.message}`)
+      return []
+    }
     return (data ?? []) as Shop[]
   },
   ['shops'],
@@ -489,7 +492,10 @@ const getCachedShopLinksByType = unstable_cache(
       .from('product_shop_links')
       .select('*')
       .eq('product_type', productType)
-    if (error) throw new Error(`getCachedShopLinksByType(${productType}): ${error.message}`)
+    if (error) {
+      console.warn(`[queries] getCachedShopLinksByType(${productType}) failed, falling back to empty list: ${error.message}`)
+      return []
+    }
     return (data ?? []) as ProductShopLink[]
   },
   ['shop-links'],
