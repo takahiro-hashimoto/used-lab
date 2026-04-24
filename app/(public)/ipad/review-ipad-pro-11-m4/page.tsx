@@ -8,6 +8,7 @@ import IPadArticleFooter from '@/app/components/ipad/IPadArticleFooter'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
 import { getHeroImage } from '@/lib/data/hero-images'
+import ContentImage from '../../../components/ContentImage'
 
 export const revalidate = false
 
@@ -176,7 +177,7 @@ export default function ReviewIpadPro11M4Page() {
               </p>
               <div className="m-card m-card--shadow m-card--padded u-mt-2xl">
                 <div className="media-card__img-wrap">
-                  <img
+                  <ContentImage
                     src="/images/content/photo/review/ipad-11-pro-m4-0.webp"
                     alt="iPad Pro 11インチ M4モデル"
                     className="media-card__img"

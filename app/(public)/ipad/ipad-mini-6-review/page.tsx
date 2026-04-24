@@ -9,6 +9,7 @@ import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helper
 import HeroMeta from '@/app/components/HeroMeta'
 import { getHeroImage } from '@/lib/data/hero-images'
 import { getIPadModelBySlug, getAllProductShopLinksByType } from '@/lib/queries'
+import ContentImage from '../../../components/ContentImage'
 
 export const revalidate = false
 
@@ -178,7 +179,7 @@ export default async function IpadMini6ReviewPage() {
               </p>
               <div className="m-card m-card--shadow m-card--padded u-mt-2xl">
                 <div className="media-card__img-wrap">
-                  <img
+                  <ContentImage
                     src="/images/content/photo/review/ipad-mini-6-00.webp"
                     alt="iPad mini 5とiPad mini 6の比較"
                     className="media-card__img"

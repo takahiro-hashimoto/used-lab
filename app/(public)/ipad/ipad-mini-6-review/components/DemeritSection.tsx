@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import ContentImage from '../../../../components/ContentImage'
 
 export default function DemeritSection() {
   return (
@@ -6,7 +7,7 @@ export default function DemeritSection() {
       {/* ①バッテリー持ちはイマイチ */}
       <div className="m-card m-card--shadow m-card--padded">
         <div className="media-card__img-wrap">
-          <img
+          <ContentImage
             src="/images/content/photo/review/ipad-mini-6-07.webp"
             alt="iPad mini 6で読書する様子"
             className="media-card__img"
@@ -32,7 +33,7 @@ export default function DemeritSection() {
       {/* ②モデリングソフトや動画編集はかなり辛い */}
       <div className="m-card m-card--shadow m-card--padded">
         <div className="media-card__img-wrap">
-          <img
+          <ContentImage
             src="/images/content/photo/review/ipad-mini-6-08.webp"
             alt="iPad mini 6でモデリングソフトを扱う様子"
             className="media-card__img"
@@ -58,7 +59,7 @@ export default function DemeritSection() {
       {/* ③64GBの最小スペックはアウトプット作業には不向き */}
       <div className="m-card m-card--shadow m-card--padded">
         <div className="media-card__img-wrap">
-          <img
+          <ContentImage
             src="/images/content/photo/review/ipad-mini-6-09.webp"
             alt="iPad mini 6のストレージ容量"
             className="media-card__img"

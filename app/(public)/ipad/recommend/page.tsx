@@ -40,7 +40,7 @@ import IPadArticleFooter from '@/app/components/ipad/IPadArticleFooter'
 import HeroMeta from '@/app/components/HeroMeta'
 import { getHeroImage } from '@/lib/data/hero-images'
 
-export const revalidate = 3600
+export const revalidate = 86400
 
 const PAGE_TITLE = `中古iPadのおすすめ${RECOMMEND_COUNT}機種を解説。狙い目の型落ちモデルどれ？【${RECOMMEND_DATE_LABEL}版】`
 const PAGE_DESCRIPTION =
@@ -126,6 +126,7 @@ export default async function IPadRecommendPage() {
     return {
       model,
       latestPrice: latestPrices[i],
+      updatedDateStr: latestPrices[i]?.logged_at?.substring(0, 10) ?? dateStr,
       shopLinks: modelShopLinks,
       fallbackShops,
       label: meta?.label || '',

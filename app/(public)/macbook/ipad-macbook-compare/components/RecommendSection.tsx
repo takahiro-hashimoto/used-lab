@@ -1,10 +1,11 @@
+import ContentImage from '../../../../components/ContentImage'
 export default function RecommendSection() {
   return (
     <div className="u-mt-2xl" style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-xl)' }}>
       {/* MacBookがおすすめな人 */}
       <div id="recommend-macbook" className="m-card m-card--shadow m-card--padded">
         <div className="media-card__img-wrap">
-          <img
+          <ContentImage
             src="/images/content/photo/use-macbook.jpg"
             alt="MacBookがおすすめな人"
             className="media-card__img"
@@ -34,7 +35,7 @@ export default function RecommendSection() {
       {/* iPadがおすすめな人 */}
       <div id="recommend-ipad" className="m-card m-card--shadow m-card--padded">
         <div className="media-card__img-wrap">
-          <img
+          <ContentImage
             src="/images/content/photo/magextand-m-use-low-table.jpg"
             alt="iPadがおすすめな人"
             className="media-card__img"

@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import ContentImage from '../ContentImage'
 
 type Props = {
   sectionTitle: string
@@ -30,7 +31,7 @@ export default function PopularSection({
   sectionId = 'popular',
   headingId = 'heading-popular',
 }: Props) {
-  // 外部URL（placehold.co等）は <img>、ローカル画像は <Image> を使用
+  // 外部URL（placehold.co等）は <ContentImage>、ローカル画像は <Image> を使用
   const isExternal = imageSrc.startsWith('http')
 
   return (
@@ -48,8 +49,7 @@ export default function PopularSection({
         <div className="m-card m-card--shadow popular-card">
           <figure className="popular-card-figure">
             {isExternal ? (
-              /* eslint-disable-next-line @next/next/no-img-element */
-              <img
+              <ContentImage
                 src={imageSrc}
                 alt={imageAlt}
                 className="popular-card-img"

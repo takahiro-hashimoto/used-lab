@@ -72,6 +72,10 @@ export default function RootLayout({
         {/* preload: start downloading non-blocking CSS immediately */}
         <link rel="preload" href={CSS_NON_CRITICAL} as="style" />
         <link rel="preload" href={CSS_FONTAWESOME} as="style" />
+        <noscript>
+          <link rel="stylesheet" href={CSS_NON_CRITICAL} />
+          <link rel="stylesheet" href={CSS_FONTAWESOME} />
+        </noscript>
         {IS_PROD && <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="" />}
         <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
         {IS_PROD && (

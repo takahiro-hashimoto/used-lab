@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { placeholder } from '@/lib/placeholder'
 import type { IPadModel, IPadPriceLog, ProductShopLink, FallbackShop } from '@/lib/types'
-import { formatReleaseDate, buildDisplayLinks } from '@/lib/utils/shared-helpers'
+import { formatDateSlash, formatReleaseDate, buildDisplayLinks } from '@/lib/utils/shared-helpers'
 import { calculatePriceRange, calculateOSLifespan } from '@/lib/utils/ipad-helpers'
 import { RECOMMEND_DATE_LABEL, RECOMMEND_COUNT_LABEL } from '@/lib/data/ipad-recommend'
 import SpecToggle from '@/app/components/SpecToggle'
@@ -17,6 +17,7 @@ type RecommendItem = {
   description: string[]
   good: string[]
   bad: string[]
+  updatedDateStr: string
 }
 
 type Props = {
@@ -48,7 +49,7 @@ export default function RecommendDetailSection({ items }: Props) {
         </p>
 
         {items.map((item) => {
-          const { model, latestPrice, shopLinks, fallbackShops, label, subtitle, description, good, bad } = item
+          const { model, latestPrice, shopLinks, fallbackShops, label, subtitle, description, good, bad, updatedDateStr } = item
           const priceRange = calculatePriceRange(latestPrice)
           const osLife = calculateOSLifespan(model.date, model.last_ipados)
           const releaseDate = formatReleaseDate(model.date)
@@ -141,7 +142,7 @@ export default function RecommendDetailSection({ items }: Props) {
                       {latestPrice?.storage && (
                         <p className="recommend-card__price-note">
                           <span>{model.model}（{latestPrice.storage}）の場合</span>
-                          <span>最終更新日：{new Date().toLocaleDateString('ja-JP', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\//g, '/')}</span>
+                          <span>最終更新日：{formatDateSlash(updatedDateStr)}</span>
                         </p>
                       )}
                     </div>

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import ContentImage from '../../components/ContentImage'
 
 export const revalidate = false
 
@@ -822,7 +823,7 @@ export default function StyleGuidePage() {
             <p className="m-desc-text" style={{ marginTop: 'var(--space-sm)' }}>画像＋テキストの縦積みカード。m-card と組み合わせて使う。</p>
             <div className="m-card m-card--shadow m-card--padded" style={{ maxWidth: 720, margin: 'var(--space-xl) auto 0' }}>
               <div className="media-card__img-wrap">
-                <img src="/images/content/photo/ipad-wifi-01.webp" alt="サンプル画像" className="media-card__img" width={800} height={450} loading="lazy" />
+                <ContentImage src="/images/content/photo/ipad-wifi-01.webp" alt="サンプル画像" className="media-card__img" width={800} height={450} loading="lazy" />
               </div>
               <div className="media-card__body">
                 <h3 className="media-card__title">メディアカードのタイトル</h3>
@@ -840,7 +841,7 @@ export default function StyleGuidePage() {
             <p className="m-desc-text" style={{ marginTop: 'var(--space-sm)' }}>画像とテキストを横並びにするバリエーション。画像は 320px 固定、1:1 比率。SPでは縦積みになる。</p>
             <div className="m-card m-card--shadow m-card--padded media-card--aside" style={{ maxWidth: 720, margin: 'var(--space-xl) auto 0' }}>
               <div className="media-card__img-wrap">
-                <img src="/images/content/photo/ipad-wifi-01.webp" alt="サンプル画像" className="media-card__img" width={320} height={320} loading="lazy" />
+                <ContentImage src="/images/content/photo/ipad-wifi-01.webp" alt="サンプル画像" className="media-card__img" width={320} height={320} loading="lazy" />
               </div>
               <div className="media-card__body">
                 <h3 className="media-card__title">横並びメディアカード</h3>

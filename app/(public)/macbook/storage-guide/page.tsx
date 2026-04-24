@@ -3,6 +3,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import FaqSection from '@/app/components/support/FaqSection'
+import ContentImage from '../../../components/ContentImage'
 import {
   getAllMacBookModels,
   getAllMacBookPriceLogsByModelIds,
@@ -325,7 +326,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/macbook/storage
 
             <div className="m-card m-card--shadow m-card--padded media-card--aside-footer">
               <div className="media-card__img-wrap">
-                <img
+                <ContentImage
                   src="/images/content/thumbnail/macbook-storage.jpg"
                   alt="MacBookのストレージ使用量確認画面"
                   className="media-card__img"

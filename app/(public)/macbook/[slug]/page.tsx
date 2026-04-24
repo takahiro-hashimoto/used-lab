@@ -27,8 +27,9 @@ import FaqSection from './components/FaqSection'
 import MacBookArticleFooter from '@/app/components/macbook/MacBookArticleFooter'
 import AdminEditLink from '@/app/components/AdminEditLink'
 import StickyCtaOverride from '@/app/components/StickyCtaOverride'
+import { resolveLastUpdatedDate } from '@/lib/utils/shared-helpers'
 
-export const revalidate = 3600
+export const revalidate = 86400
 
 type PageProps = {
   params: Promise<{ slug: string }>
@@ -100,9 +101,10 @@ export default async function MacBookDetailPage({ params }: PageProps) {
   const modelShopLinks = shopLinks.filter((l) => l.product_id === model.id)
   const iosysShop = shops.find((s) => s.id === 1)
 
-  const today = new Date()
-  const dateStr = today.toISOString().split('T')[0]
-  const dateDisplay = today.toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' })
+  const { dateStr, dateDisplay } = resolveLastUpdatedDate({
+    preferredDateStr: latestPrice?.logged_at?.substring(0, 10),
+    fallbackFilePath: 'app/(public)/macbook/[slug]/page.tsx',
+  })
 
   const iosysModelLink = modelShopLinks.find((l) => l.shop_id === 1)
 

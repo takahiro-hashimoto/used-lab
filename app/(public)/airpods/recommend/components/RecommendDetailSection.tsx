@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { placeholder } from '@/lib/placeholder'
 import type { AirPodsModel, AirPodsPriceLog, ProductShopLink, FallbackShop } from '@/lib/types'
-import { formatReleaseDate, buildDisplayLinks } from '@/lib/utils/shared-helpers'
+import { formatDateSlash, formatReleaseDate, buildDisplayLinks } from '@/lib/utils/shared-helpers'
 import { calculatePriceRange, calculateFirmwareLifespan } from '@/lib/utils/airpods-helpers'
 import { RECOMMEND_DATE_LABEL, RECOMMEND_COUNT_LABEL } from '@/lib/data/airpods-recommend'
 import SpecToggle from '@/app/components/SpecToggle'
@@ -17,6 +17,7 @@ type RecommendItem = {
   description: string[]
   good: string[]
   bad: string[]
+  updatedDateStr: string
 }
 
 type Props = {
@@ -46,7 +47,7 @@ export default function RecommendDetailSection({ items }: Props) {
         </p>
 
         {items.map((item) => {
-          const { model, latestPrice, shopLinks, fallbackShops, label, subtitle, description, good, bad } = item
+          const { model, latestPrice, shopLinks, fallbackShops, label, subtitle, description, good, bad, updatedDateStr } = item
           const priceRange = calculatePriceRange(latestPrice)
           const fwLife = calculateFirmwareLifespan(model.date)
           const releaseDate = formatReleaseDate(model.date)
@@ -132,7 +133,7 @@ export default function RecommendDetailSection({ items }: Props) {
                         </span>
                       </p>
                       <p className="recommend-card__price-note">
-                        <span>最終更新日：{new Date().toLocaleDateString('ja-JP', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\//g, '/')}</span>
+                        <span>最終更新日：{formatDateSlash(updatedDateStr)}</span>
                       </p>
                     </div>
                   )}

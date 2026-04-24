@@ -1,10 +1,11 @@
+import ContentImage from '../../../../components/ContentImage'
 export default function MacbookStrengths() {
   return (
     <div className="u-mt-2xl" style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-xl)' }}>
       {/* Webデザイン */}
       <div id="web-design" className="m-card m-card--shadow m-card--padded media-card--aside">
         <div className="media-card__img-wrap">
-          <img
+          <ContentImage
             src="/images/content/photo/use-macbook.jpg"
             alt="MacBookでWebデザインをする様子"
             className="media-card__img"
@@ -32,7 +33,7 @@ export default function MacbookStrengths() {
       {/* プログラミング */}
       <div id="programming" className="m-card m-card--shadow m-card--padded media-card--aside">
         <div className="media-card__img-wrap">
-          <img
+          <ContentImage
             src="/images/content/photo/ipad-pro-use.jpg"
             alt="MacBookでプログラミングをする様子"
             className="media-card__img"
@@ -59,7 +60,7 @@ export default function MacbookStrengths() {
       {/* 動画編集 */}
       <div id="video-editing" className="m-card m-card--shadow m-card--padded media-card--aside">
         <div className="media-card__img-wrap">
-          <img
+          <ContentImage
             src="/images/content/photo/ipad-mini-macbook.jpg"
             alt="MacBookで動画編集をする様子"
             className="media-card__img"
@@ -88,7 +89,7 @@ export default function MacbookStrengths() {
       {/* エクセル（Officeツール） */}
       <div id="excel" className="m-card m-card--shadow m-card--padded media-card--aside">
         <div className="media-card__img-wrap">
-          <img
+          <ContentImage
             src="/images/content/photo/ipad-image.jpg"
             alt="エクセルでの作業イメージ"
             className="media-card__img"

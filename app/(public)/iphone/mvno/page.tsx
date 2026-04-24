@@ -2,6 +2,7 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import { getMvnoPlans, getMvnoProviders } from '@/lib/queries'
+import ContentImage from '../../../components/ContentImage'
 import {
   MVNO_PAGE_DATE_LABEL,
   getProviderMeta,
@@ -485,7 +486,7 @@ export default async function MvnoPage() {
                       <td><strong>ロゴ</strong></td>
                       {mvnoProviders.map((p) => (
                         <td key={p.provider_slug}>
-                          <img
+                          <ContentImage
                             src={`/images/mvno/${p.provider_slug}.jpg`}
                             alt={`${p.provider_name}のロゴ`}
                             width={120}
@@ -580,7 +581,7 @@ export default async function MvnoPage() {
                 {/* Overview: ロゴ + スペック表 */}
                 <div className="recommend-card__overview">
                   <figure className="recommend-card__image">
-                    <img
+                    <ContentImage
                       src={`/images/mvno/${db.provider_slug}-thumb.jpg`}
                       alt={`${db.provider_name}のロゴ`}
                       width={280}

@@ -229,7 +229,7 @@ async function main() {
   `
 
   // Supabase REST API で直接 SQL を実行
-  const res = await fetch(`${supabaseUrl}/rest/v1/rpc/`, {
+  await fetch(`${supabaseUrl}/rest/v1/rpc/`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -242,7 +242,7 @@ async function main() {
   // rpc が使えない場合は直接 insert で対応
   // テーブルが既に存在する前提で、まず upsert を試す
   console.log('Upserting provider data...')
-  const { data, error } = await supabase
+  const { error } = await supabase
     .from('mvno_providers')
     .upsert(providers, { onConflict: 'provider_slug' })
 

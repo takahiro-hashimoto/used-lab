@@ -29,8 +29,9 @@ import ReviewSection from '@/app/components/ReviewSection'
 import AdminEditLink from '@/app/components/AdminEditLink'
 import StickyCtaOverride from '@/app/components/StickyCtaOverride'
 import { getCompareLinksForModel } from '@/app/(public)/iphone/_compare/config'
+import { resolveLastUpdatedDate } from '@/lib/utils/shared-helpers'
 
-export const revalidate = 3600
+export const revalidate = 86400
 
 type PageProps = {
   params: Promise<{ slug: string }>
@@ -107,9 +108,10 @@ export default async function IPhoneDetailPage({ params }: PageProps) {
   const iosysShop = shops.find((s) => s.id === 1)
   const fallbackIosysUrl = iosysShop?.url || undefined
 
-  const today = new Date()
-  const dateStr = today.toISOString().split('T')[0]
-  const dateDisplay = today.toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' })
+  const { dateStr, dateDisplay } = resolveLastUpdatedDate({
+    preferredDateStr: latestPrice?.logged_at?.substring(0, 10),
+    fallbackFilePath: 'app/(public)/iphone/[slug]/page.tsx',
+  })
 
   const iosysModelLink = modelShopLinks.find((l) => l.shop_id === 1)
 

@@ -26,7 +26,7 @@ import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helper
 import HeroMeta from '@/app/components/HeroMeta'
 import { getHeroImage } from '@/lib/data/hero-images'
 
-export const revalidate = 3600
+export const revalidate = 86400
 
 const PAGE_TITLE = `中古Apple Watchを買うならどこ？ECサイト・ショップのおすすめを紹介【${SHOP_PAGE_DATE_LABEL}】`
 const PAGE_DESCRIPTION = `中古Apple Watchを買うならどこがおすすめ？信頼できるECサイト・ショップを保証・価格・品質の観点から徹底比較。最適な購入先を紹介します【${SHOP_PAGE_DATE_LABEL}】`

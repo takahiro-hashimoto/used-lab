@@ -7,6 +7,42 @@ import type { Shop, ProductShopLink, FallbackShop, BasePriceLog } from '@/lib/ty
 import { PAGE_DATES } from '@/lib/data/page-dates'
 
 const SITE_LAUNCH_DATE = '2024-08-01'
+const JAPAN_LOCALE = 'ja-JP'
+const JAPAN_TIME_ZONE = 'Asia/Tokyo'
+
+function parseJstDate(dateStr: string): Date {
+  return new Date(`${dateStr}T00:00:00+09:00`)
+}
+
+export function formatDateDisplay(dateStr: string): string {
+  return parseJstDate(dateStr).toLocaleDateString(JAPAN_LOCALE, {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    timeZone: JAPAN_TIME_ZONE,
+  })
+}
+
+export function formatDateSlash(dateStr: string): string {
+  return parseJstDate(dateStr).toLocaleDateString(JAPAN_LOCALE, {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    timeZone: JAPAN_TIME_ZONE,
+  })
+}
+
+export function resolveLastUpdatedDate(options: {
+  preferredDateStr?: string | null
+  fallbackFilePath: string
+}): { dateStr: string; dateDisplay: string } {
+  const fallback = getGitDateForFile(options.fallbackFilePath)
+  const dateStr = options.preferredDateStr ?? fallback.dateStr
+  return {
+    dateStr,
+    dateDisplay: formatDateDisplay(dateStr),
+  }
+}
 
 /**
  * 静的ページの最終更新日を返す。
@@ -16,10 +52,9 @@ const SITE_LAUNCH_DATE = '2024-08-01'
  */
 export function getGitDateForFile(filePath: string): { dateStr: string; dateDisplay: string } {
   const dateStr = PAGE_DATES[filePath] ?? SITE_LAUNCH_DATE
-  const date = new Date(dateStr)
   return {
     dateStr,
-    dateDisplay: date.toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' }),
+    dateDisplay: formatDateDisplay(dateStr),
   }
 }
 

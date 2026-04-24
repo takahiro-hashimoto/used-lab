@@ -34,7 +34,7 @@ import IPhoneArticleFooter from '@/app/components/iphone/IPhoneArticleFooter'
 import HeroMeta from '@/app/components/HeroMeta'
 import { getHeroImage } from '@/lib/data/hero-images'
 
-export const revalidate = 3600
+export const revalidate = 86400
 
 const PAGE_TITLE = `中古iPhoneおすすめ機種${RECOMMEND_COUNT}選｜目的別に狙い目モデルを解説【${RECOMMEND_DATE_LABEL}版】`
 const PAGE_DESCRIPTION =
@@ -113,6 +113,7 @@ export default async function IPhoneTopPage() {
     return {
       model,
       latestPrice: latestPrices[i],
+      updatedDateStr: latestPrices[i]?.logged_at?.substring(0, 10) ?? dateStr,
       shopLinks: modelShopLinks,
       fallbackShops,
       label: meta?.label || '',

@@ -1,3 +1,4 @@
+import ContentImage from '../../../../components/ContentImage'
 export default function DemeritSection() {
   const batteryData = [
     { time: '6:00', on: 100, off: 100 },
@@ -27,7 +28,7 @@ export default function DemeritSection() {
           {/* 1. 電池持ちが悪くなる */}
           <div className="m-card m-card--shadow m-card--padded">
             <div className="media-card__img-wrap">
-              <img
+              <ContentImage
                 src="/images/content/photo/use-macbook.jpg"
                 alt="Apple Watchのバッテリー消費イメージ"
                 className="media-card__img"
@@ -105,7 +106,7 @@ export default function DemeritSection() {
           {/* 2. 映画を見に行ったときにシアターモード切り替えが必須 */}
           <div className="m-card m-card--shadow m-card--padded">
             <div className="media-card__img-wrap">
-              <img
+              <ContentImage
                 src="/images/content/photo/apple-watch-alarm.jpg"
                 alt="映画館でのApple Watch使用イメージ"
                 className="media-card__img"
@@ -142,7 +143,7 @@ export default function DemeritSection() {
           {/* 3. 有機ELディスプレイの焼き付きリスク */}
           <div className="m-card m-card--shadow m-card--padded">
             <div className="media-card__img-wrap">
-              <img
+              <ContentImage
                 src="/images/content/photo/apple-watch-face.jpg"
                 alt="Apple Watchの文字盤（常時点灯時）"
                 className="media-card__img"

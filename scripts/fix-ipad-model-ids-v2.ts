@@ -97,7 +97,7 @@ async function main() {
 
   let updated = 0
   for (const [modelName, correctId] of nameGroups) {
-    const { error: updateError, count } = await supabase
+    const { error: updateError } = await supabase
       .from('ipad_price_logs')
       .update({ model_id: correctId })
       .eq('model_name', modelName)

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
+import ContentImage from '../../../components/ContentImage'
 import {
   getAllIPhoneModels,
   getAllIPhonePriceLogsByModelIds,
@@ -409,7 +410,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/storage-
 
             <div className="m-card m-card--shadow m-card--padded media-card--aside-footer">
               <div className="media-card__img-wrap">
-                <img
+                <ContentImage
                   src="/images/content/thumbnail/iphone-storage.jpg"
                   alt="iPhoneのストレージ使用量確認画面"
                   className="media-card__img"

@@ -9,7 +9,7 @@
     "build:css": "cat app/style.css app/search.css app/sp-overrides.css | csso --output public/css/non-critical.min.css",
     "build:assets": "npm run build:css && node scripts/hash-assets.mjs",
     "build:checks:sitemap": "node --import tsx scripts/check-sitemap-coverage.ts",
-    "build:checks:lint": "eslint --max-warnings 160",
+    "build:checks:lint": "eslint --max-warnings 0",
     "build:checks": "npm run build:checks:sitemap && npm run build:checks:lint",
     "build": "npm run build:assets && npm run build:checks && next build",
     "start": "next start",

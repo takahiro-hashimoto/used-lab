@@ -8,6 +8,7 @@ import IPadArticleFooter from '@/app/components/ipad/IPadArticleFooter'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
 import { getHeroImage } from '@/lib/data/hero-images'
+import ContentImage from '../../../components/ContentImage'
 
 export const revalidate = false
 
@@ -240,7 +241,7 @@ export default function WifiCellularPage() {
                 {/* 1. データ通信方式 */}
                 <div className="m-card m-card--shadow m-card--padded">
                   <div className="media-card__img-wrap">
-                    <img
+                    <ContentImage
                       src="/images/content/photo/ipad-wifi-01.webp"
                       alt="データ通信方式の違いイメージ"
                       className="media-card__img"
@@ -275,7 +276,7 @@ export default function WifiCellularPage() {
                 {/* 2. 背面デザイン */}
                 <div className="m-card m-card--shadow m-card--padded">
                   <div className="media-card__img-wrap">
-                    <img
+                    <ContentImage
                       src="/images/content/photo/ipad-wifi-02.webp"
                       alt="背面デザインの違いイメージ"
                       className="media-card__img"
@@ -310,7 +311,7 @@ export default function WifiCellularPage() {
                 {/* 3. GPS機能搭載 */}
                 <div className="m-card m-card--shadow m-card--padded">
                   <div className="media-card__img-wrap">
-                    <img
+                    <ContentImage
                       src="/images/content/photo/ipad-wifi-03.webp"
                       alt="GPS機能の違いイメージ"
                       className="media-card__img"
@@ -348,7 +349,7 @@ export default function WifiCellularPage() {
                 {/* 4. テザリング機能の有無 */}
                 <div className="m-card m-card--shadow m-card--padded">
                   <div className="media-card__img-wrap">
-                    <img
+                    <ContentImage
                       src="/images/content/photo/ipad-wifi-04.webp"
                       alt="テザリング機能の違いイメージ"
                       className="media-card__img"
@@ -390,7 +391,7 @@ export default function WifiCellularPage() {
                 {/* Wi-Fiモデルがおすすめの人 */}
                 <div className="m-card m-card--shadow m-card--padded">
                   <div className="media-card__img-wrap">
-                    <img
+                    <ContentImage
                       src="/images/content/photo/wifi-image.webp"
                       alt="iPad Wi-Fiモデルの使用イメージ"
                       className="media-card__img"
@@ -424,7 +425,7 @@ export default function WifiCellularPage() {
                 {/* セルラーモデルがおすすめの人 */}
                 <div className="m-card m-card--shadow m-card--padded">
                   <div className="media-card__img-wrap">
-                    <img
+                    <ContentImage
                       src="/images/content/photo/cellular-image.webp"
                       alt="iPad セルラーモデルの使用イメージ"
                       className="media-card__img"
@@ -476,8 +477,7 @@ export default function WifiCellularPage() {
                 <div className="m-card m-card--shadow m-card--padded media-card--aside">
                   <div className="media-card__img-wrap">
                     <a href="https://hb.afl.rakuten.co.jp/hsc/4ebf9dc9.4dc93727.1d6c2ffe.7ec2aeb6/?link_type=pict&rafst=rmn&ut=eyJwYWdlIjoic2hvcCIsInR5cGUiOiJwaWN0IiwiY29sIjoxLCJjYXQiOjEsImJhbiI6MjM3Nzg5NiwiYW1wIjpmYWxzZX0%3D" rel="nofollow sponsored noopener" target="_blank">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
+                      <ContentImage
                         src="https://hbb.afl.rakuten.co.jp/hsb/4ebf9dc9.4dc93727.1d6c2ffe.7ec2aeb6/?me_id=2101065&me_adv_id=2377896&t=pict"
                         alt="楽天モバイル"
                         className="media-card__img"
@@ -510,8 +510,7 @@ export default function WifiCellularPage() {
                 <div className="m-card m-card--shadow m-card--padded media-card--aside">
                   <div className="media-card__img-wrap">
                     <a href="https://px.a8.net/svt/ejp?a8mat=3HMOV6+ENI2R6+4TIO+5ZMCH" rel="nofollow sponsored noopener" target="_blank">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
+                      <ContentImage
                         src="https://www28.a8.net/svt/bgt?aid=211010658886&wid=001&eno=01&mid=s00000022488001006000&mc=1"
                         alt="ahamo"
                         className="media-card__img"

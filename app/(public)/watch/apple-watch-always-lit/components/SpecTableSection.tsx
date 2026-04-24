@@ -1,4 +1,5 @@
 'use client'
+import ContentImage from '../../../../components/ContentImage'
 
 import { useState, useMemo } from 'react'
 import { BoolCell } from '@/app/components/spec-table-utils'
@@ -161,7 +162,7 @@ export default function SpecTableSection() {
                   <th scope="row">画像</th>
                   {filtered.map(m => (
                     <td key={`img-${m.slug}`}>
-                      <img
+                      <ContentImage
                         src={m.image ? `/images/watch/${m.image}` : placeholder(60, 60, m.name)}
                         alt={`${m.name}の商品画像`}
                         width={60}

@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { getShops } from '@/lib/queries'
+import ContentImage from './ContentImage'
 
 export default async function PopularMacBook() {
   const shops = await getShops()
@@ -16,7 +17,7 @@ export default async function PopularMacBook() {
         </p>
         <div className="m-card m-card--shadow popular-card">
           <figure className="popular-card-figure">
-            <img
+            <ContentImage
               src="/images/content/thumbnail/macbook-image-04.jpg"
               alt="中古MacBookおすすめのイメージ画像"
               className="popular-card-img"

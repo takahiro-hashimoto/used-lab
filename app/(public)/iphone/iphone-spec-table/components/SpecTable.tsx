@@ -1,4 +1,5 @@
 'use client'
+import ContentImage from '../../../../components/ContentImage'
 
 import { useState, useMemo } from 'react'
 import StickyTableWrapper from '@/app/components/StickyTableWrapper'
@@ -245,7 +246,7 @@ export default function SpecTable({ models, shopLinks }: Props) {
                     {filteredModels.map((m) => (
                       <td key={m.id} style={{ textAlign: 'center', padding: 'var(--space-sm)' }}>
                         {m.image && (
-                          <img
+                          <ContentImage
                             src={`/images/iphone/${m.image}`}
                             alt={m.model}
                             width={50}

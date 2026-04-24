@@ -1,3 +1,4 @@
+import ContentImage from '../../../../components/ContentImage'
 export default function MeritSection() {
   return (
     <section className="l-section" id="merit" aria-labelledby="heading-merit">
@@ -14,7 +15,7 @@ export default function MeritSection() {
           {/* 1. 腕をあげなくても画面の確認ができる */}
           <div className="m-card m-card--shadow m-card--padded">
             <div className="media-card__img-wrap">
-              <img
+              <ContentImage
                 src="/images/content/photo/nomad-stratos-band0008.jpg"
                 alt="Apple Watchを腕を上げずにちらっと確認する様子"
                 className="media-card__img"
@@ -46,7 +47,7 @@ export default function MeritSection() {
           {/* 2. ファッション性が高くなる */}
           <div className="m-card m-card--shadow m-card--padded">
             <div className="media-card__img-wrap">
-              <img
+              <ContentImage
                 src="/images/content/photo/apple-watch-always-lit-1.webp"
                 alt="Apple Watchをファッションとして身に着けている様子"
                 className="media-card__img"
@@ -79,7 +80,7 @@ export default function MeritSection() {
           {/* 3. 時計を見たときのエフェクトが心地よい */}
           <div className="m-card m-card--shadow m-card--padded">
             <div className="media-card__img-wrap">
-              <img
+              <ContentImage
                 src="/images/content/photo/applew-watch-always-lit-compare.gif"
                 alt="Apple Watchの常時点灯で輝度が切り替わるエフェクト"
                 className="media-card__img"

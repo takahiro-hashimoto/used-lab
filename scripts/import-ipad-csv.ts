@@ -86,7 +86,6 @@ async function main() {
 
   // 既存データの date(YYYY-MM-DD) + model_id のセット
   const existingSet = new Set<string>()
-  const existingIds: Record<string, number> = {} // date+model_id → id（削除用には使わないが参考）
   if (existing) {
     for (const row of existing) {
       const dateKey = new Date(row.logged_at).toISOString().split('T')[0]

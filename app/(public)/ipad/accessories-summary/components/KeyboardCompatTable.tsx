@@ -1,4 +1,5 @@
 'use client'
+import ContentImage from '../../../../components/ContentImage'
 
 import { useState, useMemo } from 'react'
 import { parseDate, formatDate } from '@/app/components/spec-table-utils'
@@ -121,7 +122,7 @@ export default function KeyboardCompatTable({ models, keyboardAccessories }: Pro
                     {filteredModels.map((m) => (
                       <td key={m.id}>
                         {m.image && (
-                          <img
+                          <ContentImage
                             src={`/images/ipad/${m.image}`}
                             alt={m.model}
                             width={50}

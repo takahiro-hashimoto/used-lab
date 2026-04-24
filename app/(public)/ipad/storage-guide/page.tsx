@@ -3,6 +3,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import FaqSection from '@/app/components/support/FaqSection'
+import ContentImage from '../../../components/ContentImage'
 import {
   getAllIPadModels,
   getAllIPadPriceLogsByModelIds,
@@ -402,7 +403,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/ipad/storage-gu
 
             <div className="m-card m-card--shadow m-card--padded media-card--aside-footer">
               <div className="media-card__img-wrap">
-                <img
+                <ContentImage
                   src="/images/content/thumbnail/ipad-storage.jpg"
                   alt="iPadのストレージ使用量確認画面"
                   className="media-card__img"

@@ -130,7 +130,6 @@ function buildMatchFn(model: MacBookModel): (itemName: string) => boolean {
   const minChip = getMinChip(model.cpu)
   const baseGen = getBaseChipGen(minChip)  // "M1", "M2" etc.
   const size = getSize(model.model)
-  const year = getYear(model.model)
   const minStorage = getMinStorage(model.strage)
   const isChipPro = minChip.includes('Pro')
   const isChipMax = minChip.includes('Max')
@@ -170,12 +169,6 @@ function buildMatchFn(model: MacBookModel): (itemName: string) => boolean {
     //    自モデルのサイズが含まれていること、または他サイズが含まれていないことを確認
     if (size) {
       // サイズグループ: 13=13/13.3/13.6, 14=14/14.2, 15=15/15.3, 16=16/16.2
-      const sizeGroups: Record<string, string[]> = {
-        '13': ['13'],
-        '14': ['14'],
-        '15': ['15'],
-        '16': ['16'],
-      }
       // 他サイズの検出パターン（小数点付きも含む）
       const otherSizePatterns: Record<string, RegExp> = {
         '13': /(?:13(?:\.\d)?)\s*[-]?\s*(?:インチ|inch|"|″)/i,
@@ -183,10 +176,6 @@ function buildMatchFn(model: MacBookModel): (itemName: string) => boolean {
         '15': /(?:15(?:\.\d)?)\s*[-]?\s*(?:インチ|inch|"|″)/i,
         '16': /(?:16(?:\.\d)?)\s*[-]?\s*(?:インチ|inch|"|″)/i,
       }
-
-      const myPattern = otherSizePatterns[size]
-      const hasMySize = myPattern ? myPattern.test(itemName) : false
-
       // 他サイズが含まれているか
       for (const [s, pattern] of Object.entries(otherSizePatterns)) {
         if (s === size) continue
