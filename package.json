@@ -33,11 +33,13 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.5.1",
     "@supabase/supabase-js": "^2.95.3",
+    "@types/sanitize-html": "^2.16.1",
     "chart.js": "^4.5.1",
     "next": "16.1.6",
     "react": "19.2.3",
     "react-chartjs-2": "^5.3.1",
-    "react-dom": "19.2.3"
+    "react-dom": "19.2.3",
+    "sanitize-html": "^2.17.3"
   },
   "browserslist": [
     "chrome >= 109",

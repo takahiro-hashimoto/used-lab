@@ -2,6 +2,7 @@
  * 比較ページ下部の関連記事セクション
  */
 
+import Link from 'next/link'
 import Image from 'next/image'
 
 type RelatedItem = {
@@ -70,7 +71,7 @@ export default function CompareRelated() {
 
         <div className="l-grid l-grid--2col l-grid--gap-lg">
           {ITEMS.map((item) => (
-            <a
+            <Link
               key={item.href}
               className="m-card m-card--shadow related-link-card m-card--hoverable"
               href={item.href}
@@ -87,7 +88,7 @@ export default function CompareRelated() {
                 <p className="related-link-card__title">{item.title}</p>
                 <p className="related-link-card__desc">{item.desc}</p>
               </div>
-            </a>
+            </Link>
           ))}
         </div>
       </div>

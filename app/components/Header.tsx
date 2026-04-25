@@ -5,81 +5,7 @@ import Image from 'next/image'
 import { useState, useEffect, useRef } from 'react'
 import { createPortal } from 'react-dom'
 import { useRouter } from 'next/navigation'
-type NavItem = {
-  href: string
-  label: string
-  children?: { href: string; label: string }[]
-}
-
-const NAV_ITEMS: NavItem[] = [
-  {
-    href: '/iphone/', label: '中古iPhone',
-    children: [
-      { href: '/iphone/', label: '中古iPhoneの選び方ガイド' },
-      { href: '/iphone/recommend/', label: '中古iPhoneおすすめ機種' },
-      { href: '/iphone/filter-search/', label: 'iPhone機種診断ツール' },
-      { href: '/iphone/price-info/', label: '中古iPhoneの相場価格' },
-      { href: '/iphone/iphone-spec-table/', label: 'iPhoneスペック比較表' },
-      { href: '/iphone/used-iphone-support/', label: 'iPhoneのサポート期間・寿命' },
-      { href: '/iphone/iphone-shop/', label: '中古iPhoneの購入先比較' },
-      { href: '/iphone/iphone-camera/', label: 'iPhoneカメラ性能比較' },
-      { href: '/iphone/battery-compare/', label: 'iPhoneバッテリー容量比較' },
-      { href: '/iphone/benchmark/', label: 'iPhoneベンチマーク比較' },
-    ],
-  },
-  {
-    href: '/ipad/', label: '中古iPad',
-    children: [
-      { href: '/ipad/', label: '中古iPadの選び方ガイド' },
-      { href: '/ipad/recommend/', label: '中古iPadおすすめ機種' },
-      { href: '/ipad/ipad-filter-search/', label: 'iPad機種診断ツール' },
-      { href: '/ipad/ipad-price-info/', label: '中古iPadの相場価格' },
-      { href: '/ipad/apple-pencil-compare/', label: 'Apple Pencil互換性比較' },
-      { href: '/ipad/wifi-cellular/', label: 'Wi-Fiとセルラーの違い' },
-      { href: '/ipad/ipad-spec-table/', label: 'iPadスペック比較表' },
-      { href: '/ipad/used-ipad-support/', label: 'iPadのサポート期間・寿命' },
-      { href: '/ipad/ipad-shop/', label: '中古iPadの購入先比較' },
-      { href: '/ipad/benchmark/', label: 'iPadベンチマーク比較' },
-    ],
-  },
-  {
-    href: '/watch/', label: '中古Apple Watch',
-    children: [
-      { href: '/watch/', label: '中古Apple Watch選び方ガイド' },
-      { href: '/watch/recommend/', label: '中古Apple Watchおすすめ機種' },
-      { href: '/watch/watch-filter-search/', label: 'Apple Watch機種診断ツール' },
-      { href: '/watch/watch-price-info/', label: '中古Apple Watchの相場価格' },
-      { href: '/watch/gps-cellular-compare/', label: 'GPSとセルラーの違い' },
-      { href: '/watch/watch-spec-table/', label: 'Apple Watchスペック比較表' },
-      { href: '/watch/used-watch-support/', label: 'Apple Watchのサポート期間' },
-      { href: '/watch/watch-shop/', label: '中古Apple Watchの購入先比較' },
-    ],
-  },
-  {
-    href: '/macbook/', label: '中古MacBook',
-    children: [
-      { href: '/macbook/', label: '中古MacBookの選び方ガイド' },
-      { href: '/macbook/recommend/', label: '中古MacBookおすすめ機種' },
-      { href: '/macbook/price-info/', label: '中古MacBookの相場価格' },
-      { href: '/macbook/air-pro-compare/', label: 'MacBook Air vs Pro比較' },
-      { href: '/macbook/macbook-spec-table/', label: 'MacBookスペック比較表' },
-      { href: '/macbook/benchmark/', label: 'MacBookベンチマーク比較' },
-      { href: '/macbook/used-macbook-support/', label: 'MacBookのサポート期間' },
-      { href: '/macbook/macbook-shop/', label: '中古MacBookの購入先比較' },
-    ],
-  },
-  {
-    href: '/airpods/', label: '中古AirPods',
-    children: [
-      { href: '/airpods/', label: '中古AirPodsの選び方ガイド' },
-      { href: '/airpods/recommend/', label: '中古AirPodsおすすめ機種' },
-      { href: '/airpods/price-info/', label: '中古AirPodsの相場価格' },
-      { href: '/airpods/used-airpods-attention/', label: '中古AirPodsの注意点' },
-    ],
-  },
-  { href: '/contact/', label: 'お問い合わせ' },
-  { href: '/profile/', label: '運営者情報' },
-]
+import { HEADER_NAV_ITEMS } from '@/lib/routes'
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -163,7 +89,7 @@ export default function Header() {
 
         <nav className="global-nav" id="globalNav" aria-label="メインナビゲーション">
           <ul className="nav-list">
-            {NAV_ITEMS.map((item) => (
+            {HEADER_NAV_ITEMS.map((item) => (
               <li
                 key={item.href}
                 className={`nav-item${item.children ? ' nav-item--has-dropdown' : ''}${openDropdown === item.href ? ' nav-item--open' : ''}`}
@@ -260,7 +186,7 @@ export default function Header() {
             style={{ top: menuTop }}
           >
             <ul className="mobile-nav-list">
-              {NAV_ITEMS.map((item) => (
+              {HEADER_NAV_ITEMS.map((item) => (
                 <li key={item.href} className={item.children ? 'mobile-nav-accordion' : ''}>
                   {item.children ? (
                     <>
@@ -321,9 +247,9 @@ export default function Header() {
                   <a href="https://note.com/takahiro_mono" target="_blank" rel="noopener noreferrer" aria-label="note" title="note">
                     <i className="fa-solid fa-pen-nib" aria-hidden="true"></i>
                   </a>
-                  <a href="/contact/" target="_blank" rel="noopener noreferrer" aria-label="お問い合わせ" title="お問い合わせ">
+                  <Link href="/contact/" aria-label="お問い合わせ" title="お問い合わせ" onClick={() => setIsMenuOpen(false)}>
                     <i className="fa-solid fa-envelope" aria-hidden="true"></i>
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>

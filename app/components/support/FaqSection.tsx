@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 type FaqItem = {
   question: string
   answer: string
@@ -13,18 +15,33 @@ type Props = {
 
 export type { FaqItem }
 
-/** [text](url) と <a href="...">text</a> の両形式をReactノードに変換 */
+/** [text](url) と <a href="...">text</a> の両形式をHTMLタグなしのプレーンテキストに変換（JSON-LD用） */
+function toPlainText(text: string): string {
+  return text
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+    .replace(/<a [^>]+>([^<]*)<\/a>/g, '$1')
+    .replace(/<[^>]+>/g, '')
+}
+
+/** [text](url) と <a href="...">text</a> の両形式をReactノードに変換。内部リンクはLink、外部はa */
 function parseFaqAnswer(text: string): React.ReactNode[] {
   const parts = text.split(/(\[[^\]]+\]\([^)]+\)|<a [^>]+>[^<]*<\/a>)/)
   return parts.map((part, i) => {
     const mdMatch = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/)
-    if (mdMatch) return <a key={i} href={mdMatch[2]}>{mdMatch[1]}</a>
+    if (mdMatch) {
+      const [, label, href] = mdMatch
+      return href.startsWith('/')
+        ? <Link key={i} href={href}>{label}</Link>
+        : <a key={i} href={href} rel="noopener noreferrer">{label}</a>
+    }
 
     const htmlMatch = part.match(/^<a ([^>]+)>([^<]*)<\/a>$/)
     if (htmlMatch) {
       const href = (htmlMatch[1].match(/href="([^"]*)"/) ?? [])[1] ?? '#'
       const rel = (htmlMatch[1].match(/rel="([^"]*)"/) ?? [])[1]
-      return <a key={i} href={href} rel={rel}>{htmlMatch[2]}</a>
+      return href.startsWith('/')
+        ? <Link key={i} href={href}>{htmlMatch[2]}</Link>
+        : <a key={i} href={href} rel={rel ?? 'noopener noreferrer'}>{htmlMatch[2]}</a>
     }
     return part
   })
@@ -39,7 +56,11 @@ export default function FaqSection({ title, description, items, children, classN
       name: item.question,
       acceptedAnswer: {
         '@type': 'Answer',
-        text: item.answer,
+        text: item.answer
+          .split('\n')
+          .map(toPlainText)
+          .join(' ')
+          .trim(),
       },
     })),
   }
