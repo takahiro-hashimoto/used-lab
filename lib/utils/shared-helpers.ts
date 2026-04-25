@@ -250,6 +250,25 @@ export function buildFaqJsonLd(items: { question: string; answer: string }[]) {
   }
 }
 
+/**
+ * 標準3店舗(イオシス・ゲオ・じゃんぱら)の PriceChartSection 用データをまとめて計算する。
+ * iphone / ipad / watch の [slug]/page.tsx で共通利用。
+ */
+export function buildStandardPriceChartData(priceLogs: BasePriceLog[]): {
+  latestDate: string | null
+  latestMinMaxPairs: { mins: number[]; maxes: number[] }[]
+  storageNote: string
+} {
+  const latestDate = priceLogs.length > 0 ? priceLogs[priceLogs.length - 1].logged_at : null
+  const latestLogEntries = latestDate ? priceLogs.filter((l) => l.logged_at === latestDate) : []
+  const latestMinMaxPairs = latestLogEntries.map((l) => ({
+    mins: [l.iosys_min, l.geo_min, l.janpara_min].filter((v): v is number => v != null),
+    maxes: [l.iosys_max, l.geo_max, l.janpara_max].filter((v): v is number => v != null),
+  }))
+  const storageNote = latestLogEntries[0]?.storage ?? ''
+  return { latestDate, latestMinMaxPairs, storageNote }
+}
+
 /** 修理寿命計算（リリース年+9年） */
 export function calculateRepairLifespan(date: string | null): {
   releaseYear: number

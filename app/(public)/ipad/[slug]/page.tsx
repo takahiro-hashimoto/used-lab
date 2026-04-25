@@ -32,7 +32,7 @@ import ReviewSection from '@/app/components/ReviewSection'
 import IPadArticleFooter from '@/app/components/ipad/IPadArticleFooter'
 import AdminEditLink from '@/app/components/AdminEditLink'
 import StickyCtaOverride from '@/app/components/StickyCtaOverride'
-import { resolveLastUpdatedDate } from '@/lib/utils/shared-helpers'
+import { resolveLastUpdatedDate, buildStandardPriceChartData } from '@/lib/utils/shared-helpers'
 
 export const revalidate = 86400
 
@@ -110,15 +110,8 @@ export default async function IPadDetailPage({ params }: PageProps) {
   }))
 
   // PriceChartSection用のデータをサーバーサイドで事前計算
-  // aggregateDailyPrices内で直近90日に絞られるため、filterLast3Monthsは不要
   const dailyData = aggregateDailyPrices(priceLogs)
-  const latestDate = priceLogs.length > 0 ? priceLogs[priceLogs.length - 1].logged_at : null
-  const latestLogEntries = latestDate ? priceLogs.filter((l) => l.logged_at === latestDate) : []
-  const latestMinMaxPairs = latestLogEntries.map((l) => ({
-    mins: [l.iosys_min, l.geo_min, l.janpara_min].filter((v): v is number => v != null),
-    maxes: [l.iosys_max, l.geo_max, l.janpara_max].filter((v): v is number => v != null),
-  }))
-  const storageNote = latestLogEntries[0]?.storage || ''
+  const { latestDate, latestMinMaxPairs, storageNote } = buildStandardPriceChartData(priceLogs)
   const modelShopLinks = shopLinks.filter((l) => l.product_id === model.id)
   const iosysShop = shops.find((s) => s.id === 1)
 

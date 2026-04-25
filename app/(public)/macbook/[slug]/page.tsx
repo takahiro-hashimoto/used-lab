@@ -64,7 +64,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       title,
       description,
       url: `/macbook/${slug}/`,
-      images: model.image ? [{ url: `/images/macbook/${model.image}`, width: 480, height: 320, alt: `${model.model} の外観イメージ` }] : [],
+      images: model.image ? [{ url: `/images/macbook/${model.image}`, width: 1200, height: 630, alt: `${model.model} の外観イメージ` }] : [],
     },
     twitter: {
       title,

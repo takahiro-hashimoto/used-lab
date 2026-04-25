@@ -48,6 +48,14 @@ const searchActionJsonLd = {
   '@type': 'WebSite',
   name: 'ユーズドラボ',
   url: 'https://used-lab.jp',
+  potentialAction: {
+    '@type': 'SearchAction',
+    target: {
+      '@type': 'EntryPoint',
+      urlTemplate: 'https://used-lab.jp/search/?q={search_term_string}',
+    },
+    'query-input': 'required name=search_term_string',
+  },
 }
 
 export default function PublicLayout({
