@@ -4,7 +4,6 @@
  */
 
 import Link from 'next/link'
-import '@/app/compare.css'
 import { notFound } from 'next/navigation'
 import {
   getIPhoneModelBySlug,
