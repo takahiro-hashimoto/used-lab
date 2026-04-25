@@ -105,8 +105,7 @@ export default async function ComparePageTemplate({ config }: Props) {
                 価格差は約{(() => { const diff = Math.abs((latestL ? Math.round(((latestL.iosys_min || 0) + (latestL.geo_min || 0) + (latestL.janpara_min || 0)) / 3 / 100) * 100 : 0) - (latestR ? Math.round(((latestR.iosys_min || 0) + (latestR.geo_min || 0) + (latestR.janpara_min || 0)) / 3 / 100) * 100 : 0)); return diff > 0 ? `${(diff / 10000).toFixed(1)}万円` : '同程度'; })()}。この差に見合う違いがあるのか、処理性能・カメラ・バッテリーなど主要スペックを一覧で比較しました。
               </p>
               <p className="lead-link">
-                <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                情報を網羅的に得たい方は「<Link href="/iphone/">中古iPhone購入完全ガイド</Link>」も参考にしてみてください！
+                → 情報を網羅的に得たい方は「<Link href="/iphone/">中古iPhone購入完全ガイド</Link>」も参考にしてみてください！
               </p>
             </div>
           </div>

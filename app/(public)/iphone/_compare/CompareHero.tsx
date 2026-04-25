@@ -48,10 +48,10 @@ export default function CompareHero({ modelL, modelR, dateStr, dateDisplay }: Pr
                 <Image
                   src={`/images/iphone/${modelL.image}`}
                   alt={modelL.model}
-                  width={140}
-                  height={140}
+                  width={180}
+                  height={180}
                   priority
-                  sizes="(max-width: 768px) 100vw, 360px"
+                  sizes="180px"
                 />
               )}
               <p>{modelL.model}</p>
@@ -62,10 +62,10 @@ export default function CompareHero({ modelL, modelR, dateStr, dateDisplay }: Pr
                 <Image
                   src={`/images/iphone/${modelR.image}`}
                   alt={modelR.model}
-                  width={140}
-                  height={140}
+                  width={180}
+                  height={180}
                   priority
-                  sizes="(max-width: 768px) 100vw, 360px"
+                  sizes="180px"
                 />
               )}
               <p>{modelR.model}</p>
