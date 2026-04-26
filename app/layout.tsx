@@ -1,9 +1,18 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import Script from "next/script";
-import "./critical.css";
+import { readFileSync } from "fs";
+import { join } from "path";
 import { CSS_NON_CRITICAL, CSS_FONTAWESOME } from "@/lib/asset-hashes";
 import NavigationProgressBar from "@/app/components/NavigationProgressBar";
+
+// Inline critical CSS to avoid render-blocking HTTP request
+const _rawCss = readFileSync(join(process.cwd(), "app/critical.css"), "utf8");
+const criticalCss = _rawCss
+  .replace(/\/\*[\s\S]*?\*\//g, "")
+  .replace(/\s+/g, " ")
+  .replace(/\s*([{};:,>~+])\s*/g, "$1")
+  .trim();
 
 const GTM_ID = 'GTM-5RVN7KJZ';
 const IS_PROD = process.env.NEXT_PUBLIC_ENV === 'production';
@@ -67,6 +76,7 @@ export default function RootLayout({
   return (
     <html lang="ja" className={inter.variable}>
       <head>
+        <style dangerouslySetInnerHTML={{ __html: criticalCss }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(siteNavigationJsonLd) }} />
         {/* preload starts download; stylesheet applies CSS at initial render with near-zero blocking time */}
         <link rel="preload" href={CSS_NON_CRITICAL} as="style" />
