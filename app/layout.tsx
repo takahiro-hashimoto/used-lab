@@ -11,7 +11,8 @@ const _rawCss = readFileSync(join(process.cwd(), "app/critical.css"), "utf8");
 const criticalCss = _rawCss
   .replace(/\/\*[\s\S]*?\*\//g, "")
   .replace(/\s+/g, " ")
-  .replace(/\s*([{};:,>~+])\s*/g, "$1")
+  .replace(/\s*([{};,])\s*/g, "$1")
+  .replace(/:\s+/g, ":")
   .trim();
 
 const GTM_ID = 'GTM-5RVN7KJZ';
