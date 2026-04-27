@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import type { ReactNode, ElementType } from 'react'
 
 interface IconCardProps {
@@ -7,7 +8,7 @@ interface IconCardProps {
   as?: ElementType
 }
 
-export default function IconCard({ icon, title, children, as: Tag = 'h3' }: IconCardProps) {
+const IconCard = memo(function IconCard({ icon, title, children, as: Tag = 'h3' }: IconCardProps) {
   return (
     <div className="m-card m-card--shadow m-card--padded post-check-item">
       <Tag className="post-check-item__heading">
@@ -19,4 +20,6 @@ export default function IconCard({ icon, title, children, as: Tag = 'h3' }: Icon
       </div>
     </div>
   )
-}
+})
+
+export default IconCard

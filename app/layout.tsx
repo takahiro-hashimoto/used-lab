@@ -82,9 +82,14 @@ export default function RootLayout({
         {/* preload starts download; stylesheet applies CSS at initial render with near-zero blocking time */}
         <link rel="preload" href={CSS_NON_CRITICAL} as="style" />
         <link rel="preload" href={CSS_FONTAWESOME} as="style" />
+        <link rel="preload" href="/fonts/fontawesome/fa-solid-900.woff2" as="font" type="font/woff2" crossOrigin="" />
+        <link rel="preload" href="/fonts/fontawesome/fa-brands-400.woff2" as="font" type="font/woff2" crossOrigin="" />
         <link rel="stylesheet" href={CSS_NON_CRITICAL} />
         <link rel="stylesheet" href={CSS_FONTAWESOME} />
         {IS_PROD && <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="" />}
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+        <link rel="dns-prefetch" href="https://www.clarity.ms" />
         {IS_PROD && (
           <Script id="gtm" strategy="afterInteractive">{`
             (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':

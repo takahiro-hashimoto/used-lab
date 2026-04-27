@@ -19,7 +19,7 @@ import { getHeroImage } from '@/lib/data/hero-images'
 export const revalidate = 86400
 
 export const metadata: Metadata = {
-  title: '中古Apple製品のおすすめ機種・賢い選び方・安く買う方法を解説 | ユーズドラボ',
+  title: '中古Apple製品のおすすめ機種・賢い選び方・安く買う方法を解説',
   description: '中古iPhone・iPad・MacBook・Apple Watch・AirPodsの価格推移・スペック比較・おすすめ機種を毎日更新。中古Apple製品選びに必要な情報をワンストップで提供します。',
   alternates: { canonical: '/' },
   openGraph: {
@@ -86,7 +86,7 @@ export default async function HomePage() {
           className="hero--top__bg"
           fill
           priority
-          sizes="(max-width: 768px) 100vw, 360px"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 768px, 1200px"
         />
         <div className="hero--top__overlay" aria-hidden="true" />
         <div className="hero-inner">

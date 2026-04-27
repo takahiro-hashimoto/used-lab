@@ -80,14 +80,19 @@ export default function MeritSection() {
           {/* 3. 時計を見たときのエフェクトが心地よい */}
           <div className="m-card m-card--shadow m-card--padded">
             <div className="media-card__img-wrap">
-              <ContentImage
-                src="/images/content/photo/applew-watch-always-lit-compare.gif"
-                alt="Apple Watchの常時点灯で輝度が切り替わるエフェクト"
+              <video
                 className="media-card__img"
                 width={240}
                 height={160}
-                loading="lazy"
-              />
+                autoPlay
+                muted
+                loop
+                playsInline
+                aria-label="Apple Watchの常時点灯で輝度が切り替わるエフェクト"
+              >
+                <source src="/images/content/photo/applew-watch-always-lit-compare.webm" type="video/webm" />
+                <source src="/images/content/photo/applew-watch-always-lit-compare.mp4" type="video/mp4" />
+              </video>
             </div>
             <div className="media-card__body">
               <h3 className="media-card__title">時計を見たときのエフェクトが心地よい</h3>
