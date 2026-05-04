@@ -77,6 +77,11 @@ const nextConfig: NextConfig = {
         destination: '/',
         permanent: true,
       },
+      {
+        source: '/page/:num/',
+        destination: '/',
+        permanent: true,
+      },
       // /used-iphone/:slug/ → /iphone/:slug/ (WordPress移行時に外れたリダイレクトの復元)
       {
         source: '/used-iphone/:slug/',
@@ -103,6 +108,38 @@ const nextConfig: NextConfig = {
         destination: '/ipad/ipad-mini-6-review/',
         permanent: true,
       },
+
+      // ② 誤カテゴリURL（MacBook記事がipad配下）
+      { source: '/ipad/mba-13-2020/', destination: '/macbook/mba-13-2020/', permanent: true },
+      { source: '/ipad/mba-13-2022/', destination: '/macbook/mba-13-2022/', permanent: true },
+      { source: '/ipad/mba-13-2024/', destination: '/macbook/mba-13-2024/', permanent: true },
+      { source: '/ipad/mba-13-2025/', destination: '/macbook/mba-13-2025/', permanent: true },
+      { source: '/ipad/mba-15-2023/', destination: '/macbook/mba-15-2023/', permanent: true },
+      { source: '/ipad/mbp-13-2020/', destination: '/macbook/mbp-13-2020/', permanent: true },
+      { source: '/ipad/mbp-14-2021/', destination: '/macbook/mbp-14-2021/', permanent: true },
+      { source: '/ipad/mbp-14-2023/', destination: '/macbook/mbp-14-2023/', permanent: true },
+      { source: '/ipad/mbp-16-2021/', destination: '/macbook/mbp-16-2021/', permanent: true },
+      { source: '/ipad/mbp-16-2023/', destination: '/macbook/mbp-16-2023/', permanent: true },
+      // 誤カテゴリURL（iPhone記事がipad配下）
+      { source: '/ipad/17promax/', destination: '/iphone/17promax/', permanent: true },
+      { source: '/ipad/13pro/',    destination: '/iphone/13pro/',    permanent: true },
+      { source: '/ipad/15normal/', destination: '/iphone/15normal/', permanent: true },
+      { source: '/ipad/16normal/', destination: '/iphone/16normal/', permanent: true },
+      // 誤カテゴリURL（Watch記事がipad配下）
+      { source: '/ipad/ultra2/',  destination: '/watch/ultra2/',  permanent: true },
+      { source: '/ipad/series7/', destination: '/watch/series7/', permanent: true },
+
+      // ③ 旧 /iphone/shop/:slug・/ipad/shop/:slug URL構造
+      { source: '/iphone/shop/:slug/', destination: '/iphone/:slug/', permanent: true },
+      { source: '/ipad/shop/:slug/',   destination: '/ipad/:slug/',   permanent: true },
+
+      // ④ その他の旧URL
+      { source: '/iPad/', destination: '/ipad/', permanent: true },
+      { source: '/airpods/:slug/feed/', destination: '/airpods/:slug/', permanent: true },
+      { source: '/ipad/:slug/feed/',    destination: '/ipad/:slug/',    permanent: true },
+      { source: '/iphone/:slug/feed/',  destination: '/iphone/:slug/',  permanent: true },
+      { source: '/macbook/:slug/feed/', destination: '/macbook/:slug/', permanent: true },
+      { source: '/watch/:slug/feed/',   destination: '/watch/:slug/',   permanent: true },
     ]
   },
   async headers() {
