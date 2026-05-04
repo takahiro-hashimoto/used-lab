@@ -5,6 +5,9 @@
  * 動的詳細ページも sitemap のフォールバック更新日に使うため、テンプレートの日付を管理します。
  */
 export const PAGE_DATES: Record<string, string> = {
+  // ── トップ ────────────────────────────────────────────────────
+  'app/(public)/page.tsx': '2026-04-28',
+
   // ── カテゴリTOP ──────────────────────────────────────────────
   'app/(public)/iphone/page.tsx':  '2026-04-11',
   'app/(public)/ipad/page.tsx':    '2026-04-11',
@@ -26,6 +29,7 @@ export const PAGE_DATES: Record<string, string> = {
   'app/(public)/iphone/used-iphone-attention/page.tsx': '2026-04-14',
   'app/(public)/iphone/network-limit/page.tsx':       '2026-04-14',
   'app/(public)/iphone/mobile-hoken-compare/page.tsx': '2026-04-14',
+  'app/(public)/iphone/price-info/page.tsx':           '2026-04-24',
   'app/(public)/iphone/filter-search/page.tsx':       '2026-04-11',
   'app/(public)/iphone/storage-guide/page.tsx':       '2026-04-11',
   'app/(public)/iphone/used-iphone-support/page.tsx': '2026-04-11',
@@ -37,6 +41,18 @@ export const PAGE_DATES: Record<string, string> = {
   'app/(public)/iphone/iphone-spec-table/page.tsx':   '2026-04-10',
   'app/(public)/iphone/recommend/page.tsx':           '2026-04-10',
   'app/(public)/iphone/_compare/ComparePageTemplate.tsx': '2026-04-12',
+  'app/(public)/iphone/iphone13-13pro-compare/page.tsx':  '2026-04-14',
+  'app/(public)/iphone/iphone13-14-compare/page.tsx':     '2026-04-14',
+  'app/(public)/iphone/iphone13pro-14pro-compare/page.tsx': '2026-04-14',
+  'app/(public)/iphone/iphone14-14pro-compare/page.tsx':  '2026-04-14',
+  'app/(public)/iphone/iphone14-15-compare/page.tsx':     '2026-04-14',
+  'app/(public)/iphone/iphone14pro-15pro-compare/page.tsx': '2026-04-14',
+  'app/(public)/iphone/iphone15-15pro-compare/page.tsx':  '2026-04-14',
+  'app/(public)/iphone/iphone15-16-compare/page.tsx':     '2026-04-14',
+  'app/(public)/iphone/iphone15pro-16pro-compare/page.tsx': '2026-04-14',
+  'app/(public)/iphone/iphone16-16pro-compare/page.tsx':  '2026-04-14',
+  'app/(public)/iphone/iphone16e-se3-compare/page.tsx':   '2026-04-14',
+  'app/(public)/iphone/iphone16plus-air-compare/page.tsx': '2026-04-14',
   'app/(public)/iphone/[slug]/page.tsx':              '2026-04-11',
 
   // ── iPad ──────────────────────────────────────────────────────
@@ -54,6 +70,7 @@ export const PAGE_DATES: Record<string, string> = {
   'app/(public)/ipad/used-ipad-support/page.tsx':     '2026-04-11',
   'app/(public)/ipad/benchmark/page.tsx':             '2026-04-11',
   'app/(public)/ipad/ipad-spec-table/page.tsx':       '2026-04-11',
+  'app/(public)/ipad/ipad-price-info/page.tsx':        '2026-04-24',
   'app/(public)/ipad/ipad-filter-search/page.tsx':    '2026-04-11',
   'app/(public)/ipad/apple-pencil-compare/page.tsx':  '2026-04-11',
   'app/(public)/ipad/accessories-summary/page.tsx':   '2026-04-11',
@@ -68,6 +85,7 @@ export const PAGE_DATES: Record<string, string> = {
   'app/(public)/macbook/recommend/page.tsx':          '2026-04-13',
   'app/(public)/macbook/benchmark/page.tsx':          '2026-04-12',
   'app/(public)/macbook/storage-guide/page.tsx':      '2026-04-12',
+  'app/(public)/macbook/price-info/page.tsx':          '2026-04-24',
   'app/(public)/macbook/air-pro-compare/page.tsx':    '2026-04-10',
   'app/(public)/macbook/macbook-spec-table/page.tsx': '2026-04-10',
   'app/(public)/macbook/used-macbook-support/page.tsx': '2026-04-11',
@@ -83,6 +101,7 @@ export const PAGE_DATES: Record<string, string> = {
   'app/(public)/watch/apple-watch-always-lit/page.tsx': '2026-04-14',
   'app/(public)/watch/[slug]/page.tsx':               '2026-04-11',
   'app/(public)/watch/recommend/page.tsx':            '2026-04-11',
+  'app/(public)/watch/watch-price-info/page.tsx':      '2026-04-24',
   'app/(public)/watch/watch-filter-search/page.tsx':  '2026-04-11',
   'app/(public)/watch/used-watch-support/page.tsx':   '2026-04-11',
   'app/(public)/watch/watch-spec-table/page.tsx':     '2026-04-11',
@@ -93,6 +112,7 @@ export const PAGE_DATES: Record<string, string> = {
   'app/(public)/airpods/airpods-find/page.tsx':       '2026-04-14',
   'app/(public)/airpods/airpods-buy/page.tsx':        '2026-04-14',
   'app/(public)/airpods/recommend/page.tsx':          '2026-04-13',
+  'app/(public)/airpods/price-info/page.tsx':          '2026-04-24',
   'app/(public)/airpods/airpods-filter-search/page.tsx': '2026-04-08',
   'app/(public)/airpods/[slug]/page.tsx':             '2026-04-11',
 }

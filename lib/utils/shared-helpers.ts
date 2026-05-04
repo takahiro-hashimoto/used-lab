@@ -228,7 +228,7 @@ export function buildArticleJsonLd(opts: {
       name: 'ユーズドラボ',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://used-lab.jp/images/logo.png',
+        url: 'https://used-lab.jp/images/logo.svg',
       },
     },
     mainEntityOfPage: { '@type': 'WebPage', '@id': opts.url },
