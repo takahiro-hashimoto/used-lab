@@ -5,7 +5,6 @@ import type { IPadModel, IPadPriceLog } from '@/lib/types'
 const config: ModelHeroConfig = {
   categoryPath: '/ipad',
   categoryLabel: '中古iPad完全購入ガイド',
-  categoryJsonLd: 'タブレット',
   imageFolder: 'ipad',
 }
 

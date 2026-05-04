@@ -5,12 +5,10 @@ import HeroMeta from '@/app/components/HeroMeta'
 export type ModelHeroConfig = {
   categoryPath: string
   categoryLabel: string
-  categoryJsonLd: string
   imageFolder: string
   imageWidth?: number
   imageHeight?: number
   h1Template?: string
-  descriptionTemplate?: string
 }
 
 type Props = {
@@ -23,39 +21,20 @@ type Props = {
 const DEFAULT_H1 = (name: string) =>
   `中古${name}は今買うべき？製品寿命、基本スペック、ベンチマークスコア、中古相場から解説`
 
-const DEFAULT_DESCRIPTION = (name: string) =>
-  `${name}の中古価格相場、ベンチマークスコア、スペック比較、おすすめショップ情報。`
 
 export default function ModelHeroSection({ model, config, dateStr, dateDisplay }: Props) {
   const {
     categoryPath,
     categoryLabel,
-    categoryJsonLd,
     imageFolder,
     imageWidth = 360,
     imageHeight = 360,
     h1Template,
-    descriptionTemplate,
   } = config
 
   const h1Text = h1Template
     ? h1Template.replace('${model}', model.model)
     : DEFAULT_H1(model.model)
-
-  const description = descriptionTemplate
-    ? descriptionTemplate.replace('${model}', model.model)
-    : DEFAULT_DESCRIPTION(model.model)
-
-  const productJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Product',
-    name: `中古 ${model.model}`,
-    description,
-    brand: { '@type': 'Brand', name: 'Apple' },
-    category: categoryJsonLd,
-    ...(model.image && { image: `https://used-lab.jp/images/${imageFolder}/${model.image}` }),
-    url: `https://used-lab.jp${categoryPath}/${model.slug}/`,
-  }
 
   const breadcrumbJsonLd = {
     '@context': 'https://schema.org',
@@ -83,10 +62,6 @@ export default function ModelHeroSection({ model, config, dateStr, dateDisplay }
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
-      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}

@@ -68,6 +68,37 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: '/airpods/airpods-select/',
+        destination: '/airpods/',
+        permanent: true,
+      },
+      {
+        source: '/%E3%83%88%E3%83%83%E3%83%97-2/',
+        destination: '/',
+        permanent: true,
+      },
+      // /used-iphone/:slug/ → /iphone/:slug/ (WordPress移行時に外れたリダイレクトの復元)
+      {
+        source: '/used-iphone/:slug/',
+        destination: '/iphone/:slug/',
+        permanent: true,
+      },
+      // /apple-watch/:slug/ → /watch/:slug/ (WordPress移行時に外れたリダイレクトの復元)
+      { source: '/apple-watch/series11/', destination: '/watch/series11/', permanent: true },
+      { source: '/apple-watch/series10/', destination: '/watch/series10/', permanent: true },
+      { source: '/apple-watch/series9/',  destination: '/watch/series9/',  permanent: true },
+      { source: '/apple-watch/series8/',  destination: '/watch/series8/',  permanent: true },
+      { source: '/apple-watch/series7/',  destination: '/watch/series7/',  permanent: true },
+      { source: '/apple-watch/series6/',  destination: '/watch/series6/',  permanent: true },
+      { source: '/apple-watch/series5/',  destination: '/watch/series5/',  permanent: true },
+      { source: '/apple-watch/series4/',  destination: '/watch/series4/',  permanent: true },
+      { source: '/apple-watch/ultra3/',   destination: '/watch/ultra3/',   permanent: true },
+      { source: '/apple-watch/ultra2/',   destination: '/watch/ultra2/',   permanent: true },
+      { source: '/apple-watch/ultra/',    destination: '/watch/ultra/',    permanent: true },
+      { source: '/apple-watch/se3/',      destination: '/watch/se3/',      permanent: true },
+      { source: '/apple-watch/se2/',      destination: '/watch/se2/',      permanent: true },
+      { source: '/apple-watch/se/',       destination: '/watch/se/',       permanent: true },
+      {
         source: '/iphone/ipad-mini-6-review/',
         destination: '/ipad/ipad-mini-6-review/',
         permanent: true,
@@ -87,12 +118,14 @@ const nextConfig: NextConfig = {
         source: '/css/:path*',
         headers: [
           { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
+          { key: 'X-Robots-Tag', value: 'noindex' },
         ],
       },
       {
         source: '/fonts/:path*',
         headers: [
           { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
+          { key: 'X-Robots-Tag', value: 'noindex' },
         ],
       },
       {
@@ -105,6 +138,13 @@ const nextConfig: NextConfig = {
         source: '/_next/static/:path*',
         headers: [
           { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
+          { key: 'X-Robots-Tag', value: 'noindex' },
+        ],
+      },
+      {
+        source: '/favicon.ico',
+        headers: [
+          { key: 'X-Robots-Tag', value: 'noindex' },
         ],
       },
       {
