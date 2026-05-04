@@ -1,3 +1,4 @@
+import { cache } from 'react'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import {
@@ -10,6 +11,9 @@ import {
   getLatestPriceLog,
   getIPhoneReviewsBySlug,
 } from '@/lib/queries'
+
+const cachedGetModel = cache(getIPhoneModelBySlug)
+const cachedGetLatestPrice = cache(getLatestPriceLog)
 import { aggregateDailyPrices, filterLast3Months, calculateOSLifespan, calculatePriceRange } from '@/lib/utils/iphone-helpers'
 import HeroSection from './components/HeroSection'
 import LeadText from './components/LeadText'
@@ -37,6 +41,8 @@ type PageProps = {
   params: Promise<{ slug: string }>
 }
 
+export const dynamicParams = false
+
 export async function generateStaticParams() {
   const slugs = await getAllIPhoneSlugs()
   return slugs.map((slug) => ({ slug }))
@@ -44,10 +50,10 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params
-  const model = await getIPhoneModelBySlug(slug)
+  const model = await cachedGetModel(slug)
   if (!model) return {}
 
-  const latestLog = await getLatestPriceLog(model.id)
+  const latestLog = await cachedGetLatestPrice(model.id)
   const priceRange = calculatePriceRange(latestLog)
   const osLife = calculateOSLifespan(model.date, model.last_ios)
 
@@ -79,7 +85,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function IPhoneDetailPage({ params }: PageProps) {
   const { slug } = await params
-  const model = await getIPhoneModelBySlug(slug)
+  const model = await cachedGetModel(slug)
   if (!model) notFound()
 
   // 並列データ取得
@@ -87,7 +93,7 @@ export default async function IPhoneDetailPage({ params }: PageProps) {
     getShops(),
     getAllProductShopLinksByType('iphone'),
     getPriceLogsByModelId(model.id),
-    getLatestPriceLog(model.id),
+    cachedGetLatestPrice(model.id),
     getAllIPhoneModels(),
     getIPhoneReviewsBySlug(slug),
   ])

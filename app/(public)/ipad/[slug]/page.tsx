@@ -1,3 +1,4 @@
+import { cache } from 'react'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import {
@@ -34,11 +35,16 @@ import AdminEditLink from '@/app/components/AdminEditLink'
 import StickyCtaOverride from '@/app/components/StickyCtaOverride'
 import { resolveLastUpdatedDate, buildStandardPriceChartData } from '@/lib/utils/shared-helpers'
 
+const cachedGetModel = cache(getIPadModelBySlug)
+const cachedGetLatestPrice = cache(getLatestIPadPriceLog)
+
 export const revalidate = 86400
 
 type PageProps = {
   params: Promise<{ slug: string }>
 }
+
+export const dynamicParams = false
 
 export async function generateStaticParams() {
   const slugs = await getAllIPadSlugs()
@@ -47,10 +53,10 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params
-  const model = await getIPadModelBySlug(slug)
+  const model = await cachedGetModel(slug)
   if (!model) return {}
 
-  const latestLog = await getLatestIPadPriceLog(model.id)
+  const latestLog = await cachedGetLatestPrice(model.id)
   const priceRange = calculatePriceRange(latestLog)
   const osLife = calculateOSLifespan(model.date, model.last_ipados)
 
@@ -81,7 +87,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function IPadDetailPage({ params }: PageProps) {
   const { slug } = await params
-  const model = await getIPadModelBySlug(slug)
+  const model = await cachedGetModel(slug)
   if (!model) notFound()
 
   // 並列データ取得
@@ -89,7 +95,7 @@ export default async function IPadDetailPage({ params }: PageProps) {
     getShops(),
     getAllProductShopLinksByType('ipad'),
     getIPadPriceLogsByModelId(model.id),
-    getLatestIPadPriceLog(model.id),
+    cachedGetLatestPrice(model.id),
     getAllIPadModels(),
     getAllIPadAccessories(),
     getAllIPadAccessoryCompatibility(),

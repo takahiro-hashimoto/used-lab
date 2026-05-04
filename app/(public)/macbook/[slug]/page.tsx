@@ -1,3 +1,4 @@
+import { cache } from 'react'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import {
@@ -29,11 +30,16 @@ import AdminEditLink from '@/app/components/AdminEditLink'
 import StickyCtaOverride from '@/app/components/StickyCtaOverride'
 import { resolveLastUpdatedDate } from '@/lib/utils/shared-helpers'
 
+const cachedGetModel = cache(getMacBookModelBySlug)
+const cachedGetLatestPrice = cache(getLatestMacBookPriceLog)
+
 export const revalidate = 86400
 
 type PageProps = {
   params: Promise<{ slug: string }>
 }
+
+export const dynamicParams = false
 
 export async function generateStaticParams() {
   const slugs = await getAllMacBookSlugs()
@@ -42,10 +48,10 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params
-  const model = await getMacBookModelBySlug(slug)
+  const model = await cachedGetModel(slug)
   if (!model) return {}
 
-  const latestLog = await getLatestMacBookPriceLog(model.id)
+  const latestLog = await cachedGetLatestPrice(model.id)
   const priceRange = calculatePriceRange(latestLog)
   const osLife = calculateOSLifespan(model.date, model.last_macos)
 
@@ -76,7 +82,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function MacBookDetailPage({ params }: PageProps) {
   const { slug } = await params
-  const model = await getMacBookModelBySlug(slug)
+  const model = await cachedGetModel(slug)
   if (!model) notFound()
 
   // 並列データ取得
@@ -84,7 +90,7 @@ export default async function MacBookDetailPage({ params }: PageProps) {
     getShops(),
     getAllProductShopLinksByType('macbook'),
     getMacBookPriceLogsByModelId(model.id),
-    getLatestMacBookPriceLog(model.id),
+    cachedGetLatestPrice(model.id),
     getAllMacBookModels(),
   ])
 

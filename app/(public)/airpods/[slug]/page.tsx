@@ -1,3 +1,4 @@
+import { cache } from 'react'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import {
@@ -29,11 +30,15 @@ import AuthorByline from '@/app/components/AuthorByline'
 import StickyCtaOverride from '@/app/components/StickyCtaOverride'
 import { resolveLastUpdatedDate } from '@/lib/utils/shared-helpers'
 
+const cachedGetModel = cache(getAirPodsModelBySlug)
+
 export const revalidate = 86400
 
 type PageProps = {
   params: Promise<{ slug: string }>
 }
+
+export const dynamicParams = false
 
 export async function generateStaticParams() {
   const slugs = await getAllAirPodsSlugs()
@@ -42,7 +47,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params
-  const model = await getAirPodsModelBySlug(slug)
+  const model = await cachedGetModel(slug)
   if (!model) return {}
   const displayName = model.model ? `${model.name}（${model.model}）` : model.name
   const title = `中古${displayName}は今買うべき？サポート期間、基本スペック、中古相場から解説`
@@ -67,7 +72,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function AirPodsDetailPage({ params }: PageProps) {
   const { slug } = await params
-  const model = await getAirPodsModelBySlug(slug)
+  const model = await cachedGetModel(slug)
   if (!model) notFound()
 
   // 並列データ取得
