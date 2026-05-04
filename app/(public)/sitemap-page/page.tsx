@@ -37,6 +37,7 @@ const PAGE_DESCRIPTION = 'ユーズドラボの全ページ一覧。中古iPhone
 export const metadata: Metadata = {
   title: PAGE_TITLE,
   description: PAGE_DESCRIPTION,
+  robots: { index: false, follow: true },
   alternates: { canonical: '/sitemap-page/' },
   openGraph: {
     title: PAGE_TITLE,
