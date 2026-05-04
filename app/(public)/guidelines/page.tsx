@@ -14,6 +14,7 @@ const PAGE_DESCRIPTION =
 export const metadata: Metadata = {
   title: PAGE_TITLE,
   description: PAGE_DESCRIPTION,
+  robots: { index: false, follow: true },
   alternates: { canonical: '/guidelines/' },
   openGraph: {
     title: PAGE_TITLE,
