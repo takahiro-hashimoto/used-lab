@@ -134,7 +134,6 @@ const nextConfig: NextConfig = {
       { source: '/ipad/shop/:slug/',   destination: '/ipad/:slug/',   permanent: true },
 
       // ④ その他の旧URL
-      { source: '/iPad/', destination: '/ipad/', permanent: true },
       { source: '/airpods/:slug/feed/', destination: '/airpods/:slug/', permanent: true },
       { source: '/ipad/:slug/feed/',    destination: '/ipad/:slug/',    permanent: true },
       { source: '/iphone/:slug/feed/',  destination: '/iphone/:slug/',  permanent: true },
