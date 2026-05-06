@@ -69,6 +69,9 @@ export const GUIDE_FAQ_ITEMS = [
 
 // ---------- 歴代MacBook個別記事リンク ----------
 export const GUIDE_MODEL_LINKS = {
+  neo13: [
+    { slug: 'mbn-13-2026', name: 'MacBook Neo 13インチ A18 Pro', meta: '2026年3月発売' },
+  ],
   air13: [
     { slug: 'mba-13-2025', name: 'MBA 13インチ M4', meta: '2025年3月発売' },
     { slug: 'mba-13-2024', name: 'MBA 13インチ M3', meta: '2024年3月発売' },

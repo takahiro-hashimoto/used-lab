@@ -97,6 +97,7 @@ export default async function BenchmarkPage() {
     image: string | null; date: string | null; cpu: string | null; ram: string | null
     score_single: number; score_multi: number; score_metal: number
     minPrice: number | null; storageLabel: string | null; chipVariant: string | null
+    hasScore: boolean
   }
 
   const benchModels: BenchModelEntry[] = []
@@ -128,6 +129,7 @@ export default async function BenchmarkPage() {
           minPrice,
           storageLabel,
           chipVariant: chip,
+          hasScore: true,
         })
       }
     } else if (m.score_single != null && m.score_multi != null && m.score_metal != null) {
@@ -147,6 +149,26 @@ export default async function BenchmarkPage() {
         minPrice,
         storageLabel,
         chipVariant: null,
+        hasScore: true,
+      })
+    } else {
+      // スコア未測定モデル（MacBook Neo等）
+      benchModels.push({
+        id: m.id,
+        model: m.model,
+        shortname: m.shortname,
+        slug: m.slug,
+        image: m.image,
+        date: m.date,
+        cpu: m.cpu,
+        ram: m.ram,
+        score_single: 0,
+        score_multi: 0,
+        score_metal: 0,
+        minPrice,
+        storageLabel,
+        chipVariant: null,
+        hasScore: false,
       })
     }
   }

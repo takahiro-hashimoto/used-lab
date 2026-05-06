@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { getCategoryByKey } from '../../../field-definitions'
 import {
@@ -6,10 +5,10 @@ import {
   getIPadModelsForSelect, getAccessoryCompatibility,
   getShopsForAdmin, getProductShopLinksForAdmin,
 } from '../../../actions'
-import AdminForm from '../../../components/AdminForm'
+import EditPageClient from '../../../components/EditPageClient'
 import CompatibilityEditor from '../../../components/CompatibilityEditor'
-import ShopLinksEditor from '../../../components/ShopLinksEditor'
-import PublishToggleButton from '../../../components/PublishToggleButton'
+
+const PUBLIC_PAGE_CATEGORIES = new Set(['iphone', 'ipad', 'macbook', 'watch', 'airpods'])
 
 type PageProps = {
   params: Promise<{ category: string; id: string }>
@@ -26,13 +25,11 @@ export default async function AdminEditModelPage({ params }: PageProps) {
   const model = await getModelById(category, numericId)
   if (!model) notFound()
 
-  // アクセサリの場合は互換性データも取得
   const isAccessory = category === 'ipad-accessories'
   const [ipadModels, compatibleIds] = isAccessory
     ? await Promise.all([getIPadModelsForSelect(), getAccessoryCompatibility(numericId)])
     : [[], []]
 
-  // 製品カテゴリの場合はショップリンクデータも取得
   const hasShopLinks = !!config.productType
   const [shops, shopLinks] = hasShopLinks
     ? await Promise.all([getShopsForAdmin(), getProductShopLinksForAdmin(config.productType!, numericId)])
@@ -43,9 +40,9 @@ export default async function AdminEditModelPage({ params }: PageProps) {
     return updateModel(category, numericId, formData)
   }
 
-  // 複製用: idを除いたデータをクエリパラメータに変換
-  const duplicateParams = new URLSearchParams()
   const modelData = model as Record<string, unknown>
+
+  const duplicateParams = new URLSearchParams()
   for (const field of config.fields) {
     if (field.key === 'id') continue
     const val = modelData[field.key]
@@ -54,41 +51,26 @@ export default async function AdminEditModelPage({ params }: PageProps) {
     }
   }
 
+  const slug = typeof modelData.slug === 'string' ? modelData.slug : null
+  const publicPageHref =
+    PUBLIC_PAGE_CATEGORIES.has(category) && slug ? `/${category}/${slug}/` : null
+
   return (
     <>
-      <div className="admin-page-header">
-        <h1 className="admin-page-header__title">
-          <i className={`fa-solid ${config.icon}`} aria-hidden="true" />{' '}
-          {String(modelData.model || modelData.name || `ID: ${numericId}`)} を編集
-        </h1>
-        <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-          {'show' in modelData && (
-            <PublishToggleButton
-              categoryKey={category}
-              id={numericId}
-              initialShow={Number(modelData.show ?? 0)}
-            />
-          )}
-          <Link href={`/admin/${category}/new?${duplicateParams.toString()}`} className="admin-btn admin-btn--secondary">
-            <i className="fa-regular fa-copy" aria-hidden="true" /> このページを複製
-          </Link>
-        </div>
-      </div>
-      <AdminForm
+      <EditPageClient
         fields={config.fields}
-        initialData={model as Record<string, unknown>}
+        initialData={modelData}
         action={handleUpdate}
         categoryKey={category}
-        submitLabel="更新する"
+        categoryIcon={config.icon}
+        numericId={numericId}
+        duplicateHref={`/admin/${category}/new?${duplicateParams.toString()}`}
+        publicPageHref={publicPageHref}
+        hasShopLinks={hasShopLinks}
+        productType={config.productType}
+        shops={shops}
+        initialLinks={shopLinks}
       />
-      {hasShopLinks && (
-        <ShopLinksEditor
-          productType={config.productType!}
-          productId={numericId}
-          shops={shops}
-          initialLinks={shopLinks}
-        />
-      )}
       {isAccessory && (
         <CompatibilityEditor
           accessoryId={numericId}

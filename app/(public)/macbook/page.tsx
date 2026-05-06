@@ -369,6 +369,13 @@ export default async function MacBookGuidePage() {
                     <p className="related-link-card__desc">冷却方式・チップ性能・ディスプレイ・ポート・中古価格の5観点で違いを解説。用途別おすすめ早見表付き。</p>
                   </div>
                 </Link>
+                <Link href="/macbook/air-neo-compare/" className="m-card m-card--shadow related-link-card m-card--hoverable">
+                  <Image src={getHeroImage('/macbook/air-neo-compare/')} alt="MacBook AirとNeoの比較" className="related-link-card__img" width={400} height={300} loading="lazy" />
+                  <div className="related-link-card__body">
+                    <p className="related-link-card__title">MacBook AirとNeoどっちがいい？</p>
+                    <p className="related-link-card__desc">メモリ、Apple Intelligence、Thunderbolt 4、価格差に注目して比較。大学生・社会人・プログラミング学習向けの選び方も解説。</p>
+                  </div>
+                </Link>
                 <Link href="/macbook/ipad-macbook-compare/" className="m-card m-card--shadow related-link-card m-card--hoverable">
                   <Image src={getHeroImage('/macbook/ipad-macbook-compare/')} alt="MacBookとiPadの比較" className="related-link-card__img" width={400} height={300} loading="lazy" />
                   <div className="related-link-card__body">
@@ -411,20 +418,33 @@ export default async function MacBookGuidePage() {
                 <p className="guide-model-links__desc">各モデルの詳細スペック、中古相場、購入時の注意点を個別にまとめています。</p>
               </div>
 
+              <div className="guide-model-links">
+                <h4 className="guide-model-links__category">MacBook Pro</h4>
+              </div>
               <GuideModelLinks
                 basePath="/macbook"
                 categories={[
-                  { label: 'MacBook Pro 14インチ', items: GUIDE_MODEL_LINKS.pro14 },
-                  { label: 'MacBook Pro 16インチ', items: GUIDE_MODEL_LINKS.pro16 },
-                  { label: 'MacBook Pro 13インチ', items: GUIDE_MODEL_LINKS.pro13 },
+                  { label: '', items: [...GUIDE_MODEL_LINKS.pro14, ...GUIDE_MODEL_LINKS.pro16, ...GUIDE_MODEL_LINKS.pro13] },
                 ]}
               />
 
+              <div className="guide-model-links">
+                <h4 className="guide-model-links__category">MacBook Air</h4>
+              </div>
               <GuideModelLinks
                 basePath="/macbook"
                 categories={[
-                  { label: 'MacBook Air 13インチ', items: GUIDE_MODEL_LINKS.air13 },
-                  { label: 'MacBook Air 15インチ', items: GUIDE_MODEL_LINKS.air15 },
+                  { label: '', items: [...GUIDE_MODEL_LINKS.air13, ...GUIDE_MODEL_LINKS.air15] },
+                ]}
+              />
+
+              <div className="guide-model-links">
+                <h4 className="guide-model-links__category">MacBook Neo</h4>
+              </div>
+              <GuideModelLinks
+                basePath="/macbook"
+                categories={[
+                  { label: '', items: GUIDE_MODEL_LINKS.neo13 },
                 ]}
               />
             </div>

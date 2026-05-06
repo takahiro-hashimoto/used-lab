@@ -22,6 +22,7 @@ export type BenchModel = {
   minPrice: number | null
   storageLabel: string | null
   chipVariant: string | null
+  hasScore?: boolean
 }
 
 type FilterCategory = 'all' | 'pro' | 'air'
@@ -34,9 +35,12 @@ function getModelCategory(model: string): 'air' | 'pro' {
 export default function BenchmarkRanking({ models, shopLinks }: { models: BenchModel[]; shopLinks: ProductShopLink[] }) {
   const [filter, setFilter] = useState<FilterCategory>('all')
 
-  const filtered = filter === 'all' ? models : models.filter((m) => getModelCategory(m.model) === filter)
+  const withScore = (filter === 'all' ? models : models.filter((m) => getModelCategory(m.model) === filter))
+    .filter((m) => m.hasScore !== false)
+  const noScore = (filter === 'all' ? models : models.filter((m) => getModelCategory(m.model) === filter))
+    .filter((m) => m.hasScore === false)
 
-  const sorted = [...filtered].sort((a, b) => getTotal(b) - getTotal(a))
+  const sorted = [...withScore].sort((a, b) => getTotal(b) - getTotal(a))
 
   const maxSingle = Math.max(...models.map((m) => m.score_single))
   const maxMulti = Math.max(...models.map((m) => m.score_multi))
@@ -123,6 +127,37 @@ export default function BenchmarkRanking({ models, shopLinks }: { models: BenchM
                     </tr>
                   )
                 })}
+                {noScore.map((m) => (
+                  <tr key={`${m.id}-noscore`}>
+                    <td className="bench-ranking-table__rank-cell">
+                      <span className="bench-rank">-</span>
+                    </td>
+                    <td className="bench-ranking-table__model-cell">
+                      <Link href={`/macbook/${m.slug}/`} className="bench-model-link">
+                        <span className="bench-model-info">
+                          <span className="bench-model-name">{m.shortname || m.model}</span>
+                          <span className="bench-model-chip">{m.cpu}</span>
+                        </span>
+                      </Link>
+                    </td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td className="bench-ranking-table__price-cell">
+                      {m.minPrice ? `¥${m.minPrice.toLocaleString()}〜` : '-'}
+                    </td>
+                    <td>
+                      {(() => {
+                        const url = getIosysUrl(shopLinks, m.id)
+                        return url ? (
+                          <a href={url} target="_blank" rel="noopener noreferrer" className="m-btn m-btn--primary m-btn--sm">
+                            イオシスで探す
+                          </a>
+                        ) : null
+                      })()}
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>

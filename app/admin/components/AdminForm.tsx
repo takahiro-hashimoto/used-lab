@@ -10,9 +10,11 @@ interface Props {
   action: (formData: FormData) => Promise<{ error: string } | void>
   categoryKey: string
   submitLabel: string
+  formId?: string
+  hideActions?: boolean
 }
 
-export default function AdminForm({ fields, initialData, action, categoryKey, submitLabel }: Props) {
+export default function AdminForm({ fields, initialData, action, categoryKey, submitLabel, formId, hideActions }: Props) {
   const [state, formAction, isPending] = useActionState(
     async (_prev: { error: string } | null, formData: FormData) => {
       const result = await action(formData)
@@ -45,7 +47,7 @@ export default function AdminForm({ fields, initialData, action, categoryKey, su
   }
 
   return (
-    <form action={formAction} className="admin-form">
+    <form id={formId} action={formAction} className="admin-form">
       {state?.error && (
         <div className="admin-form__message admin-form__message--error">{state.error}</div>
       )}
@@ -119,14 +121,16 @@ export default function AdminForm({ fields, initialData, action, categoryKey, su
         )
       })}
 
-      <div className="admin-form__actions">
-        <button type="submit" disabled={isPending} className="admin-btn admin-btn--primary">
-          {isPending ? '保存中...' : submitLabel}
-        </button>
-        <Link href={`/admin/${categoryKey}`} className="admin-btn admin-btn--secondary">
-          キャンセル
-        </Link>
-      </div>
+      {!hideActions && (
+        <div className="admin-form__actions">
+          <button type="submit" disabled={isPending} className="admin-btn admin-btn--primary">
+            {isPending ? '保存中...' : submitLabel}
+          </button>
+          <Link href={`/admin/${categoryKey}`} className="admin-btn admin-btn--secondary">
+            キャンセル
+          </Link>
+        </div>
+      )}
     </form>
   )
 }

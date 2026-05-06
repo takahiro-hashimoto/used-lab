@@ -320,3 +320,15 @@ export const CATEGORIES: CategoryConfig[] = [
 export function getCategoryByKey(key: string): CategoryConfig | undefined {
   return CATEGORIES.find((c) => c.key === key)
 }
+
+// カテゴリごとに管理画面で表示するショップID
+// ID対応: 1=iosys 2=nicosma 3=geo 4=recore 5=prodig 6=janpara 7=amazon
+//         8=rakuten 9=yahoo 10=apple 11=mercari 12=rakuma 13=mmoba 14=carrier
+//         15=daione 16=eearphone
+export const CATEGORY_SHOP_IDS: Record<string, number[]> = {
+  iphone:  [1, 2, 3, 4, 6, 7, 8, 9, 11, 13, 14],
+  ipad:    [1, 2, 3, 4, 6, 7, 8, 9, 11, 13, 14],
+  macbook: [1, 3, 4, 6, 7, 8, 9, 13],
+  watch:   [1, 2, 3, 4, 6, 7, 8, 9, 11, 13, 14],
+  airpods: [1, 3, 6, 7, 9, 11, 16],
+}

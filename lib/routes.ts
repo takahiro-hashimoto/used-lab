@@ -153,6 +153,7 @@ export const PRODUCT_CATEGORIES: CategoryDef[] = [
       { path: '/macbook/price-info/', label: 'MacBookの中古相場一覧｜歴代モデルの価格推移を独自集計' },
       { path: '/macbook/storage-guide/', label: '中古MacBookのストレージ容量はどれがいい？用途別おすすめ容量まとめ' },
       { path: '/macbook/air-pro-compare/', label: 'MacBook AirとProどっちがいい？違いと選び方をやさしく解説' },
+      { path: '/macbook/air-neo-compare/', label: 'MacBook AirとNeoどっちがいい？違いと選び方をやさしく解説' },
       { path: '/macbook/benchmark/', label: '歴代MacBookのベンチマーク比較ランキング｜Geekbench 6スコアで性能が一目でわかる' },
     ],
   },

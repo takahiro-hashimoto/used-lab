@@ -29,27 +29,21 @@ export default function PublishToggleButton({ categoryKey, id, initialShow }: Pr
 
   return (
     <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-      <button
-        type="button"
-        onClick={handleToggle}
-        disabled={isPending}
-        className={`admin-btn ${show ? 'admin-btn--danger' : 'admin-btn--primary'}`}
-      >
-        <i className={`fa-solid ${show ? 'fa-eye-slash' : 'fa-eye'}`} aria-hidden="true" />
-        {isPending ? ' 更新中…' : show ? ' 非公開にする' : ' 公開する'}
-      </button>
-      <span
-        style={{
-          padding: '0.25rem 0.75rem',
-          borderRadius: '999px',
-          fontSize: '0.75rem',
-          fontWeight: 600,
-          background: show ? '#dcfce7' : '#f1f5f9',
-          color: show ? '#16a34a' : '#64748b',
-        }}
-      >
-        {show ? '公開中' : '非公開'}
-      </span>
+      <label className={`publish-toggle ${isPending ? 'publish-toggle--pending' : ''}`}>
+        <input
+          type="checkbox"
+          checked={show}
+          onChange={handleToggle}
+          disabled={isPending}
+          className="publish-toggle__input"
+        />
+        <span className="publish-toggle__track">
+          <span className="publish-toggle__thumb" />
+        </span>
+        <span className="publish-toggle__label">
+          {isPending ? '更新中…' : show ? '公開中' : '非公開'}
+        </span>
+      </label>
       {error && <span style={{ color: 'red', fontSize: '0.8rem' }}>{error}</span>}
     </div>
   )

@@ -1,7 +1,9 @@
 'use client'
 
-import { useState, useTransition } from 'react'
+import { useState, useTransition, forwardRef, useImperativeHandle } from 'react'
 import { updateProductShopLinks } from '../actions'
+
+export type ShopLinksHandle = { save: () => void }
 
 interface ShopInfo {
   id: number
@@ -14,15 +16,19 @@ interface Props {
   productId: number
   shops: ShopInfo[]
   initialLinks: { shop_id: number; url: string }[]
+  allInitialLinks: { shop_id: number; url: string }[]
+  hideSaveButton?: boolean
 }
 
-export default function ShopLinksEditor({
+const ShopLinksEditor = forwardRef<ShopLinksHandle, Props>(function ShopLinksEditor({
   productType,
   productId,
   shops,
   initialLinks,
-}: Props) {
-  // shop_id → url のマップを作成
+  allInitialLinks,
+  hideSaveButton,
+}, ref) {
+  // 表示ショップ分の shop_id → url マップ
   const initialMap = new Map(initialLinks.map((l) => [l.shop_id, l.url]))
   const [urls, setUrls] = useState<Map<number, string>>(initialMap)
   const [isPending, startTransition] = useTransition()
@@ -40,10 +46,15 @@ export default function ShopLinksEditor({
     })
   }
 
+  useImperativeHandle(ref, () => ({ save: handleSave }))
+
   function handleSave() {
     startTransition(async () => {
       setMessage(null)
-      const links = Array.from(urls.entries()).map(([shop_id, url]) => ({ shop_id, url }))
+      const visibleShopIds = new Set(shops.map((s) => s.id))
+      const hiddenLinks = allInitialLinks.filter((l) => !visibleShopIds.has(l.shop_id))
+      const visibleLinks = Array.from(urls.entries()).map(([shop_id, url]) => ({ shop_id, url }))
+      const links = [...visibleLinks, ...hiddenLinks]
       const result = await updateProductShopLinks(productType, productId, links)
       if (result && 'error' in result) {
         setMessage({ type: 'error', text: result.error })
@@ -85,16 +96,20 @@ export default function ShopLinksEditor({
         </div>
       </div>
 
-      <div className="admin-form__actions">
-        <button
-          type="button"
-          onClick={handleSave}
-          disabled={isPending}
-          className="admin-btn admin-btn--primary"
-        >
-          {isPending ? '保存中...' : 'ショップリンクを保存'}
-        </button>
-      </div>
+      {!hideSaveButton && (
+        <div className="admin-form__actions">
+          <button
+            type="button"
+            onClick={handleSave}
+            disabled={isPending}
+            className="admin-btn admin-btn--primary"
+          >
+            {isPending ? '保存中...' : 'ショップリンクを保存'}
+          </button>
+        </div>
+      )}
     </div>
   )
-}
+})
+
+export default ShopLinksEditor

@@ -42,23 +42,35 @@ type Props = {
 }
 
 type SortOrder = 'old' | 'new'
-type FilterType = 'all' | 'air' | 'pro'
+type FilterType = 'all' | 'air' | 'pro' | 'neo'
+type FilterInch = 'all' | '13' | '14' | '15' | '16'
 
 function getModelCategory(model: string): string {
   const lower = model.toLowerCase()
+  if (lower.includes('neo')) return 'neo'
   if (lower.includes('pro')) return 'pro'
   return 'air'
+}
+
+function getModelInch(model: string): string | null {
+  const match = model.match(/(\d+)インチ/)
+  return match ? match[1] : null
 }
 
 export default function SpecTable({ models, shopLinks }: Props) {
   const [sortOrder, setSortOrder] = useState<SortOrder>('old')
   const [modelFilter, setModelFilter] = useState<FilterType>('all')
+  const [inchFilter, setInchFilter] = useState<FilterInch>('all')
 
   const filteredModels = useMemo(() => {
     let result = [...models]
 
     if (modelFilter !== 'all') {
       result = result.filter((m) => getModelCategory(m.model) === modelFilter)
+    }
+
+    if (inchFilter !== 'all') {
+      result = result.filter((m) => getModelInch(m.model) === inchFilter)
     }
 
     result.sort((a, b) => {
@@ -68,7 +80,7 @@ export default function SpecTable({ models, shopLinks }: Props) {
     })
 
     return result
-  }, [models, sortOrder, modelFilter])
+  }, [models, sortOrder, modelFilter, inchFilter])
 
   const getShopLink = (productId: number, shopId: number) =>
     shopLinks.find((l) => l.product_id === productId && l.shop_id === shopId)
@@ -145,18 +157,40 @@ export default function SpecTable({ models, shopLinks }: Props) {
             </div>
           </div>
           <div className="spec-filter__row">
-            <span className="spec-filter__label">絞り込み</span>
+            <span className="spec-filter__label">機種</span>
             <div className="spec-filter__tags">
               {([
                 ['all', 'すべて'],
                 ['air', 'Air'],
                 ['pro', 'Pro'],
+                ['neo', 'Neo'],
               ] as [FilterType, string][]).map(([key, label]) => (
                 <button
                   key={key}
                   className={`spec-filter__tag${modelFilter === key ? ' is-active' : ''}`}
                   onClick={() => setModelFilter(key)}
                   aria-pressed={modelFilter === key}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+          </div>
+          <div className="spec-filter__row">
+            <span className="spec-filter__label">インチ</span>
+            <div className="spec-filter__tags">
+              {([
+                ['all', 'すべて'],
+                ['13', '13インチ'],
+                ['14', '14インチ'],
+                ['15', '15インチ'],
+                ['16', '16インチ'],
+              ] as [FilterInch, string][]).map(([key, label]) => (
+                <button
+                  key={key}
+                  className={`spec-filter__tag${inchFilter === key ? ' is-active' : ''}`}
+                  onClick={() => setInchFilter(key)}
+                  aria-pressed={inchFilter === key}
                 >
                   {label}
                 </button>

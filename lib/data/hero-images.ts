@@ -62,6 +62,7 @@ export const HERO_IMAGES: Record<string, string> = {
   // ── MacBook ──
   '/macbook/': '/images/content/thumbnail/macbook-image-01.jpg',
   '/macbook/air-pro-compare/': '/images/content/thumbnail/macbook-image-04.jpg',
+  '/macbook/air-neo-compare/': '/images/content/thumbnail/macbook-image-04.jpg',
   '/macbook/benchmark/': '/images/content/thumbnail/macbook-ipad.jpg',
   '/macbook/ipad-macbook-compare/': '/images/content/thumbnail/macbook-ipad.jpg',
   '/macbook/macbook-buy/': '/images/content/thumbnail/cheap-buy.jpg',
