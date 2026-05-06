@@ -89,7 +89,8 @@ function getSize(model: string): string {
   return match ? match[1] : ''
 }
 
-function getType(model: string): 'Air' | 'Pro' {
+function getType(model: string): 'Air' | 'Pro' | 'Neo' {
+  if (model.includes('Neo')) return 'Neo'
   return model.includes('Air') ? 'Air' : 'Pro'
 }
 
@@ -99,6 +100,7 @@ function buildSearchKeyword(model: { model: string; cpu: string }): string {
   const minChip = getMinChip(model.cpu)
   const year = getYear(model.model)
   const type = getType(model.model)
+  if (type === 'Neo') return `MacBook Neo ${year}`
   return `MacBook ${type} ${minChip} ${year}`
 }
 
@@ -139,6 +141,20 @@ function buildMatchFn(model: {
 
     // 0. 新品・未使用品を除外
     if (name.includes('未使用') || name.includes('新品') || name.includes('未開封')) return false
+
+    // Neo 専用チェック
+    if (type === 'Neo') {
+      if (!name.includes('NEO')) return false
+      if (!name.includes('A18')) return false
+      // サイズ確認
+      if (size) {
+        for (const [s, pattern] of Object.entries(otherSizePatterns)) {
+          if (s === size) continue
+          if (pattern.test(itemName)) return false
+        }
+      }
+      return true
+    }
 
     // 1. Air/Pro の区別
     if (type === 'Air' && !name.includes('AIR')) return false

@@ -1,0 +1,3 @@
+#!/bin/sh
+REPO_ROOT=$(git rev-parse --show-toplevel)
+exec bash "$REPO_ROOT/scripts/check-pages.sh"
