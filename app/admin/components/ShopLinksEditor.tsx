@@ -46,8 +46,6 @@ const ShopLinksEditor = forwardRef<ShopLinksHandle, Props>(function ShopLinksEdi
     })
   }
 
-  useImperativeHandle(ref, () => ({ save: handleSave }))
-
   function handleSave() {
     startTransition(async () => {
       setMessage(null)
@@ -64,6 +62,8 @@ const ShopLinksEditor = forwardRef<ShopLinksHandle, Props>(function ShopLinksEdi
       }
     })
   }
+
+  useImperativeHandle(ref, () => ({ save: handleSave }))
 
   return (
     <div className="admin-form" style={{ marginTop: '2rem' }}>
