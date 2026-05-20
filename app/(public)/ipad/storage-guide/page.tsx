@@ -16,7 +16,7 @@ import { buildArticleJsonLd, getGitDateForFile , get90DaysAgo } from '@/lib/util
 import HeroMeta from '@/app/components/HeroMeta'
 import { getHeroImage } from '@/lib/data/hero-images'
 
-export const revalidate = 86400
+export const revalidate = false
 
 export const metadata: Metadata = {
   title: '中古iPadのストレージ容量はどれがいい？用途別おすすめ容量まとめ',

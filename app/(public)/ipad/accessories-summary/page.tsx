@@ -13,7 +13,7 @@ import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helper
 import HeroMeta from '@/app/components/HeroMeta'
 import { getHeroImage } from '@/lib/data/hero-images'
 
-export const revalidate = 86400
+export const revalidate = false
 
 const PAGE_TITLE = 'iPadのキーボードどれが使える？Magic Keyboard全型番と対応モデル一覧'
 const PAGE_DESCRIPTION =

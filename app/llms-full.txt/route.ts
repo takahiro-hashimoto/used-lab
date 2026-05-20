@@ -1,6 +1,6 @@
 import { buildLlmsFullTxt } from '@/lib/llms-builder'
 
-export const revalidate = 86400 // 24時間キャッシュ
+export const revalidate = false // 24時間キャッシュ
 
 export async function GET() {
   const body = await buildLlmsFullTxt()

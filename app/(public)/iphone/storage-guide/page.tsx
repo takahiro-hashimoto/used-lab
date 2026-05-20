@@ -16,7 +16,7 @@ import Breadcrumb from '@/app/components/Breadcrumb'
 import FaqSection from '@/app/components/support/FaqSection'
 import { getHeroImage } from '@/lib/data/hero-images'
 
-export const revalidate = 86400
+export const revalidate = false
 
 export const metadata: Metadata = {
   title: '中古iPhoneのストレージ容量はどれがいい？用途別おすすめ容量まとめ',

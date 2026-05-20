@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   },
 }
 
-export const revalidate = 86400
+export const revalidate = false
 
 export default async function AirNeoComparePage() {
   const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/macbook/air-neo-compare/page.tsx')

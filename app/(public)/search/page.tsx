@@ -12,7 +12,7 @@ import {
 } from '@/lib/queries'
 import SearchClient, { type SearchEntry } from './SearchClient'
 
-export const revalidate = 86400
+export const revalidate = false
 
 export const metadata: Metadata = {
   title: '記事を検索',

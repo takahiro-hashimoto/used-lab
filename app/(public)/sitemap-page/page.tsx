@@ -29,7 +29,7 @@ import HeroMeta from '@/app/components/HeroMeta'
 import { getGitDateForFile } from '@/lib/utils/shared-helpers'
 import { getHeroImage } from '@/lib/data/hero-images'
 
-export const revalidate = 86400
+export const revalidate = false
 
 const PAGE_TITLE = 'サイトマップ'
 const PAGE_DESCRIPTION = 'ユーズドラボの全ページ一覧。中古iPhone・iPad・MacBook・Apple Watch・AirPodsの製品別ページをまとめて確認できます。'

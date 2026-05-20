@@ -12,7 +12,7 @@ import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helper
 import HeroMeta from '@/app/components/HeroMeta'
 import { getHeroImage } from '@/lib/data/hero-images'
 
-export const revalidate = 86400
+export const revalidate = false
 
 const PAGE_TITLE = 'iPhoneはいつまで使える？機種別のサポート期間目安と買い換えタイミングまとめ'
 const PAGE_DESCRIPTION =

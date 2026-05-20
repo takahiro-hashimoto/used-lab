@@ -35,7 +35,7 @@ const GLOSSARY_ITEMS = [
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import { getHeroImage } from '@/lib/data/hero-images'
 
-export const revalidate = 86400
+export const revalidate = false
 
 export const metadata: Metadata = {
   title: '歴代iPhoneスペック比較表！気になる機種の性能差や違いがわかる',
