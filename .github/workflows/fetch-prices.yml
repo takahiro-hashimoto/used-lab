@@ -43,3 +43,11 @@ jobs:
           RAKUTEN_APP_ID: ${{ secrets.RAKUTEN_APP_ID }}
           RAKUTEN_AFFILIATE_ID: ${{ secrets.RAKUTEN_AFFILIATE_ID }}
         run: npx tsx scripts/fetch-prices.ts ${{ github.event.inputs.target }}
+
+      - name: Revalidate Next.js cache
+        env:
+          REVALIDATE_SECRET: ${{ secrets.REVALIDATE_SECRET }}
+        run: |
+          curl --fail --silent --show-error \
+            -X POST "https://used-lab.jp/api/revalidate-all" \
+            -H "Authorization: Bearer ${REVALIDATE_SECRET}"

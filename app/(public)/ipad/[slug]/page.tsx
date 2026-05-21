@@ -38,7 +38,7 @@ import { resolveLastUpdatedDate, buildStandardPriceChartData } from '@/lib/utils
 const cachedGetModel = cache(getIPadModelBySlug)
 const cachedGetLatestPrice = cache(getLatestIPadPriceLog)
 
-export const revalidate = 86400
+export const revalidate = false
 
 type PageProps = {
   params: Promise<{ slug: string }>

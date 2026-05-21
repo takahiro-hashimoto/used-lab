@@ -32,7 +32,7 @@ import { resolveLastUpdatedDate } from '@/lib/utils/shared-helpers'
 
 const cachedGetModel = cache(getAirPodsModelBySlug)
 
-export const revalidate = 86400
+export const revalidate = false
 
 type PageProps = {
   params: Promise<{ slug: string }>

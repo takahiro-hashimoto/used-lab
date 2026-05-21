@@ -33,7 +33,7 @@ import { resolveLastUpdatedDate } from '@/lib/utils/shared-helpers'
 const cachedGetModel = cache(getMacBookModelBySlug)
 const cachedGetLatestPrice = cache(getLatestMacBookPriceLog)
 
-export const revalidate = 86400
+export const revalidate = false
 
 type PageProps = {
   params: Promise<{ slug: string }>
