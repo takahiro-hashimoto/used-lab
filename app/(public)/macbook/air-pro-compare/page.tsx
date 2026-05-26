@@ -37,7 +37,7 @@ export const metadata: Metadata = {
   },
 }
 
-export const revalidate = 86400
+export const revalidate = false
 
 export default async function AirProComparePage() {
   const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/macbook/air-pro-compare/page.tsx')

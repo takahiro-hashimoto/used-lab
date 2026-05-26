@@ -37,7 +37,7 @@ const ValueZoneChart = dynamic(() => import('@/app/components/ValueZoneChart'), 
 import { getHeroImage } from '@/lib/data/hero-images'
 import HeroMeta from '@/app/components/HeroMeta'
 
-export const revalidate = 86400
+export const revalidate = false
 
 const PAGE_TITLE = `中古MacBookおすすめ${RECOMMEND_COUNT}機種を解説。狙い目の型落ちモデルはどれ？【${RECOMMEND_DATE_LABEL}版】`
 const PAGE_DESCRIPTION =

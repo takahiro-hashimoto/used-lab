@@ -11,7 +11,7 @@ import { getGitDateForFile } from '@/lib/utils/shared-helpers'
 import { getHeroImage } from '@/lib/data/hero-images'
 import HeroMeta from '@/app/components/HeroMeta'
 
-export const revalidate = 86400
+export const revalidate = false
 
 const CURRENT_YEAR = new Date().getFullYear()
 

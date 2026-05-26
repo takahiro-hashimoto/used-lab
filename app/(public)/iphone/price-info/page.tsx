@@ -101,7 +101,7 @@ function seriesOrder(series: string): number {
 // ISR: 毎日再生成（86400秒 = 24時間）
 // ============================================================
 
-export const revalidate = 86400
+export const revalidate = false
 
 // ============================================================
 // メタデータ

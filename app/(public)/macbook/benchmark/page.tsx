@@ -19,7 +19,7 @@ const PAGE_DESCRIPTION =
   '歴代MacBookのGeekbench 6ベンチマークスコアをランキング形式で比較。M1〜M5チップのシングルコア・マルチコア・GPU性能差がひと目でわかる一覧表付き。用途別おすすめスコアの目安も解説。'
 const PAGE_URL = 'https://used-lab.jp/macbook/benchmark/'
 
-export const revalidate = 86400
+export const revalidate = false
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,

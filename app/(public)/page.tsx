@@ -16,7 +16,7 @@ import { placeholder } from '@/lib/placeholder'
 import NewsSection from '@/app/(public)/_components/NewsSection'
 import { getHeroImage } from '@/lib/data/hero-images'
 
-export const revalidate = 86400
+export const revalidate = false
 
 export const metadata: Metadata = {
   title: '中古Apple製品のおすすめ機種・賢い選び方・安く買う方法を解説',

@@ -18,7 +18,7 @@ const PAGE_DESCRIPTION =
   '歴代iPhoneのGeekbench 6・AnTuTuベンチマークスコアをランキング形式で比較。A15〜A19チップの性能差がひと目でわかる一覧表付き。用途別おすすめスコアの目安も解説。'
 const PAGE_URL = 'https://used-lab.jp/iphone/benchmark/'
 
-export const revalidate = 86400
+export const revalidate = false
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,

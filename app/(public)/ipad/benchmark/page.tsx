@@ -18,7 +18,7 @@ const PAGE_DESCRIPTION =
   '歴代iPadのGeekbench 6・AnTuTuベンチマークスコアをランキング形式で比較。AチップからMチップまで、シングルコア・マルチコア・GPU性能の差がひと目でわかる一覧表付き。用途別おすすめスコアの目安も解説。'
 const PAGE_URL = 'https://used-lab.jp/ipad/benchmark/'
 
-export const revalidate = 86400
+export const revalidate = false
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,
