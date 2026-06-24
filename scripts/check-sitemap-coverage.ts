@@ -19,7 +19,15 @@ import { getAllStaticRoutes } from '../lib/routes'
 
 // ---------- 除外リスト ----------
 // サイトマップに載せなくてよいパス（開発用ページ等）
-const EXCLUDED = new Set(['/styleguide/', '/search/'])
+const EXCLUDED = new Set([
+  '/styleguide/',
+  '/search/',
+  '/airpods/recommend/',
+  '/ipad/recommend/',
+  '/iphone/recommend/',
+  '/macbook/recommend/',
+  '/watch/recommend/',
+])
 
 // ---------- ファイルシステムからルート収集 ----------
 
