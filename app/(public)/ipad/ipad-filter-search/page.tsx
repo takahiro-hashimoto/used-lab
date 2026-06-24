@@ -112,7 +112,7 @@ export default async function IPadFilterSearchPage() {
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
-      { '@type': 'ListItem', position: 2, name: '中古iPad購入完全ガイド', item: 'https://used-lab.jp/ipad' },
+      { '@type': 'ListItem', position: 2, name: '中古iPadおすすめ機種・選び方ガイド', item: 'https://used-lab.jp/ipad' },
       { '@type': 'ListItem', position: 3, name: 'iPad機種診断シミュレーター' },
     ],
   }
@@ -159,7 +159,7 @@ export default async function IPadFilterSearchPage() {
         {/* パンくず */}
         <Breadcrumb
           items={[
-            { label: '中古iPad購入完全ガイド', href: '/ipad/' },
+            { label: '中古iPadおすすめ機種・選び方ガイド', href: '/ipad/' },
             { label: 'iPad機種診断' },
           ]}
         />
@@ -200,7 +200,7 @@ export default async function IPadFilterSearchPage() {
             <div className="lead-box">
               <p>「どのiPadを買えばいいかわからない…」そんな悩みを解決する<strong>iPad機種診断ツール</strong>です。</p>
               <p>最新のiPad Pro M4からコスパ抜群の型落ちモデルまで、あなたの使用目的・予算・こだわり条件に合わせて最適な<Link href="/ipad/">中古iPad</Link>を無料で診断。<strong>{totalModels}機種のデータベース</strong>から、あなたにぴったりの1台を見つけましょう。</p>
-              <p className="lead-link"><i className="fa-solid fa-arrow-right" aria-hidden="true"></i> 情報を網羅的に得たい方は「<Link href="/ipad/">中古iPad購入完全ガイド</Link>」も参考にしてみてください！</p>
+              <p className="lead-link"><i className="fa-solid fa-arrow-right" aria-hidden="true"></i> 情報を網羅的に得たい方は「<Link href="/ipad/">中古iPadおすすめ機種・選び方ガイド</Link>」も参考にしてみてください！</p>
             </div>
           </div>
         </section>

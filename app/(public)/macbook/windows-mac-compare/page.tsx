@@ -43,7 +43,7 @@ export default function WindowsMacComparePage() {
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
-      { '@type': 'ListItem', position: 2, name: '中古MacBook完全購入ガイド', item: 'https://used-lab.jp/macbook' },
+      { '@type': 'ListItem', position: 2, name: '中古MacBookおすすめ機種・選び方ガイド', item: 'https://used-lab.jp/macbook' },
       { '@type': 'ListItem', position: 3, name: 'MacとWindowsの違い' },
     ],
   }
@@ -73,7 +73,7 @@ export default function WindowsMacComparePage() {
         {/* パンくず */}
         <Breadcrumb
           items={[
-            { label: '中古MacBook完全購入ガイド', href: '/macbook/' },
+            { label: '中古MacBookおすすめ機種・選び方ガイド', href: '/macbook/' },
             { label: 'MacとWindowsの違い' },
           ]}
         />
@@ -121,7 +121,7 @@ export default function WindowsMacComparePage() {
               </p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                中古MacBookの購入を検討中の方は「<Link href="/macbook/">中古MacBook完全購入ガイド</Link>」もあわせてご覧ください。
+                中古MacBookの購入を検討中の方は「<Link href="/macbook/">中古MacBookおすすめ機種・選び方ガイド</Link>」もあわせてご覧ください。
               </p>
             </div>
           </div>

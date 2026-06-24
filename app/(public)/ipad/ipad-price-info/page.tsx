@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
 import {
-  getAllIPadModels,
+  getAllIPadModelsIncludingEnded,
   getAllIPadPriceLogsByModelIds,
   getAllProductShopLinksByType,
   getAllIPadAccessories,
@@ -48,6 +48,7 @@ export type ModelData = {
   storage: string
   pencil: string
   supportUntil: string
+  supportEnded: boolean
   color: string
   image: string
   iosysUrl: string
@@ -102,13 +103,13 @@ export const revalidate = false
 
 const PAGE_URL = 'https://used-lab.jp/ipad/ipad-price-info/'
 
-const getModels = cache(getAllIPadModels)
+const getModels = cache(getAllIPadModelsIncludingEnded)
 
 export async function generateMetadata(): Promise<Metadata> {
   const allModels = await getModels()
   const modelCount = allModels.length
   const title = buildPriceInfoTitle('iPad', modelCount, PRICE_INFO_UPDATE_MONTH)
-  const description = `中古iPad${modelCount}機種の価格相場を毎日更新。価格推移グラフ、最安値ランキングを掲載。イオシス・ゲオ・じゃんぱらの実売価格を集計。`
+  const description = `中古iPad${modelCount}機種の相場・値段を毎日更新。iPad mini・Air・Pro・第9世代など歴代モデルの価格推移グラフ・最安値一覧を掲載。`
   return buildPriceInfoMetadata({ title, description, canonicalPath: '/ipad/ipad-price-info/', heroImageUrl: getHeroImage('/ipad/ipad-price-info/') })
 }
 
@@ -180,6 +181,7 @@ export default async function IPadPriceInfoPage() {
       storage: minStorage || '-',
       pencil: getPencilTextFromAccessories(accessoryLookup.get(model.id) || []) || '-',
       supportUntil: osLife.osEndYear > 0 ? `${osLife.osEndYear}年頃` : '-',
+      supportEnded: model.last_ipados !== null,
       color: CHART_COLORS[colorIndex % CHART_COLORS.length],
       image: model.image || '',
       iosysUrl: iosysUrlMap.get(model.id) ?? '',
@@ -222,7 +224,7 @@ export default async function IPadPriceInfoPage() {
   const { dateStr, dateDisplay, dateModified } = buildPageDates(modelsData)
 
   // JSON-LD
-  const breadcrumbJsonLd = buildBreadcrumbJsonLd('中古iPad完全購入ガイド', 'https://used-lab.jp/ipad/', 'iPadの中古相場一覧')
+  const breadcrumbJsonLd = buildBreadcrumbJsonLd('中古iPadおすすめ機種・選び方ガイド', 'https://used-lab.jp/ipad/', 'iPadの中古相場一覧')
   const webAppJsonLd = buildWebApplicationJsonLd({
     name: '中古iPad価格比較ダッシュボード',
     description: `中古iPad${modelCount}機種の価格相場を毎日更新。価格推移グラフ、最安値ランキングを掲載。`,
@@ -255,7 +257,7 @@ export default async function IPadPriceInfoPage() {
         {/* パンくず */}
         <Breadcrumb
           items={[
-            { label: '中古iPad完全購入ガイド', href: '/ipad/' },
+            { label: '中古iPadおすすめ機種・選び方ガイド', href: '/ipad/' },
             { label: 'iPadの中古相場一覧' },
           ]}
         />
@@ -269,7 +271,7 @@ export default async function IPadPriceInfoPage() {
           <div className="hero-inner l-container">
             <div className="hero-content">
               <h1 className="hero-title" itemProp="headline">
-                iPadの中古相場一覧 | 歴代{modelCount}機種の価格推移を独自集計【{PRICE_INFO_UPDATE_MONTH}】
+                中古iPadの相場・値段一覧【{PRICE_INFO_UPDATE_MONTH}】歴代{modelCount}機種の価格推移を毎日更新
               </h1>
               <HeroMeta dateStr={dateStr} dateDisplay={dateDisplay} withItemProp />
             </div>
@@ -300,7 +302,7 @@ export default async function IPadPriceInfoPage() {
               </p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                情報を網羅的に得たい方は「<Link href="/ipad/">中古iPad購入完全ガイド</Link>」も参考にしてみてください！
+                情報を網羅的に得たい方は「<Link href="/ipad/">中古iPadおすすめ機種・選び方ガイド</Link>」も参考にしてみてください！
               </p>
             </div>
           </div>

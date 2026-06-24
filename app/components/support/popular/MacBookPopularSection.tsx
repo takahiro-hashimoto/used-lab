@@ -15,7 +15,7 @@ export default async function MacBookPopularSection() {
       cardTitle="中古MacBookおすすめ4選"
       cardDescription="クリエイティブ作業向け、コスパ重視の人向けなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。"
       buttonText="おすすめ4機種を見る"
-      buttonHref="/macbook/recommend/"
+      buttonHref="/macbook/"
       secondaryButtonText="イオシスで中古MacBookを探す"
       secondaryButtonHref={iosys?.macbook_url ?? '#'}
     />

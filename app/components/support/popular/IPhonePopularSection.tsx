@@ -15,7 +15,7 @@ export default async function IPhonePopularSection() {
       cardTitle="中古iPhoneおすすめ5選"
       cardDescription="カメラ性能を重視する人向け、大画面で動画やSNSを楽しみたい人向けなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。"
       buttonText="おすすめ5機種を見る"
-      buttonHref="/iphone/recommend/"
+      buttonHref="/iphone/"
       secondaryButtonText="イオシスで中古iPhoneを探す"
       secondaryButtonHref={iosys?.url ?? '#'}
     />

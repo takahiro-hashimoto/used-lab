@@ -3,7 +3,7 @@ import { cache } from 'react'
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import {
-  getAllIPhoneModels,
+  getAllIPhoneModelsIncludingEnded,
   getAllIPhonePriceLogsByModelIds,
   getAllProductShopLinksByType,
 } from '@/lib/queries'
@@ -47,6 +47,7 @@ export type ModelData = {
   storage: string
   battery: string
   supportUntil: string
+  supportEnded: boolean
   color: string
   image: string
   iosysUrl: string
@@ -109,13 +110,13 @@ export const revalidate = false
 
 const PAGE_URL = 'https://used-lab.jp/iphone/price-info/'
 
-const getModels = cache(getAllIPhoneModels)
+const getModels = cache(getAllIPhoneModelsIncludingEnded)
 
 export async function generateMetadata(): Promise<Metadata> {
   const allModels = await getModels()
   const modelCount = allModels.length
   const title = buildPriceInfoTitle('iPhone', modelCount, PRICE_INFO_UPDATE_MONTH)
-  const description = `中古iPhone${modelCount}機種の価格相場を毎日更新。価格推移グラフ、スペック比較、最安値ランキングを掲載。イオシス・ゲオ・じゃんぱらの実売価格を集計。`
+  const description = `中古iPhone${modelCount}機種の相場・値段を毎日更新。iPhone 16・SE・15など歴代モデルの価格推移グラフ・最安値一覧を掲載。`
   return buildPriceInfoMetadata({ title, description, canonicalPath: '/iphone/price-info/', heroImageUrl: getHeroImage('/iphone/price-info/') })
 }
 
@@ -185,6 +186,7 @@ export default async function IPhonePriceInfoPage() {
       storage: minStorage || '-',
       battery: model.battery || '-',
       supportUntil: osLife.osEndYear > 0 ? `${osLife.osEndYear}年頃` : '-',
+      supportEnded: model.last_ios !== null,
       color: CHART_COLORS[colorIndex % CHART_COLORS.length],
       image: model.image || '',
       iosysUrl: iosysUrlMap.get(model.id) ?? '',
@@ -228,7 +230,7 @@ export default async function IPhonePriceInfoPage() {
   const { dateStr, dateDisplay, dateModified } = buildPageDates(modelsData)
 
   // JSON-LD
-  const breadcrumbJsonLd = buildBreadcrumbJsonLd('中古iPhone完全購入ガイド', 'https://used-lab.jp/iphone/', 'iPhoneの中古相場一覧')
+  const breadcrumbJsonLd = buildBreadcrumbJsonLd('中古iPhoneおすすめ機種・選び方ガイド', 'https://used-lab.jp/iphone/', 'iPhoneの中古相場一覧')
   const webAppJsonLd = buildWebApplicationJsonLd({
     name: '中古iPhone価格比較ダッシュボード',
     description: `中古iPhone${modelCount}機種の価格相場を毎日更新。価格推移グラフ、スペック比較、最安値ランキングを掲載。`,
@@ -261,7 +263,7 @@ export default async function IPhonePriceInfoPage() {
         {/* パンくず */}
         <Breadcrumb
           items={[
-            { label: '中古iPhone完全購入ガイド', href: '/iphone/' },
+            { label: '中古iPhoneおすすめ機種・選び方ガイド', href: '/iphone/' },
             { label: 'iPhoneの中古相場一覧' },
           ]}
         />
@@ -275,7 +277,7 @@ export default async function IPhonePriceInfoPage() {
           <div className="hero-inner l-container">
             <div className="hero-content">
               <h1 className="hero-title" itemProp="headline">
-                iPhoneの中古相場一覧 | 歴代{modelCount}機種の価格推移を独自集計【{PRICE_INFO_UPDATE_MONTH}】
+                中古iPhoneの相場・値段一覧【{PRICE_INFO_UPDATE_MONTH}】歴代{modelCount}機種の価格推移を毎日更新
               </h1>
               <HeroMeta dateStr={dateStr} dateDisplay={dateDisplay} withItemProp />
             </div>
@@ -306,7 +308,7 @@ export default async function IPhonePriceInfoPage() {
               </p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                情報を網羅的に得たい方は「<Link href="/iphone/">中古iPhone購入完全ガイド</Link>」も参考にしてみてください！
+                情報を網羅的に得たい方は「<Link href="/iphone/">中古iPhoneおすすめ機種・選び方ガイド</Link>」も参考にしてみてください！
               </p>
             </div>
           </div>

@@ -122,7 +122,7 @@ export default async function StorageGuidePage() {
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
-      { '@type': 'ListItem', position: 2, name: '中古iPhone完全購入ガイド', item: 'https://used-lab.jp/iphone' },
+      { '@type': 'ListItem', position: 2, name: '中古iPhoneおすすめ機種・選び方ガイド', item: 'https://used-lab.jp/iphone' },
       { '@type': 'ListItem', position: 3, name: 'ストレージ容量ガイド' },
     ],
   }
@@ -152,7 +152,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/storage-
         {/* パンくず */}
         <Breadcrumb
           items={[
-            { label: '中古iPhone完全購入ガイド', href: '/iphone/' },
+            { label: '中古iPhoneおすすめ機種・選び方ガイド', href: '/iphone/' },
             { label: 'ストレージ容量ガイド' },
           ]}
         />
@@ -195,7 +195,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/storage-
               <p>本記事では、<strong>用途別のおすすめ容量の目安と歴代iPhoneの容量ラインナップ</strong>をまとめました。「何GBにすればいいかわからない」という方はぜひ参考にしてみてください。</p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                情報を網羅的に得たい方は「<Link href="/iphone/">中古iPhone購入完全ガイド</Link>」も参考にしてみてください！
+                情報を網羅的に得たい方は「<Link href="/iphone/">中古iPhoneおすすめ機種・選び方ガイド</Link>」も参考にしてみてください！
               </p>
             </div>
           </div>

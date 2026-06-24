@@ -82,7 +82,7 @@ export default async function IPhoneTopPage() {
   // JSON-LD
   const breadcrumbJsonLd = buildBreadcrumbJsonLd([
     { name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
-    { name: '中古iPhone完全購入ガイド', item: 'https://used-lab.jp/iphone' },
+    { name: '中古iPhoneおすすめ機種・選び方ガイド', item: 'https://used-lab.jp/iphone' },
     { name: `中古iPhoneおすすめ${RECOMMEND_COUNT}選` },
   ])
   const articleJsonLd = buildArticleJsonLd({ headline: PAGE_TITLE, description: PAGE_DESCRIPTION, dateStr, url: PAGE_URL })
@@ -168,7 +168,7 @@ export default async function IPhoneTopPage() {
         {/* パンくず */}
         <Breadcrumb
           items={[
-            { label: '中古iPhone完全購入ガイド', href: '/iphone/' },
+            { label: '中古iPhoneおすすめ機種・選び方ガイド', href: '/iphone/' },
             { label: `中古iPhoneおすすめ${RECOMMEND_COUNT}選` },
           ]}
         />
@@ -213,7 +213,7 @@ export default async function IPhoneTopPage() {
                 そこでこの記事では、{RECOMMEND_DATE_LABEL}のおすすめ中古iPhone {RECOMMEND_COUNT}機種を厳選。
                 それぞれの特徴と向いている人を詳しく解説します。Apple認定整備済製品との違いも紹介しているので、初めて中古iPhoneを買う方にもおすすめの内容です。
               </p>
-              <p className="lead-link"><i className="fa-solid fa-arrow-right" aria-hidden="true"></i> 情報を網羅的に得たい方は「<Link href="/iphone/">中古iPhone購入完全ガイド</Link>」も参考にしてみてください！</p>
+              <p className="lead-link"><i className="fa-solid fa-arrow-right" aria-hidden="true"></i> 情報を網羅的に得たい方は「<Link href="/iphone/">中古iPhoneおすすめ機種・選び方ガイド</Link>」も参考にしてみてください！</p>
             </div>
           </div>
         </section>

@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import { cache } from 'react'
 import {
-  getAllAirPodsModels,
+  getAllAirPodsModelsIncludingEnded,
   getAllAirPodsPriceLogsByModelIds,
   getAllProductShopLinksByType,
 } from '@/lib/queries'
@@ -44,6 +44,7 @@ export type ModelData = {
   type: string
   battery: string
   supportUntil: string
+  supportEnded: boolean
   color: string
   image: string
   iosysUrl: string
@@ -98,13 +99,13 @@ export const revalidate = false
 
 const PAGE_URL = 'https://used-lab.jp/airpods/price-info/'
 
-const getModels = cache(getAllAirPodsModels)
+const getModels = cache(getAllAirPodsModelsIncludingEnded)
 
 export async function generateMetadata(): Promise<Metadata> {
   const allModels = await getModels()
   const modelCount = allModels.length
   const title = buildPriceInfoTitle('AirPods', modelCount, PRICE_INFO_UPDATE_MONTH)
-  const description = `中古AirPods${modelCount}機種の価格相場を毎日更新。価格推移グラフ、最安値ランキングを掲載。イオシス・じゃんぱら・eイヤホンの実売価格を集計。`
+  const description = `中古AirPods${modelCount}機種の相場・値段を毎日更新。AirPods Pro・AirPods 4など歴代モデルの価格推移グラフ・最安値一覧を掲載。`
   return buildPriceInfoMetadata({ title, description, canonicalPath: '/airpods/price-info/', heroImageUrl: getHeroImage('/airpods/price-info/') })
 }
 
@@ -156,6 +157,7 @@ export default async function AirPodsPriceInfoPage() {
       type: model.type || '-',
       battery: model.battery_earphone || '-',
       supportUntil: endYear > 0 ? `${endYear}年頃` : '-',
+      supportEnded: endYear > 0 && endYear < new Date().getFullYear(),
       color: CHART_COLORS[colorIndex % CHART_COLORS.length],
       image: model.image || '',
       iosysUrl: iosysUrlMap.get(model.id) ?? '',
@@ -244,7 +246,7 @@ export default async function AirPodsPriceInfoPage() {
           <div className="hero-inner l-container">
             <div className="hero-content">
               <h1 className="hero-title" itemProp="headline">
-                AirPodsの中古相場一覧 | 歴代{modelCount}機種の価格推移を独自集計【{PRICE_INFO_UPDATE_MONTH}】
+                中古AirPodsの相場・値段一覧【{PRICE_INFO_UPDATE_MONTH}】歴代{modelCount}機種の価格推移を毎日更新
               </h1>
               <HeroMeta dateStr={dateStr} dateDisplay={dateDisplay} withItemProp showAuthor />
             </div>
@@ -275,7 +277,7 @@ export default async function AirPodsPriceInfoPage() {
               </p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                情報を網羅的に得たい方は「<Link href="/airpods/">中古AirPods購入完全ガイド</Link>」も参考にしてみてください！
+                情報を網羅的に得たい方は「<Link href="/airpods/">中古AirPodsおすすめ機種・選び方ガイド</Link>」も参考にしてみてください！
               </p>
             </div>
           </div>

@@ -171,7 +171,8 @@ export function getVerdict(
   const yearsPassed = Math.floor(monthsPassed / 12)
   const performanceRatio = Math.max(30, 100 - yearsPassed * 10)
 
-  const annualCost = priceMin && priceMin > 0
+  // 年間コスト（サポート切れは算出しない）
+  let annualCost = priceMin && priceMin > 0 && !model.last_watchos
     ? Math.round(priceMin / remainingYears)
     : null
 
@@ -180,7 +181,11 @@ export function getVerdict(
   let statusLabel: string
   let rank: VerdictRank
 
-  if (monthsPassed < 12) {
+  if (model.last_watchos) {
+    verdictMain = '見送り推奨'
+    statusLabel = 'サポート切れ'
+    rank = 'wait'
+  } else if (monthsPassed < 12) {
     verdictMain = '最高性能を狙うなら今'
     statusLabel = '現役バリバリ'
     rank = 'best'

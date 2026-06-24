@@ -67,7 +67,7 @@ function createModelQueries<T>(table: string, tag: string, activeField?: string)
         return data as T
       },
       [`${table}-by-slug`],
-      { revalidate: 3600, tags: [tag] }
+      { revalidate: 86400, tags: [tag] }
     ),
 
     getAll: unstable_cache(
@@ -79,7 +79,7 @@ function createModelQueries<T>(table: string, tag: string, activeField?: string)
         return (data ?? []) as T[]
       },
       [`${table}-all`],
-      { revalidate: 3600, tags: [tag] }
+      { revalidate: 86400, tags: [tag] }
     ),
 
     /** activeFieldフィルタなしで全モデルを取得（サポート終了モデル含む） */
@@ -90,7 +90,7 @@ function createModelQueries<T>(table: string, tag: string, activeField?: string)
         return (data ?? []) as T[]
       },
       [`${table}-all-including-ended`],
-      { revalidate: 3600, tags: [tag] }
+      { revalidate: 86400, tags: [tag] }
     ),
 
     getAllSlugs: unstable_cache(
@@ -102,7 +102,7 @@ function createModelQueries<T>(table: string, tag: string, activeField?: string)
         return (data ?? []).map((d) => d.slug)
       },
       [`${table}-slugs`],
-      { revalidate: 3600, tags: [tag] }
+      { revalidate: 86400, tags: [tag] }
     ),
   }
 }
@@ -254,7 +254,7 @@ export const getAllIPadAccessories = unstable_cache(
     return (data ?? []) as IPadAccessory[]
   },
   ['ipad-accessories-all'],
-  { revalidate: 3600, tags: [CACHE_TAGS.ipadAccessories] }
+  { revalidate: 86400, tags: [CACHE_TAGS.ipadAccessories] }
 )
 
 export const getAllIPadAccessoryCompatibility = unstable_cache(
@@ -266,7 +266,7 @@ export const getAllIPadAccessoryCompatibility = unstable_cache(
     return (data ?? []) as IPadAccessoryCompatibility[]
   },
   ['ipad-accessory-compatibility-all'],
-  { revalidate: 3600, tags: [CACHE_TAGS.ipadAccessories] }
+  { revalidate: 86400, tags: [CACHE_TAGS.ipadAccessories] }
 )
 
 export const getIPadAccessoriesByModelId = unstable_cache(
@@ -289,7 +289,7 @@ export const getIPadAccessoriesByModelId = unstable_cache(
     return (accessories ?? []) as IPadAccessory[]
   },
   ['ipad-accessories-by-model'],
-  { revalidate: 3600, tags: [CACHE_TAGS.ipadAccessories] }
+  { revalidate: 86400, tags: [CACHE_TAGS.ipadAccessories] }
 )
 
 // Watch
@@ -315,6 +315,7 @@ export const getLatestMacBookPriceLogsForModels = macBookPriceLogs.getLatestForM
 // AirPods
 export const getAirPodsModelBySlug = airPodsModels.getBySlug
 export const getAllAirPodsModels = airPodsModels.getAll
+export const getAllAirPodsModelsIncludingEnded = airPodsModels.getAllIncludingEnded
 export const getAllAirPodsSlugs = airPodsModels.getAllSlugs
 export const getAirPodsPriceLogsByModelId = airPodsPriceLogs.getByModelId
 export const getLatestAirPodsPriceLog = airPodsPriceLogs.getLatest
@@ -341,7 +342,7 @@ export const getMvnoPlans = unstable_cache(
     return (data ?? []) as MvnoPlan[]
   },
   ['mvno-plans-all'],
-  { revalidate: 3600, tags: [CACHE_TAGS.mvno] }
+  { revalidate: 86400, tags: [CACHE_TAGS.mvno] }
 )
 
 /** 事業者スラッグでプラン取得 */
@@ -356,7 +357,7 @@ export const getMvnoPlansByProvider = unstable_cache(
     return (data ?? []) as MvnoPlan[]
   },
   ['mvno-plans-by-provider'],
-  { revalidate: 3600, tags: [CACHE_TAGS.mvno] }
+  { revalidate: 86400, tags: [CACHE_TAGS.mvno] }
 )
 
 /** provider_slug の一覧を取得（重複なし） */
@@ -369,7 +370,7 @@ export const getMvnoProviderSlugs = unstable_cache(
     return [...new Set((data ?? []).map((d) => d.provider_slug))]
   },
   ['mvno-provider-slugs'],
-  { revalidate: 3600, tags: [CACHE_TAGS.mvno] }
+  { revalidate: 86400, tags: [CACHE_TAGS.mvno] }
 )
 
 // ============================================================
@@ -388,7 +389,7 @@ export const getMvnoProviders = unstable_cache(
     return (data ?? []) as MvnoProvider[]
   },
   ['mvno-providers'],
-  { revalidate: 3600, tags: [CACHE_TAGS.mvno] }
+  { revalidate: 86400, tags: [CACHE_TAGS.mvno] }
 )
 
 // ============================================================
@@ -464,7 +465,7 @@ export const getShops = unstable_cache(
     return (data ?? []) as Shop[]
   },
   ['shops'],
-  { revalidate: 3600, tags: [CACHE_TAGS.shops] }
+  { revalidate: 86400, tags: [CACHE_TAGS.shops] }
 )
 
 export async function getProductShopLinks(
@@ -499,7 +500,7 @@ const getCachedShopLinksByType = unstable_cache(
     return (data ?? []) as ProductShopLink[]
   },
   ['shop-links'],
-  { revalidate: 3600, tags: [CACHE_TAGS.shopLinks] }
+  { revalidate: 86400, tags: [CACHE_TAGS.shopLinks] }
 )
 
 // ============================================================
@@ -534,7 +535,7 @@ export const getRelatedLinkClicks = unstable_cache(
     return map
   },
   ['related-link-clicks'],
-  { revalidate: 3600, tags: ['related-link-clicks'] }
+  { revalidate: 86400, tags: ['related-link-clicks'] }
 )
 
 export async function getIPadReviewsBySlug(modelSlug: string): Promise<ProductReview[]> {

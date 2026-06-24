@@ -11,9 +11,9 @@ export const RECOMMEND_DATE_LABEL = `${RECOMMEND_YEAR}年${RECOMMEND_MONTH}月`
 
 // ---------- おすすめ機種のslug一覧 ----------
 export const RECOMMEND_SLUGS = [
-  'series9',
-  'se3',
   'ultra2',
+  'series10',
+  'se3',
 ]
 
 // ---------- 機種数ラベル（見出し等で使用） ----------
@@ -34,28 +34,28 @@ export type RecommendMeta = {
 }
 
 export const RECOMMEND_META: Record<string, RecommendMeta> = {
-  'series9': {
-    label: '万能モデル',
-    desc: 'S9チップ＋ダブルタップ搭載の高機能モデル',
-    subtitle: '機能もデザインも妥協しない万能モデル',
+  'series10': {
+    label: 'バランス重視',
+    desc: 'S10チップ＋史上最薄ボディの万能モデル',
+    subtitle: '薄くて軽い。毎日つけたくなるApple Watchの決定版',
     description: [
-      'Apple Watchの機能をフルに活用したい方には、2023年発売の「Series 9」が最適解です。S9 SiPチップを搭載し、処理速度が大幅に向上。常時表示ディスプレイは最大2,000ニトの明るさで、屋外でも文字盤がしっかり見えます。',
-      '最大の注目ポイントは「ダブルタップ」機能。人差し指と親指を2回タップするだけで、電話に出たりタイマーを止めたりと、片手がふさがっている場面でもスマートに操作できます。さらに皮膚温センサー・血中酸素濃度・心電図など、ヘルスケア機能もフル装備です。',
-      'Series 10の登場により中古価格が下落中の今が狙い目。watchOSサポートも2028年頃まで続く見込みで、機能と価格のバランスに優れた一台です。',
+      '「毎日使いやすいApple Watchが欲しい」という方に最適なのが、2024年発売の「Series 10」です。Apple Watch史上最薄・最軽量のデザインを実現し、S10 SiPチップ搭載で処理性能も抜群。装着感が軽く、睡眠トラッキング中も違和感がありません。',
+      '注目の新機能は「睡眠時無呼吸アラート」。就寝中の無呼吸症状を検出して通知できる初めてのApple Watchです。水深6mの浸水検知機能も搭載し、日常使いからプールまで幅広いシーンに対応します。常時表示・ダブルタップ・皮膚温センサー・血中酸素濃度・心電図など、上位機能もすべて搭載しています。',
+      '2026年のwatchOS 27ではSeries 9以前が一斉にサポート対象外となり、スタンダードモデルで今後も安心して使えるのはSeries 10以降のみとなりました。中古でスタンダードモデルを選ぶなら、Series 10が現時点での最低ラインです。',
     ],
     good: [
-      'ダブルタップで片手操作をしたい',
-      '常時表示＋全健康センサーをフル活用したい',
-      'コスパの良い高機能モデルが欲しい',
+      '薄くて軽いモデルを毎日つけたい',
+      '睡眠時無呼吸アラートを活用したい',
+      '全健康センサーをフルに使いたい',
     ],
     bad: [
       'とにかく安く入門したい',
       'バッテリー駆動時間を最優先したい',
-      '49mmの大画面が欲しい',
+      '49mmの大画面モデルが欲しい',
     ],
-    healthLabel: '皮膚温 / 血中酸素 / 心電図',
+    healthLabel: '皮膚温 / 血中酸素 / 心電図 / 睡眠時無呼吸',
     batteryLabel: '最大18時間',
-    targetUser: '万能モデル<br>ダブルタップ対応',
+    targetUser: 'バランス重視<br>最薄・最軽量',
   },
   'se3': {
     label: 'コスパ重視',
@@ -112,7 +112,7 @@ export const SHOP_SECTION_IDS = [1, 4, 3, 6, 7]
 export const FAQ_JSONLD_ITEMS = [
   {
     question: '中古Apple Watchのおすすめはどれ？',
-    answer: `${RECOMMEND_DATE_LABEL}現在、「Apple Watch Series 9」「Apple Watch SE 第3世代」「Apple Watch Ultra 2」の${RECOMMEND_COUNT}機種がおすすめです。万能モデルならSeries 9、コスパ重視ならSE 第3世代、アウトドア派ならUltra 2が最適です。`,
+    answer: `${RECOMMEND_DATE_LABEL}現在、「Apple Watch Ultra 2」「Apple Watch Series 10」「Apple Watch SE 第3世代」の${RECOMMEND_COUNT}機種がおすすめです。アウトドア派ならUltra 2、バランス重視ならSeries 10、コスパ重視ならSE 第3世代が最適です。`,
   },
   {
     question: '中古Apple Watchを選ぶときのポイントは？',

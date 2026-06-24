@@ -15,7 +15,7 @@ export default async function WatchPopularSection() {
       cardTitle="中古Apple Watchおすすめ3選"
       cardDescription="健康管理を重視する人向け、コスパ重視の人向けなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。"
       buttonText="おすすめ3機種を見る"
-      buttonHref="/watch/recommend/"
+      buttonHref="/watch/"
       secondaryButtonText="イオシスで中古Apple Watchを探す"
       secondaryButtonHref={iosys?.watch_url ?? '#'}
     />

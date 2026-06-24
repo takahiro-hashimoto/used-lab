@@ -61,7 +61,7 @@ export default async function MacBookSpecTablePage() {
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
-      { '@type': 'ListItem', position: 2, name: '中古MacBook完全購入ガイド', item: 'https://used-lab.jp/macbook' },
+      { '@type': 'ListItem', position: 2, name: '中古MacBookおすすめ機種・選び方ガイド', item: 'https://used-lab.jp/macbook' },
       { '@type': 'ListItem', position: 3, name: '歴代MacBookスペック比較表' },
     ],
   }
@@ -134,7 +134,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/macbook/macbook
         {/* パンくず */}
         <Breadcrumb
           items={[
-            { label: '中古MacBook完全購入ガイド', href: '/macbook/' },
+            { label: '中古MacBookおすすめ機種・選び方ガイド', href: '/macbook/' },
             { label: '歴代MacBookスペック比較表' },
           ]}
         />

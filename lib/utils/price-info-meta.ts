@@ -4,7 +4,7 @@ const _now = new Date()
 export const PRICE_INFO_UPDATE_MONTH = `${_now.getFullYear()}年${_now.getMonth() + 1}月`
 
 export function buildPriceInfoTitle(categoryLabel: string, modelCount: number, updateMonth: string): string {
-  return `${categoryLabel}の中古相場一覧 | 歴代${modelCount}機種の価格推移を独自集計【${updateMonth}】`
+  return `中古${categoryLabel}の相場・値段一覧【${updateMonth}】歴代${modelCount}機種の価格推移を毎日更新`
 }
 
 export function buildPriceInfoMetadata({

@@ -54,10 +54,10 @@ export default function DualCompare<T extends DualCompareModel>({
     <section className="l-section" id="compare" aria-labelledby="heading-compare">
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg" id="heading-compare">
-          気になる2機種の{productName}の違いを比較
+          {productName}の2機種スペック比較ツール｜性能差・違いを一目で確認
         </h2>
         <p className="m-section-desc">
-          気になる2機種の{productName}を簡単に比較できるツールです。<br />
+          気になる2機種の{productName}のスペック・性能差を一目で比較できるツールです。<br />
           今持っている機種と購入を検討中の機種を比較したい方はぜひチェックしてみてください。
         </p>
 

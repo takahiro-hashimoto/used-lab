@@ -118,7 +118,7 @@ export default async function StorageGuidePage() {
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
-      { '@type': 'ListItem', position: 2, name: '中古MacBook完全購入ガイド', item: 'https://used-lab.jp/macbook' },
+      { '@type': 'ListItem', position: 2, name: '中古MacBookおすすめ機種・選び方ガイド', item: 'https://used-lab.jp/macbook' },
       { '@type': 'ListItem', position: 3, name: 'ストレージ容量ガイド' },
     ],
   }
@@ -142,7 +142,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/macbook/storage
         <div className="hero-wrapper">
         <Breadcrumb
           items={[
-            { label: '中古MacBook完全購入ガイド', href: '/macbook/' },
+            { label: '中古MacBookおすすめ機種・選び方ガイド', href: '/macbook/' },
             { label: 'ストレージ容量ガイド' },
           ]}
         />
@@ -173,7 +173,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/macbook/storage
               <p>本記事では、<strong>用途別のおすすめ容量の目安、歴代MacBookの容量ラインナップ、そして中古最安価格</strong>をまとめました。</p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                情報を網羅的に得たい方は「<Link href="/macbook/">中古MacBook購入完全ガイド</Link>」も参考にしてみてください！
+                情報を網羅的に得たい方は「<Link href="/macbook/">中古MacBookおすすめ機種・選び方ガイド</Link>」も参考にしてみてください！
               </p>
             </div>
           </div>

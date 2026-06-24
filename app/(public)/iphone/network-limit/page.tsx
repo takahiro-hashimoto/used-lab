@@ -74,7 +74,7 @@ export default async function NetworkLimitPage() {
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
-      { '@type': 'ListItem', position: 2, name: '中古iPhone完全購入ガイド', item: 'https://used-lab.jp/iphone/' },
+      { '@type': 'ListItem', position: 2, name: '中古iPhoneおすすめ機種・選び方ガイド', item: 'https://used-lab.jp/iphone/' },
       { '@type': 'ListItem', position: 3, name: 'ネットワーク制限△のメリット・デメリット' },
     ],
   }
@@ -95,7 +95,7 @@ export default async function NetworkLimitPage() {
         <div className="hero-wrapper">
           <Breadcrumb
             items={[
-              { label: '中古iPhone完全購入ガイド', href: '/iphone/' },
+              { label: '中古iPhoneおすすめ機種・選び方ガイド', href: '/iphone/' },
               { label: 'ネットワーク制限△のメリット・デメリット' },
             ]}
           />
@@ -141,7 +141,7 @@ export default async function NetworkLimitPage() {
               </p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                中古iPhoneの全体像を把握したい方は「<Link href="/iphone/">中古iPhone完全購入ガイド</Link>」をご覧ください。
+                中古iPhoneの全体像を把握したい方は「<Link href="/iphone/">中古iPhoneおすすめ機種・選び方ガイド</Link>」をご覧ください。
               </p>
             </div>
           </div>

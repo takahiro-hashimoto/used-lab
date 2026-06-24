@@ -152,10 +152,10 @@ export default function SpecTable({ models, shopLinks }: Props) {
     <section className="l-section" id="spec-table" aria-labelledby="heading-spec-table">
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg" id="heading-spec-table">
-          歴代iPadのスペック比較表一覧
+          歴代iPadスペック比較表｜全世代の性能・違いを一覧で比較
         </h2>
         <p className="m-section-desc">
-          歴代iPadの主要スペックを一覧で比較できます。
+          Pro・Air・mini・無印の全世代のスペック・性能を一覧で比較できます。
         </p>
 
         {/* フィルターUI */}

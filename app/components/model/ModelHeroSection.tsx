@@ -55,7 +55,7 @@ export default function ModelHeroSection({ model, config, dateStr, dateDisplay }
       {
         '@type': 'ListItem',
         position: 3,
-        name: model.model,
+        name: `中古${model.model}`,
       },
     ],
   }
@@ -81,7 +81,7 @@ export default function ModelHeroSection({ model, config, dateStr, dateDisplay }
               <li className="breadcrumb-item">
                 <Link href={categoryPath}>{categoryLabel}</Link>
               </li>
-              <li className="breadcrumb-item" aria-current="page">{model.model}</li>
+              <li className="breadcrumb-item" aria-current="page">中古{model.model}</li>
             </ol>
           </div>
         </nav>

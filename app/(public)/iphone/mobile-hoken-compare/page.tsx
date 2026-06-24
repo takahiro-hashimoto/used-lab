@@ -86,7 +86,7 @@ export default function MobileHokenComparePage() {
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
-      { '@type': 'ListItem', position: 2, name: '中古iPhone完全購入ガイド', item: 'https://used-lab.jp/iphone/' },
+      { '@type': 'ListItem', position: 2, name: '中古iPhoneおすすめ機種・選び方ガイド', item: 'https://used-lab.jp/iphone/' },
       { '@type': 'ListItem', position: 3, name: 'Apple Care+よりモバイル保険がコスパ高い理由' },
     ],
   }
@@ -109,7 +109,7 @@ export default function MobileHokenComparePage() {
           <div className="hero-wrapper">
             <Breadcrumb
               items={[
-                { label: '中古iPhone完全購入ガイド', href: '/iphone/' },
+                { label: '中古iPhoneおすすめ機種・選び方ガイド', href: '/iphone/' },
                 { label: 'Apple Care+よりモバイル保険がコスパ高い理由' },
               ]}
             />
@@ -155,7 +155,7 @@ export default function MobileHokenComparePage() {
                 </p>
                 <p className="lead-link">
                   <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                  中古iPhoneの選び方は「<Link href="/iphone/">中古iPhone完全購入ガイド</Link>」もご覧ください。
+                  中古iPhoneの選び方は「<Link href="/iphone/">中古iPhoneおすすめ機種・選び方ガイド</Link>」もご覧ください。
                 </p>
               </div>
             </div>

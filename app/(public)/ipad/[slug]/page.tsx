@@ -4,7 +4,7 @@ import type { Metadata } from 'next'
 import {
   getIPadModelBySlug,
   getAllIPadSlugs,
-  getAllIPadModels,
+  getAllIPadModelsIncludingEnded,
   getShops,
   getAllProductShopLinksByType,
   getIPadPriceLogsByModelId,
@@ -96,7 +96,7 @@ export default async function IPadDetailPage({ params }: PageProps) {
     getAllProductShopLinksByType('ipad'),
     getIPadPriceLogsByModelId(model.id),
     cachedGetLatestPrice(model.id),
-    getAllIPadModels(),
+    getAllIPadModelsIncludingEnded(),
     getAllIPadAccessories(),
     getAllIPadAccessoryCompatibility(),
     getIPadReviewsBySlug(slug),

@@ -95,7 +95,7 @@ export default async function IPadRecommendPage() {
   // JSON-LD
   const breadcrumbJsonLd = buildBreadcrumbJsonLd([
     { name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
-    { name: '中古iPad完全購入ガイド', item: 'https://used-lab.jp/ipad' },
+    { name: '中古iPadおすすめ機種・選び方ガイド', item: 'https://used-lab.jp/ipad' },
     { name: `中古iPadおすすめ${RECOMMEND_COUNT}選` },
   ])
   const articleJsonLd = buildArticleJsonLd({ headline: PAGE_TITLE, description: PAGE_DESCRIPTION, dateStr, url: PAGE_URL })
@@ -181,7 +181,7 @@ export default async function IPadRecommendPage() {
         {/* パンくず */}
         <Breadcrumb
           items={[
-            { label: '中古iPad完全購入ガイド', href: '/ipad/' },
+            { label: '中古iPadおすすめ機種・選び方ガイド', href: '/ipad/' },
             { label: `中古iPadおすすめ${RECOMMEND_COUNT}選` },
           ]}
         />
@@ -234,7 +234,7 @@ export default async function IPadRecommendPage() {
                 })()}の予算別に今買っても後悔しない中古iPad {RECOMMEND_COUNT}機種を厳選。
                 イラスト制作・動画視聴・勉強用など用途別に特徴と向いている人を詳しく解説します。Apple認定整備済製品との違いも紹介しています。
               </p>
-              <p className="lead-link"><i className="fa-solid fa-arrow-right" aria-hidden="true"></i> 情報を網羅的に得たい方は「<Link href="/ipad/">中古iPad購入完全ガイド</Link>」も参考にしてみてください！</p>
+              <p className="lead-link"><i className="fa-solid fa-arrow-right" aria-hidden="true"></i> 情報を網羅的に得たい方は「<Link href="/ipad/">中古iPadおすすめ機種・選び方ガイド</Link>」も参考にしてみてください！</p>
             </div>
           </div>
         </section>

@@ -9,11 +9,11 @@ export const PAGE_DATES: Record<string, string> = {
   'app/(public)/page.tsx': '2026-04-28',
 
   // ── カテゴリTOP ──────────────────────────────────────────────
-  'app/(public)/iphone/page.tsx':  '2026-04-11',
-  'app/(public)/ipad/page.tsx':    '2026-04-11',
-  'app/(public)/macbook/page.tsx': '2026-04-11',
-  'app/(public)/watch/page.tsx':   '2026-04-11',
-  'app/(public)/airpods/page.tsx': '2026-04-11',
+  'app/(public)/iphone/page.tsx':  '2026-06-24',
+  'app/(public)/ipad/page.tsx':    '2026-06-24',
+  'app/(public)/macbook/page.tsx': '2026-06-24',
+  'app/(public)/watch/page.tsx':   '2026-06-24',
+  'app/(public)/airpods/page.tsx': '2026-06-24',
 
   // ── サイト共通 ────────────────────────────────────────────────
   'app/(public)/sitemap-page/page.tsx': '2026-04-11',

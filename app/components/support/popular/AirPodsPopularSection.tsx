@@ -15,7 +15,7 @@ export default async function AirPodsPopularSection() {
       cardTitle="中古AirPodsおすすめモデル"
       cardDescription="ノイキャン重視、コスパ重視の人向けなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。"
       buttonText="おすすめモデルを見る"
-      buttonHref="/airpods/recommend/"
+      buttonHref="/airpods/"
       secondaryButtonText="イオシスで中古AirPodsを探す"
       secondaryButtonHref={iosys?.airpods_url ?? '#'}
     />

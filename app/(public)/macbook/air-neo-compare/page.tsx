@@ -46,7 +46,7 @@ export default async function AirNeoComparePage() {
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
-      { '@type': 'ListItem', position: 2, name: '中古MacBook完全購入ガイド', item: 'https://used-lab.jp/macbook' },
+      { '@type': 'ListItem', position: 2, name: '中古MacBookおすすめ機種・選び方ガイド', item: 'https://used-lab.jp/macbook' },
       { '@type': 'ListItem', position: 3, name: 'MacBook AirとNeoの違い' },
     ],
   }
@@ -74,7 +74,7 @@ export default async function AirNeoComparePage() {
         <div className="hero-wrapper">
           <Breadcrumb
             items={[
-              { label: '中古MacBook完全購入ガイド', href: '/macbook/' },
+              { label: '中古MacBookおすすめ機種・選び方ガイド', href: '/macbook/' },
               { label: 'MacBook AirとNeoの違い' },
             ]}
           />
@@ -121,7 +121,7 @@ export default async function AirNeoComparePage() {
               </p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                MacBookをお得に手に入れるなら中古で購入するのがおすすめ。気になった方は<Link href="/macbook/recommend">中古MacBook完全購入ガイド</Link>をご覧ください。
+                MacBookをお得に手に入れるなら中古で購入するのがおすすめ。気になった方は<Link href="/macbook/recommend">中古MacBookおすすめ機種・選び方ガイド</Link>をご覧ください。
               </p>
             </div>
           </div>

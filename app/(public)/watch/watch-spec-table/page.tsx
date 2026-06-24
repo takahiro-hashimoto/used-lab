@@ -31,19 +31,19 @@ import { getHeroImage } from '@/lib/data/hero-images'
 export const revalidate = false
 
 export const metadata: Metadata = {
-  title: '歴代Apple Watchスペック比較表！各世代の性能の違いがすぐわかる',
+  title: 'Apple Watch歴代シリーズ比較表｜全モデルのスペック・機能の違い一覧',
   description:
-    '歴代Apple Watchのスペック比較表一覧です。Series・SE・Ultraの性能差や機能の違いを一目で確認できます。',
+    '歴代Apple Watchのスペック・機能を比較表で一覧化。Series・SE・Ultraの全世代をシリーズ別に比較。バッテリー・性能・機能の違いを一目で確認できます。',
   alternates: { canonical: '/watch/watch-spec-table/' },
   openGraph: {
-    title: '歴代Apple Watchスペック比較表！各世代の性能の違いがすぐわかる',
-    description: '歴代Apple Watchのスペック比較表一覧です。Series・SE・Ultraの性能差や機能の違いを一目で確認できます。',
+    title: 'Apple Watch歴代シリーズ比較表｜全モデルのスペック・機能の違い一覧',
+    description: '歴代Apple Watchのスペック・機能を比較表で一覧化。Series・SE・Ultraの全世代をシリーズ別に比較。バッテリー・性能・機能の違いを一目で確認できます。',
     url: '/watch/watch-spec-table/',
-    images: [{ url: getHeroImage('/watch/watch-spec-table/'), width: 1200, height: 630, alt: '歴代Apple Watchスペック比較表のイメージ' }],
+    images: [{ url: getHeroImage('/watch/watch-spec-table/'), width: 1200, height: 630, alt: 'Apple Watch歴代比較表のイメージ' }],
   },
   twitter: {
-    title: '歴代Apple Watchスペック比較表！各世代の性能の違いがすぐわかる',
-    description: '歴代Apple Watchのスペック比較表一覧です。Series・SE・Ultraの性能差や機能の違いを一目で確認できます。',
+    title: 'Apple Watch歴代シリーズ比較表｜全モデルのスペック・機能の違い一覧',
+    description: '歴代Apple Watchのスペック・機能を比較表で一覧化。Series・SE・Ultraの全世代をシリーズ別に比較。バッテリー・性能・機能の違いを一目で確認できます。',
     images: [getHeroImage('/watch/watch-spec-table/')],
   },
 }
@@ -60,7 +60,7 @@ export default async function WatchSpecTablePage() {
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
-      { '@type': 'ListItem', position: 2, name: '中古Apple Watch完全購入ガイド', item: 'https://used-lab.jp/watch' },
+      { '@type': 'ListItem', position: 2, name: '中古Apple Watchおすすめ機種・選び方ガイド', item: 'https://used-lab.jp/watch' },
       { '@type': 'ListItem', position: 3, name: '歴代Apple Watchスペック比較表' },
     ],
   }
@@ -129,7 +129,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/watch/watch-spe
         {/* パンくず */}
         <Breadcrumb
           items={[
-            { label: '中古Apple Watch完全購入ガイド', href: '/watch/' },
+            { label: '中古Apple Watchおすすめ機種・選び方ガイド', href: '/watch/' },
             { label: '歴代Apple Watchスペック比較表' },
           ]}
         />
@@ -143,7 +143,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/watch/watch-spe
           <div className="hero-inner l-container">
             <div className="hero-content">
               <h1 className="hero-title">
-                歴代Apple Watchスペック比較表！各世代の性能の違いがすぐわかる
+                Apple Watch歴代シリーズ比較表｜全モデルのスペック・機能の違い一覧
               </h1>
               <HeroMeta dateStr={dateStr} dateDisplay={dateDisplay} />
             </div>
@@ -168,12 +168,13 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/watch/watch-spe
         <section className="l-section l-section--sm section-lead" aria-label="記事の導入">
           <div className="l-container">
             <div className="lead-box">
-              <p>Apple WatchはSeries・SE・Ultraと多くのラインナップがあり、世代ごとにスペックが異なります。こんな悩みをお持ちの方も多いのではないでしょうか。</p>
+              <p>「歴代Apple Watchを比較したい」「シリーズごとの機能の違いは？」「Series・SE・Ultraのどれがいい？」そんな疑問にお答えします。</p>
               <ul className="lead-box__list">
-                <li>自分の用途にはどのApple Watchが合うのかわからない…</li>
-                <li>型落ちApple Watchでも十分なスペックなのか知りたい!</li>
+                <li>歴代シリーズのスペック・機能の違いを比較表で確認したい</li>
+                <li>バッテリー持ち・性能差を世代別に見たい</li>
+                <li>型落ちApple Watchでも十分なスペックなのか知りたい</li>
               </ul>
-              <p>本記事では<strong>歴代Apple Watchの主要スペックを一覧表で比較</strong>し、進化ポイントをわかりやすくまとめました。Apple Watchを購入する際の参考にしてみてください！</p>
+              <p>本記事では<strong>歴代Apple Watchのスペック・機能を比較表で一覧化</strong>。Series・SE・Ultraの全世代をシリーズ別に比較し、どの世代で何が変わったかを確認できます。</p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
                 もっと全体像から知りたい方は「<Link href="/watch/">中古Apple Watch購入ガイド</Link>」をご覧ください。

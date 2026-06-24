@@ -15,7 +15,7 @@ export default async function IPadPopularSection() {
       cardTitle="中古iPadおすすめ5選"
       cardDescription="イラスト制作に最適なモデル、動画視聴に大画面モデルなど目的別に買うべきモデルを紹介。購入前にチェックすべき項目なども網羅しています。"
       buttonText="おすすめ5機種を見る"
-      buttonHref="/ipad/recommend/"
+      buttonHref="/ipad/"
       secondaryButtonText="イオシスで中古iPadを探す"
       secondaryButtonHref={iosys?.ipad_url ?? '#'}
     />

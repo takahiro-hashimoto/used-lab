@@ -19,7 +19,7 @@ import { buildVendorCardsFromShops } from '@/lib/data/guide-shared'
 import {
   RECOMMEND_SLUGS,
   RECOMMEND_META,
-  RECOMMEND_COUNT_LABEL,
+  SHOP_SECTION_IDS,
 } from '@/lib/data/macbook-recommend'
 import ProductCard from '@/app/components/ProductCard'
 import Breadcrumb from '@/app/components/Breadcrumb'
@@ -30,13 +30,15 @@ import GuideModelLinks from '@/app/components/GuideModelLinks'
 import { getHeroImage } from '@/lib/data/hero-images'
 import AuthorByline from '@/app/components/AuthorByline'
 import ContinuousAside from '@/app/components/ContinuousAside'
-import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
+import { buildArticleJsonLd, getGitDateForFile, buildFallbackShops } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
+import ConclusionSection from '@/app/components/ConclusionSection'
+import RecommendDetailSection from './recommend/components/RecommendDetailSection'
 
 export const revalidate = false
 
-const PAGE_TITLE = `中古MacBook完全購入ガイド | 選び方・相場・おすすめモデルまとめ【${GUIDE_DATE_LABEL}版】`
-const PAGE_DESCRIPTION = `${GUIDE_DATE_LABEL}版・中古MacBookの完全購入ガイド。選び方のポイント、モデル別の相場、おすすめ機種をまとめて解説。失敗しない中古MacBook選びをサポートします。`
+const PAGE_TITLE = `中古MacBookおすすめ4選｜初心者向け選び方・コスパ・狙い目モデル【${GUIDE_DATE_LABEL}版】`
+const PAGE_DESCRIPTION = `${GUIDE_DATE_LABEL}版・中古MacBookのおすすめ4機種をコスパ・用途別に解説。初心者向けの選び方から、MacBook Airのおすすめ世代・狙い目モデルまで網羅。最新相場・購入先比較も完全収録。`
 const PAGE_URL = 'https://used-lab.jp/macbook/'
 
 export const metadata: Metadata = {
@@ -66,12 +68,10 @@ export default async function MacBookGuidePage() {
   const vendorCards = buildVendorCardsFromShops(shops, 'macbook_url', '中古MacBookを探す', { exclude: ['rakuma'] })
     .map((card) => ({ ...card, specs: card.specs.filter((s) => s.label !== 'バッテリー保証' && s.label !== '赤ロム保証') }))
 
-  // 相場セクション用: 指定slugのモデル + 最新価格を並列取得
   const priceModels = GUIDE_PRICE_SLUGS
     .map((slug) => allModels.find((m) => m.slug === slug))
     .filter((m): m is MacBookModel => m != null)
 
-  // おすすめ機種セクション用
   const recommendModels = RECOMMEND_SLUGS
     .map((slug) => allModels.find((m) => m.slug === slug))
     .filter((m): m is MacBookModel => m != null)
@@ -81,15 +81,48 @@ export default async function MacBookGuidePage() {
     Promise.all(recommendModels.map((m) => getLatestMacBookPriceLog(m.id))),
   ])
 
+  const fallbackShops = buildFallbackShops(shops, SHOP_SECTION_IDS, 'macbook_url')
+
+  const conclusionItems = recommendModels.map((model, i) => {
+    const meta = RECOMMEND_META[model.slug]
+    const priceNum = recommendPrices[i]?.min1_price
+    const priceLabel = priceNum ? `¥${priceNum.toLocaleString()}〜` : ''
+    const desc = priceLabel ? `${priceLabel}。${meta?.desc || ''}` : (meta?.desc || '')
+    return {
+      id: model.id,
+      slug: model.slug,
+      displayName: model.model,
+      image: model.image,
+      date: model.date,
+      desc,
+    }
+  })
+
+  const detailItems = recommendModels.map((model, i) => {
+    const meta = RECOMMEND_META[model.slug]
+    const modelShopLinks = allShopLinks.filter((l) => l.product_id === model.id)
+    return {
+      model,
+      latestPrice: recommendPrices[i],
+      updatedDateStr: recommendPrices[i]?.logged_at?.substring(0, 10) ?? '',
+      shopLinks: modelShopLinks,
+      fallbackShops,
+      label: meta?.label || '',
+      subtitle: meta?.subtitle || '',
+      description: meta?.description || [],
+      good: meta?.good || [],
+      bad: meta?.bad || [],
+    }
+  })
+
   const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/macbook/page.tsx')
 
-  // JSON-LD
   const breadcrumbJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
-      { '@type': 'ListItem', position: 2, name: '中古MacBook完全購入ガイド' },
+      { '@type': 'ListItem', position: 2, name: '中古MacBookおすすめ・選び方ガイド' },
     ],
   }
 
@@ -115,14 +148,12 @@ export default async function MacBookGuidePage() {
         />
 
         <div className="hero-wrapper">
-        {/* パンくず */}
         <Breadcrumb
           items={[
-            { label: '中古MacBook完全購入ガイド' },
+            { label: '中古MacBookおすすめ・選び方ガイド' },
           ]}
         />
 
-        {/* Hero */}
         <header className="hero">
           <div className="hero-bg" aria-hidden="true">
             <div className="hero-shape hero-shape-1"></div>
@@ -131,7 +162,7 @@ export default async function MacBookGuidePage() {
           <div className="hero-inner l-container">
             <div className="hero-content">
               <h1 className="hero-title" itemProp="headline">
-                中古MacBook完全購入ガイド | 選び方・相場・おすすめモデルまとめ【{GUIDE_DATE_LABEL}版】
+                中古MacBookおすすめ4選｜初心者向け選び方・コスパ・狙い目モデル【{GUIDE_DATE_LABEL}版】
               </h1>
               <HeroMeta dateStr={dateStr} dateDisplay={dateDisplay} withItemProp showAuthor />
             </div>
@@ -152,41 +183,51 @@ export default async function MacBookGuidePage() {
         </header>
         </div>
 
-        {/* リード文 */}
         <section className="l-section l-section--sm section-lead" aria-label="記事の導入">
           <div className="l-container">
             <div className="lead-box">
-              <p>「MacBookが欲しいけど、新品は高すぎる...中古は状態が心配...」そんな悩みはありませんか？</p>
+              <p>「中古MacBook Airはどれがいい？」「初心者でも失敗しない選び方は？」「コスパ最強の狙い目モデルは？」そんな疑問にお答えします。</p>
               <p>
-                本ページではあなたが納得して中古MacBookを選べるよう、<strong>{GUIDE_DATE_LABEL}の最新相場や後悔しないための判断基準</strong>を解説します。
+                本ページでは<strong>{GUIDE_DATE_LABEL}のおすすめ中古MacBook4機種</strong>を初心者向けの選び方・コスパ・用途別に厳選。今買うなら狙い目のモデルをわかりやすく解説しています。
               </p>
-              <p className="lead-link">
-                <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                結論から知りたい方は「<Link href="/macbook/recommend/">【{GUIDE_DATE_LABEL}版】おすすめの中古MacBookを{RECOMMEND_COUNT_LABEL}厳選</Link>」をご覧ください。
+              <p>
+                最新相場・選び方のポイント・購入先比較まで一ページで網羅。初めて中古Macを買う方にも迷わず選べる構成にしています。
               </p>
             </div>
           </div>
         </section>
 
-        {/* 目次 */}
         <nav className="l-section l-section--no-pt" aria-label="目次">
           <div className="l-container">
             <div className="toc-wrapper">
 <p className="toc-title"><i className="fa-solid fa-list" aria-hidden="true"></i> タップできる目次</p>
             <ol className="l-grid l-grid--3col u-list-reset">
+              <li><a href="#conclusion" className="toc-item">おすすめ機種 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#market-price" className="toc-item">最新相場 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#caution" className="toc-item">注意点 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
-              <li><a href="#recommended" className="toc-item">目的別 おすすめ機種 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#where-to-buy" className="toc-item">購入先比較 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#compare-devices" className="toc-item">他デバイスとの比較 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#spec-compare" className="toc-item">スペック比較 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#faq" className="toc-item">よくある質問 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
-              <li><a href="#related" className="toc-item">関連記事 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
             </ol>
 </div>
           </div>
         </nav>
         <div className="l-sections">
+
+          {/* ========== おすすめ機種 ========== */}
+          <ConclusionSection
+            items={conclusionItems}
+            heading={<>今買うならこれ｜初心者向けおすすめ中古MacBook{GUIDE_DATE_LABEL}版</>}
+            descriptions={[
+              <>初心者でも迷わず選べるよう、コスパ・用途別に厳選した4機種。MacBook Airを中心に狙い目モデルを厳選しています。</>,
+              <>{GUIDE_DATE_LABEL}時点で「Appleシリコン搭載」「macOSサポートが十分に残っている」「中古価格と性能のバランスが良い」モデルだけに絞っています。</>,
+            ]}
+            gridCols="4col"
+            imagePath="macbook"
+            placeholderText="MacBook"
+          />
+          <RecommendDetailSection items={detailItems} />
 
           {/* ========== 中古MacBookの最新相場 ========== */}
           <section className="l-section" id="market-price" aria-labelledby="heading-market-price">
@@ -286,55 +327,6 @@ export default async function MacBookGuidePage() {
             </div>
           </section>
 
-          {/* ========== 目的別・おすすめ機種 ========== */}
-          <section className="l-section" id="recommended" aria-labelledby="heading-recommended">
-            <div className="l-container">
-              <h2 className="m-section-heading m-section-heading--lg" id="heading-recommended">目的別・おすすめ機種</h2>
-              <p className="m-section-desc">{GUIDE_DATE_LABEL}現在、中古市場で選択肢として検討されることが多い機種の例を、目的別に整理しました。</p>
-              <p className="m-section-desc">それぞれの「特徴」と「選ばれる理由の傾向」をまとめています。</p>
-
-              <div className="guide-recommend-list">
-                {recommendModels.map((model, i) => {
-                  const meta = RECOMMEND_META[model.slug]
-                  const price = recommendPrices[i]
-                  const minPrice = price?.min1_price
-                  const storageLabel = model.strage?.match(/(\d+(?:GB|TB))/)?.[1] || ''
-                  const iosysLink = allShopLinks.find((l) => l.product_id === model.id && l.shop_id === 1)
-                  return (
-                    <ProductCard
-                      key={model.id}
-                      variant="detail"
-                      modelId={model.id}
-                      modelName={model.model}
-                      imageUrl={model.image ? `/images/macbook/${model.image}` : null}
-                      metaText={`${model.date ? `${model.date.split('/')[0]}年` : ''} / ${model.cpu || ''}`}
-                      tagLabel={meta?.label || ''}
-                      specs={[
-                        model.date ? `${model.date.split('/')[0]}年発売` : '',
-                        model.cpu || '',
-                        model.size || '',
-                      ]}
-                      description={meta?.desc || ''}
-                      priceLabel={minPrice ? `中古相場（${storageLabel}）` : ''}
-                      priceValue={minPrice ? `¥${minPrice.toLocaleString()}` : ''}
-                      shopUrl={iosysLink?.url}
-                      fallbackHref={`/macbook/${model.slug}/`}
-                      fallbackText="詳細を見る"
-                    />
-                  )
-                })}
-              </div>
-
-              <p className="guide-section-note">{GUIDE_DATE_LABEL}現在おすすめの中古MacBookはこちらの記事でじっくり解説しています。</p>
-              <div className="guide-section-cta">
-                <Link href="/macbook/recommend/" className="m-btn m-btn--primary m-btn--block">
-                  <span>中古MacBookのおすすめ機種</span>
-                  <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
-                </Link>
-              </div>
-            </div>
-          </section>
-
           {/* ========== 購入先比較 ========== */}
           <section className="l-section" id="where-to-buy" aria-labelledby="heading-where-to-buy">
             <div className="l-container">
@@ -351,7 +343,6 @@ export default async function MacBookGuidePage() {
                   <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
                 </Link>
               </div>
-
             </div>
           </section>
 
@@ -412,7 +403,6 @@ export default async function MacBookGuidePage() {
                 ))}
               </div>
 
-              {/* 歴代MacBook 個別記事リンク集 */}
               <div className="guide-model-links">
                 <h3 className="guide-model-links__heading">歴代MacBook 個別記事リンク集</h3>
                 <p className="guide-model-links__desc">各モデルの詳細スペック、中古相場、購入時の注意点を個別にまとめています。</p>

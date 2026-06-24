@@ -116,7 +116,7 @@ export default async function IPhoneFilterSearchPage() {
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
-      { '@type': 'ListItem', position: 2, name: '中古iPhone完全購入ガイド', item: 'https://used-lab.jp/iphone' },
+      { '@type': 'ListItem', position: 2, name: '中古iPhoneおすすめ機種・選び方ガイド', item: 'https://used-lab.jp/iphone' },
       { '@type': 'ListItem', position: 3, name: 'iPhone機種診断シミュレーター' },
     ],
   }
@@ -163,7 +163,7 @@ export default async function IPhoneFilterSearchPage() {
         {/* パンくず */}
         <Breadcrumb
           items={[
-            { label: '中古iPhone完全購入ガイド', href: '/iphone/' },
+            { label: '中古iPhoneおすすめ機種・選び方ガイド', href: '/iphone/' },
             { label: 'iPhone機種診断' },
           ]}
         />
@@ -204,7 +204,7 @@ export default async function IPhoneFilterSearchPage() {
             <div className="lead-box">
               <p>「どのiPhoneを買えばいいかわからない…」そんな悩みを解決する<strong>iPhone機種診断ツール</strong>です。</p>
               <p>最新のiPhoneから型落ちの人気モデルまで、あなたの使用目的・予算・こだわり条件に合わせて最適な中古iPhoneを無料で診断。<strong>30機種のデータベース</strong>から、あなたにぴったりの1台を見つけましょう。</p>
-              <p className="lead-link"><i className="fa-solid fa-arrow-right" aria-hidden="true"></i> 情報を網羅的に得たい方は「<Link href="/iphone/">中古iPhone購入完全ガイド</Link>」も参考にしてみてください！</p>
+              <p className="lead-link"><i className="fa-solid fa-arrow-right" aria-hidden="true"></i> 情報を網羅的に得たい方は「<Link href="/iphone/">中古iPhoneおすすめ機種・選び方ガイド</Link>」も参考にしてみてください！</p>
             </div>
           </div>
         </section>

@@ -4,7 +4,7 @@ import type { Metadata } from 'next'
 import {
   getWatchModelBySlug,
   getAllWatchSlugs,
-  getAllWatchModels,
+  getAllWatchModelsIncludingEnded,
   getShops,
   getAllProductShopLinksByType,
   getWatchPriceLogsByModelId,
@@ -91,7 +91,7 @@ export default async function WatchDetailPage({ params }: PageProps) {
     getAllProductShopLinksByType('watch'),
     getWatchPriceLogsByModelId(model.id),
     cachedGetLatestPrice(model.id),
-    getAllWatchModels(),
+    getAllWatchModelsIncludingEnded(),
   ])
 
   // PriceChartSection用のデータをサーバーサイドで事前計算

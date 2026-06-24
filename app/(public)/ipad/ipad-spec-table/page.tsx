@@ -31,19 +31,19 @@ import { getHeroImage } from '@/lib/data/hero-images'
 export const revalidate = false
 
 export const metadata: Metadata = {
-  title: '歴代iPadスペック比較表！各世代の性能の違いがすぐわかる',
+  title: 'iPadスペック・性能比較表｜世代比較・チップ性能ランキング一覧',
   description:
-    '歴代iPadのスペック比較表一覧です。iPad Pro・Air・mini・無印の性能差や機能の違いを一目で確認できます。',
+    '歴代iPadのスペック・性能を世代別に比較表で一覧化。チップ性能ランキング・ベンチマーク・処理速度の違いをPro・Air・mini・無印の世代別に確認できます。',
   alternates: { canonical: '/ipad/ipad-spec-table/' },
   openGraph: {
-    title: '歴代iPadスペック比較表！各世代の性能の違いがすぐわかる',
-    description: '歴代iPadのスペック比較表一覧です。iPad Pro・Air・mini・無印の性能差や機能の違いを一目で確認できます。',
+    title: 'iPadスペック・性能比較表｜世代比較・チップ性能ランキング一覧',
+    description: '歴代iPadのスペック・性能を世代別に比較表で一覧化。チップ性能ランキング・ベンチマーク・処理速度の違いをPro・Air・mini・無印の世代別に確認できます。',
     url: '/ipad/ipad-spec-table/',
-    images: [{ url: getHeroImage('/ipad/ipad-spec-table/'), width: 1200, height: 630, alt: '歴代iPadスペック比較表のイメージ' }],
+    images: [{ url: getHeroImage('/ipad/ipad-spec-table/'), width: 1200, height: 630, alt: 'iPadスペック・性能比較表のイメージ' }],
   },
   twitter: {
-    title: '歴代iPadスペック比較表！各世代の性能の違いがすぐわかる',
-    description: '歴代iPadのスペック比較表一覧です。iPad Pro・Air・mini・無印の性能差や機能の違いを一目で確認できます。',
+    title: 'iPadスペック・性能比較表｜世代比較・チップ性能ランキング一覧',
+    description: '歴代iPadのスペック・性能を世代別に比較表で一覧化。チップ性能ランキング・ベンチマーク・処理速度の違いをPro・Air・mini・無印の世代別に確認できます。',
     images: [getHeroImage('/ipad/ipad-spec-table/')],
   },
 }
@@ -65,7 +65,7 @@ export default async function IPadSpecTablePage() {
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
-      { '@type': 'ListItem', position: 2, name: '中古iPad完全購入ガイド', item: 'https://used-lab.jp/ipad' },
+      { '@type': 'ListItem', position: 2, name: '中古iPadおすすめ機種・選び方ガイド', item: 'https://used-lab.jp/ipad' },
       { '@type': 'ListItem', position: 3, name: '歴代iPadスペック比較表' },
     ],
   }
@@ -141,7 +141,7 @@ export default async function IPadSpecTablePage() {
         {/* パンくず */}
         <Breadcrumb
           items={[
-            { label: '中古iPad完全購入ガイド', href: '/ipad/' },
+            { label: '中古iPadおすすめ機種・選び方ガイド', href: '/ipad/' },
             { label: '歴代iPadスペック比較表' },
           ]}
         />
@@ -155,7 +155,7 @@ export default async function IPadSpecTablePage() {
           <div className="hero-inner l-container">
             <div className="hero-content">
               <h1 className="hero-title">
-                歴代iPadスペック比較表！各世代の性能の違いがすぐわかる
+                iPadスペック・性能比較表｜世代比較・チップ性能ランキング一覧
               </h1>
               <HeroMeta dateStr={dateStr} dateDisplay={dateDisplay} />
             </div>
@@ -180,12 +180,13 @@ export default async function IPadSpecTablePage() {
         <section className="l-section l-section--sm section-lead" aria-label="記事の導入">
           <div className="l-container">
             <div className="lead-box">
-              <p>iPadはPro・Air・mini・無印と多くのラインナップがあり、世代ごとにスペックが異なります。購入を検討中の方の中にはこんな悩みをお持ちの方も多いのではないでしょうか。</p>
+              <p>「iPad Proと無印の性能差はどれくらい？」「世代比較でどこが違う？」「チップ・CPU性能のランキングが知りたい」そんな疑問にお答えします。</p>
               <ul className="lead-box__list">
-                <li>自分の用途にはどのiPadが合うのかわからない…</li>
-                <li>型落ちiPadでも十分なスペックなのか知りたい!</li>
+                <li>Pro・Air・mini・無印の世代別スペックを比較したい</li>
+                <li>チップ性能ランキング・ベンチマークを数値で確認したい</li>
+                <li>型落ちiPadでも十分なスペックなのか知りたい</li>
               </ul>
-              <p>本記事では<strong>歴代iPadの主要スペックを一覧表で比較</strong>し、進化ポイントをわかりやすくまとめました。iPadを購入する際の参考にしてみてください！</p>
+              <p>本記事では<strong>歴代iPadのスペック・性能を世代別に比較表で一覧化</strong>。チップ性能ランキング・ベンチマーク・処理速度の違いをまとめて確認できます。</p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
                 もっと全体像から知りたい方は「<Link href="/ipad/">中古iPad購入ガイド</Link>」をご覧ください。

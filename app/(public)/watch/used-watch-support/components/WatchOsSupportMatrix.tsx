@@ -22,6 +22,7 @@ const WATCHOS_VERSIONS: WatchOsVersion[] = [
   { year: 2023, label: '2023年', version: 'watchOS 10', versionNum: 10 },
   { year: 2024, label: '2024年', version: 'watchOS 11', versionNum: 11 },
   { year: 2025, label: '2025年', version: 'watchOS 26', versionNum: 26 },
+  { year: 2026, label: '2026年', version: 'watchOS 27', versionNum: 27 },
 ]
 
 /* ------------------------------------------------------------------

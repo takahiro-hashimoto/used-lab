@@ -9,7 +9,7 @@ import {
   getShops,
 } from '@/lib/queries'
 import type { WatchModel } from '@/lib/types'
-import { getMinPrice, buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
+import { getMinPrice, buildArticleJsonLd, getGitDateForFile, buildFallbackShops } from '@/lib/utils/shared-helpers'
 import {
   GUIDE_DATE_LABEL,
   GUIDE_PRICE_SLUGS,
@@ -21,7 +21,7 @@ import { buildVendorCardsFromShops } from '@/lib/data/guide-shared'
 import {
   RECOMMEND_SLUGS,
   RECOMMEND_META,
-  RECOMMEND_COUNT_LABEL,
+  SHOP_SECTION_IDS,
 } from '@/lib/data/watch-recommend'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import FaqSection from '@/app/components/support/FaqSection'
@@ -34,11 +34,13 @@ import PopularSection from '@/app/components/support/PopularSection'
 import AuthorByline from '@/app/components/AuthorByline'
 import ContinuousAside from '@/app/components/ContinuousAside'
 import HeroMeta from '@/app/components/HeroMeta'
+import ConclusionSection from '@/app/components/ConclusionSection'
+import RecommendDetailSection from './recommend/components/RecommendDetailSection'
 
 export const revalidate = false
 
-const PAGE_TITLE = `中古Apple Watch完全購入ガイド | 選び方・相場・おすすめモデルまとめ【${GUIDE_DATE_LABEL}版】`
-const PAGE_DESCRIPTION = `${GUIDE_DATE_LABEL}版・中古Apple Watchの完全購入ガイド。選び方のポイント、モデル別の相場、おすすめ機種をまとめて解説。失敗しない中古Apple Watch選びをサポートします。`
+const PAGE_TITLE = `中古Apple Watchおすすめ3選｜型落ち・中古で買うならどれ？コスパ・狙い目モデル【${GUIDE_DATE_LABEL}版】`
+const PAGE_DESCRIPTION = `${GUIDE_DATE_LABEL}版・中古Apple Watchのおすすめ3機種をコスパ・用途別に解説。型落ちで中古で買うなら何がいい？最新相場・選び方・購入先比較まで完全網羅。失敗しない中古Apple Watch選びをサポートします。`
 const PAGE_URL = 'https://used-lab.jp/watch/'
 
 export const metadata: Metadata = {
@@ -73,7 +75,7 @@ export default async function WatchGuidePage() {
   const vendorCards = buildVendorCardsFromShops(shops, 'watch_url', '中古Apple Watchを探す', { exclude: ['rakuma'] })
     .map((card) => ({ ...card, specs: card.specs.filter((s) => s.label !== 'バッテリー保証' && s.label !== '赤ロム保証') }))
 
-  // 相場セクション用: 指定slugのモデル + 最新価格を並列取得
+  // 相場セクション用
   const priceModels = GUIDE_PRICE_SLUGS
     .map((slug) => allModels.find((m) => m.slug === slug))
     .filter((m): m is WatchModel => m != null)
@@ -88,6 +90,40 @@ export default async function WatchGuidePage() {
     Promise.all(recommendModels.map((m) => getLatestWatchPriceLog(m.id))),
   ])
 
+  const fallbackShops = buildFallbackShops(shops, SHOP_SECTION_IDS, 'watch_url')
+
+  const conclusionItems = recommendModels.map((model, i) => {
+    const meta = RECOMMEND_META[model.slug]
+    const price = getMinPrice(recommendPrices[i])
+    const priceLabel = price ? `${price.toLocaleString()}円〜` : ''
+    const desc = priceLabel ? `${priceLabel}。${meta?.desc || ''}` : (meta?.desc || '')
+    return {
+      id: model.id,
+      slug: model.slug,
+      displayName: model.model,
+      image: model.image,
+      date: model.date,
+      desc,
+    }
+  })
+
+  const detailItems = recommendModels.map((model, i) => {
+    const meta = RECOMMEND_META[model.slug]
+    const modelShopLinks = allShopLinks.filter((l) => l.product_id === model.id)
+    return {
+      model,
+      latestPrice: recommendPrices[i],
+      updatedDateStr: recommendPrices[i]?.logged_at?.substring(0, 10) ?? '',
+      shopLinks: modelShopLinks,
+      fallbackShops,
+      label: meta?.label || '',
+      subtitle: meta?.subtitle || '',
+      description: meta?.description || [],
+      good: meta?.good || [],
+      bad: meta?.bad || [],
+    }
+  })
+
   const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/watch/page.tsx')
 
   // JSON-LD
@@ -96,7 +132,7 @@ export default async function WatchGuidePage() {
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
-      { '@type': 'ListItem', position: 2, name: '中古Apple Watch完全購入ガイド' },
+      { '@type': 'ListItem', position: 2, name: '中古Apple Watchおすすめ・選び方ガイド' },
     ],
   }
 
@@ -107,7 +143,6 @@ export default async function WatchGuidePage() {
     dateModified: dateStr,
     url: PAGE_URL,
   })
-
 
   return (
     <>
@@ -126,7 +161,7 @@ export default async function WatchGuidePage() {
         {/* パンくず */}
         <Breadcrumb
           items={[
-            { label: '中古Apple Watch完全購入ガイド' },
+            { label: '中古Apple Watchおすすめ・選び方ガイド' },
           ]}
         />
 
@@ -139,8 +174,7 @@ export default async function WatchGuidePage() {
           <div className="hero-inner l-container">
             <div className="hero-content">
               <h1 className="hero-title" itemProp="headline">
-                中古Apple Watch完全購入ガイド
-                選び方・相場・おすすめモデルまとめ【{GUIDE_DATE_LABEL}版】
+                中古Apple Watchおすすめ3選｜型落ち・中古で買うならどれ？コスパ・狙い目モデル【{GUIDE_DATE_LABEL}版】
               </h1>
               <HeroMeta dateStr={dateStr} dateDisplay={dateDisplay} withItemProp showAuthor />
             </div>
@@ -165,13 +199,12 @@ export default async function WatchGuidePage() {
         <section className="l-section l-section--sm section-lead" aria-label="記事の導入">
           <div className="l-container">
             <div className="lead-box">
-              <p>「Apple Watchが気になるけど、新品は高いし中古は不安...」そんな悩みはありませんか？</p>
+              <p>「中古Apple Watchを型落ちで買うならどれがいい？」「コスパ最強の狙い目モデルは？」そんな疑問にお答えします。</p>
               <p>
-                本ページではあなたが納得して中古Apple Watchを選べるよう、<strong>{GUIDE_DATE_LABEL}の最新相場や後悔しないための判断基準</strong>を解説します。
+                本ページでは<strong>{GUIDE_DATE_LABEL}のおすすめ中古Apple Watch3機種</strong>を型落ち・コスパ・用途別に厳選。中古で買うならどのモデルが正解か、わかりやすく解説しています。
               </p>
-              <p className="lead-link">
-                <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                結論から知りたい方は「<Link href="/watch/recommend/">【{GUIDE_DATE_LABEL}版】おすすめの中古Apple Watchを{RECOMMEND_COUNT_LABEL}厳選</Link>」をご覧ください。
+              <p>
+                最新相場・選び方のポイント・購入先比較まで一ページで網羅。型落ちApple Watchを安く賢く選びたい方はぜひ参考にしてください。
               </p>
             </div>
           </div>
@@ -183,10 +216,10 @@ export default async function WatchGuidePage() {
             <div className="toc-wrapper">
 <p className="toc-title"><i className="fa-solid fa-list" aria-hidden="true"></i> タップできる目次</p>
             <ol className="l-grid l-grid--3col u-list-reset">
-              <li><a href="#filter-tool" className="toc-item">診断ツール <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
+              <li><a href="#conclusion" className="toc-item">おすすめ機種 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#market-price" className="toc-item">最新相場 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
+              <li><a href="#filter-tool" className="toc-item">診断ツール <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#caution" className="toc-item">注意点 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
-              <li><a href="#recommended" className="toc-item">目的別 おすすめ機種 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#where-to-buy" className="toc-item">購入先比較 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#usage" className="toc-item">できること・活用シーン <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#spec-compare" className="toc-item">スペック比較 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
@@ -197,20 +230,18 @@ export default async function WatchGuidePage() {
         </nav>
         <div className="l-sections">
 
-          {/* ========== 絞り込みツール ========== */}
-          <PopularSection
-            sectionId="filter-tool"
-            headingId="heading-filter-tool"
-            sectionTitle="条件に合うApple Watchを絞り込む"
-            sectionDescription="予算・ケースサイズ・健康センサー・バッテリー持ちなど、ご自身の条件を選ぶことで候補を絞り込めます。"
-            imageSrc="/images/content/thumbnail/simulator.jpg"
-            imageAlt="Apple Watch機種絞り込みツール"
-            subtitle="条件にチェックを打つだけ！"
-            cardTitle="Apple Watch機種絞り込みツール"
-            cardDescription="健康管理をしっかりしたい、バッテリーが長持ちしてほしいなどの希望や予算にチェックを打つだけで、あなたにぴったり合うApple Watchをシミュレーションすることができます。"
-            buttonText="機種診断スタート"
-            buttonHref="/watch/watch-filter-search/"
+          {/* ========== おすすめ機種 ========== */}
+          <ConclusionSection
+            items={conclusionItems}
+            heading={<>今買うならこれ｜型落ちおすすめ中古Apple Watch{GUIDE_DATE_LABEL}版</>}
+            descriptions={[
+              <>型落ち・コスパ・用途別に厳選した3機種をご紹介。中古で買うならまずここから選べば失敗しません。</>,
+            ]}
+            gridCols="3col"
+            imagePath="watch"
+            placeholderText="Watch"
           />
+          <RecommendDetailSection items={detailItems} />
 
           {/* ========== 中古Apple Watchの最新相場 ========== */}
           <section className="l-section" id="market-price" aria-labelledby="heading-market-price">
@@ -244,6 +275,21 @@ export default async function WatchGuidePage() {
               </div>
             </div>
           </section>
+
+          {/* ========== 絞り込みツール ========== */}
+          <PopularSection
+            sectionId="filter-tool"
+            headingId="heading-filter-tool"
+            sectionTitle="条件に合うApple Watchを絞り込む"
+            sectionDescription="予算・ケースサイズ・健康センサー・バッテリー持ちなど、ご自身の条件を選ぶことで候補を絞り込めます。"
+            imageSrc="/images/content/thumbnail/simulator.jpg"
+            imageAlt="Apple Watch機種絞り込みツール"
+            subtitle="条件にチェックを打つだけ！"
+            cardTitle="Apple Watch機種絞り込みツール"
+            cardDescription="健康管理をしっかりしたい、バッテリーが長持ちしてほしいなどの希望や予算にチェックを打つだけで、あなたにぴったり合うApple Watchをシミュレーションすることができます。"
+            buttonText="機種診断スタート"
+            buttonHref="/watch/watch-filter-search/"
+          />
 
           {/* ========== 中古Apple Watchを選ぶ際の確認ポイント ========== */}
           <section className="l-section" id="caution" aria-labelledby="heading-caution">
@@ -305,49 +351,6 @@ export default async function WatchGuidePage() {
               <div className="guide-section-cta">
                 <Link href="/watch/used-watch-attention/" className="m-btn m-btn--primary m-btn--block">
                   <span>中古Apple Watchの注意点と選び方</span>
-                  <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
-                </Link>
-              </div>
-            </div>
-          </section>
-
-          {/* ========== 目的別・おすすめ機種 ========== */}
-          <section className="l-section" id="recommended" aria-labelledby="heading-recommended">
-            <div className="l-container">
-              <h2 className="m-section-heading m-section-heading--lg" id="heading-recommended">目的別・おすすめ機種</h2>
-              <p className="m-section-desc">{GUIDE_DATE_LABEL}現在、中古市場で選択肢として検討されることが多い機種の例を、目的別に整理しました。</p>
-
-              <div className="guide-recommend-list">
-                {recommendModels.map((model, i) => {
-                  const meta = RECOMMEND_META[model.slug]
-                  return (
-                    <ProductCard
-                      key={model.id}
-                      variant="detail"
-                      modelId={model.id}
-                      modelName={model.model}
-                      imageUrl={model.image ? `/images/watch/${model.image}` : null}
-                      metaText={`${model.date ? `${model.date.split('/')[0]}年` : ''} / ${model.cpu || ''}`}
-                      tagLabel={meta?.label || ''}
-                      specs={[
-                        model.date ? `${model.date.split('/')[0]}年発売` : '',
-                        model.cpu || '',
-                        model.size || '',
-                      ]}
-                      description={meta?.desc || ''}
-                      priceLabel={`中古相場（${getSizeLabel(model)}）`}
-                      priceValue={getMinPrice(recommendPrices[i])}
-                      shopUrl={allShopLinks.find((l) => l.product_id === model.id && l.shop_id === 1)?.url}
-                      fallbackHref={`/watch/${model.slug}/`}
-                    />
-                  )
-                })}
-              </div>
-
-              <p className="guide-section-note">{GUIDE_DATE_LABEL}現在おすすめの中古Apple Watchはこちらの記事でじっくり解説しています。</p>
-              <div className="guide-section-cta">
-                <Link href="/watch/recommend/" className="m-btn m-btn--primary m-btn--block">
-                  <span>中古Apple Watchのおすすめ機種</span>
                   <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
                 </Link>
               </div>

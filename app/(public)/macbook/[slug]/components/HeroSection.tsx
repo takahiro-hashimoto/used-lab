@@ -4,7 +4,7 @@ import type { MacBookModel, MacBookPriceLog } from '@/lib/types'
 
 const config: ModelHeroConfig = {
   categoryPath: '/macbook',
-  categoryLabel: '中古MacBook完全購入ガイド',
+  categoryLabel: '中古MacBookおすすめ機種・選び方ガイド',
   imageFolder: 'macbook',
   imageWidth: 480,
   imageHeight: 320,

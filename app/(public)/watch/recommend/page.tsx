@@ -84,7 +84,7 @@ export default async function WatchRecommendPage() {
   // JSON-LD
   const breadcrumbJsonLd = buildBreadcrumbJsonLd([
     { name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
-    { name: '中古Apple Watch完全購入ガイド', item: 'https://used-lab.jp/watch' },
+    { name: '中古Apple Watchおすすめ機種・選び方ガイド', item: 'https://used-lab.jp/watch' },
     { name: `中古Apple Watchおすすめ${RECOMMEND_COUNT}選` },
   ])
   const articleJsonLd = buildArticleJsonLd({ headline: PAGE_TITLE, description: PAGE_DESCRIPTION, dateStr, url: PAGE_URL })
@@ -164,7 +164,7 @@ export default async function WatchRecommendPage() {
         {/* パンくず */}
         <Breadcrumb
           items={[
-            { label: '中古Apple Watch完全購入ガイド', href: '/watch/' },
+            { label: '中古Apple Watchおすすめ機種・選び方ガイド', href: '/watch/' },
             { label: `中古Apple Watchおすすめ${RECOMMEND_COUNT}選` },
           ]}
         />
@@ -212,7 +212,7 @@ export default async function WatchRecommendPage() {
                 この記事では、今買っても後悔しない中古Apple Watch {RECOMMEND_COUNT}機種を厳選し、それぞれの特徴と向いている人を
                 詳しく解説します。
               </p>
-              <p className="lead-link"><i className="fa-solid fa-arrow-right" aria-hidden="true"></i> 情報を網羅的に得たい方は「<Link href="/watch/">中古Apple Watch購入完全ガイド</Link>」も参考にしてみてください！</p>
+              <p className="lead-link"><i className="fa-solid fa-arrow-right" aria-hidden="true"></i> 情報を網羅的に得たい方は「<Link href="/watch/">中古Apple Watchおすすめ機種・選び方ガイド</Link>」も参考にしてみてください！</p>
             </div>
           </div>
         </section>

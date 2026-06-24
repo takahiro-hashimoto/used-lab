@@ -84,7 +84,7 @@ export default async function MacBookRecommendPage() {
   // JSON-LD
   const breadcrumbJsonLd = buildBreadcrumbJsonLd([
     { name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
-    { name: '中古MacBook完全購入ガイド', item: 'https://used-lab.jp/macbook' },
+    { name: '中古MacBookおすすめ機種・選び方ガイド', item: 'https://used-lab.jp/macbook' },
     { name: `中古MacBookおすすめ${RECOMMEND_COUNT}選` },
   ])
   const articleJsonLd = buildArticleJsonLd({ headline: PAGE_TITLE, description: PAGE_DESCRIPTION, dateStr, url: PAGE_URL })
@@ -171,7 +171,7 @@ export default async function MacBookRecommendPage() {
         {/* パンくず */}
         <Breadcrumb
           items={[
-            { label: '中古MacBook完全購入ガイド', href: '/macbook/' },
+            { label: '中古MacBookおすすめ機種・選び方ガイド', href: '/macbook/' },
             { label: `中古MacBookおすすめ${RECOMMEND_COUNT}選` },
           ]}
         />

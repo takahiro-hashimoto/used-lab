@@ -4,7 +4,7 @@ import type { Metadata } from 'next'
 import {
   getAirPodsModelBySlug,
   getAllAirPodsSlugs,
-  getAllAirPodsModels,
+  getAllAirPodsModelsIncludingEnded,
   getShops,
   getAllProductShopLinksByType,
   getAirPodsPriceLogsByModelId,
@@ -81,7 +81,7 @@ export default async function AirPodsDetailPage({ params }: PageProps) {
     getAllProductShopLinksByType('airpods'),
     getAirPodsPriceLogsByModelId(model.id),
     getLatestAirPodsPriceLog(model.id),
-    getAllAirPodsModels(),
+    getAllAirPodsModelsIncludingEnded(),
   ])
 
   // PriceChartSection用のデータをサーバーサイドで事前計算

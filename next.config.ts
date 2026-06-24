@@ -104,6 +104,31 @@ const nextConfig: NextConfig = {
       { source: '/apple-watch/se2/',      destination: '/watch/se2/',      permanent: true },
       { source: '/apple-watch/se/',       destination: '/watch/se/',       permanent: true },
       {
+        source: '/iphone/recommend/',
+        destination: '/iphone/',
+        permanent: true,
+      },
+      {
+        source: '/ipad/recommend/',
+        destination: '/ipad/',
+        permanent: true,
+      },
+      {
+        source: '/watch/recommend/',
+        destination: '/watch/',
+        permanent: true,
+      },
+      {
+        source: '/macbook/recommend/',
+        destination: '/macbook/',
+        permanent: true,
+      },
+      {
+        source: '/airpods/recommend/',
+        destination: '/airpods/',
+        permanent: true,
+      },
+      {
         source: '/iphone/ipad-mini-6-review/',
         destination: '/ipad/ipad-mini-6-review/',
         permanent: true,

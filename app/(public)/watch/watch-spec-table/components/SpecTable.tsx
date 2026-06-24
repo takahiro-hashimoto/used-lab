@@ -106,10 +106,10 @@ export default function SpecTable({ models, shopLinks }: Props) {
     <section className="l-section" id="spec-table" aria-labelledby="heading-spec-table">
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg" id="heading-spec-table">
-          歴代Apple Watchスペック比較表
+          歴代Apple Watch比較表｜全シリーズのスペック・機能の違いを一覧で比較
         </h2>
         <p className="m-section-desc">
-          歴代Apple Watchの主要スペックを一覧で比較できます。
+          Series・SE・Ultraの全世代スペック・機能を一覧で比較できます。
         </p>
 
         {/* フィルターUI */}

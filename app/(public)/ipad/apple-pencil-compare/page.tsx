@@ -73,7 +73,7 @@ export default async function ApplePencilComparePage() {
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
-      { '@type': 'ListItem', position: 2, name: '中古iPad完全購入ガイド', item: 'https://used-lab.jp/ipad' },
+      { '@type': 'ListItem', position: 2, name: '中古iPadおすすめ機種・選び方ガイド', item: 'https://used-lab.jp/ipad' },
       { '@type': 'ListItem', position: 3, name: 'Apple Pencilの違いを比較' },
     ],
   }
@@ -103,7 +103,7 @@ export default async function ApplePencilComparePage() {
         {/* パンくず */}
         <Breadcrumb
           items={[
-            { label: '中古iPad完全購入ガイド', href: '/ipad/' },
+            { label: '中古iPadおすすめ機種・選び方ガイド', href: '/ipad/' },
             { label: 'Apple Pencilの違いを比較' },
           ]}
         />

@@ -4,7 +4,7 @@ import type { IPhoneModel, IPhonePriceLog } from '@/lib/types'
 
 const config: ModelHeroConfig = {
   categoryPath: '/iphone',
-  categoryLabel: '中古iPhone完全購入ガイド',
+  categoryLabel: '中古iPhoneおすすめ機種・選び方ガイド',
   imageFolder: 'iphone',
 }
 

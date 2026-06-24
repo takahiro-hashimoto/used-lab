@@ -148,7 +148,7 @@ export default async function MvnoPage() {
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
-      { '@type': 'ListItem', position: 2, name: '中古iPhone完全購入ガイド', item: 'https://used-lab.jp/iphone/' },
+      { '@type': 'ListItem', position: 2, name: '中古iPhoneおすすめ機種・選び方ガイド', item: 'https://used-lab.jp/iphone/' },
       { '@type': 'ListItem', position: 3, name: '格安SIM×中古iPhone' },
     ],
   }
@@ -177,7 +177,7 @@ export default async function MvnoPage() {
         {/* パンくず */}
         <Breadcrumb
           items={[
-            { label: '中古iPhone完全購入ガイド', href: '/iphone/' },
+            { label: '中古iPhoneおすすめ機種・選び方ガイド', href: '/iphone/' },
             { label: '格安SIM×中古iPhone' },
           ]}
         />
@@ -225,7 +225,7 @@ export default async function MvnoPage() {
                 このページでは、<strong>中古iPhoneの端末販売がある格安SIM業者{mvnoProviders.length}社</strong>の料金プランと端末販売の特徴を比較しています。
                 それぞれの強みや注意点を把握して、あなたに最適な組み合わせを見つけてください。
               </p>
-              <p className="lead-link"><i className="fa-solid fa-arrow-right" aria-hidden="true"></i> 情報を網羅的に得たい方は「<Link href="/iphone/">中古iPhone購入完全ガイド</Link>」も参考にしてみてください！</p>
+              <p className="lead-link"><i className="fa-solid fa-arrow-right" aria-hidden="true"></i> 情報を網羅的に得たい方は「<Link href="/iphone/">中古iPhoneおすすめ機種・選び方ガイド</Link>」も参考にしてみてください！</p>
             </div>
           </div>
         </section>

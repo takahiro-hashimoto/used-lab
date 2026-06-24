@@ -3,11 +3,11 @@ import { Suspense } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import {
-  getAllIPhoneModels,
-  getAllIPadModels,
-  getAllMacBookModels,
-  getAllWatchModels,
-  getAllAirPodsModels,
+  getAllIPhoneModelsIncludingEnded,
+  getAllIPadModelsIncludingEnded,
+  getAllMacBookModelsIncludingEnded,
+  getAllWatchModelsIncludingEnded,
+  getAllAirPodsModelsIncludingEnded,
   getLatestPriceUpdateDate,
 } from '@/lib/queries'
 import { PRODUCT_CATEGORIES } from '@/lib/routes'
@@ -40,13 +40,13 @@ const CATEGORY_IMAGE_BASE: Record<string, string> = {
 }
 
 export default async function HomePage() {
-  // 全モデル＋新着情報＋価格更新日を並列取得
-  const [iPhoneModels, iPadModels, macBookModels, watchModels, airPodsModels, latestPriceDate] = await Promise.all([
-    getAllIPhoneModels(),
-    getAllIPadModels(),
-    getAllMacBookModels(),
-    getAllWatchModels(),
-    getAllAirPodsModels(),
+  // 全モデル（サポート切れ含む）＋価格更新日を並列取得
+  const [allIPhoneModels, allIPadModels, allMacBookModels, allWatchModels, allAirPodsModels, latestPriceDate] = await Promise.all([
+    getAllIPhoneModelsIncludingEnded(),
+    getAllIPadModelsIncludingEnded(),
+    getAllMacBookModelsIncludingEnded(),
+    getAllWatchModelsIncludingEnded(),
+    getAllAirPodsModelsIncludingEnded(),
     getLatestPriceUpdateDate(),
   ])
 
@@ -58,22 +58,22 @@ export default async function HomePage() {
       })()
     : null
 
-  // モデル数
+  // モデル数（サポート切れ含む）
   const modelCounts: Record<string, number> = {
-    iphone: iPhoneModels.length,
-    ipad: iPadModels.length,
-    macbook: macBookModels.length,
-    watch: watchModels.length,
-    airpods: airPodsModels.length,
+    iphone: allIPhoneModels.length,
+    ipad: allIPadModels.length,
+    macbook: allMacBookModels.length,
+    watch: allWatchModels.length,
+    airpods: allAirPodsModels.length,
   }
 
-  // カテゴリカード用: 最新モデルの画像（配列先頭 = 最新）
+  // カテゴリカード用: 最新の現役モデルの画像（last_xxx === null が現役）
   const categoryImages: Record<string, string | null> = {
-    iphone: iPhoneModels[0]?.image ? `${CATEGORY_IMAGE_BASE.iphone}${iPhoneModels[0].image}` : null,
-    ipad: iPadModels[0]?.image ? `${CATEGORY_IMAGE_BASE.ipad}${iPadModels[0].image}` : null,
-    macbook: macBookModels[0]?.image ? `${CATEGORY_IMAGE_BASE.macbook}${macBookModels[0].image}` : null,
-    watch: watchModels[0]?.image ? `${CATEGORY_IMAGE_BASE.watch}${watchModels[0].image}` : null,
-    airpods: airPodsModels[0]?.image ? `${CATEGORY_IMAGE_BASE.airpods}${airPodsModels[0].image}` : null,
+    iphone: (() => { const m = allIPhoneModels.find(m => !m.last_ios); return m?.image ? `${CATEGORY_IMAGE_BASE.iphone}${m.image}` : null })(),
+    ipad: (() => { const m = allIPadModels.find(m => !m.last_ipados); return m?.image ? `${CATEGORY_IMAGE_BASE.ipad}${m.image}` : null })(),
+    macbook: (() => { const m = allMacBookModels.find(m => !m.last_macos); return m?.image ? `${CATEGORY_IMAGE_BASE.macbook}${m.image}` : null })(),
+    watch: (() => { const m = allWatchModels.find(m => !m.last_watchos); return m?.image ? `${CATEGORY_IMAGE_BASE.watch}${m.image}` : null })(),
+    airpods: (() => { const m = allAirPodsModels[0]; return m?.image ? `${CATEGORY_IMAGE_BASE.airpods}${m.image}` : null })(),
   }
 
   return (

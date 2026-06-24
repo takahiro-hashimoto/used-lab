@@ -109,7 +109,12 @@ export function getVerdict(
   let statusLabel: string
   let rank: VerdictRank
 
-  if (monthsPassed < 12) {
+  const fwLifeCheck = calculateFirmwareLifespan(model.date)
+  if (!fwLifeCheck.isSupported) {
+    verdictMain = '見送り推奨'
+    statusLabel = 'サポート切れ'
+    rank = 'wait'
+  } else if (monthsPassed < 12) {
     verdictMain = '最新モデルで安心'
     statusLabel = '現役バリバリ'
     rank = 'best'

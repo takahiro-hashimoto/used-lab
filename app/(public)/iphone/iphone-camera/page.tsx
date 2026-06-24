@@ -49,7 +49,7 @@ export default async function IPhoneCameraPage() {
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
-      { '@type': 'ListItem', position: 2, name: '中古iPhone完全購入ガイド', item: 'https://used-lab.jp/iphone/' },
+      { '@type': 'ListItem', position: 2, name: '中古iPhoneおすすめ機種・選び方ガイド', item: 'https://used-lab.jp/iphone/' },
       { '@type': 'ListItem', position: 3, name: 'iPhoneカメラ性能比較' },
     ],
   }
@@ -107,7 +107,7 @@ export default async function IPhoneCameraPage() {
         {/* パンくず */}
         <Breadcrumb
           items={[
-            { label: '中古iPhone完全購入ガイド', href: '/iphone/' },
+            { label: '中古iPhoneおすすめ機種・選び方ガイド', href: '/iphone/' },
             { label: 'iPhoneカメラ性能比較' },
           ]}
         />
@@ -156,7 +156,7 @@ export default async function IPhoneCameraPage() {
               <p>型落ちの中古iPhoneでも十分なカメラ性能を持つモデルは多いので、あなたの撮影スタイルに最適な1台を見つける参考にしてみてください。</p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                もっと全体像から知りたい方は「<Link href="/iphone/">中古iPhone完全購入ガイド</Link>」をご覧ください。
+                もっと全体像から知りたい方は「<Link href="/iphone/">中古iPhoneおすすめ機種・選び方ガイド</Link>」をご覧ください。
               </p>
             </div>
           </div>

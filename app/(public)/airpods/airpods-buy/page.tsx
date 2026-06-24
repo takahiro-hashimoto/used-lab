@@ -42,7 +42,7 @@ export default function AirPodsBuyPage() {
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
-      { '@type': 'ListItem', position: 2, name: '中古AirPods完全購入ガイド', item: 'https://used-lab.jp/airpods/' },
+      { '@type': 'ListItem', position: 2, name: '中古AirPodsおすすめ機種・選び方ガイド', item: 'https://used-lab.jp/airpods/' },
       { '@type': 'ListItem', position: 3, name: 'AirPodsを安く買う方法8選' },
     ],
   }
@@ -71,7 +71,7 @@ export default function AirPodsBuyPage() {
         {/* パンくず */}
         <Breadcrumb
           items={[
-            { label: '中古AirPods完全購入ガイド', href: '/airpods/' },
+            { label: '中古AirPodsおすすめ機種・選び方ガイド', href: '/airpods/' },
             { label: 'AirPodsを安く買う方法8選' },
           ]}
         />

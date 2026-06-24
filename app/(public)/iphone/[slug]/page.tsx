@@ -4,7 +4,7 @@ import type { Metadata } from 'next'
 import {
   getIPhoneModelBySlug,
   getAllIPhoneSlugs,
-  getAllIPhoneModels,
+  getAllIPhoneModelsIncludingEnded,
   getShops,
   getAllProductShopLinksByType,
   getPriceLogsByModelId,
@@ -94,7 +94,7 @@ export default async function IPhoneDetailPage({ params }: PageProps) {
     getAllProductShopLinksByType('iphone'),
     getPriceLogsByModelId(model.id),
     cachedGetLatestPrice(model.id),
-    getAllIPhoneModels(),
+    getAllIPhoneModelsIncludingEnded(),
     getIPhoneReviewsBySlug(slug),
   ])
 

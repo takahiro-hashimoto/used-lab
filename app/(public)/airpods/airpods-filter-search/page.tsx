@@ -107,7 +107,7 @@ export default async function AirPodsFilterSearchPage() {
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
-      { '@type': 'ListItem', position: 2, name: '中古AirPods購入完全ガイド', item: 'https://used-lab.jp/airpods' },
+      { '@type': 'ListItem', position: 2, name: '中古AirPodsおすすめ機種・選び方ガイド', item: 'https://used-lab.jp/airpods' },
       { '@type': 'ListItem', position: 3, name: 'AirPods機種診断シミュレーター' },
     ],
   }
@@ -153,7 +153,7 @@ export default async function AirPodsFilterSearchPage() {
         {/* パンくず */}
         <Breadcrumb
           items={[
-            { label: '中古AirPods購入完全ガイド', href: '/airpods/' },
+            { label: '中古AirPodsおすすめ機種・選び方ガイド', href: '/airpods/' },
             { label: 'AirPods機種診断' },
           ]}
         />
@@ -194,7 +194,7 @@ export default async function AirPodsFilterSearchPage() {
             <div className="lead-box">
               <p>「どのAirPodsを買えばいいかわからない...」そんな悩みを解決する<strong>AirPods機種診断ツール</strong>です。</p>
               <p>最新のAirPods 4やAirPods Pro 2から型落ちの人気モデルまで、あなたの使用目的・予算・こだわり条件に合わせて最適な<Link href="/airpods/">中古AirPods</Link>を無料で診断。<strong>{totalModels}モデルのデータベース</strong>から、あなたにぴったりの1台を見つけましょう。</p>
-              <p className="lead-link"><i className="fa-solid fa-arrow-right" aria-hidden="true"></i> 情報を網羅的に得たい方は「<Link href="/airpods/">中古AirPods購入完全ガイド</Link>」も参考にしてみてください！</p>
+              <p className="lead-link"><i className="fa-solid fa-arrow-right" aria-hidden="true"></i> 情報を網羅的に得たい方は「<Link href="/airpods/">中古AirPodsおすすめ機種・選び方ガイド</Link>」も参考にしてみてください！</p>
             </div>
           </div>
         </section>

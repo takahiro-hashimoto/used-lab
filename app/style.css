@@ -2845,6 +2845,24 @@ fieldset.u-mb-xl {
   color: var(--color-text-inverse);
 }
 
+.pd-chip.is-ended {
+  opacity: 0.65;
+}
+
+.pd-chip__ended-badge {
+  display: inline-block;
+  margin-left: 0.35rem;
+  padding: 0.1rem 0.4rem;
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--color-text-inverse);
+  background: var(--color-text-secondary);
+  border-radius: var(--radius-sm);
+  vertical-align: middle;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
 /* ---------- Spec Compare Table ---------- */
 .spec-compare-table {
   min-width: 800px;

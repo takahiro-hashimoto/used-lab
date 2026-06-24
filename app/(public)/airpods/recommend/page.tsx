@@ -229,7 +229,7 @@ export default async function AirPodsRecommendPage() {
                 この記事では、今買っても後悔しない中古AirPods {RECOMMEND_COUNT}機種を厳選し、それぞれの特徴と向いている人を
                 詳しく解説します。
               </p>
-              <p className="lead-link"><i className="fa-solid fa-arrow-right" aria-hidden="true"></i> 情報を網羅的に得たい方は「<Link href="/airpods/">中古AirPods購入完全ガイド</Link>」も参考にしてみてください！</p>
+              <p className="lead-link"><i className="fa-solid fa-arrow-right" aria-hidden="true"></i> 情報を網羅的に得たい方は「<Link href="/airpods/">中古AirPodsおすすめ機種・選び方ガイド</Link>」も参考にしてみてください！</p>
             </div>
           </div>
         </section>

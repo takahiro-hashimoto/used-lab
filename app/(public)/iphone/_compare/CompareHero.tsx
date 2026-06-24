@@ -23,7 +23,7 @@ export default function CompareHero({ modelL, modelR, dateStr, dateDisplay }: Pr
     <div className="hero-wrapper">
       <Breadcrumb
         items={[
-          { label: '中古iPhone完全購入ガイド', href: '/iphone/' },
+          { label: '中古iPhoneおすすめ機種・選び方ガイド', href: '/iphone/' },
           { label: `${modelL.model}と${shortR}の比較` },
         ]}
       />

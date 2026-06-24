@@ -124,7 +124,7 @@ export default function DashboardSection({ modelsData, initialSelected }: Props)
     <section className="l-section" id="pd-dashboard" aria-labelledby="pd-dashboard-title">
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg" id="pd-dashboard-title">
-          Apple Watchの中古相場と価格推移グラフ
+          中古Apple Watchの相場・値段と価格推移グラフ
         </h2>
         <p className="m-section-desc">
           気になるモデルを選択して、価格推移を比較できます。

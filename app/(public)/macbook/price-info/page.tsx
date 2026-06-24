@@ -2,7 +2,7 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 import { cache } from 'react'
 import {
-  getAllMacBookModels,
+  getAllMacBookModelsIncludingEnded,
   getAllMacBookPriceLogsByModelIds,
   getAllProductShopLinksByType,
 } from '@/lib/queries'
@@ -41,6 +41,7 @@ export type ModelData = {
   display: string
   weight: string
   storage: string
+  supportEnded: boolean
   color: string
   image: string
   shopUrl: string
@@ -98,13 +99,13 @@ export const revalidate = false
 
 const PAGE_URL = 'https://used-lab.jp/macbook/price-info/'
 
-const getModels = cache(getAllMacBookModels)
+const getModels = cache(getAllMacBookModelsIncludingEnded)
 
 export async function generateMetadata(): Promise<Metadata> {
   const allModels = await getModels()
   const modelCount = allModels.length
   const title = buildPriceInfoTitle('MacBook', modelCount, PRICE_INFO_UPDATE_MONTH)
-  const description = `中古MacBook${modelCount}機種の価格相場を毎日更新。価格推移グラフ、スペック比較、最安値ランキングを掲載。楽天市場の中古ショップから実売価格を集計。`
+  const description = `中古MacBook${modelCount}機種の相場・値段を毎日更新。MacBook Air・Pro M2・M3・M4など歴代モデルの価格推移グラフ・最安値一覧を掲載。`
   return buildPriceInfoMetadata({ title, description, canonicalPath: '/macbook/price-info/', heroImageUrl: getHeroImage('/macbook/price-info/') })
 }
 
@@ -165,6 +166,7 @@ export default async function MacBookPriceInfoPage() {
       display: model.display || '-',
       weight: model.weight || '-',
       storage: minStorage || '-',
+      supportEnded: model.last_macos !== null,
       color: CHART_COLORS[colorIndex % CHART_COLORS.length],
       image: model.image || '',
       shopUrl: shopUrlMap.get(model.id) ?? '',
@@ -208,7 +210,7 @@ export default async function MacBookPriceInfoPage() {
   const { dateStr, dateDisplay, dateModified } = buildPageDates(modelsData)
 
   // JSON-LD
-  const breadcrumbJsonLd = buildBreadcrumbJsonLd('中古MacBook完全購入ガイド', 'https://used-lab.jp/macbook/', 'MacBookの中古相場一覧')
+  const breadcrumbJsonLd = buildBreadcrumbJsonLd('中古MacBookおすすめ機種・選び方ガイド', 'https://used-lab.jp/macbook/', 'MacBookの中古相場一覧')
   const webAppJsonLd = buildWebApplicationJsonLd({
     name: '中古MacBook価格比較ダッシュボード',
     description: `中古MacBook${modelCount}機種の価格相場を毎日更新。価格推移グラフ、スペック比較、最安値ランキングを掲載。`,
@@ -240,7 +242,7 @@ export default async function MacBookPriceInfoPage() {
         <div className="hero-wrapper">
         <Breadcrumb
           items={[
-            { label: '中古MacBook完全購入ガイド', href: '/macbook/' },
+            { label: '中古MacBookおすすめ機種・選び方ガイド', href: '/macbook/' },
             { label: 'MacBookの中古相場一覧' },
           ]}
         />
@@ -253,7 +255,7 @@ export default async function MacBookPriceInfoPage() {
           <div className="hero-inner l-container">
             <div className="hero-content">
               <h1 className="hero-title" itemProp="headline">
-                MacBookの中古相場一覧 | 歴代{modelCount}機種の価格推移を独自集計【{PRICE_INFO_UPDATE_MONTH}】
+                中古MacBookの相場・値段一覧【{PRICE_INFO_UPDATE_MONTH}】歴代{modelCount}機種の価格推移を毎日更新
               </h1>
               <HeroMeta dateStr={dateStr} dateDisplay={dateDisplay} withItemProp />
             </div>
@@ -284,7 +286,7 @@ export default async function MacBookPriceInfoPage() {
               </p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                情報を網羅的に得たい方は「<Link href="/macbook/">中古MacBook購入完全ガイド</Link>」も参考にしてみてください！
+                情報を網羅的に得たい方は「<Link href="/macbook/">中古MacBookおすすめ機種・選び方ガイド</Link>」も参考にしてみてください！
               </p>
             </div>
           </div>

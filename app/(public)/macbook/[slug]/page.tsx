@@ -4,7 +4,7 @@ import type { Metadata } from 'next'
 import {
   getMacBookModelBySlug,
   getAllMacBookSlugs,
-  getAllMacBookModels,
+  getAllMacBookModelsIncludingEnded,
   getShops,
   getAllProductShopLinksByType,
   getMacBookPriceLogsByModelId,
@@ -91,7 +91,7 @@ export default async function MacBookDetailPage({ params }: PageProps) {
     getAllProductShopLinksByType('macbook'),
     getMacBookPriceLogsByModelId(model.id),
     cachedGetLatestPrice(model.id),
-    getAllMacBookModels(),
+    getAllMacBookModelsIncludingEnded(),
   ])
 
   // PriceChartSection用のデータをサーバーサイドで事前計算
