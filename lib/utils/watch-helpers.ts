@@ -172,7 +172,7 @@ export function getVerdict(
   const performanceRatio = Math.max(30, 100 - yearsPassed * 10)
 
   // 年間コスト（サポート切れは算出しない）
-  let annualCost = priceMin && priceMin > 0 && !model.last_watchos
+  const annualCost = priceMin && priceMin > 0 && !model.last_watchos
     ? Math.round(priceMin / remainingYears)
     : null
 

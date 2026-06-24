@@ -198,7 +198,7 @@ export function getVerdict(
     : 0
 
   // 年間コスト（サポート切れは算出しない）
-  let annualCost = priceMin && priceMin > 0 && !model.last_macos
+  const annualCost = priceMin && priceMin > 0 && !model.last_macos
     ? Math.round(priceMin / remainingYears)
     : null
 

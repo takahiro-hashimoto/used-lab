@@ -270,7 +270,7 @@ export function getVerdict(
     : 0
 
   // 年間コスト（サポート切れは算出しない）
-  let annualCost = priceMin && priceMin > 0 && !model.last_ipados
+  const annualCost = priceMin && priceMin > 0 && !model.last_ipados
     ? Math.round(priceMin / remainingYears)
     : null
 
