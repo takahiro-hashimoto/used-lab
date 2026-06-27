@@ -47,23 +47,23 @@ export default function BenchmarkSection({ models }: Props) {
     <section className="l-section" id="benchmark" aria-labelledby="heading-benchmark">
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg" id="heading-benchmark">
-          iPadチップ・CPU性能ランキング｜処理速度ベンチマーク比較一覧
+          歴代iPadのチップ性能・処理速度を比較（ベンチマークスコア）
         </h2>
         <p className="m-section-desc">
-          歴代iPadのチップ・CPU性能をベンチマークスコア（<a href="#geekbench">GeekBench</a>・<a href="#antutu">Antutu</a>）で数値化し、処理速度の差を可視化。
+          歴代iPadのチップ性能の違いを可視化するために2種類のベンチマークスコア（<a href="#geekbench">GeekBench</a>、<a href="#antutu">Antutu</a>）を用意しました。
         </p>
         <p className="m-section-desc">
-          世代交代でどれくらい性能が向上するか、ランキング形式で確認できます。
+          iPadを買い替えたらどれくらい処理速度が上がるのか確認するのにご活用ください。
         </p>
 
         {/* Geekbench */}
         {geekbenchModels.length > 0 && (
           <section id="geekbench" aria-labelledby="heading-geekbench">
             <h3 className="m-section-heading m-section-heading--md" id="heading-geekbench" style={{ textAlign: 'left' }}>
-              Geekbench 6 CPU性能スコア一覧
+              Geekbench スコア一覧
             </h3>
             <p className="m-section-desc" style={{ textAlign: 'left' }}>
-              CPU単体の処理性能（シングル/マルチコア）を評価。純粋な計算処理能力や高負荷タスクを数値で比較できます。
+              CPU単体の処理性能（シングル/マルチコア）を評価。純粋な計算処理能力や高負荷タスクを評価するのが得意です。
             </p>
 
             {/* 用語解説カード */}
@@ -115,10 +115,10 @@ export default function BenchmarkSection({ models }: Props) {
         {antutuModels.length > 0 && (
           <section id="antutu" className="u-mt-3xl" aria-labelledby="heading-antutu">
             <h3 className="m-section-heading m-section-heading--md" id="heading-antutu" style={{ textAlign: 'left' }}>
-              Antutu スコア一覧｜iPad性能比較ランキング
+              Antutu スコア一覧
             </h3>
             <p className="m-section-desc" style={{ textAlign: 'left' }}>
-              CPUだけでなく、GPU・メモリ・UXまで含めた総合的な性能を評価。ゲームやマルチタスク、日常操作を含めた全体的な快適さを数値で比較できます。
+              CPUだけでなく、GPU、メモリ、UXまで含めた総合的な端末の性能を評価。ゲームやマルチタスク、日常的な操作を含めた全体的な快適さを判断するのが得意です。
             </p>
 
             {/* 用語解説カード */}

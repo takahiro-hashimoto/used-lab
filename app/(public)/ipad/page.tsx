@@ -199,13 +199,9 @@ export default async function IPadGuidePage() {
         <section className="l-section l-section--sm section-lead" aria-label="記事の導入">
           <div className="l-container">
             <div className="lead-box">
-              <p>「中古iPadの型落ちは何世代がいい？」「コスパ最強の狙い目モデルはどれ？」そんな疑問にお答えします。</p>
-              <p>
-                本ページでは<strong>{GUIDE_DATE_LABEL}のおすすめ中古iPad5機種</strong>を世代・コスパ・用途別に厳選。型落ちiPadでも十分使えるモデルを中心に、今買うなら狙い目のモデルをわかりやすく解説しています。
-              </p>
-              <p>
-                最新相場・選び方のポイント・購入先比較まで一ページで網羅。何世代を選ぶべきか迷っている方はぜひ参考にしてください。
-              </p>
+              <p>Apple製品の値上がりや円安の影響で、新品のiPadは以前より手が出しづらくなってきましたよね…。</p>
+              <p>そこで賢い選択肢になるのが<strong>「中古iPad」</strong>です。iPadはすでに成熟したプロダクトなので、型落ちモデルでも動画視聴や勉強、イラスト作成といった用途に不満なくこなせて、価格もぐっとお手頃。</p>
+              <p>本記事では{GUIDE_DATE_LABEL}時点でのおすすめモデルをご紹介します。記事後半には、用途に合わせたモデル（Pro / Air / 無印 / mini）の選び方や、中古iPadを選ぶ際のチェックポイントも多数用意しているので、ぜひチェックしてみてください！</p>
             </div>
           </div>
         </section>
@@ -233,10 +229,9 @@ export default async function IPadGuidePage() {
           {/* ========== おすすめ機種 ========== */}
           <ConclusionSection
             items={conclusionItems}
-            heading={<>今買うならこれ｜世代別・型落ちおすすめ中古iPad{GUIDE_DATE_LABEL}版</>}
+            heading={<>今買うならこれ｜おすすめ中古iPad【{GUIDE_DATE_LABEL}最新】</>}
             descriptions={[
-              <>世代・コスパ・用途別に厳選した5機種。型落ちでも十分使えるモデルだけに絞っています。</>,
-              <>{GUIDE_DATE_LABEL}時点で「iPadOSサポートが十分に残っている」「中古価格と性能のバランスが良い」何世代を選んでも後悔しない狙い目モデルです。</>,
+              <>当サイトでおすすめしている機種は下記の通り。{GUIDE_DATE_LABEL}時点で「iPadOSサポートが十分に残っている」「中古価格と性能のバランスが良い」ことを判断基準に、本当の狙い目モデルだけを厳選しています。</>,
             ]}
             gridCols="5col"
             imagePath="ipad"
@@ -262,7 +257,6 @@ export default async function IPadGuidePage() {
                     metaText={`${model.date ? `${model.date.split('/')[0]}年` : ''} / ${model.cpu || ''}`}
                     priceLabel={`中古相場（${getStorageLabel(model)}）`}
                     priceValue={getMinPrice(latestPrices[i])}
-                    shopUrl={allShopLinks.find((l) => l.product_id === model.id && l.shop_id === 1)?.url}
                   />
                 ))}
               </div>

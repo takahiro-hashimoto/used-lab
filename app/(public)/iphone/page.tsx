@@ -231,13 +231,9 @@ export default async function IPhoneGuidePage() {
         <section className="l-section l-section--sm section-lead" aria-label="記事の導入">
           <div className="l-container">
             <div className="lead-box">
-              <p>「中古iPhoneを買うならどれがいい？」「コスパ最強の狙い目機種は？」そんな疑問にお答えします。</p>
-              <p>
-                本ページでは<strong>{GUIDE_DATE_LABEL}のおすすめ中古iPhone5機種</strong>をコスパ・用途別に厳選し、今買うなら狙い目のモデルをわかりやすく解説しています。
-              </p>
-              <p>
-                最新相場・選び方のポイント・購入先比較まで一ページで網羅。型落ちiPhoneを安く賢く選びたい方はぜひ参考にしてください。
-              </p>
+              <p>Apple製品の値上がりや円安の影響で、新品iPhoneは以前より手が出しづらくなってきましたよね…。</p>
+              <p>そこで賢い選択肢になるのが<strong>中古iPhone</strong>です。iPhoneはすでに成熟したプロダクトなので、型落ちモデルでも普段使いに不満はでづらく、価格もぐっとお手頃。</p>
+              <p>本記事では{GUIDE_DATE_LABEL}時点でのおすすめ機種をご紹介します。記事後半には中古iPhone選びに役立つコンテンツも多数用意しているので、ぜひチェックしてみてください！</p>
             </div>
           </div>
         </section>
@@ -265,10 +261,9 @@ export default async function IPhoneGuidePage() {
           {/* ========== おすすめ機種 ========== */}
           <ConclusionSection
               items={conclusionItems}
-              heading={<>今買うならこれ｜おすすめ中古iPhone{GUIDE_DATE_LABEL}版</>}
+              heading={<>今買うならこれ｜おすすめ中古iPhone【{GUIDE_DATE_LABEL}最新】</>}
               descriptions={[
-                <>コスパ・用途別に厳選した5機種。どれを買うか迷っているならまずここから選べば失敗しません。</>,
-                <>{GUIDE_DATE_LABEL}時点で「iOSサポートが十分に残っている」「中古価格と性能のバランスが良い」狙い目モデルだけに絞っています。</>,
+                <>当サイトでおすすめしている機種は下記の通り。{GUIDE_DATE_LABEL}時点で「iOSサポートが十分に残っている」「中古価格と性能のバランスが良い」ことを判断基準に、本当の狙い目モデルだけを厳選しています。</>,
               ]}
               gridCols="5col"
               imagePath="iphone"
@@ -294,7 +289,6 @@ export default async function IPhoneGuidePage() {
                     metaText={`${model.date ? `${model.date.split('/')[0]}年` : ''} / ${model.cpu || ''}`}
                     priceLabel={`中古相場（${latestPrices[i]?.storage ? `${latestPrices[i].storage}` : getStorageLabel(model)}）`}
                     priceValue={getMinPrice(latestPrices[i])}
-                    shopUrl={allShopLinks.find((l) => l.product_id === model.id && l.shop_id === 1)?.url}
                   />
                 ))}
               </div>

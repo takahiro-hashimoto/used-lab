@@ -210,13 +210,9 @@ export default async function AirPodsGuidePage() {
         <section className="l-section l-section--sm section-lead" aria-label="記事の導入">
           <div className="l-container">
             <div className="lead-box">
-              <p>「AirPodsはどれがいい？」「型落ちでもコスパのいいモデルは？」そんな疑問にお答えします。</p>
-              <p>
-                本ページでは<strong>{GUIDE_DATE_LABEL}のおすすめ中古AirPods3機種</strong>を型落ち・コスパ・用途別に厳選。どれがいいか迷っている方でも選べるよう、わかりやすく解説しています。
-              </p>
-              <p>
-                最新相場・選び方のポイント・購入先比較まで一ページで網羅。型落ちAirPodsを安く賢く選びたい方はぜひ参考にしてください。
-              </p>
+              <p>Apple製品の値上がりや円安の影響で、新品のAirPodsは以前より手が出しづらくなってきましたよね…。</p>
+              <p>そこで賢い選択肢になるのが<strong>「中古AirPods」</strong>です。AirPodsシリーズはすでに成熟したプロダクトなので、型落ちモデルでもApple製品同士のシームレスな連携や、強力なノイズキャンセリングは健在で、価格もぐっとお手頃。</p>
+              <p>本記事では{GUIDE_DATE_LABEL}時点でのおすすめモデルをご紹介します。記事後半には、無印・Pro・Maxの選び方はもちろん、中古で特に気になる「衛生面」や「バッテリー状態」のチェックポイントも多数用意しているので、ぜひチェックしてみてください！</p>
             </div>
           </div>
         </section>
@@ -241,10 +237,9 @@ export default async function AirPodsGuidePage() {
           {/* ========== おすすめ機種 ========== */}
           <ConclusionSection
             items={conclusionItems}
-            heading={<>どれがいい？型落ちおすすめ中古AirPods{GUIDE_DATE_LABEL}版</>}
+            heading={<>今買うならこれ｜おすすめ中古AirPods【{GUIDE_DATE_LABEL}最新】</>}
             descriptions={[
-              <>型落ち・コスパ・用途別に厳選した3機種。「どれがいいかわからない」ならまずここから選べば失敗しません。</>,
-              <>{GUIDE_DATE_LABEL}時点で「ファームウェアサポートが十分に残っている」「中古価格と性能のバランスが良い」狙い目モデルだけに絞っています。</>,
+              <>当サイトでおすすめしている機種は下記の通り。{GUIDE_DATE_LABEL}時点で「主要機能が十分に乗っている」「中古価格と性能のバランスが良い」ことを判断基準に、本当の狙い目モデルだけを厳選しています。</>,
             ]}
             gridCols="3col"
             imagePath="airpods"
@@ -286,7 +281,6 @@ export default async function AirPodsGuidePage() {
                     metaText={`${model.date ? `${model.date.split('/')[0]}年` : ''} / ${model.chip || ''}`}
                     priceLabel="中古相場"
                     priceValue={getAirPodsMinPrice(latestPrices[i])}
-                    shopUrl={allShopLinks.find((l) => l.product_id === model.id && l.shop_id === 1)?.url}
                   />
                 ))}
               </div>

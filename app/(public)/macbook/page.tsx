@@ -186,13 +186,9 @@ export default async function MacBookGuidePage() {
         <section className="l-section l-section--sm section-lead" aria-label="記事の導入">
           <div className="l-container">
             <div className="lead-box">
-              <p>「中古MacBook Airはどれがいい？」「初心者でも失敗しない選び方は？」「コスパ最強の狙い目モデルは？」そんな疑問にお答えします。</p>
-              <p>
-                本ページでは<strong>{GUIDE_DATE_LABEL}のおすすめ中古MacBook4機種</strong>を初心者向けの選び方・コスパ・用途別に厳選。今買うなら狙い目のモデルをわかりやすく解説しています。
-              </p>
-              <p>
-                最新相場・選び方のポイント・購入先比較まで一ページで網羅。初めて中古Macを買う方にも迷わず選べる構成にしています。
-              </p>
+              <p>Apple製品の値上がりや円安の影響で、新品のMacBookは以前より手が出しづらくなってきましたよね…。</p>
+              <p>そこで賢い選択肢になるのが<strong>「中古MacBook」</strong>です。AppleのMシリーズチップが登場して以降、Macの性能は飛躍的に向上しました。そのため、少し前の型落ちモデルでも、日々の書類作成はもちろん、動画編集やデザイン、プログラミングまで驚くほど快適にこなせて、価格もぐっとお手頃。</p>
+              <p>本記事では{GUIDE_DATE_LABEL}時点でのおすすめモデルをご紹介します。記事後半には、AirとProの選び方、中古MacBookを買うときの注意点なども用意しているので、ぜひチェックしてみてください！</p>
             </div>
           </div>
         </section>
@@ -218,10 +214,9 @@ export default async function MacBookGuidePage() {
           {/* ========== おすすめ機種 ========== */}
           <ConclusionSection
             items={conclusionItems}
-            heading={<>今買うならこれ｜初心者向けおすすめ中古MacBook{GUIDE_DATE_LABEL}版</>}
+            heading={<>今買うならこれ｜おすすめ中古MacBook【{GUIDE_DATE_LABEL}最新】</>}
             descriptions={[
-              <>初心者でも迷わず選べるよう、コスパ・用途別に厳選した4機種。MacBook Airを中心に狙い目モデルを厳選しています。</>,
-              <>{GUIDE_DATE_LABEL}時点で「Appleシリコン搭載」「macOSサポートが十分に残っている」「中古価格と性能のバランスが良い」モデルだけに絞っています。</>,
+              <>当サイトでおすすめしている機種は下記の通り。{GUIDE_DATE_LABEL}時点で「macOSサポートが十分に残っている」「中古価格と性能のバランスが良い」ことを判断基準に、本当の狙い目モデルだけを厳選しています。</>,
             ]}
             gridCols="4col"
             imagePath="macbook"
@@ -241,7 +236,6 @@ export default async function MacBookGuidePage() {
                   const price = latestPrices[i]
                   const minPrice = price?.min1_price
                   const storageLabel = model.strage?.match(/(\d+(?:GB|TB))/)?.[1] || ''
-                  const iosysLink = allShopLinks.find((l) => l.product_id === model.id && l.shop_id === 1)
                   return (
                     <ProductCard
                       key={model.id}
@@ -252,7 +246,6 @@ export default async function MacBookGuidePage() {
                       metaText={`${model.date ? `${model.date.split('/')[0]}年` : ''} / ${model.cpu || ''}`}
                       priceLabel={`中古相場（${storageLabel}）`}
                       priceValue={minPrice ? `¥${minPrice.toLocaleString()}` : '-'}
-                      shopUrl={iosysLink?.url}
                     />
                   )
                 })}
