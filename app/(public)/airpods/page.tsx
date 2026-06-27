@@ -118,11 +118,9 @@ export default async function AirPodsGuidePage() {
 
   const compareItems = recommendModels.map((model, i) => {
     const meta = RECOMMEND_META[model.slug]
-    const modelShopLinks = allShopLinks.filter((l) => l.product_id === model.id)
     return {
       model,
       latestPrice: recommendPrices[i],
-      shopLinks: modelShopLinks,
       ancLabel: meta?.ancLabel || '-',
       batteryLabel: meta?.batteryLabel || '-',
       targetUser: meta?.targetUser || '-',

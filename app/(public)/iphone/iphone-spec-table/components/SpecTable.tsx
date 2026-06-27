@@ -251,7 +251,7 @@ export default function SpecTable({ models, shopLinks }: Props) {
                 </thead>
                 <tbody>
                   <tr>
-                    <th scope="row" className="spec-compare-table__sticky"></th>
+                    <th scope="row" className="spec-compare-table__sticky">イメージ</th>
                     {filteredModels.map((m) => (
                       <td key={m.id} style={{ textAlign: 'center', padding: 'var(--space-sm)' }}>
                         {m.image && (
@@ -261,7 +261,7 @@ export default function SpecTable({ models, shopLinks }: Props) {
                             width={50}
                             height={65}
                             loading="lazy"
-                            className="spec-compare-table__cell-img"
+                            sizes="50px" className="spec-compare-table__cell-img"
                           />
                         )}
                       </td>

@@ -1,14 +1,13 @@
 import type { ReactNode } from 'react'
 import Image from 'next/image'
 import { placeholder } from '@/lib/placeholder'
-import type { MacBookModel, MacBookPriceLog, ProductShopLink } from '@/lib/types'
+import type { MacBookModel, MacBookPriceLog } from '@/lib/types'
 import { calculateOSLifespan } from '@/lib/utils/macbook-helpers'
 import { RECOMMEND_COUNT_LABEL } from '@/lib/data/macbook-recommend'
 
 type CompareItem = {
   model: MacBookModel
   latestPrice: MacBookPriceLog | null
-  shopLinks: ProductShopLink[]
   chipLabel: string
   batteryLabel: string
   targetUser: string

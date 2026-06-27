@@ -1,14 +1,13 @@
 import type { ReactNode } from 'react'
 import Image from 'next/image'
 import { placeholder } from '@/lib/placeholder'
-import type { AirPodsModel, AirPodsPriceLog, ProductShopLink } from '@/lib/types'
+import type { AirPodsModel, AirPodsPriceLog } from '@/lib/types'
 import { calculateFirmwareLifespan } from '@/lib/utils/airpods-helpers'
 import { RECOMMEND_COUNT_LABEL } from '@/lib/data/airpods-recommend'
 
 type CompareItem = {
   model: AirPodsModel
   latestPrice: AirPodsPriceLog | null
-  shopLinks: ProductShopLink[]
   ancLabel: string
   batteryLabel: string
   targetUser: string

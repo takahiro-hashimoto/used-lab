@@ -130,11 +130,9 @@ export default async function MacBookRecommendPage() {
   // CompareTableSection用データ
   const compareItems = recommendModels.map((model, i) => {
     const meta = RECOMMEND_META[model.slug]
-    const modelShopLinks = allShopLinks.filter((l) => l.product_id === model.id)
     return {
       model,
       latestPrice: latestPrices[i],
-      shopLinks: modelShopLinks,
       chipLabel: meta?.chipLabel || '-',
       batteryLabel: meta?.batteryLabel || '-',
       targetUser: meta?.targetUser || '-',

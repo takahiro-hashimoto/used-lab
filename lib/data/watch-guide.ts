@@ -9,12 +9,15 @@ export const GUIDE_DATE_LABEL = `${GUIDE_YEAR}年${GUIDE_MONTH}月`
 
 // ---------- 中古相場セクション: 表示するモデルのslug ----------
 export const GUIDE_PRICE_SLUGS = [
-  'se2',
+  'series11',
+  'ultra3',
   'se3',
-  'series8',
+  'series10',
   'series9',
-  'ultra',
   'ultra2',
+  'series8',
+  'ultra',
+  'se2',
 ]
 
 // ---------- スペック比較リンク ----------

@@ -1,14 +1,13 @@
 import type { ReactNode } from 'react'
 import Image from 'next/image'
 import { placeholder } from '@/lib/placeholder'
-import type { IPhoneModel, IPhonePriceLog, ProductShopLink } from '@/lib/types'
+import type { IPhoneModel, IPhonePriceLog } from '@/lib/types'
 import { calculateOSLifespan } from '@/lib/utils/iphone-helpers'
 import { RECOMMEND_COUNT_LABEL } from '@/lib/data/iphone-recommend'
 
 type CompareItem = {
   model: IPhoneModel
   latestPrice: IPhonePriceLog | null
-  shopLinks: ProductShopLink[]
   cameraLabel: string
   batteryLabel: string
   targetUser: string

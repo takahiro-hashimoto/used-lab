@@ -1,14 +1,13 @@
 import type { ReactNode } from 'react'
 import Image from 'next/image'
 import { placeholder } from '@/lib/placeholder'
-import type { WatchModel, WatchPriceLog, ProductShopLink } from '@/lib/types'
+import type { WatchModel, WatchPriceLog } from '@/lib/types'
 import { calculateOSLifespan } from '@/lib/utils/watch-helpers'
 import { RECOMMEND_COUNT_LABEL } from '@/lib/data/watch-recommend'
 
 type CompareItem = {
   model: WatchModel
   latestPrice: WatchPriceLog | null
-  shopLinks: ProductShopLink[]
   healthLabel: string
   batteryLabel: string
   targetUser: string

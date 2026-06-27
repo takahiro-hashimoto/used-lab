@@ -102,11 +102,9 @@ export default async function MacBookGuidePage() {
 
   const compareItems = recommendModels.map((model, i) => {
     const meta = RECOMMEND_META[model.slug]
-    const modelShopLinks = allShopLinks.filter((l) => l.product_id === model.id)
     return {
       model,
       latestPrice: recommendPrices[i],
-      shopLinks: modelShopLinks,
       chipLabel: meta?.chipLabel || '-',
       batteryLabel: meta?.batteryLabel || '-',
       targetUser: meta?.targetUser || '-',

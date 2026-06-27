@@ -3,7 +3,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import IconCard from '@/app/components/IconCard'
 import {
-  getAllWatchModels,
+  getAllWatchModelsIncludingEnded,
   getLatestWatchPriceLog,
   getAllProductShopLinksByType,
   getShops,
@@ -67,7 +67,7 @@ function getSizeLabel(model: WatchModel): string {
 
 export default async function WatchGuidePage() {
   const [allModels, allShopLinks, shops] = await Promise.all([
-    getAllWatchModels(),
+    getAllWatchModelsIncludingEnded(),
     getAllProductShopLinksByType('watch'),
     getShops(),
   ])
@@ -111,11 +111,9 @@ export default async function WatchGuidePage() {
 
   const compareItems = recommendModels.map((model, i) => {
     const meta = RECOMMEND_META[model.slug]
-    const modelShopLinks = allShopLinks.filter((l) => l.product_id === model.id)
     return {
       model,
       latestPrice: recommendPrices[i],
-      shopLinks: modelShopLinks,
       healthLabel: meta?.healthLabel || '-',
       batteryLabel: meta?.batteryLabel || '-',
       targetUser: meta?.targetUser || '-',

@@ -127,11 +127,9 @@ export default async function IPhoneTopPage() {
   // CompareTableSection用データ
   const compareItems = recommendModels.map((model, i) => {
     const meta = RECOMMEND_META[model.slug]
-    const modelShopLinks = allShopLinks.filter((l) => l.product_id === model.id)
     return {
       model,
       latestPrice: latestPrices[i],
-      shopLinks: modelShopLinks,
       cameraLabel: meta?.cameraLabel || '-',
       batteryLabel: meta?.batteryLabel || '-',
       targetUser: meta?.targetUser || '-',
