@@ -34,8 +34,8 @@ import ProductCard from '@/app/components/ProductCard'
 import AuthorByline from '@/app/components/AuthorByline'
 import ContinuousAside from '@/app/components/ContinuousAside'
 import HeroMeta from '@/app/components/HeroMeta'
-import ConclusionSection from '@/app/components/ConclusionSection'
 import RecommendDetailSection from './recommend/components/RecommendDetailSection'
+import CompareTableSection from './recommend/components/CompareTableSection'
 
 export const revalidate = false
 
@@ -92,21 +92,6 @@ export default async function IPadGuidePage() {
 
   const fallbackShops = buildFallbackShops(shops, SHOP_SECTION_IDS, 'ipad_url')
 
-  const conclusionItems = recommendModels.map((model, i) => {
-    const meta = RECOMMEND_META[model.slug]
-    const price = getMinPrice(recommendPrices[i])
-    const priceLabel = price ? `${price.toLocaleString()}円〜` : ''
-    const desc = priceLabel ? `${priceLabel}。${meta?.desc || ''}` : (meta?.desc || '')
-    return {
-      id: model.id,
-      slug: model.slug,
-      displayName: model.model,
-      image: model.image,
-      date: model.date,
-      desc,
-    }
-  })
-
   const detailItems = recommendModels.map((model, i) => {
     const meta = RECOMMEND_META[model.slug]
     const modelShopLinks = allShopLinks.filter((l) => l.product_id === model.id)
@@ -124,6 +109,17 @@ export default async function IPadGuidePage() {
     }
   })
 
+  const compareItems = recommendModels.map((model, i) => {
+    const meta = RECOMMEND_META[model.slug]
+    return {
+      model,
+      latestPrice: recommendPrices[i],
+      pencilLabel: meta?.pencilLabel || '-',
+      displayLabel: meta?.displayLabel || '-',
+      targetUser: meta?.targetUser || '-',
+    }
+  })
+
   const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/ipad/page.tsx')
 
   // JSON-LD
@@ -132,7 +128,7 @@ export default async function IPadGuidePage() {
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
-      { '@type': 'ListItem', position: 2, name: '中古iPadおすすめ・選び方ガイド' },
+      { '@type': 'ListItem', position: 2, name: '中古iPadおすすめ機種・選び方ガイド' },
     ],
   }
 
@@ -161,7 +157,7 @@ export default async function IPadGuidePage() {
         {/* パンくず */}
         <Breadcrumb
           items={[
-            { label: '中古iPadおすすめ・選び方ガイド' },
+            { label: '中古iPadおすすめ機種・選び方ガイド' },
           ]}
         />
 
@@ -212,13 +208,13 @@ export default async function IPadGuidePage() {
             <div className="toc-wrapper">
             <p className="toc-title"><i className="fa-solid fa-list" aria-hidden="true"></i> タップできる目次</p>
             <ol className="l-grid l-grid--3col u-list-reset">
-              <li><a href="#conclusion" className="toc-item">おすすめ機種 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
+              <li><a href="#compare" className="toc-item">おすすめ機種 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#market-price" className="toc-item">最新相場 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
+              <li><a href="#spec-compare" className="toc-item">スペック比較 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#filter-tool" className="toc-item">診断ツール <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#caution" className="toc-item">注意点 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#where-to-buy" className="toc-item">購入先比較 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#usage" className="toc-item">使い道・活用シーン <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
-              <li><a href="#spec-compare" className="toc-item">スペック比較 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#faq" className="toc-item">よくある質問 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
             </ol>
 </div>
@@ -227,15 +223,12 @@ export default async function IPadGuidePage() {
         <div className="l-sections">
 
           {/* ========== おすすめ機種 ========== */}
-          <ConclusionSection
-            items={conclusionItems}
+          <CompareTableSection
+            items={compareItems}
             heading={<>今買うならこれ｜おすすめ中古iPad【{GUIDE_DATE_LABEL}最新】</>}
             descriptions={[
               <>当サイトでおすすめしている機種は下記の通り。{GUIDE_DATE_LABEL}時点で「iPadOSサポートが十分に残っている」「中古価格と性能のバランスが良い」ことを判断基準に、本当の狙い目モデルだけを厳選しています。</>,
             ]}
-            gridCols="5col"
-            imagePath="ipad"
-            placeholderText="iPad"
           />
           <RecommendDetailSection items={detailItems} />
 

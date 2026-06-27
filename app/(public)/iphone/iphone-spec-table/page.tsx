@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
-import { getAllIPhoneModels, getAllProductShopLinksByType } from '@/lib/queries'
+import { getAllIPhoneModelsIncludingEnded, getAllProductShopLinksByType } from '@/lib/queries'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import SpecTable from './components/SpecTable'
 import DualCompare from './components/DualCompare'
@@ -57,7 +57,7 @@ export const metadata: Metadata = {
 
 export default async function IPhoneSpecTablePage() {
   const [allModels, allShopLinks] = await Promise.all([
-    getAllIPhoneModels(),
+    getAllIPhoneModelsIncludingEnded(),
     getAllProductShopLinksByType('iphone'),
   ])
 
@@ -67,7 +67,7 @@ export default async function IPhoneSpecTablePage() {
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
-      { '@type': 'ListItem', position: 2, name: '中古iPhone完全購入ガイド', item: 'https://used-lab.jp/iphone' },
+      { '@type': 'ListItem', position: 2, name: '中古iPhoneおすすめ機種・選び方ガイド', item: 'https://used-lab.jp/iphone' },
       { '@type': 'ListItem', position: 3, name: '歴代iPhoneスペック比較表' },
     ],
   }
@@ -158,7 +158,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/iphone-s
         {/* パンくず */}
         <Breadcrumb
           items={[
-            { label: '中古iPhone完全購入ガイド', href: '/iphone/' },
+            { label: '中古iPhoneおすすめ機種・選び方ガイド', href: '/iphone/' },
             { label: '歴代iPhoneスペック比較表' },
           ]}
         />

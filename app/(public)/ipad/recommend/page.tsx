@@ -140,11 +140,9 @@ export default async function IPadRecommendPage() {
   // CompareTableSection用データ
   const compareItems = recommendModels.map((model, i) => {
     const meta = RECOMMEND_META[model.slug]
-    const modelShopLinks = allShopLinks.filter((l) => l.product_id === model.id)
     return {
       model,
       latestPrice: latestPrices[i],
-      shopLinks: modelShopLinks,
       pencilLabel: meta?.pencilLabel || '-',
       displayLabel: meta?.displayLabel || '-',
       targetUser: meta?.targetUser || '-',

@@ -123,11 +123,9 @@ export default async function WatchRecommendPage() {
   // CompareTableSection用データ
   const compareItems = recommendModels.map((model, i) => {
     const meta = RECOMMEND_META[model.slug]
-    const modelShopLinks = allShopLinks.filter((l) => l.product_id === model.id)
     return {
       model,
       latestPrice: latestPrices[i],
-      shopLinks: modelShopLinks,
       healthLabel: meta?.healthLabel || '-',
       batteryLabel: meta?.batteryLabel || '-',
       targetUser: meta?.targetUser || '-',

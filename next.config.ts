@@ -31,7 +31,11 @@ const nextConfig: NextConfig = {
     optimizePackageImports: ['chart.js', 'react-chartjs-2'],
   },
   images: {
-    formats: ['image/avif', 'image/webp'],
+    // AVIFはエンコードCPUが重く Transformation コストが増えるため WebP のみに
+    formats: ['image/webp'],
+    // 生成サイズの上限を縮小（ヒーロー360px・OG1200pxで十分。2048/3840は生成しない）
+    deviceSizes: [640, 750, 828, 1080, 1200],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256],
     minimumCacheTTL: 2678400,
     remotePatterns: [
       {

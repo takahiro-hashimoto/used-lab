@@ -75,7 +75,7 @@ export const PRODUCT_CATEGORIES: CategoryDef[] = [
     desc: '型落ちおすすめ機種・コスパ比較・中古相場など、中古iPhoneを安く賢く買うための情報をまとめています。',
     basePath: '/iphone',
     pages: [
-      { path: '/iphone/', label: (p) => `中古iPhone完全購入ガイド | 選び方・相場・おすすめモデルまとめ【${p.iphoneGuideDate}版】`, priority: 0.9 },
+      { path: '/iphone/', label: (p) => `中古iPhoneおすすめ機種・選び方ガイド | 相場・おすすめモデルまとめ【${p.iphoneGuideDate}版】`, priority: 0.9 },
       { path: '/iphone/used-iphone-attention/', label: '中古iPhoneはやめた方がいい？購入前に確認すべき注意点まとめ【2026年版】' },
       { path: '/iphone/apple-care/', label: 'iPhoneを買ったらアップルケアに入るべき？必要ではない理由5つを解説' },
       { path: '/iphone/mobile-hoken-compare/', label: '知らないと損！Apple Care+よりもモバイル保険に加入した方がコスパが高い理由' },
@@ -99,7 +99,7 @@ export const PRODUCT_CATEGORIES: CategoryDef[] = [
     desc: '型落ちは何世代がいい？世代別おすすめ機種・スペック比較・中古相場など、中古iPadをお得に買うための情報をまとめています。',
     basePath: '/ipad',
     pages: [
-      { path: '/ipad/', label: (p) => `中古iPad完全購入ガイド | 選び方・相場・おすすめモデルまとめ【${p.ipadGuideDate}版】`, priority: 0.9 },
+      { path: '/ipad/', label: (p) => `中古iPadおすすめ機種・選び方ガイド | 相場・おすすめモデルまとめ【${p.ipadGuideDate}版】`, priority: 0.9 },
       { path: '/ipad/used-ipad-attention/', label: '中古iPadはやめた方がいい？購入前に確認すべき注意点まとめ' },
       { path: '/ipad/used-ipad-support/', label: 'iPadはいつまで使える？機種別のサポート期間目安まとめ' },
       { path: '/ipad/ipad-shop/', label: (p) => `中古iPadはどこで買う？ECサイト・ショップのおすすめを紹介【${p.ipadShopDate}】` },
@@ -126,7 +126,7 @@ export const PRODUCT_CATEGORIES: CategoryDef[] = [
     desc: '初心者向け選び方・MacBook Airおすすめ機種・スペック比較など、中古MacBookを賢く選ぶための情報をまとめています。',
     basePath: '/macbook',
     pages: [
-      { path: '/macbook/', label: (p) => `中古MacBook完全購入ガイド | 選び方・相場・おすすめモデルまとめ【${p.macbookGuideDate}版】`, priority: 0.9 },
+      { path: '/macbook/', label: (p) => `中古MacBookおすすめ機種・選び方ガイド | 相場・おすすめモデルまとめ【${p.macbookGuideDate}版】`, priority: 0.9 },
       { path: '/macbook/used-macbook-attention/', label: '中古MacBookはやめた方がいい？購入前に確認すべき注意点まとめ' },
       { path: '/macbook/apple-care/', label: 'MacBookを買ったらアップルケアに入るべき？必要ではない理由5つを解説' },
       { path: '/macbook/used-macbook-support/', label: 'MacBookはいつまで使える？各機種ごとの寿命や買い替えのタイミングを解説' },
@@ -149,7 +149,7 @@ export const PRODUCT_CATEGORIES: CategoryDef[] = [
     desc: '型落ち・中古で買うならどれ？コスパ重視のおすすめ機種・歴代シリーズ比較・中古相場など、中古Apple Watchの購入情報をまとめています。',
     basePath: '/watch',
     pages: [
-      { path: '/watch/', label: (p) => `中古Apple Watch完全購入ガイド | 選び方・相場・おすすめモデルまとめ【${p.watchGuideDate}版】`, priority: 0.9 },
+      { path: '/watch/', label: (p) => `中古Apple Watchおすすめ機種・選び方ガイド | 相場・おすすめモデルまとめ【${p.watchGuideDate}版】`, priority: 0.9 },
       { path: '/watch/used-watch-attention/', label: '中古Apple Watchはやめた方がいい？購入前に確認すべき注意点まとめ' },
       { path: '/watch/apple-care/', label: 'Apple Watchを買ったらアップルケアに入るべき？必要ではない理由5つを解説' },
       { path: '/watch/used-watch-support/', label: 'Apple Watchはいつまで使える？機種別のサポート期間目安まとめ' },
@@ -170,7 +170,7 @@ export const PRODUCT_CATEGORIES: CategoryDef[] = [
     desc: 'どれがいい？型落ちおすすめ機種・中古相場など、中古AirPodsをお得に買うための情報をまとめています。',
     basePath: '/airpods',
     pages: [
-      { path: '/airpods/', label: '中古AirPods完全購入ガイド | 選び方・相場・おすすめモデルまとめ', priority: 0.9 },
+      { path: '/airpods/', label: '中古AirPodsおすすめ機種・選び方ガイド | 相場・おすすめモデルまとめ', priority: 0.9 },
       { path: '/airpods/price-info/', label: (p) => `AirPodsの中古相場一覧 | 歴代${p.airpodsModelCount}機種の価格推移を独自集計【${p.airpodsPriceMonth}】` },
       { path: '/airpods/airpods-find/', label: 'AirPodsのケースやイヤホン片方を無くした時の探し方、代替品の購入先まとめ' },
       { path: '/airpods/airpods-filter-search/', label: 'AirPods機種診断シミュレーター｜自分に合うおすすめイヤホンがすぐわかる【2026年版】' },

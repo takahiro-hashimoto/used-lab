@@ -1,14 +1,13 @@
+import type { ReactNode } from 'react'
 import Image from 'next/image'
-import Link from 'next/link'
 import { placeholder } from '@/lib/placeholder'
-import type { MacBookModel, MacBookPriceLog, ProductShopLink } from '@/lib/types'
+import type { MacBookModel, MacBookPriceLog } from '@/lib/types'
 import { calculateOSLifespan } from '@/lib/utils/macbook-helpers'
 import { RECOMMEND_COUNT_LABEL } from '@/lib/data/macbook-recommend'
 
 type CompareItem = {
   model: MacBookModel
   latestPrice: MacBookPriceLog | null
-  shopLinks: ProductShopLink[]
   chipLabel: string
   batteryLabel: string
   targetUser: string
@@ -16,19 +15,27 @@ type CompareItem = {
 
 type Props = {
   items: CompareItem[]
+  heading?: ReactNode
+  descriptions?: ReactNode[]
 }
 
-export default function CompareTableSection({ items }: Props) {
+export default function CompareTableSection({ items, heading, descriptions }: Props) {
   return (
     <section className="l-section" id="compare" aria-labelledby="heading-compare">
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg" id="heading-compare">
-          おすすめMacBook{RECOMMEND_COUNT_LABEL}のスペック比較表
+          {heading ?? <>おすすめMacBook{RECOMMEND_COUNT_LABEL}のスペック比較表</>}
         </h2>
-        <p className="m-section-desc">
-          今回紹介した{RECOMMEND_COUNT_LABEL}の主要スペックを一覧で比較できます。
-        </p>
-        <p className="m-section-desc">自分の使い方に合った機種を見つけましょう。</p>
+        {descriptions ? (
+          descriptions.map((d, i) => <p key={i} className="m-section-desc">{d}</p>)
+        ) : (
+          <>
+            <p className="m-section-desc">
+              今回紹介した{RECOMMEND_COUNT_LABEL}の主要スペックを一覧で比較できます。
+            </p>
+            <p className="m-section-desc">自分の使い方に合った機種を見つけましょう。</p>
+          </>
+        )}
 
         <div className="m-card m-card--shadow m-table-card">
           <div className="m-table-scroll">
@@ -136,67 +143,24 @@ export default function CompareTableSection({ items }: Props) {
                   ))}
                 </tr>
 
-                {/* イオシスで探す */}
+                {/* 詳細（ページ内リンク） */}
                 <tr>
-                  <th scope="row">イオシスで探す</th>
-                  {items.map(({ model, shopLinks }) => {
-                    const iosysLink = shopLinks.find((l) => l.shop_id === 1)
-                    return (
-                      <td key={model.id}>
-                        {iosysLink ? (
-                          <a
-                            href={iosysLink.url}
-                            className="m-btn m-btn--primary m-btn--sm"
-                            rel="nofollow noopener noreferrer"
-                            target="_blank"
-                            aria-label={`${model.shortname || model.model}をイオシスで探す（新しいタブで開く）`}
-                          >
-                            在庫を見る
-                          </a>
-                        ) : (
-                          '-'
-                        )}
-                      </td>
-                    )
-                  })}
+                  <th scope="row">詳細</th>
+                  {items.map(({ model }) => (
+                    <td key={model.id}>
+                      <a
+                        href={`#detail-${model.slug}`}
+                        className="m-btn m-btn--primary m-btn--sm"
+                        aria-label={`${model.shortname || model.model}の詳細を見る`}
+                      >
+                        詳細を見る <i className="fa-solid fa-arrow-down" aria-hidden="true"></i>
+                      </a>
+                    </td>
+                  ))}
                 </tr>
               </tbody>
             </table>
           </div>
-        </div>
-
-        {/* 関連リンクカード */}
-        <div className="l-grid l-grid--3col l-grid--gap-lg u-mt-2xl">
-          <Link href="/macbook/macbook-spec-table/" className="m-card m-card--shadow related-link-card related-link-card--icon m-card--hoverable">
-            <span className="related-link-card__icon related-link-card__icon--blue m-icon-box m-icon-box--sm">
-              <i className="fa-solid fa-table-cells" aria-hidden="true"></i>
-            </span>
-            <p className="related-link-card__title">スペック比較表</p>
-            <p className="related-link-card__desc">歴代MacBookのスペックを網羅。細かな仕様まで確認</p>
-            <span className="related-link-card__arrow">
-              <i className="fa-solid fa-chevron-right" aria-hidden="true"></i>
-            </span>
-          </Link>
-          <Link href="/macbook/used-macbook-support/" className="m-card m-card--shadow related-link-card related-link-card--icon m-card--hoverable">
-            <span className="related-link-card__icon m-icon-box m-icon-box--sm">
-              <i className="fa-solid fa-clock-rotate-left" aria-hidden="true"></i>
-            </span>
-            <p className="related-link-card__title">サポート期間一覧</p>
-            <p className="related-link-card__desc">MacBookの寿命とサポート期間を機種別に一覧で紹介</p>
-            <span className="related-link-card__arrow">
-              <i className="fa-solid fa-chevron-right" aria-hidden="true"></i>
-            </span>
-          </Link>
-          <Link href="/macbook/used-macbook-attention/" className="m-card m-card--shadow related-link-card related-link-card--icon m-card--hoverable">
-            <span className="related-link-card__icon m-icon-box m-icon-box--sm">
-              <i className="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>
-            </span>
-            <p className="related-link-card__title">購入時の注意点</p>
-            <p className="related-link-card__desc">中古MacBookを買う前に確認すべきチェックポイント</p>
-            <span className="related-link-card__arrow">
-              <i className="fa-solid fa-chevron-right" aria-hidden="true"></i>
-            </span>
-          </Link>
         </div>
       </div>
     </section>

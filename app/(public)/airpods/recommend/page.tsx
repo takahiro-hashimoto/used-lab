@@ -82,7 +82,7 @@ export default async function AirPodsRecommendPage() {
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
-      { '@type': 'ListItem', position: 2, name: '中古AirPods完全ガイド', item: 'https://used-lab.jp/airpods' },
+      { '@type': 'ListItem', position: 2, name: '中古AirPodsおすすめ機種・選び方ガイド', item: 'https://used-lab.jp/airpods' },
       { '@type': 'ListItem', position: 3, name: `中古AirPodsおすすめ${RECOMMEND_COUNT}選` },
     ],
   }
@@ -140,11 +140,9 @@ export default async function AirPodsRecommendPage() {
   // CompareTableSection用データ
   const compareItems = recommendModels.map((model, i) => {
     const meta = RECOMMEND_META[model.slug]
-    const modelShopLinks = allShopLinks.filter((l) => l.product_id === model.id)
     return {
       model,
       latestPrice: latestPrices[i],
-      shopLinks: modelShopLinks,
       ancLabel: meta?.ancLabel || '-',
       batteryLabel: meta?.batteryLabel || '-',
       targetUser: meta?.targetUser || '-',
@@ -181,7 +179,7 @@ export default async function AirPodsRecommendPage() {
         {/* パンくず */}
         <Breadcrumb
           items={[
-            { label: '中古AirPods完全ガイド', href: '/airpods/' },
+            { label: '中古AirPodsおすすめ機種・選び方ガイド', href: '/airpods/' },
             { label: `中古AirPodsおすすめ${RECOMMEND_COUNT}選` },
           ]}
         />

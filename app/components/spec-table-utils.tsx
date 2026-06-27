@@ -67,7 +67,16 @@ export function formatStorageRange(strage: string | null): string {
   if (!strage) return '-'
   const parts = strage.split(/\s*[\/,]\s*/).map((s) => s.trim()).filter(Boolean)
   if (parts.length <= 1) return strage
-  return `${parts[0]} ~ ${parts[parts.length - 1]}`
+  const first = parts[0]
+  const last = parts[parts.length - 1]
+  const unitRe = /(GB|TB)$/i
+  const firstUnit = first.match(unitRe)?.[1]
+  const lastUnit = last.match(unitRe)?.[1]
+  // 前後の単位が同じなら先頭の単位を省略（例: 64GB ~ 256GB → 64~ 256GB）
+  if (firstUnit && lastUnit && firstUnit.toLowerCase() === lastUnit.toLowerCase()) {
+    return `${first.replace(unitRe, '')}~ ${last}`
+  }
+  return `${first} ~ ${last}`
 }
 
 /* -------------------------------------------------- */

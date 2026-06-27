@@ -2869,6 +2869,20 @@ fieldset.u-mb-xl {
   font-size: var(--font-size-xs);
 }
 
+/* フローティングヘッダー（JS複製方式）: ページスクロール時に thead をビューポート上端に固定 */
+.m-floating-thead {
+  position: fixed;
+  top: 0;
+  overflow: hidden;
+  z-index: 40;
+  display: none;
+  pointer-events: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+}
+.m-floating-thead__inner {
+  overflow: hidden;
+}
+
 .spec-compare-table thead th {
   position: sticky;
   top: 0;
