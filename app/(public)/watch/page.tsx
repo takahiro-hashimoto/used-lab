@@ -271,6 +271,38 @@ export default async function WatchGuidePage() {
             </div>
           </section>
 
+          {/* ========== スペック比較ガイド ========== */}
+          <section className="l-section" id="spec-compare" aria-labelledby="heading-spec-compare">
+            <div className="l-container">
+              <h2 className="m-section-heading m-section-heading--lg" id="heading-spec-compare">中古Apple Watchのデータ・スペック比較ガイド</h2>
+              <p className="m-section-desc">健康センサー、バッテリー性能、サポート期間など、機種選びに役立つ詳細なスペック比較記事をまとめました。</p>
+
+              <div className="l-grid l-grid--2col l-grid--gap-lg l-grid--mb-2xl">
+                {GUIDE_SPEC_LINKS.map((link) => (
+                  <Link key={link.href} href={link.href} className="m-card m-card--shadow related-link-card m-card--hoverable">
+                    <Image src={getHeroImage(link.href)} alt={link.title} className="related-link-card__img" width={400} height={300} loading="lazy" />
+                    <div className="related-link-card__body">
+                      <p className="related-link-card__title">{link.title}</p>
+                      <p className="related-link-card__desc">{link.desc}</p>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+
+              {/* 歴代Apple Watch 個別記事リンク集 */}
+              <GuideModelLinks
+                basePath="/watch"
+                heading="歴代Apple Watch 個別記事リンク集"
+                description="各モデルの詳細スペック、中古相場、購入時の注意点を個別にまとめています。"
+                categories={[
+                  { label: 'Seriesモデル', items: GUIDE_MODEL_LINKS.series },
+                  { label: 'Ultraモデル', items: GUIDE_MODEL_LINKS.ultra },
+                  { label: 'SEモデル', items: GUIDE_MODEL_LINKS.se },
+                ]}
+              />
+            </div>
+          </section>
+
           {/* ========== 絞り込みツール ========== */}
           <PopularSection
             sectionId="filter-tool"
@@ -419,38 +451,6 @@ export default async function WatchGuidePage() {
                   各機能の詳しい解説は「<Link href="/watch/how-to-use-apple-watch/">Apple Watchのできること25選</Link>」でまとめています。購入前に具体的な使用イメージを確認したい方はぜひご覧ください。
                 </p>
               </div>
-            </div>
-          </section>
-
-          {/* ========== スペック比較ガイド ========== */}
-          <section className="l-section" id="spec-compare" aria-labelledby="heading-spec-compare">
-            <div className="l-container">
-              <h2 className="m-section-heading m-section-heading--lg" id="heading-spec-compare">中古Apple Watchのデータ・スペック比較ガイド</h2>
-              <p className="m-section-desc">健康センサー、バッテリー性能、サポート期間など、機種選びに役立つ詳細なスペック比較記事をまとめました。</p>
-
-              <div className="l-grid l-grid--2col l-grid--gap-lg l-grid--mb-2xl">
-                {GUIDE_SPEC_LINKS.map((link) => (
-                  <Link key={link.href} href={link.href} className="m-card m-card--shadow related-link-card m-card--hoverable">
-                    <Image src={getHeroImage(link.href)} alt={link.title} className="related-link-card__img" width={400} height={300} loading="lazy" />
-                    <div className="related-link-card__body">
-                      <p className="related-link-card__title">{link.title}</p>
-                      <p className="related-link-card__desc">{link.desc}</p>
-                    </div>
-                  </Link>
-                ))}
-              </div>
-
-              {/* 歴代Apple Watch 個別記事リンク集 */}
-              <GuideModelLinks
-                basePath="/watch"
-                heading="歴代Apple Watch 個別記事リンク集"
-                description="各モデルの詳細スペック、中古相場、購入時の注意点を個別にまとめています。"
-                categories={[
-                  { label: 'Seriesモデル', items: GUIDE_MODEL_LINKS.series },
-                  { label: 'Ultraモデル', items: GUIDE_MODEL_LINKS.ultra },
-                  { label: 'SEモデル', items: GUIDE_MODEL_LINKS.se },
-                ]}
-              />
             </div>
           </section>
 

@@ -271,6 +271,39 @@ export default async function IPadGuidePage() {
             </div>
           </section>
 
+          {/* ========== スペック比較ガイド ========== */}
+          <section className="l-section" id="spec-compare" aria-labelledby="heading-spec-compare">
+            <div className="l-container">
+              <h2 className="m-section-heading m-section-heading--lg" id="heading-spec-compare">中古iPadのデータ・スペック比較ガイド</h2>
+              <p className="m-section-desc">Apple Pencil対応、Wi-Fi/Cellularの違い、サポート期間など、機種選びに役立つ詳細なスペック比較記事をまとめました。</p>
+
+              <div className="l-grid l-grid--2col l-grid--gap-lg l-grid--mb-2xl">
+                {GUIDE_SPEC_LINKS.map((link) => (
+                  <Link key={link.href} href={link.href} className="m-card m-card--shadow related-link-card m-card--hoverable">
+                    <Image src={getHeroImage(link.href)} alt={link.title} className="related-link-card__img" width={400} height={300} loading="lazy" />
+                    <div className="related-link-card__body">
+                      <p className="related-link-card__title">{link.title}</p>
+                      <p className="related-link-card__desc">{link.desc}</p>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+
+              {/* 歴代iPad 個別記事リンク集 */}
+              <GuideModelLinks
+                basePath="/ipad"
+                heading="歴代iPad 個別記事リンク集"
+                description="各モデルの詳細スペック、中古相場、購入時の注意点を個別にまとめています。"
+                categories={[
+                  { label: 'iPad Pro', items: GUIDE_MODEL_LINKS.pro },
+                  { label: 'iPad Air', items: GUIDE_MODEL_LINKS.air },
+                  { label: 'iPad（無印）', items: GUIDE_MODEL_LINKS.standard },
+                  { label: 'iPad mini', items: GUIDE_MODEL_LINKS.mini },
+                ]}
+              />
+            </div>
+          </section>
+
           {/* ========== 絞り込みツール ========== */}
           <PopularSection
             sectionId="filter-tool"
@@ -439,39 +472,6 @@ export default async function IPadGuidePage() {
                   各活用シーンの詳しい解説やおすすめアプリは「<Link href="/ipad/howto-use-ipad/">iPadの便利な使い道22選</Link>」でまとめています。購入前に具体的な使用イメージを確認したい方はぜひご覧ください。
                 </p>
               </div>
-            </div>
-          </section>
-
-          {/* ========== スペック比較ガイド ========== */}
-          <section className="l-section" id="spec-compare" aria-labelledby="heading-spec-compare">
-            <div className="l-container">
-              <h2 className="m-section-heading m-section-heading--lg" id="heading-spec-compare">中古iPadのデータ・スペック比較ガイド</h2>
-              <p className="m-section-desc">Apple Pencil対応、Wi-Fi/Cellularの違い、サポート期間など、機種選びに役立つ詳細なスペック比較記事をまとめました。</p>
-
-              <div className="l-grid l-grid--2col l-grid--gap-lg l-grid--mb-2xl">
-                {GUIDE_SPEC_LINKS.map((link) => (
-                  <Link key={link.href} href={link.href} className="m-card m-card--shadow related-link-card m-card--hoverable">
-                    <Image src={getHeroImage(link.href)} alt={link.title} className="related-link-card__img" width={400} height={300} loading="lazy" />
-                    <div className="related-link-card__body">
-                      <p className="related-link-card__title">{link.title}</p>
-                      <p className="related-link-card__desc">{link.desc}</p>
-                    </div>
-                  </Link>
-                ))}
-              </div>
-
-              {/* 歴代iPad 個別記事リンク集 */}
-              <GuideModelLinks
-                basePath="/ipad"
-                heading="歴代iPad 個別記事リンク集"
-                description="各モデルの詳細スペック、中古相場、購入時の注意点を個別にまとめています。"
-                categories={[
-                  { label: 'iPad Pro', items: GUIDE_MODEL_LINKS.pro },
-                  { label: 'iPad Air', items: GUIDE_MODEL_LINKS.air },
-                  { label: 'iPad（無印）', items: GUIDE_MODEL_LINKS.standard },
-                  { label: 'iPad mini', items: GUIDE_MODEL_LINKS.mini },
-                ]}
-              />
             </div>
           </section>
 

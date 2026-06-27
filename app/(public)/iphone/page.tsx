@@ -16,7 +16,6 @@ import {
   GUIDE_SPEC_LINKS,
   GUIDE_FAQ_ITEMS,
   GUIDE_MODEL_LINKS,
-  GUIDE_COMPARE_LINKS,
 } from '@/lib/data/iphone-guide'
 import { buildVendorCardsFromShops } from '@/lib/data/guide-shared'
 import {
@@ -303,6 +302,38 @@ export default async function IPhoneGuidePage() {
             </div>
           </section>
 
+          {/* ========== スペック比較ガイド ========== */}
+          <section className="l-section" id="spec-compare" aria-labelledby="heading-spec-compare">
+            <div className="l-container">
+              <h2 className="m-section-heading m-section-heading--lg" id="heading-spec-compare">中古iPhoneのデータ・スペック比較ガイド</h2>
+              <p className="m-section-desc">サポート期間、カメラ性能、バッテリー寿命など、機種選びに役立つスペック比較記事をまとめました。</p>
+
+              <div className="l-grid l-grid--2col l-grid--gap-lg u-mb-2xl">
+                {GUIDE_SPEC_LINKS.map((link) => (
+                  <Link key={link.href} href={link.href} className="m-card m-card--shadow related-link-card m-card--hoverable">
+                    <Image src={getHeroImage(link.href)} alt={link.title} className="related-link-card__img" width={400} height={300} loading="lazy" />
+                    <div className="related-link-card__body">
+                      <p className="related-link-card__title">{link.title}</p>
+                      <p className="related-link-card__desc">{link.desc}</p>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+
+              {/* 歴代iPhone 個別記事リンク集 */}
+              <GuideModelLinks
+                basePath="/iphone"
+                heading="歴代iPhone 個別記事別リンク集"
+                description="各モデルの詳細スペック、中古相場、購入時の注意点を個別にまとめています。"
+                categories={[
+                  { label: 'Proモデル', items: GUIDE_MODEL_LINKS.pro },
+                  { label: '無印モデル', items: GUIDE_MODEL_LINKS.standard },
+                  { label: 'その他（SEなど）', items: GUIDE_MODEL_LINKS.other },
+                ]}
+              />
+            </div>
+          </section>
+
           {/* ========== 絞り込みツール ========== */}
           <PopularSection
             sectionTitle="条件に合うiPhoneを絞り込む"
@@ -424,54 +455,6 @@ export default async function IPhoneGuidePage() {
             sectionId="sim"
             headingId="heading-sim"
           />
-
-          {/* ========== スペック比較ガイド ========== */}
-          <section className="l-section" id="spec-compare" aria-labelledby="heading-spec-compare">
-            <div className="l-container">
-              <h2 className="m-section-heading m-section-heading--lg" id="heading-spec-compare">中古iPhoneのデータ・スペック比較ガイド</h2>
-              <p className="m-section-desc">サポート期間、カメラ性能、バッテリー寿命など、機種選びに役立つスペック比較記事をまとめました。</p>
-
-              <div className="l-grid l-grid--2col l-grid--gap-lg u-mb-2xl">
-                {GUIDE_SPEC_LINKS.map((link) => (
-                  <Link key={link.href} href={link.href} className="m-card m-card--shadow related-link-card m-card--hoverable">
-                    <Image src={getHeroImage(link.href)} alt={link.title} className="related-link-card__img" width={400} height={300} loading="lazy" />
-                    <div className="related-link-card__body">
-                      <p className="related-link-card__title">{link.title}</p>
-                      <p className="related-link-card__desc">{link.desc}</p>
-                    </div>
-                  </Link>
-                ))}
-              </div>
-
-              {/* 歴代iPhone 個別記事リンク集 */}
-              <GuideModelLinks
-                basePath="/iphone"
-                heading="歴代iPhone 個別記事別リンク集"
-                description="各モデルの詳細スペック、中古相場、購入時の注意点を個別にまとめています。"
-                categories={[
-                  { label: 'Proモデル', items: GUIDE_MODEL_LINKS.pro },
-                  { label: '無印モデル', items: GUIDE_MODEL_LINKS.standard },
-                  { label: 'その他（SEなど）', items: GUIDE_MODEL_LINKS.other },
-                ]}
-              />
-
-              {/* 2機種比較リンク */}
-              <div className="guide-model-links">
-                <h3 className="guide-model-links__heading">2機種比較</h3>
-                <p className="guide-model-links__desc">気になる2機種の違いをスペック・カメラ・バッテリー・中古価格で徹底比較。</p>
-                <div className="l-grid l-grid--3col l-grid--gap-md">
-                  {GUIDE_COMPARE_LINKS.map((link) => (
-                    <Link key={link.href} href={link.href} rel="nofollow" className="guide-model-item m-card">
-                      <span className="guide-model-item__name">
-                        {link.title}
-                      </span>
-                      <span className="guide-model-item__meta">{link.desc}</span>
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </section>
 
           {/* ========== 中古iPhone購入者向けサービス ========== */}
           <section className="l-section" aria-labelledby="heading-service-links">

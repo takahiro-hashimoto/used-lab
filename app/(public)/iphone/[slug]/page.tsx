@@ -32,7 +32,6 @@ import FaqSection from './components/FaqSection'
 import ReviewSection from '@/app/components/ReviewSection'
 import AdminEditLink from '@/app/components/AdminEditLink'
 import StickyCtaOverride from '@/app/components/StickyCtaOverride'
-import { getCompareLinksForModel } from '@/app/(public)/iphone/_compare/config'
 import { resolveLastUpdatedDate, buildStandardPriceChartData } from '@/lib/utils/shared-helpers'
 
 export const revalidate = false
@@ -139,7 +138,7 @@ export default async function IPhoneDetailPage({ params }: PageProps) {
         )}
 
         <AdvanceFeatures model={model} />
-        <CompareSection model={model} allModels={allModels} shopLinks={shopLinks} compareLinks={getCompareLinksForModel(model.slug)} fallbackIosysUrl={fallbackIosysUrl} specLinks={[{ href: '/iphone/iphone-spec-table/', label: '歴代iPhoneスペック比較表' }]}>
+        <CompareSection model={model} allModels={allModels} shopLinks={shopLinks} fallbackIosysUrl={fallbackIosysUrl} specLinks={[{ href: '/iphone/iphone-spec-table/', label: '歴代iPhoneスペック比較表' }]}>
           {(props) => <CompareSelector {...props} />}
         </CompareSection>
         <BenchmarkGeekbench model={model} allModels={allModels} />

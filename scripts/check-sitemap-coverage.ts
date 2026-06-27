@@ -27,6 +27,19 @@ const EXCLUDED = new Set([
   '/iphone/recommend/',
   '/macbook/recommend/',
   '/watch/recommend/',
+  // 2機種比較ページ（PV僅少のため非公開＝noindex・サイトマップ除外）
+  '/iphone/iphone13-13pro-compare/',
+  '/iphone/iphone13-14-compare/',
+  '/iphone/iphone13pro-14pro-compare/',
+  '/iphone/iphone14-14pro-compare/',
+  '/iphone/iphone14-15-compare/',
+  '/iphone/iphone14pro-15pro-compare/',
+  '/iphone/iphone15-15pro-compare/',
+  '/iphone/iphone15-16-compare/',
+  '/iphone/iphone15pro-16pro-compare/',
+  '/iphone/iphone16-16pro-compare/',
+  '/iphone/iphone16e-se3-compare/',
+  '/iphone/iphone16plus-air-compare/',
 ])
 
 // ---------- ファイルシステムからルート収集 ----------
