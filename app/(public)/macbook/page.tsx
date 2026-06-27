@@ -261,6 +261,61 @@ export default async function MacBookGuidePage() {
             </div>
           </section>
 
+          {/* ========== スペック比較ガイド ========== */}
+          <section className="l-section" id="spec-compare" aria-labelledby="heading-spec-compare">
+            <div className="l-container">
+              <h2 className="m-section-heading m-section-heading--lg" id="heading-spec-compare">中古MacBookのデータ・スペック比較ガイド</h2>
+              <p className="m-section-desc">チップ性能、ポート構成、サポート期間など、機種選びに役立つ詳細なスペック比較記事をまとめました。</p>
+
+              <div className="l-grid l-grid--2col l-grid--gap-lg l-grid--mb-2xl">
+                {GUIDE_SPEC_LINKS.map((link) => (
+                  <Link key={link.href} href={link.href} className="m-card m-card--shadow related-link-card m-card--hoverable">
+                    <Image src={getHeroImage(link.href)} alt={link.title} className="related-link-card__img" width={400} height={300} loading="lazy" />
+                    <div className="related-link-card__body">
+                      <p className="related-link-card__title">{link.title}</p>
+                      <p className="related-link-card__desc">{link.desc}</p>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+
+              <div className="guide-model-links">
+                <h3 className="guide-model-links__heading">歴代MacBook 個別記事リンク集</h3>
+                <p className="guide-model-links__desc">各モデルの詳細スペック、中古相場、購入時の注意点を個別にまとめています。</p>
+              </div>
+
+              <div className="guide-model-links">
+                <h4 className="guide-model-links__category">MacBook Pro</h4>
+              </div>
+              <GuideModelLinks
+                basePath="/macbook"
+                categories={[
+                  { label: '', items: [...GUIDE_MODEL_LINKS.pro14, ...GUIDE_MODEL_LINKS.pro16, ...GUIDE_MODEL_LINKS.pro13] },
+                ]}
+              />
+
+              <div className="guide-model-links">
+                <h4 className="guide-model-links__category">MacBook Air</h4>
+              </div>
+              <GuideModelLinks
+                basePath="/macbook"
+                categories={[
+                  { label: '', items: [...GUIDE_MODEL_LINKS.air13, ...GUIDE_MODEL_LINKS.air15] },
+                ]}
+              />
+
+              <div className="guide-model-links">
+                <h4 className="guide-model-links__category">MacBook Neo</h4>
+              </div>
+              <GuideModelLinks
+                basePath="/macbook"
+                categories={[
+                  { label: '', items: GUIDE_MODEL_LINKS.neo13 },
+                ]}
+              />
+            </div>
+          </section>
+
           {/* ========== 中古MacBookを選ぶ際の確認ポイント ========== */}
           <section className="l-section" id="caution" aria-labelledby="heading-caution">
             <div className="l-container">
@@ -375,61 +430,6 @@ export default async function MacBookGuidePage() {
                   </div>
                 </Link>
               </div>
-            </div>
-          </section>
-
-          {/* ========== スペック比較ガイド ========== */}
-          <section className="l-section" id="spec-compare" aria-labelledby="heading-spec-compare">
-            <div className="l-container">
-              <h2 className="m-section-heading m-section-heading--lg" id="heading-spec-compare">中古MacBookのデータ・スペック比較ガイド</h2>
-              <p className="m-section-desc">チップ性能、ポート構成、サポート期間など、機種選びに役立つ詳細なスペック比較記事をまとめました。</p>
-
-              <div className="l-grid l-grid--2col l-grid--gap-lg l-grid--mb-2xl">
-                {GUIDE_SPEC_LINKS.map((link) => (
-                  <Link key={link.href} href={link.href} className="m-card m-card--shadow related-link-card m-card--hoverable">
-                    <Image src={getHeroImage(link.href)} alt={link.title} className="related-link-card__img" width={400} height={300} loading="lazy" />
-                    <div className="related-link-card__body">
-                      <p className="related-link-card__title">{link.title}</p>
-                      <p className="related-link-card__desc">{link.desc}</p>
-                    </div>
-                  </Link>
-                ))}
-              </div>
-
-              <div className="guide-model-links">
-                <h3 className="guide-model-links__heading">歴代MacBook 個別記事リンク集</h3>
-                <p className="guide-model-links__desc">各モデルの詳細スペック、中古相場、購入時の注意点を個別にまとめています。</p>
-              </div>
-
-              <div className="guide-model-links">
-                <h4 className="guide-model-links__category">MacBook Pro</h4>
-              </div>
-              <GuideModelLinks
-                basePath="/macbook"
-                categories={[
-                  { label: '', items: [...GUIDE_MODEL_LINKS.pro14, ...GUIDE_MODEL_LINKS.pro16, ...GUIDE_MODEL_LINKS.pro13] },
-                ]}
-              />
-
-              <div className="guide-model-links">
-                <h4 className="guide-model-links__category">MacBook Air</h4>
-              </div>
-              <GuideModelLinks
-                basePath="/macbook"
-                categories={[
-                  { label: '', items: [...GUIDE_MODEL_LINKS.air13, ...GUIDE_MODEL_LINKS.air15] },
-                ]}
-              />
-
-              <div className="guide-model-links">
-                <h4 className="guide-model-links__category">MacBook Neo</h4>
-              </div>
-              <GuideModelLinks
-                basePath="/macbook"
-                categories={[
-                  { label: '', items: GUIDE_MODEL_LINKS.neo13 },
-                ]}
-              />
             </div>
           </section>
 

@@ -88,6 +88,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/iphone-s
     slug: m.slug,
     image: m.image,
     date: m.date,
+    last_ios: m.last_ios,
     cpu: m.cpu,
     ram: m.ram,
     weight: m.weight,

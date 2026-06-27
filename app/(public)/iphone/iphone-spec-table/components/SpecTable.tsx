@@ -4,6 +4,7 @@ import ContentImage from '../../../../components/ContentImage'
 import { useState, useMemo } from 'react'
 import StickyTableWrapper from '@/app/components/StickyTableWrapper'
 import { parseDate, formatDate, BoolCell, TextCell, PortCell, formatStorageRange } from '@/app/components/spec-table-utils'
+import { calculateOSLifespan } from '@/lib/utils/iphone-helpers'
 import type { ProductShopLink } from '@/lib/types'
 
 type SpecModel = {
@@ -12,6 +13,7 @@ type SpecModel = {
   slug: string
   image: string | null
   date: string | null
+  last_ios: string | null
   cpu: string | null
   ram: string | null
   weight: string | null
@@ -121,12 +123,19 @@ export default function SpecTable({ models, shopLinks }: Props) {
   const getShopLink = (productId: number, shopId: number) =>
     shopLinks.find((l) => l.product_id === productId && l.shop_id === shopId)
 
-  const SPEC_ROWS: { label: string; render: (m: SpecModel) => React.ReactNode }[] = [
+  const SPEC_ROWS: { label: React.ReactNode; render: (m: SpecModel) => React.ReactNode }[] = [
     {
       label: 'サイズ',
       render: (m) => extractScreenInch(m.display) || '-',
     },
     { label: '発売日', render: (m) => formatDate(m.date) },
+    {
+      label: <>サポート期間<span style={{ fontSize: '0.75em', fontWeight: 'normal' }}>（予想）</span></>,
+      render: (m) => {
+        const { osEndYear } = calculateOSLifespan(m.date, m.last_ios)
+        return osEndYear ? `${osEndYear}年まで` : '-'
+      },
+    },
     { label: 'CPU', render: (m) => m.cpu ? <TextCell value={m.cpu} /> : '-' },
     { label: 'RAM', render: (m) => m.ram || '-' },
     { label: '重量', render: (m) => m.weight || '-' },
@@ -140,7 +149,7 @@ export default function SpecTable({ models, shopLinks }: Props) {
     { label: 'ProMotion', render: (m) => <BoolCell value={m.promotion} /> },
     { label: '事故衝突検知', render: (m) => <BoolCell value={m.accident_detection} /> },
     { label: 'アクションボタン', render: (m) => <BoolCell value={m.action_button} /> },
-    { label: 'カメラコントロール', render: (m) => <BoolCell value={m.camera_control} /> },
+    { label: <span style={{ fontSize: '0.85em' }}>カメラコントロール</span>, render: (m) => <BoolCell value={m.camera_control} /> },
     { label: 'LiDARスキャン', render: (m) => <BoolCell value={m.lidar} /> },
     { label: 'ナイト', render: (m) => <BoolCell value={m.night_mode} /> },
     { label: 'ポートレート', render: (m) => <BoolCell value={m.portrait_mode} /> },
@@ -258,8 +267,8 @@ export default function SpecTable({ models, shopLinks }: Props) {
                       </td>
                     ))}
                   </tr>
-                  {SPEC_ROWS.map((row) => (
-                    <tr key={row.label}>
+                  {SPEC_ROWS.map((row, rowIdx) => (
+                    <tr key={rowIdx}>
                       <th scope="row" className="spec-compare-table__sticky">{row.label}</th>
                       {filteredModels.map((m) => (
                         <td key={m.id}>{row.render(m)}</td>

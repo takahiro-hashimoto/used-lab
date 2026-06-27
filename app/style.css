@@ -323,9 +323,9 @@
   line-height: 1;
 }
 
-.m-mark--sm i { font-size: 0.95rem; }
-.m-mark--md i { font-size: 1.15rem; }
-.m-mark--lg i { font-size: 1.4rem; }
+.m-mark--sm { font-size: 0.95rem; }
+.m-mark--md { font-size: 1.15rem; }
+.m-mark--lg { font-size: 1.4rem; }
 
 .m-mark--excellent,
 .m-mark--good { color: var(--color-primary); }
