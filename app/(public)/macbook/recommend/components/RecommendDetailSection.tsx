@@ -3,7 +3,6 @@ import { placeholder } from '@/lib/placeholder'
 import type { MacBookModel, MacBookPriceLog, ProductShopLink, FallbackShop } from '@/lib/types'
 import { formatDateSlash, formatReleaseDate, buildDisplayLinks } from '@/lib/utils/shared-helpers'
 import { calculatePriceRange, calculateOSLifespan } from '@/lib/utils/macbook-helpers'
-import { RECOMMEND_DATE_LABEL, RECOMMEND_COUNT_LABEL } from '@/lib/data/macbook-recommend'
 import SpecToggle from '@/app/components/SpecToggle'
 import { BoolValue, SpecRows, SpecCategory } from '@/app/components/spec-helpers'
 
@@ -38,13 +37,10 @@ export default function RecommendDetailSection({ items }: Props) {
     <section className="l-section" id="detail" aria-labelledby="heading-detail">
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg" id="heading-detail">
-          中古MacBookおすすめ{RECOMMEND_COUNT_LABEL}【{RECOMMEND_DATE_LABEL}最新】
+          中古MacBookおすすめ機種の詳細解説
         </h2>
         <p className="m-section-desc">
-          ここからは{RECOMMEND_DATE_LABEL}現在、おすすめの中古MacBookを{RECOMMEND_COUNT_LABEL}紹介していきます。
-        </p>
-        <p className="m-section-desc">
-          詳細なスペックやイチオシの中古ECショップのリンクも複数掲載しています。
+          各モデルの詳細なスペックや特徴、そしてイチオシの中古ECショップのリンクもまとめています。それぞれの強みを比較しながら、あなたの使い方に最適な1台を見つけてみてください。
         </p>
 
         {items.map((item) => {

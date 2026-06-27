@@ -38,19 +38,19 @@ import { getHeroImage } from '@/lib/data/hero-images'
 export const revalidate = false
 
 export const metadata: Metadata = {
-  title: 'iPhoneスペック・性能比較表｜歴代CPU・チップ性能ランキング一覧',
+  title: '歴代iPhoneスペック比較表！気になる機種の性能差や違いがわかる',
   description:
-    '歴代iPhoneのスペック・CPU性能を比較表で一覧化。チップ性能ランキング・ベンチマーク・処理速度の違いを機種別に確認できます。機種変更や中古iPhone選びの参考に。',
+    '2019年以降に発売された歴代iPhoneのスペック比較表一覧です。iPhoneの機能がどのようにアップデートされてきたのか確認するのにご活用ください。',
   alternates: { canonical: '/iphone/iphone-spec-table/' },
   openGraph: {
-    title: 'iPhoneスペック・性能比較表｜歴代CPU・チップ性能ランキング一覧',
-    description: '歴代iPhoneのスペック・CPU性能を比較表で一覧化。チップ性能ランキング・ベンチマーク・処理速度の違いを機種別に確認できます。',
+    title: '歴代iPhoneスペック比較表！気になる機種の性能差や違いがわかる',
+    description: '2019年以降に発売された歴代iPhoneのスペック比較表一覧です。iPhoneの機能がどのようにアップデートされてきたのか確認するのにご活用ください。',
     url: '/iphone/iphone-spec-table/',
-    images: [{ url: getHeroImage('/iphone/iphone-spec-table/'), width: 1200, height: 630, alt: 'iPhoneスペック・性能比較表のイメージ' }],
+    images: [{ url: getHeroImage('/iphone/iphone-spec-table/'), width: 1200, height: 630, alt: '歴代iPhoneスペック比較表のイメージ' }],
   },
   twitter: {
-    title: 'iPhoneスペック・性能比較表｜歴代CPU・チップ性能ランキング一覧',
-    description: '歴代iPhoneのスペック・CPU性能を比較表で一覧化。チップ性能ランキング・ベンチマーク・処理速度の違いを機種別に確認できます。',
+    title: '歴代iPhoneスペック比較表！気になる機種の性能差や違いがわかる',
+    description: '2019年以降に発売された歴代iPhoneのスペック比較表一覧です。',
     images: [getHeroImage('/iphone/iphone-spec-table/')],
   },
 }
@@ -67,7 +67,7 @@ export default async function IPhoneSpecTablePage() {
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
-      { '@type': 'ListItem', position: 2, name: '中古iPhoneおすすめ機種・選び方ガイド', item: 'https://used-lab.jp/iphone' },
+      { '@type': 'ListItem', position: 2, name: '中古iPhone完全購入ガイド', item: 'https://used-lab.jp/iphone' },
       { '@type': 'ListItem', position: 3, name: '歴代iPhoneスペック比較表' },
     ],
   }
@@ -157,7 +157,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/iphone-s
         {/* パンくず */}
         <Breadcrumb
           items={[
-            { label: '中古iPhoneおすすめ機種・選び方ガイド', href: '/iphone/' },
+            { label: '中古iPhone完全購入ガイド', href: '/iphone/' },
             { label: '歴代iPhoneスペック比較表' },
           ]}
         />
@@ -171,7 +171,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/iphone-s
           <div className="hero-inner l-container">
             <div className="hero-content">
               <h1 className="hero-title" itemProp="headline">
-                iPhoneスペック・性能比較表｜歴代CPU・チップ性能ランキング一覧
+                歴代iPhoneスペック比較表！気になる機種の性能差や違いがわかる
               </h1>
               <HeroMeta dateStr={dateStr} dateDisplay={dateDisplay} withItemProp />
             </div>
@@ -196,13 +196,12 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/iphone-s
         <section className="l-section l-section--sm section-lead" aria-label="記事の導入">
           <div className="l-container">
             <div className="lead-box">
-              <p>「iPhoneの性能ランキングが知りたい」「CPUや処理速度の違いは？」「どの機種がコスパ最強？」そんな疑問にお答えします。</p>
+              <p>毎年新モデルが登場するiPhoneシリーズ。機種変更を検討中の方にはこんな悩みも多いのではないでしょうか。</p>
               <ul className="lead-box__list">
                 <li>最新機種はオーバースペックな気がする…</li>
-                <li>チップ性能・処理速度の差を数値で比較したい</li>
-                <li>自分の用途に合った型落ちiPhoneを探したい</li>
+                <li>自分の用途に合った型落ちiPhoneを探したい!</li>
               </ul>
-              <p>本記事では<strong>歴代iPhoneのスペック・CPU性能を比較表で一覧化</strong>。チップ性能ランキング・ベンチマークスコア・機種間の違いをまとめて確認できます。</p>
+              <p>本記事では<strong>歴代iPhoneの主要スペックを一覧表で比較</strong>し、進化ポイントをわかりやすくまとめました。新たなiPhoneを購入する際の参考にしてみてください！</p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
                 もっと全体像から知りたい方は「<Link href="/iphone/">中古iPhone購入ガイド</Link>」をご覧ください。

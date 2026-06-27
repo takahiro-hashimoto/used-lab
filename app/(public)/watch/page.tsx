@@ -199,13 +199,9 @@ export default async function WatchGuidePage() {
         <section className="l-section l-section--sm section-lead" aria-label="記事の導入">
           <div className="l-container">
             <div className="lead-box">
-              <p>「中古Apple Watchを型落ちで買うならどれがいい？」「コスパ最強の狙い目モデルは？」そんな疑問にお答えします。</p>
-              <p>
-                本ページでは<strong>{GUIDE_DATE_LABEL}のおすすめ中古Apple Watch3機種</strong>を型落ち・コスパ・用途別に厳選。中古で買うならどのモデルが正解か、わかりやすく解説しています。
-              </p>
-              <p>
-                最新相場・選び方のポイント・購入先比較まで一ページで網羅。型落ちApple Watchを安く賢く選びたい方はぜひ参考にしてください。
-              </p>
+              <p>Apple製品の値上がりや円安の影響で、新品のApple Watchは以前より手が出しづらくなってきましたよね…。</p>
+              <p>そこで賢い選択肢になるのが<strong>「中古Apple Watch」</strong>です。Apple Watchはすでに成熟したプロダクトなので、型落ちモデルでも日々の通知チェックや睡眠・ワークアウトの記録、電子決済といった機能は不満なくこなせて、価格もぐっとお手頃。</p>
+              <p>本記事では{GUIDE_DATE_LABEL}時点でのおすすめモデルをご紹介します。記事後半には、中古購入時に必ず確認したい注意点、スペック比較表なども多数用意しているので、ぜひチェックしてみてください！</p>
             </div>
           </div>
         </section>
@@ -233,9 +229,9 @@ export default async function WatchGuidePage() {
           {/* ========== おすすめ機種 ========== */}
           <ConclusionSection
             items={conclusionItems}
-            heading={<>今買うならこれ｜型落ちおすすめ中古Apple Watch{GUIDE_DATE_LABEL}版</>}
+            heading={<>今買うならこれ｜おすすめ中古Apple Watch【{GUIDE_DATE_LABEL}最新】</>}
             descriptions={[
-              <>型落ち・コスパ・用途別に厳選した3機種をご紹介。中古で買うならまずここから選べば失敗しません。</>,
+              <>当サイトでおすすめしている機種は下記の通り。{GUIDE_DATE_LABEL}時点で「watchOSサポートが十分に残っている」「中古価格と性能のバランスが良い」ことを判断基準に、本当の狙い目モデルだけを厳選しています。</>,
             ]}
             gridCols="3col"
             imagePath="watch"
@@ -261,7 +257,6 @@ export default async function WatchGuidePage() {
                     metaText={`${model.date ? `${model.date.split('/')[0]}年` : ''} / ${model.cpu || ''}`}
                     priceLabel={`中古相場（${getSizeLabel(model)}）`}
                     priceValue={getMinPrice(latestPrices[i])}
-                    shopUrl={allShopLinks.find((l) => l.product_id === model.id && l.shop_id === 1)?.url}
                   />
                 ))}
               </div>

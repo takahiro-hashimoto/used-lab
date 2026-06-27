@@ -78,10 +78,10 @@ export default function EvolutionTimeline({ models }: Props) {
     <section className="l-section" id="evolution" aria-labelledby="heading-evolution">
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg" id="heading-evolution">
-          歴代Apple Watchの進化点・シリーズ別の機能の違い一覧
+          歴代Apple Watchの主な進化点（シリーズ別）
         </h2>
-        <p className="m-section-desc">歴代Apple Watchの進化ポイントをシリーズ別に整理。世代間の機能の違いを一目で把握できます。</p>
-        <p className="m-section-desc">どのシリーズでどんな機能が追加されたか、歴代比較の参考にご活用ください。</p>
+        <p className="m-section-desc">歴代Apple Watchの主に進化したポイントをシリーズ別に整理しました。</p>
+        <p className="m-section-desc">シリーズを重ねるごとにどのような点がアップデートされてきたのかを把握するのにお役立てください！</p>
 
         {/* Series */}
         <h3 className="m-section-heading m-section-heading--md u-mt-2xl" style={{ textAlign: 'left' }}>
