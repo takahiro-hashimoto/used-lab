@@ -199,7 +199,7 @@ export default async function AirPodsPriceInfoPage() {
   const { dateStr, dateDisplay, dateModified } = buildPageDates(modelsData)
 
   // JSON-LD
-  const breadcrumbJsonLd = buildBreadcrumbJsonLd('中古AirPods完全ガイド', 'https://used-lab.jp/airpods/', 'AirPodsの中古相場一覧')
+  const breadcrumbJsonLd = buildBreadcrumbJsonLd('中古AirPodsおすすめ機種・選び方ガイド', 'https://used-lab.jp/airpods/', 'AirPodsの中古相場一覧')
   const webAppJsonLd = buildWebApplicationJsonLd({
     name: '中古AirPods価格比較ダッシュボード',
     description: `中古AirPods${modelCount}機種の価格相場を毎日更新。価格推移グラフ、最安値ランキングを掲載。`,
@@ -232,7 +232,7 @@ export default async function AirPodsPriceInfoPage() {
         {/* パンくず */}
         <Breadcrumb
           items={[
-            { label: '中古AirPods完全ガイド', href: '/airpods/' },
+            { label: '中古AirPodsおすすめ機種・選び方ガイド', href: '/airpods/' },
             { label: 'AirPodsの中古相場一覧' },
           ]}
         />

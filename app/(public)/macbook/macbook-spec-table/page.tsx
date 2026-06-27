@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
 import Breadcrumb from '@/app/components/Breadcrumb'
-import { getAllMacBookModels, getAllProductShopLinksByType } from '@/lib/queries'
+import { getAllMacBookModelsIncludingEnded, getAllProductShopLinksByType } from '@/lib/queries'
 import SpecTable from './components/SpecTable'
 import DualCompare from './components/DualCompare'
 import BenchmarkSection from './components/BenchmarkSection'
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
 
 export default async function MacBookSpecTablePage() {
   const [allModels, allShopLinks] = await Promise.all([
-    getAllMacBookModels(),
+    getAllMacBookModelsIncludingEnded(),
     getAllProductShopLinksByType('macbook'),
   ])
 
@@ -61,7 +61,7 @@ export default async function MacBookSpecTablePage() {
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
-      { '@type': 'ListItem', position: 2, name: '中古MacBook完全購入ガイド', item: 'https://used-lab.jp/macbook' },
+      { '@type': 'ListItem', position: 2, name: '中古MacBookおすすめ機種・選び方ガイド', item: 'https://used-lab.jp/macbook' },
       { '@type': 'ListItem', position: 3, name: '歴代MacBookスペック比較表' },
     ],
   }
@@ -82,6 +82,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/macbook/macbook
     slug: m.slug,
     image: m.image,
     date: m.date,
+    last_macos: m.last_macos,
     cpu: m.cpu,
     ram: m.ram,
     strage: m.strage,
@@ -134,7 +135,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/macbook/macbook
         {/* パンくず */}
         <Breadcrumb
           items={[
-            { label: '中古MacBook完全購入ガイド', href: '/macbook/' },
+            { label: '中古MacBookおすすめ機種・選び方ガイド', href: '/macbook/' },
             { label: '歴代MacBookスペック比較表' },
           ]}
         />

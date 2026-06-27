@@ -61,19 +61,19 @@ function resolveLinkTitle(path: string): string {
 
 /** 動的ラベル（関数）のページ向け静的タイトル */
 const STATIC_TITLES: Record<string, string> = {
-  '/iphone/': '中古iPhone完全購入ガイド',
+  '/iphone/': '中古iPhoneおすすめ機種・選び方ガイド',
   '/iphone/recommend/': '中古iPhoneおすすめ機種',
   '/iphone/iphone-shop/': '中古iPhoneおすすめショップ',
   '/iphone/price-info/': 'iPhoneの中古相場一覧',
   '/iphone/mvno/': '中古iPhoneと格安SIMセット購入ガイド',
-  '/ipad/': '中古iPad完全購入ガイド',
+  '/ipad/': '中古iPadおすすめ機種・選び方ガイド',
   '/ipad/recommend/': '中古iPadおすすめ機種',
   '/ipad/ipad-shop/': '中古iPadおすすめショップ',
   '/ipad/ipad-price-info/': 'iPadの中古相場一覧',
-  '/macbook/': '中古MacBook完全購入ガイド',
+  '/macbook/': '中古MacBookおすすめ機種・選び方ガイド',
   '/macbook/recommend/': '中古MacBookおすすめ機種',
   '/macbook/macbook-shop/': '中古MacBookおすすめショップ',
-  '/watch/': '中古Apple Watch完全購入ガイド',
+  '/watch/': '中古Apple Watchおすすめ機種・選び方ガイド',
   '/watch/recommend/': '中古Apple Watchおすすめ機種',
   '/watch/watch-shop/': '中古Apple Watchおすすめショップ',
   '/watch/watch-price-info/': 'Apple Watchの中古相場一覧',
@@ -199,7 +199,7 @@ export async function buildLlmsFullTxt(): Promise<string> {
   lines.push('')
 
   lines.push('### 購入ガイドコンテンツ')
-  lines.push('- 完全購入ガイド: 初心者向けの総合的な選び方解説')
+  lines.push('- おすすめ機種・選び方ガイド: 初心者向けの総合的な選び方解説')
   lines.push('- おすすめ機種: 目的別・予算別のモデル提案')
   lines.push('- 注意点まとめ: 中古購入時に確認すべきポイント')
   lines.push('- サポート期間: 各機種のOS対応状況とサポート目安')

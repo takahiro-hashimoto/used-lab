@@ -237,7 +237,7 @@ export default function SpecTable({ models, shopLinks }: Props) {
         {filteredModels.length === 0 ? (
           <p className="m-section-desc">該当するモデルがありません。フィルターを変更してください。</p>
         ) : (
-          <StickyTableWrapper className="m-card m-card--shadow m-table-card">
+          <StickyTableWrapper className="m-card m-card--shadow m-table-card" floatingHeader>
             <div className="m-table-scroll">
               <table className="m-table spec-compare-table">
                 <caption className="visually-hidden">歴代iPhoneスペック比較表</caption>

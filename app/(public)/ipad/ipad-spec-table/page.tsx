@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
 import Breadcrumb from '@/app/components/Breadcrumb'
-import { getAllIPadModels, getAllProductShopLinksByType, getAllIPadAccessories, getAllIPadAccessoryCompatibility } from '@/lib/queries'
+import { getAllIPadModelsIncludingEnded, getAllProductShopLinksByType, getAllIPadAccessories, getAllIPadAccessoryCompatibility } from '@/lib/queries'
 import { buildAccessoryLookup, getPencilTextFromAccessories, getKeyboardTextFromAccessories } from '@/lib/utils/ipad-helpers'
 import SpecTable from './components/SpecTable'
 import DualCompare from './components/DualCompare'
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
 
 export default async function IPadSpecTablePage() {
   const [allModels, allShopLinks, allAccessories, allCompatibility] = await Promise.all([
-    getAllIPadModels(),
+    getAllIPadModelsIncludingEnded(),
     getAllProductShopLinksByType('ipad'),
     getAllIPadAccessories(),
     getAllIPadAccessoryCompatibility(),
@@ -65,7 +65,7 @@ export default async function IPadSpecTablePage() {
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
-      { '@type': 'ListItem', position: 2, name: '中古iPad完全購入ガイド', item: 'https://used-lab.jp/ipad' },
+      { '@type': 'ListItem', position: 2, name: '中古iPadおすすめ機種・選び方ガイド', item: 'https://used-lab.jp/ipad' },
       { '@type': 'ListItem', position: 3, name: '歴代iPadスペック比較表' },
     ],
   }
@@ -141,7 +141,7 @@ export default async function IPadSpecTablePage() {
         {/* パンくず */}
         <Breadcrumb
           items={[
-            { label: '中古iPad完全購入ガイド', href: '/ipad/' },
+            { label: '中古iPadおすすめ機種・選び方ガイド', href: '/ipad/' },
             { label: '歴代iPadスペック比較表' },
           ]}
         />

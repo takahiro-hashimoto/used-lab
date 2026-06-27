@@ -35,7 +35,7 @@ export default function HeroSection({ model, dateStr, dateDisplay }: Props) {
       {
         '@type': 'ListItem',
         position: 2,
-        name: '中古AirPods完全ガイド',
+        name: '中古AirPodsおすすめ機種・選び方ガイド',
         item: 'https://used-lab.jp/airpods',
       },
       {
@@ -69,7 +69,7 @@ export default function HeroSection({ model, dateStr, dateDisplay }: Props) {
                 </Link>
               </li>
               <li className="breadcrumb-item">
-                <Link href="/airpods/">中古AirPods完全ガイド</Link>
+                <Link href="/airpods/">中古AirPodsおすすめ機種・選び方ガイド</Link>
               </li>
               <li className="breadcrumb-item" aria-current="page">{model.name}（{model.model}）</li>
             </ol>

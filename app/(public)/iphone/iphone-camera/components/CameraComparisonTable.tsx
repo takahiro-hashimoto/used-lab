@@ -4,6 +4,7 @@ import ContentImage from '../../../../components/ContentImage'
 import Link from 'next/link'
 import { useState, useMemo } from 'react'
 import { parseDate, formatDate, BoolCell, TextCell } from '@/app/components/spec-table-utils'
+import StickyTableWrapper from '@/app/components/StickyTableWrapper'
 import type { ProductShopLink } from '@/lib/types'
 
 type CameraModel = {
@@ -166,7 +167,7 @@ export default function CameraComparisonTable({ models, shopLinks }: Props) {
         {filteredModels.length === 0 ? (
           <p className="m-section-desc">該当するモデルがありません。フィルターを変更してください。</p>
         ) : (
-          <div className="m-card m-card--shadow m-table-card">
+          <StickyTableWrapper className="m-card m-card--shadow m-table-card" floatingHeader>
             <div className="m-table-scroll">
               <table className="m-table spec-compare-table">
                 <caption className="visually-hidden">歴代iPhoneカメラ性能比較表</caption>
@@ -222,7 +223,7 @@ export default function CameraComparisonTable({ models, shopLinks }: Props) {
                 </tbody>
               </table>
             </div>
-          </div>
+          </StickyTableWrapper>
         )}
         <div className="m-callout m-callout--tip u-mt-2xl">
           <span className="m-callout__label">memo</span>

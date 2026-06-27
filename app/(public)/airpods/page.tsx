@@ -33,8 +33,8 @@ import { getHeroImage } from '@/lib/data/hero-images'
 import AuthorByline from '@/app/components/AuthorByline'
 import ContinuousAside from '@/app/components/ContinuousAside'
 import HeroMeta from '@/app/components/HeroMeta'
-import ConclusionSection from '@/app/components/ConclusionSection'
 import RecommendDetailSection from './recommend/components/RecommendDetailSection'
+import CompareTableSection from './recommend/components/CompareTableSection'
 
 export const revalidate = false
 
@@ -68,14 +68,6 @@ function getAirPodsMinPrice(price: AirPodsPriceLog | null): string {
   return formatPrice(Math.min(...mins))
 }
 
-function getAirPodsMinPriceNum(price: AirPodsPriceLog | null): number | null {
-  if (!price) return null
-  const mins = [price.iosys_min, price.janpara_min, price.eearphone_min].filter(
-    (v): v is number => v != null && v > 0
-  )
-  if (mins.length === 0) return null
-  return Math.min(...mins)
-}
 
 export default async function AirPodsGuidePage() {
   const [allModels, allShopLinks, shops] = await Promise.all([
@@ -107,21 +99,6 @@ export default async function AirPodsGuidePage() {
 
   const fallbackShops = buildFallbackShops(shops, SHOP_SECTION_IDS, 'airpods_url')
 
-  const conclusionItems = recommendModels.map((model, i) => {
-    const meta = RECOMMEND_META[model.slug]
-    const priceNum = getAirPodsMinPriceNum(recommendPrices[i])
-    const priceLabel = priceNum ? `¥${priceNum.toLocaleString()}〜` : ''
-    const desc = priceLabel ? `${priceLabel}。${meta?.desc || ''}` : (meta?.desc || '')
-    return {
-      id: model.id,
-      slug: model.slug,
-      displayName: model.name,
-      image: model.image,
-      date: model.date,
-      desc,
-    }
-  })
-
   const detailItems = recommendModels.map((model, i) => {
     const meta = RECOMMEND_META[model.slug]
     const modelShopLinks = allShopLinks.filter((l) => l.product_id === model.id)
@@ -139,6 +116,19 @@ export default async function AirPodsGuidePage() {
     }
   })
 
+  const compareItems = recommendModels.map((model, i) => {
+    const meta = RECOMMEND_META[model.slug]
+    const modelShopLinks = allShopLinks.filter((l) => l.product_id === model.id)
+    return {
+      model,
+      latestPrice: recommendPrices[i],
+      shopLinks: modelShopLinks,
+      ancLabel: meta?.ancLabel || '-',
+      batteryLabel: meta?.batteryLabel || '-',
+      targetUser: meta?.targetUser || '-',
+    }
+  })
+
   const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/airpods/page.tsx')
 
   const breadcrumbJsonLd = {
@@ -146,7 +136,7 @@ export default async function AirPodsGuidePage() {
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
-      { '@type': 'ListItem', position: 2, name: '中古AirPodsおすすめ・選び方ガイド' },
+      { '@type': 'ListItem', position: 2, name: '中古AirPodsおすすめ機種・選び方ガイド' },
     ],
   }
 
@@ -174,7 +164,7 @@ export default async function AirPodsGuidePage() {
         <div className="hero-wrapper">
         <Breadcrumb
           items={[
-            { label: '中古AirPodsおすすめ・選び方ガイド' },
+            { label: '中古AirPodsおすすめ機種・選び方ガイド' },
           ]}
         />
 
@@ -222,7 +212,7 @@ export default async function AirPodsGuidePage() {
             <div className="toc-wrapper">
 <p className="toc-title"><i className="fa-solid fa-list" aria-hidden="true"></i> タップできる目次</p>
             <ol className="l-grid l-grid--3col u-list-reset">
-              <li><a href="#conclusion" className="toc-item">おすすめ機種 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
+              <li><a href="#compare" className="toc-item">おすすめ機種 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#filter-tool" className="toc-item">機種診断 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#market-price" className="toc-item">最新相場 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#caution" className="toc-item">注意点 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
@@ -235,15 +225,12 @@ export default async function AirPodsGuidePage() {
         <div className="l-sections">
 
           {/* ========== おすすめ機種 ========== */}
-          <ConclusionSection
-            items={conclusionItems}
+          <CompareTableSection
+            items={compareItems}
             heading={<>今買うならこれ｜おすすめ中古AirPods【{GUIDE_DATE_LABEL}最新】</>}
             descriptions={[
               <>当サイトでおすすめしている機種は下記の通り。{GUIDE_DATE_LABEL}時点で「主要機能が十分に乗っている」「中古価格と性能のバランスが良い」ことを判断基準に、本当の狙い目モデルだけを厳選しています。</>,
             ]}
-            gridCols="3col"
-            imagePath="airpods"
-            placeholderText="AirPods"
           />
           <RecommendDetailSection items={detailItems} />
 

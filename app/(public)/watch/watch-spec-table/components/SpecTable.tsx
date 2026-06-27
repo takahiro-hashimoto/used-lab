@@ -4,6 +4,7 @@ import ContentImage from '../../../../components/ContentImage'
 import { useState, useMemo } from 'react'
 import StickyTableWrapper from '@/app/components/StickyTableWrapper'
 import { parseDate, formatDate, BoolCell } from '@/app/components/spec-table-utils'
+import { calculateOSLifespan } from '@/lib/utils/watch-helpers'
 import type { ProductShopLink } from '@/lib/types'
 
 type SpecModel = {
@@ -12,6 +13,7 @@ type SpecModel = {
   slug: string
   image: string | null
   date: string | null
+  last_watchos: string | null
   cpu: string | null
   size: string | null
   strage: string | null
@@ -73,9 +75,16 @@ export default function SpecTable({ models, shopLinks }: Props) {
   const getShopLink = (productId: number, shopId: number) =>
     shopLinks.find((l) => l.product_id === productId && l.shop_id === shopId)
 
-  const SPEC_ROWS: { label: string; render: (m: SpecModel) => React.ReactNode }[] = [
+  const SPEC_ROWS: { label: React.ReactNode; render: (m: SpecModel) => React.ReactNode }[] = [
     { label: 'サイズ', render: (m) => m.size || '-' },
     { label: '発売日', render: (m) => formatDate(m.date) },
+    {
+      label: <>サポート期間<span style={{ fontSize: '0.75em', fontWeight: 'normal' }}>（予想）</span></>,
+      render: (m) => {
+        const { osEndYear } = calculateOSLifespan(m.date, m.last_watchos)
+        return osEndYear ? `${osEndYear}年まで` : '-'
+      },
+    },
     { label: 'チップ', render: (m) => m.cpu || '-' },
     { label: 'ストレージ', render: (m) => m.strage || '-' },
     { label: 'ケース素材', render: (m) => {
@@ -160,7 +169,7 @@ export default function SpecTable({ models, shopLinks }: Props) {
         {filteredModels.length === 0 ? (
           <p className="m-section-desc">該当するモデルがありません。フィルターを変更してください。</p>
         ) : (
-          <StickyTableWrapper className="m-card m-card--shadow m-table-card">
+          <StickyTableWrapper className="m-card m-card--shadow m-table-card" floatingHeader>
             <div className="m-table-scroll">
               <table className="m-table spec-compare-table">
                 <caption className="visually-hidden">歴代Apple Watchスペック比較表</caption>
@@ -190,8 +199,8 @@ export default function SpecTable({ models, shopLinks }: Props) {
                       </td>
                     ))}
                   </tr>
-                  {SPEC_ROWS.map((row) => (
-                    <tr key={row.label}>
+                  {SPEC_ROWS.map((row, rowIdx) => (
+                    <tr key={rowIdx}>
                       <th scope="row" className="spec-compare-table__sticky">{row.label}</th>
                       {filteredModels.map((m) => (
                         <td key={m.id}>{row.render(m)}</td>
