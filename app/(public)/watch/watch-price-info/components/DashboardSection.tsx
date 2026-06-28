@@ -4,6 +4,7 @@ import { useState, useRef, useEffect, useCallback, useMemo } from 'react'
 import { Chart as ChartClass, CategoryScale, LinearScale, PointElement, LineElement, LineController, Tooltip } from 'chart.js'
 import type { ChartDataset, TooltipItem } from 'chart.js'
 import type { ModelData } from '../page'
+import ChartEmbedButton from '@/app/components/ChartEmbedButton'
 
 ChartClass.register(CategoryScale, LinearScale, PointElement, LineElement, LineController, Tooltip)
 
@@ -194,6 +195,12 @@ export default function DashboardSection({ modelsData, initialSelected }: Props)
             </div>
           </div>
         </div>
+
+        <ChartEmbedButton
+          category="watch"
+          slugs={selectedModelData.map((m) => m.slug)}
+          days={timeRange}
+        />
 
         {/* 算出方法の補足 */}
         <div className="m-callout m-callout--tip u-mt-2xl">

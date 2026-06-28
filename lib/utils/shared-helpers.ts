@@ -59,6 +59,18 @@ export function getGitDateForFile(filePath: string): { dateStr: string; dateDisp
 }
 
 /**
+ * 本日（JST）の日付を {dateStr: "YYYY-MM-DD", dateDisplay} で返す。
+ * 毎日自動更新するページの「更新日」表示用（ISR再生成時に最新化される）。
+ */
+export function getTodayDate(): { dateStr: string; dateDisplay: string } {
+  const dateStr = new Date().toLocaleDateString('sv-SE', { timeZone: JAPAN_TIME_ZONE })
+  return {
+    dateStr,
+    dateDisplay: formatDateDisplay(dateStr),
+  }
+}
+
+/**
  * shops テーブルからフォールバック用ショップリンクを生成
  * product_shop_links にデータが無い場合に使用される
  */

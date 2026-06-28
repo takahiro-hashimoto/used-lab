@@ -13,7 +13,7 @@ import type { IPadPriceLog } from '@/lib/types'
 import { calculateOSLifespan, buildAccessoryLookup, getPencilTextFromAccessories } from '@/lib/utils/ipad-helpers'
 import { calcAvgFromShops, calcPriceStats, buildPageDates, buildDailyPrices, buildRankingData, buildPriceDropRanking, buildInitialSelected, type PriceEntry } from '@/lib/utils/price-info-helpers'
 import { buildPriceInfoTitle, buildPriceInfoMetadata, PRICE_INFO_UPDATE_MONTH } from '@/lib/utils/price-info-meta'
-import { buildBreadcrumbJsonLd, buildWebApplicationJsonLd, buildFaqJsonLd } from '@/lib/utils/price-info-jsonld'
+import { buildBreadcrumbJsonLd, buildWebApplicationJsonLd, buildDatasetJsonLd, buildFaqJsonLd } from '@/lib/utils/price-info-jsonld'
 import { CHART_COLORS, FAQ_ITEMS } from '@/lib/data/ipad-price-info'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import IPadArticleFooter from '@/app/components/ipad/IPadArticleFooter'
@@ -234,6 +234,14 @@ export default async function IPadPriceInfoPage() {
     highestPrice: rankingData[rankingData.length - 1]?.currentPrice ?? 0,
     dateModified,
   })
+  const datasetJsonLd = buildDatasetJsonLd({
+    productLabel: '中古iPad',
+    url: PAGE_URL,
+    modelCount,
+    lowestPrice: cheapestModel?.currentPrice ?? 0,
+    highestPrice: rankingData[rankingData.length - 1]?.currentPrice ?? 0,
+    dateModified,
+  })
   const faqJsonLd = buildFaqJsonLd(FAQ_ITEMS)
 
   return (
@@ -247,6 +255,10 @@ export default async function IPadPriceInfoPage() {
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(datasetJsonLd) }}
         />
         <script
           type="application/ld+json"

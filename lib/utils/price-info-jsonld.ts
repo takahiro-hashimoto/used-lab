@@ -66,6 +66,44 @@ export function buildWebApplicationJsonLd(params: {
   }
 }
 
+const ORG = { '@type': 'Organization', name: 'ユーズドラボ', url: 'https://used-lab.jp/' }
+
+/**
+ * Dataset スキーマ。中古相場の独自集計データを「定期更新のオープンデータセット」として記述。
+ * Google Dataset Search / リッチリザルト適格化を狙う。
+ */
+export function buildDatasetJsonLd(params: {
+  productLabel: string // 例: 中古iPhone
+  url: string
+  modelCount: number
+  lowestPrice: number
+  highestPrice: number
+  dateModified: string
+}) {
+  const { productLabel, modelCount } = params
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Dataset',
+    name: `${productLabel}の価格相場データセット`,
+    description: `${productLabel}${modelCount}機種の中古相場（最安値・最高値・平均中間値）を、主要中古ECサイトから毎日集計したオープンな価格データセットです。価格推移グラフ・最安値ランキングとして公開しています。`,
+    url: params.url,
+    keywords: [productLabel, '中古相場', '価格推移', '中古価格', 'Apple', '相場一覧'],
+    isAccessibleForFree: true,
+    creator: ORG,
+    publisher: ORG,
+    dateModified: params.dateModified,
+    measurementTechnique:
+      '主要中古ECサイトの最安値・最高値を毎日自動取得し、平均中間値を100円単位で算出',
+    variableMeasured: {
+      '@type': 'PropertyValue',
+      name: '中古価格（税込・平均中間値）',
+      unitText: 'JPY',
+      minValue: params.lowestPrice,
+      maxValue: params.highestPrice,
+    },
+  }
+}
+
 export function buildFaqJsonLd(items: { question: string; answer: string }[]) {
   return {
     '@context': 'https://schema.org',

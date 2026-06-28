@@ -1,5 +1,9 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "regions": ["hnd1"],
-  "ignoreCommand": "node scripts/vercel-ignore-build.mjs"
+  "ignoreCommand": "node scripts/vercel-ignore-build.mjs",
+  "crons": [
+    { "path": "/api/cron/refurb", "schedule": "0,30 * * * *" },
+    { "path": "/api/cron/amazon-renewed", "schedule": "0 0 * * *" }
+  ]
 }

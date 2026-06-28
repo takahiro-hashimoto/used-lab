@@ -1,0 +1,76 @@
+/* ============================================
+   Amazon整備済み品 一覧 — 商品カード固有のレイアウトのみ
+   （グリッド=l-grid, カード枠=m-card, 価格=m-price-display,
+     ボタン=m-btn--amazon, バッジ=m-badge は既存クラスを使用）
+   ============================================ */
+
+.card {
+  position: relative; /* NEWバッジの absolute 基準 */
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  height: 100%; /* グリッド行内で高さを均等にする */
+  color: inherit;
+  text-decoration: none;
+}
+.newBadge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 1;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #fff;
+  background: #e23744;
+  padding: 0.12rem 0.45rem;
+  border-radius: 4px;
+}
+.thumb {
+  width: 100%;
+  height: 130px;
+  object-fit: contain;
+  border-radius: var(--radius-sm, 6px);
+}
+.name {
+  /* タイトル枠を常に3行ぶん確保し、カードの高さを揃える */
+  min-height: calc(1.5em * 3);
+  font-size: var(--font-size-sm);
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.priceRow {
+  margin-top: auto; /* 価格・ボタンをカード下部に揃える */
+}
+
+/* カード上の「表示件数 ◯件 | 絞り込み [select]」バー */
+.filterBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* 表示件数=左端 / 絞り込み=右端 */
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted, #666);
+}
+.count strong {
+  color: var(--color-text, #1a1a1a);
+  font-weight: 700;
+}
+.filterLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.select {
+  padding: 0.4rem 0.6rem;
+  font-size: var(--font-size-sm);
+  border: 1px solid #ccd2d9;
+  border-radius: 6px;
+  background: #fff;
+}

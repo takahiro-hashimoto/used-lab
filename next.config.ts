@@ -10,9 +10,9 @@ const CSP = [
   "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://cdn.jsdelivr.net https://www.clarity.ms",
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
   "font-src 'self' https://fonts.gstatic.com",
-  "img-src 'self' data: https://*.supabase.co https://placehold.co https://*.rakuten.co.jp https://*.a8.net https://firebasestorage.googleapis.com",
+  "img-src 'self' data: https://*.supabase.co https://placehold.co https://*.rakuten.co.jp https://*.a8.net https://firebasestorage.googleapis.com https://m.media-amazon.com https://images-na.ssl-images-amazon.com",
   "connect-src 'self' https://*.supabase.co https://www.google-analytics.com https://www.googletagmanager.com https://www.clarity.ms",
-  "frame-src https://www.youtube.com https://docs.google.com",
+  "frame-src 'self' https://www.youtube.com https://docs.google.com",
 ].join('; ')
 
 // CSP は middleware.ts で nonce 付きで設定するためここでは除外
@@ -22,6 +22,15 @@ const securityHeaders = [
   { key: 'Referrer-Policy', value: 'origin-when-cross-origin' },
   { key: 'X-Frame-Options', value: 'DENY' },
   { key: 'Content-Security-Policy', value: CSP },
+]
+
+// 埋め込みウィジェット用: 他サイトからの framing を許可する。
+// X-Frame-Options: DENY を外し、CSP に frame-ancestors * を付与する。
+const embedSecurityHeaders = [
+  { key: 'X-DNS-Prefetch-Control', value: 'on' },
+  { key: 'X-Content-Type-Options', value: 'nosniff' },
+  { key: 'Referrer-Policy', value: 'origin-when-cross-origin' },
+  { key: 'Content-Security-Policy', value: `${CSP}; frame-ancestors *` },
 ]
 
 const nextConfig: NextConfig = {
@@ -186,9 +195,17 @@ const nextConfig: NextConfig = {
   async headers() {
     return [
       {
-        source: '/(.*)',
+        // /embed/* 以外の全パスに DENY 系セキュリティヘッダーを適用
+        source: '/((?!embed/).*)',
         headers: [
           ...securityHeaders,
+        ],
+      },
+      {
+        // 埋め込みウィジェットは他サイトからの framing を許可
+        source: '/embed/:path*',
+        headers: [
+          ...embedSecurityHeaders,
         ],
       },
       {

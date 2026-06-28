@@ -10,7 +10,7 @@ import {
 import type { AirPodsPriceLog } from '@/lib/types'
 import { CHART_COLORS, FAQ_ITEMS } from '@/lib/data/airpods-price-info'
 import { calcAvgFromShops, calcPriceStats, buildPageDates, buildDailyPrices, buildRankingData, buildPriceDropRanking, buildInitialSelected, type PriceEntry } from '@/lib/utils/price-info-helpers'
-import { buildBreadcrumbJsonLd, buildWebApplicationJsonLd, buildFaqJsonLd } from '@/lib/utils/price-info-jsonld'
+import { buildBreadcrumbJsonLd, buildWebApplicationJsonLd, buildDatasetJsonLd, buildFaqJsonLd } from '@/lib/utils/price-info-jsonld'
 import { buildPriceInfoTitle, buildPriceInfoMetadata, PRICE_INFO_UPDATE_MONTH } from '@/lib/utils/price-info-meta'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import AirPodsRelatedLinks from '@/app/components/airpods/AirPodsRelatedLinks'
@@ -209,6 +209,14 @@ export default async function AirPodsPriceInfoPage() {
     highestPrice: rankingData[rankingData.length - 1]?.currentPrice ?? 0,
     dateModified,
   })
+  const datasetJsonLd = buildDatasetJsonLd({
+    productLabel: '中古AirPods',
+    url: PAGE_URL,
+    modelCount,
+    lowestPrice: cheapestModel?.currentPrice ?? 0,
+    highestPrice: rankingData[rankingData.length - 1]?.currentPrice ?? 0,
+    dateModified,
+  })
   const faqJsonLd = buildFaqJsonLd(FAQ_ITEMS)
 
   return (
@@ -221,6 +229,10 @@ export default async function AirPodsPriceInfoPage() {
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(datasetJsonLd) }}
         />
         <script
           type="application/ld+json"

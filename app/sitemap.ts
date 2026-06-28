@@ -7,7 +7,17 @@ import {
   getAllAirPodsSlugs,
 } from '@/lib/queries'
 import { getAllStaticRoutes } from '@/lib/routes'
-import { getGitDateForFile } from '@/lib/utils/shared-helpers'
+import { getGitDateForFile, getTodayDate } from '@/lib/utils/shared-helpers'
+
+/** 毎日自動更新するデータページ。lastmod は当日にして新鮮性を示す */
+const DAILY_UPDATED_PATHS = new Set([
+  '/iphone/price-info/',
+  '/ipad/ipad-price-info/',
+  '/watch/watch-price-info/',
+  '/macbook/price-info/',
+  '/airpods/price-info/',
+  '/amazon-renewed/',
+])
 
 /** ルートパス → page.tsx ファイルパスに変換 */
 function toFilePath(routePath: string): string {
@@ -29,8 +39,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   ])
 
   // 静的ページ（lib/routes.ts から一元取得、git の最終コミット日を使用）
+  const todayStr = getTodayDate().dateStr
   const staticPages: MetadataRoute.Sitemap = getAllStaticRoutes().map((route) => {
-    const { dateStr } = getGitDateForFile(toFilePath(route.path))
+    const dateStr = DAILY_UPDATED_PATHS.has(route.path)
+      ? todayStr
+      : getGitDateForFile(toFilePath(route.path)).dateStr
     return {
       url: route.path === '/' ? baseUrl : `${baseUrl}${route.path}`,
       lastModified: new Date(dateStr),
