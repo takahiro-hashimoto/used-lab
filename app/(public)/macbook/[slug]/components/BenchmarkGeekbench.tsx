@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import StickyTableWrapper from '@/app/components/StickyTableWrapper'
 import type { MacBookModel } from '@/lib/types'
 
@@ -115,6 +116,10 @@ export default function BenchmarkGeekbench({ model, allModels }: Props) {
             </tbody>
           </table>
         </StickyTableWrapper>
+        <div className="m-callout m-callout--tip u-mt-2xl">
+          <span className="m-callout__label">memo</span>
+          <p className="m-callout__text">ベンチマークについてもっと詳しく知りたい方は「<Link href="/macbook/benchmark/">MacBookのベンチマーク比較</Link>」もあわせてご覧ください。</p>
+        </div>
       </div>
     </section>
   )

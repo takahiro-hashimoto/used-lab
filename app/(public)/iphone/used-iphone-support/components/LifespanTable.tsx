@@ -58,7 +58,7 @@ export default function IPhoneLifespanTable({ models }: Props) {
       sectionTitle="iPhoneのサポート期間一覧（寿命予想）"
       sectionDescription={
         <>
-          過去の傾向をもとに、機種別のiOSサポート期間予測をまとめました。実際の期間はAppleの公式発表をご確認ください。
+          過去の傾向から機種別のiOSサポート期間予測を紹介。実際の期間はAppleの公式発表をご確認ください。
         </>
       }
       tableCaption="iPhone機種別サポート期間・寿命予想一覧"

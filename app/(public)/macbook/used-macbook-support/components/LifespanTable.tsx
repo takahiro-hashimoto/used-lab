@@ -58,7 +58,7 @@ export default function MacBookLifespanTable({ models }: Props) {
       sectionTitle="MacBookのサポート期間一覧（寿命予想）"
       sectionDescription={
         <>
-          過去の傾向をもとに、OSサポート期間と修理受付期間の目安を紹介します。
+          過去の傾向からOSサポート期間と修理受付期間の目安を紹介。
           <br />
           実際の期間はAppleの公式発表をご確認ください。
         </>

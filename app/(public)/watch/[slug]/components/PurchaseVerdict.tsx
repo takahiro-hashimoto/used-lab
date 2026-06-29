@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import type { WatchModel, WatchPriceLog } from '@/lib/types'
 import { getVerdict } from '@/lib/utils/watch-helpers'
 import ModelPurchaseVerdict from '@/app/components/model/ModelPurchaseVerdict'
@@ -32,10 +31,6 @@ export default function PurchaseVerdict({ model, latestPrice }: Props) {
       ]}
       suitIcons={SUIT_ICONS}
     >
-      <div className="m-callout m-callout--tip u-mt-xl">
-        <span className="m-callout__label">おすすめ</span>
-        <p className="m-callout__text">他のモデルと迷っている方は<Link href="/watch/recommend/">おすすめ中古Apple Watch機種まとめ【目的別】</Link>も参考にしてください。予算・用途別に狙い目モデルを厳選しています。</p>
-      </div>
     </ModelPurchaseVerdict>
   )
 }

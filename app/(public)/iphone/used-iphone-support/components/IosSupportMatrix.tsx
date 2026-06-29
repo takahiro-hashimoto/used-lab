@@ -89,6 +89,15 @@ function getCellStatus(device: DeviceRow, ios: IosVersion): CellStatus {
 }
 
 /* ------------------------------------------------------------------
+   iOSサポート開始年オーバーライド
+   カレンダー上のリリース年と初対応iOS年がずれる機種を補正する
+   例: iPhone 17e は2026年3月発売だが iOS 19（2025年）に対応
+   ------------------------------------------------------------------ */
+const RELEASE_YEAR_OVERRIDES: Record<string, number> = {
+  'iPhone 17e': 2025,
+}
+
+/* ------------------------------------------------------------------
    DB機種をシリーズ単位にグルーピング
    ------------------------------------------------------------------ */
 function groupModelsBySeries(models: IPhoneModel[]): DeviceRow[] {
@@ -106,7 +115,7 @@ function groupModelsBySeries(models: IPhoneModel[]): DeviceRow[] {
 
   return Array.from(seriesMap.entries()).map(([name, data]) => ({
     name,
-    releaseYear: data.releaseYear,
+    releaseYear: RELEASE_YEAR_OVERRIDES[name] ?? data.releaseYear,
     lastIosNum: data.lastIosNum,
   }))
 }

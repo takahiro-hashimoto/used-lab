@@ -96,9 +96,8 @@ export default function BatteryTable({ models }: Props) {
         <h2 className="m-section-heading m-section-heading--lg" id="heading-battery-ranking">
           歴代iPhoneのバッテリー容量 一覧表
         </h2>
-        <p className="m-section-desc">
-          歴代iPhoneのバッテリー容量と連続使用時間の目安を一覧で比較できます。
-        </p>
+        <p className="m-section-desc">歴代iPhoneのバッテリー容量と連続使用時間の目安を一覧で比較できます。</p>
+        <p className="m-section-desc">iPhoneのスペックを網羅的に比較したい場合は<Link href="/iphone/iphone-spec-table/">歴代iPhoneスペック比較表</Link>をご覧ください。</p>
 
         {/* フィルターUI */}
         <div className="u-mb-xl" aria-label="絞り込み">

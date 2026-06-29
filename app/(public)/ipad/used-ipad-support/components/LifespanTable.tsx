@@ -58,7 +58,7 @@ export default function IPadLifespanTable({ models }: Props) {
       sectionTitle="iPadのサポート期間一覧（寿命予想）"
       sectionDescription={
         <>
-          過去の傾向をもとに、OSサポート期間は発売から約7年、修理受付期間は販売終了から約9年を目安として算出した予測値です。
+          過去の傾向からOSサポート期間は発売から約7年、修理受付期間は販売終了から約9年を目安にした予測値を紹介。
           <br />
           実際の期間はAppleの公式発表をご確認ください。
         </>

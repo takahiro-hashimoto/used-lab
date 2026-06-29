@@ -169,6 +169,8 @@ export default function WatchOsSupportMatrix({ models }: Props) {
           ※ 各watchOSサポート状況は<a href="https://support.apple.com/ja-jp/guide/watch/apd2054d0d5b/11.0/watchos/11.0" target="_blank" rel="noopener noreferrer">Apple公式サイト</a>から引用しています。
           <br />
           ※ 2025年よりAppleはバージョン番号を年ベースに統一したため、watchOS 11の次はwatchOS 26となっています。
+          <br />
+          ※watchOS 27では強化されたSiriに対応するためにサポート機種が大幅に削減されました。
         </p>
       </div>
     </section>

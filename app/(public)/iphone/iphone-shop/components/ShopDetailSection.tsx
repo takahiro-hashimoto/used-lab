@@ -34,6 +34,10 @@ export default function ShopDetailSection({ items }: Props) {
           label: 'キャリア認定中古で探す',
           url: '/iphone/mvno/',
         },
+        apple: {
+          label: 'Apple整備済み品で中古iPhoneを探す',
+          url: '/amazon-renewed/#iphone',
+        },
       }}
     />
   )

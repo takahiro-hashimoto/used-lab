@@ -183,7 +183,7 @@ function MatrixTable({
    ------------------------------------------------------------------ */
 function Legend() {
   return (
-    <div className="m-legend">
+    <div className="m-legend u-mb-md">
       <div className="m-legend__item">
         <span className="m-legend__color cell-supported">○</span>
         <span>対応</span>
