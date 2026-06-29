@@ -271,6 +271,7 @@ export const FOOTER_LINKS: Record<string, { href: string; label: string }[]> = {
   iphone: [
     { href: '/iphone/', label: '中古iPhoneおすすめ機種' },
     { href: '/iphone/iphone-spec-table/', label: 'iPhoneスペック比較表' },
+    { href: '/iphone/used-iphone-support/', label: 'iPhoneのサポート期間・寿命' },
     { href: '/iphone/filter-search/', label: 'iPhone機種診断ツール' },
     { href: '/iphone/price-info/', label: '中古iPhoneの相場価格' },
     { href: '/iphone/iphone-shop/', label: '中古iPhone購入先比較' },
@@ -278,6 +279,7 @@ export const FOOTER_LINKS: Record<string, { href: string; label: string }[]> = {
   ipad: [
     { href: '/ipad/', label: '中古iPadおすすめ機種' },
     { href: '/ipad/ipad-spec-table/', label: 'iPadスペック比較表' },
+    { href: '/ipad/used-ipad-support/', label: 'iPadのサポート期間・寿命' },
     { href: '/ipad/ipad-filter-search/', label: 'iPad機種診断ツール' },
     { href: '/ipad/ipad-price-info/', label: '中古iPadの相場価格' },
     { href: '/ipad/ipad-shop/', label: '中古iPad購入先比較' },
@@ -285,6 +287,7 @@ export const FOOTER_LINKS: Record<string, { href: string; label: string }[]> = {
   macbook: [
     { href: '/macbook/', label: '中古MacBookおすすめ機種' },
     { href: '/macbook/macbook-spec-table/', label: 'MacBookスペック比較表' },
+    { href: '/macbook/used-macbook-support/', label: 'MacBookのサポート期間・寿命' },
     { href: '/macbook/price-info/', label: '中古MacBookの相場価格' },
     { href: '/macbook/air-pro-compare/', label: 'MacBook Air vs Pro比較' },
     { href: '/macbook/macbook-shop/', label: '中古MacBook購入先比較' },
@@ -292,6 +295,7 @@ export const FOOTER_LINKS: Record<string, { href: string; label: string }[]> = {
   watch: [
     { href: '/watch/', label: '中古Apple Watchおすすめ機種' },
     { href: '/watch/watch-spec-table/', label: 'Apple Watchスペック比較表' },
+    { href: '/watch/used-watch-support/', label: 'Apple Watchのサポート期間・寿命' },
     { href: '/watch/watch-filter-search/', label: 'Apple Watch機種診断ツール' },
     { href: '/watch/watch-price-info/', label: '中古Apple Watchの相場価格' },
     { href: '/watch/watch-shop/', label: '中古Apple Watch購入先比較' },
