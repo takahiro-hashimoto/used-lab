@@ -53,6 +53,10 @@
   line-height: 1.8;
   margin-bottom: var(--space-sm);
 }
+.m-section-desc a {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
 
 .m-section-desc + :not(.m-section-desc) {
   margin-top: var(--space-2xl);

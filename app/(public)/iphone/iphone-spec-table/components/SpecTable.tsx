@@ -1,7 +1,7 @@
 'use client'
 import ContentImage from '../../../../components/ContentImage'
 
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import StickyTableWrapper from '@/app/components/StickyTableWrapper'
 import { parseDate, formatDate, BoolCell, TextCell, PortCell, formatStorageRange } from '@/app/components/spec-table-utils'
 import { calculateOSLifespan } from '@/lib/utils/iphone-helpers'
@@ -43,6 +43,7 @@ type SpecModel = {
 type Props = {
   models: SpecModel[]
   shopLinks: ProductShopLink[]
+  prices: Record<number, number | null>
 }
 
 type SortOrder = 'old' | 'new'
@@ -71,10 +72,38 @@ function extractScreenInch(display: string | null): string | null {
   return match ? `${match[1]}インチ` : null
 }
 
-export default function SpecTable({ models, shopLinks }: Props) {
+export default function SpecTable({ models, shopLinks, prices }: Props) {
   const [sortOrder, setSortOrder] = useState<SortOrder>('old')
   const [modelFilter, setModelFilter] = useState<FilterType>('all')
   const [featureFilter, setFeatureFilter] = useState<FeatureFilter | null>(null)
+  const [copied, setCopied] = useState(false)
+
+  // URLパラメータからフィルタ状態を復元
+  useEffect(() => {
+    const p = new URLSearchParams(window.location.search)
+    const sort = p.get('sort'); if (sort === 'new' || sort === 'old') setSortOrder(sort)
+    const model = p.get('model')
+    if (model === 'pro-family' || model === 'standard-family' || model === 'se-family') setModelFilter(model)
+    const size = p.get('size')
+    if (size === 'size-lg' || size === 'size-sm' || size === 'size-xs') setFeatureFilter(size)
+  }, [])
+
+  // フィルタ変更時にURLを更新
+  useEffect(() => {
+    const p = new URLSearchParams()
+    if (sortOrder !== 'old') p.set('sort', sortOrder)
+    if (modelFilter !== 'all') p.set('model', modelFilter)
+    if (featureFilter) p.set('size', featureFilter)
+    const qs = p.toString()
+    window.history.replaceState(null, '', qs ? `?${qs}` : window.location.pathname)
+  }, [sortOrder, modelFilter, featureFilter])
+
+  const handleCopyUrl = async () => {
+    const url = `${window.location.origin}${window.location.pathname}${window.location.search}#heading-spec-table`
+    await navigator.clipboard.writeText(url)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
+  }
 
   const toggleFeature = (f: FeatureFilter) => {
     setFeatureFilter((prev) => (prev === f ? null : f))
@@ -125,15 +154,23 @@ export default function SpecTable({ models, shopLinks }: Props) {
 
   const SPEC_ROWS: { label: React.ReactNode; render: (m: SpecModel) => React.ReactNode }[] = [
     {
-      label: 'サイズ',
-      render: (m) => extractScreenInch(m.display) || '-',
+      label: '中古相場',
+      render: (m) => {
+        const price = prices[m.id]
+        return price ? `¥${price.toLocaleString()}` : '-'
+      },
     },
-    { label: '発売日', render: (m) => formatDate(m.date) },
     {
-      label: <>サポート期間<span style={{ fontSize: '0.75em', fontWeight: 'normal' }}>（予想）</span></>,
+      label: <>発売日<br /><span style={{ fontSize: '0.75em', fontWeight: 'normal' }}>サポート期間（予想）</span></>,
       render: (m) => {
         const { osEndYear } = calculateOSLifespan(m.date, m.last_ios)
-        return osEndYear ? `${osEndYear}年まで` : '-'
+        return (
+          <>
+            {formatDate(m.date)}
+            <br />
+            <span style={{ fontSize: '0.8em', color: '#888' }}>{osEndYear ? `〜${osEndYear}年` : '-'}</span>
+          </>
+        )
       },
     },
     { label: 'CPU', render: (m) => m.cpu ? <TextCell value={m.cpu} /> : '-' },
@@ -168,6 +205,9 @@ export default function SpecTable({ models, shopLinks }: Props) {
         </h2>
         <p className="m-section-desc">
           歴代iPhoneの主要スペックを一覧で比較できます。
+        </p>
+        <p className="m-section-desc">
+          カメラ関連の機能は<a href="/iphone/iphone-camera/">歴代iPhoneカメラ性能の比較まとめ</a>で解説しています。
         </p>
 
         {/* フィルターUI */}
@@ -251,7 +291,7 @@ export default function SpecTable({ models, shopLinks }: Props) {
                 </thead>
                 <tbody>
                   <tr>
-                    <th scope="row" className="spec-compare-table__sticky">イメージ</th>
+                    <th scope="row" className="spec-compare-table__sticky">サイズ</th>
                     {filteredModels.map((m) => (
                       <td key={m.id} style={{ textAlign: 'center', padding: 'var(--space-sm)' }}>
                         {m.image && (
@@ -264,6 +304,7 @@ export default function SpecTable({ models, shopLinks }: Props) {
                             sizes="50px" className="spec-compare-table__cell-img"
                           />
                         )}
+                        <div style={{ fontSize: '0.8em', marginTop: '0.25rem' }}>{extractScreenInch(m.display) || '-'}</div>
                       </td>
                     ))}
                   </tr>
@@ -284,7 +325,7 @@ export default function SpecTable({ models, shopLinks }: Props) {
                         <td key={m.id}>
                           {link ? (
                             <a href={link.url} className="m-btn m-btn--primary m-btn--sm" rel="nofollow noopener noreferrer" target="_blank" aria-label={`${m.model}をイオシスで探す（新しいタブで開く）`}>
-                              中古価格を見る
+                              最安値を確認
                             </a>
                           ) : '-'}
                         </td>
@@ -300,7 +341,7 @@ export default function SpecTable({ models, shopLinks }: Props) {
                         <td key={m.id}>
                           {link ? (
                             <a href={link.url} className="m-btn m-btn--amazon m-btn--sm" rel="nofollow noopener noreferrer" target="_blank" aria-label={`${m.model}をAmazonで探す（新しいタブで開く）`}>
-                              中古価格を見る
+                              最安値を確認
                             </a>
                           ) : '-'}
                         </td>
@@ -312,6 +353,15 @@ export default function SpecTable({ models, shopLinks }: Props) {
             </div>
           </StickyTableWrapper>
         )}
+        <p style={{ marginTop: '1rem', fontSize: '0.75rem', color: '#888', lineHeight: 1.7 }}>
+          ※ 中古相場は、イオシス・ゲオ・じゃんぱらの3店舗から毎日自動取得した最安値・最高値の平均中間値です。対象は各機種の最小容量モデル（例：iPhone 15なら128GB）で、100円単位に丸めて表示しています。機種別の価格推移グラフは「<a href="/iphone/price-info/" style={{ color: 'var(--color-primary)', textDecoration: 'underline' }}>iPhone中古相場・価格推移ページ</a>」でご確認いただけます。
+        </p>
+        <div style={{ marginTop: '1.5rem' }}>
+          <button type="button" className="m-btn m-btn--secondary m-btn--md" onClick={handleCopyUrl}>
+            <i className="fa-solid fa-link" aria-hidden="true"></i>{' '}
+            {copied ? 'コピーしました' : 'この絞り込み条件をシェア'}
+          </button>
+        </div>
       </div>
     </section>
   )

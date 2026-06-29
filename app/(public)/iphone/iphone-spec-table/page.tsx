@@ -1,7 +1,8 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
-import { getAllIPhoneModelsIncludingEnded, getAllProductShopLinksByType } from '@/lib/queries'
+import { getAllIPhoneModelsIncludingEnded, getAllProductShopLinksByType, getLatestIPhonePriceLogsWithPricesForModels } from '@/lib/queries'
+import { calcAvgFromShops } from '@/lib/utils/price-info-helpers'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import SpecTable from './components/SpecTable'
 import DualCompare from './components/DualCompare'
@@ -35,7 +36,7 @@ const GLOSSARY_ITEMS = [
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import { getHeroImage } from '@/lib/data/hero-images'
 
-export const revalidate = false
+export const revalidate = 86400
 
 export const metadata: Metadata = {
   title: '歴代iPhoneスペック比較表！気になる機種の性能差や違いがわかる',
@@ -56,10 +57,28 @@ export const metadata: Metadata = {
 }
 
 export default async function IPhoneSpecTablePage() {
-  const [allModels, allShopLinks] = await Promise.all([
-    getAllIPhoneModelsIncludingEnded(),
+  const allModels = await getAllIPhoneModelsIncludingEnded()
+  const PRICE_COLS = ['iosys_min', 'iosys_max', 'geo_min', 'geo_max', 'janpara_min', 'janpara_max']
+  const [allShopLinks, latestPriceLogs] = await Promise.all([
     getAllProductShopLinksByType('iphone'),
+    getLatestIPhonePriceLogsWithPricesForModels(allModels.map((m) => m.id), PRICE_COLS),
   ])
+
+  const avgPrices: Record<number, number | null> = {}
+  console.log('[spec-table] latestPriceLogs keys:', Object.keys(latestPriceLogs).length, 'sample:', JSON.stringify(Object.entries(latestPriceLogs)[0]))
+  for (const model of allModels) {
+    const log = latestPriceLogs[model.id]
+    if (!log) { avgPrices[model.id] = null; continue }
+    const rec = log as unknown as Record<string, number | null>
+    const mins: number[] = []
+    const maxs: number[] = []
+    for (const [minK, maxK] of [['iosys_min', 'iosys_max'], ['geo_min', 'geo_max'], ['janpara_min', 'janpara_max']]) {
+      const mn = rec[minK]; if (typeof mn === 'number' && mn > 0) mins.push(mn)
+      const mx = rec[maxK]; if (typeof mx === 'number' && mx > 0) maxs.push(mx)
+    }
+    avgPrices[model.id] = calcAvgFromShops(mins, maxs, '')?.avg ?? null
+  }
+  console.log('[spec-table] avgPrices non-null count:', Object.values(avgPrices).filter(v => v !== null).length)
 
   // JSON-LD
   const breadcrumbJsonLd = {
@@ -259,7 +278,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/iphone-s
         </nav>
         <div className="l-sections" itemProp="articleBody">
         {/* セクション */}
-        <SpecTable models={serializedModels} shopLinks={serializedLinks} />
+        <SpecTable models={serializedModels} shopLinks={serializedLinks} prices={avgPrices} />
         <DualCompare models={serializedModels} shopLinks={serializedLinks} />
         <BenchmarkSection models={serializedModels} />
         <EvolutionTimeline models={serializedModels} />

@@ -2,8 +2,9 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
 import Breadcrumb from '@/app/components/Breadcrumb'
-import { getAllIPadModelsIncludingEnded, getAllProductShopLinksByType, getAllIPadAccessories, getAllIPadAccessoryCompatibility } from '@/lib/queries'
+import { getAllIPadModelsIncludingEnded, getAllProductShopLinksByType, getAllIPadAccessories, getAllIPadAccessoryCompatibility, getLatestIPadPriceLogsWithPricesForModels } from '@/lib/queries'
 import { buildAccessoryLookup, getPencilTextFromAccessories, getKeyboardTextFromAccessories } from '@/lib/utils/ipad-helpers'
+import { calcAvgFromShops } from '@/lib/utils/price-info-helpers'
 import SpecTable from './components/SpecTable'
 import DualCompare from './components/DualCompare'
 import BenchmarkSection from './components/BenchmarkSection'
@@ -28,7 +29,7 @@ import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helper
 import HeroMeta from '@/app/components/HeroMeta'
 import { getHeroImage } from '@/lib/data/hero-images'
 
-export const revalidate = false
+export const revalidate = 86400
 
 export const metadata: Metadata = {
   title: '歴代iPadスペック比較表！各世代の性能の違いがすぐわかる',
@@ -49,6 +50,7 @@ export const metadata: Metadata = {
 }
 
 export default async function IPadSpecTablePage() {
+  const PRICE_COLS = ['iosys_min', 'iosys_max', 'geo_min', 'geo_max', 'janpara_min', 'janpara_max']
   const [allModels, allShopLinks, allAccessories, allCompatibility] = await Promise.all([
     getAllIPadModelsIncludingEnded(),
     getAllProductShopLinksByType('ipad'),
@@ -56,6 +58,20 @@ export default async function IPadSpecTablePage() {
     getAllIPadAccessoryCompatibility(),
   ])
   const accessoryLookup = buildAccessoryLookup(allAccessories, allCompatibility)
+
+  const latestPriceLogs = await getLatestIPadPriceLogsWithPricesForModels(allModels.map((m) => m.id), PRICE_COLS)
+  const avgPrices: Record<number, number | null> = {}
+  for (const model of allModels) {
+    const log = latestPriceLogs[model.id]
+    if (!log) { avgPrices[model.id] = null; continue }
+    const rec = log as unknown as Record<string, number | null>
+    const mins: number[] = [], maxs: number[] = []
+    for (const [minK, maxK] of [['iosys_min','iosys_max'],['geo_min','geo_max'],['janpara_min','janpara_max']] as [string,string][]) {
+      const mn = rec[minK]; if (typeof mn === 'number' && mn > 0) mins.push(mn)
+      const mx = rec[maxK]; if (typeof mx === 'number' && mx > 0) maxs.push(mx)
+    }
+    avgPrices[model.id] = calcAvgFromShops(mins, maxs, '')?.avg ?? null
+  }
 
   const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/ipad/ipad-spec-table/page.tsx')
 
@@ -242,7 +258,7 @@ export default async function IPadSpecTablePage() {
         </nav>
         <div className="l-sections">
         {/* セクション */}
-        <SpecTable models={serializedModels} shopLinks={serializedLinks} />
+        <SpecTable models={serializedModels} shopLinks={serializedLinks} prices={avgPrices} />
         <DualCompare models={serializedModels} shopLinks={serializedLinks} />
         <BenchmarkSection models={serializedModels} />
         <EvolutionTimeline models={serializedModels} />

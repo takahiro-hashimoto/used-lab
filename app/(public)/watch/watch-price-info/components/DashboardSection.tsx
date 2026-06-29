@@ -130,6 +130,9 @@ export default function DashboardSection({ modelsData, initialSelected }: Props)
         <p className="m-section-desc">
           気になるモデルを選択して、価格推移を比較できます。
         </p>
+        <p className="m-section-desc">
+          機種ごとの違いが知りたい方は「<a href="/watch/watch-spec-table/">歴代Apple Watchスペック比較表</a>」をご覧ください。
+        </p>
 
         {/* モデル選択チップ */}
         <div className="u-mb-xl">

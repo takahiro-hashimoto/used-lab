@@ -2,7 +2,8 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
 import Breadcrumb from '@/app/components/Breadcrumb'
-import { getAllMacBookModelsIncludingEnded, getAllProductShopLinksByType } from '@/lib/queries'
+import { getAllMacBookModelsIncludingEnded, getAllProductShopLinksByType, getLatestMacBookPriceLogsWithPricesForModels } from '@/lib/queries'
+import { calcAvgFromShops } from '@/lib/utils/price-info-helpers'
 import SpecTable from './components/SpecTable'
 import DualCompare from './components/DualCompare'
 import BenchmarkSection from './components/BenchmarkSection'
@@ -30,7 +31,7 @@ import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helper
 import { getHeroImage } from '@/lib/data/hero-images'
 import HeroMeta from '@/app/components/HeroMeta'
 
-export const revalidate = false
+export const revalidate = 86400
 
 export const metadata: Metadata = {
   title: '歴代MacBookスペック比較表！Air・Proの性能差や違いがすぐわかる',
@@ -51,10 +52,25 @@ export const metadata: Metadata = {
 }
 
 export default async function MacBookSpecTablePage() {
+  const PRICE_COLS = ['min1_price','max1_price','min2_price','max2_price','min3_price','max3_price','min4_price','max4_price','min5_price','max5_price']
   const [allModels, allShopLinks] = await Promise.all([
     getAllMacBookModelsIncludingEnded(),
     getAllProductShopLinksByType('macbook'),
   ])
+
+  const latestPriceLogs = await getLatestMacBookPriceLogsWithPricesForModels(allModels.map((m) => m.id), PRICE_COLS)
+  const avgPrices: Record<number, number | null> = {}
+  for (const model of allModels) {
+    const log = latestPriceLogs[model.id]
+    if (!log) { avgPrices[model.id] = null; continue }
+    const rec = log as unknown as Record<string, number | null>
+    const mins: number[] = [], maxs: number[] = []
+    for (let i = 1; i <= 5; i++) {
+      const mn = rec[`min${i}_price`]; if (typeof mn === 'number' && mn > 0) mins.push(mn)
+      const mx = rec[`max${i}_price`]; if (typeof mx === 'number' && mx > 0) maxs.push(mx)
+    }
+    avgPrices[model.id] = calcAvgFromShops(mins, maxs, '')?.avg ?? null
+  }
 
   const breadcrumbJsonLd = {
     '@context': 'https://schema.org',
@@ -236,7 +252,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/macbook/macbook
         </nav>
         <div className="l-sections">
         {/* セクション */}
-        <SpecTable models={serializedModels} shopLinks={serializedLinks} />
+        <SpecTable models={serializedModels} shopLinks={serializedLinks} prices={avgPrices} />
         <DualCompare models={serializedModels} shopLinks={serializedLinks} />
         <BenchmarkSection models={serializedModels} />
         <EvolutionTimeline />

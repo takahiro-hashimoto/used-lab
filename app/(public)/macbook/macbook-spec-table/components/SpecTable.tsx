@@ -1,7 +1,7 @@
 'use client'
 import ContentImage from '../../../../components/ContentImage'
 
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import StickyTableWrapper from '@/app/components/StickyTableWrapper'
 import { parseDate, formatDate, BoolCell, TextCell } from '@/app/components/spec-table-utils'
 import { calculateOSLifespan } from '@/lib/utils/macbook-helpers'
@@ -41,6 +41,7 @@ type SpecModel = {
 type Props = {
   models: SpecModel[]
   shopLinks: ProductShopLink[]
+  prices: Record<number, number | null>
 }
 
 type SortOrder = 'old' | 'new'
@@ -59,10 +60,36 @@ function getModelInch(model: string): string | null {
   return match ? match[1] : null
 }
 
-export default function SpecTable({ models, shopLinks }: Props) {
+export default function SpecTable({ models, shopLinks, prices }: Props) {
   const [sortOrder, setSortOrder] = useState<SortOrder>('old')
   const [modelFilter, setModelFilter] = useState<FilterType>('all')
   const [inchFilter, setInchFilter] = useState<FilterInch>('all')
+  const [copied, setCopied] = useState(false)
+
+  useEffect(() => {
+    const p = new URLSearchParams(window.location.search)
+    const sort = p.get('sort'); if (sort === 'new' || sort === 'old') setSortOrder(sort)
+    const model = p.get('model')
+    if (model === 'air' || model === 'pro' || model === 'neo') setModelFilter(model)
+    const inch = p.get('inch')
+    if (inch === '13' || inch === '14' || inch === '15' || inch === '16') setInchFilter(inch)
+  }, [])
+
+  useEffect(() => {
+    const p = new URLSearchParams()
+    if (sortOrder !== 'old') p.set('sort', sortOrder)
+    if (modelFilter !== 'all') p.set('model', modelFilter)
+    if (inchFilter !== 'all') p.set('inch', inchFilter)
+    const qs = p.toString()
+    window.history.replaceState(null, '', qs ? `?${qs}` : window.location.pathname)
+  }, [sortOrder, modelFilter, inchFilter])
+
+  const handleCopyUrl = async () => {
+    const url = `${window.location.origin}${window.location.pathname}${window.location.search}#heading-spec-table`
+    await navigator.clipboard.writeText(url)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
+  }
 
   const filteredModels = useMemo(() => {
     let result = [...models]
@@ -88,19 +115,24 @@ export default function SpecTable({ models, shopLinks }: Props) {
     shopLinks.find((l) => l.product_id === productId && l.shop_id === shopId)
 
   const SPEC_ROWS: { label: React.ReactNode; render: (m: SpecModel) => React.ReactNode }[] = [
-    { label: 'サイズ', render: (m) => m.size || '-' },
+    { label: '中古相場', render: (m) => { const price = prices[m.id]; return price ? `¥${price.toLocaleString()}` : '-' } },
     { label: 'カラー', render: (m) => {
       if (!m.color) return '-'
       const parts = m.color.split(/\s*\/\s*/)
       if (parts.length <= 1) return m.color
       return <>{parts.map((p, i) => <span key={i}>{i > 0 && <br />}{p}</span>)}</>
     }},
-    { label: '発売日', render: (m) => formatDate(m.date) },
     {
-      label: <>サポート期間<span style={{ fontSize: '0.75em', fontWeight: 'normal' }}>（予想）</span></>,
+      label: <>発売日<br /><span style={{ fontSize: '0.75em', fontWeight: 'normal' }}>サポート期間（予想）</span></>,
       render: (m) => {
         const { osEndYear } = calculateOSLifespan(m.date, m.last_macos)
-        return osEndYear ? `${osEndYear}年まで` : '-'
+        return (
+          <>
+            {formatDate(m.date)}
+            <br />
+            <span style={{ fontSize: '0.8em', color: '#888' }}>{osEndYear ? `〜${osEndYear}年` : '-'}</span>
+          </>
+        )
       },
     },
     { label: '重量', render: (m) => m.weight || '-' },
@@ -226,7 +258,7 @@ export default function SpecTable({ models, shopLinks }: Props) {
                 </thead>
                 <tbody>
                   <tr>
-                    <th scope="row" className="spec-compare-table__sticky">イメージ</th>
+                    <th scope="row" className="spec-compare-table__sticky">サイズ</th>
                     {filteredModels.map((m) => (
                       <td key={m.id} style={{ textAlign: 'center', padding: 'var(--space-sm)' }}>
                         {m.image && (
@@ -239,6 +271,7 @@ export default function SpecTable({ models, shopLinks }: Props) {
                             sizes="50px" className="spec-compare-table__cell-img"
                           />
                         )}
+                        <div style={{ fontSize: '0.8em', marginTop: '0.25rem' }}>{m.size || '-'}</div>
                       </td>
                     ))}
                   </tr>
@@ -259,7 +292,7 @@ export default function SpecTable({ models, shopLinks }: Props) {
                         <td key={m.id}>
                           {link ? (
                             <a href={link.url} className="m-btn m-btn--primary m-btn--sm" rel="nofollow noopener noreferrer" target="_blank" aria-label={`${m.shortname || m.model}をイオシスで探す（新しいタブで開く）`}>
-                              中古価格を見る
+                              最安値を確認
                             </a>
                           ) : '-'}
                         </td>
@@ -275,7 +308,7 @@ export default function SpecTable({ models, shopLinks }: Props) {
                         <td key={m.id}>
                           {link ? (
                             <a href={link.url} className="m-btn m-btn--amazon m-btn--sm" rel="nofollow noopener noreferrer" target="_blank" aria-label={`${m.shortname || m.model}をAmazonで探す（新しいタブで開く）`}>
-                              中古価格を見る
+                              最安値を確認
                             </a>
                           ) : '-'}
                         </td>
@@ -287,6 +320,15 @@ export default function SpecTable({ models, shopLinks }: Props) {
             </div>
           </StickyTableWrapper>
         )}
+        <p style={{ marginTop: '1rem', fontSize: '0.75rem', color: '#888', lineHeight: 1.7 }}>
+          ※ 中古相場は、楽天市場の中古ショップから毎日自動取得した最安値Top5・最高値Top5の平均中間値です。対象は各機種の最小構成モデルで、100円単位に丸めて表示しています。機種別の価格推移グラフは「<a href="/macbook/price-info/" style={{ color: 'var(--color-primary)', textDecoration: 'underline' }}>MacBook中古相場・価格推移ページ</a>」でご確認いただけます。
+        </p>
+        <div style={{ marginTop: '1.5rem' }}>
+          <button type="button" className="m-btn m-btn--secondary m-btn--md" onClick={handleCopyUrl}>
+            <i className="fa-solid fa-link" aria-hidden="true"></i>{' '}
+            {copied ? 'コピーしました' : 'この絞り込み条件をシェア'}
+          </button>
+        </div>
       </div>
     </section>
   )

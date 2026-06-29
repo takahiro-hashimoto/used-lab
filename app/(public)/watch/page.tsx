@@ -227,7 +227,7 @@ export default async function WatchGuidePage() {
             items={compareItems}
             heading={<>今買うならこれ｜おすすめ中古Apple Watch【{GUIDE_DATE_LABEL}最新】</>}
             descriptions={[
-              <>当サイトでおすすめしている機種は下記の通り。{GUIDE_DATE_LABEL}時点で「watchOSサポートが十分に残っている」「中古価格と性能のバランスが良い」ことを判断基準に、本当の狙い目モデルだけを厳選しています。</>,
+              <>当サイトでおすすめしている機種は下記の通り。スペックの詳細な比較は<a href="/watch/watch-spec-table/">Apple Watchスペック比較表</a>をご覧ください。{GUIDE_DATE_LABEL}時点で「watchOSサポートが十分に残っている」「中古価格と性能のバランスが良い」ことを判断基準に、本当の狙い目モデルだけを厳選しています。</>,
             ]}
           />
           <RecommendDetailSection items={detailItems} />

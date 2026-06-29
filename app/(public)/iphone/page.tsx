@@ -258,7 +258,8 @@ export default async function IPhoneGuidePage() {
             items={compareItems}
             heading={<>今買うならこれ｜おすすめ中古iPhone【{GUIDE_DATE_LABEL}最新】</>}
             descriptions={[
-              <>当サイトでおすすめしている機種は下記の通り。{GUIDE_DATE_LABEL}時点で「iOSサポートが十分に残っている」「中古価格と性能のバランスが良い」ことを判断基準に、本当の狙い目モデルだけを厳選しています。</>,
+              <>当サイトでおすすめしている機種は下記の通り。スペックの詳細な比較は<a href="/iphone/iphone-spec-table/">iPhoneスペック比較表</a>をご覧ください。</>,
+              <>{GUIDE_DATE_LABEL}時点で「iOSサポートが十分に残っている」「中古価格と性能のバランスが良い」ことを判断基準に、狙い目モデルを紹介しています。</>,
             ]}
           />
           <RecommendDetailSection items={detailItems} />
@@ -337,8 +338,8 @@ export default async function IPhoneGuidePage() {
             cardTitle="iPhone機種絞り込みツール"
             cardDescription="ゲームを快適にプレイしたい、ケーブルを統一したいなどの希望や・予算金額などにチェックを打つだけであなたにぴったり合うiPhoneをシミュレーションすることができます。"
             buttonText="機種診断スタート"
-            buttonHref="/iphone/filter-search/"
-            sectionId="filter-tool"
+              buttonHref="/iphone/filter-search/"
+              sectionId="filter-tool"
             headingId="filter-tool"
           />
 
