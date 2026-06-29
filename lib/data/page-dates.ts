@@ -103,7 +103,7 @@ export const PAGE_DATES: Record<string, string> = {
   'app/(public)/watch/recommend/page.tsx':            '2026-04-11',
   'app/(public)/watch/watch-price-info/page.tsx':      '2026-04-24',
   'app/(public)/watch/watch-filter-search/page.tsx':  '2026-04-11',
-  'app/(public)/watch/used-watch-support/page.tsx':   '2026-04-11',
+  'app/(public)/watch/used-watch-support/page.tsx':   '2026-06-29',
   'app/(public)/watch/watch-spec-table/page.tsx':     '2026-06-29',
   'app/(public)/watch/watch-shop/page.tsx':           '2026-04-13',
 
