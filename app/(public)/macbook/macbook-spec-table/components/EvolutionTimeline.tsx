@@ -1,5 +1,3 @@
-import Link from 'next/link'
-
 type EvolutionStep = {
   title: string
   slug: string

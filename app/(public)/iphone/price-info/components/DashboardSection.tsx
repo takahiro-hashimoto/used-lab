@@ -4,6 +4,7 @@ import { useState, useRef, useEffect, useCallback, useMemo } from 'react'
 import { Chart as ChartClass, CategoryScale, LinearScale, PointElement, LineElement, LineController, Tooltip } from 'chart.js'
 import type { ChartDataset, TooltipItem } from 'chart.js'
 import type { ModelData } from '../page'
+import Link from 'next/link'
 import ChartEmbedButton from '@/app/components/ChartEmbedButton'
 
 ChartClass.register(CategoryScale, LinearScale, PointElement, LineElement, LineController, Tooltip)
@@ -133,7 +134,7 @@ export default function DashboardSection({ modelsData, initialSelected }: Props)
           気になるモデルを選択して、価格推移を比較できます。
         </p>
         <p className="m-section-desc">
-          機種ごとの違いが知りたい方は「<a href="/iphone/iphone-spec-table/">歴代iPhoneスペック比較表</a>」をご覧ください。
+          機種ごとの違いが知りたい方は「<Link href="/iphone/iphone-spec-table/">歴代iPhoneスペック比較表</Link>」をご覧ください。
         </p>
 
         {/* モデル選択チップ */}

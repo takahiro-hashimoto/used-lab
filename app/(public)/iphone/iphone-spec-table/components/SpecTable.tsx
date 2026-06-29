@@ -1,6 +1,7 @@
 'use client'
 import ContentImage from '../../../../components/ContentImage'
 
+import Link from 'next/link'
 import { useState, useMemo, useEffect } from 'react'
 import StickyTableWrapper from '@/app/components/StickyTableWrapper'
 import { parseDate, formatDate, BoolCell, TextCell, PortCell, formatStorageRange } from '@/app/components/spec-table-utils'
@@ -73,20 +74,22 @@ function extractScreenInch(display: string | null): string | null {
 }
 
 export default function SpecTable({ models, shopLinks, prices }: Props) {
-  const [sortOrder, setSortOrder] = useState<SortOrder>('old')
-  const [modelFilter, setModelFilter] = useState<FilterType>('all')
-  const [featureFilter, setFeatureFilter] = useState<FeatureFilter | null>(null)
+  const [sortOrder, setSortOrder] = useState<SortOrder>(() => {
+    if (typeof window === 'undefined') return 'old'
+    const v = new URLSearchParams(window.location.search).get('sort')
+    return (v === 'new' || v === 'old') ? v : 'old'
+  })
+  const [modelFilter, setModelFilter] = useState<FilterType>(() => {
+    if (typeof window === 'undefined') return 'all'
+    const v = new URLSearchParams(window.location.search).get('model')
+    return (v === 'pro-family' || v === 'standard-family' || v === 'se-family') ? v : 'all'
+  })
+  const [featureFilter, setFeatureFilter] = useState<FeatureFilter | null>(() => {
+    if (typeof window === 'undefined') return null
+    const v = new URLSearchParams(window.location.search).get('size')
+    return (v === 'size-lg' || v === 'size-sm' || v === 'size-xs') ? v : null
+  })
   const [copied, setCopied] = useState(false)
-
-  // URLパラメータからフィルタ状態を復元
-  useEffect(() => {
-    const p = new URLSearchParams(window.location.search)
-    const sort = p.get('sort'); if (sort === 'new' || sort === 'old') setSortOrder(sort)
-    const model = p.get('model')
-    if (model === 'pro-family' || model === 'standard-family' || model === 'se-family') setModelFilter(model)
-    const size = p.get('size')
-    if (size === 'size-lg' || size === 'size-sm' || size === 'size-xs') setFeatureFilter(size)
-  }, [])
 
   // フィルタ変更時にURLを更新
   useEffect(() => {
@@ -207,7 +210,7 @@ export default function SpecTable({ models, shopLinks, prices }: Props) {
           歴代iPhoneの主要スペックを一覧で比較できます。
         </p>
         <p className="m-section-desc">
-          カメラ関連の機能は<a href="/iphone/iphone-camera/">歴代iPhoneカメラ性能の比較まとめ</a>で解説しています。
+          カメラ関連の機能は<Link href="/iphone/iphone-camera/">歴代iPhoneカメラ性能の比較まとめ</Link>で解説しています。
         </p>
 
         {/* フィルターUI */}
@@ -354,7 +357,7 @@ export default function SpecTable({ models, shopLinks, prices }: Props) {
           </StickyTableWrapper>
         )}
         <p style={{ marginTop: '1rem', fontSize: '0.75rem', color: '#888', lineHeight: 1.7 }}>
-          ※ 中古相場は、イオシス・ゲオ・じゃんぱらの3店舗から毎日自動取得した最安値・最高値の平均中間値です。対象は各機種の最小容量モデル（例：iPhone 15なら128GB）で、100円単位に丸めて表示しています。機種別の価格推移グラフは「<a href="/iphone/price-info/" style={{ color: 'var(--color-primary)', textDecoration: 'underline' }}>iPhone中古相場・価格推移ページ</a>」でご確認いただけます。
+          ※ 中古相場は、イオシス・ゲオ・じゃんぱらの3店舗から毎日自動取得した最安値・最高値の平均中間値です。対象は各機種の最小容量モデル（例：iPhone 15なら128GB）で、100円単位に丸めて表示しています。機種別の価格推移グラフは「<Link href="/iphone/price-info/" style={{ color: 'var(--color-primary)', textDecoration: 'underline' }}>iPhone中古相場・価格推移ページ</Link>」でご確認いただけます。
         </p>
         <div style={{ marginTop: '1.5rem' }}>
           <button type="button" className="m-btn m-btn--secondary m-btn--md" onClick={handleCopyUrl}>

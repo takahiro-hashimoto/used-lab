@@ -1,6 +1,7 @@
 'use client'
 import ContentImage from '../../../../components/ContentImage'
 
+import Link from 'next/link'
 import { useState, useMemo, useEffect } from 'react'
 import StickyTableWrapper from '@/app/components/StickyTableWrapper'
 import { parseDate, formatDate, BoolCell, TextCell, PortCell, formatStorageRange } from '@/app/components/spec-table-utils'
@@ -97,19 +98,22 @@ function matchPencilFilter(pencil: string | null, filter: PencilFilter): boolean
 }
 
 export default function SpecTable({ models, shopLinks, prices }: Props) {
-  const [sortOrder, setSortOrder] = useState<SortOrder>('old')
-  const [modelFilter, setModelFilter] = useState<FilterType>('all')
-  const [pencilFilter, setPencilFilter] = useState<PencilFilter>('all')
+  const [sortOrder, setSortOrder] = useState<SortOrder>(() => {
+    if (typeof window === 'undefined') return 'old'
+    const v = new URLSearchParams(window.location.search).get('sort')
+    return (v === 'new' || v === 'old') ? v : 'old'
+  })
+  const [modelFilter, setModelFilter] = useState<FilterType>(() => {
+    if (typeof window === 'undefined') return 'all'
+    const v = new URLSearchParams(window.location.search).get('model')
+    return (v === 'pro' || v === 'air' || v === 'mini' || v === 'standard') ? v : 'all'
+  })
+  const [pencilFilter, setPencilFilter] = useState<PencilFilter>(() => {
+    if (typeof window === 'undefined') return 'all'
+    const v = new URLSearchParams(window.location.search).get('pencil')
+    return (v === 'gen1' || v === 'gen2' || v === 'usbc' || v === 'pro') ? v : 'all'
+  })
   const [copied, setCopied] = useState(false)
-
-  useEffect(() => {
-    const p = new URLSearchParams(window.location.search)
-    const sort = p.get('sort'); if (sort === 'new' || sort === 'old') setSortOrder(sort)
-    const model = p.get('model')
-    if (model === 'pro' || model === 'air' || model === 'mini' || model === 'standard') setModelFilter(model)
-    const pencil = p.get('pencil')
-    if (pencil === 'gen1' || pencil === 'gen2' || pencil === 'usbc' || pencil === 'pro') setPencilFilter(pencil)
-  }, [])
 
   useEffect(() => {
     const p = new URLSearchParams()
@@ -340,7 +344,7 @@ export default function SpecTable({ models, shopLinks, prices }: Props) {
           </StickyTableWrapper>
         )}
         <p style={{ marginTop: '1rem', fontSize: '0.75rem', color: '#888', lineHeight: 1.7 }}>
-          ※ 中古相場は、イオシス・ゲオ・じゃんぱらの3店舗から毎日自動取得した最安値・最高値の平均中間値です。対象は各機種の最小容量モデルで、100円単位に丸めて表示しています。機種別の価格推移グラフは「<a href="/ipad/ipad-price-info/" style={{ color: 'var(--color-primary)', textDecoration: 'underline' }}>iPad中古相場・価格推移ページ</a>」でご確認いただけます。
+          ※ 中古相場は、イオシス・ゲオ・じゃんぱらの3店舗から毎日自動取得した最安値・最高値の平均中間値です。対象は各機種の最小容量モデルで、100円単位に丸めて表示しています。機種別の価格推移グラフは「<Link href="/ipad/ipad-price-info/" style={{ color: 'var(--color-primary)', textDecoration: 'underline' }}>iPad中古相場・価格推移ページ</Link>」でご確認いただけます。
         </p>
         <div style={{ marginTop: '1.5rem' }}>
           <button type="button" className="m-btn m-btn--secondary m-btn--md" onClick={handleCopyUrl}>
