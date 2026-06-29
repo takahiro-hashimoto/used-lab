@@ -8,7 +8,7 @@ import {
   getShops,
   getAllProductShopLinksByType,
   getWatchPriceLogsByModelId,
-  getLatestWatchPriceLog,
+  getLatestWatchPriceLogWithPrices,
 } from '@/lib/queries'
 import { aggregateDailyPrices, calculateOSLifespan, calculatePriceRange } from '@/lib/utils/watch-helpers'
 import HeroSection from './components/HeroSection'
@@ -31,7 +31,7 @@ import StickyCtaOverride from '@/app/components/StickyCtaOverride'
 import { resolveLastUpdatedDate, buildStandardPriceChartData } from '@/lib/utils/shared-helpers'
 
 const cachedGetModel = cache(getWatchModelBySlug)
-const cachedGetLatestPrice = cache(getLatestWatchPriceLog)
+const cachedGetLatestPrice = cache(getLatestWatchPriceLogWithPrices)
 
 export const revalidate = false
 

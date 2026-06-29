@@ -6,7 +6,7 @@ import {
   getAllMacBookModelsIncludingEnded,
   getShops,
   getAllProductShopLinksByType,
-  getLatestMacBookPriceLog,
+  getLatestMacBookPriceLogWithPrices,
 } from '@/lib/queries'
 import type { MacBookModel } from '@/lib/types'
 import { buildFallbackShops, buildBreadcrumbJsonLd, buildArticleJsonLd, buildFaqJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
@@ -76,7 +76,7 @@ export default async function MacBookRecommendPage() {
 
   // 各モデルの最新価格を並列取得
   const latestPrices = await Promise.all(
-    recommendModels.map((m) => getLatestMacBookPriceLog(m.id))
+    recommendModels.map((m) => getLatestMacBookPriceLogWithPrices(m.id))
   )
 
   const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/macbook/recommend/page.tsx')

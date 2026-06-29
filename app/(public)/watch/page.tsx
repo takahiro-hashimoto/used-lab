@@ -4,7 +4,7 @@ import Image from 'next/image'
 import IconCard from '@/app/components/IconCard'
 import {
   getAllWatchModelsIncludingEnded,
-  getLatestWatchPriceLog,
+  getLatestWatchPriceLogWithPrices,
   getAllProductShopLinksByType,
   getShops,
 } from '@/lib/queries'
@@ -86,8 +86,8 @@ export default async function WatchGuidePage() {
     .filter((m): m is WatchModel => m != null)
 
   const [latestPrices, recommendPrices] = await Promise.all([
-    Promise.all(priceModels.map((m) => getLatestWatchPriceLog(m.id))),
-    Promise.all(recommendModels.map((m) => getLatestWatchPriceLog(m.id))),
+    Promise.all(priceModels.map((m) => getLatestWatchPriceLogWithPrices(m.id))),
+    Promise.all(recommendModels.map((m) => getLatestWatchPriceLogWithPrices(m.id))),
   ])
 
   const fallbackShops = buildFallbackShops(shops, SHOP_SECTION_IDS, 'watch_url')

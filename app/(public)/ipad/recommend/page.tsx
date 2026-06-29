@@ -6,7 +6,7 @@ import {
   getAllIPadModelsIncludingEnded,
   getShops,
   getAllProductShopLinksByType,
-  getLatestIPadPriceLog,
+  getLatestIPadPriceLogWithPrices,
   getAllIPadAccessories,
   getAllIPadAccessoryCompatibility,
 } from '@/lib/queries'
@@ -87,7 +87,7 @@ export default async function IPadRecommendPage() {
 
   // 各モデルの最新価格を並列取得
   const latestPrices = await Promise.all(
-    recommendModels.map((m) => getLatestIPadPriceLog(m.id))
+    recommendModels.map((m) => getLatestIPadPriceLogWithPrices(m.id))
   )
 
   const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/ipad/recommend/page.tsx')

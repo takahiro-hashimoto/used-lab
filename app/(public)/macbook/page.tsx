@@ -3,7 +3,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import {
   getAllMacBookModels,
-  getLatestMacBookPriceLog,
+  getLatestMacBookPriceLogWithPrices,
   getAllProductShopLinksByType,
   getShops,
 } from '@/lib/queries'
@@ -77,8 +77,8 @@ export default async function MacBookGuidePage() {
     .filter((m): m is MacBookModel => m != null)
 
   const [latestPrices, recommendPrices] = await Promise.all([
-    Promise.all(priceModels.map((m) => getLatestMacBookPriceLog(m.id))),
-    Promise.all(recommendModels.map((m) => getLatestMacBookPriceLog(m.id))),
+    Promise.all(priceModels.map((m) => getLatestMacBookPriceLogWithPrices(m.id))),
+    Promise.all(recommendModels.map((m) => getLatestMacBookPriceLogWithPrices(m.id))),
   ])
 
   const fallbackShops = buildFallbackShops(shops, SHOP_SECTION_IDS, 'macbook_url')

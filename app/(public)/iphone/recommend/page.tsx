@@ -6,7 +6,7 @@ import {
   getAllIPhoneModelsIncludingEnded,
   getShops,
   getAllProductShopLinksByType,
-  getLatestPriceLog,
+  getLatestIPhonePriceLogWithPrices,
 } from '@/lib/queries'
 import type { IPhoneModel } from '@/lib/types'
 import { buildFallbackShops, buildBreadcrumbJsonLd, buildArticleJsonLd, buildFaqJsonLd, formatPrice, getGitDateForFile } from '@/lib/utils/shared-helpers'
@@ -73,7 +73,7 @@ export default async function IPhoneTopPage() {
 
   // 各モデルの最新価格を並列取得
   const latestPrices = await Promise.all(
-    recommendModels.map((m) => getLatestPriceLog(m.id))
+    recommendModels.map((m) => getLatestIPhonePriceLogWithPrices(m.id))
   )
 
 

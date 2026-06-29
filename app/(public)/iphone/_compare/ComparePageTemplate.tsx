@@ -8,7 +8,7 @@ import { notFound } from 'next/navigation'
 import {
   getIPhoneModelBySlug,
   getPriceLogsByModelId,
-  getLatestPriceLog,
+  getLatestIPhonePriceLogWithPrices,
   getProductShopLinks,
 } from '@/lib/queries'
 import { buildBreadcrumbJsonLd, buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
@@ -47,8 +47,8 @@ export default async function ComparePageTemplate({ config }: Props) {
   const [priceLogsL, priceLogsR, latestL, latestR, shopLinksL, shopLinksR] = await Promise.all([
     getPriceLogsByModelId(modelL.id),
     getPriceLogsByModelId(modelR.id),
-    getLatestPriceLog(modelL.id),
-    getLatestPriceLog(modelR.id),
+    getLatestIPhonePriceLogWithPrices(modelL.id),
+    getLatestIPhonePriceLogWithPrices(modelR.id),
     getProductShopLinks('iphone', modelL.id),
     getProductShopLinks('iphone', modelR.id),
   ])

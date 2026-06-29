@@ -8,12 +8,12 @@ import {
   getShops,
   getAllProductShopLinksByType,
   getPriceLogsByModelId,
-  getLatestPriceLog,
+  getLatestIPhonePriceLogWithPrices,
   getIPhoneReviewsBySlug,
 } from '@/lib/queries'
 
 const cachedGetModel = cache(getIPhoneModelBySlug)
-const cachedGetLatestPrice = cache(getLatestPriceLog)
+const cachedGetLatestPrice = cache(getLatestIPhonePriceLogWithPrices)
 import { aggregateDailyPrices, filterLast3Months, calculateOSLifespan, calculatePriceRange } from '@/lib/utils/iphone-helpers'
 import HeroSection from './components/HeroSection'
 import LeadText from './components/LeadText'

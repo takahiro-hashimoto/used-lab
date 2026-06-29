@@ -8,7 +8,7 @@ import {
   getShops,
   getAllProductShopLinksByType,
   getMacBookPriceLogsByModelId,
-  getLatestMacBookPriceLog,
+  getLatestMacBookPriceLogWithPrices,
 } from '@/lib/queries'
 import { aggregateDailyPrices, filterLast3Months, calculateOSLifespan, calculatePriceRange } from '@/lib/utils/macbook-helpers'
 import HeroSection from './components/HeroSection'
@@ -31,7 +31,7 @@ import StickyCtaOverride from '@/app/components/StickyCtaOverride'
 import { resolveLastUpdatedDate } from '@/lib/utils/shared-helpers'
 
 const cachedGetModel = cache(getMacBookModelBySlug)
-const cachedGetLatestPrice = cache(getLatestMacBookPriceLog)
+const cachedGetLatestPrice = cache(getLatestMacBookPriceLogWithPrices)
 
 export const revalidate = false
 

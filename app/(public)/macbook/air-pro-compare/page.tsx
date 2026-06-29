@@ -10,7 +10,7 @@ import RecommendSection from './components/RecommendSection'
 import UseCaseSection from './components/UseCaseSection'
 import PriceCompareSection from './components/PriceCompareSection'
 import FaqSection from './components/FaqSection'
-import { getAllMacBookModels, getLatestMacBookPriceLog } from '@/lib/queries'
+import { getAllMacBookModels, getLatestMacBookPriceLogWithPrices } from '@/lib/queries'
 import type { MacBookPriceLog } from '@/lib/types'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import { getHeroImage } from '@/lib/data/hero-images'
@@ -46,7 +46,7 @@ export default async function AirProComparePage() {
   const models = await getAllMacBookModels()
   const priceEntries = await Promise.all(
     models.map(async (m) => {
-      const log = await getLatestMacBookPriceLog(m.id)
+      const log = await getLatestMacBookPriceLogWithPrices(m.id)
       return [m.id, log] as [number, MacBookPriceLog | null]
     })
   )

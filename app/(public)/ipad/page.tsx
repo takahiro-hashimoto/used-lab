@@ -5,7 +5,7 @@ import IconCard from '@/app/components/IconCard'
 import PopularSection from '@/app/components/support/PopularSection'
 import {
   getAllIPadModels,
-  getLatestIPadPriceLog,
+  getLatestIPadPriceLogWithPrices,
   getAllProductShopLinksByType,
   getShops,
 } from '@/lib/queries'
@@ -86,8 +86,8 @@ export default async function IPadGuidePage() {
     .filter((m): m is IPadModel => m != null)
 
   const [latestPrices, recommendPrices] = await Promise.all([
-    Promise.all(priceModels.map((m) => getLatestIPadPriceLog(m.id))),
-    Promise.all(recommendModels.map((m) => getLatestIPadPriceLog(m.id))),
+    Promise.all(priceModels.map((m) => getLatestIPadPriceLogWithPrices(m.id))),
+    Promise.all(recommendModels.map((m) => getLatestIPadPriceLogWithPrices(m.id))),
   ])
 
   const fallbackShops = buildFallbackShops(shops, SHOP_SECTION_IDS, 'ipad_url')

@@ -4,7 +4,7 @@ import Image from 'next/image'
 import ContentImage from '../../components/ContentImage'
 import {
   getAllIPhoneModels,
-  getLatestPriceLog,
+  getLatestIPhonePriceLogWithPrices,
   getAllProductShopLinksByType,
   getShops,
 } from '@/lib/queries'
@@ -117,8 +117,8 @@ export default async function IPhoneGuidePage() {
     .filter((m): m is IPhoneModel => m != null)
 
   const [latestPrices, recommendPrices] = await Promise.all([
-    Promise.all(priceModels.map((m) => getLatestPriceLog(m.id))),
-    Promise.all(recommendModels.map((m) => getLatestPriceLog(m.id))),
+    Promise.all(priceModels.map((m) => getLatestIPhonePriceLogWithPrices(m.id))),
+    Promise.all(recommendModels.map((m) => getLatestIPhonePriceLogWithPrices(m.id))),
   ])
 
   const fallbackShops = buildFallbackShops(shops, SHOP_SECTION_IDS, 'url')

@@ -8,7 +8,7 @@ import {
   getShops,
   getAllProductShopLinksByType,
   getIPadPriceLogsByModelId,
-  getLatestIPadPriceLog,
+  getLatestIPadPriceLogWithPrices,
   getAllIPadAccessories,
   getAllIPadAccessoryCompatibility,
   getIPadReviewsBySlug,
@@ -36,7 +36,7 @@ import StickyCtaOverride from '@/app/components/StickyCtaOverride'
 import { resolveLastUpdatedDate, buildStandardPriceChartData } from '@/lib/utils/shared-helpers'
 
 const cachedGetModel = cache(getIPadModelBySlug)
-const cachedGetLatestPrice = cache(getLatestIPadPriceLog)
+const cachedGetLatestPrice = cache(getLatestIPadPriceLogWithPrices)
 
 export const revalidate = false
 

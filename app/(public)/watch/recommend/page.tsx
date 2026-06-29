@@ -5,7 +5,7 @@ import {
   getAllWatchModelsIncludingEnded,
   getShops,
   getAllProductShopLinksByType,
-  getLatestWatchPriceLog,
+  getLatestWatchPriceLogWithPrices,
 } from '@/lib/queries'
 import type { WatchModel } from '@/lib/types'
 import { buildFallbackShops, buildBreadcrumbJsonLd, buildArticleJsonLd, buildFaqJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
@@ -76,7 +76,7 @@ export default async function WatchRecommendPage() {
 
   // 各モデルの最新価格を並列取得
   const latestPrices = await Promise.all(
-    recommendModels.map((m) => getLatestWatchPriceLog(m.id))
+    recommendModels.map((m) => getLatestWatchPriceLogWithPrices(m.id))
   )
 
   const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/watch/recommend/page.tsx')

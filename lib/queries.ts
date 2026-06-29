@@ -166,6 +166,29 @@ function createPriceLogQueries<T extends { model_id: number }>(table: string, ta
       { revalidate: 86400, tags: [tag] }
     ),
 
+    /** 直近90日以内で価格フィールドが1つ以上非nullな最新ログを単一モデルで返す */
+    getLatestWithPrices: unstable_cache(
+      async (modelId: number, priceColumns: string[]): Promise<T | null> => {
+        const ninetyDaysAgo = new Date(Date.now() - 90 * 24 * 60 * 60 * 1000)
+          .toISOString()
+          .substring(0, 10)
+        const orFilter = priceColumns.map((c) => `${c}.not.is.null`).join(',')
+        const { data, error } = await supabase
+          .from(table)
+          .select('*')
+          .eq('model_id', modelId)
+          .gte('logged_at', ninetyDaysAgo)
+          .or(orFilter)
+          .order('logged_at', { ascending: false })
+          .limit(1)
+          .maybeSingle()
+        if (error) throw new Error(`getLatestWithPrices(${table}, ${modelId}): ${error.message}`)
+        return (data ?? null) as T | null
+      },
+      [`${table}-latest-with-prices`],
+      { revalidate: 86400, tags: [tag] }
+    ),
+
     /** 直近90日以内で価格フィールドが1つ以上非nullな最新ログを model_id ごとに返す（スペック表の相場表示用） */
     getLatestWithPricesForModels: unstable_cache(
       async (modelIds: number[], priceColumns: string[]): Promise<Record<number, T>> => {
@@ -261,6 +284,9 @@ export const getLatestPriceLog = iPhonePriceLogs.getLatest
 export const getAllIPhonePriceLogsByModelIds = iPhonePriceLogs.getAllByModelIds
 export const getLatestIPhonePriceLogsForModels = iPhonePriceLogs.getLatestForModels
 export const getLatestIPhonePriceLogsWithPricesForModels = iPhonePriceLogs.getLatestWithPricesForModels
+const IPHONE_PRICE_COLS = ['iosys_min', 'iosys_max', 'geo_min', 'geo_max', 'janpara_min', 'janpara_max']
+export const getLatestIPhonePriceLogWithPrices = (modelId: number) =>
+  iPhonePriceLogs.getLatestWithPrices(modelId, IPHONE_PRICE_COLS)
 
 // iPad
 export const getIPadModelBySlug = iPadModels.getBySlug
@@ -272,6 +298,9 @@ export const getLatestIPadPriceLog = iPadPriceLogs.getLatest
 export const getAllIPadPriceLogsByModelIds = iPadPriceLogs.getAllByModelIds
 export const getLatestIPadPriceLogsForModels = iPadPriceLogs.getLatestForModels
 export const getLatestIPadPriceLogsWithPricesForModels = iPadPriceLogs.getLatestWithPricesForModels
+const IPAD_PRICE_COLS = ['iosys_min', 'iosys_max', 'geo_min', 'geo_max', 'janpara_min', 'janpara_max']
+export const getLatestIPadPriceLogWithPrices = (modelId: number) =>
+  iPadPriceLogs.getLatestWithPrices(modelId, IPAD_PRICE_COLS)
 
 // iPad Accessories
 export const getAllIPadAccessories = unstable_cache(
@@ -332,6 +361,9 @@ export const getLatestWatchPriceLog = watchPriceLogs.getLatest
 export const getAllWatchPriceLogsByModelIds = watchPriceLogs.getAllByModelIds
 export const getLatestWatchPriceLogsForModels = watchPriceLogs.getLatestForModels
 export const getLatestWatchPriceLogsWithPricesForModels = watchPriceLogs.getLatestWithPricesForModels
+const WATCH_PRICE_COLS = ['iosys_min', 'iosys_max', 'geo_min', 'geo_max', 'janpara_min', 'janpara_max']
+export const getLatestWatchPriceLogWithPrices = (modelId: number) =>
+  watchPriceLogs.getLatestWithPrices(modelId, WATCH_PRICE_COLS)
 
 // MacBook
 export const getMacBookModelBySlug = macBookModels.getBySlug
@@ -343,6 +375,9 @@ export const getLatestMacBookPriceLog = macBookPriceLogs.getLatest
 export const getAllMacBookPriceLogsByModelIds = macBookPriceLogs.getAllByModelIds
 export const getLatestMacBookPriceLogsForModels = macBookPriceLogs.getLatestForModels
 export const getLatestMacBookPriceLogsWithPricesForModels = macBookPriceLogs.getLatestWithPricesForModels
+const MACBOOK_PRICE_COLS = ['min1_price', 'max1_price', 'min2_price', 'max2_price', 'min3_price', 'max3_price', 'min4_price', 'max4_price', 'min5_price', 'max5_price']
+export const getLatestMacBookPriceLogWithPrices = (modelId: number) =>
+  macBookPriceLogs.getLatestWithPrices(modelId, MACBOOK_PRICE_COLS)
 
 // AirPods
 export const getAirPodsModelBySlug = airPodsModels.getBySlug
