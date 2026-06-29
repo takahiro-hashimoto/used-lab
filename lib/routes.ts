@@ -261,7 +261,6 @@ export const HEADER_NAV_ITEMS: HeaderNavItem[] = [
       { href: '/airpods/used-airpods-attention/', label: '中古AirPodsの注意点' },
     ],
   },
-  { href: '/amazon-renewed/', label: 'Amazon整備済み品' },
   { href: '/contact/', label: 'お問い合わせ' },
   { href: '/profile/', label: '運営者情報' },
 ]

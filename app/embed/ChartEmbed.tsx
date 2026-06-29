@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import {
   Chart as ChartClass,
   CategoryScale,
@@ -16,7 +16,7 @@ import styles from './chart-embed.module.css'
 
 ChartClass.register(CategoryScale, LinearScale, PointElement, LineElement, LineController, Tooltip)
 
-const SITE = 'https://used-lab.jp'
+const BRAND_URL = 'https://used-lab.jp'
 
 export default function ChartEmbed({
   series,
@@ -29,11 +29,12 @@ export default function ChartEmbed({
 }) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const instRef = useRef<InstanceType<typeof ChartClass> | null>(null)
+  const [ready, setReady] = useState(false)
   const conf = CHART_EMBED_CONFIG[category] ?? { label: '中古Apple製品', priceInfoPath: '' }
 
   useEffect(() => {
     const ctx = canvasRef.current?.getContext('2d')
-    if (!ctx || series.length === 0) return
+    if (!ctx || series.length === 0) { setTimeout(() => setReady(true), 0); return }
     instRef.current?.destroy()
 
     let labels: string[] = []
@@ -65,6 +66,9 @@ export default function ChartEmbed({
         responsive: true,
         maintainAspectRatio: false,
         interaction: { mode: 'index', intersect: false },
+        animation: {
+          onComplete: () => setReady(true),
+        },
         plugins: {
           legend: { display: false },
           tooltip: {
@@ -96,38 +100,40 @@ export default function ChartEmbed({
   }, [series, days])
 
   return (
-    <div className={styles.card}>
-      <div className={styles.head}>
-        <span className={styles.title}>
-          {conf.label} 価格推移（直近{days}日）
-        </span>
+    <div className={styles.wrap}>
+      <div className={styles.card}>
+        <div className={styles.head}>
+          <span className={styles.title}>
+            {conf.label} 価格推移（直近{days}日）
+          </span>
+        </div>
+        {series.length === 0 ? (
+          <p className={styles.empty}>表示できる価格データがありません。</p>
+        ) : (
+          <>
+            <div className={styles.chartWrap}>
+              {!ready && <div className={styles.skeleton} aria-hidden="true" />}
+              <canvas
+                ref={canvasRef}
+                role="img"
+                aria-label={`${conf.label}の価格推移グラフ`}
+                style={{ opacity: ready ? 1 : 0 }}
+              />
+            </div>
+            <div className={styles.legend}>
+              {series.map((s) => (
+                <span key={s.slug} className={styles.legendItem}>
+                  <span className={styles.dot} style={{ background: s.color }} />
+                  {s.name}
+                </span>
+              ))}
+            </div>
+          </>
+        )}
       </div>
-      {series.length === 0 ? (
-        <p className={styles.empty}>表示できる価格データがありません。</p>
-      ) : (
-        <>
-          <div className={styles.chartWrap}>
-            <canvas ref={canvasRef} role="img" aria-label={`${conf.label}の価格推移グラフ`} />
-          </div>
-          <div className={styles.legend}>
-            {series.map((s) => (
-              <a
-                key={s.slug}
-                className={styles.legendItem}
-                href={`${SITE}/${category}/${s.slug}/`}
-                target="_blank"
-                rel="noopener"
-              >
-                <span className={styles.dot} style={{ background: s.color }} />
-                {s.name}
-              </a>
-            ))}
-          </div>
-        </>
-      )}
       <a
         className={styles.brand}
-        href={`${SITE}/${conf.priceInfoPath}/`}
+        href={`${BRAND_URL}/${conf.priceInfoPath}/`}
         target="_blank"
         rel="noopener"
       >

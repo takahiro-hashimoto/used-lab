@@ -218,7 +218,8 @@ async function searchPageWithRetry(
   for (let attempt = 0; attempt <= retries; attempt++) {
     try {
       return await searchAppleRenewed(keywords, PAGE_SIZE, { itemPage, ...opts })
-    } catch {
+    } catch (err) {
+      console.error(`[amazon] searchItems 失敗 attempt=${attempt + 1}/${retries + 1} kw="${keywords}" page=${itemPage}:`, err)
       if (attempt < retries) await sleep(700 * (attempt + 1)) // バックオフ
     }
   }
@@ -282,6 +283,11 @@ const FETCH_CONCURRENCY = 3
  * 各キーワード内のページ送りは直列＋リトライでレート制限に配慮。
  */
 export async function searchRenewedGroups(maxPages = MAX_PAGES): Promise<RenewedGroup[]> {
+  if (!hasAmazonCredentials()) {
+    console.error('[amazon] 環境変数未設定: AMAZON_CREATORS_CREDENTIAL_ID / _SECRET / _VERSION / _PARTNER_TAG を Vercel に登録してください')
+    return []
+  }
+
   // 全カテゴリのキーワードを1つの仕事リストにまとめる
   const jobs = RENEWED_CATEGORIES.flatMap((cat) => cat.keywords.map((kw) => ({ cat, kw })))
 

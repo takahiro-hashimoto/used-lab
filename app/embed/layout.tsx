@@ -11,7 +11,7 @@ export default function EmbedLayout({ children }: { children: React.ReactNode })
   return (
     <div className="embed-root">
       <style>{`
-        body { margin: 0; background: transparent; }
+        html, body { margin: 0; overflow: hidden; background: transparent; }
         .embed-root { padding: 0; }
       `}</style>
       {children}

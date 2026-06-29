@@ -24,10 +24,7 @@ export default function ChartEmbedButton({
   const snippet =
     `<iframe src="${SITE_URL}/embed/${category}/chart/?models=${slugs.join(',')}&days=${days}" ` +
     `width="100%" height="420" style="border:0;max-width:680px" loading="lazy" ` +
-    `title="${conf.label}の価格推移"></iframe>\n` +
-    `<p style="font-size:12px;margin:4px 0 0">` +
-    `<a href="${SITE_URL}/${conf.priceInfoPath}/" target="_blank" rel="noopener">` +
-    `${conf.label}の相場・価格推移｜ユーズドラボ</a></p>`
+    `title="${conf.label}の価格推移"></iframe>`
 
   const copy = async () => {
     try {

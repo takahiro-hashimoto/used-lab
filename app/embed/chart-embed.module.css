@@ -1,8 +1,12 @@
 /* 中古iPhone 価格推移 埋め込みグラフ（iframe内） */
+.wrap {
+  display: flex;
+  flex-direction: column;
+  max-width: 680px;
+}
 .card {
   box-sizing: border-box;
   width: 100%;
-  max-width: 680px;
   margin: 0;
   padding: 14px 16px;
   border: 1px solid #e3e5e8;
@@ -13,6 +17,7 @@
 }
 .head {
   margin-bottom: 8px;
+  text-align: center;
 }
 .title {
   font-size: 14px;
@@ -22,9 +27,22 @@
   position: relative;
   height: 300px;
 }
+.skeleton {
+  position: absolute;
+  inset: 0;
+  border-radius: 6px;
+  background: linear-gradient(90deg, #f0f2f5 25%, #e4e7ec 50%, #f0f2f5 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+}
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
 .legend {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 12px;
   margin-top: 10px;
   font-size: 12px;
@@ -53,11 +71,12 @@
   text-align: center;
 }
 .brand {
-  display: inline-block;
-  margin-top: 10px;
+  display: block;
+  margin-top: 6px;
   font-size: 11px;
   color: #888;
   text-decoration: none;
+  text-align: right;
 }
 .brand:hover {
   text-decoration: underline;
