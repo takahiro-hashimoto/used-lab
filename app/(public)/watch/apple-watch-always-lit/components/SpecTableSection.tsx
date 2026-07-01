@@ -1,5 +1,6 @@
 'use client'
 import ContentImage from '../../../../components/ContentImage'
+import StickyTableWrapper from '@/app/components/StickyTableWrapper'
 
 import { useState, useMemo } from 'react'
 import { BoolCell } from '@/app/components/spec-table-utils'
@@ -143,13 +144,13 @@ export default function SpecTableSection() {
         </div>
 
         {/* テーブル */}
-        <div className="m-card m-card--shadow m-table-card">
+        <StickyTableWrapper floatingHeader className="m-card m-card--shadow m-table-card">
           <div className="m-table-scroll">
-            <table className="m-table m-table--center">
+            <table className="m-table m-table--center m-table--sticky-col">
               <caption className="visually-hidden">歴代Apple Watch スペック比較表</caption>
               <thead>
                 <tr>
-                  <th scope="col">&nbsp;</th>
+                  <th scope="col" className="spec-compare-table__sticky">&nbsp;</th>
                   {filtered.map(m => (
                     <th key={m.slug} scope="col" style={{ whiteSpace: 'nowrap' }}>
                       {m.name}
@@ -159,7 +160,7 @@ export default function SpecTableSection() {
               </thead>
               <tbody>
                 <tr>
-                  <th scope="row">画像</th>
+                  <th scope="row" className="spec-compare-table__sticky">画像</th>
                   {filtered.map(m => (
                     <td key={`img-${m.slug}`}>
                       <ContentImage
@@ -175,7 +176,7 @@ export default function SpecTableSection() {
                 </tr>
                 {specRows.map((row) => (
                   <tr key={row.key}>
-                    <th scope="row">{row.label}</th>
+                    <th scope="row" className="spec-compare-table__sticky">{row.label}</th>
                     {filtered.map(m => {
                       const val = m[row.key]
                       return (
@@ -192,7 +193,7 @@ export default function SpecTableSection() {
                 ))}
                 {/* イオシスリンク行 */}
                 <tr className="spec-compare-table__action-row">
-                  <th scope="row">イオシス</th>
+                  <th scope="row" className="spec-compare-table__sticky">イオシス</th>
                   {filtered.map(m => (
                     <td key={`iosys-${m.slug}`}>
                       <a href={`https://iosys.co.jp/items?keyword=Apple+Watch+${encodeURIComponent(m.name.replace('Apple Watch ', ''))}`} className="m-btn m-btn--primary m-btn--sm" target="_blank" rel="noopener noreferrer nofollow">中古価格を見る</a>
@@ -201,7 +202,7 @@ export default function SpecTableSection() {
                 </tr>
                 {/* Amazonリンク行 */}
                 <tr className="spec-compare-table__action-row">
-                  <th scope="row">Amazon</th>
+                  <th scope="row" className="spec-compare-table__sticky">Amazon</th>
                   {filtered.map(m => (
                     <td key={`amz-${m.slug}`}>
                       <a href={`https://www.amazon.co.jp/s?k=Apple+Watch+${encodeURIComponent(m.name.replace('Apple Watch ', ''))}`} className="m-btn m-btn--amazon m-btn--sm" target="_blank" rel="noopener noreferrer nofollow">中古価格を見る</a>
@@ -211,7 +212,7 @@ export default function SpecTableSection() {
               </tbody>
             </table>
           </div>
-        </div>
+        </StickyTableWrapper>
       </div>
     </section>
   )

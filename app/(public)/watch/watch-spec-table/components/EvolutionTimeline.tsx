@@ -1,12 +1,7 @@
 import Link from 'next/link'
-import type { AdvanceData } from '@/lib/types'
+import type { WatchModel } from '@/lib/types'
 
-type Model = {
-  slug: string
-  model: string
-  date: string | null
-  advance: AdvanceData | null
-}
+type Model = WatchModel
 
 const SERIES_SLUGS = ['series11', 'series10', 'series9', 'series8', 'series7', 'series6', 'series5', 'series4']
 const SE_SLUGS = ['se3', 'se2', 'se']
@@ -53,7 +48,7 @@ export default function EvolutionTimeline({ models }: Props) {
               <span className="evolution-item__date">{item.date}</span>
               <div className="evolution-item__header">
                 <h4 className="evolution-item__title">
-                  <Link href={`/watch/${item.slug}/`}>{item.title}</Link>
+                  <Link href={`/watch/${item.slug}/`} className="evolution-item__model-link">{item.title}</Link>
                 </h4>
               </div>
               <div className="evolution-item__body">

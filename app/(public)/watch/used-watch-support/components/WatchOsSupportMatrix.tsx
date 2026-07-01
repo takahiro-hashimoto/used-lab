@@ -1,4 +1,6 @@
 import type { WatchModel } from '@/lib/types'
+import SupportEmbedButton from './SupportEmbedButton'
+import StickyTableWrapper from '@/app/components/StickyTableWrapper'
 import { getReleaseYear } from '@/lib/utils/shared-helpers'
 import { LEGACY_WATCHES, type LegacyWatch } from '@/lib/data/legacy-watches'
 
@@ -94,9 +96,10 @@ const CELL_MAP = {
    ------------------------------------------------------------------ */
 type Props = {
   models: WatchModel[]
+  hideEmbed?: boolean
 }
 
-export default function WatchOsSupportMatrix({ models }: Props) {
+export default function WatchOsSupportMatrix({ models, hideEmbed }: Props) {
   const legacyRows = legacyToDeviceRows(LEGACY_WATCHES)
   const dbRows = dbToDeviceRows(models)
   const allDevices = [...legacyRows, ...dbRows].sort((a, b) => a.releaseYear - b.releaseYear)
@@ -115,7 +118,8 @@ export default function WatchOsSupportMatrix({ models }: Props) {
 
         <p className="m-section-heading m-section-heading--sm">Apple Watch watchOS対応状況一覧</p>
 
-        <div className="ios-matrix-scroll m-scroll-x m-scroll-x--styled">
+        <StickyTableWrapper floatingHeader>
+        <div className="ios-matrix-scroll m-scroll-x m-scroll-x--styled m-table-scroll">
           <table className="ios-matrix">
             <caption className="visually-hidden">Apple Watch機種別 watchOS対応状況一覧表</caption>
             <thead>
@@ -149,6 +153,7 @@ export default function WatchOsSupportMatrix({ models }: Props) {
             </tbody>
           </table>
         </div>
+        </StickyTableWrapper>
 
         <div className="m-legend u-mb-md">
           <div className="m-legend__item">
@@ -172,6 +177,8 @@ export default function WatchOsSupportMatrix({ models }: Props) {
           <br />
           ※watchOS 27では強化されたSiriに対応するためにサポート機種が大幅に削減されました。
         </p>
+
+        {!hideEmbed && <SupportEmbedButton />}
       </div>
     </section>
   )

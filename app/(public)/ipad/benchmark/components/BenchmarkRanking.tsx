@@ -4,8 +4,9 @@ import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { BenchBar } from '@/app/components/spec-table-utils'
+import StickyTableWrapper from '@/app/components/StickyTableWrapper'
 import type { ProductShopLink } from '@/lib/types'
-import { getTotal, getIosysUrl } from '@/lib/utils/benchmark-helpers'
+import { getIosysUrl } from '@/lib/utils/benchmark-helpers'
 
 export type BenchModel = {
   id: number
@@ -35,13 +36,12 @@ function getModelCategory(model: string): 'pro' | 'air' | 'other' {
   return 'other'
 }
 
-
 export default function BenchmarkRanking({ models, shopLinks }: { models: BenchModel[]; shopLinks: ProductShopLink[] }) {
   const [filter, setFilter] = useState<FilterCategory>('all')
 
   const filtered = filter === 'all' ? models : models.filter((m) => getModelCategory(m.model) === filter)
 
-  const sorted = [...filtered].sort((a, b) => getTotal(b) - getTotal(a))
+  const sorted = [...filtered].sort((a, b) => b.score_single - a.score_single)
 
   const maxSingle = Math.max(...models.map((m) => m.score_single))
   const maxMulti = Math.max(...models.map((m) => m.score_multi))
@@ -68,13 +68,13 @@ export default function BenchmarkRanking({ models, shopLinks }: { models: BenchM
           </div>
         </div>
 
-        <div className="m-card m-card--shadow m-table-card">
+        <StickyTableWrapper floatingHeader className="m-card m-card--shadow m-table-card">
           <div className="m-table-scroll">
-            <table className="m-table m-table--sticky-col bench-ranking-table">
+            <table className="m-table bench-ranking-table">
               <caption className="visually-hidden">歴代iPad Geekbench 6 ベンチマークランキング</caption>
               <thead>
                 <tr>
-                  <th scope="col" className="bench-ranking-table__rank">順位</th>
+                  <th scope="col">順位</th>
                   <th scope="col" className="bench-ranking-table__model">モデル</th>
                   <th scope="col">シングル</th>
                   <th scope="col">マルチ</th>
@@ -91,7 +91,7 @@ export default function BenchmarkRanking({ models, shopLinks }: { models: BenchM
                       <td className="bench-ranking-table__rank-cell">
                         <span className={`bench-rank ${rank <= 3 ? `bench-rank--${rank}` : ''}`}>{rank}</span>
                       </td>
-                      <td className="bench-ranking-table__model-cell">
+                      <th scope="row" className="bench-ranking-table__model-cell">
                         <Link href={`/ipad/${m.slug}/`} className="bench-model-link">
                           {m.image && m.image.startsWith('/') && (
                             <Image src={m.image} alt={m.model} width={40} height={40} className="bench-model-img" />
@@ -101,7 +101,7 @@ export default function BenchmarkRanking({ models, shopLinks }: { models: BenchM
                             <span className="bench-model-chip">{m.cpu}</span>
                           </span>
                         </Link>
-                      </td>
+                      </th>
                       <td><BenchBar value={m.score_single} maxValue={maxSingle} color="#e74c6f" /></td>
                       <td><BenchBar value={m.score_multi} maxValue={maxMulti} color="#f0a030" /></td>
                       <td><BenchBar value={m.score_metal} maxValue={maxMetal} color="var(--color-primary, #2589d0)" /></td>
@@ -124,7 +124,7 @@ export default function BenchmarkRanking({ models, shopLinks }: { models: BenchM
               </tbody>
             </table>
           </div>
-        </div>
+        </StickyTableWrapper>
 
         <div className="m-callout m-callout--tip u-mt-2xl">
           <span className="m-callout__label">memo</span>

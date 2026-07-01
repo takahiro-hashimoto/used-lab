@@ -72,7 +72,7 @@ export default async function IPhoneShopPage() {
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
-      { '@type': 'ListItem', position: 2, name: '中古iPhoneおすすめ機種・選び方ガイド', item: 'https://used-lab.jp/iphone/' },
+      { '@type': 'ListItem', position: 2, name: '中古iPhoneおすすめ機種・選び方まとめ', item: 'https://used-lab.jp/iphone/' },
       { '@type': 'ListItem', position: 3, name: '中古iPhoneを買うならどこ？' },
     ],
   }
@@ -128,7 +128,7 @@ export default async function IPhoneShopPage() {
         {/* パンくず */}
         <Breadcrumb
           items={[
-            { label: '中古iPhoneおすすめ機種・選び方ガイド', href: '/iphone/' },
+            { label: '中古iPhoneおすすめ機種・選び方まとめ', href: '/iphone/' },
             { label: '中古iPhoneを買うならどこ？' },
           ]}
         />
@@ -177,7 +177,7 @@ export default async function IPhoneShopPage() {
               </p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                もっと全体像から知りたい方は「<Link href="/iphone/">中古iPhone購入ガイド</Link>」をご覧ください。
+                もっと全体像から知りたい方は「<Link href="/iphone/">中古iPhoneおすすめ機種・選び方まとめ</Link>」をご覧ください。
               </p>
             </div>
           </div>

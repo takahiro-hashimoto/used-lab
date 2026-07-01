@@ -4,8 +4,9 @@ import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { BenchBar } from '@/app/components/spec-table-utils'
+import StickyTableWrapper from '@/app/components/StickyTableWrapper'
 import type { ProductShopLink } from '@/lib/types'
-import { getTotal, getIosysUrl } from '@/lib/utils/benchmark-helpers'
+import { getIosysUrl } from '@/lib/utils/benchmark-helpers'
 
 export type BenchModel = {
   id: number
@@ -31,16 +32,14 @@ function getModelCategory(model: string): 'air' | 'pro' {
   return model.toLowerCase().includes('pro') ? 'pro' : 'air'
 }
 
-
 export default function BenchmarkRanking({ models, shopLinks }: { models: BenchModel[]; shopLinks: ProductShopLink[] }) {
   const [filter, setFilter] = useState<FilterCategory>('all')
 
-  const withScore = (filter === 'all' ? models : models.filter((m) => getModelCategory(m.model) === filter))
-    .filter((m) => m.hasScore !== false)
-  const noScore = (filter === 'all' ? models : models.filter((m) => getModelCategory(m.model) === filter))
-    .filter((m) => m.hasScore === false)
+  const allFiltered = filter === 'all' ? models : models.filter((m) => getModelCategory(m.model) === filter)
+  const withScore = allFiltered.filter((m) => m.hasScore !== false)
+  const noScore = allFiltered.filter((m) => m.hasScore === false)
 
-  const sorted = [...withScore].sort((a, b) => getTotal(b) - getTotal(a))
+  const sorted = [...withScore].sort((a, b) => b.score_single - a.score_single)
 
   const maxSingle = Math.max(...models.map((m) => m.score_single))
   const maxMulti = Math.max(...models.map((m) => m.score_multi))
@@ -55,7 +54,6 @@ export default function BenchmarkRanking({ models, shopLinks }: { models: BenchM
         <p className="m-section-desc">Geekbench 6のスコアで歴代MacBookの性能を比較。</p>
         <p className="m-section-desc">中古最安価格も併記しているのでコスパ重視の方にもおすすめです。</p>
 
-        {/* フィルター */}
         <div className="u-mb-xl" aria-label="絞り込み">
           <div className="spec-filter__row">
             <span className="spec-filter__label">絞り込み</span>
@@ -73,14 +71,13 @@ export default function BenchmarkRanking({ models, shopLinks }: { models: BenchM
           </div>
         </div>
 
-        {/* ランキングテーブル */}
-        <div className="m-card m-card--shadow m-table-card">
+        <StickyTableWrapper floatingHeader className="m-card m-card--shadow m-table-card">
           <div className="m-table-scroll">
             <table className="m-table m-table--sticky-col bench-ranking-table">
               <caption className="visually-hidden">歴代MacBook Geekbench 6 ベンチマークランキング</caption>
               <thead>
                 <tr>
-                  <th scope="col" className="bench-ranking-table__rank">順位</th>
+                  <th scope="col">順位</th>
                   <th scope="col" className="bench-ranking-table__model">モデル</th>
                   <th scope="col">シングル</th>
                   <th scope="col">マルチ</th>
@@ -97,7 +94,7 @@ export default function BenchmarkRanking({ models, shopLinks }: { models: BenchM
                       <td className="bench-ranking-table__rank-cell">
                         <span className={`bench-rank ${rank <= 3 ? `bench-rank--${rank}` : ''}`}>{rank}</span>
                       </td>
-                      <td className="bench-ranking-table__model-cell">
+                      <th scope="row" className="bench-ranking-table__model-cell bench-table__sticky">
                         <Link href={`/macbook/${m.slug}/`} className="bench-model-link">
                           {m.image && m.image.startsWith('/') && (
                             <Image src={m.image} alt={m.model} width={40} height={40} className="bench-model-img" />
@@ -107,7 +104,7 @@ export default function BenchmarkRanking({ models, shopLinks }: { models: BenchM
                             <span className="bench-model-chip">{m.cpu}</span>
                           </span>
                         </Link>
-                      </td>
+                      </th>
                       <td><BenchBar value={m.score_single} maxValue={maxSingle} color="#e74c6f" /></td>
                       <td><BenchBar value={m.score_multi} maxValue={maxMulti} color="#f0a030" /></td>
                       <td><BenchBar value={m.score_metal} maxValue={maxMetal} color="var(--color-primary, #2589d0)" /></td>
@@ -132,14 +129,14 @@ export default function BenchmarkRanking({ models, shopLinks }: { models: BenchM
                     <td className="bench-ranking-table__rank-cell">
                       <span className="bench-rank">-</span>
                     </td>
-                    <td className="bench-ranking-table__model-cell">
+                    <th scope="row" className="bench-ranking-table__model-cell bench-table__sticky">
                       <Link href={`/macbook/${m.slug}/`} className="bench-model-link">
                         <span className="bench-model-info">
                           <span className="bench-model-name">{m.shortname || m.model}</span>
                           <span className="bench-model-chip">{m.cpu}</span>
                         </span>
                       </Link>
-                    </td>
+                    </th>
                     <td>-</td>
                     <td>-</td>
                     <td>-</td>
@@ -161,7 +158,7 @@ export default function BenchmarkRanking({ models, shopLinks }: { models: BenchM
               </tbody>
             </table>
           </div>
-        </div>
+        </StickyTableWrapper>
 
         <div className="m-callout m-callout--tip u-mt-2xl">
           <span className="m-callout__label">memo</span>

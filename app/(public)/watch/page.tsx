@@ -39,7 +39,7 @@ import CompareTableSection from './recommend/components/CompareTableSection'
 
 export const revalidate = false
 
-const PAGE_TITLE = `中古Apple Watchおすすめ3選｜型落ち・中古で買うならどれ？コスパ・狙い目モデル【${GUIDE_DATE_LABEL}版】`
+const PAGE_TITLE = `【${GUIDE_DATE_LABEL}】中古Apple Watchおすすめ3選。狙い目の型落ちモデルはどれ？`
 const PAGE_DESCRIPTION = `${GUIDE_DATE_LABEL}版・中古Apple Watchのおすすめ3機種をコスパ・用途別に解説。型落ちで中古で買うなら何がいい？最新相場・選び方・購入先比較まで完全網羅。失敗しない中古Apple Watch選びをサポートします。`
 const PAGE_URL = 'https://used-lab.jp/watch/'
 
@@ -170,7 +170,7 @@ export default async function WatchGuidePage() {
           <div className="hero-inner l-container">
             <div className="hero-content">
               <h1 className="hero-title" itemProp="headline">
-                中古Apple Watchおすすめ3選｜型落ち・中古で買うならどれ？コスパ・狙い目モデル【{GUIDE_DATE_LABEL}版】
+                【{GUIDE_DATE_LABEL}】中古Apple Watchおすすめ3選。狙い目の型落ちモデルはどれ？
               </h1>
               <HeroMeta dateStr={dateStr} dateDisplay={dateDisplay} withItemProp showAuthor />
             </div>
@@ -225,7 +225,7 @@ export default async function WatchGuidePage() {
           {/* ========== おすすめ機種 ========== */}
           <CompareTableSection
             items={compareItems}
-            heading={<>今買うならこれ｜おすすめ中古Apple Watch【{GUIDE_DATE_LABEL}最新】</>}
+            heading={<>今買うならこれ！おすすめ中古Apple Watch3選【{GUIDE_DATE_LABEL}最新】</>}
             descriptions={[
               <>当サイトでおすすめしている機種は下記の通り。スペックの詳細な比較は<Link href="/watch/watch-spec-table/">Apple Watchスペック比較表</Link>をご覧ください。{GUIDE_DATE_LABEL}時点で「watchOSサポートが十分に残っている」「中古価格と性能のバランスが良い」ことを判断基準に、本当の狙い目モデルだけを厳選しています。</>,
             ]}

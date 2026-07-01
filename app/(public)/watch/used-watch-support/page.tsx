@@ -123,7 +123,7 @@ export default async function UsedWatchSupportPage() {
               <p>記事後半には<strong>Apple Watchを買い替えるべき3つのタイミング</strong>も解説。お手持ちのApple Watchの寿命や買い替え時期がすっきりわかるので、ぜひチェックしてみてください！</p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                もっと全体像から知りたい方は「<Link href="/watch/">中古Apple Watch購入ガイド</Link>」をご覧ください。
+                もっと全体像から知りたい方は「<Link href="/watch/">中古Apple Watchおすすめ機種・選び方まとめ</Link>」をご覧ください。
               </p>
             </div>
           </div>

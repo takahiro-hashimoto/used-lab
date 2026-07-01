@@ -1,3 +1,4 @@
+
 import StickyTableWrapper from '@/app/components/StickyTableWrapper'
 import type { IPadModel } from '@/lib/types'
 
@@ -15,11 +16,7 @@ export default function BenchmarkGeekbench({ model, allModels }: Props) {
 
   const sorted = [...allModels]
     .filter((m) => m.score_single || m.score_multi || m.score_metal)
-    .sort((a, b) => {
-      const totalA = (a.score_single || 0) + (a.score_multi || 0) + (a.score_metal || 0)
-      const totalB = (b.score_single || 0) + (b.score_multi || 0) + (b.score_metal || 0)
-      return totalB - totalA
-    })
+    .sort((a, b) => (b.score_single || 0) - (a.score_single || 0))
 
   const pct = (val: number, max: number) => max > 0 ? Math.round((val / max) * 100) : 0
 
@@ -31,7 +28,6 @@ export default function BenchmarkGeekbench({ model, allModels }: Props) {
         </h2>
         <p className="m-section-desc">Geekbench 6を参考にベンチマークスコアをご紹介</p>
 
-        {/* スコアサマリー */}
         <dl className="l-grid l-grid--3col l-grid--gap-lg l-grid--mb-2xl">
           <div className="m-card m-stat-card">
             <dt className="m-stat-card__label">
@@ -56,64 +52,47 @@ export default function BenchmarkGeekbench({ model, allModels }: Props) {
           </div>
         </dl>
 
-        {/* ベンチマーク比較テーブル */}
-        <StickyTableWrapper className="m-card m-card--shadow m-table-card">
-          <table className="m-table">
-            <caption className="visually-hidden">iPadモデル別 Geekbench 6 ベンチマークスコア比較</caption>
-            <thead>
-              <tr>
-                <th scope="col">モデル</th>
-                <th scope="col">シングルコア</th>
-                <th scope="col">マルチコア</th>
-                <th scope="col">Metal</th>
-              </tr>
-            </thead>
-            <tbody>
-              {sorted.map((m) => {
-                const isCurrent = m.id === model.id
-                return (
-                  <tr key={m.id}>
-                    <td className={isCurrent ? 'm-table-highlight' : undefined}>
-                      {m.model}
-                    </td>
-                    <td className={isCurrent ? 'm-table-highlight' : undefined}>
-                      <span
-                        className="bench-bar"
-                        style={{
-                          '--bar-pct': `${pct(m.score_single || 0, maxSingle)}%`,
-                          '--bar-color': '#e74c6f',
-                        } as React.CSSProperties}
-                      >
-                        {m.score_single?.toLocaleString() || '-'}
-                      </span>
-                    </td>
-                    <td className={isCurrent ? 'm-table-highlight' : undefined}>
-                      <span
-                        className="bench-bar"
-                        style={{
-                          '--bar-pct': `${pct(m.score_multi || 0, maxMulti)}%`,
-                          '--bar-color': '#f0a030',
-                        } as React.CSSProperties}
-                      >
-                        {m.score_multi?.toLocaleString() || '-'}
-                      </span>
-                    </td>
-                    <td className={isCurrent ? 'm-table-highlight' : undefined}>
-                      <span
-                        className="bench-bar"
-                        style={{
-                          '--bar-pct': `${pct(m.score_metal || 0, maxMetal)}%`,
-                          '--bar-color': 'var(--color-primary)',
-                        } as React.CSSProperties}
-                      >
-                        {m.score_metal?.toLocaleString() || '-'}
-                      </span>
-                    </td>
-                  </tr>
-                )
-              })}
-            </tbody>
-          </table>
+        <StickyTableWrapper floatingHeader className="m-card m-card--shadow m-table-card">
+          <div className="m-table-scroll">
+            <table className="m-table bench-table">
+              <caption className="visually-hidden">iPadモデル別 Geekbench 6 ベンチマークスコア比較</caption>
+              <thead>
+                <tr>
+                  <th scope="col" className="bench-table__sticky">モデル</th>
+                  <th scope="col">シングルコア</th>
+                  <th scope="col">マルチコア</th>
+                  <th scope="col">Metal</th>
+                </tr>
+              </thead>
+              <tbody>
+                {sorted.map((m) => {
+                  const isCurrent = m.id === model.id
+                  return (
+                    <tr key={m.id}>
+                      <th scope="row" className={`bench-table__sticky u-shrink${isCurrent ? ' m-table-highlight' : ''}`}>
+                        {m.model}
+                      </th>
+                      <td className={isCurrent ? 'm-table-highlight' : undefined}>
+                        <span className="bench-bar" style={{ '--bar-pct': `${pct(m.score_single || 0, maxSingle)}%`, '--bar-color': '#e74c6f' } as React.CSSProperties}>
+                          {m.score_single?.toLocaleString() || '-'}
+                        </span>
+                      </td>
+                      <td className={isCurrent ? 'm-table-highlight' : undefined}>
+                        <span className="bench-bar" style={{ '--bar-pct': `${pct(m.score_multi || 0, maxMulti)}%`, '--bar-color': '#f0a030' } as React.CSSProperties}>
+                          {m.score_multi?.toLocaleString() || '-'}
+                        </span>
+                      </td>
+                      <td className={isCurrent ? 'm-table-highlight' : undefined}>
+                        <span className="bench-bar" style={{ '--bar-pct': `${pct(m.score_metal || 0, maxMetal)}%`, '--bar-color': 'var(--color-primary)' } as React.CSSProperties}>
+                          {m.score_metal?.toLocaleString() || '-'}
+                        </span>
+                      </td>
+                    </tr>
+                  )
+                })}
+              </tbody>
+            </table>
+          </div>
         </StickyTableWrapper>
       </div>
     </section>

@@ -1,12 +1,7 @@
-import Link from 'next/link'
-import type { AdvanceData } from '@/lib/types'
+import type { IPhoneModel } from '@/lib/types'
+import ModelModalButton from './ModelModalButton'
 
-type Model = {
-  slug: string
-  model: string
-  date: string | null
-  advance: AdvanceData | null
-}
+type Model = IPhoneModel
 
 // シリーズのグルーピング定義（slug のみ管理）
 const FLAGSHIP_SERIES = [
@@ -29,9 +24,11 @@ function formatDate(date: string | null): string {
 
 type Props = {
   models: Model[]
+  avgPrices: Record<number, number | null>
+  iosysUrlMap: Record<number, string>
 }
 
-export default function EvolutionTimeline({ models }: Props) {
+export default function EvolutionTimeline({ models, avgPrices, iosysUrlMap }: Props) {
   const modelMap = new Map(models.map((m) => [m.slug, m]))
 
   // フラッグシップ タイムライン構築
@@ -120,11 +117,18 @@ export default function EvolutionTimeline({ models }: Props) {
                         <p className="evolution-item__category">{col.category}</p>
                         {col.models.length > 0 && (
                           <div className="evolution-item__model-links">
-                            {col.models.map((m) => (
-                              <Link key={m.slug} href={`/iphone/${m.slug}/`} className="evolution-item__model-link">
-                                {m.name}
-                              </Link>
-                            ))}
+                            {col.models.map((m) => {
+                              const full = modelMap.get(m.slug)
+                              return full ? (
+                                <ModelModalButton
+                                  key={m.slug}
+                                  model={full}
+                                  avgPrice={avgPrices[full.id] ?? null}
+                                  iosysUrl={iosysUrlMap[full.id] ?? null}
+                                  className="evolution-item__model-link"
+                                />
+                              ) : null
+                            })}
                           </div>
                         )}
                         <ul className="evolution-item__list">
@@ -153,7 +157,9 @@ export default function EvolutionTimeline({ models }: Props) {
                 <span className="evolution-item__date">{item.date}</span>
                 <div className="evolution-item__header">
                   <h4 className="evolution-item__title">
-                    <Link href={`/iphone/${item.slug}/`}>{item.title}</Link>
+                    {(() => { const full = modelMap.get(item.slug); return full ? (
+                      <ModelModalButton model={full} avgPrice={avgPrices[full.id] ?? null} iosysUrl={iosysUrlMap[full.id] ?? null} className="evolution-item__model-link" />
+                    ) : item.title })()}
                   </h4>
                 </div>
                 <div className="evolution-item__body">
@@ -172,10 +178,7 @@ export default function EvolutionTimeline({ models }: Props) {
           ))}
         </div>
 
-        <div className="m-callout m-callout--tip u-mt-2xl">
-          <span className="m-callout__label">memo</span>
-          <p className="m-callout__text">各シリーズの進化がわかったら、<Link href="/iphone/recommend/">おすすめ中古iPhone5選</Link>で用途別の狙い目モデルも確認してみてください。</p>
-        </div>
+
       </div>
     </section>
   )

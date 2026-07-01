@@ -36,7 +36,7 @@ const GLOSSARY_ITEMS = [
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import { getHeroImage } from '@/lib/data/hero-images'
 
-export const revalidate = 86400
+export const revalidate = false
 
 export const metadata: Metadata = {
   title: '歴代iPhoneスペック比較表！気になる機種の性能差や違いがわかる',
@@ -65,7 +65,7 @@ export default async function IPhoneSpecTablePage() {
   ])
 
   const avgPrices: Record<number, number | null> = {}
-  console.log('[spec-table] latestPriceLogs keys:', Object.keys(latestPriceLogs).length, 'sample:', JSON.stringify(Object.entries(latestPriceLogs)[0]))
+
   for (const model of allModels) {
     const log = latestPriceLogs[model.id]
     if (!log) { avgPrices[model.id] = null; continue }
@@ -78,7 +78,7 @@ export default async function IPhoneSpecTablePage() {
     }
     avgPrices[model.id] = calcAvgFromShops(mins, maxs, '')?.avg ?? null
   }
-  console.log('[spec-table] avgPrices non-null count:', Object.values(avgPrices).filter(v => v !== null).length)
+
 
   // JSON-LD
   const breadcrumbJsonLd = {
@@ -86,7 +86,7 @@ export default async function IPhoneSpecTablePage() {
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
-      { '@type': 'ListItem', position: 2, name: '中古iPhoneおすすめ機種・選び方ガイド', item: 'https://used-lab.jp/iphone' },
+      { '@type': 'ListItem', position: 2, name: '中古iPhoneおすすめ機種・選び方まとめ', item: 'https://used-lab.jp/iphone' },
       { '@type': 'ListItem', position: 3, name: '歴代iPhoneスペック比較表' },
     ],
   }
@@ -100,64 +100,6 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/iphone-s
     url: 'https://used-lab.jp/iphone/iphone-spec-table/',
   })
 
-  // シリアライズ可能な形に変換
-  const serializedModels = allModels.map((m) => ({
-    id: m.id,
-    model: m.model,
-    slug: m.slug,
-    image: m.image,
-    date: m.date,
-    last_ios: m.last_ios,
-    cpu: m.cpu,
-    ram: m.ram,
-    weight: m.weight,
-    strage: m.strage,
-    color: m.color,
-    size: m.size,
-    port: m.port,
-    battery: m.battery,
-    video: m.video,
-    streaming: m.streaming,
-    audio: m.audio,
-    display: m.display,
-    resolution: m.resolution,
-    sim: m.sim,
-    certification: m.certification,
-    front_camera: m.front_camera,
-    image_sensor: m.image_sensor,
-    in_camera: m.in_camera,
-    photography_style: m.photography_style,
-    apple_intelligence: m.apple_intelligence,
-    magsafe: m.magsafe,
-    dynamic_island: m.dynamic_island,
-    promotion: m.promotion,
-    accident_detection: m.accident_detection,
-    action_button: m.action_button,
-    camera_control: m.camera_control,
-    lidar: m.lidar,
-    night_mode: m.night_mode,
-    portrait_mode: m.portrait_mode,
-    cinematic_mode: m.cinematic_mode,
-    action_mode: m.action_mode,
-    macro_mode: m.macro_mode,
-    apple_proraw: m.apple_proraw,
-    apple_prores: m.apple_prores,
-    score_single: m.score_single,
-    score_multi: m.score_multi,
-    score_metal: m.score_metal,
-    antutu_cpu: m.antutu_cpu,
-    antutu_gpu: m.antutu_gpu,
-    antutu_mem: m.antutu_mem,
-    antutu_ux: m.antutu_ux,
-    advance: m.advance,
-  }))
-
-  const serializedLinks = allShopLinks.map((l) => ({
-    product_type: l.product_type,
-    product_id: l.product_id,
-    shop_id: l.shop_id,
-    url: l.url,
-  }))
 
 
   return (
@@ -177,7 +119,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/iphone-s
         {/* パンくず */}
         <Breadcrumb
           items={[
-            { label: '中古iPhoneおすすめ機種・選び方ガイド', href: '/iphone/' },
+            { label: '中古iPhoneおすすめ機種・選び方まとめ', href: '/iphone/' },
             { label: '歴代iPhoneスペック比較表' },
           ]}
         />
@@ -224,7 +166,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/iphone-s
               <p>本記事では<strong>歴代iPhoneの主要スペックを一覧表で比較</strong>し、進化ポイントをわかりやすくまとめました。新たなiPhoneを購入する際の参考にしてみてください！</p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                もっと全体像から知りたい方は「<Link href="/iphone/">中古iPhone購入ガイド</Link>」をご覧ください。
+                もっと全体像から知りたい方は「<Link href="/iphone/">中古iPhoneおすすめ機種・選び方まとめ</Link>」をご覧ください。
               </p>
             </div>
           </div>
@@ -278,10 +220,14 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/iphone-s
         </nav>
         <div className="l-sections" itemProp="articleBody">
         {/* セクション */}
-        <SpecTable models={serializedModels} shopLinks={serializedLinks} prices={avgPrices} />
-        <DualCompare models={serializedModels} shopLinks={serializedLinks} />
-        <BenchmarkSection models={serializedModels} />
-        <EvolutionTimeline models={serializedModels} />
+        <SpecTable models={allModels} shopLinks={allShopLinks} prices={avgPrices} />
+        <DualCompare models={allModels} shopLinks={allShopLinks} />
+        <BenchmarkSection models={allModels} avgPrices={avgPrices} shopLinks={allShopLinks} />
+        <EvolutionTimeline
+          models={allModels}
+          avgPrices={avgPrices}
+          iosysUrlMap={Object.fromEntries(allShopLinks.filter((l) => l.shop_id === 1).map((l) => [l.product_id, l.url]))}
+        />
         <GlossarySection productName="iPhone" items={GLOSSARY_ITEMS} />
 
         </div>

@@ -29,7 +29,7 @@ import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helper
 import HeroMeta from '@/app/components/HeroMeta'
 import { getHeroImage } from '@/lib/data/hero-images'
 
-export const revalidate = 86400
+export const revalidate = false
 
 export const metadata: Metadata = {
   title: '歴代iPadスペック比較表！各世代の性能の違いがすぐわかる',
@@ -204,7 +204,7 @@ export default async function IPadSpecTablePage() {
               <p>本記事では<strong>歴代iPadの主要スペックを一覧表で比較</strong>し、進化ポイントをわかりやすくまとめました。iPadを購入する際の参考にしてみてください！</p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                もっと全体像から知りたい方は「<Link href="/ipad/">中古iPad購入ガイド</Link>」をご覧ください。
+                もっと全体像から知りたい方は「<Link href="/ipad/">中古iPadおすすめ機種・選び方まとめ</Link>」をご覧ください。
               </p>
             </div>
           </div>
@@ -260,8 +260,12 @@ export default async function IPadSpecTablePage() {
         {/* セクション */}
         <SpecTable models={serializedModels} shopLinks={serializedLinks} prices={avgPrices} />
         <DualCompare models={serializedModels} shopLinks={serializedLinks} />
-        <BenchmarkSection models={serializedModels} />
-        <EvolutionTimeline models={serializedModels} />
+        <BenchmarkSection models={allModels} avgPrices={avgPrices} shopLinks={allShopLinks} />
+        <EvolutionTimeline
+          models={allModels}
+          avgPrices={avgPrices}
+          iosysUrlMap={Object.fromEntries(allShopLinks.filter((l) => l.shop_id === 1).map((l) => [l.product_id, l.url]))}
+        />
         <GlossarySection productName="iPad" items={GLOSSARY_ITEMS} />
 
 

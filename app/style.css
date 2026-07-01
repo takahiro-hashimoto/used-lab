@@ -1340,7 +1340,7 @@
 
 .compare-table th,
 .compare-table td {
-  padding: var(--space-sm) var(--space-md);
+  padding: var(--space-xs) var(--space-md);
   vertical-align: middle;
   text-align: center;
   line-height: 1.6;
@@ -1411,7 +1411,7 @@
 }
 
 .is-stuck .compare-table__header-cell {
-  padding: var(--space-md);
+  padding: var(--space-sm);
 }
 
 .compare-table .compare-table__action-row td {
@@ -1492,6 +1492,7 @@
   background: linear-gradient(to right, var(--bar-color) var(--bar-pct), var(--color-border-light) var(--bar-pct));
   margin-bottom: 4px;
 }
+
 
 /* ---------- bench-table: SP横スクロール＋モデル名固定 ---------- */
 @media (max-width: 768px) {
@@ -2836,6 +2837,8 @@ fieldset.u-mb-xl {
   color: var(--color-text-inverse);
 }
 
+
+
 .pd-chip:hover {
   border-color: var(--color-primary);
   color: var(--color-primary);
@@ -3197,16 +3200,29 @@ fieldset.u-mb-xl {
 }
 
 .evolution-item__model-link {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
   color: var(--color-primary);
+  font-size: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 
-.evolution-item__title a {
+.evolution-item__model-link:hover {
+  text-decoration: none;
+}
+
+.evolution-item__title a,
+.evolution-item__title .evolution-item__model-link {
   color: var(--color-primary);
   text-decoration: none;
   transition: color 0.2s;
 }
 
-.evolution-item__title a:hover {
+.evolution-item__title a:hover,
+.evolution-item__title .evolution-item__model-link:hover {
   color: var(--color-primary-dark);
 }
 
@@ -7226,6 +7242,11 @@ fieldset.u-mb-xl {
   color: #5a3a00;
 }
 
+.bench-ranking-table__rank-cell {
+  width: 48px;
+  min-width: 48px;
+}
+
 .bench-ranking-table__model-cell {
   min-width: 200px;
   width: 200px;
@@ -7951,4 +7972,105 @@ ol.info-card__list {
   background: var(--color-primary-light, #e8f0fe);
   font-weight: 700;
   color: var(--color-primary);
+}
+
+/* ---------- model-modal ---------- */
+.model-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-md);
+}
+
+.model-modal {
+  position: relative;
+  background: var(--color-bg);
+  border-radius: var(--radius-lg, 12px);
+  width: 100%;
+  max-width: 400px;
+  max-height: 90dvh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+}
+
+.model-modal__header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-md) var(--space-lg);
+  border-bottom: 1px solid var(--color-border);
+  flex-shrink: 0;
+}
+
+.model-modal__img {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.model-modal__title {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  margin: 0;
+  padding-right: var(--space-xl);
+}
+
+.model-modal__close {
+  position: absolute;
+  top: var(--space-sm);
+  right: var(--space-sm);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: var(--font-size-md);
+  color: var(--color-text-muted);
+  padding: var(--space-xs);
+  line-height: 1;
+}
+
+.model-modal__close:hover {
+  color: var(--color-text);
+}
+
+.model-modal__body {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-lg);
+}
+
+.model-modal__footer {
+  padding: var(--space-md) var(--space-lg);
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  gap: var(--space-sm);
+  flex-shrink: 0;
+}
+
+.model-modal__footer .m-btn {
+  flex: 1;
+  text-align: center;
+}
+
+/* bench-table モデル名ボタン */
+.bench-table__model-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: var(--color-primary);
+  font-weight: inherit;
+  font-size: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.bench-table__model-btn:hover {
+  text-decoration: none;
 }

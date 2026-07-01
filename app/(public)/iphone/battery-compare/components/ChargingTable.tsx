@@ -4,6 +4,7 @@ import ContentImage from '../../../../components/ContentImage'
 import { useState, useMemo } from 'react'
 import Link from 'next/link'
 import { parseDate, formatDate, BoolCell } from '@/app/components/spec-table-utils'
+import StickyTableWrapper from '@/app/components/StickyTableWrapper'
 
 type ChargingModel = {
   id: number
@@ -62,10 +63,7 @@ export default function ChargingTable({ models }: Props) {
         break
     }
 
-    result.sort((a, b) => {
-      const diff = parseDate(b.date).getTime() - parseDate(a.date).getTime()
-      return diff || a.id - b.id
-    })
+    result.sort((a, b) => parseDate(b.date).getTime() - parseDate(a.date).getTime())
 
     return result
   }, [models, modelFilter, featureFilter])
@@ -80,7 +78,6 @@ export default function ChargingTable({ models }: Props) {
           各モデルの充電ポートやワイヤレス充電の対応状況を一覧で確認できます。
         </p>
 
-        {/* フィルターUI */}
         <div className="u-mb-xl" aria-label="絞り込み">
           <div className="spec-filter__row">
             <span className="spec-filter__label">機種別の絞り込み</span>
@@ -125,13 +122,12 @@ export default function ChargingTable({ models }: Props) {
           </div>
         </div>
 
-        {/* テーブル */}
         {filteredModels.length === 0 ? (
           <p className="m-section-desc">該当するモデルがありません。フィルターを変更してください。</p>
         ) : (
-          <div className="m-card m-card--shadow m-table-card">
+          <StickyTableWrapper floatingHeader className="m-card m-card--shadow m-table-card">
             <div className="m-table-scroll">
-              <table className="m-table battery-table">
+              <table className="m-table m-table--sticky-col battery-table">
                 <caption className="visually-hidden">歴代iPhoneコネクタ・充電方法一覧</caption>
                 <thead>
                   <tr>
@@ -146,7 +142,7 @@ export default function ChargingTable({ models }: Props) {
                 <tbody>
                   {filteredModels.map((m) => (
                     <tr key={m.id}>
-                      <td className="battery-table__model-cell">
+                      <th scope="row" className="battery-table__model-cell bench-table__sticky">
                         <div className="battery-table__model-inner">
                           <div className="battery-table__img-wrap">
                             {m.image && (
@@ -164,7 +160,7 @@ export default function ChargingTable({ models }: Props) {
                             <span className="battery-table__date">容量: {m.battery || '-'}</span>
                           </div>
                         </div>
-                      </td>
+                      </th>
                       <td>{formatDate(m.date)}</td>
                       <td>{m.port || '-'}</td>
                       <td><BoolCell value={m.magsafe} /></td>
@@ -188,7 +184,7 @@ export default function ChargingTable({ models }: Props) {
                 </tbody>
               </table>
             </div>
-          </div>
+          </StickyTableWrapper>
         )}
       </div>
     </section>

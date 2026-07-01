@@ -29,7 +29,7 @@ import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helper
 import HeroMeta from '@/app/components/HeroMeta'
 import { getHeroImage } from '@/lib/data/hero-images'
 
-export const revalidate = 86400
+export const revalidate = false
 
 export const metadata: Metadata = {
   title: '歴代Apple Watchスペック比較表！各世代の性能の違いがすぐわかる',
@@ -193,7 +193,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/watch/watch-spe
               <p>本記事では<strong>歴代Apple Watchの主要スペックを一覧表で比較</strong>し、進化ポイントをわかりやすくまとめました。Apple Watchを購入する際の参考にしてみてください！</p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                もっと全体像から知りたい方は「<Link href="/watch/">中古Apple Watch購入ガイド</Link>」をご覧ください。
+                もっと全体像から知りたい方は「<Link href="/watch/">中古Apple Watchおすすめ機種・選び方まとめ</Link>」をご覧ください。
               </p>
             </div>
           </div>
@@ -237,7 +237,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/watch/watch-spe
         {/* セクション */}
         <SpecTable models={serializedModels} shopLinks={serializedLinks} prices={avgPrices} />
         <DualCompare models={serializedModels} shopLinks={serializedLinks} />
-        <EvolutionTimeline models={serializedModels} />
+        <EvolutionTimeline models={allModels} />
         <GlossarySection productName="Apple Watch" items={GLOSSARY_ITEMS} />
         </div>
       </article>

@@ -1,4 +1,5 @@
 import { BenchBar } from '@/app/components/spec-table-utils'
+import StickyTableWrapper from '@/app/components/StickyTableWrapper'
 import type { BenchModel } from './BenchmarkRanking'
 
 /** cpuからチップ世代を抽出 */
@@ -71,7 +72,7 @@ export default function AirVsProSection({ models }: { models: BenchModel[] }) {
           ファン搭載の有無が持続性能にどう影響するかがわかります。
         </p>
 
-        <div className="m-card m-card--shadow m-table-card">
+        <StickyTableWrapper floatingHeader className="m-card m-card--shadow m-table-card">
           <div className="m-table-scroll">
             <table className="m-table chip-gen-table">
               <caption className="visually-hidden">MacBook Air vs Pro 同一チップ世代のベンチマーク比較</caption>
@@ -105,7 +106,7 @@ export default function AirVsProSection({ models }: { models: BenchModel[] }) {
               </tbody>
             </table>
           </div>
-        </div>
+        </StickyTableWrapper>
 
         <div className="l-grid l-grid--2col l-grid--gap-lg u-mt-2xl">
           <div className="m-card m-card--shadow m-card--padded">

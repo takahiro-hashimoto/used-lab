@@ -1,5 +1,7 @@
 import { Fragment } from 'react'
 import type { MacBookModel } from '@/lib/types'
+import SupportEmbedButton from './SupportEmbedButton'
+import StickyTableWrapper from '@/app/components/StickyTableWrapper'
 import { getReleaseYear } from '@/lib/utils/shared-helpers'
 import {
   LEGACY_MACBOOK_PRO,
@@ -124,7 +126,8 @@ function MatrixTable({
 }) {
   return (
     <>
-      <div className="ios-matrix-scroll m-scroll-x m-scroll-x--styled">
+      <StickyTableWrapper floatingHeader>
+      <div className="ios-matrix-scroll m-scroll-x m-scroll-x--styled m-table-scroll">
         <table className="ios-matrix">
           <caption className="visually-hidden">{caption}</caption>
           <thead>
@@ -174,6 +177,7 @@ function MatrixTable({
           </tbody>
         </table>
       </div>
+      </StickyTableWrapper>
     </>
   )
 }
@@ -209,9 +213,10 @@ function Legend() {
    ------------------------------------------------------------------ */
 type Props = {
   models: MacBookModel[]
+  hideEmbed?: boolean
 }
 
-export default function MacOsSupportMatrix({ models }: Props) {
+export default function MacOsSupportMatrix({ models, hideEmbed }: Props) {
   // DB機種をカテゴリー別に分類
   const dbPro: MacBookModel[] = []
   const dbAir: MacBookModel[] = []
@@ -276,6 +281,8 @@ export default function MacOsSupportMatrix({ models }: Props) {
             </Fragment>
           ))}
         </p>
+
+        {!hideEmbed && <SupportEmbedButton />}
       </div>
     </section>
   )

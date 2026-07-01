@@ -146,7 +146,7 @@ export default async function ApplePencilComparePage() {
               <p>そこで本記事では4つのApple Pencilの違いや各Apple Pencilの対応機種などの情報をまとめました。Apple Pencilの違いにお悩みの方はぜひチェックしてみてください！</p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                もっと全体像から知りたい方は「<Link href="/ipad/">中古iPad購入ガイド</Link>」をご覧ください。
+                もっと全体像から知りたい方は「<Link href="/ipad/">中古iPadおすすめ機種・選び方まとめ</Link>」をご覧ください。
               </p>
             </div>
           </div>

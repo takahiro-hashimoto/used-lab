@@ -217,7 +217,7 @@ export default async function MacBookRecommendPage() {
                 この記事では、今買っても後悔しない中古MacBook {RECOMMEND_COUNT}機種を厳選し、それぞれの特徴と向いている人を
                 詳しく解説します。
               </p>
-              <p className="lead-link"><i className="fa-solid fa-arrow-right" aria-hidden="true"></i> もっと全体像から知りたい方は「<Link href="/macbook/">中古MacBook購入ガイド</Link>」をご覧ください。</p>
+              <p className="lead-link"><i className="fa-solid fa-arrow-right" aria-hidden="true"></i> もっと全体像から知りたい方は「<Link href="/macbook/">中古MacBookおすすめ機種・選び方まとめ</Link>」をご覧ください。</p>
             </div>
           </div>
         </section>

@@ -31,7 +31,7 @@ import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helper
 import { getHeroImage } from '@/lib/data/hero-images'
 import HeroMeta from '@/app/components/HeroMeta'
 
-export const revalidate = 86400
+export const revalidate = false
 
 export const metadata: Metadata = {
   title: '歴代MacBookスペック比較表！Air・Proの性能差や違いがすぐわかる',
@@ -198,7 +198,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/macbook/macbook
               <p>本記事では<strong>歴代MacBookの主要スペックを一覧表で比較</strong>し、進化ポイントをわかりやすくまとめました。MacBookを購入する際の参考にしてみてください！</p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                もっと全体像から知りたい方は「<Link href="/macbook/">中古MacBook購入ガイド</Link>」をご覧ください。
+                もっと全体像から知りたい方は「<Link href="/macbook/">中古MacBookおすすめ機種・選び方まとめ</Link>」をご覧ください。
               </p>
             </div>
           </div>
@@ -254,7 +254,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/macbook/macbook
         {/* セクション */}
         <SpecTable models={serializedModels} shopLinks={serializedLinks} prices={avgPrices} />
         <DualCompare models={serializedModels} shopLinks={serializedLinks} />
-        <BenchmarkSection models={serializedModels} />
+        <BenchmarkSection models={allModels} avgPrices={avgPrices} shopLinks={allShopLinks} />
         <EvolutionTimeline />
         <GlossarySection productName="MacBook" items={GLOSSARY_ITEMS} />
         </div>

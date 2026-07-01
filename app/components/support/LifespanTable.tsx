@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import StickyTableWrapper from '@/app/components/StickyTableWrapper'
 
 /* ------------------------------------------------------------------
    型定義
@@ -100,9 +101,10 @@ export default function LifespanTable({
         <p className="m-section-desc">{sectionDescription}</p>
 
         {/* テーブル */}
+        <StickyTableWrapper floatingHeader>
         <div className="m-card m-table-card">
           <div className="m-table-scroll">
-            <table className="m-table">
+            <table className="m-table m-table--sticky-col">
               <caption className="visually-hidden">{tableCaption}</caption>
               <thead>
                 <tr>
@@ -168,6 +170,7 @@ export default function LifespanTable({
             </table>
           </div>
         </div>
+        </StickyTableWrapper>
 
         {/* 用語解説グループ */}
         {glossaryGroups.map((group) => (

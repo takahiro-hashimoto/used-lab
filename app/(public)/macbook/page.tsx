@@ -37,7 +37,7 @@ import CompareTableSection from './recommend/components/CompareTableSection'
 
 export const revalidate = false
 
-const PAGE_TITLE = `中古MacBookおすすめ4選｜初心者向け選び方・コスパ・狙い目モデル【${GUIDE_DATE_LABEL}版】`
+const PAGE_TITLE = `【${GUIDE_DATE_LABEL}】中古MacBookおすすめ4選。狙い目の型落ちモデルはどれ？`
 const PAGE_DESCRIPTION = `${GUIDE_DATE_LABEL}版・中古MacBookのおすすめ4機種をコスパ・用途別に解説。初心者向けの選び方から、MacBook Airのおすすめ世代・狙い目モデルまで網羅。最新相場・購入先比較も完全収録。`
 const PAGE_URL = 'https://used-lab.jp/macbook/'
 
@@ -158,7 +158,7 @@ export default async function MacBookGuidePage() {
           <div className="hero-inner l-container">
             <div className="hero-content">
               <h1 className="hero-title" itemProp="headline">
-                中古MacBookおすすめ4選｜初心者向け選び方・コスパ・狙い目モデル【{GUIDE_DATE_LABEL}版】
+                【{GUIDE_DATE_LABEL}】中古MacBookおすすめ4選。狙い目の型落ちモデルはどれ？
               </h1>
               <HeroMeta dateStr={dateStr} dateDisplay={dateDisplay} withItemProp showAuthor />
             </div>
@@ -210,7 +210,7 @@ export default async function MacBookGuidePage() {
           {/* ========== おすすめ機種 ========== */}
           <CompareTableSection
             items={compareItems}
-            heading={<>今買うならこれ｜おすすめ中古MacBook【{GUIDE_DATE_LABEL}最新】</>}
+            heading={<>今買うならこれ！おすすめ中古MacBook4選【{GUIDE_DATE_LABEL}最新】</>}
             descriptions={[
               <>当サイトでおすすめしている機種は下記の通り。スペックの詳細な比較は<Link href="/macbook/macbook-spec-table/">MacBookスペック比較表</Link>をご覧ください。{GUIDE_DATE_LABEL}時点で「macOSサポートが十分に残っている」「中古価格と性能のバランスが良い」ことを判断基準に、本当の狙い目モデルだけを厳選しています。</>,
             ]}

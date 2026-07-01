@@ -1,70 +1,90 @@
+'use client'
+
+import { useState } from 'react'
 import Link from 'next/link'
 import { BenchBar } from '@/app/components/spec-table-utils'
+import StickyTableWrapper from '@/app/components/StickyTableWrapper'
+import ModelModal from './ModelModal'
+import type { MacBookModel, ProductShopLink } from '@/lib/types'
 
-type SpecModel = {
-  id: number
-  model: string
-  slug: string
-  shortname: string | null
-  score_single: number | null
-  score_multi: number | null
-  score_metal: number | null
-}
+const IOSYS_SHOP_ID = 1
 
 type Props = {
-  models: SpecModel[]
+  models: MacBookModel[]
+  avgPrices: Record<number, number | null>
+  shopLinks: ProductShopLink[]
 }
 
 function getModelCategory(model: string): 'air' | 'pro' {
   return model.toLowerCase().includes('pro') ? 'pro' : 'air'
 }
 
-function BenchTable({ models, caption, maxSingle, maxMulti, maxMetal }: {
-  models: SpecModel[]
+function BenchTable({
+  models,
+  caption,
+  maxSingle,
+  maxMulti,
+  maxMetal,
+  onSelect,
+}: {
+  models: MacBookModel[]
   caption: string
   maxSingle: number
   maxMulti: number
   maxMetal: number
+  onSelect: (m: MacBookModel) => void
 }) {
+  const sorted = [...models].sort((a, b) => (b.score_single || 0) - (a.score_single || 0))
+
   return (
+    <StickyTableWrapper floatingHeader>
     <div className="m-card m-card--shadow m-table-card">
       <div className="m-table-scroll">
-      <table className="m-table bench-table">
-        <caption className="visually-hidden">{caption}</caption>
-        <thead>
-          <tr>
-            <th scope="col" className="bench-table__sticky">モデル</th>
-            <th scope="col">シングルコア</th>
-            <th scope="col">マルチコア</th>
-            <th scope="col">Metal</th>
-          </tr>
-        </thead>
-        <tbody>
-          {models.map((m) => (
-            <tr key={m.id}>
-              <th scope="row" className="bench-table__sticky u-shrink">
-                <Link href={`/macbook/${m.slug}/`}>{m.shortname || m.model}</Link>
-              </th>
-              <td><BenchBar value={m.score_single!} maxValue={maxSingle} color="#e74c6f" /></td>
-              <td><BenchBar value={m.score_multi!} maxValue={maxMulti} color="#f0a030" /></td>
-              <td><BenchBar value={m.score_metal!} maxValue={maxMetal} color="var(--color-primary, #2589d0)" /></td>
+        <table className="m-table bench-table">
+          <caption className="visually-hidden">{caption}</caption>
+          <thead>
+            <tr>
+              <th scope="col" className="bench-table__sticky">モデル</th>
+              <th scope="col">シングルコア</th>
+              <th scope="col">マルチコア</th>
+              <th scope="col">Metal</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {sorted.map((m) => (
+              <tr key={m.id}>
+                <th scope="row" className="bench-table__sticky u-shrink">
+                  <button className="bench-table__model-btn" onClick={() => onSelect(m)}>
+                    {m.shortname || m.model}
+                  </button>
+                </th>
+                <td><BenchBar value={m.score_single!} maxValue={maxSingle} color="#e74c6f" /></td>
+                <td><BenchBar value={m.score_multi!}  maxValue={maxMulti}  color="#f0a030" /></td>
+                <td><BenchBar value={m.score_metal!}  maxValue={maxMetal}  color="var(--color-primary, #2589d0)" /></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
+    </StickyTableWrapper>
   )
 }
 
-export default function BenchmarkSection({ models }: Props) {
-  const geekbenchModels = models
-    .filter((m) => m.score_single != null && m.score_multi != null && m.score_metal != null)
-    .sort((a, b) => (b.score_single || 0) - (a.score_single || 0))
+export default function BenchmarkSection({ models, avgPrices, shopLinks }: Props) {
+  const [selectedModel, setSelectedModel] = useState<MacBookModel | null>(null)
+
+  const iosysUrlMap = Object.fromEntries(
+    shopLinks.filter((l) => l.shop_id === IOSYS_SHOP_ID).map((l) => [l.product_id, l.url])
+  )
+
+  const geekbenchModels = models.filter(
+    (m) => m.score_single != null && m.score_multi != null && m.score_metal != null,
+  )
 
   const maxSingle = Math.max(...geekbenchModels.map((m) => m.score_single || 0))
-  const maxMulti = Math.max(...geekbenchModels.map((m) => m.score_multi || 0))
-  const maxMetal = Math.max(...geekbenchModels.map((m) => m.score_metal || 0))
+  const maxMulti  = Math.max(...geekbenchModels.map((m) => m.score_multi  || 0))
+  const maxMetal  = Math.max(...geekbenchModels.map((m) => m.score_metal  || 0))
 
   const proModels = geekbenchModels.filter((m) => getModelCategory(m.model) === 'pro')
   const airModels = geekbenchModels.filter((m) => getModelCategory(m.model) === 'air')
@@ -72,6 +92,7 @@ export default function BenchmarkSection({ models }: Props) {
   if (geekbenchModels.length === 0) return null
 
   return (
+    <>
     <section className="l-section" id="benchmark" aria-labelledby="heading-benchmark">
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg" id="heading-benchmark">
@@ -110,6 +131,7 @@ export default function BenchmarkSection({ models }: Props) {
               maxSingle={maxSingle}
               maxMulti={maxMulti}
               maxMetal={maxMetal}
+              onSelect={setSelectedModel}
             />
           </>
         )}
@@ -125,9 +147,11 @@ export default function BenchmarkSection({ models }: Props) {
               maxSingle={maxSingle}
               maxMulti={maxMulti}
               maxMetal={maxMetal}
+              onSelect={setSelectedModel}
             />
           </div>
         )}
+
         <div className="m-callout m-callout--tip u-mt-2xl">
           <span className="m-callout__label">memo</span>
           <p className="m-callout__text">
@@ -136,5 +160,15 @@ export default function BenchmarkSection({ models }: Props) {
         </div>
       </div>
     </section>
+
+    {selectedModel && (
+      <ModelModal
+        model={selectedModel}
+        avgPrice={avgPrices[selectedModel.id] ?? null}
+        iosysUrl={iosysUrlMap[selectedModel.id] ?? null}
+        onClose={() => setSelectedModel(null)}
+      />
+    )}
+    </>
   )
 }

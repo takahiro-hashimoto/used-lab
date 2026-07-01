@@ -169,7 +169,7 @@ export default async function AccessoriesSummaryPage() {
               <p>本記事では、Apple純正のiPad用キーボードごとに対応機種と型番（JIS配列）を一覧でまとめました。中古での購入先リンクも掲載しているので、キーボード選びにぜひ活用してください。</p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                もっと全体像から知りたい方は「<Link href="/ipad/">中古iPad購入ガイド</Link>」をご覧ください。
+                もっと全体像から知りたい方は「<Link href="/ipad/">中古iPadおすすめ機種・選び方まとめ</Link>」をご覧ください。
               </p>
             </div>
           </div>

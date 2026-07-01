@@ -1,12 +1,7 @@
-import Link from 'next/link'
-import type { AdvanceData } from '@/lib/types'
+import type { IPadModel } from '@/lib/types'
+import ModelModalButton from './ModelModalButton'
 
-type Model = {
-  slug: string
-  model: string
-  date: string | null
-  advance: AdvanceData | null
-}
+type Model = IPadModel
 
 // シリーズのグルーピング定義（slugのみ管理）
 const PRO_GROUPS = [
@@ -36,6 +31,8 @@ function formatDate(date: string | null): string {
 
 type Props = {
   models: Model[]
+  avgPrices: Record<number, number | null>
+  iosysUrlMap: Record<number, string>
 }
 
 /** 複数モデルをグルーピングしてタイムラインアイテムを構築 */
@@ -74,7 +71,7 @@ function buildSingleTimeline(slugs: string[], modelMap: Map<string, Model>) {
     }))
 }
 
-export default function EvolutionTimeline({ models }: Props) {
+export default function EvolutionTimeline({ models, avgPrices, iosysUrlMap }: Props) {
   const modelMap = new Map(models.map((m) => [m.slug, m]))
 
   const proTimeline = buildGroupTimeline(PRO_GROUPS, modelMap)
@@ -104,12 +101,17 @@ export default function EvolutionTimeline({ models }: Props) {
                 <span className="evolution-item__date">{item.date}</span>
                 <div className="evolution-item__header">
                   <h4 className="evolution-item__title">
-                    {item.models.map((m, i) => (
-                      <span key={m.slug}>
-                        {i > 0 && ' / '}
-                        <Link href={`/ipad/${m.slug}/`}>{m.name}</Link>
-                      </span>
-                    ))}
+                    {item.models.map((m, i) => {
+                      const full = modelMap.get(m.slug)
+                      return (
+                        <span key={m.slug}>
+                          {i > 0 && ' / '}
+                          {full ? (
+                            <ModelModalButton model={full} avgPrice={avgPrices[full.id] ?? null} iosysUrl={iosysUrlMap[full.id] ?? null} className="evolution-item__model-link" />
+                          ) : m.name}
+                        </span>
+                      )
+                    })}
                   </h4>
                 </div>
                 <div className="evolution-item__body">
@@ -141,12 +143,17 @@ export default function EvolutionTimeline({ models }: Props) {
                 <span className="evolution-item__date">{item.date}</span>
                 <div className="evolution-item__header">
                   <h4 className="evolution-item__title">
-                    {item.models.map((m, i) => (
-                      <span key={m.slug}>
-                        {i > 0 && ' / '}
-                        <Link href={`/ipad/${m.slug}/`}>{m.name}</Link>
-                      </span>
-                    ))}
+                    {item.models.map((m, i) => {
+                      const full = modelMap.get(m.slug)
+                      return (
+                        <span key={m.slug}>
+                          {i > 0 && ' / '}
+                          {full ? (
+                            <ModelModalButton model={full} avgPrice={avgPrices[full.id] ?? null} iosysUrl={iosysUrlMap[full.id] ?? null} className="evolution-item__model-link" />
+                          ) : m.name}
+                        </span>
+                      )
+                    })}
                   </h4>
                 </div>
                 <div className="evolution-item__body">
@@ -178,7 +185,7 @@ export default function EvolutionTimeline({ models }: Props) {
                 <span className="evolution-item__date">{item.date}</span>
                 <div className="evolution-item__header">
                   <h4 className="evolution-item__title">
-                    <Link href={`/ipad/${item.slug}/`}>{item.title}</Link>
+                    {(() => { const full = modelMap.get(item.slug); return full ? <ModelModalButton model={full} avgPrice={avgPrices[full.id] ?? null} iosysUrl={iosysUrlMap[full.id] ?? null} className="evolution-item__model-link" /> : item.title })()}
                   </h4>
                 </div>
                 <div className="evolution-item__body">
@@ -210,7 +217,7 @@ export default function EvolutionTimeline({ models }: Props) {
                 <span className="evolution-item__date">{item.date}</span>
                 <div className="evolution-item__header">
                   <h4 className="evolution-item__title">
-                    <Link href={`/ipad/${item.slug}/`}>{item.title}</Link>
+                    {(() => { const full = modelMap.get(item.slug); return full ? <ModelModalButton model={full} avgPrice={avgPrices[full.id] ?? null} iosysUrl={iosysUrlMap[full.id] ?? null} className="evolution-item__model-link" /> : item.title })()}
                   </h4>
                 </div>
                 <div className="evolution-item__body">

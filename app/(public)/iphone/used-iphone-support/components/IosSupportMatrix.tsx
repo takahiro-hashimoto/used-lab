@@ -1,6 +1,8 @@
 import type { IPhoneModel } from '@/lib/types'
 import { getReleaseYear } from '@/lib/utils/shared-helpers'
 import { LEGACY_IPHONES, type LegacyIPhone } from '@/lib/data/legacy-iphones'
+import SupportEmbedButton from './SupportEmbedButton'
+import StickyTableWrapper from '@/app/components/StickyTableWrapper'
 
 /* ------------------------------------------------------------------
    iOSバージョン定義（列ヘッダー）
@@ -145,9 +147,10 @@ const CELL_MAP = {
    ------------------------------------------------------------------ */
 type Props = {
   models: IPhoneModel[]
+  hideEmbed?: boolean
 }
 
-export default function IosSupportMatrix({ models }: Props) {
+export default function IosSupportMatrix({ models, hideEmbed }: Props) {
   // 旧機種（定数） + DB機種 を結合
   const legacyRows = legacyToDeviceRows(LEGACY_IPHONES)
   const dbRows = groupModelsBySeries(models)
@@ -167,7 +170,8 @@ export default function IosSupportMatrix({ models }: Props) {
 
         <p className="m-section-heading m-section-heading--sm">iPhone機種別 iOS対応状況一覧</p>
 
-        <div className="ios-matrix-scroll m-scroll-x m-scroll-x--styled">
+        <StickyTableWrapper floatingHeader>
+        <div className="ios-matrix-scroll m-scroll-x m-scroll-x--styled m-table-scroll">
           <table className="ios-matrix">
             <caption className="visually-hidden">iPhone機種別 iOS対応状況一覧表</caption>
             <thead>
@@ -201,6 +205,7 @@ export default function IosSupportMatrix({ models }: Props) {
             </tbody>
           </table>
         </div>
+        </StickyTableWrapper>
 
         <div className="m-legend u-mb-md">
           <div className="m-legend__item">
@@ -222,6 +227,8 @@ export default function IosSupportMatrix({ models }: Props) {
           <br />
           ※ 各モデルのPro / Plus / Max等のバリエーションも同じiOS対応状況となります。
         </p>
+
+        {!hideEmbed && <SupportEmbedButton />}
       </div>
     </section>
   )

@@ -39,7 +39,7 @@ import PopularSection from '@/app/components/support/PopularSection'
 
 export const revalidate = false
 
-const PAGE_TITLE = `中古iPhoneおすすめ5選｜買うならどれ？コスパ・狙い目機種【${GUIDE_DATE_LABEL}版】`
+const PAGE_TITLE = `【${GUIDE_DATE_LABEL}】中古iPhoneおすすめ5選。狙い目の型落ちモデルはどれ？`
 const PAGE_DESCRIPTION = `${GUIDE_DATE_LABEL}版・中古iPhoneのおすすめ5機種をコスパ・用途別に解説。今買うなら狙い目はどれ？最新相場・選び方・購入先比較まで完全網羅。失敗しない中古iPhone選びをサポートします。`
 const PAGE_URL = 'https://used-lab.jp/iphone/'
 
@@ -201,7 +201,7 @@ export default async function IPhoneGuidePage() {
           <div className="hero-inner l-container">
             <div className="hero-content">
               <h1 className="hero-title" itemProp="headline">
-                中古iPhoneおすすめ5選｜買うならどれ？コスパ・狙い目機種【{GUIDE_DATE_LABEL}版】
+                【{GUIDE_DATE_LABEL}】中古iPhoneおすすめ5選。狙い目の型落ちモデルはどれ？
               </h1>
               <HeroMeta dateStr={dateStr} dateDisplay={dateDisplay} withItemProp showAuthor />
             </div>
@@ -256,7 +256,7 @@ export default async function IPhoneGuidePage() {
           {/* ========== おすすめ機種（比較表） ========== */}
           <CompareTableSection
             items={compareItems}
-            heading={<>今買うならこれ｜おすすめ中古iPhone【{GUIDE_DATE_LABEL}最新】</>}
+            heading={<>今買うならこれ！おすすめ中古iPhone5選【{GUIDE_DATE_LABEL}最新】</>}
             descriptions={[
               <>当サイトでおすすめしている機種は下記の通り。スペックの詳細な比較は<Link href="/iphone/iphone-spec-table/">iPhoneスペック比較表</Link>をご覧ください。</>,
               <>{GUIDE_DATE_LABEL}時点で「iOSサポートが十分に残っている」「中古価格と性能のバランスが良い」ことを判断基準に、狙い目モデルを紹介しています。</>,

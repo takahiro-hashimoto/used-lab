@@ -4,6 +4,7 @@ import ContentImage from '../../../../components/ContentImage'
 import { useState, useMemo } from 'react'
 import Link from 'next/link'
 import { parseDate, formatDate } from '@/app/components/spec-table-utils'
+import StickyTableWrapper from '@/app/components/StickyTableWrapper'
 
 type BatteryModel = {
   id: number
@@ -22,7 +23,6 @@ type Props = {
   models: BatteryModel[]
 }
 
-type SortOrder = 'new' | 'old' | 'battery-desc' | 'battery-asc'
 type FilterType = 'all' | 'pro-family' | 'standard-family' | 'se-family'
 
 function getModelCategory(model: string): string {
@@ -36,14 +36,8 @@ function getModelCategory(model: string): string {
   return 'standard'
 }
 
-function parseBatteryMah(battery: string | null): number {
-  if (!battery) return 0
-  const match = battery.replace(/,/g, '').match(/([\d]+)/)
-  return match ? parseInt(match[1], 10) : 0
-}
 
 export default function BatteryTable({ models }: Props) {
-  const [sortOrder, setSortOrder] = useState<SortOrder>('battery-desc')
   const [modelFilter, setModelFilter] = useState<FilterType>('all')
 
   const filteredModels = useMemo(() => {
@@ -60,35 +54,10 @@ export default function BatteryTable({ models }: Props) {
       }
     }
 
-    const compareDateDesc = (a: BatteryModel, b: BatteryModel) =>
-      parseDate(b.date).getTime() - parseDate(a.date).getTime()
-    const compareDateAsc = (a: BatteryModel, b: BatteryModel) =>
-      parseDate(a.date).getTime() - parseDate(b.date).getTime()
-    const compareId = (a: BatteryModel, b: BatteryModel) => a.id - b.id
-
-    result.sort((a, b) => {
-      switch (sortOrder) {
-        case 'new':
-          return compareDateDesc(a, b) || compareId(a, b)
-        case 'old':
-          return compareDateAsc(a, b) || compareId(a, b)
-        case 'battery-desc':
-          return (
-            parseBatteryMah(b.battery) - parseBatteryMah(a.battery) ||
-            compareDateDesc(a, b) ||
-            compareId(a, b)
-          )
-        case 'battery-asc':
-          return (
-            parseBatteryMah(a.battery) - parseBatteryMah(b.battery) ||
-            compareDateAsc(a, b) ||
-            compareId(a, b)
-          )
-      }
-    })
+    result.sort((a, b) => parseDate(b.date).getTime() - parseDate(a.date).getTime())
 
     return result
-  }, [models, sortOrder, modelFilter])
+  }, [models, modelFilter])
 
   return (
     <section className="l-section" id="battery-ranking" aria-labelledby="heading-battery-ranking">
@@ -99,27 +68,7 @@ export default function BatteryTable({ models }: Props) {
         <p className="m-section-desc">歴代iPhoneのバッテリー容量と連続使用時間の目安を一覧で比較できます。</p>
         <p className="m-section-desc">iPhoneのスペックを網羅的に比較したい場合は<Link href="/iphone/iphone-spec-table/">歴代iPhoneスペック比較表</Link>をご覧ください。</p>
 
-        {/* フィルターUI */}
         <div className="u-mb-xl" aria-label="絞り込み">
-          <div className="spec-filter__row">
-            <span className="spec-filter__label">並び替え</span>
-            <div className="spec-filter__tags">
-              {([
-                ['new', '発売が新しい順'],
-                ['old', '発売が古い順'],
-                ['battery-desc', 'バッテリー多い順'],
-                ['battery-asc', 'バッテリー少ない順'],
-              ] as [SortOrder, string][]).map(([key, label]) => (
-                <button
-                  key={key}
-                  className={`spec-filter__tag${sortOrder === key ? ' is-active' : ''}`}
-                  onClick={() => setSortOrder(key)}
-                >
-                  {label}
-                </button>
-              ))}
-            </div>
-          </div>
           <div className="spec-filter__row">
             <span className="spec-filter__label">モデル別絞り込み</span>
             <div className="spec-filter__tags">
@@ -141,34 +90,28 @@ export default function BatteryTable({ models }: Props) {
           </div>
         </div>
 
-        {/* テーブル */}
         {filteredModels.length === 0 ? (
           <p className="m-section-desc">該当するモデルがありません。フィルターを変更してください。</p>
         ) : (
-          <div className="m-card m-card--shadow m-table-card">
+          <StickyTableWrapper floatingHeader className="m-card m-card--shadow m-table-card">
             <div className="m-table-scroll">
-              <table className="m-table battery-table">
+              <table className="m-table m-table--sticky-col battery-table">
                 <caption className="visually-hidden">歴代iPhoneバッテリー容量比較表</caption>
                 <thead>
                   <tr>
-                    {sortOrder === 'battery-desc' && <th scope="col">順位</th>}
                     <th scope="col">モデル／発売時期</th>
                     <th scope="col">容量</th>
                     <th scope="col">ビデオ再生</th>
                     <th scope="col">ストリーミング</th>
                     <th scope="col">音声再生</th>
+                    <th scope="col">発売日</th>
                     <th scope="col">中古価格</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {filteredModels.map((m, i) => (
+                  {filteredModels.map((m) => (
                     <tr key={m.id}>
-                      {sortOrder === 'battery-desc' && (
-                        <td>
-                          <span className={`bench-rank${i < 3 ? ` bench-rank--${i + 1}` : ''}`}>{i + 1}</span>
-                        </td>
-                      )}
-                      <td className="battery-table__model-cell">
+                      <th scope="row" className="battery-table__model-cell bench-table__sticky">
                         <div className="battery-table__model-inner">
                           <div className="battery-table__img-wrap">
                             {m.image && (
@@ -186,11 +129,12 @@ export default function BatteryTable({ models }: Props) {
                             <span className="battery-table__date">{formatDate(m.date)} 発売</span>
                           </div>
                         </div>
-                      </td>
+                      </th>
                       <td className="battery-table__capacity">{m.battery || '-'}</td>
                       <td>{m.video || '-'}</td>
                       <td>{m.streaming || '-'}</td>
                       <td>{m.audio || '-'}</td>
+                      <td>{formatDate(m.date)}</td>
                       <td>
                         {m.iosysUrl ? (
                           <a
@@ -210,7 +154,7 @@ export default function BatteryTable({ models }: Props) {
                 </tbody>
               </table>
             </div>
-          </div>
+          </StickyTableWrapper>
         )}
       </div>
     </section>

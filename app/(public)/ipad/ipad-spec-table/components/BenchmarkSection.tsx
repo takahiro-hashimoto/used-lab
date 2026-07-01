@@ -1,49 +1,50 @@
+'use client'
+
+import { useState } from 'react'
 import Link from 'next/link'
 import { BenchBar } from '@/app/components/spec-table-utils'
+import StickyTableWrapper from '@/app/components/StickyTableWrapper'
+import ModelModal from './ModelModal'
+import type { IPadModel, ProductShopLink } from '@/lib/types'
 
-type SpecModel = {
-  id: number
-  model: string
-  score_single: number | null
-  score_multi: number | null
-  score_metal: number | null
-  antutu_cpu: number | null
-  antutu_gpu: number | null
-  antutu_mem: number | null
-  antutu_ux: number | null
-}
+const IOSYS_SHOP_ID = 1
 
 type Props = {
-  models: SpecModel[]
+  models: IPadModel[]
+  avgPrices: Record<number, number | null>
+  shopLinks: ProductShopLink[]
 }
 
-export default function BenchmarkSection({ models }: Props) {
-  // Geekbench: score_single/multi/metal が揃っているモデルのみ
+export default function BenchmarkSection({ models, avgPrices, shopLinks }: Props) {
+  const [selectedModel, setSelectedModel] = useState<IPadModel | null>(null)
+
+  const iosysUrlMap = Object.fromEntries(
+    shopLinks.filter((l) => l.shop_id === IOSYS_SHOP_ID).map((l) => [l.product_id, l.url])
+  )
+
   const geekbenchModels = models
     .filter((m) => m.score_single != null && m.score_multi != null && m.score_metal != null)
     .sort((a, b) => (b.score_single || 0) - (a.score_single || 0))
 
-  const maxSingle = Math.max(...geekbenchModels.map((m) => m.score_single || 0))
-  const maxMulti = Math.max(...geekbenchModels.map((m) => m.score_multi || 0))
-  const maxMetal = Math.max(...geekbenchModels.map((m) => m.score_metal || 0))
-
-  // Antutu: antutu_cpu が揃っているモデルのみ
   const antutuModels = models
     .filter((m) => m.antutu_cpu != null && m.antutu_gpu != null && m.antutu_mem != null && m.antutu_ux != null)
     .sort((a, b) => {
-      const totalA = (a.antutu_cpu || 0) + (a.antutu_gpu || 0) + (a.antutu_mem || 0) + (a.antutu_ux || 0)
-      const totalB = (b.antutu_cpu || 0) + (b.antutu_gpu || 0) + (b.antutu_mem || 0) + (b.antutu_ux || 0)
-      return totalB - totalA
+      const total = (m: IPadModel) => (m.antutu_cpu || 0) + (m.antutu_gpu || 0) + (m.antutu_mem || 0) + (m.antutu_ux || 0)
+      return total(b) - total(a)
     })
 
-  const antutuTotals = antutuModels.map((m) => (m.antutu_cpu || 0) + (m.antutu_gpu || 0) + (m.antutu_mem || 0) + (m.antutu_ux || 0))
-  const maxAntutuTotal = Math.max(...antutuTotals, 0)
-  const maxAntutuCpu = Math.max(...antutuModels.map((m) => m.antutu_cpu || 0))
-  const maxAntutuGpu = Math.max(...antutuModels.map((m) => m.antutu_gpu || 0))
-  const maxAntutuMem = Math.max(...antutuModels.map((m) => m.antutu_mem || 0))
-  const maxAntutuUx = Math.max(...antutuModels.map((m) => m.antutu_ux || 0))
+  const maxSingle = Math.max(...geekbenchModels.map((m) => m.score_single || 0))
+  const maxMulti  = Math.max(...geekbenchModels.map((m) => m.score_multi  || 0))
+  const maxMetal  = Math.max(...geekbenchModels.map((m) => m.score_metal  || 0))
+
+  const maxAntutuTotal = Math.max(...antutuModels.map((m) => (m.antutu_cpu || 0) + (m.antutu_gpu || 0) + (m.antutu_mem || 0) + (m.antutu_ux || 0)), 0)
+  const maxAntutuCpu  = Math.max(...antutuModels.map((m) => m.antutu_cpu || 0))
+  const maxAntutuGpu  = Math.max(...antutuModels.map((m) => m.antutu_gpu || 0))
+  const maxAntutuMem  = Math.max(...antutuModels.map((m) => m.antutu_mem || 0))
+  const maxAntutuUx   = Math.max(...antutuModels.map((m) => m.antutu_ux  || 0))
 
   return (
+    <>
     <section className="l-section" id="benchmark" aria-labelledby="heading-benchmark">
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg" id="heading-benchmark">
@@ -66,7 +67,6 @@ export default function BenchmarkSection({ models }: Props) {
               CPU単体の処理性能（シングル/マルチコア）を評価。純粋な計算処理能力や高負荷タスクを評価するのが得意です。
             </p>
 
-            {/* 用語解説カード */}
             <div className="l-grid l-grid--3col l-grid--gap-lg u-mb-xl">
               <div className="m-card m-card--shadow" style={{ padding: 'var(--space-lg, 20px)' }}>
                 <p className="glossary-item-title">シングルスコア</p>
@@ -82,32 +82,35 @@ export default function BenchmarkSection({ models }: Props) {
               </div>
             </div>
 
-            {/* テーブル */}
+            <StickyTableWrapper floatingHeader>
             <div className="m-card m-card--shadow m-table-card">
               <div className="m-table-scroll">
-              <table className="m-table bench-table">
-                <caption className="visually-hidden">iPadモデル別 Geekbench 6 ベンチマークスコア比較</caption>
-                <thead>
-                  <tr>
-                    <th scope="col" className="bench-table__sticky">モデル</th>
-                    <th scope="col">シングルコア</th>
-                    <th scope="col">マルチコア</th>
-                    <th scope="col">Metal</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {geekbenchModels.map((m) => (
-                    <tr key={m.id}>
-                      <th scope="row" className="bench-table__sticky u-shrink">{m.model}</th>
-                      <td><BenchBar value={m.score_single!} maxValue={maxSingle} color="#e74c6f" /></td>
-                      <td><BenchBar value={m.score_multi!} maxValue={maxMulti} color="#f0a030" /></td>
-                      <td><BenchBar value={m.score_metal!} maxValue={maxMetal} color="var(--color-primary, #2589d0)" /></td>
+                <table className="m-table bench-table">
+                  <caption className="visually-hidden">iPadモデル別 Geekbench 6 ベンチマークスコア比較</caption>
+                  <thead>
+                    <tr>
+                      <th scope="col" className="bench-table__sticky">モデル</th>
+                      <th scope="col">シングルコア</th>
+                      <th scope="col">マルチコア</th>
+                      <th scope="col">Metal</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {geekbenchModels.map((m) => (
+                      <tr key={m.id}>
+                        <th scope="row" className="bench-table__sticky u-shrink">
+                          <button className="bench-table__model-btn" onClick={() => setSelectedModel(m)}>{m.model}</button>
+                        </th>
+                        <td><BenchBar value={m.score_single!} maxValue={maxSingle} color="#e74c6f" /></td>
+                        <td><BenchBar value={m.score_multi!}  maxValue={maxMulti}  color="#f0a030" /></td>
+                        <td><BenchBar value={m.score_metal!}  maxValue={maxMetal}  color="var(--color-primary, #2589d0)" /></td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
             </div>
+            </StickyTableWrapper>
           </section>
         )}
 
@@ -121,7 +124,6 @@ export default function BenchmarkSection({ models }: Props) {
               CPUだけでなく、GPU、メモリ、UXまで含めた総合的な端末の性能を評価。ゲームやマルチタスク、日常的な操作を含めた全体的な快適さを判断するのが得意です。
             </p>
 
-            {/* 用語解説カード */}
             <div className="l-grid l-grid--4col l-grid--gap-lg u-mb-xl">
               <div className="m-card m-card--shadow" style={{ padding: 'var(--space-lg, 20px)' }}>
                 <p className="glossary-item-title">CPU</p>
@@ -141,39 +143,42 @@ export default function BenchmarkSection({ models }: Props) {
               </div>
             </div>
 
-            {/* テーブル */}
+            <StickyTableWrapper floatingHeader>
             <div className="m-card m-card--shadow m-table-card">
               <div className="m-table-scroll">
-              <table className="m-table m-table--sticky-col bench-table">
-                <caption className="visually-hidden">iPadモデル別 Antutu Benchmark v10 スコア比較</caption>
-                <thead>
-                  <tr>
-                    <th scope="col" className="bench-table__sticky">モデル</th>
-                    <th scope="col">合計</th>
-                    <th scope="col">CPU</th>
-                    <th scope="col">GPU</th>
-                    <th scope="col">MEM</th>
-                    <th scope="col">UX</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {antutuModels.map((m) => {
-                    const total = (m.antutu_cpu || 0) + (m.antutu_gpu || 0) + (m.antutu_mem || 0) + (m.antutu_ux || 0)
-                    return (
-                      <tr key={m.id}>
-                        <th scope="row" className="bench-table__sticky u-shrink">{m.model}</th>
-                        <td><BenchBar value={total} maxValue={maxAntutuTotal} color="var(--color-primary, #2589d0)" /></td>
-                        <td><BenchBar value={m.antutu_cpu!} maxValue={maxAntutuCpu} color="#e74c6f" /></td>
-                        <td><BenchBar value={m.antutu_gpu!} maxValue={maxAntutuGpu} color="#34a853" /></td>
-                        <td><BenchBar value={m.antutu_mem!} maxValue={maxAntutuMem} color="#34a853" /></td>
-                        <td><BenchBar value={m.antutu_ux!} maxValue={maxAntutuUx} color="#f0a030" /></td>
-                      </tr>
-                    )
-                  })}
-                </tbody>
-              </table>
+                <table className="m-table m-table--sticky-col bench-table">
+                  <caption className="visually-hidden">iPadモデル別 Antutu Benchmark v10 スコア比較</caption>
+                  <thead>
+                    <tr>
+                      <th scope="col" className="bench-table__sticky">モデル</th>
+                      <th scope="col">合計</th>
+                      <th scope="col">CPU</th>
+                      <th scope="col">GPU</th>
+                      <th scope="col">MEM</th>
+                      <th scope="col">UX</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {antutuModels.map((m) => {
+                      const total = (m.antutu_cpu || 0) + (m.antutu_gpu || 0) + (m.antutu_mem || 0) + (m.antutu_ux || 0)
+                      return (
+                        <tr key={m.id}>
+                          <th scope="row" className="bench-table__sticky u-shrink">
+                            <button className="bench-table__model-btn" onClick={() => setSelectedModel(m)}>{m.model}</button>
+                          </th>
+                          <td><BenchBar value={total}          maxValue={maxAntutuTotal} color="var(--color-primary, #2589d0)" /></td>
+                          <td><BenchBar value={m.antutu_cpu!} maxValue={maxAntutuCpu}   color="#e74c6f" /></td>
+                          <td><BenchBar value={m.antutu_gpu!} maxValue={maxAntutuGpu}   color="#34a853" /></td>
+                          <td><BenchBar value={m.antutu_mem!} maxValue={maxAntutuMem}   color="#34a853" /></td>
+                          <td><BenchBar value={m.antutu_ux!}  maxValue={maxAntutuUx}    color="#f0a030" /></td>
+                        </tr>
+                      )
+                    })}
+                  </tbody>
+                </table>
               </div>
             </div>
+            </StickyTableWrapper>
           </section>
         )}
 
@@ -185,5 +190,15 @@ export default function BenchmarkSection({ models }: Props) {
         </div>
       </div>
     </section>
+
+    {selectedModel && (
+      <ModelModal
+        model={selectedModel}
+        avgPrice={avgPrices[selectedModel.id] ?? null}
+        iosysUrl={iosysUrlMap[selectedModel.id] ?? null}
+        onClose={() => setSelectedModel(null)}
+      />
+    )}
+    </>
   )
 }

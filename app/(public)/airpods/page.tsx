@@ -38,7 +38,7 @@ import CompareTableSection from './recommend/components/CompareTableSection'
 
 export const revalidate = false
 
-const PAGE_TITLE = `中古AirPodsおすすめ3選｜どれがいい？型落ち・コスパ・狙い目モデル【${GUIDE_DATE_LABEL}版】`
+const PAGE_TITLE = `【${GUIDE_DATE_LABEL}】中古AirPodsおすすめ3選。狙い目の型落ちモデルはどれ？`
 const PAGE_DESCRIPTION = `${GUIDE_DATE_LABEL}版・中古AirPodsはどれがいい？おすすめ3機種を型落ち・コスパ・用途別に解説。今買うなら狙い目はどれ？最新相場・選び方・購入先比較まで完全網羅。`
 const PAGE_URL = 'https://used-lab.jp/airpods/'
 
@@ -174,7 +174,7 @@ export default async function AirPodsGuidePage() {
           <div className="hero-inner l-container">
             <div className="hero-content">
               <h1 className="hero-title" itemProp="headline">
-                中古AirPodsおすすめ3選｜どれがいい？型落ち・コスパ・狙い目モデル【{GUIDE_DATE_LABEL}版】
+                【{GUIDE_DATE_LABEL}】中古AirPodsおすすめ3選。狙い目の型落ちモデルはどれ？
               </h1>
               <HeroMeta dateStr={dateStr} dateDisplay={dateDisplay} withItemProp showAuthor />
             </div>
@@ -225,7 +225,7 @@ export default async function AirPodsGuidePage() {
           {/* ========== おすすめ機種 ========== */}
           <CompareTableSection
             items={compareItems}
-            heading={<>今買うならこれ｜おすすめ中古AirPods【{GUIDE_DATE_LABEL}最新】</>}
+            heading={<>今買うならこれ！おすすめ中古AirPods3選【{GUIDE_DATE_LABEL}最新】</>}
             descriptions={[
               <>当サイトでおすすめしている機種は下記の通り。{GUIDE_DATE_LABEL}時点で「主要機能が十分に乗っている」「中古価格と性能のバランスが良い」ことを判断基準に、本当の狙い目モデルだけを厳選しています。</>,
             ]}

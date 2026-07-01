@@ -1,3 +1,5 @@
+'use client'
+
 import Link from 'next/link'
 import StickyTableWrapper from '@/app/components/StickyTableWrapper'
 import type { IPadModel } from '@/lib/types'
@@ -35,7 +37,6 @@ export default function BenchmarkAntutu({ model, allModels }: Props) {
         </h2>
         <p className="m-section-desc">Antutu Benchmark v10を参考にベンチマークスコアをご紹介</p>
 
-        {/* スコアサマリー */}
         <dl className="l-grid l-grid--5col l-grid--gap-lg l-grid--mb-2xl">
           <div className="m-card m-stat-card m-stat-card--highlight">
             <dt className="m-stat-card__label">
@@ -74,89 +75,60 @@ export default function BenchmarkAntutu({ model, allModels }: Props) {
           </div>
         </dl>
 
-        {/* ベンチマーク比較テーブル */}
-        <StickyTableWrapper className="m-card m-card--shadow m-table-card">
-          <table className="m-table m-table--sticky-col">
-            <caption className="visually-hidden">iPadモデル別 Antutu Benchmark v10 スコア比較</caption>
-            <thead>
-              <tr>
-                <th scope="col">モデル</th>
-                <th scope="col">合計</th>
-                <th scope="col">CPU</th>
-                <th scope="col">GPU</th>
-                <th scope="col">MEM</th>
-                <th scope="col">UX</th>
-              </tr>
-            </thead>
-            <tbody>
-              {sorted.map((m) => {
-                const mTotal = getAntutuTotal(m)
-                const isCurrent = m.id === model.id
-                return (
-                  <tr key={m.id}>
-                    <td className={isCurrent ? 'm-table-highlight' : undefined}>
-                      {m.model}
-                    </td>
-                    <td className={isCurrent ? 'm-table-highlight' : undefined}>
-                      <span
-                        className="bench-bar"
-                        style={{
-                          '--bar-pct': `${pct(mTotal, maxTotal)}%`,
-                          '--bar-color': 'var(--color-primary)',
-                        } as React.CSSProperties}
-                      >
-                        {mTotal.toLocaleString()}
-                      </span>
-                    </td>
-                    <td className={isCurrent ? 'm-table-highlight' : undefined}>
-                      <span
-                        className="bench-bar"
-                        style={{
-                          '--bar-pct': `${pct(m.antutu_cpu || 0, maxCpu)}%`,
-                          '--bar-color': '#e74c6f',
-                        } as React.CSSProperties}
-                      >
-                        {m.antutu_cpu?.toLocaleString() || '-'}
-                      </span>
-                    </td>
-                    <td className={isCurrent ? 'm-table-highlight' : undefined}>
-                      <span
-                        className="bench-bar"
-                        style={{
-                          '--bar-pct': `${pct(m.antutu_gpu || 0, maxGpu)}%`,
-                          '--bar-color': '#34a853',
-                        } as React.CSSProperties}
-                      >
-                        {m.antutu_gpu?.toLocaleString() || '-'}
-                      </span>
-                    </td>
-                    <td className={isCurrent ? 'm-table-highlight' : undefined}>
-                      <span
-                        className="bench-bar"
-                        style={{
-                          '--bar-pct': `${pct(m.antutu_mem || 0, maxMem)}%`,
-                          '--bar-color': '#34a853',
-                        } as React.CSSProperties}
-                      >
-                        {m.antutu_mem?.toLocaleString() || '-'}
-                      </span>
-                    </td>
-                    <td className={isCurrent ? 'm-table-highlight' : undefined}>
-                      <span
-                        className="bench-bar"
-                        style={{
-                          '--bar-pct': `${pct(m.antutu_ux || 0, maxUx)}%`,
-                          '--bar-color': '#fbbc04',
-                        } as React.CSSProperties}
-                      >
-                        {m.antutu_ux?.toLocaleString() || '-'}
-                      </span>
-                    </td>
-                  </tr>
-                )
-              })}
-            </tbody>
-          </table>
+        <StickyTableWrapper floatingHeader className="m-card m-card--shadow m-table-card">
+          <div className="m-table-scroll">
+            <table className="m-table m-table--sticky-col bench-table">
+              <caption className="visually-hidden">iPadモデル別 Antutu Benchmark v10 スコア比較</caption>
+              <thead>
+                <tr>
+                  <th scope="col" className="bench-table__sticky">モデル</th>
+                  <th scope="col">合計</th>
+                  <th scope="col">CPU</th>
+                  <th scope="col">GPU</th>
+                  <th scope="col">MEM</th>
+                  <th scope="col">UX</th>
+                </tr>
+              </thead>
+              <tbody>
+                {sorted.map((m) => {
+                  const mTotal = getAntutuTotal(m)
+                  const isCurrent = m.id === model.id
+                  return (
+                    <tr key={m.id}>
+                      <th scope="row" className={`bench-table__sticky u-shrink${isCurrent ? ' m-table-highlight' : ''}`}>
+                        {m.model}
+                      </th>
+                      <td className={isCurrent ? 'm-table-highlight' : undefined}>
+                        <span className="bench-bar" style={{ '--bar-pct': `${pct(mTotal, maxTotal)}%`, '--bar-color': 'var(--color-primary)' } as React.CSSProperties}>
+                          {mTotal.toLocaleString()}
+                        </span>
+                      </td>
+                      <td className={isCurrent ? 'm-table-highlight' : undefined}>
+                        <span className="bench-bar" style={{ '--bar-pct': `${pct(m.antutu_cpu || 0, maxCpu)}%`, '--bar-color': '#e74c6f' } as React.CSSProperties}>
+                          {m.antutu_cpu?.toLocaleString() || '-'}
+                        </span>
+                      </td>
+                      <td className={isCurrent ? 'm-table-highlight' : undefined}>
+                        <span className="bench-bar" style={{ '--bar-pct': `${pct(m.antutu_gpu || 0, maxGpu)}%`, '--bar-color': '#34a853' } as React.CSSProperties}>
+                          {m.antutu_gpu?.toLocaleString() || '-'}
+                        </span>
+                      </td>
+                      <td className={isCurrent ? 'm-table-highlight' : undefined}>
+                        <span className="bench-bar" style={{ '--bar-pct': `${pct(m.antutu_mem || 0, maxMem)}%`, '--bar-color': '#34a853' } as React.CSSProperties}>
+                          {m.antutu_mem?.toLocaleString() || '-'}
+                        </span>
+                      </td>
+                      <td className={isCurrent ? 'm-table-highlight' : undefined}>
+                        <span className="bench-bar" style={{ '--bar-pct': `${pct(m.antutu_ux || 0, maxUx)}%`, '--bar-color': '#fbbc04' } as React.CSSProperties}>
+                          {m.antutu_ux?.toLocaleString() || '-'}
+                        </span>
+                      </td>
+                    </tr>
+                  )
+                })}
+              </tbody>
+            </table>
+          </div>
         </StickyTableWrapper>
         <div className="m-callout m-callout--tip u-mt-2xl">
           <span className="m-callout__label">memo</span>
