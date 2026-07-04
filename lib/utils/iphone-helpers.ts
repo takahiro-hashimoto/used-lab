@@ -14,6 +14,21 @@ import {
 export { calculateRepairLifespan } from './shared-helpers'
 export { formatReleaseDate, formatPrice } from './shared-helpers'
 
+// SEシリーズは「SE3」略記と「第3世代」正式名の両クエリが大ボリュームのため、
+// 両表記を含む専用タイトルを使う。それ以外のモデルは共通テンプレ（model名を差し込み）。
+// title / og / シェア / H1 で同じ関数を使い、文言のブレを防ぐ。
+const IPHONE_TITLE_OVERRIDES: Record<string, string> = {
+  se3: '中古iPhone SE3(第3世代)はいつまで使える？相場・製品寿命・スペックを解説',
+  se2: '中古iPhone SE2(第2世代)はいつまで使える？相場・製品寿命・スペックを解説',
+}
+
+export function buildIPhonePageTitle(model: { slug: string; model: string }): string {
+  return (
+    IPHONE_TITLE_OVERRIDES[model.slug] ??
+    `中古${model.model}はいつまで使える？相場・製品寿命・スペックを解説`
+  )
+}
+
 /**
  * OS寿命計算（リリース年+7年）
  */

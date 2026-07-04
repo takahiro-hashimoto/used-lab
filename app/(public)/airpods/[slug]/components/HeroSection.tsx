@@ -85,7 +85,7 @@ export default function HeroSection({ model, dateStr, dateDisplay }: Props) {
         <div className="hero-inner l-container">
           <div className="hero-content">
             <h1 className="hero-title">
-              中古{model.name}（{model.model}）は今買うべき？サポート期間、基本スペック、中古相場から解説
+              中古{model.name}（{model.model}）はいつまで使える？相場・製品寿命・スペックを解説
             </h1>
             <HeroMeta dateStr={dateStr} dateDisplay={dateDisplay} />
           </div>

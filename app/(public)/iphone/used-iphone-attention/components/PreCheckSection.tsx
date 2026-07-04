@@ -164,7 +164,7 @@ export default function PreCheckSection() {
             </p>
             <p className="lead-link">
               <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-              <Link href="/iphone/used-iphone-support">機種別iOSサポート期間一覧</Link>
+              <Link href="/iphone/used-iphone-support/">機種別iOSサポート期間一覧</Link>
             </p>
           </div>
         </MediaCard>

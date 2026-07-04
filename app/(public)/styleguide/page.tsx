@@ -470,7 +470,7 @@ export default function StyleGuidePage() {
 
               <div className="m-callout m-callout--subtle">
                 <span className="m-callout__label">
-                  <i className="fa-solid fa-memo-circle-info" aria-hidden="true" style={{ opacity: 0.6 }}></i> m-callout--subtle
+                  <i className="fa-solid fa-circle-info" aria-hidden="true" style={{ opacity: 0.6 }}></i> m-callout--subtle
                 </span>
                 <p className="m-callout__text">控えめなスタイル。注釈やメモに。</p>
               </div>

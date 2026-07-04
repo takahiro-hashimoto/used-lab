@@ -14,7 +14,7 @@ import {
 
 const cachedGetModel = cache(getIPhoneModelBySlug)
 const cachedGetLatestPrice = cache(getLatestIPhonePriceLogWithPrices)
-import { aggregateDailyPrices, filterLast3Months, calculateOSLifespan, calculatePriceRange } from '@/lib/utils/iphone-helpers'
+import { aggregateDailyPrices, filterLast3Months, calculateOSLifespan, calculatePriceRange, buildIPhonePageTitle } from '@/lib/utils/iphone-helpers'
 import HeroSection from './components/HeroSection'
 import LeadText from './components/LeadText'
 import TableOfContents from './components/TableOfContents'
@@ -61,7 +61,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const chipText = model.cpu ? `${model.cpu}搭載` : ''
   const osText = osLife.isSupported ? `iOSサポート見込み` : 'iOSサポート終了済み'
 
-  const title = `中古${model.model}は今買うべき？製品寿命、基本スペック、ベンチマークスコア、中古相場から解説`
+  const title = buildIPhonePageTitle(model)
   const description = `${model.model}の中古相場${priceText}や${osText}をもとに、今から中古で買うべきかを判定。${chipText ? chipText + 'の' : ''}ベンチマーク・カメラ・バッテリーを比較しながら失敗しない選び方を解説します。`
 
   return {
@@ -151,7 +151,7 @@ export default async function IPhoneDetailPage({ params }: PageProps) {
     </main>
     <IPhoneArticleFooter
           pageUrl={`https://used-lab.jp/iphone/${model.slug}/`}
-          pageTitle={`中古${model.model}は今買うべき？製品寿命、基本スペック、ベンチマークスコア、中古相場から解説`}
+          pageTitle={buildIPhonePageTitle(model)}
           excludeHref={`/iphone/${model.slug}/`}
           relatedHeading="iPhone選びのヒントになる記事"
           relatedDescription="iPhone選びをサポートする記事をまとめました。"

@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import Script from "next/script";
 import { readFileSync } from "fs";
 import { join } from "path";
-import { CSS_NON_CRITICAL, CSS_FONTAWESOME } from "@/lib/asset-hashes";
+import { CSS_NON_CRITICAL, CSS_FONTAWESOME, FONT_FA_SOLID, FONT_FA_BRANDS } from "@/lib/asset-hashes";
 import NavigationProgressBar from "@/app/components/NavigationProgressBar";
 
 // Inline critical CSS to avoid render-blocking HTTP request
@@ -79,11 +79,9 @@ export default function RootLayout({
       <head>
         <style dangerouslySetInnerHTML={{ __html: criticalCss }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(siteNavigationJsonLd) }} />
-        {/* preload starts download; stylesheet applies CSS at initial render with near-zero blocking time */}
-        <link rel="preload" href={CSS_NON_CRITICAL} as="style" />
-        <link rel="preload" href={CSS_FONTAWESOME} as="style" />
-        <link rel="preload" href="/fonts/fontawesome/fa-solid-900.woff2" as="font" type="font/woff2" crossOrigin="" />
-        <link rel="preload" href="/fonts/fontawesome/fa-brands-400.woff2" as="font" type="font/woff2" crossOrigin="" />
+        {/* フォントは CSS 解析後でないと発見されないため preload（サブセット化済みで軽量） */}
+        <link rel="preload" href={FONT_FA_SOLID} as="font" type="font/woff2" crossOrigin="" />
+        <link rel="preload" href={FONT_FA_BRANDS} as="font" type="font/woff2" crossOrigin="" />
         <link rel="stylesheet" href={CSS_NON_CRITICAL} />
         <link rel="stylesheet" href={CSS_FONTAWESOME} />
         {IS_PROD && <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="" />}

@@ -1,6 +1,7 @@
 import ModelHeroSection from '@/app/components/model/ModelHeroSection'
 import type { ModelHeroConfig } from '@/app/components/model/ModelHeroSection'
 import type { IPhoneModel, IPhonePriceLog } from '@/lib/types'
+import { buildIPhonePageTitle } from '@/lib/utils/iphone-helpers'
 
 const config: ModelHeroConfig = {
   categoryPath: '/iphone',
@@ -16,5 +17,5 @@ type Props = {
 }
 
 export default function HeroSection({ model, dateStr, dateDisplay }: Props) {
-  return <ModelHeroSection model={model} config={config} dateStr={dateStr} dateDisplay={dateDisplay} />
+  return <ModelHeroSection model={model} config={config} dateStr={dateStr} dateDisplay={dateDisplay} h1Override={buildIPhonePageTitle(model)} />
 }

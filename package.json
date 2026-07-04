@@ -9,7 +9,8 @@
     "dev:next": "next dev",
     "watch:css": "chokidar \"app/style.css\" \"app/search.css\" \"app/sp-overrides.css\" \"app/compare.css\" -c \"npm run build:css && node scripts/hash-assets.mjs\" --initial",
     "build:css": "cat app/style.css app/search.css app/sp-overrides.css app/compare.css | csso --output public/css/non-critical.min.css",
-    "build:assets": "npm run build:css && node scripts/hash-assets.mjs",
+    "build:assets": "npm run build:css && npm run subset:fa && node scripts/hash-assets.mjs",
+    "subset:fa": "node scripts/subset-fontawesome.mjs",
     "build:checks:sitemap": "node --import tsx scripts/check-sitemap-coverage.ts",
     "build:checks:lint": "eslint --max-warnings 0",
     "build:checks": "npm run build:checks:sitemap && npm run build:checks:lint",
@@ -65,6 +66,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
     "linkinator": "^7.6.1",
+    "subset-font": "^2.5.0",
     "tsx": "^4.21.0",
     "typescript": "^5",
     "vitest": "^4.1.5"

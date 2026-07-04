@@ -57,7 +57,7 @@ const TIMING_CARDS: TimingCard[] = [
         <p>
           特にIntelチップからApple Silicon（M1以降）への買い替えは、性能・バッテリー持ち・静音性すべてにおいて劇的な向上が実感できます。
           各世代の性能差が気になる方は
-          <Link href="/macbook/macbook-spec-table">歴代MacBookのスペック比較</Link>
+          <Link href="/macbook/macbook-spec-table/">歴代MacBookのスペック比較</Link>
           をチェックしてみてください。
         </p>
       </>

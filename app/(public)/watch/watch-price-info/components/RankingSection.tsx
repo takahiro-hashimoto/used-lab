@@ -1,5 +1,11 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import type { ModelData } from '../page'
+
+function formatRelease(releaseDate: string): string {
+  const [y, m] = releaseDate.split('/')
+  return y && m ? `${y}年${m}月` : releaseDate
+}
 
 type Props = {
   items: ModelData[]
@@ -16,7 +22,7 @@ export default function RankingSection({ items, modelCount, dateDisplay }: Props
     <section className="l-section" id="pd-ranking" aria-labelledby="pd-ranking-title" itemScope itemType="https://schema.org/ItemList">
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg" id="pd-ranking-title" itemProp="name">
-          価格の安い中古Apple WatchランキングTOP10
+          中古相場が安いApple WatchランキングTOP10
         </h2>
         <meta itemProp="numberOfItems" content={String(items.length)} />
         <p className="m-section-desc">
@@ -31,44 +37,74 @@ export default function RankingSection({ items, modelCount, dateDisplay }: Props
           と続きます。全{modelCount}機種を掲載中。
         </p>
 
-        <ol className="u-list-reset u-mb-2xl price-card-list">
+        <ol className="u-list-reset u-mb-2xl ifd-results-grid">
           {items.map((model, rank) => (
             <li
               key={model.id}
-              className="price-card m-card m-card--shadow"
+              className="m-card m-card--shadow ifd-result-card"
               itemProp="itemListElement"
               itemScope
               itemType="https://schema.org/ListItem"
             >
               <meta itemProp="position" content={String(rank + 1)} />
-              <figure className="price-card__img">
-                {model.image && (
-                  <Image
-                    src={`/images/watch/${model.image}`}
-                    alt={model.name}
-                    width={80}
-                    height={80}
-                  />
-                )}
-              </figure>
-              <div className="price-card__info" itemProp="item" itemScope itemType="https://schema.org/Product">
-                <h3 className="price-card__name" itemProp="name">
-                  <a href={`/watch/${model.slug}/`} className="price-card__link">{model.name}</a>
-                </h3>
-                <p className="price-card__meta">{model.year}年 / {model.chip}</p>
-                <meta itemProp="brand" content="Apple" />
-              </div>
-              <div className="price-card__price">
-                <span className="price-card__label">中古相場（{model.storage}）</span>
-                <span className="price-card__value m-price-display m-price-display--sm m-price-display--primary">
-                  &yen;{model.currentPrice.toLocaleString()} <span className="price-card__tilde">〜</span>
-                </span>
-                {model.iosysUrl && (
-                  <div className="price-card__cta">
-                    <a href={model.iosysUrl} className="m-btn m-btn--primary m-btn--sm" target="_blank" rel="noopener noreferrer nofollow">
-                      在庫情報を見る <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
-                    </a>
+              <div className="ifd-result-card__header">
+                <div className="ifd-result-card__img-wrap">
+                  <span className="ifd-result-card__rank" aria-hidden="true">{rank + 1}</span>
+                  {model.image && (
+                    <Image
+                      src={`/images/watch/${model.image}`}
+                      alt={model.name}
+                      width={80}
+                      height={80}
+                    />
+                  )}
+                </div>
+                <div className="ifd-result-card__info" itemProp="item" itemScope itemType="https://schema.org/Product">
+                  <Link href={`/watch/${model.slug}/`} className="ifd-result-card__name" itemProp="name">
+                    {model.name}
+                  </Link>
+                  <meta itemProp="brand" content="Apple" />
+                  <div className="ifd-result-card__tags">
+                    {model.supportEnded ? (
+                      <span className="ifd-tag ifd-tag--ended">
+                        <i className="fa-solid fa-circle-xmark" aria-hidden="true"></i> サポート終了
+                      </span>
+                    ) : (
+                      <span className="ifd-tag ifd-tag--supported">
+                        <i className="fa-solid fa-shield-halved" aria-hidden="true"></i> OSサポート {model.supportUntil}まで
+                      </span>
+                    )}
                   </div>
+                </div>
+              </div>
+
+              <div className="ifd-result-card__body">
+                <div className="ifd-result-card__price">
+                  <span className="ifd-result-card__price-label">中古相場（{model.storage}）</span>
+                  <span className="ifd-result-card__price-value">
+                    ¥{model.currentPrice.toLocaleString()}〜
+                  </span>
+                </div>
+                <dl className="ifd-result-card__specs">
+                  <div><dt>発売日</dt><dd>{formatRelease(model.releaseDate)}</dd></div>
+                  <div><dt>CPU</dt><dd>{model.chip}</dd></div>
+                  <div><dt>ケースサイズ</dt><dd>{model.size}</dd></div>
+                  <div><dt>バッテリー</dt><dd>{model.battery}</dd></div>
+                  <div><dt>容量</dt><dd>{model.storage}</dd></div>
+                </dl>
+              </div>
+
+              <div className="ifd-result-card__actions">
+                {model.iosysUrl && (
+                  <a
+                    href={model.iosysUrl}
+                    className="m-btn m-btn--primary m-btn--sm"
+                    rel="nofollow noopener noreferrer"
+                    target="_blank"
+                    aria-label={`${model.name}をイオシスで見る`}
+                  >
+                    イオシスで見る
+                  </a>
                 )}
               </div>
             </li>

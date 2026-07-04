@@ -7,6 +7,7 @@ import StickyTableWrapper from '@/app/components/StickyTableWrapper'
 import { parseDate, formatDate, BoolCell } from '@/app/components/spec-table-utils'
 import { calculateOSLifespan } from '@/lib/utils/watch-helpers'
 import type { ProductShopLink } from '@/lib/types'
+import SpecEmbedButton from './SpecEmbedButton'
 
 type SpecModel = {
   id: number
@@ -41,6 +42,8 @@ type Props = {
   models: SpecModel[]
   shopLinks: ProductShopLink[]
   prices: Record<number, number | null>
+  /** 埋め込み(iframe)表示: 販売リンク行と埋め込みボタンを非表示にする */
+  embed?: boolean
 }
 
 type SortOrder = 'old' | 'new'
@@ -52,7 +55,7 @@ function getModelCategory(model: string): string {
   return 'series'
 }
 
-export default function SpecTable({ models, shopLinks, prices }: Props) {
+export default function SpecTable({ models, shopLinks, prices, embed = false }: Props) {
   const [sortOrder, setSortOrder] = useState<SortOrder>(() => {
     if (typeof window === 'undefined') return 'old'
     const v = new URLSearchParams(window.location.search).get('sort')
@@ -63,7 +66,6 @@ export default function SpecTable({ models, shopLinks, prices }: Props) {
     const v = new URLSearchParams(window.location.search).get('model')
     return (v === 'series' || v === 'se' || v === 'ultra') ? v : 'all'
   })
-  const [copied, setCopied] = useState(false)
 
   useEffect(() => {
     const p = new URLSearchParams()
@@ -72,13 +74,6 @@ export default function SpecTable({ models, shopLinks, prices }: Props) {
     const qs = p.toString()
     window.history.replaceState(null, '', qs ? `?${qs}` : window.location.pathname)
   }, [sortOrder, modelFilter])
-
-  const handleCopyUrl = async () => {
-    const url = `${window.location.origin}${window.location.pathname}${window.location.search}#heading-spec-table`
-    await navigator.clipboard.writeText(url)
-    setCopied(true)
-    setTimeout(() => setCopied(false), 2000)
-  }
 
   const filteredModels = useMemo(() => {
     let result = [...models]
@@ -239,38 +234,43 @@ export default function SpecTable({ models, shopLinks, prices }: Props) {
                       ))}
                     </tr>
                   ))}
-                  {/* イオシスリンク行 */}
-                  <tr className="spec-compare-table__action-row">
-                    <th scope="row" className="spec-compare-table__sticky">イオシス</th>
-                    {filteredModels.map((m) => {
-                      const link = getShopLink(m.id, 1)
-                      return (
-                        <td key={m.id}>
-                          {link ? (
-                            <a href={link.url} className="m-btn m-btn--primary m-btn--sm" rel="nofollow noopener noreferrer" target="_blank" aria-label={`${m.model}をイオシスで探す（新しいタブで開く）`}>
-                              最安値を確認
-                            </a>
-                          ) : '-'}
-                        </td>
-                      )
-                    })}
-                  </tr>
-                  {/* Amazonリンク行 */}
-                  <tr className="spec-compare-table__action-row">
-                    <th scope="row" className="spec-compare-table__sticky">Amazon</th>
-                    {filteredModels.map((m) => {
-                      const link = getShopLink(m.id, 7)
-                      return (
-                        <td key={m.id}>
-                          {link ? (
-                            <a href={link.url} className="m-btn m-btn--amazon m-btn--sm" rel="nofollow noopener noreferrer" target="_blank" aria-label={`${m.model}をAmazonで探す（新しいタブで開く）`}>
-                              最安値を確認
-                            </a>
-                          ) : '-'}
-                        </td>
-                      )
-                    })}
-                  </tr>
+                  {/* 販売リンク行（埋め込み表示では非表示） */}
+                  {!embed && (
+                    <>
+                      {/* イオシスリンク行 */}
+                      <tr className="spec-compare-table__action-row">
+                        <th scope="row" className="spec-compare-table__sticky">イオシス</th>
+                        {filteredModels.map((m) => {
+                          const link = getShopLink(m.id, 1)
+                          return (
+                            <td key={m.id}>
+                              {link ? (
+                                <a href={link.url} className="m-btn m-btn--primary m-btn--sm" rel="nofollow noopener noreferrer" target="_blank" aria-label={`${m.model}をイオシスで探す（新しいタブで開く）`}>
+                                  最安値を確認
+                                </a>
+                              ) : '-'}
+                            </td>
+                          )
+                        })}
+                      </tr>
+                      {/* Amazonリンク行 */}
+                      <tr className="spec-compare-table__action-row">
+                        <th scope="row" className="spec-compare-table__sticky">Amazon</th>
+                        {filteredModels.map((m) => {
+                          const link = getShopLink(m.id, 7)
+                          return (
+                            <td key={m.id}>
+                              {link ? (
+                                <a href={link.url} className="m-btn m-btn--amazon m-btn--sm" rel="nofollow noopener noreferrer" target="_blank" aria-label={`${m.model}をAmazonで探す（新しいタブで開く）`}>
+                                  最安値を確認
+                                </a>
+                              ) : '-'}
+                            </td>
+                          )
+                        })}
+                      </tr>
+                    </>
+                  )}
                 </tbody>
               </table>
             </div>
@@ -279,12 +279,7 @@ export default function SpecTable({ models, shopLinks, prices }: Props) {
         <p style={{ marginTop: '1rem', fontSize: '0.75rem', color: '#888', lineHeight: 1.7 }}>
           ※ 中古相場は、イオシス・ゲオ・じゃんぱらの3店舗から毎日自動取得した最安値・最高値の平均中間値です。対象は各機種の最小容量モデルで、100円単位に丸めて表示しています。機種別の価格推移グラフは「<Link href="/watch/watch-price-info/" style={{ color: 'var(--color-primary)', textDecoration: 'underline' }}>Apple Watch中古相場・価格推移ページ</Link>」でご確認いただけます。
         </p>
-        <div style={{ marginTop: '1.5rem' }}>
-          <button type="button" className="m-btn m-btn--secondary m-btn--md" onClick={handleCopyUrl}>
-            <i className="fa-solid fa-link" aria-hidden="true"></i>{' '}
-            {copied ? 'コピーしました' : 'この絞り込み条件をシェア'}
-          </button>
-        </div>
+        {!embed && <SpecEmbedButton />}
       </div>
     </section>
   )

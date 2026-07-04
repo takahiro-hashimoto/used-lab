@@ -8,11 +8,11 @@ type CategoryInfo = {
 }
 
 const ALL_CATEGORIES: CategoryInfo[] = [
-  { href: '/iphone/', title: '中古iPhone全モデル比較', desc: 'iPhoneの選び方・おすすめモデルを紹介', icon: 'fa-solid fa-mobile-screen-button' },
-  { href: '/ipad/', title: '中古iPad全モデル比較', desc: 'iPadの選び方・おすすめモデルを紹介', icon: 'fa-solid fa-tablet-screen-button' },
-  { href: '/macbook/', title: '中古MacBook全モデル比較', desc: 'MacBookの選び方・おすすめモデルを紹介', icon: 'fa-solid fa-laptop' },
-  { href: '/watch/', title: '中古Apple Watch全モデル比較', desc: 'Apple Watchの選び方・おすすめモデルを紹介', icon: 'fa-solid fa-clock' },
-  { href: '/airpods/', title: '中古AirPods全モデル比較', desc: 'AirPodsの選び方・おすすめモデルを紹介', icon: 'fa-solid fa-headphones' },
+  { href: '/iphone/', title: '中古iPhoneのおすすめ・選び方', desc: 'iPhoneの選び方・おすすめモデルを紹介', icon: 'fa-solid fa-mobile-screen-button' },
+  { href: '/ipad/', title: '中古iPadのおすすめ・選び方', desc: 'iPadの選び方・おすすめモデルを紹介', icon: 'fa-solid fa-tablet-screen-button' },
+  { href: '/macbook/', title: '中古MacBookのおすすめ・選び方', desc: 'MacBookの選び方・おすすめモデルを紹介', icon: 'fa-solid fa-laptop' },
+  { href: '/watch/', title: '中古Apple Watchのおすすめ・選び方', desc: 'Apple Watchの選び方・おすすめモデルを紹介', icon: 'fa-solid fa-clock' },
+  { href: '/airpods/', title: '中古AirPodsのおすすめ・選び方', desc: 'AirPodsの選び方・おすすめモデルを紹介', icon: 'fa-solid fa-headphones' },
 ]
 
 type Props = {

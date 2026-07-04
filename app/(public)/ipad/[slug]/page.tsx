@@ -64,7 +64,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const chipText = model.cpu ? `${model.cpu}搭載` : ''
   const osText = osLife.isSupported ? `iPadOSサポート見込み` : 'iPadOSサポート終了済み'
 
-  const title = `中古${model.model}は今買うべき？製品寿命、基本スペック、ベンチマークスコア、中古相場から解説`
+  const title = `中古${model.model}はいつまで使える？相場・製品寿命・スペックを解説`
   const description = `${model.model}の中古相場${priceText}や${osText}をもとに、今から中古で買うべきかを判定。${chipText ? chipText + 'の' : ''}ベンチマーク・描画性能・Apple Pencil対応を比較しながら失敗しない選び方を解説します。`
 
   return {
@@ -169,7 +169,7 @@ export default async function IPadDetailPage({ params }: PageProps) {
 </div>
       </article>
     </main>
-    <IPadArticleFooter pageUrl={`https://used-lab.jp/ipad/${enrichedModel.slug}/`} pageTitle={`中古${enrichedModel.model}は今買うべき？製品寿命、基本スペック、ベンチマークスコア、中古相場から解説`} excludeHref={`/ipad/${enrichedModel.slug}/`} />
+    <IPadArticleFooter pageUrl={`https://used-lab.jp/ipad/${enrichedModel.slug}/`} pageTitle={`中古${enrichedModel.model}はいつまで使える？相場・製品寿命・スペックを解説`} excludeHref={`/ipad/${enrichedModel.slug}/`} />
     </>
   )
 }

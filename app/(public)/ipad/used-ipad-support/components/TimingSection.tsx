@@ -49,7 +49,7 @@ const TIMING_CARDS: TimingCard[] = [
         <p>
           iPadは毎世代チップ性能が大幅に向上しているため、買い替えることで作業効率が大きく改善されます。
           各世代の性能差が気になる方は
-          <Link href="/ipad/ipad-spec-table">歴代iPadのスペック比較</Link>
+          <Link href="/ipad/ipad-spec-table/">歴代iPadのスペック比較</Link>
           をチェックしてみてください。
         </p>
       </>

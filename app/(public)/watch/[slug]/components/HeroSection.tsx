@@ -6,7 +6,7 @@ const config: ModelHeroConfig = {
   categoryPath: '/watch',
   categoryLabel: '中古Apple Watchおすすめ機種・選び方ガイド',
   imageFolder: 'watch',
-  h1Template: '中古${model}は今買うべき？製品寿命、基本スペック、中古相場から解説',
+  h1Template: '中古${model}はいつまで使える？相場・製品寿命・スペックを解説',
 }
 
 type Props = {

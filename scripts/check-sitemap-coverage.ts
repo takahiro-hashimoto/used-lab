@@ -22,11 +22,6 @@ import { getAllStaticRoutes } from '../lib/routes'
 const EXCLUDED = new Set([
   '/styleguide/',
   '/search/',
-  '/airpods/recommend/',
-  '/ipad/recommend/',
-  '/iphone/recommend/',
-  '/macbook/recommend/',
-  '/watch/recommend/',
   // 2機種比較ページ（PV僅少のため非公開＝noindex・サイトマップ除外）
   '/iphone/iphone13-13pro-compare/',
   '/iphone/iphone13-14-compare/',

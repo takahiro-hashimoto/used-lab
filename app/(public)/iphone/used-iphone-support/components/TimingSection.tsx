@@ -68,7 +68,7 @@ const TIMING_CARDS: TimingCard[] = [
         </p>
         <p>
           iPhoneがどのような進化を遂げているのか気になった方は
-          <Link href="/iphone/iphone-spec-table">歴代iPhoneのスペック比較</Link>
+          <Link href="/iphone/iphone-spec-table/">歴代iPhoneのスペック比較</Link>
           をチェックしてみてください。
         </p>
       </>

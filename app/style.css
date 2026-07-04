@@ -5541,6 +5541,47 @@ fieldset.u-mb-xl {
   color: var(--color-text);
 }
 
+/* 価格情報ページのランキングカード専用（filter-searchカードには影響しない） */
+#pd-price-drop .ifd-result-card__img-wrap,
+#pd-ranking .ifd-result-card__img-wrap {
+  position: relative;
+}
+
+.ifd-result-card__rank {
+  position: absolute;
+  top: -6px;
+  left: -6px;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: var(--color-primary);
+  color: #fff;
+  font-size: var(--font-size-xs);
+  font-weight: 800;
+  line-height: 1;
+}
+
+.ifd-result-card__price-drop {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  margin: -16px 0 var(--space-sm);
+  color: #e0245e;
+  font-weight: 700;
+  font-size: var(--font-size-sm);
+  text-align: center;
+}
+
+.ifd-result-card__price-drop small {
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+}
+
 .ifd-result-card__specs {
   display: flex;
   flex-direction: column;

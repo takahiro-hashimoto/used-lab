@@ -16,13 +16,15 @@ type Props = {
   config: ModelHeroConfig
   dateStr: string
   dateDisplay: string
+  // slug単位でH1を差し替えたい場合に指定（例: SEシリーズ）
+  h1Override?: string
 }
 
 const DEFAULT_H1 = (name: string) =>
-  `中古${name}は今買うべき？製品寿命、基本スペック、ベンチマークスコア、中古相場から解説`
+  `中古${name}はいつまで使える？相場・製品寿命・スペックを解説`
 
 
-export default function ModelHeroSection({ model, config, dateStr, dateDisplay }: Props) {
+export default function ModelHeroSection({ model, config, dateStr, dateDisplay, h1Override }: Props) {
   const {
     categoryPath,
     categoryLabel,
@@ -32,7 +34,9 @@ export default function ModelHeroSection({ model, config, dateStr, dateDisplay }
     h1Template,
   } = config
 
-  const h1Text = h1Template
+  const h1Text = h1Override
+    ? h1Override
+    : h1Template
     ? h1Template.replace('${model}', model.model)
     : DEFAULT_H1(model.model)
 
@@ -50,7 +54,7 @@ export default function ModelHeroSection({ model, config, dateStr, dateDisplay }
         '@type': 'ListItem',
         position: 2,
         name: categoryLabel,
-        item: `https://used-lab.jp${categoryPath}`,
+        item: `https://used-lab.jp${categoryPath}/`,
       },
       {
         '@type': 'ListItem',
@@ -79,7 +83,7 @@ export default function ModelHeroSection({ model, config, dateStr, dateDisplay }
                 </Link>
               </li>
               <li className="breadcrumb-item">
-                <Link href={categoryPath}>{categoryLabel}</Link>
+                <Link href={`${categoryPath}/`}>{categoryLabel}</Link>
               </li>
               <li className="breadcrumb-item" aria-current="page">中古{model.model}</li>
             </ol>

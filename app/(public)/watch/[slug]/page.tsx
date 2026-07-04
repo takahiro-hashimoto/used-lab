@@ -59,7 +59,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const sizeText = model.size ? `${model.size}` : ''
   const osText = osLife.isSupported ? `watchOSサポート見込み` : 'watchOSサポート終了済み'
 
-  const title = `中古${model.model}は今買うべき？製品寿命、基本スペック、中古相場から解説`
+  const title = `中古${model.model}はいつまで使える？相場・製品寿命・スペックを解説`
   const description = `${model.model}の中古相場${priceText}や${osText}をもとに、今から中古で買うべきかを判定。${sizeText ? sizeText + '・' : ''}健康機能・バッテリー持ちを比較しながら失敗しない選び方を解説します。`
 
   return {
@@ -144,7 +144,7 @@ export default async function WatchDetailPage({ params }: PageProps) {
         </div>
       </article>
     </main>
-    <WatchArticleFooter pageUrl={`https://used-lab.jp/watch/${model.slug}/`} pageTitle={`中古${model.model}は今買うべき？製品寿命、基本スペック、中古相場から解説`} excludeHref={[`/watch/${model.slug}/`]} />
+    <WatchArticleFooter pageUrl={`https://used-lab.jp/watch/${model.slug}/`} pageTitle={`中古${model.model}はいつまで使える？相場・製品寿命・スペックを解説`} excludeHref={[`/watch/${model.slug}/`]} />
     </>
   )
 }

@@ -51,6 +51,8 @@ export type ModelData = {
   color: string
   image: string
   iosysUrl: string
+  amazonUrl: string
+  featureTags: string[]
   prices: PriceEntry[]
   currentPrice: number
   priceChange: number
@@ -68,6 +70,16 @@ function getCameraLabel(model: IPhoneModel): string {
   if (cam.includes('望遠')) return '広角 + 超広角 + 望遠'
   if (cam.includes('超広角')) return '広角 + 超広角'
   return '広角のみ'
+}
+
+// filter-searchのカードと同じ特徴タグ
+function getFeatureTags(model: IPhoneModel): string[] {
+  const tags: string[] = []
+  if (model.dynamic_island) tags.push('Dynamic Island')
+  if (model.promotion) tags.push('ProMotion')
+  if (model.action_button) tags.push('アクションボタン')
+  if (model.camera_control) tags.push('カメラコントロール')
+  return tags.slice(0, 4)
 }
 
 function calcAvgPriceFromLog(log: IPhonePriceLog): PriceEntry | null {
@@ -133,10 +145,12 @@ export default async function IPhonePriceInfoPage() {
   // 全モデルの価格ログを1回のバルククエリで一括取得
   const priceLogsMap = await getAllIPhonePriceLogsByModelIds(allModels.map((m) => m.id), get90DaysAgo())
 
-  // ショップURLの O(1) 参照用 Map (shop_id=1: iosys)
+  // ショップURLの O(1) 参照用 Map (shop_id=1: iosys, shop_id=7: Amazon)
   const iosysUrlMap = new Map<number, string>()
+  const amazonUrlMap = new Map<number, string>()
   for (const l of allShopLinks) {
     if (l.shop_id === 1) iosysUrlMap.set(l.product_id, l.url)
+    else if (l.shop_id === 7) amazonUrlMap.set(l.product_id, l.url)
   }
 
   // ModelData構築
@@ -190,6 +204,8 @@ export default async function IPhonePriceInfoPage() {
       color: CHART_COLORS[colorIndex % CHART_COLORS.length],
       image: model.image || '',
       iosysUrl: iosysUrlMap.get(model.id) ?? '',
+      amazonUrl: amazonUrlMap.get(model.id) ?? '',
+      featureTags: getFeatureTags(model),
       prices,
       currentPrice,
       priceChange,
