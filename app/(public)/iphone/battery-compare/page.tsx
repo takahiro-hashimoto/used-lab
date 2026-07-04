@@ -280,7 +280,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/battery-
     <IPhoneArticleFooter
           pageUrl="https://used-lab.jp/iphone/battery-compare/"
           pageTitle="歴代iPhoneのバッテリー容量比較ランキング！電池持ちがいい機種はどれ？"
-          excludeHref={["/iphone/battery-compare/", "/iphone/recommend/"]}
+          excludeHref={["/iphone/battery-compare/"]}
         />
     </>
   )

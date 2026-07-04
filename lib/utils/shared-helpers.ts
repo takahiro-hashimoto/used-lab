@@ -5,6 +5,7 @@
 
 import type { Shop, ProductShopLink, FallbackShop, BasePriceLog } from '@/lib/types'
 import { PAGE_DATES } from '@/lib/data/page-dates'
+import { getHeroImage } from '@/lib/data/hero-images'
 
 const SITE_LAUNCH_DATE = '2024-08-01'
 const JAPAN_LOCALE = 'ja-JP'
@@ -207,12 +208,16 @@ export function buildArticleJsonLd(opts: {
   dateStr: string
   dateModified?: string
   url: string
+  image?: string
 }) {
+  const imagePath = opts.image ?? getHeroImage(new URL(opts.url, 'https://used-lab.jp').pathname)
+  const imageUrl = imagePath.startsWith('http') ? imagePath : `https://used-lab.jp${imagePath}`
   return {
     '@context': 'https://schema.org',
     '@type': 'Article',
     headline: opts.headline,
     description: opts.description,
+    image: [imageUrl],
     datePublished: opts.dateStr,
     dateModified: opts.dateModified ?? opts.dateStr,
     inLanguage: 'ja',

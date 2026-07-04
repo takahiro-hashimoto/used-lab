@@ -111,7 +111,7 @@ export default async function IPhoneGuidePage() {
     .map((slug) => allModels.find((m) => m.slug === slug))
     .filter((m): m is IPhoneModel => m != null)
 
-  // おすすめ機種セクション用（/iphone/recommend/ と同じデータソース）
+  // おすすめ機種セクション用（lib/data/iphone-recommend.ts で一元管理）
   const recommendModels = RECOMMEND_SLUGS
     .map((slug) => allModels.find((m) => m.slug === slug))
     .filter((m): m is IPhoneModel => m != null)
@@ -175,7 +175,7 @@ export default async function IPhoneGuidePage() {
   return (
     <>
     <main>
-      <article itemScope itemType="https://schema.org/Article">
+      <article>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
@@ -200,10 +200,10 @@ export default async function IPhoneGuidePage() {
           </div>
           <div className="hero-inner l-container">
             <div className="hero-content">
-              <h1 className="hero-title" itemProp="headline">
+              <h1 className="hero-title">
                 【{GUIDE_DATE_LABEL}】中古iPhoneおすすめ5選。狙い目の型落ちモデルはどれ？
               </h1>
-              <HeroMeta dateStr={dateStr} dateDisplay={dateDisplay} withItemProp showAuthor />
+              <HeroMeta dateStr={dateStr} dateDisplay={dateDisplay} showAuthor />
             </div>
             <div className="hero-visual">
               <figure className="hero-media">

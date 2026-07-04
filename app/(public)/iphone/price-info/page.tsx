@@ -429,7 +429,7 @@ export default async function IPhonePriceInfoPage() {
     <IPhoneArticleFooter
             pageUrl={PAGE_URL}
             pageTitle={`iPhoneの中古相場一覧 | 歴代${modelCount}機種の価格推移を独自集計`}
-            excludeHref={["/iphone/price-info/", "/iphone/recommend/"]}
+            excludeHref={["/iphone/price-info/"]}
           >
             <div className="m-callout m-callout--muted u-mt-2xl">
               <span className="m-callout__label">関連</span>

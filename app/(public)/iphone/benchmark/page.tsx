@@ -264,7 +264,7 @@ export default async function BenchmarkPage() {
     <IPhoneArticleFooter
             pageUrl={PAGE_URL}
             pageTitle={PAGE_TITLE}
-            excludeHref={["/iphone/benchmark/", "/iphone/recommend/"]}
+            excludeHref={["/iphone/benchmark/"]}
           />
     </>
   )

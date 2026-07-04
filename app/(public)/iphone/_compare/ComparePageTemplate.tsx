@@ -245,7 +245,7 @@ export default async function ComparePageTemplate({ config }: Props) {
     <IPhoneArticleFooter
       pageUrl={`https://used-lab.jp/iphone/${config.slug}/`}
       pageTitle={config.title}
-      excludeHref={[`/iphone/${config.slug}/`, "/iphone/recommend/"]}
+      excludeHref={[`/iphone/${config.slug}/`]}
     />
     </>
   )

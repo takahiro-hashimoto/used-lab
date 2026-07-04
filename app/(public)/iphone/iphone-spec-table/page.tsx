@@ -236,7 +236,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/iphone-s
     <IPhoneArticleFooter
           pageUrl="https://used-lab.jp/iphone/iphone-spec-table/"
           pageTitle="歴代iPhoneスペック比較表！気になる機種の性能差や違いがわかる"
-          excludeHref={["/iphone/iphone-spec-table/", "/iphone/recommend/"]}
+          excludeHref={["/iphone/iphone-spec-table/"]}
         >
           <div className="m-callout m-callout--muted u-mt-2xl">
             <span className="m-callout__label">関連</span>

@@ -87,7 +87,6 @@ export default function RootLayout({
         <link rel="stylesheet" href={CSS_NON_CRITICAL} />
         <link rel="stylesheet" href={CSS_FONTAWESOME} />
         {IS_PROD && <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="" />}
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
         <link rel="dns-prefetch" href="https://www.clarity.ms" />
         {IS_PROD && (

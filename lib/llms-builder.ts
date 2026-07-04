@@ -62,7 +62,6 @@ function resolveLinkTitle(path: string): string {
 /** 動的ラベル（関数）のページ向け静的タイトル */
 const STATIC_TITLES: Record<string, string> = {
   '/iphone/': '中古iPhoneおすすめ機種・選び方ガイド',
-  '/iphone/recommend/': '中古iPhoneおすすめ機種',
   '/iphone/iphone-shop/': '中古iPhoneおすすめショップ',
   '/iphone/price-info/': 'iPhoneの中古相場一覧',
   '/iphone/mvno/': '中古iPhoneと格安SIMセット購入ガイド',

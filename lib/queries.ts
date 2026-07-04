@@ -544,6 +544,9 @@ export async function getProductShopLinks(
     .select('*')
     .eq('product_type', productType)
     .eq('product_id', productId)
+  if (error) {
+    console.warn(`[queries] getProductShopLinks(${productType}, ${productId}) failed, falling back to empty list: ${error.message}`)
+  }
   if (error || !data) return []
   return data as ProductShopLink[]
 }
@@ -579,6 +582,9 @@ export async function getIPhoneReviewsBySlug(modelSlug: string): Promise<Product
     .from('iphone_reviews')
     .select('*')
     .eq('model_slug', modelSlug)
+  if (error) {
+    console.warn(`[queries] getIPhoneReviewsBySlug(${modelSlug}) failed, falling back to empty list: ${error.message}`)
+  }
   if (error || !data) return []
   return data as ProductReview[]
 }
@@ -594,6 +600,9 @@ export const getRelatedLinkClicks = unstable_cache(
       .from('related_link_clicks')
       .select('dest_path, click_count')
       .eq('source_path', sourcePath)
+    if (error) {
+      console.warn(`[queries] getRelatedLinkClicks(${sourcePath}) failed, falling back to empty map: ${error.message}`)
+    }
     if (error || !data) return {}
     const map: Record<string, number> = {}
     for (const row of data) {
@@ -610,6 +619,9 @@ export async function getIPadReviewsBySlug(modelSlug: string): Promise<ProductRe
     .from('ipad_reviews')
     .select('*')
     .eq('model_slug', modelSlug)
+  if (error) {
+    console.warn(`[queries] getIPadReviewsBySlug(${modelSlug}) failed, falling back to empty list: ${error.message}`)
+  }
   if (error || !data) return []
   return data as ProductReview[]
 }

@@ -175,7 +175,7 @@ export default async function UsedIphoneSupportPage() {
     <IPhoneArticleFooter
           pageUrl={PAGE_URL}
           pageTitle={PAGE_TITLE}
-          excludeHref={["/iphone/used-iphone-support/", "/iphone/recommend/"]}
+          excludeHref={["/iphone/used-iphone-support/"]}
         />
     </>
   )

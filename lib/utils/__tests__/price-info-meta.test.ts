@@ -11,7 +11,7 @@ describe('PRICE_INFO_UPDATE_MONTH', () => {
 
 describe('buildPriceInfoTitle', () => {
   it('正しいタイトル文字列を生成', () => {
-    const result = buildPriceInfoTitle('中古iPhone', 30, '2025年4月')
-    expect(result).toBe('中古iPhoneの中古相場一覧 | 歴代30機種の価格推移を独自集計【2025年4月】')
+    const result = buildPriceInfoTitle('iPhone', 30, '2025年4月')
+    expect(result).toBe('中古iPhoneの相場・値段一覧【2025年4月】歴代30機種の価格推移を毎日更新')
   })
 })

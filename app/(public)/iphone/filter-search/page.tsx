@@ -44,7 +44,7 @@ const FAQ_ITEMS = [
   },
   {
     question: '診断で提案された機種以外も検討すべきですか？',
-    answer: '診断結果はあくまで目安です。条件を変更して再診断したり、「<a href="/iphone/recommend/">おすすめ中古iPhone5選</a>」ページも合わせて参考にすることで、より納得のいく選択ができます。',
+    answer: '診断結果はあくまで目安です。条件を変更して再診断したり、「<a href="/iphone/">おすすめ中古iPhone5選</a>」ページも合わせて参考にすることで、より納得のいく選択ができます。',
   },
   {
     question: '中古iPhoneを購入する際に注意すべき点は？',
@@ -259,7 +259,7 @@ export default async function IPhoneFilterSearchPage() {
     <IPhoneArticleFooter
           pageUrl="https://used-lab.jp/iphone/filter-search/"
           pageTitle="iPhone機種診断シミュレーター｜自分に合うおすすめ中古スマホがすぐわかる【${CURRENT_YEAR}年版】"
-          excludeHref={["/iphone/filter-search/", "/iphone/recommend/"]}
+          excludeHref={["/iphone/filter-search/"]}
         />
     </>
   )

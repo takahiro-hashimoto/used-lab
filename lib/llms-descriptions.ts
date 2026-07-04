@@ -7,7 +7,6 @@
 export const PAGE_DESCRIPTIONS: Record<string, string> = {
   // --- iPhone ---
   '/iphone/': '中古iPhoneの選び方・相場・おすすめモデルの総合ガイド',
-  '/iphone/recommend/': '目的別に狙い目モデルを解説',
   '/iphone/used-iphone-attention/': '購入前に確認すべきポイントまとめ',
   '/iphone/used-iphone-support/': '機種別のサポート期間目安',
   '/iphone/iphone-shop/': 'ECサイト・ショップの比較',
@@ -69,7 +68,6 @@ export const PAGE_DESCRIPTIONS: Record<string, string> = {
 export const PAGE_DESCRIPTIONS_FULL: Record<string, string> = {
   // --- iPhone ---
   '/iphone/': '中古iPhoneの選び方・相場・おすすめモデルの総合ガイド。初心者が知るべき基礎知識から上級者向けの選定ポイントまでカバー',
-  '/iphone/recommend/': '目的別（コスパ重視・カメラ重視・ゲーム用など）に狙い目モデルを解説',
   '/iphone/iphone-spec-table/': 'iPhone SE〜iPhone 16シリーズまで全モデルのスペックを横並びで比較できる一覧表',
   '/iphone/price-info/': '歴代全機種の中古価格をストレージ容量別に掲載。月次更新の価格推移グラフ付き',
   '/iphone/used-iphone-attention/': 'アクティベーションロック・バッテリー劣化・ネットワーク利用制限など、購入前に確認すべき項目を解説',

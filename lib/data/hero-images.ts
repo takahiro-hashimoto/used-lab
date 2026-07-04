@@ -32,7 +32,6 @@ export const HERO_IMAGES: Record<string, string> = {
   '/iphone/mvno/': '/images/content/thumbnail/sim.webp',
   '/iphone/network-limit/': '/images/content/thumbnail/iphone-image-02.jpg',
   '/iphone/price-info/': '/images/content/thumbnail/graph-image.jpg',
-  '/iphone/recommend/': '/images/iphone/iphone-setting.avif',
   '/iphone/storage-guide/': '/images/content/thumbnail/used-iphone-ios-support.jpg',
   '/iphone/used-iphone-attention/': '/images/content/thumbnail/check-list.jpg',
   '/iphone/used-iphone-support/': '/images/content/thumbnail/iphone-image-03.jpg',

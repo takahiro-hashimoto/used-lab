@@ -7,7 +7,7 @@ export default function Footer() {
       <div className="footer-main">
         <div className="footer-inner l-container">
           <div className="footer-brand">
-            <Link href="/" className="m-logo">
+            <Link href="/" className="m-logo" prefetch={false}>
               <span className="m-logo__text">ユーズドラボ</span>
             </Link>
             <p className="footer-tagline">中古Apple製品の「ちょうどいい」を見つけるメディア。豊富なデータで最適な商品がわかる。型落ちの中古Apple製品をお手頃にゲットしよう！</p>
@@ -32,7 +32,7 @@ export default function Footer() {
                 </p>
                 <ul>
                   {(FOOTER_LINKS[cat.id] ?? []).map((link) => (
-                    <li key={link.href}><Link href={link.href}>{link.label}</Link></li>
+                    <li key={link.href}><Link href={link.href} prefetch={false}>{link.label}</Link></li>
                   ))}
                 </ul>
               </div>
@@ -41,7 +41,7 @@ export default function Footer() {
               <p className="footer-heading"><i className="fa-solid fa-circle-info" aria-hidden="true"></i> サイト情報</p>
               <ul>
                 {UTILITY_FOOTER_LINKS.map((link) => (
-                  <li key={link.href}><Link href={link.href}>{link.label}</Link></li>
+                  <li key={link.href}><Link href={link.href} prefetch={false}>{link.label}</Link></li>
                 ))}
               </ul>
             </div>

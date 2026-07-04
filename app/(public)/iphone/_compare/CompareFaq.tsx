@@ -55,7 +55,7 @@ export default function CompareFaq({ modelL, modelR, latestL, latestR }: Props) 
     {
       question: `中古の${nameL}と${nameR}はどっちがおすすめ？`,
       answer: `コスパ重視なら${rangeL.avg != null && rangeR.avg != null && rangeL.avg <= rangeR.avg ? nameL : nameR}がおすすめです。${priceDiffText ? `現在の中古相場は${priceDiffText}です。` : ''} カメラや処理性能にこだわるなら上位モデルを検討しましょう。`,
-      answerNode: <>コスパ重視なら{rangeL.avg != null && rangeR.avg != null && rangeL.avg <= rangeR.avg ? nameL : nameR}がおすすめです。{priceDiffText ? `現在の中古相場は${priceDiffText}です。` : ''} カメラや処理性能にこだわるなら上位モデルを検討しましょう。詳しくは<Link href="/iphone/recommend/">おすすめ中古iPhone5選</Link>もご覧ください。</>,
+      answerNode: <>コスパ重視なら{rangeL.avg != null && rangeR.avg != null && rangeL.avg <= rangeR.avg ? nameL : nameR}がおすすめです。{priceDiffText ? `現在の中古相場は${priceDiffText}です。` : ''} カメラや処理性能にこだわるなら上位モデルを検討しましょう。詳しくは<Link href="/iphone/">おすすめ中古iPhone5選</Link>もご覧ください。</>,
     },
     {
       question: `${nameL}と${nameR}の価格差はどのくらい？`,

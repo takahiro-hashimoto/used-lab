@@ -68,6 +68,7 @@ export default function RelatedLinksClient({
                   href={item.href}
                   className="m-card m-card--shadow m-card--hoverable"
                   style={{ padding: 'var(--space-md) var(--space-lg)', display: 'block', textDecoration: 'none' }}
+                  prefetch={false}
                   onClick={() => handleClick(item.href)}
                 >
                   <p style={{ fontSize: 'var(--font-size-sm)', fontWeight: 700, color: 'var(--color-text)', marginBottom: 4 }}>
@@ -98,6 +99,7 @@ export default function RelatedLinksClient({
               key={item.href}
               href={item.href}
               className="m-card m-card--shadow related-link-card m-card--hoverable"
+              prefetch={false}
               onClick={() => handleClick(item.href)}
             >
               <Image

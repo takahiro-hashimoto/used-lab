@@ -9,7 +9,7 @@ export const PAGE_DATES: Record<string, string> = {
   'app/(public)/page.tsx': '2026-04-28',
 
   // ── カテゴリTOP ──────────────────────────────────────────────
-  'app/(public)/iphone/page.tsx':  '2026-06-30',
+  'app/(public)/iphone/page.tsx':  '2026-07-03',
   'app/(public)/ipad/page.tsx':    '2026-06-30',
   'app/(public)/macbook/page.tsx': '2026-06-30',
   'app/(public)/watch/page.tsx':   '2026-06-30',
@@ -39,7 +39,6 @@ export const PAGE_DATES: Record<string, string> = {
   'app/(public)/iphone/iphone-shop/page.tsx':         '2026-04-11',
   'app/(public)/iphone/mvno/page.tsx':                '2026-04-10',
   'app/(public)/iphone/iphone-spec-table/page.tsx':   '2026-06-29',
-  'app/(public)/iphone/recommend/page.tsx':           '2026-04-10',
   'app/(public)/iphone/_compare/ComparePageTemplate.tsx': '2026-04-12',
   'app/(public)/iphone/iphone13-13pro-compare/page.tsx':  '2026-04-14',
   'app/(public)/iphone/iphone13-14-compare/page.tsx':     '2026-04-14',

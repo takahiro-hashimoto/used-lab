@@ -542,7 +542,7 @@ export default async function IPhoneCameraPage() {
     <IPhoneArticleFooter
           pageUrl={PAGE_URL}
           pageTitle={PAGE_TITLE}
-          excludeHref={["/iphone/iphone-camera/", "/iphone/recommend/"]}
+          excludeHref={["/iphone/iphone-camera/"]}
         />
     </>
   )

@@ -15,7 +15,7 @@ type RelatedItem = {
 
 const ITEMS: RelatedItem[] = [
   {
-    href: '/iphone/recommend/',
+    href: '/iphone/',
     image: '/images/content/thumbnail/iphone-setting.webp',
     alt: '中古iPhoneおすすめ機種',
     title: '目的別おすすめ中古iPhone',

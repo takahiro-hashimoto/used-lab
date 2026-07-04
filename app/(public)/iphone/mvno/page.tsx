@@ -792,7 +792,7 @@ export default async function MvnoPage() {
     <IPhoneArticleFooter
           pageUrl={PAGE_URL}
           pageTitle={PAGE_TITLE}
-          excludeHref={["/iphone/mvno/", "/iphone/recommend/"]}
+          excludeHref={["/iphone/mvno/"]}
         />
     </>
   )

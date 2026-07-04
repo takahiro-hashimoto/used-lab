@@ -76,7 +76,7 @@ export default function Header() {
   return (
     <header className="site-header" ref={headerRef}>
       <div className="header-inner">
-        <Link href="/" className="m-logo">
+        <Link href="/" className="m-logo" prefetch={false}>
           <Image
             src="/images/content/photo/logo-used-lab.webp"
             alt="ユーズドラボ"
@@ -96,7 +96,7 @@ export default function Header() {
                 onMouseEnter={() => item.children && setOpenDropdown(item.href)}
                 onMouseLeave={() => setOpenDropdown(null)}
               >
-                <Link href={item.href}>{item.label}</Link>
+                <Link href={item.href} prefetch={false}>{item.label}</Link>
                 {item.children && (
                   <div className="nav-dropdown">
                     <ul className="nav-dropdown__list">
@@ -105,6 +105,7 @@ export default function Header() {
                           <Link
                             href={child.href}
                             className="nav-dropdown__link"
+                            prefetch={false}
                             onClick={() => setOpenDropdown(null)}
                           >{child.label}</Link>
                         </li>
@@ -201,7 +202,7 @@ export default function Header() {
                       <ul className={`mobile-nav-accordion__panel${openAccordion === item.href ? ' is-open' : ''}`}>
                         {item.children.map((child) => (
                           <li key={child.href}>
-                            <Link href={child.href} onClick={() => setIsMenuOpen(false)}>
+                            <Link href={child.href} prefetch={false} onClick={() => setIsMenuOpen(false)}>
                               {child.label}
                             </Link>
                           </li>
@@ -209,7 +210,7 @@ export default function Header() {
                       </ul>
                     </>
                   ) : (
-                    <Link href={item.href} onClick={() => setIsMenuOpen(false)}>
+                    <Link href={item.href} prefetch={false} onClick={() => setIsMenuOpen(false)}>
                       {item.label}
                     </Link>
                   )}
@@ -231,7 +232,7 @@ export default function Header() {
                   <p className="mobile-menu__about-name">タカヒロ</p>
                 </div>
                 <p className="mobile-menu__about-desc">都内のIT企業でWebディレクターとして働く傍ら、メディア運営を行っています。中古Apple製品選びに役立つ情報を発信しています。</p>
-                <Link href="/profile/" className="mobile-menu__about-link" onClick={() => setIsMenuOpen(false)}>
+                <Link href="/profile/" className="mobile-menu__about-link" prefetch={false} onClick={() => setIsMenuOpen(false)}>
                   運営者情報を見る <i className="fa-solid fa-chevron-right" aria-hidden="true"></i>
                 </Link>
                 <div className="mobile-menu__about-icons">
@@ -247,7 +248,7 @@ export default function Header() {
                   <a href="https://note.com/takahiro_mono" target="_blank" rel="noopener noreferrer" aria-label="note" title="note">
                     <i className="fa-solid fa-pen-nib" aria-hidden="true"></i>
                   </a>
-                  <Link href="/contact/" aria-label="お問い合わせ" title="お問い合わせ" onClick={() => setIsMenuOpen(false)}>
+                  <Link href="/contact/" aria-label="お問い合わせ" title="お問い合わせ" prefetch={false} onClick={() => setIsMenuOpen(false)}>
                     <i className="fa-solid fa-envelope" aria-hidden="true"></i>
                   </Link>
                 </div>

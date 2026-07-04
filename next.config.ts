@@ -15,7 +15,7 @@ const CSP = [
   "frame-src 'self' https://www.youtube.com https://docs.google.com",
 ].join('; ')
 
-// CSP は middleware.ts で nonce 付きで設定するためここでは除外
+// CSP は静的ヘッダーとして設定（nonce なし。GTM 等のインラインスクリプトのため 'unsafe-inline' を許可）
 const securityHeaders = [
   { key: 'X-DNS-Prefetch-Control', value: 'on' },
   { key: 'X-Content-Type-Options', value: 'nosniff' },

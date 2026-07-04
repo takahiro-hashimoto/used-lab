@@ -22,13 +22,15 @@ export default function ChartEmbed({
   series,
   days,
   category,
+  loading = false,
 }: {
   series: ChartSeries[]
   days: number
   category: string
+  loading?: boolean
 }) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
-  const instRef = useRef<InstanceType<typeof ChartClass> | null>(null)
+  const instRef = useRef<ChartClass<'line'> | null>(null)
   const [ready, setReady] = useState(false)
   const conf = CHART_EMBED_CONFIG[category] ?? { label: '中古Apple製品', priceInfoPath: '' }
 
@@ -59,7 +61,7 @@ export default function ChartEmbed({
       })
     }
 
-    instRef.current = new ChartClass(ctx, {
+    instRef.current = new ChartClass<'line'>(ctx, {
       type: 'line',
       data: { labels, datasets },
       options: {
@@ -107,7 +109,11 @@ export default function ChartEmbed({
             {conf.label} 価格推移（直近{days}日）
           </span>
         </div>
-        {series.length === 0 ? (
+        {loading ? (
+          <div className={styles.chartWrap}>
+            <div className={styles.skeleton} aria-hidden="true" />
+          </div>
+        ) : series.length === 0 ? (
           <p className={styles.empty}>表示できる価格データがありません。</p>
         ) : (
           <>

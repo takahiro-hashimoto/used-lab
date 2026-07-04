@@ -1,7 +1,8 @@
 'use client'
 
-import { useState, useRef, useEffect, useCallback } from 'react'
+import { useState, useRef, useEffect, useCallback, useMemo } from 'react'
 import { Chart as ChartClass, CategoryScale, LinearScale, PointElement, LineElement, LineController, Tooltip } from 'chart.js'
+import type { TooltipItem } from 'chart.js'
 import type { ModelData } from '../page'
 import ChartEmbedButton from '@/app/components/ChartEmbedButton'
 
@@ -25,6 +26,8 @@ export default function DashboardSection({ modelsData, initialSelected }: Props)
   const [timeRange, setTimeRange] = useState(30)
   const chartRef = useRef<HTMLCanvasElement>(null)
   const chartInstanceRef = useRef<unknown>(null)
+
+  const modelsMap = useMemo(() => new Map(modelsData.map((m) => [m.id, m])), [modelsData])
 
   const toggleModel = (id: number) => {
     setSelectedModels((prev) => {
@@ -58,7 +61,7 @@ export default function DashboardSection({ modelsData, initialSelected }: Props)
     let labels: string[] = []
 
     for (const id of selectedModels) {
-      const m = modelsData.find((x) => x.id === id)
+      const m = modelsMap.get(id)
       if (!m || m.prices.length === 0) continue
 
       const filtered = m.prices.slice(-timeRange)
@@ -97,8 +100,7 @@ export default function DashboardSection({ modelsData, initialSelected }: Props)
             padding: 10,
             cornerRadius: 6,
             callbacks: {
-              // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              label: (c: any) =>
+              label: (c: TooltipItem<'line'>) =>
                 `${c.dataset.label}: ¥${c.parsed.y?.toLocaleString() ?? '-'}`,
             },
           },
@@ -116,7 +118,7 @@ export default function DashboardSection({ modelsData, initialSelected }: Props)
         },
       },
     })
-  }, [selectedModels, timeRange, modelsData])
+  }, [selectedModels, timeRange, modelsMap])
 
   useEffect(() => {
     return () => {
@@ -131,7 +133,7 @@ export default function DashboardSection({ modelsData, initialSelected }: Props)
   }, [updateChart])
 
   const selectedModelData = selectedModels
-    .map((id) => modelsData.find((m) => m.id === id))
+    .map((id) => modelsMap.get(id))
     .filter((m): m is ModelData => m != null)
 
   return (
@@ -209,19 +211,22 @@ export default function DashboardSection({ modelsData, initialSelected }: Props)
           </div>
         </div>
 
+        <p style={{ marginTop: '1rem', fontSize: '0.75rem', color: '#888', lineHeight: 1.7 }}>
+          ※ 中古相場は、イオシス・じゃんぱら・eイヤホンの3店舗から毎日自動取得した最安値・最高値の平均中間値です。100円単位に丸めて表示しています。
+        </p>
+
+        <div className="m-callout m-callout--tip u-mt-xl">
+          <span className="m-callout__label">編集部メモ</span>
+          <p className="m-callout__text">
+            Appleは2026年6月25日より一部製品を値上げしましたが、現時点では中古相場への影響はほとんど見られません。ただし今後全体的に価格が上昇する可能性があるため、購入を検討している方はご注意ください。
+          </p>
+        </div>
+
         <ChartEmbedButton
           category="airpods"
           slugs={selectedModelData.map((m) => m.slug)}
           days={timeRange}
         />
-
-        {/* 算出方法の補足 */}
-        <div className="m-callout m-callout--tip u-mt-2xl">
-          <span className="m-callout__label">価格算出方法について</span>
-          <p className="m-callout__text">
-            当サイトの中古相場は、イオシス・じゃんぱら・eイヤホンの3店舗から毎日自動取得した最安値・最高値の平均中間値を算出しています。100円単位に丸めて表示しています。
-          </p>
-        </div>
       </div>
     </section>
   )

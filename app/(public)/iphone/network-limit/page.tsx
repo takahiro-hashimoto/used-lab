@@ -413,7 +413,7 @@ export default async function NetworkLimitPage() {
     <IPhoneArticleFooter
             pageUrl={PAGE_URL}
             pageTitle={PAGE_TITLE}
-            excludeHref={["/iphone/network-limit/", "/iphone/recommend/"]}
+            excludeHref={["/iphone/network-limit/"]}
           />
     </>
   )

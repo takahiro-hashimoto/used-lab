@@ -241,7 +241,7 @@ export default function UsedIphoneAttentionPage() {
                 中古iPhoneを買う際の注意点 まとめ
               </h2>
               <p className="m-section-desc">
-                中古iPhoneの注意点は多く見えますが、事前にチェックすべきポイントは4つだけです。この4点を確認しておけば、購入後の大きなトラブルはほぼ防げます。機種選びで迷っている方は、<Link href="/iphone/recommend/">おすすめiPhone5選</Link>もあわせてご覧ください。
+                中古iPhoneの注意点は多く見えますが、事前にチェックすべきポイントは4つだけです。この4点を確認しておけば、購入後の大きなトラブルはほぼ防げます。機種選びで迷っている方は、<Link href="/iphone/">おすすめiPhone5選</Link>もあわせてご覧ください。
               </p>
 
               <SummaryChecklist
@@ -263,7 +263,7 @@ export default function UsedIphoneAttentionPage() {
     <IPhoneArticleFooter
             pageUrl={PAGE_URL}
             pageTitle={PAGE_TITLE}
-            excludeHref={["/iphone/used-iphone-attention/", "/iphone/recommend/"]}
+            excludeHref={["/iphone/used-iphone-attention/"]}
           />
     </>
   )

@@ -451,7 +451,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/storage-
                       <Link href="/iphone/battery-compare/"><i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> 歴代iPhoneのバッテリー容量比較ランキング</Link>
                     </li>
                     <li>
-                      <Link href="/iphone/recommend/"><i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> 中古iPhoneのおすすめ機種5選</Link>
+                      <Link href="/iphone/"><i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> 中古iPhoneのおすすめ機種5選</Link>
                     </li>
                   </ul>
                 </div>
@@ -473,7 +473,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/storage-
     <IPhoneArticleFooter
           pageUrl="https://used-lab.jp/iphone/storage-guide/"
           pageTitle="中古iPhoneのストレージ容量はどれがいい？用途別おすすめ容量まとめ"
-          excludeHref={["/iphone/storage-guide/", "/iphone/recommend/"]}
+          excludeHref={["/iphone/storage-guide/"]}
         />
     </>
   )

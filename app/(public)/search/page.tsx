@@ -54,7 +54,6 @@ const CAT_META: Record<string, { label: string; icon: string }> = {
 /** パスからキーワードを推測 */
 const PAGE_KEYWORDS: Record<string, string> = {
   '/iphone/': '購入ガイド 選び方 相場 おすすめ 中古',
-  '/iphone/recommend/': 'おすすめ 型落ち 狙い目 コスパ',
   '/iphone/used-iphone-attention/': '注意点 やめた方がいい 購入前 確認 中古',
   '/iphone/used-iphone-support/': 'サポート期間 いつまで使える iOS アップデート',
   '/iphone/iphone-shop/': '買う場所 ショップ ECサイト 中古販売店',

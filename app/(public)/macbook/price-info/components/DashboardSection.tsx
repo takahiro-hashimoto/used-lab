@@ -34,7 +34,7 @@ export default function DashboardSection({ modelsData, initialSelected }: Props)
   const [selectedModels, setSelectedModels] = useState<number[]>(initialSelected)
   const [timeRange, setTimeRange] = useState(30)
   const chartRef = useRef<HTMLCanvasElement>(null)
-  const chartInstanceRef = useRef<InstanceType<typeof ChartClass> | null>(null)
+  const chartInstanceRef = useRef<ChartClass<'line'> | null>(null)
 
   const modelsMap = useMemo(() => new Map(modelsData.map((m) => [m.id, m])), [modelsData])
 
@@ -83,7 +83,7 @@ export default function DashboardSection({ modelsData, initialSelected }: Props)
       })
     }
 
-    chartInstanceRef.current = new ChartClass(ctx, {
+    chartInstanceRef.current = new ChartClass<'line'>(ctx, {
       type: 'line',
       data: { labels, datasets },
       options: {
@@ -208,19 +208,22 @@ export default function DashboardSection({ modelsData, initialSelected }: Props)
           </div>
         </div>
 
+        <p style={{ marginTop: '1rem', fontSize: '0.75rem', color: '#888', lineHeight: 1.7 }}>
+          ※ 中古相場は、楽天市場の中古ショップから毎日自動取得した最安値Top5・最高値Top5の平均中間値です。対象は各機種の最小構成モデル（例：MacBook Air M2なら8GB/256GB）で、100円単位に丸めて表示しています。
+        </p>
+
+        <div className="m-callout m-callout--tip u-mt-xl">
+          <span className="m-callout__label">編集部メモ</span>
+          <p className="m-callout__text">
+            Appleは2026年6月25日より一部製品を値上げしましたが、現時点では中古相場への影響はほとんど見られません。ただし今後全体的に価格が上昇する可能性があるため、購入を検討している方はご注意ください。
+          </p>
+        </div>
+
         <ChartEmbedButton
           category="macbook"
           slugs={selectedModelData.map((m) => m.slug)}
           days={timeRange}
         />
-
-        {/* 算出方法の補足 */}
-        <div className="m-callout m-callout--tip u-mt-2xl">
-          <span className="m-callout__label">価格算出方法について</span>
-          <p className="m-callout__text">
-            当サイトの中古相場は、楽天市場の中古ショップから毎日自動取得した最安値Top5・最高値Top5の平均中間値を算出しています。対象は各機種の最小構成モデル（例：MacBook Air M2なら8GB/256GB）で、100円単位に丸めて表示しています。
-          </p>
-        </div>
       </div>
     </section>
   )

@@ -687,7 +687,7 @@ export default function IphoneAppleCarePage() {
                     </p>
                     <p className="lead-link u-mt-sm">
                       <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                      おすすめの中古iPhoneは「<Link href="/iphone/recommend/">中古iPhoneのおすすめ機種</Link>」で紹介しています。
+                      おすすめの中古iPhoneは「<Link href="/iphone/">中古iPhoneのおすすめ機種</Link>」で紹介しています。
                     </p>
                   </div>
                 </div>
@@ -767,7 +767,7 @@ export default function IphoneAppleCarePage() {
       <IPhoneArticleFooter
         pageUrl={PAGE_URL}
         pageTitle={PAGE_TITLE}
-        excludeHref={['/iphone/apple-care/', '/iphone/recommend/']}
+        excludeHref={['/iphone/apple-care/']}
       />
     </>
   )

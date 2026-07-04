@@ -17,6 +17,9 @@ export const dynamic = 'force-dynamic'
 export async function GET(req: Request) {
   // Vercel Cron は Authorization: Bearer <CRON_SECRET> を付与する
   const secret = process.env.CRON_SECRET
+  if (!secret) {
+    console.warn('[cron/amazon-renewed] CRON_SECRET が未設定のため認証なしで実行されます。Vercel の環境変数に設定してください')
+  }
   if (secret) {
     const auth = req.headers.get('authorization')
     if (auth !== `Bearer ${secret}`) {
