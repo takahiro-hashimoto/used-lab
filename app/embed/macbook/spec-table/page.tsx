@@ -25,9 +25,9 @@ export default async function MacBookSpecTableEmbedPage() {
   }
 
   return (
-    <div style={{ padding: '0 8px 16px' }}>
+    <div className="spec-embed-page">
       <SpecTable models={allModels} shopLinks={[]} prices={avgPrices} embed />
-      <p style={{ textAlign: 'center', fontSize: '0.75rem', color: '#888', marginTop: '8px' }}>
+      <p className="spec-embed-cite">
         出典:{' '}
         <a
           href="https://used-lab.jp/macbook/macbook-spec-table/"

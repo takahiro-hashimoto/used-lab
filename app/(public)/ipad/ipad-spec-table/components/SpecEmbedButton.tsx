@@ -4,7 +4,7 @@ import { useState } from 'react'
 
 const SNIPPET =
   '<iframe src="https://used-lab.jp/embed/ipad/spec-table/" ' +
-  'width="100%" height="720" style="border:0" loading="lazy" ' +
+  'width="100%" height="560" style="border:0" loading="lazy" ' +
   'title="歴代iPadスペック比較表 | ユーズドラボ"></iframe>'
 
 export default function SpecEmbedButton() {

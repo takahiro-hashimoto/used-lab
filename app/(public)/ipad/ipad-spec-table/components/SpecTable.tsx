@@ -293,7 +293,7 @@ export default function SpecTable({ models, shopLinks, prices, embed = false }: 
                       </td>
                     ))}
                   </tr>
-                  {SPEC_ROWS.map((row, rowIdx) => (
+                  {(embed ? SPEC_ROWS.filter((r) => r.label !== '中古相場') : SPEC_ROWS).map((row, rowIdx) => (
                     <tr key={rowIdx}>
                       <th scope="row" className="spec-compare-table__sticky">{row.label}</th>
                       {filteredModels.map((m) => (

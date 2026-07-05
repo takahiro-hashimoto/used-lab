@@ -2967,6 +2967,61 @@ fieldset.u-mb-xl {
   font-weight: 600;
 }
 
+/* ============================================
+   埋め込み(iframe)スペック表
+   タイトル・絞り込みUIを隠しテーブルのみ表示。
+   iframe内で縦横スクロールし、thead th と先頭列を
+   ネイティブ sticky で両方向に追従させる。
+   ============================================ */
+.spec-embed-page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding: 0 8px;
+  box-sizing: border-box;
+}
+/* テーブルカードまでを縦フレックスで伸ばし、スクローラだけ内部スクロール */
+.spec-embed-page .l-section,
+.spec-embed-page .l-container,
+.spec-embed-page .m-table-card {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+}
+.spec-embed-page .l-container {
+  max-width: none;
+}
+.spec-embed-page .m-table-card {
+  border: none;
+  border-radius: 0;
+}
+.spec-embed-page .m-table-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow: auto; /* 縦横スクロール */
+}
+/* タイトル・説明・絞り込み・脚注は非表示（シンプルなテーブルのみ） */
+.spec-embed-page .l-container > h2,
+.spec-embed-page .l-container > p,
+.spec-embed-page .l-container > fieldset {
+  display: none;
+}
+/* 出典リンク（常に最下部に表示） */
+.spec-embed-cite {
+  flex-shrink: 0;
+  margin: 8px 0;
+  text-align: center;
+  font-size: 0.75rem;
+  color: #888;
+}
+.spec-embed-cite a {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+
 /* ---------- Pencil Detail ---------- */
 .pencil-detail-list {
   display: flex;
