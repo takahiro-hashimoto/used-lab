@@ -123,6 +123,23 @@ export interface ProductShopLink {
   url: string
 }
 
+/** 追従CTA（StickyCta）の表示モード */
+export type StickyCtaMode = 'normal' | 'special'
+
+/** サイト共通設定（site_config テーブル・単一行 id=1） */
+export interface SiteConfig {
+  id: number
+  sticky_cta_mode: StickyCtaMode
+  special_cta_headline: string | null
+  special_cta_label: string | null
+  special_cta_url: string | null
+  /** 特殊バナーの表示開始日時（ISO文字列 / NULL=制限なし） */
+  special_start_at?: string | null
+  /** 特殊バナーの表示終了日時（ISO文字列 / NULL=制限なし） */
+  special_end_at?: string | null
+  updated_at?: string
+}
+
 export interface FallbackShop {
   shop_id: number
   url: string

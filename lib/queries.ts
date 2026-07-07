@@ -7,6 +7,7 @@ import type {
   MvnoPlan,
   MvnoProvider,
   IPadAccessory, IPadAccessoryCompatibility,
+  SiteConfig,
 } from './types'
 
 // ============================================================
@@ -28,6 +29,7 @@ export const CACHE_TAGS = {
   mvno: 'mvno',
   news: 'news',
   ipadAccessories: 'ipad-accessories',
+  siteConfig: 'site-config',
 } as const
 
 /** カテゴリキー → 関連キャッシュタグのマッピング */
@@ -533,6 +535,24 @@ export const getShops = unstable_cache(
   },
   ['shops'],
   { revalidate: 604800, tags: [CACHE_TAGS.shops] }
+)
+
+/** サイト共通設定（追従CTAの出し分け等）を取得。切替を早く反映するため短めの revalidate。 */
+export const getSiteConfig = unstable_cache(
+  async (): Promise<SiteConfig | null> => {
+    const { data, error } = await supabase
+      .from('site_config')
+      .select('*')
+      .eq('id', 1)
+      .maybeSingle()
+    if (error) {
+      console.warn(`[queries] getSiteConfig failed, falling back to null: ${error.message}`)
+      return null
+    }
+    return (data ?? null) as SiteConfig | null
+  },
+  ['site-config'],
+  { revalidate: 300, tags: [CACHE_TAGS.siteConfig] }
 )
 
 export async function getProductShopLinks(

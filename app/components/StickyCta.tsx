@@ -17,18 +17,31 @@ function getCategoryFromPath(pathname: string): string | null {
   return match ? match[1] : null
 }
 
+const CONTAINER_STYLE: React.CSSProperties = {
+  position: 'fixed',
+  bottom: 0,
+  left: 0,
+  right: 0,
+  zIndex: 900,
+  padding: '0.5rem 1rem',
+  paddingBottom: 'max(0.5rem, env(safe-area-inset-bottom))',
+  background: 'rgba(255,255,255,0.95)',
+  backdropFilter: 'blur(12px)',
+  WebkitBackdropFilter: 'blur(12px)',
+  borderTop: '1px solid var(--color-border-light)',
+  willChange: 'transform',
+  backfaceVisibility: 'hidden',
+  WebkitBackfaceVisibility: 'hidden',
+}
+
 export default function StickyCta() {
   const [visible, setVisible] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
+  const [expired, setExpired] = useState(false)
   const pathname = usePathname()
-  const { categoryUrls, defaultUrl, overrideUrl, overrideLabel } = useStickyCtaContext()
+  const { categoryUrls, defaultUrl, overrideUrl, overrideLabel, config } = useStickyCtaContext()
 
   const category = getCategoryFromPath(pathname)
-  const href = overrideUrl || (category && categoryUrls[category]) || defaultUrl
-  const label = overrideLabel
-    || (overrideUrl ? 'イオシスで最安値の価格を見る' : null)
-    || (category && CATEGORY_LABELS[category])
-    || 'イオシスで中古Apple製品を探す'
 
   useEffect(() => {
     const mq = window.matchMedia('(max-width: 767px)')
@@ -46,53 +59,105 @@ export default function StickyCta() {
     }
   }, [])
 
-  if (!isMobile || !category || pathname.includes('/filter-search')) return null
+  // 特殊バナーの終了日時を過ぎたらクライアント側で通常バナーへ自動復帰。
+  // （開きっぱなしのタブや、キャッシュ済みで specialActive=true のHTMLでも即戻す）
+  useEffect(() => {
+    if (!config.specialActive || !config.specialEndAt) return
+    const remaining = new Date(config.specialEndAt).getTime() - Date.now()
+    if (remaining <= 0) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setExpired(true)
+      return
+    }
+    const timer = setTimeout(() => setExpired(true), Math.min(remaining, 2_147_483_647))
+    return () => clearTimeout(timer)
+  }, [config.specialActive, config.specialEndAt])
+
+  // filter-search では常に非表示
+  if (pathname.includes('/filter-search')) return null
+
+  const transform = visible ? 'translate3d(0,0,0)' : 'translate3d(0,100%,0)'
+  const transition = 'transform 0.3s ease, opacity 0.3s ease'
+
+  const showSpecial = config.specialActive && !expired
+
+  // ============================================================
+  // 特殊追従ボタン（Amazonセール等）— PC・スマホ両方・期間内のみ表示
+  // ============================================================
+  if (showSpecial && config.specialUrl && config.specialUrl !== '#') {
+    return (
+      <div
+        role="complementary"
+        aria-label="キャンペーン"
+        style={{
+          ...CONTAINER_STYLE,
+          transform,
+          opacity: visible ? 1 : 0,
+          transition,
+        }}
+      >
+        <a
+          href={config.specialUrl}
+          target="_blank"
+          rel="noopener noreferrer nofollow"
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: '0.02rem',
+            width: '100%',
+            maxWidth: '520px',
+            margin: '0 auto',
+            padding: '0.6rem 1rem',
+            background: 'linear-gradient(135deg, #ff9900 0%, #ff7a00 100%)',
+            color: '#fff',
+            borderRadius: 'var(--radius-md)',
+            textDecoration: 'none',
+            boxShadow: '0 2px 10px rgba(255,122,0,0.35)',
+          }}
+        >
+          {config.specialHeadline && (
+            <span style={{ fontSize: '0.75rem', fontWeight: 700, letterSpacing: '0.01em' }}>
+              ＼ {config.specialHeadline} ／
+            </span>
+          )}
+          <span style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '1.2rem', fontWeight: 800, lineHeight: 1.2 }}>
+            <i className="fa-solid fa-tags" aria-hidden="true"></i>
+            {config.specialLabel || 'セール会場を見る'}
+          </span>
+        </a>
+      </div>
+    )
+  }
+
+  // ============================================================
+  // 通常追従ボタン（イオシスCTA）— スマホのみ・カテゴリページのみ
+  // ============================================================
+  if (!isMobile || !category) return null
+
+  const href = overrideUrl || (category && categoryUrls[category]) || defaultUrl
+  const label = overrideLabel
+    || (overrideUrl ? 'イオシスで最安値の価格を見る' : null)
+    || (category && CATEGORY_LABELS[category])
+    || 'イオシスで中古Apple製品を探す'
 
   return (
     <div
       role="complementary"
       aria-label="購入リンク"
       style={{
-        position: 'fixed',
-        bottom: 0,
-        left: 0,
-        right: 0,
-        zIndex: 900,
-        padding: '0.5rem 1rem',
-        paddingBottom: 'max(0.5rem, env(safe-area-inset-bottom))',
-        background: 'rgba(255,255,255,0.95)',
-        backdropFilter: 'blur(12px)',
-        WebkitBackdropFilter: 'blur(12px)',
-        borderTop: '1px solid var(--color-border-light)',
-        transform: visible
-          ? 'translate3d(0,0,0)'
-          : 'translate3d(0,100%,0)',
+        ...CONTAINER_STYLE,
+        transform,
         opacity: visible ? 1 : 0,
-        transition: 'transform 0.3s ease, opacity 0.3s ease',
-        willChange: 'transform',
-        backfaceVisibility: 'hidden',
-        WebkitBackfaceVisibility: 'hidden',
+        transition,
       }}
     >
       <a
         href={href}
         target="_blank"
         rel="noopener noreferrer nofollow"
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          gap: '0.5rem',
-          width: '100%',
-          padding: '0.75rem',
-          background: 'var(--color-primary)',
-          color: '#fff',
-          fontSize: '0.875rem',
-          fontWeight: 700,
-          borderRadius: 'var(--radius-md)',
-          textDecoration: 'none',
-          boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
-        }}
+        className="m-btn m-btn--primary m-btn--block"
+        style={{ width: '100%', boxShadow: '0 2px 8px rgba(0,0,0,0.15)' }}
       >
         <i className="fa-solid fa-cart-shopping" aria-hidden="true"></i>
         {label}

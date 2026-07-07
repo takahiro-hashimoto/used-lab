@@ -25,6 +25,10 @@ export default function AuthenticatedAdminLayout({
                 <span>{cat.label}</span>
               </Link>
             ))}
+            <Link href="/admin/settings" className="admin-header__link">
+              <i className="fa-solid fa-gear" aria-hidden="true" />
+              <span>サイト設定</span>
+            </Link>
           </nav>
           <LogoutButton />
         </div>

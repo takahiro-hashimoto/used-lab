@@ -5,6 +5,7 @@ import { redirect } from 'next/navigation'
 import { revalidateTag } from 'next/cache'
 import { supabaseAdmin } from '@/lib/supabase-admin'
 import { CATEGORY_CACHE_TAGS, CACHE_TAGS } from '@/lib/queries'
+import type { SiteConfig } from '@/lib/types'
 import { CATEGORIES, type CategoryConfig, type FieldDef } from './field-definitions'
 
 /** キャッシュタグを完全に無効化するヘルパー */
@@ -435,6 +436,53 @@ export async function setPublish(
 
   revalidateCategory(categoryKey)
   return {}
+}
+
+// ============================================================
+// サイト共通設定（追従CTAの出し分け）
+// ============================================================
+
+/** site_config（単一行 id=1）を取得。未作成なら null。 */
+export async function getSiteConfigForAdmin(): Promise<SiteConfig | null> {
+  const { data, error } = await supabaseAdmin
+    .from('site_config')
+    .select('*')
+    .eq('id', 1)
+    .maybeSingle()
+  if (error) return null
+  return (data ?? null) as SiteConfig | null
+}
+
+/** site_config を更新（無ければ作成）。追従CTAのキャッシュを即無効化。 */
+export async function updateSiteConfig(
+  formData: FormData
+): Promise<{ error?: string; success?: boolean }> {
+  const mode = formData.get('sticky_cta_mode') === 'special' ? 'special' : 'normal'
+  const text = (key: string) => {
+    const v = ((formData.get(key) as string) ?? '').trim()
+    return v.length > 0 ? v : null
+  }
+
+  const { error } = await supabaseAdmin
+    .from('site_config')
+    .upsert(
+      {
+        id: 1,
+        sticky_cta_mode: mode,
+        special_cta_headline: text('special_cta_headline'),
+        special_cta_label: text('special_cta_label'),
+        special_cta_url: text('special_cta_url'),
+        special_start_at: text('special_start_at'),
+        special_end_at: text('special_end_at'),
+        updated_at: new Date().toISOString(),
+      },
+      { onConflict: 'id' }
+    )
+
+  if (error) return { error: `更新に失敗しました: ${error.message}` }
+
+  purgeTag(CACHE_TAGS.siteConfig)
+  return { success: true }
 }
 
 export async function getModelCount(categoryKey: string): Promise<number> {
