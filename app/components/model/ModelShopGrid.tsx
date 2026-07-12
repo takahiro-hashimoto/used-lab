@@ -32,7 +32,8 @@ function SpecValue({ value }: { value: string | null }) {
 const ensureAbsoluteUrl = (url: string) =>
   url.startsWith('http') || url === '#' ? url : url.startsWith('//') ? `https:${url}` : `https://${url}`
 
-const EXCLUDED_SHOP_IDS = [5, 12, 15]
+// 7 (Amazon整備済み品) は一時的に非表示（Amazonアソシエイト対応）。復活時は配列から 7 を削除
+const EXCLUDED_SHOP_IDS = [5, 12, 15, 7]
 const RECOMMENDED_SHOP_ID = 1 // イオシス
 
 export default function ModelShopGrid({

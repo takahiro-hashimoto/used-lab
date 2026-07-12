@@ -23,7 +23,7 @@ import PriceTrendPlaceholder from '@/app/components/PriceTrendPlaceholder'
 import AdvanceFeatures from './components/AdvanceFeatures'
 import CompareSection from '@/app/components/CompareSection'
 import CompareSelector from './components/CompareSelector'
-import Accessories from './components/Accessories'
+// import Accessories from './components/Accessories' // 一時的に非表示（Amazonアソシエイト対応）。復活時はコメント解除
 import WatchArticleFooter from '@/app/components/watch/WatchArticleFooter'
 import FaqSection from './components/FaqSection'
 import AdminEditLink from '@/app/components/AdminEditLink'
@@ -139,7 +139,8 @@ export default async function WatchDetailPage({ params }: PageProps) {
         <CompareSection model={model} allModels={allModels} shopLinks={shopLinks} fallbackIosysUrl={iosysShop?.watch_url || undefined} specLinks={[{ href: '/watch/watch-spec-table/', label: '歴代Apple Watchスペック比較表' }]}>
           {(props) => <CompareSelector {...props} />}
         </CompareSection>
-        <Accessories model={model} />
+        {/* アクセサリー（accessory_case/film＝Amazonアフィリンク）は一時的に非表示（Amazonアソシエイト対応）。復活時はコメント解除 */}
+        {/* <Accessories model={model} /> */}
         <FaqSection model={model} latestPrice={latestPrice} shopLinks={modelShopLinks} />
         </div>
       </article>

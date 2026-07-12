@@ -51,7 +51,6 @@ export type ModelData = {
   color: string
   image: string
   iosysUrl: string
-  amazonUrl: string
   featureTags: string[]
   prices: PriceEntry[]
   currentPrice: number
@@ -145,12 +144,10 @@ export default async function IPhonePriceInfoPage() {
   // 全モデルの価格ログを1回のバルククエリで一括取得
   const priceLogsMap = await getAllIPhonePriceLogsByModelIds(allModels.map((m) => m.id), get90DaysAgo())
 
-  // ショップURLの O(1) 参照用 Map (shop_id=1: iosys, shop_id=7: Amazon)
+  // ショップURLの O(1) 参照用 Map (shop_id=1: iosys)
   const iosysUrlMap = new Map<number, string>()
-  const amazonUrlMap = new Map<number, string>()
   for (const l of allShopLinks) {
     if (l.shop_id === 1) iosysUrlMap.set(l.product_id, l.url)
-    else if (l.shop_id === 7) amazonUrlMap.set(l.product_id, l.url)
   }
 
   // ModelData構築
@@ -204,7 +201,6 @@ export default async function IPhonePriceInfoPage() {
       color: CHART_COLORS[colorIndex % CHART_COLORS.length],
       image: model.image || '',
       iosysUrl: iosysUrlMap.get(model.id) ?? '',
-      amazonUrl: amazonUrlMap.get(model.id) ?? '',
       featureTags: getFeatureTags(model),
       prices,
       currentPrice,

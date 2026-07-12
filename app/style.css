@@ -1152,6 +1152,21 @@
   margin-top: 2px;
 }
 
+/* Amazonアソシエイト規約に基づく免責表示 */
+.price-info-note--amazon {
+  color: var(--color-text-secondary, #555);
+}
+
+.price-info-note--amazon i {
+  color: var(--color-warning, #d97706);
+}
+
+/* 楽天ウェブサービス出典表示 */
+.price-info-note--rakuten a {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+
 /* Price Details Card */
 .price-details-card {
   margin-top: var(--space-xl);

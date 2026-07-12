@@ -10,7 +10,6 @@ export const HERO_IMAGES: Record<string, string> = {
   '/': '/images/content/thumbnail/iphone-image.jpeg',
   '/profile/': '/images/content/thumbnail/iphone-image.jpeg',
   '/sitemap-page/': '/images/content/thumbnail/iphone-image.jpeg',
-  '/amazon-renewed/': '/images/content/thumbnail/cheap-buy.jpg',
 
   // ── AirPods ──
   '/airpods/': '/images/content/thumbnail/airpods-image-01.jpg',

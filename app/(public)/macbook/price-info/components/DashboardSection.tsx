@@ -6,6 +6,8 @@ import type { ChartDataset, TooltipItem } from 'chart.js'
 import type { ModelData } from '../page'
 import Link from 'next/link'
 import ChartEmbedButton from '@/app/components/ChartEmbedButton'
+import RakutenAttribution from '@/app/components/RakutenAttribution'
+import { priceSourceNote } from '@/lib/data/price-source-note'
 
 ChartClass.register(CategoryScale, LinearScale, PointElement, LineElement, LineController, Tooltip)
 
@@ -209,8 +211,10 @@ export default function DashboardSection({ modelsData, initialSelected }: Props)
         </div>
 
         <p style={{ marginTop: '1rem', fontSize: '0.75rem', color: '#888', lineHeight: 1.7 }}>
-          ※ 中古相場は、楽天市場の中古ショップから毎日自動取得した最安値Top5・最高値Top5の平均中間値です。対象は各機種の最小構成モデル（例：MacBook Air M2なら8GB/256GB）で、100円単位に丸めて表示しています。
+          {priceSourceNote('macbook')}
         </p>
+
+        <RakutenAttribution />
 
         <div className="m-callout m-callout--tip u-mt-xl">
           <span className="m-callout__label">編集部メモ</span>

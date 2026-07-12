@@ -200,15 +200,6 @@ export default function SpecTableSection() {
                     </td>
                   ))}
                 </tr>
-                {/* Amazonリンク行 */}
-                <tr className="spec-compare-table__action-row">
-                  <th scope="row" className="spec-compare-table__sticky">Amazon</th>
-                  {filtered.map(m => (
-                    <td key={`amz-${m.slug}`}>
-                      <a href={`https://www.amazon.co.jp/s?k=Apple+Watch+${encodeURIComponent(m.name.replace('Apple Watch ', ''))}`} className="m-btn m-btn--amazon m-btn--sm" target="_blank" rel="noopener noreferrer nofollow">中古価格を見る</a>
-                    </td>
-                  ))}
-                </tr>
               </tbody>
             </table>
           </div>

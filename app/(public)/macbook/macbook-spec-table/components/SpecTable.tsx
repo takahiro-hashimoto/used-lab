@@ -64,7 +64,7 @@ function getModelInch(model: string): string | null {
   return match ? match[1] : null
 }
 
-export default function SpecTable({ models, shopLinks, prices, embed = false }: Props) {
+export default function SpecTable({ models, shopLinks, embed = false }: Props) {
   const [sortOrder, setSortOrder] = useState<SortOrder>(() => {
     if (typeof window === 'undefined') return 'old'
     const v = new URLSearchParams(window.location.search).get('sort')
@@ -114,7 +114,6 @@ export default function SpecTable({ models, shopLinks, prices, embed = false }: 
     shopLinks.find((l) => l.product_id === productId && l.shop_id === shopId)
 
   const SPEC_ROWS: { label: React.ReactNode; render: (m: SpecModel) => React.ReactNode }[] = [
-    { label: '中古相場', render: (m) => { const price = prices[m.id]; return price ? `¥${price.toLocaleString()}` : '-' } },
     { label: 'カラー', render: (m) => {
       if (!m.color) return '-'
       const parts = m.color.split(/\s*\/\s*/)
@@ -274,7 +273,7 @@ export default function SpecTable({ models, shopLinks, prices, embed = false }: 
                       </td>
                     ))}
                   </tr>
-                  {(embed ? SPEC_ROWS.filter((r) => r.label !== '中古相場') : SPEC_ROWS).map((row, rowIdx) => (
+                  {SPEC_ROWS.map((row, rowIdx) => (
                     <tr key={rowIdx}>
                       <th scope="row" className="spec-compare-table__sticky">{row.label}</th>
                       {filteredModels.map((m) => (
@@ -301,22 +300,6 @@ export default function SpecTable({ models, shopLinks, prices, embed = false }: 
                           )
                         })}
                       </tr>
-                      {/* Amazonリンク行 */}
-                      <tr className="spec-compare-table__action-row">
-                        <th scope="row" className="spec-compare-table__sticky">Amazon</th>
-                        {filteredModels.map((m) => {
-                          const link = getShopLink(m.id, 7)
-                          return (
-                            <td key={m.id}>
-                              {link ? (
-                                <a href={link.url} className="m-btn m-btn--amazon m-btn--sm" rel="nofollow noopener noreferrer" target="_blank" aria-label={`${m.shortname || m.model}をAmazonで探す（新しいタブで開く）`}>
-                                  最安値を確認
-                                </a>
-                              ) : '-'}
-                            </td>
-                          )
-                        })}
-                      </tr>
                     </>
                   )}
                 </tbody>
@@ -325,7 +308,7 @@ export default function SpecTable({ models, shopLinks, prices, embed = false }: 
           </StickyTableWrapper>
         )}
         <p style={{ marginTop: '1rem', fontSize: '0.75rem', color: '#888', lineHeight: 1.7 }}>
-          ※ 中古相場は、楽天市場の中古ショップから毎日自動取得した最安値Top5・最高値Top5の平均中間値です。対象は各機種の最小構成モデルで、100円単位に丸めて表示しています。機種別の価格推移グラフは「<Link href="/macbook/price-info/" style={{ color: 'var(--color-primary)', textDecoration: 'underline' }}>MacBook中古相場・価格推移ページ</Link>」でご確認いただけます。
+          ※ 各機種の中古相場・価格推移グラフは「<Link href="/macbook/price-info/" style={{ color: 'var(--color-primary)', textDecoration: 'underline' }}>MacBook中古相場・価格推移ページ</Link>」でご確認いただけます。
         </p>
         {!embed && <SpecEmbedButton />}
       </div>

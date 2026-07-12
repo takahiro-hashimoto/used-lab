@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import { priceSourceNote } from '@/lib/data/price-source-note'
 import { placeholder } from '@/lib/placeholder'
 import type { AirPodsModel, AirPodsPriceLog, ProductShopLink, FallbackShop } from '@/lib/types'
 import { formatDateSlash, formatReleaseDate, buildDisplayLinks } from '@/lib/utils/shared-helpers'
@@ -25,7 +26,6 @@ type Props = {
 
 const SHOP_NAMES: Record<number, string> = {
   1: 'イオシス',
-  7: 'Amazon',
   3: 'ゲオ',
   6: 'じゃんぱら',
   16: 'eイヤホン',
@@ -246,6 +246,13 @@ export default function RecommendDetailSection({ items }: Props) {
             </article>
           )
         })}
+
+        <div className="m-callout m-callout--muted u-mt-3xl">
+          <span className="m-callout__label"><i className="fa-solid fa-circle-info" aria-hidden="true"></i> 中古相場の算出方法について</span>
+          <p className="m-callout__text">
+            {priceSourceNote('airpods')}
+          </p>
+        </div>
       </div>
     </section>
   )

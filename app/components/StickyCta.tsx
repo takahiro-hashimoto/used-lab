@@ -81,10 +81,14 @@ export default function StickyCta() {
 
   const showSpecial = config.specialActive && !expired
 
+  // 特殊バナーのURLがAmazon（amzn.to / amazon.co.jp 等）の場合は一時的に非表示にする
+  // （Amazonアソシエイト対応）。復活時はこの isAmazonSpecialUrl 判定を削除。
+  const isAmazonSpecialUrl = /amzn\.to|amzn\.asia|amazon\.[a-z.]+/i.test(config.specialUrl || '')
+
   // ============================================================
   // 特殊追従ボタン（Amazonセール等）— PC・スマホ両方・期間内のみ表示
   // ============================================================
-  if (showSpecial && config.specialUrl && config.specialUrl !== '#') {
+  if (showSpecial && config.specialUrl && config.specialUrl !== '#' && !isAmazonSpecialUrl) {
     return (
       <div
         role="complementary"

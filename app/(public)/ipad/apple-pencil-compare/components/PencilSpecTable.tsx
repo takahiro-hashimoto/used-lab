@@ -16,7 +16,6 @@ type PencilSpec = {
   magnetic: boolean
   length: string
   weight: string
-  amazonUrl: string
 }
 
 const PENCILS: PencilSpec[] = [
@@ -33,7 +32,6 @@ const PENCILS: PencilSpec[] = [
     magnetic: true,
     length: '166mm',
     weight: '19.15g',
-    amazonUrl: 'https://www.amazon.co.jp/dp/B0D3J71RM7?tag=and-and-22',
   },
   {
     name: 'Apple Pencil\n第2世代',
@@ -48,7 +46,6 @@ const PENCILS: PencilSpec[] = [
     magnetic: true,
     length: '166mm',
     weight: '20.7g',
-    amazonUrl: 'https://www.amazon.co.jp/dp/B07K1NDB7Q?tag=and-and-22',
   },
   {
     name: 'Apple Pencil\nUSB-C',
@@ -63,7 +60,6 @@ const PENCILS: PencilSpec[] = [
     magnetic: true,
     length: '155mm',
     weight: '20.5g',
-    amazonUrl: 'https://www.amazon.co.jp/dp/B0CSWDP9F7?tag=and-and-22',
   },
   {
     name: 'Apple Pencil\n第1世代',
@@ -78,7 +74,6 @@ const PENCILS: PencilSpec[] = [
     magnetic: false,
     length: '175.7mm',
     weight: '20.7g',
-    amazonUrl: 'https://www.amazon.co.jp/dp/B018MX3PNU?tag=and-and-22',
   },
 ]
 
@@ -157,22 +152,6 @@ export default function PencilSpecTable() {
                     </tr>
                   )
                 )}
-                {/* リンク行 */}
-                <tr className="spec-compare-table__action-row">
-                  <th scope="row" className="spec-compare-table__sticky">リンク</th>
-                  {PENCILS.map((p) => (
-                    <td key={p.name}>
-                      <a
-                        href={p.amazonUrl}
-                        className="m-btn m-btn--primary m-btn--sm"
-                        rel="nofollow noopener noreferrer"
-                        target="_blank"
-                      >
-                        価格を見る
-                      </a>
-                    </td>
-                  ))}
-                </tr>
               </tbody>
             </table>
           </div>

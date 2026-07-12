@@ -442,7 +442,6 @@ export default function AirPodsFilterSearchApp({ models, shopLinks }: Props) {
             <div className="ifd-results-grid">
               {filteredModels.map((m) => {
                 const iosysLink = getShopLink(m.id, 1)
-                const amazonLink = getShopLink(m.id, 7)
                 const tags = getFeatureTags(m)
                 const avgPrice = getAirPodsAvgPrice(m)
 
@@ -494,7 +493,7 @@ export default function AirPodsFilterSearchApp({ models, shopLinks }: Props) {
                       )}
                     </div>
 
-                    <ResultCardActions modelName={m.name} iosysLink={iosysLink} amazonLink={amazonLink} />
+                    <ResultCardActions modelName={m.name} iosysLink={iosysLink} />
                   </div>
                 )
               })}

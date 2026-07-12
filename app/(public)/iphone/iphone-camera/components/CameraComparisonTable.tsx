@@ -204,22 +204,6 @@ export default function CameraComparisonTable({ models, shopLinks }: Props) {
                       )
                     })}
                   </tr>
-                  {/* Amazonリンク行 */}
-                  <tr className="spec-compare-table__action-row">
-                    <th scope="row" className="spec-compare-table__sticky">Amazon</th>
-                    {filteredModels.map((m) => {
-                      const link = getShopLink(m.id, 7)
-                      return (
-                        <td key={m.id}>
-                          {link ? (
-                            <a href={link.url} className="m-btn m-btn--amazon m-btn--sm" rel="nofollow noopener noreferrer" target="_blank">
-                              中古価格を見る
-                            </a>
-                          ) : '-'}
-                        </td>
-                      )
-                    })}
-                  </tr>
                 </tbody>
               </table>
             </div>

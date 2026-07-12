@@ -22,7 +22,7 @@ export default function EntertainmentSection() {
           さらにiPadでの動画鑑賞には楽な姿勢で動画を視聴しやすくなったり、目が疲れづらくなるメリットも。コンテンツを十二分に楽しめて体にも優しいなんて一石二鳥です。
         </p>
         <InfoCard heading="おすすめのVODアプリ">
-          <li><a href="https://amzn.to/3ChAoYt" rel="nofollow sponsored noopener" target="_blank">Amazonプライムビデオ</a></li>
+          <li>Amazonプライムビデオ</li>
           <li><a href="https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3283749&pid=888488282" rel="nofollow sponsored noopener" target="_blank">hulu</a></li>
           <li><a href="https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=3283749&pid=888488283" rel="nofollow sponsored noopener" target="_blank">U-NEXT</a></li>
           <li><a href="https://www.netflix.com/jp/" rel="nofollow noopener" target="_blank">Netflix</a></li>
@@ -44,7 +44,7 @@ export default function EntertainmentSection() {
           漫画についても、iPadのLiquid Retinaディスプレイなら見開きページの細かい描き込みまで鮮明に表示されます。ジャンプ+やピッコマなどの無料漫画アプリも充実しており、通勤・通学時間の暇つぶしから長編作品のイッキ読みまで快適に楽しめます。
         </p>
         <InfoCard heading="おすすめの電子書籍・漫画アプリ">
-          <li><a href="https://amzn.to/3YmpriY" rel="nofollow sponsored noopener" target="_blank">Kindle</a></li>
+          <li>Kindle</li>
           <li><a href="https://px.a8.net/svt/ejp?a8mat=3BI37W+HV0XE+3ZNE+614CY" rel="nofollow sponsored noopener" target="_blank">楽天マガジン</a></li>
           <li><a href="https://apps.apple.com/jp/app/i%E6%96%87%E5%BA%ABhd/id369111608" target="_blank" rel="noopener">i文庫HD</a></li>
           <li><a href="https://apps.apple.com/jp/app/%E5%B0%91%E5%B9%B4%E3%82%B8%E3%83%A3%E3%83%B3%E3%83%97-%E4%BA%BA%E6%B0%97%E6%BC%AB%E7%94%BB%E3%81%8C%E8%AA%AD%E3%82%81%E3%82%8B%E9%9B%91%E8%AA%8C%E3%82%A2%E3%83%97%E3%83%AA/id594237344" target="_blank" rel="noopener">少年ジャンプ+</a></li>
@@ -79,7 +79,7 @@ export default function EntertainmentSection() {
           家の中どこでもテレビを視聴できる環境はとても魅力的ですし、たまにしかテレビは見ないから所有したくないなんていう方にもうってつけ。
         </p>
         <p className="media-card__desc">
-          おすすめのネットワークレコーダーは<a href="https://amzn.to/3YmsyaI" rel="nofollow sponsored noopener" target="_blank"><strong>nasne</strong></a>というアイテム。
+          おすすめのネットワークレコーダーは<strong>nasne</strong>というアイテム。
         </p>
         <InfoCard heading="nasneのできること" icon="fa-solid fa-satellite-dish">
           <li>iPhone、iPad、Macからテレビが見れる</li>

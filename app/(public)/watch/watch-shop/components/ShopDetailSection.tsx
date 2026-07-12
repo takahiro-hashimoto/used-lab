@@ -22,12 +22,6 @@ export default function ShopDetailSection({ items }: Props) {
       items={items}
       specRows={specRows}
       getCtaUrl={(shop) => shop.watch_url || shop.url || '#'}
-      ctaOverrides={{
-        apple: {
-          label: 'Apple整備済み品で中古Apple Watchを探す',
-          url: '/amazon-renewed/#watch',
-        },
-      }}
     />
   )
 }

@@ -1,4 +1,6 @@
 import PriceChartLoader from '@/app/components/PriceChartLoader'
+import AmazonPriceDisclaimer from '@/app/components/AmazonPriceDisclaimer'
+import RakutenAttribution from '@/app/components/RakutenAttribution'
 
 type DailyDataType = {
   labels: string[]
@@ -18,6 +20,8 @@ type Props = {
   shopDescription?: string
   /** 中古相場一覧ページへのリンク */
   priceListLink?: { href: string; label: string }
+  /** 楽天ウェブサービス（楽天市場商品検索API）の出典表示を出すか（MacBook等） */
+  showRakutenAttribution?: boolean
 }
 
 function formatPrice(price: number | null): string {
@@ -145,7 +149,7 @@ function calculateDailyTableData(dailyData: DailyDataType): DailyRow[] {
 }
 
 export default function PriceChartSection({
-  dailyData, modelName, latestMinMaxPairs, storageNote, shopDescription, priceListLink,
+  dailyData, modelName, latestMinMaxPairs, storageNote, shopDescription, priceListLink, showRakutenAttribution,
 }: Props) {
   const range = calculateAvgPriceRange(latestMinMaxPairs)
   const trendChanges = calculateTrendChanges(dailyData)
@@ -217,6 +221,8 @@ export default function PriceChartSection({
             <i className="fa-solid fa-circle-info" aria-hidden="true"></i>
             <span>掲載価格は{shopDescription || defaultShopDesc}</span>
           </p>
+          {showRakutenAttribution && <RakutenAttribution />}
+          <AmazonPriceDisclaimer />
         </div>
 
         <div className="m-card m-card--shadow price-details-card">

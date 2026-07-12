@@ -19,7 +19,9 @@ type Props = {
 }
 
 export default function ShopComparisonTable({ shops, specRows, caption, getShopUrl, ctaText = '公式サイト' }: Props) {
-  if (shops.length === 0) return null
+  // shop_id 7 (Amazon整備済み品) は一時的に非表示（Amazonアソシエイト対応）。復活時はこのフィルタを削除
+  const visibleShops = shops.filter((s) => s.id !== 7)
+  if (visibleShops.length === 0) return null
 
   return (
     <div className="m-card m-card--shadow m-table-card">
@@ -29,7 +31,7 @@ export default function ShopComparisonTable({ shops, specRows, caption, getShopU
           <thead>
             <tr>
               <th scope="col">比較項目</th>
-              {shops.map((s) => (
+              {visibleShops.map((s) => (
                 <th key={s.id} scope="col">{s.shop}</th>
               ))}
             </tr>
@@ -38,7 +40,7 @@ export default function ShopComparisonTable({ shops, specRows, caption, getShopU
             {specRows.map((row) => (
               <tr key={row.label}>
                 <th scope="row">{row.label}</th>
-                {shops.map((s) => (
+                {visibleShops.map((s) => (
                   <td key={s.id}>{renderValue(row.getValue(s))}</td>
                 ))}
               </tr>
@@ -46,7 +48,7 @@ export default function ShopComparisonTable({ shops, specRows, caption, getShopU
             {getShopUrl && (
               <tr>
                 <th scope="row">リンク</th>
-                {shops.map((s) => {
+                {visibleShops.map((s) => {
                   const url = getShopUrl(s)
                   return (
                     <td key={s.id}>

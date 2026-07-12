@@ -23,7 +23,7 @@ export const IPAD_SHOP_DETAIL_ORDER = [
   'recore',
   'janpara',
   'nicosma',
-  'amazon',
+  // 'amazon', // 一時的に非表示（Amazonアソシエイト対応）。復活時はコメント解除
   'rakuten',
   'yahoo',
   'apple',

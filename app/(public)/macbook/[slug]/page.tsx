@@ -23,7 +23,7 @@ import AdvanceFeatures from './components/AdvanceFeatures'
 import CompareSection from '@/app/components/CompareSection'
 import CompareSelector from './components/CompareSelector'
 import BenchmarkGeekbench from './components/BenchmarkGeekbench'
-import Accessories from './components/Accessories'
+// import Accessories from './components/Accessories' // 一時的に非表示（Amazonアソシエイト対応）。復活時はコメント解除
 import FaqSection from './components/FaqSection'
 import MacBookArticleFooter from '@/app/components/macbook/MacBookArticleFooter'
 import AdminEditLink from '@/app/components/AdminEditLink'
@@ -136,6 +136,8 @@ export default async function MacBookDetailPage({ params }: PageProps) {
             latestMinMaxPairs={latestMinMaxPairs}
             latestDate={latestDate}
             storageNote={storageNote}
+            shopDescription="楽天ウェブサービス（楽天市場商品検索API）を通じて楽天市場の中古ショップから定期的に集計したものです。実際の購入価格は在庫状況やタイミングにより変動する場合があります。"
+            showRakutenAttribution
             priceListLink={{ href: '/macbook/price-info/', label: 'MacBookの中古相場一覧' }}
           />
         )}
@@ -145,7 +147,8 @@ export default async function MacBookDetailPage({ params }: PageProps) {
           {(props) => <CompareSelector {...props} />}
         </CompareSection>
         <BenchmarkGeekbench model={model} allModels={allModels} />
-        <Accessories model={model} />
+        {/* アクセサリー（accessory_case/film＝Amazonアフィリンク）は一時的に非表示（Amazonアソシエイト対応）。復活時はコメント解除 */}
+        {/* <Accessories model={model} /> */}
         <FaqSection model={model} latestPrice={latestPrice} shopLinks={modelShopLinks} />
         </div>
       </article>

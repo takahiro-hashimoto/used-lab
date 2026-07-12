@@ -374,6 +374,7 @@ export default async function NetworkLimitPage() {
                   <a href={shopUrlMap[6] ?? '#'} className="m-btn m-btn--primary m-btn--block" rel="nofollow noopener noreferrer" target="_blank">中古iPhoneを探す <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
                 </article>
 
+                {/* Amazon整備済み品カードは一時的に非表示（Amazonアソシエイト対応）。復活時はコメント解除。
                 <article className="m-card m-card--shadow m-vendor-card">
                   <div className="m-vendor-card__header">
                     <h3 className="m-vendor-card__name">Amazon整備済み品</h3>
@@ -388,6 +389,7 @@ export default async function NetworkLimitPage() {
                   </dl>
                   <a href={shopUrlMap[7] ?? '#'} className="m-btn m-btn--primary m-btn--block" rel="nofollow noopener noreferrer" target="_blank">中古iPhoneを探す <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
                 </article>
+                */}
               </div>
 
               <div className="m-callout m-callout--tip u-mt-xl">

@@ -23,12 +23,6 @@ export default function ShopDetailSection({ items }: Props) {
       items={items}
       specRows={specRows}
       getCtaUrl={(shop) => shop.ipad_url || shop.url || '#'}
-      ctaOverrides={{
-        apple: {
-          label: 'Apple整備済み品で中古iPadを探す',
-          url: '/amazon-renewed/#ipad',
-        },
-      }}
     />
   )
 }

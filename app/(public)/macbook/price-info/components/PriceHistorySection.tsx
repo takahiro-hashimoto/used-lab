@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import type { ModelData, PriceEntry } from '../page'
+import RakutenAttribution from '@/app/components/RakutenAttribution'
 
 type Props = {
   models: ModelData[]
@@ -190,15 +191,7 @@ export default function PriceHistorySection({ models }: Props) {
           )
         })}
 
-        <div className="m-callout m-callout--tip u-mt-3xl">
-          <span className="m-callout__label"><i className="fa-solid fa-lightbulb" aria-hidden="true"></i> 価格データについて</span>
-          <p className="m-callout__text">
-            当ページでは、中古MacBook全{models.length}機種の価格推移データを毎日更新で公開しています。楽天市場の中古ショップから自動取得した実売価格をもとに、最安値・最高値・平均相場を算出。過去90日間の日別データと月別サマリーにより、価格トレンドを把握できます。
-          </p>
-          <p className="m-callout__text">
-            MacBook Air M4、MacBook Air M3、MacBook Pro M4シリーズなど、Apple Silicon搭載の現行モデルから型落ちモデルまで網羅。新型発売後の値下がりタイミングや、お買い得な時期の見極めにご活用ください。
-          </p>
-        </div>
+        <RakutenAttribution />
       </div>
     </section>
   )

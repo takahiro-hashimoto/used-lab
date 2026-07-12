@@ -6,6 +6,7 @@ import type { ChartDataset, TooltipItem } from 'chart.js'
 import type { ModelData } from '../page'
 import Link from 'next/link'
 import ChartEmbedButton from '@/app/components/ChartEmbedButton'
+import { priceSourceNote } from '@/lib/data/price-source-note'
 
 ChartClass.register(CategoryScale, LinearScale, PointElement, LineElement, LineController, Tooltip)
 
@@ -201,7 +202,7 @@ export default function DashboardSection({ modelsData, initialSelected }: Props)
         </div>
 
         <p style={{ marginTop: '1rem', fontSize: '0.75rem', color: '#888', lineHeight: 1.7 }}>
-          ※ 中古相場は、イオシス・ゲオ・じゃんぱらの3店舗から毎日自動取得した最安値・最高値の平均中間値です。対象は各機種の最小容量モデルで、100円単位に丸めて表示しています。
+          {priceSourceNote('watch')}
         </p>
 
         <div className="m-callout m-callout--tip u-mt-xl">

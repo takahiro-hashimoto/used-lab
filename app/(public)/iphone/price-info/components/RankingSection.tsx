@@ -109,17 +109,6 @@ export default function RankingSection({ items, modelCount, dateDisplay }: Props
                     イオシスで見る
                   </a>
                 )}
-                {model.amazonUrl && (
-                  <a
-                    href={model.amazonUrl}
-                    className="m-btn m-btn--amazon m-btn--sm"
-                    rel="nofollow noopener noreferrer"
-                    target="_blank"
-                    aria-label={`${model.name}をAmazonで見る`}
-                  >
-                    Amazonで見る
-                  </a>
-                )}
               </div>
             </li>
           ))}

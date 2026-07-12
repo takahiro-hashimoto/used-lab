@@ -39,7 +39,7 @@ import PopularSection from '@/app/components/support/PopularSection'
 
 export const revalidate = false
 
-const PAGE_TITLE = `【${GUIDE_DATE_LABEL}】中古iPhoneおすすめ5選。狙い目の型落ちモデルはどれ？`
+const PAGE_TITLE = `【${GUIDE_DATE_LABEL}】中古iPhone買うならどれがおすすめ？狙い目の型落ちモデル5機種を紹介`
 const PAGE_DESCRIPTION = `${GUIDE_DATE_LABEL}版・中古iPhoneのおすすめ5機種をコスパ・用途別に解説。今買うなら狙い目はどれ？最新相場・選び方・購入先比較まで完全網羅。失敗しない中古iPhone選びをサポートします。`
 const PAGE_URL = 'https://used-lab.jp/iphone/'
 
@@ -201,7 +201,7 @@ export default async function IPhoneGuidePage() {
           <div className="hero-inner l-container">
             <div className="hero-content">
               <h1 className="hero-title">
-                【{GUIDE_DATE_LABEL}】中古iPhoneおすすめ5選。狙い目の型落ちモデルはどれ？
+                【{GUIDE_DATE_LABEL}】中古iPhone買うならどれがおすすめ？狙い目の型落ちモデル5機種を紹介
               </h1>
               <HeroMeta dateStr={dateStr} dateDisplay={dateDisplay} showAuthor />
             </div>

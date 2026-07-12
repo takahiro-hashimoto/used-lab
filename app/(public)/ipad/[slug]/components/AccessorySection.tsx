@@ -114,15 +114,6 @@ export default function AccessorySection({ model, accessories }: Props) {
                 <h3 className="accessory-card__name">{card.name}</h3>
               </div>
               <p className="accessory-card__desc">{card.description}</p>
-              <a
-                href={card.amazonUrl}
-                className="m-btn m-btn--primary m-btn--block"
-                rel="nofollow noopener noreferrer"
-                target="_blank"
-              >
-                Amazonで探す{' '}
-                <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
-              </a>
             </article>
           ))}
         </div>

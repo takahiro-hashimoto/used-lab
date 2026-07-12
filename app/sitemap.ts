@@ -16,7 +16,6 @@ const DAILY_UPDATED_PATHS = new Set([
   '/watch/watch-price-info/',
   '/macbook/price-info/',
   '/airpods/price-info/',
-  '/amazon-renewed/',
 ])
 
 /** ルートパス → page.tsx ファイルパスに変換 */

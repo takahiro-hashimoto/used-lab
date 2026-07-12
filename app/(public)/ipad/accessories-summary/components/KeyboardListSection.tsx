@@ -88,11 +88,6 @@ export default function KeyboardListSection({ models, keyboardAccessories }: Pro
                           イオシスで探す
                         </a>
                       )}
-                      {kb.amazon_url && (
-                        <a href={kb.amazon_url} className="m-btn m-btn--amazon m-btn--sm" rel="nofollow noopener noreferrer" target="_blank">
-                          amazonで探す
-                        </a>
-                      )}
                     </div>
                   </div>
                 </div>

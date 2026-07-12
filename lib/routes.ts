@@ -182,7 +182,6 @@ export const PRODUCT_CATEGORIES: CategoryDef[] = [
 
 export const UTILITY_PAGES: PageDef[] = [
   { path: '/news/', label: '新着情報', priority: 0.5, changeFrequency: 'weekly' },
-  { path: '/amazon-renewed/', label: 'Amazon整備済み品 Apple製品まとめ', priority: 0.6, changeFrequency: 'daily' },
   { path: '/search/', label: '記事を検索', priority: 0.3, changeFrequency: 'monthly', includeInSitemap: false },
   { path: '/sitemap-page/', label: 'サイトマップ', priority: 0.3, changeFrequency: 'monthly' },
   { path: '/contact/', label: 'お問い合わせ', priority: 0.3, changeFrequency: 'yearly' },
@@ -310,7 +309,6 @@ export const FOOTER_LINKS: Record<string, { href: string; label: string }[]> = {
 
 export const UTILITY_FOOTER_LINKS: { href: string; label: string }[] = [
   { href: '/profile/', label: 'ユーズドラボについて' },
-  { href: '/amazon-renewed/', label: 'Amazon整備済み品' },
   { href: '/contact/', label: 'お問い合わせ' },
   { href: '/guidelines/', label: 'コンテンツ制作ポリシー' },
   { href: '/privacy-policy/', label: 'プライバシーポリシー' },

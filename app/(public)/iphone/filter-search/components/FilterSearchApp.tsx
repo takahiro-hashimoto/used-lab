@@ -535,7 +535,6 @@ export default function FilterSearchApp({ models, shopLinks }: Props) {
             <div className="ifd-results-grid">
               {filteredModels.map((m) => {
                 const iosysLink = getShopLink(m.id, 1)
-                const amazonLink = getShopLink(m.id, 7)
                 const supported = isSupportedModel(m.last_ios)
                 const tags = getFeatureTags(m)
 
@@ -593,7 +592,7 @@ export default function FilterSearchApp({ models, shopLinks }: Props) {
                       )}
                     </div>
 
-                    <ResultCardActions modelName={m.model} iosysLink={iosysLink} amazonLink={amazonLink} />
+                    <ResultCardActions modelName={m.model} iosysLink={iosysLink} />
                   </div>
                 )
               })}
