@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import Image from 'next/image'
-import { getAllIPhoneModels, getAllProductShopLinksByType, getLatestIPhonePriceLogsForModels } from '@/lib/queries'
+import { getAllIPhoneModels, getAllProductShopLinksByType, getLatestIPhonePriceLogsWithPricesForModels } from '@/lib/queries'
 import IconCard from '@/app/components/IconCard'
 import FilterSearchApp from './components/FilterSearchApp'
 import IPhoneArticleFooter from '@/app/components/iphone/IPhoneArticleFooter'
@@ -59,7 +59,8 @@ export default async function IPhoneFilterSearchPage() {
   ])
 
   const allModelIds = allModels.map((m) => m.id)
-  const latestPriceByModel = await getLatestIPhonePriceLogsForModels(allModelIds)
+  const PRICE_COLS = ['iosys_min', 'iosys_max', 'geo_min', 'geo_max', 'janpara_min', 'janpara_max']
+  const latestPriceByModel = await getLatestIPhonePriceLogsWithPricesForModels(allModelIds, PRICE_COLS)
   const latestPriceMap = new Map(Object.entries(latestPriceByModel).map(([k, v]) => [Number(k), v]))
 
   // クライアントコンポーネントに渡すデータを準備

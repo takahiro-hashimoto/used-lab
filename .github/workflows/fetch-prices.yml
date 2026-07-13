@@ -1,9 +1,11 @@
 name: 価格取得（楽天API）
 
 on:
-  schedule:
-    # 毎日 JST 6:00 (UTC 21:00) に実行
-    - cron: '0 21 * * *'
+  # 楽天ウェブサービスのIP許可リスト必須化に伴い、価格取得は固定IPのVPS cronへ移行。
+  # GitHub Actionsは実行ごとにIPが変わり楽天APIに拒否される（＝null行を書き続ける）ため、自動実行を停止。
+  # 手動実行(workflow_dispatch)は残すが、GitHub IPからは楽天APIが空を返す点に注意。
+  # schedule:
+  #   - cron: '0 21 * * *'
   workflow_dispatch:
     inputs:
       target:

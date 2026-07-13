@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
-import { getAllWatchModels, getAllProductShopLinksByType, getLatestWatchPriceLogsForModels } from '@/lib/queries'
+import { getAllWatchModels, getAllProductShopLinksByType, getLatestWatchPriceLogsWithPricesForModels } from '@/lib/queries'
 import IconCard from '@/app/components/IconCard'
 import WatchFilterSearchApp from './components/WatchFilterSearchApp'
 import Breadcrumb from '@/app/components/Breadcrumb'
@@ -63,7 +63,8 @@ export default async function WatchFilterSearchPage() {
   ])
 
   const allModelIds = allModels.map((m) => m.id)
-  const latestPriceByModel = await getLatestWatchPriceLogsForModels(allModelIds)
+  const PRICE_COLS = ['iosys_min', 'iosys_max', 'geo_min', 'geo_max', 'janpara_min', 'janpara_max']
+  const latestPriceByModel = await getLatestWatchPriceLogsWithPricesForModels(allModelIds, PRICE_COLS)
   const latestPriceMap = new Map(Object.entries(latestPriceByModel).map(([k, v]) => [Number(k), v]))
 
   const modelsData = allModels.map((m) => {

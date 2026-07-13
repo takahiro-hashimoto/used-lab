@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
-import { getAllAirPodsModels, getAllProductShopLinksByType, getLatestAirPodsPriceLogsForModels } from '@/lib/queries'
+import { getAllAirPodsModels, getAllProductShopLinksByType, getLatestAirPodsPriceLogsWithPricesForModels } from '@/lib/queries'
 import IconCard from '@/app/components/IconCard'
 import AirPodsFilterSearchApp from './components/FilterSearchApp'
 import AirPodsRelatedLinks from '@/app/components/airpods/AirPodsRelatedLinks'
@@ -59,7 +59,8 @@ export default async function AirPodsFilterSearchPage() {
   ])
 
   const allModelIds = allModels.map((m) => m.id)
-  const latestPriceByModel = await getLatestAirPodsPriceLogsForModels(allModelIds)
+  const PRICE_COLS = ['iosys_min', 'iosys_max', 'janpara_min', 'janpara_max', 'eearphone_min', 'eearphone_max']
+  const latestPriceByModel = await getLatestAirPodsPriceLogsWithPricesForModels(allModelIds, PRICE_COLS)
   const latestPriceMap = new Map(Object.entries(latestPriceByModel).map(([k, v]) => [Number(k), v]))
 
   // クライアントコンポーネントに渡すデータを準備

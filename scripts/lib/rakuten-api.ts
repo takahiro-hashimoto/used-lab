@@ -33,6 +33,7 @@ async function callRakutenApi(params: RakutenSearchParams): Promise<{
 
   const url = new URL(RAKUTEN_API_BASE)
   url.searchParams.set('applicationId', e.RAKUTEN_APP_ID)
+  url.searchParams.set('accessKey', e.RAKUTEN_ACCESS_KEY) // 2026年刷新で必須
   url.searchParams.set('affiliateId', e.RAKUTEN_AFFILIATE_ID)
   url.searchParams.set('shopCode', shopCode)
   url.searchParams.set('keyword', keyword)
@@ -42,12 +43,21 @@ async function callRakutenApi(params: RakutenSearchParams): Promise<{
   if (genreId) url.searchParams.set('genreId', genreId)
   if (ngKeyword) url.searchParams.set('NGKeyword', ngKeyword)
 
-  const response = await fetch(url.toString())
+  // 新APIは登録ドメインからのアクセスを想定。Origin/Refererヘッダーが無いと403になる
+  const response = await fetch(url.toString(), {
+    headers: { Origin: e.RAKUTEN_ORIGIN, Referer: e.RAKUTEN_ORIGIN },
+  })
   if (!response.ok) {
+    const body = await response.text().catch(() => '')
+    console.error(`  ⚠️ 楽天APIエラー: HTTP ${response.status} shop=${shopCode} kw="${keyword}" body=${body.slice(0, 300)}`)
     return { items: [], count: 0 }
   }
 
   const json = await response.json()
+  if (json.error) {
+    console.error(`  ⚠️ 楽天APIエラー応答: ${json.error} ${json.error_description ?? ''} shop=${shopCode} kw="${keyword}"`)
+    return { items: [], count: 0 }
+  }
   if (!json.Items || json.Items.length === 0) {
     return { items: [], count: 0 }
   }

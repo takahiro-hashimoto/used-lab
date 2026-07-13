@@ -3,7 +3,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import FaqSection from '@/app/components/support/FaqSection'
-import { getAllIPadModels, getAllProductShopLinksByType, getAllIPadAccessories, getAllIPadAccessoryCompatibility, getLatestIPadPriceLogsForModels } from '@/lib/queries'
+import { getAllIPadModels, getAllProductShopLinksByType, getAllIPadAccessories, getAllIPadAccessoryCompatibility, getLatestIPadPriceLogsWithPricesForModels } from '@/lib/queries'
 import { buildAccessoryLookup, getPencilTextFromAccessories, getKeyboardTextFromAccessories } from '@/lib/utils/ipad-helpers'
 import IconCard from '@/app/components/IconCard'
 import IPadFilterSearchApp from './components/IPadFilterSearchApp'
@@ -67,7 +67,8 @@ export default async function IPadFilterSearchPage() {
   const accessoryLookup = buildAccessoryLookup(allAccessories, allCompatibility)
 
   const allModelIds = allModels.map((m) => m.id)
-  const latestPriceByModel = await getLatestIPadPriceLogsForModels(allModelIds)
+  const PRICE_COLS = ['iosys_min', 'iosys_max', 'geo_min', 'geo_max', 'janpara_min', 'janpara_max']
+  const latestPriceByModel = await getLatestIPadPriceLogsWithPricesForModels(allModelIds, PRICE_COLS)
   const latestPriceMap = new Map(Object.entries(latestPriceByModel).map(([k, v]) => [Number(k), v]))
 
   const modelsData = allModels.map((m) => {

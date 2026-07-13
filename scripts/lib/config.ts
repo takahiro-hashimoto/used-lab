@@ -6,7 +6,11 @@
 export function env() {
   return {
     RAKUTEN_APP_ID: process.env.RAKUTEN_APP_ID ?? '',
+    // 2026年の楽天API刷新でaccessKey（pk_...）が必須に
+    RAKUTEN_ACCESS_KEY: process.env.RAKUTEN_ACCESS_KEY ?? '',
     RAKUTEN_AFFILIATE_ID: process.env.RAKUTEN_AFFILIATE_ID ?? '',
+    // Originヘッダーに使う登録済みドメイン（403回避）
+    RAKUTEN_ORIGIN: process.env.RAKUTEN_ORIGIN ?? 'https://used-lab.jp',
     SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL ?? process.env.SUPABASE_URL ?? '',
     SUPABASE_SERVICE_ROLE_KEY: process.env.SUPABASE_SERVICE_ROLE_KEY ?? '',
   }
@@ -17,8 +21,8 @@ export const GENRE_SMARTPHONE = '560202'  // スマートフォン本体
 export const GENRE_TABLET = '560029'      // タブレットPC本体
 export const GENRE_EARPHONE = '502835'    // ヘッドホン・イヤホン
 
-// 楽天API ベースURL
-export const RAKUTEN_API_BASE = 'https://app.rakuten.co.jp/services/api/IchibaItem/Search/20220601'
+// 楽天API ベースURL（2026年インフラ刷新後の新エンドポイント。旧 app.rakuten.co.jp は停止）
+export const RAKUTEN_API_BASE = 'https://openapi.rakuten.co.jp/ichibams/api/IchibaItem/Search/20220601'
 
 // ショップ定義
 export interface ShopConfig {
@@ -43,6 +47,7 @@ export function validateEnv(): void {
   const e = env()
   const missing: string[] = []
   if (!e.RAKUTEN_APP_ID) missing.push('RAKUTEN_APP_ID')
+  if (!e.RAKUTEN_ACCESS_KEY) missing.push('RAKUTEN_ACCESS_KEY')
   if (!e.RAKUTEN_AFFILIATE_ID) missing.push('RAKUTEN_AFFILIATE_ID')
   if (!e.SUPABASE_URL) missing.push('SUPABASE_URL or NEXT_PUBLIC_SUPABASE_URL')
   if (!e.SUPABASE_SERVICE_ROLE_KEY) missing.push('SUPABASE_SERVICE_ROLE_KEY')

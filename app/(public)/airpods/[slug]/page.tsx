@@ -8,7 +8,7 @@ import {
   getShops,
   getAllProductShopLinksByType,
   getAirPodsPriceLogsByModelId,
-  getLatestAirPodsPriceLog,
+  getLatestAirPodsPriceLogWithPrices,
 } from '@/lib/queries'
 import { aggregateDailyPrices } from '@/lib/utils/airpods-helpers'
 import HeroSection from './components/HeroSection'
@@ -80,7 +80,7 @@ export default async function AirPodsDetailPage({ params }: PageProps) {
     getShops(),
     getAllProductShopLinksByType('airpods'),
     getAirPodsPriceLogsByModelId(model.id),
-    getLatestAirPodsPriceLog(model.id),
+    getLatestAirPodsPriceLogWithPrices(model.id),
     getAllAirPodsModelsIncludingEnded(),
   ])
 
