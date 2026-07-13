@@ -201,9 +201,12 @@ export default function DashboardSection({ modelsData, initialSelected }: Props)
           </div>
         </div>
 
-        <p style={{ marginTop: '1rem', fontSize: '0.75rem', color: '#888', lineHeight: 1.7 }}>
-          {priceSourceNote('watch')}
-        </p>
+        <div className="m-callout m-callout--muted u-mt-2xl">
+          <span className="m-callout__label"><i className="fa-solid fa-circle-info" aria-hidden="true"></i> 中古相場の算出方法について</span>
+          <p className="m-callout__text">
+            {priceSourceNote('watch')}
+          </p>
+        </div>
 
         <div className="m-callout m-callout--tip u-mt-xl">
           <span className="m-callout__label">編集部メモ</span>

@@ -126,6 +126,7 @@ export default async function WatchDetailPage({ params }: PageProps) {
           <PriceChartSection
             dailyData={dailyData}
             modelName={model.model}
+            category="watch"
             latestMinMaxPairs={latestMinMaxPairs}
             latestDate={latestDate}
             storageNote={storageNote}

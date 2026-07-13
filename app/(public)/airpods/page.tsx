@@ -3,7 +3,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import {
   getAllAirPodsModels,
-  getLatestAirPodsPriceLog,
+  getLatestAirPodsPriceLogWithPrices,
   getAllProductShopLinksByType,
   getShops,
 } from '@/lib/queries'
@@ -86,7 +86,7 @@ export default async function AirPodsGuidePage() {
     .filter((m): m is AirPodsModel => m != null)
 
   const latestPrices = await Promise.all(
-    priceModels.map((m) => getLatestAirPodsPriceLog(m.id))
+    priceModels.map((m) => getLatestAirPodsPriceLogWithPrices(m.id))
   )
 
   const recommendModels = RECOMMEND_SLUGS
@@ -94,7 +94,7 @@ export default async function AirPodsGuidePage() {
     .filter((m): m is AirPodsModel => m != null)
 
   const recommendPrices = await Promise.all(
-    recommendModels.map((m) => getLatestAirPodsPriceLog(m.id))
+    recommendModels.map((m) => getLatestAirPodsPriceLogWithPrices(m.id))
   )
 
   const fallbackShops = buildFallbackShops(shops, SHOP_SECTION_IDS, 'airpods_url')

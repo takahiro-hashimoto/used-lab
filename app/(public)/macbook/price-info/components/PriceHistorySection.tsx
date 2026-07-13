@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import type { ModelData, PriceEntry } from '../page'
-import RakutenAttribution from '@/app/components/RakutenAttribution'
 
 type Props = {
   models: ModelData[]
@@ -190,8 +189,6 @@ export default function PriceHistorySection({ models }: Props) {
             </div>
           )
         })}
-
-        <RakutenAttribution />
       </div>
     </section>
   )

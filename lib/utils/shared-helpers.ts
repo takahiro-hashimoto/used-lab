@@ -275,7 +275,11 @@ export function buildStandardPriceChartData(priceLogs: BasePriceLog[]): {
   latestMinMaxPairs: { mins: number[]; maxes: number[] }[]
   storageNote: string
 } {
-  const latestDate = priceLogs.length > 0 ? priceLogs[priceLogs.length - 1].logged_at : null
+  // 価格が全ショップnullの日を避け、価格がある最新日を採用（価格取得不調時のフォールバック）
+  const latestPricedLog = [...priceLogs].reverse().find(
+    (l) => l.iosys_min != null || l.geo_min != null || l.janpara_min != null
+  )
+  const latestDate = latestPricedLog?.logged_at ?? null
   const latestLogEntries = latestDate ? priceLogs.filter((l) => l.logged_at === latestDate) : []
   const latestMinMaxPairs = latestLogEntries.map((l) => ({
     mins: [l.iosys_min, l.geo_min, l.janpara_min].filter((v): v is number => v != null),

@@ -87,7 +87,10 @@ export default async function AirPodsDetailPage({ params }: PageProps) {
   // PriceChartSection用のデータをサーバーサイドで事前計算
   // aggregateDailyPrices内で直近90日に絞られるため、filterLast3Monthsは不要
   const dailyData = aggregateDailyPrices(priceLogs)
-  const latestDate = priceLogs.length > 0 ? priceLogs[priceLogs.length - 1].logged_at : null
+  const latestPricedLog = [...priceLogs].reverse().find(
+    (l) => l.iosys_min != null || l.janpara_min != null || l.eearphone_min != null
+  )
+  const latestDate = latestPricedLog?.logged_at ?? null
   const latestLogEntries = latestDate ? priceLogs.filter((l) => l.logged_at === latestDate) : []
   const latestMinMaxPairs = latestLogEntries.map((l) => ({
     mins: [l.iosys_min, l.janpara_min, l.eearphone_min].filter((v): v is number => v != null),
@@ -122,10 +125,9 @@ export default async function AirPodsDetailPage({ params }: PageProps) {
           <PriceChartSection
             dailyData={dailyData}
             modelName={displayName}
+            category="airpods"
             latestMinMaxPairs={latestMinMaxPairs}
             latestDate={latestDate}
-            shopDescription="イオシス・じゃんぱら・eイヤホンの販売価格を定期的に集計したものです。実際の購入価格は在庫状況やタイミングにより変動する場合があります。"
-           
           />
         )}
 

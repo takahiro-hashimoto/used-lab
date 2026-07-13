@@ -97,7 +97,10 @@ export default async function MacBookDetailPage({ params }: PageProps) {
   // PriceChartSection用のデータをサーバーサイドで事前計算
   const recentLogs = filterLast3Months(priceLogs)
   const dailyData = aggregateDailyPrices(recentLogs)
-  const latestDate = priceLogs.length > 0 ? priceLogs[priceLogs.length - 1].logged_at : null
+  const latestPricedLog = [...priceLogs].reverse().find(
+    (l) => l.min1_price != null || l.min2_price != null || l.min3_price != null || l.min4_price != null || l.min5_price != null
+  )
+  const latestDate = latestPricedLog?.logged_at ?? null
   const latestLogEntries = latestDate ? priceLogs.filter((l) => l.logged_at === latestDate) : []
   const latestMinMaxPairs = latestLogEntries.map((l) => ({
     mins: [l.min1_price, l.min2_price, l.min3_price, l.min4_price, l.min5_price].filter((v): v is number => v != null),
@@ -133,11 +136,10 @@ export default async function MacBookDetailPage({ params }: PageProps) {
           <PriceChartSection
             dailyData={dailyData}
             modelName={model.model}
+            category="macbook"
             latestMinMaxPairs={latestMinMaxPairs}
             latestDate={latestDate}
             storageNote={storageNote}
-            shopDescription="楽天ウェブサービス（楽天市場商品検索API）を通じて楽天市場の中古ショップから定期的に集計したものです。実際の購入価格は在庫状況やタイミングにより変動する場合があります。"
-            showRakutenAttribution
             priceListLink={{ href: '/macbook/price-info/', label: 'MacBookの中古相場一覧' }}
           />
         )}

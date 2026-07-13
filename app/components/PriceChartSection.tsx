@@ -1,6 +1,5 @@
 import PriceChartLoader from '@/app/components/PriceChartLoader'
-import AmazonPriceDisclaimer from '@/app/components/AmazonPriceDisclaimer'
-import RakutenAttribution from '@/app/components/RakutenAttribution'
+import { priceSourceNote, type PriceCategory } from '@/lib/data/price-source-note'
 
 type DailyDataType = {
   labels: string[]
@@ -11,17 +10,15 @@ type DailyDataType = {
 type Props = {
   dailyData: DailyDataType
   modelName: string
+  /** 中古相場の算出方法の注記に使うカテゴリ（price-source-note で一元管理） */
+  category: PriceCategory
   /** LatestLog の min/max を数値配列で渡す（calculateAvgPriceRange 用） */
   latestMinMaxPairs: { mins: number[]; maxes: number[] }[]
   latestDate: string | null
   /** 集計対象の補足テキスト（例: ストレージ容量） */
   storageNote?: string
-  /** 注釈のショップ説明テキスト */
-  shopDescription?: string
   /** 中古相場一覧ページへのリンク */
   priceListLink?: { href: string; label: string }
-  /** 楽天ウェブサービス（楽天市場商品検索API）の出典表示を出すか（MacBook等） */
-  showRakutenAttribution?: boolean
 }
 
 function formatPrice(price: number | null): string {
@@ -149,14 +146,12 @@ function calculateDailyTableData(dailyData: DailyDataType): DailyRow[] {
 }
 
 export default function PriceChartSection({
-  dailyData, modelName, latestMinMaxPairs, storageNote, shopDescription, priceListLink, showRakutenAttribution,
+  dailyData, modelName, category, latestMinMaxPairs, storageNote, priceListLink,
 }: Props) {
   const range = calculateAvgPriceRange(latestMinMaxPairs)
   const trendChanges = calculateTrendChanges(dailyData)
   const monthlySummary = calculateMonthlySummary(dailyData)
   const dailyRows = calculateDailyTableData(dailyData)
-
-  const defaultShopDesc = '各ECサイトの販売価格を定期的に集計したものです。実際の購入価格は在庫状況やタイミングにより変動する場合があります。'
 
   return (
     <section className="l-section" id="price-trend" aria-labelledby="heading-price-trend">
@@ -167,6 +162,11 @@ export default function PriceChartSection({
         <p className="m-section-desc">
           主要ECサイトの販売価格を定期的に集計し、中古相場の推移をグラフと表で可視化しています。
         </p>
+        {priceListLink && (
+          <p className="m-section-desc">
+            中古相場を比較したい方は「<a href={priceListLink.href} style={{ color: 'var(--color-primary)' }}>{priceListLink.label}</a>」もあわせてご覧ください。
+          </p>
+        )}
 
         <div className="m-card m-card--shadow">
           {range.min != null && (
@@ -216,13 +216,6 @@ export default function PriceChartSection({
               <span className="m-legend__item m-legend__item--min">下限価格</span>
             </figcaption>
           </figure>
-
-          <p className="price-info-note">
-            <i className="fa-solid fa-circle-info" aria-hidden="true"></i>
-            <span>掲載価格は{shopDescription || defaultShopDesc}</span>
-          </p>
-          {showRakutenAttribution && <RakutenAttribution />}
-          <AmazonPriceDisclaimer />
         </div>
 
         <div className="m-card m-card--shadow price-details-card">
@@ -287,14 +280,12 @@ export default function PriceChartSection({
           )}
         </div>
 
-        {priceListLink && (
-          <div className="m-callout m-callout--tip u-mt-2xl">
-            <span className="m-callout__label">memo</span>
-            <p className="m-callout__text">
-              中古相場を比較したい方は「<a href={priceListLink.href}>{priceListLink.label}</a>」もあわせてご覧ください。
-            </p>
-          </div>
-        )}
+        <div className="m-callout m-callout--muted u-mt-2xl">
+          <span className="m-callout__label"><i className="fa-solid fa-circle-info" aria-hidden="true"></i> 中古相場の算出方法について</span>
+          <p className="m-callout__text">
+            {priceSourceNote(category)}
+          </p>
+        </div>
       </div>
     </section>
   )

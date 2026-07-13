@@ -6,7 +6,6 @@ import type { ChartDataset, TooltipItem } from 'chart.js'
 import type { ModelData } from '../page'
 import Link from 'next/link'
 import ChartEmbedButton from '@/app/components/ChartEmbedButton'
-import RakutenAttribution from '@/app/components/RakutenAttribution'
 import { priceSourceNote } from '@/lib/data/price-source-note'
 
 ChartClass.register(CategoryScale, LinearScale, PointElement, LineElement, LineController, Tooltip)
@@ -210,11 +209,12 @@ export default function DashboardSection({ modelsData, initialSelected }: Props)
           </div>
         </div>
 
-        <p style={{ marginTop: '1rem', fontSize: '0.75rem', color: '#888', lineHeight: 1.7 }}>
-          {priceSourceNote('macbook')}
-        </p>
-
-        <RakutenAttribution />
+        <div className="m-callout m-callout--muted u-mt-2xl">
+          <span className="m-callout__label"><i className="fa-solid fa-circle-info" aria-hidden="true"></i> 中古相場の算出方法について</span>
+          <p className="m-callout__text">
+            {priceSourceNote('macbook')}
+          </p>
+        </div>
 
         <div className="m-callout m-callout--tip u-mt-xl">
           <span className="m-callout__label">編集部メモ</span>

@@ -146,6 +146,7 @@ export default async function IPadDetailPage({ params }: PageProps) {
           <PriceChartSection
             dailyData={dailyData}
             modelName={enrichedModel.model}
+            category="ipad"
             latestMinMaxPairs={latestMinMaxPairs}
             latestDate={latestDate}
             storageNote={storageNote}

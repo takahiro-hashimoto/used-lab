@@ -130,6 +130,7 @@ export default async function IPhoneDetailPage({ params }: PageProps) {
           <PriceChartSection
             dailyData={dailyData}
             modelName={model.model}
+            category="iphone"
             latestMinMaxPairs={latestMinMaxPairs}
             latestDate={latestDate}
             storageNote={storageNote}

@@ -390,6 +390,10 @@ export const getAirPodsPriceLogsByModelId = airPodsPriceLogs.getByModelId
 export const getLatestAirPodsPriceLog = airPodsPriceLogs.getLatest
 export const getAllAirPodsPriceLogsByModelIds = airPodsPriceLogs.getAllByModelIds
 export const getLatestAirPodsPriceLogsForModels = airPodsPriceLogs.getLatestForModels
+export const getLatestAirPodsPriceLogsWithPricesForModels = airPodsPriceLogs.getLatestWithPricesForModels
+const AIRPODS_PRICE_COLS = ['iosys_min', 'iosys_max', 'janpara_min', 'janpara_max', 'eearphone_min', 'eearphone_max']
+export const getLatestAirPodsPriceLogWithPrices = (modelId: number) =>
+  airPodsPriceLogs.getLatestWithPrices(modelId, AIRPODS_PRICE_COLS)
 
 // ============================================================
 // 共通クエリ（製品横断）
