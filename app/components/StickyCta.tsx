@@ -37,7 +37,6 @@ const CONTAINER_STYLE: React.CSSProperties = {
 export default function StickyCta() {
   const [visible, setVisible] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
-  const [expired, setExpired] = useState(false)
   const pathname = usePathname()
   const { categoryUrls, defaultUrl, overrideUrl, overrideLabel, config } = useStickyCtaContext()
 
@@ -59,19 +58,30 @@ export default function StickyCta() {
     }
   }, [])
 
-  // 特殊バナーの終了日時を過ぎたらクライアント側で通常バナーへ自動復帰。
-  // （開きっぱなしのタブや、キャッシュ済みで specialActive=true のHTMLでも即戻す）
+  // 特殊バナーの期間判定はクライアント側で行う。
+  // ページは revalidate: false で無期限キャッシュされるため、サーバ算出の
+  // specialActive は生成時点のスナップショットでしかない（初期値にのみ使用）。
+  // 開始前→開始時刻に自動表示、終了時刻に通常バナーへ自動復帰する。
+  const [specialNow, setSpecialNow] = useState(config.specialActive)
   useEffect(() => {
-    if (!config.specialActive || !config.specialEndAt) return
-    const remaining = new Date(config.specialEndAt).getTime() - Date.now()
-    if (remaining <= 0) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
-      setExpired(true)
-      return
+    if (config.mode !== 'special') return
+    const startMs = config.specialStartAt ? new Date(config.specialStartAt).getTime() : null
+    const endMs = config.specialEndAt ? new Date(config.specialEndAt).getTime() : null
+    let timer: ReturnType<typeof setTimeout> | undefined
+    const evaluate = () => {
+      const now = Date.now()
+      setSpecialNow((!startMs || now >= startMs) && (!endMs || now <= endMs))
+      // 次の境界（未来の開始 or 終了時刻）で再評価（開始→終了と連鎖する）
+      const next = [startMs, endMs]
+        .filter((t): t is number => t !== null && t > now)
+        .sort((a, b) => a - b)[0]
+      if (next !== undefined) {
+        timer = setTimeout(evaluate, Math.min(next - now, 2_147_483_647))
+      }
     }
-    const timer = setTimeout(() => setExpired(true), Math.min(remaining, 2_147_483_647))
+    evaluate()
     return () => clearTimeout(timer)
-  }, [config.specialActive, config.specialEndAt])
+  }, [config.mode, config.specialStartAt, config.specialEndAt])
 
   // filter-search では常に非表示
   if (pathname.includes('/filter-search')) return null
@@ -79,7 +89,7 @@ export default function StickyCta() {
   const transform = visible ? 'translate3d(0,0,0)' : 'translate3d(0,100%,0)'
   const transition = 'transform 0.3s ease, opacity 0.3s ease'
 
-  const showSpecial = config.specialActive && !expired
+  const showSpecial = config.mode === 'special' && specialNow
 
   // 特殊バナーのURLがAmazon（amzn.to / amazon.co.jp 等）の場合は一時的に非表示にする
   // （Amazonアソシエイト対応）。復活時はこの isAmazonSpecialUrl 判定を削除。

@@ -541,7 +541,13 @@ export const getShops = unstable_cache(
   { revalidate: 604800, tags: [CACHE_TAGS.shops] }
 )
 
-/** サイト共通設定（追従CTAの出し分け等）を取得。切替を早く反映するため短めの revalidate。 */
+/**
+ * サイト共通設定（追従CTAの出し分け等）を取得。
+ * 全カテゴリの layout から呼ばれるため、時間ベースの revalidate を付けると
+ * 配下の全ページの ISR 間隔がその値まで短縮され Write Units が爆増する。
+ * 反映は管理画面の updateSiteConfig が purgeTag(siteConfig) で即時に行うので、
+ * ここはタグ無効化のみに任せる（revalidate: false）。
+ */
 export const getSiteConfig = unstable_cache(
   async (): Promise<SiteConfig | null> => {
     const { data, error } = await supabase
@@ -556,7 +562,7 @@ export const getSiteConfig = unstable_cache(
     return (data ?? null) as SiteConfig | null
   },
   ['site-config'],
-  { revalidate: 300, tags: [CACHE_TAGS.siteConfig] }
+  { revalidate: false, tags: [CACHE_TAGS.siteConfig] }
 )
 
 export async function getProductShopLinks(

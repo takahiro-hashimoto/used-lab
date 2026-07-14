@@ -7,11 +7,17 @@ import type { SiteConfig, StickyCtaMode } from '@/lib/types'
 export interface StickyCtaConfig {
   /** DB上の設定値（期間判定は含まない） */
   mode: StickyCtaMode
-  /** 期間判定込みで「今」特殊バナーを出すべきか（サーバ時刻で算出） */
+  /**
+   * 期間判定込みで「今」特殊バナーを出すべきか（サーバ時刻で算出した初期値）。
+   * ページは revalidate: false で無期限キャッシュされるため、この値は生成時点の
+   * スナップショット。実際の表示判定はクライアントが start/end から再計算する。
+   */
   specialActive: boolean
   specialHeadline: string
   specialLabel: string
   specialUrl: string
+  /** 特殊バナーの開始日時（ISO / NULL）。クライアントの自動切替タイマー用。 */
+  specialStartAt: string | null
   /** 特殊バナーの終了日時（ISO / NULL）。クライアントの自動復帰タイマー用。 */
   specialEndAt: string | null
 }
@@ -22,6 +28,7 @@ export const DEFAULT_STICKY_CTA_CONFIG: StickyCtaConfig = {
   specialHeadline: '',
   specialLabel: '',
   specialUrl: '#',
+  specialStartAt: null,
   specialEndAt: null,
 }
 
@@ -48,6 +55,7 @@ export function toStickyCtaConfig(site: SiteConfig | null): StickyCtaConfig {
     specialHeadline: site.special_cta_headline ?? '',
     specialLabel: site.special_cta_label ?? '',
     specialUrl: site.special_cta_url ?? '#',
+    specialStartAt: startAt,
     specialEndAt: endAt,
   }
 }
