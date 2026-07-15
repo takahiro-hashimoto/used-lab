@@ -118,7 +118,7 @@ export default function IpadAppleCarePage() {
                 </p>
                 <p className="lead-link">
                   <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                  iPadの選び方から知りたい方は「<Link href="/ipad/">中古iPad購入ガイド</Link>」をご覧ください。
+                  iPadの選び方から知りたい方は「<Link prefetch={false} href="/ipad/">中古iPad購入ガイド</Link>」をご覧ください。
                 </p>
               </div>
             </div>
@@ -658,7 +658,7 @@ export default function IpadAppleCarePage() {
                 <div className="m-callout m-callout--tip u-mt-xl">
                   <span className="m-callout__label">関連記事</span>
                   <p>
-                    Apple Care+とモバイル保険をさらに詳しく比較したい方は「<Link href="/iphone/mobile-hoken-compare/" style={{ color: 'var(--color-primary)' }}>知らないと損！Apple Care+よりもモバイル保険に加入した方がコスパが高い理由</Link>」をご覧ください。
+                    Apple Care+とモバイル保険をさらに詳しく比較したい方は「<Link prefetch={false} href="/iphone/mobile-hoken-compare/" style={{ color: 'var(--color-primary)' }}>知らないと損！Apple Care+よりもモバイル保険に加入した方がコスパが高い理由</Link>」をご覧ください。
                   </p>
                 </div>
               </div>
@@ -691,7 +691,7 @@ export default function IpadAppleCarePage() {
                     </p>
                     <p className="lead-link u-mt-sm">
                       <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                      おすすめの中古iPadは「<Link href="/ipad/recommend/">中古iPadのおすすめ機種</Link>」で紹介しています。
+                      おすすめの中古iPadは「<Link prefetch={false} href="/ipad/recommend/">中古iPadのおすすめ機種</Link>」で紹介しています。
                     </p>
                   </div>
                 </div>

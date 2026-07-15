@@ -210,7 +210,7 @@ export default function BuyMethodsSection() {
                 <p>中古AirPodsはバッテリー残量・充電サイクル数を必ず確認しましょう。AirPodsのバッテリーは消耗品で、使用時間によって充電持ちが著しく低下している場合があります。</p>
                 <p>購入後の保証が付いているショップを選ぶことが重要です。当サイトの購入ガイドでおすすめショップやモデル別の価格比較をチェックしてみてください。</p>
               </div>
-              <Link href="/airpods/" className="buy-method-cta">
+              <Link prefetch={false} href="/airpods/" className="buy-method-cta">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i> 中古AirPods購入ガイドを見る
               </Link>
             </div>

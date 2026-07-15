@@ -289,7 +289,7 @@ export default async function AirPodsPriceInfoPage() {
               </p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                情報を網羅的に得たい方は「<Link href="/airpods/">中古AirPodsおすすめ機種・選び方ガイド</Link>」も参考にしてみてください！
+                情報を網羅的に得たい方は「<Link prefetch={false} href="/airpods/">中古AirPodsおすすめ機種・選び方ガイド</Link>」も参考にしてみてください！
               </p>
             </div>
           </div>

@@ -212,7 +212,7 @@ export default async function MacBookGuidePage() {
             items={compareItems}
             heading={<>今買うならこれ！おすすめ中古MacBook4選【{GUIDE_DATE_LABEL}最新】</>}
             descriptions={[
-              <>当サイトでおすすめしている機種は下記の通り。スペックの詳細な比較は<Link href="/macbook/macbook-spec-table/">MacBookスペック比較表</Link>をご覧ください。{GUIDE_DATE_LABEL}時点で「macOSサポートが十分に残っている」「中古価格と性能のバランスが良い」ことを判断基準に、本当の狙い目モデルだけを厳選しています。</>,
+              <>当サイトでおすすめしている機種は下記の通り。スペックの詳細な比較は<Link prefetch={false} href="/macbook/macbook-spec-table/">MacBookスペック比較表</Link>をご覧ください。{GUIDE_DATE_LABEL}時点で「macOSサポートが十分に残っている」「中古価格と性能のバランスが良い」ことを判断基準に、本当の狙い目モデルだけを厳選しています。</>,
             ]}
           />
           <RecommendDetailSection items={detailItems} />
@@ -246,7 +246,7 @@ export default async function MacBookGuidePage() {
 
               <p className="guide-section-note">Apple Silicon搭載MacBook全{allModels.length}機種の詳細な価格推移グラフ・相場データをご覧いただけます</p>
               <div className="guide-section-cta">
-                <Link href="/macbook/price-info/" className="m-btn m-btn--primary m-btn--block">
+                <Link prefetch={false} href="/macbook/price-info/" className="m-btn m-btn--primary m-btn--block">
                   <span>中古MacBookの相場・価格推移グラフ</span>
                   <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
                 </Link>
@@ -262,7 +262,7 @@ export default async function MacBookGuidePage() {
 
               <div className="l-grid l-grid--2col l-grid--gap-lg l-grid--mb-2xl">
                 {GUIDE_SPEC_LINKS.map((link) => (
-                  <Link key={link.href} href={link.href} className="m-card m-card--shadow related-link-card m-card--hoverable">
+                  <Link prefetch={false} key={link.href} href={link.href} className="m-card m-card--shadow related-link-card m-card--hoverable">
                     <Image src={getHeroImage(link.href)} alt={link.title} className="related-link-card__img" width={400} height={300} loading="lazy" />
                     <div className="related-link-card__body">
                       <p className="related-link-card__title">{link.title}</p>
@@ -322,7 +322,7 @@ export default async function MacBookGuidePage() {
                     <dt className="glossary-item-title">macOSのサポート期間（端末の寿命）</dt>
                     <dd className="glossary-item-desc">
                       MacBookのmacOSサポート期間の目安は発売から約7年。Intelモデルは既にサポートが終了しているものが多いため、Appleシリコン（M1以降）搭載モデルを選びましょう。
-                      <div className="u-mt-sm">詳細：<Link href="/macbook/used-macbook-support/">中古MacBookの寿命とサポート期間の目安</Link></div>
+                      <div className="u-mt-sm">詳細：<Link prefetch={false} href="/macbook/used-macbook-support/">中古MacBookの寿命とサポート期間の目安</Link></div>
                     </dd>
                   </div>
                   <div className="glossary-item">
@@ -340,7 +340,7 @@ export default async function MacBookGuidePage() {
                   <div className="glossary-item">
                     <dt className="glossary-item-title">ストレージ容量の確認</dt>
                     <dd className="glossary-item-desc">
-                      MacBookはストレージの後から増設ができません。Web閲覧・事務作業なら256GB、写真や動画を扱うなら512GB以上を選びましょう。購入後に容量不足で後悔するケースが多いポイントです。詳しくは<Link href="/macbook/storage-guide/">ストレージ容量ガイド</Link>をご覧ください。
+                      MacBookはストレージの後から増設ができません。Web閲覧・事務作業なら256GB、写真や動画を扱うなら512GB以上を選びましょう。購入後に容量不足で後悔するケースが多いポイントです。詳しくは<Link prefetch={false} href="/macbook/storage-guide/">ストレージ容量ガイド</Link>をご覧ください。
                     </dd>
                   </div>
                   <div className="glossary-item">
@@ -360,7 +360,7 @@ export default async function MacBookGuidePage() {
 
               <p className="guide-section-note">さらに詳しい確認方法やフリマサイトでの注意点などは以下の記事にまとめています。</p>
               <div className="guide-section-cta">
-                <Link href="/macbook/used-macbook-attention/" className="m-btn m-btn--primary m-btn--block">
+                <Link prefetch={false} href="/macbook/used-macbook-attention/" className="m-btn m-btn--primary m-btn--block">
                   <span>中古MacBookの注意点と選び方</span>
                   <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
                 </Link>
@@ -379,7 +379,7 @@ export default async function MacBookGuidePage() {
 
               <p className="guide-section-note u-mt-2xl">各ショップの詳細やサービス内容の違いは以下の記事で解説しています。</p>
               <div className="guide-section-cta">
-                <Link href="/macbook/macbook-shop/" className="m-btn m-btn--primary m-btn--block">
+                <Link prefetch={false} href="/macbook/macbook-shop/" className="m-btn m-btn--primary m-btn--block">
                   <span>中古MacBookを安心して購入できるECサイト</span>
                   <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
                 </Link>
@@ -394,28 +394,28 @@ export default async function MacBookGuidePage() {
               <p className="m-section-desc">「iPadとどっちがいい？」「Windowsから乗り換えるべき？」といった疑問に答える比較記事をまとめました。</p>
 
               <div className="l-grid l-grid--2col l-grid--gap-lg">
-                <Link href="/macbook/air-pro-compare/" className="m-card m-card--shadow related-link-card m-card--hoverable">
+                <Link prefetch={false} href="/macbook/air-pro-compare/" className="m-card m-card--shadow related-link-card m-card--hoverable">
                   <Image src={getHeroImage('/macbook/air-pro-compare/')} alt="MacBook AirとProの比較" className="related-link-card__img" width={400} height={300} loading="lazy" />
                   <div className="related-link-card__body">
                     <p className="related-link-card__title">MacBook AirとProどっちがいい？</p>
                     <p className="related-link-card__desc">冷却方式・チップ性能・ディスプレイ・ポート・中古価格の5観点で違いを解説。用途別おすすめ早見表付き。</p>
                   </div>
                 </Link>
-                <Link href="/macbook/air-neo-compare/" className="m-card m-card--shadow related-link-card m-card--hoverable">
+                <Link prefetch={false} href="/macbook/air-neo-compare/" className="m-card m-card--shadow related-link-card m-card--hoverable">
                   <Image src={getHeroImage('/macbook/air-neo-compare/')} alt="MacBook AirとNeoの比較" className="related-link-card__img" width={400} height={300} loading="lazy" />
                   <div className="related-link-card__body">
                     <p className="related-link-card__title">MacBook AirとNeoどっちがいい？</p>
                     <p className="related-link-card__desc">メモリ、Apple Intelligence、Thunderbolt 4、価格差に注目して比較。大学生・社会人・プログラミング学習向けの選び方も解説。</p>
                   </div>
                 </Link>
-                <Link href="/macbook/ipad-macbook-compare/" className="m-card m-card--shadow related-link-card m-card--hoverable">
+                <Link prefetch={false} href="/macbook/ipad-macbook-compare/" className="m-card m-card--shadow related-link-card m-card--hoverable">
                   <Image src={getHeroImage('/macbook/ipad-macbook-compare/')} alt="MacBookとiPadの比較" className="related-link-card__img" width={400} height={300} loading="lazy" />
                   <div className="related-link-card__body">
                     <p className="related-link-card__title">MacBookとiPadどっちを買う？</p>
                     <p className="related-link-card__desc">作業効率・携帯性・価格・Apple Pencil対応など、用途別に両者の違いをわかりやすく比較。タブレットかノートPCか迷っている方に。</p>
                   </div>
                 </Link>
-                <Link href="/macbook/windows-mac-compare/" className="m-card m-card--shadow related-link-card m-card--hoverable">
+                <Link prefetch={false} href="/macbook/windows-mac-compare/" className="m-card m-card--shadow related-link-card m-card--hoverable">
                   <Image src={getHeroImage('/macbook/windows-mac-compare/')} alt="MacとWindowsの比較" className="related-link-card__img" width={400} height={300} loading="lazy" />
                   <div className="related-link-card__body">
                     <p className="related-link-card__title">MacとWindowsどっちがいい？</p>

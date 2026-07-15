@@ -552,7 +552,7 @@ export default function FilterSearchApp({ models, shopLinks }: Props) {
                         )}
                       </div>
                       <div className="ifd-result-card__info">
-                        <Link href={`/iphone/${m.slug}`} className="ifd-result-card__name">
+                        <Link prefetch={false} href={`/iphone/${m.slug}`} className="ifd-result-card__name">
                           {m.model}
                         </Link>
                         <div className="ifd-result-card__tags">

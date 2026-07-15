@@ -49,7 +49,7 @@ const TIMING_CARDS: TimingCard[] = [
         <p>
           iPadは毎世代チップ性能が大幅に向上しているため、買い替えることで作業効率が大きく改善されます。
           各世代の性能差が気になる方は
-          <Link href="/ipad/ipad-spec-table/">歴代iPadのスペック比較</Link>
+          <Link prefetch={false} href="/ipad/ipad-spec-table/">歴代iPadのスペック比較</Link>
           をチェックしてみてください。
         </p>
       </>
@@ -68,7 +68,7 @@ export default function IPadTimingSection() {
           <span className="m-callout__label">memo</span>
           <p className="m-callout__text">
             買い替えを決めたら、購入前の注意点もあわせてチェックしておきましょう。
-            <Link href="/ipad/used-ipad-attention/">中古iPadの注意点まとめ</Link>で詳しく解説しています。
+            <Link prefetch={false} href="/ipad/used-ipad-attention/">中古iPadの注意点まとめ</Link>で詳しく解説しています。
           </p>
         </div>
       }

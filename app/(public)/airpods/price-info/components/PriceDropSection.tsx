@@ -50,7 +50,7 @@ export default function PriceDropSection({ items, dateDisplay }: Props) {
                   )}
                 </div>
                 <div className="ifd-result-card__info">
-                  <Link href={`/airpods/${model.slug}/`} className="ifd-result-card__name">
+                  <Link prefetch={false} href={`/airpods/${model.slug}/`} className="ifd-result-card__name">
                     {model.name}
                   </Link>
                   <div className="ifd-result-card__tags">

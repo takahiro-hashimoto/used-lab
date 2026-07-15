@@ -55,7 +55,7 @@ export default function MeritSection() {
           </p>
           <p className="lead-link u-mt-sm">
             <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-            <Link href="/ipad/car-navigation-system/">iPadをカーナビ化するメリットが凄い！</Link>
+            <Link prefetch={false} href="/ipad/car-navigation-system/">iPadをカーナビ化するメリットが凄い！</Link>
           </p>
         </div>
       </div>
@@ -90,7 +90,7 @@ export default function MeritSection() {
           </p>
           <p className="lead-link u-mt-sm">
             <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-            <Link href="/ipad/apple-pencil-compare/">Apple Pencilの違いを比較！あなたにぴったりのアップルペンシルがわかる</Link>
+            <Link prefetch={false} href="/ipad/apple-pencil-compare/">Apple Pencilの違いを比較！あなたにぴったりのアップルペンシルがわかる</Link>
           </p>
         </div>
       </div>

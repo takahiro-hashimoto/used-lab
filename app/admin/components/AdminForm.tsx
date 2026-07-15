@@ -126,7 +126,7 @@ export default function AdminForm({ fields, initialData, action, categoryKey, su
           <button type="submit" disabled={isPending} className="admin-btn admin-btn--primary">
             {isPending ? '保存中...' : submitLabel}
           </button>
-          <Link href={`/admin/${categoryKey}`} className="admin-btn admin-btn--secondary">
+          <Link prefetch={false} href={`/admin/${categoryKey}`} className="admin-btn admin-btn--secondary">
             キャンセル
           </Link>
         </div>

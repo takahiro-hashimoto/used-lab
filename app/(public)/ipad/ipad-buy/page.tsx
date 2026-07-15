@@ -124,7 +124,7 @@ export default function IPadBuyPage() {
               </p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                中古iPadの選び方から知りたい方は「<Link href="/ipad/">中古iPad購入ガイド</Link>」をご覧ください。
+                中古iPadの選び方から知りたい方は「<Link prefetch={false} href="/ipad/">中古iPad購入ガイド</Link>」をご覧ください。
               </p>
             </div>
           </div>

@@ -410,7 +410,7 @@ export default function ComparisonSections() {
           </p>
           <p className="lead-link u-mt-sm">
             <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-            Apple Siliconの性能をより詳しく知りたい方は「<Link href="/macbook/benchmark/">MacBookベンチマークスコア比較</Link>」もあわせてご覧ください。
+            Apple Siliconの性能をより詳しく知りたい方は「<Link prefetch={false} href="/macbook/benchmark/">MacBookベンチマークスコア比較</Link>」もあわせてご覧ください。
           </p>
         </div>
       </div>

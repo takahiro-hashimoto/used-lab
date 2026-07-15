@@ -194,8 +194,8 @@ export default async function AirPodsFilterSearchPage() {
           <div className="l-container">
             <div className="lead-box">
               <p>「どのAirPodsを買えばいいかわからない...」そんな悩みを解決する<strong>AirPods機種診断ツール</strong>です。</p>
-              <p>最新のAirPods 4やAirPods Pro 2から型落ちの人気モデルまで、あなたの使用目的・予算・こだわり条件に合わせて最適な<Link href="/airpods/">中古AirPods</Link>を無料で診断。<strong>{totalModels}モデルのデータベース</strong>から、あなたにぴったりの1台を見つけましょう。</p>
-              <p className="lead-link"><i className="fa-solid fa-arrow-right" aria-hidden="true"></i> 情報を網羅的に得たい方は「<Link href="/airpods/">中古AirPodsおすすめ機種・選び方ガイド</Link>」も参考にしてみてください！</p>
+              <p>最新のAirPods 4やAirPods Pro 2から型落ちの人気モデルまで、あなたの使用目的・予算・こだわり条件に合わせて最適な<Link prefetch={false} href="/airpods/">中古AirPods</Link>を無料で診断。<strong>{totalModels}モデルのデータベース</strong>から、あなたにぴったりの1台を見つけましょう。</p>
+              <p className="lead-link"><i className="fa-solid fa-arrow-right" aria-hidden="true"></i> 情報を網羅的に得たい方は「<Link prefetch={false} href="/airpods/">中古AirPodsおすすめ機種・選び方ガイド</Link>」も参考にしてみてください！</p>
             </div>
           </div>
         </section>
@@ -232,7 +232,7 @@ export default async function AirPodsFilterSearchPage() {
             <div className="m-card m-card--shadow m-card--padded">
               <p>本診断では、各AirPodsモデルの<strong>スペック情報（チップ、装着タイプ、ノイズキャンセリング、防水性能など）</strong>と<strong>中古市場での実売価格</strong>をもとに、あなたの回答に最も合致するモデルを絞り込みます。</p>
               <p style={{ marginTop: '12px' }}>用途ごとに重要なスペック項目は異なります。例えば「音楽鑑賞重視」ならノイズキャンセリングや空間オーディオ対応を優先し、「運動用」なら防水性能やフィット感を重視した絞り込みを行います。</p>
-              <p style={{ marginTop: '12px' }}>予算フィルターでは主要中古ショップ（イオシス・じゃんぱら・eイヤホン）の最安値データを参照しています。価格は日々変動するため、あくまで目安としてご活用ください。（価格推移は<Link href="/airpods/price-info/">中古AirPodsの相場と価格推移</Link>で紹介）</p>
+              <p style={{ marginTop: '12px' }}>予算フィルターでは主要中古ショップ（イオシス・じゃんぱら・eイヤホン）の最安値データを参照しています。価格は日々変動するため、あくまで目安としてご活用ください。（価格推移は<Link prefetch={false} href="/airpods/price-info/">中古AirPodsの相場と価格推移</Link>で紹介）</p>
             </div>
           </div>
         </section>

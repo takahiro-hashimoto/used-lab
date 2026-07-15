@@ -141,7 +141,7 @@ export default async function NetworkLimitPage() {
               </p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                中古iPhoneの全体像を把握したい方は「<Link href="/iphone/">中古iPhoneおすすめ機種・選び方ガイド</Link>」をご覧ください。
+                中古iPhoneの全体像を把握したい方は「<Link prefetch={false} href="/iphone/">中古iPhoneおすすめ機種・選び方ガイド</Link>」をご覧ください。
               </p>
             </div>
           </div>
@@ -395,7 +395,7 @@ export default async function NetworkLimitPage() {
               <div className="m-callout m-callout--tip u-mt-xl">
                 <span className="m-callout__label">memo</span>
                 <p>
-                  各ショップの特徴や選び方を詳しく知りたい方は「<Link href="/iphone/iphone-shop/" style={{ color: 'var(--color-primary)' }}>中古iPhoneはどこで買うのが正解？おすすめサイト・ショップ比較</Link>」をご覧ください。
+                  各ショップの特徴や選び方を詳しく知りたい方は「<Link prefetch={false} href="/iphone/iphone-shop/" style={{ color: 'var(--color-primary)' }}>中古iPhoneはどこで買うのが正解？おすすめサイト・ショップ比較</Link>」をご覧ください。
                 </p>
               </div>
             </div>

@@ -149,7 +149,7 @@ export default function AirpodsFindPage() {
               </p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                中古AirPodsの選び方全般は「<Link href="/airpods/">中古AirPodsおすすめ機種・選び方ガイド</Link>」をご覧ください。
+                中古AirPodsの選び方全般は「<Link prefetch={false} href="/airpods/">中古AirPodsおすすめ機種・選び方ガイド</Link>」をご覧ください。
               </p>
             </div>
           </div>

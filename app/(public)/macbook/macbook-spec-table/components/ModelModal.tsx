@@ -121,7 +121,7 @@ export default function ModelModal({ model, avgPrice, iosysUrl, onClose }: Props
 
         {/* フッター */}
         <div className="model-modal__footer">
-          <Link href={`/macbook/${model.slug}/`} className="m-btn m-btn--primary" onClick={onClose}>
+          <Link prefetch={false} href={`/macbook/${model.slug}/`} className="m-btn m-btn--primary" onClick={onClose}>
             詳細記事を見る <i className="fa-solid fa-arrow-right" aria-hidden="true" />
           </Link>
           {iosysUrl && (

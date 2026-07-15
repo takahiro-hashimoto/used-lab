@@ -173,7 +173,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/macbook/storage
               <p>本記事では、<strong>用途別のおすすめ容量の目安、歴代MacBookの容量ラインナップ、そして中古最安価格</strong>をまとめました。</p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                情報を網羅的に得たい方は「<Link href="/macbook/">中古MacBookおすすめ機種・選び方ガイド</Link>」も参考にしてみてください！
+                情報を網羅的に得たい方は「<Link prefetch={false} href="/macbook/">中古MacBookおすすめ機種・選び方ガイド</Link>」も参考にしてみてください！
               </p>
             </div>
           </div>
@@ -351,7 +351,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/macbook/storage
                 </ol>
                 <div className="m-callout m-callout--subtle caution-links-box">
                   <ul className="caution-links-box__list">
-                    <li><Link href="/macbook/used-macbook-attention/"><i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> 中古MacBookの注意点と選び方まとめ</Link></li>
+                    <li><Link prefetch={false} href="/macbook/used-macbook-attention/"><i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> 中古MacBookの注意点と選び方まとめ</Link></li>
                   </ul>
                 </div>
               </div>

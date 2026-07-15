@@ -61,7 +61,7 @@ export default function RankingSection({ items, modelCount, dateDisplay }: Props
                   )}
                 </div>
                 <div className="ifd-result-card__info" itemProp="item" itemScope itemType="https://schema.org/Product">
-                  <Link href={`/airpods/${model.slug}/`} className="ifd-result-card__name" itemProp="name">
+                  <Link prefetch={false} href={`/airpods/${model.slug}/`} className="ifd-result-card__name" itemProp="name">
                     {model.name}
                   </Link>
                   <meta itemProp="brand" content="Apple" />

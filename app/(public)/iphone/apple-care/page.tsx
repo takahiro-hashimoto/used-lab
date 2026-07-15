@@ -121,7 +121,7 @@ export default function IphoneAppleCarePage() {
                 </p>
                 <p className="lead-link">
                   <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                  iPhoneの選び方から知りたい方は「<Link href="/iphone/">中古iPhone購入ガイド</Link>」をご覧ください。
+                  iPhoneの選び方から知りたい方は「<Link prefetch={false} href="/iphone/">中古iPhone購入ガイド</Link>」をご覧ください。
                 </p>
               </div>
             </div>
@@ -654,7 +654,7 @@ export default function IphoneAppleCarePage() {
                 <div className="m-callout m-callout--tip u-mt-xl">
                   <span className="m-callout__label">関連記事</span>
                   <p>
-                    Apple Care+とモバイル保険をさらに詳しく比較したい方は「<Link href="/iphone/mobile-hoken-compare/" style={{ color: 'var(--color-primary)' }}>知らないと損！Apple Care+よりもモバイル保険に加入した方がコスパが高い理由</Link>」をご覧ください。
+                    Apple Care+とモバイル保険をさらに詳しく比較したい方は「<Link prefetch={false} href="/iphone/mobile-hoken-compare/" style={{ color: 'var(--color-primary)' }}>知らないと損！Apple Care+よりもモバイル保険に加入した方がコスパが高い理由</Link>」をご覧ください。
                   </p>
                 </div>
               </div>
@@ -687,7 +687,7 @@ export default function IphoneAppleCarePage() {
                     </p>
                     <p className="lead-link u-mt-sm">
                       <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                      おすすめの中古iPhoneは「<Link href="/iphone/">中古iPhoneのおすすめ機種</Link>」で紹介しています。
+                      おすすめの中古iPhoneは「<Link prefetch={false} href="/iphone/">中古iPhoneのおすすめ機種</Link>」で紹介しています。
                     </p>
                   </div>
                 </div>

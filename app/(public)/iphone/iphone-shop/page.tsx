@@ -177,7 +177,7 @@ export default async function IPhoneShopPage() {
               </p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                もっと全体像から知りたい方は「<Link href="/iphone/">中古iPhoneおすすめ機種・選び方まとめ</Link>」をご覧ください。
+                もっと全体像から知りたい方は「<Link prefetch={false} href="/iphone/">中古iPhoneおすすめ機種・選び方まとめ</Link>」をご覧ください。
               </p>
             </div>
           </div>

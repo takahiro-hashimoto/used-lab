@@ -272,7 +272,7 @@ export default async function AirPodsGuidePage() {
 
               <p className="guide-section-note">各モデルの詳細な価格推移グラフ・相場データをご覧いただけます</p>
               <div className="guide-section-cta">
-                <Link href="/airpods/price-info/" className="m-btn m-btn--primary m-btn--block">
+                <Link prefetch={false} href="/airpods/price-info/" className="m-btn m-btn--primary m-btn--block">
                   <span>中古AirPodsの相場・価格推移グラフ</span>
                   <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
                 </Link>
@@ -343,7 +343,7 @@ export default async function AirPodsGuidePage() {
 
               <div className="l-grid l-grid--2col l-grid--gap-lg l-grid--mb-2xl">
                 {GUIDE_SPEC_LINKS.map((link) => (
-                  <Link key={link.href} href={link.href} className="m-card m-card--shadow related-link-card m-card--hoverable">
+                  <Link prefetch={false} key={link.href} href={link.href} className="m-card m-card--shadow related-link-card m-card--hoverable">
                     <Image src={getHeroImage(link.href)} alt={link.title} className="related-link-card__img" width={400} height={300} loading="lazy" />
                     <div className="related-link-card__body">
                       <p className="related-link-card__title">{link.title}</p>

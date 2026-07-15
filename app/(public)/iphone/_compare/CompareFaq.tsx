@@ -55,7 +55,7 @@ export default function CompareFaq({ modelL, modelR, latestL, latestR }: Props) 
     {
       question: `中古の${nameL}と${nameR}はどっちがおすすめ？`,
       answer: `コスパ重視なら${rangeL.avg != null && rangeR.avg != null && rangeL.avg <= rangeR.avg ? nameL : nameR}がおすすめです。${priceDiffText ? `現在の中古相場は${priceDiffText}です。` : ''} カメラや処理性能にこだわるなら上位モデルを検討しましょう。`,
-      answerNode: <>コスパ重視なら{rangeL.avg != null && rangeR.avg != null && rangeL.avg <= rangeR.avg ? nameL : nameR}がおすすめです。{priceDiffText ? `現在の中古相場は${priceDiffText}です。` : ''} カメラや処理性能にこだわるなら上位モデルを検討しましょう。詳しくは<Link href="/iphone/">おすすめ中古iPhone5選</Link>もご覧ください。</>,
+      answerNode: <>コスパ重視なら{rangeL.avg != null && rangeR.avg != null && rangeL.avg <= rangeR.avg ? nameL : nameR}がおすすめです。{priceDiffText ? `現在の中古相場は${priceDiffText}です。` : ''} カメラや処理性能にこだわるなら上位モデルを検討しましょう。詳しくは<Link prefetch={false} href="/iphone/">おすすめ中古iPhone5選</Link>もご覧ください。</>,
     },
     {
       question: `${nameL}と${nameR}の価格差はどのくらい？`,
@@ -76,7 +76,7 @@ export default function CompareFaq({ modelL, modelR, latestL, latestR }: Props) 
     {
       question: `中古${shortL}・${shortR}はどこで買うのがおすすめ？`,
       answer: `イオシス・ゲオ・じゃんぱらなど大手中古ショップがおすすめです。保証付きで購入できるため、フリマアプリより安心です。当サイトでは3店舗の価格を毎日自動取得し、相場を比較しています。`,
-      answerNode: <>イオシス・ゲオ・じゃんぱらなど大手中古ショップがおすすめです。保証付きで購入できるため、フリマアプリより安心です。当サイトでは3店舗の価格を毎日自動取得し、相場を比較しています。詳しくは<Link href="/iphone/iphone-shop/">中古iPhoneの購入先比較</Link>もご参考に。</>,
+      answerNode: <>イオシス・ゲオ・じゃんぱらなど大手中古ショップがおすすめです。保証付きで購入できるため、フリマアプリより安心です。当サイトでは3店舗の価格を毎日自動取得し、相場を比較しています。詳しくは<Link prefetch={false} href="/iphone/iphone-shop/">中古iPhoneの購入先比較</Link>もご参考に。</>,
     },
   ]
 

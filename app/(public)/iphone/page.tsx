@@ -258,7 +258,7 @@ export default async function IPhoneGuidePage() {
             items={compareItems}
             heading={<>今買うならこれ！おすすめ中古iPhone5選【{GUIDE_DATE_LABEL}最新】</>}
             descriptions={[
-              <>当サイトでおすすめしている機種は下記の通り。スペックの詳細な比較は<Link href="/iphone/iphone-spec-table/">iPhoneスペック比較表</Link>をご覧ください。</>,
+              <>当サイトでおすすめしている機種は下記の通り。スペックの詳細な比較は<Link prefetch={false} href="/iphone/iphone-spec-table/">iPhoneスペック比較表</Link>をご覧ください。</>,
               <>{GUIDE_DATE_LABEL}時点で「iOSサポートが十分に残っている」「中古価格と性能のバランスが良い」ことを判断基準に、狙い目モデルを紹介しています。</>,
             ]}
           />
@@ -288,7 +288,7 @@ export default async function IPhoneGuidePage() {
 
               <p className="guide-section-note">2019年以降に発売されたiPhone30機種の詳細な価格推移グラフ・相場データをご覧いただけます</p>
               <div className="guide-section-cta">
-                <Link href="/iphone/price-info/" className="m-btn m-btn--primary m-btn--block">
+                <Link prefetch={false} href="/iphone/price-info/" className="m-btn m-btn--primary m-btn--block">
                   <span>中古iPhoneの相場・価格推移グラフ</span>
                   <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
                 </Link>
@@ -304,7 +304,7 @@ export default async function IPhoneGuidePage() {
 
               <div className="l-grid l-grid--2col l-grid--gap-lg u-mb-2xl">
                 {GUIDE_SPEC_LINKS.map((link) => (
-                  <Link key={link.href} href={link.href} className="m-card m-card--shadow related-link-card m-card--hoverable">
+                  <Link prefetch={false} key={link.href} href={link.href} className="m-card m-card--shadow related-link-card m-card--hoverable">
                     <Image src={getHeroImage(link.href)} alt={link.title} className="related-link-card__img" width={400} height={300} loading="lazy" />
                     <div className="related-link-card__body">
                       <p className="related-link-card__title">{link.title}</p>
@@ -356,7 +356,7 @@ export default async function IPhoneGuidePage() {
                     <dt className="glossary-item-title">iOSのサポート期間（端末の寿命）</dt>
                     <dd className="glossary-item-desc">
                       iPhoneのiOSサポート期間の目安は発売から7年ほど。古すぎる機種は購入してすぐにiOSサポート外になるリスクがあるので注意。
-                      <div className="u-mt-sm">詳細：<Link href="/iphone/used-iphone-support/">中古iPhoneの寿命とサポート期間の目安</Link></div>
+                      <div className="u-mt-sm">詳細：<Link prefetch={false} href="/iphone/used-iphone-support/">中古iPhoneの寿命とサポート期間の目安</Link></div>
                     </dd>
                   </div>
                   <div className="glossary-item">
@@ -377,7 +377,7 @@ export default async function IPhoneGuidePage() {
                       支払い状況の問題で通信が制限される端末があります。利用制限の状態や、保証の有無は事前にチェックしましょう。
                       <p className="lead-link u-mt-xs">
                         <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                        <Link href="/iphone/network-limit/">ネットワーク制限△のメリット・デメリットを解説</Link>
+                        <Link prefetch={false} href="/iphone/network-limit/">ネットワーク制限△のメリット・デメリットを解説</Link>
                       </p>
                     </dd>
                   </div>
@@ -410,7 +410,7 @@ export default async function IPhoneGuidePage() {
 
               <p className="guide-section-note">さらに詳しい確認方法や、フリマサイトでの注意点などは以下の記事にまとめています。</p>
               <div className="guide-section-cta">
-                <Link href="/iphone/used-iphone-attention/" className="m-btn m-btn--primary m-btn--block">
+                <Link prefetch={false} href="/iphone/used-iphone-attention/" className="m-btn m-btn--primary m-btn--block">
                   <span>中古iPhoneの注意点と選び方</span>
                   <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
                 </Link>
@@ -427,7 +427,7 @@ export default async function IPhoneGuidePage() {
 
               <p className="guide-section-note u-mt-2xl">古いiPhoneの下取り・売却に対応したショップも多く、各ショップの詳細やサービス内容の違いは以下の記事で解説しています。</p>
               <div className="guide-section-cta">
-                <Link href="/iphone/iphone-shop/" className="m-btn m-btn--primary m-btn--block">
+                <Link prefetch={false} href="/iphone/iphone-shop/" className="m-btn m-btn--primary m-btn--block">
                   <span>中古iPhoneを安心して購入できるECサイト</span>
                   <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
                 </Link>

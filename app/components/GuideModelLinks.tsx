@@ -36,7 +36,7 @@ export default function GuideModelLinks({
           {cat.label && <CategoryHeadingTag className="guide-model-links__category">{cat.label}</CategoryHeadingTag>}
           <div className="l-grid l-grid--3col l-grid--gap-md u-mb-2xl">
             {cat.items.map((item) => (
-              <Link key={item.slug} href={`${basePath}/${item.slug}/`} className="guide-model-item m-card">
+              <Link prefetch={false} key={item.slug} href={`${basePath}/${item.slug}/`} className="guide-model-item m-card">
                 <span className="guide-model-item__name">{item.name}</span>
                 <span className="guide-model-item__meta">{item.meta}</span>
               </Link>

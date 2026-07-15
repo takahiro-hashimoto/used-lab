@@ -31,7 +31,7 @@ function parseFaqAnswer(text: string): React.ReactNode[] {
     if (mdMatch) {
       const [, label, href] = mdMatch
       return href.startsWith('/')
-        ? <Link key={i} href={href}>{label}</Link>
+        ? <Link prefetch={false} key={i} href={href}>{label}</Link>
         : <a key={i} href={href} rel="noopener noreferrer">{label}</a>
     }
 
@@ -40,7 +40,7 @@ function parseFaqAnswer(text: string): React.ReactNode[] {
       const href = (htmlMatch[1].match(/href="([^"]*)"/) ?? [])[1] ?? '#'
       const rel = (htmlMatch[1].match(/rel="([^"]*)"/) ?? [])[1]
       return href.startsWith('/')
-        ? <Link key={i} href={href}>{htmlMatch[2]}</Link>
+        ? <Link prefetch={false} key={i} href={href}>{htmlMatch[2]}</Link>
         : <a key={i} href={href} rel={rel ?? 'noopener noreferrer'}>{htmlMatch[2]}</a>
     }
     return part

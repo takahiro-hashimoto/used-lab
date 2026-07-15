@@ -58,7 +58,7 @@ export default function CompareLifespan({ modelL, modelR }: Props) {
         <div className="m-callout m-callout--tip">
           <span className="m-callout__label">memo</span>
           <p className="m-callout__text">
-            中古iPhoneのiOSサポート期間について詳しく知りたい方は「<Link href="/iphone/used-iphone-support/">中古iPhoneのiOSサポートはいつまで？</Link>」をご覧ください。
+            中古iPhoneのiOSサポート期間について詳しく知りたい方は「<Link prefetch={false} href="/iphone/used-iphone-support/">中古iPhoneのiOSサポートはいつまで？</Link>」をご覧ください。
           </p>
         </div>
       </div>

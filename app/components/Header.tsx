@@ -129,7 +129,7 @@ export default function Header() {
             <i className="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
           </button>
           {process.env.NODE_ENV === 'development' && (
-            <Link href="/admin/" className="header-admin-link" title="管理画面">
+            <Link prefetch={false} href="/admin/" className="header-admin-link" title="管理画面">
               <i className="fa-solid fa-gear" aria-hidden="true"></i>
             </Link>
           )}

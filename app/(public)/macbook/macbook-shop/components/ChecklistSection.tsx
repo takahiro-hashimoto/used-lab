@@ -44,8 +44,8 @@ export default function ChecklistSection() {
           <span className="m-callout__label">memo</span>
           <p className="m-callout__text">
             各モデルのサポート終了時期や注意点は
-            <Link href="/macbook/used-macbook-attention/">中古MacBook購入時の注意点まとめ</Link>、
-            <Link href="/macbook/used-macbook-support/">macOSのサポート期間一覧</Link>で詳しく解説しています
+            <Link prefetch={false} href="/macbook/used-macbook-attention/">中古MacBook購入時の注意点まとめ</Link>、
+            <Link prefetch={false} href="/macbook/used-macbook-support/">macOSのサポート期間一覧</Link>で詳しく解説しています
           </p>
         </div>
       </div>

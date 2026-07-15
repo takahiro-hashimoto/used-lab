@@ -43,8 +43,8 @@ export default function ChecklistSection() {
           <span className="m-callout__label">memo</span>
           <p className="m-callout__text">
             各モデルのサポート終了時期や注意点は
-            <Link href="/iphone/used-iphone-attention/">中古iPhone購入時の注意点まとめ</Link>、
-            <Link href="/iphone/used-iphone-support/">iOSのサポート期間一覧</Link>で詳しく解説しています
+            <Link prefetch={false} href="/iphone/used-iphone-attention/">中古iPhone購入時の注意点まとめ</Link>、
+            <Link prefetch={false} href="/iphone/used-iphone-support/">iOSのサポート期間一覧</Link>で詳しく解説しています
           </p>
         </div>
       </div>

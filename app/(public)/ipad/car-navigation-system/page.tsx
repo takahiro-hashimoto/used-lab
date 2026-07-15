@@ -124,7 +124,7 @@ export default function CarNavigationSystemPage() {
               </p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                中古iPadの選び方全般は「<Link href="/ipad/">中古iPadおすすめ機種・選び方ガイド</Link>」をご覧ください。
+                中古iPadの選び方全般は「<Link prefetch={false} href="/ipad/">中古iPadおすすめ機種・選び方ガイド</Link>」をご覧ください。
               </p>
             </div>
           </div>

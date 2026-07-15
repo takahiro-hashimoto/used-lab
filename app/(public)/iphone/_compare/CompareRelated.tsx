@@ -71,7 +71,7 @@ export default function CompareRelated() {
 
         <div className="l-grid l-grid--2col l-grid--gap-lg">
           {ITEMS.map((item) => (
-            <Link
+            <Link prefetch={false}
               key={item.href}
               className="m-card m-card--shadow related-link-card m-card--hoverable"
               href={item.href}

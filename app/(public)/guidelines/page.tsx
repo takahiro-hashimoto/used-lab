@@ -325,7 +325,7 @@ export default function GuidelinesPage() {
                 ガジェットレビューブログの運営で得た知見を生かして「買い物の参考になる情報をわかりやすく発信すること」をモットーに中古Apple製品関連の情報を発信しています。
               </p>
               <div className="u-mt-lg">
-                <Link href="/profile/" className="about-media-link">
+                <Link prefetch={false} href="/profile/" className="about-media-link">
                   <i className="fa-solid fa-user" aria-hidden="true"></i>
                   <span>運営者情報</span>
                 </Link>

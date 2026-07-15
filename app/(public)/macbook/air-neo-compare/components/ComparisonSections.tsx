@@ -47,7 +47,7 @@ export default function ComparisonSections() {
           </p>
           <p className="media-card__desc u-mt-md">
             MacBook Neoの仕様や使い勝手をもっと詳しく知りたい方は、
-            {' '}<Link href="/macbook/mbn-13-2026/">MacBook Neo 13インチの個別記事</Link>
+            {' '}<Link prefetch={false} href="/macbook/mbn-13-2026/">MacBook Neo 13インチの個別記事</Link>
             {' '}もあわせてご覧ください。
           </p>
 

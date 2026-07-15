@@ -24,7 +24,7 @@ export default function CautionSection() {
           </p>
           <p className="lead-link">
             <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-            両モデルの違いは「<Link href="/ipad/wifi-cellular/">iPadはWi-Fiモデルとセルラーモデルどっちがおすすめ？</Link>」で詳しく解説しています。
+            両モデルの違いは「<Link prefetch={false} href="/ipad/wifi-cellular/">iPadはWi-Fiモデルとセルラーモデルどっちがおすすめ？</Link>」で詳しく解説しています。
           </p>
         </div>
       </div>

@@ -227,7 +227,7 @@ export default async function WatchGuidePage() {
             items={compareItems}
             heading={<>今買うならこれ！おすすめ中古Apple Watch3選【{GUIDE_DATE_LABEL}最新】</>}
             descriptions={[
-              <>当サイトでおすすめしている機種は下記の通り。スペックの詳細な比較は<Link href="/watch/watch-spec-table/">Apple Watchスペック比較表</Link>をご覧ください。{GUIDE_DATE_LABEL}時点で「watchOSサポートが十分に残っている」「中古価格と性能のバランスが良い」ことを判断基準に、本当の狙い目モデルだけを厳選しています。</>,
+              <>当サイトでおすすめしている機種は下記の通り。スペックの詳細な比較は<Link prefetch={false} href="/watch/watch-spec-table/">Apple Watchスペック比較表</Link>をご覧ください。{GUIDE_DATE_LABEL}時点で「watchOSサポートが十分に残っている」「中古価格と性能のバランスが良い」ことを判断基準に、本当の狙い目モデルだけを厳選しています。</>,
             ]}
           />
           <RecommendDetailSection items={detailItems} />
@@ -256,7 +256,7 @@ export default async function WatchGuidePage() {
 
               <p className="guide-section-note">歴代Apple Watchの詳細な価格推移グラフ・相場データをご覧いただけます</p>
               <div className="guide-section-cta">
-                <Link href="/watch/watch-price-info/" className="m-btn m-btn--primary m-btn--block">
+                <Link prefetch={false} href="/watch/watch-price-info/" className="m-btn m-btn--primary m-btn--block">
                   <span>中古Apple Watchの相場・価格推移グラフ</span>
                   <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
                 </Link>
@@ -272,7 +272,7 @@ export default async function WatchGuidePage() {
 
               <div className="l-grid l-grid--2col l-grid--gap-lg l-grid--mb-2xl">
                 {GUIDE_SPEC_LINKS.map((link) => (
-                  <Link key={link.href} href={link.href} className="m-card m-card--shadow related-link-card m-card--hoverable">
+                  <Link prefetch={false} key={link.href} href={link.href} className="m-card m-card--shadow related-link-card m-card--hoverable">
                     <Image src={getHeroImage(link.href)} alt={link.title} className="related-link-card__img" width={400} height={300} loading="lazy" />
                     <div className="related-link-card__body">
                       <p className="related-link-card__title">{link.title}</p>
@@ -324,7 +324,7 @@ export default async function WatchGuidePage() {
                     <dt className="glossary-item-title">watchOSのサポート期間（端末の寿命）</dt>
                     <dd className="glossary-item-desc">
                       OSサポート期間の目安は発売から約5年。古すぎるモデルは購入してすぐにサポート外になるリスクがあるので注意。
-                      <div className="u-mt-sm">詳細：<Link href="/watch/used-watch-support/">中古Apple Watchの寿命とサポート期間の目安</Link></div>
+                      <div className="u-mt-sm">詳細：<Link prefetch={false} href="/watch/used-watch-support/">中古Apple Watchの寿命とサポート期間の目安</Link></div>
                     </dd>
                   </div>
                   <div className="glossary-item">
@@ -355,7 +355,7 @@ export default async function WatchGuidePage() {
                     <dt className="glossary-item-title">GPSモデルかセルラーモデルか</dt>
                     <dd className="glossary-item-desc">
                       GPSモデルはiPhoneが近くにある前提で動作し、セルラーモデルはApple Watch単体で通話やデータ通信が可能です。常にiPhoneを持ち歩くならGPSモデルで十分。セルラーは別途キャリア契約が必要です。
-                      <div className="u-mt-sm">詳細：<Link href="/watch/gps-cellular-compare/">GPSモデルとセルラーモデルの違い</Link></div>
+                      <div className="u-mt-sm">詳細：<Link prefetch={false} href="/watch/gps-cellular-compare/">GPSモデルとセルラーモデルの違い</Link></div>
                     </dd>
                   </div>
                   <div className="glossary-item">
@@ -369,7 +369,7 @@ export default async function WatchGuidePage() {
 
               <p className="guide-section-note">さらに詳しい確認方法やフリマサイトでの注意点などは以下の記事にまとめています。</p>
               <div className="guide-section-cta">
-                <Link href="/watch/used-watch-attention/" className="m-btn m-btn--primary m-btn--block">
+                <Link prefetch={false} href="/watch/used-watch-attention/" className="m-btn m-btn--primary m-btn--block">
                   <span>中古Apple Watchの注意点と選び方</span>
                   <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
                 </Link>
@@ -388,7 +388,7 @@ export default async function WatchGuidePage() {
 
               <p className="guide-section-note u-mt-2xl">各ショップの詳細やサービス内容の違いは以下の記事で解説しています。</p>
               <div className="guide-section-cta">
-                <Link href="/watch/watch-shop/" className="m-btn m-btn--primary m-btn--block">
+                <Link prefetch={false} href="/watch/watch-shop/" className="m-btn m-btn--primary m-btn--block">
                   <span>中古Apple Watchを安心して購入できるECサイト</span>
                   <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
                 </Link>
@@ -441,7 +441,7 @@ export default async function WatchGuidePage() {
               <div className="m-callout m-callout--tip u-mt-2xl">
                 <span className="m-callout__label">memo</span>
                 <p className="m-callout__text">
-                  各機能の詳しい解説は「<Link href="/watch/how-to-use-apple-watch/">Apple Watchのできること25選</Link>」でまとめています。購入前に具体的な使用イメージを確認したい方はぜひご覧ください。
+                  各機能の詳しい解説は「<Link prefetch={false} href="/watch/how-to-use-apple-watch/">Apple Watchのできること25選</Link>」でまとめています。購入前に具体的な使用イメージを確認したい方はぜひご覧ください。
                 </p>
               </div>
             </div>

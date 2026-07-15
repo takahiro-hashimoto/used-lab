@@ -189,7 +189,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/ipad/storage-gu
               <p>本記事では、<strong>用途別のおすすめ容量の目安と歴代iPadの容量ラインナップ</strong>をまとめました。「何GBにすればいいかわからない」という方はぜひ参考にしてみてください。</p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                情報を網羅的に得たい方は「<Link href="/ipad/">中古iPadおすすめ機種・選び方ガイド</Link>」も参考にしてみてください！
+                情報を網羅的に得たい方は「<Link prefetch={false} href="/ipad/">中古iPadおすすめ機種・選び方ガイド</Link>」も参考にしてみてください！
               </p>
             </div>
           </div>
@@ -438,10 +438,10 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/ipad/storage-gu
                 <div className="m-callout m-callout--subtle caution-links-box">
                   <ul className="caution-links-box__list">
                     <li>
-                      <Link href="/ipad/used-ipad-attention/"><i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> 中古iPadの注意点と選び方まとめ</Link>
+                      <Link prefetch={false} href="/ipad/used-ipad-attention/"><i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> 中古iPadの注意点と選び方まとめ</Link>
                     </li>
                     <li>
-                      <Link href="/ipad/recommend/"><i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> おすすめ中古iPad機種まとめ【目的別】</Link>
+                      <Link prefetch={false} href="/ipad/recommend/"><i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> おすすめ中古iPad機種まとめ【目的別】</Link>
                     </li>
                   </ul>
                 </div>

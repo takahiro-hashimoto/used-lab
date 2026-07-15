@@ -113,7 +113,7 @@ export default function UseCaseGuide({ models, shopLinks }: Props) {
                   <div className="usecase-card__recommend">
                     <div className="usecase-card__recommend-left">
                       <span className="usecase-card__recommend-label">おすすめモデル</span>
-                      <Link href={`/iphone/${bestModel.slug}/`} className="usecase-card__recommend-name">
+                      <Link prefetch={false} href={`/iphone/${bestModel.slug}/`} className="usecase-card__recommend-name">
                         {bestModel.model}
                       </Link>
                     </div>

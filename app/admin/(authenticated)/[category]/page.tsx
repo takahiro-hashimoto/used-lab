@@ -20,7 +20,7 @@ export default async function AdminCategoryPage({ params }: PageProps) {
         <h1 className="admin-page-header__title">
           <i className={`fa-solid ${config.icon}`} aria-hidden="true" /> {config.label}
         </h1>
-        <Link href={`/admin/${category}/new`} className="admin-btn admin-btn--primary">
+        <Link prefetch={false} href={`/admin/${category}/new`} className="admin-btn admin-btn--primary">
           <i className="fa-solid fa-plus" aria-hidden="true" /> 新規登録
         </Link>
       </div>
@@ -66,7 +66,7 @@ export default async function AdminCategoryPage({ params }: PageProps) {
                     </td>
                   )}
                   <td>
-                    <Link href={`/admin/${category}/${model.id}`} className="admin-table__link">
+                    <Link prefetch={false} href={`/admin/${category}/${model.id}`} className="admin-table__link">
                       編集
                     </Link>
                   </td>

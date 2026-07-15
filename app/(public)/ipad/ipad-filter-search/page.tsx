@@ -200,8 +200,8 @@ export default async function IPadFilterSearchPage() {
           <div className="l-container">
             <div className="lead-box">
               <p>「どのiPadを買えばいいかわからない…」そんな悩みを解決する<strong>iPad機種診断ツール</strong>です。</p>
-              <p>最新のiPad Pro M4からコスパ抜群の型落ちモデルまで、あなたの使用目的・予算・こだわり条件に合わせて最適な<Link href="/ipad/">中古iPad</Link>を無料で診断。<strong>{totalModels}機種のデータベース</strong>から、あなたにぴったりの1台を見つけましょう。</p>
-              <p className="lead-link"><i className="fa-solid fa-arrow-right" aria-hidden="true"></i> 情報を網羅的に得たい方は「<Link href="/ipad/">中古iPadおすすめ機種・選び方ガイド</Link>」も参考にしてみてください！</p>
+              <p>最新のiPad Pro M4からコスパ抜群の型落ちモデルまで、あなたの使用目的・予算・こだわり条件に合わせて最適な<Link prefetch={false} href="/ipad/">中古iPad</Link>を無料で診断。<strong>{totalModels}機種のデータベース</strong>から、あなたにぴったりの1台を見つけましょう。</p>
+              <p className="lead-link"><i className="fa-solid fa-arrow-right" aria-hidden="true"></i> 情報を網羅的に得たい方は「<Link prefetch={false} href="/ipad/">中古iPadおすすめ機種・選び方ガイド</Link>」も参考にしてみてください！</p>
             </div>
           </div>
         </section>

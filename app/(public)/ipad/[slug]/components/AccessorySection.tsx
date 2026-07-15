@@ -124,10 +124,10 @@ export default function AccessorySection({ model, accessories }: Props) {
             Apple Pencilやキーボードの対応機種・型番の詳細は、下記の比較ページもあわせてご確認ください。
           </p>
           <div className="m-callout__links">
-            <Link href="/ipad/apple-pencil-compare/" className="m-callout__link">
+            <Link prefetch={false} href="/ipad/apple-pencil-compare/" className="m-callout__link">
               <i className="fa-solid fa-pen-nib" aria-hidden="true"></i> Apple Pencil対応比較表
             </Link>
-            <Link href="/ipad/accessories-summary/" className="m-callout__link">
+            <Link prefetch={false} href="/ipad/accessories-summary/" className="m-callout__link">
               <i className="fa-solid fa-keyboard" aria-hidden="true"></i> Magic Keyboard 型番・対応一覧
             </Link>
           </div>

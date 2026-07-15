@@ -154,7 +154,7 @@ export default function ChargingTable({ models }: Props) {
                             )}
                           </div>
                           <div className="battery-table__model-info">
-                            <Link href={`/iphone/${m.slug}`} className="battery-table__model-name">
+                            <Link prefetch={false} href={`/iphone/${m.slug}`} className="battery-table__model-name">
                               {m.model}
                             </Link>
                             <span className="battery-table__date">容量: {m.battery || '-'}</span>

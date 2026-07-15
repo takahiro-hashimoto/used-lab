@@ -63,13 +63,13 @@ export default function HeroSection({ model, dateStr, dateDisplay }: Props) {
           <div className="l-container">
             <ol className="breadcrumb-list">
               <li className="breadcrumb-item">
-                <Link href="/">
+                <Link prefetch={false} href="/">
                   <i className="fa-solid fa-house" aria-hidden="true"></i>{' '}
                   <span>中古Apple製品を安く買う</span>
                 </Link>
               </li>
               <li className="breadcrumb-item">
-                <Link href="/airpods/">中古AirPodsおすすめ機種・選び方ガイド</Link>
+                <Link prefetch={false} href="/airpods/">中古AirPodsおすすめ機種・選び方ガイド</Link>
               </li>
               <li className="breadcrumb-item" aria-current="page">{model.name}（{model.model}）</li>
             </ol>

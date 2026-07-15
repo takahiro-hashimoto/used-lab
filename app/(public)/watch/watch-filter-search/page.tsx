@@ -198,8 +198,8 @@ export default async function WatchFilterSearchPage() {
           <div className="l-container">
             <div className="lead-box">
               <p>「どのApple Watchを買えばいいかわからない...」そんな悩みを解決する<strong>Apple Watch機種診断ツール</strong>です。</p>
-              <p>最新のSeries 11やUltra 3から型落ちの人気モデルまで、あなたの使用目的・予算・こだわり条件に合わせて最適な<Link href="/watch/">中古Apple Watch</Link>を無料で診断。<strong>{totalModels}機種のデータベース</strong>から、あなたにぴったりの1台を見つけましょう。</p>
-              <p className="lead-link"><i className="fa-solid fa-arrow-right" aria-hidden="true"></i> 情報を網羅的に得たい方は「<Link href="/watch/">中古Apple Watchおすすめ機種・選び方ガイド</Link>」も参考にしてみてください！</p>
+              <p>最新のSeries 11やUltra 3から型落ちの人気モデルまで、あなたの使用目的・予算・こだわり条件に合わせて最適な<Link prefetch={false} href="/watch/">中古Apple Watch</Link>を無料で診断。<strong>{totalModels}機種のデータベース</strong>から、あなたにぴったりの1台を見つけましょう。</p>
+              <p className="lead-link"><i className="fa-solid fa-arrow-right" aria-hidden="true"></i> 情報を網羅的に得たい方は「<Link prefetch={false} href="/watch/">中古Apple Watchおすすめ機種・選び方ガイド</Link>」も参考にしてみてください！</p>
             </div>
           </div>
         </section>
@@ -234,7 +234,7 @@ export default async function WatchFilterSearchPage() {
             </h2>
             <p className="m-section-desc">当診断シミュレーターの価格データと診断アルゴリズムについて解説します。</p>
             <div className="m-card m-card--shadow m-card--padded">
-              <p>当Apple Watch診断シミュレーターで表示される中古価格は、<strong>「イオシス」「ゲオ」「じゃんぱら」</strong>の大手3社からリアルタイムの在庫データを取得し、毎日更新しています。（価格推移は<Link href="/watch/watch-price-info/">歴代Apple Watchの中古相場と価格推移</Link>で紹介）</p>
+              <p>当Apple Watch診断シミュレーターで表示される中古価格は、<strong>「イオシス」「ゲオ」「じゃんぱら」</strong>の大手3社からリアルタイムの在庫データを取得し、毎日更新しています。（価格推移は<Link prefetch={false} href="/watch/watch-price-info/">歴代Apple Watchの中古相場と価格推移</Link>で紹介）</p>
               <p style={{ marginTop: '12px' }}>目的別の推奨スペック、予算条件、こだわり機能をAND条件で組み合わせて最適な機種を抽出。watchOSサポート目安はAppleの傾向（発売から約7年間サポート）に基づき算出しています。</p>
               <p style={{ marginTop: '12px' }}><small>※実際の中古Apple Watch価格はケースサイズ・素材・状態、各店舗の在庫状況により変動します。最新価格は各販売店サイトでご確認ください。</small></p>
             </div>

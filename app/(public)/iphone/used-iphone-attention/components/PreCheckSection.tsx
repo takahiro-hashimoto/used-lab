@@ -77,7 +77,7 @@ export default function PreCheckSection() {
               「△」は「将来×になる可能性がある状態」ですが、赤ロム永久保証付きの中古ショップで購入すれば、万が一×になっても交換・返金対応を受けられます。
             </p>
             <p>
-              相場より安く購入できるため、コストを抑えたい方には有力な選択肢です。詳しくは<Link href="/iphone/network-limit/">ネットワーク制限△のメリット・デメリット解説</Link>をご覧ください。
+              相場より安く購入できるため、コストを抑えたい方には有力な選択肢です。詳しくは<Link prefetch={false} href="/iphone/network-limit/">ネットワーク制限△のメリット・デメリット解説</Link>をご覧ください。
             </p>
           </div>
         </MediaCard>
@@ -164,7 +164,7 @@ export default function PreCheckSection() {
             </p>
             <p className="lead-link">
               <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-              <Link href="/iphone/used-iphone-support/">機種別iOSサポート期間一覧</Link>
+              <Link prefetch={false} href="/iphone/used-iphone-support/">機種別iOSサポート期間一覧</Link>
             </p>
           </div>
         </MediaCard>

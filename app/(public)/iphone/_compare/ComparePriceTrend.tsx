@@ -234,7 +234,7 @@ export default function ComparePriceTrend({
           <span className="m-callout__label">memo</span>
           <p className="m-callout__text">
             最新の中古相場の推移は「
-            <Link href="/iphone/price-info/">中古iPhone相場ダッシュボード</Link>
+            <Link prefetch={false} href="/iphone/price-info/">中古iPhone相場ダッシュボード</Link>
             」で確認できます。
           </p>
         </div>

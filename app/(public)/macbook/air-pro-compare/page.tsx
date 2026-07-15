@@ -136,7 +136,7 @@ export default async function AirProComparePage() {
               </p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                おすすめモデルを知りたい方は「<Link href="/macbook/">中古MacBookおすすめモデル</Link>」もあわせてご覧ください。
+                おすすめモデルを知りたい方は「<Link prefetch={false} href="/macbook/">中古MacBookおすすめモデル</Link>」もあわせてご覧ください。
               </p>
             </div>
           </div>

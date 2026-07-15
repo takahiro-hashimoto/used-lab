@@ -11,7 +11,7 @@ export default async function AdminNewsPage() {
         <h1 className="admin-page-header__title">
           <i className="fa-solid fa-bullhorn" aria-hidden="true" /> 新着情報
         </h1>
-        <Link href="/admin/news/new" className="admin-btn admin-btn--primary">
+        <Link prefetch={false} href="/admin/news/new" className="admin-btn admin-btn--primary">
           <i className="fa-solid fa-plus" aria-hidden="true" /> 新規追加
         </Link>
       </div>
@@ -44,10 +44,10 @@ export default async function AdminNewsPage() {
                   </td>
                   <td>{item.published ? '✅' : '—'}</td>
                   <td style={{ display: 'flex', gap: '0.5rem' }}>
-                    <Link href={`/admin/news/${item.id}`} className="admin-table__link">
+                    <Link prefetch={false} href={`/admin/news/${item.id}`} className="admin-table__link">
                       編集
                     </Link>
-                    <Link href={`/admin/news/new?content=${encodeURIComponent(item.content)}&published=${item.published ? '1' : '0'}`} className="admin-table__link">
+                    <Link prefetch={false} href={`/admin/news/new?content=${encodeURIComponent(item.content)}&published=${item.published ? '1' : '0'}`} className="admin-table__link">
                       複製
                     </Link>
                     <NewsDeleteButton id={item.id} deleteAction={deleteNewsItem} />

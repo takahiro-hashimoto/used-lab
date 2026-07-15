@@ -70,7 +70,7 @@ export default function SearchClient({ entries }: { entries: SearchEntry[] }) {
           <div className="l-container">
             <ol className="breadcrumb-list">
               <li className="breadcrumb-item">
-                <Link href="/">
+                <Link prefetch={false} href="/">
                   <i className="fa-solid fa-house" aria-hidden="true"></i>{' '}
                   <span>中古Apple製品を安く買う</span>
                 </Link>
@@ -126,7 +126,7 @@ export default function SearchClient({ entries }: { entries: SearchEntry[] }) {
               </div>
               <div className="l-grid l-grid--3col l-grid--gap-lg">
                 {results.map((entry) => (
-                  <Link
+                  <Link prefetch={false}
                     key={entry.href}
                     href={entry.href}
                     className="m-card m-card--shadow m-card--hover search-result-card"

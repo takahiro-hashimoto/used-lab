@@ -185,7 +185,7 @@ export default function BenchmarkSection({ models, avgPrices, shopLinks }: Props
         <div className="m-callout m-callout--tip u-mt-2xl">
           <span className="m-callout__label">詳しく見る</span>
           <p className="m-callout__text">
-            チップ世代別の性能比較や用途別おすすめスコアの目安は「<Link href="/ipad/benchmark/">歴代iPadベンチマーク比較ランキング</Link>」で詳しく解説しています。
+            チップ世代別の性能比較や用途別おすすめスコアの目安は「<Link prefetch={false} href="/ipad/benchmark/">歴代iPadベンチマーク比較ランキング</Link>」で詳しく解説しています。
           </p>
         </div>
       </div>

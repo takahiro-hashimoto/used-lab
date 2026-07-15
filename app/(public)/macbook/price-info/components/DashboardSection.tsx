@@ -141,7 +141,7 @@ export default function DashboardSection({ modelsData, initialSelected }: Props)
           気になるモデルを選択して、価格推移を比較できます。
         </p>
         <p className="m-section-desc">
-          機種ごとの違いが知りたい方は「<Link href="/macbook/macbook-spec-table/">歴代MacBookスペック比較表</Link>」をご覧ください。
+          機種ごとの違いが知りたい方は「<Link prefetch={false} href="/macbook/macbook-spec-table/">歴代MacBookスペック比較表</Link>」をご覧ください。
         </p>
 
         {/* モデル選択チップ */}

@@ -21,7 +21,7 @@ export default async function NewsSection() {
             ))}
           </dl>
           <div className="news-list__more">
-            <Link href="/news/">新着一覧を見る</Link>
+            <Link prefetch={false} href="/news/">新着一覧を見る</Link>
           </div>
         </>
       ) : (

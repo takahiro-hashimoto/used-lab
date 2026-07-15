@@ -121,7 +121,7 @@ export default function WatchAppleCarePage() {
                 </p>
                 <p className="lead-link">
                   <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                  Apple Watchの選び方から知りたい方は「<Link href="/watch/">中古Apple Watch購入ガイド</Link>」をご覧ください。
+                  Apple Watchの選び方から知りたい方は「<Link prefetch={false} href="/watch/">中古Apple Watch購入ガイド</Link>」をご覧ください。
                 </p>
               </div>
             </div>
@@ -641,7 +641,7 @@ export default function WatchAppleCarePage() {
                 <div className="m-callout m-callout--tip u-mt-xl">
                   <span className="m-callout__label">関連記事</span>
                   <p>
-                    Apple Care+とモバイル保険をさらに詳しく比較したい方は「<Link href="/iphone/mobile-hoken-compare/" style={{ color: 'var(--color-primary)' }}>知らないと損！Apple Care+よりもモバイル保険に加入した方がコスパが高い理由</Link>」をご覧ください。
+                    Apple Care+とモバイル保険をさらに詳しく比較したい方は「<Link prefetch={false} href="/iphone/mobile-hoken-compare/" style={{ color: 'var(--color-primary)' }}>知らないと損！Apple Care+よりもモバイル保険に加入した方がコスパが高い理由</Link>」をご覧ください。
                   </p>
                 </div>
               </div>
@@ -674,7 +674,7 @@ export default function WatchAppleCarePage() {
                     </p>
                     <p className="lead-link u-mt-sm">
                       <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                      おすすめの中古Apple Watchは「<Link href="/watch/recommend/">中古Apple Watchのおすすめ機種</Link>」で紹介しています。
+                      おすすめの中古Apple Watchは「<Link prefetch={false} href="/watch/recommend/">中古Apple Watchのおすすめ機種</Link>」で紹介しています。
                     </p>
                   </div>
                 </div>

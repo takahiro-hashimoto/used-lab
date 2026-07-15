@@ -155,7 +155,7 @@ export default function MobileHokenComparePage() {
                 </p>
                 <p className="lead-link">
                   <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                  中古iPhoneの選び方は「<Link href="/iphone/">中古iPhoneおすすめ機種・選び方ガイド</Link>」もご覧ください。
+                  中古iPhoneの選び方は「<Link prefetch={false} href="/iphone/">中古iPhoneおすすめ機種・選び方ガイド</Link>」もご覧ください。
                 </p>
               </div>
             </div>

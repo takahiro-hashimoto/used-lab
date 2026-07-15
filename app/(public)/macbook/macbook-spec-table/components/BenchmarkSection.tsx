@@ -155,7 +155,7 @@ export default function BenchmarkSection({ models, avgPrices, shopLinks }: Props
         <div className="m-callout m-callout--tip u-mt-2xl">
           <span className="m-callout__label">memo</span>
           <p className="m-callout__text">
-            チップ世代別の性能進化や用途別おすすめスコアの目安など、より詳しい解説は「<Link href="/macbook/benchmark/">歴代MacBookのベンチマーク比較ランキング</Link>」をご覧ください。
+            チップ世代別の性能進化や用途別おすすめスコアの目安など、より詳しい解説は「<Link prefetch={false} href="/macbook/benchmark/">歴代MacBookのベンチマーク比較ランキング</Link>」をご覧ください。
           </p>
         </div>
       </div>

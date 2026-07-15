@@ -212,7 +212,7 @@ export default function CameraComparisonTable({ models, shopLinks }: Props) {
         <div className="m-callout m-callout--tip u-mt-2xl">
           <span className="m-callout__label">memo</span>
           <p className="m-callout__text">
-            カメラ以外のスペックも比較したい方は「<Link href="/iphone/iphone-spec-table/">歴代iPhoneスペック比較表</Link>」、バッテリー持ちで選びたい方は「<Link href="/iphone/battery-compare/">歴代iPhoneのバッテリー容量比較ランキング</Link>」もあわせてご覧ください。
+            カメラ以外のスペックも比較したい方は「<Link prefetch={false} href="/iphone/iphone-spec-table/">歴代iPhoneスペック比較表</Link>」、バッテリー持ちで選びたい方は「<Link prefetch={false} href="/iphone/battery-compare/">歴代iPhoneのバッテリー容量比較ランキング</Link>」もあわせてご覧ください。
           </p>
         </div>
       </div>

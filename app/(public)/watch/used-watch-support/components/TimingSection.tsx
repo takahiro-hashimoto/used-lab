@@ -36,7 +36,7 @@ const TIMING_CARDS: TimingCard[] = [
         <p>
           これらの機能に魅力を感じた場合は、買い替えの良いタイミングです。
           各世代の機能差が気になる方は
-          <Link href="/watch/watch-spec-table/">歴代Apple Watchのスペック比較</Link>
+          <Link prefetch={false} href="/watch/watch-spec-table/">歴代Apple Watchのスペック比較</Link>
           をチェックしてみてください。
         </p>
       </>
@@ -73,7 +73,7 @@ const TIMING_CARDS: TimingCard[] = [
         <div className="m-callout m-callout--subtle caution-links-box">
           <ul className="caution-links-box__list">
             <li>
-              <Link href="/watch/used-watch-attention/">
+              <Link prefetch={false} href="/watch/used-watch-attention/">
                 <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> 中古Apple Watch購入時の注意点まとめ
               </Link>
             </li>

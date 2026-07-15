@@ -492,7 +492,7 @@ export default function WatchFilterSearchApp({ models, shopLinks }: Props) {
                         )}
                       </div>
                       <div className="ifd-result-card__info">
-                        <Link href={`/watch/${m.slug}`} className="ifd-result-card__name">
+                        <Link prefetch={false} href={`/watch/${m.slug}`} className="ifd-result-card__name">
                           {m.model}
                         </Link>
                         <div className="ifd-result-card__tags">

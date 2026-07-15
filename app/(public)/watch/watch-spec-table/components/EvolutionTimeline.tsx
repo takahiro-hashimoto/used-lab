@@ -48,7 +48,7 @@ export default function EvolutionTimeline({ models }: Props) {
               <span className="evolution-item__date">{item.date}</span>
               <div className="evolution-item__header">
                 <h4 className="evolution-item__title">
-                  <Link href={`/watch/${item.slug}/`} className="evolution-item__model-link">{item.title}</Link>
+                  <Link prefetch={false} href={`/watch/${item.slug}/`} className="evolution-item__model-link">{item.title}</Link>
                 </h4>
               </div>
               <div className="evolution-item__body">

@@ -160,7 +160,7 @@ export default function StorageTable({ models }: Props) {
                             )}
                           </div>
                           <div className="battery-table__model-info">
-                            <Link href={`/iphone/${m.slug}`} className="battery-table__model-name">
+                            <Link prefetch={false} href={`/iphone/${m.slug}`} className="battery-table__model-name">
                               {m.model}
                             </Link>
                             <span className="battery-table__date">{formatDate(m.date)} 発売</span>
@@ -216,7 +216,7 @@ export default function StorageTable({ models }: Props) {
           <span className="m-callout__label">memo</span>
           <p className="m-callout__text">
             表示価格は最小容量での最安値です。容量が大きいモデルは上記より高くなります。
-            詳しい価格推移は「<Link href="/iphone/price-info/">iPhone中古価格相場グラフ</Link>」で確認できます。
+            詳しい価格推移は「<Link prefetch={false} href="/iphone/price-info/">iPhone中古価格相場グラフ</Link>」で確認できます。
           </p>
         </div>
       </div>

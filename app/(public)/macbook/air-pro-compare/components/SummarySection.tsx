@@ -29,7 +29,7 @@ export default async function SummarySection() {
           <div className="popular-card-body">
             <h3 className="popular-card-title">中古MacBookおすすめモデル</h3>
             <div className="popular-card-buttons">
-              <Link href="/macbook/recommend/" className="m-btn m-btn--primary">
+              <Link prefetch={false} href="/macbook/recommend/" className="m-btn m-btn--primary">
                 おすすめモデルを見る <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
               </Link>
               {iosys?.macbook_url && (

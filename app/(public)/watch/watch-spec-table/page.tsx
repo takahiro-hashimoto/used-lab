@@ -193,7 +193,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/watch/watch-spe
               <p>本記事では<strong>歴代Apple Watchの主要スペックを一覧表で比較</strong>し、進化ポイントをわかりやすくまとめました。Apple Watchを購入する際の参考にしてみてください！</p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                もっと全体像から知りたい方は「<Link href="/watch/">中古Apple Watchおすすめ機種・選び方まとめ</Link>」をご覧ください。
+                もっと全体像から知りたい方は「<Link prefetch={false} href="/watch/">中古Apple Watchおすすめ機種・選び方まとめ</Link>」をご覧ください。
               </p>
             </div>
           </div>

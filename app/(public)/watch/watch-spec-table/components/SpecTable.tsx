@@ -260,7 +260,7 @@ export default function SpecTable({ models, shopLinks, embed = false }: Props) {
           </StickyTableWrapper>
         )}
         <p style={{ marginTop: '1rem', fontSize: '0.75rem', color: '#888', lineHeight: 1.7 }}>
-          ※ 各機種の中古相場・価格推移グラフは「<Link href="/watch/watch-price-info/" style={{ color: 'var(--color-primary)', textDecoration: 'underline' }}>Apple Watch中古相場・価格推移ページ</Link>」でご確認いただけます。
+          ※ 各機種の中古相場・価格推移グラフは「<Link prefetch={false} href="/watch/watch-price-info/" style={{ color: 'var(--color-primary)', textDecoration: 'underline' }}>Apple Watch中古相場・価格推移ページ</Link>」でご確認いただけます。
         </p>
         {!embed && <SpecEmbedButton />}
       </div>

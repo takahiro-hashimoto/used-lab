@@ -66,7 +66,7 @@ export default function NotFound() {
                       <h3 className="listing-pick-card__name">{cat.label}</h3>
                       <p className="listing-pick-card__desc">{cat.desc}</p>
                     </div>
-                    <Link href={`${cat.basePath}/`} className="m-btn m-btn--primary m-btn--block u-w-full">
+                    <Link prefetch={false} href={`${cat.basePath}/`} className="m-btn m-btn--primary m-btn--block u-w-full">
                       ガイドを見る <i className="fa-solid fa-chevron-right" aria-hidden="true"></i>
                     </Link>
                   </article>

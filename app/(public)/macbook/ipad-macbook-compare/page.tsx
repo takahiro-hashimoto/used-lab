@@ -124,7 +124,7 @@ export default function IpadMacbookComparePage() {
               </p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                中古PCやタブレットの購入を検討中の方は「<Link href="/macbook/">中古MacBookおすすめ機種・選び方ガイド</Link>」や「<Link href="/ipad/">中古iPadおすすめ機種・選び方ガイド</Link>」もあわせてご覧ください。
+                中古PCやタブレットの購入を検討中の方は「<Link prefetch={false} href="/macbook/">中古MacBookおすすめ機種・選び方ガイド</Link>」や「<Link prefetch={false} href="/ipad/">中古iPadおすすめ機種・選び方ガイド</Link>」もあわせてご覧ください。
               </p>
             </div>
           </div>
@@ -289,7 +289,7 @@ export default function IpadMacbookComparePage() {
                     <li>iPad版アプリは機能制限されていることが多い</li>
                     <li>ファイル管理・マルチタスクも圧倒的に快適</li>
                   </ul>
-                  <p className="media-card__desc u-mt-lg">MacBookを選ぶなら<Link href="/macbook/recommend/">おすすめの中古MacBook</Link>で機種を確認しましょう。</p>
+                  <p className="media-card__desc u-mt-lg">MacBookを選ぶなら<Link prefetch={false} href="/macbook/recommend/">おすすめの中古MacBook</Link>で機種を確認しましょう。</p>
                 </div>
               </div>
 

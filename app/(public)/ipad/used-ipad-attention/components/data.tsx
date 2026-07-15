@@ -30,7 +30,7 @@ export const faqItems: FaqItem[] = [
           自宅やオフィスなどWi-Fi環境がある場所での使用がメインならWi-Fiモデルで十分です。外出先でも単体で通信したい場合はセルラーモデルを選びましょう。
         </p>
         <p>
-          ただし、セルラーモデルはSIMカードの契約が別途必要です。中古の場合はSIMロックの有無やネットワーク利用制限の確認も必要になります。詳しくは「<Link href="/ipad/wifi-cellular/">Wi-FiモデルとCellularモデルの違い</Link>」で解説しています。
+          ただし、セルラーモデルはSIMカードの契約が別途必要です。中古の場合はSIMロックの有無やネットワーク利用制限の確認も必要になります。詳しくは「<Link prefetch={false} href="/ipad/wifi-cellular/">Wi-FiモデルとCellularモデルの違い</Link>」で解説しています。
         </p>
       </>
     ),

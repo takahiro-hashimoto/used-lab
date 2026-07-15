@@ -33,7 +33,7 @@ export default function PreCheckSection() {
             </p>
             <p className="lead-link">
               <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-              <Link href="/ipad/used-ipad-support/">機種別iPadOSサポート期間一覧</Link>
+              <Link prefetch={false} href="/ipad/used-ipad-support/">機種別iPadOSサポート期間一覧</Link>
             </p>
           </div>
         </MediaCard>
@@ -109,7 +109,7 @@ export default function PreCheckSection() {
             </p>
             <p className="lead-link">
               <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-              <Link href="/iphone/network-limit/">ネットワーク制限△の中古iPhone・iPadを買うメリット・デメリット</Link>
+              <Link prefetch={false} href="/iphone/network-limit/">ネットワーク制限△の中古iPhone・iPadを買うメリット・デメリット</Link>
             </p>
           </div>
         </MediaCard>
@@ -129,11 +129,11 @@ export default function PreCheckSection() {
             </p>
             <p className="lead-link">
               <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-              <Link href="/ipad/apple-pencil-compare/">Apple Pencil機能比較&モデル別対応表</Link>
+              <Link prefetch={false} href="/ipad/apple-pencil-compare/">Apple Pencil機能比較&モデル別対応表</Link>
             </p>
             <p className="lead-link">
               <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-              <Link href="/ipad/accessories-summary/">iPad用Magic Keyboard型番一覧</Link>
+              <Link prefetch={false} href="/ipad/accessories-summary/">iPad用Magic Keyboard型番一覧</Link>
             </p>
           </div>
         </MediaCard>

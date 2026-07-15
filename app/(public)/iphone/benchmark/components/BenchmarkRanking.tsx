@@ -101,7 +101,7 @@ export default function BenchmarkRanking({ models, shopLinks }: { models: BenchM
                             <Image src={m.image} alt={m.model} width={40} height={40} className="bench-model-img" />
                           )}
                           <span className="bench-model-info">
-                            <Link href={`/iphone/${m.slug}/`} className="bench-model-name">{m.model}</Link>
+                            <Link prefetch={false} href={`/iphone/${m.slug}/`} className="bench-model-name">{m.model}</Link>
                             <span className="bench-model-chip">{m.cpu}</span>
                           </span>
                         </div>

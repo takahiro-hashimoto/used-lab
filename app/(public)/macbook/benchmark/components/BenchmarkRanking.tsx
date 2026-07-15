@@ -95,7 +95,7 @@ export default function BenchmarkRanking({ models, shopLinks }: { models: BenchM
                         <span className={`bench-rank ${rank <= 3 ? `bench-rank--${rank}` : ''}`}>{rank}</span>
                       </td>
                       <th scope="row" className="bench-ranking-table__model-cell bench-table__sticky">
-                        <Link href={`/macbook/${m.slug}/`} className="bench-model-link">
+                        <Link prefetch={false} href={`/macbook/${m.slug}/`} className="bench-model-link">
                           {m.image && m.image.startsWith('/') && (
                             <Image src={m.image} alt={m.model} width={40} height={40} className="bench-model-img" />
                           )}
@@ -130,7 +130,7 @@ export default function BenchmarkRanking({ models, shopLinks }: { models: BenchM
                       <span className="bench-rank">-</span>
                     </td>
                     <th scope="row" className="bench-ranking-table__model-cell bench-table__sticky">
-                      <Link href={`/macbook/${m.slug}/`} className="bench-model-link">
+                      <Link prefetch={false} href={`/macbook/${m.slug}/`} className="bench-model-link">
                         <span className="bench-model-info">
                           <span className="bench-model-name">{m.shortname || m.model}</span>
                           <span className="bench-model-chip">{m.cpu}</span>

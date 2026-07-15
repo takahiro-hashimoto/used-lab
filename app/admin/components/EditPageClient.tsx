@@ -91,7 +91,7 @@ export default function EditPageClient({
               <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" /> 公開ページ
             </a>
           )}
-          <Link href={duplicateHref} className="admin-btn admin-btn--secondary">
+          <Link prefetch={false} href={duplicateHref} className="admin-btn admin-btn--secondary">
             <i className="fa-regular fa-copy" aria-hidden="true" /> 複製
           </Link>
           <button type="button" onClick={handleSaveAll} className="admin-btn admin-btn--primary">
@@ -126,7 +126,7 @@ export default function EditPageClient({
         <button type="button" onClick={handleSaveAll} className="admin-btn admin-btn--primary">
           <i className="fa-solid fa-floppy-disk" aria-hidden="true" /> 保存する
         </button>
-        <Link href={`/admin/${categoryKey}`} className="admin-btn admin-btn--secondary">
+        <Link prefetch={false} href={`/admin/${categoryKey}`} className="admin-btn admin-btn--secondary">
           キャンセル
         </Link>
       </div>

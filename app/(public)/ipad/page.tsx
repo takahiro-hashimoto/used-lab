@@ -227,7 +227,7 @@ export default async function IPadGuidePage() {
             items={compareItems}
             heading={<>今買うならこれ！おすすめ中古iPad5選【{GUIDE_DATE_LABEL}最新】</>}
             descriptions={[
-              <>当サイトでおすすめしている機種は下記の通り。スペックの詳細な比較は<Link href="/ipad/ipad-spec-table/">iPadスペック比較表</Link>をご覧ください。{GUIDE_DATE_LABEL}時点で「iPadOSサポートが十分に残っている」「中古価格と性能のバランスが良い」ことを判断基準に、本当の狙い目モデルだけを厳選しています。</>,
+              <>当サイトでおすすめしている機種は下記の通り。スペックの詳細な比較は<Link prefetch={false} href="/ipad/ipad-spec-table/">iPadスペック比較表</Link>をご覧ください。{GUIDE_DATE_LABEL}時点で「iPadOSサポートが十分に残っている」「中古価格と性能のバランスが良い」ことを判断基準に、本当の狙い目モデルだけを厳選しています。</>,
             ]}
           />
           <RecommendDetailSection items={detailItems} />
@@ -256,7 +256,7 @@ export default async function IPadGuidePage() {
 
               <p className="guide-section-note">歴代iPadの詳細な価格推移グラフ・相場データをご覧いただけます</p>
               <div className="guide-section-cta">
-                <Link href="/ipad/ipad-price-info/" className="m-btn m-btn--primary m-btn--block">
+                <Link prefetch={false} href="/ipad/ipad-price-info/" className="m-btn m-btn--primary m-btn--block">
                   <span>中古iPadの相場・価格推移グラフ</span>
                   <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
                 </Link>
@@ -272,7 +272,7 @@ export default async function IPadGuidePage() {
 
               <div className="l-grid l-grid--2col l-grid--gap-lg l-grid--mb-2xl">
                 {GUIDE_SPEC_LINKS.map((link) => (
-                  <Link key={link.href} href={link.href} className="m-card m-card--shadow related-link-card m-card--hoverable">
+                  <Link prefetch={false} key={link.href} href={link.href} className="m-card m-card--shadow related-link-card m-card--hoverable">
                     <Image src={getHeroImage(link.href)} alt={link.title} className="related-link-card__img" width={400} height={300} loading="lazy" />
                     <div className="related-link-card__body">
                       <p className="related-link-card__title">{link.title}</p>
@@ -325,21 +325,21 @@ export default async function IPadGuidePage() {
                     <dt className="glossary-item-title">iPadOSのサポート期間（端末の寿命）</dt>
                     <dd className="glossary-item-desc">
                       iPadOSサポート期間の目安は発売から6〜7年ほど。古すぎる機種は購入してすぐにサポート外になるリスクがあるので注意。
-                      <div className="u-mt-sm">詳細：<Link href="/ipad/used-ipad-support/">中古iPadの寿命とサポート期間の目安</Link></div>
+                      <div className="u-mt-sm">詳細：<Link prefetch={false} href="/ipad/used-ipad-support/">中古iPadの寿命とサポート期間の目安</Link></div>
                     </dd>
                   </div>
                   <div className="glossary-item">
                     <dt className="glossary-item-title">Wi-FiモデルかCellularモデルか</dt>
                     <dd className="glossary-item-desc">
                       iPadにはWi-Fi専用モデルとCellular対応モデルがあります。外出先で単体で通信したい場合はCellularモデルを選びましょう。
-                      <div className="u-mt-sm">詳細：<Link href="/ipad/wifi-cellular/">Wi-FiモデルとCellularモデルの違い</Link></div>
+                      <div className="u-mt-sm">詳細：<Link prefetch={false} href="/ipad/wifi-cellular/">Wi-FiモデルとCellularモデルの違い</Link></div>
                     </dd>
                   </div>
                   <div className="glossary-item">
                     <dt className="glossary-item-title">Apple Pencilの対応世代</dt>
                     <dd className="glossary-item-desc">
                       Apple Pencilは世代ごとに対応モデルや機能が異なります。購入前に互換性とやりたいことが実現できるかを確認しましょう。
-                      <div className="u-mt-sm">詳細：<Link href="/ipad/apple-pencil-compare/">Apple Pencil対応比較表</Link></div>
+                      <div className="u-mt-sm">詳細：<Link prefetch={false} href="/ipad/apple-pencil-compare/">Apple Pencil対応比較表</Link></div>
                     </dd>
                   </div>
                   <div className="glossary-item">
@@ -370,7 +370,7 @@ export default async function IPadGuidePage() {
                     <dt className="glossary-item-title">ネットワーク利用制限（Cellularモデル）</dt>
                     <dd className="glossary-item-desc">
                       Cellularモデルの中古iPadには、前の所有者の分割払い状況によって通信が制限される「赤ロム」のリスクがあります。赤ロム永久保証付きのショップを選べば安心です。
-                      <div className="u-mt-sm">詳細：<Link href="/iphone/network-limit/">ネットワーク制限△のメリット・デメリットを解説</Link></div>
+                      <div className="u-mt-sm">詳細：<Link prefetch={false} href="/iphone/network-limit/">ネットワーク制限△のメリット・デメリットを解説</Link></div>
                     </dd>
                   </div>
                   <div className="glossary-item">
@@ -384,7 +384,7 @@ export default async function IPadGuidePage() {
 
               <p className="guide-section-note">さらに詳しい確認方法や、フリマサイトでの注意点などは以下の記事にまとめています。</p>
               <div className="guide-section-cta">
-                <Link href="/ipad/used-ipad-attention/" className="m-btn m-btn--primary m-btn--block">
+                <Link prefetch={false} href="/ipad/used-ipad-attention/" className="m-btn m-btn--primary m-btn--block">
                   <span>中古iPadの注意点と選び方</span>
                   <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
                 </Link>
@@ -402,7 +402,7 @@ export default async function IPadGuidePage() {
 
               <p className="guide-section-note u-mt-2xl">各ショップの詳細やサービス内容の違いは以下の記事で解説しています。</p>
               <div className="guide-section-cta">
-                <Link href="/ipad/ipad-shop/" className="m-btn m-btn--primary m-btn--block">
+                <Link prefetch={false} href="/ipad/ipad-shop/" className="m-btn m-btn--primary m-btn--block">
                   <span>中古iPadを安心して購入できるECサイト</span>
                   <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
                 </Link>
@@ -411,7 +411,7 @@ export default async function IPadGuidePage() {
               <div className="m-callout m-callout--tip u-mt-2xl">
                 <span className="m-callout__label">memo</span>
                 <p className="m-callout__text">
-                  中古以外にもApple認定整備済製品・Amazon・家電量販店のセールなど、iPadを安く買う方法はさまざまです。新品・中古を含めた全7つの購入先を「<Link href="/ipad/ipad-buy/">iPadを安く買うには？おすすめの購入先7つを比較</Link>」で解説しています。
+                  中古以外にもApple認定整備済製品・Amazon・家電量販店のセールなど、iPadを安く買う方法はさまざまです。新品・中古を含めた全7つの購入先を「<Link prefetch={false} href="/ipad/ipad-buy/">iPadを安く買うには？おすすめの購入先7つを比較</Link>」で解説しています。
                 </p>
               </div>
             </div>
@@ -451,7 +451,7 @@ export default async function IPadGuidePage() {
                 </IconCard>
                 <IconCard icon="fa-solid fa-house" title="暮らし・その他">
                   <ul className="media-card__list">
-                    <li><Link href="/ipad/car-navigation-system/" style={{ color: 'var(--color-primary)' }}>カーナビ代わり</Link>に大画面で地図表示</li>
+                    <li><Link prefetch={false} href="/ipad/car-navigation-system/" style={{ color: 'var(--color-primary)' }}>カーナビ代わり</Link>に大画面で地図表示</li>
                     <li>レシピを見ながら料理</li>
                     <li>スマートホームの操作パネル（HomeKit）</li>
                     <li>子供の知育・学習用タブレット</li>
@@ -462,7 +462,7 @@ export default async function IPadGuidePage() {
               <div className="m-callout m-callout--tip u-mt-2xl">
                 <span className="m-callout__label">memo</span>
                 <p className="m-callout__text">
-                  各活用シーンの詳しい解説やおすすめアプリは「<Link href="/ipad/howto-use-ipad/">iPadの便利な使い道22選</Link>」でまとめています。購入前に具体的な使用イメージを確認したい方はぜひご覧ください。
+                  各活用シーンの詳しい解説やおすすめアプリは「<Link prefetch={false} href="/ipad/howto-use-ipad/">iPadの便利な使い道22選</Link>」でまとめています。購入前に具体的な使用イメージを確認したい方はぜひご覧ください。
                 </p>
               </div>
             </div>

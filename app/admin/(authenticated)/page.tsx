@@ -19,7 +19,7 @@ export default async function AdminDashboard() {
       </div>
       <div className="admin-dashboard">
         {counts.map((cat) => (
-          <Link key={cat.key} href={`/admin/${cat.key}`} className="admin-dashboard__card">
+          <Link prefetch={false} key={cat.key} href={`/admin/${cat.key}`} className="admin-dashboard__card">
             <div className="admin-dashboard__icon">
               <i className={`fa-solid ${cat.icon}`} aria-hidden="true" />
             </div>

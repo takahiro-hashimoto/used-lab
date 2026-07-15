@@ -34,7 +34,7 @@ export default function PurchaseVerdict({ model }: Props) {
     >
       <div className="m-callout m-callout--tip u-mt-xl">
         <span className="m-callout__label">おすすめ</span>
-        <p className="m-callout__text">他のモデルと迷っている方は<Link href="/airpods/recommend/">おすすめ中古AirPodsまとめ【目的別】</Link>も参考にしてください。予算・用途別に狙い目モデルを厳選しています。</p>
+        <p className="m-callout__text">他のモデルと迷っている方は<Link prefetch={false} href="/airpods/recommend/">おすすめ中古AirPodsまとめ【目的別】</Link>も参考にしてください。予算・用途別に狙い目モデルを厳選しています。</p>
       </div>
     </ModelPurchaseVerdict>
   )

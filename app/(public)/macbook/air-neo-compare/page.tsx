@@ -121,7 +121,7 @@ export default async function AirNeoComparePage() {
               </p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                MacBookをお得に手に入れるなら中古で購入するのがおすすめ。気になった方は<Link href="/macbook/">中古MacBookおすすめ機種・選び方ガイド</Link>をご覧ください。
+                MacBookをお得に手に入れるなら中古で購入するのがおすすめ。気になった方は<Link prefetch={false} href="/macbook/">中古MacBookおすすめ機種・選び方ガイド</Link>をご覧ください。
               </p>
             </div>
           </div>

@@ -247,7 +247,7 @@ export default async function BenchmarkPage() {
               </p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                情報を網羅的に得たい方は「<Link href="/macbook/">中古MacBookおすすめ機種・選び方ガイド</Link>」も参考にしてみてください！
+                情報を網羅的に得たい方は「<Link prefetch={false} href="/macbook/">中古MacBookおすすめ機種・選び方ガイド</Link>」も参考にしてみてください！
               </p>
             </div>
           </div>

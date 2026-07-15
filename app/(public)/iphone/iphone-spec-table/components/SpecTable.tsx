@@ -198,7 +198,7 @@ export default function SpecTable({ models, shopLinks, embed = false }: Props) {
           歴代iPhoneの主要スペックを一覧で比較できます。
         </p>
         <p className="m-section-desc">
-          カメラ関連の機能は<Link href="/iphone/iphone-camera/">歴代iPhoneカメラ性能の比較まとめ</Link>で解説しています。
+          カメラ関連の機能は<Link prefetch={false} href="/iphone/iphone-camera/">歴代iPhoneカメラ性能の比較まとめ</Link>で解説しています。
         </p>
 
         {/* フィルターUI */}
@@ -334,7 +334,7 @@ export default function SpecTable({ models, shopLinks, embed = false }: Props) {
           </StickyTableWrapper>
         )}
         <p style={{ marginTop: '1rem', fontSize: '0.75rem', color: '#888', lineHeight: 1.7 }}>
-          ※ 各機種の中古相場・価格推移グラフは「<Link href="/iphone/price-info/" style={{ color: 'var(--color-primary)', textDecoration: 'underline' }}>iPhone中古相場・価格推移ページ</Link>」でご確認いただけます。
+          ※ 各機種の中古相場・価格推移グラフは「<Link prefetch={false} href="/iphone/price-info/" style={{ color: 'var(--color-primary)', textDecoration: 'underline' }}>iPhone中古相場・価格推移ページ</Link>」でご確認いただけます。
         </p>
         {!embed && <SpecEmbedButton />}
       </div>

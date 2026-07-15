@@ -110,7 +110,7 @@ export default function UseCaseGuide({ models, shopLinks }: Props) {
                   <div className="usecase-card__recommend">
                     <div className="usecase-card__recommend-left">
                       <span className="usecase-card__recommend-label">おすすめモデル</span>
-                      <Link href={`/ipad/${bestModel.slug}/`} className="usecase-card__recommend-name">
+                      <Link prefetch={false} href={`/ipad/${bestModel.slug}/`} className="usecase-card__recommend-name">
                         {bestModel.model}
                       </Link>
                     </div>
@@ -138,7 +138,7 @@ export default function UseCaseGuide({ models, shopLinks }: Props) {
         <div className="m-callout m-callout--tip u-mt-2xl">
           <span className="m-callout__label">memo</span>
           <p className="m-callout__text">
-            上記の推奨スコアはGeekbench 6公式ベンチマークの実測値をもとに、各用途で快適に動作するチップ世代の下限を目安として設定しています。予算に余裕があれば1段階上のモデルを選ぶと、数年後もストレスなく使い続けられます。用途別のコスパ重視モデルは<Link href="/ipad/recommend/">おすすめ中古iPad機種まとめ</Link>にも掲載しています。
+            上記の推奨スコアはGeekbench 6公式ベンチマークの実測値をもとに、各用途で快適に動作するチップ世代の下限を目安として設定しています。予算に余裕があれば1段階上のモデルを選ぶと、数年後もストレスなく使い続けられます。用途別のコスパ重視モデルは<Link prefetch={false} href="/ipad/recommend/">おすすめ中古iPad機種まとめ</Link>にも掲載しています。
           </p>
         </div>
       </div>

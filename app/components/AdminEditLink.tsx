@@ -12,7 +12,7 @@ export default function AdminEditLink({ categoryKey, modelId }: Props) {
   if (process.env.NODE_ENV !== 'development') return null
 
   return (
-    <Link
+    <Link prefetch={false}
       href={`/admin/${categoryKey}/${modelId}`}
       className="admin-edit-float"
       title="管理画面で編集"

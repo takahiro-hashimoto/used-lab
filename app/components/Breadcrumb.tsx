@@ -15,7 +15,7 @@ export default function Breadcrumb({ items }: Props) {
       <div className="l-container">
         <ol className="breadcrumb-list">
           <li className="breadcrumb-item">
-            <Link href="/">
+            <Link prefetch={false} href="/">
               <i className="fa-solid fa-house" aria-hidden="true"></i>{' '}
               <span>中古Apple製品を安く買う</span>
             </Link>
@@ -23,7 +23,7 @@ export default function Breadcrumb({ items }: Props) {
           {items.map((item, i) => (
             <li key={i} className="breadcrumb-item" aria-current={!item.href ? 'page' : undefined}>
               {item.href ? (
-                <Link href={item.href}>{item.label}</Link>
+                <Link prefetch={false} href={item.href}>{item.label}</Link>
               ) : (
                 item.label
               )}

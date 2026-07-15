@@ -121,7 +121,7 @@ export default function WindowsMacComparePage() {
               </p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                中古MacBookの購入を検討中の方は「<Link href="/macbook/">中古MacBookおすすめ機種・選び方ガイド</Link>」もあわせてご覧ください。
+                中古MacBookの購入を検討中の方は「<Link prefetch={false} href="/macbook/">中古MacBookおすすめ機種・選び方ガイド</Link>」もあわせてご覧ください。
               </p>
             </div>
           </div>

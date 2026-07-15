@@ -77,13 +77,13 @@ export default function ModelHeroSection({ model, config, dateStr, dateDisplay, 
           <div className="l-container">
             <ol className="breadcrumb-list">
               <li className="breadcrumb-item">
-                <Link href="/">
+                <Link prefetch={false} href="/">
                   <i className="fa-solid fa-house" aria-hidden="true"></i>{' '}
                   <span>中古Apple製品を安く買う</span>
                 </Link>
               </li>
               <li className="breadcrumb-item">
-                <Link href={`${categoryPath}/`}>{categoryLabel}</Link>
+                <Link prefetch={false} href={`${categoryPath}/`}>{categoryLabel}</Link>
               </li>
               <li className="breadcrumb-item" aria-current="page">中古{model.model}</li>
             </ol>

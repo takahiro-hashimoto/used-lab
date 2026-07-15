@@ -92,7 +92,7 @@ export default function BenchmarkRanking({ models, shopLinks }: { models: BenchM
                         <span className={`bench-rank ${rank <= 3 ? `bench-rank--${rank}` : ''}`}>{rank}</span>
                       </td>
                       <th scope="row" className="bench-ranking-table__model-cell">
-                        <Link href={`/ipad/${m.slug}/`} className="bench-model-link">
+                        <Link prefetch={false} href={`/ipad/${m.slug}/`} className="bench-model-link">
                           {m.image && m.image.startsWith('/') && (
                             <Image src={m.image} alt={m.model} width={40} height={40} className="bench-model-img" />
                           )}

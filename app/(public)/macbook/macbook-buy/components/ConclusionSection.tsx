@@ -23,7 +23,7 @@ export default function ConclusionSection() {
             </p>
           </div>
 
-          <p style={{ marginTop: 'var(--space-md)' }}>どの方法で購入するか決まったら、<Link href="/macbook/recommend/">おすすめの中古MacBook</Link>で機種を絞り込みましょう。</p>
+          <p style={{ marginTop: 'var(--space-md)' }}>どの方法で購入するか決まったら、<Link prefetch={false} href="/macbook/recommend/">おすすめの中古MacBook</Link>で機種を絞り込みましょう。</p>
 
           <div className="m-card m-table-card u-mt-lg">
             <div className="m-table-scroll">

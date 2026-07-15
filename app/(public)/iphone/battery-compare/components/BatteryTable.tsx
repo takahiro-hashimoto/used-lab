@@ -66,7 +66,7 @@ export default function BatteryTable({ models }: Props) {
           歴代iPhoneのバッテリー容量 一覧表
         </h2>
         <p className="m-section-desc">歴代iPhoneのバッテリー容量と連続使用時間の目安を一覧で比較できます。</p>
-        <p className="m-section-desc">iPhoneのスペックを網羅的に比較したい場合は<Link href="/iphone/iphone-spec-table/">歴代iPhoneスペック比較表</Link>をご覧ください。</p>
+        <p className="m-section-desc">iPhoneのスペックを網羅的に比較したい場合は<Link prefetch={false} href="/iphone/iphone-spec-table/">歴代iPhoneスペック比較表</Link>をご覧ください。</p>
 
         <div className="u-mb-xl" aria-label="絞り込み">
           <div className="spec-filter__row">
@@ -123,7 +123,7 @@ export default function BatteryTable({ models }: Props) {
                             )}
                           </div>
                           <div className="battery-table__model-info">
-                            <Link href={`/iphone/${m.slug}`} className="battery-table__model-name">
+                            <Link prefetch={false} href={`/iphone/${m.slug}`} className="battery-table__model-name">
                               {m.model}
                             </Link>
                             <span className="battery-table__date">{formatDate(m.date)} 発売</span>

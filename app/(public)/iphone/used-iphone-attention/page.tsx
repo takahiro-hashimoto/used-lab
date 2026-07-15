@@ -179,7 +179,7 @@ export default function UsedIphoneAttentionPage() {
               </p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                中古iPhoneの全体像を把握したい方は「<Link href="/iphone/">中古iPhoneおすすめ機種・選び方ガイド</Link>」をご覧ください。
+                中古iPhoneの全体像を把握したい方は「<Link prefetch={false} href="/iphone/">中古iPhoneおすすめ機種・選び方ガイド</Link>」をご覧ください。
               </p>
             </div>
           </div>
@@ -241,13 +241,13 @@ export default function UsedIphoneAttentionPage() {
                 中古iPhoneを買う際の注意点 まとめ
               </h2>
               <p className="m-section-desc">
-                中古iPhoneの注意点は多く見えますが、事前にチェックすべきポイントは4つだけです。この4点を確認しておけば、購入後の大きなトラブルはほぼ防げます。機種選びで迷っている方は、<Link href="/iphone/">おすすめiPhone5選</Link>もあわせてご覧ください。
+                中古iPhoneの注意点は多く見えますが、事前にチェックすべきポイントは4つだけです。この4点を確認しておけば、購入後の大きなトラブルはほぼ防げます。機種選びで迷っている方は、<Link prefetch={false} href="/iphone/">おすすめiPhone5選</Link>もあわせてご覧ください。
               </p>
 
               <SummaryChecklist
                 title="購入前に確認すべき4つのポイント"
                 items={[
-                  { label: 'ネットワーク制限', text: <>は必ずIMEIで事前に確認。「△」でも<Link href="/iphone/network-limit/">赤ロム保証付きショップ</Link>なら安心です。</> },
+                  { label: 'ネットワーク制限', text: <>は必ずIMEIで事前に確認。「△」でも<Link prefetch={false} href="/iphone/network-limit/">赤ロム保証付きショップ</Link>なら安心です。</> },
                   { label: 'バッテリー最大容量', text: 'が80%未満の端末は避けましょう。設定アプリから確認できます。' },
                   { label: 'iOSサポート', text: 'の残りが2年未満の端末は避けましょう。発売から約7年が目安です。' },
                   { label: 'SIMロック', text: 'が解除できない端末は避けましょう。設定アプリから確認できます。' },

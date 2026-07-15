@@ -24,7 +24,7 @@ export default function HeroMeta({ dateStr, dateDisplay, withItemProp = false, h
         {showAuthor && (
           <span>
             <i className="fa-regular fa-user" aria-hidden="true"></i> 著者:
-            <Link
+            <Link prefetch={false}
               href="/profile/"
               rel="author nofollow"
               {...(withItemProp ? { itemProp: 'author' } : {})}

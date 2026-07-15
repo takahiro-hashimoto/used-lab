@@ -193,7 +193,7 @@ export default function HowtoUseIpadPage() {
               </p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                iPadの選び方から知りたい方は「<Link href="/ipad/">中古iPad購入ガイド</Link>」をご覧ください。
+                iPadの選び方から知りたい方は「<Link prefetch={false} href="/ipad/">中古iPad購入ガイド</Link>」をご覧ください。
               </p>
             </div>
           </div>

@@ -472,7 +472,7 @@ iPadを安く買う7つの方法
               <div className="buy-method-card__text">
                 <p>中古iPadは購入先によって保証内容や価格が大きく異なります。失敗しないためにも、当サイトの購入ガイドでおすすめショップやモデル別の価格比較をチェックしてみてください。</p>
               </div>
-              <Link href="/ipad/" className="buy-method-cta">
+              <Link prefetch={false} href="/ipad/" className="buy-method-cta">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i> 中古iPad購入ガイドを見る
               </Link>
             </div>

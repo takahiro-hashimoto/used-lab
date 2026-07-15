@@ -33,7 +33,7 @@ export default function CrossCategoryLinks({ currentCategory }: Props) {
       </h3>
       <div className="l-grid l-grid--2col" style={{ marginTop: 'var(--space-md)' }}>
         {links.map((item) => (
-          <Link
+          <Link prefetch={false}
             key={item.href}
             href={item.href}
             className="m-card m-card--shadow related-link-card related-link-card--icon m-card--hoverable"

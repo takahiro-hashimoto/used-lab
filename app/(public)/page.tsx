@@ -132,7 +132,7 @@ export default async function HomePage() {
                   <p className="listing-pick-card__release">{modelCounts[cat.id]}モデル掲載中</p>
                   <p className="listing-pick-card__desc">{cat.desc}</p>
                 </div>
-                <Link href={`${cat.basePath}/`} className="m-btn m-btn--primary m-btn--block u-w-full">
+                <Link prefetch={false} href={`${cat.basePath}/`} className="m-btn m-btn--primary m-btn--block u-w-full">
                   ガイドを見る <i className="fa-solid fa-chevron-right" aria-hidden="true"></i>
                 </Link>
               </article>
@@ -194,7 +194,7 @@ export default async function HomePage() {
                 <p className="top-about-card__desc">
                   2011年のiPhone 4sから毎年Apple製品を購入し続けているガジェットブロガー。姉妹サイトのガジェットブログ「デジスタ」では300製品以上をレビュー、最高月間PVは60万。GoodsPress誌インタビュー掲載、ITmedia「Fav-Log」連載など多数のメディア実績あり。
                 </p>
-                <Link href="/profile/" className="top-about-card__text-link">
+                <Link prefetch={false} href="/profile/" className="top-about-card__text-link">
                   運営者情報を見る <i className="fa-solid fa-chevron-right" aria-hidden="true"></i>
                 </Link>
                 <div className="top-about-card__links">

@@ -97,7 +97,7 @@ export default function BenchmarkGeekbench({ model, allModels }: Props) {
         </StickyTableWrapper>
         <div className="m-callout m-callout--tip u-mt-2xl">
           <span className="m-callout__label">memo</span>
-          <p className="m-callout__text">ベンチマークについてもっと詳しく知りたい方は「<Link href="/macbook/benchmark/">MacBookのベンチマーク比較</Link>」もあわせてご覧ください。</p>
+          <p className="m-callout__text">ベンチマークについてもっと詳しく知りたい方は「<Link prefetch={false} href="/macbook/benchmark/">MacBookのベンチマーク比較</Link>」もあわせてご覧ください。</p>
         </div>
       </div>
     </section>

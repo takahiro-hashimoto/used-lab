@@ -112,7 +112,7 @@ export default function ProductCard({
               <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
             </a>
           ) : fallbackHref ? (
-            <Link href={fallbackHref} className="m-btn m-btn--primary m-btn--sm" style={btnStyle} aria-label={`${modelName}の${fallbackText}`}>
+            <Link prefetch={false} href={fallbackHref} className="m-btn m-btn--primary m-btn--sm" style={btnStyle} aria-label={`${modelName}の${fallbackText}`}>
               <span>{fallbackText}</span>
               <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
             </Link>

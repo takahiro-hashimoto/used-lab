@@ -41,7 +41,7 @@ export default function Error({
               >
                 もう一度試す
               </button>
-              <Link href="/" className="m-btn m-btn--outline">
+              <Link prefetch={false} href="/" className="m-btn m-btn--outline">
                 トップページへ戻る
               </Link>
             </div>

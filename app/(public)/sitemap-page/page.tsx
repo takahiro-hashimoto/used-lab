@@ -163,7 +163,7 @@ export default async function SitemapPage() {
               <ul className="sitemap-link-list">
                 {cat.staticPages.map((page) => (
                   <li key={page.href}>
-                    <Link href={page.href}>{page.label}</Link>
+                    <Link prefetch={false} href={page.href}>{page.label}</Link>
                   </li>
                 ))}
               </ul>

@@ -22,8 +22,8 @@ const GLOSSARY_ITEMS = [
   { title: 'Retina Display', icon: 'fa-solid fa-display', desc: 'ピクセル密度が高く、肉眼では個々のピクセルが判別できない高精細ディスプレイ。文字や画像がシャープに表示され、目に優しい。' },
   { title: 'Liquid Retina Display', icon: 'fa-solid fa-droplet', desc: 'Retina Displayの進化版。滑らかな表示と広色域対応を実現し、ベゼルの細いデザインに最適化。True Toneや広視野角も特長。' },
   { title: 'Ultra Retina XDR Display', icon: 'fa-solid fa-star', desc: '有機ELを採用した最新世代の高性能ディスプレイ。高輝度・高コントラスト・広色域に対応し、HDR映像やプロ向け制作にも対応。' },
-  { title: 'Apple Pencil', icon: 'fa-solid fa-pen-nib', desc: <>iPad専用のスタイラスペン。手書きメモやイラスト制作、PDFへの注釈などに活用。第1〜第3世代があり、対応機種や充電方式が異なる。詳しくは「<Link href="/ipad/apple-pencil-compare/">Apple Pencilの違いを比較</Link>」を参照。</> },
-  { title: '外付けキーボード', icon: 'fa-solid fa-keyboard', desc: <>iPad専用のMagic KeyboardやSmart Keyboardなどが対応。タイピング作業や資料作成が快適になり、ラップトップのように使える。詳しくは「<Link href="/ipad/accessories-summary/#kb-16">iPadのMagic Keyboard 型番一覧</Link>」を参照。</> },
+  { title: 'Apple Pencil', icon: 'fa-solid fa-pen-nib', desc: <>iPad専用のスタイラスペン。手書きメモやイラスト制作、PDFへの注釈などに活用。第1〜第3世代があり、対応機種や充電方式が異なる。詳しくは「<Link prefetch={false} href="/ipad/apple-pencil-compare/">Apple Pencilの違いを比較</Link>」を参照。</> },
+  { title: '外付けキーボード', icon: 'fa-solid fa-keyboard', desc: <>iPad専用のMagic KeyboardやSmart Keyboardなどが対応。タイピング作業や資料作成が快適になり、ラップトップのように使える。詳しくは「<Link prefetch={false} href="/ipad/accessories-summary/#kb-16">iPadのMagic Keyboard 型番一覧</Link>」を参照。</> },
 ]
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
@@ -204,7 +204,7 @@ export default async function IPadSpecTablePage() {
               <p>本記事では<strong>歴代iPadの主要スペックを一覧表で比較</strong>し、進化ポイントをわかりやすくまとめました。iPadを購入する際の参考にしてみてください！</p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                もっと全体像から知りたい方は「<Link href="/ipad/">中古iPadおすすめ機種・選び方まとめ</Link>」をご覧ください。
+                もっと全体像から知りたい方は「<Link prefetch={false} href="/ipad/">中古iPadおすすめ機種・選び方まとめ</Link>」をご覧ください。
               </p>
             </div>
           </div>

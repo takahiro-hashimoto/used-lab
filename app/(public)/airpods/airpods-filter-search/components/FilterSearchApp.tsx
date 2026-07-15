@@ -459,7 +459,7 @@ export default function AirPodsFilterSearchApp({ models, shopLinks }: Props) {
                         )}
                       </div>
                       <div className="ifd-result-card__info">
-                        <Link href={`/airpods/${m.slug}`} className="ifd-result-card__name">
+                        <Link prefetch={false} href={`/airpods/${m.slug}`} className="ifd-result-card__name">
                           {m.name}
                         </Link>
                         <div className="ifd-result-card__tags">

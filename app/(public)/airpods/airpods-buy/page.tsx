@@ -115,7 +115,7 @@ export default function AirPodsBuyPage() {
               </p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                中古AirPodsの選び方から知りたい方は「<Link href="/airpods/">中古AirPods購入ガイド</Link>」をご覧ください。
+                中古AirPodsの選び方から知りたい方は「<Link prefetch={false} href="/airpods/">中古AirPods購入ガイド</Link>」をご覧ください。
               </p>
             </div>
           </div>

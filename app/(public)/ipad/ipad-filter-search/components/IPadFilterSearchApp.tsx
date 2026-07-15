@@ -588,7 +588,7 @@ export default function IPadFilterSearchApp({ models, shopLinks }: Props) {
                         )}
                       </div>
                       <div className="ifd-result-card__info">
-                        <Link href={`/ipad/${m.slug}`} className="ifd-result-card__name">
+                        <Link prefetch={false} href={`/ipad/${m.slug}`} className="ifd-result-card__name">
                           {m.model}
                         </Link>
                         <div className="ifd-result-card__tags">

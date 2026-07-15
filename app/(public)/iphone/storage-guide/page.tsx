@@ -195,7 +195,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/storage-
               <p>本記事では、<strong>用途別のおすすめ容量の目安と歴代iPhoneの容量ラインナップ</strong>をまとめました。「何GBにすればいいかわからない」という方はぜひ参考にしてみてください。</p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                情報を網羅的に得たい方は「<Link href="/iphone/">中古iPhoneおすすめ機種・選び方ガイド</Link>」も参考にしてみてください！
+                情報を網羅的に得たい方は「<Link prefetch={false} href="/iphone/">中古iPhoneおすすめ機種・選び方ガイド</Link>」も参考にしてみてください！
               </p>
             </div>
           </div>
@@ -445,13 +445,13 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/storage-
                 <div className="m-callout m-callout--subtle caution-links-box">
                   <ul className="caution-links-box__list">
                     <li>
-                      <Link href="/iphone/used-iphone-attention/"><i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> 中古iPhoneの注意点と選び方まとめ</Link>
+                      <Link prefetch={false} href="/iphone/used-iphone-attention/"><i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> 中古iPhoneの注意点と選び方まとめ</Link>
                     </li>
                     <li>
-                      <Link href="/iphone/battery-compare/"><i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> 歴代iPhoneのバッテリー容量比較ランキング</Link>
+                      <Link prefetch={false} href="/iphone/battery-compare/"><i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> 歴代iPhoneのバッテリー容量比較ランキング</Link>
                     </li>
                     <li>
-                      <Link href="/iphone/"><i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> 中古iPhoneのおすすめ機種5選</Link>
+                      <Link prefetch={false} href="/iphone/"><i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> 中古iPhoneのおすすめ機種5選</Link>
                     </li>
                   </ul>
                 </div>

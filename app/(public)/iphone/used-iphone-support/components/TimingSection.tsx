@@ -68,7 +68,7 @@ const TIMING_CARDS: TimingCard[] = [
         </p>
         <p>
           iPhoneがどのような進化を遂げているのか気になった方は
-          <Link href="/iphone/iphone-spec-table/">歴代iPhoneのスペック比較</Link>
+          <Link prefetch={false} href="/iphone/iphone-spec-table/">歴代iPhoneのスペック比較</Link>
           をチェックしてみてください。
         </p>
       </>
@@ -99,7 +99,7 @@ export default function IPhoneTimingSection() {
           <span className="m-callout__label">memo</span>
           <p className="m-callout__text">
             買い替えを決めたら、購入前の注意点もあわせてチェックしておきましょう。
-            <Link href="/iphone/used-iphone-attention/">中古iPhoneの注意点まとめ</Link>で詳しく解説しています。どの機種にするか迷っている方は<Link href="/iphone/">おすすめiPhone5選</Link>もご参考に。
+            <Link prefetch={false} href="/iphone/used-iphone-attention/">中古iPhoneの注意点まとめ</Link>で詳しく解説しています。どの機種にするか迷っている方は<Link prefetch={false} href="/iphone/">おすすめiPhone5選</Link>もご参考に。
           </p>
         </div>
       }

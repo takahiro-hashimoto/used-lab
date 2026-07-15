@@ -198,7 +198,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/macbook/macbook
               <p>本記事では<strong>歴代MacBookの主要スペックを一覧表で比較</strong>し、進化ポイントをわかりやすくまとめました。MacBookを購入する際の参考にしてみてください！</p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                もっと全体像から知りたい方は「<Link href="/macbook/">中古MacBookおすすめ機種・選び方まとめ</Link>」をご覧ください。
+                もっと全体像から知りたい方は「<Link prefetch={false} href="/macbook/">中古MacBookおすすめ機種・選び方まとめ</Link>」をご覧ください。
               </p>
             </div>
           </div>

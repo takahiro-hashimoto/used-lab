@@ -137,7 +137,7 @@ export default function PrivacyPolicyPage() {
             <h2 className="content-heading">お問い合わせ</h2>
             <p>当サイトのプライバシーポリシーに関する、ご意見、ご質問、その他ユーザー情報の取り扱いに関するお問い合わせは、以下にご連絡ください。</p>
             <div className="u-mt-md">
-              <Link href="/contact/" className="about-media-link">
+              <Link prefetch={false} href="/contact/" className="about-media-link">
                 <i className="fa-solid fa-envelope" aria-hidden="true"></i>
                 <span>お問い合わせ</span>
               </Link>

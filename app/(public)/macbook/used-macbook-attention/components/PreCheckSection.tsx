@@ -54,7 +54,7 @@ export default function PreCheckSection() {
             </p>
             <p className="lead-link">
               <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-              <Link href="/macbook/used-macbook-support/">機種別macOSサポート期間一覧</Link>
+              <Link prefetch={false} href="/macbook/used-macbook-support/">機種別macOSサポート期間一覧</Link>
             </p>
           </div>
         </MediaCard>

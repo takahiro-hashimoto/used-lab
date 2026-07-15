@@ -81,7 +81,7 @@ export default function DemeritSection() {
           </p>
           <p className="lead-link u-mt-sm">
             <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-            <Link href="/ipad/storage-guide/">中古iPadのストレージ容量はどれがいい？用途別おすすめ容量まとめ</Link>
+            <Link prefetch={false} href="/ipad/storage-guide/">中古iPadのストレージ容量はどれがいい？用途別おすすめ容量まとめ</Link>
           </p>
         </div>
       </div>

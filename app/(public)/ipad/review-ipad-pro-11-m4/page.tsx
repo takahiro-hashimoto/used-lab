@@ -126,7 +126,7 @@ export default function ReviewIpadPro11M4Page() {
               </p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                iPadの選び方から知りたい方は「<Link href="/ipad/">中古iPad購入ガイド</Link>」をご覧ください。
+                iPadの選び方から知りたい方は「<Link prefetch={false} href="/ipad/">中古iPad購入ガイド</Link>」をご覧ください。
               </p>
             </div>
           </div>
@@ -188,7 +188,7 @@ export default function ReviewIpadPro11M4Page() {
                 </div>
                 <div className="media-card__body">
                   <p className="media-card__desc">
-                    まずは<Link href="/ipad/pro11-4/" style={{ color: 'var(--color-primary)' }}>iPad Pro 11インチ第4世代</Link>から<Link href="/ipad/pro11-5/" style={{ color: 'var(--color-primary)' }}>iPad Pro 11インチ第5世代</Link>が進化した点をざっと振り返ります。
+                    まずは<Link prefetch={false} href="/ipad/pro11-4/" style={{ color: 'var(--color-primary)' }}>iPad Pro 11インチ第4世代</Link>から<Link prefetch={false} href="/ipad/pro11-5/" style={{ color: 'var(--color-primary)' }}>iPad Pro 11インチ第5世代</Link>が進化した点をざっと振り返ります。
                   </p>
                   <p className="media-card__desc u-mt-sm">
                     前機種から1年半の期間をあけてのアップデートですが、変更点はかなり盛りだくさんです。

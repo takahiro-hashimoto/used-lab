@@ -177,7 +177,7 @@ export default function UsedWatchAttentionPage() {
               </p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                中古Apple Watchの全体像を把握したい方は「<Link href="/watch/">中古Apple Watchおすすめ機種・選び方ガイド</Link>」をご覧ください。
+                中古Apple Watchの全体像を把握したい方は「<Link prefetch={false} href="/watch/">中古Apple Watchおすすめ機種・選び方ガイド</Link>」をご覧ください。
               </p>
             </div>
           </div>
