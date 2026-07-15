@@ -80,6 +80,24 @@ npm run build:checks    # pre-build checks only (sitemap + lint); faster than fu
 
 See [`docs/PRICE_INFO_CHECKLIST.md`](docs/PRICE_INFO_CHECKLIST.md) for price-info page operation details.
 
+## Cache / ISR とコスト（Vercel Usage）
+
+> **⚠️ 最重要:** キャッシュ設定を触るときは、Vercel の Write Units を爆増させないこと。
+> 詳細ルールは [`CLAUDE.md`](CLAUDE.md) を参照（Claude Code は毎セッション自動で読み込む）。
+
+- `unstable_cache` に**短い時間ベース revalidate を付けない**。特に layout や複数ページから
+  共有される query は厳禁。**共有 query の最短 revalidate が配下ページ全体の再生成間隔を
+  支配する**ため、ここが短いと全ページが高頻度で再生成され Write Units が爆増する。
+- 設定・フラグ系（即時反映が必要なデータ）は `revalidate: false` にし、更新は管理画面の
+  Server Action から `revalidateTag(tag, 'max')`（`app/admin/actions.ts` の `purgeTag`）で
+  無効化する。時間経過による自動再生成に頼らない。
+- 「今この瞬間」の期間判定（キャンペーン開始/終了など）はサーバの revalidate ではなく
+  **クライアント側タイマー**で行う（実例: `app/components/StickyCta.tsx`）。
+- 価格ログ系 query は `revalidate: 86400`（1日1回）が基準。これより短くしない。
+
+過去事例: `getSiteConfig` に `revalidate: 300` を付けたことで全カテゴリ配下ページの ISR が
+5分間隔になり、Write Units が日30万超に爆増した（2026-07）。
+
 ## Cache Revalidation
 
 Vercel creates a new deployment on every Git push, so static assets are replaced automatically.
