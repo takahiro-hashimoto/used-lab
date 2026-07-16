@@ -36,7 +36,7 @@ export default function HeroSection({ model, dateStr, dateDisplay }: Props) {
         '@type': 'ListItem',
         position: 2,
         name: '中古AirPodsおすすめ機種・選び方ガイド',
-        item: 'https://used-lab.jp/airpods',
+        item: 'https://used-lab.jp/airpods/',
       },
       {
         '@type': 'ListItem',

@@ -86,7 +86,7 @@ export default async function IPhoneSpecTablePage() {
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
-      { '@type': 'ListItem', position: 2, name: '中古iPhoneおすすめ機種・選び方まとめ', item: 'https://used-lab.jp/iphone' },
+      { '@type': 'ListItem', position: 2, name: '中古iPhoneおすすめ機種・選び方まとめ', item: 'https://used-lab.jp/iphone/' },
       { '@type': 'ListItem', position: 3, name: '歴代iPhoneスペック比較表' },
     ],
   }

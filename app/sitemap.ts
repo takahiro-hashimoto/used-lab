@@ -52,6 +52,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   })
 
   // 動的ページ（製品詳細）
+  // 中古相場（価格ログ）を日次更新で表示しているため、lastmod は価格情報ページと同じく当日
   const dynamicSlugs: { prefix: string; slugs: string[] }[] = [
     { prefix: '/iphone', slugs: iPhoneSlugs },
     { prefix: '/ipad',   slugs: iPadSlugs },
@@ -63,6 +64,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const dynamicPages: MetadataRoute.Sitemap = dynamicSlugs.flatMap(({ prefix, slugs }) =>
     slugs.map((slug) => ({
       url: `${baseUrl}${prefix}/${slug}/`,
+      lastModified: new Date(todayStr),
       changeFrequency: 'weekly' as const,
       priority: 0.6,
     })),
