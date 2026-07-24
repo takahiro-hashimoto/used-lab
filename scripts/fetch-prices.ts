@@ -7,6 +7,8 @@
 //   npx tsx scripts/fetch-prices.ts ipad      # iPad のみ
 //   npx tsx scripts/fetch-prices.ts watch     # Watch のみ
 //   npx tsx scripts/fetch-prices.ts airpods   # AirPods のみ
+//   npx tsx scripts/fetch-prices.ts pixel     # Pixel のみ
+//   npx tsx scripts/fetch-prices.ts galaxy    # Galaxy のみ
 
 import { config } from 'dotenv'
 // ローカル実行時は .env.local を読み込む（GitHub Actions では環境変数が直接設定される）
@@ -17,8 +19,10 @@ import { fetchIpadPrices } from './lib/ipad'
 import { fetchWatchPrices } from './lib/watch'
 import { fetchAirPodsPrices } from './lib/airpods'
 import { fetchMacbookPrices } from './lib/macbook'
+import { fetchPixelPrices } from './lib/pixel'
+import { fetchGalaxyPrices } from './lib/galaxy'
 
-const TARGETS = ['iphone', 'ipad', 'watch', 'airpods', 'macbook'] as const
+const TARGETS = ['iphone', 'ipad', 'watch', 'airpods', 'macbook', 'pixel', 'galaxy'] as const
 type Target = (typeof TARGETS)[number]
 
 async function main() {
@@ -58,6 +62,12 @@ async function main() {
         break
       case 'macbook':
         await fetchMacbookPrices()
+        break
+      case 'pixel':
+        await fetchPixelPrices()
+        break
+      case 'galaxy':
+        await fetchGalaxyPrices()
         break
     }
   }
