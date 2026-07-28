@@ -271,6 +271,7 @@ export default async function IPhoneShopPage() {
               <div className="m-callout m-callout--muted">
                 <span className="m-callout__label">関連</span>
                 <p className="m-callout__text">
+                  <a href="https://force-r.co.jp/column/column-24534/" target="_blank" rel="noopener noreferrer" aria-label="「Amazonおすすめ」は信用できる？仕組み・基準・信頼を得る戦略を徹底解説（新しいタブで開く）">「Amazonおすすめ」は信用できる？仕組み・基準・信頼を得る戦略を徹底解説</a><br />
                   <a href="https://smapple-tenjin.com/">iPhone修理福岡 ならスマップル天神店</a><br />
                   <a href="https://smapple-omiya.com/">iPhone修理大宮 ならスマップル大宮店</a><br />
                   <a href="https://smapple-sendai.com/">iPhone修理仙台 スマップル仙台店</a><br />
