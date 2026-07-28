@@ -21,7 +21,10 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/admin/', '/api/', '/styleguide/', '/_next/'],
+        // /_next/ はブロックしない: 画像(/_next/image/)とCSS(/_next/static/)の取得を
+        // 妨げるとレンダリング評価と画像検索に不利。JS/CSSは X-Robots-Tag: noindex
+        // （next.config.ts の /_next/static/）で別途インデックスを防いでいる。
+        disallow: ['/admin/', '/api/', '/styleguide/'],
       },
       ...BLOCKED_BOTS.map((bot) => ({
         userAgent: bot,
