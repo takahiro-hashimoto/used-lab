@@ -183,11 +183,12 @@ export const PRODUCT_CATEGORIES: CategoryDef[] = [
 export const UTILITY_PAGES: PageDef[] = [
   { path: '/news/', label: '新着情報', priority: 0.5, changeFrequency: 'weekly' },
   { path: '/search/', label: '記事を検索', priority: 0.3, changeFrequency: 'monthly', includeInSitemap: false },
-  { path: '/sitemap-page/', label: 'サイトマップ', priority: 0.3, changeFrequency: 'monthly' },
+  // noindex ページは sitemap に載せない（GSC「送信されたURLがnoindex」エラー回避）
+  { path: '/sitemap-page/', label: 'サイトマップ', priority: 0.3, changeFrequency: 'monthly', includeInSitemap: false },
   { path: '/contact/', label: 'お問い合わせ', priority: 0.3, changeFrequency: 'yearly' },
   { path: '/profile/', label: '運営者情報', priority: 0.3, changeFrequency: 'yearly' },
-  { path: '/guidelines/', label: 'ガイドライン', priority: 0.3, changeFrequency: 'yearly' },
-  { path: '/privacy-policy/', label: 'プライバシーポリシー', priority: 0.3, changeFrequency: 'yearly' },
+  { path: '/guidelines/', label: 'ガイドライン', priority: 0.3, changeFrequency: 'yearly', includeInSitemap: false },
+  { path: '/privacy-policy/', label: 'プライバシーポリシー', priority: 0.3, changeFrequency: 'yearly', includeInSitemap: false },
 ]
 
 // ---------- ヘッダーナビゲーション ----------

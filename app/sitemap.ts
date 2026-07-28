@@ -5,6 +5,7 @@ import {
   getAllWatchSlugs,
   getAllMacBookSlugs,
   getAllAirPodsSlugs,
+  getLatestPriceDatesPerCategory,
 } from '@/lib/queries'
 import { getAllStaticRoutes } from '@/lib/routes'
 import { getGitDateForFile, getTodayDate } from '@/lib/utils/shared-helpers'
@@ -29,12 +30,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://used-lab.jp'
 
   // 全製品のスラッグを並列取得（DB失敗時は安全にフォールバック）
-  const [iPhoneSlugs, iPadSlugs, watchSlugs, macBookSlugs, airPodsSlugs] = await Promise.all([
+  const [iPhoneSlugs, iPadSlugs, watchSlugs, macBookSlugs, airPodsSlugs, priceDates] = await Promise.all([
     getAllIPhoneSlugs().catch(() => [] as string[]),
     getAllIPadSlugs().catch(() => [] as string[]),
     getAllWatchSlugs().catch(() => [] as string[]),
     getAllMacBookSlugs().catch(() => [] as string[]),
     getAllAirPodsSlugs().catch(() => [] as string[]),
+    getLatestPriceDatesPerCategory().catch(() => ({}) as Record<string, string | null>),
   ])
 
   // 静的ページ（lib/routes.ts から一元取得、git の最終コミット日を使用）
@@ -52,23 +54,26 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   })
 
   // 動的ページ（製品詳細）
-  // 中古相場（価格ログ）を日次更新で表示しているため、lastmod は価格情報ページと同じく当日
-  const dynamicSlugs: { prefix: string; slugs: string[] }[] = [
-    { prefix: '/iphone', slugs: iPhoneSlugs },
-    { prefix: '/ipad',   slugs: iPadSlugs },
-    { prefix: '/watch',  slugs: watchSlugs },
-    { prefix: '/macbook', slugs: macBookSlugs },
-    { prefix: '/airpods', slugs: airPodsSlugs },
+  // lastmod は「価格ログが実際に更新された日」を使う。当日固定にすると内容が変わって
+  // いなくても毎日更新扱いになり、Google に lastmod 全体を無視される恐れがあるため。
+  const dynamicSlugs: { prefix: string; slugs: string[]; category: string }[] = [
+    { prefix: '/iphone', slugs: iPhoneSlugs, category: 'iphone' },
+    { prefix: '/ipad',   slugs: iPadSlugs, category: 'ipad' },
+    { prefix: '/watch',  slugs: watchSlugs, category: 'watch' },
+    { prefix: '/macbook', slugs: macBookSlugs, category: 'macbook' },
+    { prefix: '/airpods', slugs: airPodsSlugs, category: 'airpods' },
   ]
 
-  const dynamicPages: MetadataRoute.Sitemap = dynamicSlugs.flatMap(({ prefix, slugs }) =>
-    slugs.map((slug) => ({
+  const dynamicPages: MetadataRoute.Sitemap = dynamicSlugs.flatMap(({ prefix, slugs, category }) => {
+    // 価格ログが無い/取得失敗時のみ当日にフォールバック
+    const dateStr = priceDates[category] ?? todayStr
+    return slugs.map((slug) => ({
       url: `${baseUrl}${prefix}/${slug}/`,
-      lastModified: new Date(todayStr),
+      lastModified: new Date(dateStr),
       changeFrequency: 'weekly' as const,
       priority: 0.6,
-    })),
-  )
+    }))
+  })
 
   return [...staticPages, ...dynamicPages]
 }
