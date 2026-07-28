@@ -22,6 +22,11 @@ import { getAllStaticRoutes } from '../lib/routes'
 const EXCLUDED = new Set([
   '/styleguide/',
   '/search/',
+  // noindex ページ（lib/routes.ts で includeInSitemap: false 指定済み）。
+  // sitemap に載せると GSC「送信された URL が noindex」エラーになるため除外。
+  '/guidelines/',
+  '/privacy-policy/',
+  '/sitemap-page/',
   // 2機種比較ページ（PV僅少のため非公開＝noindex・サイトマップ除外）
   '/iphone/iphone13-13pro-compare/',
   '/iphone/iphone13-14-compare/',
