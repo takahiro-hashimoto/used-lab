@@ -10,16 +10,20 @@ const BASE_ITEMS = [
 ]
 
 const REVIEW_ITEM = { id: 'reviews', label: '口コミ・評判' }
+// 近い価格帯の機種が見つからない場合はセクションごと出ないため、目次にも出さない
+const SIMILAR_ITEM = { id: 'similar-price', label: '同じ予算で狙える他機種' }
 
 type Props = {
   hasReviews: boolean
+  hasSimilarPrice?: boolean
 }
 
-export default function TableOfContents({ hasReviews }: Props) {
+export default function TableOfContents({ hasReviews, hasSimilarPrice = false }: Props) {
   // AFTER_ITEMSを削除し、BASE_ITEMSとREVIEW_ITEMのみで構成
-  const items = hasReviews
-    ? [...BASE_ITEMS, REVIEW_ITEM]
-    : [...BASE_ITEMS]
+  const base = hasSimilarPrice
+    ? BASE_ITEMS.flatMap((item) => (item.id === 'price-trend' ? [item, SIMILAR_ITEM] : [item]))
+    : BASE_ITEMS
+  const items = hasReviews ? [...base, REVIEW_ITEM] : [...base]
 
   return (
     <>

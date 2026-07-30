@@ -9,8 +9,11 @@ import {
   getAllProductShopLinksByType,
   getPriceLogsByModelId,
   getLatestIPhonePriceLogWithPrices,
+  getLatestIPhonePriceLogsWithPricesForModels,
   getIPhoneReviewsBySlug,
 } from '@/lib/queries'
+import SimilarPriceModels from '@/app/components/model/SimilarPriceModels'
+import { buildSimilarPriceItems } from '@/lib/utils/similar-price'
 
 const cachedGetModel = cache(getIPhoneModelBySlug)
 const cachedGetLatestPrice = cache(getLatestIPhonePriceLogWithPrices)
@@ -33,6 +36,7 @@ import ReviewSection from '@/app/components/ReviewSection'
 import AdminEditLink from '@/app/components/AdminEditLink'
 import StickyCtaOverride from '@/app/components/StickyCtaOverride'
 import { resolveLastUpdatedDate, buildStandardPriceChartData } from '@/lib/utils/shared-helpers'
+import { buildInventoryInsight } from '@/lib/utils/price-stats'
 
 export const revalidate = false
 
@@ -57,7 +61,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const osLife = calculateOSLifespan(model.date, model.last_ios)
 
   // 動的に価格・チップ・サポート年数を埋め込む
-  const priceText = priceRange.minPrice ? `（¥${priceRange.minPrice.toLocaleString()}〜）` : ''
+  // 「相場」と書いている箇所は中央値。最安値は1点だけの特価であることが多く、
+  // 相場として提示すると実際には見つけられない価格になる
+  const priceText = priceRange.medianPrice
+    ? `（¥${priceRange.medianPrice.toLocaleString()}前後）`
+    : priceRange.minPrice ? `（¥${priceRange.minPrice.toLocaleString()}〜）` : ''
   const chipText = model.cpu ? `${model.cpu}搭載` : ''
   const osText = osLife.isSupported ? `iOSサポート見込み` : 'iOSサポート終了済み'
 
@@ -97,13 +105,32 @@ export default async function IPhoneDetailPage({ params }: PageProps) {
     getIPhoneReviewsBySlug(slug),
   ])
 
+  // 「同じ予算で狙える他のモデル」用の最新価格
+  // TODO(Pixel/Galaxy公開時): Pixel/Galaxy を横断対象に戻す。
+  // 未公開カテゴリの機種名とリンクが本番に出てしまうため、現在は iPhone のみ。
+  const PRICE_COLS = ['iosys_min', 'geo_min', 'janpara_min']
+  const iphonePrices = await getLatestIPhonePriceLogsWithPricesForModels(
+    allModels.map((m) => m.id),
+    PRICE_COLS,
+  )
+
   // PriceChartSection用のデータをサーバーサイドで事前計算
   const recentLogs = filterLast3Months(priceLogs)
   const dailyData = aggregateDailyPrices(recentLogs)
-  const { latestDate, latestMinMaxPairs, storageNote } = buildStandardPriceChartData(priceLogs)
+  const { latestDate, latestMinMaxPairs, storageNote, priceStats, totalCount } = buildStandardPriceChartData(priceLogs)
+  // 流通量から在庫の状況を組み立てる（件数の記録がない過去分では null）
+  const inventoryInsight = buildInventoryInsight(totalCount, model.date, new Date())
   const modelShopLinks = shopLinks.filter((l) => l.product_id === model.id)
   const iosysShop = shops.find((s) => s.id === 1)
   const fallbackIosysUrl = iosysShop?.url || undefined
+
+  // 基準機種の相場に近いモデルをブランド横断で抽出（価格が動けば並びも自動で変わる）
+  const { basePrice, items: similarItems } = buildSimilarPriceItems(
+    { brand: 'iphone', id: model.id },
+    [
+      { brand: 'iphone', brandLabel: 'iPhone', models: allModels, prices: iphonePrices, shopLinks },
+    ],
+  )
 
   const { dateStr, dateDisplay } = resolveLastUpdatedDate({
     preferredDateStr: latestPrice?.logged_at?.substring(0, 10),
@@ -120,7 +147,7 @@ export default async function IPhoneDetailPage({ params }: PageProps) {
       <article>
         <HeroSection model={model} latestPrice={latestPrice} dateStr={dateStr} dateDisplay={dateDisplay} />
         <LeadText model={model} />
-        <TableOfContents hasReviews={reviews.length > 0} />
+        <TableOfContents hasReviews={reviews.length > 0} hasSimilarPrice={basePrice != null && similarItems.length > 0} />
         <div className="l-sections">
         <PurchaseVerdict model={model} latestPrice={latestPrice} />
         <ShopGrid shops={shops} shopLinks={modelShopLinks} model={model} />
@@ -132,10 +159,17 @@ export default async function IPhoneDetailPage({ params }: PageProps) {
             modelName={model.model}
             category="iphone"
             latestMinMaxPairs={latestMinMaxPairs}
+            priceStats={priceStats}
+            inventoryInsight={inventoryInsight}
             latestDate={latestDate}
             storageNote={storageNote}
             priceListLink={{ href: '/iphone/price-info/', label: 'iPhoneの中古相場一覧・価格推移' }}
           />
+        )}
+
+        {/* 価格推移とは別の話題（他機種への乗り換え検討）なので独立したセクションにする */}
+        {basePrice != null && (
+          <SimilarPriceModels modelName={model.model} basePrice={basePrice} items={similarItems} />
         )}
 
         <AdvanceFeatures model={model} />
