@@ -33,8 +33,38 @@ const IPAD_NG_KEYWORD_MAP: Record<string, string> = {
   'iPad Pro 13 第2世代': 'Air mini 11 12.9',
 }
 
+/**
+ * NGキーワードをモデル名から導出する。
+ *
+ * 上のマップは機種を1件ずつ手で登録する方式だったため、新機種を追加すると
+ * 登録漏れがそのまま「NG指定なし」になり、検索結果が他シリーズで埋まって
+ * 1件もマッチしない状態になっていた（例: iPad Air 11/13 第8世代）。
+ * 自分と違うシリーズ名と、同シリーズの別サイズを機械的に除外する。
+ */
+function buildDefaultIpadNgKeyword(modelName: string): string {
+  const base = modelName.replace(/第\d+世代/, '').trim()
+  const isMini = /mini/i.test(base)
+  const isAir = /air/i.test(base)
+  const isPro = /pro/i.test(base)
+
+  const words: string[] = []
+  if (!isPro) words.push('Pro')
+  if (!isAir) words.push('Air')
+  if (!isMini) words.push('mini')
+
+  // Air / Pro はサイズ違いが併売されるので、自分以外のサイズも弾く
+  if (isAir || isPro) {
+    const size = base.match(/(\d+\.?\d*)\s*$/)?.[1] ?? null
+    for (const s of ['11', '12.9', '13']) {
+      if (s !== size) words.push(s)
+    }
+  }
+  return words.join(' ')
+}
+
 function getIpadNgKeyword(modelName: string, cpuName: string | null, type: string): string | null {
-  let ng = IPAD_NG_KEYWORD_MAP[modelName] ?? null
+  // マップは例外指定用。無ければモデル名から導出する
+  let ng = IPAD_NG_KEYWORD_MAP[modelName] ?? buildDefaultIpadNgKeyword(modelName)
   if (type === 'cpu' && ng && cpuName && cpuName.toLowerCase().includes('pro')) {
     ng = ng
       .split(' ')
@@ -226,10 +256,17 @@ export async function fetchIpadPrices(): Promise<void> {
       janpara_prices: prices.janpara.prices,
     })
 
+    // 全ショップで0件は設定漏れ（NGキーワード・検索語）の可能性が高い。
+    // 黙って null 行が積まれると気づけないので明示する
+    const totalMatched = prices.iosys.count + prices.geo.count + prices.janpara.count
+    if (totalMatched === 0) {
+      console.warn(`  ⚠️ 全ショップで0件: ${modelName} — 検索語/NGキーワードの設定を確認`)
+    }
+
     if (insertError) {
       console.error(`  ❌ DB INSERT失敗: ${modelName}`, insertError.message)
     } else {
-      console.log(`  📤 DB保存完了: ${modelName}`)
+      console.log(`  📤 DB保存完了: ${modelName} (${totalMatched}件)`)
     }
   }
 
