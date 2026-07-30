@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { HIDDEN_CATEGORY_IDS } from '@/lib/data/feature-flags'
 import { Suspense } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -8,6 +9,8 @@ import {
   getAllMacBookModelsIncludingEnded,
   getAllWatchModelsIncludingEnded,
   getAllAirPodsModelsIncludingEnded,
+  getAllPixelModelsIncludingEnded,
+  getAllGalaxyModelsIncludingEnded,
   getLatestPriceUpdateDate,
 } from '@/lib/queries'
 import { PRODUCT_CATEGORIES } from '@/lib/routes'
@@ -19,20 +22,22 @@ import { getHeroImage } from '@/lib/data/hero-images'
 export const revalidate = false
 
 export const metadata: Metadata = {
-  title: '中古Apple製品のおすすめ機種・賢い選び方・安く買う方法を解説',
-  description: '中古iPhone・iPad・MacBook・Apple Watch・AirPodsの価格推移・スペック比較・おすすめ機種を毎日更新。中古Apple製品選びに必要な情報をワンストップで提供します。',
+  title: '中古・型落ちデジタルデバイスのおすすめ機種と賢い選び方を解説',
+  description: '中古iPhone・iPad・MacBook・Apple Watch・AirPodsの価格推移・スペック比較・おすすめ機種を毎日更新。中古・型落ちデジタルデバイス選びに必要な情報をワンストップで提供します。',
   alternates: { canonical: '/' },
   openGraph: {
-    title: '中古Apple製品のおすすめ機種・賢い選び方・安く買う方法を解説 | ユーズドラボ',
+    title: '中古・型落ちデジタルデバイスのおすすめ機種と賢い選び方を解説 | ユーズドラボ',
     description: '中古iPhone・iPad・MacBook・Apple Watch・AirPodsの価格推移・スペック比較・おすすめ機種を毎日更新。',
     url: '/',
-    images: [{ url: getHeroImage('/'), width: 1200, height: 630, alt: '中古Apple製品のおすすめ機種・賢い選び方・安く買う方法を解説 | ユーズドラボ' }],
+    images: [{ url: getHeroImage('/'), width: 1200, height: 630, alt: '中古・型落ちデジタルデバイスのおすすめ機種と賢い選び方を解説 | ユーズドラボ' }],
   },
 }
 
 /** カテゴリごとの画像ベースパス */
 const CATEGORY_IMAGE_BASE: Record<string, string> = {
   iphone: '/images/iphone/',
+  pixel: '/images/pixel/',
+  galaxy: '/images/galaxy/',
   ipad: '/images/ipad/',
   macbook: '/images/macbook/',
   watch: '/images/watch/',
@@ -41,8 +46,10 @@ const CATEGORY_IMAGE_BASE: Record<string, string> = {
 
 export default async function HomePage() {
   // 全モデル（サポート切れ含む）＋価格更新日を並列取得
-  const [allIPhoneModels, allIPadModels, allMacBookModels, allWatchModels, allAirPodsModels, latestPriceDate] = await Promise.all([
+  const [allIPhoneModels, allPixelModels, allGalaxyModels, allIPadModels, allMacBookModels, allWatchModels, allAirPodsModels, latestPriceDate] = await Promise.all([
     getAllIPhoneModelsIncludingEnded(),
+    getAllPixelModelsIncludingEnded(),
+    getAllGalaxyModelsIncludingEnded(),
     getAllIPadModelsIncludingEnded(),
     getAllMacBookModelsIncludingEnded(),
     getAllWatchModelsIncludingEnded(),
@@ -61,20 +68,57 @@ export default async function HomePage() {
   // モデル数（サポート切れ含む）
   const modelCounts: Record<string, number> = {
     iphone: allIPhoneModels.length,
+    pixel: allPixelModels.length,
+    galaxy: allGalaxyModels.length,
     ipad: allIPadModels.length,
     macbook: allMacBookModels.length,
     watch: allWatchModels.length,
     airpods: allAirPodsModels.length,
   }
 
-  // カテゴリカード用: 最新の現役モデルの画像（last_xxx === null が現役）
+  // カテゴリカード用: 現役モデル（last_xxx === null）のうち画像があるものを採用。
+  // 画像未登録の機種が先頭にあるとプレースホルダーになってしまうため、m.image で絞る。
   const categoryImages: Record<string, string | null> = {
-    iphone: (() => { const m = allIPhoneModels.find(m => !m.last_ios); return m?.image ? `${CATEGORY_IMAGE_BASE.iphone}${m.image}` : null })(),
-    ipad: (() => { const m = allIPadModels.find(m => !m.last_ipados); return m?.image ? `${CATEGORY_IMAGE_BASE.ipad}${m.image}` : null })(),
-    macbook: (() => { const m = allMacBookModels.find(m => !m.last_macos); return m?.image ? `${CATEGORY_IMAGE_BASE.macbook}${m.image}` : null })(),
-    watch: (() => { const m = allWatchModels.find(m => !m.last_watchos); return m?.image ? `${CATEGORY_IMAGE_BASE.watch}${m.image}` : null })(),
-    airpods: (() => { const m = allAirPodsModels[0]; return m?.image ? `${CATEGORY_IMAGE_BASE.airpods}${m.image}` : null })(),
+    iphone: (() => { const m = allIPhoneModels.find(m => !m.last_ios && m.image); return m?.image ? `${CATEGORY_IMAGE_BASE.iphone}${m.image}` : null })(),
+    pixel: (() => { const m = allPixelModels.find(m => !m.last_android && m.image); return m?.image ? `${CATEGORY_IMAGE_BASE.pixel}${m.image}` : null })(),
+    galaxy: (() => { const m = allGalaxyModels.find(m => !m.last_android && m.image); return m?.image ? `${CATEGORY_IMAGE_BASE.galaxy}${m.image}` : null })(),
+    ipad: (() => { const m = allIPadModels.find(m => !m.last_ipados && m.image); return m?.image ? `${CATEGORY_IMAGE_BASE.ipad}${m.image}` : null })(),
+    macbook: (() => { const m = allMacBookModels.find(m => !m.last_macos && m.image); return m?.image ? `${CATEGORY_IMAGE_BASE.macbook}${m.image}` : null })(),
+    watch: (() => { const m = allWatchModels.find(m => !m.last_watchos && m.image); return m?.image ? `${CATEGORY_IMAGE_BASE.watch}${m.image}` : null })(),
+    airpods: (() => { const m = allAirPodsModels.find(m => m.image); return m?.image ? `${CATEGORY_IMAGE_BASE.airpods}${m.image}` : null })(),
   }
+
+  // カテゴリを Apple / Android の2グループに分割して表示
+  const pickCategories = (ids: string[]) =>
+    ids
+      .map((id) => PRODUCT_CATEGORIES.find((c) => c.id === id))
+      .filter((c): c is (typeof PRODUCT_CATEGORIES)[number] => Boolean(c))
+  const appleCategories = pickCategories(['iphone', 'ipad', 'macbook', 'watch', 'airpods'])
+  // 非公開のあいだは空配列になり、セクションごと描画されない（lib/data/feature-flags.ts）
+  const androidCategories = pickCategories(HIDDEN_CATEGORY_IDS.length > 0 ? [] : ['pixel', 'galaxy'])
+
+  const renderCategoryCard = (cat: (typeof PRODUCT_CATEGORIES)[number]) => (
+    <article key={cat.id} className="m-card m-card--shadow listing-pick-card">
+      <figure className="listing-pick-card__figure">
+        <Image
+          src={categoryImages[cat.id] || placeholder(200, 200, cat.label)}
+          alt={`中古${cat.label}の写真`}
+          className="listing-pick-card__img"
+          width={200}
+          height={200}
+          loading="lazy"
+        />
+      </figure>
+      <div className="listing-pick-card__body">
+        <h3 className="listing-pick-card__name">{cat.label}</h3>
+        <p className="listing-pick-card__release">{modelCounts[cat.id]}モデル掲載中</p>
+        <p className="listing-pick-card__desc">{cat.desc}</p>
+      </div>
+      <Link prefetch={false} href={`${cat.basePath}/`} className="m-btn m-btn--primary m-btn--block u-w-full">
+        ガイドを見る <i className="fa-solid fa-chevron-right" aria-hidden="true"></i>
+      </Link>
+    </article>
+  )
 
   return (
     <main>
@@ -92,10 +136,10 @@ export default async function HomePage() {
         <div className="hero-inner">
           <div className="hero-content hero-content--center">
             <h1 className="hero-title hero-title--top">
-              中古Apple製品を賢く選ぶ。
+              中古・型落ちデジタルデバイスを賢く選ぶ。
             </h1>
             <p className="hero-subtitle--top">
-              中古Apple製品のおすすめ機種・賢い選び方・安く買う方法を解説
+              中古・型落ちデジタルデバイスのおすすめ機種と賢い選び方を解説
             </p>
             {priceUpdateLabel && (
               <p className="hero-freshness">
@@ -114,30 +158,25 @@ export default async function HomePage() {
           <h2 className="m-section-heading m-section-heading--lg">製品カテゴリから探す</h2>
           <p className="m-section-desc">気になる製品カテゴリを選んで、選び方・おすすめ機種・中古相場をチェック</p>
 
+          {/* Apple製品 */}
+          <h3 className="m-section-heading m-section-heading--md u-mb-md" style={{ textAlign: 'left', marginTop: 'var(--space-2xl)' }}>
+            中古Apple製品を探す
+          </h3>
           <div className="l-grid l-grid--5col l-grid--gap-lg">
-            {PRODUCT_CATEGORIES.map((cat) => (
-              <article key={cat.id} className="m-card m-card--shadow listing-pick-card">
-                <figure className="listing-pick-card__figure">
-                  <Image
-                    src={categoryImages[cat.id] || placeholder(200, 200, cat.label)}
-                    alt={`中古${cat.label}の写真`}
-                    className="listing-pick-card__img"
-                    width={200}
-                    height={200}
-                    loading="lazy"
-                  />
-                </figure>
-                <div className="listing-pick-card__body">
-                  <h3 className="listing-pick-card__name">{cat.label}</h3>
-                  <p className="listing-pick-card__release">{modelCounts[cat.id]}モデル掲載中</p>
-                  <p className="listing-pick-card__desc">{cat.desc}</p>
-                </div>
-                <Link prefetch={false} href={`${cat.basePath}/`} className="m-btn m-btn--primary m-btn--block u-w-full">
-                  ガイドを見る <i className="fa-solid fa-chevron-right" aria-hidden="true"></i>
-                </Link>
-              </article>
-            ))}
+            {appleCategories.map(renderCategoryCard)}
           </div>
+
+          {/* Androidスマホ。非公開のあいだは見出しごと出さない */}
+          {androidCategories.length > 0 && (
+            <>
+              <h3 className="m-section-heading m-section-heading--md u-mb-md" style={{ textAlign: 'left', marginTop: 'var(--space-3xl)' }}>
+                中古Androidスマホを探す
+              </h3>
+              <div className="l-grid l-grid--5col l-grid--gap-lg">
+                {androidCategories.map(renderCategoryCard)}
+              </div>
+            </>
+          )}
         </div>
       </section>
 
@@ -145,7 +184,7 @@ export default async function HomePage() {
       <section id="features" className="l-section">
         <div className="l-container">
           <h2 className="m-section-heading m-section-heading--lg">ユーズドラボの特徴</h2>
-          <p className="m-section-desc">中古Apple製品選びに必要な情報をワンストップで提供します</p>
+          <p className="m-section-desc">中古・型落ちデジタルデバイス選びに必要な情報をワンストップで提供します</p>
 
           <div className="l-grid l-grid--3col l-grid--gap-lg">
             <IconCard icon="fa-solid fa-chart-line" title="毎日更新の価格データ">

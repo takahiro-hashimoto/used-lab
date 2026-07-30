@@ -7,7 +7,8 @@ import {
   getAllProductShopLinksByType,
 } from '@/lib/queries'
 import type { MacBookPriceLog } from '@/lib/types'
-import { CHART_COLORS, FAQ_ITEMS } from '@/lib/data/macbook-price-info'
+import { medianOf, priceBand, findModelId } from '@/lib/utils/price-copy'
+import { CHART_COLORS, buildFaqItems } from '@/lib/data/macbook-price-info'
 import { calcAvgFromShops, calcPriceStats, buildPageDates, buildDailyPrices, buildRankingData, buildPriceDropRanking, buildInitialSelected, type PriceEntry } from '@/lib/utils/price-info-helpers'
 import { buildPriceInfoTitle, buildPriceInfoMetadata, PRICE_INFO_UPDATE_MONTH } from '@/lib/utils/price-info-meta'
 import { buildBreadcrumbJsonLd, buildWebApplicationJsonLd, buildDatasetJsonLd, buildFaqJsonLd } from '@/lib/utils/price-info-jsonld'
@@ -124,6 +125,13 @@ export default async function MacBookPriceInfoPage() {
 
   const priceLogsMap = await getAllMacBookPriceLogsByModelIds(allModels.map((m) => m.id), get90DaysAgo())
 
+  // FAQ本文に差し込む M1 MacBook Air の実勢相場（最新ログの中央値）
+  const m1AirId = findModelId(allModels, 'MacBook Air 13インチ（2020）')
+  // getAllByModelIds は logged_at 昇順なので、末尾が最新
+  const m1AirLogs = m1AirId ? (priceLogsMap[m1AirId] ?? []) : []
+  const m1AirLatest = m1AirLogs.length > 0 ? m1AirLogs[m1AirLogs.length - 1] : null
+  const faqItems = buildFaqItems(priceBand(medianOf(m1AirLatest as unknown as Record<string, unknown>, ['matched_prices'])))
+
   // ショップURLの O(1) 参照用 Map (shop_id=1)
   const shopUrlMap = new Map<number, string>()
   for (const l of allShopLinks) {
@@ -231,7 +239,7 @@ export default async function MacBookPriceInfoPage() {
     highestPrice: rankingData[rankingData.length - 1]?.currentPrice ?? 0,
     dateModified,
   })
-  const faqJsonLd = buildFaqJsonLd(FAQ_ITEMS)
+  const faqJsonLd = buildFaqJsonLd(faqItems)
 
   return (
     <>
@@ -411,7 +419,7 @@ export default async function MacBookPriceInfoPage() {
 
           <PriceHistorySection models={sortedModels} />
 
-          <FaqSection />
+          <FaqSection items={faqItems} />
         </div>
       </article>
     </main>

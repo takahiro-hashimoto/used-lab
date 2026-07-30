@@ -1,4 +1,19 @@
-export default function CostPerformanceSection() {
+type Props = {
+  /** 中古M1 Airの実勢相場（例 "7万円台"）。取得できなければ null */
+  m1AirBand: string | null
+  /** 中古M2 Airの実勢相場。取得できなければ null */
+  m2AirBand: string | null
+}
+
+export default function CostPerformanceSection({ m1AirBand, m2AirBand }: Props) {
+  // 相場は日々動くので固定値を書かない。取れない日は価格に触れずに済ませる
+  const airPriceLine =
+    m1AirBand && m2AirBand
+      ? `中古M1 Airは${m1AirBand}、M2 Airは${m2AirBand}が中心`
+      : m1AirBand
+        ? `中古M1 Airは${m1AirBand}が中心`
+        : '中古なら新品より大幅に安く狙える'
+
   return (
     <section className="l-section" id="cost-performance" aria-labelledby="heading-cost-performance">
       <div className="l-container">
@@ -27,7 +42,7 @@ export default function CostPerformanceSection() {
           <div className="m-card m-card--shadow m-card--padded">
             <h3 className="popular-card-title">総合力なら中古Air</h3>
             <ul className="info-card__list u-mt-md">
-              <li>中古M1/M2 Airは5万円台から狙える</li>
+              <li>{airPriceLine}</li>
               <li>M1以降ならApple Intelligenceに対応</li>
               <li>16GBモデルを選べば長く使いやすい</li>
               <li>Thunderbolt 4、MagSafe 3、外部モニター運用で有利</li>

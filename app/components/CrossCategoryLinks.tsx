@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { isHiddenPath } from '@/lib/data/feature-flags'
 
 type CategoryInfo = {
   href: string
@@ -9,6 +10,8 @@ type CategoryInfo = {
 
 const ALL_CATEGORIES: CategoryInfo[] = [
   { href: '/iphone/', title: '中古iPhoneのおすすめ・選び方', desc: 'iPhoneの選び方・おすすめモデルを紹介', icon: 'fa-solid fa-mobile-screen-button' },
+  { href: '/pixel/', title: '中古Google Pixelのおすすめ・選び方', desc: 'Google Pixelの選び方・おすすめモデルを紹介', icon: 'fa-solid fa-mobile-screen' },
+  { href: '/galaxy/', title: '中古Samsung Galaxyのおすすめ・選び方', desc: 'Samsung Galaxyの選び方・おすすめモデルを紹介', icon: 'fa-solid fa-mobile-screen' },
   { href: '/ipad/', title: '中古iPadのおすすめ・選び方', desc: 'iPadの選び方・おすすめモデルを紹介', icon: 'fa-solid fa-tablet-screen-button' },
   { href: '/macbook/', title: '中古MacBookのおすすめ・選び方', desc: 'MacBookの選び方・おすすめモデルを紹介', icon: 'fa-solid fa-laptop' },
   { href: '/watch/', title: '中古Apple Watchのおすすめ・選び方', desc: 'Apple Watchの選び方・おすすめモデルを紹介', icon: 'fa-solid fa-clock' },
@@ -21,7 +24,8 @@ type Props = {
 }
 
 export default function CrossCategoryLinks({ currentCategory }: Props) {
-  const links = ALL_CATEGORIES.filter((c) => c.href !== currentCategory)
+  // 非公開カテゴリは出さない（lib/data/feature-flags.ts）
+  const links = ALL_CATEGORIES.filter((c) => c.href !== currentCategory && !isHiddenPath(c.href))
 
   return (
     <div className="u-mt-2xl">
@@ -29,7 +33,7 @@ export default function CrossCategoryLinks({ currentCategory }: Props) {
         className="m-section-heading m-section-heading--md u-mb-md"
         style={{ textAlign: 'left' }}
       >
-        他のApple製品も検討
+        他のデバイスも検討
       </h3>
       <div className="l-grid l-grid--2col" style={{ marginTop: 'var(--space-md)' }}>
         {links.map((item) => (

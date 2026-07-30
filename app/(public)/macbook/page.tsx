@@ -30,7 +30,7 @@ import GuideModelLinks from '@/app/components/GuideModelLinks'
 import { getHeroImage } from '@/lib/data/hero-images'
 import AuthorByline from '@/app/components/AuthorByline'
 import ContinuousAside from '@/app/components/ContinuousAside'
-import { buildArticleJsonLd, getGitDateForFile, buildFallbackShops } from '@/lib/utils/shared-helpers'
+import { buildArticleJsonLd, buildRecommendItemListJsonLd, resolveCategoryPageDate, buildFallbackShops } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
 import RecommendDetailSection from './recommend/components/RecommendDetailSection'
 import CompareTableSection from './recommend/components/CompareTableSection'
@@ -111,13 +111,16 @@ export default async function MacBookGuidePage() {
     }
   })
 
-  const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/macbook/page.tsx')
+  // 相場は毎日更新されるので、更新日も価格ログの最新日に合わせる。
+  // 手動管理の page-dates.ts のままだと「1ヶ月前から更新なし」と伝わってしまう
+
+  const { dateStr, dateDisplay } = resolveCategoryPageDate(recommendPrices, 'app/(public)/macbook/page.tsx')
 
   const breadcrumbJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
+      { '@type': 'ListItem', position: 1, name: '中古・型落ちデジタルデバイスを賢く買う', item: 'https://used-lab.jp/' },
       { '@type': 'ListItem', position: 2, name: '中古MacBookおすすめ機種・選び方ガイド' },
     ],
   }
@@ -130,6 +133,13 @@ export default async function MacBookGuidePage() {
     url: PAGE_URL,
   })
 
+  // おすすめ機種が「順位づけされたリスト」であることを伝える。
+  // 価格は Product/Offer では出さない（販売者ではないため。詳細は buildRecommendItemListJsonLd）
+  const recommendListJsonLd = buildRecommendItemListJsonLd({
+    name: '中古MacBookおすすめ機種',
+    items: recommendModels.map((m) => ({ name: m.model, url: `https://used-lab.jp/macbook/${m.slug}/` })),
+  })
+
   return (
     <>
     <main>
@@ -137,6 +147,10 @@ export default async function MacBookGuidePage() {
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(recommendListJsonLd) }}
         />
         <script
           type="application/ld+json"
@@ -234,7 +248,7 @@ export default async function MacBookGuidePage() {
                       key={model.id}
                       variant="compact"
                       modelId={model.id}
-                      modelName={model.model.replace(/（\d{4}）/, '')}
+                      modelName={model.model.replace(/（\d{4}）/, ' ').replace(/\s+/g, ' ').trim()}
                       imageUrl={model.image ? `/images/macbook/${model.image}` : null}
                       metaText={`${model.date ? `${model.date.split('/')[0]}年` : ''} / ${model.cpu || ''}`}
                       priceLabel={`中古相場（${storageLabel}）`}

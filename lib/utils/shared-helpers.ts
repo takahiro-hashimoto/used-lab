@@ -47,6 +47,29 @@ export function resolveLastUpdatedDate(options: {
 }
 
 /**
+ * カテゴリトップの最終更新日を返す。
+ *
+ * 相場は毎日更新されるのに、page-dates.ts の手動管理値を dateModified にしていると
+ * 「1ヶ月前から更新なし」と検索エンジンに伝わってしまう（実際にそうなっていた）。
+ * 価格ログの最新日が取れればそれを採用し、取れないときだけ手動値にフォールバックする。
+ *
+ * @param logs 価格ログ（logged_at を持つもの）。null 混在可
+ * @param fallbackFilePath 価格が取れない場合に使う page-dates.ts のキー
+ */
+export function resolveCategoryPageDate(
+  logs: ({ logged_at?: string | null } | null | undefined)[],
+  fallbackFilePath: string,
+): { dateStr: string; dateDisplay: string } {
+  let latest = ''
+  for (const log of logs) {
+    const d = log?.logged_at?.substring(0, 10)
+    if (d && d > latest) latest = d
+  }
+  if (!latest) return getGitDateForFile(fallbackFilePath)
+  return { dateStr: latest, dateDisplay: formatDateDisplay(latest) }
+}
+
+/**
  * 静的ページの最終更新日を返す。
  * lib/data/page-dates.ts に登録された日付を使用（手動管理）。
  * 未登録の場合はサイト開設日にフォールバック。
@@ -203,6 +226,35 @@ export function buildBreadcrumbJsonLd(items: { name: string; item?: string }[]) 
   }
 }
 
+/**
+ * おすすめ機種ランキングの ItemList を組み立てる。
+ *
+ * Product / Offer はあえて使わない。Google の商品構造化データは「その商品を
+ * 販売している事業者」または「複数販売者を集約する価格比較サイト」を前提とし、
+ * 購入可能な実オファーを求める。当サイトは集計した相場を示すメディアであり、
+ * 表示している価格も中央値（その価格の商品が存在しない場合がある）なので、
+ * lowPrice として構造化すると実態と食い違う。
+ * リストの構造（何位に何を推しているか）だけを正しく伝える。
+ */
+export function buildRecommendItemListJsonLd(opts: {
+  name: string
+  items: { name: string; url: string }[]
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: opts.name,
+    numberOfItems: opts.items.length,
+    itemListOrder: 'https://schema.org/ItemListOrderDescending',
+    itemListElement: opts.items.map((item, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: item.name,
+      url: item.url,
+    })),
+  }
+}
+
 export function buildArticleJsonLd(opts: {
   headline: string
   description: string
@@ -229,7 +281,7 @@ export function buildArticleJsonLd(opts: {
       image: 'https://used-lab.jp/images/content/thumbnail/my-icon.webp',
       jobTitle: 'Webディレクター / ブロガー',
       description: 'IT企業でWebデザイナー、フロントエンドエンジニア、Webディレクターを経て現在はプロジェクトマネージャー。2015年からガジェットブログ「デジスタ」を運営し、300以上の製品をレビュー。GoodsPress・ITmedia等で連載・監修実績多数。',
-      knowsAbout: ['iPhone', 'iPad', 'MacBook', 'Apple Watch', 'AirPods', '中古Apple製品', 'ガジェット'],
+      knowsAbout: ['iPhone', 'iPad', 'MacBook', 'Apple Watch', 'AirPods', '中古・型落ちデジタルデバイス', 'ガジェット'],
       sameAs: [
         'https://twitter.com/takahiro_mono',
         'https://www.instagram.com/takahiro_mono',

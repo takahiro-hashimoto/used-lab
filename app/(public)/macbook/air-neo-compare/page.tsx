@@ -13,6 +13,8 @@ import AudienceSection from './components/AudienceSection'
 import CostPerformanceSection from './components/CostPerformanceSection'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import { getHeroImage } from '@/lib/data/hero-images'
+import { getAllMacBookModels, getLatestMacBookPriceLogsWithPricesForModels } from '@/lib/queries'
+import { medianOf, priceBand, findModelId } from '@/lib/utils/price-copy'
 
 const PAGE_TITLE = 'MacBook AirとNeoどっちがいい？違いと選び方をやさしく解説'
 const PAGE_DESCRIPTION =
@@ -39,13 +41,28 @@ export const metadata: Metadata = {
 export const revalidate = false
 
 export default async function AirNeoComparePage() {
+  // 本文の「◯万円台」を当日の実勢相場（中央値）から組み立てる
+  const macbookModels = await getAllMacBookModels()
+  const airIds = [
+    findModelId(macbookModels, 'MacBook Air 13インチ（2020）'),
+    findModelId(macbookModels, 'MacBook Air 13インチ（2022）'),
+  ]
+  const airLogs = await getLatestMacBookPriceLogsWithPricesForModels(
+    airIds.filter((v): v is number => v != null),
+    ['matched_prices'],
+  )
+  const bandOf = (id: number | null) =>
+    priceBand(medianOf(id ? (airLogs[id] as unknown as Record<string, unknown>) : null, ['matched_prices']))
+  const m1AirBand = bandOf(airIds[0])
+  const m2AirBand = bandOf(airIds[1])
+
   const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/macbook/air-neo-compare/page.tsx')
 
   const breadcrumbJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
+      { '@type': 'ListItem', position: 1, name: '中古・型落ちデジタルデバイスを賢く買う', item: 'https://used-lab.jp/' },
       { '@type': 'ListItem', position: 2, name: '中古MacBookおすすめ機種・選び方ガイド', item: 'https://used-lab.jp/macbook/' },
       { '@type': 'ListItem', position: 3, name: 'MacBook AirとNeoの違い' },
     ],
@@ -191,7 +208,7 @@ export default async function AirNeoComparePage() {
           <AudienceSection />
 
           {/* コスパ比較 */}
-          <CostPerformanceSection />
+          <CostPerformanceSection m1AirBand={m1AirBand} m2AirBand={m2AirBand} />
 
           {/* 結論 */}
           <RecommendSection />

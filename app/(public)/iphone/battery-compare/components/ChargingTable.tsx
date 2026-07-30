@@ -78,9 +78,9 @@ export default function ChargingTable({ models }: Props) {
           各モデルの充電ポートやワイヤレス充電の対応状況を一覧で確認できます。
         </p>
 
-        <div className="u-mb-xl" aria-label="絞り込み">
+        <div className="spec-filter u-mb-xl" aria-label="絞り込み">
           <div className="spec-filter__row">
-            <span className="spec-filter__label">機種別の絞り込み</span>
+            <span className="spec-filter__label">機種別</span>
             <div className="spec-filter__tags">
               {([
                 ['all', 'すべて'],
@@ -102,7 +102,7 @@ export default function ChargingTable({ models }: Props) {
             </div>
           </div>
           <div className="spec-filter__row">
-            <span className="spec-filter__label">機能別の絞り込み</span>
+            <span className="spec-filter__label">機能別</span>
             <div className="spec-filter__tags">
               {([
                 ['all', 'すべて'],

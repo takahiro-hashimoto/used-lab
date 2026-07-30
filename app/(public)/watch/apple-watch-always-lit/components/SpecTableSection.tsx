@@ -102,7 +102,7 @@ export default function SpecTableSection() {
         </p>
 
         {/* フィルターUI */}
-        <div className="u-mb-xl" aria-label="絞り込み">
+        <div className="spec-filter u-mb-xl" aria-label="絞り込み">
           <div className="spec-filter__row">
             <span className="spec-filter__label">並び替え</span>
             <div className="spec-filter__tags">

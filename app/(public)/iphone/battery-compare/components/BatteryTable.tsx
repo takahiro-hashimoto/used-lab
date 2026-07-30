@@ -70,7 +70,7 @@ export default function BatteryTable({ models }: Props) {
 
         <div className="u-mb-xl" aria-label="絞り込み">
           <div className="spec-filter__row">
-            <span className="spec-filter__label">モデル別絞り込み</span>
+            <span className="spec-filter__label">モデル別</span>
             <div className="spec-filter__tags">
               {([
                 ['all', 'すべて'],

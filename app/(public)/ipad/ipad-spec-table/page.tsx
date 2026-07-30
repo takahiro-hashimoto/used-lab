@@ -61,6 +61,8 @@ export default async function IPadSpecTablePage() {
 
   const latestPriceLogs = await getLatestIPadPriceLogsWithPricesForModels(allModels.map((m) => m.id), PRICE_COLS)
   const avgPrices: Record<number, number | null> = {}
+  // 相場は日々変わる。スペック（不変）と同じ表に並べる以上、いつ時点かを明示する
+  let priceDate: string | null = null
   for (const model of allModels) {
     const log = latestPriceLogs[model.id]
     if (!log) { avgPrices[model.id] = null; continue }
@@ -73,6 +75,8 @@ export default async function IPadSpecTablePage() {
     // 詳細ページ・相場一覧と同じ中央値ベースにする（同じ機種で違う相場を出さない）
     const rec2 = log as unknown as Record<string, number[] | null>
     avgPrices[model.id] = calcAvgFromShops(mins, maxs, '', [rec2['iosys_prices'], rec2['geo_prices'], rec2['janpara_prices']])?.avg ?? null
+    const loggedAt = (log as unknown as { logged_at?: string }).logged_at
+    if (loggedAt && (!priceDate || loggedAt > priceDate)) priceDate = loggedAt.substring(0, 10)
   }
 
   const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/ipad/ipad-spec-table/page.tsx')
@@ -260,7 +264,7 @@ export default async function IPadSpecTablePage() {
         </nav>
         <div className="l-sections">
         {/* セクション */}
-        <SpecTable models={serializedModels} shopLinks={serializedLinks} prices={avgPrices} />
+        <SpecTable models={serializedModels} shopLinks={serializedLinks} prices={avgPrices} priceDate={priceDate} />
         <DualCompare models={serializedModels} shopLinks={serializedLinks} />
         <BenchmarkSection models={allModels} avgPrices={avgPrices} shopLinks={allShopLinks} />
         <EvolutionTimeline

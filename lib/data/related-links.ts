@@ -28,6 +28,30 @@ export const IPHONE_LINKS: RelatedLinkMeta[] = [
   { href: '/iphone/mobile-hoken-compare/', title: 'Apple Care+よりモバイル保険がコスパ高い理由', desc: '月額700円・3台補償のモバイル保険とApple Care+を徹底比較' },
 ]
 
+/** Google Pixel サブページ一覧 */
+export const PIXEL_LINKS: RelatedLinkMeta[] = [
+  { href: '/pixel/pixel-spec-table/', title: '歴代Pixelスペック比較表【全モデル】', desc: '歴代Google Pixelの全スペックを一覧で比較' },
+  { href: '/pixel/price-info/', title: '中古Pixel相場・価格推移【2026年】', desc: '主要モデルの相場と値動きをチェック' },
+  { href: '/pixel/pixel-shop/', title: '中古Pixelの購入先おすすめ比較', desc: '信頼できるショップを比較して紹介' },
+  { href: '/pixel/benchmark/', title: 'Pixelベンチマーク比較ランキング', desc: '歴代PixelのTensor性能をスコアで比較' },
+  { href: '/pixel/battery-compare/', title: 'Pixelバッテリー容量比較ランキング', desc: '電池持ちのいいPixelがひと目でわかる' },
+  { href: '/pixel/used-pixel-support/', title: '中古Pixelはいつまで使える？【サポート期間】', desc: '機種別のOS/セキュリティ更新期間まとめ' },
+  { href: '/pixel/used-pixel-attention/', title: '中古Pixel購入前の注意点まとめ', desc: '購入前に知っておきたいチェックポイント' },
+  { href: '/pixel/storage-guide/', title: 'Pixelストレージ容量の選び方ガイド', desc: '用途別のおすすめ容量と中古価格を比較' },
+]
+
+/** Samsung Galaxy サブページ一覧 */
+export const GALAXY_LINKS: RelatedLinkMeta[] = [
+  { href: '/galaxy/galaxy-spec-table/', title: '歴代Galaxyスペック比較表【全モデル】', desc: '歴代Samsung Galaxyの全スペックを一覧で比較' },
+  { href: '/galaxy/price-info/', title: '中古Galaxy相場・価格推移【2026年】', desc: '主要モデルの相場と値動きをチェック' },
+  { href: '/galaxy/galaxy-shop/', title: '中古Galaxyの購入先おすすめ比較', desc: '信頼できるショップを比較して紹介' },
+  { href: '/galaxy/benchmark/', title: 'Galaxyベンチマーク比較ランキング', desc: '歴代GalaxyのSnapdragon性能をスコアで比較' },
+  { href: '/galaxy/battery-compare/', title: 'Galaxyバッテリー容量比較ランキング', desc: '電池持ちのいいGalaxyがひと目でわかる' },
+  { href: '/galaxy/used-galaxy-support/', title: '中古Galaxyはいつまで使える？【サポート期間】', desc: '機種別のOS/セキュリティ更新期間まとめ' },
+  { href: '/galaxy/used-galaxy-attention/', title: '中古Galaxy購入前の注意点まとめ', desc: '購入前に知っておきたいチェックポイント' },
+  { href: '/galaxy/storage-guide/', title: 'Galaxyストレージ容量の選び方ガイド', desc: '用途別のおすすめ容量と中古価格を比較' },
+]
+
 /** iPad サブページ一覧 */
 export const IPAD_LINKS: RelatedLinkMeta[] = [
   { href: '/ipad/ipad-spec-table/', title: '歴代iPadスペック比較表【全モデル】', desc: '歴代iPadの全スペックを一覧で比較' },

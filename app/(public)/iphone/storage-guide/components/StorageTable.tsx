@@ -80,7 +80,7 @@ export default function StorageTable({ models }: Props) {
         </p>
 
         {/* フィルターUI */}
-        <fieldset className="u-mb-xl">
+        <fieldset className="spec-filter u-mb-xl">
           <legend className="visually-hidden">テーブルの絞り込み</legend>
           <div className="spec-filter__row">
             <span className="spec-filter__label">並び替え</span>
@@ -105,7 +105,7 @@ export default function StorageTable({ models }: Props) {
             </div>
           </div>
           <div className="spec-filter__row">
-            <span className="spec-filter__label">機種絞り込み</span>
+            <span className="spec-filter__label">機種別</span>
             <div className="spec-filter__tags">
               {([
                 ['all', 'すべて'],

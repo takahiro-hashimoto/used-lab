@@ -153,7 +153,7 @@ export default function StickyCta() {
   const label = overrideLabel
     || (overrideUrl ? 'イオシスで最安値の価格を見る' : null)
     || (category && CATEGORY_LABELS[category])
-    || 'イオシスで中古Apple製品を探す'
+    || 'イオシスで中古デバイスを探す'
 
   return (
     <div

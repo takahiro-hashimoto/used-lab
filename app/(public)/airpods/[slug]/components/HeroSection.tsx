@@ -29,7 +29,7 @@ export default function HeroSection({ model, dateStr, dateDisplay }: Props) {
       {
         '@type': 'ListItem',
         position: 1,
-        name: '中古Apple製品を安く買う',
+        name: '中古・型落ちデジタルデバイスを賢く買う',
         item: 'https://used-lab.jp/',
       },
       {
@@ -65,7 +65,7 @@ export default function HeroSection({ model, dateStr, dateDisplay }: Props) {
               <li className="breadcrumb-item">
                 <Link prefetch={false} href="/">
                   <i className="fa-solid fa-house" aria-hidden="true"></i>{' '}
-                  <span>中古Apple製品を安く買う</span>
+                  <span>中古・型落ちデジタルデバイスを賢く買う</span>
                 </Link>
               </li>
               <li className="breadcrumb-item">

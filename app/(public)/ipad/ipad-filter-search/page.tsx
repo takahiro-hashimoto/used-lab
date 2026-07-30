@@ -3,6 +3,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import FaqSection from '@/app/components/support/FaqSection'
+import { medianOf, priceBand, findModelId } from '@/lib/utils/price-copy'
 import { getAllIPadModels, getAllProductShopLinksByType, getAllIPadAccessories, getAllIPadAccessoryCompatibility, getLatestIPadPriceLogsWithPricesForModels } from '@/lib/queries'
 import { buildAccessoryLookup, getPencilTextFromAccessories, getKeyboardTextFromAccessories } from '@/lib/utils/ipad-helpers'
 import IconCard from '@/app/components/IconCard'
@@ -34,10 +35,22 @@ export const metadata: Metadata = {
   },
 }
 
+/**
+ * 相場に触れる設問は、その日の実勢価格（中央値）から文章を組み立てる。
+ * 固定値で書くと書いた時点の相場で止まり、実際の価格と食い違っていく。
+ */
+function buildPriceAnswer(entryBand: string | null, proBand: string | null): string {
+  const detail =
+    entryBand && proBand
+      ? `エントリーモデルのiPad 第9世代が${entryBand}、ハイエンドのiPad Pro（M4）は${proBand}が中心です。`
+      : 'モデルによって価格帯は大きく異なります。'
+  return `中古iPadの価格帯はモデルにより幅広く、${detail}詳しくは「<a href="/ipad/ipad-price-info/">歴代iPadの中古相場と価格推移</a>」ページをご覧ください。`
+}
+
 const FAQ_ITEMS = [
   {
     question: '中古iPadの相場はいくらですか？',
-    answer: '中古iPadの価格帯はモデルにより幅広く、iPad第9世代が3万円台〜、最新のiPad Pro M4は12万円以上が相場です。詳しくは「<a href="/ipad/ipad-price-info/">歴代iPadの中古相場と価格推移</a>」ページをご覧ください。',
+    answer: '',
   },
   {
     question: '中古iPadはいつまで最新OSで使えますか？',
@@ -70,6 +83,19 @@ export default async function IPadFilterSearchPage() {
   const PRICE_COLS = ['iosys_min', 'iosys_max', 'geo_min', 'geo_max', 'janpara_min', 'janpara_max']
   const latestPriceByModel = await getLatestIPadPriceLogsWithPricesForModels(allModelIds, PRICE_COLS)
   const latestPriceMap = new Map(Object.entries(latestPriceByModel).map(([k, v]) => [Number(k), v]))
+
+  // FAQの相場文を当日の中央値で組み立てる
+  const PRICE_ARRAY_COLS = ['iosys_prices', 'geo_prices', 'janpara_prices']
+  const medianBandOf = (keyword: string) => {
+    const id = findModelId(allModels, keyword)
+    const row = id ? latestPriceMap.get(id) : null
+    return priceBand(medianOf(row as unknown as Record<string, unknown>, PRICE_ARRAY_COLS))
+  }
+  const faqItems = FAQ_ITEMS.map((item) =>
+    item.question === '中古iPadの相場はいくらですか？'
+      ? { ...item, answer: buildPriceAnswer(medianBandOf('iPad 第9世代'), medianBandOf('iPad Pro 11 第5世代')) }
+      : item
+  )
 
   const modelsData = allModels.map((m) => {
     const price = latestPriceMap.get(m.id)
@@ -112,7 +138,7 @@ export default async function IPadFilterSearchPage() {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
+      { '@type': 'ListItem', position: 1, name: '中古・型落ちデジタルデバイスを賢く買う', item: 'https://used-lab.jp/' },
       { '@type': 'ListItem', position: 2, name: '中古iPadおすすめ機種・選び方ガイド', item: 'https://used-lab.jp/ipad/' },
       { '@type': 'ListItem', position: 3, name: 'iPad機種診断シミュレーター' },
     ],
@@ -247,7 +273,7 @@ export default async function IPadFilterSearchPage() {
         <FaqSection
           title="iPad機種診断に関するよくある質問"
           description="診断に関してよくある質問をまとめました。"
-          items={FAQ_ITEMS}
+          items={faqItems}
         />
 
 

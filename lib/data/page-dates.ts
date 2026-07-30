@@ -9,6 +9,7 @@ export const PAGE_DATES: Record<string, string> = {
   'app/(public)/page.tsx': '2026-04-28',
 
   // ── カテゴリTOP ──────────────────────────────────────────────
+  'app/(public)/smartphone-compare/page.tsx': '2026-07-24',
   'app/(public)/iphone/page.tsx':  '2026-07-03',
   'app/(public)/ipad/page.tsx':    '2026-06-30',
   'app/(public)/macbook/page.tsx': '2026-06-30',
@@ -114,4 +115,18 @@ export const PAGE_DATES: Record<string, string> = {
   'app/(public)/airpods/price-info/page.tsx':          '2026-04-24',
   'app/(public)/airpods/airpods-filter-search/page.tsx': '2026-04-08',
   'app/(public)/airpods/[slug]/page.tsx':             '2026-04-11',
+
+  // ── Google Pixel ──────────────────────────────────────────────
+  'app/(public)/pixel/price-info/page.tsx':           '2026-07-22',
+  'app/(public)/pixel/used-pixel-support/page.tsx':   '2026-07-22',
+  'app/(public)/pixel/used-pixel-attention/page.tsx': '2026-07-23',
+  'app/(public)/pixel/storage-guide/page.tsx':        '2026-07-23',
+
+  // ── Samsung Galaxy ────────────────────────────────────────────
+  'app/(public)/galaxy/page.tsx':                     '2026-07-22',
+  'app/(public)/galaxy/price-info/page.tsx':          '2026-07-22',
+  'app/(public)/galaxy/galaxy-spec-table/page.tsx':   '2026-07-22',
+  'app/(public)/galaxy/battery-compare/page.tsx':     '2026-07-22',
+  'app/(public)/galaxy/benchmark/page.tsx':           '2026-07-22',
+  'app/(public)/galaxy/used-galaxy-support/page.tsx': '2026-07-22',
 }

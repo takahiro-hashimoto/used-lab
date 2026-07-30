@@ -11,6 +11,8 @@ import { sleep, getTodayJST, getNowISOJST, isExcludedCondition, fetchJsonWithRet
 const GENRE_NOTEBOOK_PC = '100040'
 const NG_KEYWORD = 'ケース フィルム カバー キーボード バッグ ACアダプタ 充電器 スリーブ レンタル 液晶パネル 液晶ユニット パーツ 修理 交換用 ふるさと納税'
 const MAX_PAGES = 4 // 30件 × 4 = 最大120件
+/** 中央値の算出に必要な最小サンプル数（lib/utils/price-stats.ts と揃える） */
+const MIN_SAMPLES = 5
 
 interface RakutenItem {
   itemCode: string
@@ -111,6 +113,22 @@ function buildSearchKeyword(model: { model: string; cpu: string }): string {
   const type = getType(model.model)
   if (type === 'Neo') return `MacBook Neo ${year}`
   return `MacBook ${type} ${minChip} ${year}`
+}
+
+/**
+ * サイズを含めた予備キーワード。
+ *
+ * 同じチップ・同じ年の14インチと16インチは検索キーワードが完全に同一になるため、
+ * 流通量の多い小さい方が上位を占め、大きい方が120件の枠に入りきらない。
+ * （実例: 2023 M2 Pro は14インチ19件に対し16インチ3件）
+ * 1回目でサンプルが集まらなかったときだけ、サイズ指定で追加取得する。
+ */
+function buildSizeSearchKeyword(model: { model: string; cpu: string }): string | null {
+  const type = getType(model.model)
+  if (type === 'Neo') return null
+  const size = getSize(model.model)
+  if (!size) return null
+  return `MacBook ${type} ${size}インチ ${getMinChip(model.cpu)} ${getYear(model.model)}`
 }
 
 // ─── matchFn ─────────────────────────────────────────
@@ -245,26 +263,40 @@ export async function fetchMacbookPrices(): Promise<void> {
     const matchedItems: RakutenItem[] = []
     const itemCodeSet = new Set<string>()
 
-    for (let page = 1; page <= MAX_PAGES; page++) {
-      await sleep(1100)
-      const { items, count } = await searchAll({
-        keyword,
-        ngKeyword: NG_KEYWORD,
-        genreId: GENRE_NOTEBOOK_PC,
-        hits: 30,
-        page,
-      })
+    const collect = async (kw: string) => {
+      for (let page = 1; page <= MAX_PAGES; page++) {
+        await sleep(1100)
+        const { items, count } = await searchAll({
+          keyword: kw,
+          ngKeyword: NG_KEYWORD,
+          genreId: GENRE_NOTEBOOK_PC,
+          hits: 30,
+          page,
+        })
 
-      if (items.length === 0) break
+        if (items.length === 0) break
 
-      for (const item of items) {
-        if (!itemCodeSet.has(item.itemCode) && matchFn(item)) {
-          matchedItems.push(item)
-          itemCodeSet.add(item.itemCode)
+        for (const item of items) {
+          if (!itemCodeSet.has(item.itemCode) && matchFn(item)) {
+            matchedItems.push(item)
+            itemCodeSet.add(item.itemCode)
+          }
         }
-      }
 
-      if (count <= page * 30) break
+        if (count <= page * 30) break
+      }
+    }
+
+    await collect(keyword)
+
+    // 中央値を出すには最低5件必要。足りないときだけサイズ指定で取り直す
+    // （itemCode で重複排除しているので、追加取得で件数が減ることはない）
+    if (matchedItems.length < MIN_SAMPLES) {
+      const sizeKeyword = buildSizeSearchKeyword(model)
+      if (sizeKeyword && sizeKeyword !== keyword) {
+        console.log(`   ↻ ${matchedItems.length}件のみ → サイズ指定で追加取得: "${sizeKeyword}"`)
+        await collect(sizeKeyword)
+      }
     }
 
     if (matchedItems.length === 0) {

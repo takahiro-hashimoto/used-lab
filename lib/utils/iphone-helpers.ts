@@ -9,6 +9,7 @@ import {
   aggregateDailyPrices as aggregateDailyPricesGeneric,
   calculatePriceRange as calculatePriceRangeGeneric,
 } from './shared-helpers'
+import { calculatePriceStats } from '@/lib/utils/price-stats'
 
 // Re-export shared functions that have the same signature
 export { calculateRepairLifespan } from './shared-helpers'
@@ -363,6 +364,12 @@ export interface VerdictResult {
   annualCost: number | null
   /** 中古最安値 */
   priceMin: number | null
+  /**
+   * 在庫の実数から組み立てた一文。判定が変わる水準のときだけ入る。
+   * descriptions と分けているのは、FAQ が同じ本文を再掲するため
+   * （まとめると同一ページに同じ文が2回出る）
+   */
+  stockNote: string | null
   /** 解説テキスト（配列） */
   descriptions: string[]
   /** 適合度 */
@@ -404,8 +411,17 @@ export function getVerdict(
     : 0
 
   // 年間コスト（サポート切れは算出しない）
-  const annualCost = priceMin && priceMin > 0 && !model.last_ios
-    ? Math.round(priceMin / remainingYears)
+  // 実勢相場（中央値）で計算する。最安値は1点だけの特価であることが多く、
+  // その価格を前提にした年単価は読者が実際に払う金額より安く見えてしまう。
+  // 分布の記録がないログ（2026-07-30以前）では従来どおり最安値にフォールバック
+  const marketStats = calculatePriceStats([
+    latestPrice?.iosys_prices,
+    latestPrice?.geo_prices,
+    latestPrice?.janpara_prices,
+  ])
+  const costBasis = marketStats?.median ?? priceMin
+  const annualCost = costBasis && costBasis > 0 && !model.last_ios
+    ? Math.round(costBasis / remainingYears)
     : null
 
   // --- 判定ステータス ---
@@ -425,10 +441,22 @@ export function getVerdict(
     statusLabel = '現役バリバリ'
     rank = 'best'
   } else if (remainingYears >= 3 && multiScore >= 3500) {
-    // お得ゾーン（残り3年以上）＋性能十分
-    verdictMain = '今が買い時！'
-    statusLabel = 'コスパ黄金期'
-    rank = 'best'
+    // お得ゾーン（残り3年以上）＋性能十分。
+    // ただし価格を無視して「買い時」と断定すると、実勢相場が新品の最新機を
+    // 上回る機種（例: 発売2年目のPro）まで買い時になってしまう
+    if (costBasis != null && costBasis >= LATEST_IPHONE_PRICE) {
+      verdictMain = '新品の最新機も要検討'
+      statusLabel = '相場高止まり'
+      rank = 'good'
+    } else if (annualCost != null && annualCost > LATEST_ANNUAL) {
+      verdictMain = '悪くない選択'
+      statusLabel = '高値圏'
+      rank = 'good'
+    } else {
+      verdictMain = '今が買い時！'
+      statusLabel = 'コスパ黄金期'
+      rank = 'best'
+    }
   } else if (remainingYears >= 3) {
     // お得ゾーン（残り3年以上）だがスコア低め
     verdictMain = '悪くない選択'
@@ -446,7 +474,18 @@ export function getVerdict(
   const gameOk: '◎' | '◯' | '△' = multiScore >= 6000 ? '◎' : multiScore >= 3500 ? '◯' : '△'
   const dailyOk: '◎' | '◯' | '△' = multiScore >= 3000 ? '◎' : '◯'
   const longUse: '◎' | '◯' | '△' = remainingYears >= 4 ? '◎' : remainingYears >= 2 ? '◯' : '△'
-  const stockOk: '◎' | '◯' | '△' = yearsPassed >= 1 && yearsPassed <= 4 ? '◎' : '◯'
+  // 在庫は発売年からの推測ではなく、その日に実際に確認できた件数で判定する。
+  // 推測だと iPhone SE 第2世代（6年落ち・310件）を「◯」、
+  // iPhone 17（発売直後・16件）を「◯」と、実態と逆に評価してしまう。
+  // 件数の記録がない過去データでは従来どおり経過年数にフォールバックする
+  const stockCount = [latestPrice?.iosys_count, latestPrice?.geo_count, latestPrice?.janpara_count]
+    .filter((v): v is number => v != null)
+  const stockOk: '◎' | '◯' | '△' = stockCount.length > 0
+    ? (() => {
+        const total = stockCount.reduce((a, b) => a + b, 0)
+        return total >= 100 ? '◎' : total >= 20 ? '◯' : '△'
+      })()
+    : (yearsPassed >= 1 && yearsPassed <= 4 ? '◎' : '◯')
   const priceOk: '◎' | '◯' | '△' = annualCost != null
     ? (annualCost < LATEST_ANNUAL * 0.8 ? '◎' : annualCost <= LATEST_ANNUAL ? '◯' : '△')
     : '◯'
@@ -476,16 +515,58 @@ export function getVerdict(
     `Apple製品は発売（${releaseDateFormatted}）から約7年がOSサポートの目安です。本機の残り寿命は約${remainingYearsFormatted}年と推定されます。`
   )
 
-  if (priceMin != null && priceMin > 0 && annualCost != null) {
-    if (annualCost > LATEST_ANNUAL) {
+  if (annualCost != null) {
+    // 何をどう割った数字なのかを明示する。根拠の見えない「年単価」は説得力を持たない
+    const basisText = marketStats
+      ? `実勢相場（中央値 ${formatPrice(marketStats.median)}）で購入した場合、1年あたりのコストは約${formatPrice(annualCost)}です。`
+      : `1年あたりのコストは約${formatPrice(annualCost)}です。`
+    const latestAnnualText = `最新機を新品で買い5年使う場合の年単価（約${formatPrice(Math.round(LATEST_ANNUAL / 100) * 100)}）`
+    if (annualCost > LATEST_ANNUAL && costBasis != null && costBasis >= LATEST_IPHONE_PRICE) {
       descriptions.push(
-        `1年あたりのコストは約${formatPrice(annualCost)}です。最新機の年単価（約${formatPrice(Math.round(LATEST_ANNUAL / 100) * 100)}）を上回るため、長く使うよりは「繋ぎの1台」としての検討をおすすめします。`
+        `${basisText}実勢相場が${LATEST_IPHONE_NAME}の新品価格（${formatPrice(LATEST_IPHONE_PRICE)}）を上回っており、価格面のメリットはありません。この機種のサイズや機能に明確なこだわりがなければ、新品の最新機も含めて検討するのが合理的です。`
+      )
+    } else if (annualCost > LATEST_ANNUAL && remainingYears >= 3) {
+      descriptions.push(
+        `${basisText}${latestAnnualText}を上回っており、中古としての値下がりはまだ小さい時期です。急がなければ相場がこなれるのを待つ選択肢もあります。`
+      )
+    } else if (annualCost > LATEST_ANNUAL) {
+      descriptions.push(
+        `${basisText}${latestAnnualText}を上回るため、長く使うよりは「繋ぎの1台」としての検討をおすすめします。`
       )
     } else {
       descriptions.push(
-        `1年あたりのコストは約${formatPrice(annualCost)}。最新機（年単価 約¥32,000）より大幅に出費を抑えつつ、賢くiPhoneを所有できる好条件です。`
+        `${basisText}${latestAnnualText}を下回り、出費を抑えつつ賢くiPhoneを所有できる好条件です。`
       )
     }
+  }
+
+  // 在庫の実数は「買えるかどうか」に直結する。価格や性能だけでは分からないため、
+  // 判断が変わる水準（極端に多い/少ない）のときだけ一文を添える。
+  // descriptions とは分けて返す（FAQでも同じ本文を再掲するため、二重表示になる）
+  let stockNote: string | null = null
+  const stockTotal = stockCount.length > 0 ? stockCount.reduce((a, b) => a + b, 0) : null
+  const spread = marketStats ? marketStats.q3 - marketStats.q1 : null
+  const spreadRatio = marketStats && spread != null ? spread / marketStats.median : null
+
+  if (stockTotal != null) {
+    if (stockTotal === 0) {
+      stockNote = '現在、集計対象のショップでは在庫が確認できませんでした。中古市場から姿を消しつつあるため、購入できるタイミングは限られます。'
+    } else if (stockTotal <= 10) {
+      stockNote = `販売中の在庫は${stockTotal}件と少なく、状態や色を選ぶ余裕はほとんどありません。狙っている場合は見つけた時点で判断することをおすすめします。`
+    } else if (stockTotal >= 150) {
+      // 在庫が多くても価格が横並びなら「比較で安く買える」とは言えない。
+      // その場合は価格以外（バッテリー・付属品）で選ぶよう案内する
+      stockNote = spreadRatio != null && spreadRatio <= 0.05
+        ? `販売中の在庫は${stockTotal}件と豊富です。価格はどのショップもほぼ横並びのため、金額よりバッテリー状態や付属品の良い個体を選ぶのがおすすめです。`
+        : `販売中の在庫は${stockTotal}件と豊富で、ショップ間の価格競争が起きやすい状況です。急いで決めず、複数のショップを比較すると条件の良い個体を見つけやすくなります。`
+    }
+  }
+
+  // 価格のばらつきが大きい機種は「比較すること自体に金銭的価値がある」。
+  // 中央50%の幅が相場の2割を超えるときだけ、具体的な金額差とともに伝える
+  if (marketStats && spread != null && spreadRatio != null && spreadRatio >= 0.2) {
+    const spreadNote = `同じ中古でも状態やショップにより${formatPrice(marketStats.q1)}〜${formatPrice(marketStats.q3)}と幅があり、選び方しだいで約${formatPrice(Math.round(spread / 1000) * 1000)}変わります。購入前の比較が特に効く機種です。`
+    stockNote = stockNote ? `${stockNote}${spreadNote}` : spreadNote
   }
 
   return {
@@ -497,6 +578,7 @@ export function getVerdict(
     annualCost,
     priceMin,
     descriptions,
+    stockNote,
     suitability,
   }
 }

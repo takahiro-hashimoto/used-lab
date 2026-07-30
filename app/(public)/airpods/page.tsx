@@ -8,7 +8,7 @@ import {
   getShops,
 } from '@/lib/queries'
 import type { AirPodsModel, AirPodsPriceLog } from '@/lib/types'
-import { formatPrice, buildArticleJsonLd, getGitDateForFile, buildFallbackShops } from '@/lib/utils/shared-helpers'
+import { formatPrice, buildArticleJsonLd, buildRecommendItemListJsonLd, resolveCategoryPageDate, buildFallbackShops } from '@/lib/utils/shared-helpers'
 import {
   GUIDE_DATE_LABEL,
   GUIDE_PRICE_SLUGS,
@@ -127,13 +127,16 @@ export default async function AirPodsGuidePage() {
     }
   })
 
-  const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/airpods/page.tsx')
+  // 相場は毎日更新されるので、更新日も価格ログの最新日に合わせる。
+  // 手動管理の page-dates.ts のままだと「1ヶ月前から更新なし」と伝わってしまう
+
+  const { dateStr, dateDisplay } = resolveCategoryPageDate(recommendPrices, 'app/(public)/airpods/page.tsx')
 
   const breadcrumbJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
+      { '@type': 'ListItem', position: 1, name: '中古・型落ちデジタルデバイスを賢く買う', item: 'https://used-lab.jp/' },
       { '@type': 'ListItem', position: 2, name: '中古AirPodsおすすめ機種・選び方ガイド' },
     ],
   }
@@ -146,6 +149,13 @@ export default async function AirPodsGuidePage() {
     url: PAGE_URL,
   })
 
+  // おすすめ機種が「順位づけされたリスト」であることを伝える。
+  // 価格は Product/Offer では出さない（販売者ではないため。詳細は buildRecommendItemListJsonLd）
+  const recommendListJsonLd = buildRecommendItemListJsonLd({
+    name: '中古AirPodsおすすめ機種',
+    items: recommendModels.map((m) => ({ name: m.model ?? m.name, url: `https://used-lab.jp/airpods/${m.slug}/` })),
+  })
+
   return (
     <>
     <main>
@@ -153,6 +163,10 @@ export default async function AirPodsGuidePage() {
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(recommendListJsonLd) }}
         />
         <script
           type="application/ld+json"

@@ -13,7 +13,7 @@ export const RECOMMEND_DATE_LABEL = `${RECOMMEND_YEAR}年${RECOMMEND_MONTH}月`
 export const RECOMMEND_SLUGS = [
   'normal-11',
   'mini-7',
-  'air-5',
+  'air-6-11',
   'pro11-4',
   'pro12-6',
 ]
@@ -84,15 +84,15 @@ export const RECOMMEND_META: Record<string, RecommendMeta> = {
     displayLabel: '8.3" Liquid Retina',
     targetUser: '携帯性重視<br>電子書籍・ゲーム',
   },
-  'air-5': {
+  'air-6-11': {
     label: 'バランス型',
-    desc: 'M1チップ搭載の万能モデル',
+    desc: 'M2チップ搭載の万能モデル',
     subtitle: 'クリエイティブもこなせる優等生',
     description: [
-      '「性能も価格も妥協したくない」なら、iPad Air 第5世代が最適です。MacBookにも採用されたM1チップを搭載しており、動画編集やイラスト制作などのクリエイティブ作業も快適にこなせます。',
-      '10.9インチのLiquid Retinaディスプレイは発色も鮮やかで、Apple Pencil（第2世代）とMagic Keyboardに対応。ノートPCの代わりとしても十分に使えるスペックです。',
-      'USB-C端子搭載で、外部ディスプレイへの出力やデータ転送もスムーズ。8GBのRAMを搭載し、マルチタスクにも強いのが特徴です。',
-      '中古市場ではAir 第6世代（M2）の登場により、M1搭載のAir 第5世代が大幅に値下がり。Proに迫る性能を、Proの半額以下で手に入れられる今が最もお買い得です。',
+      '「性能も価格も妥協したくない」なら、iPad Air 11インチ 第6世代が最適です。MacBook Airにも採用されたM2チップを搭載し、動画編集やイラスト制作といったクリエイティブ作業も余裕でこなせます。',
+      '11インチのLiquid Retinaディスプレイは発色が鮮やかで、Apple Pencil Pro／第2世代とMagic Keyboardに対応。ノートPCの代わりとしても十分に使えるスペックです。前面カメラが横向き（横持ち時に中央）に移動し、ビデオ通話のしやすさも改善されました。',
+      '8GBのRAMとUSB-C端子を備え、マルチタスクや外部ディスプレイ出力もスムーズ。ストレージは128GBからと、旧世代の64GBスタートより余裕があります。',
+      'M3搭載の第7世代が登場したことで中古相場が下がり、Proに迫る性能を大きく抑えた価格で狙えます。1年あたりのコストで見ても、最新機を新品で買うより有利です。',
     ],
     good: [
       '動画編集やイラスト制作にも使いたい',
@@ -104,8 +104,8 @@ export const RECOMMEND_META: Record<string, RecommendMeta> = {
       'ProMotion（120Hz）の滑らかさが必要',
       'LiDARスキャナを使いたい',
     ],
-    pencilLabel: '第2世代',
-    displayLabel: '10.9" Liquid Retina',
+    pencilLabel: 'Apple Pencil Pro / 第2世代',
+    displayLabel: '11" Liquid Retina',
     targetUser: 'バランス重視<br>クリエイティブ用途',
   },
   'pro11-4': {

@@ -24,7 +24,7 @@ export default function AuthorByline() {
         <div className="author-byline__right">
           <p className="author-byline__heading">この記事の著者</p>
           <p className="author-byline__desc" itemProp="description">
-            Apple製品は2011年のiPhone 4sから毎年購入し続けているガジェットブロガー。メインガジェットブログ「デジスタ」では300以上の製品をレビューし、複数メディアの記事監修や連載も担当。これらの経験を活かし、中古Apple製品を賢く選ぶための情報を当サイトで発信中。
+            Apple製品は2011年のiPhone 4sから毎年購入し続けているガジェットブロガー。メインガジェットブログ「デジスタ」では300以上の製品をレビューし、複数メディアの記事監修や連載も担当。これらの経験を活かし、中古・型落ちデジタルデバイスを賢く選ぶための情報を当サイトで発信中。
           </p>
           <div className="author-byline__footer">
             <Link prefetch={false}

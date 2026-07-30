@@ -72,7 +72,7 @@ export default function SearchClient({ entries }: { entries: SearchEntry[] }) {
               <li className="breadcrumb-item">
                 <Link prefetch={false} href="/">
                   <i className="fa-solid fa-house" aria-hidden="true"></i>{' '}
-                  <span>中古Apple製品を安く買う</span>
+                  <span>中古・型落ちデジタルデバイスを賢く買う</span>
                 </Link>
               </li>
               <li className="breadcrumb-item" aria-current="page">

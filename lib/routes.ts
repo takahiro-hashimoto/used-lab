@@ -1,3 +1,4 @@
+import { isHiddenCategory, isHiddenPath } from './data/feature-flags'
 // ============================================================
 // ルート定義の一元管理
 // sitemap.ts と sitemap-page の両方がここを参照する
@@ -67,7 +68,7 @@ export type ResolvedCategory = {
 
 // ---------- カテゴリ定義 ----------
 
-export const PRODUCT_CATEGORIES: CategoryDef[] = [
+const ALL_PRODUCT_CATEGORIES: CategoryDef[] = [
   {
     id: 'iphone',
     label: 'iPhone',
@@ -90,6 +91,42 @@ export const PRODUCT_CATEGORIES: CategoryDef[] = [
       { path: '/iphone/benchmark/', label: '歴代iPhoneのベンチマーク比較ランキング｜Geekbench 6スコアで性能が一目でわかる' },
       { path: '/iphone/mvno/', label: (p) => `中古iPhoneの購入と通信契約が一緒にできる格安SIM業者まとめ【${p.mvnoDate}】` },
       { path: '/iphone/network-limit/', label: 'ネットワーク制限△の中古iPhone・iPadを買うメリット・デメリットを解説' },
+    ],
+  },
+  {
+    id: 'pixel',
+    label: 'Google Pixel',
+    icon: 'fa-mobile-screen',
+    desc: 'Tensor搭載モデルの選び方・スペック比較・サポート期間など、中古Google Pixelを賢く買うための情報をまとめています。',
+    basePath: '/pixel',
+    pages: [
+      { path: '/pixel/', label: '中古Google Pixelおすすめ機種・選び方ガイド | 相場・おすすめモデルまとめ', priority: 0.9 },
+      { path: '/pixel/price-info/', label: '中古Google Pixelの相場・価格推移一覧｜歴代モデルの値段を毎日更新' },
+      { path: '/pixel/pixel-spec-table/', label: '歴代Google Pixelスペック比較表！気になる機種の性能差や違いがわかる' },
+      { path: '/pixel/used-pixel-support/', label: '中古Google Pixelはいつまで使える？サポート期間・Androidアップデートまとめ' },
+      { path: '/pixel/pixel-shop/', label: '中古Google Pixelを買うならどこ？ECサイト・ショップのおすすめを紹介' },
+      { path: '/pixel/used-pixel-attention/', label: '中古Google Pixelはやめた方がいい？購入前に確認すべき注意点まとめ' },
+      { path: '/pixel/storage-guide/', label: '中古Google Pixelのストレージ容量はどれがいい？用途別おすすめ容量まとめ' },
+      { path: '/pixel/battery-compare/', label: '歴代Google Pixelのバッテリー容量比較ランキング！電池持ちがいい機種はどれ？' },
+      { path: '/pixel/benchmark/', label: '歴代Google Pixelのベンチマーク比較ランキング｜Tensorの性能が一目でわかる' },
+    ],
+  },
+  {
+    id: 'galaxy',
+    label: 'Galaxy',
+    icon: 'fa-mobile-screen',
+    desc: 'S・A・Z折りたたみの選び方、Snapdragon性能・サポート期間の比較など、中古Samsung Galaxyを賢く買うための情報をまとめています。',
+    basePath: '/galaxy',
+    pages: [
+      { path: '/galaxy/', label: '中古Samsung Galaxyおすすめ機種・選び方ガイド | 相場・おすすめモデルまとめ', priority: 0.9 },
+      { path: '/galaxy/price-info/', label: '中古Samsung Galaxyの相場・価格推移一覧｜歴代モデルの値段を毎日更新' },
+      { path: '/galaxy/galaxy-spec-table/', label: '歴代Galaxyスペック比較表！S・A・Z折りたたみの性能差や違いがわかる' },
+      { path: '/galaxy/used-galaxy-support/', label: '中古Galaxyはいつまで使える？サポート期間・Androidアップデートまとめ' },
+      { path: '/galaxy/galaxy-shop/', label: '中古Samsung Galaxyを買うならどこ？ECサイト・ショップのおすすめを紹介' },
+      { path: '/galaxy/used-galaxy-attention/', label: '中古Samsung Galaxyはやめた方がいい？購入前に確認すべき注意点まとめ' },
+      { path: '/galaxy/storage-guide/', label: '中古Samsung Galaxyのストレージ容量はどれがいい？用途別おすすめ容量まとめ' },
+      { path: '/galaxy/battery-compare/', label: '歴代Galaxyのバッテリー容量比較ランキング！電池持ちがいい機種はどれ？' },
+      { path: '/galaxy/benchmark/', label: '歴代Galaxyのベンチマーク比較ランキング｜Snapdragonの性能が一目でわかる' },
     ],
   },
   {
@@ -200,7 +237,7 @@ export type HeaderNavItem = {
   children?: HeaderNavChild[]
 }
 
-export const HEADER_NAV_ITEMS: HeaderNavItem[] = [
+const ALL_HEADER_NAV_ITEMS: HeaderNavItem[] = [
   {
     href: '/iphone/', label: '中古iPhone',
     children: [
@@ -213,6 +250,30 @@ export const HEADER_NAV_ITEMS: HeaderNavItem[] = [
       { href: '/iphone/iphone-camera/', label: 'iPhoneカメラ性能比較' },
       { href: '/iphone/battery-compare/', label: 'iPhoneバッテリー容量比較' },
       { href: '/iphone/benchmark/', label: 'iPhoneベンチマーク比較' },
+    ],
+  },
+  {
+    href: '/pixel/', label: '中古Google Pixel',
+    children: [
+      { href: '/pixel/', label: '中古Pixelおすすめ機種' },
+      { href: '/pixel/pixel-spec-table/', label: 'Pixelスペック比較表' },
+      { href: '/pixel/used-pixel-support/', label: 'Pixelのサポート期間・寿命' },
+      { href: '/pixel/price-info/', label: '中古Pixelの相場価格' },
+      { href: '/pixel/pixel-shop/', label: '中古Pixelの購入先比較' },
+      { href: '/pixel/battery-compare/', label: 'Pixelバッテリー容量比較' },
+      { href: '/pixel/benchmark/', label: 'Pixelベンチマーク比較' },
+    ],
+  },
+  {
+    href: '/galaxy/', label: '中古Galaxy',
+    children: [
+      { href: '/galaxy/', label: '中古Galaxyおすすめ機種' },
+      { href: '/galaxy/galaxy-spec-table/', label: 'Galaxyスペック比較表' },
+      { href: '/galaxy/used-galaxy-support/', label: 'Galaxyのサポート期間・寿命' },
+      { href: '/galaxy/price-info/', label: '中古Galaxyの相場価格' },
+      { href: '/galaxy/galaxy-shop/', label: '中古Galaxyの購入先比較' },
+      { href: '/galaxy/battery-compare/', label: 'Galaxyバッテリー容量比較' },
+      { href: '/galaxy/benchmark/', label: 'Galaxyベンチマーク比較' },
     ],
   },
   {
@@ -267,7 +328,7 @@ export const HEADER_NAV_ITEMS: HeaderNavItem[] = [
 
 // ---------- フッターナビゲーション ----------
 
-export const FOOTER_LINKS: Record<string, { href: string; label: string }[]> = {
+const ALL_FOOTER_LINKS: Record<string, { href: string; label: string }[]> = {
   iphone: [
     { href: '/iphone/', label: '中古iPhoneおすすめ機種' },
     { href: '/iphone/iphone-spec-table/', label: 'iPhoneスペック比較表' },
@@ -275,6 +336,22 @@ export const FOOTER_LINKS: Record<string, { href: string; label: string }[]> = {
     { href: '/iphone/filter-search/', label: 'iPhone機種診断ツール' },
     { href: '/iphone/price-info/', label: '中古iPhoneの相場価格' },
     { href: '/iphone/iphone-shop/', label: '中古iPhone購入先比較' },
+  ],
+  pixel: [
+    { href: '/pixel/', label: '中古Google Pixelおすすめ機種' },
+    { href: '/pixel/pixel-spec-table/', label: 'Pixelスペック比較表' },
+    { href: '/pixel/used-pixel-support/', label: 'Pixelのサポート期間・寿命' },
+    { href: '/pixel/price-info/', label: '中古Pixelの相場価格' },
+    { href: '/pixel/pixel-shop/', label: '中古Pixel購入先比較' },
+    { href: '/pixel/battery-compare/', label: 'Pixelバッテリー容量比較' },
+  ],
+  galaxy: [
+    { href: '/galaxy/', label: '中古Samsung Galaxyおすすめ機種' },
+    { href: '/galaxy/galaxy-spec-table/', label: 'Galaxyスペック比較表' },
+    { href: '/galaxy/used-galaxy-support/', label: 'Galaxyのサポート期間・寿命' },
+    { href: '/galaxy/price-info/', label: '中古Galaxyの相場価格' },
+    { href: '/galaxy/galaxy-shop/', label: '中古Galaxy購入先比較' },
+    { href: '/galaxy/battery-compare/', label: 'Galaxyバッテリー容量比較' },
   ],
   ipad: [
     { href: '/ipad/', label: '中古iPadおすすめ機種' },
@@ -319,6 +396,19 @@ export const UTILITY_FOOTER_LINKS: { href: string; label: string }[] = [
 // ---------- ヘルパー ----------
 
 /** sitemap.ts 用: 全静的ページのパス・priority・changeFrequency をフラット配列で返す */
+/** 公開中のカテゴリのみ。非公開カテゴリは lib/data/feature-flags.ts で制御する */
+export const PRODUCT_CATEGORIES: CategoryDef[] = ALL_PRODUCT_CATEGORIES.filter(
+  (cat) => !isHiddenCategory(cat.id),
+)
+
+export const HEADER_NAV_ITEMS: HeaderNavItem[] = ALL_HEADER_NAV_ITEMS.filter(
+  (item) => !isHiddenPath(item.href),
+)
+
+export const FOOTER_LINKS: Record<string, { href: string; label: string }[]> = Object.fromEntries(
+  Object.entries(ALL_FOOTER_LINKS).filter(([key]) => !isHiddenCategory(key)),
+)
+
 export function getAllStaticRoutes(): { path: string; priority: number; changeFrequency: ChangeFreq }[] {
   const topPage = { path: '/', priority: 1.0, changeFrequency: 'weekly' as ChangeFreq }
 

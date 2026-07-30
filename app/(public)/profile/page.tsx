@@ -166,7 +166,7 @@ export default function AboutPage() {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
+      { '@type': 'ListItem', position: 1, name: '中古・型落ちデジタルデバイスを賢く買う', item: 'https://used-lab.jp/' },
       { '@type': 'ListItem', position: 2, name: '運営者情報' },
     ],
   }
@@ -179,7 +179,7 @@ export default function AboutPage() {
     image: 'https://used-lab.jp/images/content/thumbnail/my-icon.webp',
     jobTitle: 'プロジェクトマネージャー / ガジェットブロガー',
     description: 'IT企業でWebデザイナー、フロントエンドエンジニア、Webディレクターを経て現在はプロジェクトマネージャー。2015年からガジェットブログ「デジスタ」を運営し、300以上の製品レビュー実績を持つ。',
-    knowsAbout: ['iPhone', 'iPad', 'MacBook', 'Apple Watch', 'AirPods', '中古Apple製品', 'ガジェット', 'Web制作'],
+    knowsAbout: ['iPhone', 'iPad', 'MacBook', 'Apple Watch', 'AirPods', '中古・型落ちデジタルデバイス', 'ガジェット', 'Web制作'],
     alumniOf: { '@type': 'Organization', name: 'IT企業（Webデザイナーとしてキャリアスタート）' },
     sameAs: [
       'https://twitter.com/takahiro_mono',

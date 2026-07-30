@@ -1,9 +1,9 @@
 import { unstable_cache } from 'next/cache'
 import { supabase } from './supabase'
 import type {
-  IPhoneModel, IPadModel, WatchModel, MacBookModel, AirPodsModel,
+  IPhoneModel, IPadModel, WatchModel, MacBookModel, AirPodsModel, PixelModel, GalaxyModel,
   Shop, ProductShopLink, ProductReview,
-  IPhonePriceLog, IPadPriceLog, WatchPriceLog, MacBookPriceLog, AirPodsPriceLog,
+  IPhonePriceLog, IPadPriceLog, WatchPriceLog, MacBookPriceLog, AirPodsPriceLog, PixelPriceLog, GalaxyPriceLog,
   MvnoPlan,
   MvnoProvider,
   IPadAccessory, IPadAccessoryCompatibility,
@@ -19,11 +19,15 @@ export const CACHE_TAGS = {
   watchModels: 'watch-models',
   macbookModels: 'macbook-models',
   airpodsModels: 'airpods-models',
+  pixelModels: 'pixel-models',
+  galaxyModels: 'galaxy-models',
   iphonePriceLogs: 'iphone-price-logs',
   ipadPriceLogs: 'ipad-price-logs',
   watchPriceLogs: 'watch-price-logs',
   macbookPriceLogs: 'macbook-price-logs',
   airpodsPriceLogs: 'airpods-price-logs',
+  pixelPriceLogs: 'pixel-price-logs',
+  galaxyPriceLogs: 'galaxy-price-logs',
   shops: 'shops',
   shopLinks: 'shop-links',
   mvno: 'mvno',
@@ -39,6 +43,8 @@ export const CATEGORY_CACHE_TAGS: Record<string, string[]> = {
   watch: [CACHE_TAGS.watchModels, CACHE_TAGS.watchPriceLogs],
   macbook: [CACHE_TAGS.macbookModels, CACHE_TAGS.macbookPriceLogs],
   airpods: [CACHE_TAGS.airpodsModels, CACHE_TAGS.airpodsPriceLogs],
+  pixel: [CACHE_TAGS.pixelModels, CACHE_TAGS.pixelPriceLogs],
+  galaxy: [CACHE_TAGS.galaxyModels, CACHE_TAGS.galaxyPriceLogs],
   'ipad-accessories': [CACHE_TAGS.ipadAccessories],
   news: [CACHE_TAGS.news],
 }
@@ -272,6 +278,14 @@ const macBookPriceLogs = createPriceLogQueries<MacBookPriceLog>('macbook_price_l
 const airPodsModels = createModelQueries<AirPodsModel>('airpods_models', CACHE_TAGS.airpodsModels)
 const airPodsPriceLogs = createPriceLogQueries<AirPodsPriceLog>('airpods_price_logs', CACHE_TAGS.airpodsPriceLogs)
 
+// Pixel は last_android（NULL=現役）で現役判定
+const pixelModels = createModelQueries<PixelModel>('pixel_models', CACHE_TAGS.pixelModels, 'last_android')
+const pixelPriceLogs = createPriceLogQueries<PixelPriceLog>('pixel_price_logs', CACHE_TAGS.pixelPriceLogs)
+
+// Galaxy も last_android（NULL=現役）で現役判定
+const galaxyModels = createModelQueries<GalaxyModel>('galaxy_models', CACHE_TAGS.galaxyModels, 'last_android')
+const galaxyPriceLogs = createPriceLogQueries<GalaxyPriceLog>('galaxy_price_logs', CACHE_TAGS.galaxyPriceLogs)
+
 // ============================================================
 // 名前付きエクスポート（後方互換）
 // ============================================================
@@ -395,6 +409,34 @@ const AIRPODS_PRICE_COLS = ['iosys_min', 'iosys_max', 'janpara_min', 'janpara_ma
 export const getLatestAirPodsPriceLogWithPrices = (modelId: number) =>
   airPodsPriceLogs.getLatestWithPrices(modelId, AIRPODS_PRICE_COLS)
 
+// Pixel
+export const getPixelModelBySlug = pixelModels.getBySlug
+export const getAllPixelModels = pixelModels.getAll
+export const getAllPixelModelsIncludingEnded = pixelModels.getAllIncludingEnded
+export const getAllPixelSlugs = pixelModels.getAllSlugs
+export const getPixelPriceLogsByModelId = pixelPriceLogs.getByModelId
+export const getLatestPixelPriceLog = pixelPriceLogs.getLatest
+export const getAllPixelPriceLogsByModelIds = pixelPriceLogs.getAllByModelIds
+export const getLatestPixelPriceLogsForModels = pixelPriceLogs.getLatestForModels
+export const getLatestPixelPriceLogsWithPricesForModels = pixelPriceLogs.getLatestWithPricesForModels
+const PIXEL_PRICE_COLS = ['iosys_min', 'iosys_max', 'geo_min', 'geo_max', 'janpara_min', 'janpara_max']
+export const getLatestPixelPriceLogWithPrices = (modelId: number) =>
+  pixelPriceLogs.getLatestWithPrices(modelId, PIXEL_PRICE_COLS)
+
+// Galaxy
+export const getGalaxyModelBySlug = galaxyModels.getBySlug
+export const getAllGalaxyModels = galaxyModels.getAll
+export const getAllGalaxyModelsIncludingEnded = galaxyModels.getAllIncludingEnded
+export const getAllGalaxySlugs = galaxyModels.getAllSlugs
+export const getGalaxyPriceLogsByModelId = galaxyPriceLogs.getByModelId
+export const getLatestGalaxyPriceLog = galaxyPriceLogs.getLatest
+export const getAllGalaxyPriceLogsByModelIds = galaxyPriceLogs.getAllByModelIds
+export const getLatestGalaxyPriceLogsForModels = galaxyPriceLogs.getLatestForModels
+export const getLatestGalaxyPriceLogsWithPricesForModels = galaxyPriceLogs.getLatestWithPricesForModels
+const GALAXY_PRICE_COLS = ['iosys_min', 'iosys_max', 'geo_min', 'geo_max', 'janpara_min', 'janpara_max']
+export const getLatestGalaxyPriceLogWithPrices = (modelId: number) =>
+  galaxyPriceLogs.getLatestWithPrices(modelId, GALAXY_PRICE_COLS)
+
 // ============================================================
 // 共通クエリ（製品横断）
 // ============================================================
@@ -494,6 +536,8 @@ export const getLatestPriceDatesPerCategory = unstable_cache(
       ['watch_price_logs', 'watch'],
       ['macbook_price_logs', 'macbook'],
       ['airpods_price_logs', 'airpods'],
+      ['pixel_price_logs', 'pixel'],
+      ['galaxy_price_logs', 'galaxy'],
     ]
 
     const results = await Promise.all(

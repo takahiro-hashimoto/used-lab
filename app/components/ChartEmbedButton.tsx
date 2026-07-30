@@ -20,7 +20,7 @@ export default function ChartEmbedButton({
 
   if (slugs.length === 0) return null
 
-  const conf = CHART_EMBED_CONFIG[category] ?? { label: '中古Apple製品', priceInfoPath: '' }
+  const conf = CHART_EMBED_CONFIG[category] ?? { label: '中古デジタルデバイス', priceInfoPath: '' }
   const snippet =
     `<iframe src="${SITE_URL}/embed/${category}/chart/?models=${slugs.join(',')}&days=${days}" ` +
     `width="100%" height="420" style="border:0;max-width:680px" loading="lazy" ` +

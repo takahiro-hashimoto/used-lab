@@ -32,7 +32,7 @@ export default function ChartEmbed({
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const instRef = useRef<ChartClass<'line'> | null>(null)
   const [ready, setReady] = useState(false)
-  const conf = CHART_EMBED_CONFIG[category] ?? { label: '中古Apple製品', priceInfoPath: '' }
+  const conf = CHART_EMBED_CONFIG[category] ?? { label: '中古デジタルデバイス', priceInfoPath: '' }
 
   useEffect(() => {
     const ctx = canvasRef.current?.getContext('2d')

@@ -7,7 +7,7 @@ import type { Shop } from '@/lib/types'
 
 // ---------- DB shops → VendorCardItem 変換 ----------
 
-type ProductUrlKey = 'url' | 'ipad_url' | 'watch_url' | 'macbook_url' | 'airpods_url'
+type ProductUrlKey = 'url' | 'ipad_url' | 'watch_url' | 'macbook_url' | 'airpods_url' | 'pixel_url' | 'galaxy_url'
 
 /** Shop レコードから VendorCardGrid 用のスペック配列を組み立てる */
 function buildSpecsFromShop(shop: Shop): { label: string; value: string }[] {

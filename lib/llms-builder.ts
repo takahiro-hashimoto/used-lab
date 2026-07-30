@@ -13,6 +13,8 @@ const BASE_URL = 'https://used-lab.jp'
 // ---------- カテゴリ → DB テーブル名のマッピング ----------
 const MODEL_TABLE_MAP: Record<string, string> = {
   iphone: 'iphone_models',
+  pixel: 'pixel_models',
+  galaxy: 'galaxy_models',
   ipad: 'ipad_models',
   macbook: 'macbook_models',
   watch: 'watch_models',
@@ -22,6 +24,8 @@ const MODEL_TABLE_MAP: Record<string, string> = {
 // ---------- カテゴリ → 日本語表示名 ----------
 const CATEGORY_LABEL_MAP: Record<string, string> = {
   iphone: 'iPhone',
+  pixel: 'Google Pixel',
+  galaxy: 'Samsung Galaxy',
   ipad: 'iPad',
   macbook: 'MacBook',
   watch: 'Apple Watch',
@@ -48,6 +52,8 @@ async function getModelCounts(): Promise<Record<string, number>> {
 // ---------- カテゴリ → 価格ログテーブル ----------
 const PRICE_TABLE_MAP: Record<string, string> = {
   iphone: 'iphone_price_logs',
+  pixel: 'pixel_price_logs',
+  galaxy: 'galaxy_price_logs',
   ipad: 'ipad_price_logs',
   macbook: 'macbook_price_logs',
   watch: 'watch_price_logs',
@@ -175,7 +181,7 @@ export async function buildLlmsTxt(): Promise<string> {
   lines.push('# ユーズドラボ（Used Lab）')
   lines.push('')
   lines.push(
-    '> 中古Apple製品（iPhone・iPad・MacBook・Apple Watch・AirPods）のスペック比較・価格相場・おすすめモデル紹介に特化した日本語の情報サイトです。全モデルの公式スペックに基づいた正確なデータベースと、独自に収集した中古価格情報を提供しています。',
+    '> 中古・型落ちデジタルデバイス（iPhone・iPad・MacBook・Apple Watch・AirPods）のスペック比較・価格相場・おすすめモデル紹介に特化した日本語の情報サイトです。全モデルの公式スペックに基づいた正確なデータベースと、独自に収集した中古価格情報を提供しています。',
   )
   lines.push('')
 
@@ -236,7 +242,7 @@ export async function buildLlmsFullTxt(): Promise<string> {
   lines.push('# ユーズドラボ（Used Lab）')
   lines.push('')
   lines.push(
-    '> 中古Apple製品（iPhone・iPad・MacBook・Apple Watch・AirPods）のスペック比較・価格相場・おすすめモデル紹介に特化した日本語の情報サイトです。全モデルの公式スペックに基づいた正確なデータベースと、独自に収集した中古価格情報を提供しています。',
+    '> 中古・型落ちデジタルデバイス（iPhone・iPad・MacBook・Apple Watch・AirPods）のスペック比較・価格相場・おすすめモデル紹介に特化した日本語の情報サイトです。全モデルの公式スペックに基づいた正確なデータベースと、独自に収集した中古価格情報を提供しています。',
   )
   lines.push('')
 

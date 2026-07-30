@@ -10,7 +10,7 @@ export default function Footer() {
             <Link href="/" className="m-logo" prefetch={false}>
               <span className="m-logo__text">ユーズドラボ</span>
             </Link>
-            <p className="footer-tagline">中古Apple製品の「ちょうどいい」を見つけるメディア。豊富なデータで最適な商品がわかる。型落ちの中古Apple製品をお手頃にゲットしよう！</p>
+            <p className="footer-tagline">中古・型落ちデジタルデバイスの「ちょうどいい」を見つけるメディア。豊富なデータで最適な一台がわかる。型落ちのデジタルデバイスをお手頃にゲットしよう！</p>
             <div className="footer-social">
               <a href="https://twitter.com/takahiro_mono" aria-label="X (Twitter)" rel="noopener noreferrer">
                 <i className="fa-brands fa-x-twitter" aria-hidden="true"></i>

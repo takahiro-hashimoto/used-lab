@@ -1,5 +1,6 @@
 import type { SimilarPriceItem } from '@/app/components/model/SimilarPriceModels'
 import { formatReleaseDate } from './shared-helpers'
+import { calculatePriceStats } from './price-stats'
 
 // ============================================================
 // 「同じ予算で狙える他のモデル」の算出
@@ -9,11 +10,15 @@ import { formatReleaseDate } from './shared-helpers'
 // 各 [slug] ページで同じロジックを書かないよう共通化している。
 // ============================================================
 
-/** 3ショップ（イオシス・ゲオ・じゃんぱら）の最安列を持つ価格ログ行 */
+/** 3ショップ（イオシス・ゲオ・じゃんぱら）の価格列を持つ価格ログ行。
+ *  *_prices は取得した全商品の価格配列で、中央値の算出に使う */
 type PriceLogLike = {
   iosys_min?: unknown
   geo_min?: unknown
   janpara_min?: unknown
+  iosys_prices?: unknown
+  geo_prices?: unknown
+  janpara_prices?: unknown
 } | undefined
 
 type ModelLike = {
@@ -63,9 +68,22 @@ export type BrandInput = {
   shopLinks?: ShopLinkLike[]
 }
 
-/** 3ショップ最安の非null最小を代表価格とする */
+/**
+ * 代表価格は実勢相場（販売中商品の中央値）。
+ *
+ * 最安値を使うと1点限りの特価に引っ張られ、同じページの本文（中央値ベース）と
+ * 別の相場を示してしまうため、詳細ページ・スペック表と同じ指標に揃える。
+ * サンプルが足りず中央値を出せない機種だけ、3ショップ最安の最小値にフォールバックする。
+ */
 export function representativePrice(log: PriceLogLike): number | null {
   if (!log) return null
+  const toArray = (v: unknown): number[] | null => (Array.isArray(v) ? (v as number[]) : null)
+  const stats = calculatePriceStats([
+    toArray(log.iosys_prices),
+    toArray(log.geo_prices),
+    toArray(log.janpara_prices),
+  ])
+  if (stats) return stats.median
   const nums = [log.iosys_min, log.geo_min, log.janpara_min]
     .map((v) => (v == null ? NaN : Number(v)))
     .filter((v) => Number.isFinite(v) && v > 0)

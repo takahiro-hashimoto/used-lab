@@ -103,7 +103,7 @@ export default function SimilarPriceModels({ modelName, basePrice, items }: Prop
               <div className="ifd-result-card__body">
                 <div className="ifd-result-card__price">
                   <span className="ifd-result-card__price-label">中古相場</span>
-                  <span className="ifd-result-card__price-value">{yen(item.price)}〜</span>
+                  <span className="ifd-result-card__price-value">{yen(item.price)}</span>
                 </div>
                 {specs.length > 0 && (
                   <dl className="ifd-result-card__specs">

@@ -46,6 +46,8 @@ type Props = {
   models: SpecModel[]
   shopLinks: ProductShopLink[]
   prices: Record<number, number | null>
+  /** 相場の集計日（"YYYY-MM-DD"）。スペックと違い相場は日々変わるため明示する */
+  priceDate?: string | null
   /** 埋め込み(iframe)表示: 販売リンク行と埋め込みボタンを非表示にする */
   embed?: boolean
 }
@@ -53,6 +55,14 @@ type Props = {
 type SortOrder = 'old' | 'new'
 type FilterType = 'all' | 'pro-family' | 'standard-family' | 'se-family'
 type FeatureFilter = 'size-lg' | 'size-sm' | 'size-xs'
+// 中古を探す人の出発点は「予算いくらまで」なので、価格帯で絞れるようにする
+type PriceFilter = 'price-1' | 'price-2' | 'price-3' | 'price-4'
+const PRICE_RANGES: Record<PriceFilter, { label: string; min: number; max: number }> = {
+  'price-1': { label: '〜3万円', min: 0, max: 30000 },
+  'price-2': { label: '3〜6万円', min: 30000, max: 60000 },
+  'price-3': { label: '6〜10万円', min: 60000, max: 100000 },
+  'price-4': { label: '10万円〜', min: 100000, max: Infinity },
+}
 
 function getModelCategory(model: string): string {
   const lower = model.toLowerCase()
@@ -76,7 +86,13 @@ function extractScreenInch(display: string | null): string | null {
   return match ? `${match[1]}インチ` : null
 }
 
-export default function SpecTable({ models, shopLinks, embed = false }: Props) {
+/** "2026-07-30" → "7/30" */
+function formatPriceDate(date: string): string {
+  const [, m, d] = date.split('-').map(Number)
+  return m && d ? `${m}/${d}` : date
+}
+
+export default function SpecTable({ models, shopLinks, prices, priceDate, embed = false }: Props) {
   const [sortOrder, setSortOrder] = useState<SortOrder>(() => {
     if (typeof window === 'undefined') return 'old'
     const v = new URLSearchParams(window.location.search).get('sort')
@@ -93,15 +109,22 @@ export default function SpecTable({ models, shopLinks, embed = false }: Props) {
     return (v === 'size-lg' || v === 'size-sm' || v === 'size-xs') ? v : null
   })
 
+  const [priceFilter, setPriceFilter] = useState<PriceFilter | null>(() => {
+    if (typeof window === 'undefined') return null
+    const v = new URLSearchParams(window.location.search).get('price')
+    return v && v in PRICE_RANGES ? (v as PriceFilter) : null
+  })
+
   // フィルタ変更時にURLを更新
   useEffect(() => {
     const p = new URLSearchParams()
     if (sortOrder !== 'old') p.set('sort', sortOrder)
     if (modelFilter !== 'all') p.set('model', modelFilter)
     if (featureFilter) p.set('size', featureFilter)
+    if (priceFilter) p.set('price', priceFilter)
     const qs = p.toString()
     window.history.replaceState(null, '', qs ? `?${qs}` : window.location.pathname)
-  }, [sortOrder, modelFilter, featureFilter])
+  }, [sortOrder, modelFilter, featureFilter, priceFilter])
 
   const toggleFeature = (f: FeatureFilter) => {
     setFeatureFilter((prev) => (prev === f ? null : f))
@@ -137,6 +160,15 @@ export default function SpecTable({ models, shopLinks, embed = false }: Props) {
       }
     }
 
+    // 価格帯フィルタ（相場が未取得の機種は絞り込み時に除外する）
+    if (priceFilter) {
+      const { min, max } = PRICE_RANGES[priceFilter]
+      result = result.filter((m) => {
+        const price = prices[m.id]
+        return price != null && price >= min && price < max
+      })
+    }
+
     // 並び替え
     result.sort((a, b) => {
       const da = parseDate(a.date).getTime()
@@ -145,7 +177,7 @@ export default function SpecTable({ models, shopLinks, embed = false }: Props) {
     })
 
     return result
-  }, [models, sortOrder, modelFilter, featureFilter])
+  }, [models, sortOrder, modelFilter, featureFilter, priceFilter, prices])
 
   const getShopLink = (productId: number, shopId: number) =>
     shopLinks.find((l) => l.product_id === productId && l.shop_id === shopId)
@@ -162,6 +194,16 @@ export default function SpecTable({ models, shopLinks, embed = false }: Props) {
             <span style={{ fontSize: '0.8em', color: '#888' }}>{osEndYear ? `〜${osEndYear}年` : '-'}</span>
           </>
         )
+      },
+    },
+    {
+      // 中古サイトの比較表で最も重要な判断材料。スペックより先に置く。
+      // 値は実勢相場（販売中商品の中央値）で、詳細ページ・相場一覧と同じ指標
+      label: '中古相場',
+      render: (m) => {
+        const price = prices[m.id]
+        if (price == null) return <span style={{ color: '#888' }}>-</span>
+        return <strong style={{ color: 'var(--color-primary)', whiteSpace: 'nowrap' }}>&yen;{price.toLocaleString()}</strong>
       },
     },
     { label: 'CPU', render: (m) => m.cpu ? <TextCell value={m.cpu} /> : '-' },
@@ -196,13 +238,11 @@ export default function SpecTable({ models, shopLinks, embed = false }: Props) {
         </h2>
         <p className="m-section-desc">
           歴代iPhoneの主要スペックを一覧で比較できます。
-        </p>
-        <p className="m-section-desc">
           カメラ関連の機能は<Link prefetch={false} href="/iphone/iphone-camera/">歴代iPhoneカメラ性能の比較まとめ</Link>で解説しています。
         </p>
 
-        {/* フィルターUI */}
-        <fieldset className="u-mb-xl">
+        {/* フィルターUI。行数が多く縦を取るので、広い画面では横に詰めて折り返す */}
+        <fieldset className="spec-filter u-mb-xl">
           <legend className="visually-hidden">テーブルの絞り込み</legend>
           <div className="spec-filter__row">
             <span className="spec-filter__label">並び替え</span>
@@ -224,7 +264,22 @@ export default function SpecTable({ models, shopLinks, embed = false }: Props) {
             </div>
           </div>
           <div className="spec-filter__row">
-            <span className="spec-filter__label">機種別絞り込み</span>
+            <span className="spec-filter__label">価格帯</span>
+            <div className="spec-filter__tags">
+              {(Object.entries(PRICE_RANGES) as [PriceFilter, { label: string }][]).map(([key, { label }]) => (
+                <button
+                  key={key}
+                  className={`spec-filter__tag${priceFilter === key ? ' is-active' : ''}`}
+                  onClick={() => setPriceFilter((prev) => (prev === key ? null : key))}
+                  aria-pressed={priceFilter === key}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+          </div>
+          <div className="spec-filter__row">
+            <span className="spec-filter__label">機種別</span>
             <div className="spec-filter__tags">
               {([
                 ['all', 'すべて'],
@@ -334,7 +389,9 @@ export default function SpecTable({ models, shopLinks, embed = false }: Props) {
           </StickyTableWrapper>
         )}
         <p style={{ marginTop: '1rem', fontSize: '0.75rem', color: '#888', lineHeight: 1.7 }}>
-          ※ 各機種の中古相場・価格推移グラフは「<Link prefetch={false} href="/iphone/price-info/" style={{ color: 'var(--color-primary)', textDecoration: 'underline' }}>iPhone中古相場・価格推移ページ</Link>」でご確認いただけます。
+          {/* 相場の算出根拠と集計日は列幅を圧迫するため、表の外にまとめる */}
+          ※ 中古相場は販売中の商品の実勢価格（中央値）です{priceDate && `（${formatPriceDate(priceDate)}時点）`}。
+          各機種の価格推移グラフは「<Link prefetch={false} href="/iphone/price-info/" style={{ color: 'var(--color-primary)', textDecoration: 'underline' }}>iPhone中古相場・価格推移ページ</Link>」でご確認いただけます。
         </p>
         {!embed && <SpecEmbedButton />}
       </div>

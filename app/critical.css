@@ -238,6 +238,7 @@ ul {
   grid-template-columns: repeat(5, 1fr);
 }
 
+
 .l-grid--gap-lg {
   gap: var(--space-lg);
 }
@@ -1301,6 +1302,7 @@ a.header-admin-link:hover {
   .l-grid--5col {
     grid-template-columns: repeat(3, 1fr);
   }
+
 }
 
 /* --- Mobile (768px) --- */

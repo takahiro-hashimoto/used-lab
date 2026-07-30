@@ -65,6 +65,8 @@ export default async function IPhoneSpecTablePage() {
   ])
 
   const avgPrices: Record<number, number | null> = {}
+  // 相場は日々変わる。スペック（不変）と同じ表に並べる以上、いつ時点かを明示する
+  let priceDate: string | null = null
 
   for (const model of allModels) {
     const log = latestPriceLogs[model.id]
@@ -79,6 +81,8 @@ export default async function IPhoneSpecTablePage() {
     // 詳細ページ・相場一覧と同じ中央値ベースにする（同じ機種で違う相場を出さない）
     const rec2 = log as unknown as Record<string, number[] | null>
     avgPrices[model.id] = calcAvgFromShops(mins, maxs, '', [rec2['iosys_prices'], rec2['geo_prices'], rec2['janpara_prices']])?.avg ?? null
+    const loggedAt = (log as unknown as { logged_at?: string }).logged_at
+    if (loggedAt && (!priceDate || loggedAt > priceDate)) priceDate = loggedAt.substring(0, 10)
   }
 
 
@@ -222,7 +226,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/iphone-s
         </nav>
         <div className="l-sections" itemProp="articleBody">
         {/* セクション */}
-        <SpecTable models={allModels} shopLinks={allShopLinks} prices={avgPrices} />
+        <SpecTable models={allModels} shopLinks={allShopLinks} prices={avgPrices} priceDate={priceDate} />
         <DualCompare models={allModels} shopLinks={allShopLinks} />
         <BenchmarkSection models={allModels} avgPrices={avgPrices} shopLinks={allShopLinks} />
         <EvolutionTimeline

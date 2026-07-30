@@ -78,7 +78,7 @@ export default function KeyboardCompatTable({ models, keyboardAccessories }: Pro
         {/* フィルターUI */}
         <div className="u-mb-xl" aria-label="絞り込み">
           <div className="spec-filter__row">
-            <span className="spec-filter__label">機種絞り込み</span>
+            <span className="spec-filter__label">機種別</span>
             <div className="spec-filter__tags">
               {([
                 ['all', 'すべて'],

@@ -53,6 +53,9 @@ export default function ModelShopGrid({
       return { shop, url: link.url }
     })
     .filter((item): item is { shop: Shop; url: string } => item !== null)
+    // product_shop_links の行順（＝登録した順）に依存すると機種ごとに並びが変わるため、
+    // shops.id 順に固定する。id=1 のイオシス（おすすめ）が常に先頭に来る。
+    .sort((a, b) => a.shop.id - b.shop.id)
 
   if (linkedShops.length === 0) return null
 

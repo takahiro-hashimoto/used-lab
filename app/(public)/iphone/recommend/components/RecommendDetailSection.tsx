@@ -125,10 +125,18 @@ export default function RecommendDetailSection({ items }: Props) {
                         <span className="recommend-card__price-header">
                           <i className="fa-solid fa-tag" aria-hidden="true"></i> 中古相場（税込）
                         </span>
+                        {/* 実勢相場（中央値）を出す。最安値だけを大きく出すと
+                            1点限りの特価を相場と誤解させるため、個別機種ページと基準を揃える */}
                         <span className="recommend-card__price-range m-price-display m-price-display--sm">
-                          &yen;<strong>{priceRange.minPrice?.toLocaleString()}</strong>
-                          {priceRange.maxPrice && (
-                            <> ~ &yen;<strong>{priceRange.maxPrice.toLocaleString()}</strong></>
+                          {priceRange.medianPrice != null ? (
+                            <>&yen;<strong>{priceRange.medianPrice.toLocaleString()}</strong></>
+                          ) : (
+                            <>
+                              &yen;<strong>{priceRange.minPrice?.toLocaleString()}</strong>
+                              {priceRange.maxPrice && (
+                                <> ~ &yen;<strong>{priceRange.maxPrice.toLocaleString()}</strong></>
+                              )}
+                            </>
                           )}
                         </span>
                       </p>

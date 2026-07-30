@@ -8,6 +8,7 @@
 export const HERO_IMAGES: Record<string, string> = {
   // ── トップ・共通 ──
   '/': '/images/content/thumbnail/iphone-image.jpeg',
+  '/smartphone-compare/': '/images/content/thumbnail/iphone-compare.jpg',
   '/profile/': '/images/content/thumbnail/iphone-image.jpeg',
   '/sitemap-page/': '/images/content/thumbnail/iphone-image.jpeg',
 
@@ -36,6 +37,28 @@ export const HERO_IMAGES: Record<string, string> = {
   '/iphone/used-iphone-support/': '/images/content/thumbnail/iphone-image-03.jpg',
   '/iphone/apple-care/': '/images/content/thumbnail/apple-care.jpg',
   '/iphone/mobile-hoken-compare/': '/images/content/thumbnail/iphone-image-02.jpg',
+
+  // ── Google Pixel ──（専用画像未用意のため汎用サムネを流用）
+  '/pixel/': '/images/content/thumbnail/iphone-image.jpeg',
+  '/pixel/pixel-spec-table/': '/images/content/thumbnail/iphone-compare.jpg',
+  '/pixel/benchmark/': '/images/content/thumbnail/iphone-setting.webp',
+  '/pixel/battery-compare/': '/images/content/thumbnail/iphone-battery.jpg',
+  '/pixel/used-pixel-support/': '/images/content/thumbnail/iphone-image-03.jpg',
+  '/pixel/price-info/': '/images/content/thumbnail/graph-image.jpg',
+  '/pixel/pixel-shop/': '/images/content/thumbnail/cheap-buy.jpg',
+  '/pixel/used-pixel-attention/': '/images/content/thumbnail/check-list.jpg',
+  '/pixel/storage-guide/': '/images/content/thumbnail/used-iphone-ios-support.jpg',
+
+  // ── Samsung Galaxy ──（専用画像未用意のため汎用サムネを流用）
+  '/galaxy/': '/images/content/thumbnail/iphone-image.jpeg',
+  '/galaxy/galaxy-spec-table/': '/images/content/thumbnail/iphone-compare.jpg',
+  '/galaxy/benchmark/': '/images/content/thumbnail/iphone-setting.webp',
+  '/galaxy/battery-compare/': '/images/content/thumbnail/iphone-battery.jpg',
+  '/galaxy/used-galaxy-support/': '/images/content/thumbnail/iphone-image-03.jpg',
+  '/galaxy/price-info/': '/images/content/thumbnail/graph-image.jpg',
+  '/galaxy/galaxy-shop/': '/images/content/thumbnail/cheap-buy.jpg',
+  '/galaxy/used-galaxy-attention/': '/images/content/thumbnail/check-list.jpg',
+  '/galaxy/storage-guide/': '/images/content/thumbnail/used-iphone-ios-support.jpg',
 
   // ── iPad ──
   '/ipad/': '/images/content/thumbnail/ipad-all.jpg',

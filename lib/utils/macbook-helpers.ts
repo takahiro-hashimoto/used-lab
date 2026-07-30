@@ -158,6 +158,8 @@ export interface VerdictResult {
   annualCost: number | null
   priceMin: number | null
   descriptions: string[]
+  /** 在庫の実数から組み立てた一文（FAQで再掲しないよう descriptions とは分ける） */
+  stockNote: string | null
   suitability: SuitabilityItem[]
   efficiencyRating: string
 }
@@ -207,8 +209,15 @@ export function getVerdict(
     : 0
 
   // 年間コスト（サポート切れは算出しない）
-  const annualCost = priceMin && priceMin > 0 && !model.last_macos
-    ? Math.round(priceMin / remainingYears)
+  // 実勢相場（中央値）で計算する。最安値は1点だけの特価であることが多く、
+  // その価格を前提にした年単価は読者が実際に払う金額より安く見えてしまう。
+  // 分布の記録がないログ（2026-07-30以前）では従来どおり最安値にフォールバック
+  const marketStats = calculatePriceStats([
+    latestPrice?.matched_prices,
+  ])
+  const costBasis = marketStats?.median ?? priceMin
+  const annualCost = costBasis && costBasis > 0 && !model.last_macos
+    ? Math.round(costBasis / remainingYears)
     : null
 
   // --- 判定ステータス（MacBook: 18ヶ月閾値） ---
@@ -227,9 +236,21 @@ export function getVerdict(
     statusLabel = '現役バリバリ'
     rank = 'best'
   } else if (remainingYears >= 3 && multiScore >= GOLDEN_SCORE_THRESHOLD) {
-    verdictMain = '今が買い時！'
-    statusLabel = 'コスパ黄金期'
-    rank = 'best'
+    // 性能・寿命だけで「買い時」と断定しない。実勢相場が新品の最新機を
+    // 上回る時期の機種まで買い時になってしまうため、価格もゲートにする
+    if (costBasis != null && costBasis >= LATEST_MACBOOK_PRICE) {
+      verdictMain = '新品の最新機も要検討'
+      statusLabel = '相場高止まり'
+      rank = 'good'
+    } else if (annualCost != null && annualCost > LATEST_ANNUAL) {
+      verdictMain = '悪くない選択'
+      statusLabel = '高値圏'
+      rank = 'good'
+    } else {
+      verdictMain = '今が買い時！'
+      statusLabel = 'コスパ黄金期'
+      rank = 'best'
+    }
   } else if (remainingYears >= 3) {
     verdictMain = '悪くない選択'
     statusLabel = '実力派ミドル'
@@ -254,7 +275,39 @@ export function getVerdict(
   const longUse: '◎' | '◯' | '△' = remainingYears >= 4 ? '◎' : remainingYears >= 2 ? '◯' : '△'
 
   // 在庫豊富
-  const stockOk: '◎' | '◯' | '△' = yearsPassed >= 1 && yearsPassed <= 4 ? '◎' : '◯'
+  // 在庫は発売年からの推測ではなく、その日に実際に確認できた件数で判定する。
+  // 件数の記録がない過去データでは従来どおり経過年数にフォールバックする
+  const stockCount = [latestPrice?.matched_count]
+    .filter((v): v is number => v != null)
+  const stockOk: '◎' | '◯' | '△' = stockCount.length > 0
+    ? (() => {
+        const total = stockCount.reduce((a, b) => a + b, 0)
+        return total >= 100 ? '◎' : total >= 20 ? '◯' : '△'
+      })()
+    : (yearsPassed >= 1 && yearsPassed <= 4 ? '◎' : '◯')
+
+  // 在庫の実数は「買えるかどうか」に直結するため、判断が変わる水準のときだけ一文を添える
+  let stockNote: string | null = null
+  const spread = marketStats ? marketStats.q3 - marketStats.q1 : null
+  const spreadRatio = marketStats && spread != null ? spread / marketStats.median : null
+  if (stockCount.length > 0) {
+    const stockTotal = stockCount.reduce((a, b) => a + b, 0)
+    if (stockTotal === 0) {
+      stockNote = '現在、集計対象のショップでは在庫が確認できませんでした。中古市場から姿を消しつつあるため、購入できるタイミングは限られます。'
+    } else if (stockTotal <= 10) {
+      stockNote = `販売中の在庫は${stockTotal}件と少なく、状態や色を選ぶ余裕はほとんどありません。狙っている場合は見つけた時点で判断することをおすすめします。`
+    } else if (stockTotal >= 150) {
+      // 在庫が多くても価格が横並びなら「比較で安く買える」とは言えない
+      stockNote = spreadRatio != null && spreadRatio <= 0.05
+        ? `販売中の在庫は${stockTotal}件と豊富です。価格はどのショップもほぼ横並びのため、金額よりバッテリー状態や付属品の良い個体を選ぶのがおすすめです。`
+        : `販売中の在庫は${stockTotal}件と豊富で、ショップ間の価格競争が起きやすい状況です。急いで決めず、複数のショップを比較すると条件の良い個体を見つけやすくなります。`
+    }
+  }
+  // 価格のばらつきが大きい機種は「比較すること自体に金銭的価値がある」
+  if (marketStats && spread != null && spreadRatio != null && spreadRatio >= 0.2) {
+    const spreadNote = `同じ中古でも状態やショップにより${formatPrice(marketStats.q1)}〜${formatPrice(marketStats.q3)}と幅があり、選び方しだいで約${formatPrice(Math.round(spread / 1000) * 1000)}変わります。購入前の比較が特に効く機種です。`
+    stockNote = stockNote ? `${stockNote}${spreadNote}` : spreadNote
+  }
 
   // 外部接続性：SDカードスロットやHDMI, port内容
   const portStr = model.port || ''
@@ -294,14 +347,27 @@ export function getVerdict(
     `Apple製品は発売（${releaseDateFormatted}）から約7年がmacOSサポートの目安です。本機の残り寿命は約${remainingYearsFormatted}年と推定されます。`
   )
 
-  if (priceMin != null && priceMin > 0 && annualCost != null) {
-    if (annualCost > LATEST_ANNUAL) {
+  if (annualCost != null) {
+    // 何をどう割った数字なのかを明示する。根拠の見えない「年単価」は説得力を持たない
+    const basisText = marketStats
+      ? `実勢相場（中央値 ${formatPrice(marketStats.median)}）で購入した場合、1年あたりのコストは約${formatPrice(annualCost)}です。`
+      : `1年あたりのコストは約${formatPrice(annualCost)}です。`
+    const latestAnnualText = `最新機を新品で買い7年使う場合の年単価（約${formatPrice(Math.round(LATEST_ANNUAL / 100) * 100)}）`
+    if (annualCost > LATEST_ANNUAL && costBasis != null && costBasis >= LATEST_MACBOOK_PRICE) {
       descriptions.push(
-        `1年あたりのコストは約${formatPrice(annualCost)}です。最新機の年単価（約${formatPrice(Math.round(LATEST_ANNUAL / 100) * 100)}）を上回るため、長く使うよりは「繋ぎの1台」としての検討をおすすめします。`
+        `${basisText}実勢相場が${LATEST_MACBOOK_NAME}の新品価格（${formatPrice(LATEST_MACBOOK_PRICE)}）を上回っており、価格面のメリットはありません。この機種のサイズや機能に明確なこだわりがなければ、新品の最新機も含めて検討するのが合理的です。`
+      )
+    } else if (annualCost > LATEST_ANNUAL && remainingYears >= 3) {
+      descriptions.push(
+        `${basisText}${latestAnnualText}を上回っており、中古としての値下がりはまだ小さい時期です。急がなければ相場がこなれるのを待つ選択肢もあります。`
+      )
+    } else if (annualCost > LATEST_ANNUAL) {
+      descriptions.push(
+        `${basisText}${latestAnnualText}を上回るため、長く使うよりは「繋ぎの1台」としての検討をおすすめします。`
       )
     } else {
       descriptions.push(
-        `1年あたりのコストは約${formatPrice(annualCost)}。最新機（年単価 約¥${LATEST_ANNUAL.toLocaleString()}）より大幅に出費を抑えつつ、賢くMacBookを所有できる好条件です。`
+        `${basisText}${latestAnnualText}を下回り、出費を抑えつつ賢くMacBookを所有できる好条件です。`
       )
     }
   }
@@ -315,6 +381,7 @@ export function getVerdict(
     annualCost,
     priceMin,
     descriptions,
+    stockNote,
     suitability,
     efficiencyRating,
   }

@@ -10,7 +10,28 @@ export const CHART_COLORS = [
   '#f97316', '#14b8a6', '#6366f1', '#a855f7',
 ]
 
-/** FAQアイテム */
+/**
+ * FAQアイテム。
+ *
+ * 相場に触れる設問だけ、その日の実勢価格（中央値）を差し込む。
+ * 固定値で書くと、書いた時点の相場のまま古びていくため。
+ *
+ * @param m1AirBand 例 "7万円台"。相場が取れないときは null（言及ごと省く）
+ */
+export function buildFaqItems(m1AirBand: string | null) {
+  return FAQ_ITEMS.map((item) =>
+    item.question === 'MacBook AirとProではどちらが中古で買いやすいですか？'
+      ? {
+          ...item,
+          answer: m1AirBand
+            ? item.answer.replace('__M1_AIR_BAND__', `特にM1 MacBook Airは${m1AirBand}が中心で、日常用途なら十分な性能です。`)
+            : item.answer.replace('__M1_AIR_BAND__', 'なかでもM1 MacBook Airは日常用途なら十分な性能です。'),
+        }
+      : item
+  )
+}
+
+/** FAQアイテム（相場の差し込み前。表示には buildFaqItems を使う） */
 export const FAQ_ITEMS = [
   {
     question: '中古MacBookが一番安くなる時期はいつですか？',
@@ -20,7 +41,7 @@ export const FAQ_ITEMS = [
   {
     question: 'MacBook AirとProではどちらが中古で買いやすいですか？',
     answer:
-      'MacBook Airの方が流通量が多く、価格帯も幅広いため購入しやすい傾向にあります。特にM1 MacBook Airは6万円台から購入でき、日常用途なら十分な性能です。\nProはカスタマイズ構成のばらつきが大きく、最小構成の在庫が見つかりやすい反面、高スペック構成は割高になりがちです。',
+      'MacBook Airの方が流通量が多く、価格帯も幅広いため購入しやすい傾向にあります。__M1_AIR_BAND__\nProはカスタマイズ構成のばらつきが大きく、最小構成の在庫が見つかりやすい反面、高スペック構成は割高になりがちです。',
   },
   {
     question: 'カスタマイズモデル（CTO）の中古価格はどう考えればいいですか？',

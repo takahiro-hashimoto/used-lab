@@ -124,7 +124,7 @@ export default function CameraComparisonTable({ models, shopLinks }: Props) {
         </p>
 
         {/* フィルターUI */}
-        <div className="u-mb-xl" aria-label="絞り込み">
+        <div className="spec-filter u-mb-xl" aria-label="絞り込み">
           <div className="spec-filter__row">
             <span className="spec-filter__label">並び替え</span>
             <div className="spec-filter__tags">
@@ -143,7 +143,7 @@ export default function CameraComparisonTable({ models, shopLinks }: Props) {
             </div>
           </div>
           <div className="spec-filter__row">
-            <span className="spec-filter__label">機種別絞り込み</span>
+            <span className="spec-filter__label">機種別</span>
             <div className="spec-filter__tags">
               {([
                 ['all', 'すべて'],

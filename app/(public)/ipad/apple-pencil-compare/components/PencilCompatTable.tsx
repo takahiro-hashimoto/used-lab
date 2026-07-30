@@ -105,9 +105,9 @@ export default function PencilCompatTable({ models, shopLinks }: Props) {
         </p>
 
         {/* フィルターUI */}
-        <div className="u-mb-xl" aria-label="絞り込み">
+        <div className="spec-filter u-mb-xl" aria-label="絞り込み">
           <div className="spec-filter__row">
-            <span className="spec-filter__label">機種絞り込み</span>
+            <span className="spec-filter__label">機種別</span>
             <div className="spec-filter__tags">
               {([
                 ['all', 'すべて'],
@@ -127,7 +127,7 @@ export default function PencilCompatTable({ models, shopLinks }: Props) {
             </div>
           </div>
           <div className="spec-filter__row">
-            <span className="spec-filter__label">対応Pencilで絞り込む</span>
+            <span className="spec-filter__label">対応Pencil</span>
             <div className="spec-filter__tags">
               {([
                 ['all', 'すべて'],

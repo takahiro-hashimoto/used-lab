@@ -76,7 +76,7 @@ export default function AirpodsFindPage() {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
+      { '@type': 'ListItem', position: 1, name: '中古・型落ちデジタルデバイスを賢く買う', item: 'https://used-lab.jp/' },
       { '@type': 'ListItem', position: 2, name: '中古AirPodsおすすめ機種・選び方ガイド', item: 'https://used-lab.jp/airpods/' },
       { '@type': 'ListItem', position: 3, name: 'AirPodsの紛失対処法' },
     ],

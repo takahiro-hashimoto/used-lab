@@ -231,7 +231,7 @@ export default function Header() {
                   />
                   <p className="mobile-menu__about-name">タカヒロ</p>
                 </div>
-                <p className="mobile-menu__about-desc">都内のIT企業でWebディレクターとして働く傍ら、メディア運営を行っています。中古Apple製品選びに役立つ情報を発信しています。</p>
+                <p className="mobile-menu__about-desc">都内のIT企業でWebディレクターとして働く傍ら、メディア運営を行っています。中古・型落ちデジタルデバイス選びに役立つ情報を発信しています。</p>
                 <Link href="/profile/" className="mobile-menu__about-link" prefetch={false} onClick={() => setIsMenuOpen(false)}>
                   運営者情報を見る <i className="fa-solid fa-chevron-right" aria-hidden="true"></i>
                 </Link>

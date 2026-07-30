@@ -22,6 +22,8 @@ type Props = {
     verdictMain: string
     statusLabel: string
     descriptions: string[]
+    /** 在庫の実数から組み立てた一文（FAQでは再掲しないため descriptions と分けている） */
+    stockNote?: string | null
     suitability: SuitabilityItem[]
   }
   topRatings: RatingItem[]
@@ -60,6 +62,7 @@ export default function ModelPurchaseVerdict({
             {v.descriptions.map((text, i) => (
               <p key={i}>{text}</p>
             ))}
+            {v.stockNote && <p>{v.stockNote}</p>}
           </div>
 
           {/* 評価マトリックス */}

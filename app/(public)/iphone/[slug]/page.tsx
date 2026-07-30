@@ -1,4 +1,5 @@
 import { cache } from 'react'
+import { PUBLISH_ANDROID_CATEGORIES } from '@/lib/data/feature-flags'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import {
@@ -11,6 +12,10 @@ import {
   getLatestIPhonePriceLogWithPrices,
   getLatestIPhonePriceLogsWithPricesForModels,
   getIPhoneReviewsBySlug,
+  getAllPixelModels,
+  getAllGalaxyModels,
+  getLatestPixelPriceLogsWithPricesForModels,
+  getLatestGalaxyPriceLogsWithPricesForModels,
 } from '@/lib/queries'
 import SimilarPriceModels from '@/app/components/model/SimilarPriceModels'
 import { buildSimilarPriceItems } from '@/lib/utils/similar-price'
@@ -90,6 +95,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 }
 
+const CROSS_BRAND_ENABLED = PUBLISH_ANDROID_CATEGORIES
+
 export default async function IPhoneDetailPage({ params }: PageProps) {
   const { slug } = await params
   const model = await cachedGetModel(slug)
@@ -105,14 +112,30 @@ export default async function IPhoneDetailPage({ params }: PageProps) {
     getIPhoneReviewsBySlug(slug),
   ])
 
-  // 「同じ予算で狙える他のモデル」用の最新価格
-  // TODO(Pixel/Galaxy公開時): Pixel/Galaxy を横断対象に戻す。
-  // 未公開カテゴリの機種名とリンクが本番に出てしまうため、現在は iPhone のみ。
+  // 「同じ予算で狙える他のモデル」用: iPhone / Pixel / Galaxy 横断の最新価格
+  // （いずれも 86400 キャッシュの共通クエリで、全ページ間で使い回される）
   const PRICE_COLS = ['iosys_min', 'geo_min', 'janpara_min']
-  const iphonePrices = await getLatestIPhonePriceLogsWithPricesForModels(
-    allModels.map((m) => m.id),
-    PRICE_COLS,
-  )
+  // 他ブランドのイオシスリンクも必要（カードの「イオシスで見る」用）。
+  // getAllProductShopLinksByType は revalidate 604800 の共通キャッシュなので追加負荷はない。
+  // 非公開カテゴリは横断対象から外す（lib/data/feature-flags.ts）。
+  // 未公開のうちは取得自体を省き、ビルド時のクエリも増やさない
+  const [pixelModels, galaxyModels, pixelShopLinks, galaxyShopLinks] = CROSS_BRAND_ENABLED
+    ? await Promise.all([
+        getAllPixelModels(),
+        getAllGalaxyModels(),
+        getAllProductShopLinksByType('pixel'),
+        getAllProductShopLinksByType('galaxy'),
+      ])
+    : [[], [], [], []]
+  const [iphonePrices, pixelPrices, galaxyPrices] = await Promise.all([
+    getLatestIPhonePriceLogsWithPricesForModels(allModels.map((m) => m.id), PRICE_COLS),
+    pixelModels.length > 0
+      ? getLatestPixelPriceLogsWithPricesForModels(pixelModels.map((m) => m.id), PRICE_COLS)
+      : Promise.resolve({}),
+    galaxyModels.length > 0
+      ? getLatestGalaxyPriceLogsWithPricesForModels(galaxyModels.map((m) => m.id), PRICE_COLS)
+      : Promise.resolve({}),
+  ])
 
   // PriceChartSection用のデータをサーバーサイドで事前計算
   const recentLogs = filterLast3Months(priceLogs)
@@ -129,6 +152,12 @@ export default async function IPhoneDetailPage({ params }: PageProps) {
     { brand: 'iphone', id: model.id },
     [
       { brand: 'iphone', brandLabel: 'iPhone', models: allModels, prices: iphonePrices, shopLinks },
+      ...(CROSS_BRAND_ENABLED
+        ? [
+            { brand: 'pixel' as const, brandLabel: 'Google Pixel', models: pixelModels, prices: pixelPrices, shopLinks: pixelShopLinks },
+            { brand: 'galaxy' as const, brandLabel: 'Samsung Galaxy', models: galaxyModels, prices: galaxyPrices, shopLinks: galaxyShopLinks },
+          ]
+        : []),
     ],
   )
 

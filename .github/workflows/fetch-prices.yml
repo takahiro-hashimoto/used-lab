@@ -19,6 +19,8 @@ on:
           - watch
           - airpods
           - macbook
+          - pixel
+          - galaxy
 
 jobs:
   fetch-prices:

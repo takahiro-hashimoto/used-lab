@@ -8,6 +8,12 @@ import type { ProductShopLink } from '@/lib/types'
 
 type DualCompareModel = {
   id: number; model: string; slug: string; image: string | null; shortname?: string | null
+  /** per-model 画像パス（絶対）。未指定(undefined)なら image + imagePath にフォールバック。null は画像なし */
+  imageSrc?: string | null
+  /** per-model 詳細リンク。未指定なら `/${detailPath}/${slug}` にフォールバック */
+  detailHref?: string
+  /** per-model イオシスURL。未指定/null なら shopLinks(getIosysLink) にフォールバック */
+  iosysUrl?: string | null
 }
 
 type Props<T extends DualCompareModel> = {
@@ -45,8 +51,16 @@ export default function DualCompare<T extends DualCompareModel>({
   const getIosysLink = (productId: number) =>
     shopLinks.find((l) => l.product_id === productId && l.shop_id === 1)
 
-  const linkA = getIosysLink(modelA.id)
-  const linkB = getIosysLink(modelB.id)
+  // per-model 優先で画像 / 詳細リンク / イオシスURL を解決（未指定はグローバル props にフォールバック）
+  const imgSrcOf = (m: T): string | null =>
+    m.imageSrc !== undefined ? m.imageSrc : (m.image ? `/images/${imagePath}/${m.image}` : null)
+  const detailHrefOf = (m: T): string => m.detailHref ?? `/${detailPath}/${m.slug}`
+  const iosysUrlOf = (m: T): string | null | undefined => m.iosysUrl ?? getIosysLink(m.id)?.url
+
+  const imgSrcA = imgSrcOf(modelA)
+  const imgSrcB = imgSrcOf(modelB)
+  const urlA = iosysUrlOf(modelA)
+  const urlB = iosysUrlOf(modelB)
 
   const optionLabel = getOptionLabel || ((m: T) => m.shortname || m.model)
 
@@ -85,7 +99,7 @@ export default function DualCompare<T extends DualCompareModel>({
                       <option key={m.id} value={m.id}>{optionLabel(m)}</option>
                     ))}
                   </select>
-                  <a href={`/${detailPath}/${modelA.slug}`} className="compare-model-link">
+                  <a href={detailHrefOf(modelA)} className="compare-model-link">
                     このモデルの詳細を見る &rsaquo;
                   </a>
                 </td>
@@ -101,7 +115,7 @@ export default function DualCompare<T extends DualCompareModel>({
                       <option key={m.id} value={m.id}>{optionLabel(m)}</option>
                     ))}
                   </select>
-                  <a href={`/${detailPath}/${modelB.slug}`} className="compare-model-link">
+                  <a href={detailHrefOf(modelB)} className="compare-model-link">
                     このモデルの詳細を見る &rsaquo;
                   </a>
                 </td>
@@ -112,9 +126,9 @@ export default function DualCompare<T extends DualCompareModel>({
               <tr>
                 <th></th>
                 <td className="compare-table__image-cell">
-                  {modelA.image && (
+                  {imgSrcA && (
                     <Image
-                      src={`/images/${imagePath}/${modelA.image}`}
+                      src={imgSrcA}
                       alt={modelA.model}
                       width={120}
                       height={120}
@@ -123,9 +137,9 @@ export default function DualCompare<T extends DualCompareModel>({
                   )}
                 </td>
                 <td className="compare-table__image-cell">
-                  {modelB.image && (
+                  {imgSrcB && (
                     <Image
-                      src={`/images/${imagePath}/${modelB.image}`}
+                      src={imgSrcB}
                       alt={modelB.model}
                       width={120}
                       height={120}
@@ -159,15 +173,15 @@ export default function DualCompare<T extends DualCompareModel>({
               <tr className="compare-table__action-row">
                 <th></th>
                 <td>
-                  {linkA ? (
-                    <a href={linkA.url} className="m-btn m-btn--primary m-btn--block" rel="nofollow noopener noreferrer" target="_blank">
+                  {urlA ? (
+                    <a href={urlA} className="m-btn m-btn--primary m-btn--block" rel="nofollow noopener noreferrer" target="_blank">
                       中古価格を見る <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
                     </a>
                   ) : '-'}
                 </td>
                 <td>
-                  {linkB ? (
-                    <a href={linkB.url} className="m-btn m-btn--primary m-btn--block" rel="nofollow noopener noreferrer" target="_blank">
+                  {urlB ? (
+                    <a href={urlB} className="m-btn m-btn--primary m-btn--block" rel="nofollow noopener noreferrer" target="_blank">
                       中古価格を見る <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
                     </a>
                   ) : '-'}

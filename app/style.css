@@ -846,7 +846,7 @@
 /* Header: gold banner */
 .conclusion-header {
   margin: calc(var(--space-xl) * -1) calc(var(--space-2xl) * -1) var(--space-lg);
-  padding: var(--space-lg) var(--space-2xl);
+  padding: var(--space-md);
   background: linear-gradient(135deg, var(--color-gold-start) 0%, var(--color-gold-mid) 50%, var(--color-gold-end) 100%);
   border-radius: var(--radius-lg) var(--radius-lg) 0 0;
   justify-content: center;
@@ -1100,6 +1100,98 @@
 
 @media (max-width: 768px) {
   .price-snapshot-card {
+    padding: var(--space-lg);
+  }
+}
+
+/* カテゴリ全体の市場サマリー（選択肢が多い価格帯・在庫の増減） */
+.market-summary {
+  margin: var(--space-xl) 0 var(--space-2xl);
+  padding: var(--space-xl) var(--space-2xl);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-md);
+  background: var(--color-bg-subtle);
+}
+
+.market-summary__heading {
+  font-size: var(--font-size-base);
+  font-weight: 800;
+  color: var(--color-text);
+  margin-bottom: var(--space-lg);
+}
+
+.market-summary__meta {
+  margin-left: var(--space-sm);
+  font-size: var(--font-size-xs);
+  font-weight: 400;
+  color: var(--color-text-muted);
+}
+
+.market-summary__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-lg);
+}
+
+.market-summary__item {
+  padding: var(--space-lg);
+  background: var(--color-bg);
+  border-radius: var(--radius-md);
+}
+
+.market-summary__label {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-xs);
+}
+
+.market-summary__value {
+  font-size: var(--font-size-lg);
+  font-weight: 800;
+  color: var(--color-primary);
+}
+
+.market-summary__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: var(--font-size-sm);
+}
+
+.market-summary__list li {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  padding: 3px 0;
+}
+
+.market-summary__list a {
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+/* 減少幅は必ずマイナス値。値動きと同じ配色にそろえる */
+.market-summary__diff {
+  color: var(--color-danger, #d70015);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.market-summary__sub {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+.market-summary__note {
+  margin-top: var(--space-sm);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  line-height: 1.7;
+}
+
+@media (max-width: 768px) {
+  .market-summary {
     padding: var(--space-lg);
   }
 }
@@ -3015,11 +3107,28 @@ fieldset.u-mb-xl {
   margin: 0;
 }
 
+/* fieldset のリセットで margin:0 になると u-mb-xl が効かないため、
+   下マージンはここで明示する */
+fieldset.spec-filter {
+  border: none;
+  padding: 0;
+  margin: 0 0 var(--space-xl);
+}
+
+/* 絞り込みは4グループあり縦を取るため、幅に余裕がある画面では2列に並べる。
+   グリッドの列を共有させることで、左右のラベル位置とタグの開始位置が揃う
+   （flex-wrap だとグループ幅がまちまちで列が崩れる） */
+.spec-filter {
+  display: grid;
+  grid-template-columns: max-content auto max-content auto;
+  column-gap: var(--space-md);
+  row-gap: var(--space-md);
+  align-items: center;
+}
+
+/* 行は列を作らず、ラベルとタグを直接グリッドへ流し込む */
 .spec-filter__row {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--space-sm);
-  margin-bottom: var(--space-md);
+  display: contents;
 }
 
 .spec-filter__label {
@@ -3027,8 +3136,25 @@ fieldset.u-mb-xl {
   font-weight: 500;
   color: var(--color-text-secondary);
   white-space: nowrap;
-  padding-top: var(--space-xs);
-  min-width: 120px;
+}
+
+/* 狭い画面では2列をやめて1グループ1行に戻す
+   （ラベルをタグの上に置く指定は後段の max-width:768px 側にある） */
+@media (max-width: 768px) {
+  .spec-filter {
+    display: block;
+  }
+
+  /* グリッドの row-gap が効かなくなるぶん、グループ間の余白を持たせる
+     （これがないとラベルが直前のタグにくっついて境目が読めない） */
+  .spec-filter__row {
+    display: flex;
+    margin-bottom: var(--space-md);
+  }
+
+  .spec-filter__row:last-child {
+    margin-bottom: 0;
+  }
 }
 
 .spec-filter__tags {
@@ -4768,10 +4894,12 @@ fieldset.u-mb-xl {
     margin: var(--space-sm) var(--space-md);
   }
 
+  /* カードの価格は中央値1つだけになり1行で収まるため、縦積みは解除
   .recommend-card__price-header,
   .recommend-card__price-range {
     display: block;
   }
+  */
 
   .recommend-card__price-range.m-price-display {
     margin-bottom: var(--space-sm);

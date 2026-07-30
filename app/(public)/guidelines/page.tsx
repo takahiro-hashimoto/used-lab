@@ -9,7 +9,7 @@ export const revalidate = false
 
 const PAGE_TITLE = 'コンテンツ制作・運営ポリシー'
 const PAGE_DESCRIPTION =
-  '当サイトでは中古Apple製品に関する情報を正確かつわかりやすくお届けすることを使命としています。コンテンツ制作フローや信頼性の担保についてご紹介します。'
+  '当サイトでは中古・型落ちデジタルデバイスに関する情報を正確かつわかりやすくお届けすることを使命としています。コンテンツ制作フローや信頼性の担保についてご紹介します。'
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,
@@ -274,7 +274,7 @@ export default function GuidelinesPage() {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
+      { '@type': 'ListItem', position: 1, name: '中古・型落ちデジタルデバイスを賢く買う', item: 'https://used-lab.jp/' },
       { '@type': 'ListItem', position: 2, name: 'コンテンツ制作・運営ポリシー' },
     ],
   }
@@ -322,7 +322,7 @@ export default function GuidelinesPage() {
                 2015年より更新している「<a href="https://digital-style.jp/" target="_blank" rel="noopener noreferrer">ガジェットレビューブログ・デジスタ</a>」の姉妹サイトとして2024年8月に開設しました。
               </p>
               <p>
-                ガジェットレビューブログの運営で得た知見を生かして「買い物の参考になる情報をわかりやすく発信すること」をモットーに中古Apple製品関連の情報を発信しています。
+                ガジェットレビューブログの運営で得た知見を生かして「買い物の参考になる情報をわかりやすく発信すること」をモットーに中古・型落ちデジタルデバイス関連の情報を発信しています。
               </p>
               <div className="u-mt-lg">
                 <Link prefetch={false} href="/profile/" className="about-media-link">

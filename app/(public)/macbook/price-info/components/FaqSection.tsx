@@ -1,6 +1,9 @@
-import { FAQ_ITEMS } from '@/lib/data/macbook-price-info'
+type Props = {
+  /** 相場を差し込み済みのFAQ（lib/data/macbook-price-info の buildFaqItems で生成） */
+  items: { question: string; answer: string }[]
+}
 
-export default function FaqSection() {
+export default function FaqSection({ items }: Props) {
   return (
     <section className="l-section" id="pd-faq" aria-labelledby="pd-faq-title">
       <div className="l-container">
@@ -10,7 +13,7 @@ export default function FaqSection() {
         <p className="m-section-desc">中古MacBook購入に関するよくある疑問にお答えします。</p>
 
         <div className="faq-list">
-          {FAQ_ITEMS.map((item, i) => (
+          {items.map((item, i) => (
             <div key={i} className="faq-item m-card m-card--shadow">
               <h3 className="faq-question">{item.question}</h3>
               <div className="faq-answer m-rich-text m-rich-text--muted">

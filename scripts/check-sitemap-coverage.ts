@@ -16,6 +16,7 @@ import { readdirSync, statSync } from 'fs'
 import { join, relative, dirname } from 'path'
 import { fileURLToPath } from 'url'
 import { getAllStaticRoutes } from '../lib/routes'
+import { isHiddenPath } from '../lib/data/feature-flags'
 
 // ---------- 除外リスト ----------
 // サイトマップに載せなくてよいパス（開発用ページ等）
@@ -74,8 +75,9 @@ console.log('[build:checks] Checking sitemap coverage...')
 const fsRoutes = collectPageRoutes(APP_DIR)
 const registeredPaths = new Set(getAllStaticRoutes().map((r) => r.path))
 
+// 非公開カテゴリ（lib/data/feature-flags.ts）は sitemap から意図的に外しているので対象外
 const missing = fsRoutes.filter(
-  (route) => !registeredPaths.has(route) && !EXCLUDED.has(route),
+  (route) => !registeredPaths.has(route) && !EXCLUDED.has(route) && !isHiddenPath(route),
 )
 
 if (missing.length > 0) {
