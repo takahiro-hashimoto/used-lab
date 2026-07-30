@@ -34,6 +34,7 @@ async function searchAll(params: {
 
   const url = new URL(RAKUTEN_API_BASE)
   url.searchParams.set('applicationId', e.RAKUTEN_APP_ID)
+  url.searchParams.set('accessKey', e.RAKUTEN_ACCESS_KEY) // 2026年刷新で必須
   url.searchParams.set('affiliateId', e.RAKUTEN_AFFILIATE_ID)
   url.searchParams.set('keyword', keyword)
   url.searchParams.set('hits', String(hits))
@@ -42,8 +43,16 @@ async function searchAll(params: {
   if (genreId) url.searchParams.set('genreId', genreId)
   if (ngKeyword) url.searchParams.set('NGKeyword', ngKeyword)
 
-  const response = await fetch(url.toString())
-  if (!response.ok) return { items: [], count: 0 }
+  // 新APIは登録ドメインからのアクセスを想定。Origin/Refererヘッダーが無いと403になる
+  const response = await fetch(url.toString(), {
+    headers: { Origin: e.RAKUTEN_ORIGIN, Referer: e.RAKUTEN_ORIGIN },
+  })
+  if (!response.ok) {
+    // 以前は黙って空配列を返していたため、403が1ヶ月以上気づかれなかった。必ずログを出す
+    const body = await response.text().catch(() => '')
+    console.error(`  ⚠️ 楽天APIエラー: HTTP ${response.status} kw="${keyword}" body=${body.slice(0, 300)}`)
+    return { items: [], count: 0 }
+  }
 
   const json = await response.json()
   if (!json.Items || json.Items.length === 0) return { items: [], count: 0 }
