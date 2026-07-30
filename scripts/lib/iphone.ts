@@ -5,7 +5,7 @@
 import { getSupabase } from './supabase-client'
 import { RAKUTEN_SHOPS, GENRE_SMARTPHONE } from './config'
 import { searchAndMatch } from './rakuten-api'
-import { extractMinCapacity, getTodayJST, getNowISOJST, type PriceResult } from './utils'
+import { extractMinCapacity, getTodayJST, getNowISOJST, isExcludedCondition, type PriceResult } from './utils'
 
 // NGキーワードマッピング
 const IPHONE_NG_KEYWORD_MAP: Record<string, string> = {
@@ -63,8 +63,8 @@ function isExactIphoneModelMatch(itemName: string, modelName: string): boolean {
   const nModel = modelName.toLowerCase().replace(/\s+/g, '')
   const excludePatterns = ['mini', 'pro', 'max', 'plus', 'air']
 
-  // 未使用を含む場合は除外
-  if (nItem.includes('未使用')) return false
+  // 新品・未使用・バッテリー劣化などを除外（判定は utils に一元化）
+  if (isExcludedCondition(itemName)) return false
 
   // SE判定
   if (nModel.includes('se')) {
@@ -178,6 +178,10 @@ export async function fetchIphonePrices(): Promise<void> {
       janpara_max: prices.janpara.max === '-' ? null : prices.janpara.max,
       janpara_min_text: prices.janpara.minItemName === '-' ? null : prices.janpara.minItemName,
       janpara_max_text: prices.janpara.maxItemName === '-' ? null : prices.janpara.maxItemName,
+      // 流通量の目安（適用日以降のみ記録）
+      iosys_count: prices.iosys.count,
+      geo_count: prices.geo.count,
+      janpara_count: prices.janpara.count,
     })
 
     if (insertError) {

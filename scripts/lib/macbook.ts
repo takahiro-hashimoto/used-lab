@@ -6,7 +6,7 @@
 
 import { getSupabase } from './supabase-client'
 import { env, RAKUTEN_API_BASE } from './config'
-import { sleep, getTodayJST, getNowISOJST } from './utils'
+import { sleep, getTodayJST, getNowISOJST, isExcludedCondition } from './utils'
 
 const GENRE_NOTEBOOK_PC = '100040'
 const NG_KEYWORD = 'ケース フィルム カバー キーボード バッグ ACアダプタ 充電器 スリーブ レンタル 液晶パネル 液晶ユニット パーツ 修理 交換用 ふるさと納税'
@@ -148,8 +148,8 @@ function buildMatchFn(model: {
     const itemName = item.itemName
     const name = itemName.toUpperCase()
 
-    // 0. 新品・未使用品を除外
-    if (name.includes('未使用') || name.includes('新品') || name.includes('未開封')) return false
+    // 0. 新品・未使用・バッテリー劣化などを除外（判定は utils に一元化）
+    if (isExcludedCondition(itemName)) return false
 
     // Neo 専用チェック
     if (type === 'Neo') {
@@ -300,6 +300,8 @@ export async function fetchMacbookPrices(): Promise<void> {
       model_id: model.id,
       model_name: model.model,
       storage: minStorage || null,
+      // 流通量の目安（適用日以降のみ記録）。MacBookはショップ横断のため総件数
+      matched_count: targets.length,
     }
 
     for (let i = 0; i < 5; i++) {

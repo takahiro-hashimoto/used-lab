@@ -5,7 +5,7 @@
 import { getSupabase } from './supabase-client'
 import { RAKUTEN_SHOPS, GENRE_TABLET } from './config'
 import { searchWithStrategies } from './rakuten-api'
-import { extractMinCapacity, getTodayJST, getNowISOJST, type PriceResult } from './utils'
+import { extractMinCapacity, getTodayJST, getNowISOJST, isExcludedCondition, type PriceResult } from './utils'
 
 // NGキーワードマッピング
 const IPAD_NG_KEYWORD_MAP: Record<string, string> = {
@@ -78,7 +78,7 @@ function isExactIpadModelMatch(
 
   // 除外条件
   if (nItem.includes('cellular') || nItem.includes('セルラー')) return false
-  if (nItem.includes('未使用')) return false
+  if (isExcludedCondition(itemName)) return false
 
   // 容量チェック
   if (capacity && !nItem.includes(capacity.toLowerCase())) return false
@@ -216,6 +216,10 @@ export async function fetchIpadPrices(): Promise<void> {
       janpara_max: prices.janpara.max === '-' ? null : prices.janpara.max,
       janpara_min_text: prices.janpara.minItemName === '-' ? null : prices.janpara.minItemName,
       janpara_max_text: prices.janpara.maxItemName === '-' ? null : prices.janpara.maxItemName,
+      // 流通量の目安（適用日以降のみ記録）
+      iosys_count: prices.iosys.count,
+      geo_count: prices.geo.count,
+      janpara_count: prices.janpara.count,
     })
 
     if (insertError) {

@@ -5,7 +5,7 @@
 import { getSupabase } from './supabase-client'
 import { RAKUTEN_SHOPS_AIRPODS } from './config'
 import { searchMultiKeywordAndMatch } from './rakuten-api'
-import { getTodayJST, getNowISOJST, type PriceResult } from './utils'
+import { getTodayJST, getNowISOJST, isExcludedCondition, type PriceResult } from './utils'
 
 // --- 検索キーワード生成 ---
 
@@ -120,7 +120,7 @@ function isExactAirPodsModelMatch(
   if (isAirPodsOnlyCase(nItem)) return false
   if (isAirPodsOnlyOneEar(nItem)) return false
   if (nItem.includes('ジャンク') || nItem.includes('junk')) return false
-  if (nItem.includes('未使用') || nItem.includes('新品')) return false
+  if (isExcludedCondition(itemName)) return false
 
   // AirPods Max
   if (nModel.includes('max')) {
@@ -262,6 +262,10 @@ export async function fetchAirPodsPrices(): Promise<void> {
       janpara_max: prices.janpara?.max === '-' ? null : prices.janpara?.max ?? null,
       eearphone_min: prices.eearphone?.min === '-' ? null : prices.eearphone?.min ?? null,
       eearphone_max: prices.eearphone?.max === '-' ? null : prices.eearphone?.max ?? null,
+      // 流通量の目安（適用日以降のみ記録）
+      iosys_count: prices.iosys?.count ?? null,
+      janpara_count: prices.janpara?.count ?? null,
+      eearphone_count: prices.eearphone?.count ?? null,
     })
 
     if (insertError) {

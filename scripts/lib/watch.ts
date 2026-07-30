@@ -5,7 +5,7 @@
 import { getSupabase } from './supabase-client'
 import { RAKUTEN_SHOPS } from './config'
 import { searchMultiKeywordAndMatch } from './rakuten-api'
-import { extractMinSize, getTodayJST, getNowISOJST, type PriceResult } from './utils'
+import { extractMinSize, getTodayJST, getNowISOJST, isExcludedCondition, type PriceResult } from './utils'
 
 /** SE系はショップによって表記が異なるため、複数のキーワードを返す */
 function buildWatchSearchKeywords(modelName: string, minSize: string | null): string[] {
@@ -57,7 +57,7 @@ function isExactWatchModelMatch(
     if (nItem.includes('cellular') || nItem.includes('セルラー') || nItem.includes('gps+'))
       return false
   }
-  if (nItem.includes('未使用')) return false
+  if (isExcludedCondition(itemName)) return false
   if (!isUltra) {
     if (
       nItem.includes('ステンレス') ||
@@ -190,6 +190,10 @@ export async function fetchWatchPrices(): Promise<void> {
       janpara_max: prices.janpara.max === '-' ? null : prices.janpara.max,
       janpara_min_text: prices.janpara.minItemName === '-' ? null : prices.janpara.minItemName,
       janpara_max_text: prices.janpara.maxItemName === '-' ? null : prices.janpara.maxItemName,
+      // 流通量の目安（適用日以降のみ記録）
+      iosys_count: prices.iosys.count,
+      geo_count: prices.geo.count,
+      janpara_count: prices.janpara.count,
     })
 
     if (insertError) {

@@ -7,7 +7,7 @@
 import { getSupabase } from './supabase-client'
 import { RAKUTEN_SHOPS, GENRE_SMARTPHONE } from './config'
 import { searchMultiKeywordAndMatch } from './rakuten-api'
-import { extractMinCapacity, getTodayJST, getNowISOJST, type PriceResult } from './utils'
+import { extractMinCapacity, getTodayJST, getNowISOJST, isExcludedCondition, type PriceResult } from './utils'
 
 /** 比較用に正規化（小文字・空白/ハイフン除去） */
 function norm(s: string): string {
@@ -37,7 +37,7 @@ function isExactGalaxyModelMatch(
   numberTokens: string[]
 ): boolean {
   const n = norm(itemName)
-  if (n.includes('未使用') || n.includes('新品')) return false
+  if (isExcludedCondition(itemName)) return false
 
   // 型番一致（最も確実）
   for (const t of numberTokens) {
@@ -143,6 +143,10 @@ export async function fetchGalaxyPrices(): Promise<void> {
       janpara_max: prices.janpara.max === '-' ? null : prices.janpara.max,
       janpara_min_text: prices.janpara.minItemName === '-' ? null : prices.janpara.minItemName,
       janpara_max_text: prices.janpara.maxItemName === '-' ? null : prices.janpara.maxItemName,
+      // 流通量の目安（適用日以降のみ記録）
+      iosys_count: prices.iosys.count,
+      geo_count: prices.geo.count,
+      janpara_count: prices.janpara.count,
     })
 
     if (insertError) {
