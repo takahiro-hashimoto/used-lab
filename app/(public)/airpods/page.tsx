@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { calculatePriceStats } from '@/lib/utils/price-stats'
 import Link from 'next/link'
 import Image from 'next/image'
 import {
@@ -59,8 +60,16 @@ export const metadata: Metadata = {
   },
 }
 
-function getAirPodsMinPrice(price: AirPodsPriceLog | null): string {
+/**
+ * 一覧カードに出す実勢相場（販売中商品の中央値）。
+ * shared-helpers の getMarketPrice は3ショップ固定なので、
+ * eイヤホンを含む AirPods はここで持つ。
+ */
+function getAirPodsMarketPrice(price: AirPodsPriceLog | null): string {
   if (!price) return '-'
+  const median = calculatePriceStats([price.iosys_prices, price.janpara_prices, price.eearphone_prices])?.median
+  if (median != null) return formatPrice(median)
+
   const mins = [price.iosys_min, price.janpara_min, price.eearphone_min].filter(
     (v): v is number => v != null && v > 0
   )
@@ -241,7 +250,7 @@ export default async function AirPodsGuidePage() {
             items={compareItems}
             heading={<>今買うならこれ！おすすめ中古AirPods3選【{GUIDE_DATE_LABEL}最新】</>}
             descriptions={[
-              <>当サイトでおすすめしている機種は下記の通り。{GUIDE_DATE_LABEL}時点で「主要機能が十分に乗っている」「中古価格と性能のバランスが良い」ことを判断基準に、本当の狙い目モデルだけを厳選しています。</>,
+              <>当サイトでおすすめしている機種は下記の通り。{GUIDE_DATE_LABEL}時点で「主要機能が十分に乗っている」「中古価格と性能のバランスが良い」ことが判断基準です。</>,
             ]}
           />
           <RecommendDetailSection items={detailItems} />
@@ -279,7 +288,7 @@ export default async function AirPodsGuidePage() {
                     imageFallbackText="AirPods"
                     metaText={`${model.date ? `${model.date.split('/')[0]}年` : ''} / ${model.chip || ''}`}
                     priceLabel="中古相場"
-                    priceValue={getAirPodsMinPrice(latestPrices[i])}
+                    priceValue={getAirPodsMarketPrice(latestPrices[i])}
                   />
                 ))}
               </div>

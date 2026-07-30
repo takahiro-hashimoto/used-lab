@@ -70,7 +70,7 @@ export default function PriceDropSection({ items, dateDisplay }: Props) {
                 <div className="ifd-result-card__price">
                   <span className="ifd-result-card__price-label">中古相場（{model.storage}）</span>
                   <span className="ifd-result-card__price-value">
-                    ¥{model.currentPrice.toLocaleString()}〜
+                    ¥{model.currentPrice.toLocaleString()}
                   </span>
                 </div>
                 <p className="ifd-result-card__price-drop">

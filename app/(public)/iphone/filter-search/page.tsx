@@ -1,4 +1,6 @@
 import Link from 'next/link'
+import { filterSearchNoteParagraphs } from '@/lib/data/filter-search-note'
+import { calculatePriceStats } from '@/lib/utils/price-stats'
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import { getAllIPhoneModels, getAllProductShopLinksByType, getLatestIPhonePriceLogsWithPricesForModels } from '@/lib/queries'
@@ -82,6 +84,9 @@ export default async function IPhoneFilterSearchPage() {
       battery: m.battery,
       point: m.point,
       last_ios: m.last_ios,
+      // 予算フィルタと表示に使う実勢相場（中央値）。価格配列は数百件になるので
+      // クライアントには送らず、ここで1つの数値に畳んでから渡す
+      marketPrice: calculatePriceStats([price?.iosys_prices, price?.geo_prices, price?.janpara_prices])?.median ?? null,
       iosysMin: price?.iosys_min ?? null,
       geoMin: price?.geo_min ?? null,
       janparaMin: price?.janpara_min ?? null,
@@ -240,9 +245,13 @@ export default async function IPhoneFilterSearchPage() {
             </h2>
             <p className="m-section-desc">当診断シミュレーターの価格データと診断アルゴリズムについて解説します。</p>
             <div className="m-card m-card--shadow m-card--padded">
-              <p>本診断では、各iPhoneモデルの<strong>スペック情報（CPU、カメラ構成、ディスプレイサイズ、対応機能など）</strong>と<strong>中古市場での実売価格</strong>をもとに、あなたの回答に最も合致する機種を絞り込みます。</p>
-              <p style={{ marginTop: '12px' }}>用途ごとに重要なスペック項目は異なります。例えば「カメラ重視」なら望遠レンズ・マクロ撮影・ProRAW対応などを優先し、「ゲーム用途」ならCPU性能やProMotionディスプレイを重視した絞り込みを行います。</p>
-              <p style={{ marginTop: '12px' }}>予算フィルターでは主要中古ショップ（イオシス・ゲオ・じゃんぱら）の最安値データを参照しています。価格は日々変動するため、あくまで目安としてご活用ください。</p>
+              {/* 文面は lib/data/filter-search-note.ts に集約。
+                  価格の基準を変えたときに4ページ分の書き換え漏れが出ないようにする */}
+              {filterSearchNoteParagraphs('iphone').map((text, i) => (
+                <p key={i} style={{ marginTop: i === 0 ? undefined : '12px' }}>
+                  {text.startsWith('※') ? <small>{text}</small> : text}
+                </p>
+              ))}
             </div>
           </div>
         </section>

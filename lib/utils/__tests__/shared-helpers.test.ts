@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest'
 import {
   formatReleaseDate,
   formatPrice,
-  getMinPrice,
+  getMarketPrice,
   getReleaseYear,
   getReleaseMonth,
   calculateAnnualCost,
@@ -34,21 +34,37 @@ describe('formatPrice', () => {
   })
 })
 
-describe('getMinPrice', () => {
-  it('3ショップの最安値を返す', () => {
-    const log = { iosys_min: 40000, geo_min: 38000, janpara_min: 42000 } as Parameters<typeof getMinPrice>[0]
-    expect(getMinPrice(log)).toBe('¥38,000')
+describe('getMarketPrice', () => {
+  it('価格配列があれば中央値を返す', () => {
+    const log = {
+      iosys_prices: [40000, 42000, 44000],
+      geo_prices: [38000, 46000],
+      janpara_prices: [50000, 52000],
+    } as Parameters<typeof getMarketPrice>[0]
+    // 7件（38000,40000,42000,44000,46000,50000,52000）の中央値
+    expect(getMarketPrice(log)).toBe('¥44,000')
+  })
+  it('サンプルが5件未満なら最安値にフォールバックする', () => {
+    const log = {
+      iosys_prices: [40000, 42000],
+      geo_min: 38000,
+    } as Parameters<typeof getMarketPrice>[0]
+    expect(getMarketPrice(log)).toBe('¥38,000')
+  })
+  it('価格配列がない過去ログは3ショップの最安値を返す', () => {
+    const log = { iosys_min: 40000, geo_min: 38000, janpara_min: 42000 } as Parameters<typeof getMarketPrice>[0]
+    expect(getMarketPrice(log)).toBe('¥38,000')
   })
   it('全nullは"-"', () => {
-    const log = { iosys_min: null, geo_min: null, janpara_min: null } as Parameters<typeof getMinPrice>[0]
-    expect(getMinPrice(log)).toBe('-')
+    const log = { iosys_min: null, geo_min: null, janpara_min: null } as Parameters<typeof getMarketPrice>[0]
+    expect(getMarketPrice(log)).toBe('-')
   })
   it('nullログは"-"', () => {
-    expect(getMinPrice(null)).toBe('-')
+    expect(getMarketPrice(null)).toBe('-')
   })
   it('0は除外する', () => {
-    const log = { iosys_min: 0, geo_min: 35000, janpara_min: null } as Parameters<typeof getMinPrice>[0]
-    expect(getMinPrice(log)).toBe('¥35,000')
+    const log = { iosys_min: 0, geo_min: 35000, janpara_min: null } as Parameters<typeof getMarketPrice>[0]
+    expect(getMarketPrice(log)).toBe('¥35,000')
   })
 })
 

@@ -9,11 +9,23 @@ export function formatPrice(price: number): string {
 }
 
 /** 3店舗（イオシス・ゲオ・じゃんぱら）の最安値平均を算出 */
+/**
+ * 診断結果カードの価格と、予算フィルタの判定に使う相場。
+ *
+ * かつては「3ショップの最安値の平均」だったが、これはサイトのどこにも
+ * 存在しない独自基準で、詳細ページ（中央値）と最大1万円以上ずれていた。
+ * 「〜3万円」で絞ったのに詳細ページでは3万円超、という事故が起きるため、
+ * サーバー側で算出した実勢相場（中央値）を優先する。
+ * marketPrice は価格配列の記録がある日だけ入る（2026-07-30 以降）。
+ */
 export function getAvgPrice(m: {
+  marketPrice?: number | null
   iosysMin: number | null
   geoMin: number | null
   janparaMin: number | null
 }): number | null {
+  if (m.marketPrice != null && m.marketPrice > 0) return m.marketPrice
+
   const prices = [m.iosysMin, m.geoMin, m.janparaMin].filter(
     (p): p is number => p != null && p > 0,
   )

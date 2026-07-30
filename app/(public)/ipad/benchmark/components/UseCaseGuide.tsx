@@ -118,7 +118,7 @@ export default function UseCaseGuide({ models, shopLinks }: Props) {
                       {bestModel.minPrice && (
                         <>
                           <span className="usecase-card__recommend-price-label">中古相場{bestModel.storageLabel ? `（${bestModel.storageLabel}）` : ''}</span>
-                          <span className="usecase-card__recommend-price">¥{bestModel.minPrice.toLocaleString()}〜</span>
+                          <span className="usecase-card__recommend-price">¥{bestModel.minPrice.toLocaleString()}</span>
                         </>
                       )}
                     </div>

@@ -40,8 +40,10 @@ function buildPairs(models: MacBookModel[], priceMap: Map<number, MacBookPriceLo
     pairs.push({
       gen: chipGen,
       chip: chipGen,
-      air: { model: air, ...airPrice },
-      pro: pro ? { model: pro, minPrice: proPrice?.minPrice ?? null, maxPrice: proPrice?.maxPrice ?? null } : null,
+      // 比較に使うのは実勢相場（中央値）。最安値どうしの比較だと
+      // 片方だけ特価が出ている日に価格差が実態とかけ離れる
+      air: { model: air, minPrice: airPrice.medianPrice ?? airPrice.minPrice, maxPrice: airPrice.maxPrice },
+      pro: pro ? { model: pro, minPrice: proPrice?.medianPrice ?? proPrice?.minPrice ?? null, maxPrice: proPrice?.maxPrice ?? null } : null,
     })
   }
 
@@ -63,7 +65,7 @@ export default function PriceCompareSection({ models, priceMap }: PriceCompareSe
           中古価格で比較
         </h2>
         <p className="m-section-desc">
-          同世代のAirとProで中古最安価格を比較。価格差を見ることで「Proに追加投資する価値」を判断できます
+          同世代のAirとProで中古相場を比較。価格差を見ることで「Proに追加投資する価値」を判断できます
         </p>
 
         <div className="m-card m-card--shadow m-table-card">
@@ -106,7 +108,7 @@ export default function PriceCompareSection({ models, priceMap }: PriceCompareSe
         <div className="m-callout m-callout--tip u-mt-xl">
           <span className="m-callout__label">memo</span>
           <p className="m-callout__text">
-            表示価格は各モデルの最小構成での中古最安値です。詳しい価格推移は「<Link prefetch={false} href="/macbook/price-info/">中古MacBookの価格推移・相場一覧</Link>」で確認できます。
+            表示価格は各モデルの最小構成での実勢相場（中央値）です。詳しい価格推移は「<Link prefetch={false} href="/macbook/price-info/">中古MacBookの価格推移・相場一覧</Link>」で確認できます。
           </p>
         </div>
       </div>

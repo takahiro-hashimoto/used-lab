@@ -27,13 +27,13 @@ export default function RankingSection({ items, modelCount, dateDisplay }: Props
         </h2>
         <meta itemProp="numberOfItems" content={String(items.length)} />
         <p className="m-section-desc">
-          {dateDisplay}現在、最安は<strong>{cheapest?.name}（&yen;{cheapest?.currentPrice.toLocaleString()}〜）</strong>。
+          {dateDisplay}現在、相場がもっとも安いのは<strong>{cheapest?.name}（&yen;{cheapest?.currentPrice.toLocaleString()}）</strong>。
           <br />
           {second && (
-            <>次いで{second.name}（&yen;{second.currentPrice.toLocaleString()}〜）</>
+            <>次いで{second.name}（&yen;{second.currentPrice.toLocaleString()}）</>
           )}
           {third && (
-            <>、{third.name}（&yen;{third.currentPrice.toLocaleString()}〜）</>
+            <>、{third.name}（&yen;{third.currentPrice.toLocaleString()}）</>
           )}
           と続きます。全{modelCount}機種を掲載中。
         </p>
@@ -83,7 +83,7 @@ export default function RankingSection({ items, modelCount, dateDisplay }: Props
                 <div className="ifd-result-card__price">
                   <span className="ifd-result-card__price-label">中古相場（{model.storage}）</span>
                   <span className="ifd-result-card__price-value">
-                    ¥{model.currentPrice.toLocaleString()}〜
+                    ¥{model.currentPrice.toLocaleString()}
                   </span>
                 </div>
                 <dl className="ifd-result-card__specs">

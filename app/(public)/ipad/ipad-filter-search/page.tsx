@@ -1,4 +1,6 @@
 import type { Metadata } from 'next'
+import { filterSearchNoteParagraphs } from '@/lib/data/filter-search-note'
+import { calculatePriceStats } from '@/lib/utils/price-stats'
 import Link from 'next/link'
 import Image from 'next/image'
 import Breadcrumb from '@/app/components/Breadcrumb'
@@ -115,6 +117,9 @@ export default async function IPadFilterSearchPage() {
       pencil: getPencilTextFromAccessories(accessoryLookup.get(m.id) || []),
       keyboard: getKeyboardTextFromAccessories(accessoryLookup.get(m.id) || []),
       last_ipados: m.last_ipados,
+      // 予算フィルタと表示に使う実勢相場（中央値）。価格配列は数百件になるので
+      // クライアントには送らず、ここで1つの数値に畳んでから渡す
+      marketPrice: calculatePriceStats([price?.iosys_prices, price?.geo_prices, price?.janpara_prices])?.median ?? null,
       iosysMin: price?.iosys_min ?? null,
       geoMin: price?.geo_min ?? null,
       janparaMin: price?.janpara_min ?? null,
@@ -262,9 +267,13 @@ export default async function IPadFilterSearchPage() {
             </h2>
             <p className="m-section-desc">当診断シミュレーターの価格データと診断アルゴリズムについて解説します。</p>
             <div className="m-card m-card--shadow m-card--padded">
-              <p>当iPad診断シミュレーターで表示される中古価格は、<strong>「イオシス」「ゲオ」「じゃんぱら」</strong>の大手3社からリアルタイムの在庫データを取得し、毎日更新しています。</p>
-              <p style={{ marginTop: '12px' }}>目的別の推奨スペック、予算条件、こだわり機能をAND条件で組み合わせて最適な機種を抽出。iPadOSサポート目安はAppleの傾向（発売から約7年間サポート）に基づき算出しています。</p>
-              <p style={{ marginTop: '12px' }}><small>※実際の中古iPad価格は容量（GB）や状態、Wi-Fi/セルラーモデルの違い、各店舗の在庫状況により変動します。最新価格は各販売店サイトでご確認ください。</small></p>
+              {/* 文面は lib/data/filter-search-note.ts に集約。
+                  価格の基準を変えたときに4ページ分の書き換え漏れが出ないようにする */}
+              {filterSearchNoteParagraphs('ipad').map((text, i) => (
+                <p key={i} style={{ marginTop: i === 0 ? undefined : '12px' }}>
+                  {text.startsWith('※') ? <small>{text}</small> : text}
+                </p>
+              ))}
             </div>
           </div>
         </section>

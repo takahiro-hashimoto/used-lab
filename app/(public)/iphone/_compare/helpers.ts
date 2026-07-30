@@ -4,6 +4,7 @@
  */
 
 import type { IPhoneModel } from '@/lib/types'
+import { calculatePriceStats } from '@/lib/utils/price-stats'
 import type { SpecDefinition } from './spec-definitions'
 
 export type ComparisonResult = {
@@ -249,6 +250,14 @@ export function getAdvanceFeatures(model: IPhoneModel): string[] {
 /**
  * 価格レンジ計算（3店舗の最安値平均・最高値平均）
  */
+/**
+ * 比較記事の相場。
+ *
+ * avg はかつて「平均最安と平均最高の中間値」で、サイトの他ページ（中央値）と
+ * ずれていた。買うべきかの判定（getRecommendFor）にも使われるため、
+ * 詳細ページ・相場一覧と同じ実勢相場（中央値）に揃える。
+ * min / max は「最安値〜最高値」と明示して出すレンジなので実測値のまま。
+ */
 export function calcAvgPriceRange(log: {
   iosys_min: number | null
   iosys_max: number | null
@@ -256,14 +265,21 @@ export function calcAvgPriceRange(log: {
   geo_max: number | null
   janpara_min: number | null
   janpara_max: number | null
+  iosys_prices?: number[] | null
+  geo_prices?: number[] | null
+  janpara_prices?: number[] | null
 } | null): { min: number | null; max: number | null; avg: number | null } {
   if (!log) return { min: null, max: null, avg: null }
+
+  const stats = calculatePriceStats([log.iosys_prices, log.geo_prices, log.janpara_prices])
+  if (stats) return { min: stats.min, max: stats.max, avg: stats.median }
 
   const mins = [log.iosys_min, log.geo_min, log.janpara_min].filter((v): v is number => v != null && v > 0)
   const maxes = [log.iosys_max, log.geo_max, log.janpara_max].filter((v): v is number => v != null && v > 0)
 
   if (mins.length === 0 || maxes.length === 0) return { min: null, max: null, avg: null }
 
+  // 価格配列の記録がない過去ログ向けのフォールバック
   const avgMin = Math.round(mins.reduce((a, b) => a + b, 0) / mins.length / 100) * 100
   const avgMax = Math.round(maxes.reduce((a, b) => a + b, 0) / maxes.length / 100) * 100
   const avg = Math.round((avgMin + avgMax) / 2 / 100) * 100

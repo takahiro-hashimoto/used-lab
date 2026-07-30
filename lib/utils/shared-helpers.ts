@@ -176,9 +176,23 @@ export function getSymbol(value: string | null): string {
   return value
 }
 
-/** 3ショップ（イオシス・ゲオ・じゃんぱら）の最安値を取得 */
-export function getMinPrice(price: BasePriceLog | null): string {
+/**
+ * 一覧カードに出す実勢相場（販売中商品の中央値）。
+ *
+ * 最安値は1点だけの特価であることが多く、それを相場として出すと
+ * 詳細ページ（中央値）と最大4割ずれる。カラム名はカテゴリごとに違う
+ * （AirPods は eearphone_prices、MacBook は matched_prices）ため、
+ * `*_prices` で終わるキーを総なめして拾う。
+ * 価格配列の記録がない過去ログだけ、従来どおり最安値にフォールバックする。
+ */
+export function getMarketPrice(price: BasePriceLog | null): string {
   if (!price) return '-'
+  const arrays = Object.entries(price as unknown as Record<string, unknown>)
+    .filter(([k, v]) => k.endsWith('_prices') && Array.isArray(v))
+    .map(([, v]) => v as number[])
+  const stats = calculatePriceStats(arrays)
+  if (stats) return formatPrice(stats.median)
+
   const mins = [price.iosys_min, price.geo_min, price.janpara_min].filter(
     (v): v is number => v != null && v > 0
   )

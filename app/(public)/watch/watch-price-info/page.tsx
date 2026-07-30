@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { calculatePriceStats, buildInventoryInsight, buildSnapshotReport, type PriceHistogram } from '@/lib/utils/price-stats'
 import Link from 'next/link'
 import { cache } from 'react'
 import Image from 'next/image'
@@ -32,6 +33,18 @@ import { get90DaysAgo } from '@/lib/utils/shared-helpers'
 // 型定義
 // ============================================================
 
+/** 個別機種ページと同じ「今この瞬間」のスナップショット。
+ *  文章はサーバー側で組み立てて渡す（クローラーにも読ませるため） */
+export type PriceDistribution = {
+  histogram: PriceHistogram
+  total: number
+  date: string
+  /** ヒストグラムの読み解き（最も厚い価格帯とその割合） */
+  reportLines: string[]
+  /** 流通量から見た在庫の状況。判定できない場合は null */
+  inventoryText: string | null
+}
+
 export type ModelData = {
   id: number
   name: string
@@ -48,6 +61,8 @@ export type ModelData = {
   image: string
   iosysUrl: string
   prices: PriceEntry[]
+  /** 直近ログの価格分布。サンプルが足りない機種は null（ブロックごと出さない） */
+  distribution: PriceDistribution | null
   currentPrice: number
   priceChange: number
   priceChangePercent: number
@@ -108,7 +123,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const allModels = await getModels()
   const modelCount = allModels.length
   const title = buildPriceInfoTitle('Apple Watch', modelCount, PRICE_INFO_UPDATE_MONTH)
-  const description = `中古Apple Watch${modelCount}機種の相場・値段を毎日更新。Series・SE・Ultraなど歴代モデルの価格推移グラフ・最安値一覧を掲載。`
+  const description = `中古Apple Watch${modelCount}機種の相場・値段を毎日更新。Series・SE・Ultraなど歴代モデルの価格推移グラフ・相場一覧を掲載。`
   return buildPriceInfoMetadata({ title, description, canonicalPath: '/watch/watch-price-info/', heroImageUrl: getHeroImage('/watch/watch-price-info/') })
 }
 
@@ -160,6 +175,21 @@ export default async function WatchPriceInfoPage() {
 
     const { currentPrice, priceChange, priceChangePercent } = calcPriceStats(prices)
 
+    // 「今この瞬間」の価格分布。最新ログの価格配列から作る。
+    // 文章もここで確定させ、クライアント側の計算に頼らない（SSRで読ませる）
+    const latestLog = logs.length > 0 ? logs[logs.length - 1] : null
+    const distStats = latestLog ? calculatePriceStats([latestLog.iosys_prices, latestLog.geo_prices, latestLog.janpara_prices]) : null
+    const distribution: PriceDistribution | null =
+      distStats?.histogram && latestLog
+        ? {
+            histogram: distStats.histogram,
+            total: distStats.count,
+            date: latestLog.logged_at.substring(0, 10),
+            reportLines: buildSnapshotReport(distStats),
+            inventoryText: buildInventoryInsight(distStats.count, model.date, new Date())?.text ?? null,
+          }
+        : null
+
     const releaseYear = model.date ? model.date.split('/')[0] : ''
     const releaseMonth = model.date ? model.date.split('/')[1] : ''
 
@@ -179,6 +209,7 @@ export default async function WatchPriceInfoPage() {
       image: model.image || '',
       iosysUrl: iosysUrlMap.get(model.id) ?? '',
       prices,
+      distribution,
       currentPrice,
       priceChange,
       priceChangePercent,
@@ -219,7 +250,7 @@ export default async function WatchPriceInfoPage() {
   const breadcrumbJsonLd = buildBreadcrumbJsonLd('中古Apple Watchおすすめ機種・選び方ガイド', 'https://used-lab.jp/watch/', 'Apple Watchの中古相場一覧')
   const webAppJsonLd = buildWebApplicationJsonLd({
     name: '中古Apple Watch価格比較ダッシュボード',
-    description: `中古Apple Watch${modelCount}機種の価格相場を毎日更新。価格推移グラフ、最安値ランキングを掲載。`,
+    description: `中古Apple Watch${modelCount}機種の価格相場を毎日更新。価格推移グラフ、相場ランキングを掲載。`,
     url: PAGE_URL,
     modelCount,
     lowestPrice: cheapestModel?.currentPrice ?? 0,

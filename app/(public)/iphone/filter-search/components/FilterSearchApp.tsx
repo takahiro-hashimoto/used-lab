@@ -573,7 +573,7 @@ export default function FilterSearchApp({ models, shopLinks }: Props) {
                       {(() => { const avg = getAvgPrice(m); return avg ? (
                         <div className="ifd-result-card__price">
                           <span className="ifd-result-card__price-label">中古価格相場</span>
-                          <span className="ifd-result-card__price-value">¥{formatPrice(avg)}〜</span>
+                          <span className="ifd-result-card__price-value">¥{formatPrice(avg)}</span>
                         </div>
                       ) : null })()}
                       <dl className="ifd-result-card__specs">
@@ -599,6 +599,7 @@ export default function FilterSearchApp({ models, shopLinks }: Props) {
             </div>
           )}
         </div>
+
       </section>
 
       <StickyBar count={filteredModels.length} />

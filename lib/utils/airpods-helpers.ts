@@ -57,14 +57,18 @@ export function filterLast3Months(logs: AirPodsPriceLog[]): AirPodsPriceLog[] {
 export function calculatePriceRange(log: AirPodsPriceLog | null): {
   minPrice: number | null
   maxPrice: number | null
+  /** 相場の中心（中央値）。「相場は〜」と書く箇所で使う */
+  medianPrice: number | null
+  /** 現実的な最安値（下位10%点）。「〜から手に入る」と書く箇所で使う */
+  realisticMinPrice: number | null
   shops: { name: string; min: number | null; max: number | null }[]
 } {
-  if (!log) return { minPrice: null, maxPrice: null, shops: [] }
+  if (!log) return { minPrice: null, maxPrice: null, medianPrice: null, realisticMinPrice: null, shops: [] }
   return calculatePriceRangeGeneric([
     { name: 'イオシス', min: log.iosys_min, max: log.iosys_max },
     { name: 'じゃんぱら', min: log.janpara_min, max: log.janpara_max },
     { name: 'eイヤホン', min: log.eearphone_min, max: log.eearphone_max },
-  ])
+  ], [log.iosys_prices, log.janpara_prices, log.eearphone_prices])
 }
 
 // --- 購入判定ロジック（AirPods版：PHP版から移植） ---

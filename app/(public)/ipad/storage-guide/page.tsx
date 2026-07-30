@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { calculatePriceStats } from '@/lib/utils/price-stats'
 import Link from 'next/link'
 import Image from 'next/image'
 import Breadcrumb from '@/app/components/Breadcrumb'
@@ -63,8 +64,16 @@ const FAQ_ITEMS = [
   },
 ]
 
-/** PriceLogから3店舗の平均最安値を算出 */
+/**
+ * 一覧に出す実勢相場（販売中商品の中央値）。
+ *
+ * 以前は3ショップの最安値の平均で、サイトの他ページ（中央値）とずれていた。
+ * 価格配列の記録がない過去ログだけ従来計算にフォールバックする。
+ */
 function calcAvgMinPrice(log: IPadPriceLog): number | null {
+  const median = calculatePriceStats([log.iosys_prices, log.geo_prices, log.janpara_prices])?.median
+  if (median != null) return Math.round(median / 100) * 100
+
   const prices: number[] = []
   if (log.iosys_min && log.iosys_min > 0) prices.push(log.iosys_min)
   if (log.geo_min && log.geo_min > 0) prices.push(log.geo_min)

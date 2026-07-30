@@ -9,7 +9,7 @@ import {
   getShops,
 } from '@/lib/queries'
 import type { IPhoneModel } from '@/lib/types'
-import { getMinPrice, buildArticleJsonLd, buildRecommendItemListJsonLd, resolveCategoryPageDate, buildFallbackShops } from '@/lib/utils/shared-helpers'
+import { getMarketPrice, buildArticleJsonLd, buildRecommendItemListJsonLd, resolveCategoryPageDate, buildFallbackShops } from '@/lib/utils/shared-helpers'
 import {
   GUIDE_DATE_LABEL,
   GUIDE_PRICE_SLUGS,
@@ -272,7 +272,7 @@ export default async function IPhoneGuidePage() {
             heading={<>今買うならこれ！おすすめ中古iPhone5選【{GUIDE_DATE_LABEL}最新】</>}
             descriptions={[
               <>当サイトでおすすめしている機種は下記の通り。スペックの詳細な比較は<Link prefetch={false} href="/iphone/iphone-spec-table/">iPhoneスペック比較表</Link>をご覧ください。</>,
-              <>{GUIDE_DATE_LABEL}時点で「iOSサポートが十分に残っている」「中古価格と性能のバランスが良い」ことを判断基準に、狙い目モデルを紹介しています。</>,
+              <>{GUIDE_DATE_LABEL}時点で「iOSサポートが十分に残っている」「中古価格と性能のバランスが良い」ことが判断基準です。</>,
             ]}
           />
           <RecommendDetailSection items={detailItems} />
@@ -294,7 +294,7 @@ export default async function IPhoneGuidePage() {
                     imageUrl={model.image ? `/images/iphone/${model.image}` : null}
                     metaText={`${model.date ? `${model.date.split('/')[0]}年` : ''} / ${model.cpu || ''}`}
                     priceLabel={`中古相場（${latestPrices[i]?.storage ? `${latestPrices[i].storage}` : getStorageLabel(model)}）`}
-                    priceValue={getMinPrice(latestPrices[i])}
+                    priceValue={getMarketPrice(latestPrices[i])}
                   />
                 ))}
               </div>

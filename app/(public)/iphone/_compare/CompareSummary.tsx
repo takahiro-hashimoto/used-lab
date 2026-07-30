@@ -181,7 +181,7 @@ function SummaryCol({ model, priceRange, specs, recommends, iosysUrl }: {
           <div className="compare-summary__price-main">
             <span className="compare-summary__price-label">中古相場（税込）</span>
             <span className="compare-summary__price-value">
-              &yen;{priceRange.avg?.toLocaleString()}〜
+              &yen;{priceRange.avg?.toLocaleString()}
             </span>
           </div>
           <span className="compare-summary__price-range">

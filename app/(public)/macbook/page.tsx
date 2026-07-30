@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { calculatePriceStats } from '@/lib/utils/price-stats'
 import Link from 'next/link'
 import Image from 'next/image'
 import {
@@ -226,7 +227,7 @@ export default async function MacBookGuidePage() {
             items={compareItems}
             heading={<>今買うならこれ！おすすめ中古MacBook4選【{GUIDE_DATE_LABEL}最新】</>}
             descriptions={[
-              <>当サイトでおすすめしている機種は下記の通り。スペックの詳細な比較は<Link prefetch={false} href="/macbook/macbook-spec-table/">MacBookスペック比較表</Link>をご覧ください。{GUIDE_DATE_LABEL}時点で「macOSサポートが十分に残っている」「中古価格と性能のバランスが良い」ことを判断基準に、本当の狙い目モデルだけを厳選しています。</>,
+              <>当サイトでおすすめしている機種は下記の通り。スペックの詳細な比較は<Link prefetch={false} href="/macbook/macbook-spec-table/">MacBookスペック比較表</Link>をご覧ください。{GUIDE_DATE_LABEL}時点で「macOSサポートが十分に残っている」「中古価格と性能のバランスが良い」ことが判断基準です。</>,
             ]}
           />
           <RecommendDetailSection items={detailItems} />
@@ -236,12 +237,14 @@ export default async function MacBookGuidePage() {
             <div className="l-container">
               <h2 className="m-section-heading m-section-heading--lg" id="heading-market-price">中古MacBookの最新相場【毎日更新】</h2>
               <p className="m-section-desc">楽天市場の中古ショップから価格を毎日自動で更新。</p>
-              <p className="m-section-desc">各モデルの最小構成（最小メモリ・最小ストレージ）での最安値を基準にしています。</p>
+              <p className="m-section-desc">各モデルの最小構成（最小メモリ・最小ストレージ）での実勢相場（中央値）を基準にしています。</p>
 
               <div className="u-list-reset u-mb-2xl l-grid l-grid--2col l-grid--gap-lg">
                 {priceModels.map((model, i) => {
                   const price = latestPrices[i]
-                  const minPrice = price?.min1_price
+                  // 他カテゴリ・詳細ページと同じ実勢相場（中央値）。
+                  // min1_price は最安1点なので相場として出すと大きくずれる
+                  const marketPrice = calculatePriceStats([price?.matched_prices])?.median ?? price?.min1_price
                   const storageLabel = model.strage?.match(/(\d+(?:GB|TB))/)?.[1] || ''
                   return (
                     <ProductCard
@@ -252,7 +255,7 @@ export default async function MacBookGuidePage() {
                       imageUrl={model.image ? `/images/macbook/${model.image}` : null}
                       metaText={`${model.date ? `${model.date.split('/')[0]}年` : ''} / ${model.cpu || ''}`}
                       priceLabel={`中古相場（${storageLabel}）`}
-                      priceValue={minPrice ? `¥${minPrice.toLocaleString()}` : '-'}
+                      priceValue={marketPrice ? `¥${marketPrice.toLocaleString()}` : '-'}
                     />
                   )
                 })}

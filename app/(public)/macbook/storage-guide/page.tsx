@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { calculatePriceStats } from '@/lib/utils/price-stats'
 import Link from 'next/link'
 import Image from 'next/image'
 import Breadcrumb from '@/app/components/Breadcrumb'
@@ -21,7 +22,7 @@ export const revalidate = false
 export const metadata: Metadata = {
   title: '中古MacBookのストレージ容量はどれがいい？用途別おすすめ容量まとめ',
   description:
-    '中古MacBookを買うとき何GBを選ぶべきか、用途別の目安を解説。歴代モデルの容量ラインナップ一覧と中古最安価格も比較できます。',
+    '中古MacBookを買うとき何GBを選ぶべきか、用途別の目安を解説。歴代モデルの容量ラインナップ一覧と中古相場も比較できます。',
   alternates: { canonical: '/macbook/storage-guide/' },
   openGraph: {
     title: '中古MacBookのストレージ容量はどれがいい？用途別おすすめ容量まとめ',
@@ -65,6 +66,9 @@ const FAQ_ITEMS = [
 
 /** PriceLogから最安値を取得 */
 function calcMinPrice(log: MacBookPriceLog): number | null {
+  // 実勢相場（中央値）。min1_price は最安1点なので他ページとずれる
+  const median = calculatePriceStats([log.matched_prices])?.median
+  if (median != null) return Math.round(median / 100) * 100
   if (log.min1_price && log.min1_price > 0) return log.min1_price
   return null
 }
@@ -170,7 +174,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/macbook/storage
           <div className="l-container">
             <div className="lead-box">
               <p>中古MacBookを選ぶとき、ストレージ容量の選択は非常に重要です。MacBookは購入後にSSDの増設・交換ができないため、最初の容量選びがそのまま使い勝手を左右します。</p>
-              <p>本記事では、<strong>用途別のおすすめ容量の目安、歴代MacBookの容量ラインナップ、そして中古最安価格</strong>をまとめました。</p>
+              <p>本記事では、<strong>用途別のおすすめ容量の目安、歴代MacBookの容量ラインナップ、そして中古相場</strong>をまとめました。</p>
               <p className="lead-link">
                 <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
                 情報を網羅的に得たい方は「<Link prefetch={false} href="/macbook/">中古MacBookおすすめ機種・選び方ガイド</Link>」も参考にしてみてください！

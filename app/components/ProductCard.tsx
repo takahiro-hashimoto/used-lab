@@ -59,7 +59,7 @@ export default function ProductCard({
         </div>
         <div className="price-card__price">
           <span className="price-card__label">{priceLabel}</span>
-          <span className="price-card__value m-price-display m-price-display--sm m-price-display--primary">{priceValue} 〜</span>
+          <span className="price-card__value m-price-display m-price-display--sm m-price-display--primary">{priceValue}</span>
           {shopUrl && (
             <div className="price-card__cta">
               <a href={shopUrl} className="m-btn m-btn--primary m-btn--sm" style={btnStyle} target="_blank" rel="noopener noreferrer nofollow" aria-label={`${modelName}の在庫情報を見る`}>
@@ -103,7 +103,7 @@ export default function ProductCard({
           {priceValue && (
             <>
               <span className="guide-recommend__price-label">{priceLabel}</span>
-              <span className="guide-recommend__price-value m-price-display m-price-display--md m-price-display--primary">{priceValue}〜</span>
+              <span className="guide-recommend__price-value m-price-display m-price-display--md m-price-display--primary">{priceValue}</span>
             </>
           )}
           {shopUrl ? (

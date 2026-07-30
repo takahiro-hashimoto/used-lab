@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { calculatePriceStats } from '@/lib/utils/price-stats'
 import Link from 'next/link'
 import Image from 'next/image'
 import Breadcrumb from '@/app/components/Breadcrumb'
@@ -108,7 +109,10 @@ export default async function BenchmarkPage() {
     for (const log of logs) {
       if (!latestLog || log.logged_at > latestLog.logged_at) latestLog = log
     }
-    const minPrice = latestLog?.min1_price && latestLog.min1_price > 0 ? latestLog.min1_price : null
+    // 実勢相場（中央値）。min1_price は最安1点なのでコスパ計算がぶれる
+    const minPrice =
+      calculatePriceStats([latestLog?.matched_prices])?.median ??
+      (latestLog?.min1_price && latestLog.min1_price > 0 ? latestLog.min1_price : null)
     const storageLabel = m.strage?.match(/(\d+(?:GB|TB))/)?.[1] || null
 
     if (m.benchmarks && Object.keys(m.benchmarks).length > 0) {

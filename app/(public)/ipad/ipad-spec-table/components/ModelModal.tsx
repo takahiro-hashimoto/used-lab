@@ -100,7 +100,7 @@ export default function ModelModal({ model, avgPrice, iosysUrl, onClose }: Props
           {avgPrice != null && (
             <div className="ifd-result-card__price u-mb-md">
               <span className="ifd-result-card__price-label">中古価格相場</span>
-              <span className="ifd-result-card__price-value">¥{avgPrice.toLocaleString()}〜</span>
+              <span className="ifd-result-card__price-value">¥{avgPrice.toLocaleString()}</span>
             </div>
           )}
 

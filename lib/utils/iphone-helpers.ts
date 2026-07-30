@@ -583,11 +583,3 @@ export function getVerdict(
   }
 }
 
-/**
- * 全ショップの最安値を取得
- */
-export function getOverallMinPrice(log: IPhonePriceLog | null): number | null {
-  if (!log) return null
-  const prices = [log.iosys_min, log.geo_min, log.janpara_min].filter((v): v is number => v != null)
-  return prices.length > 0 ? Math.min(...prices) : null
-}

@@ -42,6 +42,8 @@ type FilterModel = {
   iosysMin: number | null
   janparaMin: number | null
   eearphoneMin: number | null
+  /** サーバー側で算出した実勢相場（中央値）。旧ログの日は null */
+  marketPrice: number | null
 }
 
 type Props = {
@@ -109,12 +111,21 @@ const FEATURE_OPTIONS: { key: FeatureKey; label: string }[] = [
 // AirPods固有ヘルパー
 // ============================================================
 
-/** AirPods用の平均価格算出（iosys, janpara, eearphone） */
+/**
+ * 診断結果カードの価格と、予算フィルタの判定に使う相場。
+ *
+ * かつては「3ショップの最安値の平均」だったが、これはサイトのどこにも
+ * 存在しない独自基準で、詳細ページ（中央値）とずれていた。
+ * サーバー側で算出した実勢相場（中央値）を優先する。
+ */
 function getAirPodsAvgPrice(m: {
+  marketPrice?: number | null
   iosysMin: number | null
   janparaMin: number | null
   eearphoneMin: number | null
 }): number | null {
+  if (m.marketPrice != null && m.marketPrice > 0) return m.marketPrice
+
   const prices = [m.iosysMin, m.janparaMin, m.eearphoneMin].filter(
     (p): p is number => p != null && p > 0,
   )
@@ -474,7 +485,7 @@ export default function AirPodsFilterSearchApp({ models, shopLinks }: Props) {
                       {avgPrice ? (
                         <div className="ifd-result-card__price">
                           <span className="ifd-result-card__price-label">中古価格相場</span>
-                          <span className="ifd-result-card__price-value">¥{formatPrice(avgPrice)}〜</span>
+                          <span className="ifd-result-card__price-value">¥{formatPrice(avgPrice)}</span>
                         </div>
                       ) : null}
                       <dl className="ifd-result-card__specs">
@@ -500,6 +511,7 @@ export default function AirPodsFilterSearchApp({ models, shopLinks }: Props) {
             </div>
           )}
         </div>
+
       </section>
 
       <StickyBar count={filteredModels.length} />

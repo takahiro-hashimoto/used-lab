@@ -264,3 +264,20 @@ function findDensestBand(
   if (bestCount < 2) return null
   return { from: bestFrom, to: bestFrom + width, count: bestCount }
 }
+
+/**
+ * ヒストグラムから読み取れる内容を文章にする。
+ *
+ * 分布図だけでは「どの帯が厚いか」を目で追う必要があるため、
+ * 最も件数の多い価格帯とその占有率を1行で言語化する。
+ * 詳細ページと相場一覧の両方で同じ文面を使う。
+ */
+export function buildSnapshotReport(stats: PriceStats | null | undefined): string[] {
+  if (!stats?.densestBand) return []
+  const yen = (n: number) => `¥${Math.round(n).toLocaleString()}`
+  const { from, to, count } = stats.densestBand
+  const share = Math.round((count / stats.count) * 100)
+  return [
+    `価格帯としては${yen(from)}〜${yen(to)}がもっとも厚く、全体の約${share}%がこの範囲に集まっています。`,
+  ]
+}

@@ -1,6 +1,6 @@
 import PriceChartLoader from '@/app/components/PriceChartLoader'
 import PriceHistogram from '@/app/components/PriceHistogram'
-import type { PriceStats, InventoryInsight } from '@/lib/utils/price-stats'
+import { buildSnapshotReport, type PriceStats, type InventoryInsight } from '@/lib/utils/price-stats'
 import {
   priceSourceNoteParagraphs,
   priceLogicChangeNote,
@@ -323,16 +323,6 @@ function buildTrendReport(
  * 棒グラフを見れば「どこが厚いか」は分かるが、それが全体の何割かまでは読み取れないため、
  * 比率を添えて狙い目の価格帯として提示する。
  */
-function buildSnapshotReport(stats: PriceStats | null | undefined): string[] {
-  if (!stats?.densestBand) return []
-  const yen = (n: number) => `¥${Math.round(n).toLocaleString()}`
-  const { from, to, count } = stats.densestBand
-  const share = Math.round((count / stats.count) * 100)
-  return [
-    `価格帯としては${yen(from)}〜${yen(to)}がもっとも厚く、全体の約${share}%がこの範囲に集まっています。`,
-  ]
-}
-
 export default function PriceChartSection({
   dailyData, modelName, category, latestMinMaxPairs, storageNote, priceListLink,
   priceStats, inventoryInsight,

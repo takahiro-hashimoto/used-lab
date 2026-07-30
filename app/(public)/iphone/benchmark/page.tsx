@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { calculatePriceStats } from '@/lib/utils/price-stats'
 import Link from 'next/link'
 import Image from 'next/image'
 import Breadcrumb from '@/app/components/Breadcrumb'
@@ -74,7 +75,13 @@ export default async function BenchmarkPage() {
       for (const log of logs) {
         if (!latestLog || log.logged_at > latestLog.logged_at) latestLog = log
       }
+      // 実勢相場（中央値）。コスパ計算の分母にもなるので、
+      // 1点限りの特価が基準になると「コスパ最強」が実態とずれる
       const minPrice = (() => {
+        const median = calculatePriceStats([
+          latestLog?.iosys_prices, latestLog?.geo_prices, latestLog?.janpara_prices,
+        ])?.median
+        if (median != null) return median
         const prices: number[] = []
         if (latestLog?.iosys_min && latestLog.iosys_min > 0) prices.push(latestLog.iosys_min)
         if (latestLog?.geo_min && latestLog.geo_min > 0) prices.push(latestLog.geo_min)

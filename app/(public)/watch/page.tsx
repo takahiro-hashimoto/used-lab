@@ -9,7 +9,7 @@ import {
   getShops,
 } from '@/lib/queries'
 import type { WatchModel } from '@/lib/types'
-import { getMinPrice, buildArticleJsonLd, buildRecommendItemListJsonLd, resolveCategoryPageDate, buildFallbackShops } from '@/lib/utils/shared-helpers'
+import { getMarketPrice, buildArticleJsonLd, buildRecommendItemListJsonLd, resolveCategoryPageDate, buildFallbackShops } from '@/lib/utils/shared-helpers'
 import {
   GUIDE_DATE_LABEL,
   GUIDE_PRICE_SLUGS,
@@ -241,7 +241,7 @@ export default async function WatchGuidePage() {
             items={compareItems}
             heading={<>今買うならこれ！おすすめ中古Apple Watch3選【{GUIDE_DATE_LABEL}最新】</>}
             descriptions={[
-              <>当サイトでおすすめしている機種は下記の通り。スペックの詳細な比較は<Link prefetch={false} href="/watch/watch-spec-table/">Apple Watchスペック比較表</Link>をご覧ください。{GUIDE_DATE_LABEL}時点で「watchOSサポートが十分に残っている」「中古価格と性能のバランスが良い」ことを判断基準に、本当の狙い目モデルだけを厳選しています。</>,
+              <>当サイトでおすすめしている機種は下記の通り。スペックの詳細な比較は<Link prefetch={false} href="/watch/watch-spec-table/">Apple Watchスペック比較表</Link>をご覧ください。{GUIDE_DATE_LABEL}時点で「watchOSサポートが十分に残っている」「中古価格と性能のバランスが良い」ことが判断基準です。</>,
             ]}
           />
           <RecommendDetailSection items={detailItems} />
@@ -263,7 +263,7 @@ export default async function WatchGuidePage() {
                     imageUrl={model.image ? `/images/watch/${model.image}` : null}
                     metaText={`${model.date ? `${model.date.split('/')[0]}年` : ''} / ${model.cpu || ''}`}
                     priceLabel={`中古相場（${getSizeLabel(model)}）`}
-                    priceValue={getMinPrice(latestPrices[i])}
+                    priceValue={getMarketPrice(latestPrices[i])}
                   />
                 ))}
               </div>

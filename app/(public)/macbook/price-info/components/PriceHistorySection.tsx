@@ -1,3 +1,4 @@
+import PriceHistogram from '@/app/components/PriceHistogram'
 import type { ModelData, PriceEntry } from '../page'
 import { crossesLogicChange, isBeforeLogicChange } from '@/lib/data/price-source-note'
 
@@ -42,6 +43,22 @@ function calcMonthlySummary(prices: PriceEntry[]): MonthlySummary[] {
 
 const DAY_NAMES = ['日', '月', '火', '水', '木', '金', '土']
 
+/**
+ * 表示名を組み立てる。
+ * 同名機種の区別のため model 側にもチップ名が入っている場合があるので、
+ * 既に含まれていれば付け足さない（"14インチ M3 M3" になるのを防ぐ）
+ */
+function buildDisplayName(name: string, chip: string): string {
+  const base = name.replace(/（\d{4}）/, ' ').replace(/\s+/g, ' ').trim()
+  return chip && !base.includes(chip) ? `${base} ${chip}` : base
+}
+
+/** "2025/9" → 202509。比較用の数値キー */
+function releaseKey(releaseDate: string): number {
+  const [y, m] = releaseDate.split('/').map(Number)
+  return (y || 0) * 100 + (m || 0)
+}
+
 export default function PriceHistorySection({ models }: Props) {
   return (
     <section className="l-section" id="pd-history" aria-labelledby="pd-history-title">
@@ -51,7 +68,10 @@ export default function PriceHistorySection({ models }: Props) {
         </h2>
         <p className="m-section-desc">各モデルの価格推移を日別・月別で確認できます。</p>
 
-        {models.map((model) => {
+        {/* 系統別ではなく発売日の新しい順に並べる。
+            相場を見に来た人は「今の機種から順に」見たいため。
+            同月発売は元の並びを保つ */}
+        {[...models].sort((a, b) => releaseKey(b.releaseDate) - releaseKey(a.releaseDate)).map((model) => {
           if (model.prices.length === 0) return null
 
           const monthlySummary = calcMonthlySummary(model.prices)
@@ -81,7 +101,7 @@ export default function PriceHistorySection({ models }: Props) {
               <summary className="pd-history-summary">
                 <div className="pd-history-summary-left">
                   <h3 className="pd-history-model-name">
-                    <a href={`/macbook/${model.slug}/`} className="pd-history-model-link">{model.name.replace(/（\d{4}）/, ' ').replace(/\s+/g, ' ').trim()} {model.chip}</a>
+                    <a href={`/macbook/${model.slug}/`} className="pd-history-model-link">{buildDisplayName(model.name, model.chip)}</a>
                   </h3>
                   <span className="pd-history-model-meta">発売日 {model.releaseDate.replace(/^(\d{4})\/0?(\d+)$/, '$1年$2月')}</span>
                 </div>
@@ -89,7 +109,9 @@ export default function PriceHistorySection({ models }: Props) {
                   <div className="pd-history-summary-price">
                     <span className="pd-history-price-range">
                       <small className="pd-history-price-range__label">中古相場（{model.storage}）</small>
-                      &yen;{latestEntry.min.toLocaleString()}
+                      {/* 他の一覧・詳細ページと同じ実勢相場（中央値）。
+                          最安値を出すと1点限りの特価が相場に見えてしまう */}
+                      &yen;{latestEntry.avg.toLocaleString()}
                     </span>
                     <span className={`pd-history-trend${totalChange < 0 ? ' is-down' : totalChange > 0 ? ' is-up' : ''}`}>
                       {totalChange !== 0 ? (
@@ -189,6 +211,30 @@ export default function PriceHistorySection({ models }: Props) {
                       </table>
                     </div>
                   </div>
+
+                  {/* 日別・月別は時系列。ここから先は「今この瞬間」のスナップショットなので、
+                      個別機種ページと同じく後ろに置いて性質の違いを示す */}
+                  {model.distribution && (
+                    <div className="u-mt-xl">
+                      <h4 className="pd-history-subtitle">在庫と価格分布</h4>
+                      <PriceHistogram
+                        histogram={model.distribution.histogram}
+                        modelName={model.name}
+                        total={model.distribution.total}
+                        date={model.distribution.date}
+                      />
+                      {(model.distribution.reportLines.length > 0 || model.distribution.inventoryText) && (
+                        <div className="price-report">
+                          {model.distribution.reportLines.map((line, i) => (
+                            <p key={i} className="price-report__text">{line}</p>
+                          ))}
+                          {model.distribution.inventoryText && (
+                            <p className="price-report__text">{model.distribution.inventoryText}</p>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  )}
 
                 </div>
             </details>

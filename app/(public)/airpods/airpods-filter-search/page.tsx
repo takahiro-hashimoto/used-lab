@@ -1,4 +1,6 @@
 import type { Metadata } from 'next'
+import { filterSearchNoteParagraphs } from '@/lib/data/filter-search-note'
+import { calculatePriceStats } from '@/lib/utils/price-stats'
 import Link from 'next/link'
 import Image from 'next/image'
 import { getAllAirPodsModels, getAllProductShopLinksByType, getLatestAirPodsPriceLogsWithPricesForModels } from '@/lib/queries'
@@ -89,6 +91,8 @@ export default async function AirPodsFilterSearchPage() {
       anc: m.anc,
       adaptive_audio: m.adaptive_audio,
       // Price data (AirPods uses iosys, janpara, eearphone)
+      // 予算フィルタと表示に使う実勢相場（中央値）。価格配列はクライアントに送らず畳む
+      marketPrice: calculatePriceStats([price?.iosys_prices, price?.janpara_prices, price?.eearphone_prices])?.median ?? null,
       iosysMin: price?.iosys_min ?? null,
       janparaMin: price?.janpara_min ?? null,
       eearphoneMin: price?.eearphone_min ?? null,
@@ -230,9 +234,14 @@ export default async function AirPodsFilterSearchPage() {
             </h2>
             <p className="m-section-desc">当診断シミュレーターの価格データと診断アルゴリズムについて解説します。</p>
             <div className="m-card m-card--shadow m-card--padded">
-              <p>本診断では、各AirPodsモデルの<strong>スペック情報（チップ、装着タイプ、ノイズキャンセリング、防水性能など）</strong>と<strong>中古市場での実売価格</strong>をもとに、あなたの回答に最も合致するモデルを絞り込みます。</p>
-              <p style={{ marginTop: '12px' }}>用途ごとに重要なスペック項目は異なります。例えば「音楽鑑賞重視」ならノイズキャンセリングや空間オーディオ対応を優先し、「運動用」なら防水性能やフィット感を重視した絞り込みを行います。</p>
-              <p style={{ marginTop: '12px' }}>予算フィルターでは主要中古ショップ（イオシス・じゃんぱら・eイヤホン）の最安値データを参照しています。価格は日々変動するため、あくまで目安としてご活用ください。（価格推移は<Link prefetch={false} href="/airpods/price-info/">中古AirPodsの相場と価格推移</Link>で紹介）</p>
+              {/* 文面は lib/data/filter-search-note.ts に集約。
+                  価格の基準を変えたときに4ページ分の書き換え漏れが出ないようにする */}
+              {filterSearchNoteParagraphs('airpods').map((text, i) => (
+                <p key={i} style={{ marginTop: i === 0 ? undefined : '12px' }}>
+                  {text.startsWith('※') ? <small>{text}</small> : text}
+                </p>
+              ))}
+              <p style={{ marginTop: '12px' }}>価格推移は<Link prefetch={false} href="/airpods/price-info/">中古AirPodsの相場と価格推移</Link>でご覧いただけます。</p>
             </div>
           </div>
         </section>

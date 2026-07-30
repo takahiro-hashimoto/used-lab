@@ -1267,7 +1267,7 @@
 
 /* グラフ下の分析テキスト。囲みを使わず本文として読ませる */
 .price-report {
-  padding: var(--space-lg) var(--space-2xl) var(--space-xl);
+  padding: var(--space-lg) 0 0;
 }
 
 .price-report__text {

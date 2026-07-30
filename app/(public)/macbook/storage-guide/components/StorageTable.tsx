@@ -69,10 +69,10 @@ export default function StorageTable({ models }: Props) {
     <section className="l-section" id="storage-list" aria-labelledby="heading-storage-list">
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg" id="heading-storage-list">
-          歴代MacBookのストレージ容量・中古最安価格 一覧表
+          歴代MacBookのストレージ容量・中古相場 一覧表
         </h2>
         <p className="m-section-desc">
-          歴代MacBookの容量ラインナップと最小容量での中古最安価格を一覧で比較できます。
+          歴代MacBookの容量ラインナップと最小容量での中古相場を一覧で比較できます。
         </p>
 
         <div className="spec-filter u-mb-xl" aria-label="絞り込み">
@@ -123,12 +123,12 @@ export default function StorageTable({ models }: Props) {
           <div className="m-card m-card--shadow m-table-card">
             <div className="m-table-scroll">
               <table className="m-table battery-table">
-                <caption className="visually-hidden">歴代MacBookストレージ容量・中古最安価格一覧表</caption>
+                <caption className="visually-hidden">歴代MacBookストレージ容量・中古相場一覧表</caption>
                 <thead>
                   <tr>
                     <th scope="col">モデル／発売時期</th>
                     <th scope="col">ストレージ容量</th>
-                    <th scope="col">中古最安（税込）</th>
+                    <th scope="col">中古相場（税込）</th>
                     <th scope="col">中古価格</th>
                   </tr>
                 </thead>
@@ -169,7 +169,7 @@ export default function StorageTable({ models }: Props) {
                           )}
                           {m.avgMin != null ? (
                             <span className="storage-price-value">
-                              {formatPrice(m.avgMin)}〜
+                              {formatPrice(m.avgMin)}
                             </span>
                           ) : (
                             <span className="storage-price-na">-</span>
@@ -201,7 +201,7 @@ export default function StorageTable({ models }: Props) {
         <div className="m-callout m-callout--tip u-mt-2xl">
           <span className="m-callout__label">memo</span>
           <p className="m-callout__text">
-            表示価格は最小容量での最安値です。容量が大きいモデルは上記より高くなります。
+            表示価格は最小容量での実勢相場（中央値）です。容量が大きいモデルは上記より高くなります。
             詳細は「<Link prefetch={false} href="/macbook/price-info/">MacBook中古価格相場グラフ</Link>」で確認できます。
           </p>
         </div>

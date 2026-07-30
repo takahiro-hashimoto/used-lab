@@ -53,7 +53,7 @@ export default function BenchmarkRanking({ models, shopLinks }: { models: BenchM
         <h2 className="m-section-heading m-section-heading--lg" id="heading-ranking">
           歴代iPhone ベンチマーク総合ランキング
         </h2>
-        <p className="m-section-desc">Geekbench 6のスコアで歴代iPhoneの性能を比較。中古最安価格も併記しているのでコスパ重視の方にもおすすめです。</p>
+        <p className="m-section-desc">Geekbench 6のスコアで歴代iPhoneの性能を比較。中古相場も併記しているのでコスパ重視の方にもおすすめです。</p>
 
         <div className="u-mb-xl" aria-label="絞り込み">
           <div className="spec-filter__row">
@@ -83,7 +83,7 @@ export default function BenchmarkRanking({ models, shopLinks }: { models: BenchM
                   <th scope="col">シングル</th>
                   <th scope="col">マルチ</th>
                   <th scope="col">Metal</th>
-                  <th scope="col">中古最安</th>
+                  <th scope="col">中古相場</th>
                   <th scope="col">ショップ</th>
                 </tr>
               </thead>
@@ -110,7 +110,7 @@ export default function BenchmarkRanking({ models, shopLinks }: { models: BenchM
                       <td><BenchBar value={m.score_multi} maxValue={maxMulti} color="#f0a030" /></td>
                       <td><BenchBar value={m.score_metal} maxValue={maxMetal} color="var(--color-primary, #2589d0)" /></td>
                       <td className="bench-ranking-table__price-cell">
-                        {m.minPrice ? `¥${m.minPrice.toLocaleString()}〜` : '-'}
+                        {m.minPrice ? `¥${m.minPrice.toLocaleString()}` : '-'}
                       </td>
                       <td>
                         {(() => {
