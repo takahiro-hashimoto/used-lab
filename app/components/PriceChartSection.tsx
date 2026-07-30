@@ -431,11 +431,16 @@ export default function PriceChartSection({
 
           {/* 値動きの解説。カコミにせず本文として読ませる
               （グラフのすぐ下に囲みが連続すると視覚的に重くなるため） */}
-          {trendReport.length > 0 && (
+          {/* 分布ブロックが出ない機種（サンプルが少ない）では、在庫の状況を
+              値動きの解説側に添えて情報を落とさない */}
+          {(trendReport.length > 0 || (!priceStats?.histogram && inventoryInsight)) && (
             <div className="price-report">
               {trendReport.map((line, i) => (
                 <p key={i} className="price-report__text">{line}</p>
               ))}
+              {!priceStats?.histogram && inventoryInsight && (
+                <p className="price-report__text">{inventoryInsight.text}</p>
+              )}
             </div>
           )}
 
@@ -530,14 +535,14 @@ export default function PriceChartSection({
 
         {/* ここまでが時系列（相場の推移とその詳細）。
             以降は「今この瞬間」のスナップショットなので、カードを分けて性質の違いを示す */}
-        {(priceStats?.histogram || inventoryInsight) && (
+        {priceStats?.histogram && (
           <div className="m-card m-card--shadow price-snapshot-card">
             {/* 価格推移(h2)の下位トピックなので h3。見出し階層を飛ばさない */}
             <h3 className="price-details-card-heading">
               中古{modelName}の在庫と価格分布
             </h3>
 
-            {priceStats?.histogram && (
+            {(
               <PriceHistogram
                 histogram={priceStats.histogram}
                 modelName={modelName}

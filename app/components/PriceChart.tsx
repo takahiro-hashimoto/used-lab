@@ -53,6 +53,8 @@ export default function PriceChart({ labels, avgMin, avgMax }: Props) {
         pointHoverBorderWidth: 2,
         tension: 0.3,
         fill: false,
+        // 価格取得が止まった期間（null）で線が途切れないよう前後を直結する
+        spanGaps: true,
       },
       {
         label: '最安値（3社平均）',
@@ -67,6 +69,8 @@ export default function PriceChart({ labels, avgMin, avgMax }: Props) {
         pointHoverBorderWidth: 2,
         tension: 0.3,
         fill: false,
+        // 同上（null期間をまたいで線を繋ぐ）
+        spanGaps: true,
       },
     ],
   }
