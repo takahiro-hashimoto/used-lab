@@ -147,6 +147,10 @@ export async function fetchGalaxyPrices(): Promise<void> {
       iosys_count: prices.iosys.count,
       geo_count: prices.geo.count,
       janpara_count: prices.janpara.count,
+      // 取得した全商品の価格（中央値・分布の算出用。適用日以降のみ記録）
+      iosys_prices: prices.iosys.prices,
+      geo_prices: prices.geo.prices,
+      janpara_prices: prices.janpara.prices,
     })
 
     if (insertError) {

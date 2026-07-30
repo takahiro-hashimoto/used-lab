@@ -302,6 +302,8 @@ export async function fetchMacbookPrices(): Promise<void> {
       storage: minStorage || null,
       // 流通量の目安（適用日以降のみ記録）。MacBookはショップ横断のため総件数
       matched_count: targets.length,
+      // 取得した全商品の価格（中央値・分布の算出用。適用日以降のみ記録）
+      matched_prices: sorted.map((i) => i.itemPrice),
     }
 
     for (let i = 0; i < 5; i++) {

@@ -236,5 +236,7 @@ function pickMinMax(matchedItems: RakutenItem[], shopName: string): PriceResult 
     maxItemName: maxItem.itemName,
     // 相場算出に使った件数＝そのショップの流通量の目安として保存する
     count: targetItems.length,
+    // 価格は全件残す。昇順で保存しておくと中央値・分位点の算出がそのまま行える
+    prices: targetItems.map((i) => i.itemPrice).sort((a, b) => a - b),
   }
 }

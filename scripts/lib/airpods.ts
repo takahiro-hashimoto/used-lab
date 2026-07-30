@@ -266,6 +266,10 @@ export async function fetchAirPodsPrices(): Promise<void> {
       iosys_count: prices.iosys?.count ?? null,
       janpara_count: prices.janpara?.count ?? null,
       eearphone_count: prices.eearphone?.count ?? null,
+      // 取得した全商品の価格（中央値・分布の算出用。適用日以降のみ記録）
+      iosys_prices: prices.iosys?.prices ?? null,
+      janpara_prices: prices.janpara?.prices ?? null,
+      eearphone_prices: prices.eearphone?.prices ?? null,
     })
 
     if (insertError) {

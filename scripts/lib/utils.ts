@@ -163,6 +163,12 @@ export interface PriceResult {
   maxItemName: string
   /** 相場算出に使用した該当商品数（流通量の目安。DBの *_count に保存する） */
   count: number
+  /**
+   * 相場算出に使用した全商品の価格（昇順・円）。DBの *_prices に保存する。
+   * min/max だけでは中央値・価格分布が出せず、集計ロジックを変えても
+   * 過去分を再計算できないため、価格そのものを残す。
+   */
+  prices: number[]
 }
 
 export const EMPTY_RESULT: PriceResult = {
@@ -171,4 +177,6 @@ export const EMPTY_RESULT: PriceResult = {
   minItemName: '-',
   maxItemName: '-',
   count: 0,
+  // 「検索したが0件」を表す。過去分のNULL（そもそも記録していない）とは区別する
+  prices: [],
 }
