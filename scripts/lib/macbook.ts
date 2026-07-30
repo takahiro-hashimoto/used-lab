@@ -6,7 +6,7 @@
 
 import { getSupabase } from './supabase-client'
 import { env, RAKUTEN_API_BASE } from './config'
-import { sleep, getTodayJST, getNowISOJST, isExcludedCondition } from './utils'
+import { sleep, getTodayJST, getNowISOJST, isExcludedCondition, fetchJsonWithRetry } from './utils'
 
 const GENRE_NOTEBOOK_PC = '100040'
 const NG_KEYWORD = 'ケース フィルム カバー キーボード バッグ ACアダプタ 充電器 スリーブ レンタル 液晶パネル 液晶ユニット パーツ 修理 交換用 ふるさと納税'
@@ -18,6 +18,12 @@ interface RakutenItem {
   itemPrice: number
   shopName: string
   availability: number
+}
+
+/** 楽天商品検索APIのレスポンス（利用している項目のみ） */
+interface MacbookSearchResponse {
+  Items?: { Item: RakutenItem }[]
+  count?: number
 }
 
 // ─── API ────────────────────────────────────────────
@@ -43,24 +49,18 @@ async function searchAll(params: {
   if (genreId) url.searchParams.set('genreId', genreId)
   if (ngKeyword) url.searchParams.set('NGKeyword', ngKeyword)
 
-  // 新APIは登録ドメインからのアクセスを想定。Origin/Refererヘッダーが無いと403になる
-  const response = await fetch(url.toString(), {
-    headers: { Origin: e.RAKUTEN_ORIGIN, Referer: e.RAKUTEN_ORIGIN },
-  })
-  if (!response.ok) {
-    // 以前は黙って空配列を返していたため、403が1ヶ月以上気づかれなかった。必ずログを出す
-    const body = await response.text().catch(() => '')
-    console.error(`  ⚠️ 楽天APIエラー: HTTP ${response.status} kw="${keyword}" body=${body.slice(0, 300)}`)
-    return { items: [], count: 0 }
-  }
-
-  const json = await response.json()
+  // 新APIは登録ドメインからのアクセスを想定。Origin/Refererヘッダーが無いと403になる。
+  // 失敗時のログ出力とリトライは fetchJsonWithRetry に集約（例外は投げない）
+  const json = await fetchJsonWithRetry<MacbookSearchResponse>(
+    url.toString(),
+    { Origin: e.RAKUTEN_ORIGIN, Referer: e.RAKUTEN_ORIGIN },
+    `kw="${keyword}"`
+  )
+  if (json == null) return { items: [], count: 0 }
   if (!json.Items || json.Items.length === 0) return { items: [], count: 0 }
 
-  const items: RakutenItem[] = json.Items.map(
-    (itemData: { Item: RakutenItem }) => itemData.Item
-  )
-  return { items, count: json.count }
+  const items: RakutenItem[] = json.Items.map((itemData) => itemData.Item)
+  return { items, count: json.count ?? 0 }
 }
 
 // ─── モデル情報の解析 ────────────────────────────────

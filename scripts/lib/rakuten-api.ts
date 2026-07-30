@@ -6,13 +6,21 @@ import {
   env,
   RAKUTEN_API_BASE,
 } from './config'
-import { sleep, EMPTY_RESULT, type PriceResult } from './utils'
+import { sleep, EMPTY_RESULT, fetchJsonWithRetry, type PriceResult } from './utils'
 
 export interface RakutenItem {
   itemCode: string
   itemName: string
   itemPrice: number
   availability: number
+}
+
+/** 楽天商品検索APIのレスポンス（利用している項目のみ） */
+export interface RakutenSearchResponse {
+  Items?: { Item: RakutenItem }[]
+  count?: number
+  error?: string
+  error_description?: string
 }
 
 interface RakutenSearchParams {
@@ -44,16 +52,13 @@ async function callRakutenApi(params: RakutenSearchParams): Promise<{
   if (ngKeyword) url.searchParams.set('NGKeyword', ngKeyword)
 
   // 新APIは登録ドメインからのアクセスを想定。Origin/Refererヘッダーが無いと403になる
-  const response = await fetch(url.toString(), {
-    headers: { Origin: e.RAKUTEN_ORIGIN, Referer: e.RAKUTEN_ORIGIN },
-  })
-  if (!response.ok) {
-    const body = await response.text().catch(() => '')
-    console.error(`  ⚠️ 楽天APIエラー: HTTP ${response.status} shop=${shopCode} kw="${keyword}" body=${body.slice(0, 300)}`)
-    return { items: [], count: 0 }
-  }
+  const json = await fetchJsonWithRetry<RakutenSearchResponse>(
+    url.toString(),
+    { Origin: e.RAKUTEN_ORIGIN, Referer: e.RAKUTEN_ORIGIN },
+    `shop=${shopCode} kw="${keyword}"`
+  )
+  if (json == null) return { items: [], count: 0 }
 
-  const json = await response.json()
   if (json.error) {
     console.error(`  ⚠️ 楽天APIエラー応答: ${json.error} ${json.error_description ?? ''} shop=${shopCode} kw="${keyword}"`)
     return { items: [], count: 0 }
@@ -62,10 +67,8 @@ async function callRakutenApi(params: RakutenSearchParams): Promise<{
     return { items: [], count: 0 }
   }
 
-  const items: RakutenItem[] = json.Items.map(
-    (itemData: { Item: RakutenItem }) => itemData.Item
-  )
-  return { items, count: json.count }
+  const items: RakutenItem[] = json.Items.map((itemData) => itemData.Item)
+  return { items, count: json.count ?? 0 }
 }
 
 /**

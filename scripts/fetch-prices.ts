@@ -45,34 +45,50 @@ async function main() {
   console.log(`   対象: ${targets.join(', ')}`)
 
   const startTime = Date.now()
+  // 1カテゴリの失敗で後続を道連れにしない。
+  // 2026-07-30、iPhoneの途中でJSON解析エラーが main() まで伝播し、
+  // 残り6カテゴリが1件も取得されないまま全処理が停止した。
+  const failed: string[] = []
 
   for (const target of targets) {
-    switch (target) {
-      case 'iphone':
-        await fetchIphonePrices()
-        break
-      case 'ipad':
-        await fetchIpadPrices()
-        break
-      case 'watch':
-        await fetchWatchPrices()
-        break
-      case 'airpods':
-        await fetchAirPodsPrices()
-        break
-      case 'macbook':
-        await fetchMacbookPrices()
-        break
-      case 'pixel':
-        await fetchPixelPrices()
-        break
-      case 'galaxy':
-        await fetchGalaxyPrices()
-        break
+    try {
+      switch (target) {
+        case 'iphone':
+          await fetchIphonePrices()
+          break
+        case 'ipad':
+          await fetchIpadPrices()
+          break
+        case 'watch':
+          await fetchWatchPrices()
+          break
+        case 'airpods':
+          await fetchAirPodsPrices()
+          break
+        case 'macbook':
+          await fetchMacbookPrices()
+          break
+        case 'pixel':
+          await fetchPixelPrices()
+          break
+        case 'galaxy':
+          await fetchGalaxyPrices()
+          break
+      }
+    } catch (err) {
+      failed.push(target)
+      console.error(`\n❌ ${target} の取得中に想定外のエラー: ${err instanceof Error ? err.stack ?? err.message : String(err)}`)
+      console.error(`   このカテゴリはスキップして次に進みます`)
     }
   }
 
   const elapsed = ((Date.now() - startTime) / 1000 / 60).toFixed(1)
+  if (failed.length > 0) {
+    // 部分的な失敗を成功と誤認しないよう、終了コードを立てる（cronの監視で拾える）
+    console.error(`\n⚠️ 完了（${elapsed}分）— 失敗したカテゴリ: ${failed.join(', ')}`)
+    process.exitCode = 1
+    return
+  }
   console.log(`\n✅ 全処理完了（${elapsed}分）`)
 }
 

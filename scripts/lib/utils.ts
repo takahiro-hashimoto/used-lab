@@ -25,6 +25,79 @@ export function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms))
 }
 
+// ============================================================
+// 楽天APIの取得（例外を投げない）
+//
+// 以前は response.json() をそのまま呼んでいたため、楽天APIが空ボディを返した際に
+// "Unexpected end of JSON input" が main() まで伝播し、実行中のカテゴリだけでなく
+// 後続の全カテゴリが道連れで停止した（2026-07-30、iPhone13の途中で全処理が落ちた）。
+// 通信・パースの失敗はここで完結させ、呼び出し側には null を返す。
+// ============================================================
+
+/** 一時的な失敗とみなしてリトライするHTTPステータス */
+const RETRYABLE_STATUS = new Set([429, 500, 502, 503, 504])
+
+/**
+ * JSONを取得する。失敗しても例外を投げず null を返す。
+ * 空ボディ・パース失敗・一時的なHTTPエラーは指数バックオフでリトライする。
+ *
+ * @param context ログに出す識別子（どのショップ・キーワードで失敗したか）
+ */
+export async function fetchJsonWithRetry<T>(
+  url: string,
+  headers: Record<string, string>,
+  context: string,
+  maxAttempts = 3
+): Promise<T | null> {
+  for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+    const retryable = attempt < maxAttempts
+    // 失敗の理由を残す。黙って空配列を返すと障害に気づけない（MacBookで1ヶ月見逃した）
+    const giveUp = (reason: string): null => {
+      console.error(`  ⚠️ 楽天API取得失敗(${attempt}/${maxAttempts}): ${reason} ${context}`)
+      return null
+    }
+
+    let text: string
+    try {
+      const response = await fetch(url, { headers })
+      if (!response.ok) {
+        const body = await response.text().catch(() => '')
+        const reason = `HTTP ${response.status} body=${body.slice(0, 200)}`
+        // 4xx（認証・IP制限など）はリトライしても直らないので即座に諦める
+        if (!RETRYABLE_STATUS.has(response.status) || !retryable) return giveUp(reason)
+        console.error(`  ⚠️ 楽天APIエラー(${attempt}/${maxAttempts}): ${reason} ${context}`)
+        await sleep(1000 * 2 ** attempt)
+        continue
+      }
+      text = await response.text()
+    } catch (err) {
+      const reason = `通信エラー ${err instanceof Error ? err.message : String(err)}`
+      if (!retryable) return giveUp(reason)
+      console.error(`  ⚠️ 楽天API(${attempt}/${maxAttempts}): ${reason} ${context}`)
+      await sleep(1000 * 2 ** attempt)
+      continue
+    }
+
+    // 空ボディ: 200で返ってくることがある。JSON.parse すると例外になるため先に弾く
+    if (text.trim() === '') {
+      if (!retryable) return giveUp('空のレスポンス')
+      console.error(`  ⚠️ 楽天API(${attempt}/${maxAttempts}): 空のレスポンス ${context}`)
+      await sleep(1000 * 2 ** attempt)
+      continue
+    }
+
+    try {
+      return JSON.parse(text) as T
+    } catch {
+      const reason = `JSON解析失敗 body=${text.slice(0, 200)}`
+      if (!retryable) return giveUp(reason)
+      console.error(`  ⚠️ 楽天API(${attempt}/${maxAttempts}): ${reason} ${context}`)
+      await sleep(1000 * 2 ** attempt)
+    }
+  }
+  return null
+}
+
 /** 容量抽出（iPhone / iPad 共通）: "64GB / 256GB" → "64GB" */
 export function extractMinCapacity(storageRange: string | null): string | null {
   if (!storageRange) return null
