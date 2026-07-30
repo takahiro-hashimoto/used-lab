@@ -69,14 +69,16 @@ export default async function MacBookSpecTablePage() {
       const mn = rec[`min${i}_price`]; if (typeof mn === 'number' && mn > 0) mins.push(mn)
       const mx = rec[`max${i}_price`]; if (typeof mx === 'number' && mx > 0) maxs.push(mx)
     }
-    avgPrices[model.id] = calcAvgFromShops(mins, maxs, '')?.avg ?? null
+    // 詳細ページ・相場一覧と同じ中央値ベースにする（同じ機種で違う相場を出さない）
+    const rec2 = log as unknown as Record<string, number[] | null>
+    avgPrices[model.id] = calcAvgFromShops(mins, maxs, '', [rec2['matched_prices']])?.avg ?? null
   }
 
   const breadcrumbJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
+      { '@type': 'ListItem', position: 1, name: '中古・型落ちデジタルデバイスを賢く買う', item: 'https://used-lab.jp/' },
       { '@type': 'ListItem', position: 2, name: '中古MacBookおすすめ機種・選び方ガイド', item: 'https://used-lab.jp/macbook/' },
       { '@type': 'ListItem', position: 3, name: '歴代MacBookスペック比較表' },
     ],

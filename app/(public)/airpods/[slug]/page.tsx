@@ -29,6 +29,7 @@ import AdminEditLink from '@/app/components/AdminEditLink'
 import AuthorByline from '@/app/components/AuthorByline'
 import StickyCtaOverride from '@/app/components/StickyCtaOverride'
 import { resolveLastUpdatedDate } from '@/lib/utils/shared-helpers'
+import { calculatePriceStats, buildInventoryInsight } from '@/lib/utils/price-stats'
 
 const cachedGetModel = cache(getAirPodsModelBySlug)
 
@@ -96,6 +97,18 @@ export default async function AirPodsDetailPage({ params }: PageProps) {
     mins: [l.iosys_min, l.janpara_min, l.eearphone_min].filter((v): v is number => v != null),
     maxes: [l.iosys_max, l.janpara_max, l.eearphone_max].filter((v): v is number => v != null),
   }))
+  // 中央値ベースの相場と在庫の状況（2026-07-30 より前のログしかない場合は null）
+  const priceStats = calculatePriceStats(
+    latestLogEntries.flatMap((l) => [l.iosys_prices, l.janpara_prices, l.eearphone_prices])
+  )
+  const airpodsCounts = latestLogEntries
+    .flatMap((l) => [l.iosys_count, l.janpara_count, l.eearphone_count])
+    .filter((c): c is number => c != null)
+  const inventoryInsight = buildInventoryInsight(
+    airpodsCounts.length > 0 ? airpodsCounts.reduce((a, b) => a + b, 0) : null,
+    model.date,
+    new Date()
+  )
   const displayName = model.model ? `${model.name}（${model.model}）` : model.name
   const modelShopLinks = shopLinks.filter((l) => l.product_id === model.id)
   const iosysShop = shops.find((s) => s.id === 1)
@@ -127,6 +140,8 @@ export default async function AirPodsDetailPage({ params }: PageProps) {
             modelName={displayName}
             category="airpods"
             latestMinMaxPairs={latestMinMaxPairs}
+            priceStats={priceStats}
+            inventoryInsight={inventoryInsight}
             latestDate={latestDate}
           />
         )}

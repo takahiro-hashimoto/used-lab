@@ -29,6 +29,7 @@ import FaqSection from './components/FaqSection'
 import AdminEditLink from '@/app/components/AdminEditLink'
 import StickyCtaOverride from '@/app/components/StickyCtaOverride'
 import { resolveLastUpdatedDate, buildStandardPriceChartData } from '@/lib/utils/shared-helpers'
+import { buildInventoryInsight } from '@/lib/utils/price-stats'
 
 const cachedGetModel = cache(getWatchModelBySlug)
 const cachedGetLatestPrice = cache(getLatestWatchPriceLogWithPrices)
@@ -55,7 +56,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const priceRange = calculatePriceRange(latestLog)
   const osLife = calculateOSLifespan(model.date, model.last_watchos)
 
-  const priceText = priceRange.minPrice ? `（¥${priceRange.minPrice.toLocaleString()}〜）` : ''
+  // 「相場」と書いている箇所は中央値。最安値は1点だけの特価であることが多く、
+  // 相場として提示すると実際には見つけられない価格になる
+  const priceText = priceRange.medianPrice
+    ? `（¥${priceRange.medianPrice.toLocaleString()}前後）`
+    : priceRange.minPrice ? `（¥${priceRange.minPrice.toLocaleString()}〜）` : ''
   const sizeText = model.size ? `${model.size}` : ''
   const osText = osLife.isSupported ? `watchOSサポート見込み` : 'watchOSサポート終了済み'
 
@@ -96,7 +101,9 @@ export default async function WatchDetailPage({ params }: PageProps) {
 
   // PriceChartSection用のデータをサーバーサイドで事前計算
   const dailyData = aggregateDailyPrices(priceLogs)
-  const { latestDate, latestMinMaxPairs, storageNote } = buildStandardPriceChartData(priceLogs)
+  const { latestDate, latestMinMaxPairs, storageNote, priceStats, totalCount } = buildStandardPriceChartData(priceLogs)
+  // 流通量から在庫の状況を組み立てる（件数の記録がない過去分では null）
+  const inventoryInsight = buildInventoryInsight(totalCount, model.date, new Date())
   const modelShopLinks = shopLinks.filter((l) => l.product_id === model.id)
   const iosysShop = shops.find((s) => s.id === 1)
 
@@ -128,6 +135,8 @@ export default async function WatchDetailPage({ params }: PageProps) {
             modelName={model.model}
             category="watch"
             latestMinMaxPairs={latestMinMaxPairs}
+            priceStats={priceStats}
+            inventoryInsight={inventoryInsight}
             latestDate={latestDate}
             storageNote={storageNote}
             priceListLink={{ href: '/watch/watch-price-info/', label: 'Apple Watchの中古相場一覧・価格推移' }}

@@ -27,6 +27,7 @@ export function aggregateDailyPrices(logs: MacBookPriceLog[]) {
   return aggregateDailyPricesGeneric(logs, (log) => ({
     mins: [log.min1_price, log.min2_price, log.min3_price, log.min4_price, log.min5_price],
     maxes: [log.max1_price, log.max2_price, log.max3_price, log.max4_price, log.max5_price],
+    counts: [log.matched_count],
   }))
 }
 
@@ -43,16 +44,23 @@ export function filterLast3Months(logs: MacBookPriceLog[]): MacBookPriceLog[] {
 export function calculatePriceRange(log: MacBookPriceLog | null): {
   minPrice: number | null
   maxPrice: number | null
+  /** 相場の中心（中央値）。「相場は〜」と書く箇所で使う */
+  medianPrice: number | null
+  /** 現実的な最安値（下位10%点）。「〜から手に入る」と書く箇所で使う */
+  realisticMinPrice: number | null
   shops: { name: string; min: number | null; max: number | null }[]
 } {
-  if (!log) return { minPrice: null, maxPrice: null, shops: [] }
+  if (!log) return { minPrice: null, maxPrice: null, medianPrice: null, realisticMinPrice: null, shops: [] }
   const minPrices = [log.min1_price, log.min2_price, log.min3_price, log.min4_price, log.min5_price]
     .filter((v): v is number => v != null && v > 0)
   const maxPrices = [log.max1_price, log.max2_price, log.max3_price, log.max4_price, log.max5_price]
     .filter((v): v is number => v != null && v > 0)
+  const stats = calculatePriceStats([log.matched_prices])
   return {
     minPrice: minPrices.length > 0 ? Math.min(...minPrices) : null,
     maxPrice: maxPrices.length > 0 ? Math.max(...maxPrices) : null,
+    medianPrice: stats?.median ?? null,
+    realisticMinPrice: stats?.realisticMin ?? null,
     shops: [
       { name: log.min1_shop_name || '楽天', min: log.min1_price, max: log.max1_price },
     ],
@@ -62,6 +70,7 @@ export function calculatePriceRange(log: MacBookPriceLog | null): {
 // --- サポート期間一覧データ生成 ---
 
 import type { LifespanEntryWithModels } from '@/app/components/support/LifespanTable'
+import { calculatePriceStats } from '@/lib/utils/price-stats'
 
 /** モデル名からプロダクトライン（Pro / Air）を抽出 */
 function getProductLine(modelName: string): string {

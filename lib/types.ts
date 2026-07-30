@@ -41,6 +41,15 @@ export interface BasePriceLog {
   geo_max: number | null
   janpara_min: number | null
   janpara_max: number | null
+  // --- 以下は 2026-07-30 の取得分から記録。それ以前のログでは NULL ---
+  /** 相場算出に使用した該当商品数（流通量の目安） */
+  iosys_count?: number | null
+  geo_count?: number | null
+  janpara_count?: number | null
+  /** 相場算出に使用した全商品の価格（昇順・円）。中央値・分布の算出に使う */
+  iosys_prices?: number[] | null
+  geo_prices?: number[] | null
+  janpara_prices?: number[] | null
 }
 
 export interface IPhoneModel extends BaseProductModel {
@@ -90,6 +99,168 @@ export interface IPhoneModel extends BaseProductModel {
   last_ios: string | null
 }
 
+/**
+ * Google Pixel モデル（pixel_models テーブル）
+ * iPhoneModel を Android/Tensor 向けに再設計したもの。
+ * iOS 固有カラム（dynamic_island / magsafe / apple_intelligence 等）は持たず、
+ * Pixel 固有（Tensor世代・FeliCa・消しゴムマジック等のAI機能・7年サポート）に置き換えている。
+ */
+export interface PixelModel extends BaseProductModel {
+  // BaseProductModel: id, model, slug, show, image, date, cpu(=Tensorチップ名), battery(=mAh), point, advance, official
+  strage: string | null
+  color: string | null
+  /** Tensor 世代（"G1"〜"G4"）。ベンチマークの世代比較に使用 */
+  tensor_gen: string | null
+  // ベンチマーク（Geekbench 6 / AnTuTu v10。Metal は Apple 専用のため持たない）
+  score_single: number | null
+  score_multi: number | null
+  antutu_total: number | null
+  antutu_cpu: number | null
+  antutu_gpu: number | null
+  antutu_mem: number | null
+  antutu_ux: number | null
+  // スペック
+  ram: string | null
+  size: string | null
+  weight: string | null
+  display: string | null
+  resolution: string | null
+  /** リフレッシュレート "60Hz" / "120Hz (LTPO)" */
+  refresh_rate: string | null
+  port: string | null
+  /** 防水防塵等級 "IP68" */
+  water_resistance: string | null
+  /** おサイフケータイ(FeliCa)対応 */
+  felica: boolean
+  sim: string | null
+  // バッテリー / 充電
+  /** Google公称の通常使用時間 "24時間" */
+  battery_life: string | null
+  /** スーパーバッテリーセーバー時の最大時間 "72時間" */
+  battery_life_saver: string | null
+  /** 有線充電 "27W" */
+  wired_charging: string | null
+  /** ワイヤレス充電 "21W (Pixel Stand) / Qi 12W" */
+  wireless_charging: string | null
+  /** バッテリーシェア（リバースワイヤレス充電） */
+  reverse_charging: boolean
+  // カメラ
+  main_camera: string | null
+  ultrawide_camera: string | null
+  /** 望遠カメラ（非搭載なら null） */
+  tele_camera: string | null
+  front_camera: string | null
+  /** 光学ズーム倍率 "5倍"（望遠なしは null） */
+  optical_zoom: string | null
+  // Pixel/AI 機能（スペック表のチェック用）
+  magic_eraser: boolean
+  best_take: boolean
+  magic_editor: boolean
+  night_sight: boolean
+  real_tone: boolean
+  face_unlock: boolean
+  /** 温度センサー（Pixel 8 Pro〜） */
+  temp_sensor: boolean
+  /** 動画ブースト（Pixel 8 Pro〜） */
+  video_boost: boolean
+  accessory_case: string | null
+  accessory_film: string | null
+  price: Record<string, unknown> | null
+  // サポート
+  /** OS/セキュリティ更新の保証年数（Pixel 6〜7=3、Pixel 8以降=7） */
+  update_years: number | null
+  /** サポート終了予定 "YYYY-MM" */
+  support_until: string | null
+  /** サポート終了済みなら最終対応バージョン、現役なら NULL（現役判定の activeField） */
+  last_android: string | null
+}
+
+export interface PixelPriceLog extends BasePriceLog {
+  iosys_min_text: string | null
+  iosys_max_text: string | null
+  geo_min_text: string | null
+  geo_max_text: string | null
+  janpara_min_text: string | null
+  janpara_max_text: string | null
+}
+
+/**
+ * Samsung Galaxy モデル（galaxy_models テーブル）
+ * PixelModel と同じ Android 系設計をベースに、Galaxy 固有
+ * （S/A/Zシリーズ・折りたたみのカバー画面・S Pen・Galaxy AI・microSD・日本版型番）を加えたもの。
+ * cpu には日本版の実チップ（Snapdragon/Exynos/Dimensity）を格納する。
+ */
+export interface GalaxyModel extends BaseProductModel {
+  // BaseProductModel: id, model, slug, show, image, date, cpu(=SoC名), battery(=mAh), point, advance, official
+  strage: string | null
+  color: string | null
+  /** 'S' | 'A' | 'Z Flip' | 'Z Fold'（スペック表のフィルタ・シリーズ比較に使用） */
+  series: string | null
+  /** 日本版型番（例 "SC-51D / SCG19"） */
+  model_number: string | null
+  // ベンチマーク（Geekbench 6 / AnTuTu v10）
+  score_single: number | null
+  score_multi: number | null
+  antutu_total: number | null
+  antutu_cpu: number | null
+  antutu_gpu: number | null
+  antutu_mem: number | null
+  antutu_ux: number | null
+  // スペック
+  ram: string | null
+  size: string | null
+  weight: string | null
+  display: string | null
+  resolution: string | null
+  refresh_rate: string | null
+  /** 折りたたみのカバー(外側)画面。バー型は null */
+  cover_display: string | null
+  port: string | null
+  water_resistance: string | null
+  felica: boolean
+  /** microSD 対応（Aシリーズ等で対応） */
+  microsd: boolean
+  sim: string | null
+  // バッテリー / 充電
+  battery_life: string | null
+  battery_life_saver: string | null
+  wired_charging: string | null
+  wireless_charging: string | null
+  /** Wireless PowerShare（リバースワイヤレス充電） */
+  reverse_charging: boolean
+  // カメラ
+  main_camera: string | null
+  ultrawide_camera: string | null
+  tele_camera: string | null
+  front_camera: string | null
+  optical_zoom: string | null
+  // Galaxy 機能（スペック表のチェック用）
+  galaxy_ai: boolean
+  circle_to_search: boolean
+  object_eraser: boolean
+  night_mode: boolean
+  /** S Pen 対応（Ultra / Fold 等） */
+  s_pen: boolean
+  /** Samsung DeX 対応 */
+  dex: boolean
+  accessory_case: string | null
+  accessory_film: string | null
+  price: Record<string, unknown> | null
+  // サポート
+  update_years: number | null
+  support_until: string | null
+  last_android: string | null
+}
+
+export interface GalaxyPriceLog extends BasePriceLog {
+  iosys_min_text: string | null
+  iosys_max_text: string | null
+  geo_min_text: string | null
+  geo_max_text: string | null
+  janpara_min_text: string | null
+  janpara_max_text: string | null
+}
+
 // 新shopsテーブル用（shop_key付き）
 export interface Shop {
   id: number
@@ -113,6 +284,8 @@ export interface Shop {
   watch_url: string | null
   macbook_url: string | null
   airpods_url: string | null
+  pixel_url: string | null
+  galaxy_url: string | null
   point: string | null
 }
 
@@ -337,6 +510,11 @@ export interface MacBookPriceLog {
   max5_price: number | null
   max5_item_name: string | null
   max5_shop_name: string | null
+  // --- 以下は 2026-07-30 の取得分から記録。それ以前のログでは NULL ---
+  /** 相場算出に使用した該当商品数（全ショップ横断） */
+  matched_count?: number | null
+  /** 相場算出に使用した全商品の価格（昇順・円、全ショップ横断） */
+  matched_prices?: number[] | null
 }
 
 export interface AirPodsModel {
@@ -375,6 +553,13 @@ export interface AirPodsPriceLog {
   janpara_max: number | null
   eearphone_min: number | null
   eearphone_max: number | null
+  // --- 以下は 2026-07-30 の取得分から記録。それ以前のログでは NULL ---
+  iosys_count?: number | null
+  janpara_count?: number | null
+  eearphone_count?: number | null
+  iosys_prices?: number[] | null
+  janpara_prices?: number[] | null
+  eearphone_prices?: number[] | null
 }
 
 // MVNO料金プラン

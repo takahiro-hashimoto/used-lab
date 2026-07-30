@@ -93,7 +93,12 @@ function calcAvgPriceFromLog(log: IPhonePriceLog): PriceEntry | null {
   if (log.geo_max && log.geo_max > 0) maxPrices.push(log.geo_max)
   if (log.janpara_max && log.janpara_max > 0) maxPrices.push(log.janpara_max)
 
-  return calcAvgFromShops(minPrices, maxPrices, log.logged_at.substring(0, 10))
+  // 価格配列がある日は分布（中央値）で算出する。記録開始前の日は従来どおり最安・最高の中間値
+  return calcAvgFromShops(minPrices, maxPrices, log.logged_at.substring(0, 10), [
+    log.iosys_prices,
+    log.geo_prices,
+    log.janpara_prices,
+  ])
 }
 
 function getModelSeries(name: string): string {
@@ -345,6 +350,11 @@ export default async function IPhonePriceInfoPage() {
 <p className="toc-title"><i className="fa-solid fa-list" aria-hidden="true"></i> タップできる目次</p>
             <ol className="l-grid l-grid--3col u-list-reset">
               <li>
+                <a href="#pd-method" className="toc-item">
+                  相場価格の算出方法 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                </a>
+              </li>
+              <li>
                 <a href="#pd-dashboard" className="toc-item">
                   中古相場と価格推移 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
                 </a>
@@ -365,11 +375,6 @@ export default async function IPhonePriceInfoPage() {
                 </a>
               </li>
               <li>
-                <a href="#pd-method" className="toc-item">
-                  中古相場価格の算出方法 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
-                </a>
-              </li>
-              <li>
                 <a href="#pd-faq" className="toc-item">
                   よくある質問 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
                 </a>
@@ -381,6 +386,50 @@ export default async function IPhonePriceInfoPage() {
 
         {/* セクション */}
         <div className="l-sections" itemProp="articleBody">
+
+          {/* 算出方法 */}
+          <section className="l-section l-section--sm" id="pd-method">
+            <div className="l-container">
+              <h2 className="m-section-heading m-section-heading--lg">中古iPhoneの相場価格 算出方法</h2>
+              <p className="m-section-desc">独自に算出した相場価格のロジックを紹介します。</p>
+              <div className="l-grid l-grid--3col l-grid--gap-lg">
+                <div className="m-card m-card--shadow m-card--padded post-check-item">
+                  <p className="post-check-item__heading">
+                    <i className="fa-solid fa-database" aria-hidden="true"></i>1. データ収集
+                  </p>
+                  <div className="media-card__desc m-rich-text">
+                    <p>楽天ウェブサービス（楽天市場商品検索API）を利用し、イオシス・ゲオ・じゃんぱら（いずれも楽天市場出店）の販売価格を毎日自動取得しています。</p>
+                    <p>中古iPhoneの取引量が多い主要3ショップを対象とすることで、市場全体の価格動向を反映しています。</p>
+                    <p className="pd-method-aside">※Amazonの価格は含まれておらず、Amazon商品の価格アラートも行っていません。</p>
+                  </div>
+                </div>
+                <div className="m-card m-card--shadow m-card--padded post-check-item">
+                  <p className="post-check-item__heading">
+                    <i className="fa-solid fa-filter" aria-hidden="true"></i>2. 対象条件
+                  </p>
+                  <div className="media-card__desc m-rich-text">
+                    <p>機種ごとの最小容量モデル（例：iPhone 15は128GB）を対象としています。</p>
+                    <p>また、以下の商品は価格が大きく異なるため集計対象外です。</p>
+                    <ul className="pd-method-exclude">
+                      <li>新品・未使用品</li>
+                      <li>バッテリー残量80％未満</li>
+                      <li>画面割れ・ジャンクなど「難あり」商品</li>
+                    </ul>
+                  </div>
+                </div>
+                <div className="m-card m-card--shadow m-card--padded post-check-item">
+                  <p className="post-check-item__heading">
+                    <i className="fa-solid fa-chart-line" aria-hidden="true"></i>3. 相場価格の算出方法
+                  </p>
+                  <div className="media-card__desc m-rich-text">
+                    <p>対象商品の販売価格を集計し、その中央値を相場価格として採用しています。</p>
+                    <p>最安値は一時的な特価や1点限りの商品であることが多く、実際の相場を反映しにくいためです。</p>
+                    <p>なお、月別に表示している価格帯は、その期間に確認できた最安値〜最高値を示しています。</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
 
           <DashboardSection
             modelsData={modelsData}
@@ -399,39 +448,6 @@ export default async function IPhonePriceInfoPage() {
 
           <PriceHistorySection models={sortedModels} />
 
-          {/* 算出方法 */}
-          <section className="l-section l-section--sm" id="pd-method">
-            <div className="l-container">
-              <h2 className="m-section-heading m-section-heading--lg">中古相場価格の算出方法</h2>
-              <p className="m-section-desc">独自に算出した相場価格のロジックを紹介します。</p>
-              <div className="l-grid l-grid--3col l-grid--gap-lg">
-                <div className="m-card m-card--shadow m-card--padded post-check-item">
-                  <p className="post-check-item__heading">
-                    <i className="fa-solid fa-database" aria-hidden="true"></i>1. データ収集
-                  </p>
-                  <div className="media-card__desc m-rich-text">
-                    <p>イオシス・ゲオ・じゃんぱらの3店舗から最安値・最高値を毎日自動取得。中古iPhoneの取引量が多い主要ショップを対象とすることで、市場全体の動向を反映した価格データを収集しています。</p>
-                  </div>
-                </div>
-                <div className="m-card m-card--shadow m-card--padded post-check-item">
-                  <p className="post-check-item__heading">
-                    <i className="fa-solid fa-filter" aria-hidden="true"></i>2. 対象条件
-                  </p>
-                  <div className="media-card__desc m-rich-text">
-                    <p>機種ごとに最小容量モデル（例：iPhone 15なら128GB）を対象としています。容量違いによる価格のばらつきをなくし、モデル間の純粋な価格差を比較しやすくするためです。</p>
-                  </div>
-                </div>
-                <div className="m-card m-card--shadow m-card--padded post-check-item">
-                  <p className="post-check-item__heading">
-                    <i className="fa-solid fa-chart-line" aria-hidden="true"></i>3. 相場算出
-                  </p>
-                  <div className="media-card__desc m-rich-text">
-                    <p>3店舗の最安値平均と最高値平均の中間値を相場価格としています。1店舗だけの特売や在庫処分による極端な価格変動に左右されにくい、安定した相場を算出できます。</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
 
           <FaqSection />
 

@@ -1047,13 +1047,146 @@
   padding: var(--space-xl) var(--space-2xl);
 }
 
+/* ラベルと価格を1行に。ベースライン揃えで数字の下端をラベルに合わせる */
+.price-current-head {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+}
+
 .price-current-label {
   font-size: var(--font-size-sm);
   color: var(--color-text-muted);
-  margin-bottom: var(--space-xs);
+  margin-bottom: 0;
 }
 
 /* .price-current-value → use .m-price-display.m-price-display--lg */
+
+/* 除外条件の箇条書き */
+.pd-method-exclude {
+  margin: var(--space-sm) 0 0;
+  padding-left: 1.25em;
+  list-style: disc;
+}
+
+.pd-method-exclude li {
+  margin-top: var(--space-2xs, 4px);
+}
+
+/* カード内の補足（※で始まる断り書き） */
+.pd-method-aside {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+/* 「今この瞬間」のブロック（価格分布・在庫）。
+   時系列のカードと性質が違うことを、カードを分けて示す */
+.price-snapshot-card {
+  margin-top: var(--space-xl);
+  padding: var(--space-xl) var(--space-2xl);
+}
+
+/* カード側で余白を持つので、中身の左右パディングは打ち消す。
+   図（ヒストグラム）と読み取りの文章は役割が違うため、区切り線で分ける */
+.price-snapshot-card .price-report {
+  padding-left: 0;
+  padding-right: 0;
+  padding-bottom: 0;
+  padding-top: var(--space-lg);
+  margin-top: var(--space-lg);
+  border-top: 1px solid var(--color-border-light);
+}
+
+@media (max-width: 768px) {
+  .price-snapshot-card {
+    padding: var(--space-lg);
+  }
+}
+
+/* 価格分布のヒストグラム（横棒） */
+.price-histogram {
+  padding: 0;
+}
+
+
+.price-histogram__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.price-histogram__row {
+  display: grid;
+  /* ラベル幅を固定して棒の起点を揃える */
+  grid-template-columns: 6.5rem 1fr 3.5rem;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 3px 0;
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+}
+
+.price-histogram__track {
+  background: var(--color-bg-subtle);
+  border-radius: var(--radius-sm);
+  height: 14px;
+  overflow: hidden;
+}
+
+.price-histogram__bar {
+  display: block;
+  height: 100%;
+  background: var(--color-border);
+  border-radius: var(--radius-sm);
+}
+
+/* 最も件数が多い価格帯だけ主色にして、狙い目が一目で分かるようにする */
+.price-histogram__row.is-peak {
+  color: var(--color-text);
+  font-weight: 700;
+}
+
+.price-histogram__row.is-peak .price-histogram__bar {
+  background: var(--color-primary);
+}
+
+.price-histogram__row--outlier {
+  color: var(--color-text-muted);
+}
+
+.price-histogram__count {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.price-histogram__note {
+  margin-top: var(--space-md);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  line-height: 1.8;
+}
+
+@media (max-width: 640px) {
+  .price-histogram__row {
+    grid-template-columns: 5.5rem 1fr 3rem;
+  }
+}
+
+/* グラフ下の分析テキスト。囲みを使わず本文として読ませる */
+.price-report {
+  padding: var(--space-lg) var(--space-2xl) var(--space-xl);
+}
+
+.price-report__text {
+  font-size: var(--font-size-sm);
+  line-height: 1.9;
+  color: var(--color-text);
+}
+
+.price-report__text + .price-report__text {
+  margin-top: var(--space-sm);
+}
 
 .price-current-note {
   font-size: var(--font-size-xs);
@@ -1179,11 +1312,89 @@
   }
 }
 
+/* 価格推移カードの中に入れ子で置く折りたたみカード。
+   主役はグラフなので、こちらは一段沈んだ面（サブトル背景）として区別する */
+.price-details-inline {
+  margin: var(--space-lg) var(--space-2xl) var(--space-xl);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-md);
+  background: var(--color-bg-subtle);
+  /* summary の hover 背景が角丸からはみ出さないように */
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .price-details-inline {
+    margin: var(--space-lg) var(--space-lg) var(--space-lg);
+  }
+}
+
+/* 開いたときの中身に余白をつける（summary は自前で padding を持つ） */
+.price-details-inline > *:not(summary) {
+  padding-left: var(--space-lg);
+  padding-right: var(--space-lg);
+}
+
+.price-details-inline > *:last-child {
+  padding-bottom: var(--space-lg);
+}
+
 .price-details-card-heading {
   font-size: var(--font-size-lg);
   font-weight: 800;
   color: var(--color-text);
   margin-bottom: var(--space-xl);
+}
+
+/* 折りたたみのトリガー。見出しではなく「押せるもの」として見せる */
+.price-details-summary {
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  padding: var(--space-md) var(--space-lg);
+  margin: 0;
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-text-secondary);
+  transition: background 0.15s, color 0.15s;
+  user-select: none;
+}
+
+.price-details-summary:hover {
+  background: var(--color-border-light);
+  color: var(--color-text);
+}
+
+/* Safari のデフォルト三角を消す */
+.price-details-summary::-webkit-details-marker {
+  display: none;
+}
+
+.price-details-summary::after {
+  content: "\f078"; /* chevron-down */
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  transition: transform 0.2s;
+  flex-shrink: 0;
+}
+
+details[open] > .price-details-summary {
+  border-bottom: 1px solid var(--color-border-light);
+  margin-bottom: var(--space-lg);
+}
+
+details[open] > .price-details-summary::after {
+  transform: rotate(180deg);
+}
+
+.price-details-summary:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: -2px;
 }
 
 .price-details-heading {
@@ -1507,7 +1718,6 @@
   background: linear-gradient(to right, var(--bar-color) var(--bar-pct), var(--color-border-light) var(--bar-pct));
   margin-bottom: 4px;
 }
-
 
 /* ---------- bench-table: SP横スクロール＋モデル名固定 ---------- */
 @media (max-width: 768px) {
@@ -2492,7 +2702,6 @@
   table-layout: fixed;
 }
 
-
 .recommend-card__specs-table td {
   display: table-cell;
   padding: var(--space-sm) 0;
@@ -2851,7 +3060,6 @@ fieldset.u-mb-xl {
   border-color: var(--color-primary);
   color: var(--color-text-inverse);
 }
-
 
 
 .pd-chip:hover {
@@ -3494,7 +3702,7 @@ fieldset.u-mb-xl {
   top: -12px;
   left: var(--space-md);
   color: var(--color-text-inverse);
-  font-size: var(--font-size-xs);
+  font-size: var(--font-size-sm);
   font-weight: 700;
   padding: 4px 14px;
   border-radius: var(--radius-sm);
@@ -3512,6 +3720,23 @@ fieldset.u-mb-xl {
   color: var(--color-primary);
   font-weight: 700;
   text-decoration: underline;
+}
+
+/* 注記内の区切り線。恒常的な説明と、期間限定のお知らせを分ける */
+.m-callout__divider {
+  border: 0;
+  border-top: 1px dashed var(--color-border);
+  margin: var(--space-md) 0;
+}
+
+/* 注記内の箇条書き（除外条件など）。本文と同じ字送りで並べる */
+.m-callout__list {
+  margin: var(--space-sm) 0 0;
+  padding-left: 1.25em;
+  list-style: disc;
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+  line-height: 1.8;
 }
 
 .m-callout__links {
@@ -5145,6 +5370,8 @@ fieldset.u-mb-xl {
   background: none;
   border: none;
   cursor: pointer;
+  /* <summary> のデフォルト三角を消す（開閉表示は右端のシェブロンで行う） */
+  list-style: none;
   transition: background var(--transition-fast);
   text-align: left;
 }
@@ -5198,7 +5425,11 @@ fieldset.u-mb-xl {
   transition: transform var(--transition-fast);
 }
 
-.pd-history-toggle.is-open {
+.pd-history-summary::-webkit-details-marker {
+  display: none;
+}
+
+details.pd-history-model[open] .pd-history-toggle {
   transform: rotate(180deg);
 }
 
@@ -5677,6 +5908,21 @@ fieldset.u-mb-xl {
 .ifd-result-card__specs dd {
   color: var(--color-text);
   margin: 0;
+}
+
+/* 「同じ予算で狙える他の中古スマホ」は項目数が多いため、値を右揃えにして
+   上の価格と縦のラインを揃える。他カードの specs には影響させない。 */
+#similar-price .ifd-result-card__specs dd {
+  text-align: right;
+}
+
+/* 同ブロックの機種名はリンクではないので、リンク色・ホバー下線を打ち消す */
+#similar-price .ifd-result-card__name {
+  color: var(--color-text);
+}
+
+#similar-price .ifd-result-card__name:hover {
+  text-decoration: none;
 }
 
 .ifd-result-card__actions {
@@ -7218,7 +7464,7 @@ fieldset.u-mb-xl {
     width: 100% !important;
   }
   .m-callout {
-    padding: var(--space-md);
+    padding: var(--space-lg);
   }
   .m-callout--tip {
     padding-top: var(--space-lg);
@@ -7261,7 +7507,6 @@ fieldset.u-mb-xl {
   font-weight: 600;
   display: inline-block;
 }
-
 
 .storage-quick-card__desc {
   font-size: var(--font-size-md);
@@ -7323,7 +7568,6 @@ fieldset.u-mb-xl {
 /* ============================================================
    Benchmark Page
    ============================================================ */
-
 
 .bench-rank {
   display: inline-flex;
@@ -8185,7 +8429,6 @@ ol.info-card__list {
 .bench-table__model-btn:hover {
   text-decoration: none;
 }
-
 
 /* ============================================================
    MarketAnalysisSection

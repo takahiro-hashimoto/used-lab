@@ -24,6 +24,27 @@ function quantileOf(sorted: number[], q: number): number {
   return sorted[idx]
 }
 
+export type PriceHistogramBucket = {
+  from: number
+  /** この価格未満（上限は含まない） */
+  to: number
+  count: number
+  /** 最も件数が多い価格帯か */
+  isPeak: boolean
+}
+
+export type PriceHistogram = {
+  buckets: PriceHistogramBucket[]
+  /** 表示レンジより下の外れ値の件数 */
+  below: number
+  /** 表示レンジより上の外れ値の件数 */
+  above: number
+  /** 価格帯の刻み幅 */
+  width: number
+  /** 棒の長さを出すための最大件数 */
+  maxCount: number
+}
+
 export type PriceStats = {
   /** 対象件数 */
   count: number
@@ -41,6 +62,133 @@ export type PriceStats = {
   realisticMin: number
   /** 最も商品が集中している価格帯と、その件数 */
   densestBand: { from: number; to: number; count: number } | null
+  /** 価格分布のヒストグラム。件数が少なすぎる場合は null */
+  histogram: PriceHistogram | null
+}
+
+/** ヒストグラムの刻み幅の候補。中途半端な幅だと読み取りにくいため決め打ちの階段にする */
+const HISTOGRAM_STEPS = [500, 1_000, 2_000, 2_500, 5_000, 10_000, 20_000, 25_000, 50_000, 100_000]
+
+/**
+ * 価格分布のヒストグラムを組み立てる。
+ *
+ * 全範囲を等分すると、極端に安い1点のせいで大半のバケットが空になる。
+ * 5〜95パーセンタイルを表示レンジとし、その外側は「〜未満 / 〜超」として件数だけ示す。
+ */
+function buildHistogram(sorted: number[], targetBuckets = 7): PriceHistogram | null {
+  if (sorted.length < 10) return null // 少なすぎると分布として意味をなさない
+
+  const at = (p: number) => sorted[Math.round(p * (sorted.length - 1))]
+  const lo = at(0.05)
+  const hi = at(0.95)
+  if (hi <= lo) return null // 全て同一価格。棒グラフにしても情報がない
+
+  const width = HISTOGRAM_STEPS.find((w) => w >= (hi - lo) / targetBuckets) ?? 200_000
+  const start = Math.floor(lo / width) * width
+  const end = Math.ceil(hi / width) * width
+
+  const buckets: PriceHistogramBucket[] = []
+  for (let from = start; from < end; from += width) {
+    buckets.push({ from, to: from + width, count: 0, isPeak: false })
+  }
+
+  let below = 0
+  let above = 0
+  for (const p of sorted) {
+    if (p < start) { below++; continue }
+    if (p >= end) { above++; continue }
+    buckets[Math.floor((p - start) / width)].count++
+  }
+
+  const maxCount = Math.max(...buckets.map((b) => b.count))
+  if (maxCount === 0) return null
+  for (const b of buckets) b.isPeak = b.count === maxCount
+
+  return { buckets, below, above, width, maxCount }
+}
+
+// ============================================
+// 在庫インサイト
+// ============================================
+// 件数（*_count）は価格だけでは伝えられない購入判断材料になる。
+// 「発売間もないので中古がまだ少ない」「サポート終了間近で在庫が枯れてきた」は、
+// 価格推移を見ているだけでは分からない。
+//
+// 件数の増減トレンドは複数日の履歴が必要だが、記録開始は 2026-07-30 のため
+// 当面は水準（絶対値）のみで判定する。履歴が貯まったら trend を足す。
+
+export type InventoryInsight = {
+  /** 表示する本文 */
+  text: string
+  /** 取り扱いが確認できない状態か（CTAの出し方を変えるなどに使う） */
+  isOutOfStock: boolean
+}
+
+/** 発売からの経過月数。date は "2021年9月" のような表記も許容する */
+function monthsSinceRelease(releaseDate: string | null, now: Date): number | null {
+  if (!releaseDate) return null
+  const m = String(releaseDate).match(/(\d{4})\D+(\d{1,2})/)
+  if (!m) return null
+  const released = new Date(Number(m[1]), Number(m[2]) - 1, 1)
+  if (Number.isNaN(released.getTime())) return null
+  return (now.getFullYear() - released.getFullYear()) * 12 + (now.getMonth() - released.getMonth())
+}
+
+/**
+ * 流通量から購入判断に使える一文を組み立てる。
+ *
+ * @param totalCount  対象ショップ合計の該当商品数。null なら記録がない（＝表示しない）
+ * @param releaseDate 発売日。新しい機種の「まだ少ない」判定に使う
+ * @param now         判定基準日（テスト用に注入する）
+ */
+export function buildInventoryInsight(
+  totalCount: number | null | undefined,
+  releaseDate: string | null,
+  now: Date
+): InventoryInsight | null {
+  if (totalCount == null) return null
+
+  const months = monthsSinceRelease(releaseDate, now)
+  const isNew = months != null && months <= 12
+
+  if (totalCount === 0) {
+    return {
+      text: isNew
+        ? '発売から間もないため、中古市場にはまだ在庫が出回っていません。新品での購入を検討するか、流通が始まるまで待つ必要があります。'
+        : '現在、集計対象のショップでは在庫が確認できませんでした。生産終了から時間が経ち、中古市場からも姿を消しつつある機種です。入手できるタイミングは限られます。',
+      isOutOfStock: true,
+    }
+  }
+
+  if (totalCount <= 5) {
+    return {
+      text: isNew
+        ? `中古の流通はまだ${totalCount}件と少なく、発売から間もないことがうかがえます。選択肢が限られるため、状態や色にこだわると見つけにくい時期です。`
+        : `在庫は${totalCount}件と少なく、入手しづらくなっています。狙っている場合は、見つけた時点で早めに判断することをおすすめします。`,
+      isOutOfStock: false,
+    }
+  }
+
+  if (totalCount <= 20) {
+    return {
+      text: isNew
+        ? `中古の流通は${totalCount}件です。発売から日が浅く、これから徐々に増えていくと見込まれます。急がないのであれば、選択肢が増えるのを待つのも手です。`
+        : `在庫は${totalCount}件で、選択肢はやや限られます。条件に合う個体が見つかったら押さえておきたい水準です。`,
+      isOutOfStock: false,
+    }
+  }
+
+  if (totalCount >= 100) {
+    return {
+      text: `${totalCount}件と流通量が非常に多く、ショップ間の価格競争が起きやすい状況です。急いで決めず、複数のショップを比較すると条件の良い個体を見つけやすくなります。`,
+      isOutOfStock: false,
+    }
+  }
+
+  return {
+    text: `在庫は${totalCount}件あり、状態や色を選べるだけの選択肢があります。価格だけでなく、バッテリー状態や付属品もあわせて比較するとよいでしょう。`,
+    isOutOfStock: false,
+  }
 }
 
 /** 価格帯の刻み幅。相場の規模に応じて丸めの粒度を変える */
@@ -83,6 +231,7 @@ export function calculatePriceStats(
     q3: quantileOf(sorted, 0.75),
     realisticMin: quantileOf(sorted, 0.1),
     densestBand: findDensestBand(sorted, bandWidthFor(median)),
+    histogram: buildHistogram(sorted),
   }
 }
 

@@ -40,6 +40,7 @@ export function aggregateDailyPrices(logs: AirPodsPriceLog[]) {
   return aggregateDailyPricesGeneric(logs, (log) => ({
     mins: [log.iosys_min, log.janpara_min, log.eearphone_min],
     maxes: [log.iosys_max, log.janpara_max, log.eearphone_max],
+    counts: [log.iosys_count, log.janpara_count, log.eearphone_count],
   }))
 }
 

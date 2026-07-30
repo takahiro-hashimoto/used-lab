@@ -41,8 +41,16 @@ export const CHART_EMBED_CONFIG: Record<string, { label: string; priceInfoPath: 
   airpods: { label: '中古AirPods', priceInfoPath: 'airpods/price-info' },
 }
 
+/** ショップ構成から、価格配列カラム（中央値算出用）を引く */
+function priceArrayKeys(shops: ShopFields): string[] {
+  const first = shops[0]?.[0]
+  if (first === 'min1_price') return ['matched_prices'] // MacBookはショップ横断で1本
+  return shops.map(([minK]) => minK.replace(/_min$/, '_prices'))
+}
+
 function logToEntry(log: { logged_at: string }, shops: ShopFields): PriceEntry | null {
   const rec = log as unknown as Record<string, number | null>
+  const recArr = log as unknown as Record<string, number[] | null>
   const mins: number[] = []
   const maxs: number[] = []
   for (const [minK, maxK] of shops) {
@@ -51,7 +59,9 @@ function logToEntry(log: { logged_at: string }, shops: ShopFields): PriceEntry |
     const mx = rec[maxK]
     if (typeof mx === 'number' && mx > 0) maxs.push(mx)
   }
-  return calcAvgFromShops(mins, maxs, log.logged_at.substring(0, 10))
+  // 詳細ページ・相場一覧と同じ中央値ベースに揃える
+  return calcAvgFromShops(mins, maxs, log.logged_at.substring(0, 10),
+    priceArrayKeys(shops).map((k) => recArr[k]))
 }
 
 /** 指定slug（最大4件）の価格系列を構築。fetchModels/fetchLogs を渡してカテゴリ非依存に */

@@ -1,7 +1,5 @@
-'use client'
-
-import { useState } from 'react'
 import type { ModelData, PriceEntry } from '../page'
+import { crossesLogicChange, isBeforeLogicChange } from '@/lib/data/price-source-note'
 
 type Props = {
   models: ModelData[]
@@ -45,8 +43,6 @@ function calcMonthlySummary(prices: PriceEntry[]): MonthlySummary[] {
 const DAY_NAMES = ['日', '月', '火', '水', '木', '金', '土']
 
 export default function PriceHistorySection({ models }: Props) {
-  const [openId, setOpenId] = useState<number | null>(null)
-
   return (
     <section className="l-section" id="pd-history" aria-labelledby="pd-history-title">
       <div className="l-container">
@@ -59,31 +55,35 @@ export default function PriceHistorySection({ models }: Props) {
           if (model.prices.length === 0) return null
 
           const monthlySummary = calcMonthlySummary(model.prices)
-          const firstPrice = model.prices[0].avg
-          const lastPrice = model.prices[model.prices.length - 1].avg
-          const totalChange = lastPrice - firstPrice
-          const isOpen = openId === model.id
+          // 集計基準の変更をまたぐ差分は算出方法の変更を含むため値動きにならない。
+          // 同一基準（中央値）で最も古い日を起点にし、日が経つにつれ期間が伸びる
+          const latestEntryForTrend = model.prices[model.prices.length - 1]
+          const trendStart = crossesLogicChange(model.prices[0].date, latestEntryForTrend.date)
+            ? model.prices.find((p) => !isBeforeLogicChange(p.date))
+            : model.prices[0]
+          const trendDays =
+            trendStart && trendStart.date !== latestEntryForTrend.date
+              ? Math.round(
+                  (new Date(latestEntryForTrend.date).getTime() - new Date(trendStart.date).getTime()) / 86400000
+                )
+              : 0
+          const totalChange = trendDays > 0 ? latestEntryForTrend.avg - trendStart!.avg : 0
 
           const reversedPrices = [...model.prices].reverse()
+          // 件数の記録は 2026-07-30 以降のみ。1日もなければ列自体を出さない
+          const hasCounts = reversedPrices.some((p) => p.count != null)
           const latestEntry = model.prices[model.prices.length - 1]
 
           return (
-            <div key={model.id} className="pd-history-model">
-              <div
-                className="pd-history-summary"
-                onClick={() => setOpenId(isOpen ? null : model.id)}
-              >
+            // 閉じていてもHTMLに残るよう <details> を使う。
+            // {isOpen && ...} だと日別・月別データがクローラーに一切見えない
+            <details key={model.id} className="pd-history-model">
+              <summary className="pd-history-summary">
                 <div className="pd-history-summary-left">
                   <h3 className="pd-history-model-name">{model.name}</h3>
                   <span className="pd-history-model-meta">{model.year}年発売 / {model.chip}</span>
                 </div>
-                <button
-                  className="pd-history-summary-right"
-                  onClick={(e) => { e.stopPropagation(); setOpenId(isOpen ? null : model.id) }}
-                  aria-expanded={isOpen}
-                  aria-controls={`pd-history-content-${model.id}`}
-                  aria-label={`${model.name}の価格推移を${isOpen ? '閉じる' : '開く'}`}
-                >
+                <span className="pd-history-summary-right">
                   <div className="pd-history-summary-price">
                     <span className="pd-history-price-range">
                       <small className="pd-history-price-range__label">中古相場</small>
@@ -91,18 +91,17 @@ export default function PriceHistorySection({ models }: Props) {
                     </span>
                     <span className={`pd-history-trend${totalChange < 0 ? ' is-down' : totalChange > 0 ? ' is-up' : ''}`}>
                       {totalChange !== 0 ? (
-                        <>90日間で&yen;{Math.abs(totalChange).toLocaleString()}{totalChange < 0 ? '値下がり' : '値上がり'}傾向</>
+                        <>{trendDays}日間で&yen;{Math.abs(totalChange).toLocaleString()}{totalChange < 0 ? '値下がり' : '値上がり'}傾向</>
                       ) : (
-                        <>90日間で価格変動なし</>
+                        <>{trendDays > 0 ? `${trendDays}日間で価格変動なし` : '比較できる期間のデータがまだありません'}</>
                       )}
                     </span>
                   </div>
-                  <i className={`fa-solid fa-chevron-down pd-history-toggle${isOpen ? ' is-open' : ''}`} aria-hidden="true"></i>
-                </button>
-              </div>
+                  <i className="fa-solid fa-chevron-down pd-history-toggle" aria-hidden="true"></i>
+                </span>
+              </summary>
 
-              {isOpen && (
-                <div className="pd-history-content" id={`pd-history-content-${model.id}`}>
+              <div className="pd-history-content">
                   {/* 月別サマリー */}
                   {monthlySummary.length > 0 && (
                     <div className="u-mt-lg u-mb-xl">
@@ -134,6 +133,8 @@ export default function PriceHistorySection({ models }: Props) {
                             <th scope="col">最高値</th>
                             <th scope="col">平均相場</th>
                             <th scope="col">前日比</th>
+                            {/* 記録が1日もない期間は列ごと出さない（"-"だけの列は情報がない） */}
+                            {hasCounts && <th scope="col">在庫数</th>}
                           </tr>
                         </thead>
                         <tbody>
@@ -142,7 +143,9 @@ export default function PriceHistorySection({ models }: Props) {
                             const dateShort = `${d.getMonth() + 1}/${d.getDate()}`
                             const dayOfWeek = DAY_NAMES[d.getDay()]
                             const prevPrice = idx < reversedPrices.length - 1 ? reversedPrices[idx + 1] : null
-                            const dayChange = prevPrice ? price.avg - prevPrice.avg : null
+                            // 集計基準の変更をまたぐ差分は段差そのもの。値動きとして出すと誤解を招く
+                            const crossesChange = prevPrice != null && crossesLogicChange(prevPrice.date, price.date)
+                            const dayChange = prevPrice && !crossesChange ? price.avg - prevPrice.avg : null
 
                             return (
                               <tr key={price.date}>
@@ -174,6 +177,9 @@ export default function PriceHistorySection({ models }: Props) {
                                     '-'
                                   )}
                                 </td>
+                                {hasCounts && (
+                                  <td>{price.count == null ? '-' : `${price.count}件`}</td>
+                                )}
                               </tr>
                             )
                           })}
@@ -183,8 +189,7 @@ export default function PriceHistorySection({ models }: Props) {
                   </div>
 
                 </div>
-              )}
-            </div>
+            </details>
           )
         })}
       </div>

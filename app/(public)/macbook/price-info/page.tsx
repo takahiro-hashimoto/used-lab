@@ -68,7 +68,10 @@ function calcPriceFromLog(log: MacBookPriceLog): PriceEntry | null {
   const maxPrices = [log.max1_price, log.max2_price, log.max3_price, log.max4_price, log.max5_price]
     .filter((p): p is number => p != null && p > 0)
 
-  return calcAvgFromShops(minPrices, maxPrices, log.logged_at.substring(0, 10))
+  // 価格配列がある日は分布（中央値）で算出する。記録開始前の日は従来どおり最安・最高の中間値
+  return calcAvgFromShops(minPrices, maxPrices, log.logged_at.substring(0, 10), [
+    log.matched_prices,
+  ])
 }
 
 function getModelSeries(name: string): string {
@@ -311,6 +314,11 @@ export default async function MacBookPriceInfoPage() {
 <p className="toc-title"><i className="fa-solid fa-list" aria-hidden="true"></i> タップできる目次</p>
             <ol className="l-grid l-grid--3col u-list-reset">
               <li>
+                <a href="#pd-method" className="toc-item">
+                  相場価格の算出方法 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                </a>
+              </li>
+              <li>
                 <a href="#pd-dashboard" className="toc-item">
                   中古相場と価格推移 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
                 </a>
@@ -331,11 +339,6 @@ export default async function MacBookPriceInfoPage() {
                 </a>
               </li>
               <li>
-                <a href="#pd-method" className="toc-item">
-                  中古相場価格の算出方法 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
-                </a>
-              </li>
-              <li>
                 <a href="#pd-faq" className="toc-item">
                   よくある質問 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
                 </a>
@@ -348,10 +351,11 @@ export default async function MacBookPriceInfoPage() {
         {/* セクション */}
         <div className="l-sections" itemProp="articleBody">
 
+
           {/* 算出方法 */}
           <section className="l-section l-section--sm" id="pd-method">
             <div className="l-container">
-              <h2 className="m-section-heading m-section-heading--lg">中古相場価格の算出方法</h2>
+              <h2 className="m-section-heading m-section-heading--lg">中古MacBookの相場価格 算出方法</h2>
               <p className="m-section-desc">独自に算出した相場価格のロジックを紹介します。</p>
               <div className="l-grid l-grid--3col l-grid--gap-lg">
                 <div className="m-card m-card--shadow m-card--padded post-check-item">
@@ -359,7 +363,9 @@ export default async function MacBookPriceInfoPage() {
                     <i className="fa-solid fa-database" aria-hidden="true"></i>1. データ収集
                   </p>
                   <div className="media-card__desc m-rich-text">
-                    <p>イオシス・ゲオ・じゃんぱらの3店舗から最安値・最高値を毎日自動取得。中古MacBookの取引量が多い主要ショップを対象とすることで、市場全体の動向を反映した価格データを収集しています。</p>
+                    <p>楽天ウェブサービス（楽天市場商品検索API）を利用し、楽天市場の中古ショップの販売価格を毎日自動取得しています。</p>
+                    <p>中古MacBookの取引量が多い主要な中古ショップを対象とすることで、市場全体の価格動向を反映しています。</p>
+                    <p className="pd-method-aside">※Amazonの価格は含まれておらず、Amazon商品の価格アラートも行っていません。</p>
                   </div>
                 </div>
                 <div className="m-card m-card--shadow m-card--padded post-check-item">
@@ -367,15 +373,21 @@ export default async function MacBookPriceInfoPage() {
                     <i className="fa-solid fa-filter" aria-hidden="true"></i>2. 対象条件
                   </p>
                   <div className="media-card__desc m-rich-text">
-                    <p>機種ごとに最小構成モデルを対象としています。構成違いによる価格のばらつきをなくし、モデル間の純粋な価格差を比較しやすくするためです。</p>
+                    <p>機種ごとの最小構成モデル（例：MacBook Air M2は8GB/256GB）を対象としています。</p>
+                    <p>また、以下の商品は価格が大きく異なるため集計対象外です。</p>
+                    <ul className="pd-method-exclude">
+                      <li>新品・未使用品</li>
+                      <li>バッテリー残量80％未満</li>
+                      <li>画面割れ・ジャンクなど「難あり」商品</li>
+                    </ul>
                   </div>
                 </div>
                 <div className="m-card m-card--shadow m-card--padded post-check-item">
                   <p className="post-check-item__heading">
-                    <i className="fa-solid fa-chart-line" aria-hidden="true"></i>3. 相場算出
+                    <i className="fa-solid fa-chart-line" aria-hidden="true"></i>3. 相場価格の算出方法
                   </p>
                   <div className="media-card__desc m-rich-text">
-                    <p>3店舗の最安値平均と最高値平均の中間値を相場価格としています。1店舗だけの特売や在庫処分による極端な価格変動に左右されにくい、安定した相場を算出できます。</p>
+                    <p>該当する販売中の商品をすべて集計し、その中央値を相場価格としています。最安値は1点だけの外れ値であることが多く、実際には見つけられない価格になりがちなためです。月別に表示している価格帯は、その期間に確認できた最安値〜最高値です。</p>
                   </div>
                 </div>
               </div>

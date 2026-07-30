@@ -29,6 +29,7 @@ import MacBookArticleFooter from '@/app/components/macbook/MacBookArticleFooter'
 import AdminEditLink from '@/app/components/AdminEditLink'
 import StickyCtaOverride from '@/app/components/StickyCtaOverride'
 import { resolveLastUpdatedDate } from '@/lib/utils/shared-helpers'
+import { calculatePriceStats, buildInventoryInsight } from '@/lib/utils/price-stats'
 
 const cachedGetModel = cache(getMacBookModelBySlug)
 const cachedGetLatestPrice = cache(getLatestMacBookPriceLogWithPrices)
@@ -55,7 +56,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const priceRange = calculatePriceRange(latestLog)
   const osLife = calculateOSLifespan(model.date, model.last_macos)
 
-  const priceText = priceRange.minPrice ? `（¥${priceRange.minPrice.toLocaleString()}〜）` : ''
+  // 「相場」と書いている箇所は中央値。最安値は1点だけの特価であることが多く、
+  // 相場として提示すると実際には見つけられない価格になる
+  const priceText = priceRange.medianPrice
+    ? `（¥${priceRange.medianPrice.toLocaleString()}前後）`
+    : priceRange.minPrice ? `（¥${priceRange.minPrice.toLocaleString()}〜）` : ''
   const chipText = model.cpu ? `${model.cpu}搭載` : ''
   const osText = osLife.isSupported ? `macOSサポート見込み` : 'macOSサポート終了済み'
 
@@ -107,6 +112,16 @@ export default async function MacBookDetailPage({ params }: PageProps) {
     maxes: [l.max1_price, l.max2_price, l.max3_price, l.max4_price, l.max5_price].filter((v): v is number => v != null),
   }))
   const storageNote = latestLogEntries[0]?.storage || ''
+  // MacBookはショップ横断で検索するため、価格・件数は1本にまとまっている
+  const priceStats = calculatePriceStats(latestLogEntries.map((l) => l.matched_prices))
+  const macbookCounts = latestLogEntries
+    .map((l) => l.matched_count)
+    .filter((c): c is number => c != null)
+  const inventoryInsight = buildInventoryInsight(
+    macbookCounts.length > 0 ? macbookCounts.reduce((a, b) => a + b, 0) : null,
+    model.date,
+    new Date()
+  )
   const modelShopLinks = shopLinks.filter((l) => l.product_id === model.id)
   const iosysShop = shops.find((s) => s.id === 1)
 
@@ -138,6 +153,8 @@ export default async function MacBookDetailPage({ params }: PageProps) {
             modelName={model.model}
             category="macbook"
             latestMinMaxPairs={latestMinMaxPairs}
+            priceStats={priceStats}
+            inventoryInsight={inventoryInsight}
             latestDate={latestDate}
             storageNote={storageNote}
             priceListLink={{ href: '/macbook/price-info/', label: 'MacBookの中古相場一覧' }}

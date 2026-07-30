@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { priceSourceNote } from '@/lib/data/price-source-note'
+import { priceSourceShortParagraphs } from '@/lib/data/price-source-note'
 import { placeholder } from '@/lib/placeholder'
 import type { WatchModel, WatchPriceLog, ProductShopLink, FallbackShop } from '@/lib/types'
 import { formatDateSlash, formatReleaseDate, buildDisplayLinks } from '@/lib/utils/shared-helpers'
@@ -257,9 +257,11 @@ export default function RecommendDetailSection({ items }: Props) {
 
         <div className="m-callout m-callout--muted u-mt-2xl">
           <span className="m-callout__label"><i className="fa-solid fa-circle-info" aria-hidden="true"></i> 中古相場の算出方法について</span>
-          <p className="m-callout__text">
-            {priceSourceNote('watch')}
-          </p>
+          {priceSourceShortParagraphs('watch').map((text, i) => (
+            <p key={i} className="m-callout__text" style={{ margin: i === 0 ? 0 : 'var(--space-sm) 0 0' }}>
+              {text}
+            </p>
+          ))}
         </div>
       </div>
     </section>

@@ -6,6 +6,7 @@
 import type { Shop, ProductShopLink, FallbackShop, BasePriceLog } from '@/lib/types'
 import { PAGE_DATES } from '@/lib/data/page-dates'
 import { getHeroImage } from '@/lib/data/hero-images'
+import { calculatePriceStats, type PriceStats } from '@/lib/utils/price-stats'
 
 const SITE_LAUNCH_DATE = '2024-08-01'
 const JAPAN_LOCALE = 'ja-JP'
@@ -274,6 +275,10 @@ export function buildStandardPriceChartData(priceLogs: BasePriceLog[]): {
   latestDate: string | null
   latestMinMaxPairs: { mins: number[]; maxes: number[] }[]
   storageNote: string
+  /** 最新ログの価格分布。2026-07-30 より前のログしかない場合は null */
+  priceStats: PriceStats | null
+  /** 最新ログの流通量（3ショップ合計）。記録がない場合は null */
+  totalCount: number | null
 } {
   // 価格が全ショップnullの日を避け、価格がある最新日を採用（価格取得不調時のフォールバック）
   const latestPricedLog = [...priceLogs].reverse().find(
@@ -286,7 +291,16 @@ export function buildStandardPriceChartData(priceLogs: BasePriceLog[]): {
     maxes: [l.iosys_max, l.geo_max, l.janpara_max].filter((v): v is number => v != null),
   }))
   const storageNote = latestLogEntries[0]?.storage ?? ''
-  return { latestDate, latestMinMaxPairs, storageNote }
+
+  // 同じ日に複数行ある場合（容量違いなど）は全行の価格をまとめて分布を出す
+  const priceStats = calculatePriceStats(
+    latestLogEntries.flatMap((l) => [l.iosys_prices, l.geo_prices, l.janpara_prices])
+  )
+  const counts = latestLogEntries.flatMap((l) => [l.iosys_count, l.geo_count, l.janpara_count])
+  const recorded = counts.filter((c): c is number => c != null)
+  const totalCount = recorded.length > 0 ? recorded.reduce((a, b) => a + b, 0) : null
+
+  return { latestDate, latestMinMaxPairs, storageNote, priceStats, totalCount }
 }
 
 /** 修理寿命計算（リリース年+9年） */
@@ -344,21 +358,28 @@ export function calculateOSLifespan(date: string | null, supportYears: number = 
  */
 export function aggregateDailyPrices<T extends { logged_at: string }>(
   logs: T[],
-  extractPrices: (log: T) => { mins: (number | null)[]; maxes: (number | null)[] }
+  extractPrices: (log: T) => {
+    mins: (number | null)[]
+    maxes: (number | null)[]
+    /** その日の該当商品数（ショップごと）。2026-07-30 より前のログには無いので任意 */
+    counts?: (number | null | undefined)[]
+  }
 ): {
   labels: string[]
   avgMin: (number | null)[]
   avgMax: (number | null)[]
+  /** その日の流通量（全ショップ合計）。記録がない日は null */
+  counts: (number | null)[]
 } {
-  const dayMap = new Map<string, { mins: number[]; maxes: number[] }>()
+  const dayMap = new Map<string, { mins: number[]; maxes: number[]; count: number | null }>()
 
   for (const log of logs) {
     const day = log.logged_at.substring(0, 10)
     if (!dayMap.has(day)) {
-      dayMap.set(day, { mins: [], maxes: [] })
+      dayMap.set(day, { mins: [], maxes: [], count: null })
     }
     const bucket = dayMap.get(day)!
-    const { mins, maxes } = extractPrices(log)
+    const { mins, maxes, counts } = extractPrices(log)
 
     const minPrices = mins.filter((v): v is number => v != null && v > 0)
     const maxPrices = maxes.filter((v): v is number => v != null && v > 0)
@@ -368,6 +389,13 @@ export function aggregateDailyPrices<T extends { logged_at: string }>(
     }
     if (maxPrices.length > 0) {
       bucket.maxes.push(Math.round(maxPrices.reduce((a, b) => a + b, 0) / maxPrices.length / 100) * 100)
+    }
+
+    // 同じ日に複数行ある場合（容量違いなど）は合算する。
+    // 1件も記録がない日は 0 ではなく null のまま残し、「在庫ゼロ」と区別する
+    const recorded = (counts ?? []).filter((c): c is number => c != null)
+    if (recorded.length > 0) {
+      bucket.count = (bucket.count ?? 0) + recorded.reduce((a, b) => a + b, 0)
     }
   }
 
@@ -379,6 +407,7 @@ export function aggregateDailyPrices<T extends { logged_at: string }>(
     labels: recentDays,
     avgMin: recentDays.map(d => avg(dayMap.get(d)!.mins)),
     avgMax: recentDays.map(d => avg(dayMap.get(d)!.maxes)),
+    counts: recentDays.map(d => dayMap.get(d)!.count),
   }
 }
 
@@ -387,18 +416,33 @@ export function aggregateDailyPrices<T extends { logged_at: string }>(
  * shops: ショップ名とmin/maxの配列
  */
 export function calculatePriceRange(
-  shops: { name: string; min: number | null; max: number | null }[]
+  shops: { name: string; min: number | null; max: number | null }[],
+  /**
+   * その日に取得した全商品の価格（ショップごと）。渡すと分布から
+   * medianPrice / realisticMinPrice を算出できる。2026-07-30 より前は記録がない。
+   */
+  priceArrays?: (number[] | null | undefined)[]
 ): {
   minPrice: number | null
   maxPrice: number | null
+  /** 相場の中心（中央値）。「〜の相場は」と書く箇所はこちらを使う */
+  medianPrice: number | null
+  /**
+   * 現実的な最安値（下位10%点）。「〜から手に入る」と書く箇所はこちらを使う。
+   * 生の最安値は1点だけの特価であることが多く、その価格では実際に見つからない
+   */
+  realisticMinPrice: number | null
   shops: { name: string; min: number | null; max: number | null }[]
 } {
   const allMins = shops.map(s => s.min).filter((v): v is number => v != null)
   const allMaxes = shops.map(s => s.max).filter((v): v is number => v != null)
+  const stats = priceArrays ? calculatePriceStats(priceArrays) : null
 
   return {
     minPrice: allMins.length > 0 ? Math.min(...allMins) : null,
     maxPrice: allMaxes.length > 0 ? Math.max(...allMaxes) : null,
+    medianPrice: stats?.median ?? null,
+    realisticMinPrice: stats?.realisticMin ?? null,
     shops,
   }
 }

@@ -67,7 +67,9 @@ export default async function WatchSpecTablePage() {
       const mn = rec[minK]; if (typeof mn === 'number' && mn > 0) mins.push(mn)
       const mx = rec[maxK]; if (typeof mx === 'number' && mx > 0) maxs.push(mx)
     }
-    avgPrices[model.id] = calcAvgFromShops(mins, maxs, '')?.avg ?? null
+    // 詳細ページ・相場一覧と同じ中央値ベースにする（同じ機種で違う相場を出さない）
+    const rec2 = log as unknown as Record<string, number[] | null>
+    avgPrices[model.id] = calcAvgFromShops(mins, maxs, '', [rec2['iosys_prices'], rec2['geo_prices'], rec2['janpara_prices']])?.avg ?? null
   }
 
   // JSON-LD
@@ -75,7 +77,7 @@ export default async function WatchSpecTablePage() {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: '中古Apple製品を安く買う', item: 'https://used-lab.jp/' },
+      { '@type': 'ListItem', position: 1, name: '中古・型落ちデジタルデバイスを賢く買う', item: 'https://used-lab.jp/' },
       { '@type': 'ListItem', position: 2, name: '中古Apple Watchおすすめ機種・選び方ガイド', item: 'https://used-lab.jp/watch/' },
       { '@type': 'ListItem', position: 3, name: '歴代Apple Watchスペック比較表' },
     ],

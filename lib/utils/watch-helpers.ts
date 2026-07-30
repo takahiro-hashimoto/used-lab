@@ -52,6 +52,7 @@ export function aggregateDailyPrices(logs: WatchPriceLog[]) {
   return aggregateDailyPricesGeneric(logs, (log) => ({
     mins: [log.iosys_min, log.geo_min, log.janpara_min],
     maxes: [log.iosys_max, log.geo_max, log.janpara_max],
+    counts: [log.iosys_count, log.geo_count, log.janpara_count],
   }))
 }
 
@@ -68,15 +69,20 @@ export function filterLast3Months(logs: WatchPriceLog[]): WatchPriceLog[] {
 export function calculatePriceRange(log: WatchPriceLog | null): {
   minPrice: number | null
   maxPrice: number | null
+  /** 相場の中心（中央値）。「相場は〜」と書く箇所で使う */
+  medianPrice: number | null
+  /** 現実的な最安値（下位10%点）。「〜から手に入る」と書く箇所で使う */
+  realisticMinPrice: number | null
   shops: { name: string; min: number | null; max: number | null }[]
 } {
-  if (!log) return { minPrice: null, maxPrice: null, shops: [] }
+  if (!log) return { minPrice: null, maxPrice: null, medianPrice: null, realisticMinPrice: null, shops: [] }
   return calculatePriceRangeGeneric([
     { name: 'イオシス', min: log.iosys_min, max: log.iosys_max },
     { name: 'ゲオ', min: log.geo_min, max: log.geo_max },
     { name: 'じゃんぱら', min: log.janpara_min, max: log.janpara_max },
-  ])
+  ], [log.iosys_prices, log.geo_prices, log.janpara_prices])
 }
+
 
 // --- サポート期間一覧データ生成 ---
 

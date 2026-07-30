@@ -30,8 +30,10 @@ export default function LeadText({ model, latestPrice }: Props) {
           </p>
           <p>
             {releaseDateFormatted && `${releaseDateFormatted}発売の${model.model}は`}
-            {priceRange.minPrice && (
-              <>中古<strong>¥{priceRange.minPrice.toLocaleString()}〜</strong>で手に入り、</>
+            {(priceRange.realisticMinPrice ?? priceRange.minPrice) && (
+              // 「〜から手に入る」は下限の話。生の最安値だと1点限りの特価を指してしまうため、
+              // 実際に見つかる水準（下位10%点）を使う
+              <>中古<strong>¥{(priceRange.realisticMinPrice ?? priceRange.minPrice)!.toLocaleString()}〜</strong>で手に入り、</>
             )}
             {osLife.isSupported
               ? <>iPadOSサポートも<strong>{osLife.osEndYear}年頃</strong>まで続く見込みのため、コスパよく長く使える一台です。</>

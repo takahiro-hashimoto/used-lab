@@ -34,6 +34,7 @@ import IPadArticleFooter from '@/app/components/ipad/IPadArticleFooter'
 import AdminEditLink from '@/app/components/AdminEditLink'
 import StickyCtaOverride from '@/app/components/StickyCtaOverride'
 import { resolveLastUpdatedDate, buildStandardPriceChartData } from '@/lib/utils/shared-helpers'
+import { buildInventoryInsight } from '@/lib/utils/price-stats'
 
 const cachedGetModel = cache(getIPadModelBySlug)
 const cachedGetLatestPrice = cache(getLatestIPadPriceLogWithPrices)
@@ -60,7 +61,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const priceRange = calculatePriceRange(latestLog)
   const osLife = calculateOSLifespan(model.date, model.last_ipados)
 
-  const priceText = priceRange.minPrice ? `（¥${priceRange.minPrice.toLocaleString()}〜）` : ''
+  // 「相場」と書いている箇所は中央値。最安値は1点だけの特価であることが多く、
+  // 相場として提示すると実際には見つけられない価格になる
+  const priceText = priceRange.medianPrice
+    ? `（¥${priceRange.medianPrice.toLocaleString()}前後）`
+    : priceRange.minPrice ? `（¥${priceRange.minPrice.toLocaleString()}〜）` : ''
   const chipText = model.cpu ? `${model.cpu}搭載` : ''
   const osText = osLife.isSupported ? `iPadOSサポート見込み` : 'iPadOSサポート終了済み'
 
@@ -117,7 +122,9 @@ export default async function IPadDetailPage({ params }: PageProps) {
 
   // PriceChartSection用のデータをサーバーサイドで事前計算
   const dailyData = aggregateDailyPrices(priceLogs)
-  const { latestDate, latestMinMaxPairs, storageNote } = buildStandardPriceChartData(priceLogs)
+  const { latestDate, latestMinMaxPairs, storageNote, priceStats, totalCount } = buildStandardPriceChartData(priceLogs)
+  // 流通量から在庫の状況を組み立てる（件数の記録がない過去分では null）
+  const inventoryInsight = buildInventoryInsight(totalCount, model.date, new Date())
   const modelShopLinks = shopLinks.filter((l) => l.product_id === model.id)
   const iosysShop = shops.find((s) => s.id === 1)
 
@@ -148,6 +155,8 @@ export default async function IPadDetailPage({ params }: PageProps) {
             modelName={enrichedModel.model}
             category="ipad"
             latestMinMaxPairs={latestMinMaxPairs}
+            priceStats={priceStats}
+            inventoryInsight={inventoryInsight}
             latestDate={latestDate}
             storageNote={storageNote}
             priceListLink={{ href: '/ipad/ipad-price-info/', label: 'iPadの中古相場一覧・価格推移' }}

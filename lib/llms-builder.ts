@@ -6,6 +6,7 @@
 import { supabase } from './supabase'
 import { PRODUCT_CATEGORIES } from './routes'
 import { PAGE_DESCRIPTIONS, PAGE_DESCRIPTIONS_FULL } from './llms-descriptions'
+import { calculatePriceStats } from '@/lib/utils/price-stats'
 
 const BASE_URL = 'https://used-lab.jp'
 
@@ -44,6 +45,82 @@ async function getModelCounts(): Promise<Record<string, number>> {
 }
 
 /** routes.ts から取得した path を、見出し用タイトルに変換 */
+// ---------- カテゴリ → 価格ログテーブル ----------
+const PRICE_TABLE_MAP: Record<string, string> = {
+  iphone: 'iphone_price_logs',
+  ipad: 'ipad_price_logs',
+  macbook: 'macbook_price_logs',
+  watch: 'watch_price_logs',
+  airpods: 'airpods_price_logs',
+}
+
+export type LlmsPriceRow = { name: string; storage: string | null; min: number; max: number; median: number | null }
+
+/** 3桁区切り（¥記号は呼び出し側で付ける） */
+const yen = (n: number) => Math.round(n).toLocaleString('ja-JP')
+
+/**
+ * 各カテゴリの「機種ごと最新の価格レンジ」を取得する。
+ * 価格ログのスキーマはカテゴリ間で統一されていない（例: iPhone系は iosys_min/geo_min…、
+ * MacBook は min1_price…max5_price）ため、列名から動的に min/max 列を判定する。
+ */
+async function getLatestPricesByCategory(): Promise<
+  Record<string, { date: string | null; rows: LlmsPriceRow[] }>
+> {
+  const isPriceArrayCol = (k: string) => /_prices$/.test(k)
+  const isMinCol = (k: string) => /_min$/.test(k) || /^min\d+_price$/.test(k)
+  const isMaxCol = (k: string) => /_max$/.test(k) || /^max\d+_price$/.test(k)
+  const num = (v: unknown): number | null => {
+    if (v == null) return null
+    const n = Number(String(v).replace(/[^0-9.]/g, ''))
+    return Number.isFinite(n) && n > 0 ? n : null
+  }
+
+  const entries = Object.entries(PRICE_TABLE_MAP)
+  const results = await Promise.all(
+    entries.map(async ([category, table]) => {
+      // 直近ログを新しい順に取得し、機種ごとに最初（＝最新）の1件を採用
+      const { data, error } = await supabase
+        .from(table)
+        .select('*')
+        .order('logged_at', { ascending: false })
+        .limit(1500)
+      if (error || !data || data.length === 0) {
+        return [category, { date: null, rows: [] as LlmsPriceRow[] }] as const
+      }
+
+      const minCols = Object.keys(data[0]).filter(isMinCol)
+      const maxCols = Object.keys(data[0]).filter(isMaxCol)
+
+      const seen = new Set<string>()
+      const rows: LlmsPriceRow[] = []
+      let latestDate: string | null = null
+
+      for (const r of data as Record<string, unknown>[]) {
+        const name = String(r.model_name ?? '')
+        if (!name || seen.has(name)) continue
+        const mins = minCols.map((c) => num(r[c])).filter((v): v is number => v != null)
+        const maxes = maxCols.map((c) => num(r[c])).filter((v): v is number => v != null)
+        if (mins.length === 0) continue // 価格が取得できていない日の行はスキップ
+        // サイト上の相場は中央値。AIが引用する数値も揃える（2026-07-30 以降のみ算出可）
+        const arrayCols = Object.keys(r).filter(isPriceArrayCol)
+        const stats = calculatePriceStats(arrayCols.map((c) => r[c] as number[] | null))
+        seen.add(name)
+        if (!latestDate && typeof r.logged_at === 'string') latestDate = r.logged_at.substring(0, 10)
+        rows.push({
+          name,
+          storage: (r.storage as string | null) ?? null,
+          min: Math.min(...mins),
+          max: maxes.length > 0 ? Math.max(...maxes) : Math.min(...mins),
+          median: stats?.median ?? null,
+        })
+      }
+      return [category, { date: latestDate, rows }] as const
+    }),
+  )
+  return Object.fromEntries(results)
+}
+
 function resolveLinkTitle(path: string): string {
   for (const cat of PRODUCT_CATEGORIES) {
     const page = cat.pages.find((p) => p.path === path)
@@ -169,7 +246,7 @@ export async function buildLlmsFullTxt(): Promise<string> {
   lines.push('- サイト名: ユーズドラボ（Used Lab）')
   lines.push(`- URL: ${BASE_URL}`)
   lines.push('- 言語: 日本語')
-  lines.push('- 対象読者: 中古Apple製品の購入を検討している日本語ユーザー')
+  lines.push('- 対象読者: 中古・型落ちデジタルデバイスの購入を検討している日本語ユーザー')
   lines.push(`- 運営者情報: [運営者について](${BASE_URL}/profile/)`)
   lines.push(`- サイトマップ: [XML](${BASE_URL}/sitemap.xml) / [HTML](${BASE_URL}/sitemap-page/)`)
   lines.push('')
@@ -192,10 +269,36 @@ export async function buildLlmsFullTxt(): Promise<string> {
 
   lines.push('### 中古価格データ')
   lines.push('独自に収集した中古市場の価格データを提供しています:')
-  lines.push('- 月次更新の中古相場一覧')
+  lines.push('- 毎日更新の中古相場一覧（楽天APIで主要中古ショップの実売価格を日次収集）')
   lines.push('- ストレージ容量別・状態別の価格帯')
   lines.push('- 価格推移グラフ')
   lines.push('')
+
+  // ---- 実データ（機種別の中古価格レンジ）----
+  // AI/LLM が具体的な数値を引用できるよう、集計済みの一次データをそのまま記載する。
+  const prices = await getLatestPricesByCategory()
+  const priceCats = Object.entries(prices).filter(([, v]) => v.rows.length > 0)
+  if (priceCats.length > 0) {
+    lines.push('## 機種別の中古価格レンジ（当サイト独自集計）')
+    lines.push('')
+    lines.push(
+      'イオシス・ゲオ・じゃんぱらなど主要中古ショップの実売価格を毎日収集し、機種ごとの価格帯を集計したものです。' +
+        '「相場」は該当商品の販売価格の中央値で、サイト上の表示価格と同じ指標です。レンジの下限は1点限りの特価を含むため、相場の目安には中央値をご利用ください。' +
+        '金額は税込・送料別で、日々変動します。引用する際は「集計日」を併記してください。',
+    )
+    lines.push('')
+    for (const [category, { date, rows }] of priceCats) {
+      const label = CATEGORY_LABEL_MAP[category] ?? category
+      lines.push(`### ${label}${date ? `（${date} 時点）` : ''}`)
+      for (const r of rows) {
+        const range = r.min === r.max ? `¥${yen(r.min)}〜` : `¥${yen(r.min)}〜¥${yen(r.max)}`
+        // 中央値がサイト上の「相場価格」。レンジだけだと最安値が独り歩きするため併記する
+        const median = r.median != null ? `／相場 ¥${yen(r.median)}` : ''
+        lines.push(`- ${r.name}: ${range}${median}${r.storage ? `（${r.storage}）` : ''}`)
+      }
+      lines.push('')
+    }
+  }
 
   lines.push('### 購入ガイドコンテンツ')
   lines.push('- おすすめ機種・選び方ガイド: 初心者向けの総合的な選び方解説')

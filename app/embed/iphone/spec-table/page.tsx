@@ -22,7 +22,9 @@ export default async function IPhoneSpecTableEmbedPage() {
       const mn = rec[minK]; if (typeof mn === 'number' && mn > 0) mins.push(mn)
       const mx = rec[maxK]; if (typeof mx === 'number' && mx > 0) maxs.push(mx)
     }
-    avgPrices[model.id] = calcAvgFromShops(mins, maxs, '')?.avg ?? null
+    // 詳細ページ・相場一覧と同じ中央値ベースにする（同じ機種で違う相場を出さない）
+    const rec2 = log as unknown as Record<string, number[] | null>
+    avgPrices[model.id] = calcAvgFromShops(mins, maxs, '', [rec2['iosys_prices'], rec2['geo_prices'], rec2['janpara_prices']])?.avg ?? null
   }
 
   return (

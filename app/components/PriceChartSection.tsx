@@ -1,6 +1,8 @@
 import PriceChartLoader from '@/app/components/PriceChartLoader'
+import PriceHistogram from '@/app/components/PriceHistogram'
+import type { PriceStats, InventoryInsight } from '@/lib/utils/price-stats'
 import {
-  priceSourceNote,
+  priceSourceNoteParagraphs,
   priceLogicChangeNote,
   isBeforeLogicChange,
   crossesLogicChange,
@@ -12,6 +14,8 @@ type DailyDataType = {
   labels: string[]
   avgMin: (number | null)[]
   avgMax: (number | null)[]
+  /** その日の流通量（全ショップ合計）。2026-07-30 より前は記録がないため null */
+  counts?: (number | null)[]
 }
 
 type Props = {
@@ -27,10 +31,13 @@ type Props = {
   /** 中古相場一覧ページへのリンク */
   priceListLink?: { href: string; label: string }
   /**
-   * セクション末尾に差し込む追加ブロック（「同じ予算で狙える他のモデル」など）。
-   * 価格の文脈が続く内容を h3 として本セクション内に置くために使う。
+   * 最新ログの価格分布。渡された場合は中央値ベースで相場を表示する。
+   * 2026-07-30 より前のログしかない機種では null になるため、その場合は
+   * 従来どおり最安値〜最高値で表示する。
    */
-  children?: React.ReactNode
+  priceStats?: PriceStats | null
+  /** 流通量から組み立てた在庫の状況。null なら表示しない */
+  inventoryInsight?: InventoryInsight | null
 }
 
 function formatPrice(price: number | null): string {
@@ -146,10 +153,14 @@ type DailyRow = {
   avg: number | null
   change: number | null
   changeDirection: 'up' | 'down' | 'stable'
+  /** その日の流通量。記録がない日は null */
+  count: number | null
+  /** 前日からの在庫の増減。どちらかの日に記録がなければ null */
+  countChange: number | null
 }
 
 function calculateDailyTableData(dailyData: DailyDataType): DailyRow[] {
-  const { labels, avgMin, avgMax } = dailyData
+  const { labels, avgMin, avgMax, counts } = dailyData
   const rows: DailyRow[] = []
   for (let i = labels.length - 1; i >= Math.max(0, labels.length - 30); i--) {
     const min = avgMin[i]
@@ -163,10 +174,16 @@ function calculateDailyTableData(dailyData: DailyDataType): DailyRow[] {
     const crossesChange = i > 0 && crossesLogicChange(labels[i - 1], labels[i])
     const change = (dayAvg != null && prevAvg != null && !crossesChange) ? dayAvg - prevAvg : null
     const changeDirection: 'up' | 'down' | 'stable' = change != null ? (change > 0 ? 'up' : change < 0 ? 'down' : 'stable') : 'stable'
+    // 在庫数は集計基準の変更と無関係（除外ロジックの影響は受けるが段差にはならない）ため、
+    // 価格の増減と違ってまたぐ日でも差分を出してよい
+    const count = counts?.[i] ?? null
+    const prevCount = i > 0 ? counts?.[i - 1] ?? null : null
+    const countChange = count != null && prevCount != null ? count - prevCount : null
+
     rows.push({
       dateStr: labels[i].replace(/-/g, '/'),
       dateTime: labels[i],
-      min, max, avg: dayAvg, change, changeDirection,
+      min, max, avg: dayAvg, change, changeDirection, count, countChange,
     })
   }
   return rows
@@ -218,6 +235,7 @@ function buildTrendReport(
   trendChanges: TrendChange[],
   monthlySummary: MonthlySummary[],
   position: ReturnType<typeof calculatePricePosition>,
+  stats: PriceStats | null | undefined,
 ): string[] {
   if (range.min == null) return []
   const yen = (n: number) => `¥${Math.round(n).toLocaleString()}`
@@ -227,10 +245,14 @@ function buildTrendReport(
   const short = find(7)
   const lines: string[] = []
 
-  // 1文目: 現在の相場水準
-  lines.push(
-    `直近の集計では、中古${modelName}の相場は${yen(range.min)}〜${yen(range.max!)}で推移しています。`,
-  )
+  // 分布が取れている機種では、件数・中央値・価格帯は相場ヘッダーに出ているため
+  // ここでは繰り返さず、値動きの話だけをする。
+  // 「今どの価格帯に何件あるか」は時系列ではないので価格分布ブロック側へ回す
+  if (!stats) {
+    lines.push(
+      `直近の集計では、中古${modelName}の相場は${yen(range.min)}〜${yen(range.max!)}で推移しています。`,
+    )
+  }
 
   // 2文目: 中期（30日 or 90日）の方向感。値動きの大きさで表現を変える
   const mid = d30 ?? d90
@@ -296,15 +318,34 @@ function buildTrendReport(
   return lines
 }
 
+/**
+ * 価格分布から読み取れることを1文にする。
+ * 棒グラフを見れば「どこが厚いか」は分かるが、それが全体の何割かまでは読み取れないため、
+ * 比率を添えて狙い目の価格帯として提示する。
+ */
+function buildSnapshotReport(stats: PriceStats | null | undefined): string[] {
+  if (!stats?.densestBand) return []
+  const yen = (n: number) => `¥${Math.round(n).toLocaleString()}`
+  const { from, to, count } = stats.densestBand
+  const share = Math.round((count / stats.count) * 100)
+  return [
+    `価格帯としては${yen(from)}〜${yen(to)}がもっとも厚く、全体の約${share}%がこの範囲に集まっています。`,
+  ]
+}
+
 export default function PriceChartSection({
-  dailyData, modelName, category, latestMinMaxPairs, storageNote, priceListLink, children,
+  dailyData, modelName, category, latestMinMaxPairs, storageNote, priceListLink,
+  priceStats, inventoryInsight,
 }: Props) {
   const range = calculateAvgPriceRange(latestMinMaxPairs)
   const trendChanges = calculateTrendChanges(dailyData)
   const monthlySummary = calculateMonthlySummary(dailyData)
   const dailyRows = calculateDailyTableData(dailyData)
+  const hasCounts = dailyRows.some((r) => r.count != null)
   const pricePosition = calculatePricePosition(dailyData)
-  const trendReport = buildTrendReport(modelName, range, trendChanges, monthlySummary, pricePosition)
+  const trendReport = buildTrendReport(modelName, range, trendChanges, monthlySummary, pricePosition, priceStats)
+  // ヒストグラムから読み取れる内容の言語化。時系列の話とは分けて価格分布ブロックに置く
+  const snapshotReport = buildSnapshotReport(priceStats)
   // 集計基準の変更日をまたぐ期間を表示しているときだけ、グラフの段差を説明する
   const logicChangeNote = priceLogicChangeNote(dailyData.labels)
 
@@ -324,18 +365,34 @@ export default function PriceChartSection({
         )}
 
         <div className="m-card m-card--shadow">
-          {range.min != null && (
+          {(priceStats != null || range.min != null) && (
             <div className="price-summary">
               <div>
-                <p className="price-current-label">現在の相場（税込）</p>
-                <p className="price-current-value m-price-display m-price-display--lg">
-                  &yen;{range.min?.toLocaleString()} 〜 &yen;{range.max?.toLocaleString()}
-                </p>
+                {/* ラベルと価格は1行にまとめる。縦積みにすると価格までの視線移動が長くなるため */}
+                <div className="price-current-head">
+                  <p className="price-current-label">現在の相場（税込）</p>
+                  {priceStats ? (
+                    // 最安値ではなく中央値を主役に置く。最安値は1点だけの外れ値であることが多く、
+                    // その価格で買える商品が実際には見つからないため
+                    <p className="price-current-value m-price-display m-price-display--lg">
+                      &yen;{priceStats.median.toLocaleString()}
+                    </p>
+                  ) : (
+                    <p className="price-current-value m-price-display m-price-display--lg">
+                      &yen;{range.min?.toLocaleString()} 〜 &yen;{range.max?.toLocaleString()}
+                    </p>
+                  )}
+                </div>
                 <p className="price-current-note">
                   集計対象：{modelName}{storageNote ? ` ${storageNote}` : ''}
+                  {priceStats && (
+                    <>／ 販売中の{priceStats.count}件から算出（最安 &yen;{priceStats.min.toLocaleString()}）</>
+                  )}
                 </p>
               </div>
-              {trendChanges.length > 0 && (
+              {/* 3つとも「-」なら箱だけが並んで意味をなさないので出さない
+                  （集計基準の変更をまたぐ間は増減を抑制しているため起こりうる） */}
+              {trendChanges.some(tc => tc.change != null) && (
                 <dl className="price-trends">
                   {trendChanges.map(tc => (
                     <div key={tc.days} className="price-trend-item">
@@ -372,107 +429,168 @@ export default function PriceChartSection({
             </figcaption>
           </figure>
 
+          {/* 値動きの解説。カコミにせず本文として読ませる
+              （グラフのすぐ下に囲みが連続すると視覚的に重くなるため） */}
           {trendReport.length > 0 && (
-            <div className="m-callout m-callout--tip" style={{ margin: 'var(--space-xl) var(--space-lg) var(--space-lg)' }}>
-              <span className="m-callout__label">
-                <i className="fa-solid fa-chart-line" aria-hidden="true"></i> 中古相場の分析
-              </span>
+            <div className="price-report">
               {trendReport.map((line, i) => (
-                <p key={i} className="m-callout__text" style={{ margin: i === 0 ? 0 : 'var(--space-xs) 0 0' }}>
-                  {line}
-                </p>
+                <p key={i} className="price-report__text">{line}</p>
               ))}
             </div>
           )}
 
-          {logicChangeNote && (
-            <div
-              className="m-callout m-callout--muted"
-              style={{
-                margin: trendReport.length > 0
-                  ? 'var(--space-md) var(--space-lg) var(--space-lg)'
-                  : 'var(--space-xl) var(--space-lg) var(--space-lg)',
-              }}
-            >
-              <span className="m-callout__label">
-                <i className="fa-solid fa-circle-exclamation" aria-hidden="true"></i> 集計基準の変更について
-              </span>
-              <p className="m-callout__text">{logicChangeNote}</p>
-            </div>
-          )}
-        </div>
+          {/* 月別・日別の生データは、読者が常に見たいものではない一方、
+              相場の裏付けとして検索エンジン・AIクローラーには読ませたい。
+              <details> なら閉じていてもHTMLに残るため、両立できる（JSでの遅延描画は不可） */}
+          <details className="price-details-inline">
+            <summary className="price-details-summary">
+              {modelName}の価格推移 詳細（月別・日別データ）
+            </summary>
 
-        <div className="m-card m-card--shadow price-details-card">
-          <p className="price-details-card-heading">{modelName}の価格推移 詳細</p>
+            {monthlySummary.length > 0 && (
+              <>
+                <p className="price-details-heading">月別平均価格</p>
+                <div className="l-grid l-grid--3col l-grid--gap-lg l-grid--mb-2xl">
+                  {monthlySummary.map(ms => (
+                    <div key={ms.dateTime} className="m-card m-card--sm m-stat-card monthly-card">
+                      <p className="m-stat-card__label"><time dateTime={ms.dateTime}>{ms.month}</time></p>
+                      <p className="m-stat-card__value">{formatPrice(ms.avgPrice)}</p>
+                      <p className="m-stat-card__note">
+                        {formatPrice(ms.minPrice)} 〜 {formatPrice(ms.maxPrice)}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </>
+            )}
 
-          {monthlySummary.length > 0 && (
-            <>
-              <p className="price-details-heading">月別平均価格</p>
-              <div className="l-grid l-grid--3col l-grid--gap-lg l-grid--mb-2xl">
-                {monthlySummary.map(ms => (
-                  <div key={ms.dateTime} className="m-card m-card--sm m-stat-card monthly-card">
-                    <p className="m-stat-card__label"><time dateTime={ms.dateTime}>{ms.month}</time></p>
-                    <p className="m-stat-card__value">{formatPrice(ms.avgPrice)}</p>
-                    <p className="m-stat-card__note">
-                      {formatPrice(ms.minPrice)} 〜 {formatPrice(ms.maxPrice)}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </>
-          )}
-
-          {dailyRows.length > 0 && (
-            <>
-              <p className="price-details-heading">日別価格データ</p>
-              <div className="price-table-wrap">
-                <table className="m-table">
-                  <caption className="visually-hidden">{modelName}の日別中古価格データ</caption>
-                  <thead>
-                    <tr>
-                      <th scope="col">日付</th>
-                      <th scope="col">最安値</th>
-                      <th scope="col">最高値</th>
-                      <th scope="col">平均相場</th>
-                      <th scope="col">前日比</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {dailyRows.map(row => (
-                      <tr key={row.dateTime}>
-                        <td><time dateTime={row.dateTime}>{row.dateStr}</time></td>
-                        <td>{formatPrice(row.min)}</td>
-                        <td>{formatPrice(row.max)}</td>
-                        <td>{formatPrice(row.avg)}</td>
-                        <td className={
-                          row.change != null && row.change > 0 ? 'm-table-up'
-                          : row.change != null && row.change < 0 ? 'm-table-down'
-                          : 'm-table-flat'
-                        }>
-                          {row.change == null ? (
-                            <>-</>
-                          ) : row.change !== 0 ? (
-                            <>{row.change > 0 ? '+' : ''}&yen;{row.change.toLocaleString()}</>
-                          ) : (
-                            <>±0</>
-                          )}
-                        </td>
+            {dailyRows.length > 0 && (
+              <>
+                <p className="price-details-heading">日別価格データ</p>
+                <div className="price-table-wrap">
+                  <table className="m-table">
+                    <caption className="visually-hidden">{modelName}の日別中古価格データ</caption>
+                    <thead>
+                      <tr>
+                        <th scope="col">日付</th>
+                        <th scope="col">最安値</th>
+                        <th scope="col">最高値</th>
+                        <th scope="col">平均相場</th>
+                        <th scope="col">前日比</th>
+                        {/* 記録が1日もない期間は列ごと出さない（"-"だけの列は情報がない） */}
+                        {hasCounts && <th scope="col">在庫数</th>}
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </>
-          )}
+                    </thead>
+                    <tbody>
+                      {dailyRows.map(row => (
+                        <tr key={row.dateTime}>
+                          <td><time dateTime={row.dateTime}>{row.dateStr}</time></td>
+                          <td>{formatPrice(row.min)}</td>
+                          <td>{formatPrice(row.max)}</td>
+                          <td>{formatPrice(row.avg)}</td>
+                          <td className={
+                            row.change != null && row.change > 0 ? 'm-table-up'
+                            : row.change != null && row.change < 0 ? 'm-table-down'
+                            : 'm-table-flat'
+                          }>
+                            {row.change == null ? (
+                              <>-</>
+                            ) : row.change !== 0 ? (
+                              <>{row.change > 0 ? '+' : ''}&yen;{row.change.toLocaleString()}</>
+                            ) : (
+                              <>±0</>
+                            )}
+                          </td>
+                          {hasCounts && (
+                            <td>
+                              {row.count == null ? (
+                                <>-</>
+                              ) : (
+                                <>
+                                  {row.count}件
+                                  {row.countChange != null && row.countChange !== 0 && (
+                                    <span className={row.countChange > 0 ? 'm-table-up' : 'm-table-down'}>
+                                      {' '}({row.countChange > 0 ? '+' : ''}{row.countChange})
+                                    </span>
+                                  )}
+                                </>
+                              )}
+                            </td>
+                          )}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </>
+            )}
+          </details>
+
         </div>
 
-        {children}
+        {/* ここまでが時系列（相場の推移とその詳細）。
+            以降は「今この瞬間」のスナップショットなので、カードを分けて性質の違いを示す */}
+        {(priceStats?.histogram || inventoryInsight) && (
+          <div className="m-card m-card--shadow price-snapshot-card">
+            {/* 価格推移(h2)の下位トピックなので h3。見出し階層を飛ばさない */}
+            <h3 className="price-details-card-heading">
+              中古{modelName}の在庫と価格分布
+            </h3>
 
+            {priceStats?.histogram && (
+              <PriceHistogram
+                histogram={priceStats.histogram}
+                modelName={modelName}
+                total={priceStats.count}
+                // 日別テーブルと日付表記がズレないよう、グラフと同じラベルから取る
+                date={dailyData.labels[dailyData.labels.length - 1] ?? null}
+              />
+            )}
+
+            {(snapshotReport.length > 0 || inventoryInsight) && (
+              <div className="price-report">
+                {snapshotReport.map((line, i) => (
+                  <p key={i} className="price-report__text">{line}</p>
+                ))}
+                {inventoryInsight && (
+                  <p className="price-report__text">{inventoryInsight.text}</p>
+                )}
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* 注記はセクション末尾に1つにまとめる。
+            カコミが並ぶと重く見えるうえ、どちらも「相場の読み方」の話で切り分ける理由がない */}
         <div className="m-callout m-callout--muted u-mt-2xl">
           <span className="m-callout__label"><i className="fa-solid fa-circle-info" aria-hidden="true"></i> 中古相場の算出方法について</span>
-          <p className="m-callout__text">
-            {priceSourceNote(category)}
-          </p>
+          {/* 分布から算出できた機種だけ、中央値ベースである旨の説明に切り替える。
+              長文にすると読み飛ばされるため、段落と箇条書きに分けて描画する */}
+          {priceSourceNoteParagraphs(category, priceStats ? 'median' : 'minmax').map((block, i) =>
+            block.type === 'ul' ? (
+              <ul key={i} className="m-callout__list">
+                {block.items.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            ) : (
+              <p
+                key={i}
+                className="m-callout__text"
+                style={{ margin: i === 0 ? 0 : 'var(--space-sm) 0 0' }}
+              >
+                {block.text}
+              </p>
+            )
+          )}
+
+          {/* 集計基準の変更は期間限定の注記。恒常的な説明とは区切り線で分ける */}
+          {logicChangeNote && (
+            <>
+              <hr className="m-callout__divider" />
+              <p className="m-callout__text" style={{ margin: 0 }}>{logicChangeNote}</p>
+            </>
+          )}
         </div>
       </div>
     </section>

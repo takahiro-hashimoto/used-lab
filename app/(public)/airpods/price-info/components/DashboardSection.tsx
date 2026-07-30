@@ -5,7 +5,7 @@ import { Chart as ChartClass, CategoryScale, LinearScale, PointElement, LineElem
 import type { TooltipItem } from 'chart.js'
 import type { ModelData } from '../page'
 import ChartEmbedButton from '@/app/components/ChartEmbedButton'
-import { priceSourceNote } from '@/lib/data/price-source-note'
+import { priceLogicChangeNote } from '@/lib/data/price-source-note'
 
 ChartClass.register(CategoryScale, LinearScale, PointElement, LineElement, LineController, Tooltip)
 
@@ -29,6 +29,13 @@ export default function DashboardSection({ modelsData, initialSelected }: Props)
   const chartInstanceRef = useRef<unknown>(null)
 
   const modelsMap = useMemo(() => new Map(modelsData.map((m) => [m.id, m])), [modelsData])
+
+  // 集計基準を変えた日をまたぐ期間を描画している間だけ、グラフの段差を説明する。
+  // またがなくなれば自動的に消える
+  const logicChangeNote = useMemo(() => {
+    const dates = modelsData.flatMap((m) => m.prices.map((p) => p.date)).sort()
+    return dates.length > 0 ? priceLogicChangeNote([dates[0], dates[dates.length - 1]]) : null
+  }, [modelsData])
 
   const toggleModel = (id: number) => {
     setSelectedModels((prev) => {
@@ -212,25 +219,20 @@ export default function DashboardSection({ modelsData, initialSelected }: Props)
           </div>
         </div>
 
-        <div className="m-callout m-callout--muted u-mt-2xl">
-          <span className="m-callout__label"><i className="fa-solid fa-circle-info" aria-hidden="true"></i> 中古相場の算出方法について</span>
-          <p className="m-callout__text">
-            {priceSourceNote('airpods')}
-          </p>
-        </div>
-
-        <div className="m-callout m-callout--tip u-mt-xl">
-          <span className="m-callout__label">編集部メモ</span>
-          <p className="m-callout__text">
-            Appleは2026年6月25日より一部製品を値上げしましたが、現時点では中古相場への影響はほとんど見られません。ただし今後全体的に価格が上昇する可能性があるため、購入を検討している方はご注意ください。
-          </p>
-        </div>
-
         <ChartEmbedButton
           category="airpods"
           slugs={selectedModelData.map((m) => m.slug)}
           days={timeRange}
         />
+
+        {logicChangeNote && (
+          <div className="m-callout m-callout--muted u-mt-2xl">
+            <span className="m-callout__label">
+              <i className="fa-solid fa-circle-exclamation" aria-hidden="true"></i> 集計基準の変更について
+            </span>
+            <p className="m-callout__text">{logicChangeNote}</p>
+          </div>
+        )}
       </div>
     </section>
   )
