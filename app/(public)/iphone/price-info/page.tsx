@@ -10,7 +10,7 @@ import {
 import type { IPhoneModel, IPhonePriceLog } from '@/lib/types'
 import { calculateOSLifespan } from '@/lib/utils/iphone-helpers'
 import { calcAvgFromShops, calcPriceStats, buildPageDates, buildDailyPrices, buildRankingData, buildPriceDropRanking, buildInitialSelected, type PriceEntry } from '@/lib/utils/price-info-helpers'
-import { calculatePriceStats, buildInventoryInsight, buildSnapshotReport, type PriceHistogram } from '@/lib/utils/price-stats'
+import { priceStatsOf, buildInventoryInsight, buildSnapshotReport, type PriceHistogram } from '@/lib/utils/price-stats'
 import { buildPriceInfoTitle, buildPriceInfoMetadata, PRICE_INFO_UPDATE_MONTH } from '@/lib/utils/price-info-meta'
 import { buildBreadcrumbJsonLd, buildWebApplicationJsonLd, buildDatasetJsonLd, buildFaqJsonLd } from '@/lib/utils/price-info-jsonld'
 import { CHART_COLORS, FAQ_ITEMS } from '@/lib/data/iphone-price-info'
@@ -203,7 +203,7 @@ export default async function IPhonePriceInfoPage() {
     // 文章もここで確定させ、クライアント側の計算に頼らない（SSRで読ませる）
     const latestLog = logs.length > 0 ? logs[logs.length - 1] : null
     const distStats = latestLog
-      ? calculatePriceStats([latestLog.iosys_prices, latestLog.geo_prices, latestLog.janpara_prices])
+      ? priceStatsOf(latestLog)
       : null
     const distribution: PriceDistribution | null =
       distStats?.histogram && latestLog

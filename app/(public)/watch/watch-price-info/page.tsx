@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { calculatePriceStats, buildInventoryInsight, buildSnapshotReport, type PriceHistogram } from '@/lib/utils/price-stats'
+import { priceStatsOf, buildInventoryInsight, buildSnapshotReport, type PriceHistogram } from '@/lib/utils/price-stats'
 import Link from 'next/link'
 import { cache } from 'react'
 import Image from 'next/image'
@@ -178,7 +178,7 @@ export default async function WatchPriceInfoPage() {
     // 「今この瞬間」の価格分布。最新ログの価格配列から作る。
     // 文章もここで確定させ、クライアント側の計算に頼らない（SSRで読ませる）
     const latestLog = logs.length > 0 ? logs[logs.length - 1] : null
-    const distStats = latestLog ? calculatePriceStats([latestLog.iosys_prices, latestLog.geo_prices, latestLog.janpara_prices]) : null
+    const distStats = latestLog ? priceStatsOf(latestLog) : null
     const distribution: PriceDistribution | null =
       distStats?.histogram && latestLog
         ? {

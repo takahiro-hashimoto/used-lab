@@ -9,7 +9,7 @@ import {
   aggregateDailyPrices as aggregateDailyPricesGeneric,
   calculatePriceRange as calculatePriceRangeGeneric,
 } from './shared-helpers'
-import { calculatePriceStats } from '@/lib/utils/price-stats'
+import { priceStatsOf } from '@/lib/utils/price-stats'
 
 // Re-export shared functions that have the same signature
 export { formatReleaseDate, formatPrice } from './shared-helpers'
@@ -194,11 +194,7 @@ export function getVerdict(
   const latestNewPrice = isUltraLine ? LATEST_ULTRA_PRICE : LATEST_WATCH_PRICE
   const latestAnnual = Math.round(latestNewPrice / 5)
 
-  const marketStats = calculatePriceStats([
-    latestPrice?.iosys_prices,
-    latestPrice?.geo_prices,
-    latestPrice?.janpara_prices,
-  ])
+  const marketStats = priceStatsOf(latestPrice)
   const costBasis = marketStats?.median ?? priceMin
   const annualCost = costBasis && costBasis > 0 && !model.last_watchos
     ? Math.round(costBasis / remainingYears)

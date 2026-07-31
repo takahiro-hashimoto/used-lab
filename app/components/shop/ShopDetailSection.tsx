@@ -2,6 +2,9 @@ import Image from 'next/image'
 import type { Shop } from '@/lib/types'
 import RatingMark from '@/app/components/RatingMark'
 
+/** DBの「該当なし」プレースホルダー。href に入れると相対URLとして404を生む */
+const isPlaceholderUrl = (url: string | null | undefined) => !url || url === '-' || url === '–'
+
 const ensureAbsoluteUrl = (url: string) =>
   url.startsWith('http') || url === '#' ? url : url.startsWith('//') ? `https:${url}` : `https://${url}`
 
@@ -141,7 +144,7 @@ export default function ShopDetailSection({ productName, items, specRows, getCta
               ) : (
                 <div className="recommend-card__shop-btns recommend-card__shop-btns--single">
                   <a
-                    href={ensureAbsoluteUrl(getCtaUrl?.(shop) || shop.url || '#')}
+                    href={ensureAbsoluteUrl([getCtaUrl?.(shop), shop.url].find((u) => !isPlaceholderUrl(u)) ?? '#')}
                     className="m-btn m-btn--primary"
                     rel="nofollow noopener noreferrer"
                     target="_blank"

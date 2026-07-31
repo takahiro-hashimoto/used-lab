@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { calculatePriceStats } from '@/lib/utils/price-stats'
+import { roundedMarketPrice } from '@/lib/utils/price-stats'
 import Link from 'next/link'
 import Image from 'next/image'
 import Breadcrumb from '@/app/components/Breadcrumb'
@@ -65,13 +65,8 @@ const FAQ_ITEMS = [
 ]
 
 /** PriceLogから最安値を取得 */
-function calcMinPrice(log: MacBookPriceLog): number | null {
-  // 実勢相場（中央値）。min1_price は最安1点なので他ページとずれる
-  const median = calculatePriceStats([log.matched_prices])?.median
-  if (median != null) return Math.round(median / 100) * 100
-  if (log.min1_price && log.min1_price > 0) return log.min1_price
-  return null
-}
+/** 一覧表に出す相場。旧ログのみ最安値にフォールバックする */
+const calcMinPrice = (log: MacBookPriceLog) => roundedMarketPrice(log, [log.min1_price])
 
 export default async function StorageGuidePage() {
   const [allModels, allShopLinks] = await Promise.all([

@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { calculatePriceStats } from '@/lib/utils/price-stats'
+import { roundedMarketPrice } from '@/lib/utils/price-stats'
 import Link from 'next/link'
 import Image from 'next/image'
 import Breadcrumb from '@/app/components/Breadcrumb'
@@ -64,23 +64,9 @@ const FAQ_ITEMS = [
   },
 ]
 
-/**
- * 一覧に出す実勢相場（販売中商品の中央値）。
- *
- * 以前は3ショップの最安値の平均で、サイトの他ページ（中央値）とずれていた。
- * 価格配列の記録がない過去ログだけ従来計算にフォールバックする。
- */
-function calcAvgMinPrice(log: IPadPriceLog): number | null {
-  const median = calculatePriceStats([log.iosys_prices, log.geo_prices, log.janpara_prices])?.median
-  if (median != null) return Math.round(median / 100) * 100
 
-  const prices: number[] = []
-  if (log.iosys_min && log.iosys_min > 0) prices.push(log.iosys_min)
-  if (log.geo_min && log.geo_min > 0) prices.push(log.geo_min)
-  if (log.janpara_min && log.janpara_min > 0) prices.push(log.janpara_min)
-  if (prices.length === 0) return null
-  return Math.round(prices.reduce((a, b) => a + b, 0) / prices.length / 100) * 100
-}
+/** 一覧表に出す相場。旧ログのみ3ショップ最安の平均にフォールバックする */
+const storagePrice = (log: IPadPriceLog) => roundedMarketPrice(log, [log.iosys_min, log.geo_min, log.janpara_min])
 
 export default async function StorageGuidePage() {
   const [allModels, allShopLinks] = await Promise.all([
@@ -105,7 +91,7 @@ export default async function StorageGuidePage() {
     let avgMin: number | null = null
 
     if (latestLog?.storage) {
-      avgMin = calcAvgMinPrice(latestLog)
+      avgMin = storagePrice(latestLog)
       const num = parseInt(latestLog.storage, 10)
       storageLabel = isNaN(num) ? latestLog.storage : num >= 1000 ? `${num / 1000}TB` : `${num}GB`
     }

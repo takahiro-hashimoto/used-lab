@@ -6,7 +6,7 @@
 import type { Shop, ProductShopLink, FallbackShop, BasePriceLog } from '@/lib/types'
 import { PAGE_DATES } from '@/lib/data/page-dates'
 import { getHeroImage } from '@/lib/data/hero-images'
-import { calculatePriceStats, type PriceStats } from '@/lib/utils/price-stats'
+import { calculatePriceStats, marketMedian, type PriceStats } from '@/lib/utils/price-stats'
 
 const SITE_LAUNCH_DATE = '2024-08-01'
 const JAPAN_LOCALE = 'ja-JP'
@@ -186,18 +186,14 @@ export function getSymbol(value: string | null): string {
  * 価格配列の記録がない過去ログだけ、従来どおり最安値にフォールバックする。
  */
 export function getMarketPrice(price: BasePriceLog | null): string {
-  if (!price) return '-'
-  const arrays = Object.entries(price as unknown as Record<string, unknown>)
-    .filter(([k, v]) => k.endsWith('_prices') && Array.isArray(v))
-    .map(([, v]) => v as number[])
-  const stats = calculatePriceStats(arrays)
-  if (stats) return formatPrice(stats.median)
+  const median = marketMedian(price)
+  if (median != null) return formatPrice(median)
 
-  const mins = [price.iosys_min, price.geo_min, price.janpara_min].filter(
+  // 価格配列の記録がない過去ログ向けのフォールバック
+  const mins = [price?.iosys_min, price?.geo_min, price?.janpara_min].filter(
     (v): v is number => v != null && v > 0
   )
-  if (mins.length === 0) return '-'
-  return formatPrice(Math.min(...mins))
+  return mins.length > 0 ? formatPrice(Math.min(...mins)) : '-'
 }
 
 /** Supabase クエリの since パラメータ用に「90日前」の YYYY-MM-DD 文字列を返す */

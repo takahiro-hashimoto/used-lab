@@ -49,7 +49,10 @@ export default function ShopComparisonTable({ shops, specRows, caption, getShopU
               <tr>
                 <th scope="row">リンク</th>
                 {visibleShops.map((s) => {
-                  const url = getShopUrl(s)
+                  // DBは「該当なし」を "-" で表す列が多い。そのまま href に入れると
+                  // 相対URLとして解決され /xxx/- という404リンクになる
+                  const raw = getShopUrl(s)
+                  const url = raw && raw !== '-' && raw !== '–' ? raw : null
                   return (
                     <td key={s.id}>
                       {url ? (

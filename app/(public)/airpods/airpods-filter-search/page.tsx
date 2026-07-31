@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { filterSearchNoteParagraphs } from '@/lib/data/filter-search-note'
-import { calculatePriceStats } from '@/lib/utils/price-stats'
+import { priceStatsOf } from '@/lib/utils/price-stats'
 import Link from 'next/link'
 import Image from 'next/image'
 import { getAllAirPodsModels, getAllProductShopLinksByType, getLatestAirPodsPriceLogsWithPricesForModels } from '@/lib/queries'
@@ -92,7 +92,7 @@ export default async function AirPodsFilterSearchPage() {
       adaptive_audio: m.adaptive_audio,
       // Price data (AirPods uses iosys, janpara, eearphone)
       // 予算フィルタと表示に使う実勢相場（中央値）。価格配列はクライアントに送らず畳む
-      marketPrice: calculatePriceStats([price?.iosys_prices, price?.janpara_prices, price?.eearphone_prices])?.median ?? null,
+      marketPrice: priceStatsOf(price)?.median ?? null,
       iosysMin: price?.iosys_min ?? null,
       janparaMin: price?.janpara_min ?? null,
       eearphoneMin: price?.eearphone_min ?? null,

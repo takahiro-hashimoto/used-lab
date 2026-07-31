@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { filterSearchNoteParagraphs } from '@/lib/data/filter-search-note'
-import { calculatePriceStats } from '@/lib/utils/price-stats'
+import { priceStatsOf } from '@/lib/utils/price-stats'
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import { getAllIPhoneModels, getAllProductShopLinksByType, getLatestIPhonePriceLogsWithPricesForModels } from '@/lib/queries'
@@ -86,7 +86,7 @@ export default async function IPhoneFilterSearchPage() {
       last_ios: m.last_ios,
       // 予算フィルタと表示に使う実勢相場（中央値）。価格配列は数百件になるので
       // クライアントには送らず、ここで1つの数値に畳んでから渡す
-      marketPrice: calculatePriceStats([price?.iosys_prices, price?.geo_prices, price?.janpara_prices])?.median ?? null,
+      marketPrice: priceStatsOf(price)?.median ?? null,
       iosysMin: price?.iosys_min ?? null,
       geoMin: price?.geo_min ?? null,
       janparaMin: price?.janpara_min ?? null,

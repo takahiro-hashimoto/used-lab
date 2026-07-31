@@ -55,7 +55,7 @@ export function calculatePriceRange(log: MacBookPriceLog | null): {
     .filter((v): v is number => v != null && v > 0)
   const maxPrices = [log.max1_price, log.max2_price, log.max3_price, log.max4_price, log.max5_price]
     .filter((v): v is number => v != null && v > 0)
-  const stats = calculatePriceStats([log.matched_prices])
+  const stats = priceStatsOf(log)
   return {
     minPrice: minPrices.length > 0 ? Math.min(...minPrices) : null,
     maxPrice: maxPrices.length > 0 ? Math.max(...maxPrices) : null,
@@ -70,7 +70,7 @@ export function calculatePriceRange(log: MacBookPriceLog | null): {
 // --- サポート期間一覧データ生成 ---
 
 import type { LifespanEntryWithModels } from '@/app/components/support/LifespanTable'
-import { calculatePriceStats } from '@/lib/utils/price-stats'
+import { priceStatsOf } from '@/lib/utils/price-stats'
 
 /** モデル名からプロダクトライン（Pro / Air）を抽出 */
 function getProductLine(modelName: string): string {
@@ -212,9 +212,7 @@ export function getVerdict(
   // 実勢相場（中央値）で計算する。最安値は1点だけの特価であることが多く、
   // その価格を前提にした年単価は読者が実際に払う金額より安く見えてしまう。
   // 分布の記録がないログ（2026-07-30以前）では従来どおり最安値にフォールバック
-  const marketStats = calculatePriceStats([
-    latestPrice?.matched_prices,
-  ])
+  const marketStats = priceStatsOf(latestPrice)
   const costBasis = marketStats?.median ?? priceMin
   const annualCost = costBasis && costBasis > 0 && !model.last_macos
     ? Math.round(costBasis / remainingYears)

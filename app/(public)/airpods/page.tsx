@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { calculatePriceStats } from '@/lib/utils/price-stats'
+import { priceStatsOf } from '@/lib/utils/price-stats'
 import Link from 'next/link'
 import Image from 'next/image'
 import {
@@ -67,7 +67,7 @@ export const metadata: Metadata = {
  */
 function getAirPodsMarketPrice(price: AirPodsPriceLog | null): string {
   if (!price) return '-'
-  const median = calculatePriceStats([price.iosys_prices, price.janpara_prices, price.eearphone_prices])?.median
+  const median = priceStatsOf(price)?.median
   if (median != null) return formatPrice(median)
 
   const mins = [price.iosys_min, price.janpara_min, price.eearphone_min].filter(

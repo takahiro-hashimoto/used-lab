@@ -9,7 +9,7 @@ import {
   aggregateDailyPrices as aggregateDailyPricesGeneric,
   calculatePriceRange as calculatePriceRangeGeneric,
 } from './shared-helpers'
-import { calculatePriceStats } from '@/lib/utils/price-stats'
+import { priceStatsOf } from '@/lib/utils/price-stats'
 
 // Re-export shared functions that have the same signature
 export { calculateRepairLifespan } from './shared-helpers'
@@ -282,11 +282,7 @@ export function getVerdict(
   // 実勢相場（中央値）で計算する。最安値は1点だけの特価であることが多く、
   // その価格を前提にした年単価は読者が実際に払う金額より安く見えてしまう。
   // 分布の記録がないログ（2026-07-30以前）では従来どおり最安値にフォールバック
-  const marketStats = calculatePriceStats([
-    latestPrice?.iosys_prices,
-    latestPrice?.geo_prices,
-    latestPrice?.janpara_prices,
-  ])
+  const marketStats = priceStatsOf(latestPrice)
   const costBasis = marketStats?.median ?? priceMin
   const annualCost = costBasis && costBasis > 0 && !model.last_ipados
     ? Math.round(costBasis / remainingYears)

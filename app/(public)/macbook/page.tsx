@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { calculatePriceStats } from '@/lib/utils/price-stats'
+import { priceStatsOf } from '@/lib/utils/price-stats'
 import Link from 'next/link'
 import Image from 'next/image'
 import {
@@ -244,7 +244,7 @@ export default async function MacBookGuidePage() {
                   const price = latestPrices[i]
                   // 他カテゴリ・詳細ページと同じ実勢相場（中央値）。
                   // min1_price は最安1点なので相場として出すと大きくずれる
-                  const marketPrice = calculatePriceStats([price?.matched_prices])?.median ?? price?.min1_price
+                  const marketPrice = priceStatsOf(price)?.median ?? price?.min1_price
                   const storageLabel = model.strage?.match(/(\d+(?:GB|TB))/)?.[1] || ''
                   return (
                     <ProductCard

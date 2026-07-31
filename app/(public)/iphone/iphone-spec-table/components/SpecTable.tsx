@@ -238,7 +238,7 @@ export default function SpecTable({ models, shopLinks, prices, priceDate, embed 
         </h2>
         <p className="m-section-desc">
           歴代iPhoneの主要スペックを一覧で比較できます。
-          カメラ関連の機能は<Link prefetch={false} href="/iphone/iphone-camera/">歴代iPhoneカメラ性能の比較まとめ</Link>で解説しています。
+          カメラ関連は<Link prefetch={false} href="/iphone/iphone-camera/">歴代iPhoneカメラ性能の比較まとめ</Link>で解説しています。
         </p>
 
         {/* フィルターUI。行数が多く縦を取るので、広い画面では横に詰めて折り返す */}

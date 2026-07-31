@@ -4,7 +4,7 @@
  */
 
 import type { IPhoneModel } from '@/lib/types'
-import { calculatePriceStats } from '@/lib/utils/price-stats'
+import { priceStatsOf } from '@/lib/utils/price-stats'
 import type { SpecDefinition } from './spec-definitions'
 
 export type ComparisonResult = {
@@ -271,7 +271,7 @@ export function calcAvgPriceRange(log: {
 } | null): { min: number | null; max: number | null; avg: number | null } {
   if (!log) return { min: null, max: null, avg: null }
 
-  const stats = calculatePriceStats([log.iosys_prices, log.geo_prices, log.janpara_prices])
+  const stats = priceStatsOf(log)
   if (stats) return { min: stats.min, max: stats.max, avg: stats.median }
 
   const mins = [log.iosys_min, log.geo_min, log.janpara_min].filter((v): v is number => v != null && v > 0)

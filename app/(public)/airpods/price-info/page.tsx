@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { calculatePriceStats, buildInventoryInsight, buildSnapshotReport, type PriceHistogram } from '@/lib/utils/price-stats'
+import { priceStatsOf, buildInventoryInsight, buildSnapshotReport, type PriceHistogram } from '@/lib/utils/price-stats'
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import { cache } from 'react'
@@ -163,7 +163,7 @@ export default async function AirPodsPriceInfoPage() {
     // 「今この瞬間」の価格分布。最新ログの価格配列から作る。
     // 文章もここで確定させ、クライアント側の計算に頼らない（SSRで読ませる）
     const latestLog = logs.length > 0 ? logs[logs.length - 1] : null
-    const distStats = latestLog ? calculatePriceStats([latestLog.iosys_prices, latestLog.janpara_prices, latestLog.eearphone_prices]) : null
+    const distStats = latestLog ? priceStatsOf(latestLog) : null
     const distribution: PriceDistribution | null =
       distStats?.histogram && latestLog
         ? {

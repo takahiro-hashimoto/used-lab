@@ -281,3 +281,51 @@ export function buildSnapshotReport(stats: PriceStats | null | undefined): strin
     `価格帯としては${yen(from)}〜${yen(to)}がもっとも厚く、全体の約${share}%がこの範囲に集まっています。`,
   ]
 }
+
+/**
+ * 価格ログから実勢相場の統計を出す。
+ *
+ * 価格配列のカラム名はカテゴリごとに違う（AirPods は eearphone_prices、
+ * MacBook は matched_prices）。呼び出し側が毎回カラム名を並べていると
+ * カテゴリを増やすたびに書き漏らすので、`*_prices` で終わるキーを総なめする。
+ *
+ * @param logs 価格ログ1行、または同じ日の複数行（容量違いなど）
+ */
+export function priceStatsOf(
+  logs: unknown | unknown[] | null | undefined
+): PriceStats | null {
+  const rows = (Array.isArray(logs) ? logs : [logs]).filter((r): r is object => r != null && typeof r === 'object')
+  const arrays: (number[] | null)[] = []
+  for (const row of rows) {
+    for (const [key, value] of Object.entries(row as Record<string, unknown>)) {
+      if (key.endsWith('_prices') && Array.isArray(value)) arrays.push(value as number[])
+    }
+  }
+  return calculatePriceStats(arrays)
+}
+
+/** 実勢相場（中央値）だけが欲しいときの糖衣。サンプル不足なら null */
+export function marketMedian(logs: unknown | unknown[] | null | undefined): number | null {
+  return priceStatsOf(logs)?.median ?? null
+}
+
+/**
+ * 一覧表向けの実勢相場。100円単位に丸めて桁を揃える。
+ *
+ * 価格配列の記録がない過去ログ（2026-07-30 より前）だけ、
+ * 呼び出し側が渡した最安値へフォールバックする。
+ *
+ * @param fallbackMins 旧ログ用の各ショップ最安値。中央値が出れば使われない
+ */
+export function roundedMarketPrice(
+  log: unknown | null | undefined,
+  fallbackMins: (number | null | undefined)[] = []
+): number | null {
+  const round100 = (v: number) => Math.round(v / 100) * 100
+  const median = marketMedian(log)
+  if (median != null) return round100(median)
+
+  const mins = fallbackMins.filter((v): v is number => v != null && v > 0)
+  if (mins.length === 0) return null
+  return round100(mins.reduce((a, b) => a + b, 0) / mins.length)
+}
