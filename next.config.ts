@@ -38,6 +38,11 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   experimental: {
     optimizePackageImports: ['chart.js', 'react-chartjs-2'],
+    // Vercel のビルドマシンは30コアあり、既定だと29ワーカーで全ページを一斉生成する。
+    // 全カテゴリの価格ログクエリが同時に殺到して Supabase が飽和し、
+    // statement timeout でビルドごと落ちたため並列度を抑える。
+    // ビルド時間は延びるが、274ページ程度なら許容範囲。
+    cpus: 8,
   },
   images: {
     // AVIFはエンコードCPUが重く Transformation コストが増えるため WebP のみに

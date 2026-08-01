@@ -115,17 +115,53 @@ function createModelQueries<T>(table: string, tag: string, activeField?: string)
   }
 }
 
+/**
+ * 一時的なDB過負荷のみリトライする。
+ *
+ * Vercel のビルドマシンは30コアあり、全カテゴリのページを一斉にプリレンダリングする。
+ * その結果 7カテゴリぶんの価格ログクエリが同時に殺到して Supabase が飽和し、
+ * `canceling statement due to statement timeout` で **ビルドごと失敗する**。
+ * 1ページの失敗が全体を落とすため、ここで吸収する。
+ * 並列度そのものは next.config.ts の experimental.cpus で抑えている。
+ *
+ * カラム名の誤りなど恒久的な失敗は握りつぶさず即座に投げる。
+ */
+async function withDbRetry<T>(label: string, fn: () => Promise<T>): Promise<T> {
+  const RETRYABLE = /statement timeout|canceling statement|fetch failed|ECONNRESET|ETIMEDOUT|503|504/i
+  const MAX_ATTEMPTS = 3
+  let lastError: unknown
+
+  for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
+    try {
+      return await fn()
+    } catch (e) {
+      lastError = e
+      const message = e instanceof Error ? e.message : String(e)
+      if (!RETRYABLE.test(message)) throw e
+      if (attempt === MAX_ATTEMPTS) break
+      // 500ms → 1000ms。飽和が原因なので即座に叩き直さず間を空ける
+      const waitMs = 500 * attempt
+      console.warn(`[queries] ${label} failed (${message}); retrying in ${waitMs}ms (${attempt}/${MAX_ATTEMPTS - 1})`)
+      await new Promise((resolve) => setTimeout(resolve, waitMs))
+    }
+  }
+  throw lastError
+}
+
 /** 価格ログテーブル用の共通クエリを生成（キャッシュ付き） */
 function createPriceLogQueries<T extends { model_id: number }>(table: string, tag: string) {
   return {
     getByModelId: unstable_cache(
       async (modelId: number): Promise<T[]> => {
-        const { data, error } = await supabase
-          .from(table)
-          .select('*')
-          .eq('model_id', modelId)
-          .order('logged_at', { ascending: true })
-        if (error) throw new Error(`getByModelId(${table}, ${modelId}): ${error.message}`)
+        const data = await withDbRetry(`getByModelId(${table}, ${modelId})`, async () => {
+          const { data, error } = await supabase
+            .from(table)
+            .select('*')
+            .eq('model_id', modelId)
+            .order('logged_at', { ascending: true })
+          if (error) throw new Error(`getByModelId(${table}, ${modelId}): ${error.message}`)
+          return data
+        })
         return (data ?? []) as T[]
       },
       [`${table}-by-model`],
@@ -155,13 +191,16 @@ function createPriceLogQueries<T extends { model_id: number }>(table: string, ta
         const thirtyDaysAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000)
           .toISOString()
           .substring(0, 10)
-        const { data, error } = await supabase
-          .from(table)
-          .select('*')
-          .in('model_id', modelIds)
-          .gte('logged_at', thirtyDaysAgo)
-          .order('logged_at', { ascending: false })
-        if (error) throw new Error(`getLatestForModels(${table}): ${error.message}`)
+        const data = await withDbRetry(`getLatestForModels(${table})`, async () => {
+          const { data, error } = await supabase
+            .from(table)
+            .select('*')
+            .in('model_id', modelIds)
+            .gte('logged_at', thirtyDaysAgo)
+            .order('logged_at', { ascending: false })
+          if (error) throw new Error(`getLatestForModels(${table}): ${error.message}`)
+          return data
+        })
         const map: Record<number, T> = {}
         for (const row of (data ?? []) as T[]) {
           if (!(row.model_id in map)) {
@@ -181,16 +220,19 @@ function createPriceLogQueries<T extends { model_id: number }>(table: string, ta
           .toISOString()
           .substring(0, 10)
         const orFilter = priceColumns.map((c) => `${c}.not.is.null`).join(',')
-        const { data, error } = await supabase
-          .from(table)
-          .select('*')
-          .eq('model_id', modelId)
-          .gte('logged_at', ninetyDaysAgo)
-          .or(orFilter)
-          .order('logged_at', { ascending: false })
-          .limit(1)
-          .maybeSingle()
-        if (error) throw new Error(`getLatestWithPrices(${table}, ${modelId}): ${error.message}`)
+        const data = await withDbRetry(`getLatestWithPrices(${table}, ${modelId})`, async () => {
+          const { data, error } = await supabase
+            .from(table)
+            .select('*')
+            .eq('model_id', modelId)
+            .gte('logged_at', ninetyDaysAgo)
+            .or(orFilter)
+            .order('logged_at', { ascending: false })
+            .limit(1)
+            .maybeSingle()
+          if (error) throw new Error(`getLatestWithPrices(${table}, ${modelId}): ${error.message}`)
+          return data
+        })
         return (data ?? null) as T | null
       },
       [`${table}-latest-with-prices`],
@@ -205,14 +247,17 @@ function createPriceLogQueries<T extends { model_id: number }>(table: string, ta
           .toISOString()
           .substring(0, 10)
         const orFilter = priceColumns.map((c) => `${c}.not.is.null`).join(',')
-        const { data, error } = await supabase
-          .from(table)
-          .select('*')
-          .in('model_id', modelIds)
-          .gte('logged_at', ninetyDaysAgo)
-          .or(orFilter)
-          .order('logged_at', { ascending: false })
-        if (error) throw new Error(`getLatestWithPricesForModels(${table}): ${error.message}`)
+        const data = await withDbRetry(`getLatestWithPricesForModels(${table})`, async () => {
+          const { data, error } = await supabase
+            .from(table)
+            .select('*')
+            .in('model_id', modelIds)
+            .gte('logged_at', ninetyDaysAgo)
+            .or(orFilter)
+            .order('logged_at', { ascending: false })
+          if (error) throw new Error(`getLatestWithPricesForModels(${table}): ${error.message}`)
+          return data
+        })
         const map: Record<number, T> = {}
         for (const row of (data ?? []) as T[]) {
           if (!(row.model_id in map)) {
@@ -234,15 +279,21 @@ function createPriceLogQueries<T extends { model_id: number }>(table: string, ta
       const allRows: T[] = []
       let from = 0
       while (true) {
-        let query = supabase
-          .from(table)
-          .select('*')
-          .in('model_id', modelIds)
-          .order('logged_at', { ascending: true })
-          .range(from, from + PAGE_SIZE - 1)
-        if (since) query = query.gte('logged_at', since)
-        const { data, error } = await query
-        if (error || !data || data.length === 0) break
+        // エラー時は break して部分データで返る作りなので、タイムアウトを黙って
+        // 取りこぼすとグラフが欠けたまま公開される。リトライで拾う
+        const data = await withDbRetry(`getAllByModelIds(${table})`, async () => {
+          let query = supabase
+            .from(table)
+            .select('*')
+            .in('model_id', modelIds)
+            .order('logged_at', { ascending: true })
+            .range(from, from + PAGE_SIZE - 1)
+          if (since) query = query.gte('logged_at', since)
+          const { data, error } = await query
+          if (error) throw new Error(`getAllByModelIds(${table}): ${error.message}`)
+          return data
+        })
+        if (!data || data.length === 0) break
         allRows.push(...(data as T[]))
         if (data.length < PAGE_SIZE) break
         from += PAGE_SIZE
