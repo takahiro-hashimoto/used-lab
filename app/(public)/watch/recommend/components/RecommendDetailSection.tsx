@@ -230,7 +230,7 @@ export default function RecommendDetailSection({ items }: Props) {
                       { label: '心電図', value: <BoolValue value={model.cardiogram} /> },
                       { label: '皮膚温センサー', value: <BoolValue value={model.skin_temperature} /> },
                       { label: '血圧', value: <BoolValue value={model.blood_pressure} /> },
-                      { label: '睡眠トラッキング', value: <BoolValue value={model.sleep_tracking} /> },
+                      { label: '睡眠時無呼吸の通知', value: <BoolValue value={model.sleep_tracking} /> },
                       { label: '睡眠スコア', value: <BoolValue value={model.sleep_score} /> },
                     ]} />
                     <SpecCategory title="機能" />

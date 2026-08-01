@@ -1,0 +1,33 @@
+import type { GalaxyModel } from '@/lib/types'
+import { getGalaxyAdvanceFeaturesList } from '../lib/helpers'
+
+type Props = {
+  model: GalaxyModel
+}
+
+export default function AdvanceFeatures({ model }: Props) {
+  // advance(JSONB) は全 NULL 想定。空なら非描画ガード。
+  const uniqueFeatures = getGalaxyAdvanceFeaturesList(model)
+  if (uniqueFeatures.length === 0) return null
+
+  return (
+    <section className="l-section" id="upgrade" aria-labelledby="heading-upgrade">
+      <div className="l-container">
+        <h2 className="m-section-heading m-section-heading--lg" id="heading-upgrade">
+          {model.model}の進化したポイント
+        </h2>
+        <p className="m-section-desc">前モデルから進化した主要なポイントをまとめました。</p>
+
+        <div className="m-card m-card--shadow upgrade-card">
+          <ul className="upgrade-list m-check-list m-check-list--baseline">
+            {uniqueFeatures.map((feature, i) => (
+              <li key={i}>
+                <i className="fa-solid fa-circle-check" aria-hidden="true"></i> {feature}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
+  )
+}

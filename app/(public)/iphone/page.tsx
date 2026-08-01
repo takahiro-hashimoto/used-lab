@@ -31,6 +31,7 @@ import FaqSection from '@/app/components/support/FaqSection'
 import ShareBox from '@/app/components/ShareBox'
 import VendorCardGrid from '@/app/components/VendorCardGrid'
 import GuideModelLinks from '@/app/components/GuideModelLinks'
+import CrossCompareCta from '@/app/components/CrossCompareCta'
 import { getHeroImage } from '@/lib/data/hero-images'
 import AuthorByline from '@/app/components/AuthorByline'
 import ContinuousAside from '@/app/components/ContinuousAside'
@@ -299,12 +300,13 @@ export default async function IPhoneGuidePage() {
                 ))}
               </div>
 
-              <p className="guide-section-note">2019年以降に発売されたiPhone30機種の詳細な価格推移グラフ・相場データをご覧いただけます</p>
-              <div className="guide-section-cta">
+              <p className="guide-section-note">歴代iPhoneの価格推移と、同じ予算で狙える他ブランドの機種を確認できます</p>
+              <div className="guide-section-cta guide-section-cta--row">
                 <Link prefetch={false} href="/iphone/price-info/" className="m-btn m-btn--primary m-btn--block">
                   <span>中古iPhoneの相場・価格推移グラフ</span>
                   <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
                 </Link>
+                <CrossCompareCta />
               </div>
             </div>
           </section>

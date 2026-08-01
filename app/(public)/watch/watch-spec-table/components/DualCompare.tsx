@@ -73,7 +73,7 @@ function buildCategories(): CompareCategory<SpecModel>[] {
         { label: '皮膚温測定機能', ...bool((m) => m.skin_temperature) },
         { label: 'ダブルタップ', ...bool((m) => m.double_tap) },
         { label: '日本語入力', ...bool((m) => m.japanese_input) },
-        { label: '睡眠トラッキング', ...bool((m) => m.sleep_tracking) },
+        { label: '睡眠時無呼吸の通知', ...bool((m) => m.sleep_tracking) },
         { label: '睡眠スコア', ...bool((m) => m.sleep_score) },
         { label: '高度計', ...bool((m) => m.altimeter) },
       ],

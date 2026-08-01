@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import type { ModelData, PriceEntry } from '../page'
 import PriceHistogram from '@/app/components/PriceHistogram'
 import { crossesLogicChange, isBeforeLogicChange } from '@/lib/data/price-source-note'
@@ -89,11 +90,22 @@ export default function PriceHistorySection({ models }: Props) {
             // {isOpen && ...} だと日別・月別データがクローラーに一切見えない
             <details key={model.id} className="pd-history-model">
               <summary className="pd-history-summary">
-                <div className="pd-history-summary-left">
-                  <h3 className="pd-history-model-name">
-                    <a href={`/iphone/${model.slug}/`} className="pd-history-model-link">{model.name}</a>
-                  </h3>
-                  <span className="pd-history-model-meta">{model.year}年発売 / {model.chip}</span>
+                <div className="pd-history-summary-left pd-history-summary-left--thumb">
+                  {model.image && (
+                    <Image
+                      src={`/images/iphone/${model.image}`}
+                      alt=""
+                      width={56}
+                      height={56}
+                      className="pd-history-model-thumb"
+                    />
+                  )}
+                  <div className="pd-history-summary-text">
+                    <h3 className="pd-history-model-name">
+                      <a href={`/iphone/${model.slug}/`} className="pd-history-model-link">{model.name}</a>
+                    </h3>
+                    <span className="pd-history-model-meta">{model.year}年発売 / {model.chip}</span>
+                  </div>
                 </div>
                 <span className="pd-history-summary-right">
                   <div className="pd-history-summary-price">

@@ -1,3 +1,5 @@
+import { PUBLISH_ANDROID_CATEGORIES } from './feature-flags'
+
 /**
  * 関連記事リンクのメタデータ定義
  * - 各カテゴリのサブページ一覧（slug系・compare系・ハブページを除外）
@@ -9,6 +11,17 @@ export type RelatedLinkMeta = {
   title: string
   desc: string
 }
+
+/**
+ * ブランド横断の比較ページ。iPhone / Pixel / Galaxy の各関連記事に共通で差し込む。
+ * 3ブランド比較が主題なので、Android 非公開の間は出さない（空配列を展開する）。
+ */
+const CROSS_COMPARE_LINK: RelatedLinkMeta = {
+  href: '/smartphone-compare/',
+  title: 'iPhone・Pixel・Galaxy横断比較',
+  desc: '同じ予算で買える3ブランドの機種を比較',
+}
+const CROSS_LINKS: RelatedLinkMeta[] = PUBLISH_ANDROID_CATEGORIES ? [CROSS_COMPARE_LINK] : []
 
 /** iPhone サブページ一覧 */
 export const IPHONE_LINKS: RelatedLinkMeta[] = [
@@ -26,6 +39,7 @@ export const IPHONE_LINKS: RelatedLinkMeta[] = [
   { href: '/iphone/network-limit/', title: 'ネットワーク制限△のiPhoneは買って大丈夫？', desc: 'メリット・デメリットを解説' },
   { href: '/iphone/apple-care/', title: 'iPhoneにApple Care+は必要？', desc: 'コスパの観点から加入しなくていい理由を解説' },
   { href: '/iphone/mobile-hoken-compare/', title: 'Apple Care+よりモバイル保険がコスパ高い理由', desc: '月額700円・3台補償のモバイル保険とApple Care+を徹底比較' },
+  ...CROSS_LINKS,
 ]
 
 /** Google Pixel サブページ一覧 */
@@ -38,6 +52,7 @@ export const PIXEL_LINKS: RelatedLinkMeta[] = [
   { href: '/pixel/used-pixel-support/', title: '中古Pixelはいつまで使える？【サポート期間】', desc: '機種別のOS/セキュリティ更新期間まとめ' },
   { href: '/pixel/used-pixel-attention/', title: '中古Pixel購入前の注意点まとめ', desc: '購入前に知っておきたいチェックポイント' },
   { href: '/pixel/storage-guide/', title: 'Pixelストレージ容量の選び方ガイド', desc: '用途別のおすすめ容量と中古価格を比較' },
+  ...CROSS_LINKS,
 ]
 
 /** Samsung Galaxy サブページ一覧 */
@@ -50,6 +65,7 @@ export const GALAXY_LINKS: RelatedLinkMeta[] = [
   { href: '/galaxy/used-galaxy-support/', title: '中古Galaxyはいつまで使える？【サポート期間】', desc: '機種別のOS/セキュリティ更新期間まとめ' },
   { href: '/galaxy/used-galaxy-attention/', title: '中古Galaxy購入前の注意点まとめ', desc: '購入前に知っておきたいチェックポイント' },
   { href: '/galaxy/storage-guide/', title: 'Galaxyストレージ容量の選び方ガイド', desc: '用途別のおすすめ容量と中古価格を比較' },
+  ...CROSS_LINKS,
 ]
 
 /** iPad サブページ一覧 */

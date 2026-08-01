@@ -382,6 +382,12 @@
 .m-footnote {
   font-size: var(--font-size-sm);
   color: var(--color-text-secondary);
+  line-height: 1.9;
+}
+
+/* テーブルや図版の直後に置かれることが多く、密着すると本文と見分けがつかないため間隔を空ける */
+* + .m-footnote {
+  margin-top: var(--space-lg);
 }
 
 /* --- u-shrink --- */
@@ -4136,6 +4142,24 @@ fieldset.spec-filter {
   margin: 0 auto;
 }
 
+/* CTAを2つ並べるとき。狭い画面では縦積みに戻す */
+.guide-section-cta--row {
+  max-width: 760px;
+  display: flex;
+  gap: var(--space-md);
+}
+
+.guide-section-cta--row > .m-btn {
+  flex: 1;
+  min-width: 0;
+}
+
+@media (max-width: 600px) {
+  .guide-section-cta--row {
+    flex-direction: column;
+  }
+}
+
 /* ---------- glossary-box--numbered (checklist拡張) ---------- */
 .glossary-box--numbered {
   margin-bottom: var(--space-2xl);
@@ -5513,6 +5537,25 @@ fieldset.spec-filter {
   min-width: 0;
 }
 
+/* サムネイル付きの見出し（Pixel 価格推移）。
+   画像のない他カテゴリの .pd-history-summary-left は従来のブロック配置のまま */
+.pd-history-summary-left--thumb {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.pd-history-summary-text {
+  min-width: 0;
+}
+
+.pd-history-model-thumb {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
 .pd-history-model-name {
   font-size: var(--font-size-base);
   font-weight: 700;
@@ -5632,6 +5675,19 @@ details.pd-history-model[open] .pd-history-toggle {
   .pd-history-summary-left {
     grid-column: 1 / -1;
     text-align: center;
+  }
+
+  /* サムネイル付きは text-align では中央にならないので flex 側で寄せる。
+     右端のシェブロン（position: absolute）と重ならないよう余白を確保 */
+  .pd-history-summary-left--thumb {
+    justify-content: center;
+    text-align: left;
+    padding-right: var(--space-lg);
+  }
+
+  .pd-history-model-thumb {
+    width: 48px;
+    height: 48px;
   }
 
   .pd-history-summary-right {
@@ -5871,7 +5927,7 @@ details.pd-history-model[open] .pd-history-toggle {
 
 .ifd-result-card__header {
   gap: var(--space-sm);
-  padding: var(--space-lg);
+  padding: var(--space-md) var(--space-lg);
   border-bottom: 1px solid var(--color-border-light);
   display: flex;
 }
@@ -5902,6 +5958,7 @@ details.pd-history-model[open] .pd-history-toggle {
   color: var(--color-primary);
   text-decoration: none;
   margin-bottom: var(--space-xs);
+  line-height: 1.4;
 }
 
 .ifd-result-card__name:hover {
@@ -5970,9 +6027,11 @@ details.pd-history-model[open] .pd-history-toggle {
   color: var(--color-text);
 }
 
-/* 価格情報ページのランキングカード専用（filter-searchカードには影響しない） */
+/* ランキング表示のカード専用（filter-searchカードには影響しない）。
+   .ifd-result-card__rank を絶対配置するための基準 */
 #pd-price-drop .ifd-result-card__img-wrap,
-#pd-ranking .ifd-result-card__img-wrap {
+#pd-ranking .ifd-result-card__img-wrap,
+#by-price .ifd-result-card__img-wrap {
   position: relative;
 }
 
@@ -6009,6 +6068,45 @@ details.pd-history-model[open] .pd-history-toggle {
 .ifd-result-card__price-drop small {
   font-size: var(--font-size-xs);
   font-weight: 600;
+}
+
+/* ------------------------------------------------------------------
+   用途別クイックガイドのおすすめ機種ブロック
+   価格帯別ランキングのカードと同じ ifd-result-card__* を流用しつつ、
+   用途カードの「中に入る」ため見せ方だけ変える。
+   ------------------------------------------------------------------ */
+.use-case-pick {
+  margin-top: var(--space-md);
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--color-border-light);
+}
+
+.use-case-pick__head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-top: var(--space-xs);
+}
+
+.use-case-pick__img {
+  flex-shrink: 0;
+  width: 48px;
+  text-align: center;
+}
+
+/* 親カードの中の入れ子なので、機種名はリンク色ではなく本文色で落ち着かせる */
+.use-case-pick .ifd-result-card__name {
+  color: var(--color-text);
+  font-size: var(--font-size-lg);
+  margin-bottom: 0;
+}
+
+.use-case-pick .ifd-result-card__price {
+  margin-top: var(--space-sm);
+}
+
+.use-case-pick .ifd-result-card__actions {
+  margin-top: var(--space-md);
 }
 
 .ifd-result-card__specs {

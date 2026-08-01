@@ -38,27 +38,27 @@ export const HERO_IMAGES: Record<string, string> = {
   '/iphone/apple-care/': '/images/content/thumbnail/apple-care.jpg',
   '/iphone/mobile-hoken-compare/': '/images/content/thumbnail/iphone-image-02.jpg',
 
-  // ── Google Pixel ──（専用画像未用意のため汎用サムネを流用）
-  '/pixel/': '/images/content/thumbnail/iphone-image.jpeg',
-  '/pixel/pixel-spec-table/': '/images/content/thumbnail/iphone-compare.jpg',
-  '/pixel/benchmark/': '/images/content/thumbnail/iphone-setting.webp',
-  '/pixel/battery-compare/': '/images/content/thumbnail/iphone-battery.jpg',
-  '/pixel/used-pixel-support/': '/images/content/thumbnail/iphone-image-03.jpg',
+  // ── Google Pixel ──（price-info / pixel-shop / used-pixel-attention は端末が写らない汎用イラスト）
+  '/pixel/': '/images/pixel-article/google-pixel1.jpg',
+  '/pixel/pixel-spec-table/': '/images/pixel-article/google-pixel3.jpg',
+  '/pixel/benchmark/': '/images/pixel-article/google-pixel0.jpg',
+  '/pixel/battery-compare/': '/images/pixel-article/google-pixel5.jpg',
+  '/pixel/used-pixel-support/': '/images/pixel-article/google-pixel2.jpg',
   '/pixel/price-info/': '/images/content/thumbnail/graph-image.jpg',
   '/pixel/pixel-shop/': '/images/content/thumbnail/cheap-buy.jpg',
   '/pixel/used-pixel-attention/': '/images/content/thumbnail/check-list.jpg',
-  '/pixel/storage-guide/': '/images/content/thumbnail/used-iphone-ios-support.jpg',
+  '/pixel/storage-guide/': '/images/pixel-article/google-pixel2.jpg',
 
-  // ── Samsung Galaxy ──（専用画像未用意のため汎用サムネを流用）
-  '/galaxy/': '/images/content/thumbnail/iphone-image.jpeg',
-  '/galaxy/galaxy-spec-table/': '/images/content/thumbnail/iphone-compare.jpg',
-  '/galaxy/benchmark/': '/images/content/thumbnail/iphone-setting.webp',
-  '/galaxy/battery-compare/': '/images/content/thumbnail/iphone-battery.jpg',
-  '/galaxy/used-galaxy-support/': '/images/content/thumbnail/iphone-image-03.jpg',
+  // ── Samsung Galaxy ──（price-info / galaxy-shop / used-galaxy-attention は端末が写らない汎用イラスト）
+  '/galaxy/': '/images/galaxy-article/samsung-galaxy-0.jpg',
+  '/galaxy/galaxy-spec-table/': '/images/galaxy-article/samsung-galaxy-1.jpg',
+  '/galaxy/benchmark/': '/images/galaxy-article/samsung-galaxy-7.jpg',
+  '/galaxy/battery-compare/': '/images/galaxy-article/samsung-galaxy-5.jpg',
+  '/galaxy/used-galaxy-support/': '/images/galaxy-article/samsung-galaxy-6.jpg',
   '/galaxy/price-info/': '/images/content/thumbnail/graph-image.jpg',
   '/galaxy/galaxy-shop/': '/images/content/thumbnail/cheap-buy.jpg',
   '/galaxy/used-galaxy-attention/': '/images/content/thumbnail/check-list.jpg',
-  '/galaxy/storage-guide/': '/images/content/thumbnail/used-iphone-ios-support.jpg',
+  '/galaxy/storage-guide/': '/images/galaxy-article/samsung-galaxy-2.jpg',
 
   // ── iPad ──
   '/ipad/': '/images/content/thumbnail/ipad-all.jpg',

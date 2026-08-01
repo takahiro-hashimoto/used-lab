@@ -151,7 +151,7 @@ export default function BasicSpecs({ model }: Props) {
                 <td>QWERTYキーボードで日本語入力</td>
               </tr>
               <tr>
-                <td><i className="fa-solid fa-bed" aria-hidden="true"></i> 睡眠トラッキング</td>
+                <td><i className="fa-solid fa-bed" aria-hidden="true"></i> 睡眠時無呼吸の通知</td>
                 <td><BoolValue value={model.sleep_tracking} /></td>
                 <td>睡眠の質を記録・分析</td>
               </tr>

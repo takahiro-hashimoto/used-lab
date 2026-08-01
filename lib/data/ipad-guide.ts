@@ -110,7 +110,7 @@ export const GUIDE_MODEL_LINKS = {
     { slug: 'air-4', name: 'iPad Air 第4世代', meta: '2020年10月発売 / A14 Bionic' },
   ],
   standard: [
-    { slug: 'normal-11', name: 'iPad 第11世代', meta: '2025年発売 / A16 Bionic' },
+    { slug: 'normal-11', name: 'iPad 第11世代', meta: '2025年発売 / A16' },
     { slug: 'normal-10', name: 'iPad 第10世代', meta: '2022年10月発売 / A14 Bionic' },
     { slug: 'normal-9', name: 'iPad 第9世代', meta: '2021年9月発売 / A13 Bionic' },
   ],

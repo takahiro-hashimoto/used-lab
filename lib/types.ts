@@ -109,9 +109,9 @@ export interface PixelModel extends BaseProductModel {
   // BaseProductModel: id, model, slug, show, image, date, cpu(=Tensorチップ名), battery(=mAh), point, advance, official
   strage: string | null
   color: string | null
-  /** Tensor 世代（"G1"〜"G4"）。ベンチマークの世代比較に使用 */
+  /** Tensor 世代（"G1"〜"G5"）。ベンチマークの世代比較に使用 */
   tensor_gen: string | null
-  // ベンチマーク（Geekbench 6 / AnTuTu v10。Metal は Apple 専用のため持たない）
+  // ベンチマーク（Geekbench 6 / AnTuTu v11。Metal は Apple 専用のため持たない）
   score_single: number | null
   score_multi: number | null
   antutu_total: number | null
@@ -198,7 +198,7 @@ export interface GalaxyModel extends BaseProductModel {
   series: string | null
   /** 日本版型番（例 "SC-51D / SCG19"） */
   model_number: string | null
-  // ベンチマーク（Geekbench 6 / AnTuTu v10）
+  // ベンチマーク（Geekbench 6 / AnTuTu v11）
   score_single: number | null
   score_multi: number | null
   antutu_total: number | null

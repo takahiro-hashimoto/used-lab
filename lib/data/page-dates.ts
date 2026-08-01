@@ -90,6 +90,7 @@ export const PAGE_DATES: Record<string, string> = {
   'app/(public)/macbook/macbook-spec-table/page.tsx': '2026-06-29',
   'app/(public)/macbook/used-macbook-support/page.tsx': '2026-04-11',
   'app/(public)/macbook/macbook-shop/page.tsx':       '2026-04-10',
+  'app/(public)/macbook/air-neo-compare/page.tsx':    '2026-05-06',
   'app/(public)/macbook/[slug]/page.tsx':             '2026-04-11',
 
   // ── Apple Watch ───────────────────────────────────────────────
@@ -117,7 +118,13 @@ export const PAGE_DATES: Record<string, string> = {
   'app/(public)/airpods/[slug]/page.tsx':             '2026-04-11',
 
   // ── Google Pixel ──────────────────────────────────────────────
+  'app/(public)/pixel/page.tsx':                      '2026-07-22',
   'app/(public)/pixel/price-info/page.tsx':           '2026-07-22',
+  'app/(public)/pixel/pixel-spec-table/page.tsx':     '2026-07-22',
+  'app/(public)/pixel/battery-compare/page.tsx':      '2026-07-22',
+  'app/(public)/pixel/benchmark/page.tsx':            '2026-07-22',
+  'app/(public)/pixel/pixel-shop/page.tsx':           '2026-07-24',
+  'app/(public)/pixel/[slug]/page.tsx':               '2026-07-25',
   'app/(public)/pixel/used-pixel-support/page.tsx':   '2026-07-22',
   'app/(public)/pixel/used-pixel-attention/page.tsx': '2026-07-23',
   'app/(public)/pixel/storage-guide/page.tsx':        '2026-07-23',
@@ -129,4 +136,8 @@ export const PAGE_DATES: Record<string, string> = {
   'app/(public)/galaxy/battery-compare/page.tsx':     '2026-07-22',
   'app/(public)/galaxy/benchmark/page.tsx':           '2026-07-22',
   'app/(public)/galaxy/used-galaxy-support/page.tsx': '2026-07-22',
+  'app/(public)/galaxy/used-galaxy-attention/page.tsx': '2026-07-23',
+  'app/(public)/galaxy/storage-guide/page.tsx':       '2026-07-23',
+  'app/(public)/galaxy/galaxy-shop/page.tsx':         '2026-07-24',
+  'app/(public)/galaxy/[slug]/page.tsx':              '2026-07-25',
 }

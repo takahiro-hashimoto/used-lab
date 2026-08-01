@@ -171,7 +171,7 @@ export default function SpecTable({ models, shopLinks, prices, priceDate, embed 
     { label: '皮膚温センサー', render: (m) => <BoolCell value={m.skin_temperature} /> },
     { label: '衝突事故検出', render: (m) => <BoolCell value={m.accident_detection} /> },
     { label: '転倒検出', render: (m) => <BoolCell value={m.fall_detection} /> },
-    { label: '睡眠トラッキング', render: (m) => <BoolCell value={m.sleep_tracking} /> },
+    { label: '睡眠時無呼吸の通知', render: (m) => <BoolCell value={m.sleep_tracking} /> },
     { label: '睡眠スコア', render: (m) => <BoolCell value={m.sleep_score} /> },
     { label: 'ダブルタップ', render: (m) => <BoolCell value={m.double_tap} /> },
     { label: '日本語入力', render: (m) => <BoolCell value={m.japanese_input} /> },

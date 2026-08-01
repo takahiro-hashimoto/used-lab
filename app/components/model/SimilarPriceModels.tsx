@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import { PUBLISH_ANDROID_CATEGORIES } from '@/lib/data/feature-flags'
 
 /**
  * 「いま同じ予算で狙える他の機種」を提示するブロック。
@@ -138,6 +139,21 @@ export default function SimilarPriceModels({ modelName, basePrice, items }: Prop
           )
         })}
         </div>
+
+        {/* ここで挙がるのは相場が近い数機種だけなので、価格帯ごとの全体像は
+            横断比較ページへ送る。Android 非公開時は3ブランド比較が成立しないため出さない */}
+        {PUBLISH_ANDROID_CATEGORIES && (
+          <div className="m-callout m-callout--tip u-mt-2xl">
+            <span className="m-callout__label">memo</span>
+            <p className="m-callout__text">
+              予算から絞り込みたい方は「
+              <Link prefetch={false} href="/smartphone-compare/">
+                iPhone・Pixel・Galaxyを価格帯別に横断比較
+              </Link>
+              」もあわせてご覧ください。
+            </p>
+          </div>
+        )}
       </div>
     </section>
   )

@@ -20,7 +20,7 @@
  *
  * 公開するときは true にするだけでよい（app/(public)/pixel, /galaxy のページ本体が必要）。
  */
-export const PUBLISH_ANDROID_CATEGORIES = false
+export const PUBLISH_ANDROID_CATEGORIES = true
 
 /** 非公開カテゴリのID。公開フラグが立てば空になる */
 export const HIDDEN_CATEGORY_IDS: readonly string[] = PUBLISH_ANDROID_CATEGORIES

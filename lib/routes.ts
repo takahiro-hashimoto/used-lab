@@ -1,4 +1,4 @@
-import { isHiddenCategory, isHiddenPath } from './data/feature-flags'
+import { isHiddenCategory, isHiddenPath, PUBLISH_ANDROID_CATEGORIES } from './data/feature-flags'
 // ============================================================
 // ルート定義の一元管理
 // sitemap.ts と sitemap-page の両方がここを参照する
@@ -217,6 +217,15 @@ const ALL_PRODUCT_CATEGORIES: CategoryDef[] = [
   },
 ]
 
+/**
+ * カテゴリに属さない横断コンテンツページ。
+ * 3ブランド（iPhone / Pixel / Galaxy）の比較が主題なので、
+ * Android カテゴリが非公開の間は sitemap にも載せない。
+ */
+export const CROSS_PAGES: PageDef[] = [
+  { path: '/smartphone-compare/', label: '中古スマホはiPhone・Pixel・Galaxyどれがいい？価格帯別におすすめを徹底比較', priority: 0.9, changeFrequency: 'daily' },
+]
+
 export const UTILITY_PAGES: PageDef[] = [
   { path: '/news/', label: '新着情報', priority: 0.5, changeFrequency: 'weekly' },
   { path: '/search/', label: '記事を検索', priority: 0.3, changeFrequency: 'monthly', includeInSitemap: false },
@@ -261,6 +270,7 @@ const ALL_HEADER_NAV_ITEMS: HeaderNavItem[] = [
       { href: '/pixel/price-info/', label: '中古Pixelの相場価格' },
       { href: '/pixel/pixel-shop/', label: '中古Pixelの購入先比較' },
       { href: '/pixel/battery-compare/', label: 'Pixelバッテリー容量比較' },
+    { href: '/smartphone-compare/', label: '中古スマホ横断比較' },
       { href: '/pixel/benchmark/', label: 'Pixelベンチマーク比較' },
     ],
   },
@@ -273,6 +283,7 @@ const ALL_HEADER_NAV_ITEMS: HeaderNavItem[] = [
       { href: '/galaxy/price-info/', label: '中古Galaxyの相場価格' },
       { href: '/galaxy/galaxy-shop/', label: '中古Galaxyの購入先比較' },
       { href: '/galaxy/battery-compare/', label: 'Galaxyバッテリー容量比較' },
+    { href: '/smartphone-compare/', label: '中古スマホ横断比較' },
       { href: '/galaxy/benchmark/', label: 'Galaxyベンチマーク比較' },
     ],
   },
@@ -322,6 +333,7 @@ const ALL_HEADER_NAV_ITEMS: HeaderNavItem[] = [
       { href: '/airpods/used-airpods-attention/', label: '中古AirPodsの注意点' },
     ],
   },
+  { href: '/smartphone-compare/', label: '中古スマホ横断比較' },
   { href: '/contact/', label: 'お問い合わせ' },
   { href: '/profile/', label: '運営者情報' },
 ]
@@ -336,6 +348,7 @@ const ALL_FOOTER_LINKS: Record<string, { href: string; label: string }[]> = {
     { href: '/iphone/filter-search/', label: 'iPhone機種診断ツール' },
     { href: '/iphone/price-info/', label: '中古iPhoneの相場価格' },
     { href: '/iphone/iphone-shop/', label: '中古iPhone購入先比較' },
+    { href: '/smartphone-compare/', label: '中古スマホ横断比較' },
   ],
   pixel: [
     { href: '/pixel/', label: '中古Google Pixelおすすめ機種' },
@@ -401,12 +414,21 @@ export const PRODUCT_CATEGORIES: CategoryDef[] = ALL_PRODUCT_CATEGORIES.filter(
   (cat) => !isHiddenCategory(cat.id),
 )
 
+/** 横断ページは3ブランド比較が主題なので、Android 非公開の間は導線ごと隠す */
+const isHiddenCrossPath = (href: string) =>
+  !PUBLISH_ANDROID_CATEGORIES && CROSS_PAGES.some((p) => p.path === href)
+
 export const HEADER_NAV_ITEMS: HeaderNavItem[] = ALL_HEADER_NAV_ITEMS.filter(
-  (item) => !isHiddenPath(item.href),
+  (item) => !isHiddenPath(item.href) && !isHiddenCrossPath(item.href),
 )
 
+/** 公開中の横断ページ（Android 非公開の間は空になる） */
+export const VISIBLE_CROSS_PAGES: PageDef[] = PUBLISH_ANDROID_CATEGORIES ? CROSS_PAGES : []
+
 export const FOOTER_LINKS: Record<string, { href: string; label: string }[]> = Object.fromEntries(
-  Object.entries(ALL_FOOTER_LINKS).filter(([key]) => !isHiddenCategory(key)),
+  Object.entries(ALL_FOOTER_LINKS)
+    .filter(([key]) => !isHiddenCategory(key))
+    .map(([key, links]) => [key, links.filter((l) => !isHiddenCrossPath(l.href))]),
 )
 
 export function getAllStaticRoutes(): { path: string; priority: number; changeFrequency: ChangeFreq }[] {
@@ -428,7 +450,13 @@ export function getAllStaticRoutes(): { path: string; priority: number; changeFr
       changeFrequency: (page.changeFrequency ?? 'weekly') as ChangeFreq,
     }))
 
-  return [topPage, ...productPages, ...utilityPages]
+  const crossPages = VISIBLE_CROSS_PAGES.map((page) => ({
+    path: page.path,
+    priority: page.priority ?? 0.8,
+    changeFrequency: (page.changeFrequency ?? 'weekly') as ChangeFreq,
+  }))
+
+  return [topPage, ...productPages, ...crossPages, ...utilityPages]
 }
 
 /** sitemap-page 用: ラベルを解決してカテゴリ配列を返す */

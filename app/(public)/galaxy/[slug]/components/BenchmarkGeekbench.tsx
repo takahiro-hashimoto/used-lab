@@ -1,0 +1,86 @@
+
+import StickyTableWrapper from '@/app/components/StickyTableWrapper'
+import type { GalaxyModel } from '@/lib/types'
+
+type Props = {
+  model: GalaxyModel
+  allModels: GalaxyModel[]
+}
+
+export default function BenchmarkGeekbench({ model, allModels }: Props) {
+  if (!model.score_single && !model.score_multi) return null
+
+  const maxSingle = Math.max(...allModels.map((m) => m.score_single || 0))
+  const maxMulti = Math.max(...allModels.map((m) => m.score_multi || 0))
+
+  const sorted = [...allModels]
+    .filter((m) => m.score_single || m.score_multi)
+    .sort((a, b) => (b.score_single || 0) - (a.score_single || 0))
+
+  const pct = (val: number, max: number) => max > 0 ? Math.round((val / max) * 100) : 0
+
+  return (
+    <section className="l-section" id="geekbench" aria-labelledby="heading-geekbench">
+      <div className="l-container">
+        <h2 className="m-section-heading m-section-heading--lg" id="heading-geekbench">
+          {model.model}のGeekbenchスコア
+        </h2>
+        <p className="m-section-desc">Geekbench 6を参考にベンチマークスコアをご紹介</p>
+
+        <dl className="l-grid l-grid--2col l-grid--gap-lg l-grid--mb-2xl">
+          <div className="m-card m-stat-card">
+            <dt className="m-stat-card__label">
+              <i className="fa-solid fa-microchip" aria-hidden="true"></i> シングルコア
+            </dt>
+            <dd className="m-stat-card__value">{model.score_single?.toLocaleString() || '-'}</dd>
+            <dd className="m-stat-card__note">日常操作の快適さ</dd>
+          </div>
+          <div className="m-card m-stat-card">
+            <dt className="m-stat-card__label">
+              <i className="fa-solid fa-grip" aria-hidden="true"></i> マルチコア
+            </dt>
+            <dd className="m-stat-card__value">{model.score_multi?.toLocaleString() || '-'}</dd>
+            <dd className="m-stat-card__note">重い処理の快適さ</dd>
+          </div>
+        </dl>
+
+        <StickyTableWrapper floatingHeader className="m-card m-card--shadow m-table-card">
+          <div className="m-table-scroll">
+            <table className="m-table bench-table">
+              <caption className="visually-hidden">Galaxyモデル別 Geekbench 6 ベンチマークスコア比較</caption>
+              <thead>
+                <tr>
+                  <th scope="col" className="bench-table__sticky">モデル</th>
+                  <th scope="col">シングルコア</th>
+                  <th scope="col">マルチコア</th>
+                </tr>
+              </thead>
+              <tbody>
+                {sorted.map((m) => {
+                  const isCurrent = m.id === model.id
+                  return (
+                    <tr key={m.id}>
+                      <th scope="row" className={`bench-table__sticky u-shrink${isCurrent ? ' m-table-highlight' : ''}`}>
+                        {m.model}
+                      </th>
+                      <td className={isCurrent ? 'm-table-highlight' : undefined}>
+                        <span className="bench-bar" style={{ '--bar-pct': `${pct(m.score_single || 0, maxSingle)}%`, '--bar-color': '#e74c6f' } as React.CSSProperties}>
+                          {m.score_single?.toLocaleString() || '-'}
+                        </span>
+                      </td>
+                      <td className={isCurrent ? 'm-table-highlight' : undefined}>
+                        <span className="bench-bar" style={{ '--bar-pct': `${pct(m.score_multi || 0, maxMulti)}%`, '--bar-color': '#f0a030' } as React.CSSProperties}>
+                          {m.score_multi?.toLocaleString() || '-'}
+                        </span>
+                      </td>
+                    </tr>
+                  )
+                })}
+              </tbody>
+            </table>
+          </div>
+        </StickyTableWrapper>
+      </div>
+    </section>
+  )
+}

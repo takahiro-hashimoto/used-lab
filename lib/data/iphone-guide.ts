@@ -95,8 +95,8 @@ export const GUIDE_FAQ_ITEMS = [
 // ---------- 歴代iPhone個別記事リンク ----------
 export const GUIDE_MODEL_LINKS = {
   pro: [
-    { slug: '17pro', name: 'iPhone17 Pro', meta: '2025年9月発売 / A19 pro Bionic' },
-    { slug: '17promax', name: 'iPhone17 Pro Max', meta: '2025年9月発売 / A19 pro Bionic' },
+    { slug: '17pro', name: 'iPhone17 Pro', meta: '2025年9月発売 / A19 Pro' },
+    { slug: '17promax', name: 'iPhone17 Pro Max', meta: '2025年9月発売 / A19 Pro' },
     { slug: '16pro', name: 'iPhone16 Pro', meta: '2024年9月発売 / A18 Pro' },
     { slug: '16promax', name: 'iPhone16 Pro Max', meta: '2024年9月発売 / A18 Pro' },
     { slug: '15pro', name: 'iPhone15 Pro', meta: '2023年9月発売 / A17 Pro' },
@@ -111,12 +111,12 @@ export const GUIDE_MODEL_LINKS = {
     { slug: '11promax', name: 'iPhone11 Pro Max', meta: '2019年9月発売 / A13 Bionic' },
   ],
   standard: [
-    { slug: '17normal', name: 'iPhone 17', meta: '2025年9月発売 / A19 Bionic' },
-    { slug: 'air', name: 'iPhone Air', meta: '2025年9月発売 / A19 pro Bionic' },
-    { slug: '17e', name: 'iPhone 17e', meta: 'A19' },
-    { slug: '16e', name: 'iPhone16e', meta: '2025年2月発売 / A18 Bionic' },
-    { slug: '16normal', name: 'iPhone 16', meta: '2024年9月発売 / A18 Bionic' },
-    { slug: '16plus', name: 'iPhone 16 Plus', meta: '2024年9月発売 / A18 Bionic' },
+    { slug: '17normal', name: 'iPhone 17', meta: '2025年9月発売 / A19' },
+    { slug: 'air', name: 'iPhone Air', meta: '2025年9月発売 / A19 Pro' },
+    { slug: '17e', name: 'iPhone 17e', meta: '2026年3月発売 / A19' },
+    { slug: '16e', name: 'iPhone16e', meta: '2025年2月発売 / A18' },
+    { slug: '16normal', name: 'iPhone 16', meta: '2024年9月発売 / A18' },
+    { slug: '16plus', name: 'iPhone 16 Plus', meta: '2024年9月発売 / A18' },
     { slug: '15normal', name: 'iPhone15', meta: '2023年9月発売 / A16 Bionic' },
     { slug: '15plus', name: 'iPhone15 Plus', meta: '2023年9月発売 / A16 Bionic' },
     { slug: '14normal', name: 'iPhone14', meta: '2022年9月発売 / A15 Bionic' },

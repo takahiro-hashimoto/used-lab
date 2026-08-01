@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import {
   getAllIPhoneModels,
+  getAllPixelModels,
+  getAllGalaxyModels,
   getAllIPadModels,
   getAllWatchModels,
   getAllMacBookModels,
@@ -9,7 +11,7 @@ import {
 } from '@/lib/queries'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import GuideModelLinks from '@/app/components/GuideModelLinks'
-import { resolveCategories, type LabelParams } from '@/lib/routes'
+import { resolveCategories, VISIBLE_CROSS_PAGES, type LabelParams } from '@/lib/routes'
 import { GUIDE_DATE_LABEL as IPHONE_GUIDE_DATE } from '@/lib/data/iphone-guide'
 import { GUIDE_DATE_LABEL as IPAD_GUIDE_DATE } from '@/lib/data/ipad-guide'
 import { GUIDE_DATE_LABEL as MACBOOK_GUIDE_DATE } from '@/lib/data/macbook-guide'
@@ -54,8 +56,10 @@ export const metadata: Metadata = {
 
 export default async function SitemapPage() {
   const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/sitemap-page/page.tsx')
-  const [iPhoneModels, iPadModels, watchModels, macBookModels, airPodsModels] = await Promise.all([
+  const [iPhoneModels, pixelModels, galaxyModels, iPadModels, watchModels, macBookModels, airPodsModels] = await Promise.all([
     getAllIPhoneModels(),
+    getAllPixelModels(),
+    getAllGalaxyModels(),
     getAllIPadModels(),
     getAllWatchModels(),
     getAllMacBookModels(),
@@ -105,6 +109,8 @@ export default async function SitemapPage() {
 
   const modelsByCategory: Record<string, { slug: string; name: string; meta: string }[]> = {
     iphone: iPhoneModels.map((m) => ({ slug: m.slug, name: m.model, meta: toMeta(m) })),
+    pixel: pixelModels.map((m) => ({ slug: m.slug, name: m.model, meta: toMeta(m) })),
+    galaxy: galaxyModels.map((m) => ({ slug: m.slug, name: m.model, meta: toMeta(m) })),
     ipad: iPadModels.map((m) => ({ slug: m.slug, name: m.model, meta: toMeta(m) })),
     macbook: macBookModels.map((m) => ({ slug: m.slug, name: m.model, meta: toMeta(m) })),
     watch: watchModels.map((m) => ({ slug: m.slug, name: m.model, meta: toMeta(m) })),
@@ -180,6 +186,30 @@ export default async function SitemapPage() {
           </section>
         )
       })}
+
+      {/* カテゴリに属さない横断ページ。Android 非公開の間は空配列になる */}
+      {VISIBLE_CROSS_PAGES.length > 0 && (
+        <section id="cross" className="l-section">
+          <div className="l-container">
+            <h2 className="m-section-heading m-section-heading--lg">
+              <i className="fa-solid fa-code-compare" aria-hidden="true"></i>{' '}
+              ブランド横断
+            </h2>
+            <p className="m-section-desc">
+              iPhone・Google Pixel・Samsung Galaxy をまたいで比較するページです。
+            </p>
+            <ul className="sitemap-link-list">
+              {VISIBLE_CROSS_PAGES.map((page) => (
+                <li key={page.path}>
+                  <Link prefetch={false} href={page.path}>
+                    {typeof page.label === 'function' ? page.label(labelParams) : page.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      )}
       </div>
     </main>
   )

@@ -46,7 +46,7 @@ function buildCompareRows(current: WatchModel, compare: WatchModel): CompareRow[
     { section: '健康・安全機能', label: '衝突事故検出', current: getBoolValue(current.accident_detection), compare: getBoolValue(compare.accident_detection) },
     { section: '健康・安全機能', label: '転倒検出', current: getBoolValue(current.fall_detection), compare: getBoolValue(compare.fall_detection) },
     { section: '健康・安全機能', label: '皮膚温センサー', current: getBoolValue(current.skin_temperature), compare: getBoolValue(compare.skin_temperature) },
-    { section: '健康・安全機能', label: '睡眠トラッキング', current: getBoolValue(current.sleep_tracking), compare: getBoolValue(compare.sleep_tracking) },
+    { section: '健康・安全機能', label: '睡眠時無呼吸の通知', current: getBoolValue(current.sleep_tracking), compare: getBoolValue(compare.sleep_tracking) },
     { section: '健康・安全機能', label: '高度計', current: getBoolValue(current.altimeter), compare: getBoolValue(compare.altimeter) },
     { section: '健康・安全機能', label: '血圧', current: getBoolValue(current.blood_pressure), compare: getBoolValue(compare.blood_pressure) },
     { section: '健康・安全機能', label: '睡眠スコア', current: getBoolValue(current.sleep_score), compare: getBoolValue(compare.sleep_score) },

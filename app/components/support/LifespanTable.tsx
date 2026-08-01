@@ -176,7 +176,12 @@ export default function LifespanTable({
         {glossaryGroups.map((group) => (
           <div key={group.title}>
             <h3 className="m-sub-heading">{group.title}</h3>
-            <p className="m-body-text">{group.intro}</p>
+            {/* 長文は '\n' 区切りで段落を分ける（FaqSection と同じ規約） */}
+            {typeof group.intro === 'string'
+              ? group.intro.split('\n').map((p, i) => (
+                  <p key={i} className="m-body-text">{p}</p>
+                ))
+              : <p className="m-body-text">{group.intro}</p>}
 
             <aside className="glossary-box m-card m-card--shadow" aria-label={group.label}>
               <dl className="glossary-list">

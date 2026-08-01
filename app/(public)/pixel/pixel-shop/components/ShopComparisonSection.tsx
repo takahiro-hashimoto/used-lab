@@ -1,0 +1,109 @@
+import RatingMark from '@/app/components/RatingMark'
+
+export default function ShopComparisonSection() {
+  return (
+    <section className="l-section" id="comparison" aria-labelledby="heading-comparison">
+      <div className="l-container">
+        <h2 className="m-section-heading m-section-heading--lg" id="heading-comparison">
+          購入先ごとのメリット・デメリット比較
+        </h2>
+        <p className="m-section-desc">ここでは「どこで買うか」を判断するための最低限の情報を整理しました。</p>
+        <p className="m-section-desc">安さ・安全性・保証・初心者向きかの4つの軸で比較しています。</p>
+
+        <div className="m-card m-card--shadow m-table-card">
+          <div className="m-table-scroll">
+            <table className="m-table m-table--center">
+              <thead>
+                <tr>
+                  <th scope="col">比較項目</th>
+                  <th scope="col">中古スマホ専門店</th>
+                  <th scope="col">キャリア認定中古</th>
+                  <th scope="col">ECモール</th>
+                  <th scope="col">フリマアプリ</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">安さ</th>
+                  <td>
+                    <RatingMark mark="○" /><br />
+                    <span className="text-sm text-muted">適正価格</span>
+                  </td>
+                  <td>
+                    <RatingMark mark="△" /><br />
+                    <span className="text-sm text-muted">やや割高</span>
+                  </td>
+                  <td>
+                    <RatingMark mark="○" /><br />
+                    <span className="text-sm text-muted">ポイント還元あり</span>
+                  </td>
+                  <td>
+                    <RatingMark mark="◎" /><br />
+                    <span className="text-sm text-muted">最安値が見つかる</span>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">安全性</th>
+                  <td>
+                    <RatingMark mark="◎" /><br />
+                    <span className="text-sm text-muted">検品体制あり</span>
+                  </td>
+                  <td>
+                    <RatingMark mark="◎" /><br />
+                    <span className="text-sm text-muted">キャリア保証</span>
+                  </td>
+                  <td>
+                    <RatingMark mark="○" /><br />
+                    <span className="text-sm text-muted">店舗による</span>
+                  </td>
+                  <td>
+                    <RatingMark mark="△" /><br />
+                    <span className="text-sm text-muted">自己責任の範囲が広い</span>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">保証</th>
+                  <td>
+                    <RatingMark mark="○" /><br />
+                    <span className="text-sm text-muted">赤ロム永久保証など</span>
+                  </td>
+                  <td>
+                    <RatingMark mark="◎" /><br />
+                    <span className="text-sm text-muted">キャリア独自保証</span>
+                  </td>
+                  <td>
+                    <RatingMark mark="○" /><br />
+                    <span className="text-sm text-muted">店舗の保証に準じる</span>
+                  </td>
+                  <td>
+                    <RatingMark mark="✕" /><br />
+                    <span className="text-sm text-muted">基本的になし</span>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">初心者向きか</th>
+                  <td>
+                    <RatingMark mark="◎" /><br />
+                    <span className="text-sm text-muted">おすすめ</span>
+                  </td>
+                  <td>
+                    <RatingMark mark="◎" /><br />
+                    <span className="text-sm text-muted">おすすめ</span>
+                  </td>
+                  <td>
+                    <RatingMark mark="○" /><br />
+                    <span className="text-sm text-muted">ある程度知識があれば</span>
+                  </td>
+                  <td>
+                    <RatingMark mark="△" /><br />
+                    <span className="text-sm text-muted">知識が必要</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}

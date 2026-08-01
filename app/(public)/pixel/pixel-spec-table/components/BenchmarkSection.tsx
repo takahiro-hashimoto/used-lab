@@ -1,0 +1,190 @@
+'use client'
+
+import { useState } from 'react'
+import Link from 'next/link'
+import { BenchBar } from '@/app/components/spec-table-utils'
+import StickyTableWrapper from '@/app/components/StickyTableWrapper'
+import ModelModal from './ModelModal'
+import type { PixelModel, ProductShopLink } from '@/lib/types'
+
+const IOSYS_SHOP_ID = 1
+
+type Props = {
+  models: PixelModel[]
+  avgPrices: Record<number, number | null>
+  shopLinks: ProductShopLink[]
+}
+
+export default function BenchmarkSection({ models, avgPrices, shopLinks }: Props) {
+  const [selectedModel, setSelectedModel] = useState<PixelModel | null>(null)
+
+  const iosysUrlMap = Object.fromEntries(
+    shopLinks.filter((l) => l.shop_id === IOSYS_SHOP_ID).map((l) => [l.product_id, l.url])
+  )
+  const geekbenchModels = models
+    .filter((m) => m.score_single != null && m.score_multi != null)
+    .sort((a, b) => (b.score_single || 0) - (a.score_single || 0))
+
+  const antutuModels = models.filter(
+    (m) => m.antutu_cpu != null && m.antutu_gpu != null && m.antutu_mem != null && m.antutu_ux != null,
+  )
+
+  const maxSingle = Math.max(...geekbenchModels.map((m) => m.score_single || 0), 0)
+  const maxMulti  = Math.max(...geekbenchModels.map((m) => m.score_multi  || 0), 0)
+
+  const antutuTotals   = antutuModels.map((m) => (m.antutu_cpu || 0) + (m.antutu_gpu || 0) + (m.antutu_mem || 0) + (m.antutu_ux || 0))
+  const maxAntutuTotal = Math.max(...antutuTotals, 0)
+  const maxAntutuCpu   = Math.max(...antutuModels.map((m) => m.antutu_cpu || 0), 0)
+  const maxAntutuGpu   = Math.max(...antutuModels.map((m) => m.antutu_gpu || 0), 0)
+  const maxAntutuMem   = Math.max(...antutuModels.map((m) => m.antutu_mem || 0), 0)
+  const maxAntutuUx    = Math.max(...antutuModels.map((m) => m.antutu_ux  || 0), 0)
+
+  return (
+    <>
+    <section className="l-section" id="benchmark" aria-labelledby="heading-benchmark">
+      <div className="l-container">
+        <h2 className="m-section-heading m-section-heading--lg" id="heading-benchmark">
+          歴代Google PixelのTensor性能・処理速度を比較（ベンチマークスコア）
+        </h2>
+        <p className="m-section-desc">
+          Google Tensorの性能の違いを可視化するために2種類のベンチマークスコア一覧表を用意。
+        </p>
+        <p className="m-section-desc">
+          Pixelの買い替えでどれくらい処理速度が上がるのかご確認ください。
+        </p>
+
+        {/* Geekbench */}
+        {geekbenchModels.length > 0 && (
+          <section id="geekbench" aria-labelledby="heading-geekbench">
+            <h3 className="m-section-heading m-section-heading--md" id="heading-geekbench" style={{ textAlign: 'left' }}>
+              Geekbench 6 スコア一覧
+            </h3>
+            <p className="m-section-desc" style={{ textAlign: 'left' }}>
+              CPU単体の処理性能（シングル/マルチコア）を評価。純粋な計算処理能力や高負荷タスクを評価するのが得意です。
+            </p>
+
+            <div className="l-grid l-grid--2col l-grid--gap-lg u-mb-xl">
+              <div className="m-card m-card--shadow" style={{ padding: 'var(--space-lg, 20px)' }}>
+                <p className="glossary-item-title">シングルスコア</p>
+                <p className="glossary-item-desc">1つのCPUコアの処理性能を示す指標でアプリの起動やWeb閲覧など日常的な操作に影響する</p>
+              </div>
+              <div className="m-card m-card--shadow" style={{ padding: 'var(--space-lg, 20px)' }}>
+                <p className="glossary-item-title">マルチスコア</p>
+                <p className="glossary-item-desc">複数のCPUコアを同時に使ったときの処理能力でゲームや動画編集などの重たい作業に効果を発揮</p>
+              </div>
+            </div>
+
+            <StickyTableWrapper floatingHeader>
+            <div className="m-card m-card--shadow m-table-card">
+              <div className="m-table-scroll">
+                <table className="m-table bench-table">
+                  <caption className="visually-hidden">Pixelモデル別 Geekbench 6 ベンチマークスコア比較</caption>
+                  <thead>
+                    <tr>
+                      <th scope="col" className="bench-table__sticky">モデル</th>
+                      <th scope="col">シングルコア</th>
+                      <th scope="col">マルチコア</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {geekbenchModels.map((m) => (
+                      <tr key={m.id}>
+                        <th scope="row" className="bench-table__sticky u-shrink"><button className="bench-table__model-btn" onClick={() => setSelectedModel(m)}>{m.model}</button></th>
+                        <td><BenchBar value={m.score_single!} maxValue={maxSingle} color="#e74c6f" /></td>
+                        <td><BenchBar value={m.score_multi!}  maxValue={maxMulti}  color="#f0a030" /></td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            </StickyTableWrapper>
+          </section>
+        )}
+
+        {/* Antutu */}
+        {antutuModels.length > 0 && (
+          <section id="antutu" className="u-mt-3xl" aria-labelledby="heading-antutu">
+            <h3 className="m-section-heading m-section-heading--md" id="heading-antutu" style={{ textAlign: 'left' }}>
+              AnTuTu スコア一覧
+            </h3>
+            <p className="m-section-desc" style={{ textAlign: 'left' }}>
+              CPUだけでなく、GPU、メモリ、UXまで含めた総合的な端末の性能を評価。ゲームやマルチタスク、日常的な操作を含めた全体的な快適さを判断するのが得意です。
+            </p>
+
+            <div className="l-grid l-grid--4col l-grid--gap-lg u-mb-xl">
+              <div className="m-card m-card--shadow" style={{ padding: 'var(--space-lg, 20px)' }}>
+                <p className="glossary-item-title">CPU</p>
+                <p className="glossary-item-desc">デバイスの演算処理能力。アプリの起動や動作速度、OSの基本操作の速さに直結します。</p>
+              </div>
+              <div className="m-card m-card--shadow" style={{ padding: 'var(--space-lg, 20px)' }}>
+                <p className="glossary-item-title">GPU</p>
+                <p className="glossary-item-desc">3Dグラフィックスの描画性能。主に高負荷な3Dゲームや動画編集の処理速度に影響します。</p>
+              </div>
+              <div className="m-card m-card--shadow" style={{ padding: 'var(--space-lg, 20px)' }}>
+                <p className="glossary-item-title">MEM</p>
+                <p className="glossary-item-desc">RAMとストレージのデータ読み書き速度。アプリの切り替えやロード時間、ファイル転送速度に影響します。</p>
+              </div>
+              <div className="m-card m-card--shadow" style={{ padding: 'var(--space-lg, 20px)' }}>
+                <p className="glossary-item-title">UX</p>
+                <p className="glossary-item-desc">アプリのレスポンス速度や並行処理能力など、日常操作の総合的な快適性を評価する指標です。</p>
+              </div>
+            </div>
+
+            <StickyTableWrapper floatingHeader>
+            <div className="m-card m-card--shadow m-table-card">
+              <div className="m-table-scroll">
+                <table className="m-table m-table--sticky-col bench-table">
+                  <caption className="visually-hidden">Pixelモデル別 AnTuTu Benchmark v10 スコア比較</caption>
+                  <thead>
+                    <tr>
+                      <th scope="col" className="bench-table__sticky">モデル</th>
+                      <th scope="col">合計</th>
+                      <th scope="col">CPU</th>
+                      <th scope="col">GPU</th>
+                      <th scope="col">MEM</th>
+                      <th scope="col">UX</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {antutuModels.map((m) => {
+                      const total = (m.antutu_cpu || 0) + (m.antutu_gpu || 0) + (m.antutu_mem || 0) + (m.antutu_ux || 0)
+                      return (
+                        <tr key={m.id}>
+                          <th scope="row" className="bench-table__sticky u-shrink"><button className="bench-table__model-btn" onClick={() => setSelectedModel(m)}>{m.model}</button></th>
+                          <td><BenchBar value={total}          maxValue={maxAntutuTotal} color="var(--color-primary, #2589d0)" /></td>
+                          <td><BenchBar value={m.antutu_cpu!} maxValue={maxAntutuCpu}   color="#e74c6f" /></td>
+                          <td><BenchBar value={m.antutu_gpu!} maxValue={maxAntutuGpu}   color="#34a853" /></td>
+                          <td><BenchBar value={m.antutu_mem!} maxValue={maxAntutuMem}   color="#34a853" /></td>
+                          <td><BenchBar value={m.antutu_ux!}  maxValue={maxAntutuUx}    color="#f0a030" /></td>
+                        </tr>
+                      )
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            </StickyTableWrapper>
+          </section>
+        )}
+
+        <div className="m-callout m-callout--tip u-mt-2xl">
+          <span className="m-callout__label">詳しく見る</span>
+          <p className="m-callout__text">
+            Tensor世代別の性能比較や用途別おすすめスコアの目安は「<Link prefetch={false} href="/pixel/benchmark/">歴代Google Pixelベンチマーク比較ランキング</Link>」で詳しく解説しています。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    {selectedModel && (
+      <ModelModal
+        model={selectedModel}
+        avgPrice={avgPrices[selectedModel.id] ?? null}
+        iosysUrl={iosysUrlMap[selectedModel.id] ?? null}
+        onClose={() => setSelectedModel(null)}
+      />
+    )}
+    </>
+  )
+}
