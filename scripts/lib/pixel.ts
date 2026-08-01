@@ -19,7 +19,7 @@ function modelKey(modelName: string): string {
 
 /**
  * 楽天の商品名が対象モデルと厳密一致するか。
- * Pixel の派生は 無印 / Pro / Pro XL / a の4系統。
+ * Pixel の派生は 無印 / Pro / Pro XL / Pro Fold / a の5系統。
  * 例: "pixel9" は "pixel9pro" / "pixel9proxl" / "pixel9a" を誤マッチしない。
  */
 function isExactPixelModelMatch(itemName: string, modelName: string): boolean {
@@ -32,12 +32,17 @@ function isExactPixelModelMatch(itemName: string, modelName: string): boolean {
 
   const after = n.slice(idx + m.length)
 
+  // Pro Fold: キーに 'fold' を含むので確定
+  if (m.endsWith('fold')) {
+    return true
+  }
   if (m.endsWith('proxl')) {
     return true
   }
   if (m.endsWith('pro')) {
-    // "9 Pro" が "9 Pro XL" を拾わないように
+    // "9 Pro" が "9 Pro XL" を、"10 Pro" が "10 Pro Fold" を拾わないように
     if (after.startsWith('xl')) return false
+    if (after.startsWith('fold')) return false
     return true
   }
   if (m.endsWith('a')) {
@@ -52,8 +57,10 @@ function isExactPixelModelMatch(itemName: string, modelName: string): boolean {
 /** 無印/Pro を絞るためのサーバー側 NGKeyword（'a' は誤爆リスクが高いので matchFn に委ねる） */
 function getPixelNgKeyword(modelName: string): string | null {
   const m = modelKey(modelName)
+  // Pro Fold は絞り込み不要。ここを通さないと末尾の 'Pro' に落ちて Fold 自身が全除外される
+  if (m.endsWith('fold')) return null
   if (m.endsWith('proxl')) return null
-  if (m.endsWith('pro')) return 'XL'
+  if (m.endsWith('pro')) return 'XL Fold' // "10 Pro" から Pro XL / Pro Fold を除外
   if (m.endsWith('a')) return 'Pro'
   return 'Pro' // 無印: Pro系を除外（aは matchFn で除外）
 }

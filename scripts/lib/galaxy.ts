@@ -53,7 +53,11 @@ function isExactGalaxyModelMatch(
   if (m.endsWith('ultra')) return true
 
   // Z Flip / Z Fold / A系はキーに種別と数字を含むので基本OK
-  if (m.includes('zflip') || m.includes('zfold') || /galaxya\d/.test(m)) return true
+  // ただし "Z Fold8" が "Z Fold8 Ultra" を拾わないよう直後の ultra は除外
+  if (m.includes('zflip') || m.includes('zfold') || /galaxya\d/.test(m)) {
+    if (after.startsWith('ultra')) return false
+    return true
+  }
 
   // S系 無印: 直後が ultra/plus/+/fe なら別モデル
   if (after.startsWith('ultra') || after.startsWith('plus') || after.startsWith('+') || after.startsWith('fe')) {
