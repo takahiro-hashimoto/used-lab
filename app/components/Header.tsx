@@ -5,7 +5,7 @@ import Image from 'next/image'
 import { useState, useEffect, useRef } from 'react'
 import { createPortal } from 'react-dom'
 import { useRouter } from 'next/navigation'
-import { HEADER_NAV_ITEMS } from '@/lib/routes'
+import { HEADER_NAV_ITEMS, HEADER_UTILITY_ITEMS } from '@/lib/routes'
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -87,32 +87,14 @@ export default function Header() {
           />
         </Link>
 
-        <nav className="global-nav" id="globalNav" aria-label="メインナビゲーション">
-          <ul className="nav-list">
-            {HEADER_NAV_ITEMS.map((item) => (
-              <li
-                key={item.href}
-                className={`nav-item${item.children ? ' nav-item--has-dropdown' : ''}${openDropdown === item.href ? ' nav-item--open' : ''}`}
-                onMouseEnter={() => item.children && setOpenDropdown(item.href)}
-                onMouseLeave={() => setOpenDropdown(null)}
-              >
-                <Link href={item.href} prefetch={false}>{item.label}</Link>
-                {item.children && (
-                  <div className="nav-dropdown">
-                    <ul className="nav-dropdown__list">
-                      {item.children.map((child) => (
-                        <li key={child.href}>
-                          <Link
-                            href={child.href}
-                            className="nav-dropdown__link"
-                            prefetch={false}
-                            onClick={() => setOpenDropdown(null)}
-                          >{child.label}</Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
+        {/* 上段はサイト運営系のリンクのみ。カテゴリ導線は下段のナビバーに置く */}
+        <nav className="header-utility" aria-label="サブナビゲーション">
+          <ul className="header-utility__list">
+            {HEADER_UTILITY_ITEMS.map((item) => (
+              <li key={item.href}>
+                <Link href={item.href} prefetch={false} className="header-utility__link">
+                  {item.label}
+                </Link>
               </li>
             ))}
           </ul>
@@ -147,6 +129,40 @@ export default function Header() {
             </span>
           </button>
         </div>
+      </div>
+
+      {/* 下段＝カテゴリ導線。SPでは非表示（ハンバーガー内のドロワーが担う） */}
+      <div className="header-nav-bar">
+        <nav className="global-nav" id="globalNav" aria-label="メインナビゲーション">
+          <ul className="nav-list">
+            {HEADER_NAV_ITEMS.map((item) => (
+              <li
+                key={item.href}
+                className={`nav-item${item.children ? ' nav-item--has-dropdown' : ''}${openDropdown === item.href ? ' nav-item--open' : ''}`}
+                onMouseEnter={() => item.children && setOpenDropdown(item.href)}
+                onMouseLeave={() => setOpenDropdown(null)}
+              >
+                <Link href={item.href} prefetch={false}>{item.label}</Link>
+                {item.children && (
+                  <div className="nav-dropdown">
+                    <ul className="nav-dropdown__list">
+                      {item.children.map((child) => (
+                        <li key={child.href}>
+                          <Link
+                            href={child.href}
+                            className="nav-dropdown__link"
+                            prefetch={false}
+                            onClick={() => setOpenDropdown(null)}
+                          >{child.label}</Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </li>
+            ))}
+          </ul>
+        </nav>
       </div>
 
       {/* PC検索モーダル（portalでbody直下に描画） */}
@@ -214,6 +230,14 @@ export default function Header() {
                       {item.label}
                     </Link>
                   )}
+                </li>
+              ))}
+              {/* PC上段に移したぶん、ドロワーからは消えてしまうのでここで補う */}
+              {HEADER_UTILITY_ITEMS.map((item) => (
+                <li key={item.href}>
+                  <Link href={item.href} prefetch={false} onClick={() => setIsMenuOpen(false)}>
+                    {item.label}
+                  </Link>
                 </li>
               ))}
             </ul>

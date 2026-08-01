@@ -333,7 +333,15 @@ const ALL_HEADER_NAV_ITEMS: HeaderNavItem[] = [
       { href: '/airpods/used-airpods-attention/', label: '中古AirPodsの注意点' },
     ],
   },
-  { href: '/smartphone-compare/', label: '中古スマホ横断比較' },
+]
+
+/**
+ * ヘッダー上段のユーティリティリンク。
+ * カテゴリが7つに増えて1段では窮屈になったため、サイト運営系のリンクは上段に分離した。
+ * 下段（グローバルナビ）はカテゴリ導線だけに絞る。
+ */
+export const HEADER_UTILITY_ITEMS: { href: string; label: string }[] = [
+  { href: '/sitemap-page/', label: 'サイトマップ' },
   { href: '/contact/', label: 'お問い合わせ' },
   { href: '/profile/', label: '運営者情報' },
 ]
