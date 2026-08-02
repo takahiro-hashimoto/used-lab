@@ -116,34 +116,75 @@ function createModelQueries<T>(table: string, tag: string, activeField?: string)
 }
 
 /**
+ * DBクエリの同時実行数の上限（1ワーカープロセスあたり）。
+ *
+ * ページ側は Promise.all で何本も同時に投げるため、ワーカー数を絞るだけでは
+ * 瞬間的な同時接続数が読めない（[slug] ページは3ブランド分の価格ログを一度に引く）。
+ * ここで頭を押さえることで、experimental.cpus と掛け算になった突発的なスパイクを防ぐ。
+ * 待たせるだけでクエリは落とさないので、ビルド結果は変わらない。
+ */
+const DB_CONCURRENCY = 4
+let dbInFlight = 0
+const dbWaiters: (() => void)[] = []
+
+async function acquireDbSlot(): Promise<void> {
+  if (dbInFlight < DB_CONCURRENCY) {
+    dbInFlight++
+    return
+  }
+  await new Promise<void>((resolve) => dbWaiters.push(resolve))
+  dbInFlight++
+}
+
+function releaseDbSlot(): void {
+  dbInFlight--
+  const next = dbWaiters.shift()
+  if (next) next()
+}
+
+/**
  * 一時的なDB過負荷のみリトライする。
  *
  * Vercel のビルドマシンは30コアあり、全カテゴリのページを一斉にプリレンダリングする。
  * その結果 7カテゴリぶんの価格ログクエリが同時に殺到して Supabase が飽和し、
- * `canceling statement due to statement timeout` で **ビルドごと失敗する**。
- * 1ページの失敗が全体を落とすため、ここで吸収する。
- * 並列度そのものは next.config.ts の experimental.cpus で抑えている。
+ * `canceling statement due to statement timeout` や `fetch failed` で
+ * **ビルドごと失敗する**。1ページの失敗が全体を落とすため、ここで吸収する。
+ *
+ * 対策は3段構え。
+ *   1. next.config.ts の experimental.cpus でワーカー数を抑える
+ *   2. DB_CONCURRENCY で1ワーカー内の同時クエリ数を抑える
+ *   3. それでも溢れた分をこのリトライで拾う
  *
  * カラム名の誤りなど恒久的な失敗は握りつぶさず即座に投げる。
  */
 async function withDbRetry<T>(label: string, fn: () => Promise<T>): Promise<T> {
   const RETRYABLE = /statement timeout|canceling statement|fetch failed|ECONNRESET|ETIMEDOUT|503|504/i
-  const MAX_ATTEMPTS = 3
+  const MAX_ATTEMPTS = 5
   let lastError: unknown
+  let lastMessage = ''
 
   for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
+    await acquireDbSlot()
     try {
       return await fn()
     } catch (e) {
       lastError = e
       const message = e instanceof Error ? e.message : String(e)
       if (!RETRYABLE.test(message)) throw e
-      if (attempt === MAX_ATTEMPTS) break
-      // 500ms → 1000ms。飽和が原因なので即座に叩き直さず間を空ける
-      const waitMs = 500 * attempt
-      console.warn(`[queries] ${label} failed (${message}); retrying in ${waitMs}ms (${attempt}/${MAX_ATTEMPTS - 1})`)
-      await new Promise((resolve) => setTimeout(resolve, waitMs))
+      lastMessage = message
+    } finally {
+      releaseDbSlot()
     }
+
+    // ここに到達するのはリトライ対象のエラーだったときだけ。
+    // バックオフは枠を手放してから待つ（掴んだまま眠ると他のクエリを止めてしまう）。
+    if (attempt === MAX_ATTEMPTS) break
+    // 1s → 2s → 4s → 8s の指数バックオフ。
+    // 原因は「ビルド開始直後に価格ログクエリが同時に殺到して Supabase が飽和する」
+    // 一過性のスパイクなので、短い間隔で叩き直しても同じ混雑に当たるだけで意味がない。
+    const waitMs = 1000 * 2 ** (attempt - 1)
+    console.warn(`[queries] ${label} failed (${lastMessage}); retrying in ${waitMs}ms (${attempt}/${MAX_ATTEMPTS - 1})`)
+    await new Promise((resolve) => setTimeout(resolve, waitMs))
   }
   throw lastError
 }
