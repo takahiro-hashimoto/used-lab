@@ -16,7 +16,7 @@ export const revalidate = false
 
 const PAGE_TITLE = '中古Galaxyはいつまで使える？サポート期間・Androidアップデート'
 const PAGE_DESCRIPTION =
-  'Samsung Galaxyの寿命とサポート期間を機種別に一覧で紹介。Androidアップデートの保証年数（S24／S25・Flip6／Fold6は7年）や終了予定の目安、買い替えるべき4つのタイミングもわかりやすく解説します。'
+  'Samsung Galaxyの寿命とサポート期間を機種別に一覧で紹介。Androidアップデートの保証年数（S24以降・Flip6／Fold6以降は7年）や終了予定の目安、買い替えるべき4つのタイミングもわかりやすく解説します。'
 const PAGE_URL = 'https://used-lab.jp/galaxy/used-galaxy-support/'
 
 export const metadata: Metadata = {

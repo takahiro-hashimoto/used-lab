@@ -19,7 +19,7 @@ export default function ChecklistSection() {
             <p>500回以下なら安心、800回を超えるとバッテリー持ちに不安が出始めます。にこスマなどバッテリー表示のあるショップで確認してから購入するのがおすすめです。</p>
           </IconCard>
 
-          <IconCard icon="fa-solid fa-microchip" title="チップ（M1/M2/M3）を確認する">
+          <IconCard icon="fa-solid fa-microchip" title="チップ（M1以降）を確認する">
             <p>Apple Siliconチップは世代が新しいほど性能と電力効率が向上します。</p>
             <p>M1でも日常作業には十分ですが、動画編集や重い作業をする方はM2以降を選びましょう。Intel搭載モデルは性能・バッテリー持ちともに劣るため注意が必要です。</p>
           </IconCard>

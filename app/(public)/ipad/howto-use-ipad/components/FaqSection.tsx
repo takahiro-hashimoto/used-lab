@@ -68,7 +68,7 @@ export default function FaqSection() {
             <h3 className="faq-question">Apple PencilはどのiPadに対応していますか？</h3>
             <div className="faq-answer m-rich-text m-rich-text--muted">
               <p>
-                Apple Pencilは世代やモデルによって対応するiPadが異なります。最新のApple Pencil ProはM4 iPad ProやM2以降のiPad Airに対応。第1世代・第2世代・USB-Cモデルもそれぞれ対応機種が違うため、購入前に必ず確認しましょう。詳しくは「<Link prefetch={false} href="/ipad/apple-pencil-compare/">Apple Pencilの違い</Link>」で解説しています。
+                Apple Pencilは世代やモデルによって対応するiPadが異なります。Apple Pencil ProはM4以降のiPad ProとM2以降のiPad Airに対応。第1世代・第2世代・USB-Cモデルもそれぞれ対応機種が違うため、購入前に必ず確認しましょう。詳しくは「<Link prefetch={false} href="/ipad/apple-pencil-compare/">Apple Pencilの違い</Link>」で解説しています。
               </p>
             </div>
           </div>

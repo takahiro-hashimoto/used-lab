@@ -26,6 +26,7 @@ type Props = {
 
 const SHOP_NAMES: Record<number, string> = {
   1: 'イオシス',
+  7: 'Amazon',
   3: 'ゲオ',
   6: 'じゃんぱら',
   16: 'eイヤホン',
@@ -39,8 +40,20 @@ export default function RecommendDetailSection({ items }: Props) {
           中古AirPodsおすすめ機種の詳細解説
         </h2>
         <p className="m-section-desc">
-          各モデルの詳細なスペックや特徴、精度、そしてイチオシの中古ECショップのリンクもまとめています。それぞれの強みを比較しながら、あなたの使い方に最適な1台を見つけてみてください。
+          各モデルの詳細なスペックや特徴、精度、そしてイチオシの中古ECショップのリンクもまとめています。
         </p>
+        <p className="m-section-desc">
+          それぞれの強みを比較しながら、あなたの使い方に最適な1台を見つけてみてください。
+        </p>
+
+        <div className="m-callout m-callout--muted u-mt-xl u-mb-2xl">
+          <span className="m-callout__label"><i className="fa-solid fa-circle-info" aria-hidden="true"></i> 中古相場の算出方法について</span>
+          {priceSourceShortParagraphs('airpods').map((text, i) => (
+            <p key={i} className="m-callout__text" style={{ margin: i === 0 ? 0 : 'var(--space-sm) 0 0' }}>
+              {text}
+            </p>
+          ))}
+        </div>
 
         {items.map((item) => {
           const { model, latestPrice, shopLinks, fallbackShops, label, subtitle, description, good, bad, updatedDateStr } = item
@@ -196,13 +209,6 @@ export default function RecommendDetailSection({ items }: Props) {
                         <i className="fa-solid fa-chevron-right" aria-hidden="true"></i>
                       </a>
                     ))}
-                    <a
-                      href={`/airpods/${model.slug}/`}
-                      className="m-btn m-btn--primary"
-                    >
-                      詳細記事を見る{' '}
-                      <i className="fa-solid fa-chevron-right" aria-hidden="true"></i>
-                    </a>
                   </div>
                 </div>
               )}
@@ -236,8 +242,8 @@ export default function RecommendDetailSection({ items }: Props) {
                     ]} />
                   </tbody>
                 </table>
-                {iosysLink && (
-                  <div className="recommend-card__specs-cta">
+                <div className="recommend-card__specs-cta">
+                  {iosysLink && (
                     <a
                       href={iosysLink.url}
                       className="m-btn m-btn--primary"
@@ -248,21 +254,16 @@ export default function RecommendDetailSection({ items }: Props) {
                       イオシスで{model.name}を探す{' '}
                       <i className="fa-solid fa-chevron-right" aria-hidden="true"></i>
                     </a>
-                  </div>
-                )}
+                  )}
+                  <a href={`/airpods/${model.slug}/`} className="m-btn m-btn--primary">
+                    {model.name}の詳細記事を見る{' '}
+                    <i className="fa-solid fa-chevron-right" aria-hidden="true"></i>
+                  </a>
+                </div>
               </SpecToggle>
             </article>
           )
         })}
-
-        <div className="m-callout m-callout--muted u-mt-2xl">
-          <span className="m-callout__label"><i className="fa-solid fa-circle-info" aria-hidden="true"></i> 中古相場の算出方法について</span>
-          {priceSourceShortParagraphs('airpods').map((text, i) => (
-            <p key={i} className="m-callout__text" style={{ margin: i === 0 ? 0 : 'var(--space-sm) 0 0' }}>
-              {text}
-            </p>
-          ))}
-        </div>
       </div>
     </section>
   )

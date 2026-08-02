@@ -145,6 +145,7 @@ export function buildAccessoryLookup(
 // --- サポート期間一覧データ生成 ---
 
 import type { LifespanEntryWithModels } from '@/app/components/support/LifespanTable'
+import { CURRENT_MODELS, annualCostOf } from '@/lib/data/current-models'
 
 /** モデル名からプロダクトライン（iPad Pro / iPad Air / iPad mini / iPad）を抽出 */
 function getProductLine(modelName: string): string {
@@ -214,11 +215,12 @@ export function buildIPadLifespanData(models: IPadModel[]): LifespanEntryWithMod
 
 // --- 購入判定ロジック（iPad版：PHP版から移植） ---
 
-/** 最新iPad基準値（iPad Pro 13 M5） */
-const LATEST_IPAD_NAME = 'iPad Pro 13 第2世代'
-const LATEST_IPAD_SCORE = 15306  // score_multi (iPad Pro 13 M5)
-const LATEST_IPAD_PRICE = 218800
-const LATEST_ANNUAL = Math.round(LATEST_IPAD_PRICE / 5)
+// 現行機種の定義は lib/data/current-models.ts に集約している。
+const LATEST_IPAD = CURRENT_MODELS.ipad.basis
+const LATEST_IPAD_NAME = LATEST_IPAD.name
+const LATEST_IPAD_SCORE = LATEST_IPAD.score ?? 0
+const LATEST_IPAD_PRICE = LATEST_IPAD.newPrice
+const LATEST_ANNUAL = annualCostOf(LATEST_IPAD)
 
 export type VerdictRank = 'best' | 'good' | 'wait'
 

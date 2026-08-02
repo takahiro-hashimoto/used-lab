@@ -40,8 +40,7 @@ export function buildVendorCardsFromShops(
 ): VendorCardItem[] {
   const { exclude = [], priorityOrder = [] } = options ?? {}
 
-  // shop_key 'amazon' (Amazon整備済み品) は一時的に非表示（Amazonアソシエイト対応）。復活時は末尾の && 条件を削除
-  let filtered = shops.filter((s) => s[urlKey] != null && !exclude.includes(s.shop_key) && s.shop_key !== 'amazon')
+  let filtered = shops.filter((s) => s[urlKey] != null && !exclude.includes(s.shop_key))
 
   if (priorityOrder.length > 0) {
     const priorityMap = new Map(priorityOrder.map((key, i) => [key, i]))

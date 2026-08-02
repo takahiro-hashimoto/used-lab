@@ -205,6 +205,9 @@ iPadを安く買う7つの方法
                   <p>AmazonはApple製品の正規代理店なので、セール価格で買い物ができたりポイントが付与される以外にも「整備済みのiPad」が買えるメリットがあります。</p>
                   <p>整備済みの型落ちモデルは在庫数に波がありますが、お目当てのアイテムがぐっと安く購入できる場合があるので是非チェックしてみて下さい。</p>
                 </div>
+                <a href="https://amzn.to/3ItT1yi" className="buy-method-cta" target="_blank" rel="nofollow noopener noreferrer">
+                  <i className="fa-brands fa-amazon" aria-hidden="true"></i> AmazonでiPadを購入する
+                </a>
               </div>
             </div>
           </div>

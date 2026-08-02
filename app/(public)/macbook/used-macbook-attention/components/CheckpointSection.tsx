@@ -20,7 +20,7 @@ export default function CheckpointSection() {
             CPU（搭載チップ）
           </h3>
           <p className="checkpoint-card__text">
-            CPUはApple製（M1〜M4）とIntel製の2種類があり、Apple製の方が処理性能が大幅に高いです。2026年現在、<strong>Intel製MacBookはサポートが終了済みまたは間近のため避けるべき</strong>です。
+            CPUはApple製（M1以降、現行はM5）とIntel製の2種類があり、Apple製の方が処理性能が大幅に高いです。2026年現在、<strong>Intel製MacBookはサポートが終了済みまたは間近のため避けるべき</strong>です。
           </p>
           <div className="checkpoint-card__chips">
             <div className="checkpoint-chip">

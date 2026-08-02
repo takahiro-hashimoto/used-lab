@@ -8,7 +8,8 @@ const GEN_FEATURES: Record<string, { label: string; feature: string }> = {
   G1: { label: 'Google Tensor（初代）', feature: 'Pixel 6シリーズに初搭載されたGoogle独自SoC。AI・機械学習処理に特化し、消しゴムマジックやリアルタイム翻訳を実現した第1世代。' },
   G2: { label: 'Google Tensor G2', feature: 'Pixel 7世代。電力効率と発熱を改善し、写真のボケ補正やダイレクト書き起こしなどAI機能をさらに強化。' },
   G3: { label: 'Google Tensor G3', feature: 'Pixel 8世代。7年間のOS・セキュリティ更新に対応し、ベストテイクや音声消しゴムマジックなど生成AI機能が大幅に進化。' },
-  G4: { label: 'Google Tensor G4', feature: 'Pixel 9世代。Gemini（オンデバイスAI）世代のSoC。応答性と省電力を両立し、AIアシスタント体験を一段と高めた最新世代。' },
+  G4: { label: 'Google Tensor G4', feature: 'Pixel 9世代。Gemini（オンデバイスAI）世代のSoC。応答性と省電力を両立し、AIアシスタント体験を一段と高めた世代。' },
+  G5: { label: 'Google Tensor G5', feature: 'Pixel 10世代。設計を刷新したGoogle独自SoCで、CPU・GPUともに前世代から性能を伸ばし、オンデバイスAIの処理をさらに高速化した現行世代。' },
 }
 
 type GenGroup = {

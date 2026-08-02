@@ -250,7 +250,7 @@ export default async function AirPodsGuidePage() {
             items={compareItems}
             heading={<>今買うならこれ！おすすめ中古AirPods3選【{GUIDE_DATE_LABEL}最新】</>}
             descriptions={[
-              <>当サイトでおすすめしている機種は下記の通り。{GUIDE_DATE_LABEL}時点で「主要機能が十分に乗っている」「中古価格と性能のバランスが良い」ことが判断基準です。</>,
+              <>当サイトでおすすめしている機種は下記の通り。「主要機能が十分に乗っている」「中古価格と性能のバランスが良い」ことが判断基準です。</>,
             ]}
           />
           <RecommendDetailSection items={detailItems} />

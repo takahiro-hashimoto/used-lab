@@ -34,7 +34,7 @@ export default function ComparisonSections() {
           <Image src="/images/content/photo/m2.webp" alt="チップとパフォーマンスの違い" style={imgStyle} loading="lazy" width={800} height={450} />
           <h3 className="popular-card-title">チップとパフォーマンスの違い</h3>
           <p className="media-card__desc u-mt-md">
-            MacBook AirはMac専用の<strong>Apple Silicon（M1〜M4）</strong>を搭載。MacBook Neoは2026年発売の新製品で、iPhoneやiPadに使われている<strong>A18 Proチップ</strong>を採用しています。
+            MacBook AirはMac専用の<strong>Apple Silicon（M1以降、現行はM5）</strong>を搭載。MacBook Neoは2026年発売の新製品で、iPhoneやiPadに使われている<strong>A18 Proチップ</strong>を採用しています。
           </p>
           <p className="media-card__desc u-mt-md">
             シングルコア性能はNeoのA18 Proが優秀で、M1 Airと比べると約48%高速です。

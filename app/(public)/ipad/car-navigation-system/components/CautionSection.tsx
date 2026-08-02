@@ -47,6 +47,10 @@ export default function CautionSection() {
           <p className="media-card__desc u-mt-sm">
             たとえばエアコン吹き出し口型はしっかり固定できる反面、エアコンの風がタブレットに当たり続けるなどのデメリットもあります。おすすめは<strong>吸盤・粘着ゲルタイプ</strong>で、取り付け位置の自由度が高く車種を問わず使いやすいのが特長です。購入前にダッシュボード周りのスペースを確認しておきましょう。
           </p>
+          <p className="lead-link u-mt-sm">
+            <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
+            <a href="https://amzn.to/4bFbYKv" target="_blank" rel="noopener noreferrer">AmazonでiPad対応の車載ホルダーを探す</a>
+          </p>
         </div>
       </div>
     </div>

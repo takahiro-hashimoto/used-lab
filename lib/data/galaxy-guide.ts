@@ -52,7 +52,7 @@ export const GUIDE_FAQ_ITEMS = [
   },
   {
     question: '中古Galaxyはいつまで使えますか？',
-    answer: 'GalaxyはS24・S25世代やFlip6/Fold6でOS・セキュリティ更新が最大7年、S22/S23世代はOS4回・セキュリティ5年が保証されています。\n長く使いたい場合は7年サポート世代を選ぶと安心です。詳しくは「[中古Galaxyのサポート期間一覧](/galaxy/used-galaxy-support/)」をご覧ください。',
+    answer: 'GalaxyはS24以降のSシリーズやFlip6/Fold6以降の折りたたみでOS・セキュリティ更新が最大7年、S22/S23世代はOS4回・セキュリティ5年が保証されています。\n長く使いたい場合は7年サポート世代を選ぶと安心です。詳しくは「[中古Galaxyのサポート期間一覧](/galaxy/used-galaxy-support/)」をご覧ください。',
   },
   {
     question: 'GalaxyのGalaxy AIやかこって検索は中古でも使えますか？',

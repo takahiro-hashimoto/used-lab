@@ -114,8 +114,13 @@ export function buildFallbackShops(
     .filter((item): item is FallbackShop => item != null)
 }
 
-/** プロトコルなしURLに https:// を補完 */
-function normalizeUrl(url: string): string {
+/**
+ * プロトコルなしURLに https:// を補完する。
+ * shops テーブルには "amzn.to/xxxx" のようにプロトコルを持たない URL があり、
+ * そのまま href に入れると相対URL（/iphone/amzn.to/xxxx）として解決され 404 になる。
+ * DB 由来の URL を href に渡すときは必ずこれを通すこと。
+ */
+export function normalizeUrl(url: string): string {
   if (!url) return url
   if (url.startsWith('http://') || url.startsWith('https://')) return url
   if (url.startsWith('//')) return `https:${url}`

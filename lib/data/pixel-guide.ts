@@ -32,7 +32,7 @@ export const GUIDE_SPEC_LINKS = [
 export const GUIDE_FAQ_ITEMS = [
   {
     question: '自分に合った中古Pixelの選び方は？',
-    answer: '用途や予算に応じて最適なモデルは異なります。カメラ重視ならPixel 8 ProなどのProシリーズ、コスパ重視ならPixel 8a・7aなどのaシリーズ、バランス重視なら無印モデルがおすすめです。\n「[中古Google Pixelおすすめ機種](/pixel/)」で目的別の狙い目モデルを紹介しています。',
+    answer: '用途や予算に応じて最適なモデルは異なります。カメラ重視ならPixel 8 ProなどのProシリーズ、コスパ重視ならPixel 8aなどのaシリーズ、バランス重視ならPixel 8やPixel 9といった無印モデルがおすすめです。\nいずれもPixel 8以降を選ぶと、7年間のOS・セキュリティ更新が保証されるため長く使えます。\n「[中古Google Pixelおすすめ機種](/pixel/)」で目的別の狙い目モデルを紹介しています。',
   },
   {
     question: 'Pixelのスペックを比較したい',

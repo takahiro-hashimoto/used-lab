@@ -74,7 +74,7 @@ export default function LifespanSection({ model }: Props) {
             <div className="glossary-item">
               <dt className="glossary-item-title">Android・セキュリティ更新の保証期間</dt>
               <dd className="glossary-item-desc">
-                Galaxy S24／S25やZ Flip6／Z Fold6以降は最大7年、S22／S23世代はOS4回・セキュリティ5年が保証されています。AシリーズはOS2〜4回・セキュリティ5年が目安。保証期間を過ぎると最新のOne UIやセキュリティパッチが配信されなくなり、新しい脆弱性への対応や一部アプリの動作に支障が出ることがあります。
+                Galaxy S24以降のSシリーズやZ Flip6／Z Fold6以降の折りたたみは最大7年、S22／S23世代はOS4回・セキュリティ5年が保証されています。AシリーズはOS2〜4回・セキュリティ5年が目安。保証期間を過ぎると最新のOne UIやセキュリティパッチが配信されなくなり、新しい脆弱性への対応や一部アプリの動作に支障が出ることがあります。
               </dd>
             </div>
             <div className="glossary-item">

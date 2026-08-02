@@ -71,6 +71,7 @@ export function calculatePriceRange(log: MacBookPriceLog | null): {
 
 import type { LifespanEntryWithModels } from '@/app/components/support/LifespanTable'
 import { priceStatsOf } from '@/lib/utils/price-stats'
+import { CURRENT_MODELS, annualCostOf } from '@/lib/data/current-models'
 
 /** モデル名からプロダクトライン（Pro / Air）を抽出 */
 function getProductLine(modelName: string): string {
@@ -138,11 +139,12 @@ export function buildMacBookLifespanData(models: MacBookModel[]): LifespanEntryW
 
 // --- 購入判定ロジック（MacBook版：PHP版から移植） ---
 
-/** 最新MacBook基準値（MacBook Pro 14 M4 Pro） */
-const LATEST_MACBOOK_NAME = 'MacBook Pro 14インチ（2024）'
-const LATEST_MACBOOK_SCORE = 15000  // score_multi 基準値
-const LATEST_MACBOOK_PRICE = 248800
-const LATEST_ANNUAL = Math.round(LATEST_MACBOOK_PRICE / 7)
+// 現行機種の定義は lib/data/current-models.ts に集約している。
+const LATEST_MACBOOK = CURRENT_MODELS.macbook.basis
+const LATEST_MACBOOK_NAME = LATEST_MACBOOK.name
+const LATEST_MACBOOK_SCORE = LATEST_MACBOOK.score ?? 0
+const LATEST_MACBOOK_PRICE = LATEST_MACBOOK.newPrice
+const LATEST_ANNUAL = annualCostOf(LATEST_MACBOOK)
 
 /** コスパ黄金期のスコア閾値 */
 const GOLDEN_SCORE_THRESHOLD = 8000

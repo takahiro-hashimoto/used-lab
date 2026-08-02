@@ -354,7 +354,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/pixel/storage-g
                   <span className="storage-quick-card__capacity">1TB</span>
                   <span className="storage-quick-card__label storage-quick-card__label--pro">プロ向け</span>
                 </div>
-                <p className="storage-quick-card__desc">高画質動画や大量のRAW写真を扱うクリエイター向け。Pixel 9 Pro／9 Pro XLなどProシリーズ最上位限定の容量です。</p>
+                <p className="storage-quick-card__desc">高画質動画や大量のRAW写真を扱うクリエイター向け。Pixel 9 Pro／10 Proなど、Proシリーズの上位構成でのみ選べる容量です。</p>
                 <ul className="storage-quick-card__list">
                   <li>4K・8K動画を長時間保存可能</li>
                   <li>RAW写真も容量を気にせず撮影</li>

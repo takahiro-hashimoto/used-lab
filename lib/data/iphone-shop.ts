@@ -23,7 +23,7 @@ export const SHOP_DETAIL_ORDER = [
   'nicosma',
   'geo',
   'recore',
-  // 'amazon', // 一時的に非表示（Amazonアソシエイト対応）。復活時はコメント解除
+  'amazon',
   'apple',
   'rakuten',
   'carrier',

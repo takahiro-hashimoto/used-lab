@@ -400,7 +400,7 @@ export default function ComparisonSections() {
         <div className="media-card__body">
           <h3 className="media-card__title">Apple Silicon（Mチップ）と性能面の違い</h3>
           <p className="media-card__desc">
-            2020年以降のMacにはApple独自の「Apple Silicon（M1〜M4チップ）」を搭載。CPUとGPUを統合したSoC設計により、<strong>高い処理性能と省電力を両立</strong>しています。動画編集や画像処理でも発熱が少なく、ファンレスで動作するモデルもあります。
+            2020年以降のMacにはApple独自の「Apple Silicon（M1以降、現行はM5）」を搭載。CPUとGPUを統合したSoC設計により、<strong>高い処理性能と省電力を両立</strong>しています。動画編集や画像処理でも発熱が少なく、ファンレスで動作するモデルもあります。
           </p>
           <p className="media-card__desc u-mt-sm">
             WindowsはIntel・AMD・Qualcommなど複数メーカーのCPUから選択可能。ハイエンドのIntel Core UltraやAMD Ryzenは、マルチコア性能やGPU拡張性でMacを上回る場面もあります。

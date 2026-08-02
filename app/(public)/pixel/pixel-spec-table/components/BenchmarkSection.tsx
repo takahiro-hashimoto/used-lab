@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { BenchBar } from '@/app/components/spec-table-utils'
+import { BenchBar, parseDate } from '@/app/components/spec-table-utils'
 import StickyTableWrapper from '@/app/components/StickyTableWrapper'
 import ModelModal from './ModelModal'
 import type { PixelModel, ProductShopLink } from '@/lib/types'
@@ -25,9 +25,11 @@ export default function BenchmarkSection({ models, avgPrices, shopLinks }: Props
     .filter((m) => m.score_single != null && m.score_multi != null)
     .sort((a, b) => (b.score_single || 0) - (a.score_single || 0))
 
-  const antutuModels = models.filter(
-    (m) => m.antutu_cpu != null && m.antutu_gpu != null && m.antutu_mem != null && m.antutu_ux != null,
-  )
+  // AnTuTu は発売日の新しい順。スコア順の Geekbench 表とは並びを変え、
+  // 「世代が上がるとどれだけ伸びたか」を上から追えるようにする
+  const antutuModels = models
+    .filter((m) => m.antutu_cpu != null && m.antutu_gpu != null && m.antutu_mem != null && m.antutu_ux != null)
+    .sort((a, b) => parseDate(b.date).getTime() - parseDate(a.date).getTime())
 
   const maxSingle = Math.max(...geekbenchModels.map((m) => m.score_single || 0), 0)
   const maxMulti  = Math.max(...geekbenchModels.map((m) => m.score_multi  || 0), 0)

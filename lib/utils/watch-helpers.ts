@@ -88,6 +88,7 @@ export function calculatePriceRange(log: WatchPriceLog | null): {
 // --- サポート期間一覧データ生成 ---
 
 import type { LifespanEntryWithHref } from '@/app/components/support/LifespanTable'
+import { CURRENT_MODELS, CURRENT_WATCH_ULTRA } from '@/lib/data/current-models'
 
 /**
  * DBモデル配列からサポート期間一覧テーブル用データを生成
@@ -129,14 +130,12 @@ export function buildWatchLifespanData(models: WatchModel[]): LifespanEntryWithH
 
 // --- 購入判定ロジック（Watch版：PHP版から移植） ---
 
-/** 最新Apple Watch基準値（Apple Watch Series 10） */
-const LATEST_WATCH_NAME = 'Apple Watch Series 10'
-const LATEST_WATCH_PRICE = 59800
-// Ultra はプレミアムラインで、標準ラインの Series と価格帯がまったく違う。
-// 同じ土俵で比べると Ultra は常に「新品より高い」と判定されてしまうため、
-// Ultra 系だけは Ultra の新品価格を比較対象にする
-const LATEST_ULTRA_NAME = 'Apple Watch Ultra 3'
-const LATEST_ULTRA_PRICE = 128800
+// 現行機種の定義は lib/data/current-models.ts に集約している。
+// Ultra を別扱いにする理由（価格帯がまったく違う）も同ファイルに記載。
+const LATEST_WATCH_NAME = CURRENT_MODELS.watch.basis.name
+const LATEST_WATCH_PRICE = CURRENT_MODELS.watch.basis.newPrice
+const LATEST_ULTRA_NAME = CURRENT_WATCH_ULTRA.name
+const LATEST_ULTRA_PRICE = CURRENT_WATCH_ULTRA.newPrice
 
 export type VerdictRank = 'best' | 'good' | 'wait'
 

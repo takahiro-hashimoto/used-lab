@@ -9,7 +9,7 @@ const faqItems = [
   },
   {
     question: 'MacBook Proの方が長持ちする？',
-    answer: 'macOSのサポート期間はAirもProも同世代なら同じです。ハードウェアの耐久性に大きな差はありません。\n長く使えるかどうかは<strong>チップの世代（M1〜M4）で決まる</strong>ため、AirでもProでも発売年が新しいモデルほど長く使えます。',
+    answer: 'macOSのサポート期間はAirもProも同世代なら同じです。ハードウェアの耐久性に大きな差はありません。\n長く使えるかどうかは<strong>チップの世代（M1以降、現行はM5）で決まる</strong>ため、AirでもProでも発売年が新しいモデルほど長く使えます。',
   },
   {
     question: '13インチAirと14インチProで迷っています',

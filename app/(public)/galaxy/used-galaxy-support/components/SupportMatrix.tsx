@@ -27,7 +27,7 @@ function formatSupportUntil(str: string | null): string {
 /**
  * 更新保証の内訳表示。
  * Galaxy は世代・シリーズで保証年数が異なる。
- * S24/S25・Flip6/Fold6（update_years=7）はOS・セキュリティとも7年、
+ * S24以降・Flip6/Fold6以降（update_years=7）はOS・セキュリティとも7年、
  * S22/S23（update_years=5）はセキュリティ5年・OSメジャー4回、
  * それ以前やAシリーズ（3〜4）はOS3〜4回・セキュリティ数年。
  */
@@ -136,7 +136,7 @@ export default function SupportMatrix({ models }: Props) {
         </StickyTableWrapper>
 
         <p className="m-footnote">
-          ※ 目安として、<strong>Galaxy S24／S25・Z Flip6／Z Fold6以降はOS・セキュリティとも7年</strong>、
+          ※ 目安として、<strong>Galaxy S24以降のSシリーズ・Z Flip6／Z Fold6以降の折りたたみはOS・セキュリティとも7年</strong>、
           S22／S23世代は<strong>セキュリティ更新5年・OSメジャー更新4回</strong>、S20／S21世代やAシリーズは
           機種により<strong>OS更新2〜4回・セキュリティ数年</strong>と幅があります。
           <br />

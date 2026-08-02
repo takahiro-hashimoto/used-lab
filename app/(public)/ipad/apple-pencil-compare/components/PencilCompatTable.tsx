@@ -230,7 +230,7 @@ export default function PencilCompatTable({ models, shopLinks }: Props) {
                     <th scope="row" className="spec-compare-table__sticky">詳細情報</th>
                     {filteredModels.map((m) => (
                       <td key={m.id}>
-                        <a href={`/ipad/${m.slug}`} className="m-btn m-btn--amazon m-btn--sm">
+                        <a href={`/ipad/${m.slug}`} className="m-btn m-btn--primary m-btn--sm">
                           商品詳細を見る
                         </a>
                       </td>

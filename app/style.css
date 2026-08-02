@@ -2771,8 +2771,14 @@ details[open] > .price-details-summary::after {
   justify-content: center;
 }
 
+/* 購入リンクと詳細記事リンクを横並びにする。狭い幅では折り返して縦積みになる */
+.recommend-card__specs-cta {
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
 .recommend-card__specs-cta .m-btn {
-  width: 100%;
+  flex: 1 1 260px;
   max-width: 400px;
 }
 

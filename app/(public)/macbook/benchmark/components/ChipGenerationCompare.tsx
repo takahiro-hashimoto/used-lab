@@ -113,7 +113,7 @@ export default function ChipGenerationCompare({ models }: { models: BenchModel[]
       <section className="l-section" id="chip-compare" aria-labelledby="heading-chip-compare">
         <div className="l-container">
           <h2 className="m-section-heading m-section-heading--lg" id="heading-chip-compare">
-            チップ世代別の性能比較（M1 → M2 → M3 → M4）
+            チップ世代別の性能比較（{sorted.map((g) => g.chip).join(' → ')}）
           </h2>
           <p className="m-section-desc">各チップ世代の平均ベンチマークスコアを比較。</p>
           <p className="m-section-desc">世代が上がるごとにどのくらい性能が向上しているかが一目でわかります。</p>

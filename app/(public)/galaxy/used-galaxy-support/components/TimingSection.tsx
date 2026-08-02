@@ -11,7 +11,7 @@ const TIMING_CARDS: TimingCard[] = [
       <>
         <p>Galaxyはシリーズ・世代ごとにアップデート保証期間が決まっており、その期間が終わると最新のAndroid（One UI）やセキュリティパッチを受け取れなくなります。</p>
         <ul className="media-card__list u-mb-md">
-          <li>S24／S25・Z Flip6／Z Fold6以降：OS・セキュリティとも7年に延長</li>
+          <li>S24以降のSシリーズ・Z Flip6／Z Fold6以降の折りたたみ：OS・セキュリティとも7年に延長</li>
           <li>S22／S23世代：セキュリティ更新5年・OSメジャー更新4回</li>
           <li>S20／S21世代・Aシリーズ：機種によりOS更新2〜4回・セキュリティ数年</li>
         </ul>

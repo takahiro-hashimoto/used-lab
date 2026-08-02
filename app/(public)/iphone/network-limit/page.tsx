@@ -5,7 +5,7 @@ import RatingMark from '@/app/components/RatingMark'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import FaqSection from '@/app/components/support/FaqSection'
 import IPhoneArticleFooter from '@/app/components/iphone/IPhoneArticleFooter'
-import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
+import { buildArticleJsonLd, getGitDateForFile, normalizeUrl } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
 import { getHeroImage } from '@/lib/data/hero-images'
 import { getShops } from '@/lib/queries'
@@ -65,7 +65,9 @@ export default async function NetworkLimitPage() {
   const shops = await getShops()
   const shopUrlMap: Record<number, string> = {}
   for (const s of shops) {
-    if (s.url) shopUrlMap[s.id] = s.url
+    // DBの url はプロトコルなしのことがある（Amazon の "amzn.to/..." など）。
+    // 素の値を href に入れると相対URLになり 404 するため必ず補完する
+    if (s.url) shopUrlMap[s.id] = normalizeUrl(s.url)
   }
   const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/network-limit/page.tsx')
 
@@ -374,7 +376,6 @@ export default async function NetworkLimitPage() {
                   <a href={shopUrlMap[6] ?? '#'} className="m-btn m-btn--primary m-btn--block" rel="nofollow noopener noreferrer" target="_blank">中古iPhoneを探す <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
                 </article>
 
-                {/* Amazon整備済み品カードは一時的に非表示（Amazonアソシエイト対応）。復活時はコメント解除。
                 <article className="m-card m-card--shadow m-vendor-card">
                   <div className="m-vendor-card__header">
                     <h3 className="m-vendor-card__name">Amazon整備済み品</h3>
@@ -389,7 +390,6 @@ export default async function NetworkLimitPage() {
                   </dl>
                   <a href={shopUrlMap[7] ?? '#'} className="m-btn m-btn--primary m-btn--block" rel="nofollow noopener noreferrer" target="_blank">中古iPhoneを探す <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
                 </article>
-                */}
               </div>
 
               <div className="m-callout m-callout--tip u-mt-xl">

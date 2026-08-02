@@ -229,6 +229,7 @@ export function getAdvanceFeaturesList(model: IPhoneModel): string[] {
 // --- サポート期間一覧データ生成 ---
 
 import type { LifespanEntryWithModels } from '@/app/components/support/LifespanTable'
+import { CURRENT_MODELS, annualCostOf } from '@/lib/data/current-models'
 
 /**
  * モデル名からシリーズグループキーを抽出
@@ -341,11 +342,13 @@ export function buildIPhoneLifespanData(models: IPhoneModel[]): LifespanEntryWit
 
 // --- 購入判定ロジック（PHP版から移植） ---
 
-/** 最新iPhone基準値 */
-const LATEST_IPHONE_NAME = 'iPhone 17'
-const LATEST_IPHONE_SCORE = 9143  // score_multi
-const LATEST_IPHONE_PRICE = 129800
-const LATEST_ANNUAL = Math.round(LATEST_IPHONE_PRICE / 5)
+// 現行機種の定義は lib/data/current-models.ts に集約している。
+// ここで機種名やスコアを直書きすると新機種発売時に直し漏れるため、必ず参照で使う。
+const LATEST_IPHONE = CURRENT_MODELS.iphone.basis
+const LATEST_IPHONE_NAME = LATEST_IPHONE.name
+const LATEST_IPHONE_SCORE = LATEST_IPHONE.score ?? 0
+const LATEST_IPHONE_PRICE = LATEST_IPHONE.newPrice
+const LATEST_ANNUAL = annualCostOf(LATEST_IPHONE)
 
 export type VerdictRank = 'best' | 'good' | 'wait'
 

@@ -231,7 +231,7 @@ export default async function GalaxyGuidePage() {
             <div className="lead-box">
               <p>スマホの値上がりや円安の影響で、新品のハイエンドスマホは以前より手が出しづらくなってきましたよね…。</p>
               <p>そこで賢い選択肢になるのが<strong>中古のSamsung Galaxy</strong>です。GalaxyはSnapdragonの余裕ある性能とGalaxy AI・かこって検索などの機能が魅力で、型落ちモデルでも普段使いに不満はでづらく、価格もぐっとお手頃。</p>
-              <p>S24世代やFlip6/Fold6は最大7年のOS・セキュリティ更新が保証されているのも安心材料です。</p>
+              <p>S24以降のSシリーズと、Z Flip6／Z Fold6以降の折りたたみは最大7年のOS・セキュリティ更新が保証されているのも安心材料です。</p>
               <p>本記事では{GUIDE_DATE_LABEL}時点でのおすすめ機種を、フラッグシップのSシリーズ・コスパのAシリーズ・折りたたみのZシリーズという切り口でご紹介します。記事後半には中古Galaxy選びに役立つコンテンツも多数用意しているので、ぜひチェックしてみてください！</p>
             </div>
           </div>
@@ -262,7 +262,7 @@ export default async function GalaxyGuidePage() {
             heading={<>今買うならこれ！おすすめ中古Samsung Galaxy5選【{GUIDE_DATE_LABEL}最新】</>}
             descriptions={[
               <>当サイトでおすすめしている機種は下記の通り。スペックの詳細な比較は<Link prefetch={false} href="/galaxy/galaxy-spec-table/">Galaxyスペック比較表</Link>をご覧ください。</>,
-              <>{GUIDE_DATE_LABEL}時点で「OS・セキュリティ更新が十分に残っている」「中古価格と性能・機能のバランスが良い」ことが判断基準です。S・A・Zの各シリーズから紹介しています。</>,
+              <>「OS・セキュリティ更新が十分に残っている」「中古価格と性能・機能のバランスが良い」ことが判断基準です。</>,
             ]}
           />
           <RecommendDetailSection items={detailItems} />
@@ -347,7 +347,7 @@ export default async function GalaxyGuidePage() {
                   <div className="glossary-item">
                     <dt className="glossary-item-title">Androidアップデートの保証期間（端末の寿命）</dt>
                     <dd className="glossary-item-desc">
-                      S24・S25世代やFlip6/Fold6はOS・セキュリティ更新が最大7年、S22/S23世代はOS4回・セキュリティ5年が保証されています。AシリーズはOS2〜4回・セキュリティ5年が目安です。古いモデルは購入後すぐにサポート外になるリスクがあるので注意。
+                      S24以降のSシリーズやFlip6/Fold6以降の折りたたみはOS・セキュリティ更新が最大7年、S22/S23世代はOS4回・セキュリティ5年が保証されています。AシリーズはOS2〜4回・セキュリティ5年が目安です。古いモデルは購入後すぐにサポート外になるリスクがあるので注意。
                       <div className="u-mt-sm">詳細：<Link prefetch={false} href="/galaxy/used-galaxy-support/">中古Galaxyのサポート期間の目安</Link></div>
                     </dd>
                   </div>

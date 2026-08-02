@@ -7,6 +7,7 @@ import StickyTableWrapper from '@/app/components/StickyTableWrapper'
 import { parseDate, formatDate, BoolCell, TextCell, PortCell, formatStorageRange } from '@/app/components/spec-table-utils'
 import type { ProductShopLink } from '@/lib/types'
 import SpecEmbedButton from './SpecEmbedButton'
+import { AMAZON_PRICE_DISCLAIMER } from '@/lib/data/price-source-note'
 
 type SpecModel = {
   id: number
@@ -369,7 +370,23 @@ export default function SpecTable({ models, shopLinks, prices, priceDate, embed 
                             <td key={m.id}>
                               {link ? (
                                 <a href={link.url} className="m-btn m-btn--primary m-btn--sm" rel="nofollow noopener noreferrer" target="_blank" aria-label={`${m.model}をイオシスで探す（新しいタブで開く）`}>
-                                  最安値を確認
+                                  イオシスで見る
+                                </a>
+                              ) : '-'}
+                            </td>
+                          )
+                        })}
+                      </tr>
+                      {/* Amazonリンク行（リンクのみ。Amazonの価格は取得・表示しない） */}
+                      <tr className="spec-compare-table__action-row">
+                        <th scope="row" className="spec-compare-table__sticky">Amazon</th>
+                        {filteredModels.map((m) => {
+                          const link = getShopLink(m.id, 7)
+                          return (
+                            <td key={m.id}>
+                              {link ? (
+                                <a href={link.url} className="m-btn m-btn--amazon m-btn--sm" rel="nofollow noopener noreferrer" target="_blank" aria-label={`${m.model}をAmazonで探す（新しいタブで開く）`}>
+                                  Amazonで見る
                                 </a>
                               ) : '-'}
                             </td>
@@ -386,6 +403,8 @@ export default function SpecTable({ models, shopLinks, prices, priceDate, embed 
         <p style={{ marginTop: '1rem', fontSize: '0.75rem', color: '#888', lineHeight: 1.7 }}>
           ※ 中古相場は販売中の商品の実勢価格（中央値）です{priceDate && `（${formatPriceDate(priceDate)}時点）`}。
           各機種の価格推移グラフは「<Link prefetch={false} href="/ipad/ipad-price-info/" style={{ color: 'var(--color-primary)', textDecoration: 'underline' }}>iPad中古相場・価格推移ページ</Link>」でご確認いただけます。
+          <br />
+          {AMAZON_PRICE_DISCLAIMER}
         </p>
         {!embed && <SpecEmbedButton />}
       </div>

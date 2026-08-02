@@ -264,7 +264,7 @@ export default async function PixelGuidePage() {
             heading={<>今買うならこれ！おすすめ中古Google Pixel5選【{GUIDE_DATE_LABEL}最新】</>}
             descriptions={[
               <>当サイトでおすすめしている機種は下記の通り。スペックの詳細な比較は<Link prefetch={false} href="/pixel/pixel-spec-table/">Pixelスペック比較表</Link>をご覧ください。</>,
-              <>{GUIDE_DATE_LABEL}時点で「OS・セキュリティ更新が十分に残っている」「中古価格と性能・AI機能のバランスが良い」ことが判断基準です。</>,
+              <>「OS・セキュリティ更新が十分に残っている」「中古価格と性能・AI機能のバランスが良い」ことが判断基準です。</>,
             ]}
           />
           <RecommendDetailSection items={detailItems} />

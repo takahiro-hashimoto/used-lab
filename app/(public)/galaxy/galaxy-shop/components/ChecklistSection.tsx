@@ -34,7 +34,7 @@ export default function ChecklistSection() {
 
           {/* Androidサポート期間 */}
           <IconCard icon="fa-solid fa-mobile-screen" title="Androidアップデートの保証期間を確認する">
-              <p>S24・S25世代やFlip6/Fold6は<strong>OS・セキュリティ更新が最大7年</strong>と長め。一方、旧世代やAシリーズは更新期間が短めです。</p>
+              <p>S24以降のSシリーズやFlip6/Fold6以降の折りたたみは<strong>OS・セキュリティ更新が最大7年</strong>と長め。一方、旧世代やAシリーズは更新期間が短めです。</p>
               <p>サポートが切れるとセキュリティリスクが高まるため、<strong>更新期間が残っている機種</strong>を選びましょう。各モデルのサポート期限は下記の記事で確認できます。</p>
           </IconCard>
         </div>

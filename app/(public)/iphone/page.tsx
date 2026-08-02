@@ -273,7 +273,7 @@ export default async function IPhoneGuidePage() {
             heading={<>今買うならこれ！おすすめ中古iPhone5選【{GUIDE_DATE_LABEL}最新】</>}
             descriptions={[
               <>当サイトでおすすめしている機種は下記の通り。スペックの詳細な比較は<Link prefetch={false} href="/iphone/iphone-spec-table/">iPhoneスペック比較表</Link>をご覧ください。</>,
-              <>{GUIDE_DATE_LABEL}時点で「iOSサポートが十分に残っている」「中古価格と性能のバランスが良い」ことが判断基準です。</>,
+              <>「iOSサポートが十分に残っている」「中古価格と性能のバランスが良い」ことが判断基準です。</>,
             ]}
           />
           <RecommendDetailSection items={detailItems} />

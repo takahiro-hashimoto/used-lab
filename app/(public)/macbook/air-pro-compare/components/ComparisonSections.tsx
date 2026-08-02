@@ -43,7 +43,7 @@ export default function ComparisonSections() {
             MacBook Airには各世代の無印チップ（M1、M2、M3、M4）が搭載されます。MacBook Proは無印チップに加えてPro / Maxチップを選択でき、CPU・GPUのコア数が多くメモリ帯域幅も広い上位構成が選べます。
           </p>
           <p className="media-card__desc u-mt-md">
-            同じM4チップ同士であればAirとProの基本性能は同等です。Proを選ぶ意味があるのは、<strong>Pro/Maxチップが必要な作業をする場合か、ファンによる持続性能が重要な場合</strong>です。各チップの違いは以下の通りです。
+            同じ世代の無印チップ同士（M4ならM4、M5ならM5）であればAirとProの基本性能は同等です。Proを選ぶ意味があるのは、<strong>Pro/Maxチップが必要な作業をする場合か、ファンによる持続性能が重要な場合</strong>です。各チップの違いは以下の通りです。
           </p>
 
           <div className="m-table-card u-mt-lg">

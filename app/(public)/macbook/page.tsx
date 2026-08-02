@@ -227,7 +227,7 @@ export default async function MacBookGuidePage() {
             items={compareItems}
             heading={<>今買うならこれ！おすすめ中古MacBook4選【{GUIDE_DATE_LABEL}最新】</>}
             descriptions={[
-              <>当サイトでおすすめしている機種は下記の通り。スペックの詳細な比較は<Link prefetch={false} href="/macbook/macbook-spec-table/">MacBookスペック比較表</Link>をご覧ください。{GUIDE_DATE_LABEL}時点で「macOSサポートが十分に残っている」「中古価格と性能のバランスが良い」ことが判断基準です。</>,
+              <>当サイトでおすすめしている機種は下記の通り。スペックの詳細な比較は<Link prefetch={false} href="/macbook/macbook-spec-table/">MacBookスペック比較表</Link>をご覧ください。「macOSサポートが十分に残っている」「中古価格と性能のバランスが良い」ことが判断基準です。</>,
             ]}
           />
           <RecommendDetailSection items={detailItems} />

@@ -7,6 +7,7 @@ import {
   formatPrice,
   calculatePriceRange as calculatePriceRangeGeneric,
 } from '@/lib/utils/shared-helpers'
+import { CURRENT_MODELS, annualCostOf } from '@/lib/data/current-models'
 
 /**
  * Pixel 個別ページ専用ヘルパー。
@@ -117,11 +118,12 @@ export function getPixelAdvanceFeaturesList(model: PixelModel): string[] {
 }
 
 // --- 購入判定 ---
-// 最新Pixel基準値（性能比・年単価の目安表示用の代表値）
-const LATEST_PIXEL_NAME = 'Google Pixel 9 Pro'
-const LATEST_PIXEL_SCORE = 4600 // Geekbench6 マルチコア（Tensor G4 代表値）
-const LATEST_PIXEL_PRICE = 128000
-const LATEST_ANNUAL = Math.round(LATEST_PIXEL_PRICE / 5)
+// 現行機種の定義は lib/data/current-models.ts に集約している。
+// ここに機種名やスコアを直書きすると新機種発売時に直し漏れる（実際に Pixel 9 Pro のまま放置されていた）。
+const LATEST_PIXEL = CURRENT_MODELS.pixel.basis
+const LATEST_PIXEL_NAME = LATEST_PIXEL.name
+const LATEST_PIXEL_SCORE = LATEST_PIXEL.score ?? 0
+const LATEST_ANNUAL = annualCostOf(LATEST_PIXEL)
 
 export type VerdictRank = 'best' | 'good' | 'wait'
 

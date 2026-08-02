@@ -188,6 +188,7 @@ export default function AboutPage() {
       'https://note.com/takahiro_mono',
       'https://digital-style.jp/',
       'https://nightscape.tokyo/',
+      'https://www.amazon.co.jp/shop/takahiro_mono',
       'https://news.google.com/publications/CAAqBwgKMOzgvwsw-fvWAw?hl=ja&gl=JP&ceid=JP:ja',
     ],
   }

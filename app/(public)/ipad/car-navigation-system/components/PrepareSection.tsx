@@ -55,6 +55,10 @@ export default function PrepareSection() {
               <p className="media-card__desc">
                 購入前に自分の車のダッシュボード周りを確認し、iPadのサイズに対応した製品を選びましょう。
               </p>
+              <p className="lead-link u-mt-sm">
+                <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
+                <a href="https://amzn.to/4bFbYKv" target="_blank" rel="noopener noreferrer nofollow">AmazonでiPad対応の車載ホルダーを探す</a>
+              </p>
             </div>
           </div>
 
@@ -75,6 +79,10 @@ export default function PrepareSection() {
               </p>
               <p className="media-card__desc">
                 出力20W以上の急速充電対応モデルなら、ナビを使いながらでもバッテリーが減りにくく安心です。
+              </p>
+              <p className="lead-link u-mt-sm">
+                <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
+                <a href="https://amzn.to/4tgOz8f" target="_blank" rel="noopener noreferrer nofollow">Amazonでシガーソケット充電器を探す</a>
               </p>
             </div>
           </div>
