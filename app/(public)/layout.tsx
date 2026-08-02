@@ -2,34 +2,25 @@ import Header from "@/app/components/Header";
 import Footer from "@/app/components/Footer";
 import SmoothScroll from "@/app/components/SmoothScroll";
 import AffiliateClickTracker from "@/app/components/AffiliateClickTracker";
+import { SITE_URL, ORGANIZATION_ID, WEBSITE_ID, PUBLISHING_PRINCIPLES_URL, authorRef } from '@/lib/data/author'
 
 const organizationJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
+  // @id を振ることで、記事の publisher からこの実体を参照できる（重複定義を防ぐ）
+  '@id': ORGANIZATION_ID,
   name: 'ユーズドラボ',
-  url: 'https://used-lab.jp',
+  url: SITE_URL,
   logo: {
     '@type': 'ImageObject',
-    url: 'https://used-lab.jp/images/logo.svg',
+    url: `${SITE_URL}/images/logo.svg`,
   },
-  image: 'https://used-lab.jp/images/logo.svg',
-  description: '中古・型落ちデジタルデバイスの価格比較・スペック情報サイト。iPhone・iPad・MacBook・Apple Watch・AirPodsの中古相場、スペック比較、おすすめ機種を毎日更新。',
-  founder: {
-    '@type': 'Person',
-    name: 'タカヒロ',
-    url: 'https://used-lab.jp/profile/',
-    image: 'https://used-lab.jp/images/content/thumbnail/my-icon.webp',
-    jobTitle: 'Webディレクター / ブロガー',
-    description: '2015年からガジェットブログ「デジスタ」を運営。300以上の製品レビュー実績を持ち、GoodsPress・ITmedia・ライフハッカー等で連載・監修を担当。',
-    sameAs: [
-      'https://twitter.com/takahiro_mono',
-      'https://www.instagram.com/takahiro_mono',
-      'https://www.youtube.com/@takahiro_mono',
-      'https://digital-style.jp/',
-      'https://nightscape.tokyo/',
-    ],
-  },
+  image: `${SITE_URL}/images/logo.svg`,
+  description: '中古・型落ちデジタルデバイスの価格比較・スペック情報サイト。iPhone・iPad・MacBook・Apple Watch・AirPods・Google Pixel・Samsung Galaxy の中古相場、スペック比較、おすすめ機種を毎日更新。',
+  // 経歴や sameAs は /profile/ の Person が持つ。ここでは参照だけ（lib/data/author.ts）
+  founder: authorRef(),
   foundingDate: '2024-08',
+  publishingPrinciples: PUBLISHING_PRINCIPLES_URL,
   sameAs: [
     'https://twitter.com/takahiro_mono',
     'https://www.instagram.com/takahiro_mono',
@@ -39,20 +30,23 @@ const organizationJsonLd = {
   contactPoint: {
     '@type': 'ContactPoint',
     contactType: 'customer support',
-    url: 'https://used-lab.jp/contact/',
+    url: `${SITE_URL}/contact/`,
   },
 }
 
 const searchActionJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
+  '@id': WEBSITE_ID,
   name: 'ユーズドラボ',
-  url: 'https://used-lab.jp',
+  url: SITE_URL,
+  publisher: { '@id': ORGANIZATION_ID },
+  inLanguage: 'ja',
   potentialAction: {
     '@type': 'SearchAction',
     target: {
       '@type': 'EntryPoint',
-      urlTemplate: 'https://used-lab.jp/search/?q={search_term_string}',
+      urlTemplate: `${SITE_URL}/search/?q={search_term_string}`,
     },
     'query-input': 'required name=search_term_string',
   },

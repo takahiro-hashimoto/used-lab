@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import { AUTHOR_JOB_TITLE } from '@/lib/data/author'
 
 export default function AuthorByline() {
   return (
@@ -19,7 +20,7 @@ export default function AuthorByline() {
             itemProp="image"
           />
           <span className="author-byline__name" itemProp="name">タカヒロ</span>
-          <span className="author-byline__role" itemProp="jobTitle">Webディレクター / ブロガー</span>
+          <span className="author-byline__role" itemProp="jobTitle">{AUTHOR_JOB_TITLE}</span>
         </div>
         <div className="author-byline__right">
           <p className="author-byline__heading">この記事の著者</p>

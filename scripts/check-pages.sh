@@ -4,6 +4,15 @@
 
 BASE="https://used-lab.jp"
 
+# 更新日（lib/data/page-dates.ts）の記載漏れを知らせる。
+# 本文を書き換えたのか見た目だけの調整なのかは人にしか判断できないので、
+# push は止めず、下の警告確認プロンプトに合流させる。
+# Vercel のビルドは shallow clone で git 履歴が揃わないためここで実行している。
+PAGE_DATE_NOTICE=""
+if ! npx tsx scripts/check-page-dates.ts; then
+  PAGE_DATE_NOTICE="更新日を触っていないページがあります（上記）"
+fi
+
 PAGES=(
   "/" "/news/" "/profile/" "/contact/" "/sitemap-page/" "/guidelines/" "/privacy-policy/"
   "/iphone/" "/iphone/recommend/" "/iphone/price-info/" "/iphone/iphone-spec-table/"
@@ -70,6 +79,10 @@ while IFS= read -r line; do
     WARNINGS+=("🟠 $code          $path")
   fi
 done < <(cat "${TMPDIR_PATH}"/*.txt | sort -k2)
+
+if [[ -n "$PAGE_DATE_NOTICE" ]]; then
+  WARNINGS+=("$PAGE_DATE_NOTICE")
+fi
 
 if [[ ${#FAILURES[@]} -eq 0 && ${#WARNINGS[@]} -eq 0 ]]; then
   echo "✅ 全ページ正常 (200 OK)"

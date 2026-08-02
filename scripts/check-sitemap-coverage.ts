@@ -25,7 +25,6 @@ const EXCLUDED = new Set([
   '/search/',
   // noindex ページ（lib/routes.ts で includeInSitemap: false 指定済み）。
   // sitemap に載せると GSC「送信された URL が noindex」エラーになるため除外。
-  '/guidelines/',
   '/privacy-policy/',
   '/sitemap-page/',
   // 2機種比較ページ（PV僅少のため非公開＝noindex・サイトマップ除外）

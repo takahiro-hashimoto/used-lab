@@ -19,6 +19,8 @@
     "start": "next start",
     "lint": "eslint",
     "check:content": "node --import tsx scripts/check-content-freshness.ts",
+    "check:page-dates": "node --import tsx scripts/check-page-dates.ts",
+    "fix:page-dates": "node --import tsx scripts/check-page-dates.ts --fix",
     "models:latest": "node --import tsx scripts/print-latest-models.ts",
     "verify:required": "npm run build:checks:sitemap && npm run build:checks:content",
     "verify:price-info": "node --import tsx scripts/check-price-info.ts",

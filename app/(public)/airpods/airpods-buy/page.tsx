@@ -7,6 +7,7 @@ import BuyMethodsSection from './components/BuyMethodsSection'
 import ConclusionSection from './components/ConclusionSection'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
+import AuthorByline from '@/app/components/AuthorByline'
 import { getHeroImage } from '@/lib/data/hero-images'
 
 export const revalidate = false
@@ -188,6 +189,11 @@ export default function AirPodsBuyPage() {
     </main>
     <div className="l-section l-container deferred-render deferred-render--article-footer" id="related">
       <AirPodsRelatedLinks excludeHref={["/airpods/airpods-buy/"]} />
+      <div className="l-section l-section--sm">
+        <div className="l-container">
+          <AuthorByline />
+        </div>
+      </div>
     </div>
     </>
   )

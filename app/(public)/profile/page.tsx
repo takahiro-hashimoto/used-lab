@@ -4,6 +4,11 @@ import Breadcrumb from '@/app/components/Breadcrumb'
 import HeroMeta from '@/app/components/HeroMeta'
 import { getGitDateForFile } from '@/lib/utils/shared-helpers'
 import { getHeroImage } from '@/lib/data/hero-images'
+import {
+  SITE_URL, AUTHOR_ID, ORGANIZATION_ID, WEBSITE_ID,
+  AUTHOR_NAME, AUTHOR_URL, AUTHOR_IMAGE, AUTHOR_JOB_TITLE,
+  AUTHOR_DESCRIPTION, AUTHOR_KNOWS_ABOUT, AUTHOR_SAME_AS,
+} from '@/lib/data/author'
 
 export const revalidate = false
 
@@ -171,25 +176,61 @@ export default function AboutPage() {
     ],
   }
 
-  const personJsonLd = {
+  // ---- 構造化データ ----
+  // Google は著者ページのマークアップとして ProfilePage 型を公式サポートしている。
+  // ProfilePage（ページ） / Person（人物） / 外部メディアでの実績 を @graph でひとまとめにし、
+  // 記事側の author（@id 参照）からこの Person に辿り着けるようにする。
+  //
+  // sameAs には「本人を指す別URL」だけを入れる。連載・監修した記事や取材記事は
+  // 本人そのものではないので、author / contributor / subjectOf で表現する。
+  const authoredWorks = EDITORIAL_CREDITS.map((credit) => ({
+    '@type': 'Article',
+    url: credit.href,
+    name: credit.label,
+    // 「監修」は執筆者ではないので contributor、それ以外は author として扱う
+    ...(credit.type === '監修'
+      ? { contributor: { '@id': AUTHOR_ID } }
+      : { author: { '@id': AUTHOR_ID } }),
+  }))
+
+  // 本人が取材・紹介された記事（本人が主題）
+  const featuredIn = [...MAGAZINE_FEATURES, ...SITE_MENTIONS].map((item) => ({
+    '@type': 'Article',
+    url: item.href,
+    name: item.label,
+    about: { '@id': AUTHOR_ID },
+  }))
+
+  const profileJsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'Person',
-    name: 'タカヒロ',
-    url: 'https://used-lab.jp/profile/',
-    image: 'https://used-lab.jp/images/content/thumbnail/my-icon.webp',
-    jobTitle: 'プロジェクトマネージャー / ガジェットブロガー',
-    description: 'IT企業でWebデザイナー、フロントエンドエンジニア、Webディレクターを経て現在はプロジェクトマネージャー。2015年からガジェットブログ「デジスタ」を運営し、300以上の製品レビュー実績を持つ。',
-    knowsAbout: ['iPhone', 'iPad', 'MacBook', 'Apple Watch', 'AirPods', '中古・型落ちデジタルデバイス', 'ガジェット', 'Web制作'],
-    alumniOf: { '@type': 'Organization', name: 'IT企業（Webデザイナーとしてキャリアスタート）' },
-    sameAs: [
-      'https://twitter.com/takahiro_mono',
-      'https://www.instagram.com/takahiro_mono',
-      'https://www.youtube.com/@takahiro_mono',
-      'https://note.com/takahiro_mono',
-      'https://digital-style.jp/',
-      'https://nightscape.tokyo/',
-      'https://www.amazon.co.jp/shop/takahiro_mono',
-      'https://news.google.com/publications/CAAqBwgKMOzgvwsw-fvWAw?hl=ja&gl=JP&ceid=JP:ja',
+    '@graph': [
+      {
+        '@type': 'ProfilePage',
+        '@id': `${SITE_URL}/profile/#profilepage`,
+        url: AUTHOR_URL,
+        name: '運営者情報',
+        isPartOf: { '@id': WEBSITE_ID },
+        mainEntity: { '@id': AUTHOR_ID },
+        dateModified: dateStr,
+      },
+      {
+        '@type': 'Person',
+        '@id': AUTHOR_ID,
+        name: AUTHOR_NAME,
+        url: AUTHOR_URL,
+        image: AUTHOR_IMAGE,
+        jobTitle: AUTHOR_JOB_TITLE,
+        description: AUTHOR_DESCRIPTION,
+        knowsAbout: AUTHOR_KNOWS_ABOUT,
+        alumniOf: { '@type': 'Organization', name: 'IT企業（Webデザイナーとしてキャリアスタート）' },
+        worksFor: { '@id': ORGANIZATION_ID },
+        mainEntityOfPage: { '@id': `${SITE_URL}/profile/#profilepage` },
+        award: AWARDS.map((a) => a.label),
+        subjectOf: featuredIn.map((w) => ({ '@id': w.url })),
+        sameAs: AUTHOR_SAME_AS,
+      },
+      ...authoredWorks,
+      ...featuredIn.map((w) => ({ ...w, '@id': w.url })),
     ],
   }
 
@@ -201,7 +242,7 @@ export default function AboutPage() {
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(profileJsonLd) }}
       />
 
       <div className="hero-wrapper">

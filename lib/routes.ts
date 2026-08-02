@@ -233,7 +233,7 @@ export const UTILITY_PAGES: PageDef[] = [
   { path: '/sitemap-page/', label: 'サイトマップ', priority: 0.3, changeFrequency: 'monthly', includeInSitemap: false },
   { path: '/contact/', label: 'お問い合わせ', priority: 0.3, changeFrequency: 'yearly' },
   { path: '/profile/', label: '運営者情報', priority: 0.3, changeFrequency: 'yearly' },
-  { path: '/guidelines/', label: 'ガイドライン', priority: 0.3, changeFrequency: 'yearly', includeInSitemap: false },
+  { path: '/guidelines/', label: 'ガイドライン', priority: 0.3, changeFrequency: 'yearly' },
   { path: '/privacy-policy/', label: 'プライバシーポリシー', priority: 0.3, changeFrequency: 'yearly', includeInSitemap: false },
 ]
 

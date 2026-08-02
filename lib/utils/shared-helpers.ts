@@ -7,6 +7,7 @@ import type { Shop, ProductShopLink, FallbackShop, BasePriceLog } from '@/lib/ty
 import { PAGE_DATES } from '@/lib/data/page-dates'
 import { getHeroImage } from '@/lib/data/hero-images'
 import { calculatePriceStats, marketMedian, type PriceStats } from '@/lib/utils/price-stats'
+import { authorRef, publisherRef, PUBLISHING_PRINCIPLES_URL } from '@/lib/data/author'
 
 const SITE_LAUNCH_DATE = '2024-08-01'
 const JAPAN_LOCALE = 'ja-JP'
@@ -289,32 +290,13 @@ export function buildArticleJsonLd(opts: {
     datePublished: opts.dateStr,
     dateModified: opts.dateModified ?? opts.dateStr,
     inLanguage: 'ja',
-    author: {
-      '@type': 'Person',
-      name: 'タカヒロ',
-      url: 'https://used-lab.jp/profile/',
-      image: 'https://used-lab.jp/images/content/thumbnail/my-icon.webp',
-      jobTitle: 'Webディレクター / ブロガー',
-      description: 'IT企業でWebデザイナー、フロントエンドエンジニア、Webディレクターを経て現在はプロジェクトマネージャー。2015年からガジェットブログ「デジスタ」を運営し、300以上の製品をレビュー。GoodsPress・ITmedia等で連載・監修実績多数。',
-      knowsAbout: ['iPhone', 'iPad', 'MacBook', 'Apple Watch', 'AirPods', '中古・型落ちデジタルデバイス', 'ガジェット'],
-      sameAs: [
-        'https://twitter.com/takahiro_mono',
-        'https://www.instagram.com/takahiro_mono',
-        'https://www.youtube.com/@takahiro_mono',
-        'https://note.com/takahiro_mono',
-        'https://digital-style.jp/',
-        'https://nightscape.tokyo/',
-        'https://news.google.com/publications/CAAqBwgKMOzgvwsw-fvWAw?hl=ja&gl=JP&ceid=JP:ja',
-      ],
-    },
-    publisher: {
-      '@type': 'Organization',
-      name: 'ユーズドラボ',
-      logo: {
-        '@type': 'ImageObject',
-        url: 'https://used-lab.jp/images/logo.svg',
-      },
-    },
+    // 著者・運営者は @id 参照だけを書く。実体は /profile/ の Person が持つ。
+    // 記事ごとに経歴を丸ごと複製すると、更新漏れで内容が食い違い、
+    // 検索エンジンから別人に見えてしまうため（lib/data/author.ts 参照）
+    author: authorRef(),
+    publisher: publisherRef(),
+    // 制作・運営ポリシーの所在を機械可読にする（E-E-A-T の Trustworthiness）
+    publishingPrinciples: PUBLISHING_PRINCIPLES_URL,
     mainEntityOfPage: { '@type': 'WebPage', '@id': opts.url },
   }
 }
