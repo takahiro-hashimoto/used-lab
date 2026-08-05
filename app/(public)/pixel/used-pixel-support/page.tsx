@@ -5,6 +5,7 @@ import { getAllPixelModels, getAllPixelModelsIncludingEnded } from '@/lib/querie
 import Breadcrumb from '@/app/components/Breadcrumb'
 import PixelArticleFooter from '@/app/components/pixel/PixelArticleFooter'
 import SupportMatrix from './components/SupportMatrix'
+import SupportTimelineMatrix from '@/app/components/support/SupportTimelineMatrix'
 import LifespanTable from './components/LifespanTable'
 import TimingSection from './components/TimingSection'
 import FaqSection from './components/FaqSection'
@@ -165,8 +166,9 @@ export default async function UsedPixelSupportPage() {
         </nav>
         <div className="l-sections">
         {/* セクション */}
+        <SupportTimelineMatrix brand="pixel" brandLabel="Google Pixel" models={allModelsWithEnded} />
         <SupportMatrix models={allModelsWithEnded} />
-        <LifespanTable models={allModelsWithEnded} />
+        <LifespanTable />
         <TimingSection />
         <FaqSection />
         </div>

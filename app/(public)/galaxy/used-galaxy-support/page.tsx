@@ -5,6 +5,7 @@ import { getAllGalaxyModels, getAllGalaxyModelsIncludingEnded } from '@/lib/quer
 import Breadcrumb from '@/app/components/Breadcrumb'
 import GalaxyArticleFooter from '@/app/components/galaxy/GalaxyArticleFooter'
 import SupportMatrix from './components/SupportMatrix'
+import SupportTimelineMatrix from '@/app/components/support/SupportTimelineMatrix'
 import LifespanTable from './components/LifespanTable'
 import TimingSection from './components/TimingSection'
 import FaqSection from './components/FaqSection'
@@ -165,8 +166,9 @@ export default async function UsedGalaxySupportPage() {
         </nav>
         <div className="l-sections">
         {/* セクション */}
+        <SupportTimelineMatrix brand="galaxy" brandLabel="Samsung Galaxy" models={allModelsWithEnded} />
         <SupportMatrix models={allModelsWithEnded} />
-        <LifespanTable models={allModelsWithEnded} />
+        <LifespanTable />
         <TimingSection />
         <FaqSection />
         </div>

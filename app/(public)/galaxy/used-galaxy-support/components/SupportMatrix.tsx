@@ -76,8 +76,8 @@ export default function SupportMatrix({ models }: Props) {
           Galaxy機種別 Androidアップデート・サポート期間一覧表
         </h2>
         <p className="m-section-desc">
-          Samsung Galaxyは機種ごとにアップデート保証年数とサポート終了予定が定められていますが、
-          Pixelと違い<strong>シリーズ・世代で年数の差が大きい</strong>のが特徴です。
+          Samsung Galaxyは機種ごとにアップデート保証年数とサポート終了予定が定められており、
+          <strong>シリーズ・世代で年数の差が大きい</strong>のが特徴です。
           <br />
           お使いのGalaxyが「あと何年アップデートを受けられるか」の目安としてご活用ください。
         </p>
