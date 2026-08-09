@@ -249,8 +249,15 @@ export function buildMatchFn(model: MacModelRow): (item: RakutenItem) => boolean
     //    "M4Max" のような無スペースのグレード表記だけ compact 側で拾う
     if (!/M[1-9]\b/.test(name) && !/M[1-9](PRO|MAX|ULTRA)/.test(compact)) return false
 
-    // 3. チップ世代の一致
-    if (!compact.includes(baseGen)) return false
+    // 3. チップ世代の一致。
+    //    部分一致だと Apple の型番に紛れた文字列を拾ってしまう。
+    //    例: "MGPM3J/A" は M1 搭載 iMac(2021) の型番だが "M3" を含むため、
+    //    M3(2023) の行に M1 の個体が混入していた（2026-08-09 に実際に発生し、
+    //    その価格がちょうど中央値になって表示相場が歪んでいた）。
+    //    前後が英数字でない「独立したトークン」であることを要求する。
+    //    "M4Max" のような連結表記も拾えるようグレード語は許容する。
+    const genToken = new RegExp(`(^|[^A-Z0-9])${baseGen}(PRO|MAX|ULTRA)?([^A-Z0-9]|$)`)
+    if (!genToken.test(name) && !genToken.test(compact)) return false
 
     // 4. チップのグレード区別
     // グレードも "M4 Pro" / "M4Pro" の両表記があるので compact で判定する

@@ -193,3 +193,31 @@ describe('buildChipOnlyKeyword', () => {
     expect(buildChipOnlyKeyword(row({ model: 'Mac mini' }))).toBeNull()
   })
 })
+
+describe('buildMatchFn — 型番との文字列衝突', () => {
+  const IMAC_2023 = row({ id: 2, model: 'iMac 24インチ（2023）', slug: 'imac-24-2023', cpu: 'M3', strage: '256GB ~ 2TB', device_type: 'imac' })
+
+  it('型番に含まれる "M3" で別世代を拾わない', () => {
+    const match = buildMatchFn(IMAC_2023)
+    // MGPM3J/A は M1 搭載 iMac(2021) の型番。"M3" を部分一致で含む
+    expect(match(item('APPLE アップル MGPM3J/A APPLE iMac Retina 4.5Kディスプレイモデル macOS Apple M1 メモリ8GB SSD 256GB'))).toBe(false)
+  })
+
+  it('本物の M3 搭載機は通す', () => {
+    const match = buildMatchFn(IMAC_2023)
+    expect(match(item('APPLE MQRT3J/A iMac Retina 4.5Kディスプレイモデル Apple M3 メモリ8GB SSD 256GB'))).toBe(true)
+    expect(match(item('【中古】Apple iMac 24インチ 2023 Apple M3 8GB SSD 256GB'))).toBe(true)
+  })
+
+  it('チップ名が記号や日本語に隣接していても通す', () => {
+    const match = buildMatchFn(IMAC_2023)
+    expect(match(item('Apple iMac 24インチ M3チップ 8GB 256GB 中古'))).toBe(true)
+    expect(match(item('【中古】Apple iMac (M3,2023) 8GB/256GB'))).toBe(true)
+  })
+
+  it('Mac mini でも型番衝突を防げる', () => {
+    const match = buildMatchFn(MINI_2024)
+    // MU9D3J/A は M4 の Mac mini。M4 行では通り、M3 を含まないことも確認
+    expect(match(item('【中古】Apple Mac mini M4(CPU:10C/GPU:10C) 16GB/256GB MU9D3J/A (M4・2024)'))).toBe(true)
+  })
+})
