@@ -362,22 +362,24 @@ export async function fetchMacPrices(): Promise<void> {
 
     await collect(keyword)
 
-    // 中央値を出すには最低5件必要。足りないときだけ予備キーワードで取り直す
-    // （itemCode で重複排除しているので、追加取得で件数が減ることはない）
+    // 年号なしでも必ず取得する。
+    // 発売年を書かない出品が多く、年号付きだけだと取りこぼす。
+    // 2026-08-09 の実測では iMac 2021 が 13件 → 18件 に増えた。
+    // 「件数が足りないときだけ」にしていると、そこそこ件数がある機種で
+    // この取りこぼしに気づけないため、常に両方を回す。
+    // itemCode で重複排除しているので二重計上にはならない。
+    const chipKeyword = buildChipOnlyKeyword(model)
+    if (chipKeyword && chipKeyword !== keyword) {
+      await collect(chipKeyword)
+      console.log(`   ↻ 年号なしでも取得: "${chipKeyword}" → 計${matchedItems.length}件`)
+    }
+
+    // それでも中央値に必要な5件に届かなければ、iMac だけサイズ指定で追う
     if (matchedItems.length < MIN_SAMPLES) {
       const sizeKeyword = buildSizeSearchKeyword(model)
       if (sizeKeyword && sizeKeyword !== keyword) {
         console.log(`   ↻ ${matchedItems.length}件のみ → サイズ指定で追加取得: "${sizeKeyword}"`)
         await collect(sizeKeyword)
-      }
-    }
-    // それでも足りなければ年号を落として取り直す。
-    // 発売年を書かない出品が多く、ここで拾える件数が大きい
-    if (matchedItems.length < MIN_SAMPLES) {
-      const chipKeyword = buildChipOnlyKeyword(model)
-      if (chipKeyword && chipKeyword !== keyword) {
-        console.log(`   ↻ ${matchedItems.length}件のみ → 年号なしで追加取得: "${chipKeyword}"`)
-        await collect(chipKeyword)
       }
     }
 
