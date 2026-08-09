@@ -14,7 +14,7 @@ const MAX_PAGES = 4 // 30件 × 4 = 最大120件
 /** 中央値の算出に必要な最小サンプル数（lib/utils/price-stats.ts と揃える） */
 const MIN_SAMPLES = 5
 
-interface RakutenItem {
+export interface RakutenItem {
   itemCode: string
   itemName: string
   itemPrice: number
@@ -142,7 +142,7 @@ function parseStorageToGB(storage: string): number {
   return (unit === 'TB' || unit === 'T') ? num * 1024 : num
 }
 
-function buildMatchFn(model: {
+export function buildMatchFn(model: {
   model: string
   cpu: string
   strage: string
@@ -160,6 +160,18 @@ function buildMatchFn(model: {
     '14': /(?:14(?:\.\d)?)\s*[-]?\s*(?:インチ|inch|"|″)/i,
     '15': /(?:15(?:\.\d)?)\s*[-]?\s*(?:インチ|inch|"|″)/i,
     '16': /(?:16(?:\.\d)?)\s*[-]?\s*(?:インチ|inch|"|″)/i,
+  }
+
+  /** 商品名の容量が最小構成と一致するか（容量表記が無ければ判定しない） */
+  const storageMatches = (itemName: string): boolean => {
+    if (!minStorage) return true
+    const storageInName = itemName.match(/(\d+)\s*(GB|TB|G|T)(?!\w)/gi)
+    if (!storageInName) return true
+    const minStorageNum = parseStorageToGB(minStorage)
+    // 128GB未満はメモリ容量の表記なのでストレージとみなさない
+    const ssdStorages = storageInName.map((s) => parseStorageToGB(s)).filter((s) => s >= 128)
+    if (ssdStorages.length === 0) return true
+    return Math.min(...ssdStorages) === minStorageNum
   }
 
   return (item: RakutenItem): boolean => {
@@ -180,7 +192,10 @@ function buildMatchFn(model: {
           if (pattern.test(itemName)) return false
         }
       }
-      return true
+      // Neo は A18 Pro 搭載で M系チップの判定に乗らないため早期 return しているが、
+      // 容量チェックまで飛ばしてしまうと 512GB モデルが最小構成(256GB)の相場に
+      // 混ざる（2026-08-10 に max1〜5 が全て512GBになっていた）
+      return storageMatches(itemName)
     }
 
     // 1. Air/Pro の区別
@@ -212,19 +227,7 @@ function buildMatchFn(model: {
     }
 
     // 6. 容量の確認（最小容量と一致するか）
-    if (minStorage) {
-      const storageInName = itemName.match(/(\d+)\s*(GB|TB|G|T)(?!\w)/gi)
-      if (storageInName) {
-        const minStorageNum = parseStorageToGB(minStorage)
-        const ssdStorages = storageInName
-          .map((s) => parseStorageToGB(s))
-          .filter((s) => s >= 128)
-        if (ssdStorages.length > 0) {
-          const itemMinStorage = Math.min(...ssdStorages)
-          if (itemMinStorage !== minStorageNum) return false
-        }
-      }
-    }
+    if (!storageMatches(itemName)) return false
 
     return true
   }

@@ -31,13 +31,39 @@ function extractModelNumbers(modelNumber: string | null): string[] {
  * 判定は「型番トークン一致」または「モデル名一致（派生ガード付き）」。
  * Galaxy の派生: S系（無印/Plus/Ultra/FE）, A系, Z Flip, Z Fold。
  */
+/**
+ * 商品名の容量が最小構成と一致するか（容量表記が無ければ判定しない）。
+ *
+ * 検索キーワードに型番（SC-52E など）を使う都合上、容量で絞れない。
+ * 型番検索は全容量の在庫を返すため、ここで足切りしないと 512GB や 1TB が
+ * 最小構成の相場に混ざる（2026-08-10 に S24 Ultra の最高値が 1TB だった）。
+ */
+export function capacityMatches(itemName: string, minCapacity: string | null): boolean {
+  if (!minCapacity) return true
+  const toGB = (t: string) => {
+    const m = t.match(/(\d+)\s*(GB|TB)/i)
+    if (!m) return 0
+    return m[2].toUpperCase() === 'TB' ? parseInt(m[1]) * 1024 : parseInt(m[1])
+  }
+  const expect = toGB(minCapacity)
+  if (!expect) return true
+  const found = (itemName.match(/(\d+)\s*(GB|TB)/gi) || [])
+    .map(toGB)
+    // 64GB未満はメモリ（RAM）の表記。ストレージとみなさない
+    .filter((v) => v >= 64)
+  if (found.length === 0) return true
+  return Math.min(...found) === expect
+}
+
 function isExactGalaxyModelMatch(
   itemName: string,
   modelName: string,
-  numberTokens: string[]
+  numberTokens: string[],
+  minCapacity: string | null = null
 ): boolean {
   const n = norm(itemName)
   if (isExcludedCondition(itemName)) return false
+  if (!capacityMatches(itemName, minCapacity)) return false
 
   // 型番一致（最も確実）
   for (const t of numberTokens) {
@@ -116,7 +142,7 @@ export async function fetchGalaxyPrices(): Promise<void> {
         keywords,
         genreId: GENRE_SMARTPHONE,
         ngKeyword,
-        matchFn: (itemName) => isExactGalaxyModelMatch(itemName, modelName, numberTokens),
+        matchFn: (itemName) => isExactGalaxyModelMatch(itemName, modelName, numberTokens, minCapacity),
       })
       prices[shop.key] = result
     }
