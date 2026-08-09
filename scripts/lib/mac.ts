@@ -17,14 +17,17 @@ import { env, RAKUTEN_API_BASE } from './config'
 import { sleep, getTodayJST, getNowISOJST, isExcludedCondition, fetchJsonWithRetry } from './utils'
 
 /**
- * デスクトップPCのジャンルID。
+ * 中古デスクトップPCのジャンルID。
  *
- * 空文字の間はジャンル指定なし（キーワード＋NGキーワードのみ）で動く。
- * 楽天のジャンル検索APIはメンテナンス中で値を確定できなかったため、
- * DEBUG_GENRE=1 で実行して出力される genreId 分布を見てから設定すること。
- * 楽天APIはIP許可制で、確認は Vultr の cron ホストからしかできない。
+ * 2026-08-09 に DEBUG_GENRE=1 で実測して確定した。
+ * ジャンル指定なしで走らせると、本体以外（保護フィルム・スタンド・
+ * 電子書籍など）が大量に混入する。iMac M1 の検索では108件マッチして
+ * 最高値が¥17,589、つまり全件がアクセサリという状態だった。
+ * 本物の出品はすべてこのジャンルに入っていたため、ここで足切りする。
+ *
+ * 空文字にすればジャンル指定なしに戻せる（分布を取り直したいとき用）。
  */
-const GENRE_DESKTOP_PC = ''
+const GENRE_DESKTOP_PC = '211368'
 
 /**
  * 除外キーワード。
@@ -166,6 +169,23 @@ export function buildSizeSearchKeyword(model: MacModelRow): string | null {
   const size = getSize(model.model)
   if (!size) return null
   return `iMac ${size}インチ ${getMinChip(model.cpu)} ${getYear(model.model)}`
+}
+
+/**
+ * 年号を外した予備キーワード。
+ *
+ * 出品名に発売年を書かないショップが多く、"Mac Studio M2 Max 2023" では
+ * 1件も引けなかった（2026-08-09 実測）。デスクトップMacはチップと世代が
+ * 1対1で対応する（M1 Max=2022 Studio、M3=2023 iMac など）ため、
+ * 年号を落としても別世代を拾う心配がない。
+ * matchFn 側でチップのグレードと容量は引き続き検査される。
+ */
+export function buildChipOnlyKeyword(model: MacModelRow): string | null {
+  const kw = buildSearchKeyword(model)
+  const year = getYear(model.model)
+  if (!year) return null
+  const stripped = kw.replace(` ${year}`, '').trim()
+  return stripped === kw ? null : stripped
 }
 
 // ─── matchFn ─────────────────────────────────────────
@@ -342,13 +362,22 @@ export async function fetchMacPrices(): Promise<void> {
 
     await collect(keyword)
 
-    // 中央値を出すには最低5件必要。足りないときだけサイズ指定で取り直す
+    // 中央値を出すには最低5件必要。足りないときだけ予備キーワードで取り直す
     // （itemCode で重複排除しているので、追加取得で件数が減ることはない）
     if (matchedItems.length < MIN_SAMPLES) {
       const sizeKeyword = buildSizeSearchKeyword(model)
       if (sizeKeyword && sizeKeyword !== keyword) {
         console.log(`   ↻ ${matchedItems.length}件のみ → サイズ指定で追加取得: "${sizeKeyword}"`)
         await collect(sizeKeyword)
+      }
+    }
+    // それでも足りなければ年号を落として取り直す。
+    // 発売年を書かない出品が多く、ここで拾える件数が大きい
+    if (matchedItems.length < MIN_SAMPLES) {
+      const chipKeyword = buildChipOnlyKeyword(model)
+      if (chipKeyword && chipKeyword !== keyword) {
+        console.log(`   ↻ ${matchedItems.length}件のみ → 年号なしで追加取得: "${chipKeyword}"`)
+        await collect(chipKeyword)
       }
     }
 

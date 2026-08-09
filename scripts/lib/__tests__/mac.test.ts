@@ -12,6 +12,7 @@ import { describe, it, expect } from 'vitest'
 import {
   buildSearchKeyword,
   buildSizeSearchKeyword,
+  buildChipOnlyKeyword,
   buildMatchFn,
   getMinChip,
   getMinStorage,
@@ -168,5 +169,27 @@ describe('buildMatchFn — 出品名の表記ゆれ', () => {
     const match = buildMatchFn(STUDIO_2025)
     expect(match(item('Apple MacStudio M4Max 2025 36GB 512GB 中古'))).toBe(true)
     expect(match(item('Apple StudioDisplay 27インチ 5K 中古'))).toBe(false)
+  })
+})
+
+describe('buildChipOnlyKeyword', () => {
+  it('年号を落とした予備キーワードを返す', () => {
+    expect(buildChipOnlyKeyword(MINI_2024)).toBe('Mac mini M4')
+    expect(buildChipOnlyKeyword(IMAC_2024)).toBe('iMac M4')
+    expect(buildChipOnlyKeyword(STUDIO_2025)).toBe('Mac Studio M4 Max')
+  })
+
+  it('チップは世代と1対1なので、年号なしでも別世代を拾わない', () => {
+    // M2 Max は 2023 の Mac Studio にしかない構成
+    const studio2023 = row({ id: 8, model: 'Mac Studio（2023）', slug: 'mac-studio-2023', cpu: 'M2 Max / M2 Ultra', strage: '512GB ~ 8TB', device_type: 'mac-studio' })
+    expect(buildChipOnlyKeyword(studio2023)).toBe('Mac Studio M2 Max')
+    const match = buildMatchFn(studio2023)
+    expect(match(item('Apple Mac Studio M2 Max 32GB 512GB 中古'))).toBe(true)
+    // 年号が無くても別チップは matchFn が弾く
+    expect(match(item('Apple Mac Studio M1 Max 32GB 512GB 中古'))).toBe(false)
+  })
+
+  it('年号が取れないモデルでは null（無限に広げない）', () => {
+    expect(buildChipOnlyKeyword(row({ model: 'Mac mini' }))).toBeNull()
   })
 })
