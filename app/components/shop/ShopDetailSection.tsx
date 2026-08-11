@@ -37,7 +37,9 @@ type Props = {
   ctaOverrides?: Record<string, { label: string; url: string }>
 }
 
-function SpecValue({ value }: { value: string | null }) {
+/** ◎◯△× は評価マークに、それ以外は素のテキストとして出す。
+ *  Back Market カードなど、この共通表以外からも同じ見た目で使えるよう公開している */
+export function SpecValue({ value }: { value: string | null }) {
   if (!value || value === '×') return <RatingMark mark="×" size="md" />
   if (['◎', '◯', '〇', '△'].includes(value)) return <RatingMark mark={value} size="md" />
   if (value === '無料') return <strong className="text-positive">無料</strong>

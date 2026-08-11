@@ -1,6 +1,7 @@
 import type { Shop } from '@/lib/types'
 import type { ShopDetailMeta } from '@/lib/data/iphone-shop'
 import SharedShopDetailSection, { type SpecRow } from '@/app/components/shop/ShopDetailSection'
+import BackMarketCard from './BackMarketCard'
 
 const specRows: SpecRow[] = [
   { label: '価格', getValue: (s) => s.price },
@@ -35,6 +36,9 @@ export default function ShopDetailSection({ items }: Props) {
           url: '/iphone/mvno/',
         },
       }}
+      // イオシスのカードの直後に差し込む（整備済みという別カテゴリの選択肢として）
+      // 同じ specRows を渡し、他ショップと同じ指標・同じ並びで出す
+      renderExtra={(shopKey) => (shopKey === 'iosys' ? <BackMarketCard specRows={specRows} /> : null)}
     />
   )
 }
