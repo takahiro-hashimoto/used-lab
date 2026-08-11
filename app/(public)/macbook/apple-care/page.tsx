@@ -680,7 +680,7 @@ export default function MacbookAppleCarePage() {
                     </p>
                     <p className="lead-link u-mt-sm">
                       <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                      おすすめの中古MacBookは「<Link prefetch={false} href="/macbook/recommend/">中古MacBookのおすすめ機種</Link>」で紹介しています。
+                      おすすめの中古MacBookは「<Link prefetch={false} href="/macbook/">中古MacBookのおすすめ機種</Link>」で紹介しています。
                     </p>
                   </div>
                 </div>
@@ -760,7 +760,7 @@ export default function MacbookAppleCarePage() {
       <MacBookArticleFooter
         pageUrl={PAGE_URL}
         pageTitle={PAGE_TITLE}
-        excludeHref={['/macbook/apple-care/', '/macbook/recommend/']}
+        excludeHref={['/macbook/apple-care/', '/macbook/']}
       />
     </>
   )

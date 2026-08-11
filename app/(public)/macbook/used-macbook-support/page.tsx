@@ -172,7 +172,7 @@ export default async function UsedMacbookSupportPage() {
         </div>
       </article>
     </main>
-    <MacBookArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/macbook/used-macbook-support/", "/macbook/recommend/"]}>
+    <MacBookArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/macbook/used-macbook-support/", "/macbook/"]}>
           <div className="m-callout m-callout--muted u-mt-3xl">
             <span className="m-callout__label">関連</span>
             <p className="m-callout__text">

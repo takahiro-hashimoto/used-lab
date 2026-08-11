@@ -16,14 +16,12 @@ export default function MacBookRelatedLinks({
   excludeHref,
   children,
 }: Props) {
-  const sourcePath = Array.isArray(excludeHref) ? excludeHref[0] : (excludeHref ?? '/macbook/')
   return (
     <RelatedLinks
       links={MACBOOK_LINKS}
       heading={heading}
       description={description}
       excludeHref={excludeHref}
-      sourcePath={sourcePath}
     >
       <CrossCategoryLinks currentCategory="/macbook/" />
       {children}

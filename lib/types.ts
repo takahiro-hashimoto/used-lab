@@ -283,6 +283,8 @@ export interface Shop {
   ipad_url: string | null
   watch_url: string | null
   macbook_url: string | null
+  /** デスクトップMacの検索URL。NULL のショップは macbook_url を使う */
+  mac_url: string | null
   airpods_url: string | null
   pixel_url: string | null
   galaxy_url: string | null
@@ -473,6 +475,70 @@ export interface MacBookModel extends BaseProductModel {
   last_macos: string | null
   benchmarks: Record<string, { single: number; multi: number; metal: number }> | null
 }
+
+/**
+ * デスクトップMac（iMac / Mac mini / Mac Studio）。
+ *
+ * BaseProductModel を継承しないのは battery を持たないため（AirPodsModel と同じ判断）。
+ * MacBookModel とテーブルを分けている理由は sql/mac_setup_all.sql の冒頭を参照。
+ */
+export interface MacModel {
+  id: number
+  model: string
+  shortname: string | null
+  slug: string
+  show: number
+  image: string | null
+  date: string | null
+  device_type: MacDeviceType
+  strage: string | null
+  ram: string | null
+  color: string | null
+  cpu: string | null
+  gpu: string | null
+  apple_intelligence: boolean
+  score_single: number | null
+  score_multi: number | null
+  score_metal: number | null
+  benchmarks: Record<string, { single: number; multi: number; metal: number }> | null
+  /** ディスプレイ内蔵か。iMac と mini/Studio を分ける最大の比較軸 */
+  display_builtin: boolean
+  display: string | null
+  resolution: string | null
+  luminance: string | null
+  /** ポートの全文。個別機種ページのスペック表で使う */
+  port: string | null
+  // ポートは「種類ごとに何基あるか」だけを持つ。前面/背面は比較に使わないので持たない
+  /** Thunderbolt の本数。例 '3基' */
+  thunderbolt: string | null
+  /** Thunderbolt の規格。例 'Thunderbolt 5' */
+  thunderbolt_gen: string | null
+  /** Thunderbolt 以外の USB-C の本数。null は非搭載 */
+  usb_c: string | null
+  /** USB-A の本数。null は非搭載（iMac 全世代と Mac mini 2024） */
+  usb_a: string | null
+  /** 3.5mm ヘッドフォンジャックの有無 */
+  headphone: boolean
+  hdmi: boolean
+  /** SDXCカードスロット */
+  slot: boolean
+  ethernet: string | null
+  external_display: string | null
+  camera: string | null
+  speaker: string | null
+  /** Magic Keyboard / Mouse 等の同梱物。mini との実質価格差の説明に使う */
+  included_accessories: string | null
+  size: string | null
+  last_macos: string | null
+  point: string | null
+  advance: AdvanceData | null
+  official: string | null
+}
+
+export type MacDeviceType = 'imac' | 'mac-mini' | 'mac-studio'
+
+/** mac_price_logs。MacBookPriceLog と同一スキーマ（全ショップ横断 min1..max5） */
+export type MacPriceLog = MacBookPriceLog
 
 export interface MacBookPriceLog {
   id: number

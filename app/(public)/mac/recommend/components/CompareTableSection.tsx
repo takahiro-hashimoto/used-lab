@@ -1,0 +1,178 @@
+import type { ReactNode } from 'react'
+import Image from 'next/image'
+import { placeholder } from '@/lib/placeholder'
+import type { MacModel, MacPriceLog } from '@/lib/types'
+import { calculateOSLifespan } from '@/lib/utils/macbook-helpers'
+import { RECOMMEND_COUNT_LABEL } from '@/lib/data/mac-recommend'
+
+type CompareItem = {
+  model: MacModel
+  latestPrice: MacPriceLog | null
+  chipLabel: string
+  /** ノートのバッテリー欄に相当。デスクトップはディスプレイの有無が最大の分岐 */
+  displayLabel: string
+  memoryLabel: string
+  targetUser: string
+}
+
+type Props = {
+  items: CompareItem[]
+  heading?: ReactNode
+  descriptions?: ReactNode[]
+}
+
+export default function CompareTableSection({ items, heading, descriptions }: Props) {
+  return (
+    <section className="l-section" id="compare" aria-labelledby="heading-compare">
+      <div className="l-container">
+        <h2 className="m-section-heading m-section-heading--lg" id="heading-compare">
+          {heading ?? <>おすすめiMac・Mac mini{RECOMMEND_COUNT_LABEL}のスペック比較表</>}
+        </h2>
+        {descriptions ? (
+          descriptions.map((d, i) => <p key={i} className="m-section-desc">{d}</p>)
+        ) : (
+          <>
+            <p className="m-section-desc">
+              今回紹介した{RECOMMEND_COUNT_LABEL}の主要スペックを一覧で比較できます。
+            </p>
+            <p className="m-section-desc">自分の使い方に合った機種を見つけましょう。</p>
+          </>
+        )}
+
+        <div className="m-card m-card--shadow m-table-card">
+          <div className="m-table-scroll">
+            <table className="m-table m-table--center">
+              <caption className="visually-hidden">おすすめ中古iMac・Mac mini{RECOMMEND_COUNT_LABEL}のスペック比較表</caption>
+              <thead>
+                <tr>
+                  <th scope="col">項目</th>
+                  {items.map(({ model }) => (
+                    <th key={model.id} scope="col">
+                      {model.shortname || model.model}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {/* 画像 */}
+                <tr>
+                  <th scope="row">画像</th>
+                  {items.map(({ model }) => (
+                    <td key={model.id}>
+                      {model.image ? (
+                        <Image
+                          src={`/images/mac/${model.image}`}
+                          alt={model.model}
+                          width={60}
+                          height={80}
+                          loading="lazy"
+                        />
+                      ) : (
+                        <Image
+                          src={placeholder(60, 80, 'Mac')}
+                          alt={model.model}
+                          width={60}
+                          height={80}
+                          loading="lazy"
+                        />
+                      )}
+                    </td>
+                  ))}
+                </tr>
+
+                {/* モデル名 */}
+                <tr>
+                  <th scope="row">モデル名</th>
+                  {items.map(({ model }) => (
+                    <td key={model.id}>{model.shortname || model.model}</td>
+                  ))}
+                </tr>
+
+                {/* 発売年 */}
+                <tr>
+                  <th scope="row">発売年</th>
+                  {items.map(({ model }) => (
+                    <td key={model.id}>
+                      {model.date ? `${model.date.split('/')[0]}年` : '-'}
+                    </td>
+                  ))}
+                </tr>
+
+                {/* macOSの寿命 */}
+                <tr>
+                  <th scope="row">macOSの寿命</th>
+                  {items.map(({ model }) => {
+                    const osLife = calculateOSLifespan(model.date, model.last_macos)
+                    return (
+                      <td key={model.id}>
+                        {osLife.osEndYear}年頃まで
+                        <br />
+                        <small>（残り約{osLife.remainingYears}年）</small>
+                      </td>
+                    )
+                  })}
+                </tr>
+
+                {/* チップ */}
+                <tr>
+                  <th scope="row">チップ</th>
+                  {items.map(({ model, chipLabel }) => {
+                    const parenIdx = chipLabel.indexOf('（')
+                    const main = parenIdx >= 0 ? chipLabel.slice(0, parenIdx) : chipLabel
+                    const sub = parenIdx >= 0 ? chipLabel.slice(parenIdx) : ''
+                    return (
+                      <td key={model.id}>
+                        {main}
+                        {sub && <><br /><small>{sub}</small></>}
+                      </td>
+                    )
+                  })}
+                </tr>
+
+                {/* ディスプレイ（デスクトップは総額を左右する最大の分岐） */}
+                <tr>
+                  <th scope="row">ディスプレイ</th>
+                  {items.map(({ model, displayLabel }) => (
+                    <td key={model.id}>{displayLabel}</td>
+                  ))}
+                </tr>
+
+                {/* メモリ（購入後に増設できないので世代より効く） */}
+                <tr>
+                  <th scope="row">メモリ</th>
+                  {items.map(({ model, memoryLabel }) => (
+                    <td key={model.id}>{memoryLabel}</td>
+                  ))}
+                </tr>
+
+                {/* こんな人向け */}
+                <tr>
+                  <th scope="row">こんな人向け</th>
+                  {items.map(({ model, targetUser }) => (
+                    <td key={model.id} dangerouslySetInnerHTML={{ __html: targetUser }} />
+                  ))}
+                </tr>
+
+                {/* 詳細（ページ内リンク） */}
+                <tr>
+                  <th scope="row">詳細</th>
+                  {items.map(({ model }) => (
+                    <td key={model.id}>
+                      <a
+                        href={`#detail-${model.slug}`}
+                        className="m-btn m-btn--primary m-btn--sm"
+                        aria-label={`${model.shortname || model.model}の詳細を見る`}
+                      >
+                        詳細を見る <i className="fa-solid fa-arrow-down" aria-hidden="true"></i>
+                      </a>
+                    </td>
+                  ))}
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}

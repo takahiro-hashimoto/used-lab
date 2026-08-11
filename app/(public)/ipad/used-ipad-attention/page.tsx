@@ -238,7 +238,7 @@ export default function UsedIpadAttentionPage() {
         </div>
       </article>
     </main>
-    <IPadArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/ipad/used-ipad-attention/", "/ipad/recommend/"]} />
+    <IPadArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/ipad/used-ipad-attention/", "/ipad/"]} />
     </>
   )
 }

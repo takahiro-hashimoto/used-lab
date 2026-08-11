@@ -236,7 +236,7 @@ export default function UsedMacBookAttentionPage() {
         </div>
       </article>
     </main>
-    <MacBookArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/macbook/used-macbook-attention/", "/macbook/recommend/"]} />
+    <MacBookArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/macbook/used-macbook-attention/", "/macbook/"]} />
     </>
   )
 }

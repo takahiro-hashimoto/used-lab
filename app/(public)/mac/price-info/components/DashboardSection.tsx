@@ -1,0 +1,236 @@
+'use client'
+
+import { useState, useRef, useEffect, useCallback, useMemo } from 'react'
+import { Chart as ChartClass, CategoryScale, LinearScale, PointElement, LineElement, LineController, Tooltip } from 'chart.js'
+import type { ChartDataset, TooltipItem } from 'chart.js'
+import type { ModelData } from '../page'
+import Link from 'next/link'
+import ChartEmbedButton from '@/app/components/ChartEmbedButton'
+import { priceLogicChangeNote } from '@/lib/data/price-source-note'
+
+ChartClass.register(CategoryScale, LinearScale, PointElement, LineElement, LineController, Tooltip)
+
+type Props = {
+  modelsData: ModelData[]
+  initialSelected: number[]
+}
+
+const MAX_SELECT = 4
+
+/** 機種名からシリーズを判定。MacBook版の Air/Pro をデスクトップの3系統に置き換えている */
+function getModelSeries(name: string): string {
+  if (name.includes('Mac Studio')) return 'Studio'
+  if (name.includes('Mac mini')) return 'mini'
+  if (name.includes('iMac')) return 'iMac'
+  return 'Other'
+}
+
+/** チップ表示用の短縮。デスクトップは元から名前が短いので置換しない */
+function shortenModelName(name: string): string {
+  return name
+    .replace('インチ', '')
+}
+
+export default function DashboardSection({ modelsData, initialSelected }: Props) {
+  const [selectedModels, setSelectedModels] = useState<number[]>(initialSelected)
+  const [timeRange, setTimeRange] = useState(30)
+  const chartRef = useRef<HTMLCanvasElement>(null)
+  const chartInstanceRef = useRef<ChartClass<'line'> | null>(null)
+
+  const modelsMap = useMemo(() => new Map(modelsData.map((m) => [m.id, m])), [modelsData])
+
+  // 集計基準を変えた日をまたぐ期間を描画している間だけ、グラフの段差を説明する。
+  // またがなくなれば自動的に消える
+  const logicChangeNote = useMemo(() => {
+    const dates = modelsData.flatMap((m) => m.prices.map((p) => p.date)).sort()
+    return dates.length > 0 ? priceLogicChangeNote([dates[0], dates[dates.length - 1]]) : null
+  }, [modelsData])
+
+  const toggleModel = (id: number) => {
+    setSelectedModels((prev) => {
+      if (prev.includes(id)) return prev.filter((x) => x !== id)
+      if (prev.length >= MAX_SELECT) return prev
+      return [...prev, id]
+    })
+  }
+
+  const updateChart = useCallback(() => {
+    if (!chartRef.current) return
+    chartInstanceRef.current?.destroy()
+
+    const ctx = chartRef.current.getContext('2d')
+    if (!ctx) return
+
+    if (selectedModels.length === 0) return
+
+    const datasets: ChartDataset<'line', number[]>[] = []
+    let labels: string[] = []
+
+    for (const id of selectedModels) {
+      const m = modelsMap.get(id)
+      if (!m || m.prices.length === 0) continue
+
+      const filtered = m.prices.slice(-timeRange)
+
+      if (labels.length === 0 && filtered.length > 0) {
+        labels = filtered.map((p) => {
+          const [, mm, dd] = p.date.split('-')
+          return `${Number(mm)}/${Number(dd)}`
+        })
+      }
+
+      datasets.push({
+        label: m.name,
+        data: filtered.map((p) => p.avg),
+        borderColor: m.color,
+        backgroundColor: m.color + '20',
+        borderWidth: 2,
+        tension: 0.3,
+        pointRadius: 0,
+        pointHoverRadius: 5,
+      })
+    }
+
+    chartInstanceRef.current = new ChartClass<'line'>(ctx, {
+      type: 'line',
+      data: { labels, datasets },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        interaction: { mode: 'index', intersect: false },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            backgroundColor: '#1e293b',
+            padding: 10,
+            cornerRadius: 6,
+            itemSort: (a: TooltipItem<'line'>, b: TooltipItem<'line'>) => (b.parsed?.y ?? 0) - (a.parsed?.y ?? 0),
+            callbacks: {
+              label: (c: TooltipItem<'line'>) =>
+                `${c.dataset.label}: ¥${c.parsed.y?.toLocaleString() ?? '-'}`,
+            },
+          },
+        },
+        scales: {
+          x: { grid: { display: false }, ticks: { maxTicksLimit: 8, color: '#64748b', font: { size: 10 } } },
+          y: {
+            grid: { color: '#e2e8f0' },
+            ticks: {
+              callback: (v: string | number) => '¥' + (Number(v) / 1000) + 'k',
+              color: '#64748b',
+              font: { size: 10 },
+            },
+          },
+        },
+      },
+    })
+  }, [selectedModels, timeRange, modelsMap])
+
+  useEffect(() => {
+    return () => { chartInstanceRef.current?.destroy() }
+  }, [])
+
+  useEffect(() => {
+    updateChart()
+  }, [updateChart])
+
+  const selectedModelData = selectedModels
+    .map((id) => modelsMap.get(id))
+    .filter((m): m is ModelData => m != null)
+
+  return (
+    <section className="l-section" id="pd-dashboard" aria-labelledby="pd-dashboard-title">
+      <div className="l-container">
+        <h2 className="m-section-heading m-section-heading--lg" id="pd-dashboard-title">
+          中古iMac・Mac miniの相場・値段と価格推移グラフ
+        </h2>
+        <p className="m-section-desc">
+          気になるモデルを選択して、価格推移を比較できます。
+        </p>
+        <p className="m-section-desc">
+          機種ごとの違いが知りたい方は「<Link prefetch={false} href="/mac/mac-spec-table/">歴代iMac・Mac miniスペック比較表</Link>」をご覧ください。
+        </p>
+
+        {/* モデル選択チップ */}
+        <div className="u-mb-xl">
+          <p className="pd-selector__title">比較モデルを選択（最大4機種）</p>
+          <div className="pd-selector__grid">
+            {modelsData.map((m) => (
+              <button
+                key={m.id}
+                className={`pd-chip${selectedModels.includes(m.id) ? ' is-selected' : ''}`}
+                data-series={getModelSeries(m.name)}
+                onClick={() => toggleModel(m.id)}
+                aria-pressed={selectedModels.includes(m.id)}
+              >
+                {shortenModelName(m.name)}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* グラフエリア */}
+        <div className="pd-chart-area">
+          <div className="pd-chart-area__header">
+            <p className="pd-chart-area__label">価格推移</p>
+            <select
+              className="pd-chart-area__select"
+              value={timeRange}
+              onChange={(e) => setTimeRange(parseInt(e.target.value, 10))}
+              aria-label="表示期間"
+            >
+              <option value={7}>7日間</option>
+              <option value={14}>14日間</option>
+              <option value={30}>30日間</option>
+              <option value={60}>60日間</option>
+              <option value={90}>90日間</option>
+            </select>
+          </div>
+
+          <div className="pd-chart-area__body">
+            <div className="pd-chart__canvas-wrap">
+              <canvas ref={chartRef} aria-label="価格推移グラフ" role="img"></canvas>
+            </div>
+            {selectedModels.length === 0 && (
+              <p className="pd-chart__empty">モデルを選択してください</p>
+            )}
+            <div className="pd-chart__legend">
+              {selectedModelData.map((m) => (
+                <a
+                  key={m.id}
+                  href={m.shopUrl || `/mac/${m.slug}/`}
+                  target={m.shopUrl ? '_blank' : undefined}
+                  rel={m.shopUrl ? 'noopener noreferrer nofollow' : undefined}
+                  className="pd-legend-item"
+                >
+                  <span className="pd-legend-item__color" style={{ background: m.color }}></span>
+                  {m.name}
+                  <svg className="pd-legend-item__icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                    <polyline points="15 3 21 3 21 9"></polyline>
+                    <line x1="10" y1="14" x2="21" y2="3"></line>
+                  </svg>
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <ChartEmbedButton
+          category="mac"
+          slugs={selectedModelData.map((m) => m.slug)}
+          days={timeRange}
+        />
+
+        {logicChangeNote && (
+          <div className="m-callout m-callout--muted u-mt-2xl">
+            <span className="m-callout__label">
+              <i className="fa-solid fa-circle-exclamation" aria-hidden="true"></i> 集計基準の変更について
+            </span>
+            <p className="m-callout__text">{logicChangeNote}</p>
+          </div>
+        )}
+      </div>
+    </section>
+  )
+}

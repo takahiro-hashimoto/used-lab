@@ -263,7 +263,7 @@ export default function HowtoUseIpadPage() {
         </div>
       </article>
     </main>
-    <IPadArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/ipad/howto-use-ipad/", "/ipad/recommend/"]} />
+    <IPadArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/ipad/howto-use-ipad/", "/ipad/"]} />
     </>
   )
 }

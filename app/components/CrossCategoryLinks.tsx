@@ -14,6 +14,7 @@ const ALL_CATEGORIES: CategoryInfo[] = [
   { href: '/galaxy/', title: '中古Samsung Galaxyのおすすめ・選び方', desc: 'Galaxyの選び方・おすすめモデルを紹介', icon: 'fa-solid fa-mobile-screen' },
   { href: '/ipad/', title: '中古iPadのおすすめ・選び方', desc: 'iPadの選び方・おすすめモデルを紹介', icon: 'fa-solid fa-tablet-screen-button' },
   { href: '/macbook/', title: '中古MacBookのおすすめ・選び方', desc: 'MacBookの選び方・おすすめモデルを紹介', icon: 'fa-solid fa-laptop' },
+  { href: '/mac/', title: '中古iMac・Mac miniのおすすめ・選び方', desc: 'iMac・Mac miniの選び方・おすすめモデルを紹介', icon: 'fa-solid fa-desktop' },
   { href: '/watch/', title: '中古Apple Watchのおすすめ・選び方', desc: 'Apple Watchの選び方・おすすめモデルを紹介', icon: 'fa-solid fa-clock' },
   { href: '/airpods/', title: '中古AirPodsのおすすめ・選び方', desc: 'AirPodsの選び方・おすすめモデルを紹介', icon: 'fa-solid fa-headphones' },
 ]

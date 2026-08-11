@@ -181,12 +181,6 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/galaxy/galaxy-s
 <p className="toc-title"><i className="fa-solid fa-list" aria-hidden="true"></i> タップできる目次</p>
             <ol className="l-grid l-grid--3col u-list-reset">
               <li>
-                <a href="#series-guide" className="toc-item">
-                  シリーズの違い{' '}
-                  <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
-                </a>
-              </li>
-              <li>
                 <a href="#spec-table" className="toc-item">
                   スペック比較表{' '}
                   <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
@@ -211,6 +205,12 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/galaxy/galaxy-s
                 </a>
               </li>
               <li>
+                <a href="#series-guide" className="toc-item">
+                  シリーズの違い{' '}
+                  <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                </a>
+              </li>
+              <li>
                 <a href="#glossary" className="toc-item">
                   用語解説{' '}
                   <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
@@ -228,7 +228,6 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/galaxy/galaxy-s
         </nav>
         <div className="l-sections" itemProp="articleBody">
         {/* セクション */}
-        <SeriesGuideSection models={allModels} prices={avgPrices} />
         <SpecTable models={allModels} shopLinks={allShopLinks} prices={avgPrices} priceDate={priceDate} />
         <DualCompare models={allModels} shopLinks={allShopLinks} />
         <BenchmarkSection models={allModels} avgPrices={avgPrices} shopLinks={allShopLinks} />
@@ -237,6 +236,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/galaxy/galaxy-s
           avgPrices={avgPrices}
           iosysUrlMap={Object.fromEntries(allShopLinks.filter((l) => l.shop_id === 1).map((l) => [l.product_id, l.url]))}
         />
+        <SeriesGuideSection models={allModels} prices={avgPrices} />
         <GlossarySection productName="Samsung Galaxy" items={GLOSSARY_ITEMS} />
 
         </div>

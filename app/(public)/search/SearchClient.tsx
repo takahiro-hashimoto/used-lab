@@ -168,7 +168,9 @@ export default function SearchClient({ entries }: { entries: SearchEntry[] }) {
               <div className="search-categories">
                 <p className="search-categories__heading">カテゴリから探す</p>
                 <div className="search-categories__list">
-                  {['iphone', 'ipad', 'macbook', 'watch', 'airpods'].map((catId) => {
+                  {/* 該当エントリが0件のカテゴリは下で null を返すので、
+                      未公開の 'mac' はここに並べても表示されない */}
+                  {['iphone', 'ipad', 'macbook', 'mac', 'watch', 'airpods'].map((catId) => {
                     const catEntries = entries.filter((e) => e.category === catId)
                     if (catEntries.length === 0) return null
                     const first = catEntries[0]

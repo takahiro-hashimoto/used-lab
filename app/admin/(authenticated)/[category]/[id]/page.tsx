@@ -8,7 +8,7 @@ import {
 import EditPageClient from '../../../components/EditPageClient'
 import CompatibilityEditor from '../../../components/CompatibilityEditor'
 
-const PUBLIC_PAGE_CATEGORIES = new Set(['iphone', 'pixel', 'galaxy', 'ipad', 'macbook', 'watch', 'airpods'])
+const PUBLIC_PAGE_CATEGORIES = new Set(['iphone', 'pixel', 'galaxy', 'ipad', 'macbook', 'mac', 'watch', 'airpods'])
 
 type PageProps = {
   params: Promise<{ category: string; id: string }>

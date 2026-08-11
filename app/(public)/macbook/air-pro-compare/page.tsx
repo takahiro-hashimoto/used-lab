@@ -245,7 +245,7 @@ export default async function AirProComparePage() {
         </div>
       </article>
     </main>
-    <MacBookArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/macbook/air-pro-compare/", "/macbook/recommend/"]} />
+    <MacBookArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/macbook/air-pro-compare/", "/macbook/"]} />
     </>
   )
 }

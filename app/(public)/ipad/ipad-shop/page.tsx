@@ -267,7 +267,7 @@ export default async function IPadShopPage() {
         </div>
       </article>
     </main>
-    <IPadArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/ipad/ipad-shop/", "/ipad/recommend/"]}>
+    <IPadArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/ipad/ipad-shop/", "/ipad/"]}>
           <div className="m-callout m-callout--muted" style={{ marginTop: 'var(--space-3xl)' }}><span className="m-callout__label">関連</span><p className="m-callout__text"><a href="https://atam-academy.com/" target="_blank" rel="noopener noreferrer" aria-label="オンラインイラスト教室アタムアカデミー｜iPadで学ぶ子供向けアート教育（新しいタブで開く）">オンラインイラスト教室アタムアカデミー｜iPadで学ぶ子供向けアート教育</a></p></div>
         </IPadArticleFooter>
     </>

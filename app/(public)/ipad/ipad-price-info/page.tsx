@@ -466,7 +466,7 @@ export default async function IPadPriceInfoPage() {
         </div>
       </article>
     </main>
-    <IPadArticleFooter pageUrl={PAGE_URL} pageTitle={`iPadの中古相場一覧 | 歴代${modelCount}機種の価格推移を独自集計`} excludeHref={["/ipad/ipad-price-info/", "/ipad/recommend/"]} />
+    <IPadArticleFooter pageUrl={PAGE_URL} pageTitle={`iPadの中古相場一覧 | 歴代${modelCount}機種の価格推移を独自集計`} excludeHref={["/ipad/ipad-price-info/", "/ipad/"]} />
     </>
   )
 }

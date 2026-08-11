@@ -172,7 +172,7 @@ export default async function MacBookDetailPage({ params }: PageProps) {
         </div>
       </article>
     </main>
-    <MacBookArticleFooter pageUrl={`https://used-lab.jp/macbook/${model.slug}/`} pageTitle={`中古${model.model}はいつまで使える？相場・製品寿命・スペックを解説`} excludeHref={[`/macbook/${model.slug}/`, "/macbook/recommend/"]} />
+    <MacBookArticleFooter pageUrl={`https://used-lab.jp/macbook/${model.slug}/`} pageTitle={`中古${model.model}はいつまで使える？相場・製品寿命・スペックを解説`} excludeHref={[`/macbook/${model.slug}/`, "/macbook/"]} />
     </>
   )
 }

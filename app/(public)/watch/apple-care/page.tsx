@@ -674,7 +674,7 @@ export default function WatchAppleCarePage() {
                     </p>
                     <p className="lead-link u-mt-sm">
                       <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                      おすすめの中古Apple Watchは「<Link prefetch={false} href="/watch/recommend/">中古Apple Watchのおすすめ機種</Link>」で紹介しています。
+                      おすすめの中古Apple Watchは「<Link prefetch={false} href="/watch/">中古Apple Watchのおすすめ機種</Link>」で紹介しています。
                     </p>
                   </div>
                 </div>
@@ -754,7 +754,7 @@ export default function WatchAppleCarePage() {
       <WatchArticleFooter
         pageUrl={PAGE_URL}
         pageTitle={PAGE_TITLE}
-        excludeHref={['/watch/apple-care/', '/watch/recommend/']}
+        excludeHref={['/watch/apple-care/', '/watch/']}
       />
     </>
   )

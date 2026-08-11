@@ -285,7 +285,7 @@ export default function CarNavigationSystemPage() {
         </div>
       </article>
     </main>
-    <IPadArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/ipad/car-navigation-system/", "/ipad/recommend/"]} />
+    <IPadArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/ipad/car-navigation-system/", "/ipad/"]} />
     </>
   )
 }

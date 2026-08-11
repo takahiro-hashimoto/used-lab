@@ -46,7 +46,7 @@ const FAQ_ITEMS = [
   },
   {
     question: '診断で提案されたモデル以外も検討すべきですか？',
-    answer: '診断結果はあくまで目安です。条件を変更して再診断したり、「<a href="/airpods/recommend/">おすすめAirPods</a>」ページも合わせて参考にすることで、より納得のいく選択ができます。',
+    answer: '診断結果はあくまで目安です。条件を変更して再診断したり、「<a href="/airpods/">おすすめAirPods</a>」ページも合わせて参考にすることで、より納得のいく選択ができます。',
   },
   {
     question: '中古AirPodsを購入する際に注意すべき点は？',
@@ -255,7 +255,7 @@ export default async function AirPodsFilterSearchPage() {
         />
 
         <div className="deferred-render deferred-render--article-footer">
-          <AirPodsRelatedLinks excludeHref={["/airpods/airpods-filter-search/", "/airpods/recommend/"]} />
+          <AirPodsRelatedLinks excludeHref={["/airpods/airpods-filter-search/", "/airpods/"]} />
         </div>
         </div>
       </article>

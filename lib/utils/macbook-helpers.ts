@@ -75,18 +75,35 @@ import { CURRENT_MODELS, annualCostOf } from '@/lib/data/current-models'
 
 /** モデル名からプロダクトライン（Pro / Air）を抽出 */
 function getProductLine(modelName: string): string {
+  // デスクトップMac（/mac/ から共用される）。MacBook より先に判定しないと
+  // 'Mac mini' などがフォールバックの 'MacBook Air' に化ける
+  if (modelName.includes('iMac')) return 'iMac'
+  if (modelName.includes('Mac mini')) return 'Mac mini'
+  if (modelName.includes('Mac Studio')) return 'Mac Studio'
   if (modelName.includes('Pro')) return 'MacBook Pro'
   return 'MacBook Air'
 }
 
-const LINE_ORDER = ['MacBook Pro', 'MacBook Air']
+const LINE_ORDER = ['MacBook Pro', 'MacBook Air', 'iMac', 'Mac mini', 'Mac Studio']
 
 /**
  * DBモデル配列からサポート期間一覧テーブル用データを生成
  * グルーピング: プロダクトライン + リリース年 + リリース月（同年に複数回発売があるため）
  */
-export function buildMacBookLifespanData(models: MacBookModel[]): LifespanEntryWithModels[] {
-  const groups = new Map<string, { line: string; year: number; month: number; models: MacBookModel[] }>()
+/** サポート期間一覧が参照するフィールドだけの型（デスクトップMacからも渡せる） */
+export type LifespanSourceModel = {
+  model: string
+  shortname: string | null
+  slug: string
+  date: string | null
+  last_macos: string | null
+}
+
+/**
+ * @param basePath 個別機種リンクの先頭パス。/mac/ 配下から使うときは '/mac' を渡す
+ */
+export function buildMacBookLifespanData(models: LifespanSourceModel[], basePath = '/macbook'): LifespanEntryWithModels[] {
+  const groups = new Map<string, { line: string; year: number; month: number; models: LifespanSourceModel[] }>()
 
   for (const m of models) {
     if (!m.date) continue
@@ -115,7 +132,7 @@ export function buildMacBookLifespanData(models: MacBookModel[]): LifespanEntryW
       releaseDate: `${group.year}年${group.month}月発売`,
       models: group.models.map(m => ({
         label: m.shortname || m.model,
-        href: `/macbook/${m.slug}`,
+        href: `${basePath}/${m.slug}`,
       })),
       osEnd: `${osEndYear}年${group.month}月`,
       repairEnd: `${repairEndYear}年${group.month}月`,
@@ -189,8 +206,30 @@ export function getEfficiencyRating(cpu: string | null): string {
  * 購入判定を一括算出（MacBook版）
  * 18ヶ月以内 → 最新機種, score_multi >= 8000 かつ残り3年以上 → コスパ黄金期
  */
+/**
+ * 判定系ヘルパーが実際に参照するフィールドだけを持つ最小の型。
+ *
+ * MacBookModel と MacModel はノート固有列（battery / weight など）の
+ * 有無が違うだけで、これらのヘルパーが使う項目は共通している。
+ * 引数をこの型にしておけば、デスクトップMac側からもそのまま呼べる。
+ */
+export type MacLikeModel = {
+  model: string
+  date: string | null
+  last_macos: string | null
+  cpu: string | null
+  port: string | null
+  hdmi: boolean
+  slot: boolean
+  score_single: number | null
+  score_multi: number | null
+  advance: MacBookModel['advance']
+  /** ノートのみ。デスクトップMacには存在しないので任意 */
+  battery?: string | null
+}
+
 export function getVerdict(
-  model: MacBookModel,
+  model: MacLikeModel,
   latestPrice: MacBookPriceLog | null,
 ): VerdictResult {
   const multiScore = model.score_multi || 0
@@ -314,9 +353,12 @@ export function getVerdict(
   const hasRichPorts = model.hdmi || model.slot || portStr.includes('Thunderbolt5') || portStr.includes('Thunderbolt4 × 3')
   const connectOk: '◎' | '◯' | '△' = (model.hdmi && model.slot) ? '◎' : hasRichPorts ? '◯' : '△'
 
-  // バッテリー持ち
-  const batteryStr = model.battery || ''
-  const batteryOk: '◎' | '◯' | '△' = batteryStr.includes('20') || batteryStr.includes('18') || batteryStr.includes('17') ? '◎' : batteryStr.includes('15') || batteryStr.includes('16') ? '◯' : '△'
+  // バッテリー持ち。電源に挿しっぱなしのデスクトップでは評価軸にならないため、
+  // battery を持たないモデル（iMac / Mac mini / Mac Studio）では項目ごと出さない
+  const batteryStr = model.battery ?? null
+  const batteryOk: '◎' | '◯' | '△' = batteryStr === null ? '△'
+    : batteryStr.includes('20') || batteryStr.includes('18') || batteryStr.includes('17') ? '◎'
+    : batteryStr.includes('15') || batteryStr.includes('16') ? '◯' : '△'
 
   const suitability: SuitabilityItem[] = [
     { label: 'クリエイティブ作業', mark: creativeOk, icon: 'laptop-code' },
@@ -324,7 +366,9 @@ export function getVerdict(
     { label: '長く使える', mark: longUse, icon: 'calendar-check' },
     { label: '在庫豊富', mark: stockOk, icon: 'boxes-stacked' },
     { label: '外部接続性', mark: connectOk, icon: 'plug' },
-    { label: 'バッテリー持ち', mark: batteryOk, icon: 'battery-three-quarters' },
+    ...(batteryStr !== null
+      ? [{ label: 'バッテリー持ち', mark: batteryOk, icon: 'battery-three-quarters' } as SuitabilityItem]
+      : []),
   ]
 
   // --- 電力効率 ---
@@ -390,7 +434,7 @@ export function getVerdict(
 /**
  * advance データから統合フィーチャーリストを取得
  */
-export function getAdvanceFeaturesList(model: MacBookModel): string[] {
+export function getAdvanceFeaturesList(model: MacLikeModel): string[] {
   if (!model.advance) return []
 
   const isProModel = model.model.toLowerCase().includes('pro')
@@ -417,7 +461,7 @@ export function getAdvanceFeaturesList(model: MacBookModel): string[] {
  * モデルデータからFAQ（JSON-LD用のプレーンテキスト）を自動生成
  */
 export function generateFaqsForJsonLd(
-  model: MacBookModel,
+  model: MacLikeModel,
   latestPrice: MacBookPriceLog | null,
 ): { question: string; answer: string }[] {
   const faqs: { question: string; answer: string }[] = []

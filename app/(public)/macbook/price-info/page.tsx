@@ -454,7 +454,7 @@ export default async function MacBookPriceInfoPage() {
         </div>
       </article>
     </main>
-    <MacBookArticleFooter pageUrl={PAGE_URL} pageTitle={`MacBookの中古相場一覧 | 歴代${modelCount}機種の価格推移を独自集計`} excludeHref={["/macbook/price-info/", "/macbook/recommend/"]} />
+    <MacBookArticleFooter pageUrl={PAGE_URL} pageTitle={`MacBookの中古相場一覧 | 歴代${modelCount}機種の価格推移を独自集計`} excludeHref={["/macbook/price-info/", "/macbook/"]} />
     </>
   )
 }

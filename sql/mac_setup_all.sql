@@ -62,11 +62,19 @@ CREATE TABLE IF NOT EXISTS mac_models (
   luminance            TEXT,
 
   -- 接続まわり
+  -- port は全文。表示には使わず、記録として残しているだけ。
+  -- 表示は「どのポートが何基あるか」に分解した下の列を使う。
+  -- 値の投入は sql/mac_ports_split.sql を参照。
   port                 TEXT,                    -- 例: 'Thunderbolt4 × 3'
+  thunderbolt          TEXT,                    -- 例: '3基'
+  thunderbolt_gen      TEXT,                    -- 例: 'Thunderbolt 4（M4 ProはThunderbolt 5）'
+  usb_c                TEXT,                    -- 例: '2基'。NULL = 非搭載
+  usb_a                TEXT,                    -- 例: '2基'。NULL = 非搭載
+  headphone            BOOLEAN NOT NULL DEFAULT FALSE,  -- 3.5mmヘッドフォンジャック
   hdmi                 BOOLEAN NOT NULL DEFAULT FALSE,
   slot                 BOOLEAN NOT NULL DEFAULT FALSE,  -- SDXCカードスロット
   ethernet             TEXT,                    -- 例: 'Gigabit（10Gbは構成オプション）'
-  external_display     TEXT,                    -- 例: '最大3台（6K 60Hz × 2 + 5K 60Hz × 1）'
+  external_display     TEXT,                    -- 台数だけを持つ。例: '3台'、'2台（M2 Proは3台）'
 
   -- その他
   camera               TEXT,                    -- iMac のみ
@@ -196,7 +204,7 @@ INSERT INTO mac_models (
  TRUE, '24インチ4.5K Retinaディスプレイ', '4,480 x 2,520', '500ニト',
  'Thunderbolt / USB 4 × 2（4ポートモデルはUSB 3 × 2を追加）', FALSE, FALSE,
  'ギガビットEthernet（電源アダプタ内蔵。2ポートモデルはオプション）',
- '最大1台（6K 60Hz）',
+ '1台',
  '1080p FaceTime HDカメラ', '6スピーカーシステム（空間オーディオ対応）',
  'Magic Keyboard / Magic Mouse',
  '高さ46.1 × 幅54.7 × 奥行き14.7cm（スタンド含む）', NULL,
@@ -210,7 +218,7 @@ INSERT INTO mac_models (
  TRUE, '24インチ4.5K Retinaディスプレイ', '4,480 x 2,520', '500ニト',
  'Thunderbolt / USB 4 × 2（4ポートモデルはUSB 3 × 2を追加）', FALSE, FALSE,
  'ギガビットEthernet（電源アダプタ内蔵。2ポートモデルはオプション）',
- '最大1台（6K 60Hz）',
+ '1台',
  '1080p FaceTime HDカメラ', '6スピーカーシステム（空間オーディオ対応）',
  'Touch ID搭載Magic Keyboard / Magic Mouse',
  '高さ46.1 × 幅54.7 × 奥行き14.7cm（スタンド含む）', NULL,
@@ -224,7 +232,7 @@ INSERT INTO mac_models (
  TRUE, '24インチ4.5K Retinaディスプレイ（Nano-textureガラスオプションあり）', '4,480 x 2,520', '500ニト',
  'Thunderbolt 4 × 4（2ポートモデルはThunderbolt / USB 4 × 2）', FALSE, FALSE,
  'ギガビットEthernet（電源アダプタ内蔵。2ポートモデルはオプション）',
- '最大2台（6K 60Hz × 2）または1台（8K 60Hz）',
+ '2台',
  'デスクビュー対応 12MPセンターフレームカメラ', '6スピーカーシステム（空間オーディオ対応）',
  'Touch ID搭載Magic Keyboard / Magic Mouse',
  '高さ46.1 × 幅54.7 × 奥行き14.7cm（スタンド含む）', NULL,
@@ -249,7 +257,7 @@ INSERT INTO mac_models (
  FALSE, NULL, NULL, NULL,
  'Thunderbolt / USB 4 × 2、USB-A × 2、HDMI、3.5mmヘッドフォンジャック', TRUE, FALSE,
  'ギガビットEthernet（10Gb Ethernetに変更可能）',
- '最大2台（Thunderbolt 6K 60Hz × 1 + HDMI 4K 60Hz × 1）',
+ '2台（2台目は4Kまで）',
  NULL, '内蔵スピーカー',
  '電源コード',
  '高さ3.6 × 幅19.7 × 奥行き19.7cm', NULL,
@@ -258,11 +266,11 @@ INSERT INTO mac_models (
 (5,
  'Mac mini（2023）', 'Mac mini M2', 'mac-mini-2023', 1, 'mac-mini-2023.webp', '2023/01/24', 'mac-mini',
  '256GB ~ 8TB', '8 / 16 / 24 / 32GB', 'シルバー',
- 'M2 / M2 Pro', '10コア（M2）／16・19コア（M2 Pro）', TRUE,
+ 'M2 / M2 Pro', '10コア（M2） / 16・19コア（M2 Pro）', TRUE,
  FALSE, NULL, NULL, NULL,
- 'Thunderbolt 4 × 2（M2）／× 4（M2 Pro）、USB-A × 2、HDMI、3.5mmヘッドフォンジャック', TRUE, FALSE,
+ 'Thunderbolt 4 × 2（M2） / × 4（M2 Pro）、USB-A × 2、HDMI、3.5mmヘッドフォンジャック', TRUE, FALSE,
  'ギガビットEthernet（10Gb Ethernetに変更可能）',
- '最大2台（M2）／最大3台（M2 Pro）',
+ '2台（M2 Proは3台）',
  NULL, '内蔵スピーカー',
  '電源コード',
  '高さ3.58 × 幅19.70 × 奥行き19.70cm', NULL,
@@ -271,11 +279,11 @@ INSERT INTO mac_models (
 (6,
  'Mac mini（2024）', 'Mac mini M4', 'mac-mini-2024', 1, 'mac-mini-2024.webp', '2024/11/08', 'mac-mini',
  '256GB ~ 8TB', '16 / 24 / 32 / 48 / 64GB', 'シルバー',
- 'M4 / M4 Pro', '10コア（M4）／16・20コア（M4 Pro）', TRUE,
+ 'M4 / M4 Pro', '10コア（M4） / 16・20コア（M4 Pro）', TRUE,
  FALSE, NULL, NULL, NULL,
- '前面: USB-C × 2、3.5mmヘッドフォンジャック／背面: Thunderbolt 4 × 3（M4）またはThunderbolt 5 × 3（M4 Pro）、HDMI、Ethernet', TRUE, FALSE,
+ '前面: USB-C × 2、3.5mmヘッドフォンジャック / 背面: Thunderbolt 4 × 3（M4）またはThunderbolt 5 × 3（M4 Pro）、HDMI、Ethernet', TRUE, FALSE,
  'ギガビットEthernet（10Gb Ethernetに変更可能）',
- '最大3台',
+ '3台',
  NULL, '内蔵スピーカー',
  '電源コード（1.8m）',
  '高さ5.0 × 幅12.7 × 奥行き12.7cm', NULL,
@@ -298,11 +306,11 @@ INSERT INTO mac_models (
 (7,
  'Mac Studio（2022）', 'Mac Studio M1 Max', 'mac-studio-2022', 1, 'mac-studio-2022.webp', '2022/03/18', 'mac-studio',
  '512GB ~ 8TB', '32 / 64 / 128GB', 'シルバー',
- 'M1 Max / M1 Ultra', '24・32コア（M1 Max）／48・64コア（M1 Ultra）', TRUE,
+ 'M1 Max / M1 Ultra', '24・32コア（M1 Max） / 48・64コア（M1 Ultra）', TRUE,
  FALSE, NULL, NULL, NULL,
- '背面: Thunderbolt 4 × 4、USB-A × 2、HDMI、10Gb Ethernet、3.5mm／前面: USB-C × 2（M1 Max）またはThunderbolt 4 × 2（M1 Ultra）、SDXC', TRUE, TRUE,
+ '背面: Thunderbolt 4 × 4、USB-A × 2、HDMI、10Gb Ethernet、3.5mm / 前面: USB-C × 2（M1 Max）またはThunderbolt 4 × 2（M1 Ultra）、SDXC', TRUE, TRUE,
  '10Gb Ethernet',
- '最大5台（6K 60Hz × 4 + 4K 60Hz × 1）',
+ '5台',
  NULL, '内蔵スピーカー',
  '電源コード',
  '高さ9.5 × 幅19.7 × 奥行き19.7cm', NULL,
@@ -311,11 +319,11 @@ INSERT INTO mac_models (
 (8,
  'Mac Studio（2023）', 'Mac Studio M2 Max', 'mac-studio-2023', 1, 'mac-studio-2023.webp', '2023/06/13', 'mac-studio',
  '512GB ~ 8TB', '32 / 64 / 96 / 128 / 192GB', 'シルバー',
- 'M2 Max / M2 Ultra', '30・38コア（M2 Max）／60・76コア（M2 Ultra）', TRUE,
+ 'M2 Max / M2 Ultra', '30・38コア（M2 Max） / 60・76コア（M2 Ultra）', TRUE,
  FALSE, NULL, NULL, NULL,
- '背面: Thunderbolt 4 × 4、USB-A × 2、HDMI、10Gb Ethernet、3.5mm／前面: USB-C × 2（M2 Max）またはThunderbolt 4 × 2（M2 Ultra）、SDXC', TRUE, TRUE,
+ '背面: Thunderbolt 4 × 4、USB-A × 2、HDMI、10Gb Ethernet、3.5mm / 前面: USB-C × 2（M2 Max）またはThunderbolt 4 × 2（M2 Ultra）、SDXC', TRUE, TRUE,
  '10Gb Ethernet',
- '最大5台（M2 Max）／最大8台（M2 Ultra）',
+ '5台（M2 Ultraは8台）',
  NULL, '内蔵スピーカー',
  '電源コード',
  '高さ9.5 × 幅19.7 × 奥行き19.7cm', NULL,
@@ -324,11 +332,11 @@ INSERT INTO mac_models (
 (9,
  'Mac Studio（2025）', 'Mac Studio M4 Max', 'mac-studio-2025', 1, 'mac-studio-2025.webp', '2025/03/12', 'mac-studio',
  '512GB ~ 16TB', '36 / 48 / 64 / 96 / 128 / 256GB', 'シルバー',
- 'M4 Max / M3 Ultra', '32・40コア（M4 Max）／60・80コア（M3 Ultra）', TRUE,
+ 'M4 Max / M3 Ultra', '32・40コア（M4 Max） / 60・80コア（M3 Ultra）', TRUE,
  FALSE, NULL, NULL, NULL,
- '背面: Thunderbolt 5 × 4、USB-A × 2、HDMI 2.1、10Gb Ethernet、3.5mm／前面: USB-C × 2（M4 Max）またはThunderbolt 5 × 2（M3 Ultra）、SDXC', TRUE, TRUE,
+ '背面: Thunderbolt 5 × 4、USB-A × 2、HDMI 2.1、10Gb Ethernet、3.5mm / 前面: USB-C × 2（M4 Max）またはThunderbolt 5 × 2（M3 Ultra）、SDXC', TRUE, TRUE,
  '10Gb Ethernet',
- '最大5台（M4 Max）／最大8台（M3 Ultra）',
+ '5台（M3 Ultraは8台）',
  NULL, '内蔵スピーカー',
  '電源コード',
  '高さ9.5 × 幅19.7 × 奥行き19.7cm', NULL,

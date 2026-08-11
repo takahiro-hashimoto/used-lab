@@ -12,7 +12,10 @@ const PRO_GROUPS = [
   { slugs: ['pro11-2', 'pro12-4'] },
 ]
 
+// 新機種を出したらここに1行足す（DBの advance は自動で読まれる）。
+// 追加を忘れると、advance データがあってもタイムラインに出ない。
 const AIR_GROUPS = [
+  { slugs: ['air-8-11', 'air-8-13'] },
   { slugs: ['air-7-11', 'air-7-13'] },
   { slugs: ['air-6-11', 'air-6-13'] },
   { slugs: ['air-5'] },

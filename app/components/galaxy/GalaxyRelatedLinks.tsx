@@ -19,14 +19,12 @@ export default function GalaxyRelatedLinks({
   compareLinks,
   children,
 }: Props) {
-  const sourcePath = Array.isArray(excludeHref) ? excludeHref[0] : (excludeHref ?? '/galaxy/')
   return (
     <RelatedLinks
       links={GALAXY_LINKS}
       heading={heading}
       description={description}
       excludeHref={excludeHref}
-      sourcePath={sourcePath}
       compareLinks={compareLinks}
     >
       <CrossCategoryLinks currentCategory="/galaxy/" />

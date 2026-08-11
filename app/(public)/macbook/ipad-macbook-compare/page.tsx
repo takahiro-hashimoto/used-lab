@@ -289,7 +289,7 @@ export default function IpadMacbookComparePage() {
                     <li>iPad版アプリは機能制限されていることが多い</li>
                     <li>ファイル管理・マルチタスクも圧倒的に快適</li>
                   </ul>
-                  <p className="media-card__desc u-mt-lg">MacBookを選ぶなら<Link prefetch={false} href="/macbook/recommend/">おすすめの中古MacBook</Link>で機種を確認しましょう。</p>
+                  <p className="media-card__desc u-mt-lg">MacBookを選ぶなら<Link prefetch={false} href="/macbook/">おすすめの中古MacBook</Link>で機種を確認しましょう。</p>
                 </div>
               </div>
 
@@ -299,7 +299,7 @@ export default function IpadMacbookComparePage() {
         </div>
       </article>
     </main>
-    <MacBookArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/macbook/ipad-macbook-compare/", "/macbook/recommend/"]}>
+    <MacBookArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/macbook/ipad-macbook-compare/", "/macbook/"]}>
           <div className="m-callout m-callout--muted u-mt-2xl">
             <span className="m-callout__label">関連</span>
             <p className="m-callout__text">

@@ -5,7 +5,22 @@ type EvolutionStep = {
   features: string[]
 }
 
+// 新機種を出したらここに1ステップ足す。
+// このコンポーネントは DB の advance を読まず静的定義なので、追加を忘れると
+// 最新世代が記事に出ないまま古い世代が「最新」に見えてしまう。
 const AIR_STEPS: EvolutionStep[] = [
+  {
+    title: 'M4→M5の進化ポイント',
+    slug: 'mba-13-2026',
+    image: '/images/macbook/mba-13-2026.jpg',
+    features: [
+      'マルチコア性能が14,677から17,073へ（約16%向上）',
+      'GPU各コアにNeural Accelerator を内蔵し、AI性能がM4比で最大4倍に',
+      'メモリ帯域幅が120GB/sから153GB/sへ約28%向上',
+      'SSDの読み書きが最大2倍に高速化し、ベースストレージが256GBから512GBに倍増',
+      'N1ワイヤレスチップ搭載でWi-Fi 7とBluetooth 6に対応',
+    ],
+  },
   {
     title: 'M3→M4の進化ポイント',
     slug: 'mba-13-2025',
@@ -46,6 +61,20 @@ const AIR_STEPS: EvolutionStep[] = [
 ]
 
 const PRO_STEPS: EvolutionStep[] = [
+  {
+    title: 'M4→M5の進化ポイント',
+    slug: 'mbp-14-2026',
+    image: '/images/macbook/mbp-14-2026.jpg',
+    features: [
+      'マルチコア性能が22,374から25,411へ（約14%向上）',
+      '2つのダイを統合する新開発のFusion ArchitectureをM5 Pro / M5 Maxに採用',
+      'CPUが18コア構成になり、マルチスレッド性能がM4世代比で最大30%向上',
+      'GPU各コアにNeural Accelerator を内蔵し、AI性能が前世代比で最大4倍に',
+      'メモリ帯域幅がM5 Proで307GB/s、M5 Maxで614GB/sに向上',
+      'ベースストレージがM5 Proは1TB、M5 Maxは2TBに増量',
+      'N1ワイヤレスチップ搭載でWi-Fi 7とBluetooth 6に対応',
+    ],
+  },
   {
     title: 'M3→M4の進化ポイント',
     slug: 'mbp-14-2024-nov',

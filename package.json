@@ -32,6 +32,7 @@
     "fetch-prices:ipad": "tsx scripts/fetch-prices.ts ipad",
     "fetch-prices:watch": "tsx scripts/fetch-prices.ts watch",
     "fetch-prices:airpods": "tsx scripts/fetch-prices.ts airpods",
+    "fetch-prices:mac": "tsx scripts/fetch-prices.ts mac",
     "check-links": "tsx scripts/check-links.ts",
     "check-links:local": "tsx scripts/check-links.ts --local",
     "check-links:internal": "tsx scripts/check-links.ts --internal-only"

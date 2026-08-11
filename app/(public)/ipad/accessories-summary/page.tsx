@@ -248,7 +248,7 @@ export default async function AccessoriesSummaryPage() {
         </div>
       </article>
     </main>
-    <IPadArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/ipad/accessories-summary/", "/ipad/recommend/"]} />
+    <IPadArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/ipad/accessories-summary/", "/ipad/"]} />
     </>
   )
 }

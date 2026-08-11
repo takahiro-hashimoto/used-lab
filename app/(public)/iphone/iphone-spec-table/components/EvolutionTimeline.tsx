@@ -4,7 +4,10 @@ import ModelModalButton from './ModelModalButton'
 type Model = IPhoneModel
 
 // シリーズのグルーピング定義（slug のみ管理）
+// 新機種を出したらここに1行足す（DBの advance は自動で読まれる）。
+// 追加を忘れると、advance データがあってもタイムラインに出ない。
 const FLAGSHIP_SERIES = [
+  { title: 'iPhone 17 シリーズ', standardSlugs: ['17normal'], proSlugs: ['17pro', '17promax'] },
   { title: 'iPhone 16 シリーズ', standardSlugs: ['16normal', '16plus'], proSlugs: ['16pro', '16promax'] },
   { title: 'iPhone 15 シリーズ', standardSlugs: ['15normal', '15plus'], proSlugs: ['15pro', '15promax'] },
   { title: 'iPhone 14 シリーズ', standardSlugs: ['14normal', '14plus'], proSlugs: ['14pro', '14promax'] },
@@ -92,9 +95,9 @@ export default function EvolutionTimeline({ models, avgPrices, iosysUrlMap }: Pr
     <section className="l-section" id="evolution" aria-labelledby="heading-evolution">
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg" id="heading-evolution">
-          歴代iPhoneの主な進化点（時系列順）
+          歴代iPhoneの主な進化点（シリーズ別）
         </h2>
-        <p className="m-section-desc">歴代iPhoneの主に進化したポイントを時系列順に整理しました。</p>
+        <p className="m-section-desc">歴代iPhoneの主に進化したポイントをシリーズ別・新しい順に整理しました。</p>
         <p className="m-section-desc">シリーズを重ねるごとにどのような点がアップデートされてきたのかを把握するのにお役立てください！</p>
 
         <h3 className="m-section-heading m-section-heading--md u-mt-2xl" style={{ textAlign: 'left' }}>

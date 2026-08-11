@@ -16,14 +16,12 @@ export default function WatchRelatedLinks({
   excludeHref,
   children,
 }: Props) {
-  const sourcePath = Array.isArray(excludeHref) ? excludeHref[0] : (excludeHref ?? '/watch/')
   return (
     <RelatedLinks
       links={WATCH_LINKS}
       heading={heading}
       description={description}
       excludeHref={excludeHref}
-      sourcePath={sourcePath}
     >
       <CrossCategoryLinks currentCategory="/watch/" />
       {children}

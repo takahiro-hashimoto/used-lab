@@ -1,9 +1,9 @@
 import { unstable_cache } from 'next/cache'
 import { supabase } from './supabase'
 import type {
-  IPhoneModel, IPadModel, WatchModel, MacBookModel, AirPodsModel, PixelModel, GalaxyModel,
+  IPhoneModel, IPadModel, WatchModel, MacBookModel, MacModel, AirPodsModel, PixelModel, GalaxyModel,
   Shop, ProductShopLink, ProductReview,
-  IPhonePriceLog, IPadPriceLog, WatchPriceLog, MacBookPriceLog, AirPodsPriceLog, PixelPriceLog, GalaxyPriceLog,
+  IPhonePriceLog, IPadPriceLog, WatchPriceLog, MacBookPriceLog, MacPriceLog, AirPodsPriceLog, PixelPriceLog, GalaxyPriceLog,
   MvnoPlan,
   MvnoProvider,
   IPadAccessory, IPadAccessoryCompatibility,
@@ -18,6 +18,7 @@ export const CACHE_TAGS = {
   ipadModels: 'ipad-models',
   watchModels: 'watch-models',
   macbookModels: 'macbook-models',
+  macModels: 'mac-models',
   airpodsModels: 'airpods-models',
   pixelModels: 'pixel-models',
   galaxyModels: 'galaxy-models',
@@ -25,6 +26,7 @@ export const CACHE_TAGS = {
   ipadPriceLogs: 'ipad-price-logs',
   watchPriceLogs: 'watch-price-logs',
   macbookPriceLogs: 'macbook-price-logs',
+  macPriceLogs: 'mac-price-logs',
   airpodsPriceLogs: 'airpods-price-logs',
   pixelPriceLogs: 'pixel-price-logs',
   galaxyPriceLogs: 'galaxy-price-logs',
@@ -42,6 +44,7 @@ export const CATEGORY_CACHE_TAGS: Record<string, string[]> = {
   ipad: [CACHE_TAGS.ipadModels, CACHE_TAGS.ipadPriceLogs, CACHE_TAGS.ipadAccessories],
   watch: [CACHE_TAGS.watchModels, CACHE_TAGS.watchPriceLogs],
   macbook: [CACHE_TAGS.macbookModels, CACHE_TAGS.macbookPriceLogs],
+  mac: [CACHE_TAGS.macModels, CACHE_TAGS.macPriceLogs],
   airpods: [CACHE_TAGS.airpodsModels, CACHE_TAGS.airpodsPriceLogs],
   pixel: [CACHE_TAGS.pixelModels, CACHE_TAGS.pixelPriceLogs],
   galaxy: [CACHE_TAGS.galaxyModels, CACHE_TAGS.galaxyPriceLogs],
@@ -366,6 +369,10 @@ const watchPriceLogs = createPriceLogQueries<WatchPriceLog>('watch_price_logs', 
 const macBookModels = createModelQueries<MacBookModel>('macbook_models', CACHE_TAGS.macbookModels, 'last_macos')
 const macBookPriceLogs = createPriceLogQueries<MacBookPriceLog>('macbook_price_logs', CACHE_TAGS.macbookPriceLogs)
 
+// デスクトップMac（iMac / Mac mini / Mac Studio）。MacBook と同じく last_macos で現役判定
+const macModels = createModelQueries<MacModel>('mac_models', CACHE_TAGS.macModels, 'last_macos')
+const macPriceLogs = createPriceLogQueries<MacPriceLog>('mac_price_logs', CACHE_TAGS.macPriceLogs)
+
 // AirPods には「最終対応OS」がないためフィルタなし（全件表示）
 const airPodsModels = createModelQueries<AirPodsModel>('airpods_models', CACHE_TAGS.airpodsModels)
 const airPodsPriceLogs = createPriceLogQueries<AirPodsPriceLog>('airpods_price_logs', CACHE_TAGS.airpodsPriceLogs)
@@ -486,6 +493,20 @@ export const getLatestMacBookPriceLogsWithPricesForModels = macBookPriceLogs.get
 const MACBOOK_PRICE_COLS = ['min1_price', 'max1_price', 'min2_price', 'max2_price', 'min3_price', 'max3_price', 'min4_price', 'max4_price', 'min5_price', 'max5_price']
 export const getLatestMacBookPriceLogWithPrices = (modelId: number) =>
   macBookPriceLogs.getLatestWithPrices(modelId, MACBOOK_PRICE_COLS)
+
+// Mac（デスクトップ: iMac / Mac mini / Mac Studio）
+// 価格ログは macbook と同一スキーマなので列定義を共有する
+export const getMacModelBySlug = macModels.getBySlug
+export const getAllMacModels = macModels.getAll
+export const getAllMacModelsIncludingEnded = macModels.getAllIncludingEnded
+export const getAllMacSlugs = macModels.getAllSlugs
+export const getMacPriceLogsByModelId = macPriceLogs.getByModelId
+export const getLatestMacPriceLog = macPriceLogs.getLatest
+export const getAllMacPriceLogsByModelIds = macPriceLogs.getAllByModelIds
+export const getLatestMacPriceLogsForModels = macPriceLogs.getLatestForModels
+export const getLatestMacPriceLogsWithPricesForModels = macPriceLogs.getLatestWithPricesForModels
+export const getLatestMacPriceLogWithPrices = (modelId: number) =>
+  macPriceLogs.getLatestWithPrices(modelId, MACBOOK_PRICE_COLS)
 
 // AirPods
 export const getAirPodsModelBySlug = airPodsModels.getBySlug
@@ -627,6 +648,7 @@ export const getLatestPriceDatesPerCategory = unstable_cache(
       ['ipad_price_logs', 'ipad'],
       ['watch_price_logs', 'watch'],
       ['macbook_price_logs', 'macbook'],
+      ['mac_price_logs', 'mac'],
       ['airpods_price_logs', 'airpods'],
       ['pixel_price_logs', 'pixel'],
       ['galaxy_price_logs', 'galaxy'],
@@ -656,6 +678,7 @@ export const getLatestPriceDatesPerCategory = unstable_cache(
       CACHE_TAGS.ipadPriceLogs,
       CACHE_TAGS.watchPriceLogs,
       CACHE_TAGS.macbookPriceLogs,
+      CACHE_TAGS.macPriceLogs,
       CACHE_TAGS.airpodsPriceLogs,
     ],
   }
@@ -755,30 +778,6 @@ export async function getIPhoneReviewsBySlug(modelSlug: string): Promise<Product
   return data as ProductReview[]
 }
 
-// ============================================================
-// 関連記事リンク クリック数
-// ============================================================
-
-/** 指定ページから発生した関連記事クリック数を取得（1時間キャッシュ） */
-export const getRelatedLinkClicks = unstable_cache(
-  async (sourcePath: string): Promise<Record<string, number>> => {
-    const { data, error } = await supabase
-      .from('related_link_clicks')
-      .select('dest_path, click_count')
-      .eq('source_path', sourcePath)
-    if (error) {
-      console.warn(`[queries] getRelatedLinkClicks(${sourcePath}) failed, falling back to empty map: ${error.message}`)
-    }
-    if (error || !data) return {}
-    const map: Record<string, number> = {}
-    for (const row of data) {
-      map[row.dest_path] = row.click_count
-    }
-    return map
-  },
-  ['related-link-clicks'],
-  { revalidate: 86400, tags: ['related-link-clicks'] }
-)
 
 export async function getIPadReviewsBySlug(modelSlug: string): Promise<ProductReview[]> {
   const { data, error } = await supabase

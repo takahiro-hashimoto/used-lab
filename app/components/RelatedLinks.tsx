@@ -1,13 +1,12 @@
 /**
  * 関連記事リンクセクション（Server Component）
- * - Supabaseからクリック数を取得してソート
- * - クリックデータがない場合はデフォルト順（配列定義順）にフォールバック
+ * - 並び順は各カテゴリの配列定義順
  * - 全カテゴリ共通で利用
  */
 
 import { ReactNode } from 'react'
-import { getRelatedLinkClicks } from '@/lib/queries'
 import type { RelatedLinkMeta } from '@/lib/data/related-links'
+import { isHiddenPath } from '@/lib/data/feature-flags'
 import RelatedLinksClient from './RelatedLinksClient'
 
 type Props = {
@@ -19,8 +18,6 @@ type Props = {
   description?: string
   /** 除外するパス（自ページ・recommend等） */
   excludeHref?: string | string[]
-  /** 現在のページパス（クリック記録のsource） */
-  sourcePath: string
   /** 2機種比較リンク（iPhoneのみ） */
   compareLinks?: RelatedLinkMeta[]
   /** グリッドのカラム数（デフォルト: 2） */
@@ -34,31 +31,24 @@ export default async function RelatedLinks({
   heading = '関連記事',
   description = '',
   excludeHref,
-  sourcePath,
   compareLinks,
   columns,
   children,
 }: Props) {
-  // 除外処理
+  // 除外処理。
+  // カテゴリ横断のリンク（MacBook から /mac/ など）が混ざるため、
+  // 自ページの除外に加えて非公開カテゴリへのリンクもここで落とす。
+  // これをやらないと未公開のページへの導線が記事下に出てしまう
   const excludes = excludeHref
     ? Array.isArray(excludeHref) ? excludeHref : [excludeHref]
     : []
-  const filtered = excludes.length
-    ? links.filter((l) => !excludes.includes(l.href))
-    : links
-
-  // クリック数を取得してソート
-  const clickMap = await getRelatedLinkClicks(sourcePath)
-  const sorted = [...filtered].sort((a, b) => {
-    const ca = clickMap[a.href] ?? 0
-    const cb = clickMap[b.href] ?? 0
-    return cb - ca // クリック数降順
-  })
+  const filtered = links.filter(
+    (l) => !excludes.includes(l.href) && !isHiddenPath(l.href),
+  )
 
   return (
     <RelatedLinksClient
-      links={sorted}
-      sourcePath={sourcePath}
+      links={filtered}
       heading={heading}
       description={description}
       compareLinks={compareLinks}

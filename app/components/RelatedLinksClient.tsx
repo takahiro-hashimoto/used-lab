@@ -8,7 +8,6 @@ import type { RelatedLinkMeta } from '@/lib/data/related-links'
 
 type Props = {
   links: RelatedLinkMeta[]
-  sourcePath: string
   heading: string
   description: string
   /** 2機種比較リンク（iPhoneのみ） */
@@ -21,29 +20,12 @@ type Props = {
 
 export default function RelatedLinksClient({
   links,
-  sourcePath,
   heading,
   description,
   compareLinks,
   columns = 2,
   children,
 }: Props) {
-  function handleClick(destPath: string) {
-    try {
-      const key = `rel:${sourcePath}:${destPath}`
-      if (sessionStorage.getItem(key)) return
-      sessionStorage.setItem(key, '1')
-    } catch {
-      // sessionStorage unavailable (private browsing etc.) — send anyway
-    }
-    if (typeof navigator?.sendBeacon === 'function') {
-      navigator.sendBeacon(
-        '/api/related-click',
-        JSON.stringify({ source: sourcePath, dest: destPath })
-      )
-    }
-  }
-
   return (
     <section className="l-section" id="related" aria-labelledby="heading-related">
       <div className="l-container">
@@ -69,7 +51,6 @@ export default function RelatedLinksClient({
                   className="m-card m-card--shadow m-card--hoverable"
                   style={{ padding: 'var(--space-md) var(--space-lg)', display: 'block', textDecoration: 'none' }}
                   prefetch={false}
-                  onClick={() => handleClick(item.href)}
                 >
                   <p style={{ fontSize: 'var(--font-size-sm)', fontWeight: 700, color: 'var(--color-text)', marginBottom: 4 }}>
                     {item.title}
@@ -100,7 +81,6 @@ export default function RelatedLinksClient({
               href={item.href}
               className="m-card m-card--shadow related-link-card m-card--hoverable"
               prefetch={false}
-              onClick={() => handleClick(item.href)}
             >
               <Image
                 src={getHeroImage(item.href)}
