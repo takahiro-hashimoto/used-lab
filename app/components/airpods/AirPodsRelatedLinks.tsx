@@ -13,14 +13,12 @@ export default function AirPodsRelatedLinks({
   description = 'スペック以外の観点からもAirPods選びをサポートする記事をまとめました。',
   excludeHref,
 }: Props) {
-  const sourcePath = Array.isArray(excludeHref) ? excludeHref[0] : (excludeHref ?? '/airpods/')
   return (
     <RelatedLinks
       links={AIRPODS_LINKS}
       heading={heading}
       description={description}
       excludeHref={excludeHref}
-      sourcePath={sourcePath}
     >
       <CrossCategoryLinks currentCategory="/airpods/" />
     </RelatedLinks>

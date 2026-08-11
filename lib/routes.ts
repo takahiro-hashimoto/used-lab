@@ -180,6 +180,22 @@ const ALL_PRODUCT_CATEGORIES: CategoryDef[] = [
     ],
   },
   {
+    // デスクトップMac。MacBook（ノート）とは検索意図が別なのでカテゴリを分けている。
+    // Mac Studio はデータには入れるがトップの主題からは外す（中古の流通量が少ないため）
+    id: 'mac',
+    label: 'iMac・Mac mini',
+    icon: 'fa-desktop',
+    desc: 'iMac・Mac miniの選び方、スペック比較、中古相場など、デスクトップのMacを賢く選ぶための情報をまとめています。',
+    basePath: '/mac',
+    pages: [
+      { path: '/mac/', label: '中古iMac・Mac miniおすすめ機種｜失敗しない選び方ガイド', priority: 0.9 },
+      { path: '/mac/mac-spec-table/', label: '歴代iMac・Mac miniスペック比較表！Mac Studioを含む全機種の違いがすぐわかる' },
+      { path: '/mac/price-info/', label: 'iMac・Mac miniの中古相場一覧｜歴代モデルの価格推移を独自集計' },
+      { path: '/mac/benchmark/', label: '歴代iMac・Mac miniのベンチマーク比較｜Mac Studioを含む性能差がスコアでわかる' },
+      { path: '/mac/used-mac-support/', label: 'iMac・Mac miniはいつまで使える？機種ごとの寿命や買い替えのタイミングを解説' },
+    ],
+  },
+  {
     id: 'watch',
     label: 'Apple Watch',
     icon: 'fa-clock',
@@ -326,6 +342,16 @@ const ALL_HEADER_NAV_ITEMS: HeaderNavItem[] = [
     ],
   },
   {
+    href: '/mac/', label: '中古Mac',
+    children: [
+      { href: '/mac/', label: '中古iMac・Mac miniおすすめ機種' },
+      { href: '/mac/mac-spec-table/', label: 'iMac・Mac miniスペック比較表' },
+      { href: '/mac/price-info/', label: 'iMac・Mac miniの相場価格' },
+      { href: '/mac/benchmark/', label: 'iMac・Mac miniベンチマーク比較' },
+      { href: '/mac/used-mac-support/', label: 'iMac・Mac miniのサポート期間' },
+    ],
+  },
+  {
     href: '/airpods/', label: '中古AirPods',
     children: [
       { href: '/airpods/', label: '中古AirPodsおすすめ機種' },
@@ -389,6 +415,16 @@ const ALL_FOOTER_LINKS: Record<string, { href: string; label: string }[]> = {
     { href: '/macbook/price-info/', label: '中古MacBookの相場価格' },
     { href: '/macbook/air-pro-compare/', label: 'MacBook Air vs Pro比較' },
     { href: '/macbook/macbook-shop/', label: '中古MacBook購入先比較' },
+    { href: '/mac/', label: '中古iMac・Mac miniおすすめ機種' },
+  ],
+  mac: [
+    { href: '/mac/', label: '中古iMac・Mac miniおすすめ機種' },
+    { href: '/mac/mac-spec-table/', label: 'iMac・Mac miniスペック比較表' },
+    { href: '/mac/price-info/', label: 'iMac・Mac miniの相場価格' },
+    { href: '/mac/benchmark/', label: 'iMac・Mac miniベンチマーク比較' },
+    { href: '/mac/used-mac-support/', label: 'iMac・Mac miniのサポート期間・寿命' },
+    { href: '/macbook/', label: '中古MacBookおすすめ機種' },
+    { href: '/macbook/windows-mac-compare/', label: 'MacとWindowsの違い' },
   ],
   watch: [
     { href: '/watch/', label: '中古Apple Watchおすすめ機種' },
@@ -436,7 +472,9 @@ export const VISIBLE_CROSS_PAGES: PageDef[] = PUBLISH_ANDROID_CATEGORIES ? CROSS
 export const FOOTER_LINKS: Record<string, { href: string; label: string }[]> = Object.fromEntries(
   Object.entries(ALL_FOOTER_LINKS)
     .filter(([key]) => !isHiddenCategory(key))
-    .map(([key, links]) => [key, links.filter((l) => !isHiddenCrossPath(l.href))]),
+    // カテゴリ内のリンクにも非公開パスが混ざりうる（例: macbook の一覧に置いた /mac/ への導線）。
+    // key だけで弾くと、非公開カテゴリへのリンクがフッターに残ってしまう
+    .map(([key, links]) => [key, links.filter((l) => !isHiddenPath(l.href) && !isHiddenCrossPath(l.href))]),
 )
 
 export function getAllStaticRoutes(): { path: string; priority: number; changeFrequency: ChangeFreq }[] {

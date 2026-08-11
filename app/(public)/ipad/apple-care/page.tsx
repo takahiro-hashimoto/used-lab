@@ -691,7 +691,7 @@ export default function IpadAppleCarePage() {
                     </p>
                     <p className="lead-link u-mt-sm">
                       <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>{' '}
-                      おすすめの中古iPadは「<Link prefetch={false} href="/ipad/recommend/">中古iPadのおすすめ機種</Link>」で紹介しています。
+                      おすすめの中古iPadは「<Link prefetch={false} href="/ipad/">中古iPadのおすすめ機種</Link>」で紹介しています。
                     </p>
                   </div>
                 </div>
@@ -779,7 +779,7 @@ export default function IpadAppleCarePage() {
       <IPadArticleFooter
         pageUrl={PAGE_URL}
         pageTitle={PAGE_TITLE}
-        excludeHref={['/ipad/apple-care/', '/ipad/recommend/']}
+        excludeHref={['/ipad/apple-care/', '/ipad/']}
       />
     </>
   )

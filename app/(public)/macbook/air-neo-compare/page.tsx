@@ -221,7 +221,7 @@ export default async function AirNeoComparePage() {
     <MacBookArticleFooter
       pageUrl={PAGE_URL}
       pageTitle={PAGE_TITLE}
-      excludeHref={['/macbook/air-neo-compare/', '/macbook/recommend/']}
+      excludeHref={['/macbook/air-neo-compare/', '/macbook/']}
     />
     </>
   )

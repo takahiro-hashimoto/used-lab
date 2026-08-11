@@ -279,7 +279,7 @@ export default async function IPadSpecTablePage() {
         </div>
       </article>
     </main>
-    <IPadArticleFooter pageUrl="https://used-lab.jp/ipad/ipad-spec-table/" pageTitle="歴代iPadスペック比較表！各世代の性能の違いがすぐわかる" excludeHref={["/ipad/ipad-spec-table/", "/ipad/recommend/"]} />
+    <IPadArticleFooter pageUrl="https://used-lab.jp/ipad/ipad-spec-table/" pageTitle="歴代iPadスペック比較表！各世代の性能の違いがすぐわかる" excludeHref={["/ipad/ipad-spec-table/", "/ipad/"]} />
     </>
   )
 }

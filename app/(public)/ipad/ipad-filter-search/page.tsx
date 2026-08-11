@@ -289,7 +289,7 @@ export default async function IPadFilterSearchPage() {
         </div>
       </article>
     </main>
-    <IPadArticleFooter pageUrl="https://used-lab.jp/ipad/ipad-filter-search/" pageTitle="iPad機種診断シミュレーター｜自分に合うおすすめ中古iPadがすぐわかる【${CURRENT_YEAR}年版】" excludeHref={["/ipad/ipad-filter-search/", "/ipad/recommend/"]} />
+    <IPadArticleFooter pageUrl="https://used-lab.jp/ipad/ipad-filter-search/" pageTitle="iPad機種診断シミュレーター｜自分に合うおすすめ中古iPadがすぐわかる【${CURRENT_YEAR}年版】" excludeHref={["/ipad/ipad-filter-search/", "/ipad/"]} />
     </>
   )
 }

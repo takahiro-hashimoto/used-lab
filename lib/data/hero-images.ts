@@ -17,7 +17,6 @@ export const HERO_IMAGES: Record<string, string> = {
   '/airpods/airpods-find/': '/images/content/thumbnail/airpods-image-01.jpg',
   '/airpods/price-info/': '/images/content/thumbnail/airpods-image-03.jpg',
   '/airpods/airpods-filter-search/': '/images/content/thumbnail/simulator.jpg',
-  '/airpods/recommend/': '/images/content/thumbnail/airpods-image-02.jpg',
   '/airpods/used-airpods-attention/': '/images/content/thumbnail/check-list.jpg',
   '/airpods/airpods-buy/': '/images/content/thumbnail/cheap-buy.jpg',
 
@@ -74,7 +73,6 @@ export const HERO_IMAGES: Record<string, string> = {
   '/ipad/ipad-price-info/': '/images/content/thumbnail/graph-image.jpg',
   '/ipad/ipad-shop/': '/images/content/thumbnail/cheap-buy.jpg',
   '/ipad/ipad-spec-table/': '/images/content/thumbnail/ipad-image-11.jpg',
-  '/ipad/recommend/': '/images/content/thumbnail/ipad-image-03.jpg',
   '/ipad/review-ipad-pro-11-m4/': '/images/content/thumbnail/ipad-image-12.jpg',
   '/ipad/storage-guide/': '/images/content/thumbnail/ipad-image-09.jpg',
   '/ipad/used-ipad-attention/': '/images/content/thumbnail/check-list.jpg',
@@ -91,12 +89,20 @@ export const HERO_IMAGES: Record<string, string> = {
   '/macbook/price-info/': '/images/content/thumbnail/graph-image.jpg',
   '/macbook/macbook-shop/': '/images/content/thumbnail/cheap-buy.jpg',
   '/macbook/macbook-spec-table/': '/images/content/thumbnail/macbook-user.jpg',
-  '/macbook/recommend/': '/images/content/thumbnail/macbook-image-04.jpg',
   '/macbook/storage-guide/': '/images/content/thumbnail/macbook-image-05.jpg',
   '/macbook/used-macbook-attention/': '/images/content/thumbnail/check-list.jpg',
   '/macbook/used-macbook-support/': '/images/content/thumbnail/macbook-image-03.jpg',
   '/macbook/windows-mac-compare/': '/images/content/thumbnail/macbook-image-06.jpg',
   '/macbook/apple-care/': '/images/content/thumbnail/apple-care.jpg',
+  // デスクトップMac。記事用の汎用画像は /images/mac-article/。
+  // /images/mac/ は機種サムネ専用（slug名）なので、記事側からは参照しない。
+  // galaxy-article / pixel-article と同じ分け方。
+  // 相場ページだけは他カテゴリと同じグラフ画像で揃える（価格ページ共通の絵）
+  '/mac/': '/images/mac-article/imac-01.jpg',
+  '/mac/mac-spec-table/': '/images/mac-article/imac-03.jpg',
+  '/mac/price-info/': '/images/content/thumbnail/graph-image.jpg',
+  '/mac/benchmark/': '/images/mac-article/imac-04.jpg',
+  '/mac/used-mac-support/': '/images/mac-article/mac-mini-02.jpg',
 
   // ── Apple Watch ──
   '/watch/': '/images/content/thumbnail/apple-watch-image.jpg',
@@ -104,7 +110,6 @@ export const HERO_IMAGES: Record<string, string> = {
   '/watch/apple-watch-buy/': '/images/content/thumbnail/cheap-buy.jpg',
   '/watch/gps-cellular-compare/': '/images/content/thumbnail/watch-image-09.jpg',
   '/watch/how-to-use-apple-watch/': '/images/content/thumbnail/watch-image-11.jpg',
-  '/watch/recommend/': '/images/content/thumbnail/watch-image-08.jpg',
   '/watch/used-watch-attention/': '/images/content/thumbnail/check-list.jpg',
   '/watch/used-watch-support/': '/images/content/thumbnail/watch-image.jpg',
   '/watch/watch-filter-search/': '/images/content/thumbnail/simulator.jpg',

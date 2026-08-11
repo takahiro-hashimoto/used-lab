@@ -19,7 +19,6 @@ export const PAGE_DESCRIPTIONS: Record<string, string> = {
 
   // --- iPad ---
   '/ipad/': '中古iPadの選び方・相場・おすすめモデルの総合ガイド',
-  '/ipad/recommend/': '狙い目の型落ちモデルを解説',
   '/ipad/used-ipad-attention/': '購入前に確認すべきポイントまとめ',
   '/ipad/used-ipad-support/': '機種別のサポート期間目安',
   '/ipad/ipad-shop/': 'ECサイト・ショップの比較',
@@ -34,7 +33,6 @@ export const PAGE_DESCRIPTIONS: Record<string, string> = {
 
   // --- MacBook ---
   '/macbook/': '中古MacBookの選び方・相場・おすすめモデルの総合ガイド',
-  '/macbook/recommend/': '狙い目の型落ちモデルを解説',
   '/macbook/used-macbook-attention/': '購入前に確認すべきポイントまとめ',
   '/macbook/used-macbook-support/': '各機種ごとの寿命と買い替えタイミング',
   '/macbook/macbook-shop/': 'ECサイト・ショップの比較',
@@ -45,7 +43,6 @@ export const PAGE_DESCRIPTIONS: Record<string, string> = {
 
   // --- Apple Watch ---
   '/watch/': '中古Apple Watchの選び方・相場・おすすめモデルの総合ガイド',
-  '/watch/recommend/': '狙い目の型落ちモデルを解説',
   '/watch/used-watch-attention/': '購入前に確認すべきポイントまとめ',
   '/watch/used-watch-support/': '機種別のサポート期間目安',
   '/watch/watch-shop/': 'ECサイト・ショップの比較',
@@ -58,7 +55,6 @@ export const PAGE_DESCRIPTIONS: Record<string, string> = {
   '/watch/apple-watch-buy/': 'おすすめ購入先7つを比較',
 
   // --- AirPods ---
-  '/airpods/recommend/': '狙い目の型落ちモデルを解説',
   '/airpods/price-info/': '歴代モデルの価格推移を独自集計',
   '/airpods/used-airpods-attention/': '購入前に確認すべき注意点とリスク8つ',
   '/airpods/airpods-buy/': '7つの購入先を比較してお得な買い方を解説',
@@ -80,7 +76,6 @@ export const PAGE_DESCRIPTIONS_FULL: Record<string, string> = {
 
   // --- iPad ---
   '/ipad/': '中古iPadの選び方・相場・おすすめモデルの総合ガイド',
-  '/ipad/recommend/': '用途別（動画視聴・イラスト・勉強・仕事）に狙い目モデルを解説',
   '/ipad/ipad-spec-table/': 'iPad・Air・mini・Pro全モデルのスペック一覧表',
   '/ipad/ipad-price-info/': '歴代全機種の中古価格を掲載。毎日更新の価格推移グラフ付き',
   '/ipad/apple-pencil-compare/': '第1世代・第2世代・USB-C・Proの違いと対応iPad一覧',

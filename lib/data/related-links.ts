@@ -127,4 +127,20 @@ export const MACBOOK_LINKS: RelatedLinkMeta[] = [
   { href: '/macbook/ipad-macbook-compare/', title: 'iPad vs MacBookの違い【用途別比較】', desc: 'どちらを選ぶべきか用途別に解説' },
   { href: '/macbook/windows-mac-compare/', title: 'Windows vs Macの違い【徹底比較】', desc: 'どちらが自分に合うか比較' },
   { href: '/macbook/apple-care/', title: 'MacBookにApple Care+は必要？', desc: 'コスパの観点から加入しなくていい理由を解説' },
+  // デスクトップMacへの相互リンク。据え置きで使うなら同じ予算でも性能が上がるため、
+  // MacBookを検討している人に見せる価値がある（非公開のあいだは RelatedLinks 側で除外される）
+  { href: '/mac/', title: '中古iMac・Mac miniおすすめ機種', desc: '据え置きならiMac・Mac miniも選択肢' },
+]
+
+/** デスクトップMac（iMac / Mac mini / Mac Studio）。ノートの MACBOOK_LINKS とは別カテゴリ */
+export const MAC_LINKS: RelatedLinkMeta[] = [
+  { href: '/mac/', title: '中古iMac・Mac miniおすすめ機種', desc: 'iMac・Mac miniの選び方と狙い目モデル' },
+  { href: '/mac/mac-spec-table/', title: '歴代iMac・Mac miniスペック比較表', desc: 'iMac・Mac mini・Mac Studioを一覧で比較' },
+  { href: '/mac/price-info/', title: 'iMac・Mac mini相場・価格推移', desc: '歴代モデルの相場と値動きをチェック' },
+  { href: '/mac/benchmark/', title: 'iMac・Mac miniベンチマーク比較', desc: 'iMac・Mac mini・Mac Studioの性能差をスコアで比較' },
+  { href: '/mac/used-mac-support/', title: 'iMac・Mac miniはいつまで使える？【サポート期間】', desc: '機種別のサポート期間目安まとめ' },
+  { href: '/macbook/windows-mac-compare/', title: 'Windows vs Macの違い【徹底比較】', desc: 'どちらが自分に合うか比較' },
+  // MacBook のサポート期間ページ（/macbook/used-macbook-support/）は入れない。
+  // 上の /mac/used-mac-support/ と見出しも説明文もほぼ同じで、並ぶと重複に見えるため。
+  // /macbook/ トップへの動線は CrossCategoryLinks が別枠で持っている
 ]

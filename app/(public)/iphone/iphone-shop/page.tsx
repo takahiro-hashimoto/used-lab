@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import { getShops } from '@/lib/queries'
 import type { Shop } from '@/lib/types'
+import { backMarketComparisonRow } from '@/lib/data/back-market'
 import {
   SHOP_PAGE_DATE_LABEL,
   SHOP_DETAIL_ORDER,
@@ -51,8 +52,20 @@ export const metadata: Metadata = {
 export default async function IPhoneShopPage() {
   const shops = await getShops()
 
-  // 比較表用: url (iPhone用) が存在するショップを抽出
-  const comparisonShops = shops.filter((s) => s.url != null)
+  // 比較表用: url (iPhone用) が存在するショップを抽出。
+  // Back Market は DB に登録していないため、ここでイオシスの次に差し込む。
+  // 掲載条件は lib/data/back-market.ts に集約している（カード側と同じ値を参照）
+  const dbComparisonShops = shops.filter((s) => s.url != null)
+  const iosysIndex = dbComparisonShops.findIndex((s) => s.shop_key === 'iosys')
+  const backMarketRow = backMarketComparisonRow()
+  const comparisonShops =
+    iosysIndex >= 0
+      ? [
+          ...dbComparisonShops.slice(0, iosysIndex + 1),
+          backMarketRow,
+          ...dbComparisonShops.slice(iosysIndex + 1),
+        ]
+      : [...dbComparisonShops, backMarketRow]
   const comparisonSpecRows: SpecRow[] = [
     { label: '価格', getValue: (s) => s.price },
     { label: '在庫', getValue: (s) => s.stock },

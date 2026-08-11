@@ -1,100 +1,44 @@
 import type { GalaxyModel } from '@/lib/types'
+import TimelineBase, { type SeriesDef } from '@/app/components/EvolutionTimeline'
 import ModelModalButton from './ModelModalButton'
 
-type Model = GalaxyModel
-
-/** "2024/9" → "2024年9月" */
-function formatDate(date: string | null): string {
-  if (!date) return ''
-  const [y, m] = date.split('/')
-  return m ? `${y}年${parseInt(m, 10)}月` : `${y}年`
-}
-
-function parseDateValue(date: string | null): number {
-  if (!date) return 0
-  const [y, m, d] = date.split('/')
-  return new Date(Number(y), Number(m ?? 1) - 1, Number(d ?? 1)).getTime()
-}
-
 type Props = {
-  models: Model[]
+  models: GalaxyModel[]
   avgPrices: Record<number, number | null>
   iosysUrlMap: Record<number, string>
 }
 
+// 1本のタイムラインに S / Z Fold / Z Flip / A が混ざると、
+// 隣り合う2件が別シリーズになり「何からの進化なのか」が読み取れない。
+// シリーズごとに区切って、その中だけで新しい順に並べる。
+// どれにも当てはまらないもの（Z TriFold など）は「その他のシリーズ」に入る。
+const SERIES: SeriesDef<GalaxyModel>[] = [
+  { key: 's', label: 'Galaxy Sシリーズの進化', match: (m) => /Galaxy S\d/.test(m.model) },
+  { key: 'fold', label: 'Galaxy Z Foldシリーズの進化', match: (m) => /Z Fold/.test(m.model) },
+  { key: 'flip', label: 'Galaxy Z Flipシリーズの進化', match: (m) => /Z Flip/.test(m.model) },
+  { key: 'a', label: 'Galaxy Aシリーズの進化', match: (m) => /Galaxy A\d/.test(m.model) },
+]
+
 export default function EvolutionTimeline({ models, avgPrices, iosysUrlMap }: Props) {
-  // advance データを持つモデルを発売日順に並べてタイムライン化
-  const timeline = [...models]
-    .filter((m) => {
-      const a = m.advance
-      return !!(a?.all_models?.features?.length || a?.standard_only?.features?.length || a?.pro_only?.features?.length)
-    })
-    .sort((a, b) => parseDateValue(a.date) - parseDateValue(b.date))
-    .map((m, idx) => {
-      const advance = m.advance
-      const columns: { category: string; items: string[] }[] = []
-      if (advance?.all_models?.features?.length) {
-        columns.push({ category: '共通の進化点', items: advance.all_models.features })
-      }
-      if (advance?.standard_only?.features?.length) {
-        columns.push({ category: '標準モデルのみ', items: advance.standard_only.features })
-      }
-      if (advance?.pro_only?.features?.length) {
-        columns.push({ category: '上位モデルのみ', items: advance.pro_only.features })
-      }
-      return {
-        model: m,
-        title: m.model,
-        date: formatDate(m.date),
-        filled: idx % 2 === 0,
-        columns,
-      }
-    })
-
   return (
-    <section className="l-section" id="evolution" aria-labelledby="heading-evolution">
-      <div className="l-container">
-        <h2 className="m-section-heading m-section-heading--lg" id="heading-evolution">
-          歴代Samsung Galaxyの主な進化点（時系列順）
-        </h2>
-        <p className="m-section-desc">歴代Samsung Galaxyの主に進化したポイントを時系列順に整理しました。</p>
-        <p className="m-section-desc">シリーズを重ねるごとにどのような点がアップデートされてきたのかを把握するのにお役立てください！</p>
-
-        <div className="evolution-timeline u-mt-2xl">
-          {timeline.map((item) => (
-            <div key={item.model.id} className="evolution-item">
-              <div className={`evolution-item__marker${item.filled ? ' evolution-item__marker--filled' : ''}`}></div>
-              <div className="evolution-item__content">
-                <span className="evolution-item__date">{item.date}</span>
-                <div className="evolution-item__header">
-                  <h4 className="evolution-item__title">
-                    <ModelModalButton
-                      model={item.model}
-                      avgPrice={avgPrices[item.model.id] ?? null}
-                      iosysUrl={iosysUrlMap[item.model.id] ?? null}
-                      className="evolution-item__model-link"
-                    />
-                  </h4>
-                </div>
-                <div className="evolution-item__body">
-                  <div className="l-grid l-grid--3col l-grid--gap-lg evolution-item__details">
-                    {item.columns.map((col) => (
-                      <div key={col.category} className="evolution-item__col">
-                        <p className="evolution-item__category">{col.category}</p>
-                        <ul className="evolution-item__list">
-                          {col.items.map((li, i) => (
-                            <li key={i}>{li}</li>
-                          ))}
-                        </ul>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
+    <TimelineBase
+      models={models}
+      heading="歴代Samsung Galaxyの主な進化点（新しい順）"
+      descriptions={[
+        '歴代Samsung Galaxyの主に進化したポイントを新しい順に整理しました。',
+        'シリーズを重ねるごとにどのような点がアップデートされてきたのかを把握するのにお役立てください！',
+      ]}
+      series={SERIES}
+      standardLabel="標準モデルのみ"
+      proLabel="上位モデルのみ"
+      renderTitle={(m) => (
+        <ModelModalButton
+          model={m}
+          avgPrice={avgPrices[m.id] ?? null}
+          iosysUrl={iosysUrlMap[m.id] ?? null}
+          className="evolution-item__model-link"
+        />
+      )}
+    />
   )
 }

@@ -150,24 +150,32 @@ export default function DualCompare<T extends DualCompareModel>({
               </tr>
             </tbody>
 
-            {categories.map((cat) => (
-              <tbody key={cat.title}>
-                <tr>
-                  <th colSpan={3} className="compare-category-cell">
-                    <span className="compare-category">
-                      <i className="fa-solid fa-circle-check" aria-hidden="true"></i> {cat.title}
-                    </span>
-                  </th>
-                </tr>
-                {cat.rows.map((row) => (
-                  <tr key={row.label}>
-                    <th scope="row">{row.label}</th>
-                    <td>{row.get(modelA)}</td>
-                    <td>{row.get(modelB)}</td>
+            {categories.map((cat) => {
+              // hideIfAllEmpty の行は、選択中の2機種がどちらも '-' なら出さない。
+              // 指定していない行（既存カテゴリはすべてこちら）は従来どおり常に出る
+              const rows = cat.rows.filter(
+                (row) => !row.hideIfAllEmpty || row.get(modelA) !== '-' || row.get(modelB) !== '-'
+              )
+              if (rows.length === 0) return null
+              return (
+                <tbody key={cat.title}>
+                  <tr>
+                    <th colSpan={3} className="compare-category-cell">
+                      <span className="compare-category">
+                        <i className="fa-solid fa-circle-check" aria-hidden="true"></i> {cat.title}
+                      </span>
+                    </th>
                   </tr>
-                ))}
-              </tbody>
-            ))}
+                  {rows.map((row) => (
+                    <tr key={row.label}>
+                      <th scope="row">{row.label}</th>
+                      <td>{row.get(modelA)}</td>
+                      <td>{row.get(modelB)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              )
+            })}
 
             <tfoot>
               <tr className="compare-table__action-row">

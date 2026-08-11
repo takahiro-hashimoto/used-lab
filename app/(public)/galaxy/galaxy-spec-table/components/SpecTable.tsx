@@ -7,6 +7,7 @@ import StickyTableWrapper from '@/app/components/StickyTableWrapper'
 import { parseDate, formatDate, BoolCell, TextCell, PortCell, formatStorageRange } from '@/app/components/spec-table-utils'
 import type { ProductShopLink } from '@/lib/types'
 import { AMAZON_PRICE_DISCLAIMER } from '@/lib/data/price-source-note'
+import { formatAnnualCost, remainingYearsFromSupportUntil } from '@/lib/utils/shared-helpers'
 
 type SpecModel = {
   id: number
@@ -53,7 +54,7 @@ type Props = {
   priceDate?: string | null
 }
 
-type SortOrder = 'old' | 'new'
+type SortOrder = 'old' | 'new' | 'price-asc'
 // 中古を探す人の出発点は「予算いくらまで」なので、価格帯で絞れるようにする
 type PriceFilter = 'price-1' | 'price-2' | 'price-3' | 'price-4'
 const PRICE_RANGES: Record<PriceFilter, { label: string; min: number; max: number }> = {
@@ -95,9 +96,9 @@ function formatPriceDate(date: string): string {
 
 export default function SpecTable({ models, shopLinks, prices, priceDate }: Props) {
   const [sortOrder, setSortOrder] = useState<SortOrder>(() => {
-    if (typeof window === 'undefined') return 'old'
+    if (typeof window === 'undefined') return 'new'
     const v = new URLSearchParams(window.location.search).get('sort')
-    return (v === 'new' || v === 'old') ? v : 'old'
+    return (v === 'new' || v === 'old' || v === 'price-asc') ? v : 'new'
   })
   const [modelFilter, setModelFilter] = useState<FilterType>(() => {
     if (typeof window === 'undefined') return 'all'
@@ -120,7 +121,7 @@ export default function SpecTable({ models, shopLinks, prices, priceDate }: Prop
 
   useEffect(() => {
     const p = new URLSearchParams()
-    if (sortOrder !== 'old') p.set('sort', sortOrder)
+    if (sortOrder !== 'new') p.set('sort', sortOrder)
     if (modelFilter !== 'all') p.set('model', modelFilter)
     if (featureFilter) p.set('size', featureFilter)
     if (priceFilter) p.set('price', priceFilter)
@@ -167,6 +168,13 @@ export default function SpecTable({ models, shopLinks, prices, priceDate }: Prop
     }
 
     result.sort((a, b) => {
+      if (sortOrder === 'price-asc') {
+        // 相場が未取得の機種は比較できないので末尾へ回す
+        const pa = prices[a.id] ?? Infinity
+        const pb = prices[b.id] ?? Infinity
+        if (pa !== pb) return pa - pb
+        return parseDate(b.date).getTime() - parseDate(a.date).getTime()
+      }
       const da = parseDate(a.date).getTime()
       const db = parseDate(b.date).getTime()
       return sortOrder === 'old' ? da - db : db - da
@@ -196,7 +204,15 @@ export default function SpecTable({ models, shopLinks, prices, priceDate }: Prop
       render: (m) => {
         const price = prices[m.id]
         if (price == null) return <span style={{ color: '#888' }}>-</span>
-        return <strong style={{ color: 'var(--color-primary)', whiteSpace: 'nowrap' }}>&yen;{price.toLocaleString()}</strong>
+        // 価格の下に年単価を添える。サポート残り年数で割った「1年あたりの負担」で、
+        // 価格だけ・サポート期間だけでは見えない割高／割安が分かる
+        const annual = formatAnnualCost(price, remainingYearsFromSupportUntil(m.support_until))
+        return (
+          <>
+            <strong style={{ color: 'var(--color-primary)', whiteSpace: 'nowrap' }}>&yen;{price.toLocaleString()}</strong>
+            {annual && <span className="spec-compare-table__annual">{annual}</span>}
+          </>
+        )
       },
     },
     { label: 'チップ', render: (m) => m.cpu ? <TextCell value={m.cpu} /> : '-' },
@@ -264,6 +280,13 @@ export default function SpecTable({ models, shopLinks, prices, priceDate }: Prop
               >
                 発売日が新しい順
               </button>
+              <button
+                className={`spec-filter__tag${sortOrder === 'price-asc' ? ' is-active' : ''}`}
+                onClick={() => setSortOrder('price-asc')}
+                aria-pressed={sortOrder === 'price-asc'}
+              >
+                中古相場が安い順
+              </button>
             </div>
           </div>
           <div className="spec-filter__row">
@@ -322,6 +345,14 @@ export default function SpecTable({ models, shopLinks, prices, priceDate }: Prop
             </div>
           </div>
         </fieldset>
+
+        {/* 絞り込みの結果件数。フィルタを押しても表の変化が視界に入らない
+            （特にモバイルは横スクロールの先が見えない）ため、効いたことを明示する */}
+        {filteredModels.length > 0 && (
+          <p className="spec-filter__result" aria-live="polite">
+            全{models.length}機種中 <strong>{filteredModels.length}機種</strong>を表示中
+          </p>
+        )}
 
         {/* テーブル */}
         {filteredModels.length === 0 ? (
@@ -406,6 +437,8 @@ export default function SpecTable({ models, shopLinks, prices, priceDate }: Prop
         <p style={{ marginTop: '1rem', fontSize: '0.75rem', color: '#888', lineHeight: 1.7 }}>
           ※ 中古相場は販売中の商品の実勢価格（中央値）です{priceDate && `（${formatPriceDate(priceDate)}時点）`}。
           各機種の価格推移グラフは「<Link prefetch={false} href="/galaxy/price-info/" style={{ color: 'var(--color-primary)', textDecoration: 'underline' }}>Galaxy中古相場・価格推移ページ</Link>」でご確認いただけます。
+          <br />
+          ※ 相場の下の年単価は、中古相場をOSサポートの残り年数で割った「1年あたりの負担額」です。価格が同じでもサポートが長い機種ほど割安になります。
           <br />
           {AMAZON_PRICE_DISCLAIMER}
         </p>

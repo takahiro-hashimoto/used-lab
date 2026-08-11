@@ -191,7 +191,7 @@ export default function MacBookBuyPage() {
         </div>
       </article>
     </main>
-    <MacBookArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/macbook/macbook-buy/", "/macbook/recommend/"]} />
+    <MacBookArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/macbook/macbook-buy/", "/macbook/"]} />
     </>
   )
 }

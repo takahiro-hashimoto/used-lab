@@ -1,0 +1,105 @@
+
+import Link from 'next/link'
+import StickyTableWrapper from '@/app/components/StickyTableWrapper'
+import type { MacModel } from '@/lib/types'
+
+type Props = {
+  model: MacModel
+  allModels: MacModel[]
+}
+
+export default function BenchmarkGeekbench({ model, allModels }: Props) {
+  if (!model.score_single && !model.score_multi && !model.score_metal) return null
+
+  const maxSingle = Math.max(...allModels.map((m) => m.score_single || 0))
+  const maxMulti = Math.max(...allModels.map((m) => m.score_multi || 0))
+  const maxMetal = Math.max(...allModels.map((m) => m.score_metal || 0))
+
+  const sorted = [...allModels]
+    .filter((m) => m.score_single || m.score_multi || m.score_metal)
+    .sort((a, b) => (b.score_single || 0) - (a.score_single || 0))
+
+  const pct = (val: number, max: number) => max > 0 ? Math.round((val / max) * 100) : 0
+
+  return (
+    <section className="l-section" id="geekbench" aria-labelledby="heading-geekbench">
+      <div className="l-container">
+        <h2 className="m-section-heading m-section-heading--lg" id="heading-geekbench">
+          {model.model}のGeekbenchスコア
+        </h2>
+        <p className="m-section-desc">Geekbench 6を参考にベンチマークスコアをご紹介</p>
+
+        <dl className="l-grid l-grid--3col l-grid--gap-lg l-grid--mb-2xl">
+          <div className="m-card m-stat-card">
+            <dt className="m-stat-card__label">
+              <i className="fa-solid fa-microchip" aria-hidden="true"></i> シングルコア
+            </dt>
+            <dd className="m-stat-card__value">{model.score_single?.toLocaleString() || '-'}</dd>
+            <dd className="m-stat-card__note">日常操作の快適さ</dd>
+          </div>
+          <div className="m-card m-stat-card">
+            <dt className="m-stat-card__label">
+              <i className="fa-solid fa-grip" aria-hidden="true"></i> マルチコア
+            </dt>
+            <dd className="m-stat-card__value">{model.score_multi?.toLocaleString() || '-'}</dd>
+            <dd className="m-stat-card__note">重い処理の快適さ</dd>
+          </div>
+          <div className="m-card m-stat-card">
+            <dt className="m-stat-card__label">
+              <i className="fa-solid fa-bolt" aria-hidden="true"></i> Metal
+            </dt>
+            <dd className="m-stat-card__value">{model.score_metal?.toLocaleString() || '-'}</dd>
+            <dd className="m-stat-card__note">グラフィック性能</dd>
+          </div>
+        </dl>
+
+        <StickyTableWrapper floatingHeader className="m-card m-card--shadow m-table-card">
+          <div className="m-table-scroll">
+            <table className="m-table bench-table">
+              <caption className="visually-hidden">MacBookモデル別 Geekbench 6 ベンチマークスコア比較</caption>
+              <thead>
+                <tr>
+                  <th scope="col" className="bench-table__sticky">モデル</th>
+                  <th scope="col">シングルコア</th>
+                  <th scope="col">マルチコア</th>
+                  <th scope="col">Metal</th>
+                </tr>
+              </thead>
+              <tbody>
+                {sorted.map((m) => {
+                  const isCurrent = m.id === model.id
+                  return (
+                    <tr key={m.id}>
+                      <th scope="row" className={`bench-table__sticky u-shrink${isCurrent ? ' m-table-highlight' : ''}`}>
+                        {m.shortname || m.model}
+                      </th>
+                      <td className={isCurrent ? 'm-table-highlight' : undefined}>
+                        <span className="bench-bar" style={{ '--bar-pct': `${pct(m.score_single || 0, maxSingle)}%`, '--bar-color': '#e74c6f' } as React.CSSProperties}>
+                          {m.score_single?.toLocaleString() || '-'}
+                        </span>
+                      </td>
+                      <td className={isCurrent ? 'm-table-highlight' : undefined}>
+                        <span className="bench-bar" style={{ '--bar-pct': `${pct(m.score_multi || 0, maxMulti)}%`, '--bar-color': '#f0a030' } as React.CSSProperties}>
+                          {m.score_multi?.toLocaleString() || '-'}
+                        </span>
+                      </td>
+                      <td className={isCurrent ? 'm-table-highlight' : undefined}>
+                        <span className="bench-bar" style={{ '--bar-pct': `${pct(m.score_metal || 0, maxMetal)}%`, '--bar-color': 'var(--color-primary)' } as React.CSSProperties}>
+                          {m.score_metal?.toLocaleString() || '-'}
+                        </span>
+                      </td>
+                    </tr>
+                  )
+                })}
+              </tbody>
+            </table>
+          </div>
+        </StickyTableWrapper>
+        <div className="m-callout m-callout--tip u-mt-2xl">
+          <span className="m-callout__label">memo</span>
+          <p className="m-callout__text">ベンチマークについてもっと詳しく知りたい方は「<Link prefetch={false} href="/mac/benchmark/">Macのベンチマーク比較</Link>」もあわせてご覧ください。</p>
+        </div>
+      </div>
+    </section>
+  )
+}

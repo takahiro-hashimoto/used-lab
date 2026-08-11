@@ -19,14 +19,12 @@ export default function PixelRelatedLinks({
   compareLinks,
   children,
 }: Props) {
-  const sourcePath = Array.isArray(excludeHref) ? excludeHref[0] : (excludeHref ?? '/pixel/')
   return (
     <RelatedLinks
       links={PIXEL_LINKS}
       heading={heading}
       description={description}
       excludeHref={excludeHref}
-      sourcePath={sourcePath}
       compareLinks={compareLinks}
     >
       <CrossCategoryLinks currentCategory="/pixel/" />

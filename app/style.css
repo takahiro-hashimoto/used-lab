@@ -1271,9 +1271,12 @@
   }
 }
 
-/* グラフ下の分析テキスト。囲みを使わず本文として読ませる */
+/* グラフ下の分析テキスト。囲みを使わず本文として読ませる。
+   同じカード内の .price-summary / .price-chart と同じ横パディングを持たせる
+   （カード自体は m-card--padded を持たず、中身がそれぞれ余白を負担する構成）。
+   .price-snapshot-card 内では下の指定で左右を打ち消している */
 .price-report {
-  padding: var(--space-lg) 0 0;
+  padding: var(--space-lg) var(--space-2xl) var(--space-xl);
 }
 
 .price-report__text {
@@ -2076,8 +2079,8 @@ details[open] > .price-details-summary::after {
 
 .footer-main .footer-inner {
   display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: var(--space-3xl);
+  grid-template-columns: 1fr 3fr;
+  gap: var(--space-2xl);
 }
 
 /* Footer Brand */
@@ -3175,6 +3178,18 @@ fieldset.spec-filter {
   gap: var(--space-xs);
 }
 
+/* 絞り込みの結果件数。フィルタが効いたことを表の手前で伝える */
+.spec-filter__result {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  margin: 0 0 var(--space-sm);
+}
+
+.spec-filter__result strong {
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
 .spec-filter__tag {
   font-size: var(--font-size-xs);
   font-weight: 500;
@@ -3268,15 +3283,36 @@ fieldset.spec-filter {
   color: var(--color-text-inverse);
 }
 
+/* 相場セルが「価格＋年単価」の2行になり縦に伸びたぶん、上下の余白を詰める */
 .spec-compare-table tbody td,
 .spec-compare-table tbody th {
-  padding: var(--space-sm);
+  padding: 0.36rem var(--space-sm);
+}
+
+/* 相場の下に添える年単価。2行でも行間が空きすぎないよう行送りを詰める */
+.spec-compare-table__annual {
+  display: block;
+  font-size: 0.75em;
+  line-height: 1.3;
+  color: var(--color-text-muted, #888);
+  white-space: nowrap;
 }
 
 .spec-compare-table tbody td {
   text-align: center;
   white-space: nowrap;
   font-size: var(--font-size-xs);
+}
+
+/* 長文セル（インターフェースなど）だけ折り返しを許可する。
+   tbody td は既定で nowrap のため、指定しないと列幅が破綻する */
+.spec-compare-table__wrap {
+  display: inline-block;
+  white-space: normal;
+  min-width: 12em;
+  max-width: 22em;
+  text-align: left;
+  line-height: 1.5;
 }
 
 .spec-compare-table tbody th.spec-compare-table__sticky {
@@ -4782,6 +4818,10 @@ fieldset.spec-filter {
 
   .price-chart {
     padding: 0 var(--space-lg) var(--space-lg);
+  }
+
+  .price-report {
+    padding: var(--space-md) var(--space-lg) var(--space-lg);
   }
 
   .price-info-note {

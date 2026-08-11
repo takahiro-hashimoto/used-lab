@@ -227,6 +227,34 @@ export function calculateAnnualCost(
   return Math.round(avgPrice / remainingOSYears)
 }
 
+/**
+ * 「1年あたりいくらか」の表示文字列を返す。
+ *
+ * 中古は本体価格だけでは比較できない。サポートが残り3年の8万円と
+ * 残り5年の8万円では、実質的な負担がまったく違う。
+ * 比較表では相場の下にこの値を小さく添えて、価格とサポート期間を
+ * 1つの指標に落として見比べられるようにする。
+ *
+ * サポート切れ（残り0年）や相場未取得の機種は算出できないので null を返す。
+ */
+export function formatAnnualCost(price: number | null | undefined, remainingYears: number): string | null {
+  const annual = calculateAnnualCost(price ?? null, remainingYears)
+  if (annual == null) return null
+  // 100円単位に丸める。相場自体が100円単位なので、それ以上の精度は意味がない
+  return `年 約${(Math.round(annual / 100) * 100).toLocaleString()}円`
+}
+
+/** "YYYY-MM" 形式のサポート期限から残り年数を求める（Galaxy / Pixel 用） */
+export function remainingYearsFromSupportUntil(supportUntil: string | null): number {
+  if (!supportUntil) return 0
+  const m = supportUntil.match(/^(\d{4})-(\d{1,2})/)
+  if (!m) return 0
+  const now = new Date()
+  const months =
+    (Number(m[1]) - now.getFullYear()) * 12 + (Number(m[2]) - (now.getMonth() + 1))
+  return Math.max(0, months / 12)
+}
+
 // ---------- JSON-LD 生成 ----------
 
 export function buildBreadcrumbJsonLd(items: { name: string; item?: string }[]) {

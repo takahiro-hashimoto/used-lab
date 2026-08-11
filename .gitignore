@@ -44,3 +44,6 @@ next-env.d.ts
 # generated
 lib/asset-hashes.ts
 broken-links-report.json
+
+# Supabase 移行時のダンプ（DBの中身そのもの。絶対にコミットしない）
+scripts/migration/out/

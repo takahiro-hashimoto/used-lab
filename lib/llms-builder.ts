@@ -5,6 +5,7 @@
 
 import { supabase } from './supabase'
 import { PRODUCT_CATEGORIES } from './routes'
+import { isHiddenCategory } from './data/feature-flags'
 import { PAGE_DESCRIPTIONS, PAGE_DESCRIPTIONS_FULL } from './llms-descriptions'
 import { calculatePriceStats } from '@/lib/utils/price-stats'
 
@@ -17,6 +18,7 @@ const MODEL_TABLE_MAP: Record<string, string> = {
   galaxy: 'galaxy_models',
   ipad: 'ipad_models',
   macbook: 'macbook_models',
+  mac: 'mac_models',
   watch: 'watch_models',
   airpods: 'airpods_models',
 }
@@ -28,15 +30,18 @@ const CATEGORY_LABEL_MAP: Record<string, string> = {
   galaxy: 'Samsung Galaxy',
   ipad: 'iPad',
   macbook: 'MacBook',
+  mac: 'iMac・Mac mini',
   watch: 'Apple Watch',
   airpods: 'AirPods',
 }
 
 // ---------- ヘルパー ----------
 
-/** 各カテゴリのモデル数を並列取得 */
+/** 各カテゴリのモデル数を並列取得（非公開カテゴリは数えない） */
 async function getModelCounts(): Promise<Record<string, number>> {
-  const entries = Object.entries(MODEL_TABLE_MAP)
+  // MODEL_TABLE_MAP を直接回すと、まだ公開していないカテゴリの機種数まで
+  // llms.txt に載ってしまう。PRODUCT_CATEGORIES と同じ基準で除外する
+  const entries = Object.entries(MODEL_TABLE_MAP).filter(([key]) => !isHiddenCategory(key))
   const counts = await Promise.all(
     entries.map(async ([key, table]) => {
       const { count, error } = await supabase
@@ -56,6 +61,7 @@ const PRICE_TABLE_MAP: Record<string, string> = {
   galaxy: 'galaxy_price_logs',
   ipad: 'ipad_price_logs',
   macbook: 'macbook_price_logs',
+  mac: 'mac_price_logs',
   watch: 'watch_price_logs',
   airpods: 'airpods_price_logs',
 }
@@ -149,17 +155,17 @@ const STATIC_TITLES: Record<string, string> = {
   '/iphone/price-info/': 'iPhoneの中古相場一覧',
   '/iphone/mvno/': '中古iPhoneと格安SIMセット購入ガイド',
   '/ipad/': '中古iPadおすすめ機種・選び方ガイド',
-  '/ipad/recommend/': '中古iPadおすすめ機種',
   '/ipad/ipad-shop/': '中古iPadおすすめショップ',
   '/ipad/ipad-price-info/': 'iPadの中古相場一覧',
   '/macbook/': '中古MacBookおすすめ機種・選び方ガイド',
-  '/macbook/recommend/': '中古MacBookおすすめ機種',
   '/macbook/macbook-shop/': '中古MacBookおすすめショップ',
+  '/mac/': '中古iMac・Mac miniおすすめ機種・選び方ガイド',
+  '/mac/price-info/': 'iMac・Mac miniの中古相場一覧',
+  '/mac/benchmark/': '歴代iMac・Mac miniのベンチマーク比較',
+  '/mac/used-mac-support/': 'iMac・Mac miniのサポート期間・寿命',
   '/watch/': '中古Apple Watchおすすめ機種・選び方ガイド',
-  '/watch/recommend/': '中古Apple Watchおすすめ機種',
   '/watch/watch-shop/': '中古Apple Watchおすすめショップ',
   '/watch/watch-price-info/': 'Apple Watchの中古相場一覧',
-  '/airpods/recommend/': '中古AirPodsおすすめ機種',
   '/airpods/price-info/': 'AirPodsの中古相場一覧',
 }
 

@@ -16,14 +16,12 @@ export default function IPadRelatedLinks({
   excludeHref,
   children,
 }: Props) {
-  const sourcePath = Array.isArray(excludeHref) ? excludeHref[0] : (excludeHref ?? '/ipad/')
   return (
     <RelatedLinks
       links={IPAD_LINKS}
       heading={heading}
       description={description}
       excludeHref={excludeHref}
-      sourcePath={sourcePath}
     >
       <CrossCategoryLinks currentCategory="/ipad/" />
       {children}

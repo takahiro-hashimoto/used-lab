@@ -22,10 +22,20 @@
  */
 export const PUBLISH_ANDROID_CATEGORIES = true
 
+/**
+ * デスクトップMac（/mac/）カテゴリを公開するか。
+ *
+ * Pixel / Galaxy と同じ運用。mac_models にスペックデータを投入し、
+ * 相場取得が Vultr の cron で回り始め、本文を書き終えてから true にする。
+ * データが空のまま公開すると、価格ゼロのページがインデックスされてしまう。
+ */
+export const PUBLISH_MAC_CATEGORY = true
+
 /** 非公開カテゴリのID。公開フラグが立てば空になる */
-export const HIDDEN_CATEGORY_IDS: readonly string[] = PUBLISH_ANDROID_CATEGORIES
-  ? []
-  : ['pixel', 'galaxy']
+export const HIDDEN_CATEGORY_IDS: readonly string[] = [
+  ...(PUBLISH_ANDROID_CATEGORIES ? [] : ['pixel', 'galaxy']),
+  ...(PUBLISH_MAC_CATEGORY ? [] : ['mac']),
+]
 
 /** カテゴリIDが非公開か */
 export function isHiddenCategory(id: string): boolean {

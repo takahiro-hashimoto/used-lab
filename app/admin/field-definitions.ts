@@ -179,6 +179,60 @@ const MACBOOK_FIELDS: FieldDef[] = [
 ]
 
 // --------------------------------------------------
+// Mac（デスクトップ: iMac / Mac mini / Mac Studio）
+//
+// BASE_FIELDS を展開していないのは battery を含むため。
+// mac_models にバッテリー列は無いので、必要な項目だけ手で並べている。
+// --------------------------------------------------
+
+const MAC_FIELDS: FieldDef[] = [
+  { key: 'model', label: 'モデル名', type: 'text', required: true, placeholder: 'e.g. Mac mini（2024）', group: '基本情報' },
+  { key: 'slug', label: 'スラッグ', type: 'text', required: true, placeholder: 'e.g. mac-mini-2024', group: '基本情報' },
+  { key: 'shortname', label: '短縮名', type: 'text', placeholder: 'e.g. Mac mini M4', group: '基本情報' },
+  { key: 'image', label: '画像ファイル名', type: 'text', placeholder: 'mac-mini-2024.webp', group: '基本情報' },
+  { key: 'date', label: '発売日', type: 'text', placeholder: '2024/11/08', group: '基本情報' },
+  { key: 'device_type', label: '種別', type: 'text', required: true, placeholder: 'imac / mac-mini / mac-studio', group: '基本情報' },
+  { key: 'cpu', label: 'チップ', type: 'text', placeholder: 'M4 / M4 Pro', group: '基本情報' },
+  { key: 'gpu', label: 'GPUコア', type: 'text', placeholder: '10コア（M4）／16・20コア（M4 Pro）', group: '基本情報' },
+  { key: 'strage', label: 'ストレージ', type: 'text', group: '基本情報' },
+  { key: 'ram', label: 'メモリ', type: 'text', group: '基本情報' },
+  { key: 'color', label: 'カラー', type: 'text', group: '基本情報' },
+  { key: 'official', label: 'Apple公式ページ', type: 'text', group: '基本情報' },
+  // ベンチマーク
+  { key: 'score_single', label: 'Geekbench Single（代表値）', type: 'number', group: 'ベンチマーク' },
+  { key: 'score_multi', label: 'Geekbench Multi（代表値）', type: 'number', group: 'ベンチマーク' },
+  { key: 'score_metal', label: 'Geekbench Metal（代表値）', type: 'number', group: 'ベンチマーク' },
+  { key: 'benchmarks', label: 'チップ別ベンチマーク (JSON)', type: 'json', placeholder: '{"M4 Pro":{"single":3925,"multi":22094,"metal":110340}}', group: 'ベンチマーク' },
+  // ディスプレイ・筐体
+  { key: 'display_builtin', label: 'ディスプレイ内蔵（iMacのみ）', type: 'boolean', group: 'ディスプレイ・筐体' },
+  { key: 'display', label: 'ディスプレイ', type: 'text', group: 'ディスプレイ・筐体' },
+  { key: 'resolution', label: '解像度', type: 'text', group: 'ディスプレイ・筐体' },
+  { key: 'luminance', label: '輝度', type: 'text', group: 'ディスプレイ・筐体' },
+  { key: 'external_display', label: '外部ディスプレイ', type: 'text', group: 'ディスプレイ・筐体' },
+  { key: 'size', label: '本体サイズ', type: 'text', group: 'ディスプレイ・筐体' },
+  { key: 'camera', label: 'カメラ', type: 'text', group: 'ディスプレイ・筐体' },
+  { key: 'speaker', label: 'スピーカー', type: 'text', group: 'ディスプレイ・筐体' },
+  // 接続・その他
+  { key: 'port', label: 'ポート（全文）', type: 'text', group: '接続・その他' },
+  // ポートは種類ごとに独立した行として出す。値は本数だけ。空欄 = 非搭載として ✕ 表示になる
+  { key: 'thunderbolt', label: 'Thunderbolt', type: 'text', placeholder: '3基', group: '接続・その他' },
+  { key: 'thunderbolt_gen', label: 'Thunderboltの規格', type: 'text', placeholder: 'Thunderbolt 4（M4 ProはThunderbolt 5）', group: '接続・その他' },
+  { key: 'usb_c', label: 'USB-C', type: 'text', placeholder: '2基（非搭載なら空欄）', group: '接続・その他' },
+  { key: 'usb_a', label: 'USB-A', type: 'text', placeholder: '2基（非搭載なら空欄）', group: '接続・その他' },
+  { key: 'ethernet', label: 'Ethernet', type: 'text', group: '接続・その他' },
+  { key: 'included_accessories', label: '同梱物', type: 'text', placeholder: 'Magic Keyboard / Magic Mouse', group: '接続・その他' },
+  { key: 'last_macos', label: '最終対応macOS', type: 'text', group: '接続・その他' },
+  // 機能フラグ
+  { key: 'apple_intelligence', label: 'Apple Intelligence', type: 'boolean', group: '機能' },
+  { key: 'hdmi', label: 'HDMI', type: 'boolean', group: '機能' },
+  { key: 'slot', label: 'SDカードスロット', type: 'boolean', group: '機能' },
+  { key: 'headphone', label: 'ヘッドフォンジャック', type: 'boolean', group: '機能' },
+  // その他
+  { key: 'point', label: 'ポイント・特徴', type: 'textarea', group: 'その他' },
+  { key: 'advance', label: '進化ポイント (JSON)', type: 'json', group: 'その他' },
+]
+
+// --------------------------------------------------
 // Apple Watch
 // --------------------------------------------------
 
@@ -433,6 +487,15 @@ export const CATEGORIES: CategoryConfig[] = [
     listColumns: ['id', 'model', 'slug', 'date', 'cpu'],
     fields: MACBOOK_FIELDS,
     productType: 'macbook',
+  },
+  {
+    key: 'mac',
+    table: 'mac_models',
+    label: 'iMac・Mac mini',
+    icon: 'fa-desktop',
+    listColumns: ['id', 'model', 'slug', 'device_type', 'date', 'cpu'],
+    fields: MAC_FIELDS,
+    productType: 'mac',
   },
   {
     key: 'watch',

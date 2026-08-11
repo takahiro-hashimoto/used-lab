@@ -2,11 +2,13 @@ import '@/app/search-page.css'
 import type { Metadata } from 'next'
 import { Suspense } from 'react'
 import { PRODUCT_CATEGORIES, type LabelParams } from '@/lib/routes'
+import { isHiddenCategory } from '@/lib/data/feature-flags'
 import { getHeroImage } from '@/lib/data/hero-images'
 import {
   getAllIPhoneModels,
   getAllIPadModels,
   getAllMacBookModels,
+  getAllMacModels,
   getAllWatchModels,
   getAllAirPodsModels,
 } from '@/lib/queries'
@@ -39,6 +41,7 @@ const IMAGE_BASE: Record<string, string> = {
   iphone: '/images/iphone/',
   ipad: '/images/ipad/',
   macbook: '/images/macbook/',
+  mac: '/images/mac/',
   watch: '/images/watch/',
   airpods: '/images/airpods/',
 }
@@ -47,6 +50,7 @@ const CAT_META: Record<string, { label: string; icon: string }> = {
   iphone: { label: 'iPhone', icon: 'fa-mobile-screen' },
   ipad: { label: 'iPad', icon: 'fa-tablet-screen-button' },
   macbook: { label: 'MacBook', icon: 'fa-laptop' },
+  mac: { label: 'iMac・Mac mini', icon: 'fa-desktop' },
   watch: { label: 'Apple Watch', icon: 'fa-clock' },
   airpods: { label: 'AirPods', icon: 'fa-headphones' },
 }
@@ -67,7 +71,6 @@ const PAGE_KEYWORDS: Record<string, string> = {
   '/iphone/mvno/': '格安SIM MVNO 通信 回線 セット',
   '/iphone/network-limit/': 'ネットワーク制限 赤ロム 白ロム',
   '/ipad/': '購入ガイド 選び方 相場 おすすめ 中古',
-  '/ipad/recommend/': 'おすすめ 型落ち 狙い目 コスパ',
   '/ipad/used-ipad-attention/': '注意点 やめた方がいい 購入前 確認 中古',
   '/ipad/used-ipad-support/': 'サポート期間 いつまで使える iPadOS アップデート',
   '/ipad/ipad-shop/': '買う場所 ショップ ECサイト 中古販売店',
@@ -83,7 +86,6 @@ const PAGE_KEYWORDS: Record<string, string> = {
   '/ipad/apple-pencil-compare/': 'Apple Pencil ペンシル 手書き 対応',
   '/ipad/accessories-summary/': 'アクセサリー ケース キーボード 周辺機器',
   '/macbook/': '購入ガイド 選び方 相場 おすすめ 中古',
-  '/macbook/recommend/': 'おすすめ 型落ち 狙い目 コスパ',
   '/macbook/used-macbook-attention/': '注意点 やめた方がいい 購入前 確認 中古',
   '/macbook/used-macbook-support/': 'サポート期間 いつまで使える macOS アップデート',
   '/macbook/macbook-shop/': '買う場所 ショップ ECサイト 中古販売店',
@@ -95,8 +97,12 @@ const PAGE_KEYWORDS: Record<string, string> = {
   '/macbook/air-pro-compare/': 'Air Pro 比較 違い 選び方',
   '/macbook/ipad-macbook-compare/': 'iPad 比較 違い どっち',
   '/macbook/windows-mac-compare/': 'Windows 比較 違い 乗り換え',
+  '/mac/': 'iMac Mac mini Mac Studio デスクトップ 選び方 相場 おすすめ 中古',
+  '/mac/mac-spec-table/': 'iMac Mac mini Mac Studio スペック 比較表 性能 歴代',
+  '/mac/price-info/': 'iMac Mac mini 価格 相場 値段 中古価格 推移',
+  '/mac/benchmark/': 'ベンチマーク スコア 性能 Geekbench iMac Mac mini Mac Studio',
+  '/mac/used-mac-support/': 'サポート期間 いつまで使える macOS アップデート 寿命',
   '/watch/': '購入ガイド 選び方 相場 おすすめ 中古',
-  '/watch/recommend/': 'おすすめ 型落ち 狙い目 コスパ',
   '/watch/used-watch-attention/': '注意点 やめた方がいい 購入前 確認 中古',
   '/watch/used-watch-support/': 'サポート期間 いつまで使える watchOS アップデート',
   '/watch/watch-shop/': '買う場所 ショップ ECサイト 中古販売店',
@@ -108,7 +114,6 @@ const PAGE_KEYWORDS: Record<string, string> = {
   '/watch/gps-cellular-compare/': 'GPS セルラー 通信 違い',
   '/watch/how-to-use-apple-watch/': '使い方 活用 できること 便利',
   '/airpods/': '購入ガイド 選び方 おすすめ 中古',
-  '/airpods/recommend/': 'おすすめ 型落ち 狙い目 コスパ',
   '/airpods/price-info/': '価格 相場 値段 中古価格 推移',
   '/airpods/airpods-find/': '探す 紛失 見つける',
   '/airpods/airpods-buy/': '安く買う 購入 セール お得',
@@ -134,10 +139,11 @@ function buildStaticEntries(): SearchEntry[] {
 }
 
 export default async function SearchPage() {
-  const [iPhoneModels, iPadModels, macBookModels, watchModels, airPodsModels] = await Promise.all([
+  const [iPhoneModels, iPadModels, macBookModels, macModels, watchModels, airPodsModels] = await Promise.all([
     getAllIPhoneModels(),
     getAllIPadModels(),
     getAllMacBookModels(),
+    getAllMacModels(),
     getAllWatchModels(),
     getAllAirPodsModels(),
   ])
@@ -170,6 +176,17 @@ export default async function SearchPage() {
       categoryLabel: CAT_META.macbook.label,
       icon: CAT_META.macbook.icon,
       image: m.image ? `${IMAGE_BASE.macbook}${m.image}` : getHeroImage('/macbook'),
+      keywords: `${m.model} ${buildModelKeywords(m)}`,
+      isModel: true,
+    })),
+    // 非公開カテゴリの機種を検索結果に出さない（lib/data/feature-flags.ts）
+    ...(isHiddenCategory('mac') ? [] : macModels).map((m) => ({
+      title: `中古${m.model} レビュー｜スペック・価格相場・いつまで使える？`,
+      href: `/mac/${m.slug}/`,
+      category: 'mac',
+      categoryLabel: CAT_META.mac.label,
+      icon: CAT_META.mac.icon,
+      image: m.image ? `${IMAGE_BASE.mac}${m.image}` : getHeroImage('/mac'),
       keywords: `${m.model} ${buildModelKeywords(m)}`,
       isModel: true,
     })),

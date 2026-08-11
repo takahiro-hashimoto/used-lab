@@ -78,7 +78,7 @@ export default function FaqSection() {
             <h3 className="faq-question">中古や整備済製品のiPadでも快適に使えますか？</h3>
             <div className="faq-answer m-rich-text m-rich-text--muted">
               <p>
-                はい、iPadOSのサポート対象モデルであれば中古でも快適に使えます。特にM1チップ以降を搭載したモデルは処理性能に余裕があり、ステージマネージャーやApple Intelligenceなどの最新機能にも対応しています。中古品を選ぶ際はバッテリーの状態やAirDropなどの機能が正常に動作するかを確認しましょう。用途別の狙い目モデルは<Link prefetch={false} href="/ipad/recommend/">おすすめ中古iPad機種まとめ</Link>も参考にしてください。
+                はい、iPadOSのサポート対象モデルであれば中古でも快適に使えます。特にM1チップ以降を搭載したモデルは処理性能に余裕があり、ステージマネージャーやApple Intelligenceなどの最新機能にも対応しています。中古品を選ぶ際はバッテリーの状態やAirDropなどの機能が正常に動作するかを確認しましょう。用途別の狙い目モデルは<Link prefetch={false} href="/ipad/">おすすめ中古iPad機種まとめ</Link>も参考にしてください。
               </p>
             </div>
           </div>

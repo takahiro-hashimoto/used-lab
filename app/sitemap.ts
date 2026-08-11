@@ -4,6 +4,7 @@ import {
   getAllIPadSlugs,
   getAllWatchSlugs,
   getAllMacBookSlugs,
+  getAllMacSlugs,
   getAllAirPodsSlugs,
   getAllPixelSlugs,
   getAllGalaxySlugs,
@@ -36,11 +37,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://used-lab.jp'
 
   // 全製品のスラッグを並列取得（DB失敗時は安全にフォールバック）
-  const [iPhoneSlugs, iPadSlugs, watchSlugs, macBookSlugs, airPodsSlugs, pixelSlugs, galaxySlugs, priceDates] = await Promise.all([
+  const [iPhoneSlugs, iPadSlugs, watchSlugs, macBookSlugs, macSlugs, airPodsSlugs, pixelSlugs, galaxySlugs, priceDates] = await Promise.all([
     getAllIPhoneSlugs().catch(() => [] as string[]),
     getAllIPadSlugs().catch(() => [] as string[]),
     getAllWatchSlugs().catch(() => [] as string[]),
     getAllMacBookSlugs().catch(() => [] as string[]),
+    getAllMacSlugs().catch(() => [] as string[]),
     getAllAirPodsSlugs().catch(() => [] as string[]),
     getAllPixelSlugs().catch(() => [] as string[]),
     getAllGalaxySlugs().catch(() => [] as string[]),
@@ -72,6 +74,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { prefix: '/ipad',   slugs: iPadSlugs, category: 'ipad' },
     { prefix: '/watch',  slugs: watchSlugs, category: 'watch' },
     { prefix: '/macbook', slugs: macBookSlugs, category: 'macbook' },
+    { prefix: '/mac',    slugs: macSlugs, category: 'mac' },
     { prefix: '/airpods', slugs: airPodsSlugs, category: 'airpods' },
   ] as { prefix: string; slugs: string[]; category: string }[]).filter(({ category }) => !isHiddenCategory(category))
 

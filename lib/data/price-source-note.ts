@@ -6,7 +6,7 @@
 // 文言はこの1ファイルで管理し、カテゴリ別に異なる部分（取得元ショップ・
 // 相場算出の対象モデル）だけを変数化する。
 
-export type PriceCategory = 'iphone' | 'ipad' | 'watch' | 'airpods' | 'macbook' | 'pixel' | 'galaxy'
+export type PriceCategory = 'iphone' | 'ipad' | 'watch' | 'airpods' | 'macbook' | 'mac' | 'pixel' | 'galaxy'
 
 type PriceSourceParts = {
   /** 取得元ショップの説明（例: イオシス・ゲオ・じゃんぱらの3ショップ（いずれも楽天市場出店）） */
@@ -72,6 +72,14 @@ const PRICE_SOURCE_PARTS: Record<PriceCategory, PriceSourceParts> = {
     shopsPlain: '楽天市場の中古ショップ',
     modelBasis: '機種ごとの最小構成モデル（例：MacBook Air M2は8GB/256GB）',
     productLabel: 'MacBook',
+    shopScope: '主要な中古ショップ',
+  },
+  // デスクトップMac。MacBook と同じくショップ横断で楽天市場を検索している
+  mac: {
+    shops: '楽天市場の中古ショップ',
+    shopsPlain: '楽天市場の中古ショップ',
+    modelBasis: '機種ごとの最小構成モデル（例：Mac mini M4は16GB/256GB）',
+    productLabel: 'iMac・Mac mini',
     shopScope: '主要な中古ショップ',
   },
 }

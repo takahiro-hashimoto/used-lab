@@ -19,14 +19,12 @@ export default function IPhoneRelatedLinks({
   compareLinks,
   children,
 }: Props) {
-  const sourcePath = Array.isArray(excludeHref) ? excludeHref[0] : (excludeHref ?? '/iphone/')
   return (
     <RelatedLinks
       links={IPHONE_LINKS}
       heading={heading}
       description={description}
       excludeHref={excludeHref}
-      sourcePath={sourcePath}
       compareLinks={compareLinks}
     >
       <CrossCategoryLinks currentCategory="/iphone/" />

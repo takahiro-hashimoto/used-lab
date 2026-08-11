@@ -39,9 +39,17 @@ function CellValue({ value }: { value: string }) {
   if (value === '×') return <RatingMark mark="×" size="sm" />
   const normalized = value.replace(/<br\s*\/?>/g, '\n')
   if (normalized.includes('\n')) {
-    return <>{normalized.split('\n').map((line, i) => (
-      <span key={i}>{i > 0 && <br />}{line}</span>
-    ))}</>
+    return <>{normalized.split('\n').map((line, i) => {
+      // 「2基 / （M2 Proは4基）」のような構成違いの補足行は小さく落とす。
+      // <small> を渡してこない既存カテゴリの表示は変わらない
+      const sub = line.match(/^<small>([\s\S]*)<\/small>$/)
+      return (
+        <span key={i}>
+          {i > 0 && <br />}
+          {sub ? <small className="spec-compare-table__sub">{sub[1]}</small> : line}
+        </span>
+      )
+    })}</>
   }
   return <>{normalized}</>
 }

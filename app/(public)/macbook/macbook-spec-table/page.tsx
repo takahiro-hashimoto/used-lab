@@ -266,7 +266,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/macbook/macbook
         </div>
       </article>
     </main>
-    <MacBookArticleFooter pageUrl="https://used-lab.jp/macbook/macbook-spec-table/" pageTitle="歴代MacBookスペック比較表！Air・Proの性能差や違いがすぐわかる" excludeHref={["/macbook/macbook-spec-table/", "/macbook/recommend/"]} />
+    <MacBookArticleFooter pageUrl="https://used-lab.jp/macbook/macbook-spec-table/" pageTitle="歴代MacBookスペック比較表！Air・Proの性能差や違いがすぐわかる" excludeHref={["/macbook/macbook-spec-table/", "/macbook/"]} />
     </>
   )
 }

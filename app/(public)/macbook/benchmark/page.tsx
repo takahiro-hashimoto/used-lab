@@ -339,7 +339,7 @@ export default async function BenchmarkPage() {
         </div>
       </article>
     </main>
-    <MacBookArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/macbook/benchmark/", "/macbook/recommend/"]} />
+    <MacBookArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/macbook/benchmark/", "/macbook/"]} />
     </>
   )
 }

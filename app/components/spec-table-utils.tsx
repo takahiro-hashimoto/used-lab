@@ -46,16 +46,44 @@ export function TextCell({ value }: { value: string }) {
 /*  "USB-C（Thunderbolt対応）" →  USB-C  \n  (小さく)   */
 /* -------------------------------------------------- */
 
-export function PortCell({ value }: { value: string }) {
+/**
+ * 「2基（M2 Proは4基）」を主値とカッコ書きに割る。
+ * カッコが無ければ sub は null。
+ *
+ * PortCell（JSX）と、HTML文字列を組み立てる側（CompareSelector など）の
+ * 両方から使うため、分割ロジックだけを切り出している。
+ */
+export function splitSpecParen(value: string): { main: string; sub: string | null } {
   const match = value.match(/^(.+?)\s*([（(].+[）)])$/)
-  if (!match) return <TextCell value={value} />
+  return match ? { main: match[1], sub: match[2] } : { main: value, sub: null }
+}
+
+export function PortCell({ value }: { value: string }) {
+  const { main, sub } = splitSpecParen(value)
+  if (!sub) return <TextCell value={value} />
   return (
     <>
-      {match[1]}
+      {main}
       <br />
-      <small className="spec-compare-table__sub">{match[2]}</small>
+      <small className="spec-compare-table__sub">{sub}</small>
     </>
   )
+}
+
+/**
+ * ポート・端子系のセル。空欄は「データ未入力」ではなく「非搭載」を意味するので ✕ を出す。
+ * （USB-A が無いこと自体が比較したい情報のため）
+ */
+export function PortSpec({ value }: { value: string | null }) {
+  return value ? <PortCell value={value} /> : <BoolCell value={false} />
+}
+
+/**
+ * 非搭載という概念がない項目（規格名・Ethernet・外部ディスプレイなど）のセル。
+ * 空欄は単なる未設定なので '-' を出す。
+ */
+export function DetailSpec({ value }: { value: string | null }) {
+  return value ? <PortCell value={value} /> : <>-</>
 }
 
 /* -------------------------------------------------- */
@@ -112,5 +140,14 @@ export function getShopLink(shopLinks: ProductShopLink[], productId: number, sho
 
 export type CompareCategory<T = unknown> = {
   title: string
-  rows: { label: string; get: (m: T) => React.ReactNode }[]
+  rows: {
+    label: string
+    get: (m: T) => React.ReactNode
+    /**
+     * 選択中の2機種がどちらも '-' のとき、この行を隠す。
+     * 例: Mac mini 同士を比べるとディスプレイ・解像度・輝度・カメラが全部 NULL で、
+     * 「- | -」の行だけが数行並んでしまう。iMac を選べば値が入るのでその時は出る。
+     */
+    hideIfAllEmpty?: boolean
+  }[]
 }

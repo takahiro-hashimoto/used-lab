@@ -580,7 +580,7 @@ export default function WifiCellularPage() {
         </div>
       </article>
     </main>
-    <IPadArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/ipad/wifi-cellular/", "/ipad/recommend/"]} />
+    <IPadArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/ipad/wifi-cellular/", "/ipad/"]} />
     </>
   )
 }

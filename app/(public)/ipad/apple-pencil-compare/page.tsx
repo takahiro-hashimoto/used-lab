@@ -252,7 +252,7 @@ export default async function ApplePencilComparePage() {
         </div>
       </article>
     </main>
-    <IPadArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/ipad/apple-pencil-compare/", "/ipad/recommend/"]} />
+    <IPadArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/ipad/apple-pencil-compare/", "/ipad/"]} />
     </>
   )
 }

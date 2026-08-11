@@ -300,7 +300,7 @@ export default function ReviewIpadPro11M4Page() {
         </div>
       </article>
     </main>
-    <IPadArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/ipad/review-ipad-pro-11-m4/", "/ipad/recommend/"]} />
+    <IPadArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/ipad/review-ipad-pro-11-m4/", "/ipad/"]} />
     </>
   )
 }

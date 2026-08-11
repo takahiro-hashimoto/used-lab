@@ -301,7 +301,7 @@ export default async function IpadMini6ReviewPage() {
         </div>
       </article>
     </main>
-    <IPadArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/ipad/ipad-mini-6-review/", "/ipad/recommend/"]} />
+    <IPadArticleFooter pageUrl={PAGE_URL} pageTitle={PAGE_TITLE} excludeHref={["/ipad/ipad-mini-6-review/", "/ipad/"]} />
     </>
   )
 }

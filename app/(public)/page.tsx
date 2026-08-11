@@ -1,3 +1,5 @@
+import { existsSync } from 'node:fs'
+import { join } from 'node:path'
 import type { Metadata } from 'next'
 import { HIDDEN_CATEGORY_IDS } from '@/lib/data/feature-flags'
 import { Suspense } from 'react'
@@ -7,6 +9,7 @@ import {
   getAllIPhoneModelsIncludingEnded,
   getAllIPadModelsIncludingEnded,
   getAllMacBookModelsIncludingEnded,
+  getAllMacModelsIncludingEnded,
   getAllWatchModelsIncludingEnded,
   getAllAirPodsModelsIncludingEnded,
   getAllPixelModelsIncludingEnded,
@@ -40,18 +43,20 @@ const CATEGORY_IMAGE_BASE: Record<string, string> = {
   galaxy: '/images/galaxy/',
   ipad: '/images/ipad/',
   macbook: '/images/macbook/',
+  mac: '/images/mac/',
   watch: '/images/watch/',
   airpods: '/images/airpods/',
 }
 
 export default async function HomePage() {
   // 全モデル（サポート切れ含む）＋価格更新日を並列取得
-  const [allIPhoneModels, allPixelModels, allGalaxyModels, allIPadModels, allMacBookModels, allWatchModels, allAirPodsModels, latestPriceDate] = await Promise.all([
+  const [allIPhoneModels, allPixelModels, allGalaxyModels, allIPadModels, allMacBookModels, allMacModels, allWatchModels, allAirPodsModels, latestPriceDate] = await Promise.all([
     getAllIPhoneModelsIncludingEnded(),
     getAllPixelModelsIncludingEnded(),
     getAllGalaxyModelsIncludingEnded(),
     getAllIPadModelsIncludingEnded(),
     getAllMacBookModelsIncludingEnded(),
+    getAllMacModelsIncludingEnded(),
     getAllWatchModelsIncludingEnded(),
     getAllAirPodsModelsIncludingEnded(),
     getLatestPriceUpdateDate(),
@@ -72,6 +77,7 @@ export default async function HomePage() {
     galaxy: allGalaxyModels.length,
     ipad: allIPadModels.length,
     macbook: allMacBookModels.length,
+    mac: allMacModels.length,
     watch: allWatchModels.length,
     airpods: allAirPodsModels.length,
   }
@@ -84,6 +90,9 @@ export default async function HomePage() {
     galaxy: (() => { const m = allGalaxyModels.find(m => !m.last_android && m.image); return m?.image ? `${CATEGORY_IMAGE_BASE.galaxy}${m.image}` : null })(),
     ipad: (() => { const m = allIPadModels.find(m => !m.last_ipados && m.image); return m?.image ? `${CATEGORY_IMAGE_BASE.ipad}${m.image}` : null })(),
     macbook: (() => { const m = allMacBookModels.find(m => !m.last_macos && m.image); return m?.image ? `${CATEGORY_IMAGE_BASE.macbook}${m.image}` : null })(),
+    // デスクトップMacは機種画像を配置中。実ファイルが無いあいだは
+    // 404の壊れた画像ではなくプレースホルダーを出す（配置すれば自動で切り替わる）
+    mac: (() => { const m = allMacModels.find(m => !m.last_macos && m.image); if (!m?.image) return null; const rel = `${CATEGORY_IMAGE_BASE.mac}${m.image}`; return existsSync(join(process.cwd(), 'public', rel)) ? rel : null })(),
     watch: (() => { const m = allWatchModels.find(m => !m.last_watchos && m.image); return m?.image ? `${CATEGORY_IMAGE_BASE.watch}${m.image}` : null })(),
     airpods: (() => { const m = allAirPodsModels.find(m => m.image); return m?.image ? `${CATEGORY_IMAGE_BASE.airpods}${m.image}` : null })(),
   }
@@ -93,7 +102,9 @@ export default async function HomePage() {
     ids
       .map((id) => PRODUCT_CATEGORIES.find((c) => c.id === id))
       .filter((c): c is (typeof PRODUCT_CATEGORIES)[number] => Boolean(c))
-  const appleCategories = pickCategories(['iphone', 'ipad', 'macbook', 'watch', 'airpods'])
+  // pickCategories は PRODUCT_CATEGORIES（非公開カテゴリ除外済み）から引くので、
+  // 'mac' は PUBLISH_MAC_CATEGORY が立つまで自動的に落ちる
+  const appleCategories = pickCategories(['iphone', 'ipad', 'macbook', 'mac', 'watch', 'airpods'])
   // 非公開のあいだは空配列になり、セクションごと描画されない（lib/data/feature-flags.ts）
   const androidCategories = pickCategories(HIDDEN_CATEGORY_IDS.length > 0 ? [] : ['pixel', 'galaxy'])
 
@@ -162,7 +173,8 @@ export default async function HomePage() {
           <h3 className="m-section-heading m-section-heading--md u-mb-md" style={{ textAlign: 'left', marginTop: 'var(--space-2xl)' }}>
             中古Apple製品を探す
           </h3>
-          <div className="l-grid l-grid--5col l-grid--gap-lg">
+          {/* Apple製品は6カテゴリ。5colだと5+1でAirPodsが1枚だけ孤立するため3col（3+3）にする */}
+          <div className="l-grid l-grid--3col l-grid--gap-lg">
             {appleCategories.map(renderCategoryCard)}
           </div>
 
@@ -172,7 +184,9 @@ export default async function HomePage() {
               <h3 className="m-section-heading m-section-heading--md u-mb-md" style={{ textAlign: 'left', marginTop: 'var(--space-3xl)' }}>
                 中古Androidスマホを探す
               </h3>
-              <div className="l-grid l-grid--5col l-grid--gap-lg">
+              {/* Apple側と同じ 3col。列数が違うとカード幅が揃わず、
+                  2枚しかない Android 側だけ極端に細くなる */}
+              <div className="l-grid l-grid--3col l-grid--gap-lg">
                 {androidCategories.map(renderCategoryCard)}
               </div>
             </>

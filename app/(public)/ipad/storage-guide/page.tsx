@@ -436,7 +436,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/ipad/storage-gu
                       <Link prefetch={false} href="/ipad/used-ipad-attention/"><i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> 中古iPadの注意点と選び方まとめ</Link>
                     </li>
                     <li>
-                      <Link prefetch={false} href="/ipad/recommend/"><i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> おすすめ中古iPad機種まとめ【目的別】</Link>
+                      <Link prefetch={false} href="/ipad/"><i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> おすすめ中古iPad機種まとめ【目的別】</Link>
                     </li>
                   </ul>
                 </div>
@@ -457,7 +457,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/ipad/storage-gu
         </div>
       </article>
     </main>
-    <IPadArticleFooter pageUrl="https://used-lab.jp/ipad/storage-guide/" pageTitle="中古iPadのストレージ容量はどれがいい？用途別おすすめ容量まとめ" excludeHref={["/ipad/storage-guide/", "/ipad/recommend/"]} />
+    <IPadArticleFooter pageUrl="https://used-lab.jp/ipad/storage-guide/" pageTitle="中古iPadのストレージ容量はどれがいい？用途別おすすめ容量まとめ" excludeHref={["/ipad/storage-guide/", "/ipad/"]} />
     </>
   )
 }
