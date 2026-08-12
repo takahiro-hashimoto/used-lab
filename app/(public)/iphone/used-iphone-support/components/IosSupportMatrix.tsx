@@ -26,7 +26,8 @@ const IOS_VERSIONS: IosVersion[] = [
   { year: 2022, label: '2022年', version: 'iOS 16', versionNum: 16 },
   { year: 2023, label: '2023年', version: 'iOS 17', versionNum: 17 },
   { year: 2024, label: '2024年', version: 'iOS 18', versionNum: 18 },
-  { year: 2025, label: '2025年', version: 'iOS 19', versionNum: 19 },
+  { year: 2025, label: '2025年', version: 'iOS 26', versionNum: 26 },
+  { year: 2026, label: '2026年', version: 'iOS 27', versionNum: 27 },
 ]
 
 /* ------------------------------------------------------------------
@@ -93,7 +94,7 @@ function getCellStatus(device: DeviceRow, ios: IosVersion): CellStatus {
 /* ------------------------------------------------------------------
    iOSサポート開始年オーバーライド
    カレンダー上のリリース年と初対応iOS年がずれる機種を補正する
-   例: iPhone 17e は2026年3月発売だが iOS 19（2025年）に対応
+   例: iPhone 17e は2026年3月発売だが iOS 26（2025年）に対応
    ------------------------------------------------------------------ */
 const RELEASE_YEAR_OVERRIDES: Record<string, number> = {
   'iPhone 17e': 2025,
@@ -226,6 +227,10 @@ export default function IosSupportMatrix({ models, hideEmbed }: Props) {
           ※ 各iOSサポート状況は<a href="https://support.apple.com/ja-jp/guide/iphone/iphe3fa5df43/ios" target="_blank" rel="noopener noreferrer">Apple公式サイト</a>から引用しています。
           <br />
           ※ 各モデルのPro / Plus / Max等のバリエーションも同じiOS対応状況となります。
+          <br />
+          ※ 2025年よりAppleはバージョン番号を年ベースに統一したため、iOS 18の次はiOS 26となっています。
+          <br />
+          ※ iOS 27（2026年6月発表）はiPhone 11以降が対象で、iOS 26に対応した機種はすべて引き続き対応します。
         </p>
 
         {!hideEmbed && <SupportEmbedButton />}

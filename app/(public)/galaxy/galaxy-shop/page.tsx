@@ -14,9 +14,10 @@ import ShopComparisonTable from '@/app/components/shop/ShopComparisonTable'
 import type { SpecRow } from '@/app/components/shop/ShopDetailSection'
 import GalaxyArticleFooter from '@/app/components/galaxy/GalaxyArticleFooter'
 import BuyingOptionsSection from './components/BuyingOptionsSection'
+import PhysicalStoreSection from '@/app/components/shop/PhysicalStoreSection'
 import SelectionCriteriaSection from './components/SelectionCriteriaSection'
 import ShopComparisonSection from './components/ShopComparisonSection'
-import RecommendByTypeSection from './components/RecommendByTypeSection'
+import RecommendByTypeSection from '@/app/components/shop/RecommendByTypeSection'
 import ShopDetailSection from './components/ShopDetailSection'
 import FleaMarketSection from './components/FleaMarketSection'
 import ChecklistSection from './components/ChecklistSection'
@@ -238,7 +239,10 @@ export default async function GalaxyShopPage() {
         <div className="l-sections">
           <BuyingOptionsSection />
           <ShopComparisonSection />
-          <RecommendByTypeSection />
+          <RecommendByTypeSection
+            productName="中古Galaxy"
+            availableShopKeys={shopDetailItems.map((i) => i.shop.shop_key)}
+            advancedNote="バッテリー状態・ネットワーク利用制限（赤ロム）・OSの更新提供期間を自分で確認できる人向けです。" />
           <ShopDetailSection items={shopDetailItems} />
           {/* ショップ比較表 */}
           <section className="l-section" id="shop-table" aria-labelledby="heading-shop-table">
@@ -257,6 +261,7 @@ export default async function GalaxyShopPage() {
             </div>
           </section>
 
+          <PhysicalStoreSection productName="中古Galaxy" />
           <SelectionCriteriaSection />
           <FleaMarketSection />
           <ChecklistSection />

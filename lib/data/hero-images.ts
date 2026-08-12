@@ -28,7 +28,6 @@ export const HERO_IMAGES: Record<string, string> = {
   '/iphone/iphone-camera/': '/images/content/thumbnail/iphone-camera.jpg',
   '/iphone/iphone-shop/': '/images/content/thumbnail/cheap-buy.jpg',
   '/iphone/iphone-spec-table/': '/images/content/thumbnail/iphone-compare.jpg',
-  '/iphone/mvno/': '/images/content/thumbnail/sim.webp',
   '/iphone/network-limit/': '/images/content/thumbnail/iphone-image-02.jpg',
   '/iphone/price-info/': '/images/content/thumbnail/graph-image.jpg',
   '/iphone/storage-guide/': '/images/content/thumbnail/used-iphone-ios-support.jpg',

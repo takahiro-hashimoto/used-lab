@@ -14,9 +14,10 @@ import MacBookArticleFooter from '@/app/components/macbook/MacBookArticleFooter'
 import ShopComparisonTable from '@/app/components/shop/ShopComparisonTable'
 import type { SpecRow } from '@/app/components/shop/ShopDetailSection'
 import BuyingOptionsSection from './components/BuyingOptionsSection'
+import PhysicalStoreSection from '@/app/components/shop/PhysicalStoreSection'
 import SelectionCriteriaSection from './components/SelectionCriteriaSection'
 import ShopComparisonSection from './components/ShopComparisonSection'
-import RecommendByTypeSection from './components/RecommendByTypeSection'
+import RecommendByTypeSection from '@/app/components/shop/RecommendByTypeSection'
 import ShopDetailSection from './components/ShopDetailSection'
 import FleaMarketSection from './components/FleaMarketSection'
 import ChecklistSection from './components/ChecklistSection'
@@ -238,7 +239,12 @@ export default async function MacBookShopPage() {
         <div className="l-sections">
           <BuyingOptionsSection />
           <ShopComparisonSection />
-          <RecommendByTypeSection />
+          <RecommendByTypeSection
+            productName="中古MacBook"
+            availableShopKeys={shopDetailItems.map((i) => i.shop.shop_key)}
+            mentionSimLock={false}
+            mentionBattery={false}
+            advancedNote="バッテリーの充放電回数・macOSのサポート期間・ストレージ容量（購入後は増設できません）を自分で確認できる人向けです。" />
           <ShopDetailSection items={shopDetailItems} />
           {/* ショップ比較表 */}
           <section className="l-section" id="shop-table" aria-labelledby="heading-shop-table">
@@ -257,6 +263,7 @@ export default async function MacBookShopPage() {
             </div>
           </section>
 
+          <PhysicalStoreSection productName="中古MacBook" />
           <SelectionCriteriaSection />
           <FleaMarketSection />
           <ChecklistSection />

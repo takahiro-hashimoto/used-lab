@@ -86,7 +86,7 @@ export default function EvolutionTimeline({ models, avgPrices, iosysUrlMap }: Pr
     <section className="l-section" id="evolution" aria-labelledby="heading-evolution">
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg" id="heading-evolution">
-          歴代iPadの主な進化点（シリーズ別）
+          歴代iPadの世代ごとの違い｜Pro・Air・mini・無印の主な進化点
         </h2>
         <p className="m-section-desc">歴代iPadの主に進化したポイントをシリーズ別に整理しました。</p>
         <p className="m-section-desc">シリーズを重ねるごとにどのような点がアップデートされてきたのかを把握するのにお役立てください！</p>

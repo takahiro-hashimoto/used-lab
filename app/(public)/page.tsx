@@ -126,7 +126,7 @@ export default async function HomePage() {
         <p className="listing-pick-card__desc">{cat.desc}</p>
       </div>
       <Link prefetch={false} href={`${cat.basePath}/`} className="m-btn m-btn--primary m-btn--block u-w-full">
-        ガイドを見る <i className="fa-solid fa-chevron-right" aria-hidden="true"></i>
+        おすすめ機種をチェック <i className="fa-solid fa-chevron-right" aria-hidden="true"></i>
       </Link>
     </article>
   )

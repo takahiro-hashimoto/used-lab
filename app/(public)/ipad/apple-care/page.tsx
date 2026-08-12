@@ -579,7 +579,7 @@ export default function IpadAppleCarePage() {
                   </div>
                   <div className="media-card__body" style={{ minWidth: 0 }}>
                     <div className="media-card__desc m-rich-text">
-                      <h4 className="media-card__title">モバイル保険</h4>
+                      <h3 className="media-card__title">モバイル保険</h3>
                       <ul className="u-mb-lg m-check-list">
                         <li><i className="fa-solid fa-check" aria-hidden="true"></i> 月額700円で最大3台まで補償</li>
                         <li><i className="fa-solid fa-check" aria-hidden="true"></i> 年間10万円まで修理費用を全額補償</li>

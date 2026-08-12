@@ -37,8 +37,7 @@ export const PAGE_DATES: Record<string, string> = {
   'app/(public)/iphone/iphone-camera/page.tsx':       '2026-04-11',
   'app/(public)/iphone/benchmark/page.tsx':           '2026-04-11',
   'app/(public)/iphone/battery-compare/page.tsx':     '2026-04-11',
-  'app/(public)/iphone/iphone-shop/page.tsx':         '2026-04-11',
-  'app/(public)/iphone/mvno/page.tsx':                '2026-04-10',
+  'app/(public)/iphone/iphone-shop/page.tsx':         '2026-08-12',
   'app/(public)/iphone/iphone-spec-table/page.tsx':   '2026-08-06',
   'app/(public)/iphone/_compare/ComparePageTemplate.tsx': '2026-04-12',
   'app/(public)/iphone/iphone13-13pro-compare/page.tsx':  '2026-04-14',
@@ -65,7 +64,7 @@ export const PAGE_DATES: Record<string, string> = {
   'app/(public)/ipad/howto-use-ipad/page.tsx':        '2026-08-06',
   'app/(public)/ipad/car-navigation-system/page.tsx': '2026-08-06',
   'app/(public)/ipad/recommend/page.tsx':             '2026-04-13',
-  'app/(public)/ipad/ipad-shop/page.tsx':             '2026-04-13',
+  'app/(public)/ipad/ipad-shop/page.tsx':             '2026-08-12',
   'app/(public)/ipad/storage-guide/page.tsx':         '2026-04-11',
   'app/(public)/ipad/used-ipad-support/page.tsx':     '2026-04-11',
   'app/(public)/ipad/benchmark/page.tsx':             '2026-04-11',
@@ -106,7 +105,7 @@ export const PAGE_DATES: Record<string, string> = {
   'app/(public)/watch/watch-filter-search/page.tsx':  '2026-04-11',
   'app/(public)/watch/used-watch-support/page.tsx':   '2026-06-29',
   'app/(public)/watch/watch-spec-table/page.tsx':     '2026-08-06',
-  'app/(public)/watch/watch-shop/page.tsx':           '2026-04-13',
+  'app/(public)/watch/watch-shop/page.tsx':           '2026-08-12',
 
   // ── AirPods ───────────────────────────────────────────────────
   'app/(public)/airpods/used-airpods-attention/page.tsx': '2026-04-14',

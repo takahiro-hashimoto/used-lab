@@ -4,8 +4,6 @@ import type {
   IPhoneModel, IPadModel, WatchModel, MacBookModel, MacModel, AirPodsModel, PixelModel, GalaxyModel,
   Shop, ProductShopLink, ProductReview,
   IPhonePriceLog, IPadPriceLog, WatchPriceLog, MacBookPriceLog, MacPriceLog, AirPodsPriceLog, PixelPriceLog, GalaxyPriceLog,
-  MvnoPlan,
-  MvnoProvider,
   IPadAccessory, IPadAccessoryCompatibility,
   SiteConfig,
 } from './types'
@@ -32,7 +30,6 @@ export const CACHE_TAGS = {
   galaxyPriceLogs: 'galaxy-price-logs',
   shops: 'shops',
   shopLinks: 'shop-links',
-  mvno: 'mvno',
   news: 'news',
   ipadAccessories: 'ipad-accessories',
   siteConfig: 'site-config',
@@ -549,76 +546,6 @@ export const getLatestGalaxyPriceLogsWithPricesForModels = galaxyPriceLogs.getLa
 const GALAXY_PRICE_COLS = ['iosys_min', 'iosys_max', 'geo_min', 'geo_max', 'janpara_min', 'janpara_max']
 export const getLatestGalaxyPriceLogWithPrices = (modelId: number) =>
   galaxyPriceLogs.getLatestWithPrices(modelId, GALAXY_PRICE_COLS)
-
-// ============================================================
-// 共通クエリ（製品横断）
-// ============================================================
-
-// ============================================================
-// MVNO プラン
-// ============================================================
-
-/** 全プラン取得 */
-export const getMvnoPlans = unstable_cache(
-  async (): Promise<MvnoPlan[]> => {
-    const { data, error } = await supabase
-      .from('mvno_plans')
-      .select('*')
-      .order('provider_slug', { ascending: true })
-      .order('display_order', { ascending: true })
-    if (error) throw new Error(`getMvnoPlans: ${error.message}`)
-    return (data ?? []) as MvnoPlan[]
-  },
-  ['mvno-plans-all'],
-  { revalidate: 604800, tags: [CACHE_TAGS.mvno] }
-)
-
-/** 事業者スラッグでプラン取得 */
-export const getMvnoPlansByProvider = unstable_cache(
-  async (providerSlug: string): Promise<MvnoPlan[]> => {
-    const { data, error } = await supabase
-      .from('mvno_plans')
-      .select('*')
-      .eq('provider_slug', providerSlug)
-      .order('display_order', { ascending: true })
-    if (error) throw new Error(`getMvnoPlansByProvider(${providerSlug}): ${error.message}`)
-    return (data ?? []) as MvnoPlan[]
-  },
-  ['mvno-plans-by-provider'],
-  { revalidate: 604800, tags: [CACHE_TAGS.mvno] }
-)
-
-/** provider_slug の一覧を取得（重複なし） */
-export const getMvnoProviderSlugs = unstable_cache(
-  async (): Promise<string[]> => {
-    const { data, error } = await supabase
-      .from('mvno_plans')
-      .select('provider_slug')
-    if (error) throw new Error(`getMvnoProviderSlugs: ${error.message}`)
-    return [...new Set((data ?? []).map((d) => d.provider_slug))]
-  },
-  ['mvno-provider-slugs'],
-  { revalidate: 604800, tags: [CACHE_TAGS.mvno] }
-)
-
-// ============================================================
-// MVNO 事業者（mvno_providers テーブル）
-// ============================================================
-
-/** 公開中の事業者を表示順で取得 */
-export const getMvnoProviders = unstable_cache(
-  async (): Promise<MvnoProvider[]> => {
-    const { data, error } = await supabase
-      .from('mvno_providers')
-      .select('*')
-      .eq('is_published', true)
-      .order('display_order', { ascending: true })
-    if (error) throw new Error(`getMvnoProviders: ${error.message}`)
-    return (data ?? []) as MvnoProvider[]
-  },
-  ['mvno-providers'],
-  { revalidate: 604800, tags: [CACHE_TAGS.mvno] }
-)
 
 // ============================================================
 // 共通クエリ（製品横断）

@@ -45,7 +45,9 @@ export default function BenchmarkSection({ models, avgPrices, shopLinks }: Props
     <section className="l-section" id="benchmark" aria-labelledby="heading-benchmark">
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg" id="heading-benchmark">
-          歴代iPhoneのチップ性能・処理速度を比較（ベンチマークスコア）
+          {/* 「iphone 性能ランキング」（約1,450表示・4.8位）向けに語を追加。
+              チップ／処理速度／ベンチマークは1.1〜2.1位を取れている勝ちワードなので必ず残すこと。 */}
+          歴代iPhoneの性能ランキング｜チップ・処理速度をベンチマークスコアで比較
         </h2>
         <p className="m-section-desc">
           チップ性能の違いを可視化するために2種類のベンチマークスコア一覧表を用意。

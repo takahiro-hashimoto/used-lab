@@ -13,7 +13,12 @@ type Props = {
   headingClassName?: string
   description?: string
   categories: { label: string; items: ModelItem[] }[]
-  categoryHeadingTag?: 'h4' | 'h5' | 'p'
+  /**
+   * カテゴリ見出しのタグ。既定は h4。
+   * heading を渡さない（＝上位で h2 を出している）場合は h3 を指定すること。
+   * 既定のままだと h2 → h4 になり、見出しレベルが飛ぶ。
+   */
+  categoryHeadingTag?: 'h3' | 'h4' | 'h5' | 'p'
 }
 
 export default function GuideModelLinks({

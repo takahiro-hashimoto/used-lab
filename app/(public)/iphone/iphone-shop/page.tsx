@@ -7,6 +7,7 @@ import { backMarketComparisonRow } from '@/lib/data/back-market'
 import {
   SHOP_PAGE_DATE_LABEL,
   SHOP_DETAIL_ORDER,
+  SHOP_DETAIL_COUNT,
   SHOP_DETAIL_META,
   SHOP_FAQ_ITEMS,
 } from '@/lib/data/iphone-shop'
@@ -17,8 +18,9 @@ import IPhoneArticleFooter from '@/app/components/iphone/IPhoneArticleFooter'
 import BuyingOptionsSection from './components/BuyingOptionsSection'
 import SelectionCriteriaSection from './components/SelectionCriteriaSection'
 import ShopComparisonSection from './components/ShopComparisonSection'
-import RecommendByTypeSection from './components/RecommendByTypeSection'
+import RecommendByTypeSection from '@/app/components/shop/RecommendByTypeSection'
 import ShopDetailSection from './components/ShopDetailSection'
+import PhysicalStoreSection from '@/app/components/shop/PhysicalStoreSection'
 import FleaMarketSection from './components/FleaMarketSection'
 import ChecklistSection from './components/ChecklistSection'
 import FaqSection from './components/FaqSection'
@@ -28,8 +30,13 @@ import { getHeroImage } from '@/lib/data/hero-images'
 
 export const revalidate = false
 
-const PAGE_TITLE = `中古iPhoneを買うならどこ？ECサイト・ショップのおすすめを紹介【${SHOP_PAGE_DATE_LABEL}】`
-const PAGE_DESCRIPTION = `中古iPhoneを買うならどこがおすすめ？信頼できるECサイト・ショップを保証・価格・品質の観点から徹底比較。最適な購入先を紹介します【${SHOP_PAGE_DATE_LABEL}】`
+// タイトルは検索実績に合わせている。
+// 流入の中心は「iphone 中古 おすすめサイト」系（表記ゆれ合計959表示）で、
+// 次が「iphone 中古 買うならどこ」（531表示）。この2つを前半に置く。
+// 旧タイトルは全角36文字あり、日本語の検索結果（約30〜32文字）で
+// 末尾の年号まで表示されていなかった。
+const PAGE_TITLE = `中古iPhoneのおすすめサイト${SHOP_DETAIL_COUNT}選｜買うならどこ？【${SHOP_PAGE_DATE_LABEL}】`
+const PAGE_DESCRIPTION = `中古iPhoneを買うならどこ？信頼できるおすすめサイト${SHOP_DETAIL_COUNT}店を、価格・保証期間・バッテリー表示・赤ロム保証で比較しました。安心して買える購入先の選び方まで解説します【${SHOP_PAGE_DATE_LABEL}】`
 const PAGE_URL = 'https://used-lab.jp/iphone/iphone-shop/'
 
 export const metadata: Metadata = {
@@ -155,7 +162,7 @@ export default async function IPhoneShopPage() {
           <div className="hero-inner l-container">
             <div className="hero-content">
               <h1 className="hero-title" itemProp="headline">
-                中古iPhoneを買うならどこ？ECサイト・ショップのおすすめを紹介
+                {PAGE_TITLE}
               </h1>
               <HeroMeta dateStr={dateStr} dateDisplay={dateDisplay} withItemProp />
             </div>
@@ -251,7 +258,8 @@ export default async function IPhoneShopPage() {
         <div className="l-sections">
           <BuyingOptionsSection />
           <ShopComparisonSection />
-          <RecommendByTypeSection />
+          <RecommendByTypeSection productName="中古iPhone" advancedNote="バッテリー最大容量・ネットワーク利用制限（赤ロム）・iOSのサポート期間を自分で確認できる人向けです。"
+            availableShopKeys={shopDetailItems.map((i) => i.shop.shop_key)} />
           <ShopDetailSection items={shopDetailItems} />
           {/* ショップ比較表 */}
           <section className="l-section" id="shop-table" aria-labelledby="heading-shop-table">
@@ -270,6 +278,7 @@ export default async function IPhoneShopPage() {
             </div>
           </section>
 
+          <PhysicalStoreSection productName="中古iPhone" />
           <SelectionCriteriaSection />
           <FleaMarketSection />
           <ChecklistSection />

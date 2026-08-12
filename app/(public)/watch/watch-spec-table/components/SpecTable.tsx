@@ -198,11 +198,15 @@ export default function SpecTable({ models, shopLinks, prices, priceDate, embed 
   return (
     <section className="l-section" id="spec-table" aria-labelledby="heading-spec-table">
       <div className="l-container">
+        {/* 見出しは検索実績に寄せている。
+            「アップルウォッチ 種類」系が合計約6,500表示あるのに語が本文に0回で、
+            主要4語がすべて8〜10位に沈んでいた。「画面サイズ」（774表示・9.5位）も0回。
+            なお「歴代」は1.8位・CTR54%の勝ちワードなので先頭から外さないこと。 */}
         <h2 className="m-section-heading m-section-heading--lg" id="heading-spec-table">
-          歴代Apple Watchスペック比較表
+          歴代Apple Watchの種類一覧｜全{models.length}モデルのスペック比較表
         </h2>
         <p className="m-section-desc">
-          歴代Apple Watchの主要スペックを一覧で比較できます。
+          歴代Apple Watch{models.length}モデルの主要スペックを、発売順に並べて比較できます。画面サイズ・バッテリー持ち・重さ・搭載チップを種類ごとに確認できます。
         </p>
 
         {/* フィルターUI */}

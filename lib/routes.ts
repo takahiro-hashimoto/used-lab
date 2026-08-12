@@ -12,7 +12,6 @@ export type LabelParams = {
   ipadGuideDate: string
   macbookGuideDate: string
   watchGuideDate: string
-  mvnoDate: string
   iphoneRecDate: string
   iphoneRecCount: number
   ipadRecDate: string
@@ -89,7 +88,6 @@ const ALL_PRODUCT_CATEGORIES: CategoryDef[] = [
       { path: '/iphone/iphone-camera/', label: 'iPhoneのカメラ性能の違いは何？歴代モデルの機能を比較' },
       { path: '/iphone/storage-guide/', label: '中古iPhoneのストレージ容量はどれがいい？用途別おすすめ容量まとめ' },
       { path: '/iphone/benchmark/', label: '歴代iPhoneのベンチマーク比較ランキング｜Geekbench 6スコアで性能が一目でわかる' },
-      { path: '/iphone/mvno/', label: (p) => `中古iPhoneの購入と通信契約が一緒にできる格安SIM業者まとめ【${p.mvnoDate}】` },
       { path: '/iphone/network-limit/', label: 'ネットワーク制限△の中古iPhone・iPadを買うメリット・デメリットを解説' },
     ],
   },
@@ -286,7 +284,7 @@ const ALL_HEADER_NAV_ITEMS: HeaderNavItem[] = [
       { href: '/pixel/price-info/', label: '中古Pixelの相場価格' },
       { href: '/pixel/pixel-shop/', label: '中古Pixelの購入先比較' },
       { href: '/pixel/battery-compare/', label: 'Pixelバッテリー容量比較' },
-    { href: '/smartphone-compare/', label: '中古スマホ横断比較' },
+      { href: '/smartphone-compare/', label: '中古スマホ横断比較' },
       { href: '/pixel/benchmark/', label: 'Pixelベンチマーク比較' },
     ],
   },
@@ -299,7 +297,7 @@ const ALL_HEADER_NAV_ITEMS: HeaderNavItem[] = [
       { href: '/galaxy/price-info/', label: '中古Galaxyの相場価格' },
       { href: '/galaxy/galaxy-shop/', label: '中古Galaxyの購入先比較' },
       { href: '/galaxy/battery-compare/', label: 'Galaxyバッテリー容量比較' },
-    { href: '/smartphone-compare/', label: '中古スマホ横断比較' },
+      { href: '/smartphone-compare/', label: '中古スマホ横断比較' },
       { href: '/galaxy/benchmark/', label: 'Galaxyベンチマーク比較' },
     ],
   },

@@ -15,7 +15,6 @@ export const PAGE_DESCRIPTIONS: Record<string, string> = {
   '/iphone/filter-search/': '自分に合うモデルが見つかる診断ツール',
   '/iphone/battery-compare/': '電池持ちランキング',
   '/iphone/iphone-camera/': '歴代モデルのカメラ機能を比較',
-  '/iphone/mvno/': '購入と通信契約がセットでできる業者まとめ',
 
   // --- iPad ---
   '/ipad/': '中古iPadの選び方・相場・おすすめモデルの総合ガイド',
@@ -72,7 +71,6 @@ export const PAGE_DESCRIPTIONS_FULL: Record<string, string> = {
   '/iphone/filter-search/': '予算・用途・こだわりポイントを選ぶだけで最適な中古iPhoneが見つかる診断ツール',
   '/iphone/battery-compare/': '歴代モデルのバッテリー容量と駆動時間をランキング形式で比較',
   '/iphone/iphone-camera/': '画素数・センサーサイズ・レンズ構成・撮影機能の世代間比較',
-  '/iphone/mvno/': '中古端末と通信契約をセットで提供している格安SIM業者のまとめ',
 
   // --- iPad ---
   '/ipad/': '中古iPadの選び方・相場・おすすめモデルの総合ガイド',

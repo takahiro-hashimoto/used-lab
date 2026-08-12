@@ -27,7 +27,7 @@ function resolveLabel(label: string | ((p: LabelParams) => string)): string {
   if (typeof label === 'string') return label
   const dummyParams = {
     iphoneGuideDate: '2026年', ipadGuideDate: '2026年', macbookGuideDate: '2026年', watchGuideDate: '2026年',
-    mvnoDate: '2026年', iphoneRecDate: '2026年', ipadRecDate: '2026年', macbookRecDate: '2026年',
+    iphoneRecDate: '2026年', ipadRecDate: '2026年', macbookRecDate: '2026年',
     watchRecDate: '2026年', airpodsRecDate: '2026年',
     iphoneRecCount: 10, ipadRecCount: 8, macbookRecCount: 6, watchRecCount: 6, airpodsRecCount: 5,
     iphonePriceMonth: '2026年3月', ipadPriceMonth: '2026年3月', watchPriceMonth: '2026年3月', airpodsPriceMonth: '2026年3月',
@@ -68,7 +68,6 @@ const PAGE_KEYWORDS: Record<string, string> = {
   '/iphone/iphone-camera/': 'カメラ 写真 画素数 撮影',
   '/iphone/storage-guide/': 'ストレージ 容量 GB 選び方',
   '/iphone/benchmark/': 'ベンチマーク スコア 性能 Geekbench',
-  '/iphone/mvno/': '格安SIM MVNO 通信 回線 セット',
   '/iphone/network-limit/': 'ネットワーク制限 赤ロム 白ロム',
   '/ipad/': '購入ガイド 選び方 相場 おすすめ 中古',
   '/ipad/used-ipad-attention/': '注意点 やめた方がいい 購入前 確認 中古',

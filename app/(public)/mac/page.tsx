@@ -315,7 +315,9 @@ export default async function MacGuidePage() {
             <p className="m-section-desc">
               各モデルの詳細スペック、中古相場、購入時の注意点を個別にまとめています。
             </p>
-            <GuideModelLinks basePath="/mac" categories={modelLinkCategories} />
+            {/* 見出しは上の h2 で出しているので heading は渡さない。
+                その分カテゴリ側を h3 にしないと h2→h4 で階層が飛ぶ */}
+            <GuideModelLinks basePath="/mac" categories={modelLinkCategories} categoryHeadingTag="h3" />
           </div>
         </section>
 

@@ -6,6 +6,7 @@ import type { Shop } from '@/lib/types'
 import {
   SHOP_PAGE_DATE_LABEL,
   IPAD_SHOP_DETAIL_ORDER,
+  IPAD_SHOP_DETAIL_COUNT,
   IPAD_SHOP_DETAIL_META,
   IPAD_SHOP_FAQ_ITEMS,
 } from '@/lib/data/ipad-shop'
@@ -13,9 +14,11 @@ import Breadcrumb from '@/app/components/Breadcrumb'
 import ShopComparisonTable from '@/app/components/shop/ShopComparisonTable'
 import type { SpecRow } from '@/app/components/shop/ShopDetailSection'
 import BuyingOptionsSection from './components/BuyingOptionsSection'
+import GeoReputationSection from './components/GeoReputationSection'
+import PhysicalStoreSection from '@/app/components/shop/PhysicalStoreSection'
 import SelectionCriteriaSection from './components/SelectionCriteriaSection'
 import ShopComparisonSection from './components/ShopComparisonSection'
-import RecommendByTypeSection from './components/RecommendByTypeSection'
+import RecommendByTypeSection from '@/app/components/shop/RecommendByTypeSection'
 import ShopDetailSection from './components/ShopDetailSection'
 import FleaMarketSection from './components/FleaMarketSection'
 import ChecklistSection from './components/ChecklistSection'
@@ -28,8 +31,13 @@ import { getHeroImage } from '@/lib/data/hero-images'
 
 export const revalidate = false
 
-const PAGE_TITLE = `中古iPadを買うならどこ？ECサイト・ショップのおすすめを紹介【${SHOP_PAGE_DATE_LABEL}】`
-const PAGE_DESCRIPTION = `中古iPadを買うならどこがおすすめ？信頼できるECサイト・ショップを保証・価格・品質の観点から徹底比較。最適な購入先を紹介します【${SHOP_PAGE_DATE_LABEL}】`
+// タイトルは検索実績に合わせている。
+// iPad は iPhone と傾向が違い、「どこで買う」系が突出している
+// （表記ゆれ合計で約2,900表示。「おすすめサイト」系は74表示のみ）。
+// クエリと同じ語順「どこで買う」を先頭に置く。
+// 旧タイトルは全角35文字で、末尾の年号まで表示されていなかった。
+const PAGE_TITLE = `中古iPadはどこで買う？おすすめ購入先${IPAD_SHOP_DETAIL_COUNT}店を比較【${SHOP_PAGE_DATE_LABEL}】`
+const PAGE_DESCRIPTION = `中古iPadはどこで買うのがいい？おすすめ購入先${IPAD_SHOP_DETAIL_COUNT}店を、価格・保証期間・バッテリー表示・送料で比較しました。ゲオなど各店の掲載条件と、実店舗で買う場合の注意点まで解説します【${SHOP_PAGE_DATE_LABEL}】`
 const PAGE_URL = 'https://used-lab.jp/ipad/ipad-shop/'
 
 export const metadata: Metadata = {
@@ -142,7 +150,7 @@ export default async function IPadShopPage() {
           <div className="hero-inner l-container">
             <div className="hero-content">
               <h1 className="hero-title" itemProp="headline">
-                中古iPadを買うならどこ？ECサイト・ショップのおすすめを紹介
+                {PAGE_TITLE}
               </h1>
               <HeroMeta dateStr={dateStr} dateDisplay={dateDisplay} withItemProp />
             </div>
@@ -238,7 +246,8 @@ export default async function IPadShopPage() {
         <div className="l-sections">
           <BuyingOptionsSection />
           <ShopComparisonSection />
-          <RecommendByTypeSection />
+          <RecommendByTypeSection productName="中古iPad" advancedNote="バッテリー最大容量・Cellularモデルの利用制限・iPadOSのサポート期間を自分で確認できる人向けです。"
+            availableShopKeys={shopDetailItems.map((i) => i.shop.shop_key)} />
           <ShopDetailSection items={shopDetailItems} />
           {/* ショップ比較表 */}
           <section className="l-section" id="shop-table" aria-labelledby="heading-shop-table">
@@ -257,6 +266,8 @@ export default async function IPadShopPage() {
             </div>
           </section>
 
+          <GeoReputationSection />
+          <PhysicalStoreSection productName="中古iPad" />
           <SelectionCriteriaSection />
           <FleaMarketSection />
           <ChecklistSection />

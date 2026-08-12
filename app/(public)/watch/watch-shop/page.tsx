@@ -6,6 +6,7 @@ import type { Shop } from '@/lib/types'
 import {
   SHOP_PAGE_DATE_LABEL,
   WATCH_SHOP_DETAIL_ORDER,
+  WATCH_SHOP_DETAIL_COUNT,
   WATCH_SHOP_DETAIL_META,
   WATCH_SHOP_FAQ_ITEMS,
 } from '@/lib/data/watch-shop'
@@ -14,9 +15,11 @@ import WatchArticleFooter from '@/app/components/watch/WatchArticleFooter'
 import ShopComparisonTable from '@/app/components/shop/ShopComparisonTable'
 import type { SpecRow } from '@/app/components/shop/ShopDetailSection'
 import BuyingOptionsSection from './components/BuyingOptionsSection'
+import OlderModelSection from './components/OlderModelSection'
+import PhysicalStoreSection from '@/app/components/shop/PhysicalStoreSection'
 import SelectionCriteriaSection from './components/SelectionCriteriaSection'
 import ShopComparisonSection from './components/ShopComparisonSection'
-import RecommendByTypeSection from './components/RecommendByTypeSection'
+import RecommendByTypeSection from '@/app/components/shop/RecommendByTypeSection'
 import ShopDetailSection from './components/ShopDetailSection'
 import FleaMarketSection from './components/FleaMarketSection'
 import ChecklistSection from './components/ChecklistSection'
@@ -28,8 +31,12 @@ import { getHeroImage } from '@/lib/data/hero-images'
 
 export const revalidate = false
 
-const PAGE_TITLE = `中古Apple Watchを買うならどこ？ECサイト・ショップのおすすめを紹介【${SHOP_PAGE_DATE_LABEL}】`
-const PAGE_DESCRIPTION = `中古Apple Watchを買うならどこがおすすめ？信頼できるECサイト・ショップを保証・価格・品質の観点から徹底比較。最適な購入先を紹介します【${SHOP_PAGE_DATE_LABEL}】`
+// タイトルは検索実績に合わせている。
+// Watch は「どこで買う」系が中心（合計約700表示）で、次に「型落ち」（約300表示）、
+// 「未使用品」（約110表示）という固有クラスタがある。
+// 旧タイトルは全角38.5文字で、末尾の年号まで表示されていなかった。
+const PAGE_TITLE = `中古Apple Watchはどこで買う？型落ち・未使用品も比較【${SHOP_PAGE_DATE_LABEL}】`
+const PAGE_DESCRIPTION = `中古アップルウォッチはどこで買うのがいい？おすすめ購入先${WATCH_SHOP_DETAIL_COUNT}店を保証・価格・送料で比較しました。型落ちモデルや未使用品の狙い方、実店舗で買う場合の注意点まで解説します【${SHOP_PAGE_DATE_LABEL}】`
 const PAGE_URL = 'https://used-lab.jp/watch/watch-shop/'
 
 export const metadata: Metadata = {
@@ -141,7 +148,7 @@ export default async function WatchShopPage() {
           <div className="hero-inner l-container">
             <div className="hero-content">
               <h1 className="hero-title" itemProp="headline">
-                中古Apple Watchを買うならどこ？ECサイト・ショップのおすすめを紹介
+                {PAGE_TITLE}
               </h1>
               <HeroMeta dateStr={dateStr} dateDisplay={dateDisplay} withItemProp />
             </div>
@@ -238,7 +245,10 @@ export default async function WatchShopPage() {
         <div className="l-sections">
           <BuyingOptionsSection />
           <ShopComparisonSection />
-          <RecommendByTypeSection />
+          <RecommendByTypeSection productName="中古Apple Watch" advancedNote="バッテリー状態・ケースサイズ・GPS / Cellularの違い・watchOSのサポート期間を自分で確認できる人向けです。"
+            availableShopKeys={shopDetailItems.map((i) => i.shop.shop_key)}
+            mentionSimLock={false}
+            mentionBattery={false} />
           <ShopDetailSection items={shopDetailItems} />
           {/* ショップ比較表 */}
           <section className="l-section" id="shop-table" aria-labelledby="heading-shop-table">
@@ -257,6 +267,8 @@ export default async function WatchShopPage() {
             </div>
           </section>
 
+          <OlderModelSection />
+          <PhysicalStoreSection productName="中古Apple Watch" />
           <SelectionCriteriaSection />
           <FleaMarketSection />
           <ChecklistSection />

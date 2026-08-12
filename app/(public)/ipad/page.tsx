@@ -21,6 +21,7 @@ import {
 import { buildVendorCardsFromShops } from '@/lib/data/guide-shared'
 import {
   RECOMMEND_SLUGS,
+  RECOMMEND_COUNT,
   RECOMMEND_META,
   SHOP_SECTION_IDS,
 } from '@/lib/data/ipad-recommend'
@@ -36,6 +37,7 @@ import ContinuousAside from '@/app/components/ContinuousAside'
 import HeroMeta from '@/app/components/HeroMeta'
 import RecommendDetailSection from './recommend/components/RecommendDetailSection'
 import CompareTableSection from './recommend/components/CompareTableSection'
+import QuickPickSection from './components/QuickPickSection'
 
 export const revalidate = false
 
@@ -236,10 +238,13 @@ export default async function IPadGuidePage() {
         </nav>
         <div className="l-sections">
 
+          {/* 「どれ」「何世代」への即答。比較表より前に置く（詳細は QuickPickSection の冒頭コメント） */}
+          <QuickPickSection models={recommendModels} />
+
           {/* ========== おすすめ機種 ========== */}
           <CompareTableSection
             items={compareItems}
-            heading={<>今買うならこれ！おすすめ中古iPad5選【{GUIDE_DATE_LABEL}最新】</>}
+            heading={<>中古iPad今買うならどれ？おすすめ{RECOMMEND_COUNT}選【{GUIDE_DATE_LABEL}最新】</>}
             descriptions={[
               <>当サイトでおすすめしている機種は下記の通り。スペックの詳細な比較は<Link prefetch={false} href="/ipad/ipad-spec-table/">iPadスペック比較表</Link>をご覧ください。「iPadOSサポートが十分に残っている」「中古価格と性能のバランスが良い」ことが判断基準です。</>,
             ]}

@@ -29,7 +29,6 @@ export const IPHONE_LINKS: RelatedLinkMeta[] = [
   { href: '/iphone/price-info/', title: '中古iPhone相場・価格推移【2026年】', desc: '主要モデルの相場と値動きをチェック' },
   { href: '/iphone/iphone-shop/', title: '中古iPhoneの購入先おすすめ比較', desc: '信頼できるショップを比較して紹介' },
   { href: '/iphone/benchmark/', title: 'iPhoneベンチマーク比較ランキング', desc: '歴代iPhoneのチップ性能をスコアで比較' },
-  { href: '/iphone/mvno/', title: '中古iPhoneにおすすめの格安SIM比較', desc: '中古iPhoneで使える格安SIMを比較' },
   { href: '/iphone/iphone-camera/', title: '歴代iPhoneカメラ性能比較', desc: '歴代モデルのカメラ機能の違いがわかる' },
   { href: '/iphone/battery-compare/', title: 'iPhoneバッテリー容量比較ランキング', desc: '電池持ちのいいiPhoneがひと目でわかる' },
   { href: '/iphone/storage-guide/', title: 'iPhoneストレージ容量の選び方ガイド', desc: '用途別のおすすめ容量と中古価格を比較' },

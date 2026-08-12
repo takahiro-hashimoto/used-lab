@@ -95,9 +95,11 @@ export default function EvolutionTimeline({ models, avgPrices, iosysUrlMap }: Pr
     <section className="l-section" id="evolution" aria-labelledby="heading-evolution">
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg" id="heading-evolution">
-          歴代iPhoneの主な進化点（シリーズ別）
+          {/* 「iphone 違い」（1,492表示・9.2位）「iphone 違い 一覧」（463表示）向け。
+              まさに違いを説明しているセクションなのに、語が見出しに無かった。 */}
+          歴代iPhoneの違い一覧｜世代ごとの主な進化点（シリーズ別）
         </h2>
-        <p className="m-section-desc">歴代iPhoneの主に進化したポイントをシリーズ別・新しい順に整理しました。</p>
+        <p className="m-section-desc">歴代iPhoneが世代ごとに何が違うのか、主に進化したポイントをシリーズ別・新しい順に整理しました。</p>
         <p className="m-section-desc">シリーズを重ねるごとにどのような点がアップデートされてきたのかを把握するのにお役立てください！</p>
 
         <h3 className="m-section-heading m-section-heading--md u-mt-2xl" style={{ textAlign: 'left' }}>

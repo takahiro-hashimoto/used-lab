@@ -29,7 +29,8 @@ const IPADOS_VERSIONS: IPadOsVersion[] = [
   { year: 2022, label: '2022年', version: 'iPadOS 16', versionNum: 16 },
   { year: 2023, label: '2023年', version: 'iPadOS 17', versionNum: 17 },
   { year: 2024, label: '2024年', version: 'iPadOS 18', versionNum: 18 },
-  { year: 2025, label: '2025年', version: 'iPadOS 19', versionNum: 19 },
+  { year: 2025, label: '2025年', version: 'iPadOS 26', versionNum: 26 },
+  { year: 2026, label: '2026年', version: 'iPadOS 27', versionNum: 27 },
 ]
 
 /* ------------------------------------------------------------------
@@ -301,7 +302,7 @@ export default function IPadOsSupportMatrix({ models, hideEmbed }: Props) {
         <p className="m-footnote">
           ※ 各iPadOSサポート状況は<a href="https://support.apple.com/ja-jp/guide/ipad/ipad213a25b2/ipados" target="_blank" rel="noopener noreferrer">Apple公式サイト</a>から引用しています。
           <br />
-          ※ iPadOS 19は2025年秋リリース予定の情報にもとづく予想です。
+          ※ 2025年よりAppleはバージョン番号を年ベースに統一したため、iPadOS 18の次はiPadOS 26となっています。
         </p>
 
         {!hideEmbed && <SupportEmbedButton />}

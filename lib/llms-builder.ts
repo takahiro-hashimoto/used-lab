@@ -153,7 +153,6 @@ const STATIC_TITLES: Record<string, string> = {
   '/iphone/': '中古iPhoneおすすめ機種・選び方ガイド',
   '/iphone/iphone-shop/': '中古iPhoneおすすめショップ',
   '/iphone/price-info/': 'iPhoneの中古相場一覧',
-  '/iphone/mvno/': '中古iPhoneと格安SIMセット購入ガイド',
   '/ipad/': '中古iPadおすすめ機種・選び方ガイド',
   '/ipad/ipad-shop/': '中古iPadおすすめショップ',
   '/ipad/ipad-price-info/': 'iPadの中古相場一覧',

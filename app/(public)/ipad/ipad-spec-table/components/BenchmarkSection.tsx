@@ -48,7 +48,7 @@ export default function BenchmarkSection({ models, avgPrices, shopLinks }: Props
     <section className="l-section" id="benchmark" aria-labelledby="heading-benchmark">
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg" id="heading-benchmark">
-          歴代iPadのチップ性能・処理速度を比較（ベンチマークスコア）
+          歴代iPadの性能ランキング｜チップ・処理速度をベンチマークスコアで比較
         </h2>
         <p className="m-section-desc">
           歴代iPadのチップ性能の違いを可視化するために2種類のベンチマークスコア（<a href="#geekbench">GeekBench</a>、<a href="#antutu">Antutu</a>）を用意しました。

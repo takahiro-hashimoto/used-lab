@@ -250,11 +250,14 @@ export default function SpecTable({ models, shopLinks, prices, priceDate, embed 
   return (
     <section className="l-section" id="spec-table" aria-labelledby="heading-spec-table">
       <div className="l-container">
+        {/* 見出しは検索実績に寄せている。
+            「iphone 機種比較」（約1,460表示・8.0位）と「iphone 容量一覧」（約1,010表示・5.6位）は
+            表の中身としては満たしているのに、語がどこにも無く取りこぼしていた。 */}
         <h2 className="m-section-heading m-section-heading--lg" id="heading-spec-table">
-          歴代iPhoneのスペック比較表一覧
+          iPhoneの機種比較表｜歴代{models.length}機種のスペック・容量を一覧で確認
         </h2>
         <p className="m-section-desc">
-          歴代iPhoneの主要スペックを一覧で比較できます。
+          歴代iPhone{models.length}機種の主要スペックを一覧で比較できます。チップ・容量・カメラ・画面サイズを機種ごとに並べているので、気になる2機種の違いもそのまま見比べられます。
           カメラ関連は<Link prefetch={false} href="/iphone/iphone-camera/">歴代iPhoneカメラ性能の比較まとめ</Link>で解説しています。
         </p>
 

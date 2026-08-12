@@ -22,6 +22,70 @@ export const RECOMMEND_SLUGS = [
 export const RECOMMEND_COUNT = RECOMMEND_SLUGS.length
 export const RECOMMEND_COUNT_LABEL = `${RECOMMEND_COUNT}機種`
 
+// ---------- 「結局どれ？」への即答 ----------
+/**
+ * iPad は無印・Air・Pro・mini の4ライン × 世代があり、iPhone より選択が複雑。
+ * 「ipad 中古 おすすめ」（9,088表示・7.9位）に対して機種を並べるだけでは
+ * 決め手にならないので、用途ごとに1台だけ名指しする。
+ *
+ * 根拠は ipad_models の実値（2026-08 時点）:
+ *   iPad 第11世代      A16 / 11型 / 477g / Geekbench6 マルチ 5,960
+ *   iPad mini 第7世代  A17 Pro / 8.3型 / 293g（5機種で最軽量）
+ *   iPad Air 11 第6世代 M2 / 462g / マルチ 9,823
+ *   iPad Pro 11 第4世代 M2 / 466g / マルチ 9,797 / ProMotion対応
+ *   iPad Pro 12.9 第6世代 M2 / 12.9型 / 682g / ProMotion対応
+ *
+ * Air 第6世代と Pro 11 第4世代は同じ M2 でスコアもほぼ同じ（9,823 / 9,797）。
+ * 差は ProMotion（120Hz）の有無なので、そこを選び分けの軸にしている。
+ */
+export const QUICK_PICKS: { situation: string; slug: string; reason: string }[] = [
+  {
+    situation: '動画視聴やブラウジングが中心',
+    slug: 'normal-11',
+    reason: 'Geekbench 6のマルチコアは5,960と5機種では控えめですが、動画・ブラウジング・電子書籍なら不足しません。価格を抑えたい人はここから。',
+  },
+  {
+    situation: '持ち運びを最優先したい',
+    slug: 'mini-7',
+    reason: '293gと5機種でいちばん軽く、8.3インチで片手でも扱えます。A17 Proを積んでいるので性能面での妥協もありません。',
+  },
+  {
+    situation: '性能と価格のバランス重視',
+    slug: 'air-6-11',
+    reason: 'M2チップでマルチコア9,823。下に挙げたiPad Pro 11（9,797）とほぼ同じ性能を、より新しい世代で手に入れられます。',
+  },
+  {
+    situation: 'イラストや動画編集で使いたい',
+    slug: 'pro11-4',
+    reason: '5機種で唯一ProMotion（120Hz）に対応。チップはAirと同じM2なので、選ぶ理由は「画面の追従の速さ」です。ペンを使うなら差が出ます。',
+  },
+  {
+    situation: '大画面で作業したい',
+    slug: 'pro12-6',
+    reason: '12.9インチで、資料を2画面並べても余裕があります。ただし682gと重いので、持ち歩きが多い人には向きません。',
+  },
+]
+
+// ---------- 「中古で買うなら何世代？」への回答（無印iPad） ----------
+/**
+ * 「ipad 中古で買うなら何世代」系は約340表示・6.2〜7.7位あるのに、
+ * 本文に「何世代」の語が1度も無かった。無印iPadは世代番号で呼ばれるため、
+ * 世代の境目を明示する必要がある。
+ *
+ * ipad_models の実値（無印ライン）:
+ *   第11世代 2025-03  A16        USB-C
+ *   第10世代 2022-10  A14 Bionic USB-C
+ *   第 9世代 2021-09  A13 Bionic Lightning  ← ここだけ端子が違う
+ */
+export const GENERATION_GUIDE = {
+  usbcFrom: 10,
+  rows: [
+    { gen: '第11世代', year: '2025年', chip: 'A16', port: 'USB-C' },
+    { gen: '第10世代', year: '2022年', chip: 'A14 Bionic', port: 'USB-C' },
+    { gen: '第9世代', year: '2021年', chip: 'A13 Bionic', port: 'Lightning' },
+  ],
+}
+
 // ---------- 各機種のメタ情報 ----------
 export type RecommendMeta = {
   label: string

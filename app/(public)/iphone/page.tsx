@@ -20,12 +20,14 @@ import {
 import { buildVendorCardsFromShops } from '@/lib/data/guide-shared'
 import {
   RECOMMEND_SLUGS,
+  RECOMMEND_COUNT,
   RECOMMEND_META,
   SHOP_SECTION_IDS,
 } from '@/lib/data/iphone-recommend'
 import ProductCard from '@/app/components/ProductCard'
 import RecommendDetailSection from './recommend/components/RecommendDetailSection'
 import CompareTableSection from './recommend/components/CompareTableSection'
+import QuickPickSection from './components/QuickPickSection'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import FaqSection from '@/app/components/support/FaqSection'
 import ShareBox from '@/app/components/ShareBox'
@@ -259,7 +261,6 @@ export default async function IPhoneGuidePage() {
               <li><a href="#filter-tool" className="toc-item">診断ツール <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#caution" className="toc-item">注意点 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#where-to-buy" className="toc-item">購入先比較 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
-              <li><a href="#heading-sim" className="toc-item">格安SIMセット <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#faq" className="toc-item">よくある質問 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
             </ol>
             </div>
@@ -267,10 +268,13 @@ export default async function IPhoneGuidePage() {
         </nav>
         <div className="l-sections">
 
+          {/* 「買うならどれ」への即答。比較表より前に置く（詳細は QuickPickSection の冒頭コメント） */}
+          <QuickPickSection models={recommendModels} />
+
           {/* ========== おすすめ機種（比較表） ========== */}
           <CompareTableSection
             items={compareItems}
-            heading={<>今買うならこれ！おすすめ中古iPhone5選【{GUIDE_DATE_LABEL}最新】</>}
+            heading={<>中古iPhone今買うならどれ？おすすめ{RECOMMEND_COUNT}選【{GUIDE_DATE_LABEL}最新】</>}
             descriptions={[
               <>当サイトでおすすめしている機種は下記の通り。スペックの詳細な比較は<Link prefetch={false} href="/iphone/iphone-spec-table/">iPhoneスペック比較表</Link>をご覧ください。</>,
               <>「iOSサポートが十分に残っている」「中古価格と性能のバランスが良い」ことが判断基準です。</>,
@@ -449,21 +453,6 @@ export default async function IPhoneGuidePage() {
               </div>
             </div>
           </section>
-
-          {/* ========== 格安SIM セット購入バナー ========== */}
-          <PopularSection
-            sectionTitle="中古iPhone&格安SIMをまとめて乗り換え"
-            sectionDescription={<><p className="m-section-desc">中古iPhoneと通信回線をまとめて契約できる格安SIM業者を比較。MNP乗り換えにも対応しています。</p><p className="m-section-desc">端末選びから回線契約まで一度に済ませたい方におすすめです。</p></>}
-            imageSrc="/images/content/thumbnail/sim.webp"
-            imageAlt="中古iPhoneの購入と通信契約が一緒にできる格安SIM業者まとめ"
-            subtitle="回線契約と端末購入を一度に！"
-            cardTitle="中古iPhoneの購入と通信契約が一緒にできる格安SIM業者まとめ"
-            cardDescription="楽天モバイル・UQモバイル・ワイモバイルなど、中古iPhoneと通信回線をセットで契約できる事業者を比較。あなたに最適な業者が見つかる診断機能付き。"
-            buttonText="セット対応業者を見る"
-            buttonHref="/iphone/mvno/"
-            sectionId="sim"
-            headingId="heading-sim"
-          />
 
           {/* ========== 中古iPhone購入者向けサービス ========== */}
           <section className="l-section" aria-labelledby="heading-service-links">

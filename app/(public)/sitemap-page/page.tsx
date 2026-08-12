@@ -16,7 +16,6 @@ import { GUIDE_DATE_LABEL as IPHONE_GUIDE_DATE } from '@/lib/data/iphone-guide'
 import { GUIDE_DATE_LABEL as IPAD_GUIDE_DATE } from '@/lib/data/ipad-guide'
 import { GUIDE_DATE_LABEL as MACBOOK_GUIDE_DATE } from '@/lib/data/macbook-guide'
 import { GUIDE_DATE_LABEL as WATCH_GUIDE_DATE } from '@/lib/data/watch-guide'
-import { MVNO_PAGE_DATE_LABEL } from '@/lib/data/iphone-mvno'
 import { RECOMMEND_DATE_LABEL as IPHONE_REC_DATE, RECOMMEND_COUNT as IPHONE_REC_COUNT } from '@/lib/data/iphone-recommend'
 import { RECOMMEND_DATE_LABEL as IPAD_REC_DATE, RECOMMEND_COUNT as IPAD_REC_COUNT } from '@/lib/data/ipad-recommend'
 import { RECOMMEND_DATE_LABEL as MACBOOK_REC_DATE, RECOMMEND_COUNT as MACBOOK_REC_COUNT } from '@/lib/data/macbook-recommend'
@@ -72,7 +71,6 @@ export default async function SitemapPage() {
     ipadGuideDate: IPAD_GUIDE_DATE,
     macbookGuideDate: MACBOOK_GUIDE_DATE,
     watchGuideDate: WATCH_GUIDE_DATE,
-    mvnoDate: MVNO_PAGE_DATE_LABEL,
     iphoneRecDate: IPHONE_REC_DATE,
     iphoneRecCount: IPHONE_REC_COUNT,
     ipadRecDate: IPAD_REC_DATE,

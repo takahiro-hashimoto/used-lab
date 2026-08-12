@@ -244,11 +244,15 @@ export default function SpecTable({ models, shopLinks, prices, priceDate, embed 
   return (
     <section className="l-section" id="spec-table" aria-labelledby="heading-spec-table">
       <div className="l-container">
+        {/* 見出しは検索実績に寄せている。
+            iPad は「世代比較」が最大クラスタ（無印・Pro・Air を合わせて約4,600表示）で、
+            iPhone には無い iPad 固有の語。表の中身は満たしているのに語が0回だった。
+            容量一覧（205表示・7.2位）も同様。 */}
         <h2 className="m-section-heading m-section-heading--lg" id="heading-spec-table">
-          歴代iPadのスペック比較表一覧
+          iPadの世代比較｜歴代{models.length}機種のスペック・容量を一覧で確認
         </h2>
         <p className="m-section-desc">
-          歴代iPadの主要スペックを一覧で比較できます。
+          歴代iPad{models.length}機種の主要スペックを世代順に並べて比較できます。チップ・容量・画面サイズ・端子（Type-C / Lightning）を機種ごとに確認できます。
         </p>
 
         {/* フィルターUI */}

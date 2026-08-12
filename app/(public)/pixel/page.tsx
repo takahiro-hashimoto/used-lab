@@ -35,7 +35,6 @@ import { getHeroImage } from '@/lib/data/hero-images'
 import AuthorByline from '@/app/components/AuthorByline'
 import ContinuousAside from '@/app/components/ContinuousAside'
 import HeroMeta from '@/app/components/HeroMeta'
-import PopularSection from '@/app/components/support/PopularSection'
 
 export const revalidate = false
 
@@ -250,7 +249,6 @@ export default async function PixelGuidePage() {
               <li><a href="#spec-compare" className="toc-item">スペック比較 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#caution" className="toc-item">注意点 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#where-to-buy" className="toc-item">購入先比較 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
-              <li><a href="#heading-sim" className="toc-item">格安SIMセット <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#faq" className="toc-item">よくある質問 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
             </ol>
             </div>
@@ -408,21 +406,6 @@ export default async function PixelGuidePage() {
               <VendorCardGrid cards={vendorCards} />
             </div>
           </section>
-
-          {/* ========== 格安SIM セット購入バナー ========== */}
-          <PopularSection
-            sectionTitle="中古Pixel&格安SIMをまとめて乗り換え"
-            sectionDescription={<><p className="m-section-desc">中古スマホと通信回線をまとめて契約できる格安SIM業者を比較。MNP乗り換えにも対応しています。</p><p className="m-section-desc">端末選びから回線契約まで一度に済ませたい方におすすめです。</p></>}
-            imageSrc="/images/content/thumbnail/sim.webp"
-            imageAlt="中古スマホの購入と通信契約が一緒にできる格安SIM業者まとめ"
-            subtitle="回線契約と端末購入を一度に！"
-            cardTitle="中古スマホの購入と通信契約が一緒にできる格安SIM業者まとめ"
-            cardDescription="楽天モバイル・UQモバイル・ワイモバイルなど、中古スマホと通信回線をセットで契約できる事業者を比較。あなたに最適な業者が見つかる診断機能付き。"
-            buttonText="セット対応業者を見る"
-            buttonHref="/iphone/mvno/"
-            sectionId="sim"
-            headingId="heading-sim"
-          />
 
           {/* ========== 中古Pixel購入者向けサービス ========== */}
           <section className="l-section" aria-labelledby="heading-service-links">

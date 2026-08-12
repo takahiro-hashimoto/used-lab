@@ -31,6 +31,9 @@ export const WATCH_SHOP_DETAIL_ORDER = [
   'rakuma',
 ] as const
 
+/** 詳細解説で紹介しているショップ数。タイトルの「◯店」に使う */
+export const WATCH_SHOP_DETAIL_COUNT = WATCH_SHOP_DETAIL_ORDER.length
+
 export const WATCH_SHOP_DETAIL_META: Record<string, WatchShopDetailMeta> = {
   iosys: {
     shopKey: 'iosys',

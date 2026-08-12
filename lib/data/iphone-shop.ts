@@ -26,9 +26,16 @@ export const SHOP_DETAIL_ORDER = [
   'amazon',
   'apple',
   'rakuten',
-  'carrier',
   'mercari',
 ] as const
+
+/**
+ * 詳細解説で紹介しているショップ数。タイトルの「◯選」に使う。
+ * shops テーブル由来の SHOP_DETAIL_ORDER に、DB に登録していない
+ * Back Market（BackMarketCard で差し込み）の1件を足した数。
+ * ショップを増減したらタイトルの数字も自動で追従する。
+ */
+export const SHOP_DETAIL_COUNT = SHOP_DETAIL_ORDER.length + 1
 
 export const SHOP_DETAIL_META: Record<string, ShopDetailMeta> = {
   iosys: {
@@ -180,29 +187,6 @@ export const SHOP_DETAIL_META: Record<string, ShopDetailMeta> = {
       '発送スピードが出品者によって異なる',
     ],
     ctaLabel: 'ECモール（楽天市場・ヤフーショッピング）で中古iPhoneを探す',
-  },
-  carrier: {
-    shopKey: 'carrier',
-    subtitle: '新規・MNPで割引がある場合も',
-    description: [
-      'ドコモ、au、ソフトバンクが提供する認定中古iPhone。買い替えプログラムで回収された端末を整備して販売しています。',
-      '新規契約やMNP（乗り換え）で割引が適用される場合があり、条件が合えば安く購入できるチャンスがあります。ただし、端末のみの購入はできず、回線契約が必要です。バッテリー最大容量は80%以上で、30日間の保証が付きます。',
-      'キャリアによって独自の補償サービスへの加入も可能。割引前の価格はかなり割高なため、割引を使えない場合はイオシスやにこスマなどの中古ショップのほうが安いです。回線契約を伴うため誰もが狙える選択肢ではありませんが、ちょうど乗り換えや新規契約を考えている方であれば、大幅割引のチャンスを活かせます。',
-    ],
-    good: [
-      '新規契約・MNPで割引がある場合あり',
-      '初期不良時の交換保証（30日間）',
-      'バッテリー最大容量80%以上',
-      'キャリア提供の補償サービスへの加入が可能',
-    ],
-    bad: [
-      '割引がなければ割高',
-      '端末（白ロム）のみ購入はできない',
-      '回線契約が必須',
-      '個別の実物写真が掲載されていない',
-      'バッテリー最大容量が表示されていない',
-    ],
-    ctaLabel: 'キャリア認定中古で中古iPhoneを探す',
   },
   mercari: {
     shopKey: 'mercari',
