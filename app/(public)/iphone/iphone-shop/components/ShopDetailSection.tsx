@@ -24,18 +24,6 @@ export default function ShopDetailSection({ items }: Props) {
       productName="iPhone"
       items={items}
       specRows={specRows}
-      imageOverrides={{
-        carrier: {
-          src: '/images/mvno/rakuten-mobile-thumb.jpg',
-          alt: '格安SIMで中古iPhoneをお得に使う',
-        },
-      }}
-      ctaOverrides={{
-        carrier: {
-          label: 'キャリア認定中古で探す',
-          url: '/iphone/mvno/',
-        },
-      }}
       // イオシスのカードの直後に差し込む（整備済みという別カテゴリの選択肢として）
       // 同じ specRows を渡し、他ショップと同じ指標・同じ並びで出す
       renderExtra={(shopKey) => (shopKey === 'iosys' ? <BackMarketCard specRows={specRows} /> : null)}

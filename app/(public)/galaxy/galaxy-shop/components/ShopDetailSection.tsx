@@ -25,18 +25,6 @@ export default function ShopDetailSection({ items }: Props) {
       specRows={specRows}
       // CTA URL は galaxy_url を優先し、無ければ共通 url にフォールバック
       getCtaUrl={(s) => s.galaxy_url ?? s.url ?? '#'}
-      imageOverrides={{
-        carrier: {
-          src: '/images/mvno/rakuten-mobile-thumb.jpg',
-          alt: '格安SIMで中古Galaxyをお得に使う',
-        },
-      }}
-      ctaOverrides={{
-        carrier: {
-          label: 'キャリア認定中古で探す',
-          url: '/iphone/mvno/',
-        },
-      }}
     />
   )
 }

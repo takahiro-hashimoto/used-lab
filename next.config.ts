@@ -95,6 +95,13 @@ const nextConfig: NextConfig = {
         destination: '/airpods/',
         permanent: true,
       },
+      // 格安SIMまとめページを公開停止（掲載していた料金が18か月更新されておらず、
+      // 維持コストに見合わないと判断）。購入先比較がいちばん近い内容なのでそこへ送る
+      {
+        source: '/iphone/mvno/',
+        destination: '/iphone/iphone-shop/',
+        permanent: true,
+      },
       {
         source: '/%E3%83%88%E3%83%83%E3%83%97-2/',
         destination: '/',

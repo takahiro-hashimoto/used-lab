@@ -43,14 +43,16 @@ if (stale.length) {
 }
 
 console.log('\n■ アプリが必要とするテーブルの存在確認（新DB）\n')
+// 「アプリが実際に読んでいるテーブル」だけを並べる。
+// 使われていないテーブルを混ぜると、消したときにこのスクリプトが誤検知する。
+//   related_link_clicks … クリック計測ごと削除（テーブルは元から存在しなかった）
+//   refurb_*            … 1日しか観測されず放置されていたため DROP 済み
+//   mvno_*              … /iphone/mvno/ の公開停止でアプリからは読まなくなった（テーブルは残置）
 const REQUIRED = [
   'iphone_models', 'ipad_models', 'macbook_models', 'mac_models', 'watch_models',
   'airpods_models', 'galaxy_models', 'pixel_models',
   'shops', 'product_shop_links', 'site_config', 'news',
-  'mvno_providers', 'mvno_plans', 'refurb_products', 'refurb_observations',
   'ipad_accessories', 'ipad_accessory_compatibility', 'ipad_reviews', 'iphone_reviews',
-  // sql/related_link_clicks.sql を流していないと存在しない
-  'related_link_clicks',
 ]
 const target = newC ?? oldC
 const missing = []
@@ -65,12 +67,5 @@ if (missing.length) {
   console.log('  すべて存在します。')
 }
 
-console.log('\n■ RPC の存在確認\n')
-const rpcRes = await fetch(`${target.url}/rest/v1/rpc/increment_related_link_click`, {
-  method: 'POST',
-  headers: { ...target.headers, 'Content-Type': 'application/json' },
-  body: JSON.stringify({ p_source_path: '/__migration_probe__', p_dest_path: '/__migration_probe__' }),
-})
-console.log(rpcRes.ok
-  ? '  increment_related_link_click: あり（/__migration_probe__ の行が1件増えるので、気になれば削除してください）'
-  : `  increment_related_link_click: 無し → sql/related_link_clicks.sql を実行してください`)
+// RPC の存在確認はしない。
+// 唯一の対象だった increment_related_link_click は、クリック計測機能ごと削除した。

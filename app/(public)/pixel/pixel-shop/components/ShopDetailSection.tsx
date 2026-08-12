@@ -25,18 +25,6 @@ export default function ShopDetailSection({ items }: Props) {
       specRows={specRows}
       // CTAのURLはPixel検索URL（pixel_url）を優先し、なければデフォルト（url）にフォールバック
       getCtaUrl={(s) => s.pixel_url ?? s.url ?? '#'}
-      imageOverrides={{
-        carrier: {
-          src: '/images/mvno/rakuten-mobile-thumb.jpg',
-          alt: '格安SIMで中古Google Pixelをお得に使う',
-        },
-      }}
-      ctaOverrides={{
-        carrier: {
-          label: 'キャリア認定中古で探す',
-          url: '/iphone/mvno/',
-        },
-      }}
     />
   )
 }

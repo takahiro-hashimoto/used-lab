@@ -19,7 +19,7 @@ PAGES=(
   "/iphone/filter-search/" "/iphone/benchmark/" "/iphone/battery-compare/"
   "/iphone/iphone-shop/" "/iphone/used-iphone-support/" "/iphone/iphone-camera/"
   "/iphone/storage-guide/" "/iphone/used-iphone-attention/" "/iphone/apple-care/"
-  "/iphone/mobile-hoken-compare/" "/iphone/mvno/" "/iphone/network-limit/"
+  "/iphone/mobile-hoken-compare/" "/iphone/network-limit/"
   "/iphone/iphone13-13pro-compare/" "/iphone/iphone13-14-compare/"
   "/iphone/iphone14-14pro-compare/" "/iphone/iphone14-15-compare/"
   "/iphone/iphone15-15pro-compare/" "/iphone/iphone15-16-compare/"
