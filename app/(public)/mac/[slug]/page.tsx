@@ -3,6 +3,7 @@ import { join } from 'node:path'
 import { cache } from 'react'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
+import { forModelPage } from '@/lib/data/shop-ids'
 import {
   getMacModelBySlug,
   getAllMacSlugs,
@@ -15,6 +16,7 @@ import {
 import { aggregateDailyPrices, filterLast3Months, calculateOSLifespan, calculatePriceRange } from '@/lib/utils/macbook-helpers'
 import HeroSection from './components/HeroSection'
 import LeadText from './components/LeadText'
+import { advanceFeaturesOf } from './components/AdvanceFeatures'
 import TableOfContents from './components/TableOfContents'
 import PurchaseVerdict from './components/PurchaseVerdict'
 import ShopGrid from './components/ShopGrid'
@@ -105,13 +107,17 @@ export default async function MacBookDetailPage({ params }: PageProps) {
   const model = withExistingImage(rawModel)
 
   // 並列データ取得
-  const [shops, shopLinks, priceLogs, latestPrice, rawAllModels] = await Promise.all([
+  const [shops, rawShopLinks, priceLogs, latestPrice, rawAllModels] = await Promise.all([
     getShops(),
     getAllProductShopLinksByType('mac'),
     getMacPriceLogsByModelId(rawModel.id),
     cachedGetLatestPrice(rawModel.id),
     getAllMacModelsIncludingEnded(),
   ])
+
+  // 描画しないショップ（プロディグ・Amazon整備済み品など）は
+  // ここで落とす。渡すと RSC ペイロードに載るだけで表示はされない
+  const shopLinks = forModelPage(rawShopLinks)
   const allModels = rawAllModels.map(withExistingImage)
 
   // PriceChartSection用のデータをサーバーサイドで事前計算
@@ -155,7 +161,14 @@ export default async function MacBookDetailPage({ params }: PageProps) {
       <article>
         <HeroSection model={model} latestPrice={latestPrice} dateStr={dateStr} dateDisplay={dateDisplay} />
         <LeadText model={model} latestPrice={latestPrice} />
-        <TableOfContents />
+        {/* 描画されないセクションは目次からも外す（リンク切れ防止）。
+            price-trend は価格ログが1件も無い機種で消える（例: 相場が未取得の Mac Studio 2023） */}
+        <TableOfContents
+          omitIds={[
+            ...(advanceFeaturesOf(model).length > 0 ? [] : ['upgrade']),
+            ...(priceLogs.length > 0 ? [] : ['price-trend']),
+          ]}
+        />
         <div className="l-sections">
         <PurchaseVerdict model={model} latestPrice={latestPrice} />
         <ShopGrid shops={shops} shopLinks={modelShopLinks} model={model} />

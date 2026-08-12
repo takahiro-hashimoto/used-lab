@@ -1,6 +1,7 @@
 import { cache } from 'react'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
+import { forModelPage } from '@/lib/data/shop-ids'
 import {
   getIPadModelBySlug,
   getAllIPadSlugs,
@@ -96,7 +97,7 @@ export default async function IPadDetailPage({ params }: PageProps) {
   if (!model) notFound()
 
   // 並列データ取得
-  const [shops, shopLinks, priceLogs, latestPrice, allModels, allAccessories, allCompatibility, reviews] = await Promise.all([
+  const [shops, rawShopLinks, priceLogs, latestPrice, allModels, allAccessories, allCompatibility, reviews] = await Promise.all([
     getShops(),
     getAllProductShopLinksByType('ipad'),
     getIPadPriceLogsByModelId(model.id),
@@ -106,6 +107,10 @@ export default async function IPadDetailPage({ params }: PageProps) {
     getAllIPadAccessoryCompatibility(),
     getIPadReviewsBySlug(slug),
   ])
+
+  // 描画しないショップ（プロディグ・Amazon整備済み品など）は
+  // ここで落とす。渡すと RSC ペイロードに載るだけで表示はされない
+  const shopLinks = forModelPage(rawShopLinks)
   const accessoryLookup = buildAccessoryLookup(allAccessories, allCompatibility)
 
   // pencil/keyboard をアクセサリテーブルから導出

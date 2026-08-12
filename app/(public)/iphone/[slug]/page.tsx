@@ -2,6 +2,7 @@ import { cache } from 'react'
 import { PUBLISH_ANDROID_CATEGORIES } from '@/lib/data/feature-flags'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
+import { forModelPage } from '@/lib/data/shop-ids'
 import {
   getIPhoneModelBySlug,
   getAllIPhoneSlugs,
@@ -25,6 +26,7 @@ const cachedGetLatestPrice = cache(getLatestIPhonePriceLogWithPrices)
 import { aggregateDailyPrices, filterLast3Months, calculateOSLifespan, calculatePriceRange, buildIPhonePageTitle } from '@/lib/utils/iphone-helpers'
 import HeroSection from './components/HeroSection'
 import LeadText from './components/LeadText'
+import { advanceFeaturesOf } from './components/AdvanceFeatures'
 import TableOfContents from './components/TableOfContents'
 import PurchaseVerdict from './components/PurchaseVerdict'
 import ShopGrid from './components/ShopGrid'
@@ -103,7 +105,7 @@ export default async function IPhoneDetailPage({ params }: PageProps) {
   if (!model) notFound()
 
   // 並列データ取得
-  const [shops, shopLinks, priceLogs, latestPrice, allModels, reviews] = await Promise.all([
+  const [shops, rawShopLinks, priceLogs, latestPrice, allModels, reviews] = await Promise.all([
     getShops(),
     getAllProductShopLinksByType('iphone'),
     getPriceLogsByModelId(model.id),
@@ -111,6 +113,10 @@ export default async function IPhoneDetailPage({ params }: PageProps) {
     getAllIPhoneModelsIncludingEnded(),
     getIPhoneReviewsBySlug(slug),
   ])
+
+  // 描画しないショップ（プロディグ・Amazon整備済み品など）は
+  // ここで落とす。渡すと RSC ペイロードに載るだけで表示はされない
+  const shopLinks = forModelPage(rawShopLinks)
 
   // 「同じ予算で狙える他のモデル」用: iPhone / Pixel / Galaxy 横断の最新価格
   // （いずれも 86400 キャッシュの共通クエリで、全ページ間で使い回される）
@@ -176,7 +182,7 @@ export default async function IPhoneDetailPage({ params }: PageProps) {
       <article>
         <HeroSection model={model} latestPrice={latestPrice} dateStr={dateStr} dateDisplay={dateDisplay} />
         <LeadText model={model} />
-        <TableOfContents hasReviews={reviews.length > 0} hasSimilarPrice={basePrice != null && similarItems.length > 0} />
+        <TableOfContents hasUpgrade={advanceFeaturesOf(model).length > 0} hasReviews={reviews.length > 0} hasSimilarPrice={basePrice != null && similarItems.length > 0} />
         <div className="l-sections">
         <PurchaseVerdict model={model} latestPrice={latestPrice} />
         <ShopGrid shops={shops} shopLinks={modelShopLinks} model={model} />

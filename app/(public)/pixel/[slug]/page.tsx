@@ -1,6 +1,7 @@
 import { cache } from 'react'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
+import { forModelPage } from '@/lib/data/shop-ids'
 import {
   getPixelModelBySlug,
   getAllPixelSlugs,
@@ -27,6 +28,7 @@ import { buildInventoryInsight } from '@/lib/utils/price-stats'
 import { buildPixelPageTitle, calculatePixelPriceRange, calculatePixelSupport } from './pixel-helpers'
 import HeroSection from './components/HeroSection'
 import LeadText from './components/LeadText'
+import { getPixelAdvanceFeaturesList } from './pixel-helpers'
 import TableOfContents from './components/TableOfContents'
 import PurchaseVerdict from './components/PurchaseVerdict'
 import ShopGrid from './components/ShopGrid'
@@ -102,13 +104,17 @@ export default async function PixelDetailPage({ params }: PageProps) {
   if (!model) notFound()
 
   // 並列データ取得（pixel_reviews テーブルは存在しないため reviews は空固定）
-  const [shops, shopLinks, priceLogs, latestPrice, allModels] = await Promise.all([
+  const [shops, rawShopLinks, priceLogs, latestPrice, allModels] = await Promise.all([
     getShops(),
     getAllProductShopLinksByType('pixel'),
     getPixelPriceLogsByModelId(model.id),
     cachedGetLatestPrice(model.id),
     getAllPixelModelsIncludingEnded(),
   ])
+
+  // 描画しないショップ（プロディグ・Amazon整備済み品など）は
+  // ここで落とす。渡すと RSC ペイロードに載るだけで表示はされない
+  const shopLinks = forModelPage(rawShopLinks)
   const reviews: ProductReview[] = []
 
   // 「同じ予算で狙える他のモデル」用: iPhone / Pixel / Galaxy 横断の最新価格
@@ -164,7 +170,7 @@ export default async function PixelDetailPage({ params }: PageProps) {
       <article>
         <HeroSection model={model} latestPrice={latestPrice} dateStr={dateStr} dateDisplay={dateDisplay} />
         <LeadText model={model} />
-        <TableOfContents hasReviews={false} hasSimilarPrice={basePrice != null && similarItems.length > 0} />
+        <TableOfContents hasUpgrade={getPixelAdvanceFeaturesList(model).length > 0} hasReviews={false} hasSimilarPrice={basePrice != null && similarItems.length > 0} />
         <div className="l-sections">
         <PurchaseVerdict model={model} latestPrice={latestPrice} />
         <ShopGrid shops={shops} shopLinks={modelShopLinks} model={model} />

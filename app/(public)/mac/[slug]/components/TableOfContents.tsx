@@ -9,7 +9,17 @@ const TOC_ITEMS = [
   { id: 'geekbench', label: 'Geekbenchスコア' }
 ]
 
-export default function TableOfContents() {
+type Props = {
+  /**
+   * 描画されないセクションの id。目次は静的なリストなので、
+   * データが無くてセクションごと消える機種では、この指定が無いと
+   * ジャンプできないリンクだけが残る。
+   */
+  omitIds?: string[]
+}
+
+export default function TableOfContents({ omitIds = [] }: Props) {
+  const items = TOC_ITEMS.filter((item) => !omitIds.includes(item.id))
   return (
     <>
     <nav className="l-section l-section--no-pt" aria-label="目次">
@@ -17,7 +27,7 @@ export default function TableOfContents() {
         <div className="toc-wrapper">
           <p className="toc-title"><i className="fa-solid fa-list" aria-hidden="true"></i> タップできる目次</p>
           <ol className="l-grid l-grid--3col u-list-reset">
-            {TOC_ITEMS.map((item) => (
+            {items.map((item) => (
               <li key={item.id}>
                 <a href={`#${item.id}`} className="toc-item">
                   {item.label}{' '}

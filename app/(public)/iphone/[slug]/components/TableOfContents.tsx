@@ -1,9 +1,11 @@
+// advance データが無い機種ではセクションごと描画されないため、目次にも出さない
+const UPGRADE_ITEM = { id: 'upgrade', label: '前機種から進化した点' }
+
 const BASE_ITEMS = [
   { id: 'buy-now', label: '今から買うのはあり？' },
   { id: 'shops', label: 'おすすめ購入サイト' },
   { id: 'lifespan', label: 'いつまで使える？' },
   { id: 'price-trend', label: '中古価格相場の推移' },
-  { id: 'upgrade', label: '前機種から進化した点' },
   { id: 'compare', label: 'スペック比較' },
   { id: 'geekbench', label: 'GeekBench ベンチマーク' },
   { id: 'antutu', label: 'Antutu ベンチマーク' },
@@ -14,16 +16,20 @@ const REVIEW_ITEM = { id: 'reviews', label: '口コミ・評判' }
 const SIMILAR_ITEM = { id: 'similar-price', label: '同じ予算で狙える他機種' }
 
 type Props = {
+  hasUpgrade?: boolean
   hasReviews: boolean
   hasSimilarPrice?: boolean
 }
 
-export default function TableOfContents({ hasReviews, hasSimilarPrice = false }: Props) {
+export default function TableOfContents({ hasUpgrade = true,hasReviews, hasSimilarPrice = false }: Props) {
   // AFTER_ITEMSを削除し、BASE_ITEMSとREVIEW_ITEMのみで構成
   const base = hasSimilarPrice
     ? BASE_ITEMS.flatMap((item) => (item.id === 'price-trend' ? [item, SIMILAR_ITEM] : [item]))
     : BASE_ITEMS
-  const items = hasReviews ? [...base, REVIEW_ITEM] : [...base]
+  const withUpgrade = hasUpgrade
+      ? base.flatMap((item) => (item.id === 'price-trend' ? [item, UPGRADE_ITEM] : [item]))
+      : base
+    const items = hasReviews ? [...withUpgrade, REVIEW_ITEM] : [...withUpgrade]
 
   return (
     <>

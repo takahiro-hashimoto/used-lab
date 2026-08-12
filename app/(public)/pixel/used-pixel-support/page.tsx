@@ -143,7 +143,8 @@ export default async function UsedPixelSupportPage() {
                 </a>
               </li>
               <li>
-                <a href="#lifespan-table" className="toc-item">
+                {/* このカテゴリのローカル LifespanTable は section id が after-support */}
+                <a href="#after-support" className="toc-item">
                   サポート期間・寿命目安{' '}
                   <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
                 </a>

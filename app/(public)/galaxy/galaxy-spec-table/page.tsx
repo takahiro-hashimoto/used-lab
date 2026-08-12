@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
+import { forSpecTable } from '@/lib/data/shop-ids'
 import { getAllGalaxyModelsIncludingEnded, getAllProductShopLinksByType, getLatestGalaxyPriceLogsWithPricesForModels } from '@/lib/queries'
 import { calcAvgFromShops } from '@/lib/utils/price-info-helpers'
 import Breadcrumb from '@/app/components/Breadcrumb'
@@ -55,10 +56,13 @@ export const metadata: Metadata = {
 export default async function GalaxySpecTablePage() {
   const allModels = await getAllGalaxyModelsIncludingEnded()
   const PRICE_COLS = ['iosys_min', 'iosys_max', 'geo_min', 'geo_max', 'janpara_min', 'janpara_max']
-  const [allShopLinks, latestPriceLogs] = await Promise.all([
+  const [rawShopLinks, latestPriceLogs] = await Promise.all([
     getAllProductShopLinksByType('galaxy'),
     getLatestGalaxyPriceLogsWithPricesForModels(allModels.map((m) => m.id), PRICE_COLS),
   ])
+
+  // クライアントへ渡す前にショップを絞る（理由は forSpecTable の定義を参照）
+  const allShopLinks = forSpecTable(rawShopLinks)
 
   const avgPrices: Record<number, number | null> = {}
   // 相場は日々変わる。スペック（不変）と同じ表に並べる以上、いつ時点かを明示する

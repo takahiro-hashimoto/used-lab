@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
 import Breadcrumb from '@/app/components/Breadcrumb'
+import { forSpecTable } from '@/lib/data/shop-ids'
 import { getAllIPadModelsIncludingEnded, getAllProductShopLinksByType, getAllIPadAccessories, getAllIPadAccessoryCompatibility, getLatestIPadPriceLogsWithPricesForModels } from '@/lib/queries'
 import { buildAccessoryLookup, getPencilTextFromAccessories, getKeyboardTextFromAccessories } from '@/lib/utils/ipad-helpers'
 import { calcAvgFromShops } from '@/lib/utils/price-info-helpers'
@@ -139,7 +140,8 @@ export default async function IPadSpecTablePage() {
     last_ipados: m.last_ipados,
   }))
 
-  const serializedLinks = allShopLinks.map((l) => ({
+  // クライアントへ渡す前にショップを絞る（理由は forSpecTable の定義を参照）
+  const serializedLinks = forSpecTable(allShopLinks).map((l) => ({
     product_type: l.product_type,
     product_id: l.product_id,
     shop_id: l.shop_id,
@@ -266,7 +268,7 @@ export default async function IPadSpecTablePage() {
         {/* セクション */}
         <SpecTable models={serializedModels} shopLinks={serializedLinks} prices={avgPrices} priceDate={priceDate} />
         <DualCompare models={serializedModels} shopLinks={serializedLinks} />
-        <BenchmarkSection models={allModels} avgPrices={avgPrices} shopLinks={allShopLinks} />
+        <BenchmarkSection models={allModels} avgPrices={avgPrices} shopLinks={serializedLinks} />
         <EvolutionTimeline
           models={allModels}
           avgPrices={avgPrices}

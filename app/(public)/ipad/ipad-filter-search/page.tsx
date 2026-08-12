@@ -6,6 +6,7 @@ import Image from 'next/image'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import FaqSection from '@/app/components/support/FaqSection'
 import { medianOf, priceBand, findModelId } from '@/lib/utils/price-copy'
+import { forIosysOnly } from '@/lib/data/shop-ids'
 import { getAllIPadModels, getAllProductShopLinksByType, getAllIPadAccessories, getAllIPadAccessoryCompatibility, getLatestIPadPriceLogsWithPricesForModels } from '@/lib/queries'
 import { buildAccessoryLookup, getPencilTextFromAccessories, getKeyboardTextFromAccessories } from '@/lib/utils/ipad-helpers'
 import IconCard from '@/app/components/IconCard'
@@ -75,7 +76,7 @@ const FAQ_ITEMS = [
 export default async function IPadFilterSearchPage() {
   const [allModels, shopLinks, allAccessories, allCompatibility] = await Promise.all([
     getAllIPadModels(),
-    getAllProductShopLinksByType('ipad'),
+    getAllProductShopLinksByType('ipad').then(forIosysOnly), // イオシスの導線しか使わない
     getAllIPadAccessories(),
     getAllIPadAccessoryCompatibility(),
   ])

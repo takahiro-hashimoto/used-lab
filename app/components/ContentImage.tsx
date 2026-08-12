@@ -43,7 +43,15 @@ export default function ContentImage({
     )
   }
 
-  // GIF や外部画像は既存の挙動を維持する。
+  // GIF や外部画像は next/image を通せないので素の img で出す。
+  //
+  // loading を既定で lazy にしている理由:
+  // 指定が無いと React が SSR 出力の img を見つけて <link rel="preload" as="image">
+  // を head に発行する。この分岐に来るのはアフィリエイトのバナー画像がほとんどで、
+  // 実際 /iphone/ では画面下部のカード3枚（firebasestorage / a8 / 楽天）が
+  // 最優先で先読みされ、LCP 画像と帯域と接続を奪い合っていた。
+  // lazy を付けると React は preload を出さなくなる。
+  // ファーストビューに置く外部画像がある場合だけ loading="eager" を明示すること。
   return (
     <img
       src={src}
@@ -51,7 +59,7 @@ export default function ContentImage({
       width={width}
       height={height}
       className={className}
-      loading={loading}
+      loading={loading ?? 'lazy'}
       decoding={decoding}
       style={style}
       {...rest}

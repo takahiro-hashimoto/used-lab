@@ -1,6 +1,7 @@
 import { cache } from 'react'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
+import { forModelPage } from '@/lib/data/shop-ids'
 import {
   getMacBookModelBySlug,
   getAllMacBookSlugs,
@@ -13,6 +14,7 @@ import {
 import { aggregateDailyPrices, filterLast3Months, calculateOSLifespan, calculatePriceRange } from '@/lib/utils/macbook-helpers'
 import HeroSection from './components/HeroSection'
 import LeadText from './components/LeadText'
+import { advanceFeaturesOf } from './components/AdvanceFeatures'
 import TableOfContents from './components/TableOfContents'
 import PurchaseVerdict from './components/PurchaseVerdict'
 import ShopGrid from './components/ShopGrid'
@@ -91,13 +93,17 @@ export default async function MacBookDetailPage({ params }: PageProps) {
   if (!model) notFound()
 
   // 並列データ取得
-  const [shops, shopLinks, priceLogs, latestPrice, allModels] = await Promise.all([
+  const [shops, rawShopLinks, priceLogs, latestPrice, allModels] = await Promise.all([
     getShops(),
     getAllProductShopLinksByType('macbook'),
     getMacBookPriceLogsByModelId(model.id),
     cachedGetLatestPrice(model.id),
     getAllMacBookModelsIncludingEnded(),
   ])
+
+  // 描画しないショップ（プロディグ・Amazon整備済み品など）は
+  // ここで落とす。渡すと RSC ペイロードに載るだけで表示はされない
+  const shopLinks = forModelPage(rawShopLinks)
 
   // PriceChartSection用のデータをサーバーサイドで事前計算
   const recentLogs = filterLast3Months(priceLogs)
@@ -140,7 +146,7 @@ export default async function MacBookDetailPage({ params }: PageProps) {
       <article>
         <HeroSection model={model} latestPrice={latestPrice} dateStr={dateStr} dateDisplay={dateDisplay} />
         <LeadText model={model} latestPrice={latestPrice} />
-        <TableOfContents />
+        <TableOfContents omitIds={advanceFeaturesOf(model).length > 0 ? [] : ['upgrade']} />
         <div className="l-sections">
         <PurchaseVerdict model={model} latestPrice={latestPrice} />
         <ShopGrid shops={shops} shopLinks={modelShopLinks} model={model} />

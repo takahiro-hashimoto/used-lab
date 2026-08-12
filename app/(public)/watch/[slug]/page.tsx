@@ -1,6 +1,7 @@
 import { cache } from 'react'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
+import { forModelPage } from '@/lib/data/shop-ids'
 import {
   getWatchModelBySlug,
   getAllWatchSlugs,
@@ -91,13 +92,17 @@ export default async function WatchDetailPage({ params }: PageProps) {
   if (!model) notFound()
 
   // 並列データ取得
-  const [shops, shopLinks, priceLogs, latestPrice, allModels] = await Promise.all([
+  const [shops, rawShopLinks, priceLogs, latestPrice, allModels] = await Promise.all([
     getShops(),
     getAllProductShopLinksByType('watch'),
     getWatchPriceLogsByModelId(model.id),
     cachedGetLatestPrice(model.id),
     getAllWatchModelsIncludingEnded(),
   ])
+
+  // 描画しないショップ（プロディグ・Amazon整備済み品など）は
+  // ここで落とす。渡すと RSC ペイロードに載るだけで表示はされない
+  const shopLinks = forModelPage(rawShopLinks)
 
   // PriceChartSection用のデータをサーバーサイドで事前計算
   const dailyData = aggregateDailyPrices(priceLogs)

@@ -1,3 +1,4 @@
+import { forSpecTable } from '@/lib/data/shop-ids'
 import { existsSync } from 'node:fs'
 import { join } from 'node:path'
 import type { Metadata } from 'next'
@@ -148,7 +149,8 @@ export default async function MacSpecTablePage() {
     color: m.color,
   }))
 
-  const serializedLinks = allShopLinks.map((l) => ({
+  // クライアントへ渡す前にショップを絞る（理由は forSpecTable の定義を参照）
+  const serializedLinks = forSpecTable(allShopLinks).map((l) => ({
     product_type: l.product_type,
     product_id: l.product_id,
     shop_id: l.shop_id,

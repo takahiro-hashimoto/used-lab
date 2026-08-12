@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
 import Breadcrumb from '@/app/components/Breadcrumb'
+import { forSpecTable } from '@/lib/data/shop-ids'
 import { getAllMacBookModelsIncludingEnded, getAllProductShopLinksByType, getLatestMacBookPriceLogsWithPricesForModels } from '@/lib/queries'
 import { calcAvgFromShops } from '@/lib/utils/price-info-helpers'
 import SpecTable from './components/SpecTable'
@@ -132,7 +133,8 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/macbook/macbook
     advance: m.advance,
   }))
 
-  const serializedLinks = allShopLinks.map((l) => ({
+  // クライアントへ渡す前にショップを絞る（理由は forSpecTable の定義を参照）
+  const serializedLinks = forSpecTable(allShopLinks).map((l) => ({
     product_type: l.product_type,
     product_id: l.product_id,
     shop_id: l.shop_id,
@@ -260,7 +262,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/macbook/macbook
         {/* セクション */}
         <SpecTable models={serializedModels} shopLinks={serializedLinks} prices={avgPrices} priceDate={priceDate} />
         <DualCompare models={serializedModels} shopLinks={serializedLinks} />
-        <BenchmarkSection models={allModels} avgPrices={avgPrices} shopLinks={allShopLinks} />
+        <BenchmarkSection models={allModels} avgPrices={avgPrices} shopLinks={serializedLinks} />
         <EvolutionTimeline />
         <GlossarySection productName="MacBook" items={GLOSSARY_ITEMS} />
         </div>

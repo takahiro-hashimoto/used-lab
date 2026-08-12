@@ -3,6 +3,7 @@ import { filterSearchNoteParagraphs } from '@/lib/data/filter-search-note'
 import { priceStatsOf } from '@/lib/utils/price-stats'
 import type { Metadata } from 'next'
 import Image from 'next/image'
+import { forIosysOnly } from '@/lib/data/shop-ids'
 import { getAllIPhoneModels, getAllProductShopLinksByType, getLatestIPhonePriceLogsWithPricesForModels } from '@/lib/queries'
 import IconCard from '@/app/components/IconCard'
 import FilterSearchApp from './components/FilterSearchApp'
@@ -57,7 +58,7 @@ const FAQ_ITEMS = [
 export default async function IPhoneFilterSearchPage() {
   const [allModels, shopLinks] = await Promise.all([
     getAllIPhoneModels(),
-    getAllProductShopLinksByType('iphone'),
+    getAllProductShopLinksByType('iphone').then(forIosysOnly), // イオシスの導線しか使わない
   ])
 
   const allModelIds = allModels.map((m) => m.id)

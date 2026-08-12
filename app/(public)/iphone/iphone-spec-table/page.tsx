@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
+import { forSpecTable } from '@/lib/data/shop-ids'
 import { getAllIPhoneModelsIncludingEnded, getAllProductShopLinksByType, getLatestIPhonePriceLogsWithPricesForModels } from '@/lib/queries'
 import { calcAvgFromShops } from '@/lib/utils/price-info-helpers'
 import Breadcrumb from '@/app/components/Breadcrumb'
@@ -59,10 +60,13 @@ export const metadata: Metadata = {
 export default async function IPhoneSpecTablePage() {
   const allModels = await getAllIPhoneModelsIncludingEnded()
   const PRICE_COLS = ['iosys_min', 'iosys_max', 'geo_min', 'geo_max', 'janpara_min', 'janpara_max']
-  const [allShopLinks, latestPriceLogs] = await Promise.all([
+  const [rawShopLinks, latestPriceLogs] = await Promise.all([
     getAllProductShopLinksByType('iphone'),
     getLatestIPhonePriceLogsWithPricesForModels(allModels.map((m) => m.id), PRICE_COLS),
   ])
+
+  // クライアントへ渡す前にショップを絞る（理由は forSpecTable の定義を参照）
+  const allShopLinks = forSpecTable(rawShopLinks)
 
   const avgPrices: Record<number, number | null> = {}
   // 相場は日々変わる。スペック（不変）と同じ表に並べる以上、いつ時点かを明示する
@@ -243,14 +247,7 @@ const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/iphone-s
           pageUrl="https://used-lab.jp/iphone/iphone-spec-table/"
           pageTitle="歴代iPhoneスペック比較表！気になる機種の性能差や違いがわかる"
           excludeHref={["/iphone/iphone-spec-table/"]}
-        >
-          <div className="m-callout m-callout--muted u-mt-2xl">
-            <span className="m-callout__label">関連</span>
-            <p className="m-callout__text">
-              <a href="https://prodig.co.jp/blogs/column/iphone-history-model-selection" target="_blank" rel="noreferrer noopener">歴代iPhoneの歴史と進化｜モデル選びのポイントも解説</a>
-            </p>
-          </div>
-        </IPhoneArticleFooter>
+        />
     </>
   )
 }

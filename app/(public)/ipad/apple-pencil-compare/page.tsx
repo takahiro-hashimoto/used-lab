@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
+import { forIosysOnly } from '@/lib/data/shop-ids'
 import { getAllIPadModels, getAllProductShopLinksByType, getAllIPadAccessories, getAllIPadAccessoryCompatibility } from '@/lib/queries'
 import { buildAccessoryLookup, getPencilTextFromAccessories } from '@/lib/utils/ipad-helpers'
 import Breadcrumb from '@/app/components/Breadcrumb'
@@ -41,7 +42,7 @@ export const metadata: Metadata = {
 export default async function ApplePencilComparePage() {
   const [allModels, allShopLinks, allAccessories, allCompatibility] = await Promise.all([
     getAllIPadModels(),
-    getAllProductShopLinksByType('ipad'),
+    getAllProductShopLinksByType('ipad').then(forIosysOnly), // イオシスの導線しか使わない
     getAllIPadAccessories(),
     getAllIPadAccessoryCompatibility(),
   ])

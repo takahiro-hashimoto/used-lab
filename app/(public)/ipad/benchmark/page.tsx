@@ -5,6 +5,7 @@ import Image from 'next/image'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import FaqSection from '@/app/components/support/FaqSection'
 import HeroMeta from '@/app/components/HeroMeta'
+import { forIosysOnly } from '@/lib/data/shop-ids'
 import { getAllIPadModels, getAllIPadPriceLogsByModelIds, getAllProductShopLinksByType } from '@/lib/queries'
 import type { IPadPriceLog } from '@/lib/types'
 import BenchmarkRanking from './components/BenchmarkRanking'
@@ -66,7 +67,7 @@ export default async function BenchmarkPage() {
 
   const [allModels, shopLinks] = await Promise.all([
     getAllIPadModels(),
-    getAllProductShopLinksByType('ipad'),
+    getAllProductShopLinksByType('ipad').then(forIosysOnly), // イオシスの導線しか使わない
   ])
   const priceLogsMap = await getAllIPadPriceLogsByModelIds(allModels.map((m) => m.id), get90DaysAgo())
 

@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import type { Metadata } from 'next'
+import { forIosysOnly } from '@/lib/data/shop-ids'
 import { getAllIPhoneModels, getAllProductShopLinksByType } from '@/lib/queries'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import IPhoneArticleFooter from '@/app/components/iphone/IPhoneArticleFooter'
@@ -38,7 +39,7 @@ export const metadata: Metadata = {
 export default async function IPhoneCameraPage() {
   const [allModels, allShopLinks] = await Promise.all([
     getAllIPhoneModels(),
-    getAllProductShopLinksByType('iphone'),
+    getAllProductShopLinksByType('iphone').then(forIosysOnly), // イオシスの導線しか使わない
   ])
 
   const { dateStr, dateDisplay } = getGitDateForFile('app/(public)/iphone/iphone-camera/page.tsx')

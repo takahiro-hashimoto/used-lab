@@ -4,8 +4,13 @@ type Props = {
   model: MacBookModel
 }
 
-export default function AdvanceFeatures({ model }: Props) {
-  if (!model.advance) return null
+/**
+ * 表示する進化ポイントを返す。空なら下のセクションは描画されない。
+ * 目次は静的なリストなので、ここが空だと #upgrade だけがリンク切れになる。
+ * 目次側と判定を一致させるため、この関数を唯一の判定元にする。
+ */
+export function advanceFeaturesOf(model: MacBookModel): string[] {
+  if (!model.advance) return []
 
   const isProModel = model.model.toLowerCase().includes('pro')
   const features: string[] = []
@@ -23,7 +28,11 @@ export default function AdvanceFeatures({ model }: Props) {
     }
   }
 
-  const uniqueFeatures = [...new Set(features)]
+  return [...new Set(features)]
+}
+
+export default function AdvanceFeatures({ model }: Props) {
+  const uniqueFeatures = advanceFeaturesOf(model)
   if (uniqueFeatures.length === 0) return null
 
   return (
