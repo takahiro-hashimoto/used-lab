@@ -37,7 +37,6 @@ import ContinuousAside from '@/app/components/ContinuousAside'
 import HeroMeta from '@/app/components/HeroMeta'
 import RecommendDetailSection from './recommend/components/RecommendDetailSection'
 import CompareTableSection from './recommend/components/CompareTableSection'
-import QuickPickSection from './components/QuickPickSection'
 
 export const revalidate = false
 
@@ -237,9 +236,6 @@ export default async function IPadGuidePage() {
           </div>
         </nav>
         <div className="l-sections">
-
-          {/* 「どれ」「何世代」への即答。比較表より前に置く（詳細は QuickPickSection の冒頭コメント） */}
-          <QuickPickSection models={recommendModels} />
 
           {/* ========== おすすめ機種 ========== */}
           <CompareTableSection

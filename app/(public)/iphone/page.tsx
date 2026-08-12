@@ -27,7 +27,6 @@ import {
 import ProductCard from '@/app/components/ProductCard'
 import RecommendDetailSection from './recommend/components/RecommendDetailSection'
 import CompareTableSection from './recommend/components/CompareTableSection'
-import QuickPickSection from './components/QuickPickSection'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import FaqSection from '@/app/components/support/FaqSection'
 import ShareBox from '@/app/components/ShareBox'
@@ -267,9 +266,6 @@ export default async function IPhoneGuidePage() {
           </div>
         </nav>
         <div className="l-sections">
-
-          {/* 「買うならどれ」への即答。比較表より前に置く（詳細は QuickPickSection の冒頭コメント） */}
-          <QuickPickSection models={recommendModels} />
 
           {/* ========== おすすめ機種（比較表） ========== */}
           <CompareTableSection

@@ -22,49 +22,6 @@ export const RECOMMEND_SLUGS = [
 export const RECOMMEND_COUNT = RECOMMEND_SLUGS.length
 export const RECOMMEND_COUNT_LABEL = `${RECOMMEND_COUNT}機種`
 
-// ---------- 「結局どれ？」への即答 ----------
-/**
- * 「iphone 中古 買うならどれ」系（約3,540表示・平均6.4位）は、
- * おすすめ5機種を並べるだけでは答えになっていない。
- * 状況ごとに1機種だけ名指しして、迷わせずに決めさせる。
- *
- * 根拠は iphone_models の実値（2026-08 時点）:
- *   14      A15 / Lightning / 3,279mAh
- *   14 Pro  A16 / ProMotion 120Hz / Dynamic Island / Lightning
- *   16e     A18 / USB-C / Apple Intelligence対応 / 2025年発売で5機種中いちばん新しい
- *   15      A16 / USB-C / Dynamic Island
- *   14 Plus 6.7インチ / 4,325mAh（5機種中で最大）
- *
- * slug は RECOMMEND_SLUGS に含まれるものだけを指すこと。
- */
-export const QUICK_PICKS: { situation: string; slug: string; reason: string }[] = [
-  {
-    situation: 'とにかく安く抑えたい',
-    slug: '14normal',
-    reason: '発売から年数が経ち、価格がいちばん落ち着いています。日常の用途で困る場面はほとんどありません。',
-  },
-  {
-    situation: 'できるだけ長く使いたい',
-    slug: '16e',
-    reason: '5機種でいちばん新しい2025年発売。A18チップでApple Intelligenceにも対応し、サポートが残る期間が最も長く残っています。',
-  },
-  {
-    situation: '充電をUSB-Cに統一したい',
-    slug: '15normal',
-    reason: 'iPhone 14系は3機種ともLightningです。USB-Cが条件なら15か16eの2択になります。',
-  },
-  {
-    situation: 'カメラと画面の滑らかさ重視',
-    slug: '14pro',
-    reason: '5機種で唯一120Hz（ProMotion）に対応。Dynamic Islandも備え、型落ち価格で上位モデルの体験が得られます。',
-  },
-  {
-    situation: '大画面と電池持ち重視',
-    slug: '14plus',
-    reason: '6.7インチかつ4,325mAhで、5機種中もっとも大きい画面とバッテリーです。',
-  },
-]
-
 // ---------- 各機種のメタ情報 ----------
 export type RecommendMeta = {
   label: string
