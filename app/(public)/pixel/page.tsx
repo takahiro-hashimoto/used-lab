@@ -35,6 +35,7 @@ import { getHeroImage } from '@/lib/data/hero-images'
 import AuthorByline from '@/app/components/AuthorByline'
 import ContinuousAside from '@/app/components/ContinuousAside'
 import HeroMeta from '@/app/components/HeroMeta'
+import PopularSection from '@/app/components/support/PopularSection'
 
 export const revalidate = false
 
@@ -247,6 +248,7 @@ export default async function PixelGuidePage() {
               <li><a href="#compare" className="toc-item">おすすめ機種 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#market-price" className="toc-item">最新相場 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#spec-compare" className="toc-item">スペック比較 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
+              <li><a href="#filter-tool" className="toc-item">診断ツール <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#caution" className="toc-item">注意点 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#where-to-buy" className="toc-item">購入先比較 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
               <li><a href="#faq" className="toc-item">よくある質問 <i className="fa-solid fa-chevron-down" aria-hidden="true"></i></a></li>
@@ -328,6 +330,21 @@ export default async function PixelGuidePage() {
               />
             </div>
           </section>
+
+          {/* ========== 絞り込みツール ========== */}
+          <PopularSection
+            sectionTitle="条件に合うPixelを絞り込む"
+            sectionDescription="予算・ライン・望遠カメラ・写真のAI編集など、ご自身の条件を選ぶことで候補を絞り込めます。"
+            imageSrc="/images/content/thumbnail/simulator.jpg"
+            imageAlt="Pixel機種絞り込みツール"
+            subtitle="条件にチェックを打つだけ！"
+            cardTitle="Pixel機種絞り込みツール"
+            cardDescription="望遠で撮りたい、ベストテイクや編集マジックを使いたい、といった希望や予算にチェックを打つだけで、条件に合う中古Pixelを絞り込めます。OSアップデートの期限はGoogleの公表値で表示するので、長く使える機種も選べます。"
+            buttonText="機種診断スタート"
+            buttonHref="/pixel/pixel-filter-search/"
+            sectionId="filter-tool"
+            headingId="filter-tool"
+          />
 
           {/* ========== 中古Pixelを選ぶ際の確認ポイント ========== */}
           <section className="l-section" id="caution" aria-labelledby="heading-caution">
