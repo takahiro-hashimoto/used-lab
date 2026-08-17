@@ -15,6 +15,7 @@ import {
   ResultCardActions,
 } from '@/app/components/filter-search'
 import type { ShopLink, PurposeOption, BudgetOption } from '@/app/components/filter-search'
+import { estimateSupportEndYear } from '@/lib/data/os-support-years'
 
 // ============================================================
 // Types
@@ -46,7 +47,6 @@ type FilterModel = {
   magsafe: boolean
   lidar: boolean
   night_mode: boolean
-  portrait_mode: boolean
   cinematic_mode: boolean
   action_mode: boolean
   macro_mode: boolean
@@ -95,14 +95,18 @@ const PURPOSE_OPTIONS: PurposeOption<PurposeKey>[] = [
 // 予算オプション（STEP 2）
 // ============================================================
 
-type BudgetKey = 'any' | 'under30k' | 'under50k' | 'under80k' | 'over80k'
+// 帯は iphone_price_logs の実勢に合わせている。
+// 以前は 3/5/8万円で、最上位の「8万円以上」に31機種中17機種（55%）が入り、
+// 中身が ¥82,280〜¥221,529 と2.7倍に開いていて絞り込みにならなかった。
+type BudgetKey = 'any' | 'under30k' | 'under60k' | 'under100k' | 'under150k' | 'over150k'
 
 const BUDGET_OPTIONS: BudgetOption<BudgetKey>[] = [
   { key: 'any', label: '指定なし', desc: '予算を気にせずベストな機種を探す' },
   { key: 'under30k', label: '3万円以下', desc: 'とにかく安く。最低限使えればOK' },
-  { key: 'under50k', label: '5万円以下', desc: 'コスパ重視。バランスの良い一台を探したい' },
-  { key: 'under80k', label: '8万円以下', desc: 'ハイスペック寄りの機種も視野に入れたい' },
-  { key: 'over80k', label: '8万円以上', desc: '予算に余裕あり。最高性能の機種が欲しい' },
+  { key: 'under60k', label: '6万円以下', desc: 'コスパ重視。型落ちの人気モデルが狙える' },
+  { key: 'under100k', label: '10万円以下', desc: 'Proシリーズの型落ちも視野に入れたい' },
+  { key: 'under150k', label: '15万円以下', desc: '比較的新しい世代から選びたい' },
+  { key: 'over150k', label: '15万円以上', desc: '予算に余裕あり。最新・最上位モデルが欲しい' },
 ]
 
 // ============================================================
@@ -112,7 +116,7 @@ const BUDGET_OPTIONS: BudgetOption<BudgetKey>[] = [
 type DisplayFilter = 'any' | 'small' | 'medium' | 'large'
 type CameraFilter = 'any' | 'dual' | 'triple'
 type FeatureKey = 'usbc' | 'magsafe' | 'dynamic_island' | 'promotion' | 'action_button' | 'camera_control' | 'apple_intelligence' | 'lidar'
-type ShootingKey = 'night_mode' | 'portrait_mode' | 'cinematic_mode' | 'action_mode' | 'macro_mode' | 'apple_proraw' | 'apple_prores' | 'photography_style'
+type ShootingKey = 'night_mode' | 'cinematic_mode' | 'action_mode' | 'macro_mode' | 'apple_proraw' | 'apple_prores' | 'photography_style'
 
 const FEATURE_OPTIONS: { key: FeatureKey; label: string }[] = [
   { key: 'usbc', label: 'USB-C対応' },
@@ -125,9 +129,10 @@ const FEATURE_OPTIONS: { key: FeatureKey; label: string }[] = [
   { key: 'lidar', label: 'LiDARスキャナ' },
 ]
 
+// ポートレートモードは表示中31機種すべてが対応していて、選んでも1件も
+// 絞れないため選択肢から外した（押しても結果が変わらず壊れて見える）
 const SHOOTING_OPTIONS: { key: ShootingKey; label: string }[] = [
   { key: 'night_mode', label: 'ナイトモード' },
-  { key: 'portrait_mode', label: 'ポートレートモード' },
   { key: 'cinematic_mode', label: 'シネマティックモード' },
   { key: 'action_mode', label: 'アクションモード' },
   { key: 'macro_mode', label: 'マクロ撮影' },
@@ -156,12 +161,17 @@ function isSupportedModel(lastIos: string | null): boolean {
   return lastIos === null
 }
 
+/**
+ * サポート終了の目安。年数は lib/data/os-support-years.ts が唯一の定義。
+ *
+ * 以前ここだけ +6年 で計算していて、機種ページ・サポートページ（+7年）と
+ * 同じ機種で1年ずれていた。同じページ下部の説明文も「約7年間」で、
+ * カードの数字と矛盾していた。
+ */
 function estimateSupportEnd(date: string | null, lastIos: string | null): string {
   if (lastIos !== null) return '終了'
-  if (!date) return '-'
-  const d = new Date(date)
-  const endYear = d.getFullYear() + 6
-  return `${endYear}年頃まで`
+  const endYear = estimateSupportEndYear(date, 'iphone')
+  return endYear ? `${endYear}年頃まで` : '-'
 }
 
 function formatDisplaySize(display: string | null): string {
@@ -293,15 +303,15 @@ export default function FilterSearchApp({ models, shopLinks }: Props) {
     if (budget !== 'any') {
       const maxBudget: Record<string, number> = {
         under30k: 30000,
-        under50k: 50000,
-        under80k: 80000,
-        over80k: Infinity,
+        under60k: 60000,
+        under100k: 100000,
+        under150k: 150000,
       }
-      const limit = maxBudget[budget]
 
-      if (budget === 'over80k') {
-        result = result.filter((m) => { const p = getAvgPrice(m); return p !== null && p >= 80000 })
-      } else if (limit) {
+      if (budget === 'over150k') {
+        result = result.filter((m) => { const p = getAvgPrice(m); return p !== null && p >= 150000 })
+      } else {
+        const limit = maxBudget[budget]
         result = result.filter((m) => { const p = getAvgPrice(m); return p !== null && p <= limit })
       }
     }

@@ -14,6 +14,7 @@ import {
   ResultCardActions,
 } from '@/app/components/filter-search'
 import type { ShopLink, PurposeOption, BudgetOption } from '@/app/components/filter-search'
+import { estimateSupportEndYear } from '@/lib/data/os-support-years'
 
 // ============================================================
 // Types
@@ -154,11 +155,17 @@ function getFeatureTags(m: FilterModel): string[] {
   return tags.slice(0, 4)
 }
 
-function estimateSupportEnd(date: string | null): string {
-  if (!date) return '-'
-  const d = new Date(date)
-  const endYear = d.getFullYear() + 7
-  return `${endYear}年頃まで`
+/**
+ * ファームウェア更新の目安。年数は lib/data/os-support-years.ts が唯一の定義。
+ *
+ * AirPods に iPhone のような OS サポートの区切りは無い。
+ * 以前はラベルが単に「サポート」で、何のサポートかページ上に説明が無かったため、
+ * OS サポート終了と誤読される表示になっていた。
+ * 説明文は lib/data/filter-search-note.ts の firmware で出している。
+ */
+function estimateFirmwareEnd(date: string | null): string {
+  const endYear = estimateSupportEndYear(date, 'airpods')
+  return endYear ? `${endYear}年頃まで` : '-'
 }
 
 // ============================================================
@@ -475,7 +482,7 @@ export default function AirPodsFilterSearchApp({ models, shopLinks }: Props) {
                         </Link>
                         <div className="ifd-result-card__tags">
                           <span className="ifd-tag ifd-tag--supported">
-                            <i className="fa-solid fa-shield-halved" aria-hidden="true"></i> サポート {estimateSupportEnd(m.date)}
+                            <i className="fa-solid fa-shield-halved" aria-hidden="true"></i> ファームウェア更新 {estimateFirmwareEnd(m.date)}
                           </span>
                         </div>
                       </div>

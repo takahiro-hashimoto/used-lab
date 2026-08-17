@@ -5,12 +5,13 @@ import { createPortal } from 'react-dom'
 import Image from 'next/image'
 import Link from 'next/link'
 import type { MacBookModel } from '@/lib/types'
+import { estimateSupportEndYear } from '@/lib/data/os-support-years'
 
+/** サポート終了の目安。年数は lib/data/os-support-years.ts が唯一の定義 */
 function estimateSupportEnd(date: string | null, lastMacos: string | null): string {
   if (lastMacos !== null) return '終了'
-  if (!date) return '-'
-  const endYear = new Date(date).getFullYear() + 7
-  return `${endYear}年頃まで`
+  const endYear = estimateSupportEndYear(date, 'macbook')
+  return endYear ? `${endYear}年頃まで` : '-'
 }
 
 function formatReleaseDate(date: string | null): string {

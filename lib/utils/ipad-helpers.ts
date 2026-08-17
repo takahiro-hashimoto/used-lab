@@ -19,7 +19,7 @@ export { formatReleaseDate, formatPrice } from './shared-helpers'
  * OS寿命計算（リリース年+7年）
  */
 export function calculateOSLifespan(date: string | null, lastOs: string | null = null) {
-  return calculateOSLifespanGeneric(date, 7, lastOs)
+  return calculateOSLifespanGeneric(date, OS_SUPPORT_YEARS.ipad, lastOs)
 }
 
 /**
@@ -146,6 +146,7 @@ export function buildAccessoryLookup(
 
 import type { LifespanEntryWithModels } from '@/app/components/support/LifespanTable'
 import { CURRENT_MODELS, annualCostOf } from '@/lib/data/current-models'
+import { OS_SUPPORT_YEARS } from '@/lib/data/os-support-years'
 
 /** モデル名からプロダクトライン（iPad Pro / iPad Air / iPad mini / iPad）を抽出 */
 function getProductLine(modelName: string): string {

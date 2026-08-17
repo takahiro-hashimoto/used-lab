@@ -16,6 +16,7 @@ import {
   ResultCardActions,
 } from '@/app/components/filter-search'
 import type { ShopLink, PurposeOption, BudgetOption } from '@/app/components/filter-search'
+import { estimateSupportEndYear } from '@/lib/data/os-support-years'
 
 // ============================================================
 // Types
@@ -145,12 +146,11 @@ function isSupportedModel(lastIpados: string | null): boolean {
   return lastIpados === null
 }
 
+/** サポート終了の目安。年数は lib/data/os-support-years.ts が唯一の定義 */
 function estimateSupportEnd(date: string | null, lastIpados: string | null): string {
   if (lastIpados !== null) return '終了'
-  if (!date) return '-'
-  const d = new Date(date)
-  const endYear = d.getFullYear() + 7
-  return `${endYear}年頃まで`
+  const endYear = estimateSupportEndYear(date, 'ipad')
+  return endYear ? `${endYear}年頃まで` : '-'
 }
 
 function formatDisplaySize(display: string | null): string {

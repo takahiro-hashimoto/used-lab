@@ -1,3 +1,5 @@
+import { OS_SUPPORT_YEARS } from '@/lib/data/os-support-years'
+
 // ============================================================
 // 機種診断シミュレーターの「算出ロジックと中古価格データについて」本文
 //
@@ -20,6 +22,11 @@ type NoteConfig = {
    * declared でどちらなのかを区別する。
    */
   os: { name: string; years: number; declared?: { vendor: string } } | null
+  /**
+   * ファームウェア更新の目安。AirPods のように OS ではなくファームウェアで
+   * 機能が増える製品だけ設定する。os と同時には使わない
+   */
+  firmware?: { years: number }
   /** 価格が変動する要因（カテゴリ固有） */
   variance: string
 }
@@ -28,26 +35,30 @@ const CONFIG: Record<string, NoteConfig> = {
   iphone: {
     product: 'iPhone',
     shops: ['イオシス', 'ゲオ', 'じゃんぱら'],
-    os: { name: 'iOS', years: 7 },
+    os: { name: 'iOS', years: OS_SUPPORT_YEARS.iphone },
     variance: '容量（GB）、本体状態、各店舗の在庫状況',
   },
   ipad: {
     product: 'iPad',
     shops: ['イオシス', 'ゲオ', 'じゃんぱら'],
-    os: { name: 'iPadOS', years: 7 },
+    os: { name: 'iPadOS', years: OS_SUPPORT_YEARS.ipad },
     variance: '容量（GB）、本体状態、Wi-Fi／セルラーモデル、各店舗の在庫状況',
   },
   watch: {
     product: 'Apple Watch',
     shops: ['イオシス', 'ゲオ', 'じゃんぱら'],
     // watchOS は他製品より短い。lib/utils/watch-helpers.ts の calculateOSLifespan と揃える
-    os: { name: 'watchOS', years: 5 },
+    os: { name: 'watchOS', years: OS_SUPPORT_YEARS.watch },
     variance: 'ケースサイズ・素材、本体状態、GPS／セルラーモデル、各店舗の在庫状況',
   },
   airpods: {
     product: 'AirPods',
     shops: ['イオシス', 'じゃんぱら', 'eイヤホン'],
+    // AirPods に OS 更新の概念は無いが、結果カードには
+    // calculateFirmwareLifespan と同じ年数でファームウェア更新の目安を出している。
+    // 説明が無いと「何のサポートか」が読者に伝わらないため firmware で補う
     os: null,
+    firmware: { years: OS_SUPPORT_YEARS.airpods },
     variance: '本体状態、付属品の有無、各店舗の在庫状況',
   },
   galaxy: {
@@ -72,14 +83,16 @@ export type FilterSearchNoteCategory = keyof typeof CONFIG
 
 /** 診断ロジック説明セクションの本文。段落ごとに配列で返す */
 export function filterSearchNoteParagraphs(category: FilterSearchNoteCategory): string[] {
-  const { product, shops, os, variance } = CONFIG[category]
+  const { product, shops, os, firmware, variance } = CONFIG[category]
   const shopList = shops.map((s) => `「${s}」`).join('')
 
   const osSentence = os
     ? os.declared
       ? `また、${os.name}のサポート期限は、${os.declared.vendor}が機種ごとに公表しているOSアップデート提供年数（最長${os.years}年）にもとづく実値で、推定ではありません。`
       : `また、${os.name}のサポート目安は、Appleのこれまでの傾向（発売から約${os.years}年間）をもとに算出しています。`
-    : ''
+    : firmware
+      ? `また、結果に出る「ファームウェア更新」は、Appleがこれまで機能追加を提供してきた期間（発売から約${firmware.years}年間）をもとにした目安です。${product}にiPhoneのようなOSサポートの区切りはなく、更新が止まっても本体は引き続き使えます。`
+      : ''
 
   return [
     `当${product}診断シミュレーターでは、${shopList}の大手3社（いずれも楽天市場出店）の在庫データを楽天ウェブサービス（楽天市場商品検索API）経由で毎日取得し、中古価格を更新しています。中古${product}の取引量が多い主要3社を対象とすることで、市場全体の価格動向を反映しています。`,

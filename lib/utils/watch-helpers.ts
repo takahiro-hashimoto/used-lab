@@ -18,7 +18,7 @@ export { formatReleaseDate, formatPrice } from './shared-helpers'
  * OS寿命計算（リリース年+5年）watchOS基準
  */
 export function calculateOSLifespan(date: string | null, lastOs: string | null = null) {
-  return calculateOSLifespanGeneric(date, 5, lastOs)
+  return calculateOSLifespanGeneric(date, OS_SUPPORT_YEARS.watch, lastOs)
 }
 
 /**
@@ -89,6 +89,7 @@ export function calculatePriceRange(log: WatchPriceLog | null): {
 
 import type { LifespanEntryWithHref } from '@/app/components/support/LifespanTable'
 import { CURRENT_MODELS, CURRENT_WATCH_ULTRA } from '@/lib/data/current-models'
+import { OS_SUPPORT_YEARS } from '@/lib/data/os-support-years'
 
 /**
  * DBモデル配列からサポート期間一覧テーブル用データを生成

@@ -16,6 +16,7 @@ import {
   ResultCardActions,
 } from '@/app/components/filter-search'
 import type { ShopLink, PurposeOption, BudgetOption } from '@/app/components/filter-search'
+import { estimateSupportEndYear } from '@/lib/data/os-support-years'
 
 // ============================================================
 // Types
@@ -40,7 +41,6 @@ type FilterModel = {
   blood_oxygen: boolean
   cardiogram: boolean
   accident_detection: boolean
-  fall_detection: boolean
   skin_temperature: boolean
   japanese_input: boolean
   double_tap: boolean
@@ -67,7 +67,7 @@ type PurposeKey =
 
 const PURPOSE_OPTIONS: PurposeOption<PurposeKey>[] = [
   { key: 'health_advanced', icon: 'fa-heart-pulse', label: '健康管理を本格的にしたい', desc: '心電図・血中酸素濃度測定など高度なヘルスケア機能搭載モデル' },
-  { key: 'fitness', icon: 'fa-person-running', label: 'フィットネス・運動記録をしたい', desc: '転倒検出・高度計・ワークアウト追跡に優れたモデルを診断' },
+  { key: 'fitness', icon: 'fa-person-running', label: 'フィットネス・運動記録をしたい', desc: '転倒検出・高度計・ワークアウト記録は全モデル対応。計測項目の差はこだわり条件で絞れます' },
   { key: 'longevity', icon: 'fa-battery-full', label: '最新watchOSで長く使いたい', desc: '発売3年以内・サポート期間に余裕がある機種を診断' },
   { key: 'budget_friendly', icon: 'fa-piggy-bank', label: 'コスパ重視・安く手に入れたい', desc: '中古5万円以下で実力のあるApple Watchを診断' },
   { key: 'always_on', icon: 'fa-clock', label: '常時表示ディスプレイが欲しい', desc: '腕を上げなくても時刻が確認できる便利な機種' },
@@ -79,15 +79,19 @@ const PURPOSE_OPTIONS: PurposeOption<PurposeKey>[] = [
 // 予算オプション（STEP 2）
 // ============================================================
 
-type BudgetKey = 'any' | 'under30k' | '30k_50k' | '50k_80k' | '80k_120k' | 'over120k'
+// 帯は watch_price_logs の実勢に合わせている。
+// 以前は最上位が「12万円以上」だったが、いちばん高い Apple Watch Ultra3 でも
+// ¥113,080 のため、この選択肢は常に0件だった。逆に「3万円以下」には
+// 14機種中7機種（50%）が入っていたので、下も刻み直している。
+type BudgetKey = 'any' | 'under20k' | '20k_40k' | '40k_60k' | '60k_90k' | 'over90k'
 
 const BUDGET_OPTIONS: BudgetOption<BudgetKey>[] = [
   { key: 'any', label: '指定なし', desc: '予算を気にせずベストな機種を探す' },
-  { key: 'under30k', label: '3万円以下', desc: 'とにかく安く。最低限使えればOK' },
-  { key: '30k_50k', label: '3〜5万円', desc: 'コスパ重視。バランスの良い一台を探したい' },
-  { key: '50k_80k', label: '5〜8万円', desc: '性能にも妥協したくない方向け' },
-  { key: '80k_120k', label: '8〜12万円', desc: 'ハイスペック寄りの機種も視野に入れたい' },
-  { key: 'over120k', label: '12万円以上', desc: '予算に余裕あり。最高性能の機種が欲しい' },
+  { key: 'under20k', label: '2万円以下', desc: 'とにかく安く。最低限使えればOK' },
+  { key: '20k_40k', label: '2〜4万円', desc: 'コスパ重視。バランスの良い一台を探したい' },
+  { key: '40k_60k', label: '4〜6万円', desc: '性能にも妥協したくない方向け' },
+  { key: '60k_90k', label: '6〜9万円', desc: '比較的新しい世代やUltraも視野に入れたい' },
+  { key: 'over90k', label: '9万円以上', desc: '予算に余裕あり。最上位モデルが欲しい' },
 ]
 
 // ============================================================
@@ -96,7 +100,8 @@ const BUDGET_OPTIONS: BudgetOption<BudgetKey>[] = [
 
 type SeriesFilter = 'any' | 'series' | 'se' | 'ultra'
 type SizeFilter = 'any' | 'small' | 'large'
-type HealthFeatureKey = 'cardiogram' | 'blood_oxygen' | 'skin_temperature' | 'sleep_tracking' | 'fall_detection' | 'accident_detection'
+// 転倒検出は表示中14機種すべてが対応していて、選んでも1件も絞れないため外した
+type HealthFeatureKey = 'cardiogram' | 'blood_oxygen' | 'skin_temperature' | 'sleep_tracking' | 'accident_detection'
 type ConvenienceFeatureKey = 'always_on_display' | 'fast_charge' | 'double_tap' | 'japanese_input'
 
 const HEALTH_FEATURE_OPTIONS: { key: HealthFeatureKey; label: string }[] = [
@@ -104,7 +109,6 @@ const HEALTH_FEATURE_OPTIONS: { key: HealthFeatureKey; label: string }[] = [
   { key: 'blood_oxygen', label: '血中酸素濃度' },
   { key: 'skin_temperature', label: '皮膚温測定' },
   { key: 'sleep_tracking', label: '睡眠時無呼吸通知' },
-  { key: 'fall_detection', label: '転倒検出' },
   { key: 'accident_detection', label: '衝突事故検出' },
 ]
 
@@ -123,12 +127,17 @@ function isSupportedModel(lastWatchos: string | null): boolean {
   return lastWatchos === null
 }
 
+/**
+ * サポート終了の目安。年数は lib/data/os-support-years.ts が唯一の定義。
+ *
+ * 以前ここだけ +7年 で計算していた。watchOS は他製品より短く、
+ * lib/utils/watch-helpers.ts も同ページ下部の説明文も5年なので、
+ * 実際より2年長く「まだ使える」と表示していた。
+ */
 function estimateSupportEnd(date: string | null, lastWatchos: string | null): string {
   if (lastWatchos !== null) return '終了'
-  if (!date) return '-'
-  const d = new Date(date)
-  const endYear = d.getFullYear() + 7
-  return `${endYear}年頃まで`
+  const endYear = estimateSupportEndYear(date, 'watch')
+  return endYear ? `${endYear}年頃まで` : '-'
 }
 
 function getSeries(model: string): 'series' | 'se' | 'ultra' | null {
@@ -217,7 +226,6 @@ export default function WatchFilterSearchApp({ models, shopLinks }: Props) {
               if (!m.cardiogram && !m.blood_oxygen) return false
               break
             case 'fitness':
-              if (!m.fall_detection) return false
               break
             case 'longevity':
               if (!isWithin3Years(m.date)) return false
@@ -249,11 +257,11 @@ export default function WatchFilterSearchApp({ models, shopLinks }: Props) {
         const avg = getAvgPrice(m)
         if (avg === null) return false
         switch (budget) {
-          case 'under30k': return avg <= 30000
-          case '30k_50k': return avg >= 30000 && avg <= 50000
-          case '50k_80k': return avg >= 50000 && avg <= 80000
-          case '80k_120k': return avg >= 80000 && avg <= 120000
-          case 'over120k': return avg >= 120000
+          case 'under20k': return avg <= 20000
+          case '20k_40k': return avg >= 20000 && avg <= 40000
+          case '40k_60k': return avg >= 40000 && avg <= 60000
+          case '60k_90k': return avg >= 60000 && avg <= 90000
+          case 'over90k': return avg >= 90000
           default: return true
         }
       })

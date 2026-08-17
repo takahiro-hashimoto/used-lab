@@ -5,12 +5,13 @@ import { createPortal } from 'react-dom'
 import Image from 'next/image'
 import Link from 'next/link'
 import type { IPhoneModel } from '@/lib/types'
+import { estimateSupportEndYear } from '@/lib/data/os-support-years'
 
+/** サポート終了の目安。年数は lib/data/os-support-years.ts が唯一の定義 */
 function estimateSupportEnd(date: string | null, lastIos: string | null): string {
   if (lastIos !== null) return '終了'
-  if (!date) return '-'
-  const endYear = new Date(date).getFullYear() + 6
-  return `${endYear}年頃まで`
+  const endYear = estimateSupportEndYear(date, 'iphone')
+  return endYear ? `${endYear}年頃まで` : '-'
 }
 
 function formatDisplaySize(display: string | null): string {

@@ -104,7 +104,6 @@ export default async function WatchFilterSearchPage() {
       blood_oxygen: m.blood_oxygen,
       cardiogram: m.cardiogram,
       accident_detection: m.accident_detection,
-      fall_detection: m.fall_detection,
       skin_temperature: m.skin_temperature,
       japanese_input: m.japanese_input,
       double_tap: m.double_tap,

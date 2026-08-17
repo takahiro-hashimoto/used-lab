@@ -34,7 +34,7 @@ export function buildIPhonePageTitle(model: { slug: string; model: string }): st
  * OS寿命計算（リリース年+7年）
  */
 export function calculateOSLifespan(date: string | null, lastOs: string | null = null) {
-  return calculateOSLifespanGeneric(date, 7, lastOs)
+  return calculateOSLifespanGeneric(date, OS_SUPPORT_YEARS.iphone, lastOs)
 }
 
 /**
@@ -230,6 +230,7 @@ export function getAdvanceFeaturesList(model: IPhoneModel): string[] {
 
 import type { LifespanEntryWithModels } from '@/app/components/support/LifespanTable'
 import { CURRENT_MODELS, annualCostOf } from '@/lib/data/current-models'
+import { OS_SUPPORT_YEARS } from '@/lib/data/os-support-years'
 
 /**
  * モデル名からシリーズグループキーを抽出

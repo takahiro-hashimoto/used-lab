@@ -1,4 +1,5 @@
 import type { AirPodsModel, AirPodsPriceLog } from '../types'
+import { OS_SUPPORT_YEARS } from '@/lib/data/os-support-years'
 import {
   getReleaseYear,
   getReleaseMonth,
@@ -23,7 +24,7 @@ export function calculateFirmwareLifespan(date: string | null): {
   remainingYears: number
   isSupported: boolean
 } {
-  const result = calculateOSLifespanGeneric(date, 7)
+  const result = calculateOSLifespanGeneric(date, OS_SUPPORT_YEARS.airpods)
   return {
     releaseYear: result.releaseYear,
     endYear: result.osEndYear,
