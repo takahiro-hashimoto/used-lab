@@ -1,6 +1,5 @@
 import { Fragment } from 'react'
 import type { MacModel, MacDeviceType } from '@/lib/types'
-import SupportEmbedButton from './SupportEmbedButton'
 import StickyTableWrapper from '@/app/components/StickyTableWrapper'
 import { getReleaseYear } from '@/lib/utils/shared-helpers'
 
@@ -193,7 +192,6 @@ function Legend() {
    ------------------------------------------------------------------ */
 type Props = {
   models: MacModel[]
-  hideEmbed?: boolean
 }
 
 /** 表の並び。Apple Silicon 世代のみを扱う */
@@ -203,7 +201,7 @@ const GROUP_DEFS: { type: MacDeviceType; heading: string }[] = [
   { type: 'mac-studio', heading: 'Mac Studio' },
 ]
 
-export default function MacOsSupportMatrix({ models, hideEmbed }: Props) {
+export default function MacOsSupportMatrix({ models }: Props) {
   // Intel世代のデスクトップMacは当サイトの対象外のため、
   // MacBook版にあったレガシー行（legacy-macbooks）は使わない。
   // 脚注もレガシー由来だったので空になる
@@ -244,7 +242,10 @@ export default function MacOsSupportMatrix({ models, hideEmbed }: Props) {
           ))}
         </p>
 
-        {!hideEmbed && <SupportEmbedButton />}
+        {/* 埋め込みボタンは置かない。iMac・Mac mini には /embed/mac/support/ が
+            存在しないため（MacBook のファイルをコピーしたまま src が
+            /embed/macbook/support/ を指しており、コピーした人のサイトに
+            別カテゴリの表が埋まる状態だった）。embed ページを作る場合はここに戻す */}
       </div>
     </section>
   )

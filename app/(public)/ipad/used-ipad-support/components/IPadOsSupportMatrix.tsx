@@ -1,6 +1,6 @@
 import { Fragment } from 'react'
 import type { IPadModel } from '@/lib/types'
-import SupportEmbedButton from './SupportEmbedButton'
+import EmbedCodeButton from '@/app/components/embed/EmbedCodeButton'
 import StickyTableWrapper from '@/app/components/StickyTableWrapper'
 import { getReleaseYear } from '@/lib/utils/shared-helpers'
 import {
@@ -305,7 +305,15 @@ export default function IPadOsSupportMatrix({ models, hideEmbed }: Props) {
           ※ 2025年よりAppleはバージョン番号を年ベースに統一したため、iPadOS 18の次はiPadOS 26となっています。
         </p>
 
-        {!hideEmbed && <SupportEmbedButton />}
+        {!hideEmbed && (
+          <EmbedCodeButton
+            embedPath="/embed/ipad/support/"
+            iframeTitle="iPad iPadOS別サポート機種一覧表 | ユーズドラボ"
+            buttonLabel="この表を埋め込む"
+            description="この表をブログやサイトに埋め込めます。下記コードをコピーして貼り付けてください（表は自動更新されます）。"
+            height={600}
+          />
+        )}
       </div>
     </section>
   )

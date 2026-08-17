@@ -7,7 +7,7 @@ import StickyTableWrapper from '@/app/components/StickyTableWrapper'
 import { parseDate, formatDate, BoolCell } from '@/app/components/spec-table-utils'
 import { calculateOSLifespan } from '@/lib/utils/watch-helpers'
 import type { ProductShopLink } from '@/lib/types'
-import SpecEmbedButton from './SpecEmbedButton'
+import EmbedCodeButton from '@/app/components/embed/EmbedCodeButton'
 import { AMAZON_PRICE_DISCLAIMER } from '@/lib/data/price-source-note'
 import { formatAnnualCost } from '@/lib/utils/shared-helpers'
 
@@ -376,7 +376,16 @@ export default function SpecTable({ models, shopLinks, prices, priceDate, embed 
           <br />
           {AMAZON_PRICE_DISCLAIMER}
         </p>
-        {!embed && <SpecEmbedButton />}
+        {!embed && (
+          <EmbedCodeButton
+            embedPath="/embed/watch/spec-table/"
+            iframeTitle="歴代Apple Watchスペック比較表 | ユーズドラボ"
+            buttonLabel="この比較表を埋め込む"
+            description="歴代Apple Watchのスペック比較表を、ブログやサイトに埋め込めます。下記コードをコピーして貼り付けてください。"
+            height={560}
+            notes={['中古相場・スペックは常に最新の内容へ自動更新されます。', 'Amazon・イオシスなどの販売リンクは含まれません（表とスペック情報のみ）。', '表の下部に当サイトの記事への出典リンクが表示されます。']}
+          />
+        )}
       </div>
     </section>
   )

@@ -1,7 +1,7 @@
 import type { IPhoneModel } from '@/lib/types'
 import { getReleaseYear } from '@/lib/utils/shared-helpers'
 import { LEGACY_IPHONES, type LegacyIPhone } from '@/lib/data/legacy-iphones'
-import SupportEmbedButton from './SupportEmbedButton'
+import EmbedCodeButton from '@/app/components/embed/EmbedCodeButton'
 import StickyTableWrapper from '@/app/components/StickyTableWrapper'
 
 /* ------------------------------------------------------------------
@@ -233,7 +233,15 @@ export default function IosSupportMatrix({ models, hideEmbed }: Props) {
           ※ iOS 27（2026年6月発表）はiPhone 11以降が対象で、iOS 26に対応した機種はすべて引き続き対応します。
         </p>
 
-        {!hideEmbed && <SupportEmbedButton />}
+        {!hideEmbed && (
+          <EmbedCodeButton
+            embedPath="/embed/iphone/support/"
+            iframeTitle="iPhone iOS別サポート機種一覧表 | ユーズドラボ"
+            buttonLabel="この表を埋め込む"
+            description="この表をブログやサイトに埋め込めます。下記コードをコピーして貼り付けてください（表は自動更新されます）。"
+            height={600}
+          />
+        )}
       </div>
     </section>
   )
