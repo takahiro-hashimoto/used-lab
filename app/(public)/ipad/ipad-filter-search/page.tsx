@@ -20,19 +20,29 @@ export const revalidate = false
 
 const CURRENT_YEAR = new Date().getFullYear()
 
+/**
+ * metadata（title / og / twitter）と SNS シェア文言で共有する。
+ *
+ * 以前は同じ文字列を4箇所に直書きしていた。シェア文言だけ普通の文字列で
+ * 書かれていたため `${CURRENT_YEAR}` が公開HTMLにそのまま出ており、
+ * さらに metadata だけ改稿されてシェア文言が旧タイトルで取り残されていた。
+ * タイトルを変えるときは必ずここだけを変えること。
+ */
+const PAGE_TITLE = `iPad機種診断シミュレーター｜選び方がわからなくてもどれを買うべきかわかる【${CURRENT_YEAR}年版】`
+
 export const metadata: Metadata = {
-  title: `iPad機種診断シミュレーター｜選び方がわからなくてもどれを買うべきかわかる【${CURRENT_YEAR}年版】`,
+  title: PAGE_TITLE,
   description:
     '目的・予算・こだわり条件から、あなたに最適な中古iPadを無料で診断。iPad mini〜iPad Pro 13インチまで全機種のデータベースから最適な1台を提案します。',
   alternates: { canonical: '/ipad/ipad-filter-search/' },
   openGraph: {
-    title: `iPad機種診断シミュレーター｜選び方がわからなくてもどれを買うべきかわかる【${CURRENT_YEAR}年版】`,
+    title: PAGE_TITLE,
     description: '目的・予算・こだわり条件から、あなたに最適な中古iPadを無料で診断。',
     url: '/ipad/ipad-filter-search/',
     images: [{ url: getHeroImage('/ipad/ipad-filter-search/'), width: 1200, height: 630, alt: 'iPad機種診断シミュレーター' }],
   },
   twitter: {
-    title: `iPad機種診断シミュレーター｜選び方がわからなくてもどれを買うべきかわかる【${CURRENT_YEAR}年版】`,
+    title: PAGE_TITLE,
     description: '目的・予算・こだわり条件から、あなたに最適な中古iPadを無料で診断。',
     images: [getHeroImage('/ipad/ipad-filter-search/')],
   },
@@ -290,7 +300,7 @@ export default async function IPadFilterSearchPage() {
         </div>
       </article>
     </main>
-    <IPadArticleFooter pageUrl="https://used-lab.jp/ipad/ipad-filter-search/" pageTitle="iPad機種診断シミュレーター｜自分に合うおすすめ中古iPadがすぐわかる【${CURRENT_YEAR}年版】" excludeHref={["/ipad/ipad-filter-search/", "/ipad/"]} />
+    <IPadArticleFooter pageUrl="https://used-lab.jp/ipad/ipad-filter-search/" pageTitle={PAGE_TITLE} excludeHref={["/ipad/ipad-filter-search/", "/ipad/"]} />
     </>
   )
 }

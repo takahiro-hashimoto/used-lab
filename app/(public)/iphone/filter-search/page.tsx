@@ -18,20 +18,31 @@ export const revalidate = false
 
 const CURRENT_YEAR = new Date().getFullYear()
 
+/**
+ * metadata（title / og / twitter）と SNS シェア文言で共有する。
+ *
+ * 以前は同じ文字列を4箇所に直書きしていた。シェア文言だけ普通の文字列で
+ * 書かれていたため `${CURRENT_YEAR}` が公開HTMLにそのまま出ており、
+ * iPad / Watch では metadata だけ改稿されてシェア文言が旧タイトルで
+ * 取り残されてもいた。タイトルを変えるときは必ずここだけを変えること。
+ */
+const PAGE_TITLE = `iPhone機種診断シミュレーター｜自分に合うおすすめ中古スマホがすぐわかる【${CURRENT_YEAR}年版】`
+const PAGE_DESC =
+  '3つのステップで自分にぴったりの中古iPhoneが見つかる診断シミュレーター。用途・予算・こだわり条件を選ぶだけで最適な機種を提案します。'
+
 export const metadata: Metadata = {
-  title: `iPhone機種診断シミュレーター｜自分に合うおすすめ中古スマホがすぐわかる【${CURRENT_YEAR}年版】`,
-  description:
-    '3つのステップで自分にぴったりの中古iPhoneが見つかる診断シミュレーター。用途・予算・こだわり条件を選ぶだけで最適な機種を提案します。',
+  title: PAGE_TITLE,
+  description: PAGE_DESC,
   alternates: { canonical: '/iphone/filter-search/' },
   openGraph: {
-    title: `iPhone機種診断シミュレーター｜自分に合うおすすめ中古スマホがすぐわかる【${CURRENT_YEAR}年版】`,
-    description: '3つのステップで自分にぴったりの中古iPhoneが見つかる診断シミュレーター。',
+    title: PAGE_TITLE,
+    description: PAGE_DESC,
     url: '/iphone/filter-search/',
     images: [{ url: getHeroImage('/iphone/filter-search/'), width: 1200, height: 630, alt: 'iPhone機種診断シミュレーター' }],
   },
   twitter: {
-    title: `iPhone機種診断シミュレーター｜自分に合うおすすめ中古スマホがすぐわかる【${CURRENT_YEAR}年版】`,
-    description: '3つのステップで自分にぴったりの中古iPhoneが見つかる診断シミュレーター。',
+    title: PAGE_TITLE,
+    description: PAGE_DESC,
     images: [getHeroImage('/iphone/filter-search/')],
   },
 }
@@ -269,7 +280,7 @@ export default async function IPhoneFilterSearchPage() {
     </main>
     <IPhoneArticleFooter
           pageUrl="https://used-lab.jp/iphone/filter-search/"
-          pageTitle="iPhone機種診断シミュレーター｜自分に合うおすすめ中古スマホがすぐわかる【${CURRENT_YEAR}年版】"
+          pageTitle={PAGE_TITLE}
           excludeHref={["/iphone/filter-search/"]}
         />
     </>

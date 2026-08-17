@@ -17,19 +17,29 @@ export const revalidate = false
 
 const CURRENT_YEAR = new Date().getFullYear()
 
+/**
+ * metadata（title / og / twitter）と SNS シェア文言で共有する。
+ *
+ * 以前は同じ文字列を4箇所に直書きしていた。シェア文言だけ普通の文字列で
+ * 書かれていたため `${CURRENT_YEAR}` が公開HTMLにそのまま出ており、
+ * さらに metadata だけ改稿されてシェア文言が旧タイトルで取り残されていた。
+ * タイトルを変えるときは必ずここだけを変えること。
+ */
+const PAGE_TITLE = `Apple Watch機種診断シミュレーター｜選び方がわからなくてもどれを買うべきかわかる【${CURRENT_YEAR}年版】`
+
 export const metadata: Metadata = {
-  title: `Apple Watch機種診断シミュレーター｜選び方がわからなくてもどれを買うべきかわかる【${CURRENT_YEAR}年版】`,
+  title: PAGE_TITLE,
   description:
     '目的・予算・こだわり条件から、あなたに最適な中古Apple Watchを無料で診断。Apple Watch SE〜Ultra 3まで全機種のデータベースから最適な1台を提案します。',
   alternates: { canonical: '/watch/watch-filter-search/' },
   openGraph: {
-    title: `Apple Watch機種診断シミュレーター｜選び方がわからなくてもどれを買うべきかわかる【${CURRENT_YEAR}年版】`,
+    title: PAGE_TITLE,
     description: '目的・予算・こだわり条件から、あなたに最適な中古Apple Watchを無料で診断。',
     url: '/watch/watch-filter-search/',
     images: [{ url: getHeroImage('/watch/watch-filter-search/'), width: 1200, height: 630, alt: 'Apple Watch機種診断シミュレーター' }],
   },
   twitter: {
-    title: `Apple Watch機種診断シミュレーター｜選び方がわからなくてもどれを買うべきかわかる【${CURRENT_YEAR}年版】`,
+    title: PAGE_TITLE,
     description: '目的・予算・こだわり条件から、あなたに最適な中古Apple Watchを無料で診断。',
     images: [getHeroImage('/watch/watch-filter-search/')],
   },
@@ -261,7 +271,7 @@ export default async function WatchFilterSearchPage() {
         </div>
       </article>
     </main>
-    <WatchArticleFooter pageUrl="https://used-lab.jp/watch/watch-filter-search/" pageTitle="Apple Watch機種診断シミュレーター｜自分に合うおすすめ中古アップルウォッチがすぐわかる【${CURRENT_YEAR}年版】" excludeHref={["/watch/watch-filter-search/"]} />
+    <WatchArticleFooter pageUrl="https://used-lab.jp/watch/watch-filter-search/" pageTitle={PAGE_TITLE} excludeHref={["/watch/watch-filter-search/"]} />
     </>
   )
 }
