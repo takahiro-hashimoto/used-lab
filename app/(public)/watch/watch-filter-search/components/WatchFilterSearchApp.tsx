@@ -7,7 +7,6 @@ import {
   formatPrice,
   getAvgPrice,
   formatReleaseDate,
-  isWithin3Years,
   StickyBar,
   NoResult,
   ResultsHeader,
@@ -16,7 +15,10 @@ import {
   ResultCardActions,
 } from '@/app/components/filter-search'
 import type { ShopLink, PurposeOption, BudgetOption } from '@/app/components/filter-search'
-import { estimateSupportEndYear } from '@/lib/data/os-support-years'
+import { estimateSupportEndYear, remainingSupportYears } from '@/lib/data/os-support-years'
+
+/** 「長く使いたい」の基準。サポートが何年以上残っていれば該当とするか */
+const LONGEVITY_MIN_YEARS = 3
 
 // ============================================================
 // Types
@@ -68,7 +70,7 @@ type PurposeKey =
 const PURPOSE_OPTIONS: PurposeOption<PurposeKey>[] = [
   { key: 'health_advanced', icon: 'fa-heart-pulse', label: '健康管理を本格的にしたい', desc: '心電図・血中酸素濃度測定など高度なヘルスケア機能搭載モデル' },
   { key: 'fitness', icon: 'fa-person-running', label: 'フィットネス・運動記録をしたい', desc: '転倒検出・高度計・ワークアウト記録は全モデル対応。計測項目の差はこだわり条件で絞れます' },
-  { key: 'longevity', icon: 'fa-battery-full', label: '最新watchOSで長く使いたい', desc: '発売3年以内・サポート期間に余裕がある機種を診断' },
+  { key: 'longevity', icon: 'fa-battery-full', label: '最新watchOSで長く使いたい', desc: 'watchOSのサポートが3年以上残っている機種を診断' },
   { key: 'budget_friendly', icon: 'fa-piggy-bank', label: 'コスパ重視・安く手に入れたい', desc: '中古5万円以下で実力のあるApple Watchを診断' },
   { key: 'always_on', icon: 'fa-clock', label: '常時表示ディスプレイが欲しい', desc: '腕を上げなくても時刻が確認できる便利な機種' },
   { key: 'outdoor', icon: 'fa-mountain', label: 'アウトドア・タフに使いたい', desc: 'Ultra系の高耐久・長時間バッテリーモデルを診断' },
@@ -147,11 +149,23 @@ function getSeries(model: string): 'series' | 'se' | 'ultra' | null {
   return null
 }
 
-function getSizeCategory(size: string | null): 'small' | 'large' | null {
-  if (!size) return null
-  if (size.includes('40mm') || size.includes('41mm') || size.includes('38mm')) return 'small'
-  if (size.includes('44mm') || size.includes('45mm') || size.includes('46mm') || size.includes('49mm')) return 'large'
-  return null
+/**
+ * ケースサイズの分類。1機種が複数サイズを持つので集合で返す。
+ *
+ * size 列は「40mm / 44mm」のように2サイズ併記が基本（Ultra だけ 49mm 単独）。
+ * 以前は最初に一致したほうを返して打ち切っていたため、「40mm / 44mm」が
+ * small だけに分類され、大きいサイズで絞ると9機種が消えていた。
+ * 逆に Series 10 以降の「42mm / 46mm」は large だけになり、小さいサイズから
+ * 漏れていた。実在する値は 38/40/41/42/44/45/46/49mm なので 42 と 44 で割る。
+ */
+const SIZE_SPLIT_MM = 42
+
+function sizeCategoriesOf(size: string | null): Set<'small' | 'large'> {
+  const out = new Set<'small' | 'large'>()
+  for (const m of String(size ?? '').matchAll(/(\d+)\s*mm/g)) {
+    out.add(Number(m[1]) <= SIZE_SPLIT_MM ? 'small' : 'large')
+  }
+  return out
 }
 
 function getFeatureTags(m: FilterModel): string[] {
@@ -228,7 +242,8 @@ export default function WatchFilterSearchApp({ models, shopLinks }: Props) {
             case 'fitness':
               break
             case 'longevity':
-              if (!isWithin3Years(m.date)) return false
+              if (m.last_watchos !== null) return false
+              if ((remainingSupportYears(m.date, 'watch') ?? -99) < LONGEVITY_MIN_YEARS) return false
               break
             case 'budget_friendly':
               if (!hasBudget) {
@@ -274,7 +289,7 @@ export default function WatchFilterSearchApp({ models, shopLinks }: Props) {
 
     // ========== サイズフィルタ ==========
     if (sizeFilter !== 'any') {
-      result = result.filter((m) => getSizeCategory(m.size) === sizeFilter)
+      result = result.filter((m) => sizeCategoriesOf(m.size).has(sizeFilter))
     }
 
     // ========== ヘルスケア機能フィルタ ==========
@@ -417,7 +432,7 @@ export default function WatchFilterSearchApp({ models, shopLinks }: Props) {
                 <div className="spec-filter__tags">
                   {([
                     ['any', '指定なし'],
-                    ['small', '小（38〜41mm）'],
+                    ['small', '小（38〜42mm）'],
                     ['large', '大（44〜49mm）'],
                   ] as [SizeFilter, string][]).map(([key, label]) => (
                     <button

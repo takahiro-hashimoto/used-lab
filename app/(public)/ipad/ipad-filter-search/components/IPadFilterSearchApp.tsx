@@ -7,7 +7,6 @@ import {
   formatPrice,
   getAvgPrice,
   formatReleaseDate,
-  isWithin3Years,
   StickyBar,
   NoResult,
   ResultsHeader,
@@ -16,7 +15,10 @@ import {
   ResultCardActions,
 } from '@/app/components/filter-search'
 import type { ShopLink, PurposeOption, BudgetOption } from '@/app/components/filter-search'
-import { estimateSupportEndYear } from '@/lib/data/os-support-years'
+import { estimateSupportEndYear, remainingSupportYears } from '@/lib/data/os-support-years'
+
+/** 「長く使いたい」の基準。サポートが何年以上残っていれば該当とするか */
+const LONGEVITY_MIN_YEARS = 3
 
 // ============================================================
 // Types
@@ -76,7 +78,7 @@ const PURPOSE_OPTIONS: PurposeOption<PurposeKey>[] = [
   { key: 'business', icon: 'fa-briefcase', label: 'ビジネス・資料作成', desc: 'Magic Keyboard対応でPC代わりに使えるモデルを診断' },
   { key: 'reading', icon: 'fa-book-open', label: '読書・ブラウジング', desc: '軽量コンパクトなiPad miniや無印iPadなど廉価モデル' },
   { key: 'gaming', icon: 'fa-gamepad', label: 'ゲーム', desc: 'M1/A14以降の高性能チップ搭載モデルをおすすめ' },
-  { key: 'longevity', icon: 'fa-battery-full', label: '長く使い続けたい', desc: '発売3年以内・サポート期間に余裕がある機種を診断' },
+  { key: 'longevity', icon: 'fa-battery-full', label: '長く使い続けたい', desc: 'iPadOSのサポートが3年以上残っている機種を診断' },
   { key: 'budget_friendly', icon: 'fa-piggy-bank', label: 'コスパ重視・安く', desc: '中古5万円以下で実力のある人気iPadを診断' },
   { key: 'high_spec', icon: 'fa-bolt', label: '最新機能・最高性能', desc: 'Apple Intelligence対応の最新iPad Pro/Airを診断' },
   { key: 'car_navi', icon: 'fa-car', label: '車載・カーナビ', desc: 'GPS搭載のセルラーモデル対応機種を診断' },
@@ -246,7 +248,8 @@ export default function IPadFilterSearchApp({ models, shopLinks }: Props) {
               if (!isHighPerformanceCPU(m.cpu)) return false
               break
             case 'longevity':
-              if (!isWithin3Years(m.date)) return false
+              if (m.last_ipados !== null) return false
+              if ((remainingSupportYears(m.date, 'ipad') ?? -99) < LONGEVITY_MIN_YEARS) return false
               break
             case 'budget_friendly':
               if (!hasBudget) {

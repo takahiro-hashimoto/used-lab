@@ -54,3 +54,23 @@ export function estimateSupportEndYear(
   if (!year) return null
   return year + OS_SUPPORT_YEARS[category]
 }
+
+/**
+ * サポートがあと何年残っているかの目安。終了済みなら 0 以下を返す。
+ *
+ * 「長く使いたい」の判定に使う。以前は発売から3年以内かどうかで見ていたが、
+ * これはサポート年数と無関係な基準だった。iPad はサポート7年なので4年前の
+ * 機種にもまだ3年残っているのに除外され、Apple Watch は5年なので同じ
+ * 「3年以内」でも意味する残り年数が違っていた。
+ *
+ * lastOs（最終対応OSが確定している＝サポート終了）は呼び出し側で先に弾くこと。
+ */
+export function remainingSupportYears(
+  date: string | null,
+  category: OsSupportCategory,
+  now: Date = new Date(),
+): number | null {
+  const endYear = estimateSupportEndYear(date, category)
+  if (endYear === null) return null
+  return endYear - now.getFullYear()
+}

@@ -56,13 +56,14 @@ type Props = {
 // 用途オプション（STEP 1）
 // ============================================================
 
+// 'anc' と 'spatial' は用途ではなくスペック条件で、STEP3 のこだわり条件と
+// 完全に重複していた（用途の 'anc' は 'commute' と、'spatial' は 'music' と
+// 同じ集合を返していた）。絞り込みは STEP3 に一本化する。
 type PurposeKey =
   | 'music'
   | 'call'
   | 'workout'
   | 'commute'
-  | 'anc'
-  | 'spatial'
   | 'cost'
   | 'beginner'
 
@@ -71,8 +72,6 @@ const PURPOSE_OPTIONS: PurposeOption<PurposeKey>[] = [
   { key: 'call', icon: 'fa-phone', label: '通話・Web会議', desc: 'テレワークやオンライン会議で快適に通話したい' },
   { key: 'workout', icon: 'fa-dumbbell', label: '運動・ジム', desc: 'ランニングやジムなどスポーツ中に使いたい' },
   { key: 'commute', icon: 'fa-train', label: '通勤・外出', desc: '電車やカフェなど外出先でのリスニングがメイン' },
-  { key: 'anc', icon: 'fa-volume-xmark', label: 'ノイキャン重視', desc: 'アクティブノイズキャンセリングで周囲の騒音をカットしたい' },
-  { key: 'spatial', icon: 'fa-globe', label: '空間オーディオ', desc: 'Apple Musicの空間オーディオやDolby Atmosを体験したい' },
   { key: 'cost', icon: 'fa-piggy-bank', label: 'とにかく安く', desc: '予算最優先。必要最低限のスペックで安く手に入れたい' },
   { key: 'beginner', icon: 'fa-hand-sparkles', label: '初めてのAirPods', desc: 'AirPodsが初めて。どれを選べばいいかわからない方向け' },
 ]
@@ -144,6 +143,20 @@ function formatPort(port: string | null): string {
   if (port.toLowerCase().includes('usb')) return 'USB-C'
   if (port.toLowerCase().includes('lightning')) return 'Lightning'
   return port
+}
+
+/**
+ * ケースのワイヤレス充電対応。
+ *
+ * 同じ name の機種が複数あり（AirPods 2 ×2 など）、実際の違いが
+ * magsafe / qi_charge だけという組み合わせが存在する。この2列を
+ * カードに出していなかったため、見た目が完全に同じカードが並んでいた。
+ * STEP3 では絞り込み条件として選べるのに結果で確認できない状態だった。
+ */
+function formatCaseCharging(m: FilterModel): string {
+  if (m.magsafe) return 'MagSafe / ワイヤレス充電対応'
+  if (m.qi_charge) return 'ワイヤレス充電対応'
+  return '有線のみ'
 }
 
 function getFeatureTags(m: FilterModel): string[] {
@@ -229,12 +242,6 @@ export default function AirPodsFilterSearchApp({ models, shopLinks }: Props) {
             case 'commute':
               // 通勤: ANC推奨
               if (!m.anc) return false
-              break
-            case 'anc':
-              if (!m.anc) return false
-              break
-            case 'spatial':
-              if (!m.spatial_audio) return false
               break
             case 'cost':
               break
@@ -501,6 +508,7 @@ export default function AirPodsFilterSearchApp({ models, shopLinks }: Props) {
                         {m.chip && <div><dt>チップ</dt><dd>{m.chip}</dd></div>}
                         {m.battery_earphone && <div><dt>バッテリー</dt><dd>{m.battery_earphone}</dd></div>}
                         <div><dt>充電ポート</dt><dd>{formatPort(m.port)}</dd></div>
+                        <div><dt>ケースの充電</dt><dd>{formatCaseCharging(m)}</dd></div>
                       </dl>
                       {tags.length > 0 && (
                         <div className="ifd-result-card__feature-tags">

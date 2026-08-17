@@ -39,12 +39,3 @@ export function formatReleaseDate(date: string | null): string {
   const d = new Date(date)
   return `${d.getFullYear()}年${d.getMonth() + 1}月`
 }
-
-/** 発売日が3年以内かどうかを判定 */
-export function isWithin3Years(dateStr: string | null): boolean {
-  if (!dateStr) return false
-  const releaseDate = new Date(dateStr)
-  const threeYearsAgo = new Date()
-  threeYearsAgo.setFullYear(threeYearsAgo.getFullYear() - 3)
-  return releaseDate >= threeYearsAgo
-}

@@ -1,5 +1,5 @@
 // 共通ユーティリティ
-export { formatPrice, getAvgPrice, formatReleaseDate, isWithin3Years } from './utils'
+export { formatPrice, getAvgPrice, formatReleaseDate } from './utils'
 
 // 共通型定義
 export type { ShopLink, PurposeOption, BudgetOption } from './types'
