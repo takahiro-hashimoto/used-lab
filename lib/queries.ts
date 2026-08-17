@@ -101,11 +101,25 @@ function createModelQueries<T>(table: string, tag: string, activeField?: string)
       { revalidate: 604800, tags: [tag] }
     ),
 
+    /**
+     * 掲載中の全 slug。activeField（サポート終了列）では絞らない。
+     *
+     * 用途は sitemap.ts と各カテゴリの generateStaticParams の2つだけで、
+     * どちらも「サイトに存在するページ」を列挙するものだから、
+     * サポートが終了した機種も含める必要がある。
+     *
+     * 以前はここでも activeField で絞っていたため、Apple Watch の
+     * サポート終了9機種（series4〜9・se・se2・ultra）が静的生成されず、
+     * サイトマップにも載っていなかった。一方でカテゴリトップ・スペック表・
+     * 相場一覧・サポート一覧は getAllModelsIncludingEnded を使っていて
+     * リンクは張っていたので、「リンクはあるがサイトマップに無い」状態だった
+     * （表示自体はリクエスト時生成で200を返していた）。
+     *
+     * 現役機種だけが欲しい場合は getAll（activeField で絞る）を使うこと。
+     */
     getAllSlugs: unstable_cache(
       async (): Promise<string[]> => {
-        let query = supabase.from(table).select('slug').eq('show', 1)
-        if (activeField) query = query.is(activeField, null)
-        const { data, error } = await query
+        const { data, error } = await supabase.from(table).select('slug').eq('show', 1)
         if (error) throw new Error(`getAllSlugs(${table}): ${error.message}`)
         return (data ?? []).map((d) => d.slug)
       },
