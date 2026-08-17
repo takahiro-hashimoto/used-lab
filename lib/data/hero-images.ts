@@ -38,6 +38,7 @@ export const HERO_IMAGES: Record<string, string> = {
 
   // ── Google Pixel ──（price-info / pixel-shop / used-pixel-attention は端末が写らない汎用イラスト）
   '/pixel/': '/images/pixel-article/google-pixel1.jpg',
+  '/pixel/pixel-filter-search/': '/images/content/thumbnail/simulator.jpg',
   '/pixel/pixel-spec-table/': '/images/pixel-article/google-pixel3.jpg',
   '/pixel/benchmark/': '/images/pixel-article/google-pixel0.jpg',
   '/pixel/battery-compare/': '/images/pixel-article/google-pixel5.jpg',
@@ -49,6 +50,7 @@ export const HERO_IMAGES: Record<string, string> = {
 
   // ── Samsung Galaxy ──（price-info / galaxy-shop / used-galaxy-attention は端末が写らない汎用イラスト）
   '/galaxy/': '/images/galaxy-article/samsung-galaxy-0.jpg',
+  '/galaxy/galaxy-filter-search/': '/images/content/thumbnail/simulator.jpg',
   '/galaxy/galaxy-spec-table/': '/images/galaxy-article/samsung-galaxy-1.jpg',
   '/galaxy/benchmark/': '/images/galaxy-article/samsung-galaxy-7.jpg',
   '/galaxy/battery-compare/': '/images/galaxy-article/samsung-galaxy-5.jpg',

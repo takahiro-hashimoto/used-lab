@@ -11,8 +11,15 @@ type NoteConfig = {
   product: string
   /** 集計対象ショップ */
   shops: string[]
-  /** OSサポートの目安。AirPods のようにOS更新の概念がない製品は null */
-  os: { name: string; years: number } | null
+  /**
+   * OSサポートの説明。AirPods のようにOS更新の概念がない製品は null。
+   *
+   * Apple は終了時期を公表しないため発売日からの推定になるが、
+   * Galaxy / Pixel はメーカーが年数を明示しており DB に support_until を
+   * 実値で持っている。推定と実値を同じ文面で説明すると誤解を招くので、
+   * declared でどちらなのかを区別する。
+   */
+  os: { name: string; years: number; declared?: { vendor: string } } | null
   /** 価格が変動する要因（カテゴリ固有） */
   variance: string
 }
@@ -43,6 +50,22 @@ const CONFIG: Record<string, NoteConfig> = {
     os: null,
     variance: '本体状態、付属品の有無、各店舗の在庫状況',
   },
+  galaxy: {
+    product: 'Galaxy',
+    shops: ['イオシス', 'ゲオ', 'じゃんぱら'],
+    // Samsung は機種ごとに更新年数を公表している（S24以降とZ Fold6以降が7年、
+    // それ以前は5年、A23 5Gは4年）。galaxy_models.support_until に実値がある
+    os: { name: 'Android', years: 7, declared: { vendor: 'Samsung' } },
+    variance: '容量（GB）、本体状態、SIMフリー／キャリア版の別、各店舗の在庫状況',
+  },
+  pixel: {
+    product: 'Pixel',
+    shops: ['イオシス', 'ゲオ', 'じゃんぱら'],
+    // Google は Pixel 8 以降を7年、それ以前を5年と公表している。
+    // pixel_models.support_until に実値がある
+    os: { name: 'Android', years: 7, declared: { vendor: 'Google' } },
+    variance: '容量（GB）、本体状態、SIMフリー／キャリア版の別、各店舗の在庫状況',
+  },
 }
 
 export type FilterSearchNoteCategory = keyof typeof CONFIG
@@ -53,7 +76,9 @@ export function filterSearchNoteParagraphs(category: FilterSearchNoteCategory): 
   const shopList = shops.map((s) => `「${s}」`).join('')
 
   const osSentence = os
-    ? `また、${os.name}のサポート目安は、Appleのこれまでの傾向（発売から約${os.years}年間）をもとに算出しています。`
+    ? os.declared
+      ? `また、${os.name}のサポート期限は、${os.declared.vendor}が機種ごとに公表しているOSアップデート提供年数（最長${os.years}年）にもとづく実値で、推定ではありません。`
+      : `また、${os.name}のサポート目安は、Appleのこれまでの傾向（発売から約${os.years}年間）をもとに算出しています。`
     : ''
 
   return [

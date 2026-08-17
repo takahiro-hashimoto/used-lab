@@ -119,6 +119,7 @@ export const PAGE_DATES: Record<string, string> = {
   // ── Google Pixel ──────────────────────────────────────────────
   'app/(public)/pixel/page.tsx':                      '2026-08-06',
   'app/(public)/pixel/price-info/page.tsx':           '2026-07-22',
+  'app/(public)/pixel/pixel-filter-search/page.tsx':  '2026-08-17',
   'app/(public)/pixel/pixel-spec-table/page.tsx':     '2026-08-06',
   'app/(public)/pixel/battery-compare/page.tsx':      '2026-08-06',
   'app/(public)/pixel/benchmark/page.tsx':            '2026-08-06',
@@ -131,6 +132,7 @@ export const PAGE_DATES: Record<string, string> = {
   // ── Samsung Galaxy ────────────────────────────────────────────
   'app/(public)/galaxy/page.tsx':                     '2026-08-06',
   'app/(public)/galaxy/price-info/page.tsx':          '2026-07-22',
+  'app/(public)/galaxy/galaxy-filter-search/page.tsx': '2026-08-17',
   'app/(public)/galaxy/galaxy-spec-table/page.tsx':   '2026-08-06',
   'app/(public)/galaxy/battery-compare/page.tsx':     '2026-07-22',
   'app/(public)/galaxy/benchmark/page.tsx':           '2026-07-22',
