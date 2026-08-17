@@ -166,13 +166,9 @@ export default async function HomePage() {
       {/* ── カテゴリナビ ── */}
       <section id="categories" className="l-section">
         <div className="l-container">
-          <h2 className="m-section-heading m-section-heading--lg">製品カテゴリから探す</h2>
-          <p className="m-section-desc">気になる製品カテゴリを選んで、選び方・おすすめ機種・中古相場をチェック</p>
-
           {/* Apple製品 */}
-          <h3 className="m-section-heading m-section-heading--md u-mb-md" style={{ textAlign: 'left', marginTop: 'var(--space-2xl)' }}>
-            中古Apple製品を探す
-          </h3>
+          <h2 className="m-section-heading m-section-heading--lg">中古Apple製品を探す</h2>
+          <p className="m-section-desc">気になる製品カテゴリを選んで、選び方・おすすめ機種・中古相場をチェック</p>
           {/* Apple製品は6カテゴリ。5colだと5+1でAirPodsが1枚だけ孤立するため3col（3+3）にする */}
           <div className="l-grid l-grid--3col l-grid--gap-lg">
             {appleCategories.map(renderCategoryCard)}
@@ -181,9 +177,15 @@ export default async function HomePage() {
           {/* Androidスマホ。非公開のあいだは見出しごと出さない */}
           {androidCategories.length > 0 && (
             <>
-              <h3 className="m-section-heading m-section-heading--md u-mb-md" style={{ textAlign: 'left', marginTop: 'var(--space-3xl)' }}>
+              <h2 className="m-section-heading m-section-heading--lg" style={{ marginTop: 'var(--space-3xl)' }}>
                 中古Androidスマホを探す
-              </h3>
+              </h2>
+              {/* Apple 側と対になる説明文。Android は Google / Samsung が機種ごとの
+                  OSアップデート提供年数を公表しており、サポート期限を推定ではなく
+                  実値で出せる（Apple 側は発売日からの推定）。そこを差として書く */}
+              <p className="m-section-desc">
+                Pixel・Galaxyそれぞれの選び方とおすすめ機種、メーカー公表のサポート期限と中古相場をチェック
+              </p>
               {/* Apple側と同じ 3col。列数が違うとカード幅が揃わず、
                   2枚しかない Android 側だけ極端に細くなる */}
               <div className="l-grid l-grid--3col l-grid--gap-lg">
