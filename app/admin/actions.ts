@@ -7,6 +7,7 @@ import { supabaseAdmin } from '@/lib/supabase-admin'
 import { CATEGORY_CACHE_TAGS, CACHE_TAGS } from '@/lib/queries'
 import type { SiteConfig } from '@/lib/types'
 import { CATEGORIES, type CategoryConfig, type FieldDef } from './field-definitions'
+import { hasAdminSession } from '@/lib/auth/admin-session'
 
 /** キャッシュタグを完全に無効化するヘルパー */
 function purgeTag(tag: string) {
@@ -31,24 +32,13 @@ function revalidateCategory(categoryKey: string) {
 /**
  * 管理操作の実行前に必ず呼ぶ。ログイン済みでなければ例外を投げる。
  *
- * proxy.ts が /admin/:path* を守っているが、それだけでは不十分。
  * Server Action はアクションIDで解決され、どのルートへの POST でも実行される。
  * このファイルは公開ページ（/news/ とトップの新着情報が getPublishedNews を
- * 使う）からも参照されるため、/admin 以外への POST は proxy を通らない。
- *
- * Next.js の公式ドキュメントも proxy 任せにせず各 Server Function 内で
- * 検証するよう明記している。
- * https://nextjs.org/docs/app/api-reference/file-conventions/proxy
- *
- * 判定は proxy.ts と同じ（admin_session Cookie と ADMIN_SESSION_TOKEN の一致）。
- * 変更するときは proxy.ts も揃えること。
+ * 使う）からも参照されるため、ページ側の門番だけでは守れない。
+ * 判定は lib/auth/admin-session.ts に集約している。
  */
 async function requireAdmin(): Promise<void> {
-  const cookieStore = await cookies()
-  const session = cookieStore.get('admin_session')?.value
-  const expected = process.env.ADMIN_SESSION_TOKEN
-
-  if (!session || !expected || session !== expected) {
+  if (!(await hasAdminSession())) {
     throw new Error('unauthorized')
   }
 }
