@@ -1,6 +1,16 @@
 import type { NextConfig } from "next";
 import bundleAnalyzer from '@next/bundle-analyzer';
 
+/**
+ * ビルド先。'cloudflare' のときだけ next/image を Cloudflare Images 用の
+ * カスタムローダーに差し替える。
+ *
+ * 無条件に差し替えると Vercel 側で /cdn-cgi/image/... という存在しないURLを
+ * 出してしまい、全画像が壊れる。切り替えは opennextjs-cloudflare build を
+ * 呼ぶスクリプト（npm run build:cf）が環境変数で行う。
+ */
+const DEPLOY_TARGET = process.env.DEPLOY_TARGET
+
 const withBundleAnalyzer = bundleAnalyzer({
   enabled: process.env.ANALYZE === 'true',
 });
@@ -50,12 +60,23 @@ const nextConfig: NextConfig = {
     cpus: 4,
   },
   images: {
-    // AVIFはエンコードCPUが重く Transformation コストが増えるため WebP のみに
-    formats: ['image/webp'],
-    // 生成サイズの上限を縮小（ヒーロー360px・OG1200pxで十分。2048/3840は生成しない）
+    ...(DEPLOY_TARGET === 'cloudflare'
+      ? {
+          // Cloudflare には Vercel の画像最適化が無いので /cdn-cgi/image に載せる。
+          // formats / minimumCacheTTL / remotePatterns はローダー側と
+          // Cloudflare の設定が担うため、ここでは効かない
+          loader: 'custom' as const,
+          loaderFile: './image-loader.ts',
+        }
+      : {
+          // AVIFはエンコードCPUが重く Transformation コストが増えるため WebP のみに
+          formats: ['image/webp' as const],
+          minimumCacheTTL: 2678400,
+        }),
+    // srcset に並べる幅。ローダーを差し替えても Next はこの値で候補を作るので、
+    // どちらの環境でも同じ幅が要求される
     deviceSizes: [640, 750, 828, 1080, 1200],
     imageSizes: [16, 32, 48, 64, 96, 128, 256],
-    minimumCacheTTL: 2678400,
     remotePatterns: [
       {
         protocol: 'https',

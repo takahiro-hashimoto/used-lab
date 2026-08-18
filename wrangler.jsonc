@@ -1,0 +1,25 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "main": ".open-next/worker.js",
+  "name": "used-lab-next",
+  // node:fs などの Node.js API を使うため nodejs_compat が必須。
+  // 2025-09-01 以降の compatibility_date で node:fs が既定で有効になる
+  "compatibility_date": "2025-09-01",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  // Cloudflare Images の変換を使う（image-loader.ts）
+  "images": {
+    "binding": "IMAGES"
+  },
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  // ISR の再生成でワーカーが自分自身を呼ぶために必要
+  "services": [
+    { "binding": "WORKER_SELF_REFERENCE", "service": "used-lab-next" }
+  ],
+  // 増分キャッシュの保存先。R2 バケットは事前に作成しておくこと
+  "r2_buckets": [
+    { "binding": "NEXT_INC_CACHE_R2_BUCKET", "bucket_name": "used-lab-next-cache" }
+  ]
+}

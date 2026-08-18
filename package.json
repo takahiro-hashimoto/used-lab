@@ -35,7 +35,9 @@
     "fetch-prices:mac": "tsx scripts/fetch-prices.ts mac",
     "check-links": "tsx scripts/check-links.ts",
     "check-links:local": "tsx scripts/check-links.ts --local",
-    "check-links:internal": "tsx scripts/check-links.ts --internal-only"
+    "check-links:internal": "tsx scripts/check-links.ts --internal-only",
+    "build:cf": "DEPLOY_TARGET=cloudflare opennextjs-cloudflare build",
+    "preview:cf": "DEPLOY_TARGET=cloudflare opennextjs-cloudflare build && wrangler dev"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.5.1",
@@ -60,6 +62,7 @@
   ],
   "devDependencies": {
     "@next/bundle-analyzer": "^16.2.2",
+    "@opennextjs/cloudflare": "^1.20.2",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
@@ -74,6 +77,10 @@
     "subset-font": "^2.5.0",
     "tsx": "^4.21.0",
     "typescript": "^5",
-    "vitest": "^4.1.5"
+    "vitest": "^4.1.5",
+    "wrangler": "^4.124.0"
+  },
+  "engines": {
+    "node": ">=22"
   }
 }
