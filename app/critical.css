@@ -1315,8 +1315,10 @@ a.header-admin-link:hover {
     gap: 8px;
   }
 
+  /* トップのヒーローはSPでは左寄せ。中央寄せだと折り返し時に行頭が揃わない */
   .hero-content--center {
-    align-items: center;
+    align-items: flex-start;
+    text-align: left;
   }
 
   .hero-description {
