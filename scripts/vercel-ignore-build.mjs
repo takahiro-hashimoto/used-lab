@@ -9,7 +9,6 @@ const BUILD_RELEVANT_PATTERNS = [
   /^next\.config\.(js|mjs|ts)$/,
   /^tsconfig\.json$/,
   /^eslint\.config\./,
-  /^proxy\.ts$/,
   /^vercel\.json$/,
   /^scripts\/(hash-assets|check-sitemap-coverage|check-price-info)\./,
 ]
