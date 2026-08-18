@@ -28,6 +28,31 @@ function revalidateCategory(categoryKey: string) {
 // 認証
 // ============================================================
 
+/**
+ * 管理操作の実行前に必ず呼ぶ。ログイン済みでなければ例外を投げる。
+ *
+ * proxy.ts が /admin/:path* を守っているが、それだけでは不十分。
+ * Server Action はアクションIDで解決され、どのルートへの POST でも実行される。
+ * このファイルは公開ページ（/news/ とトップの新着情報が getPublishedNews を
+ * 使う）からも参照されるため、/admin 以外への POST は proxy を通らない。
+ *
+ * Next.js の公式ドキュメントも proxy 任せにせず各 Server Function 内で
+ * 検証するよう明記している。
+ * https://nextjs.org/docs/app/api-reference/file-conventions/proxy
+ *
+ * 判定は proxy.ts と同じ（admin_session Cookie と ADMIN_SESSION_TOKEN の一致）。
+ * 変更するときは proxy.ts も揃えること。
+ */
+async function requireAdmin(): Promise<void> {
+  const cookieStore = await cookies()
+  const session = cookieStore.get('admin_session')?.value
+  const expected = process.env.ADMIN_SESSION_TOKEN
+
+  if (!session || !expected || session !== expected) {
+    throw new Error('unauthorized')
+  }
+}
+
 export async function login(formData: FormData) {
   const password = formData.get('password') as string
   const expected = process.env.ADMIN_PASSWORD
@@ -110,6 +135,7 @@ function parseFormData(fields: FieldDef[], formData: FormData): Record<string, u
 // ============================================================
 
 export async function getModels(categoryKey: string) {
+  await requireAdmin()
   const config = getCategoryConfig(categoryKey)
   if (!config) return []
 
@@ -125,6 +151,7 @@ export async function getModels(categoryKey: string) {
 }
 
 export async function getModelById(categoryKey: string, id: number) {
+  await requireAdmin()
   const config = getCategoryConfig(categoryKey)
   if (!config) return null
 
@@ -139,6 +166,7 @@ export async function getModelById(categoryKey: string, id: number) {
 }
 
 export async function createModel(categoryKey: string, formData: FormData) {
+  await requireAdmin()
   const config = getCategoryConfig(categoryKey)
   if (!config) return { error: 'カテゴリが見つかりません' }
 
@@ -157,6 +185,7 @@ export async function createModel(categoryKey: string, formData: FormData) {
 }
 
 export async function updateModel(categoryKey: string, id: number, formData: FormData) {
+  await requireAdmin()
   const config = getCategoryConfig(categoryKey)
   if (!config) return { error: 'カテゴリが見つかりません' }
 
@@ -181,6 +210,7 @@ export async function updateModel(categoryKey: string, id: number, formData: For
 
 /** iPad モデル一覧を取得（互換性チェックボックス用） */
 export async function getIPadModelsForSelect(): Promise<{ id: number; model: string }[]> {
+  await requireAdmin()
   const { data, error } = await supabaseAdmin
     .from('ipad_models')
     .select('id, model')
@@ -194,6 +224,7 @@ export async function getIPadModelsForSelect(): Promise<{ id: number; model: str
 
 /** アクセサリに紐づく iPad モデル ID 一覧を取得 */
 export async function getAccessoryCompatibility(accessoryId: number): Promise<number[]> {
+  await requireAdmin()
   const { data, error } = await supabaseAdmin
     .from('ipad_accessory_compatibility')
     .select('ipad_model_id')
@@ -210,6 +241,7 @@ export async function updateAccessoryCompatibility(
   accessoryId: number,
   ipadModelIds: number[]
 ): Promise<{ error: string } | void> {
+  await requireAdmin()
   // 既存の互換性レコードを全削除
   const { error: deleteError } = await supabaseAdmin
     .from('ipad_accessory_compatibility')
@@ -245,6 +277,7 @@ export async function updateAccessoryCompatibility(
 
 /** ショップ一覧を取得 */
 export async function getShopsForAdmin(): Promise<{ id: number; shop: string; shop_key: string }[]> {
+  await requireAdmin()
   const { data, error } = await supabaseAdmin
     .from('shops')
     .select('id, shop, shop_key')
@@ -261,6 +294,7 @@ export async function getProductShopLinksForAdmin(
   productType: string,
   productId: number
 ): Promise<{ shop_id: number; url: string }[]> {
+  await requireAdmin()
   const { data, error } = await supabaseAdmin
     .from('product_shop_links')
     .select('shop_id, url')
@@ -279,6 +313,7 @@ export async function updateProductShopLinks(
   productId: number,
   links: { shop_id: number; url: string }[]
 ): Promise<{ error: string } | void> {
+  await requireAdmin()
   // 既存レコードを全削除
   const { error: deleteError } = await supabaseAdmin
     .from('product_shop_links')
@@ -327,6 +362,7 @@ export type NewsItem = {
 
 /** 新着情報を全件取得（管理画面用・降順） */
 export async function getNewsItems(): Promise<NewsItem[]> {
+  await requireAdmin()
   const { data, error } = await supabaseAdmin
     .from('news')
     .select('*')
@@ -356,6 +392,7 @@ export async function getPublishedNews(limit?: number): Promise<NewsItem[]> {
 
 /** 新着情報を追加 */
 export async function createNewsItem(formData: FormData) {
+  await requireAdmin()
   const date = (formData.get('date') as string)?.trim()
   const content = (formData.get('content') as string)?.trim()
   const published = formData.get('published') === 'on' || formData.get('published') === 'true'
@@ -378,6 +415,7 @@ export async function createNewsItem(formData: FormData) {
 
 /** 新着情報を更新 */
 export async function updateNewsItem(id: number, formData: FormData) {
+  await requireAdmin()
   const date = (formData.get('date') as string)?.trim()
   const content = (formData.get('content') as string)?.trim()
   const published = formData.get('published') === 'on' || formData.get('published') === 'true'
@@ -401,6 +439,7 @@ export async function updateNewsItem(id: number, formData: FormData) {
 
 /** 新着情報を削除 */
 export async function deleteNewsItem(id: number) {
+  await requireAdmin()
   const { error } = await supabaseAdmin
     .from('news')
     .delete()
@@ -424,6 +463,7 @@ export async function setPublish(
   id: number,
   show: 0 | 1
 ): Promise<{ error?: string }> {
+  await requireAdmin()
   const config = getCategoryConfig(categoryKey)
   if (!config) return { error: 'カテゴリが見つかりません' }
 
@@ -444,6 +484,7 @@ export async function setPublish(
 
 /** site_config（単一行 id=1）を取得。未作成なら null。 */
 export async function getSiteConfigForAdmin(): Promise<SiteConfig | null> {
+  await requireAdmin()
   const { data, error } = await supabaseAdmin
     .from('site_config')
     .select('*')
@@ -457,6 +498,7 @@ export async function getSiteConfigForAdmin(): Promise<SiteConfig | null> {
 export async function updateSiteConfig(
   formData: FormData
 ): Promise<{ error?: string; success?: boolean }> {
+  await requireAdmin()
   const mode = formData.get('sticky_cta_mode') === 'special' ? 'special' : 'normal'
   const text = (key: string) => {
     const v = ((formData.get(key) as string) ?? '').trim()
@@ -486,6 +528,7 @@ export async function updateSiteConfig(
 }
 
 export async function getModelCount(categoryKey: string): Promise<number> {
+  await requireAdmin()
   const config = getCategoryConfig(categoryKey)
   if (!config) return 0
 
