@@ -1,5 +1,3 @@
-import { existsSync } from 'node:fs'
-import { join } from 'node:path'
 import { cache } from 'react'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
@@ -33,6 +31,7 @@ import AdminEditLink from '@/app/components/AdminEditLink'
 import StickyCtaOverride from '@/app/components/StickyCtaOverride'
 import { resolveLastUpdatedDate } from '@/lib/utils/shared-helpers'
 import { calculatePriceStats, buildInventoryInsight } from '@/lib/utils/price-stats'
+import { hasModelImage } from '@/lib/generated/model-images'
 
 const cachedGetModel = cache(getMacModelBySlug)
 const cachedGetLatestPrice = cache(getLatestMacPriceLogWithPrices)
@@ -95,9 +94,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
  * 画像を置けばコードを触らずに切り替わる。
  */
 function withExistingImage<T extends { image: string | null }>(m: T): T {
-  return m.image && !existsSync(join(process.cwd(), 'public', 'images', 'mac', m.image))
-    ? { ...m, image: null }
-    : m
+  return m.image && !hasModelImage('mac', m.image) ? { ...m, image: null } : m
 }
 
 export default async function MacBookDetailPage({ params }: PageProps) {

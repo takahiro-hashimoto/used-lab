@@ -1,5 +1,3 @@
-import { existsSync } from 'node:fs'
-import { join } from 'node:path'
 import type { Metadata } from 'next'
 import { HIDDEN_CATEGORY_IDS } from '@/lib/data/feature-flags'
 import { Suspense } from 'react'
@@ -21,6 +19,7 @@ import IconCard from '@/app/components/IconCard'
 import { placeholder } from '@/lib/placeholder'
 import NewsSection from '@/app/(public)/_components/NewsSection'
 import { getHeroImage } from '@/lib/data/hero-images'
+import { hasModelImage } from '@/lib/generated/model-images'
 
 export const revalidate = false
 
@@ -92,7 +91,7 @@ export default async function HomePage() {
     macbook: (() => { const m = allMacBookModels.find(m => !m.last_macos && m.image); return m?.image ? `${CATEGORY_IMAGE_BASE.macbook}${m.image}` : null })(),
     // デスクトップMacは機種画像を配置中。実ファイルが無いあいだは
     // 404の壊れた画像ではなくプレースホルダーを出す（配置すれば自動で切り替わる）
-    mac: (() => { const m = allMacModels.find(m => !m.last_macos && m.image); if (!m?.image) return null; const rel = `${CATEGORY_IMAGE_BASE.mac}${m.image}`; return existsSync(join(process.cwd(), 'public', rel)) ? rel : null })(),
+    mac: (() => { const m = allMacModels.find(m => !m.last_macos && m.image); if (!hasModelImage('mac', m?.image)) return null; return `${CATEGORY_IMAGE_BASE.mac}${m!.image}` })(),
     watch: (() => { const m = allWatchModels.find(m => !m.last_watchos && m.image); return m?.image ? `${CATEGORY_IMAGE_BASE.watch}${m.image}` : null })(),
     airpods: (() => { const m = allAirPodsModels.find(m => m.image); return m?.image ? `${CATEGORY_IMAGE_BASE.airpods}${m.image}` : null })(),
   }

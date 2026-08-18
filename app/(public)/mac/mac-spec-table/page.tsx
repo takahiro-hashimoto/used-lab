@@ -1,6 +1,4 @@
 import { forSpecTable } from '@/lib/data/shop-ids'
-import { existsSync } from 'node:fs'
-import { join } from 'node:path'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -20,6 +18,7 @@ import MacArticleFooter from '@/app/components/mac/MacArticleFooter'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import { getHeroImage } from '@/lib/data/hero-images'
 import HeroMeta from '@/app/components/HeroMeta'
+import { hasModelImage } from '@/lib/generated/model-images'
 
 export const revalidate = false
 
@@ -112,8 +111,7 @@ export default async function MacSpecTablePage() {
   // 機種画像は public/images/mac/ に配置中。実ファイルが無いまま渡すと
   // next/image が画像を 500 にするため、無いものは null にしてプレースホルダーへ倒す
   // （画像を置けばコードを触らずに切り替わる）
-  const hasImage = (image: string | null) =>
-    !!image && existsSync(join(process.cwd(), 'public', 'images', 'mac', image))
+  const hasImage = (image: string | null) => hasModelImage('mac', image)
 
   const serializedModels = allModels.map((m) => ({
     id: m.id,

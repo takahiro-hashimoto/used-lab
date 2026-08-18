@@ -1,5 +1,3 @@
-import { existsSync } from 'node:fs'
-import { join } from 'node:path'
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Breadcrumb from '@/app/components/Breadcrumb'
@@ -19,6 +17,7 @@ import { getHeroImage } from '@/lib/data/hero-images'
 import { RECOMMEND_SLUGS, RECOMMEND_META, FAQ_ITEMS, SHOP_SECTION_IDS, GUIDE_DATE_LABEL } from '@/lib/data/mac-recommend'
 import RecommendDetailSection from './recommend/components/RecommendDetailSection'
 import CompareTableSection from './recommend/components/CompareTableSection'
+import { hasModelImage } from '@/lib/generated/model-images'
 
 export const revalidate = false
 
@@ -55,9 +54,7 @@ export default async function MacGuidePage() {
   // next/image が 500 を出すため、存在しないものは null にしてプレースホルダーへ倒す
   // （画像を置けばコードを触らずに切り替わる）
   const withExistingImage = (m: MacModel): MacModel =>
-    m.image && !existsSync(join(process.cwd(), 'public', 'images', 'mac', m.image))
-      ? { ...m, image: null }
-      : m
+    m.image && !hasModelImage('mac', m.image) ? { ...m, image: null } : m
 
   const recommendModels = RECOMMEND_SLUGS
     .map((slug) => allModels.find((m) => m.slug === slug))
