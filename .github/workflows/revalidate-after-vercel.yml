@@ -28,5 +28,5 @@ jobs:
           fi
 
           curl --fail --silent --show-error \
-            -X POST "${DEPLOYMENT_URL%/}/api/revalidate-all" \
+            -X POST "${DEPLOYMENT_URL%/}/api/revalidate-all/" \
             -H "Authorization: Bearer ${REVALIDATE_SECRET}"

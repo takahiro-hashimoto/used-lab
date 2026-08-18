@@ -1,8 +1,19 @@
 import Link from 'next/link'
-import { redirect } from 'next/navigation'
+import { notFound, redirect } from 'next/navigation'
 import { CATEGORIES } from '../field-definitions'
 import LogoutButton from '../components/LogoutButton'
-import { hasAdminSession } from '@/lib/auth/admin-session'
+import { hasAdminSession, isAdminEnabled } from '@/lib/auth/admin-session'
+
+/**
+ * 管理画面は静的生成しない。
+ *
+ * 認証は Cookie を見るので本来動的だが、ADMIN_ENABLED が未設定だと
+ * hasAdminSession() が Cookie を触る前に false を返すため、動的である
+ * 手がかりが消えて Next がビルド時に事前生成しようとする。
+ * その結果 requireAdmin() が 'admin disabled' を投げてビルドが落ちた。
+ */
+export const dynamic = 'force-dynamic'
+
 
 /**
  * (authenticated) 配下の全ページの入口。以前は proxy.ts が
@@ -18,6 +29,11 @@ export default async function AuthenticatedAdminLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  // 本番では管理画面ごと存在しないことにする（存在を匂わせないので 404）
+  if (!isAdminEnabled()) {
+    notFound()
+  }
+
   if (!(await hasAdminSession())) {
     redirect('/admin/login')
   }

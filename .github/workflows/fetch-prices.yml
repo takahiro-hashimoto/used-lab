@@ -54,5 +54,5 @@ jobs:
           REVALIDATE_SECRET: ${{ secrets.REVALIDATE_SECRET }}
         run: |
           curl --fail --silent --show-error \
-            -X POST "https://used-lab.jp/api/revalidate-all" \
+            -X POST "https://used-lab.jp/api/revalidate-all/" \
             -H "Authorization: Bearer ${REVALIDATE_SECRET}"

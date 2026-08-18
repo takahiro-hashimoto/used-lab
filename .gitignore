@@ -41,6 +41,11 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+# Cloudflare(OpenNext) の生成物。移行ブランチで使う
+.open-next
+.wrangler
+.dev.vars
+
 # generated
 lib/asset-hashes.ts
 lib/generated/

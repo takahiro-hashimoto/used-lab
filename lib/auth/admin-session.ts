@@ -23,8 +23,26 @@ import { cookies } from 'next/headers'
 
 const COOKIE_NAME = 'admin_session'
 
+/**
+ * 管理画面を有効にするか。ADMIN_ENABLED=true のときだけ動く。
+ *
+ * 本番（Vercel / Cloudflare）にはこの変数を設定しない。管理画面は
+ * ローカルからのみ操作する方針で、本番では /admin/* を 404 にし、
+ * 管理系 Server Action も一律で拒否する。
+ * これにより「アクションIDが漏れれば公開ルート経由で叩ける」という
+ * Server Action 固有のリスクが本番から完全に消える。
+ *
+ * NODE_ENV では判定できない。next build はローカルでも production に
+ * なるため、ローカルの本番ビルドと本番環境を区別できない。
+ */
+export function isAdminEnabled(): boolean {
+  return process.env.ADMIN_ENABLED === 'true'
+}
+
 /** ログイン済みかどうか。Cookie と ADMIN_SESSION_TOKEN の一致で判定する */
 export async function hasAdminSession(): Promise<boolean> {
+  if (!isAdminEnabled()) return false
+
   const cookieStore = await cookies()
   const session = cookieStore.get(COOKIE_NAME)?.value
   const expected = process.env.ADMIN_SESSION_TOKEN

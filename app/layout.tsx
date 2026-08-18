@@ -1,19 +1,13 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import Script from "next/script";
-import { readFileSync } from "fs";
-import { join } from "path";
 import { CSS_NON_CRITICAL, CSS_FONTAWESOME, FONT_FA_SOLID, FONT_FA_BRANDS } from "@/lib/asset-hashes";
 import NavigationProgressBar from "@/app/components/NavigationProgressBar";
-
-// Inline critical CSS to avoid render-blocking HTTP request
-const _rawCss = readFileSync(join(process.cwd(), "app/critical.css"), "utf8");
-const criticalCss = _rawCss
-  .replace(/\/\*[\s\S]*?\*\//g, "")
-  .replace(/\s+/g, " ")
-  .replace(/\s*([{};,])\s*/g, "$1")
-  .replace(/:\s+/g, ":")
-  .trim();
+// レンダリングをブロックしないよう critical CSS はインライン展開する。
+// 以前はここで readFileSync していたが、ルートレイアウトはモジュール読み込み時に
+// 評価されるため、ファイルシステムを持たない実行環境では全ページが落ちる。
+// ビルド時に文字列へ焼き込む方式に変えた（scripts/generate-critical-css.mjs）。
+import { CRITICAL_CSS as criticalCss } from "@/lib/generated/critical-css";
 
 const GTM_ID = 'GTM-5RVN7KJZ';
 const IS_PROD = process.env.NEXT_PUBLIC_ENV === 'production';

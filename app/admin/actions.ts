@@ -7,22 +7,37 @@ import { supabaseAdmin } from '@/lib/supabase-admin'
 import { CATEGORY_CACHE_TAGS, CACHE_TAGS } from '@/lib/queries'
 import type { SiteConfig } from '@/lib/types'
 import { CATEGORIES, type CategoryConfig, type FieldDef } from './field-definitions'
-import { hasAdminSession } from '@/lib/auth/admin-session'
+import { hasAdminSession, isAdminEnabled } from '@/lib/auth/admin-session'
+import { forwardPurge } from '@/lib/admin/forward-revalidate'
 
-/** キャッシュタグを完全に無効化するヘルパー */
-function purgeTag(tag: string) {
-  revalidateTag(tag, 'max')
+/**
+ * キャッシュタグを無効化する。
+ *
+ * 管理画面はローカルからのみ動かす運用なので、ここでの revalidateTag は
+ * 手元のキャッシュにしか効かない。本番へは同じタグを転送する
+ * （lib/admin/forward-revalidate.ts）。転送に失敗したらメッセージを返し、
+ * 呼び出し側がフォームに出す。DBの保存自体は成功している。
+ */
+async function purge(tags: readonly string[]): Promise<string | null> {
+  for (const tag of tags) {
+    revalidateTag(tag, 'max')
+  }
+  return forwardPurge(tags)
 }
 
-/** カテゴリに関連するキャッシュタグを無効化 + ショップ系の共通タグも無効化 */
-function revalidateCategory(categoryKey: string) {
-  const tags = CATEGORY_CACHE_TAGS[categoryKey] || []
-  for (const tag of tags) {
-    purgeTag(tag)
-  }
-  // ショップリンクは全カテゴリ共通で使われるため常に無効化
-  purgeTag(CACHE_TAGS.shops)
-  purgeTag(CACHE_TAGS.shopLinks)
+/** 単一タグ用 */
+async function purgeTag(tag: string): Promise<string | null> {
+  return purge([tag])
+}
+
+/** カテゴリに関連するキャッシュタグ + ショップ系の共通タグ */
+async function revalidateCategory(categoryKey: string): Promise<string | null> {
+  return purge([
+    ...(CATEGORY_CACHE_TAGS[categoryKey] || []),
+    // ショップリンクは全カテゴリ共通で使われるため常に無効化
+    CACHE_TAGS.shops,
+    CACHE_TAGS.shopLinks,
+  ])
 }
 
 // ============================================================
@@ -38,6 +53,12 @@ function revalidateCategory(categoryKey: string) {
  * 判定は lib/auth/admin-session.ts に集約している。
  */
 async function requireAdmin(): Promise<void> {
+  // 本番では管理系アクションを一律で拒否する。
+  // Server Action はアクションIDで解決され、どのルートへの POST でも
+  // 実行されるため、ページを 404 にするだけでは塞げない
+  if (!isAdminEnabled()) {
+    throw new Error('admin disabled')
+  }
   if (!(await hasAdminSession())) {
     throw new Error('unauthorized')
   }
@@ -170,7 +191,8 @@ export async function createModel(categoryKey: string, formData: FormData) {
     return { error: `保存に失敗しました: ${error.message}` }
   }
 
-  revalidateCategory(categoryKey)
+  const purgeError = await revalidateCategory(categoryKey)
+  if (purgeError) return { error: purgeError }
   redirect(`/admin/${categoryKey}`)
 }
 
@@ -190,7 +212,8 @@ export async function updateModel(categoryKey: string, id: number, formData: For
     return { error: `更新に失敗しました: ${error.message}` }
   }
 
-  revalidateCategory(categoryKey)
+  const purgeError = await revalidateCategory(categoryKey)
+  if (purgeError) return { error: purgeError }
   redirect(`/admin/${categoryKey}`)
 }
 
@@ -258,7 +281,8 @@ export async function updateAccessoryCompatibility(
     }
   }
 
-  purgeTag(CACHE_TAGS.ipadAccessories)
+  const purgeError = await purgeTag(CACHE_TAGS.ipadAccessories)
+  if (purgeError) throw new Error(purgeError)
 }
 
 // ============================================================
@@ -334,8 +358,8 @@ export async function updateProductShopLinks(
     }
   }
 
-  purgeTag(CACHE_TAGS.shops)
-  purgeTag(CACHE_TAGS.shopLinks)
+  const purgeError = await purge([CACHE_TAGS.shops, CACHE_TAGS.shopLinks])
+  if (purgeError) throw new Error(purgeError)
 }
 
 // ============================================================
@@ -399,7 +423,8 @@ export async function createNewsItem(formData: FormData) {
     return { error: `保存に失敗しました: ${error.message}` }
   }
 
-  purgeTag(CACHE_TAGS.news)
+  const purgeError = await purgeTag(CACHE_TAGS.news)
+  if (purgeError) return { error: purgeError }
   redirect('/admin/news')
 }
 
@@ -423,7 +448,8 @@ export async function updateNewsItem(id: number, formData: FormData) {
     return { error: `更新に失敗しました: ${error.message}` }
   }
 
-  purgeTag(CACHE_TAGS.news)
+  const purgeError = await purgeTag(CACHE_TAGS.news)
+  if (purgeError) return { error: purgeError }
   redirect('/admin/news')
 }
 
@@ -439,7 +465,8 @@ export async function deleteNewsItem(id: number) {
     return { error: `削除に失敗しました: ${error.message}` }
   }
 
-  purgeTag(CACHE_TAGS.news)
+  const purgeError = await purgeTag(CACHE_TAGS.news)
+  if (purgeError) return { error: purgeError }
   redirect('/admin/news')
 }
 
@@ -464,7 +491,8 @@ export async function setPublish(
 
   if (error) return { error: `更新に失敗しました: ${error.message}` }
 
-  revalidateCategory(categoryKey)
+  const purgeError = await revalidateCategory(categoryKey)
+  if (purgeError) return { error: purgeError }
   return {}
 }
 
@@ -513,7 +541,8 @@ export async function updateSiteConfig(
 
   if (error) return { error: `更新に失敗しました: ${error.message}` }
 
-  purgeTag(CACHE_TAGS.siteConfig)
+  const purgeError = await purgeTag(CACHE_TAGS.siteConfig)
+  if (purgeError) return { error: purgeError }
   return { success: true }
 }
 
