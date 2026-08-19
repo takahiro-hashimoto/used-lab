@@ -22,7 +22,12 @@ export const GENRE_TABLET = '560029'      // タブレットPC本体
 export const GENRE_EARPHONE = '502835'    // ヘッドホン・イヤホン
 
 // 楽天API ベースURL（2026年インフラ刷新後の新エンドポイント。旧 app.rakuten.co.jp は停止）
-export const RAKUTEN_API_BASE = 'https://openapi.rakuten.co.jp/ichibams/api/IchibaItem/Search/20220601'
+//
+// 末尾のAPIバージョンは楽天側で予告なく廃止される。廃止されると認証情報が正しくても
+// 全リクエストが 400 {"error":"wrong_parameter","error_description":"API Configuration not found"}
+// になり、1件も取得できない（2026-08-18に 20220601 が廃止され、2日間気づけなかった）。
+// このエラーが出たらキーやIPを疑う前に、まず新しいバージョンが出ていないかを確認すること。
+export const RAKUTEN_API_BASE = 'https://openapi.rakuten.co.jp/ichibams/api/IchibaItem/Search/20260701'
 
 // ショップ定義
 export interface ShopConfig {

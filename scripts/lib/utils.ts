@@ -43,6 +43,21 @@ const RETRYABLE_STATUS = new Set([429, 500, 502, 503, 504])
  *
  * @param context ログに出す識別子（どのショップ・キーワードで失敗したか）
  */
+// ------------------------------------------------------------------
+// 楽天API呼び出しの成否カウンタ
+//
+// API側の仕様変更で全リクエストが弾かれても、各カテゴリは「ヒット0件」として
+// null行をINSERTし、cronは正常終了する。2026-06-29〜07-13（15日間）と
+// 2026-08-18〜08-19（2日間）の障害は、どちらもこれで見逃した。
+// 実行の最後に main() がこの値を見て、1件も取れていなければ異常終了する。
+// ------------------------------------------------------------------
+let apiOkCount = 0
+let apiFailCount = 0
+
+export function getApiStats(): { ok: number; failed: number } {
+  return { ok: apiOkCount, failed: apiFailCount }
+}
+
 export async function fetchJsonWithRetry<T>(
   url: string,
   headers: Record<string, string>,
@@ -54,6 +69,7 @@ export async function fetchJsonWithRetry<T>(
     // 失敗の理由を残す。黙って空配列を返すと障害に気づけない（MacBookで1ヶ月見逃した）
     const giveUp = (reason: string): null => {
       console.error(`  ⚠️ 楽天API取得失敗(${attempt}/${maxAttempts}): ${reason} ${context}`)
+      apiFailCount++
       return null
     }
 
@@ -87,7 +103,15 @@ export async function fetchJsonWithRetry<T>(
     }
 
     try {
-      return JSON.parse(text) as T
+      const parsed = JSON.parse(text) as T
+      // HTTP 200 でも本文に error を載せてくることがある。これを成功と数えると
+      // 障害検知が効かなくなるので、error の無いレスポンスだけを成功とする
+      if (parsed != null && typeof parsed === 'object' && 'error' in parsed) {
+        apiFailCount++
+      } else {
+        apiOkCount++
+      }
+      return parsed
     } catch {
       const reason = `JSON解析失敗 body=${text.slice(0, 200)}`
       if (!retryable) return giveUp(reason)

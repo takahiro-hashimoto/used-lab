@@ -14,6 +14,7 @@ import { config } from 'dotenv'
 // ローカル実行時は .env.local を読み込む（GitHub Actions では環境変数が直接設定される）
 config({ path: '.env.local', quiet: true })
 import { validateEnv } from './lib/config'
+import { getApiStats } from './lib/utils'
 import { fetchIphonePrices } from './lib/iphone'
 import { fetchIpadPrices } from './lib/ipad'
 import { fetchWatchPrices } from './lib/watch'
@@ -87,6 +88,28 @@ async function main() {
   }
 
   const elapsed = ((Date.now() - startTime) / 1000 / 60).toFixed(1)
+
+  // 楽天APIが全滅していないかを確認する。
+  // 各カテゴリは取得0件でも「価格null」の行をINSERTして正常終了するため、
+  // ここで見ないと障害が成功として記録される。実際に見逃した:
+  //   2026-06-29〜07-13（15日間）… 2026年インフラ刷新でエンドポイント変更
+  //   2026-08-18〜08-19（2日間） … APIバージョン 20220601 が廃止
+  // どちらも「認証情報は正しいのに全リクエストが4xx」という同じ壊れ方だった。
+  const api = getApiStats()
+  console.log(`\n📊 楽天API: 成功 ${api.ok}件 / 失敗 ${api.failed}件`)
+  if (api.ok === 0 && api.failed > 0) {
+    console.error(
+      `\n🚨 楽天APIが1件も成功していません（失敗 ${api.failed}件）。\n` +
+        `   価格が全てnullのまま保存されています。以下を上から順に確認してください:\n` +
+        `   1. APIバージョンの廃止 — ログに "API Configuration not found" が出ていれば これ。\n` +
+        `      scripts/lib/config.ts の RAKUTEN_API_BASE 末尾を新しい版に上げる\n` +
+        `   2. IP制限 — "CLIENT_IP_NOT_ALLOWED" なら 楽天の許可IPを確認\n` +
+        `   3. 認証情報 — 上記以外なら applicationId / accessKey を確認`
+    )
+    process.exitCode = 1
+    return
+  }
+
   if (failed.length > 0) {
     // 部分的な失敗を成功と誤認しないよう、終了コードを立てる（cronの監視で拾える）
     console.error(`\n⚠️ 完了（${elapsed}分）— 失敗したカテゴリ: ${failed.join(', ')}`)
