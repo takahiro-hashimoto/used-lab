@@ -36,8 +36,9 @@
     "check-links": "tsx scripts/check-links.ts",
     "check-links:local": "tsx scripts/check-links.ts --local",
     "check-links:internal": "tsx scripts/check-links.ts --internal-only",
-    "build:cf": "DEPLOY_TARGET=cloudflare ADMIN_ENABLED= opennextjs-cloudflare build",
-    "preview:cf": "DEPLOY_TARGET=cloudflare ADMIN_ENABLED= opennextjs-cloudflare build && wrangler dev"
+    "build:cf": "DEPLOY_TARGET=cloudflare ADMIN_ENABLED= NEXT_PUBLIC_ENV=production opennextjs-cloudflare build",
+    "preview:cf": "DEPLOY_TARGET=cloudflare ADMIN_ENABLED= NEXT_PUBLIC_ENV=production opennextjs-cloudflare build && wrangler dev",
+    "deploy:cf": "npm run build:cf && DEPLOY_TARGET=cloudflare opennextjs-cloudflare deploy"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.5.1",

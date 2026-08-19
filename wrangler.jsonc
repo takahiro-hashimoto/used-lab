@@ -21,5 +21,19 @@
   // 増分キャッシュの保存先。R2 バケットは事前に作成しておくこと
   "r2_buckets": [
     { "binding": "NEXT_INC_CACHE_R2_BUCKET", "bucket_name": "used-lab-next-cache" }
+  ],
+  // revalidateTag のタグ管理。これが無いと OpenNext は tagCache を "dummy" に
+  // フォールバックし、writeTags が何もせず isStale が常に false を返すため、
+  // revalidateTag を呼んでもページが永久に再生成されない。
+  // このサイトは時間ベースの再生成を使わず revalidateTag だけで更新するので必須。
+  // binding 名は d1NextTagCache が参照する固定値（変更不可）。
+  // テーブルは `opennextjs-cloudflare deploy` が作成する。`wrangler deploy` では
+  // 作られないので、デプロイは必ず npm run deploy:cf を使うこと。
+  "d1_databases": [
+    {
+      "binding": "NEXT_TAG_CACHE_D1",
+      "database_name": "used-lab-next-tag-cache",
+      "database_id": "9822936b-c1c9-4970-a76a-ddabb371811c"
+    }
   ]
 }
