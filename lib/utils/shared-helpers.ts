@@ -130,6 +130,24 @@ export function normalizeUrl(url: string): string {
 }
 
 /**
+ * ショップボタンの表示順（shops.id）。
+ * イオシス → にこスマ → Amazon → ゲオ → じゃんぱら → リコレ。
+ * ここに無いショップ（楽天市場など）はこの後ろに、元の並びのまま続く。
+ *
+ * ソートしないと product_shop_links のDB行順（=登録順）がそのまま出て、
+ * 機種ごとにボタンの並びがバラバラになっていた。
+ */
+const SHOP_DISPLAY_ORDER = [1, 2, 7, 3, 6, 4]
+
+function sortByShopOrder<T extends { shop_id: number }>(links: T[]): T[] {
+  const order = new Map(SHOP_DISPLAY_ORDER.map((id, i) => [id, i]))
+  // sort は安定なので、リスト外どうしは元の相対順を保つ
+  return [...links].sort(
+    (a, b) => (order.get(a.shop_id) ?? Infinity) - (order.get(b.shop_id) ?? Infinity),
+  )
+}
+
+/**
  * product_shop_links → displayLinks を生成
  * filteredLinks があればそちらを優先、なければ fallbackShops を使用
  */
@@ -140,9 +158,9 @@ export function buildDisplayLinks(
 ): FallbackShop[] {
   const filteredLinks = shopLinks.filter((l) => shopNames[l.shop_id])
   if (filteredLinks.length > 0) {
-    return filteredLinks.map((l) => ({ shop_id: l.shop_id, url: normalizeUrl(l.url), shopName: shopNames[l.shop_id] }))
+    return sortByShopOrder(filteredLinks).map((l) => ({ shop_id: l.shop_id, url: normalizeUrl(l.url), shopName: shopNames[l.shop_id] }))
   }
-  return fallbackShops.filter((s) => shopNames[s.shop_id])
+  return sortByShopOrder(fallbackShops.filter((s) => shopNames[s.shop_id]))
 }
 
 /** リリース日(YYYY/M/DD)から年を取得 */
