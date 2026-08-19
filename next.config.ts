@@ -70,6 +70,24 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      // www → apex。いままで Vercel のドメイン設定が処理していたため
+      // アプリ側に無かった。Cloudflare へ移すと www でもサイトがそのまま
+      // 表示され、同じ内容が2つのURLで公開されてしまう。配信先に依存しない
+      // よう、ここに持たせる（canonical は元から apex を指している）。
+      // ルートと配下でルールを分ける。:path* ひとつだと末尾スラッシュが落ち、
+      // trailingSlash:true の 308 が続けて走って二重リダイレクトになる。
+      {
+        source: '/',
+        has: [{ type: 'host', value: 'www.used-lab.jp' }],
+        destination: 'https://used-lab.jp/',
+        permanent: true,
+      },
+      {
+        source: '/:path+',
+        has: [{ type: 'host', value: 'www.used-lab.jp' }],
+        destination: 'https://used-lab.jp/:path+/',
+        permanent: true,
+      },
       {
         source: '/iphone/16e-se/',
         destination: '/iphone/16e/',
