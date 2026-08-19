@@ -31,20 +31,63 @@ Build CPU と Origin Transfer だけでインフラの63%を占めており、�
 | proxy.ts の廃止 | Next 16 の proxy は Node.js ランタイム固定で Edge 化不可 | 48f7ed4 |
 | Server Action の認証 | proxy に依存しない自衛（セキュリティ修正も兼ねる） | b492bbd |
 | 画像最適化 | Cloudflare Images 用ローダー。DEPLOY_TARGET で分岐 | e503bad |
+| revalidateTag の有効化 | tagCache 未指定で dummy に落ちていた。D1 を割り当て | 4f689b7 |
+| 年表記の TZ 依存 | ビルド環境が UTC だと年始に前年表記になる | 344aeba |
 
-ビルドと配信はローカルで確認済み。
-`npm run build:cf` で完走し、`wrangler dev` で全ページ 200 を確認した。
+ビルドと配信は本番相当で確認済み。`npm run deploy:cf` で
+workers.dev へ配信し、主要10ページで Vercel と突き合わせた。
+
+| 確認項目 | 結果 |
+|---|---|
+| HTTP ステータス | 10ページすべて 200 |
+| 出力サイズの差 | 1〜3% |
+| 差の正体 | 画像URLのみ（177個が `/_next/image` → `/cdn-cgi/image`） |
+| 計測タグ | GTM-5RVN7KJZ が両環境で一致 |
+| DB 接続 | Supabase から実データを取得 |
+| revalidateTag | D1 に25タグ記録 → REVALIDATED → HIT |
+
+環境変数の不足は無かった。`NEXT_PUBLIC_GA_ID` はどこからも参照されて
+いない残骸で、`NEXT_PUBLIC_ENV` は `build:cf` がビルド時に埋め込む。
+Worker のシークレットに入れる必要があるのは Supabase の3件と
+`REVALIDATE_SECRET` だけで、いずれも登録済み。
+
+## 進捗（2026-08-19 時点）
+
+| | 項目 | 状態 |
+|---|---|---|
+| ✅ | Workers Paid 加入 | Free の CPU 10ms 制限では SSR が Error 1102 を出す |
+| ✅ | R2 バケット作成 | `used-lab-next-cache` |
+| ✅ | D1 作成・接続 | `used-lab-next-tag-cache`。revalidateTag 動作確認済み |
+| ✅ | Worker のシークレット | 4件。不足なしを確認 |
+| ✅ | 出力の一致検証 | 主要10ページ。差は画像URLのみ |
+| ✅ | デプロイ手順 | `npm run deploy:cf` |
+| 🔄 | ネームサーバー移行 | Xserver → Cloudflare。反映待ち |
+| ❌ | 画像 | `/cdn-cgi/image/` が 404。ゾーンがアクティブになるまで解決しない |
+| ⬜ | カスタムドメイン割り当て | 実際の切替 |
+| ⬜ | Vercel 停止 | 併存期間を置いてから |
+
+**残るブロッカーは画像だけ。** それ以外は workers.dev 上で検証済み。
 
 ## 残っている手順（Cloudflare 側）
 
-### 1. R2 バケットを作る
+### 1. R2 バケットと D1 を作る（作成済み）
 
-`wrangler.jsonc` が `used-lab-next-cache` を参照している。
-増分キャッシュ（ISR）の保存先で、これが無いと再検証が動かない。
+| リソース | 名前 | 用途 |
+|---|---|---|
+| R2 | `used-lab-next-cache` | 増分キャッシュ（ISR）本体の保存先 |
+| D1 | `used-lab-next-tag-cache` | revalidateTag のタグ管理 |
 
 ```bash
 npx wrangler r2 bucket create used-lab-next-cache
+npx wrangler d1 create used-lab-next-tag-cache
 ```
+
+**D1 を落とすと revalidateTag が黙って無効になる。**
+`open-next.config.ts` で `tagCache` を指定しないと既定の `"dummy"` になり、
+`writeTags` は何もせず `isStale` は常に `false` を返す。API は `{"ok":true}`
+を返すのにページが二度と再生成されない、という気づきにくい壊れ方をする。
+
+バインディング名 `NEXT_TAG_CACHE_D1` はアダプタ側の固定値で変更不可。
 
 ### 2. Image Transformations を有効にする
 
@@ -54,57 +97,122 @@ npx wrangler r2 bucket create used-lab-next-cache
 
 ### 3. 環境変数を登録する
 
-**ビルド時に必要**（Workers Builds の環境変数）
+ビルドは手元で走らせるので、ビルド時の値は `.env.local` と
+`build:cf` が渡す環境変数でまかなえる。Cloudflare 側に登録が要るのは
+**実行時に読むものだけ**。
+
+**Worker のシークレット（登録済み・これで足りる）**
 
 | 変数 | 用途 |
 |---|---|
-| `NEXT_PUBLIC_SUPABASE_URL` | 全ページのデータ取得 |
-| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | 同上 |
+| `NEXT_PUBLIC_SUPABASE_URL` / `NEXT_PUBLIC_SUPABASE_ANON_KEY` | ISR 再生成時のデータ取得 |
 | `SUPABASE_SERVICE_ROLE_KEY` | 新着情報の取得（公開ページも使う） |
-| `NEXT_PUBLIC_ENV` | `production` を入れると GTM が有効になる |
-| `DEPLOY_TARGET` | `cloudflare`。`npm run build:cf` が設定するので通常は不要 |
-
-**実行時に必要**（Worker のシークレット）
-
-| 変数 | 用途 |
-|---|---|
-| `NEXT_PUBLIC_SUPABASE_URL` / `NEXT_PUBLIC_SUPABASE_ANON_KEY` | ISR 再生成 |
-| `SUPABASE_SERVICE_ROLE_KEY` | 管理画面・新着情報 |
-| `ADMIN_PASSWORD` | 管理画面のログイン |
-| `ADMIN_SESSION_TOKEN` | セッション判定 |
 | `REVALIDATE_SECRET` | `/api/revalidate-all` の認可 |
-| `NEXT_PUBLIC_ENV` | 同上 |
 
 ```bash
-npx wrangler secret put ADMIN_SESSION_TOKEN
+npx wrangler secret put REVALIDATE_SECRET
 ```
 
-**Cloudflare に不要なもの**（価格取得の cron が Vultr で使う）
-`RAKUTEN_*` · `SUPABASE_URL` · `OLD_/NEW_SUPABASE_*`（移行スクリプト用・現在は用済み）
+**要らないもの**
 
-### 4. ビルドコマンドを設定する
+| 変数 | 理由 |
+|---|---|
+| `NEXT_PUBLIC_ENV` | `build:cf` がビルド時に `production` を埋め込む |
+| `NEXT_PUBLIC_GA_ID` | どこからも参照されていない残骸。GTM は layout に直書き |
+| `ADMIN_PASSWORD` / `ADMIN_SESSION_TOKEN` | 管理画面はローカル専用にしたので Worker では動かない |
+| `RAKUTEN_*` | 価格取得は Vultr の cron が担う |
+| `AMAZON_CREATORS_*` | アフィリエイトリンクを全非表示中 |
+| `REVALIDATE_TARGET` | ローカル管理画面が本番へ転送するための値 |
 
-Workers Builds のビルドコマンドに次を指定する。
+GTM が実際に出ているかは、両環境の出力を比べれば確かめられる。
 
+```bash
+curl -s https://used-lab.jp/ | grep -o 'GTM-[A-Z0-9]*' | head -1
 ```
-npm run build:cf
+
+### 4. デプロイは必ず `npm run deploy:cf` を使う
+
+```bash
+npm run deploy:cf
 ```
+
+**`wrangler deploy` を直接使ってはいけない。** R2 への増分キャッシュ投入と
+D1 のテーブル作成（`CREATE TABLE revalidations`）が両方スキップされ、
+revalidateTag が動かないまま配信される。
+
+`deploy:cf` は `build:cf` を先に走らせる。`opennextjs-cloudflare deploy` は
+「Deploy a *built* app」で、単体ではビルドせず既存の `.open-next` を配るため。
+実際にこれを踏み、古い成果物が配られて populate-cache が tagCache 名を
+照合できず「Tag cache does not need populating」とだけ出て D1 テーブルが
+作られなかった。
 
 `build:assets`（CSS結合・FontAwesomeサブセット・生成物）と
 `build:checks`（サイトマップ網羅・本文の鮮度・eslint）も含めて走る。
-Node は `.node-version` で 24 に固定してある（ローカルで検証したのがこの版）。
-`package.json` の `engines` は `>=22` にしてあるので、Cloudflare 側が 24 を
-選べない場合は `.node-version` を 22 に落として再検証する。
+Node は `.node-version` で 24 に固定してある。
 
-### 5. デプロイ後の再検証を移す
+### 5. デプロイ後の再検証は不要
 
-いまは GitHub Actions（`revalidate-after-vercel.yml`）が
-Vercel のデプロイ成功をトリガーに `/api/revalidate-all` を叩いている。
-Cloudflare へ移したらトリガー元を差し替える。`REVALIDATE_SECRET` は共通。
+Vercel では GitHub Actions（`revalidate-after-vercel.yml`）が
+デプロイ成功をトリガーに `/api/revalidate-all` を叩いていた。Vercel の
+ISR キャッシュが `.next/cache` 経由でデプロイをまたいで残るためだった。
+
+**Cloudflare では要らない。** `deploy:cf` の populate-cache が
+ビルド成果物で R2 を上書きするので、デプロイ直後から中身が新しい。
+実測でも、再検証を呼ぶ前の時点でページが最新値になっていた。
+
+Vercel を止めた時点で `revalidate-after-vercel.yml` は発火しなくなるので、
+そのタイミングで削除する。併存期間中は Vercel 側に必要なので残す。
+
+他の2経路はドメイン指定なので、切り替えれば自動で Worker に向く。
+
+| 経路 | 宛先 | 切替後 |
+|---|---|---|
+| Vultr cron（`run-fetch.sh`） | `https://used-lab.jp/api/revalidate-all/` | そのまま動く |
+| ローカル管理画面（`REVALIDATE_TARGET`） | 同上 | そのまま動く |
+| GitHub Actions | Vercel の deployment_status | 発火しなくなる → 削除 |
 
 ### 6. 切り替え
 
 DNS を Cloudflare へ向ける。切り戻せるよう Vercel 側は残しておく。
+
+#### 6-1. ネームサーバー移行（配信は Vercel のまま）
+
+先にドメインを Cloudflare のゾーンに載せる。`/cdn-cgi/image/` は
+ゾーンが無いと 404 になるため、画像の検証にはこれが前提になる。
+
+Cloudflare にサイトを追加すると既存レコードを自動で取り込むが、
+**A / CNAME が「プロキシ済み」で入る。両方グレー（DNS のみ）に落とす。**
+オレンジのままだと配信が Cloudflare 経由に変わってしまい、
+ネームサーバーを移すだけのつもりが実質の切り替えになる。
+
+used-lab.jp で最終的に残したのはこの2件だけ。
+
+| 種別 | 名前 | 内容 | プロキシ |
+|---|---|---|---|
+| A | used-lab.jp | 216.198.79.1 | DNS のみ |
+| CNAME | www | 3007ff3f0a519587.vercel-dns-017.com | DNS のみ |
+
+削除したもの。
+
+| レコード | 理由 |
+|---|---|
+| A `*` → 162.43.94.9 | Xserver のエラーページ（678バイト・noindex）を返すだけ |
+| MX | 宛先が `used-lab.jp` = Vercel の IP。メールは元から届かない |
+| SPF / DKIM | Xserver からの送信前提。送信していない |
+| `_adsp._domainkey` | ADSP は廃止規格（RFC 5617 は Historic）。取り込まれもしない |
+
+問い合わせは Google フォーム（`/contact/`）で、`@used-lab.jp` のメールは
+どこでも使っていない。
+
+切替前に、Cloudflare の権威サーバへ直接引いて中身を検証しておくとよい。
+
+```bash
+dig +short A used-lab.jp @quinton.ns.cloudflare.com   # → 216.198.79.1
+```
+
+#### 6-2. カスタムドメインの割り当て（ここが実際の切替）
+
+Worker に `used-lab.jp` を紐付ける。ここで初めて配信元が変わる。
 
 ## 管理画面はローカル専用
 
@@ -133,9 +241,16 @@ REVALIDATE_SECRET=（本番と同じ値）
 コロケーションで動くため、遠方からのアクセスは再生成のたびに
 東京の Supabase まで往復する。日本からのアクセスが大半なら影響は小さい。
 
-### ビルドスキップが無くなる
+### ビルドスキップの仕組みごと不要になる
 
 `vercel.json` の `ignoreCommand` → `scripts/vercel-ignore-build.mjs` は
-Vercel 固有。記事以外の変更でビルドを飛ばしていた。
-Cloudflare で同等の仕組みが要るかは、ビルド分が無料枠(6,000分)に
-収まるかどうかで判断する。31時間/月なら収まる。
+Vercel 固有。push のたびに走るビルドを、記事以外の変更なら飛ばすためのもの。
+
+Cloudflare では `npm run deploy:cf` を叩いたときだけビルドが走るので、
+判定の仕組み自体が要らない。**Vercel を止めた時点で
+`scripts/vercel-ignore-build.mjs` と `vercel.json` ごと削除する。**
+
+このスクリプトには 2026-08-19 に直したバグがある（`VERCEL_GIT_PREVIOUS_SHA`
+を見ずに `HEAD^..HEAD` だけを見ていたため、複数コミットをまとめて push
+すると手前のコミットの変更ごとスキップされた）。移行後は消える前提だが、
+併存期間中は必要なので直してある。
