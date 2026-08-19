@@ -30,14 +30,20 @@ async function purgeTag(tag: string): Promise<string | null> {
   return purge([tag])
 }
 
-/** カテゴリに関連するキャッシュタグ + ショップ系の共通タグ */
+/**
+ * カテゴリに関連するキャッシュタグだけを無効化する。
+ *
+ * 以前はここで shops と shop-links も一緒に倒していたが、機種の保存で
+ * product_shop_links は1行も変わらないため不要だった。しかも shops は
+ * 各カテゴリの layout が getShops() で参照しているので、iPhone を1件
+ * 保存しただけで全8カテゴリ 248ページ（サイトマップ254中）が再生成対象に
+ * なっていた。本来の範囲はそのカテゴリの45ページ程度で、5倍以上の増幅。
+ *
+ * ショップ情報とリンクは updateProductShopLinks が自分で無効化するので、
+ * ここで巻き込む必要はない。
+ */
 async function revalidateCategory(categoryKey: string): Promise<string | null> {
-  return purge([
-    ...(CATEGORY_CACHE_TAGS[categoryKey] || []),
-    // ショップリンクは全カテゴリ共通で使われるため常に無効化
-    CACHE_TAGS.shops,
-    CACHE_TAGS.shopLinks,
-  ])
+  return purge([...(CATEGORY_CACHE_TAGS[categoryKey] || [])])
 }
 
 // ============================================================
