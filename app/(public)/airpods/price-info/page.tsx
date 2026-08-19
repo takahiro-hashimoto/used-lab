@@ -21,8 +21,10 @@ import dynamic from 'next/dynamic'
 const DashboardSection = dynamic(() => import('./components/DashboardSection'), {
   loading: () => <div style={{ height: '400px' }} />,
 })
-import PriceDropSection from './components/PriceDropSection'
-import RankingSection from './components/RankingSection'
+import PriceDropSection from '@/app/components/price-info/PriceDropSection'
+import RankingSection from '@/app/components/price-info/RankingSection'
+import type { PriceCardConfig } from '@/app/components/price-info/card-config'
+import { formatRelease } from '@/app/components/price-info/card-config'
 import PriceHistorySection from '@/app/components/price-info/PriceHistorySection'
 import AirPodsPopularSection from '@/app/components/support/popular/AirPodsPopularSection'
 import FaqSection from './components/FaqSection'
@@ -133,6 +135,27 @@ export async function generateMetadata(): Promise<Metadata> {
 // ============================================================
 // ページコンポーネント
 // ============================================================
+
+// RankingSection / PriceDropSection 共用のカード設定。
+// 差分はすべてここに明示する（値の意味は card-config.ts を参照）
+const cardConfig: PriceCardConfig<ModelData> = {
+  categoryLabel: 'AirPods',
+  categoryPath: 'airpods',
+  brand: 'Apple',
+  supportTag: (m) => `サポート ${m.supportUntil}まで`,
+  showStorage: false,
+  specs: (m) => [
+    ['発売日', formatRelease(m.releaseDate)],
+    ['チップ', m.chip],
+    ['タイプ', m.type],
+    ['バッテリー', m.battery],
+  ],
+  showFeatureTags: false,
+  cta: (m) =>
+    m.iosysUrl
+      ? { href: m.iosysUrl, rel: 'nofollow noopener noreferrer', ariaLabel: `${m.name}をイオシスで見る`, children: 'イオシスで見る' }
+      : null,
+}
 
 export default async function AirPodsPriceInfoPage() {
   const [allModels, allShopLinks] = await Promise.all([
@@ -424,13 +447,14 @@ export default async function AirPodsPriceInfoPage() {
           />
 
           {priceDropRanking.length > 0 && (
-            <PriceDropSection items={priceDropRanking} dateDisplay={dateDisplay} />
+            <PriceDropSection items={priceDropRanking} dateDisplay={dateDisplay} config={cardConfig} />
           )}
 
           <RankingSection
             items={rankingData.slice(0, 10)}
             modelCount={modelCount}
             dateDisplay={dateDisplay}
+              config={cardConfig}
           />
 
           <PriceHistorySection models={sortedModels} categoryLabel="AirPods" categoryPath="airpods" linkModelName={false} showStorage={false} monthlyGridCols={3} />

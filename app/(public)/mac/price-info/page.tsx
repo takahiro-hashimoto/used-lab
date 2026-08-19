@@ -19,8 +19,10 @@ import dynamic from 'next/dynamic'
 const DashboardSection = dynamic(() => import('./components/DashboardSection'), {
   loading: () => <div style={{ height: '400px' }} />,
 })
-import PriceDropSection from './components/PriceDropSection'
-import RankingSection from './components/RankingSection'
+import PriceDropSection from '@/app/components/price-info/PriceDropSection'
+import RankingSection from '@/app/components/price-info/RankingSection'
+import type { PriceCardConfig } from '@/app/components/price-info/card-config'
+import { formatRelease } from '@/app/components/price-info/card-config'
 import PriceHistorySection from '@/app/components/price-info/PriceHistorySection'
 import Image from 'next/image'
 import FaqSection from './components/FaqSection'
@@ -141,6 +143,37 @@ export async function generateMetadata(): Promise<Metadata> {
 // ============================================================
 // ページコンポーネント
 // ============================================================
+
+// RankingSection / PriceDropSection 共用のカード設定。
+// 差分はすべてここに明示する（値の意味は card-config.ts を参照）
+const cardConfig: PriceCardConfig<ModelData> = {
+  categoryLabel: 'iMac・Mac mini',
+  categoryPath: 'mac',
+  brand: 'Apple',
+  supportTag: () => 'macOSサポート対象',
+  showStorage: true,
+  specs: (m) => [
+    ['発売日', formatRelease(m.releaseDate)],
+    ['CPU', m.chip],
+    ['画面', m.display],
+    ['メモリ', m.memory],
+    ['容量', m.storage],
+  ],
+  showFeatureTags: false,
+  cta: (m) =>
+    m.shopUrl
+      ? {
+          href: m.shopUrl,
+          rel: 'noopener noreferrer nofollow',
+          ariaLabel: `${m.name}の在庫情報を見る`,
+          children: (
+            <>
+              在庫情報を見る <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
+            </>
+          ),
+        }
+      : null,
+}
 
 export default async function MacPriceInfoPage() {
   const [allModels, allShopLinks] = await Promise.all([
@@ -463,13 +496,14 @@ export default async function MacPriceInfoPage() {
             />
 
             {priceDropRanking.length > 0 && (
-              <PriceDropSection items={priceDropRanking} dateDisplay={dateDisplay} />
+              <PriceDropSection items={priceDropRanking} dateDisplay={dateDisplay} config={cardConfig} />
             )}
 
             <RankingSection
               items={rankingData.slice(0, 10)}
               modelCount={modelCount}
               dateDisplay={dateDisplay}
+              config={cardConfig}
             />
 
             <PriceHistorySection models={sortedModels} categoryLabel="iMac・Mac mini" categoryPath="mac" appendChipToName meta="release-month" />

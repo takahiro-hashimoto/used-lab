@@ -1,26 +1,33 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import type { ModelData } from '../page'
+import type { PriceCardModel, PriceCardConfig } from './card-config'
 
-// ModelDataの生値をfilter-searchカードと同じ表記に整形する共有ヘルパー
-function formatRelease(releaseDate: string): string {
-  const [y, m] = releaseDate.split('/')
-  return y && m ? `${y}年${m}月` : releaseDate
-}
+// ============================================================
+// 過去30日で値下がりした機種 TOP10（price-info 各ページ共通）
+//
+// 以前はカテゴリごとに同じファイルを置いていた（6ファイルの9割が同一）。
+// カードの構造は RankingSection と同じで、カテゴリ差も同じ config を
+// 共用する。設定の中身は card-config.ts を参照。
+// ============================================================
 
-type Props = {
-  items: ModelData[]
+type Props<M extends PriceCardModel> = {
+  items: M[]
   dateDisplay: string
+  config: PriceCardConfig<M>
 }
 
-export default function PriceDropSection({ items, dateDisplay }: Props) {
+export default function PriceDropSection<M extends PriceCardModel>({
+  items,
+  dateDisplay,
+  config,
+}: Props<M>) {
   const topDrop = items[0]
 
   return (
     <section className="l-section" id="pd-price-drop" aria-labelledby="pd-price-drop-title">
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg" id="pd-price-drop-title">
-          過去30日で値下がりした中古MacBook TOP10
+          過去30日で値下がりした中古{config.categoryLabel} TOP10
         </h2>
         {topDrop && (
           <p className="m-section-desc">
@@ -42,7 +49,7 @@ export default function PriceDropSection({ items, dateDisplay }: Props) {
                   <span className="ifd-result-card__rank" aria-hidden="true">{i + 1}</span>
                   {model.image && (
                     <Image
-                      src={`/images/macbook/${model.image}`}
+                      src={`/images/${config.categoryPath}/${model.image}`}
                       alt={model.name}
                       width={80}
                       height={80}
@@ -50,7 +57,7 @@ export default function PriceDropSection({ items, dateDisplay }: Props) {
                   )}
                 </div>
                 <div className="ifd-result-card__info">
-                  <Link prefetch={false} href={`/macbook/${model.slug}/`} className="ifd-result-card__name">
+                  <Link prefetch={false} href={`/${config.categoryPath}/${model.slug}/`} className="ifd-result-card__name">
                     {model.name}
                   </Link>
                   <div className="ifd-result-card__tags">
@@ -60,7 +67,7 @@ export default function PriceDropSection({ items, dateDisplay }: Props) {
                       </span>
                     ) : (
                       <span className="ifd-tag ifd-tag--supported">
-                        <i className="fa-solid fa-shield-halved" aria-hidden="true"></i> macOSサポート対象
+                        <i className="fa-solid fa-shield-halved" aria-hidden="true"></i> {config.supportTag(model)}
                       </span>
                     )}
                   </div>
@@ -69,7 +76,11 @@ export default function PriceDropSection({ items, dateDisplay }: Props) {
 
               <div className="ifd-result-card__body">
                 <div className="ifd-result-card__price">
-                  <span className="ifd-result-card__price-label">中古相場（{model.storage}）</span>
+                  {config.showStorage ? (
+                    <span className="ifd-result-card__price-label">中古相場（{model.storage}）</span>
+                  ) : (
+                    <span className="ifd-result-card__price-label">中古相場</span>
+                  )}
                   <span className="ifd-result-card__price-value">
                     ¥{model.currentPrice.toLocaleString()}
                   </span>
@@ -80,26 +91,34 @@ export default function PriceDropSection({ items, dateDisplay }: Props) {
                   <small>（{Math.abs(model.priceChangePercent)}%）</small>
                 </p>
                 <dl className="ifd-result-card__specs">
-                  <div><dt>発売日</dt><dd>{formatRelease(model.releaseDate)}</dd></div>
-                  <div><dt>CPU</dt><dd>{model.chip}</dd></div>
-                  <div><dt>画面</dt><dd>{model.display}</dd></div>
-                  <div><dt>重量</dt><dd>{model.weight}</dd></div>
-                  <div><dt>容量</dt><dd>{model.storage}</dd></div>
+                  {config.specs(model).map(([label, value]) => (
+                    <div key={label}><dt>{label}</dt><dd>{value}</dd></div>
+                  ))}
                 </dl>
+                {config.showFeatureTags && model.featureTags && model.featureTags.length > 0 && (
+                  <div className="ifd-result-card__feature-tags">
+                    {model.featureTags.map((tag) => (
+                      <span key={tag} className="ifd-feature-tag">{tag}</span>
+                    ))}
+                  </div>
+                )}
               </div>
 
               <div className="ifd-result-card__actions">
-                {model.shopUrl && (
-                  <a
-                    href={model.shopUrl}
-                    className="m-btn m-btn--primary m-btn--sm"
-                    rel="noopener noreferrer nofollow"
-                    target="_blank"
-                    aria-label={`${model.name}の在庫情報を見る`}
-                  >
-                    在庫情報を見る <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
-                  </a>
-                )}
+                {(() => {
+                  const cta = config.cta(model)
+                  return cta && (
+                    <a
+                      href={cta.href}
+                      className="m-btn m-btn--primary m-btn--sm"
+                      rel={cta.rel}
+                      target="_blank"
+                      aria-label={cta.ariaLabel}
+                    >
+                      {cta.children}
+                    </a>
+                  )
+                })()}
               </div>
             </li>
           ))}

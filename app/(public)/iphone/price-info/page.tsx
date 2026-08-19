@@ -20,8 +20,10 @@ import dynamic from 'next/dynamic'
 const DashboardSection = dynamic(() => import('./components/DashboardSection'), {
   loading: () => <div style={{ height: '400px' }} />,
 })
-import PriceDropSection from './components/PriceDropSection'
-import RankingSection from './components/RankingSection'
+import PriceDropSection from '@/app/components/price-info/PriceDropSection'
+import RankingSection from '@/app/components/price-info/RankingSection'
+import type { PriceCardConfig } from '@/app/components/price-info/card-config'
+import { formatRelease, cameraConfig, portLabel } from './components/cardFormat'
 import PriceHistorySection from '@/app/components/price-info/PriceHistorySection'
 import IPhoneArticleFooter from '@/app/components/iphone/IPhoneArticleFooter'
 import FaqSection from './components/FaqSection'
@@ -154,6 +156,28 @@ export async function generateMetadata(): Promise<Metadata> {
 // ============================================================
 // ページコンポーネント
 // ============================================================
+
+// RankingSection / PriceDropSection 共用のカード設定。
+// 差分はすべてここに明示する（値の意味は card-config.ts を参照）
+const cardConfig: PriceCardConfig<ModelData> = {
+  categoryLabel: 'iPhone',
+  categoryPath: 'iphone',
+  brand: 'Apple',
+  supportTag: (m) => `OSサポート ${m.supportUntil}まで`,
+  showStorage: true,
+  specs: (m) => [
+    ['発売日', formatRelease(m.releaseDate)],
+    ['CPU', m.chip],
+    ['画面', m.display],
+    ['カメラ構成', cameraConfig(m.camera)],
+    ['充電ポート', portLabel(m.port)],
+  ],
+  showFeatureTags: true,
+  cta: (m) =>
+    m.iosysUrl
+      ? { href: m.iosysUrl, rel: 'nofollow noopener noreferrer', ariaLabel: `${m.name}をイオシスで見る`, children: 'イオシスで見る' }
+      : null,
+}
 
 export default async function IPhonePriceInfoPage() {
   const [allModels, allShopLinks] = await Promise.all([
@@ -470,13 +494,14 @@ export default async function IPhonePriceInfoPage() {
           />
 
           {priceDropRanking.length > 0 && (
-            <PriceDropSection items={priceDropRanking} dateDisplay={dateDisplay} />
+            <PriceDropSection items={priceDropRanking} dateDisplay={dateDisplay} config={cardConfig} />
           )}
 
           <RankingSection
             items={rankingData.slice(0, 10)}
             modelCount={modelCount}
             dateDisplay={dateDisplay}
+              config={cardConfig}
           />
 
           <PriceHistorySection models={sortedModels} categoryLabel="iPhone" categoryPath="iphone" />
