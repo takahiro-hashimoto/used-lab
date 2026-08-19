@@ -12,6 +12,10 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // OpenNext（Cloudflare向け）のビルド成果物。バンドル済みの Next.js 本体が
+    // 入っており、除外しないと 778ファイル・2万件超を走査してヒープを食い潰す
+    // （eslint が 4GB で OOM して build が落ちる）。
+    ".open-next/**",
   ]),
 ]);
 
