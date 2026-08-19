@@ -441,7 +441,7 @@ export default function MobileHokenComparePage() {
                   {/* ② 一契約で3台 */}
                   <div className="m-card m-card--shadow m-card--padded">
                     <div className="media-card__img-wrap">
-                      <Image src="/images/content/photo/mobile-hoken/ipad-image.avif" alt="iPadとiPhone" className="media-card__img" width={800} height={450} sizes="(max-width: 768px) 100vw, 800px" />
+                      <Image src="/images/content/photo/mobile-hoken/ipad-image.webp" alt="iPadとiPhone" className="media-card__img" width={800} height={450} sizes="(max-width: 768px) 100vw, 800px" />
                     </div>
                     <div className="media-card__body">
                       <h3 className="media-card__title">② 一契約で3台の端末を補償できる</h3>
