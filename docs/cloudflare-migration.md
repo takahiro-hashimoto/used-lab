@@ -51,22 +51,76 @@ workers.dev へ配信し、主要10ページで Vercel と突き合わせた。
 Worker のシークレットに入れる必要があるのは Supabase の3件と
 `REVALIDATE_SECRET` だけで、いずれも登録済み。
 
-## 進捗（2026-08-19 時点）
+## 進捗（2026-08-19 移行完了）
+
+切り替え済み。`used-lab.jp` は Cloudflare Workers が配信している。
 
 | | 項目 | 状態 |
 |---|---|---|
 | ✅ | Workers Paid 加入 | Free の CPU 10ms 制限では SSR が Error 1102 を出す |
-| ✅ | R2 バケット作成 | `used-lab-next-cache` |
-| ✅ | D1 作成・接続 | `used-lab-next-tag-cache`。revalidateTag 動作確認済み |
-| ✅ | Worker のシークレット | 4件。不足なしを確認 |
-| ✅ | 出力の一致検証 | 主要10ページ。差は画像URLのみ |
-| ✅ | デプロイ手順 | `npm run deploy:cf` |
-| 🔄 | ネームサーバー移行 | Xserver → Cloudflare。反映待ち |
-| ❌ | 画像 | `/cdn-cgi/image/` が 404。ゾーンがアクティブになるまで解決しない |
-| ⬜ | カスタムドメイン割り当て | 実際の切替 |
-| ⬜ | Vercel 停止 | 併存期間を置いてから |
+| ✅ | R2 バケット | `used-lab-next-cache` |
+| ✅ | D1 + tagCache | `used-lab-next-tag-cache`。revalidateTag 動作確認済み |
+| ✅ | Worker のシークレット | 4件（Supabase 3件 + REVALIDATE_SECRET） |
+| ✅ | ネームサーバー移行 | Xserver → Cloudflare |
+| ✅ | Image Transformations | ソースは used-lab.jp / cf.used-lab.jp に限定 |
+| ✅ | 画像 | AVIF 4件を WebP 化して全件通過 |
+| ✅ | www → apex | アプリ側のリダイレクトへ移設 |
+| ✅ | 本番切替 | ルート方式（下記） |
 
-**残るブロッカーは画像だけ。** それ以外は workers.dev 上で検証済み。
+切替後の実測。
+
+```
+server: cloudflare / cf-ray: …-NRT（東京）
+主要17ページ 200 ／ /admin/ 404 ／ /api/revalidate-all/ 405
+画像 32/32 が webp
+価格 DB の最新値と一致
+www 308 → apex（末尾スラッシュ保持）
+revalidateTag → REVALIDATED → HIT
+```
+
+### 切替はカスタムドメインではなくルートで行った
+
+カスタムドメインは既存の A レコードがあると登録できず
+（`Hostname 'used-lab.jp' already has externally managed DNS records`）、
+先に削除する必要がある。削除から追加までの間ドメインが解決できず、
+切り戻しも同じ手順を逆にたどるため二度停止する。
+
+かわりにルートを使った。停止時間がない。
+
+```
+1. ルートを追加   used-lab.jp/*      → Worker
+2. ルートを追加   www.used-lab.jp/*  → Worker
+   ※ DNS がグレーの間は待機状態。本番は Vercel のまま
+3. A レコードを 🟠 プロキシ済みへ    ← ここで切替
+4. www の CNAME も 🟠 へ
+```
+
+**切り戻しはトグルをグレーに戻すだけ。** レコードの再作成が要らず数秒で戻る。
+Vercel を残しておく限りこの退路が使える。
+
+### 残っている後始末
+
+| 項目 | 前提 |
+|---|---|
+| `cf.used-lab.jp` を削除 | Worker のドメインタブ + Images のソース設定、2箇所 |
+| Vercel プロジェクトを停止 | 数日運用して問題がないこと |
+| `revalidate-after-vercel.yml` を削除 | Vercel 停止時。Cloudflare では不要（後述） |
+| `scripts/vercel-ignore-build.mjs` と `vercel.json` を削除 | 同上 |
+| GitHub Secrets 4件を削除 | RAKUTEN_APP_ID / RAKUTEN_AFFILIATE_ID / SUPABASE_URL / SUPABASE_SERVICE_ROLE_KEY |
+
+### 管理画面に Zero Trust は入れない
+
+Cloudflare Access で本番の `/admin/` を守る構成も検討したが採らなかった。
+
+反映は `lib/admin/forward-revalidate.ts` で解決済みで、ローカルで保存すると
+同じタグが本番へ転送される（Cloudflare 版でも動作確認済み）。本番に管理画面を
+置く必要がない。
+
+入れる場合は `ADMIN_ENABLED=true` にすることになり、「本番では管理系
+Server Action を一律拒否」という防壁が外れる。Server Action はアクションIDで
+解決され公開ルートへの POST でも走るため、Access のパス制限だけでは塞げず、
+`Cf-Access-Authenticated-User-Email` の検証を別途足す必要がある。
+外出先から編集したくなったら、その実装込みで検討すること。
 
 ## 残っている手順（Cloudflare 側）
 
@@ -210,9 +264,14 @@ used-lab.jp で最終的に残したのはこの2件だけ。
 dig +short A used-lab.jp @quinton.ns.cloudflare.com   # → 216.198.79.1
 ```
 
-#### 6-2. カスタムドメインの割り当て（ここが実際の切替）
+#### 6-2. ルート追加 → プロキシ有効化（ここが実際の切替）
 
-Worker に `used-lab.jp` を紐付ける。ここで初めて配信元が変わる。
+Worker に `used-lab.jp` を紐付ける。カスタムドメインではなくルートを使う
+理由と手順は「進捗」の節に書いた。要点だけ再掲する。
+
+- カスタムドメインは既存 A レコードの削除が必要で、その間サイトが停止する
+- ルートなら DNS のトグルだけで切り替わり、戻すのも同じくトグル1つ
+- ルートは DNS がグレーの間は待機状態なので、先に用意しておける
 
 ## 管理画面はローカル専用
 
