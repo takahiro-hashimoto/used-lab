@@ -23,7 +23,7 @@ const DashboardSection = dynamic(() => import('./components/DashboardSection'), 
 })
 import PriceDropSection from './components/PriceDropSection'
 import RankingSection from './components/RankingSection'
-import PriceHistorySection from './components/PriceHistorySection'
+import PriceHistorySection from '@/app/components/price-info/PriceHistorySection'
 import PixelArticleFooter from '@/app/components/pixel/PixelArticleFooter'
 import HeroMeta from '@/app/components/HeroMeta'
 import { getHeroImage } from '@/lib/data/hero-images'
@@ -502,7 +502,7 @@ export default async function PixelPriceInfoPage() {
                 dateDisplay={dateDisplay}
               />
 
-              <PriceHistorySection models={sortedModels} />
+              <PriceHistorySection models={sortedModels} categoryLabel="Pixel" categoryPath="pixel" />
             </>
           ) : (
             <section className="l-section" aria-label="価格データ準備中">

@@ -21,7 +21,7 @@ const DashboardSection = dynamic(() => import('./components/DashboardSection'), 
 })
 import PriceDropSection from './components/PriceDropSection'
 import RankingSection from './components/RankingSection'
-import PriceHistorySection from './components/PriceHistorySection'
+import PriceHistorySection from '@/app/components/price-info/PriceHistorySection'
 import GalaxyArticleFooter from '@/app/components/galaxy/GalaxyArticleFooter'
 import FaqSection from './components/FaqSection'
 import HeroMeta from '@/app/components/HeroMeta'
@@ -486,7 +486,7 @@ export default async function GalaxyPriceInfoPage() {
                 dateDisplay={dateDisplay}
               />
 
-              <PriceHistorySection models={sortedModels} />
+              <PriceHistorySection models={sortedModels} categoryLabel="Galaxy" categoryPath="galaxy" />
             </>
           ) : (
             <section className="l-section" id="pd-dashboard" aria-label="価格データ集計中">

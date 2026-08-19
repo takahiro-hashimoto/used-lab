@@ -22,7 +22,7 @@ const DashboardSection = dynamic(() => import('./components/DashboardSection'), 
 })
 import PriceDropSection from './components/PriceDropSection'
 import RankingSection from './components/RankingSection'
-import PriceHistorySection from './components/PriceHistorySection'
+import PriceHistorySection from '@/app/components/price-info/PriceHistorySection'
 import IPhoneArticleFooter from '@/app/components/iphone/IPhoneArticleFooter'
 import FaqSection from './components/FaqSection'
 import HeroMeta from '@/app/components/HeroMeta'
@@ -479,7 +479,7 @@ export default async function IPhonePriceInfoPage() {
             dateDisplay={dateDisplay}
           />
 
-          <PriceHistorySection models={sortedModels} />
+          <PriceHistorySection models={sortedModels} categoryLabel="iPhone" categoryPath="iphone" />
 
 
           <FaqSection />

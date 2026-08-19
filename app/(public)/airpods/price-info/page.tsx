@@ -23,7 +23,7 @@ const DashboardSection = dynamic(() => import('./components/DashboardSection'), 
 })
 import PriceDropSection from './components/PriceDropSection'
 import RankingSection from './components/RankingSection'
-import PriceHistorySection from './components/PriceHistorySection'
+import PriceHistorySection from '@/app/components/price-info/PriceHistorySection'
 import AirPodsPopularSection from '@/app/components/support/popular/AirPodsPopularSection'
 import FaqSection from './components/FaqSection'
 import AuthorByline from '@/app/components/AuthorByline'
@@ -433,7 +433,7 @@ export default async function AirPodsPriceInfoPage() {
             dateDisplay={dateDisplay}
           />
 
-          <PriceHistorySection models={sortedModels} />
+          <PriceHistorySection models={sortedModels} categoryLabel="AirPods" categoryPath="airpods" linkModelName={false} showStorage={false} monthlyGridCols={3} />
 
           <div className="deferred-render">
             <FaqSection />

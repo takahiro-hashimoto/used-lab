@@ -21,7 +21,7 @@ const DashboardSection = dynamic(() => import('./components/DashboardSection'), 
 })
 import PriceDropSection from './components/PriceDropSection'
 import RankingSection from './components/RankingSection'
-import PriceHistorySection from './components/PriceHistorySection'
+import PriceHistorySection from '@/app/components/price-info/PriceHistorySection'
 import Image from 'next/image'
 import FaqSection from './components/FaqSection'
 import MacBookArticleFooter from '@/app/components/macbook/MacBookArticleFooter'
@@ -448,7 +448,7 @@ export default async function MacBookPriceInfoPage() {
             dateDisplay={dateDisplay}
           />
 
-          <PriceHistorySection models={sortedModels} />
+          <PriceHistorySection models={sortedModels} categoryLabel="MacBook" categoryPath="macbook" appendChipToName meta="release-month" />
 
           <FaqSection items={faqItems} />
         </div>

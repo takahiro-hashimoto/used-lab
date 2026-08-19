@@ -1,10 +1,56 @@
 import Image from 'next/image'
 import PriceHistogram from '@/app/components/PriceHistogram'
-import type { ModelData, PriceEntry } from '../page'
+import type { PriceHistogram as PriceHistogramData } from '@/lib/utils/price-stats'
+import type { PriceEntry } from '@/lib/utils/price-info-helpers'
 import { crossesLogicChange, isBeforeLogicChange } from '@/lib/data/price-source-note'
 
+// ============================================================
+// 価格推移セクション（price-info 各ページ共通）
+//
+// 以前はカテゴリごとに同じファイルを置いていた。6ファイル・約1,500行の
+// 99%が同一で、差分はカテゴリ名・画像パスなど数箇所の文字列だけだった。
+// コピーは修正を6回書く構造そのもので、実際に embed ボタンでは
+// コピー間の取り残しが404を生んだ（EmbedCodeButton のコメント参照）。
+// 差分はすべて props で明示的に渡す。
+// ============================================================
+
+/** 各ページの ModelData から、このセクションが読むフィールドだけを抜いた形 */
+export type PriceHistoryModel = {
+  id: number
+  name: string
+  slug: string
+  image: string
+  chip: string
+  year: string
+  releaseDate: string
+  /** AirPods には容量の概念が無いので任意 */
+  storage?: string
+  prices: PriceEntry[]
+  distribution: {
+    histogram: PriceHistogramData
+    total: number
+    date: string
+    reportLines: string[]
+    inventoryText: string | null
+  } | null
+}
+
 type Props = {
-  models: ModelData[]
+  models: PriceHistoryModel[]
+  /** 見出しに出すカテゴリ名。例 'iPhone'・'iMac・Mac mini' */
+  categoryLabel: string
+  /** 画像と機種ページの基点。'iphone' → /images/iphone/… と /iphone/{slug}/ */
+  categoryPath: string
+  /** 機種名を個別ページへリンクする。機種ページを持たない AirPods だけ false */
+  linkModelName?: boolean
+  /** 機種名の後ろにチップ名を付ける（MacBook / Mac の同名機種を区別する） */
+  appendChipToName?: boolean
+  /** メタ行の形式。year-chip =「2023年発売 / A16」/ release-month =「発売日 2023年9月」 */
+  meta?: 'year-chip' | 'release-month'
+  /** 中古相場ラベルに容量を出す。容量の概念が無い AirPods だけ false */
+  showStorage?: boolean
+  /** 月別サマリーの列数。機種数が少ない AirPods だけ 3 */
+  monthlyGridCols?: 3 | 4
 }
 
 type MonthlySummary = {
@@ -50,12 +96,31 @@ function releaseKey(releaseDate: string): number {
   return (y || 0) * 100 + (m || 0)
 }
 
-export default function PriceHistorySection({ models }: Props) {
+/**
+ * 表示名を組み立てる（appendChipToName 用）。
+ * 同名機種の区別のため model 側にもチップ名が入っている場合があるので、
+ * 既に含まれていれば付け足さない（"14インチ M3 M3" になるのを防ぐ）
+ */
+function buildDisplayName(name: string, chip: string): string {
+  const base = name.replace(/（\d{4}）/, ' ').replace(/\s+/g, ' ').trim()
+  return chip && !base.includes(chip) ? `${base} ${chip}` : base
+}
+
+export default function PriceHistorySection({
+  models,
+  categoryLabel,
+  categoryPath,
+  linkModelName = true,
+  appendChipToName = false,
+  meta = 'year-chip',
+  showStorage = true,
+  monthlyGridCols = 4,
+}: Props) {
   return (
     <section className="l-section" id="pd-history" aria-labelledby="pd-history-title">
       <div className="l-container">
         <h2 className="m-section-heading m-section-heading--lg" id="pd-history-title">
-          Pixel 価格推移データ（過去90日間）
+          {categoryLabel} 価格推移データ（過去90日間）
         </h2>
         <p className="m-section-desc">各モデルの価格推移を日別・月別で確認できます。</p>
 
@@ -85,6 +150,8 @@ export default function PriceHistorySection({ models }: Props) {
           const hasCounts = reversedPrices.some((p) => p.count != null)
           const latestEntry = model.prices[model.prices.length - 1]
 
+          const displayName = appendChipToName ? buildDisplayName(model.name, model.chip) : model.name
+
           return (
             // 閉じていてもHTMLに残るよう <details> を使う。
             // {isOpen && ...} だと日別・月別データがクローラーに一切見えない
@@ -93,7 +160,7 @@ export default function PriceHistorySection({ models }: Props) {
                 <div className="pd-history-summary-left pd-history-summary-left--thumb">
                   {model.image && (
                     <Image
-                      src={`/images/pixel/${model.image}`}
+                      src={`/images/${categoryPath}/${model.image}`}
                       alt=""
                       width={56}
                       height={56}
@@ -101,16 +168,28 @@ export default function PriceHistorySection({ models }: Props) {
                     />
                   )}
                   <div className="pd-history-summary-text">
-                    <h3 className="pd-history-model-name">
-                      <a href={`/pixel/${model.slug}/`} className="pd-history-model-link">{model.name}</a>
-                    </h3>
-                    <span className="pd-history-model-meta">{model.year}年発売 / {model.chip}</span>
+                    {linkModelName ? (
+                      <h3 className="pd-history-model-name">
+                        <a href={`/${categoryPath}/${model.slug}/`} className="pd-history-model-link">{displayName}</a>
+                      </h3>
+                    ) : (
+                      <h3 className="pd-history-model-name">{displayName}</h3>
+                    )}
+                    {meta === 'year-chip' ? (
+                      <span className="pd-history-model-meta">{model.year}年発売 / {model.chip}</span>
+                    ) : (
+                      <span className="pd-history-model-meta">発売日 {model.releaseDate.replace(/^(\d{4})\/0?(\d+)$/, '$1年$2月')}</span>
+                    )}
                   </div>
                 </div>
                 <span className="pd-history-summary-right">
                   <div className="pd-history-summary-price">
                     <span className="pd-history-price-range">
-                      <small className="pd-history-price-range__label">中古相場（{model.storage}）</small>
+                      {showStorage ? (
+                        <small className="pd-history-price-range__label">中古相場（{model.storage}）</small>
+                      ) : (
+                        <small className="pd-history-price-range__label">中古相場</small>
+                      )}
                       {/* 他の一覧・詳細ページと同じ実勢相場（中央値）。
                           最安値を出すと1点限りの特価が相場に見えてしまう */}
                       &yen;{latestEntry.avg.toLocaleString()}
@@ -132,7 +211,7 @@ export default function PriceHistorySection({ models }: Props) {
                   {monthlySummary.length > 0 && (
                     <div className="u-mt-lg u-mb-xl">
                       <h4 className="pd-history-subtitle">月別平均価格</h4>
-                      <div className="l-grid l-grid--4col l-grid--gap-lg">
+                      <div className={`l-grid l-grid--${monthlyGridCols}col l-grid--gap-lg`}>
                         {monthlySummary.map((ms) => (
                           <div key={ms.month} className="m-card m-card--sm m-stat-card monthly-card">
                             <p className="m-stat-card__label">{ms.label}</p>

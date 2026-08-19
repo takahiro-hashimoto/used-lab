@@ -21,7 +21,7 @@ const DashboardSection = dynamic(() => import('./components/DashboardSection'), 
 })
 import PriceDropSection from './components/PriceDropSection'
 import RankingSection from './components/RankingSection'
-import PriceHistorySection from './components/PriceHistorySection'
+import PriceHistorySection from '@/app/components/price-info/PriceHistorySection'
 import Image from 'next/image'
 import FaqSection from './components/FaqSection'
 import MacArticleFooter from '@/app/components/mac/MacArticleFooter'
@@ -472,7 +472,7 @@ export default async function MacPriceInfoPage() {
               dateDisplay={dateDisplay}
             />
 
-            <PriceHistorySection models={sortedModels} />
+            <PriceHistorySection models={sortedModels} categoryLabel="iMac・Mac mini" categoryPath="mac" appendChipToName meta="release-month" />
             </>
           ) : (
             <section className="l-section" aria-label="相場データの準備状況">
