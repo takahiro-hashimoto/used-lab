@@ -14,10 +14,11 @@ import { insuranceData, faqItems, postCheckItems, failurePatterns } from './comp
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
 import { getHeroImage } from '@/lib/data/hero-images'
+import { currentJstYear } from '@/lib/utils/current-year'
 
 export const revalidate = false
 
-const CURRENT_YEAR = new Date().getFullYear()
+const CURRENT_YEAR = currentJstYear()
 const PAGE_TITLE = `中古iPhoneはやめた方がいい？購入前に確認すべき注意点まとめ【${CURRENT_YEAR}年版】`
 const PAGE_DESCRIPTION =
   `中古iPhoneはやめた方がいい？バッテリー劣化・赤ロム・アクティベーションロックなど、購入前に確認すべき注意点を徹底解説。失敗しない中古iPhone選びのポイントを${CURRENT_YEAR}年最新情報でまとめました。`

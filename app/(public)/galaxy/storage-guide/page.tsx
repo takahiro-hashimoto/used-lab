@@ -16,6 +16,7 @@ import HeroMeta from '@/app/components/HeroMeta'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import FaqSection from '@/app/components/support/FaqSection'
 import { getHeroImage } from '@/lib/data/hero-images'
+import { currentJstYear } from '@/lib/utils/current-year'
 
 export const revalidate = false
 
@@ -47,7 +48,7 @@ const FAQ_ITEMS = [
   },
   {
     question: '128GBと256GBで迷ったらどちらがいい？',
-    answer: `${new Date().getFullYear()}年現在、写真や動画の高画質化・アプリの大型化が進んでおり、メイン端末なら256GBがおすすめです。\n特にmicroSD非対応のSシリーズ・Zシリーズは後から増やせないため、256GB以上を選ぶと安心です。128GBでも日常使いは可能ですが、2〜3年使うと容量が逼迫しやすくなります。`,
+    answer: `${currentJstYear()}年現在、写真や動画の高画質化・アプリの大型化が進んでおり、メイン端末なら256GBがおすすめです。\n特にmicroSD非対応のSシリーズ・Zシリーズは後から増やせないため、256GB以上を選ぶと安心です。128GBでも日常使いは可能ですが、2〜3年使うと容量が逼迫しやすくなります。`,
   },
   {
     question: 'microSDには何を保存できますか？',

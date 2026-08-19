@@ -16,6 +16,7 @@ import HeroMeta from '@/app/components/HeroMeta'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import FaqSection from '@/app/components/support/FaqSection'
 import { getHeroImage } from '@/lib/data/hero-images'
+import { currentJstYear } from '@/lib/utils/current-year'
 
 export const revalidate = false
 
@@ -44,10 +45,10 @@ const FAQ_ITEMS = [
   },
   {
     question: '128GBと256GBで迷ったらどちらがいい？',
-    answer: `${new Date().getFullYear()}年現在、写真や動画の高画質化・アプリの大型化が進んでおり、メイン端末なら256GBがおすすめです。\n128GBでも日常使いは可能ですが、2〜3年使うと容量が逼迫しやすくなります。中古価格の差が1万円以内であれば256GBを選んだほうが後悔しにくいです。`,
+    answer: `${currentJstYear()}年現在、写真や動画の高画質化・アプリの大型化が進んでおり、メイン端末なら256GBがおすすめです。\n128GBでも日常使いは可能ですが、2〜3年使うと容量が逼迫しやすくなります。中古価格の差が1万円以内であれば256GBを選んだほうが後悔しにくいです。`,
   },
   {
-    question: `128GBのPixelは${new Date().getFullYear()}年でも使えますか？`,
+    question: `128GBのPixelは${currentJstYear()}年でも使えますか？`,
     answer: 'Pixelの最小容量は128GBで、日常使いなら十分実用的です。ただしAndroid自体と標準アプリで15〜20GB程度消費するため、写真・動画・大型ゲームを多く扱う方は256GB以上をおすすめします。\nPixelはmicroSD非対応で後から増やせないため、迷ったら大きめを選ぶのが安全です。',
   },
   {

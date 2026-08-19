@@ -30,6 +30,7 @@ import AuthorByline from '@/app/components/AuthorByline'
 import { getHeroImage } from '@/lib/data/hero-images'
 import HeroMeta from '@/app/components/HeroMeta'
 import { get90DaysAgo } from '@/lib/utils/shared-helpers'
+import { currentJstYear } from '@/lib/utils/current-year'
 
 // ============================================================
 // 型定義
@@ -192,7 +193,7 @@ export default async function AirPodsPriceInfoPage() {
       type: model.type || '-',
       battery: model.battery_earphone || '-',
       supportUntil: endYear > 0 ? `${endYear}年頃` : '-',
-      supportEnded: endYear > 0 && endYear < new Date().getFullYear(),
+      supportEnded: endYear > 0 && endYear < currentJstYear(),
       color: CHART_COLORS[colorIndex % CHART_COLORS.length],
       image: model.image || '',
       iosysUrl: iosysUrlMap.get(model.id) ?? '',

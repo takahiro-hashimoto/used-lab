@@ -10,6 +10,7 @@ import {
   calculatePriceRange as calculatePriceRangeGeneric,
 } from './shared-helpers'
 import { priceStatsOf } from '@/lib/utils/price-stats'
+import { currentJstYear } from './current-year'
 
 // Re-export shared functions that have the same signature
 export { formatReleaseDate, formatPrice } from './shared-helpers'
@@ -36,7 +37,7 @@ export function calculateRepairLifespan(date: string | null): {
     return { releaseYear: 0, repairEndYear: 0, remainingYears: 0, isSupported: false }
   }
   const repairEndYear = releaseYear + 7
-  const currentYear = new Date().getFullYear()
+  const currentYear = currentJstYear()
   const remainingYears = repairEndYear - currentYear
   return {
     releaseYear,

@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { PRODUCT_CATEGORIES, FOOTER_LINKS, UTILITY_FOOTER_LINKS } from '@/lib/routes'
+import { currentJstYear } from '@/lib/utils/current-year'
 
 export default function Footer() {
   return (
@@ -51,7 +52,7 @@ export default function Footer() {
 
       <div className="footer-bottom">
         <div className="footer-inner l-container">
-          <p className="copyright">&copy; 2024–{new Date().getFullYear()} ユーズドラボ All Rights Reserved.</p>
+          <p className="copyright">&copy; 2024–{currentJstYear()} ユーズドラボ All Rights Reserved.</p>
         </div>
       </div>
     </footer>

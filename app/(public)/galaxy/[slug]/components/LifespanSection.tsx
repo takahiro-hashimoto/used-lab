@@ -2,6 +2,7 @@ import Link from 'next/link'
 import type { GalaxyModel } from '@/lib/types'
 import { getReleaseYear } from '@/lib/utils/shared-helpers'
 import { calculateGalaxySupport, formatSupportUntil, supportPolicyLabel } from '../lib/helpers'
+import { currentJstYear } from '@/lib/utils/current-year'
 
 type Props = {
   model: GalaxyModel
@@ -17,7 +18,7 @@ export default function LifespanSection({ model }: Props) {
 
   // 修理・バッテリー交換の目安（発売から約5年をパーツ供給の目安として表示）
   const repairEndYear = releaseYear + 5
-  const currentYear = new Date().getFullYear()
+  const currentYear = currentJstYear()
   const repairSupported = repairEndYear >= currentYear
 
   return (

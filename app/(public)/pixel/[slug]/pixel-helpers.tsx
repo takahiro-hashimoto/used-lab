@@ -8,6 +8,7 @@ import {
   calculatePriceRange as calculatePriceRangeGeneric,
 } from '@/lib/utils/shared-helpers'
 import { CURRENT_MODELS, annualCostOf } from '@/lib/data/current-models'
+import { currentJstYear } from '@/lib/utils/current-year'
 
 /**
  * Pixel 個別ページ専用ヘルパー。
@@ -90,7 +91,7 @@ export function calculatePixelSupport(model: PixelModel): PixelSupportInfo {
       const diffMs = untilDate.getTime() - Date.now()
       remainingYears = diffMs > 0 ? Math.round((diffMs / (365.25 * 24 * 60 * 60 * 1000)) * 10) / 10 : 0
     } else if (releaseYear > 0 && model.update_years != null) {
-      remainingYears = Math.max(0, releaseYear + model.update_years - new Date().getFullYear())
+      remainingYears = Math.max(0, releaseYear + model.update_years - currentJstYear())
     }
   }
 

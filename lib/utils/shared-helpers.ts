@@ -8,6 +8,7 @@ import { PAGE_DATES } from '@/lib/data/page-dates'
 import { getHeroImage } from '@/lib/data/hero-images'
 import { calculatePriceStats, marketMedian, type PriceStats } from '@/lib/utils/price-stats'
 import { authorRef, publisherRef, PUBLISHING_PRINCIPLES_URL } from '@/lib/data/author'
+import { currentJstYear } from './current-year'
 
 const SITE_LAUNCH_DATE = '2024-08-01'
 const JAPAN_LOCALE = 'ja-JP'
@@ -392,7 +393,7 @@ export function calculateRepairLifespan(date: string | null): {
     return { releaseYear: 0, repairEndYear: 0, remainingYears: 0, isSupported: false }
   }
   const repairEndYear = releaseYear + 9
-  const currentYear = new Date().getFullYear()
+  const currentYear = currentJstYear()
   const remainingYears = repairEndYear - currentYear
   return {
     releaseYear,
@@ -419,7 +420,7 @@ export function calculateOSLifespan(date: string | null, supportYears: number = 
     return { releaseYear, osEndYear, remainingYears: 0, isSupported: false }
   }
   const osEndYear = releaseYear + supportYears
-  const currentYear = new Date().getFullYear()
+  const currentYear = currentJstYear()
   const remainingYears = osEndYear - currentYear
   return {
     releaseYear,

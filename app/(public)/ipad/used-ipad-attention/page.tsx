@@ -13,11 +13,12 @@ import IPadArticleFooter from '@/app/components/ipad/IPadArticleFooter'
 import { buildArticleJsonLd, getGitDateForFile } from '@/lib/utils/shared-helpers'
 import HeroMeta from '@/app/components/HeroMeta'
 import { getHeroImage } from '@/lib/data/hero-images'
+import { currentJstYear } from '@/lib/utils/current-year'
 
 export const revalidate = false
 
 const PAGE_TITLE = '中古iPadはやめた方がいい？購入前に確認すべき注意点まとめ'
-const CURRENT_YEAR = new Date().getFullYear()
+const CURRENT_YEAR = currentJstYear()
 const PAGE_DESCRIPTION =
   `中古iPadはやめた方がいい？バッテリー劣化・iPadOSサポート切れ・アクセサリ非対応など、購入前に確認すべき注意点を徹底解説。失敗しない中古iPad選びのポイントを${CURRENT_YEAR}年最新情報でまとめました。`
 const PAGE_URL = 'https://used-lab.jp/ipad/used-ipad-attention/'

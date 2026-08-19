@@ -12,10 +12,11 @@ import WatchArticleFooter from '@/app/components/watch/WatchArticleFooter'
 import { getGitDateForFile } from '@/lib/utils/shared-helpers'
 import { getHeroImage } from '@/lib/data/hero-images'
 import HeroMeta from '@/app/components/HeroMeta'
+import { currentJstYear } from '@/lib/utils/current-year'
 
 export const revalidate = false
 
-const CURRENT_YEAR = new Date().getFullYear()
+const CURRENT_YEAR = currentJstYear()
 
 /**
  * metadata（title / og / twitter）と SNS シェア文言で共有する。

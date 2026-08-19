@@ -13,10 +13,11 @@ import HeroMeta from '@/app/components/HeroMeta'
 import Breadcrumb from '@/app/components/Breadcrumb'
 import FaqSection from '@/app/components/support/FaqSection'
 import { getHeroImage } from '@/lib/data/hero-images'
+import { currentJstYear } from '@/lib/utils/current-year'
 
 export const revalidate = false
 
-const CURRENT_YEAR = new Date().getFullYear()
+const CURRENT_YEAR = currentJstYear()
 
 /**
  * metadata（title / og / twitter）と SNS シェア文言で共有する。
