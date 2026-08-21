@@ -27,7 +27,7 @@ import AdvanceFeatures from './components/AdvanceFeatures'
 import CompareSection from '@/app/components/CompareSection'
 import CompareSelector from './components/CompareSelector'
 import BenchmarkGeekbench from './components/BenchmarkGeekbench'
-import BenchmarkAntutu from './components/BenchmarkAntutu'
+import BenchmarkAntutu from '@/app/components/model/BenchmarkAntutu'
 import FaqSection from './components/FaqSection'
 import AccessorySection from './components/AccessorySection'
 import ReviewSection from '@/app/components/ReviewSection'
@@ -175,7 +175,7 @@ export default async function IPadDetailPage({ params }: PageProps) {
           {(props) => <CompareSelector {...props} />}
         </CompareSection>
         <BenchmarkGeekbench model={enrichedModel} allModels={enrichedAllModels} />
-        <BenchmarkAntutu model={enrichedModel} allModels={enrichedAllModels} />
+        <BenchmarkAntutu model={enrichedModel} allModels={enrichedAllModels} categoryLabel="iPad" benchmarkHref="/ipad/benchmark/" benchmarkLinkLabel="iPadのベンチマーク比較" />
         <AccessorySection model={enrichedModel} accessories={accessoryLookup.get(model.id) || []} />
         <ReviewSection modelName={enrichedModel.model} reviews={reviews} />
         <FaqSection model={enrichedModel} latestPrice={latestPrice} shopLinks={modelShopLinks} />

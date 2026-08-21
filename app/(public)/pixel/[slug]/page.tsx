@@ -38,7 +38,7 @@ import AdvanceFeatures from './components/AdvanceFeatures'
 import CompareSection from '@/app/components/CompareSection'
 import CompareSelector from './components/CompareSelector'
 import BenchmarkGeekbench from './components/BenchmarkGeekbench'
-import BenchmarkAntutu from './components/BenchmarkAntutu'
+import BenchmarkAntutu from '@/app/components/model/BenchmarkAntutu'
 import PixelArticleFooter from '@/app/components/pixel/PixelArticleFooter'
 import FaqSection from './components/FaqSection'
 import ReviewSection from '@/app/components/ReviewSection'
@@ -200,7 +200,7 @@ export default async function PixelDetailPage({ params }: PageProps) {
           {(props) => <CompareSelector {...props} />}
         </CompareSection>
         <BenchmarkGeekbench model={model} allModels={allModels} />
-        <BenchmarkAntutu model={model} allModels={allModels} />
+        <BenchmarkAntutu model={model} allModels={allModels} categoryLabel="Pixel" benchmarkHref="/pixel/benchmark/" benchmarkLinkLabel="歴代Google Pixelベンチマーク比較" />
         <ReviewSection modelName={model.model} reviews={reviews} />
         <FaqSection model={model} latestPrice={latestPrice} shopLinks={modelShopLinks} />
 

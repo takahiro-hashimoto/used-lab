@@ -36,7 +36,7 @@ import AdvanceFeatures from './components/AdvanceFeatures'
 import CompareSection from '@/app/components/CompareSection'
 import CompareSelector from './components/CompareSelector'
 import BenchmarkGeekbench from './components/BenchmarkGeekbench'
-import BenchmarkAntutu from './components/BenchmarkAntutu'
+import BenchmarkAntutu from '@/app/components/model/BenchmarkAntutu'
 import IPhoneArticleFooter from '@/app/components/iphone/IPhoneArticleFooter'
 import FaqSection from './components/FaqSection'
 import ReviewSection from '@/app/components/ReviewSection'
@@ -212,7 +212,7 @@ export default async function IPhoneDetailPage({ params }: PageProps) {
           {(props) => <CompareSelector {...props} />}
         </CompareSection>
         <BenchmarkGeekbench model={model} allModels={allModels} />
-        <BenchmarkAntutu model={model} allModels={allModels} />
+        <BenchmarkAntutu model={model} allModels={allModels} categoryLabel="iPhone" benchmarkHref="/iphone/benchmark/" benchmarkLinkLabel="iPhoneのベンチマーク比較" />
         <ReviewSection modelName={model.model} reviews={reviews} />
         <FaqSection model={model} latestPrice={latestPrice} shopLinks={modelShopLinks} />
 

@@ -2,18 +2,42 @@
 
 import Link from 'next/link'
 import StickyTableWrapper from '@/app/components/StickyTableWrapper'
-import type { IPhoneModel } from '@/lib/types'
 
-type Props = {
-  model: IPhoneModel
-  allModels: IPhoneModel[]
+// ============================================================
+// Antutuスコアセクション（機種詳細ページ共通）
+//
+// 以前は iPhone / iPad / Pixel / Galaxy にほぼ同一のコピーがあり、
+// 差分は caption のカテゴリ名とベンチマーク比較ページへのリンクの
+// 2箇所だけだった。クライアントコンポーネントなので、差分は
+// シリアライズ可能な文字列 props で受ける。
+// ============================================================
+
+/** このセクションが読むフィールドだけの構造的型。各カテゴリの Model 型がそのまま満たす */
+export type AntutuModel = {
+  id: number
+  model: string
+  antutu_cpu: number | null
+  antutu_gpu: number | null
+  antutu_mem: number | null
+  antutu_ux: number | null
 }
 
-function getAntutuTotal(m: IPhoneModel): number {
+type Props = {
+  model: AntutuModel
+  allModels: AntutuModel[]
+  /** caption「{categoryLabel}モデル別 Antutu…」に入るカテゴリ名。例 'iPhone' */
+  categoryLabel: string
+  /** ベンチマーク比較ページ。例 '/iphone/benchmark/' */
+  benchmarkHref: string
+  /** リンクの文言。例 'iPhoneのベンチマーク比較'・'歴代Google Pixelベンチマーク比較' */
+  benchmarkLinkLabel: string
+}
+
+function getAntutuTotal(m: AntutuModel): number {
   return (m.antutu_cpu || 0) + (m.antutu_gpu || 0) + (m.antutu_mem || 0) + (m.antutu_ux || 0)
 }
 
-export default function BenchmarkAntutu({ model, allModels }: Props) {
+export default function BenchmarkAntutu({ model, allModels, categoryLabel, benchmarkHref, benchmarkLinkLabel }: Props) {
   const total = getAntutuTotal(model)
   if (total === 0) return null
 
@@ -78,7 +102,7 @@ export default function BenchmarkAntutu({ model, allModels }: Props) {
         <StickyTableWrapper floatingHeader className="m-card m-card--shadow m-table-card">
           <div className="m-table-scroll">
             <table className="m-table m-table--sticky-col bench-table">
-              <caption className="visually-hidden">iPhoneモデル別 Antutu Benchmark v10 スコア比較</caption>
+              <caption className="visually-hidden">{categoryLabel}モデル別 Antutu Benchmark v10 スコア比較</caption>
               <thead>
                 <tr>
                   <th scope="col" className="bench-table__sticky">モデル</th>
@@ -132,7 +156,7 @@ export default function BenchmarkAntutu({ model, allModels }: Props) {
         </StickyTableWrapper>
         <div className="m-callout m-callout--tip u-mt-2xl">
           <span className="m-callout__label">memo</span>
-          <p className="m-callout__text">ベンチマークについてもっと詳しく知りたい方は「<Link prefetch={false} href="/iphone/benchmark/">iPhoneのベンチマーク比較</Link>」もあわせてご覧ください。</p>
+          <p className="m-callout__text">ベンチマークについてもっと詳しく知りたい方は「<Link prefetch={false} href={benchmarkHref}>{benchmarkLinkLabel}</Link>」もあわせてご覧ください。</p>
         </div>
       </div>
     </section>
