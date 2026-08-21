@@ -12,6 +12,13 @@ import d1NextTagCache from '@opennextjs/cloudflare/overrides/tag-cache/d1-next-t
 
 export default defineCloudflareConfig({
   incrementalCache: r2IncrementalCache,
+  // enableCacheInterception は試して戻した（2026-08-21）。
+  // 理屈の上ではキャッシュ済みページを Next 本体を通さず返して速くなるはず
+  // だったが、実測では全ページが4〜10倍遅くなった（トップ 0.09s→1.4s、
+  // price-info 0.3s→3〜6s。連続リクエストでも改善せず）。
+  // このサイトのページはRSCペイロード込みで最大2.6MBと大きく、
+  // インターセプタ経由の配信が合わないと見られる。有効化するなら必ず
+  // 前後で応答時間を実測すること。
   // tagCache を省略すると既定の "dummy" になる。dummy は writeTags が何もせず
   // isStale が常に false を返すため、revalidateTag が完全に無効化される
   // （API は ok を返すのにページが更新されない、という気づきにくい壊れ方をする）。
